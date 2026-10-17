@@ -269,6 +269,29 @@ describe('засчитывание по типам', () => {
     expect(grants.filter((g) => g.kind === 'lesson')).toHaveLength(1);
   });
 
+  // зачем (Ревизор 3.16, решение координатора 17.10): выдача не удалась, день сменился — награда прошлого дня не теряется
+  it('перенос: невыданная награда вчерашнего дня выдаётся ключом вчерашнего дня, один раз', async () => {
+    await startDayWith(['lesson', 'dialog', 'cards']);
+    failGrant = true;
+    await recordTodayTaskActivity({ kind: 'lesson', unitKey: 'lesson:1', source: 'test' });
+    expect(task('lesson')).toMatchObject({ done: true, rewardStatus: 'pending' });
+    const dayOneKey = peekTodayTasks()?.dayKey;
+    nowMs = DAY2_NOON;
+    await flush(); // новый день: невыданное ушло в перенос, выдача снова падает
+    expect(peekTodayTasks()?.dayKey).not.toBe(dayOneKey);
+    expect(grants).toHaveLength(0);
+    failGrant = false;
+    await flush(); // открытие Главной — перенос выдан
+    await flush(); // повторно — без двойной выплаты
+    const lessonGrants = grants.filter((g) => g.kind === 'lesson');
+    expect(lessonGrants.length).toBeGreaterThan(0);
+    expect(new Set(lessonGrants.map((g) => g.dayKey))).toEqual(new Set([dayOneKey]));
+    expect(new Set(lessonGrants.map((g) => g.requestId)).size).toBe(lessonGrants.length);
+    const firstCount = lessonGrants.length;
+    await flush();
+    expect(grants.filter((g) => g.kind === 'lesson')).toHaveLength(firstCount);
+  });
+
   it('сбой выдачи монет — один отложенный повтор, выплата одна', async () => {
     jest.useFakeTimers({ doNotFake: ['nextTick', 'setImmediate', 'queueMicrotask'] });
     try {

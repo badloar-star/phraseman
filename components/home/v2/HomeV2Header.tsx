@@ -68,7 +68,7 @@ function sameElement(a: React.ReactNode, b: React.ReactNode): boolean {
 }
 
 function sameHeaderData(a: ViewProps, b: ViewProps): boolean {
-  if (a.refreshing !== b.refreshing || a.latestRef !== b.latestRef) return false;
+  if (a.refreshing !== b.refreshing || a.latestRef !== b.latestRef || a.stats.length !== b.stats.length) return false; // зачем (Ревизор 3.15): другое число показателей — не сравнивать по индексу (TypeError)
   if (!sameElement(a.bellSlot, b.bellSlot) || !sameElement(a.avatarSlot, b.avatarSlot)) return false;
   return a.stats.every((x, i) => {
     const y = b.stats[i];

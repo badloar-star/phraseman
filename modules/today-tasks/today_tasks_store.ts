@@ -243,6 +243,10 @@ async function loadDay(): Promise<TodayTasksDayState> {
     publish(stored);
     return stored;
   }
+  // зачем (Ревизор 3.16, решение координатора 17.10): выдача не удалась, а день сменился — награду прошлого дня не теряем:
+  // невыданные pending уходят в список переноса и выдаются тем же идемпотентным ключом прошлого дня.
+  const previous = current && current.ownerKey === ownerKey && current.dayKey !== dayKey ? current : stored && stored.ownerKey === ownerKey && stored.dayKey !== dayKey ? stored : null;
+  if (previous && ownerKey !== ANON_OWNER) await carryOverPendingRewards(previous);
   const kinds = await readAvailableKinds();
   const fresh = createTodayTasksDay(ownerKey, dayKey, kinds);
   log('day:new_set', {
@@ -257,7 +261,7 @@ async function loadDay(): Promise<TodayTasksDayState> {
   return fresh;
 }
 
-async function rewardRequests(state: TodayTasksDayState, kind: TodayTaskKindCore, amount: number): Promise<TodayTaskGrantRequest[] | null> {
+async function rewardRequests(state: Pick<TodayTasksDayState, 'ownerKey' | 'dayKey'>, kind: TodayTaskKindCore, amount: number): Promise<TodayTaskGrantRequest[] | null> {
   const giftIds = todayTaskRewardGiftIds(amount);
   if (!giftIds) return null;
   const hash = (await deps.sha256Hex(todayTaskRewardSeed(state.ownerKey, state.dayKey, kind))).replace(/[^A-Za-z0-9]/g, '');
@@ -270,11 +274,73 @@ async function rewardRequests(state: TodayTasksDayState, kind: TodayTaskKindCore
   }));
 }
 
+type CarryItem = Readonly<{ dayKey: string; kind: TodayTaskKindCore; coins: number }>;
+const CARRY_KEY_PREFIX = 'today_tasks_carry_v1:';
+
+async function readCarry(ownerKey: string): Promise<CarryItem[]> {
+  try {
+    const raw = await AsyncStorage.getItem(`${CARRY_KEY_PREFIX}${ownerKey}`);
+    const parsed = raw ? JSON.parse(raw) as unknown : [];
+    if (!Array.isArray(parsed)) {
+      settleLog('carry_over:broken', { action: 'reset' });
+      return [];
+    }
+    return parsed.filter((x): x is CarryItem => Boolean(x) && typeof x.dayKey === 'string' && TODAY_TASK_POOL.includes(x.kind) && Number.isFinite(x.coins) && x.coins > 0);
+  } catch (error) {
+    warn('carry:read_failed', { error: errText(error) });
+    return [];
+  }
+}
+
+async function writeCarry(ownerKey: string, items: readonly CarryItem[]): Promise<void> {
+  try {
+    if (items.length === 0) await AsyncStorage.removeItem(`${CARRY_KEY_PREFIX}${ownerKey}`);
+    else await AsyncStorage.setItem(`${CARRY_KEY_PREFIX}${ownerKey}`, JSON.stringify(items.slice(-14)));
+  } catch (error) {
+    warn('carry:write_failed', { error: errText(error), items: items.length });
+  }
+}
+
+/** Невыданные награды уходящего дня — в список переноса (без дублей). */
+async function carryOverPendingRewards(previous: TodayTasksDayState): Promise<void> {
+  const pending = previous.tasks.filter((task) => task.rewardStatus === 'pending' && task.rewardCoins > 0);
+  if (pending.length === 0) return;
+  const carry = await readCarry(previous.ownerKey);
+  const added = pending.filter((task) => !carry.some((c) => c.dayKey === previous.dayKey && c.kind === task.kind)).map((task) => ({ dayKey: previous.dayKey, kind: task.kind, coins: task.rewardCoins }));
+  await writeCarry(previous.ownerKey, [...carry, ...added]);
+  settleLog('carry_over', { fromDay: previous.dayKey, saved: added.map((c) => c.kind), total: carry.length + added.length });
+}
+
+/** Выдать перенесённые награды прошлых дней ключом СВОЕГО дня. Вызывать только внутри serialized. */
+async function settleCarriedRewards(ownerKey: string): Promise<void> {
+  if (ownerKey === ANON_OWNER) return;
+  const carry = await readCarry(ownerKey);
+  if (carry.length === 0) return;
+  const left: CarryItem[] = [];
+  for (const item of carry) {
+    const requests = await rewardRequests({ ownerKey, dayKey: item.dayKey }, item.kind, item.coins);
+    if (!requests) {
+      warn('carry:skip', { ...item, reason: 'amount_not_decomposable_or_hash_failed', action: 'dropped' });
+      continue;
+    }
+    try {
+      for (const request of requests) await deps.grant(request);
+      settleLog('carry_over:granted', { dayKey: item.dayKey, kind: item.kind, coins: item.coins });
+    } catch (error) {
+      left.push(item);
+      settleLog('carry_over:grant_failed', { dayKey: item.dayKey, kind: item.kind, error: errText(error), retryInMs: REWARD_RETRY_MS });
+      scheduleRewardRetry();
+    }
+  }
+  if (left.length !== carry.length) await writeCarry(ownerKey, left);
+}
+
 /** Провести все pending-выплаты. Вызывать только внутри serialized. */
 async function settlePendingRewards(state: TodayTasksDayState): Promise<TodayTasksDayState> {
   // зачем (Ревизор 3.11, 🔴 по f1b855998; координатор 17.10): выдача ждёт сеть, а события теперь применяются к `current` сразу, мимо очереди.
   // Раньше отметку «выдано» ставили на снимке ДО ожидания и публиковали его — событие, пришедшее за время выдачи, затиралось.
   // Теперь копим выданные типы и ставим отметку на СВЕЖЕМ current того же владельца и дня.
+  await settleCarriedRewards(state.ownerKey);
   const pendingKinds = state.tasks.filter((task) => task.rewardStatus === 'pending').map((task) => task.kind);
   settleLog('enter', { dayKey: state.dayKey, owner: state.ownerKey === ANON_OWNER ? 'anon' : 'account', pending: pendingKinds });
   const grantedKinds: TodayTaskKindCore[] = [];
@@ -347,8 +413,8 @@ function scheduleRewardRetry(): void {
     rewardRetryTimer = null;
     void serialized(async () => {
       const state = current;
-      if (!state || !state.tasks.some((task) => task.rewardStatus === 'pending')) {
-        log('reward:retry_skip', { reason: state ? 'nothing_pending' : 'no_state' });
+      if (!state) {
+        log('reward:retry_skip', { reason: 'no_state' });
         return;
       }
       log('reward:retry', { dayKey: state.dayKey });

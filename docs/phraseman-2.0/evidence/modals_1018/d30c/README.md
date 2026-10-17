@@ -1,0 +1,4 @@
+# d30 после 51be7edce — calendar:visual (18.10 00:52)
+Открыто: dev-превью /dev_moments_preview?state=streak&d=30 (moments=v3), после холодного старта; кадры t3/t8/t14 (d30_t3s/t8s/t14s).
+Журнал streak_milestone.txt: calendar:visual (все 4 момента: layout, +500, +1000, +2000 мс) — x=32 y=432 w=347 h=235, windowH=914, onScreen=true, bottomCut=0, scrollY=0, viewportH=712, beats=[morph,text,extra], extraFired=true, cellOn=#7EF0C8, cellOff=#2B3839, bg=#0C0D10.
+ГИПОТЕЗА «календарь ниже окна, bottomCut≈240» ОПРОВЕРГНУТА: bottomCut=0, onScreen=true, y+h=667 < windowH=914. Календарь ПО ЗАМЕРУ полностью на экране и beat extra сработал, но на кадре t14 в его прямоугольнике нет ни клеток cellOn, ни cellOff (см. подсчёт пикселей в отчёте) — рисуется «пусто». Значит причина не в позиции, а в самой отрисовке: opacity/transform 0, клетки не смонтированы, или слой под ореолом/текстом.

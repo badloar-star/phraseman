@@ -1,0 +1,10 @@
+10-18 00:52:51.943 I/ReactNativeJS( 3185): [STREAK-MILESTONE] layout {"milestone":30,"kind":"big","contentH":708,"viewportH":708,"overflow":false,"done":[],"calendar":false}
+10-18 00:52:52.677 I/ReactNativeJS( 3185): [STREAK-MILESTONE] beat {"milestone":30,"kind":"big","id":"morph","sinceMountMs":947}
+10-18 00:52:53.244 I/ReactNativeJS( 3185): [STREAK-MILESTONE] beat {"milestone":30,"kind":"big","id":"text","sinceMountMs":1515}
+10-18 00:52:53.364 I/ReactNativeJS( 3185): [STREAK-MILESTONE] layout {"milestone":30,"kind":"big","contentH":712,"viewportH":712,"overflow":false,"done":["morph","text"],"calendar":false}
+10-18 00:52:53.459 I/ReactNativeJS( 3185): [STREAK-MILESTONE] beat {"milestone":30,"kind":"big","id":"extra","sinceMountMs":1729}
+10-18 00:52:53.545 I/ReactNativeJS( 3185): [STREAK-MILESTONE] calendar:visual {"trigger":"layout","milestone":30,"x":32,"y":432,"w":347,"h":235,"windowH":914,"onScreen":true,"bottomCut":0,"scrollY":0,"viewportH":712,"beats":["morph","text","extra"],"extraFired":true,"cellOn":"#7EF0C8","cellOff":"#2B3839","bg":"#0C0D10"}
+10-18 00:52:53.545 I/ReactNativeJS( 3185): [STREAK-MILESTONE] calendar:layout {"milestone":30,"w":347,"h":235,"zero":false}
+10-18 00:52:54.066 I/ReactNativeJS( 3185): [STREAK-MILESTONE] calendar:visual {"trigger":"+500ms","milestone":30,"x":32,"y":432,"w":347,"h":235,"windowH":914,"onScreen":true,"bottomCut":0,"scrollY":0,"viewportH":712,"beats":["morph","text","extra"],"extraFired":true,"cellOn":"#7EF0C8","cellOff":"#2B3839","bg":"#0C0D10"}
+10-18 00:52:54.555 I/ReactNativeJS( 3185): [STREAK-MILESTONE] calendar:visual {"trigger":"+1000ms","milestone":30,"x":32,"y":432,"w":347,"h":235,"windowH":914,"onScreen":true,"bottomCut":0,"scrollY":0,"viewportH":712,"beats":["morph","text","extra"],"extraFired":true,"cellOn":"#7EF0C8","cellOff":"#2B3839","bg":"#0C0D10"}
+10-18 00:52:55.555 I/ReactNativeJS( 3185): [STREAK-MILESTONE] calendar:visual {"trigger":"+2000ms","milestone":30,"x":32,"y":432,"w":347,"h":235,"windowH":914,"onScreen":true,"bottomCut":0,"scrollY":0,"viewportH":712,"beats":["morph","text","extra"],"extraFired":true,"cellOn":"#7EF0C8","cellOff":"#2B3839","bg":"#0C0D10"}

@@ -70,9 +70,14 @@ test('HEAD: пара фабрика/манифест согласована — 
   });
 });
 
-test('фабрика требует loadAuxiliary, манифест из HEAD без него → коммит остановлен', () => {
+test('фабрика требует loadAuxiliary, манифест без него → коммит остановлен', () => {
   withTempIndex((env) => {
     stageText(env, FACTORY, requiringFactory());
+    // зачем (Ядро 17.10): манифест HEAD уже даёт loadAuxiliary всем 441 строкам; раньше тест «проходил» только из-за
+    // лишней единицы в подсчёте строк (тип `loadIntro: () => unknown` считался данными). Манифест без auxiliary — явно.
+    const manifest = headText(MANIFEST).replace(/^\s*loadAuxiliary: \(\) => require\([^)]*\) as unknown,\r?\n/gmu, '');
+    assert.ok(!/loadAuxiliary: \(\) => require/u.test(manifest), 'заготовка: auxiliary убран из всех строк');
+    stageText(env, MANIFEST, manifest);
     const run = runGuard(env);
     assert.match(run.stdout, /requiresAuxiliary=true/);
     assert.notEqual(run.status, 0);

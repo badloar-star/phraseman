@@ -267,8 +267,10 @@ if (factoryText && manifestText) {
   const factoryRequiresAuxiliary = /if\s*\(\s*!\s*row\.loadAuxiliary\s*\)/.test(factoryText)
     && factoryText.includes('learning_v2_factory_native_auxiliary_missing');
   // Строки данных — `loadIntro: () => <загрузчик>`; объявление типа `loadIntro: () => unknown` не считаем.
-  const rowCount = (manifestText.match(/\bloadIntro:\s*\(\)\s*=>\s*(?!unknown\b)/g) ?? []).length;
-  const auxiliaryRowCount = (manifestText.match(/\bloadAuxiliary:\s*\(\)\s*=>\s*(?!unknown\b)/g) ?? []).length;
+  // зачем (Ядро 17.10, manifestRows=442 при 441 занятии): у `=>\s*(?!unknown)` пробел перед unknown съедался откатом, и строка
+  // типа `loadIntro: () => unknown` считалась данными (+1). Тогда при требовании auxiliary сторож ложно стоял бы на 441 < 442.
+  const rowCount = (manifestText.match(/\bloadIntro:\s*\(\)\s*=>(?!\s*unknown\b)/g) ?? []).length;
+  const auxiliaryRowCount = (manifestText.match(/\bloadAuxiliary\??:\s*\(\)\s*=>(?!\s*unknown\b)/g) ?? []).length;
   console.log(`[RELEASE-GUARD] factory requiresAuxiliary=${factoryRequiresAuxiliary} manifestRows=${rowCount} auxiliaryRows=${auxiliaryRowCount}`);
   if (rowCount === 0) {
     problems.push(

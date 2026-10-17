@@ -1,12 +1,12 @@
 [
   {
     "interactionId": "en:lesson-01:session-11:i01",
-    "correctText": "crazy",
+    "correctText": "rude",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-11:i02",
-    "correctText": "crazy",
+    "correctText": "rude",
     "correctResponseId": "en:lesson-01:session-11:i02:r1"
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i06",
-    "correctText": "wrong",
+    "correctText": "slow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-11:i07",
-    "correctText": "wrong",
+    "correctText": "slow",
     "correctResponseId": "en:lesson-01:session-11:i07:r1"
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i09",
-    "correctText": "kind",
+    "correctText": "careful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-11:i10",
-    "correctText": "kind",
+    "correctText": "careful",
     "correctResponseId": "en:lesson-01:session-11:i10:r1"
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i12",
-    "correctText": "en:lesson-01:session-11:i12:p1=crazy\nen:lesson-01:session-11:i12:p2=lazy\nen:lesson-01:session-11:i12:p3=wrong\nen:lesson-01:session-11:i12:p4=kind",
+    "correctText": "en:lesson-01:session-11:i12:p1=lazy\nen:lesson-01:session-11:i12:p2=rude\nen:lesson-01:session-11:i12:p3=slow\nen:lesson-01:session-11:i12:p4=careful",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i14",
-    "correctText": "You are sure.",
+    "correctText": "You are careful.",
     "correctResponseId": null
   },
   {

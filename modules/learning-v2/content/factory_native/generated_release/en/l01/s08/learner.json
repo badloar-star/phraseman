@@ -4,68 +4,240 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-08:i01",
+      "interactionId": "en:lesson-01:session-08:word:calm",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:calm:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:calm:audio",
+          "transcript": "calm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:calm:r1",
+            "targetText": "calm",
+            "meaningByLocale": {
+              "ru": "«спокоен / спокойна»: вы не волнуетесь и не суетитесь.",
+              "uk": "«спокійний / спокійна»: ви не хвилюєтеся й не метушитеся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calm",
+          "definitionByLocale": {
+            "ru": "«спокоен / спокойна»: вы не волнуетесь и не суетитесь.",
+            "uk": "«спокійний / спокійна»: ви не хвилюєтеся й не метушитеся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:word:nervous",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nervous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:nervous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nervous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:nervous:audio",
+          "transcript": "nervous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:nervous:r1",
+            "targetText": "nervous",
+            "meaningByLocale": {
+              "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
+              "uk": "«знервований»: ви хвилюєтеся перед виступом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nervous",
+          "definitionByLocale": {
+            "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
+            "uk": "«знервований»: ви хвилюєтеся перед виступом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:word:excited",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — excited",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:excited:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — excited",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:excited:audio",
+          "transcript": "excited"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:excited:r1",
+            "targetText": "excited",
+            "meaningByLocale": {
+              "ru": "«в радостном волнении»: вы с нетерпением ждёте приятного события.",
+              "uk": "«радісно схвильований»: ви нетерпляче чекаєте приємної події."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "excited",
+          "definitionByLocale": {
+            "ru": "«в радостном волнении»: вы с нетерпением ждёте приятного события.",
+            "uk": "«радісно схвильований»: ви нетерпляче чекаєте приємної події."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:word:thirsty",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thirsty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:thirsty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thirsty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:thirsty:audio",
+          "transcript": "thirsty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:thirsty:r1",
+            "targetText": "thirsty",
+            "meaningByLocale": {
+              "ru": "«испытывающий жажду»: вы хотите пить.",
+              "uk": "«спраглий»: ви хочете пити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thirsty",
+          "definitionByLocale": {
+            "ru": "«испытывающий жажду»: вы хотите пить.",
+            "uk": "«спраглий»: ви хочете пити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Мира спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+      "prompt": "Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i01:r1",
-          "text": "lost"
+          "text": "calm"
         },
         {
           "responseId": "en:lesson-01:session-08:i01:r2",
-          "text": "new"
+          "text": "nervous"
         },
         {
           "responseId": "en:lesson-01:session-08:i01:r3",
-          "text": "free"
+          "text": "thirsty"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Мира спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+      "accessibilityLabel": "Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Мира спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
-          "uk": "Вставте слово — Міра питає, чи не заблукали ви в коридорах. Дорогу ви знайшли"
+          "ru": "Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь",
+          "uk": "Вставте слово — ви спокійно чекаєте своєї черги й зовсім не хвилюєтеся"
         },
-        "gappedTargetPhrase": "I am not ___ .",
+        "gappedTargetPhrase": "I am ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-08:i01:r1",
-            "text": "lost"
+            "text": "calm"
           },
           {
             "responseId": "en:lesson-01:session-08:i01:r2",
-            "text": "new"
+            "text": "nervous"
           },
           {
             "responseId": "en:lesson-01:session-08:i01:r3",
-            "text": "free"
+            "text": "thirsty"
           }
         ],
-        "testedDimension": "Вставьте слово — Мира спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+        "testedDimension": "Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-08:i01:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — Мира спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+            "testedDimension": "Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь",
             "feedbackByLocale": {
-              "ru": "Правда, но не ответ: вы здесь недавно, а вопрос был про коридоры.",
-              "uk": "Правда, але не відповідь: ви тут нещодавно, а запитання було про коридори."
+              "ru": "Nervous означает, что вы нервничаете, а по условию вы спокойны.",
+              "uk": "Nervous означає, що ви нервуєте, а за умовою ви спокійні."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i01:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — Мира спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+            "testedDimension": "Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь",
             "feedbackByLocale": {
-              "ru": "«У меня нет свободного времени» — это не ответ на вопрос о дороге.",
-              "uk": "«У мене немає вільного часу» — це не відповідь про дорогу."
+              "ru": "Thirsty сообщает о жажде, а здесь нужно сообщить о спокойствии.",
+              "uk": "Thirsty повідомляє про спрагу, а тут треба повідомити про спокій."
             }
           }
         ]
@@ -74,51 +246,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i02:r1",
-          "text": "tired"
+          "text": "nervous"
         },
         {
           "responseId": "en:lesson-01:session-08:i02:r2",
-          "text": "tried"
+          "text": "calm"
         },
         {
           "responseId": "en:lesson-01:session-08:i02:r3",
-          "text": "tide"
+          "text": "excited"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-08:i02:audio",
-          "transcript": "tired"
+          "transcript": "nervous"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-08:i02:r1",
-            "targetText": "tired",
+            "targetText": "nervous",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-08:i02:r2",
-            "targetText": "tried",
+            "targetText": "calm",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-08:i02:r3",
-            "targetText": "tide",
+            "targetText": "excited",
             "meaningByLocale": null
           }
         ],
@@ -127,19 +299,19 @@
           {
             "responseId": "en:lesson-01:session-08:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — tired",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Те же буквы, другой порядок: «ТРАЙД». Усталость — «ТАЙ-эд».",
-              "uk": "Ті самі букви, інший порядок: «ТРАЙД». Втома — «ТАЙ-ед»."
+              "ru": "В записи nervous, а не calm.",
+              "uk": "У записі nervous, а не calm."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — tired",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В `tide` нет второго слога /əd/: это один слог /taɪd/.",
-              "uk": "У `tide` немає другого складу /əd/: це один склад /taɪd/."
+              "ru": "В записи nervous, а не excited.",
+              "uk": "У записі nervous, а не excited."
             }
           }
         ],
@@ -150,26 +322,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Мира спрашивает, устали ли вы после длинного дня",
+      "prompt": "Соберите фразу — вы радуетесь предстоящему концерту и с нетерпением его ждёте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Мира спрашивает, устали ли вы после длинного дня",
+      "accessibilityLabel": "Соберите фразу — вы радуетесь предстоящему концерту и с нетерпением его ждёте",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am tired.",
+        "targetPhrase": "I am excited.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Мира спрашивает, устали ли вы после длинного дня",
-          "uk": "Складіть речення — Міра питає, чи втомилися ви після довгого дня"
+          "ru": "Соберите фразу — вы радуетесь предстоящему концерту и с нетерпением его ждёте",
+          "uk": "Складіть фразу — ви радієте майбутньому концерту й нетерпляче на нього чекаєте"
         },
         "orderedTokens": [
           "I",
           "am",
-          "tired"
+          "excited"
         ],
         "authoredDistractorTokens": [
           "not"
@@ -178,19 +350,23 @@
           {
             "responseId": "en:lesson-01:session-08:i03:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Мира спрашивает, устали ли вы после длинного дня",
+            "testedDimension": "Соберите фразу — вы радуетесь предстоящему концерту и с нетерпением его ждёте",
             "feedbackByLocale": {
-              "ru": "она изменила бы смысл; после длинного дня вы говорите об усталости",
-              "uk": "вона змінила б зміст; після довгого дня ви говорите про втому"
+              "ru": "она отрицает радостное волнение, а вы ждёте концерт с радостью.",
+              "uk": "вона заперечує радісне хвилювання, а ви чекаєте на концерт із радістю."
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-08:i04",
-      "ordinal": 7,
+      "ordinal": 11,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -216,7 +392,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
-          "uk": "Вставте слово — Міра уточнює, чи ви той самий новенький"
+          "uk": "Вставте слово — Міра уточнює, чи ви тут уперше"
         },
         "gappedTargetPhrase": "I ___ new here.",
         "gapOptions": [
@@ -259,8 +435,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите — «голода нет»",
@@ -285,14 +461,18 @@
           "hungry"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-08:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините пары",
@@ -308,7 +488,7 @@
             "target": "ready",
             "meaningByLocale": {
               "ru": "можно идти",
-              "uk": "готовий"
+              "uk": "можна вирушати"
             }
           },
           {
@@ -316,22 +496,22 @@
             "target": "tired",
             "meaningByLocale": {
               "ru": "чувствую усталость",
-              "uk": "втомлений"
+              "uk": "відчуваю втому"
             }
           },
           {
             "pairId": "en:lesson-01:session-08:i06:p3",
             "target": "lost",
             "meaningByLocale": {
-              "ru": "знаю, куда идти",
-              "uk": "заблукав"
+              "ru": "заблудившийся",
+              "uk": "той, хто заблукав"
             }
           },
           {
             "pairId": "en:lesson-01:session-08:i06:p4",
             "target": "hungry",
             "meaningByLocale": {
-              "ru": "голода нет",
+              "ru": "голодный",
               "uk": "голодний"
             }
           }
@@ -345,8 +525,8 @@
         "rightColumn": [
           "можно идти",
           "чувствую усталость",
-          "знаю, куда идти",
-          "голода нет"
+          "заблудившийся",
+          "голодный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -364,7 +544,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -433,21 +613,21 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Мира называет время начала завтра, а вы его не запомнили",
+      "prompt": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Мира называет время начала завтра, а вы его не запомнили",
+      "accessibilityLabel": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am not sure.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Мира называет время начала завтра, а вы его не запомнили",
-          "uk": "Складіть речення — Міра називає час початку завтра, а ви його не запам'ятали"
+          "ru": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
+          "uk": "Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час"
         },
         "orderedTokens": [
           "I",
@@ -456,57 +636,61 @@
           "sure"
         ],
         "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-08:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i09:r1",
-          "text": "free"
+          "text": "thirsty"
         },
         {
           "responseId": "en:lesson-01:session-08:i09:r2",
-          "text": "three"
+          "text": "hungry"
         },
         {
           "responseId": "en:lesson-01:session-08:i09:r3",
-          "text": "fry"
+          "text": "tired"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-08:i09:audio",
-          "transcript": "free"
+          "transcript": "thirsty"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-08:i09:r1",
-            "targetText": "free",
+            "targetText": "thirsty",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-08:i09:r2",
-            "targetText": "three",
+            "targetText": "hungry",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-08:i09:r3",
-            "targetText": "fry",
+            "targetText": "tired",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +699,19 @@
           {
             "responseId": "en:lesson-01:session-08:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — free",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Начало другое: `free` начинается с губного «ф», а не с языка между зубами.",
-              "uk": "Початок інший: `free` починається з губного «ф», а не з язика між зубами."
+              "ru": "В записи thirsty, а не hungry.",
+              "uk": "У записі thirsty, а не hungry."
             }
           },
           {
             "responseId": "en:lesson-01:session-08:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — free",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Обрублен хвост. `free` тянется на «и»: «фрии».",
-              "uk": "Обрубаний хвіст. `free` тягнеться на «і»: «фрії»."
+              "ru": "В записи thirsty, а не tired.",
+              "uk": "У записі thirsty, а не tired."
             }
           }
         ],
@@ -538,7 +722,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i10",
-      "ordinal": 13,
+      "ordinal": 17,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -564,7 +748,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — вас зовут на общий обед в пятницу. В пятницу вы свободны",
-          "uk": "Вставте слово — вас кличуть на спільний обід у п'ятницю. П'ятниця у вас порожня"
+          "uk": "Вставте слово — вас кличуть на спільний обід у п'ятницю. У п’ятницю ви вільні"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -588,8 +772,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — вас зовут на общий обед в пятницу. В пятницу вы свободны",
             "feedbackByLocale": {
-              "ru": "«Я знаю, куда идти» — на вопрос про планы на пятницу это не ответ.",
-              "uk": "«Я знаю, куди йти» — це не відповідь на запитання про плани на п’ятницю."
+              "ru": "`I am lost` значит «Я заблудился / заблудилась». Это не ответ о свободном времени в пятницу.",
+              "uk": "`I am lost` означає «Я заблукав / заблукала». Це не відповідь про вільний час у п’ятницю."
             }
           },
           {
@@ -607,7 +791,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i11",
-      "ordinal": 14,
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -644,17 +828,21 @@
               "uk": "у записі `ready` — «можна вирушати», а `done` повідомляє, що зі справами все"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-08:i12",
-      "ordinal": 15,
-      "purpose": "guided_practice",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы здесь уже не впервые",
+      "prompt": "Вставьте слово — вы давно работаете в этой команде; скажите, что вы не новенький",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i12:r1",
@@ -671,12 +859,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы здесь уже не впервые",
+      "accessibilityLabel": "Вставьте слово — вы давно работаете в этой команде; скажите, что вы не новенький",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы здесь уже не впервые",
-          "uk": "Вставте слово — ви давно тут, тому кажете, що вже не новачок"
+          "ru": "Вставьте слово — вы давно работаете в этой команде; скажите, что вы не новенький",
+          "uk": "Вставте слово — ви давно працюєте в цій команді; скажіть, що ви не новенький"
         },
         "gappedTargetPhrase": "I am not ___ .",
         "gapOptions": [
@@ -693,12 +881,12 @@
             "text": "hungry"
           }
         ],
-        "testedDimension": "Вставьте слово — вы здесь уже не впервые",
+        "testedDimension": "Вставьте слово — вы давно работаете в этой команде; скажите, что вы не новенький",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-08:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы здесь уже не впервые",
+            "testedDimension": "Вставьте слово — вы давно работаете в этой команде; скажите, что вы не новенький",
             "feedbackByLocale": {
               "ru": "`I am not done` — «с делами ещё не всё», это другой смысл.",
               "uk": "`I am not done` — «зі справами ще не все», це інший зміст."
@@ -707,7 +895,7 @@
           {
             "responseId": "en:lesson-01:session-08:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы здесь уже не впервые",
+            "testedDimension": "Вставьте слово — вы давно работаете в этой команде; скажите, что вы не новенький",
             "feedbackByLocale": {
               "ru": "`I am not hungry` — «голода нет», это не ответ о том, давно ли вы здесь.",
               "uk": "`I am not hungry` — «голоду немає», це не відповідь про те, давно ви тут чи ні."
@@ -719,7 +907,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -753,13 +941,17 @@
               "uk": "`free` говорить про вільний час, а тут ви повідомляєте, що зі справами все"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-08:i14",
-      "ordinal": 17,
+      "ordinal": 21,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -776,7 +968,7 @@
             "target": "sure",
             "meaningByLocale": {
               "ru": "знаю точно",
-              "uk": "впевнений"
+              "uk": "знаю напевно"
             }
           },
           {
@@ -784,7 +976,7 @@
             "target": "free",
             "meaningByLocale": {
               "ru": "есть время",
-              "uk": "вільний"
+              "uk": "маю час"
             }
           },
           {
@@ -792,7 +984,7 @@
             "target": "done",
             "meaningByLocale": {
               "ru": "с делами всё",
-              "uk": "закінчив"
+              "uk": "зі справами все"
             }
           },
           {
@@ -832,8 +1024,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i15:s01",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "ordinal": 22,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
       "prompt": "Скажите вслух — после длинного дня вы отвечаете Олегу, что устали",
@@ -865,8 +1057,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i15:s02",
-      "ordinal": 19,
-      "purpose": "independent_check",
+      "ordinal": 23,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
       "prompt": "Скажите вслух — после еды вы отвечаете Олегу, что не голодны",
@@ -898,7 +1090,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i16",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -932,23 +1124,27 @@
               "uk": "з `I` потрібна форма `am`"
             }
           }
-        ]
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-08:i17:s01",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "ordinal": 25,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — Нина спрашивает, готовы ли вы идти; ответьте полной фразой",
+      "prompt": "Скажите вслух — вы готовы идти; подтвердите это Нине полной фразой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — Нина спрашивает, готовы ли вы идти; ответьте полной фразой",
+      "accessibilityLabel": "Скажите вслух — вы готовы идти; подтвердите это Нине полной фразой",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -971,8 +1167,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i17:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
+      "ordinal": 26,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
       "prompt": "Скажите вслух — вы нашли дорогу и сообщаете, что не заблудились",
@@ -1004,25 +1200,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i17:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
+      "ordinal": 27,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — после еды вы отвечаете, что не голодны",
+      "prompt": "Скажите вслух — вы спокойно ждёте начала встречи; сообщите, что вы спокойны",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i17:s03:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — после еды вы отвечаете, что не голодны",
+      "accessibilityLabel": "Скажите вслух — вы спокойно ждёте начала встречи; сообщите, что вы спокойны",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-08:i17:s03:audio",
-          "transcript": "I am not hungry."
+          "transcript": "I am calm."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am not hungry.",
+        "targetPhrase": "I am calm.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1037,8 +1233,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i17:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
+      "ordinal": 28,
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
       "prompt": "Скажите вслух — вы закончили дела и сообщаете об этом",
@@ -1069,11 +1265,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 25,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c6ecc48d51a782ee441e488b435c70170d0c02b7f0fab4c671a67fffa51b80ea"
+  "learnerFingerprint": "c40bf452171232875021a733d8ec87ec566c08aec2e091cd0d7089f0ca6dcbb5"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-26:intro1:r2": {
-          "ru": "После `I` нужна форма `am`.",
-          "uk": "Після `I` потрібна форма `am`."
+          "ru": "После I нужно am.",
+          "uk": "Після I потрібне am."
         },
         "en:lesson-01:session-26:intro1:r3": {
-          "ru": "Это про него. О себе говорим `I am bored`.",
-          "uk": "Це про нього. Про себе кажемо `I am bored`."
+          "ru": "He — о нём. О себе говорим I am.",
+          "uk": "He — про нього. Про себе говоримо I am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-26:intro2:r2": {
-          "ru": "`bored` — «скучно». Здесь вы не понимаете информацию: `confused`.",
-          "uk": "`bored` — «нудно». Тут ви не розумієте інформацію: `confused`."
+          "ru": "Нужно сказать за вас обоих: We are.",
+          "uk": "Потрібно сказати за вас обох: We are."
         },
         "en:lesson-01:session-26:intro2:r3": {
-          "ru": "После `We` нужно `are`.",
-          "uk": "Після `We` потрібно `are`."
+          "ru": "После We нужно are.",
+          "uk": "Після We потрібне are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-26:intro3:r2": {
-          "ru": "`confused` — «запуталась». Здесь нужно назвать её тревогу: `worried`.",
-          "uk": "`confused` — «заплуталася». Тут треба назвати її тривогу: `worried`."
+          "ru": "confused — запуталась. Здесь требуется назвать тревогу: worried.",
+          "uk": "confused — заплуталася. Тут потрібно назвати тривогу: worried."
         },
         "en:lesson-01:session-26:intro3:r3": {
-          "ru": "После `She` нужна форма `is`.",
-          "uk": "Після `She` потрібна форма `is`."
+          "ru": "После She нужно is.",
+          "uk": "Після She потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "aa1b0179f3d77ab8199404681c7cb927d0e782a0422a7c43b2824250ecca39db"
+  "auxiliaryFingerprint": "3e2519cc37414f444b1cb72e9a1adbd5befcdcc0fc0fcb82c41b87612f852884"
 }

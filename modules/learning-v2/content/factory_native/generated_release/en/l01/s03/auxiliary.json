@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-03:intro1:r2": {
-          "ru": "После I нужно am: I am not tired.",
-          "uk": "Після I потрібне am: I am not tired."
+          "ru": "После I нужно am: I am not hungry.",
+          "uk": "Після I потрібне am: I am not hungry."
         },
         "en:lesson-01:session-03:intro1:r3": {
-          "ru": "Not убежал в конец. По-английски он стоит сразу после am, ещё до слова о вас.",
-          "uk": "Not утік у кінець. Англійською він стоїть одразу після am, ще до слова про вас."
+          "ru": "Без not вы говорите, что голодны.",
+          "uk": "Без not ви кажете, що голодні."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-03:intro2:r2": {
-          "ru": "«No» — это ответ «нет» на вопрос. Внутри фразы «не» по-английски — not. И am потерялось.",
-          "uk": "«No» — це відповідь «ні» на питання. Усередині фрази «не» англійською — not. І am загубилося."
+          "ru": "В полной фразе нужны am not: I am not cold.",
+          "uk": "У повній фразі потрібні am not: I am not cold."
         },
         "en:lesson-01:session-03:intro2:r3": {
-          "ru": "Почти. Но после am стоит именно not, а не no. Not — для фразы, no — для ответа одним словом.",
-          "uk": "Майже. Але після am стоїть саме not, а не no. Not — для фрази, no — для відповіді одним словом."
+          "ru": "После am здесь нужно not, а не no.",
+          "uk": "Після am тут потрібне not, а не no."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "bcd560ae65fe47d87f12342e22395fdee7626e0a9a64f3fbac0959c7e495e68a"
+  "auxiliaryFingerprint": "9ecaf39181fb18764b8fcb16363c10dfe1e9f30345f8b53eb8edc1c98e2a70e9"
 }

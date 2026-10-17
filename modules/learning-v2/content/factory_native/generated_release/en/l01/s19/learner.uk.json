@@ -4,27 +4,199 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-19:i01",
+      "interactionId": "en:lesson-01:session-19:word:inside",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:inside:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:inside:audio",
+          "transcript": "inside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:inside:r1",
+            "targetText": "inside",
+            "meaningByLocale": {
+              "ru": "внутри. I am inside — «Я внутри»: вы уже в здании, о котором говорите.",
+              "uk": "всередині. I am inside — «Я всередині»: ви вже в будівлі, про яку говорите."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inside",
+          "definitionByLocale": {
+            "ru": "внутри. I am inside — «Я внутри»: вы уже в здании, о котором говорите.",
+            "uk": "всередині. I am inside — «Я всередині»: ви вже в будівлі, про яку говорите."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:word:outside",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — outside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:outside:audio"
+      ],
+      "accessibilityLabel": "Картка слова — outside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:outside:audio",
+          "transcript": "outside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:outside:r1",
+            "targetText": "outside",
+            "meaningByLocale": {
+              "ru": "снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.",
+              "uk": "зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outside",
+          "definitionByLocale": {
+            "ru": "снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.",
+            "uk": "зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:word:upstairs",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — upstairs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:upstairs:audio"
+      ],
+      "accessibilityLabel": "Картка слова — upstairs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:upstairs:audio",
+          "transcript": "upstairs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:upstairs:r1",
+            "targetText": "upstairs",
+            "meaningByLocale": {
+              "ru": "наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.",
+              "uk": "нагорі, на верхньому поверсі. She is upstairs — «Вона нагорі»: подруга в залі поверхом вище."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upstairs",
+          "definitionByLocale": {
+            "ru": "наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.",
+            "uk": "нагорі, на верхньому поверсі. She is upstairs — «Вона нагорі»: подруга в залі поверхом вище."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:word:nearby",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nearby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:nearby:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nearby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:nearby:audio",
+          "transcript": "nearby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:nearby:r1",
+            "targetText": "nearby",
+            "meaningByLocale": {
+              "ru": "поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.",
+              "uk": "поблизу, недалеко. They are nearby — «Вони поблизу»: друзі ще не дійшли, але вже недалеко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nearby",
+          "definitionByLocale": {
+            "ru": "поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.",
+            "uk": "поблизу, недалеко. They are nearby — «Вони поблизу»: друзі ще не дійшли, але вже недалеко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — ви з другом замовляєте спільний стіл: «Ми разом»",
+      "prompt": "Складіть фразу — ви із сестрою вже зайшли до кафе. Повідомте другові: «Ми всередині»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — ви з другом замовляєте спільний стіл: «Ми разом»",
+      "accessibilityLabel": "Складіть фразу — ви із сестрою вже зайшли до кафе. Повідомте другові: «Ми всередині»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are together.",
+        "targetPhrase": "We are inside.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы с другом заказываете общий стол: «Мы вместе»",
-          "uk": "Складіть фразу — ви з другом замовляєте спільний стіл: «Ми разом»"
+          "ru": "Соберите фразу — вы с сестрой уже вошли в кафе. Сообщите другу: «Мы внутри»",
+          "uk": "Складіть фразу — ви із сестрою вже зайшли до кафе. Повідомте другові: «Ми всередині»"
         },
         "orderedTokens": [
           "We",
           "are",
-          "together"
+          "inside"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -33,10 +205,10 @@
           {
             "responseId": "en:lesson-01:session-19:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — ви з другом замовляєте спільний стіл: «Ми разом»",
+            "testedDimension": "Складіть фразу — ви із сестрою вже зайшли до кафе. Повідомте другові: «Ми всередині»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `We are together.`",
-              "uk": "тут потрібно `are` — `We are together.`"
+              "ru": "после We нужно are.",
+              "uk": "після We потрібне are."
             }
           }
         ],
@@ -49,51 +221,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу людини за столом",
+      "prompt": "Послухайте й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-19:i02:r1",
-          "text": "I am alone."
+          "text": "I am outside."
         },
         {
           "responseId": "en:lesson-01:session-19:i02:r2",
-          "text": "I am early."
+          "text": "I am inside."
         },
         {
           "responseId": "en:lesson-01:session-19:i02:r3",
-          "text": "I am lucky."
+          "text": "I am alone."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу людини за столом",
+      "accessibilityLabel": "Послухайте й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-19:i02:audio",
-          "transcript": "I am alone."
+          "transcript": "I am outside."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-19:i02:r1",
-            "targetText": "I am alone.",
+            "targetText": "I am outside.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-19:i02:r2",
-            "targetText": "I am early.",
+            "targetText": "I am inside.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-19:i02:r3",
-            "targetText": "I am lucky.",
+            "targetText": "I am alone.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +274,19 @@
           {
             "responseId": "en:lesson-01:session-19:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу людини за столом",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alone`, а в этом варианте — `early`.",
-              "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `early`."
+              "ru": "В записи outside — «снаружи», а не inside — «внутри».",
+              "uk": "У записі outside — «надворі», а не inside — «всередині»."
             }
           },
           {
             "responseId": "en:lesson-01:session-19:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу людини за столом",
+            "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alone`, а в этом варианте — `lucky`.",
-              "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `lucky`."
+              "ru": "В записи outside, а не alone.",
+              "uk": "У записі outside, а не alone."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — подруга вже поблизу",
+      "prompt": "Вставте слово — подруга зайняла столик на верхньому поверсі",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-19:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — подруга вже поблизу",
+      "accessibilityLabel": "Вставте слово — подруга зайняла столик на верхньому поверсі",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — подруга уже поблизости",
-          "uk": "Вставте слово — подруга вже поблизу"
+          "ru": "Вставьте слово — подруга заняла столик на верхнем этаже",
+          "uk": "Вставте слово — подруга зайняла столик на верхньому поверсі"
         },
-        "gappedTargetPhrase": "She ___ nearby.",
+        "gappedTargetPhrase": "She ___ upstairs.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-19:i03:r1",
@@ -168,24 +340,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставте слово — подруга вже поблизу",
+        "testedDimension": "Вставте слово — подруга зайняла столик на верхньому поверсі",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-19:i03:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — подруга вже поблизу",
+            "testedDimension": "Вставте слово — подруга зайняла столик на верхньому поверсі",
             "feedbackByLocale": {
-              "ru": "Подруга — `She`, поэтому нужно `is`.",
-              "uk": "Подруга — `She`, тому потрібно `is`."
+              "ru": "С She нужно is.",
+              "uk": "З She потрібне is."
             }
           },
           {
             "responseId": "en:lesson-01:session-19:i03:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — подруга вже поблизу",
+            "testedDimension": "Вставте слово — подруга зайняла столик на верхньому поверсі",
             "feedbackByLocale": {
-              "ru": "`am` ставим с `I`. О подруге — `She is`.",
-              "uk": "`am` ставимо з `I`. Про подругу — `She is`."
+              "ru": "am используется с I; здесь She is.",
+              "uk": "am уживається з I; тут She is."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова та значення",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова та значення",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-19:i04:p1",
-            "target": "together",
+            "target": "inside",
             "meaningByLocale": {
-              "ru": "вместе",
-              "uk": "разом"
+              "ru": "внутри",
+              "uk": "всередині"
             }
           },
           {
             "pairId": "en:lesson-01:session-19:i04:p2",
-            "target": "alone",
+            "target": "outside",
             "meaningByLocale": {
-              "ru": "без компании",
-              "uk": "без компанії"
+              "ru": "снаружи",
+              "uk": "надворі"
             }
           },
           {
             "pairId": "en:lesson-01:session-19:i04:p3",
+            "target": "upstairs",
+            "meaningByLocale": {
+              "ru": "на верхнем этаже",
+              "uk": "на верхньому поверсі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-19:i04:p4",
             "target": "nearby",
             "meaningByLocale": {
               "ru": "поблизости",
               "uk": "поблизу"
             }
-          },
-          {
-            "pairId": "en:lesson-01:session-19:i04:p4",
-            "target": "early",
-            "meaningByLocale": {
-              "ru": "рано",
-              "uk": "рано"
-            }
           }
         ],
         "leftColumn": [
-          "together",
-          "alone",
-          "nearby",
-          "early"
+          "inside",
+          "outside",
+          "upstairs",
+          "nearby"
         ],
         "rightColumn": [
-          "разом",
-          "без компанії",
-          "поблизу",
-          "рано"
+          "всередині",
+          "надворі",
+          "на верхньому поверсі",
+          "поблизу"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть почуте",
@@ -282,14 +454,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-19:i05:audio",
-          "transcript": "They are together."
+          "transcript": "They are outside."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are together.",
+        "hiddenTargetPhrase": "They are outside.",
         "orderedTokens": [
           "They",
           "are",
-          "together"
+          "outside"
         ],
         "authoredDistractorTokens": [
           "We"
@@ -300,8 +472,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть почуте",
             "feedbackByLocale": {
-              "ru": "здесь нужно `They` — `They are together.`",
-              "uk": "тут потрібно `They` — `They are together.`"
+              "ru": "в записи They.",
+              "uk": "у записі They."
             }
           }
         ],
@@ -314,26 +486,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг поки сам за столом. Складіть фразу про нього: «Він сам»",
+      "prompt": "Друг вийшов із кафе подихати повітрям. Скажіть про нього: «Він надворі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг поки сам за столом. Складіть фразу про нього: «Він сам»",
+      "accessibilityLabel": "Друг вийшов із кафе подихати повітрям. Скажіть про нього: «Він надворі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is alone.",
+        "targetPhrase": "He is outside.",
         "localizedMeaning": {
-          "ru": "Друг пока один за столом. Соберите фразу о нём: «Он один»",
-          "uk": "Друг поки сам за столом. Складіть фразу про нього: «Він сам»"
+          "ru": "Друг вышел из кафе подышать воздухом. Скажите о нём: «Он снаружи»",
+          "uk": "Друг вийшов із кафе подихати повітрям. Скажіть про нього: «Він надворі»"
         },
         "orderedTokens": [
           "He",
           "is",
-          "alone"
+          "outside"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -342,10 +514,10 @@
           {
             "responseId": "en:lesson-01:session-19:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Друг поки сам за столом. Складіть фразу про нього: «Він сам»",
+            "testedDimension": "Друг вийшов із кафе подихати повітрям. Скажіть про нього: «Він надворі»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is alone.`",
-              "uk": "тут потрібно `is` — `He is alone.`"
+              "ru": "после He нужно is.",
+              "uk": "після He потрібне is."
             }
           }
         ],
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,25 +872,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Подруга говорить дуже тихо. Скажіть уголос про неї: «Вона тиха»",
+      "prompt": "Ви піднялися до подруги на верхній поверх. Скажіть другові, який залишився внизу, за вас двох: «Ми нагорі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-19:i13:audio"
       ],
-      "accessibilityLabel": "Подруга говорить дуже тихо. Скажіть уголос про неї: «Вона тиха»",
+      "accessibilityLabel": "Ви піднялися до подруги на верхній поверх. Скажіть другові, який залишився внизу, за вас двох: «Ми нагорі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-19:i13:audio",
-          "transcript": "She is quiet."
+          "transcript": "We are upstairs."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is quiet.",
+        "targetPhrase": "We are upstairs.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставте слово — друзі пішли, ви залишилися в кафе самі. Скажіть про себе",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -916,10 +1088,10 @@
           },
           {
             "pairId": "en:lesson-01:session-19:i16:p4",
-            "target": "nearby",
+            "target": "upstairs",
             "meaningByLocale": {
-              "ru": "поблизости",
-              "uk": "поблизу"
+              "ru": "на верхнем этаже",
+              "uk": "на верхньому поверсі"
             }
           }
         ],
@@ -927,13 +1099,13 @@
           "quiet",
           "alone",
           "together",
-          "nearby"
+          "upstairs"
         ],
         "rightColumn": [
           "тихий",
           "без інших людей",
           "разом",
-          "поблизу"
+          "на верхньому поверсі"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8979e68c88c58aa8f19b70ced07a399ccbac7705a7aded2d287d74d47de256e3"
+  "learnerFingerprint": "ef5a0490dff7697eab486c8a22dbff1c7ca3676044b4822500e9535ed0e0c930"
 }

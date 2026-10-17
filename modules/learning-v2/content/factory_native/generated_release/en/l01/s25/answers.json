@@ -1,7 +1,27 @@
 [
   {
+    "interactionId": "en:lesson-01:session-25:word:impressed",
+    "correctText": "impressed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:word:ashamed",
+    "correctText": "ashamed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:word:surprised",
+    "correctText": "surprised",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:word:disappointed",
+    "correctText": "disappointed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-25:i01",
-    "correctText": "I am proud.",
+    "correctText": "I am impressed.",
     "correctResponseId": null
   },
   {
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-25:i04",
-    "correctText": "en:lesson-01:session-25:i04:p1=proud\nen:lesson-01:session-25:i04:p2=ashamed\nen:lesson-01:session-25:i04:p3=surprised\nen:lesson-01:session-25:i04:p4=different",
+    "correctText": "en:lesson-01:session-25:i04:p1=impressed\nen:lesson-01:session-25:i04:p2=ashamed\nen:lesson-01:session-25:i04:p3=surprised\nen:lesson-01:session-25:i04:p4=disappointed",
     "correctResponseId": null
   },
   {
@@ -56,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-25:i12",
-    "correctText": "She is proud.",
+    "correctText": "She is disappointed.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-25:i15",
-    "correctText": "We are ashamed.",
+    "correctText": "We are disappointed.",
     "correctResponseId": "en:lesson-01:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-25:i16",
-    "correctText": "en:lesson-01:session-25:i16:p1=right\nen:lesson-01:session-25:i16:p2=proud\nen:lesson-01:session-25:i16:p3=ashamed\nen:lesson-01:session-25:i16:p4=surprised",
+    "correctText": "en:lesson-01:session-25:i16:p1=right\nen:lesson-01:session-25:i16:p2=proud\nen:lesson-01:session-25:i16:p3=impressed\nen:lesson-01:session-25:i16:p4=disappointed",
     "correctResponseId": null
   },
   {

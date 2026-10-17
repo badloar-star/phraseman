@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-19",
   "learningOutcomeByLocale": {
-    "ru": "различать I am, He/She is и You/We/They are, когда говорите, кто один, кто вместе и кто рядом",
-    "uk": "розрізняти I am, He/She is та You/We/They are, коли кажете, хто сам, хто разом і хто поруч"
+    "ru": "различать I am, He/She is и You/We/They are, когда говорите, где находятся участники встречи",
+    "uk": "розрізняти I am, He/She is та You/We/They are, коли кажете, де перебувають учасники зустрічі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мы вместе",
-        "uk": "Ми разом"
+        "ru": "Уже зашли",
+        "uk": "Уже зайшли"
       },
       "bodyByLocale": {
-        "ru": "`together` — «вместе». Вы с другом пришли одной компанией: `We are together` — «Мы вместе». Про двух друзей за соседним столом скажите `They are together` — «Они вместе». Официанту этого достаточно: историю вашей дружбы к заказу прикладывать не нужно.",
-        "uk": "`together` — «разом». Ви з другом прийшли однією компанією: `We are together` — «Ми разом». Про двох друзів за сусіднім столом скажіть `They are together` — «Вони разом». Офіціантові цього досить: історію вашої дружби до замовлення додавати не треба."
+        "ru": "Друг ищет вас перед кафе, а вы с сестрой уже вошли. inside — «внутри». We are inside — «Мы внутри». Здесь уже понятно, внутри какого здания вы находитесь, поэтому его можно не называть. Друг может перестать разглядывать прохожих: вы не стали невидимыми, вы просто за дверью.",
+        "uk": "Друг шукає вас перед кафе, а ви із сестрою вже зайшли. inside — «всередині». We are inside — «Ми всередині». Тут уже зрозуміло, усередині якої будівлі ви перебуваєте, тому її можна не називати. Друг може перестати розглядати перехожих: ви не стали невидимими, ви просто за дверима."
       },
       "question": {
         "interactionId": "en:lesson-01:session-19:intro1:q",
         "promptByLocale": {
-          "ru": "Вы с другом ждёте общий стол. Скажите официанту за вас обоих: «Мы вместе».",
-          "uk": "Ви з другом чекаєте на спільний стіл. Скажіть офіціантові за вас обох: «Ми разом»."
+          "ru": "Друг ждёт вас перед кафе. Скажите за себя и сестру, что вы уже внутри.",
+          "uk": "Друг чекає на вас перед кафе. Скажіть за себе й сестру, що ви вже всередині."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-19:intro1:r1",
-              "text": "We are together."
+              "text": "We are inside."
             },
             {
               "responseId": "en:lesson-01:session-19:intro1:r2",
-              "text": "We is together."
+              "text": "They are inside."
             },
             {
               "responseId": "en:lesson-01:session-19:intro1:r3",
-              "text": "They are together."
+              "text": "We is inside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-19:intro1:r1",
-              "text": "We are together."
+              "text": "We are inside."
             },
             {
               "responseId": "en:lesson-01:session-19:intro1:r2",
-              "text": "We is together."
+              "text": "They are inside."
             },
             {
               "responseId": "en:lesson-01:session-19:intro1:r3",
-              "text": "They are together."
+              "text": "We is inside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с другом ждёте общий стол. Скажите официанту за вас обоих: «Мы вместе».",
-          "uk": "Ви з другом чекаєте на спільний стіл. Скажіть офіціантові за вас обох: «Ми разом»."
+          "ru": "Друг ждёт вас перед кафе. Скажите за себя и сестру, что вы уже внутри.",
+          "uk": "Друг чекає на вас перед кафе. Скажіть за себе й сестру, що ви вже всередині."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Один — без компании",
-        "uk": "Сам — без компанії"
+        "ru": "Стол на верхнем этаже",
+        "uk": "Столик на верхньому поверсі"
       },
       "bodyByLocale": {
-        "ru": "`alone` — «один, без других людей». `I am alone` — «Я один». Это не обязательно грустно: можно спокойно пить кофе и никому не отдавать последний кусок пирога. Про подругу без компании скажем `She is alone`.",
-        "uk": "`alone` — «сам, без інших людей». `I am alone` — «Я сам». Це не обов’язково сумно: можна спокійно пити каву й нікому не віддавати останній шматок пирога. Про подругу без компанії скажемо `She is alone`."
+        "ru": "В кафе два этажа. Подруга поднялась на верхний и заняла столик, а вы остались у входа. upstairs — «наверху, на верхнем этаже». She is upstairs — «Она наверху». Здесь речь об этаже здания, а не о том, что подруга стоит на стуле.",
+        "uk": "У кафе два поверхи. Подруга піднялася на верхній і зайняла столик, а ви залишилися біля входу. upstairs — «нагорі, на верхньому поверсі». She is upstairs — «Вона нагорі». Тут ідеться про поверх будівлі, а не про те, що подруга стоїть на стільці."
       },
       "question": {
         "interactionId": "en:lesson-01:session-19:intro2:q",
         "promptByLocale": {
-          "ru": "Подруга сидит за столом без других людей. Скажите о ней: «Она одна».",
-          "uk": "Подруга сидить за столом без інших людей. Скажіть про неї: «Вона сама»."
+          "ru": "Второй друг ищет подругу внизу. Сообщите ему, что она на верхнем этаже.",
+          "uk": "Другий друг шукає подругу внизу. Повідомте йому, що вона на верхньому поверсі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-19:intro2:r1",
-              "text": "She is alone."
+              "text": "She is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-19:intro2:r2",
-              "text": "She are alone."
+              "text": "I am upstairs."
             },
             {
               "responseId": "en:lesson-01:session-19:intro2:r3",
-              "text": "I am alone."
+              "text": "She are upstairs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-19:intro2:r1",
-              "text": "She is alone."
+              "text": "She is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-19:intro2:r2",
-              "text": "She are alone."
+              "text": "I am upstairs."
             },
             {
               "responseId": "en:lesson-01:session-19:intro2:r3",
-              "text": "I am alone."
+              "text": "She are upstairs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга сидит за столом без других людей. Скажите о ней: «Она одна».",
-          "uk": "Подруга сидить за столом без інших людей. Скажіть про неї: «Вона сама»."
+          "ru": "Второй друг ищет подругу внизу. Сообщите ему, что она на верхнем этаже.",
+          "uk": "Другий друг шукає подругу внизу. Повідомте йому, що вона на верхньому поверсі."
         }
       }
     },
@@ -123,8 +123,8 @@
         "uk": "Недалеко звідси"
       },
       "bodyByLocale": {
-        "ru": "`nearby` — «поблизости». Друзья ещё идут, но уже недалеко от кафе: `They are nearby` — «Они поблизости». Если вы сами за углом, скажите `I am nearby` — «Я поблизости». В этой короткой фразе после `nearby` ничего добавлять не нужно.",
-        "uk": "`nearby` — «поблизу». Друзі ще йдуть, але вже недалеко від кафе: `They are nearby` — «Вони поблизу». Якщо ви самі за рогом, скажіть `I am nearby` — «Я поблизу». У цій короткій фразі після `nearby` нічого додавати не треба."
+        "ru": "`nearby` — «поблизости». Друзья ещё идут, но уже недалеко от кафе: `They are nearby` — «Они поблизости». В этой короткой фразе после `nearby` ничего добавлять не нужно.",
+        "uk": "`nearby` — «поблизу». Друзі ще йдуть, але вже недалеко від кафе: `They are nearby` — «Вони поблизу». У цій короткій фразі після `nearby` нічого додавати не треба."
       },
       "question": {
         "interactionId": "en:lesson-01:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f1105fb61c6353cfdea716b4e8005c6386e9086b531fd7b5603cd03bfc422385"
+  "introFingerprint": "fca70e5b3667bdf87be433dc14b7d85643ce2cc70924d90e076995926983a249"
 }

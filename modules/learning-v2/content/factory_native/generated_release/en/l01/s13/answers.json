@@ -1,12 +1,12 @@
 [
   {
     "interactionId": "en:lesson-01:session-13:i01",
-    "correctText": "young",
+    "correctText": "proud",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-13:i02",
-    "correctText": "young",
+    "correctText": "proud",
     "correctResponseId": "en:lesson-01:session-13:i02:r1"
   },
   {
@@ -36,12 +36,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i08",
-    "correctText": "tall",
+    "correctText": "weak",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-13:i09",
-    "correctText": "tall",
+    "correctText": "weak",
     "correctResponseId": "en:lesson-01:session-13:i09:r1"
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i11",
-    "correctText": "en:lesson-01:session-13:i11:p1=young\nen:lesson-01:session-13:i11:p2=old\nen:lesson-01:session-13:i11:p3=strong\nen:lesson-01:session-13:i11:p4=tall",
+    "correctText": "en:lesson-01:session-13:i11:p1=proud\nen:lesson-01:session-13:i11:p2=old\nen:lesson-01:session-13:i11:p3=strong\nen:lesson-01:session-13:i11:p4=weak",
     "correctResponseId": null
   },
   {
@@ -66,8 +66,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i14",
-    "correctText": "brave",
-    "correctResponseId": null
+    "correctText": "weak",
+    "correctResponseId": "en:lesson-01:session-13:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-13:i15",
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i16",
-    "correctText": "kind",
+    "correctText": "I am proud.",
     "correctResponseId": null
   },
   {

@@ -4,39 +4,211 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-21:i01",
+      "interactionId": "en:lesson-01:session-21:word:crowded",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crowded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:crowded:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crowded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:crowded:audio",
+          "transcript": "crowded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:crowded:r1",
+            "targetText": "crowded",
+            "meaningByLocale": {
+              "ru": "переполненный людьми, многолюдный. It is crowded — «Там много людей», «Там тесно»: например, в концертном зале.",
+              "uk": "переповнений людьми, багатолюдний. It is crowded — «Там багато людей», «Там тісно»: наприклад, у концертній залі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crowded",
+          "definitionByLocale": {
+            "ru": "переполненный людьми, многолюдный. It is crowded — «Там много людей», «Там тесно»: например, в концертном зале.",
+            "uk": "переповнений людьми, багатолюдний. It is crowded — «Там багато людей», «Там тісно»: наприклад, у концертній залі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:word:empty",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — empty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:empty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — empty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:empty:audio",
+          "transcript": "empty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:empty:r1",
+            "targetText": "empty",
+            "meaningByLocale": {
+              "ru": "пустой. It is empty — «Он пустой»: например, столик без людей и вещей.",
+              "uk": "порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "empty",
+          "definitionByLocale": {
+            "ru": "пустой. It is empty — «Он пустой»: например, столик без людей и вещей.",
+            "uk": "порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:word:small",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — small",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:small:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — small",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:small:audio",
+          "transcript": "small"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:small:r1",
+            "targetText": "small",
+            "meaningByLocale": {
+              "ru": "маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.",
+              "uk": "маленький. It is small — «Вона маленька»: наприклад, сумка, яка вміщується в невелику комірку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "small",
+          "definitionByLocale": {
+            "ru": "маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.",
+            "uk": "маленький. It is small — «Вона маленька»: наприклад, сумка, яка вміщується в невелику комірку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:word:noisy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noisy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:noisy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noisy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:noisy:audio",
+          "transcript": "noisy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:noisy:r1",
+            "targetText": "noisy",
+            "meaningByLocale": {
+              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
+              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noisy",
+          "definitionByLocale": {
+            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
+            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите исправленное сообщение о себе «I inside»: вы уже внутри клуба",
+      "prompt": "В зале почти нет свободного места. Исправьте сообщение «It crowded»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите исправленное сообщение о себе «I inside»: вы уже внутри клуба",
+      "accessibilityLabel": "В зале почти нет свободного места. Исправьте сообщение «It crowded»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am inside.",
+        "targetPhrase": "It is crowded.",
         "localizedMeaning": {
-          "ru": "Соберите исправленное сообщение о себе «I inside»: вы уже внутри клуба",
-          "uk": "Складіть виправлене повідомлення про себе «I inside»: ви вже всередині клубу"
+          "ru": "В зале почти нет свободного места. Исправьте сообщение «It crowded»",
+          "uk": "У залі майже немає вільного місця. Виправте повідомлення «It crowded»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "inside"
+          "It",
+          "is",
+          "crowded"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "am"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-21:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите исправленное сообщение о себе «I inside»: вы уже внутри клуба",
+            "testedDimension": "В зале почти нет свободного места. Исправьте сообщение «It crowded»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am inside.`",
-              "uk": "тут потрібно `am` — `I am inside.`"
+              "ru": "после It нужно is.",
+              "uk": "після It потрібне is."
             }
           }
         ],
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i02:r1",
-          "text": "They are outside."
+          "text": "It is noisy."
         },
         {
           "responseId": "en:lesson-01:session-21:i02:r2",
-          "text": "We are outside."
+          "text": "It is small."
         },
         {
           "responseId": "en:lesson-01:session-21:i02:r3",
-          "text": "They are upstairs."
+          "text": "It is empty."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-21:i02:audio",
-          "transcript": "They are outside."
+          "transcript": "It is noisy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-21:i02:r1",
-            "targetText": "They are outside.",
+            "targetText": "It is noisy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r2",
-            "targetText": "We are outside.",
+            "targetText": "It is small.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r3",
-            "targetText": "They are upstairs.",
+            "targetText": "It is empty.",
             "meaningByLocale": null
           }
         ],
@@ -104,8 +276,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
-              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
+              "ru": "В записи noisy, а не small.",
+              "uk": "У записі noisy, а не small."
             }
           },
           {
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `outside`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `outside`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи noisy, а не empty.",
+              "uk": "У записі noisy, а не empty."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте пропущенное слово — подруга на втором этаже",
+      "prompt": "Вставьте слово — в комнате для отдыха никого нет: «Она пустая»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте пропущенное слово — подруга на втором этаже",
+      "accessibilityLabel": "Вставьте слово — в комнате для отдыха никого нет: «Она пустая»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте пропущенное слово — подруга на втором этаже",
-          "uk": "Вставте пропущене слово — подруга на другому поверсі"
+          "ru": "Вставьте слово — в комнате для отдыха никого нет: «Она пустая»",
+          "uk": "Вставте слово — у кімнаті для відпочинку нікого немає: «Вона порожня»"
         },
-        "gappedTargetPhrase": "She ___ upstairs.",
+        "gappedTargetPhrase": "It ___ empty.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-21:i03:r1",
@@ -168,24 +340,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте пропущенное слово — подруга на втором этаже",
+        "testedDimension": "Вставьте слово — в комнате для отдыха никого нет: «Она пустая»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-21:i03:r2",
             "correct": false,
-            "testedDimension": "Вставьте пропущенное слово — подруга на втором этаже",
+            "testedDimension": "Вставьте слово — в комнате для отдыха никого нет: «Она пустая»",
             "feedbackByLocale": {
-              "ru": "После `She` нужно `is`; `am` ставим с `I`.",
-              "uk": "Після `She` потрібно `is`; `am` ставимо з `I`."
+              "ru": "После It нужно is; am используется с I.",
+              "uk": "Після It потрібне is; am уживається з I."
             }
           },
           {
             "responseId": "en:lesson-01:session-21:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте пропущенное слово — подруга на втором этаже",
+            "testedDimension": "Вставьте слово — в комнате для отдыха никого нет: «Она пустая»",
             "feedbackByLocale": {
-              "ru": "Начало `She` требует здесь `is`.",
-              "uk": "Початок `She` потребує тут `is`."
+              "ru": "В этой фразе It is.",
+              "uk": "У цій фразі It is."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-21:i04:p1",
-            "target": "inside",
+            "target": "crowded",
             "meaningByLocale": {
-              "ru": "внутри",
-              "uk": "всередині"
+              "ru": "переполненный людьми",
+              "uk": "переповнений людьми"
             }
           },
           {
             "pairId": "en:lesson-01:session-21:i04:p2",
-            "target": "outside",
+            "target": "empty",
             "meaningByLocale": {
-              "ru": "снаружи",
-              "uk": "зовні"
+              "ru": "пустой",
+              "uk": "порожній"
             }
           },
           {
             "pairId": "en:lesson-01:session-21:i04:p3",
-            "target": "upstairs",
+            "target": "small",
             "meaningByLocale": {
-              "ru": "на верхнем этаже",
-              "uk": "на верхньому поверсі"
+              "ru": "маленький",
+              "uk": "маленький"
             }
           },
           {
             "pairId": "en:lesson-01:session-21:i04:p4",
-            "target": "lost",
+            "target": "noisy",
             "meaningByLocale": {
-              "ru": "заблудившийся",
-              "uk": "той, хто заблукав"
+              "ru": "шумный",
+              "uk": "галасливий"
             }
           }
         ],
         "leftColumn": [
-          "inside",
-          "outside",
-          "upstairs",
-          "lost"
+          "crowded",
+          "empty",
+          "small",
+          "noisy"
         ],
         "rightColumn": [
-          "внутри",
-          "снаружи",
-          "на верхнем этаже",
-          "заблудившийся"
+          "переполненный людьми",
+          "пустой",
+          "маленький",
+          "шумный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -282,17 +454,17 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-21:i05:audio",
-          "transcript": "We are upstairs."
+          "transcript": "It is small."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are upstairs.",
+        "hiddenTargetPhrase": "It is small.",
         "orderedTokens": [
-          "We",
-          "are",
-          "upstairs"
+          "It",
+          "is",
+          "small"
         ],
         "authoredDistractorTokens": [
-          "They"
+          "are"
         ],
         "slotFeedback": [
           {
@@ -300,8 +472,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We` — `We are upstairs.`",
-              "uk": "тут потрібно `We` — `We are upstairs.`"
+              "ru": "после It нужно is.",
+              "uk": "після It потрібне is."
             }
           }
         ],
@@ -314,26 +486,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг ждёт перед входом. Исправьте его описание «He outside», собрав полную фразу",
+      "prompt": "Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг ждёт перед входом. Исправьте его описание «He outside», собрав полную фразу",
+      "accessibilityLabel": "Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is outside.",
+        "targetPhrase": "It is empty.",
         "localizedMeaning": {
-          "ru": "Друг ждёт перед входом. Исправьте его описание «He outside», собрав полную фразу",
-          "uk": "Друг чекає перед входом. Виправте його опис «He outside», склавши повну фразу"
+          "ru": "Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»",
+          "uk": "Ваша пляшка спорожніла: усередині нічого немає. Складіть фразу про неї: «Вона порожня»"
         },
         "orderedTokens": [
-          "He",
+          "It",
           "is",
-          "outside"
+          "empty"
         ],
         "authoredDistractorTokens": [
           "am"
@@ -342,10 +514,10 @@
           {
             "responseId": "en:lesson-01:session-21:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Друг ждёт перед входом. Исправьте его описание «He outside», собрав полную фразу",
+            "testedDimension": "Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is outside.`",
-              "uk": "тут потрібно `is` — `He is outside.`"
+              "ru": "после It нужно is.",
+              "uk": "після It потрібне is."
             }
           }
         ],
@@ -358,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы с подругой уже вошли в клуб. Скажите за вас обеих: «Мы внутри»",
+      "prompt": "Двое зрителей рядом громко разговаривают и смеются. Скажите другу о них: «Они шумные»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-21:i07:audio"
       ],
-      "accessibilityLabel": "Вы с подругой уже вошли в клуб. Скажите за вас обеих: «Мы внутри»",
+      "accessibilityLabel": "Двое зрителей рядом громко разговаривают и смеются. Скажите другу о них: «Они шумные»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-21:i07:audio",
-          "transcript": "We are inside."
+          "transcript": "They are noisy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are inside.",
+        "targetPhrase": "They are noisy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,15 +708,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините знакомые слова и значения",
+      "prompt": "Соедините слова и значения",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините знакомые слова и значения",
+      "accessibilityLabel": "Соедините слова и значения",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите услышанное",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Друг ещё перед входом на улице. Дополните: «Он снаружи»",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -951,25 +1123,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы пришли к соседу в двухэтажный дом. Его брат ждёт на втором этаже. Скажите соседу, где брат: «Он наверху»",
+      "prompt": "Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите человеку рядом о комнате: «Она пустая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-21:i17:audio"
       ],
-      "accessibilityLabel": "Вы пришли к соседу в двухэтажный дом. Его брат ждёт на втором этаже. Скажите соседу, где брат: «Он наверху»",
+      "accessibilityLabel": "Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите человеку рядом о комнате: «Она пустая»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-21:i17:audio",
-          "transcript": "He is upstairs."
+          "transcript": "It is empty."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is upstairs.",
+        "targetPhrase": "It is empty.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "740c12ef7851bd0b73f69ce9a8f60d54f414cde2df2d2e56b568234325598014"
+  "learnerFingerprint": "05ccf1948db9511a77b634da1b3a060fc91c11f108ce5e63eb905047e53dda0a"
 }

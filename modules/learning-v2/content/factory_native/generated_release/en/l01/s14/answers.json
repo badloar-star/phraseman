@@ -41,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i09",
-    "correctText": "ready",
+    "correctText": "wet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-14:i10",
-    "correctText": "dry",
+    "correctText": "wet",
     "correctResponseId": "en:lesson-01:session-14:i10:r1"
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i14",
-    "correctText": "en:lesson-01:session-14:i14:p1=safe\nen:lesson-01:session-14:i14:p2=warm\nen:lesson-01:session-14:i14:p3=dry\nen:lesson-01:session-14:i14:p4=ready",
+    "correctText": "en:lesson-01:session-14:i14:p1=safe\nen:lesson-01:session-14:i14:p2=warm\nen:lesson-01:session-14:i14:p3=dry\nen:lesson-01:session-14:i14:p4=wet",
     "correctResponseId": null
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i18",
-    "correctText": "You are safe.",
+    "correctText": "You are wet.",
     "correctResponseId": null
   }
 ]

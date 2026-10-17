@@ -30,8 +30,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-06:word:okay",
+    "correctText": "okay",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-06:i07",
-    "correctText": "I am ok.",
+    "correctText": "I am okay.",
     "correctResponseId": null
   },
   {
@@ -41,17 +46,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-06:i09",
-    "correctText": "ok",
+    "correctText": "okay",
     "correctResponseId": "en:lesson-01:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-06:i10",
-    "correctText": "en:lesson-01:session-06:i10:p1=home\nen:lesson-01:session-06:i10:p2=back\nen:lesson-01:session-06:i10:p3=done\nen:lesson-01:session-06:i10:p4=ok",
+    "correctText": "en:lesson-01:session-06:i10:p1=home\nen:lesson-01:session-06:i10:p2=back\nen:lesson-01:session-06:i10:p3=done\nen:lesson-01:session-06:i10:p4=okay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-06:i11",
-    "correctText": "ok",
+    "correctText": "okay",
     "correctResponseId": "en:lesson-01:session-06:i11:r1"
   },
   {

@@ -1,17 +1,37 @@
 [
   {
+    "interactionId": "en:lesson-01:session-08:word:calm",
+    "correctText": "calm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:word:nervous",
+    "correctText": "nervous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:word:excited",
+    "correctText": "excited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:word:thirsty",
+    "correctText": "thirsty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-08:i01",
-    "correctText": "lost",
+    "correctText": "calm",
     "correctResponseId": "en:lesson-01:session-08:i01:r1"
   },
   {
     "interactionId": "en:lesson-01:session-08:i02",
-    "correctText": "tired",
+    "correctText": "nervous",
     "correctResponseId": "en:lesson-01:session-08:i02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-08:i03",
-    "correctText": "I am tired.",
+    "correctText": "I am excited.",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-08:i09",
-    "correctText": "free",
+    "correctText": "thirsty",
     "correctResponseId": "en:lesson-01:session-08:i09:r1"
   },
   {
@@ -96,7 +116,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-08:i17:s03",
-    "correctText": "I am not hungry.",
+    "correctText": "I am calm.",
     "correctResponseId": null
   },
   {

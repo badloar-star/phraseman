@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "I am и You are",
-        "uk": "I am і You are"
+        "ru": "Первый хлеб получился",
+        "uk": "Перший хліб удався"
       },
       "bodyByLocale": {
-        "ru": "`ready` — «готов/готова». О себе говорят `I am ready`. О собеседнике — `You are ready`.\n\nВ утвердительной фразе о себе говорят `I am ready`. Обращаясь к собеседнику, говорят `You are ready`.",
-        "uk": "`ready` — «готовий/готова». Про себе кажуть `I am ready`. До співрозмовника звертаються `You are ready`.\n\nУ стверджувальному реченні про себе кажуть `I am ready`. Звертаючись до співрозмовника, кажуть `You are ready`."
+        "ru": "Вы впервые испекли хлеб самостоятельно и гордитесь результатом. proud — «гордый», а о чувстве в этот момент — «горжусь». I am proud — «Я горжусь». Собеседнику уже понятно, что речь о вашем хлебе.",
+        "uk": "Ви вперше самостійно спекли хліб і пишаєтеся результатом. proud — «гордий», а про почуття в цю мить — «пишаюся». I am proud — «Я пишаюся». Співрозмовнику вже зрозуміло, що йдеться про ваш хліб."
       },
       "question": {
         "interactionId": "en:lesson-01:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов/готова».",
-          "uk": "Колега питає, чи ви йдете. Відповідайте: «я готовий/готова»."
+          "ru": "Хлеб получился, и вы гордитесь своей работой. Сообщите о своём чувстве.",
+          "uk": "Хліб удався, і ви пишаєтеся своєю роботою. Повідомте про своє почуття."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-13:intro1:r1",
-              "text": "I am ready."
+              "text": "I am proud."
             },
             {
               "responseId": "en:lesson-01:session-13:intro1:r2",
-              "text": "I are ready."
+              "text": "You are proud."
             },
             {
               "responseId": "en:lesson-01:session-13:intro1:r3",
-              "text": "I ready."
+              "text": "I are proud."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-13:intro1:r1",
-              "text": "I am ready."
+              "text": "I am proud."
             },
             {
               "responseId": "en:lesson-01:session-13:intro1:r2",
-              "text": "I are ready."
+              "text": "You are proud."
             },
             {
               "responseId": "en:lesson-01:session-13:intro1:r3",
-              "text": "I ready."
+              "text": "I are proud."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов/готова».",
-          "uk": "Колега питає, чи ви йдете. Відповідайте: «я готовий/готова»."
+          "ru": "Хлеб получился, и вы гордитесь своей работой. Сообщите о своём чувстве.",
+          "uk": "Хліб удався, і ви пишаєтеся своєю роботою. Повідомте про своє почуття."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Young и old",
-        "uk": "Young і old"
+        "ru": "Тяжёлый чемодан",
+        "uk": "Важка валіза"
       },
       "bodyByLocale": {
-        "ru": "`young` — «молодой/молодая», `old` — «старый/старая». Возраст описывают так же: `I am young`, `You are old`.\n\nВ этих утвердительных фразах после `I` стоит `am`, а после `you` — `are`.\n\n`old` описывает возраст; говоря о себе, можно сказать `I am old`.",
-        "uk": "`young` — «молодий/молода», `old` — «старий/стара». Вік описують так само: `I am young`, `You are old`.\n\n`old` описує вік; про себе можна сказати `I am old`.\n\nУ цих стверджувальних фразах після `I` стоїть `am`, а після `you` — `are`."
+        "ru": "Вы не смогли поднять тяжёлый чемодан на багажную полку, а Мира легко справилась. strong — «сильный». You are strong — «Ты сильная». Вы говорите непосредственно Мире, поэтому выбираете You are.",
+        "uk": "Ви не змогли підняти важку валізу на багажну полицю, а Міра легко впоралася. strong — «сильний». You are strong — «Ти сильна». Ви говорите безпосередньо Мірі, тому вибираєте You are."
       },
       "question": {
         "interactionId": "en:lesson-01:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая».",
-          "uk": "Колега зітхає, що вона вже немолода. Заперечте: «ти молода»."
+          "ru": "Мира легко подняла тяжёлый чемодан. Скажите ей: «Ты сильная».",
+          "uk": "Міра легко підняла важку валізу. Скажіть їй: «Ти сильна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-13:intro2:r1",
-              "text": "You are young."
+              "text": "You are strong."
             },
             {
               "responseId": "en:lesson-01:session-13:intro2:r2",
-              "text": "You am young."
+              "text": "I am strong."
             },
             {
               "responseId": "en:lesson-01:session-13:intro2:r3",
-              "text": "You young."
+              "text": "You am strong."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-13:intro2:r1",
-              "text": "You are young."
+              "text": "You are strong."
             },
             {
               "responseId": "en:lesson-01:session-13:intro2:r2",
-              "text": "You am young."
+              "text": "I am strong."
             },
             {
               "responseId": "en:lesson-01:session-13:intro2:r3",
-              "text": "You young."
+              "text": "You am strong."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая».",
-          "uk": "Колега зітхає, що вона вже немолода. Заперечте: «ти молода»."
+          "ru": "Мира легко подняла тяжёлый чемодан. Скажите ей: «Ты сильная».",
+          "uk": "Міра легко підняла важку валізу. Скажіть їй: «Ти сильна»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Strong и tall",
-        "uk": "Strong і tall"
+        "ru": "Слова старшего участника",
+        "uk": "Слова старшого учасника"
       },
       "bodyByLocale": {
-        "ru": "`strong` — «сильный/сильная», `tall` — «высокий/высокая». `tall` подходит и для человека, и для дерева, и для здания.\n\nО своём росте говорят `I am tall`.\n\nПосле `I` в таких фразах ставят `am`, после `you` — `are`.",
-        "uk": "`strong` — «сильний/сильна», `tall` — «високий/висока».\n\n`tall` описує високий зріст людини, дерево або будівлю.\n\nУ таких фразах після `I` ставлять `am`, після `you` — `are`."
+        "ru": "В клубе соседей пожилой Виктор сам говорит о своём возрасте. old — «старый, пожилой». I am old — «Я старый». Это его собственное описание; чужой возраст не стоит оценивать такой фразой без повода.",
+        "uk": "У клубі сусідів літній Віктор сам говорить про свій вік. old — «старий, літній». I am old — «Я старий». Це його власний опис; чужий вік не варто оцінювати такою фразою без приводу."
       },
       "question": {
         "interactionId": "en:lesson-01:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Вы достали книгу с верхней полки без стремянки; коллега отмечает ваш высокий рост. Скажите о себе: «я высокий/высокая».",
-          "uk": "Ви дістали книжку з верхньої полиці без драбини; колега відзначає ваш високий зріст. Скажіть про себе: «я високий/висока»."
+          "ru": "Виктор описывает себя словами «Я старый». Выберите его фразу от первого лица.",
+          "uk": "Віктор описує себе словами «Я старий». Виберіть його фразу від першої особи."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-13:intro3:r1",
-              "text": "I am tall."
+              "text": "I am old."
             },
             {
               "responseId": "en:lesson-01:session-13:intro3:r2",
-              "text": "I are tall."
+              "text": "You are old."
             },
             {
               "responseId": "en:lesson-01:session-13:intro3:r3",
-              "text": "Am I tall."
+              "text": "I old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-13:intro3:r1",
-              "text": "I am tall."
+              "text": "I am old."
             },
             {
               "responseId": "en:lesson-01:session-13:intro3:r2",
-              "text": "I are tall."
+              "text": "You are old."
             },
             {
               "responseId": "en:lesson-01:session-13:intro3:r3",
-              "text": "Am I tall."
+              "text": "I old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы достали книгу с верхней полки без стремянки; коллега отмечает ваш высокий рост. Скажите о себе: «я высокий/высокая».",
-          "uk": "Ви дістали книжку з верхньої полиці без драбини; колега відзначає ваш високий зріст. Скажіть про себе: «я високий/висока»."
+          "ru": "Виктор описывает себя словами «Я старый». Выберите его фразу от первого лица.",
+          "uk": "Віктор описує себе словами «Я старий». Виберіть його фразу від першої особи."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f2d0fd8f452b4ac39b9088f7cca91ed69dd42de00b5959598c6064dc94f077d8"
+  "introFingerprint": "ddeab7d434c89467b229fee8fddf7dc2ffbe0939481124d4a999488d7253207b"
 }

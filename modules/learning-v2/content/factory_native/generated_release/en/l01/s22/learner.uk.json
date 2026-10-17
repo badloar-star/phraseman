@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-22:i01",
+      "interactionId": "en:lesson-01:session-22:word:rich",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rich",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:rich:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rich",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:rich:audio",
+          "transcript": "rich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:rich:r1",
+            "targetText": "rich",
+            "meaningByLocale": {
+              "ru": "богатый: у человека много денег и имущества. He is rich — «Он богатый».",
+              "uk": "багатий: у людини багато грошей і майна. He is rich — «Він багатий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rich",
+          "definitionByLocale": {
+            "ru": "богатый: у человека много денег и имущества. He is rich — «Он богатый».",
+            "uk": "багатий: у людини багато грошей і майна. He is rich — «Він багатий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:poor",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — poor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:poor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — poor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:poor:audio",
+          "transcript": "poor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:poor:r1",
+            "targetText": "poor",
+            "meaningByLocale": {
+              "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
+              "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poor",
+          "definitionByLocale": {
+            "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
+            "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:famous",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — famous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:famous:audio"
+      ],
+      "accessibilityLabel": "Картка слова — famous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:famous:audio",
+          "transcript": "famous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:famous:r1",
+            "targetText": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
+              "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "famous",
+          "definitionByLocale": {
+            "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
+            "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:generous",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — generous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:generous:audio"
+      ],
+      "accessibilityLabel": "Картка слова — generous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:generous:audio",
+          "transcript": "generous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:generous:r1",
+            "targetText": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
+              "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "generous",
+          "definitionByLocale": {
+            "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
+            "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова та значення",
+      "prompt": "З’єднайте нові слова та значення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова та значення",
+      "accessibilityLabel": "З’єднайте нові слова та значення",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -232,10 +404,10 @@
           },
           {
             "pairId": "en:lesson-01:session-22:i04:p4",
-            "target": "inside",
+            "target": "generous",
             "meaningByLocale": {
-              "ru": "внутри",
-              "uk": "всередині"
+              "ru": "щедрый",
+              "uk": "щедрий"
             }
           }
         ],
@@ -243,13 +415,13 @@
           "rich",
           "poor",
           "famous",
-          "inside"
+          "generous"
         ],
         "rightColumn": [
           "багатий",
           "бідний",
           "знаменитий",
-          "всередині"
+          "щедрий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте репліку героїв і складіть почуте",
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Співачку впізнають у всіх містах. Складіть фразу про неї: «Вона знаменита»",
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -566,10 +738,10 @@
           },
           {
             "pairId": "en:lesson-01:session-22:i10:p3",
-            "target": "dirty",
+            "target": "clean",
             "meaningByLocale": {
-              "ru": "грязный",
-              "uk": "брудний"
+              "ru": "чистый",
+              "uk": "чистий"
             }
           },
           {
@@ -584,13 +756,13 @@
         "leftColumn": [
           "outside",
           "upstairs",
-          "dirty",
+          "clean",
           "open"
         ],
         "rightColumn": [
           "зовні",
           "на верхньому поверсі",
-          "брудний",
+          "чистий",
           "відкритий"
         ],
         "pairingKey": "pair_id",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть почуту фразу",
@@ -656,38 +828,38 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Двом героям ледве вистачає грошей на їжу. Складіть фразу про них: «Вони бідні»",
+      "prompt": "Герой охоче ділиться грошима й речами із сусідами. Складіть фразу про нього: «Він щедрий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двом героям ледве вистачає грошей на їжу. Складіть фразу про них: «Вони бідні»",
+      "accessibilityLabel": "Герой охоче ділиться грошима й речами із сусідами. Складіть фразу про нього: «Він щедрий»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are poor.",
+        "targetPhrase": "He is generous.",
         "localizedMeaning": {
-          "ru": "У двух героев едва хватает денег на еду. Соберите фразу о них: «Они бедные»",
-          "uk": "Двом героям ледве вистачає грошей на їжу. Складіть фразу про них: «Вони бідні»"
+          "ru": "Герой охотно делится деньгами и вещами с соседями. Соберите фразу о нём: «Он щедрый»",
+          "uk": "Герой охоче ділиться грошима й речами із сусідами. Складіть фразу про нього: «Він щедрий»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "poor"
+          "He",
+          "is",
+          "generous"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-22:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Двом героям ледве вистачає грошей на їжу. Складіть фразу про них: «Вони бідні»",
+            "testedDimension": "Герой охоче ділиться грошима й речами із сусідами. Складіть фразу про нього: «Він щедрий»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are poor.`",
-              "uk": "тут потрібно `are` — `They are poor.`"
+              "ru": "после He нужно is.",
+              "uk": "після He потрібне is."
             }
           }
         ],
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Ви знаєте лише, що співачку впізнають тисячі людей. Доповніть опис її популярності",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -810,15 +982,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-22:i15:r1",
-          "text": "We are famous."
+          "text": "You are generous."
         },
         {
           "responseId": "en:lesson-01:session-22:i15:r2",
-          "text": "They are famous."
+          "text": "We are generous."
         },
         {
           "responseId": "en:lesson-01:session-22:i15:r3",
-          "text": "We are poor."
+          "text": "You are famous."
         }
       ],
       "mediaIds": [],
@@ -830,23 +1002,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-22:i15:audio",
-          "transcript": "We are famous."
+          "transcript": "You are generous."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-22:i15:r1",
-            "targetText": "We are famous.",
+            "targetText": "You are generous.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-22:i15:r2",
-            "targetText": "They are famous.",
+            "targetText": "We are generous.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-22:i15:r3",
-            "targetText": "We are poor.",
+            "targetText": "You are famous.",
             "meaningByLocale": null
           }
         ],
@@ -857,8 +1029,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              "ru": "В записи You, а не We.",
+              "uk": "У записі You, а не We."
             }
           },
           {
@@ -866,8 +1038,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `famous`, а в этом варианте — `poor`.",
-              "uk": "У записі останнє слово — `famous`, а в цьому варіанті — `poor`."
+              "ru": "В записи generous, а не famous.",
+              "uk": "У записі generous, а не famous."
             }
           }
         ],
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,10 +1064,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-22:i16:p1",
-            "target": "closed",
+            "target": "generous",
             "meaningByLocale": {
-              "ru": "закрытый",
-              "uk": "зачинений"
+              "ru": "щедрый",
+              "uk": "щедрий"
             }
           },
           {
@@ -924,13 +1096,13 @@
           }
         ],
         "leftColumn": [
-          "closed",
+          "generous",
           "famous",
           "poor",
           "rich"
         ],
         "rightColumn": [
-          "зачинений",
+          "щедрий",
           "знаменитий",
           "бідний",
           "багатий"
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1ffdfeab51e7bf988bff3ba48c4317bd93c39ca56c95ee3c23e02272f80620eb"
+  "learnerFingerprint": "f7d500559d35cbc48dafd14e9cc8e3dbf7a8069f863d146d95f43e514f8941a6"
 }

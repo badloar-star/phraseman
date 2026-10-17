@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-24:i01",
+      "interactionId": "en:lesson-01:session-24:word:dim",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:dim:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:dim:audio",
+          "transcript": "dim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:dim:r1",
+            "targetText": "dim",
+            "meaningByLocale": {
+              "ru": "тусклый, слабо освещённый. It is dim — «Здесь тускло»: света мало, мелкие буквы плохо видны.",
+              "uk": "тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dim",
+          "definitionByLocale": {
+            "ru": "тусклый, слабо освещённый. It is dim — «Здесь тускло»: света мало, мелкие буквы плохо видны.",
+            "uk": "тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:word:bright",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bright",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:bright:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bright",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:bright:audio",
+          "transcript": "bright"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:bright:r1",
+            "targetText": "bright",
+            "meaningByLocale": {
+              "ru": "яркий, хорошо освещённый. It is bright — «Здесь светло»: например, в фойе горят яркие лампы.",
+              "uk": "яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bright",
+          "definitionByLocale": {
+            "ru": "яркий, хорошо освещённый. It is bright — «Здесь светло»: например, в фойе горят яркие лампы.",
+            "uk": "яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:word:heavy",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — heavy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:heavy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — heavy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:heavy:audio",
+          "transcript": "heavy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:heavy:r1",
+            "targetText": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый по весу. It is heavy — «Она тяжёлая»: коробку трудно поднять. Размер и вес — не одно и то же.",
+              "uk": "важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heavy",
+          "definitionByLocale": {
+            "ru": "тяжёлый по весу. It is heavy — «Она тяжёлая»: коробку трудно поднять. Размер и вес — не одно и то же.",
+            "uk": "важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:word:fragile",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fragile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:fragile:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fragile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:fragile:audio",
+          "transcript": "fragile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:fragile:r1",
+            "targetText": "fragile",
+            "meaningByLocale": {
+              "ru": "хрупкий, легко повреждающийся. It is fragile — «Она хрупкая»: стеклянную вазу легко разбить.",
+              "uk": "крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fragile",
+          "definitionByLocale": {
+            "ru": "хрупкий, легко повреждающийся. It is fragile — «Она хрупкая»: стеклянную вазу легко разбить.",
+            "uk": "крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-24:i04:p1",
-            "target": "welcome",
+            "target": "dim",
             "meaningByLocale": {
-              "ru": "желанный",
-              "uk": "бажаний"
+              "ru": "тусклый",
+              "uk": "тьмяний"
             }
           },
           {
             "pairId": "en:lesson-01:session-24:i04:p2",
-            "target": "safe",
+            "target": "bright",
             "meaningByLocale": {
-              "ru": "в безопасности",
-              "uk": "у безпеці"
+              "ru": "яркий",
+              "uk": "яскравий"
             }
           },
           {
             "pairId": "en:lesson-01:session-24:i04:p3",
-            "target": "right",
+            "target": "heavy",
             "meaningByLocale": {
-              "ru": "прав",
-              "uk": "має рацію"
+              "ru": "тяжёлый",
+              "uk": "важкий"
             }
           },
           {
             "pairId": "en:lesson-01:session-24:i04:p4",
-            "target": "wrong",
+            "target": "fragile",
             "meaningByLocale": {
-              "ru": "неправ",
-              "uk": "не має рації"
+              "ru": "хрупкий",
+              "uk": "крихкий"
             }
           }
         ],
         "leftColumn": [
-          "welcome",
-          "safe",
-          "right",
-          "wrong"
+          "dim",
+          "bright",
+          "heavy",
+          "fragile"
         ],
         "rightColumn": [
-          "желанный",
-          "в безопасности",
-          "прав",
-          "неправ"
+          "тусклый",
+          "яркий",
+          "тяжёлый",
+          "хрупкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,41 +439,41 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение о гостье",
+      "prompt": "Послушайте и соберите фразу об освещении",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-24:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение о гостье",
+      "accessibilityLabel": "Послушайте и соберите фразу об освещении",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-24:i05:audio",
-          "transcript": "She is inside."
+          "transcript": "It is bright."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She is inside.",
+        "hiddenTargetPhrase": "It is bright.",
         "orderedTokens": [
-          "She",
+          "It",
           "is",
-          "inside"
+          "bright"
         ],
         "authoredDistractorTokens": [
-          "He"
+          "am"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-24:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение о гостье",
+            "testedDimension": "Послушайте и соберите фразу об освещении",
             "feedbackByLocale": {
-              "ru": "здесь нужно `She` — `She is inside.`",
-              "uk": "тут потрібно `She` — `She is inside.`"
+              "ru": "после It нужно is.",
+              "uk": "після It потрібне is."
             }
           }
         ],
@@ -314,38 +486,38 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Двое гостей пришли одной компанией. Скажите о них, собрав фразу",
+      "prompt": "Коробку с реквизитом трудно поднять из-за веса. Соберите фразу о ней: «Она тяжёлая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое гостей пришли одной компанией. Скажите о них, собрав фразу",
+      "accessibilityLabel": "Коробку с реквизитом трудно поднять из-за веса. Соберите фразу о ней: «Она тяжёлая»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are together.",
+        "targetPhrase": "It is heavy.",
         "localizedMeaning": {
-          "ru": "Двое гостей пришли одной компанией. Скажите о них, собрав фразу",
-          "uk": "Двоє гостей прийшли однією компанією. Скажіть про них, склавши фразу"
+          "ru": "Коробку с реквизитом трудно поднять из-за веса. Соберите фразу о ней: «Она тяжёлая»",
+          "uk": "Коробку з реквізитом важко підняти через вагу. Складіть фразу про неї: «Вона важка»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "together"
+          "It",
+          "is",
+          "heavy"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-24:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Двое гостей пришли одной компанией. Скажите о них, собрав фразу",
+            "testedDimension": "Коробку с реквизитом трудно поднять из-за веса. Соберите фразу о ней: «Она тяжёлая»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are together.`",
-              "uk": "тут потрібно `are` — `They are together.`"
+              "ru": "после It нужно is.",
+              "uk": "після It потрібне is."
             }
           }
         ],
@@ -358,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Гость не понимает, в какой части здания находится, и не может найти зал. Скажите о нём: «Он заблудился»",
+      "prompt": "Сотрудник берёт тонкую стеклянную вазу. Сообщите о её хрупкости: «Она хрупкая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-24:i07:audio"
       ],
-      "accessibilityLabel": "Гость не понимает, в какой части здания находится, и не может найти зал. Скажите о нём: «Он заблудился»",
+      "accessibilityLabel": "Сотрудник берёт тонкую стеклянную вазу. Сообщите о её хрупкости: «Она хрупкая»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-24:i07:audio",
-          "transcript": "He is lost."
+          "transcript": "It is fragile."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is lost.",
+        "targetPhrase": "It is fragile.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова и значения",
@@ -550,10 +722,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-24:i10:p1",
-            "target": "early",
+            "target": "dim",
             "meaningByLocale": {
-              "ru": "рано",
-              "uk": "рано"
+              "ru": "тусклый",
+              "uk": "тьмяний"
             }
           },
           {
@@ -582,13 +754,13 @@
           }
         ],
         "leftColumn": [
-          "early",
+          "dim",
           "lucky",
           "alone",
           "nearby"
         ],
         "rightColumn": [
-          "рано",
+          "тусклый",
           "везучий",
           "без других людей",
           "поблизости"
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите услышанную фразу",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,17 +872,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В анкете героини указано, что она не состоит в браке. Скажите о ней, используя слово из анкеты",
+      "prompt": "Героиня рассказала, что сейчас ни с кем не встречается и не замужем. Скажите, что она без пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-24:i13:audio"
       ],
-      "accessibilityLabel": "В анкете героини указано, что она не состоит в браке. Скажите о ней, используя слово из анкеты",
+      "accessibilityLabel": "Героиня рассказала, что сейчас ни с кем не встречается и не замужем. Скажите, что она без пары",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Друзья ждут на улице перед театром. Дополните сообщение о том, где они",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ff8a93742af0e1ac41db2b4193543f7d227a8fa54e645365f507a8a6b484d23e"
+  "learnerFingerprint": "fa6645028d555df9485579b59e8d9ddf3c185c0e582d6bb5fcff21a16f08a2e3"
 }

@@ -80,6 +80,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-05:word:sorry",
+    "correctText": "sorry",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-05:i17",
     "correctText": "en:lesson-01:session-05:i17:p1=fine\nen:lesson-01:session-05:i17:p2=sure\nen:lesson-01:session-05:i17:p3=ready\nen:lesson-01:session-05:i17:p4=sorry",
     "correctResponseId": null

@@ -1,12 +1,12 @@
 [
   {
     "interactionId": "en:lesson-01:session-15:i01",
-    "correctText": "polite",
+    "correctText": "friendly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-15:i02",
-    "correctText": "polite",
+    "correctText": "friendly",
     "correctResponseId": "en:lesson-01:session-15:i02:r1"
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-15:i06",
-    "correctText": "I am not serious.",
+    "correctText": "I am serious.",
     "correctResponseId": null
   },
   {
@@ -41,17 +41,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-15:i09",
-    "correctText": "sad",
+    "correctText": "helpful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-15:i10",
-    "correctText": "sad",
+    "correctText": "helpful",
     "correctResponseId": "en:lesson-01:session-15:i10:r1"
   },
   {
     "interactionId": "en:lesson-01:session-15:i11",
-    "correctText": "en:lesson-01:session-15:i11:p1=polite\nen:lesson-01:session-15:i11:p2=serious\nen:lesson-01:session-15:i11:p3=lucky\nen:lesson-01:session-15:i11:p4=sad",
+    "correctText": "en:lesson-01:session-15:i11:p1=friendly\nen:lesson-01:session-15:i11:p2=serious\nen:lesson-01:session-15:i11:p3=lucky\nen:lesson-01:session-15:i11:p4=helpful",
     "correctResponseId": null
   },
   {
@@ -66,8 +66,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-15:i14",
-    "correctText": "calm",
-    "correctResponseId": null
+    "correctText": "helpful",
+    "correctResponseId": "en:lesson-01:session-15:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-15:i15",
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-15:i16",
-    "correctText": "honest",
+    "correctText": "You are friendly.",
     "correctResponseId": null
   },
   {
@@ -91,7 +91,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-15:i18",
-    "correctText": "kind",
+    "correctText": "You are helpful.",
     "correctResponseId": null
   },
   {

@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-17:word:welcome",
+    "correctText": "welcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:together",
+    "correctText": "together",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:grateful",
+    "correctText": "grateful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:word:comfortable",
+    "correctText": "comfortable",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-17:i01",
     "correctText": "You are welcome.",
     "correctResponseId": null
@@ -21,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i05",
-    "correctText": "We are safe.",
+    "correctText": "We are together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i06",
-    "correctText": "They are safe.",
+    "correctText": "They are grateful.",
     "correctResponseId": null
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i11",
-    "correctText": "You are ready.",
+    "correctText": "We are comfortable.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i15",
-    "correctText": "It is easy.",
+    "correctText": "We are comfortable.",
     "correctResponseId": "en:lesson-01:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i16",
-    "correctText": "en:lesson-01:session-17:i16:p1=easy\nen:lesson-01:session-17:i16:p2=difficult\nen:lesson-01:session-17:i16:p3=important\nen:lesson-01:session-17:i16:p4=here",
+    "correctText": "en:lesson-01:session-17:i16:p1=welcome\nen:lesson-01:session-17:i16:p2=together\nen:lesson-01:session-17:i16:p3=grateful\nen:lesson-01:session-17:i16:p4=comfortable",
     "correctResponseId": null
   },
   {

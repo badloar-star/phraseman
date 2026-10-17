@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro1:r2": {
-          "ru": "Для этого значения между `She` и `married` нужно `is`.",
-          "uk": "Для цього значення між `She` і `married` потрібно `is`."
+          "ru": "Для сообщения о нынешнем семейном положении нужно She is married.",
+          "uk": "Для повідомлення про нинішній сімейний стан потрібне She is married."
         },
         "en:lesson-01:session-23:intro1:r3": {
-          "ru": "`He` — «он». О Анне нужно `She`.",
-          "uk": "`He` — «він». Про Анну потрібно `She`."
+          "ru": "He — «он». Об Анне говорим She.",
+          "uk": "He — «він». Про Анну говоримо She."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro2:r2": {
-          "ru": "`alone` — «один, без других людей». В анкете речь о семейном положении: `single`.",
-          "uk": "`alone` — «сам, без інших людей». В анкеті йдеться про сімейний стан: `single`."
+          "ru": "alone — один, без других людей. Брат среди гостей; речь об отсутствии партнёра.",
+          "uk": "alone — сам, без інших людей. Брат серед гостей; ідеться про відсутність партнера."
         },
         "en:lesson-01:session-23:intro2:r3": {
-          "ru": "После `He` нужна форма `is`.",
-          "uk": "Після `He` потрібна форма `is`."
+          "ru": "После He нужно is.",
+          "uk": "Після He потрібне is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro3:r2": {
-          "ru": "После `We` нужно `are`.",
-          "uk": "Після `We` потрібно `are`."
+          "ru": "После We нужно are.",
+          "uk": "Після We потрібне are."
         },
         "en:lesson-01:session-23:intro3:r3": {
-          "ru": "Слово-описание здесь не получает `-s`: `different`.",
-          "uk": "Слово-опис тут не отримує `-s`: `different`."
+          "ru": "Здесь слово different не получает окончания -s.",
+          "uk": "Тут слово different не отримує закінчення -s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "029a71902eeb060d0c920e3351c4b7bb94f37d9bc4636dc9700363d0618230df"
+  "auxiliaryFingerprint": "20e307f069ba405893a3996b1f1b4f308e8a437035c901eb11fc4395ac3fc550"
 }

@@ -1,12 +1,12 @@
 [
   {
     "interactionId": "en:lesson-01:session-12:i01",
-    "correctText": "calm",
+    "correctText": "polite",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-12:i02",
-    "correctText": "calm",
+    "correctText": "polite",
     "correctResponseId": "en:lesson-01:session-12:i02:r1"
   },
   {
@@ -37,7 +37,7 @@
   {
     "interactionId": "en:lesson-01:session-12:i08",
     "correctText": "smart",
-    "correctResponseId": "en:lesson-01:session-12:i08:r1"
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-12:i09",
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-12:i11",
-    "correctText": "en:lesson-01:session-12:i11:p1=calm\nen:lesson-01:session-12:i11:p2=brave\nen:lesson-01:session-12:i11:p3=honest\nen:lesson-01:session-12:i11:p4=smart",
+    "correctText": "en:lesson-01:session-12:i11:p1=polite\nen:lesson-01:session-12:i11:p2=brave\nen:lesson-01:session-12:i11:p3=honest\nen:lesson-01:session-12:i11:p4=smart",
     "correctResponseId": null
   },
   {
@@ -66,8 +66,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-12:i14",
-    "correctText": "quiet",
-    "correctResponseId": null
+    "correctText": "polite",
+    "correctResponseId": "en:lesson-01:session-12:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-12:i15",

@@ -4,22 +4,194 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-23:i01",
+      "interactionId": "en:lesson-01:session-23:word:married",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — married",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:married:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — married",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:married:audio",
+          "transcript": "married"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:married:r1",
+            "targetText": "married",
+            "meaningByLocale": {
+              "ru": "состоит в браке: женат или замужем. She is married — «Она замужем».",
+              "uk": "перебуває у шлюбі: одружений або заміжня. She is married — «Вона заміжня»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "married",
+          "definitionByLocale": {
+            "ru": "состоит в браке: женат или замужем. She is married — «Она замужем».",
+            "uk": "перебуває у шлюбі: одружений або заміжня. She is married — «Вона заміжня»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:word:single",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — single",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:single:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — single",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:single:audio",
+          "transcript": "single"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:single:r1",
+            "targetText": "single",
+            "meaningByLocale": {
+              "ru": "без пары; в анкете о семейном положении — не состоит в браке. He is single — «Он без пары». Не означает, что вокруг него нет людей.",
+              "uk": "без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "single",
+          "definitionByLocale": {
+            "ru": "без пары; в анкете о семейном положении — не состоит в браке. He is single — «Он без пары». Не означает, что вокруг него нет людей.",
+            "uk": "без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:word:different",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — different",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:different:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — different",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:different:audio",
+          "transcript": "different"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:different:r1",
+            "targetText": "different",
+            "meaningByLocale": {
+              "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
+              "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "different",
+          "definitionByLocale": {
+            "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
+            "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:word:engaged",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — engaged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:engaged:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — engaged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:engaged:audio",
+          "transcript": "engaged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:engaged:r1",
+            "targetText": "engaged",
+            "meaningByLocale": {
+              "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
+              "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "engaged",
+          "definitionByLocale": {
+            "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
+            "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "В анкете Анны отмечен брак. Соберите: «Она замужем»",
+      "prompt": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В анкете Анны отмечен брак. Соберите: «Она замужем»",
+      "accessibilityLabel": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is married.",
         "localizedMeaning": {
-          "ru": "В анкете Анны отмечен брак. Соберите: «Она замужем»",
-          "uk": "В анкеті Анни зазначено шлюб. Складіть: «Вона заміжня»"
+          "ru": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+          "uk": "Анна розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»"
         },
         "orderedTokens": [
           "She",
@@ -33,7 +205,7 @@
           {
             "responseId": "en:lesson-01:session-23:i01:tile:d1",
             "correct": false,
-            "testedDimension": "В анкете Анны отмечен брак. Соберите: «Она замужем»",
+            "testedDimension": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is married.`",
               "uk": "тут потрібно `is` — `She is married.`"
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,15 +366,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями в этой ситуации",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями в этой ситуации",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -218,8 +390,8 @@
             "pairId": "en:lesson-01:session-23:i04:p2",
             "target": "single",
             "meaningByLocale": {
-              "ru": "не состоит в браке (в анкете)",
-              "uk": "не перебуває у шлюбі (в анкеті)"
+              "ru": "без пары",
+              "uk": "без пари"
             }
           },
           {
@@ -232,10 +404,10 @@
           },
           {
             "pairId": "en:lesson-01:session-23:i04:p4",
-            "target": "famous",
+            "target": "engaged",
             "meaningByLocale": {
-              "ru": "знаменитый",
-              "uk": "знаменитий"
+              "ru": "помолвлен",
+              "uk": "заручений"
             }
           }
         ],
@@ -243,13 +415,13 @@
           "married",
           "single",
           "different",
-          "famous"
+          "engaged"
         ],
         "rightColumn": [
           "состоит в браке",
-          "не состоит в браке (в анкете)",
+          "без пары",
           "разный",
-          "знаменитый"
+          "помолвлен"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте ответ гостя и соберите услышанное",
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "У двух братьев разные характеры. Соберите фразу о них: «Они разные»",
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,11 +563,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — гость указал в анкете, что женат",
+      "prompt": "Вставьте слово — гость рассказал, что женат",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i08:r1",
@@ -412,12 +584,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — гость указал в анкете, что женат",
+      "accessibilityLabel": "Вставьте слово — гость рассказал, что женат",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — гость указал в анкете, что женат",
-          "uk": "Вставте слово — гість зазначив в анкеті, що одружений"
+          "ru": "Вставьте слово — гость рассказал, что женат",
+          "uk": "Вставте слово — гість розповів, що одружений"
         },
         "gappedTargetPhrase": "He ___ married.",
         "gapOptions": [
@@ -434,12 +606,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — гость указал в анкете, что женат",
+        "testedDimension": "Вставьте слово — гость рассказал, что женат",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-23:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — гость указал в анкете, что женат",
+            "testedDimension": "Вставьте слово — гость рассказал, что женат",
             "feedbackByLocale": {
               "ru": "С `He` нужно `is`; `am` ставим с `I`.",
               "uk": "Із `He` потрібно `is`; `am` ставимо з `I`."
@@ -448,7 +620,7 @@
           {
             "responseId": "en:lesson-01:session-23:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — гость указал в анкете, что женат",
+            "testedDimension": "Вставьте слово — гость рассказал, что женат",
             "feedbackByLocale": {
               "ru": "Здесь начало `He`, поэтому `is`.",
               "uk": "Тут початок `He`, тому `is`."
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова и значения",
@@ -566,32 +738,32 @@
           },
           {
             "pairId": "en:lesson-01:session-23:i10:p3",
-            "target": "easy",
+            "target": "famous",
             "meaningByLocale": {
-              "ru": "лёгкий",
-              "uk": "легкий"
+              "ru": "знаменитый",
+              "uk": "знаменитий"
             }
           },
           {
             "pairId": "en:lesson-01:session-23:i10:p4",
-            "target": "difficult",
+            "target": "generous",
             "meaningByLocale": {
-              "ru": "трудный",
-              "uk": "складний"
+              "ru": "щедрый",
+              "uk": "щедрий"
             }
           }
         ],
         "leftColumn": [
           "rich",
           "poor",
-          "easy",
-          "difficult"
+          "famous",
+          "generous"
         ],
         "rightColumn": [
           "богатый",
           "бедный",
-          "лёгкий",
-          "трудный"
+          "знаменитый",
+          "щедрый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -656,38 +828,38 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы сравнили характер брата со своим. Скажите брату: «Ты другой», собрав фразу",
+      "prompt": "Двоюродная сестра объявила о помолвке. Соберите фразу о ней: «Она помолвлена»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сравнили характер брата со своим. Скажите брату: «Ты другой», собрав фразу",
+      "accessibilityLabel": "Двоюродная сестра объявила о помолвке. Соберите фразу о ней: «Она помолвлена»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are different.",
+        "targetPhrase": "She is engaged.",
         "localizedMeaning": {
-          "ru": "Вы сравнили характер брата со своим. Скажите брату: «Ты другой», собрав фразу",
-          "uk": "Ви порівняли характер брата зі своїм. Скажіть братові: «Ти інший», склавши фразу"
+          "ru": "Двоюродная сестра объявила о помолвке. Соберите фразу о ней: «Она помолвлена»",
+          "uk": "Двоюрідна сестра оголосила про заручини. Складіть фразу про неї: «Вона заручена»"
         },
         "orderedTokens": [
-          "You",
-          "are",
-          "different"
+          "She",
+          "is",
+          "engaged"
         ],
         "authoredDistractorTokens": [
-          "am"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-23:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы сравнили характер брата со своим. Скажите брату: «Ты другой», собрав фразу",
+            "testedDimension": "Двоюродная сестра объявила о помолвке. Соберите фразу о ней: «Она помолвлена»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `You are different.`",
-              "uk": "тут потрібно `are` — `You are different.`"
+              "ru": "после She нужно is.",
+              "uk": "після She потрібне is."
             }
           }
         ],
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,11 +905,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты",
+      "prompt": "Гостья сама рассказала, что сейчас ни с кем не встречается и не замужем. Дополните фразу об отсутствии партнёра",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i14:r1",
@@ -754,12 +926,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты",
+      "accessibilityLabel": "Гостья сама рассказала, что сейчас ни с кем не встречается и не замужем. Дополните фразу об отсутствии партнёра",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты",
-          "uk": "В анкеті гості зазначено, що вона не перебуває у шлюбі. Доповніть фразу словом з анкети"
+          "ru": "Гостья сама рассказала, что сейчас ни с кем не встречается и не замужем. Дополните фразу об отсутствии партнёра",
+          "uk": "Гостя сама розповіла, що зараз ні з ким не зустрічається й не заміжня. Доповніть фразу про відсутність партнера"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -776,24 +948,24 @@
             "text": "married"
           }
         ],
-        "testedDimension": "В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты",
+        "testedDimension": "Гостья сама рассказала, что сейчас ни с кем не встречается и не замужем. Дополните фразу об отсутствии партнёра",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-23:i14:r2",
             "correct": false,
-            "testedDimension": "В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты",
+            "testedDimension": "Гостья сама рассказала, что сейчас ни с кем не встречается и не замужем. Дополните фразу об отсутствии партнёра",
             "feedbackByLocale": {
-              "ru": "`alone` — «одна, без других людей». Семейное положение в анкете — `single`.",
-              "uk": "`alone` — «сама, без інших людей». Сімейний стан в анкеті — `single`."
+              "ru": "alone — одна, без других людей. Здесь речь об отсутствии партнёра: single.",
+              "uk": "alone — сама, без інших людей. Тут ідеться про відсутність партнера: single."
             }
           },
           {
             "responseId": "en:lesson-01:session-23:i14:r3",
             "correct": false,
-            "testedDimension": "В анкете гостьи указано, что она не состоит в браке. Дополните фразу словом из анкеты",
+            "testedDimension": "Гостья сама рассказала, что сейчас ни с кем не встречается и не замужем. Дополните фразу об отсутствии партнёра",
             "feedbackByLocale": {
-              "ru": "`married` означает, что она состоит в браке. В анкете обратное: `single`.",
-              "uk": "`married` означає, що вона перебуває у шлюбі. В анкеті навпаки: `single`."
+              "ru": "married означает, что она состоит в браке. Условие говорит об обратном.",
+              "uk": "married означає, що вона перебуває у шлюбі. Умова говорить про протилежне."
             }
           }
         ]
@@ -802,51 +974,51 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу сестры о подготовке праздника",
+      "prompt": "Послушайте новость пары и выберите услышанное",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i15:r1",
-          "text": "It is important."
+          "text": "We are engaged."
         },
         {
           "responseId": "en:lesson-01:session-23:i15:r2",
-          "text": "It is easy."
+          "text": "They are engaged."
         },
         {
           "responseId": "en:lesson-01:session-23:i15:r3",
-          "text": "It is difficult."
+          "text": "We are married."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-23:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу сестры о подготовке праздника",
+      "accessibilityLabel": "Послушайте новость пары и выберите услышанное",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-23:i15:audio",
-          "transcript": "It is important."
+          "transcript": "We are engaged."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-23:i15:r1",
-            "targetText": "It is important.",
+            "targetText": "We are engaged.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-23:i15:r2",
-            "targetText": "It is easy.",
+            "targetText": "They are engaged.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-23:i15:r3",
-            "targetText": "It is difficult.",
+            "targetText": "We are married.",
             "meaningByLocale": null
           }
         ],
@@ -855,19 +1027,19 @@
           {
             "responseId": "en:lesson-01:session-23:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу сестры о подготовке праздника",
+            "testedDimension": "Послушайте новость пары и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `important`, а в этом варианте — `easy`.",
-              "uk": "У записі останнє слово — `important`, а в цьому варіанті — `easy`."
+              "ru": "В записи We, а не They.",
+              "uk": "У записі We, а не They."
             }
           },
           {
             "responseId": "en:lesson-01:session-23:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу сестры о подготовке праздника",
+            "testedDimension": "Послушайте новость пары и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `important`, а в этом варианте — `difficult`.",
-              "uk": "У записі останнє слово — `important`, а в цьому варіанті — `difficult`."
+              "ru": "В записи engaged — о помолвке, а не married — о браке.",
+              "uk": "У записі engaged — про заручини, а не married — про шлюб."
             }
           }
         ],
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,10 +1064,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-23:i16:p1",
-            "target": "important",
+            "target": "engaged",
             "meaningByLocale": {
-              "ru": "важный",
-              "uk": "важливий"
+              "ru": "помолвлен",
+              "uk": "заручений"
             }
           },
           {
@@ -918,22 +1090,22 @@
             "pairId": "en:lesson-01:session-23:i16:p4",
             "target": "single",
             "meaningByLocale": {
-              "ru": "не состоит в браке (в анкете)",
-              "uk": "не перебуває у шлюбі (в анкеті)"
+              "ru": "без пары",
+              "uk": "без пари"
             }
           }
         ],
         "leftColumn": [
-          "important",
+          "engaged",
           "different",
           "married",
           "single"
         ],
         "rightColumn": [
-          "важный",
+          "помолвлен",
           "разный",
           "состоит в браке",
-          "не состоит в браке (в анкете)"
+          "без пары"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "77f53790a15cbb5d81664b7dedd3a57993e4b32da3d5ffdbb287d284472b9cab"
+  "learnerFingerprint": "35f39d2e96960270af7230b24a9e8862b8bdc56d368381a47ab99fa229e42940"
 }

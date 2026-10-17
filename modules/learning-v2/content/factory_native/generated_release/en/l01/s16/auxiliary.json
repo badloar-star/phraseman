@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-16:intro1:r2": {
-          "ru": "После `I` нужна форма `am`: `I am kind`.",
-          "uk": "Після `I` потрібна форма `am`: `I am kind`."
+          "ru": "Речь о входе: It, а не He.",
+          "uk": "Ідеться про вхід: It, а не He."
         },
         "en:lesson-01:session-16:intro1:r3": {
-          "ru": "Это про него. О себе начните с `I am`.",
-          "uk": "Це про нього. Про себе почніть із `I am`."
+          "ru": "Между It и open нужно is.",
+          "uk": "Між It та open потрібне is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-16:intro2:r2": {
-          "ru": "После `She` нужно `is`. `am` подходит к `I`.",
-          "uk": "Після `She` потрібно `is`. `am` поєднується з `I`."
+          "ru": "Вы описываете зал: It. He относилось бы к человеку.",
+          "uk": "Ви описуєте зал: It. He стосувалося б людини."
         },
         "en:lesson-01:session-16:intro2:r3": {
-          "ru": "`He` означает «он», а речь о Мие: `She`.",
-          "uk": "`He` означає «він», а йдеться про Мію: `She`."
+          "ru": "С It здесь нужно is.",
+          "uk": "З It тут потрібне is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-16:intro3:r2": {
-          "ru": "Здесь речь о столе, поэтому нужно `It`, а не `He`.",
-          "uk": "Тут ідеться про стіл, тому потрібно `It`, а не `He`."
+          "ru": "Для этого стола используйте It, а не He.",
+          "uk": "Для цього столу використовуйте It, а не He."
         },
         "en:lesson-01:session-16:intro3:r3": {
-          "ru": "Между `It` и `clean` нужно `is`.",
-          "uk": "Між `It` і `clean` потрібно `is`."
+          "ru": "Между It и clean нужно is.",
+          "uk": "Між It та clean потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f9f5d9376bc42f7dd7aa81eef67e5de59bf79a7867724b455756bcd5a100a5eb"
+  "auxiliaryFingerprint": "895e03e64661317d277218e4e93b3e064bcd734e77442fa06577e786cd33e968"
 }

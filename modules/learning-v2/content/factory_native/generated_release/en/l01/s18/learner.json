@@ -4,27 +4,199 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-18:i01",
+      "interactionId": "en:lesson-01:session-18:word:confused",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — confused",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:word:confused:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — confused",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:word:confused:audio",
+          "transcript": "confused"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:word:confused:r1",
+            "targetText": "confused",
+            "meaningByLocale": {
+              "ru": "растерянный, запутавшийся. I am confused — «Я запутался / запуталась», например, не разобрался в объявлении.",
+              "uk": "розгублений, спантеличений. I am confused — «Я заплутався / заплуталася», наприклад, не розібрався в оголошенні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "confused",
+          "definitionByLocale": {
+            "ru": "растерянный, запутавшийся. I am confused — «Я запутался / запуталась», например, не разобрался в объявлении.",
+            "uk": "розгублений, спантеличений. I am confused — «Я заплутався / заплуталася», наприклад, не розібрався в оголошенні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:word:sleepy",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sleepy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:word:sleepy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sleepy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:word:sleepy:audio",
+          "transcript": "sleepy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:word:sleepy:r1",
+            "targetText": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
+              "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleepy",
+          "definitionByLocale": {
+            "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
+            "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:word:relieved",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — relieved",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:word:relieved:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — relieved",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:word:relieved:audio",
+          "transcript": "relieved"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:word:relieved:r1",
+            "targetText": "relieved",
+            "meaningByLocale": {
+              "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
+              "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "relieved",
+          "definitionByLocale": {
+            "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
+            "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:word:funny",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — funny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:word:funny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — funny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:word:funny:audio",
+          "transcript": "funny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-18:word:funny:r1",
+            "targetText": "funny",
+            "meaningByLocale": {
+              "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
+              "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "funny",
+          "definitionByLocale": {
+            "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
+            "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы перепутали время отправления: «Я ошибаюсь»",
+      "prompt": "Соберите фразу — вы не поняли объявление и запутались. Скажите о себе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы перепутали время отправления: «Я ошибаюсь»",
+      "accessibilityLabel": "Соберите фразу — вы не поняли объявление и запутались. Скажите о себе",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am wrong.",
+        "targetPhrase": "I am confused.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы перепутали время отправления: «Я ошибаюсь»",
-          "uk": "Складіть фразу — ви переплутали час відправлення: «Я помиляюся»"
+          "ru": "Соберите фразу — вы не поняли объявление и запутались. Скажите о себе",
+          "uk": "Складіть фразу — ви не зрозуміли оголошення й заплуталися. Скажіть про себе"
         },
         "orderedTokens": [
           "I",
           "am",
-          "wrong"
+          "confused"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +205,10 @@
           {
             "responseId": "en:lesson-01:session-18:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — вы перепутали время отправления: «Я ошибаюсь»",
+            "testedDimension": "Соберите фразу — вы не поняли объявление и запутались. Скажите о себе",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am wrong.`",
-              "uk": "тут потрібно `am` — `I am wrong.`"
+              "ru": "с I нужно am.",
+              "uk": "з I потрібне am."
             }
           }
         ],
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-18:i02:r1",
-          "text": "We are early."
+          "text": "We are sleepy."
         },
         {
           "responseId": "en:lesson-01:session-18:i02:r2",
-          "text": "You are early."
+          "text": "You are sleepy."
         },
         {
           "responseId": "en:lesson-01:session-18:i02:r3",
-          "text": "We are lucky."
+          "text": "We are early."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-18:i02:audio",
-          "transcript": "We are early."
+          "transcript": "We are sleepy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-18:i02:r1",
-            "targetText": "We are early.",
+            "targetText": "We are sleepy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-18:i02:r2",
-            "targetText": "You are early.",
+            "targetText": "You are sleepy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-18:i02:r3",
-            "targetText": "We are lucky.",
+            "targetText": "We are early.",
             "meaningByLocale": null
           }
         ],
@@ -104,8 +276,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+              "ru": "В записи We, а не You.",
+              "uk": "У записі We, а не You."
             }
           },
           {
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите услышанное",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `lucky`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `lucky`."
+              "ru": "В записи sleepy, а не early.",
+              "uk": "У записі sleepy, а не early."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — двум пассажирам повезло",
+      "prompt": "Вставьте слово — пассажиры нашли потерянные билеты и испытывают облегчение",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-18:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — двум пассажирам повезло",
+      "accessibilityLabel": "Вставьте слово — пассажиры нашли потерянные билеты и испытывают облегчение",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — двум пассажирам повезло",
-          "uk": "Вставте слово — двом пасажирам пощастило"
+          "ru": "Вставьте слово — пассажиры нашли потерянные билеты и испытывают облегчение",
+          "uk": "Вставте слово — пасажири знайшли загублені квитки й відчувають полегшення"
         },
-        "gappedTargetPhrase": "They ___ lucky.",
+        "gappedTargetPhrase": "They ___ relieved.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-18:i03:r1",
@@ -168,24 +340,24 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — двум пассажирам повезло",
+        "testedDimension": "Вставьте слово — пассажиры нашли потерянные билеты и испытывают облегчение",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — двум пассажирам повезло",
+            "testedDimension": "Вставьте слово — пассажиры нашли потерянные билеты и испытывают облегчение",
             "feedbackByLocale": {
-              "ru": "После `They` нужно `are`; `am` ставим после `I`.",
-              "uk": "Після `They` потрібно `are`; `am` ставимо після `I`."
+              "ru": "С They нужно are; am используется с I.",
+              "uk": "З They потрібне are; am уживається з I."
             }
           },
           {
             "responseId": "en:lesson-01:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — двум пассажирам повезло",
+            "testedDimension": "Вставьте слово — пассажиры нашли потерянные билеты и испытывают облегчение",
             "feedbackByLocale": {
-              "ru": "Здесь говорится о них: `They are`.",
-              "uk": "Тут ідеться про них: `They are`."
+              "ru": "После They в этой фразе нужно are.",
+              "uk": "Після They у цій фразі потрібне are."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-18:i04:p1",
-            "target": "wrong",
+            "target": "confused",
             "meaningByLocale": {
-              "ru": "неправ",
-              "uk": "не має рації"
+              "ru": "растерянный",
+              "uk": "розгублений"
             }
           },
           {
             "pairId": "en:lesson-01:session-18:i04:p2",
-            "target": "early",
+            "target": "sleepy",
             "meaningByLocale": {
-              "ru": "рано",
-              "uk": "рано"
+              "ru": "сонный",
+              "uk": "сонний"
             }
           },
           {
             "pairId": "en:lesson-01:session-18:i04:p3",
-            "target": "lucky",
+            "target": "relieved",
             "meaningByLocale": {
-              "ru": "везучий",
-              "uk": "везучий"
+              "ru": "испытывающий облегчение",
+              "uk": "той, хто відчуває полегшення"
             }
           },
           {
             "pairId": "en:lesson-01:session-18:i04:p4",
-            "target": "right",
+            "target": "funny",
             "meaningByLocale": {
-              "ru": "прав",
-              "uk": "має рацію"
+              "ru": "смешной",
+              "uk": "смішний"
             }
           }
         ],
         "leftColumn": [
-          "wrong",
-          "early",
-          "lucky",
-          "right"
+          "confused",
+          "sleepy",
+          "relieved",
+          "funny"
         ],
         "rightColumn": [
-          "неправ",
-          "рано",
-          "везучий",
-          "прав"
+          "растерянный",
+          "сонный",
+          "испытывающий облегчение",
+          "смешной"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите услышанную фразу",
@@ -282,14 +454,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-18:i05:audio",
-          "transcript": "You are wrong."
+          "transcript": "You are confused."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "You are wrong.",
+        "hiddenTargetPhrase": "You are confused.",
         "orderedTokens": [
           "You",
           "are",
-          "wrong"
+          "confused"
         ],
         "authoredDistractorTokens": [
           "We"
@@ -300,8 +472,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите услышанную фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `You` — `You are wrong.`",
-              "uk": "тут потрібно `You` — `You are wrong.`"
+              "ru": "в записи You.",
+              "uk": "у записі You."
             }
           }
         ],
@@ -314,26 +486,26 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — нужный поезд ещё стоит. Скажите за вас с другом: «Нам повезло»",
+      "prompt": "Вы с другом нашли нужный поезд и больше не тревожитесь. Скажите за вас обоих, что вы испытываете облегчение",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — нужный поезд ещё стоит. Скажите за вас с другом: «Нам повезло»",
+      "accessibilityLabel": "Вы с другом нашли нужный поезд и больше не тревожитесь. Скажите за вас обоих, что вы испытываете облегчение",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are lucky.",
+        "targetPhrase": "We are relieved.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — нужный поезд ещё стоит. Скажите за вас с другом: «Нам повезло»",
-          "uk": "Складіть фразу — потрібний потяг іще стоїть. Скажіть за вас із другом: «Нам пощастило»"
+          "ru": "Вы с другом нашли нужный поезд и больше не тревожитесь. Скажите за вас обоих, что вы испытываете облегчение",
+          "uk": "Ви з другом знайшли потрібний потяг і більше не тривожитеся. Скажіть за вас обох, що ви відчуваєте полегшення"
         },
         "orderedTokens": [
           "We",
           "are",
-          "lucky"
+          "relieved"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -342,10 +514,10 @@
           {
             "responseId": "en:lesson-01:session-18:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — нужный поезд ещё стоит. Скажите за вас с другом: «Нам повезло»",
+            "testedDimension": "Вы с другом нашли нужный поезд и больше не тревожитесь. Скажите за вас обоих, что вы испытываете облегчение",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `We are lucky.`",
-              "uk": "тут потрібно `are` — `We are lucky.`"
+              "ru": "после We нужно are.",
+              "uk": "після We потрібне are."
             }
           }
         ],
@@ -358,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — ваша сестра приехала до назначенного времени: «Она пришла заранее»",
+      "prompt": "Ваша сестра говорит, что хочет спать. Сообщите другу о ней: «Она сонная»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — ваша сестра приехала до назначенного времени: «Она пришла заранее»",
+      "accessibilityLabel": "Ваша сестра говорит, что хочет спать. Сообщите другу о ней: «Она сонная»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-18:i07:audio",
-          "transcript": "She is early."
+          "transcript": "She is sleepy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is early.",
+        "targetPhrase": "She is sleepy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова со значениями",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите услышанное",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "60762d8ce4397ce864d1350df1d791ac7171c676dd2aeb6816aa167d9780573f"
+  "learnerFingerprint": "5defea4d015b70d8cdecdb769e241dca262b88d061cceab36efc2dd2f1c978b7"
 }

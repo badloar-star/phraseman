@@ -11,52 +11,52 @@
       "pageId": "en:lesson-01:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто говорит",
-        "uk": "Хто говорить"
+        "ru": "Не разобрать буквы",
+        "uk": "Не розібрати літери"
       },
       "bodyByLocale": {
-        "ru": "О себе начинаем с `I am`, за себя и других — с `We are`. Если говорим о других людях, нужно `They are`. Слово после них выбираем по ситуации: `I am prepared` — «Я подготовился», `We are early` — «Мы пришли заранее».",
-        "uk": "Про себе починаємо з `I am`, за себе та інших — із `We are`. Якщо говоримо про інших людей, потрібно `They are`. Слово після них вибираємо за ситуацією: `I am prepared` — «Я підготувався», `We are early` — «Ми прийшли завчасно»."
+        "ru": "Вы смотрите на программку в зале: свет включён, но его мало и мелкие буквы плохо видны. dim — «тусклый, слабо освещённый». It is dim — «Здесь тускло». Свет совсем не обязан погаснуть, чтобы стало dim.",
+        "uk": "Ви дивитеся на програмку в залі: світло ввімкнене, але його мало й дрібні літери погано видно. dim — «тьмяний, слабо освітлений». It is dim — «Тут тьмяно». Світло зовсім не мусить згаснути, щоб стало dim."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Вы с сестрой пришли за час до начала. Скажите за вас обоих, что вы пришли заранее.",
-          "uk": "Ви із сестрою прийшли за годину до початку. Скажіть за вас обох, що ви прийшли завчасно."
+          "ru": "Сотрудник спрашивает об освещении зала. Скажите, что свет тусклый.",
+          "uk": "Працівник запитує про освітлення зали. Скажіть, що світло тьмяне."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-24:intro1:r1",
-              "text": "We are early."
+              "text": "It is dim."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r2",
-              "text": "I am early."
+              "text": "It are dim."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r3",
-              "text": "We is early."
+              "text": "I am dim."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-24:intro1:r1",
-              "text": "We are early."
+              "text": "It is dim."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r2",
-              "text": "I am early."
+              "text": "It are dim."
             },
             {
               "responseId": "en:lesson-01:session-24:intro1:r3",
-              "text": "We is early."
+              "text": "I am dim."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с сестрой пришли за час до начала. Скажите за вас обоих, что вы пришли заранее.",
-          "uk": "Ви із сестрою прийшли за годину до початку. Скажіть за вас обох, що ви прийшли завчасно."
+          "ru": "Сотрудник спрашивает об освещении зала. Скажите, что свет тусклый.",
+          "uk": "Працівник запитує про освітлення зали. Скажіть, що світло тьмяне."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где человек",
-        "uk": "Де людина"
+        "ru": "Коробку вдвоём",
+        "uk": "Коробку вдвох"
       },
       "bodyByLocale": {
-        "ru": "`inside` — «внутри», `outside` — «снаружи», `upstairs` — «на верхнем этаже», `nearby` — «поблизости». Начало выбираем по тому, о ком говорим: `She is upstairs`, но `They are upstairs`. Этаж один, а людей может быть сколько угодно — форму выбираем не по этажу.",
-        "uk": "`inside` — «всередині», `outside` — «зовні», `upstairs` — «на верхньому поверсі», `nearby` — «поблизу». Початок вибираємо за тим, про кого говоримо: `She is upstairs`, але `They are upstairs`. Поверх один, а людей може бути скільки завгодно — форму вибираємо не за поверхом."
+        "ru": "Вы пробуете поднять коробку с реквизитом и понимаете, что одному неудобно её нести из-за веса. heavy — «тяжёлый». It is heavy — «Она тяжёлая». Слово говорит о весе: даже маленькая коробка может быть тяжёлой, если в ней металлические детали.",
+        "uk": "Ви пробуєте підняти коробку з реквізитом і розумієте, що одному незручно нести її через вагу. heavy — «важкий». It is heavy — «Вона важка». Слово говорить про вагу: навіть маленька коробка може бути важкою, якщо в ній металеві деталі."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Двое друзей ждут на втором этаже театра. Скажите, где они.",
-          "uk": "Двоє друзів чекають на другому поверсі театру. Скажіть, де вони."
+          "ru": "Объясните помощнику, почему хотите нести коробку вдвоём: она тяжёлая.",
+          "uk": "Поясніть помічникові, чому хочете нести коробку вдвох: вона важка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-24:intro2:r1",
-              "text": "They are upstairs."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r2",
-              "text": "They is upstairs."
+              "text": "She is heavy."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r3",
-              "text": "They are outside."
+              "text": "It am heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-24:intro2:r1",
-              "text": "They are upstairs."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r2",
-              "text": "They is upstairs."
+              "text": "She is heavy."
             },
             {
               "responseId": "en:lesson-01:session-24:intro2:r3",
-              "text": "They are outside."
+              "text": "It am heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Двое друзей ждут на втором этаже театра. Скажите, где они.",
-          "uk": "Двоє друзів чекають на другому поверсі театру. Скажіть, де вони."
+          "ru": "Объясните помощнику, почему хотите нести коробку вдвоём: она тяжёлая.",
+          "uk": "Поясніть помічникові, чому хочете нести коробку вдвох: вона важка."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что именно известно",
-        "uk": "Що саме відомо"
+        "ru": "Стеклянная ваза",
+        "uk": "Скляна ваза"
       },
       "bodyByLocale": {
-        "ru": "Выбирайте слово по факту, который хотите сообщить. `famous` — «знаменитый», `rich` — «богатый»; одно не доказывает другое. Так же `alone` описывает отсутствие компании, а `single` в анкете — отсутствие брака.",
-        "uk": "Вибирайте слово за фактом, який хочете повідомити. `famous` — «знаменитий», `rich` — «багатий»; одне не доводить іншого. Так само `alone` описує відсутність компанії, а `single` в анкеті — відсутність шлюбу."
+        "ru": "Вы передаёте помощнику тонкую стеклянную вазу для сцены. fragile — «хрупкий»: легко разбить или повредить. It is fragile — «Она хрупкая». Это предупреждение о вазе: прочность лучше не проверять падением.",
+        "uk": "Ви передаєте помічникові тонку скляну вазу для сцени. fragile — «крихкий»: легко розбити або пошкодити. It is fragile — «Вона крихка». Це попередження про вазу: міцність краще не перевіряти падінням."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Актрису узнают по всей стране. О её деньгах вы ничего не знаете. Скажите о её известности.",
-          "uk": "Актрису впізнають по всій країні. Про її гроші ви нічого не знаєте. Скажіть про її популярність."
+          "ru": "Передавая стеклянную вазу, сообщите помощнику, что она хрупкая.",
+          "uk": "Передаючи скляну вазу, повідомте помічникові, що вона крихка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-24:intro3:r1",
-              "text": "She is famous."
+              "text": "It is fragile."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r2",
-              "text": "She is rich."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r3",
-              "text": "She are famous."
+              "text": "It are fragile."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-24:intro3:r1",
-              "text": "She is famous."
+              "text": "It is fragile."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r2",
-              "text": "She is rich."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-01:session-24:intro3:r3",
-              "text": "She are famous."
+              "text": "It are fragile."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Актрису узнают по всей стране. О её деньгах вы ничего не знаете. Скажите о её известности.",
-          "uk": "Актрису впізнають по всій країні. Про її гроші ви нічого не знаєте. Скажіть про її популярність."
+          "ru": "Передавая стеклянную вазу, сообщите помощнику, что она хрупкая.",
+          "uk": "Передаючи скляну вазу, повідомте помічникові, що вона крихка."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b5d6bdb648e87faa88e70ec7a42202e4e498b6e8f02ebf71641e1f9f6394182d"
+  "introFingerprint": "cfc26e331e767d649713e21e2a741d5e0c47d5534854198f114c8b8006658a9f"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-14:intro1:r2": {
-          "ru": "После `you` нужно `are`: You are safe.",
-          "uk": "Після `you` потрібне `are`: You are safe."
+          "ru": "Между you и safe нужно are.",
+          "uk": "Між you та safe потрібне are."
         },
         "en:lesson-01:session-14:intro1:r3": {
-          "ru": "`am` бывает только рядом с `I`. Про собеседника — всегда `are`.",
-          "uk": "`am` буває тільки поруч з `I`. Про співрозмовника — завжди `are`."
+          "ru": "В обращении с you здесь используется are, а не am.",
+          "uk": "У зверненні з you тут уживається are, а не am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-14:intro2:r2": {
-          "ru": "«Тебе тепло» — но зонт греет плохо. Он спас от воды: `dry`.",
-          "uk": "«Тобі тепло» — але парасолька гріє погано. Вона врятувала від води: `dry`."
+          "ru": "Cold — «тебе холодно». В задании нужно сказать, что Алекс сухой: dry.",
+          "uk": "Cold — «тобі холодно». У завданні потрібно сказати, що Алекс сухий: dry."
         },
         "en:lesson-01:session-14:intro2:r3": {
-          "ru": "Без `are` это не фраза. Про собеседника — `You are`, и только потом слово.",
-          "uk": "Без `are` це не фраза. Про співрозмовника — `You are`, і аж потім слово."
+          "ru": "В этой фразе после you нужно are.",
+          "uk": "У цій фразі після you потрібне are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-14:intro3:r2": {
-          "ru": "`not` переворачивает фразу в «ты не готов» — а он застегнулся и кивнул.",
-          "uk": "`not` перевертає фразу на «ти не готовий» — а він застібнувся і кивнув."
+          "ru": "Cold означает, что ему холодно, но по условию он уже согрелся.",
+          "uk": "Cold означає, що йому холодно, але за умовою він уже зігрівся."
         },
         "en:lesson-01:session-14:intro3:r3": {
-          "ru": "После `you` нужно `are`: You are ready.",
-          "uk": "Після `you` потрібне `are`: You are ready."
+          "ru": "Вы обращаетесь к Алексу о его состоянии: You are warm.",
+          "uk": "Ви звертаєтеся до Алекса про його стан: You are warm."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b99d684d6ccf9ab8dd6e605b83edeeae63ba533740f420918b4041c59e2c0ead"
+  "auxiliaryFingerprint": "bd887a5a67e80dc9e45d94adbaeb0d80c9babb68385128f13d7cf79987e6a5c7"
 }

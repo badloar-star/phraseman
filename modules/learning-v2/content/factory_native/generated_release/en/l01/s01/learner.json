@@ -2395,17 +2395,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+      "prompt": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+      "accessibilityLabel": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
-          "uk": "Складіть фразу — начальник питає, чи ви готові почати"
+          "ru": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
+          "uk": "Складіть фразу — ви готові почати; повідомте про це начальникові"
         },
         "orderedTokens": [
           "I",
@@ -2419,7 +2419,7 @@
           {
             "responseId": "en:lesson-01:session-01:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+            "testedDimension": "Соберите фразу — вы готовы начать; сообщите об этом начальнику",
             "feedbackByLocale": {
               "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
               "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."
@@ -3848,7 +3848,15 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        ],
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        }
       },
       "ordinal": 22
     },
@@ -4131,5 +4139,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ac09f1121878f4bff5212b05d3e369753a4015a22f88fa966d9be203d64330f3"
+  "learnerFingerprint": "598fe60777398b014e858d96d1c548d503e9bf0239d6b7a525bf09340583d0f4"
 }

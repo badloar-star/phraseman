@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-15:intro1:r2": {
-          "ru": "После `you` нужно `are`: без него английская фраза неполная.",
-          "uk": "Після `you` потрібне `are`: без нього англійська фраза неповна."
+          "ru": "В этой фразе между you и friendly нужно are.",
+          "uk": "У цій фразі між you та friendly потрібне are."
         },
         "en:lesson-01:session-15:intro1:r3": {
-          "ru": "`am` живёт только рядом с `I`. Про собеседника — всегда `are`.",
-          "uk": "`am` живе тільки поруч із `I`. Про співрозмовника — завжди `are`."
+          "ru": "Вы говорите Вике о ней: You are friendly.",
+          "uk": "Ви говорите Віці про неї: You are friendly."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-15:intro2:r2": {
-          "ru": "Сначала `I am`, затем `not`: `I am not serious`.",
-          "uk": "Спершу `I am`, потім `not`: `I am not serious`."
+          "ru": "Not отрицает серьёзность. По условию вы действительно намерены это сделать.",
+          "uk": "Not заперечує серйозність. За умовою ви справді маєте намір це зробити."
         },
         "en:lesson-01:session-15:intro2:r3": {
-          "ru": "В этой фразе отрицание — `not`: `I am not serious`.",
-          "uk": "У цій фразі заперечення — `not`: `I am not serious`."
+          "ru": "С I в этой фразе нужно am.",
+          "uk": "З I у цій фразі потрібне am."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-15:intro3:r2": {
-          "ru": "После `you` нужно `are`, не `is`.",
-          "uk": "Після `you` потрібне `are`, не `is`."
+          "ru": "В обращении с you нужно are, а не is.",
+          "uk": "У зверненні з you потрібне are, а не is."
         },
         "en:lesson-01:session-15:intro3:r3": {
-          "ru": "`are` стоит сразу после `you`, а не в хвосте.",
-          "uk": "`are` стоїть одразу після `you`, а не в хвості."
+          "ru": "Are ставится после you, перед lucky.",
+          "uk": "Are ставиться після you, перед lucky."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e4d82f77ad0bf5a3001226b810513358b96532d1561bf24d39227caf26846ffd"
+  "auxiliaryFingerprint": "7e2cd0b5c29ff4997798fcf9b7d7669707f1117ae86a9d38d014946a239d77ae"
 }

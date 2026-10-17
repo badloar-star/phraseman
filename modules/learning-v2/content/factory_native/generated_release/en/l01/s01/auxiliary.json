@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-01:intro1:r2": {
-          "ru": "В полной фразе не хватает `am`: `I am here`.",
-          "uk": "У повній фразі бракує `am`: `I am here`."
+          "ru": "Между `I` и `here` нужно `am`: `I am here`.",
+          "uk": "Між `I` та `here` потрібне `am`: `I am here`."
         },
         "en:lesson-01:session-01:intro1:r3": {
-          "ru": "Не хватает `I`: нужно назвать, кто здесь.",
-          "uk": "Бракує `I`: треба назвати, хто тут."
+          "ru": "Назовите себя словом `I`: `I am here`.",
+          "uk": "Назвіть себе словом `I`: `I am here`."
         }
       },
       "responseAnalysisById": {
@@ -585,12 +585,12 @@
       "interactionId": "en:lesson-01:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-01:intro2:r2": {
-          "ru": "Порядок такой: `I`, затем `am`, затем слово о себе.",
-          "uk": "Порядок такий: `I`, потім `am`, потім слово про себе."
+          "ru": "Поставьте `am` сразу после `I`: `I am ready`.",
+          "uk": "Поставте `am` одразу після `I`: `I am ready`."
         },
         "en:lesson-01:session-01:intro2:r3": {
-          "ru": "В полной фразе между `I` и `ready` не хватает `am`: I am ready.",
-          "uk": "У повній фразі між `I` та `ready` бракує `am`: I am ready."
+          "ru": "В этой полной фразе нужно `am`: `I am ready`.",
+          "uk": "У цій повній фразі потрібне `am`: `I am ready`."
         }
       },
       "responseAnalysisById": {
@@ -1208,12 +1208,12 @@
       "interactionId": "en:lesson-01:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-01:intro3:r2": {
-          "ru": "Не хватает `am`: когда вы рады, правильно `I am happy`.",
-          "uk": "Бракує `am`: коли ви раді, правильно `I am happy`."
+          "ru": "В полной фразе перед `happy` нужно `am`: `I am happy`.",
+          "uk": "У повній фразі перед `happy` потрібне `am`: `I am happy`."
         },
         "en:lesson-01:session-01:intro3:r3": {
-          "ru": "`I am` здесь недостаточно: фраза не говорит, что вы рады. Нужно `I am happy`.",
-          "uk": "Самого `I am` недостатньо: ще не сказано, що ви раді. Потрібне `I am happy`."
+          "ru": "Вы ещё не сказали, что рады. Добавьте `happy`: `I am happy`.",
+          "uk": "Ви ще не сказали, що раді. Додайте `happy`: `I am happy`."
         }
       },
       "responseAnalysisById": {
@@ -1786,5 +1786,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "637c02312cbd7aa4f8900d861b1ea4e39e27f63a8effd869dc023e8636be2410"
+  "auxiliaryFingerprint": "1551d4340d2277b8e60422cb2b43fc7e2799c267d41e8cacbe04c7fe9521f8a4"
 }

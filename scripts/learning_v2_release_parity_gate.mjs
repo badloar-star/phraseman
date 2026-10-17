@@ -4,7 +4,7 @@ import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { readBundleCeiling } from "./learning_v2_plan_b_gates.mjs";
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -697,6 +697,45 @@ function printQualityResult(result) {
   if (result.issues.length > 20) console.error(`- ... ${result.issues.length - 20} more quality issues`);
 }
 
+/**
+ * Место карточки слова в выпущенных занятиях копии приложения.
+ * зачем (слово владельца, координатор 17.10; правило фабрики 962c576b1): карточка стоит прямо перед заданием со своим
+ * словом, две карточки подряд и слово раньше своей карточки — блок. Проверка живёт в фабрике
+ * (content/learning-v2-course/pipeline/single_phrase_release.mjs); здесь она прогоняется по ТОМУ, что уедет в сборку
+ * (generated_release), чтобы перенос не притащил нарушение. Ветка выполняется только локально (на EAS исходников нет);
+ * модуль фабрики не загрузился — блок, а не тихий пропуск. Журнал [V2-CARD-PLACEMENT].
+ */
+export async function validateWordCardPlacementInAppCopy(ceiling, appCopyRoot = DEFAULT_APP_COPY_ROOT) {
+  const modulePath = path.join(PROJECT_ROOT, "content", "learning-v2-course", "pipeline", "single_phrase_release.mjs");
+  let factory;
+  try {
+    factory = await import(pathToFileURL(modulePath).href);
+  } catch (error) {
+    console.error(`Learning V2 word-card placement: BLOCKED (модуль проверки не загрузился: ${error instanceof Error ? error.message : String(error)})`);
+    return { ready: false, issues: [] };
+  }
+  const scope = new Set(ceiling === null ? expectedEnglishSessionIdentities() : releasedSessionScope(ceiling));
+  const issues = [];
+  let checked = 0;
+  for (const identity of scope) {
+    if (!factory.wordCardPlacementApplies(identity)) continue;
+    const [, lesson, session] = identity.split("/");
+    const learnerPath = path.join(appCopyRoot, lesson, session, "learner.json");
+    if (!fs.existsSync(learnerPath)) continue; // отсутствие файла ловит сверка канон ↔ копия
+    const learner = JSON.parse(fs.readFileSync(learnerPath, "utf8"));
+    issues.push(...factory.wordCardPlacementIssues(learner.interactions, { source: identity }));
+    checked += 1;
+  }
+  console.log(`[V2-CARD-PLACEMENT] ${JSON.stringify({ checked, issues: issues.length, sessions: [...new Set(issues.map((issue) => issue.source))].slice(0, 20) })}`);
+  if (issues.length === 0) {
+    console.log(`Learning V2 word-card placement: PASS (${checked} sessions)`);
+    return { ready: true, issues };
+  }
+  console.error(`Learning V2 word-card placement: BLOCKED (${issues.length} issues in ${checked} sessions)`);
+  for (const issue of issues.slice(0, 20)) console.error(`- ${issue.reason}: ${issue.source} ${issue.interactionId} «${issue.word}»`);
+  return { ready: false, issues };
+}
+
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   if (process.argv.slice(2).length > 0) {
     console.error("Learning V2 release parity: BLOCKED (UNSUPPORTED_ARGUMENTS: production roots cannot be overridden)");
@@ -735,7 +774,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     }
     printQualityResult(qualityResult);
     printResult(copyResult);
-    process.exitCode = scopeResult.ready && (semanticResult.ready || semanticAdvisory) && qualityResult.ready && copyResult.ready ? 0 : 1;
+    const cardResult = await validateWordCardPlacementInAppCopy(ceiling);
+    process.exitCode = scopeResult.ready && (semanticResult.ready || semanticAdvisory) && qualityResult.ready && copyResult.ready && cardResult.ready ? 0 : 1;
     }
   }
 }

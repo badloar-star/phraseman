@@ -6510,6 +6510,22 @@
       "audioTargetId": "en:lesson-03:session-23:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-23:word:cup",
+      "audioTargetId": "en:lesson-03:session-23:word:cup:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:word:fork",
+      "audioTargetId": "en:lesson-03:session-23:word:fork:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:word:pot",
+      "audioTargetId": "en:lesson-03:session-23:word:pot:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:word:spoon",
+      "audioTargetId": "en:lesson-03:session-23:word:spoon:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-24:i02",
       "audioTargetId": "en:lesson-03:session-24:i02:audio"
     },
@@ -6540,6 +6556,22 @@
     {
       "interactionId": "en:lesson-03:session-24:i17",
       "audioTargetId": "en:lesson-03:session-24:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:envelope",
+      "audioTargetId": "en:lesson-03:session-24:word:envelope:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:label",
+      "audioTargetId": "en:lesson-03:session-24:word:label:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:ribbon",
+      "audioTargetId": "en:lesson-03:session-24:word:ribbon:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:word:sticker",
+      "audioTargetId": "en:lesson-03:session-24:word:sticker:audio"
     },
     {
       "interactionId": "en:lesson-03:session-25:i02",
@@ -6574,6 +6606,22 @@
       "audioTargetId": "en:lesson-03:session-25:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-25:word:adapter",
+      "audioTargetId": "en:lesson-03:session-25:word:adapter:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:cable",
+      "audioTargetId": "en:lesson-03:session-25:word:cable:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:charger",
+      "audioTargetId": "en:lesson-03:session-25:word:charger:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:socket",
+      "audioTargetId": "en:lesson-03:session-25:word:socket:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-26:i02",
       "audioTargetId": "en:lesson-03:session-26:i02:audio"
     },
@@ -6604,6 +6652,22 @@
     {
       "interactionId": "en:lesson-03:session-26:i17",
       "audioTargetId": "en:lesson-03:session-26:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:banner",
+      "audioTargetId": "en:lesson-03:session-26:word:banner:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:projector",
+      "audioTargetId": "en:lesson-03:session-26:word:projector:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:screen",
+      "audioTargetId": "en:lesson-03:session-26:word:screen:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:speaker",
+      "audioTargetId": "en:lesson-03:session-26:word:speaker:audio"
     },
     {
       "interactionId": "en:lesson-03:session-27:i02",
@@ -6638,6 +6702,22 @@
       "audioTargetId": "en:lesson-03:session-27:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-27:word:button",
+      "audioTargetId": "en:lesson-03:session-27:word:button:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:word:remote",
+      "audioTargetId": "en:lesson-03:session-27:word:remote:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:word:router",
+      "audioTargetId": "en:lesson-03:session-27:word:router:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:word:switch",
+      "audioTargetId": "en:lesson-03:session-27:word:switch:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-28:i02",
       "audioTargetId": "en:lesson-03:session-28:i02:audio"
     },
@@ -6668,6 +6748,22 @@
     {
       "interactionId": "en:lesson-03:session-28:i17",
       "audioTargetId": "en:lesson-03:session-28:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:backpack",
+      "audioTargetId": "en:lesson-03:session-28:word:backpack:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:handbag",
+      "audioTargetId": "en:lesson-03:session-28:word:handbag:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:stroller",
+      "audioTargetId": "en:lesson-03:session-28:word:stroller:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:suitcase",
+      "audioTargetId": "en:lesson-03:session-28:word:suitcase:audio"
     },
     {
       "interactionId": "en:lesson-03:session-29:i02",
@@ -6702,6 +6798,22 @@
       "audioTargetId": "en:lesson-03:session-29:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-29:word:letter",
+      "audioTargetId": "en:lesson-03:session-29:word:letter:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:word:mailbox",
+      "audioTargetId": "en:lesson-03:session-29:word:mailbox:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:word:parcel",
+      "audioTargetId": "en:lesson-03:session-29:word:parcel:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:word:stamp",
+      "audioTargetId": "en:lesson-03:session-29:word:stamp:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-30:i02",
       "audioTargetId": "en:lesson-03:session-30:i02:audio"
     },
@@ -6732,6 +6844,22 @@
     {
       "interactionId": "en:lesson-03:session-30:i17",
       "audioTargetId": "en:lesson-03:session-30:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:glove",
+      "audioTargetId": "en:lesson-03:session-30:word:glove:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:scarf",
+      "audioTargetId": "en:lesson-03:session-30:word:scarf:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:sweater",
+      "audioTargetId": "en:lesson-03:session-30:word:sweater:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:vest",
+      "audioTargetId": "en:lesson-03:session-30:word:vest:audio"
     },
     {
       "interactionId": "en:lesson-03:session-31:i02",
@@ -6766,6 +6894,22 @@
       "audioTargetId": "en:lesson-03:session-31:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-31:word:belt",
+      "audioTargetId": "en:lesson-03:session-31:word:belt:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:word:boot",
+      "audioTargetId": "en:lesson-03:session-31:word:boot:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:word:cape",
+      "audioTargetId": "en:lesson-03:session-31:word:cape:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:word:hat",
+      "audioTargetId": "en:lesson-03:session-31:word:hat:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-32:i02",
       "audioTargetId": "en:lesson-03:session-32:i02:audio"
     },
@@ -6796,6 +6940,22 @@
     {
       "interactionId": "en:lesson-03:session-32:i17",
       "audioTargetId": "en:lesson-03:session-32:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:keyring",
+      "audioTargetId": "en:lesson-03:session-32:word:keyring:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:magnet",
+      "audioTargetId": "en:lesson-03:session-32:word:magnet:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:postcard",
+      "audioTargetId": "en:lesson-03:session-32:word:postcard:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:souvenir",
+      "audioTargetId": "en:lesson-03:session-32:word:souvenir:audio"
     },
     {
       "interactionId": "en:lesson-03:session-33:i02",
@@ -6830,6 +6990,22 @@
       "audioTargetId": "en:lesson-03:session-33:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-33:word:coat",
+      "audioTargetId": "en:lesson-03:session-33:word:coat:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:word:shirt",
+      "audioTargetId": "en:lesson-03:session-33:word:shirt:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:word:shoe",
+      "audioTargetId": "en:lesson-03:session-33:word:shoe:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:word:sock",
+      "audioTargetId": "en:lesson-03:session-33:word:sock:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-34:i02",
       "audioTargetId": "en:lesson-03:session-34:i02:audio"
     },
@@ -6860,6 +7036,22 @@
     {
       "interactionId": "en:lesson-03:session-34:i17",
       "audioTargetId": "en:lesson-03:session-34:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:word:blanket",
+      "audioTargetId": "en:lesson-03:session-34:word:blanket:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:word:duvet",
+      "audioTargetId": "en:lesson-03:session-34:word:duvet:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:word:pillowcase",
+      "audioTargetId": "en:lesson-03:session-34:word:pillowcase:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:word:sheet",
+      "audioTargetId": "en:lesson-03:session-34:word:sheet:audio"
     },
     {
       "interactionId": "en:lesson-03:session-35:i02",
@@ -6894,6 +7086,22 @@
       "audioTargetId": "en:lesson-03:session-35:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-35:word:album",
+      "audioTargetId": "en:lesson-03:session-35:word:album:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:frame",
+      "audioTargetId": "en:lesson-03:session-35:word:frame:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:map",
+      "audioTargetId": "en:lesson-03:session-35:word:map:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:photo",
+      "audioTargetId": "en:lesson-03:session-35:word:photo:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-36:i02",
       "audioTargetId": "en:lesson-03:session-36:i02:audio"
     },
@@ -6924,6 +7132,22 @@
     {
       "interactionId": "en:lesson-03:session-36:i17",
       "audioTargetId": "en:lesson-03:session-36:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:bicycle",
+      "audioTargetId": "en:lesson-03:session-36:word:bicycle:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:flower",
+      "audioTargetId": "en:lesson-03:session-36:word:flower:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:toy",
+      "audioTargetId": "en:lesson-03:session-36:word:toy:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:tree",
+      "audioTargetId": "en:lesson-03:session-36:word:tree:audio"
     },
     {
       "interactionId": "en:lesson-03:session-37:i02",
@@ -6958,6 +7182,22 @@
       "audioTargetId": "en:lesson-03:session-37:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-37:word:building",
+      "audioTargetId": "en:lesson-03:session-37:word:building:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:entrance",
+      "audioTargetId": "en:lesson-03:session-37:word:entrance:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:exit",
+      "audioTargetId": "en:lesson-03:session-37:word:exit:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:yard",
+      "audioTargetId": "en:lesson-03:session-37:word:yard:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-38:i02",
       "audioTargetId": "en:lesson-03:session-38:i02:audio"
     },
@@ -6988,6 +7228,22 @@
     {
       "interactionId": "en:lesson-03:session-38:i17",
       "audioTargetId": "en:lesson-03:session-38:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:word:apple",
+      "audioTargetId": "en:lesson-03:session-38:word:apple:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:word:banana",
+      "audioTargetId": "en:lesson-03:session-38:word:banana:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:word:orange",
+      "audioTargetId": "en:lesson-03:session-38:word:orange:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:word:pear",
+      "audioTargetId": "en:lesson-03:session-38:word:pear:audio"
     },
     {
       "interactionId": "en:lesson-03:session-39:i02",
@@ -7022,6 +7278,22 @@
       "audioTargetId": "en:lesson-03:session-39:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-39:word:cucumber",
+      "audioTargetId": "en:lesson-03:session-39:word:cucumber:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:word:grape",
+      "audioTargetId": "en:lesson-03:session-39:word:grape:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:word:lemon",
+      "audioTargetId": "en:lesson-03:session-39:word:lemon:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:word:onion",
+      "audioTargetId": "en:lesson-03:session-39:word:onion:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-40:i02",
       "audioTargetId": "en:lesson-03:session-40:i02:audio"
     },
@@ -7052,6 +7324,22 @@
     {
       "interactionId": "en:lesson-03:session-40:i17",
       "audioTargetId": "en:lesson-03:session-40:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:word:barcode",
+      "audioTargetId": "en:lesson-03:session-40:word:barcode:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:word:coupon",
+      "audioTargetId": "en:lesson-03:session-40:word:coupon:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:word:scanner",
+      "audioTargetId": "en:lesson-03:session-40:word:scanner:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:word:seal",
+      "audioTargetId": "en:lesson-03:session-40:word:seal:audio"
     },
     {
       "interactionId": "en:lesson-03:session-41:i02",
@@ -7086,6 +7374,22 @@
       "audioTargetId": "en:lesson-03:session-41:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-41:word:cashier",
+      "audioTargetId": "en:lesson-03:session-41:word:cashier:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:counter",
+      "audioTargetId": "en:lesson-03:session-41:word:counter:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:mistake",
+      "audioTargetId": "en:lesson-03:session-41:word:mistake:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:word:receipt",
+      "audioTargetId": "en:lesson-03:session-41:word:receipt:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-42:i02",
       "audioTargetId": "en:lesson-03:session-42:i02:audio"
     },
@@ -7116,6 +7420,22 @@
     {
       "interactionId": "en:lesson-03:session-42:i17",
       "audioTargetId": "en:lesson-03:session-42:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:bell",
+      "audioTargetId": "en:lesson-03:session-42:word:bell:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:cord",
+      "audioTargetId": "en:lesson-03:session-42:word:cord:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:handle",
+      "audioTargetId": "en:lesson-03:session-42:word:handle:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:word:wheel",
+      "audioTargetId": "en:lesson-03:session-42:word:wheel:audio"
     },
     {
       "interactionId": "en:lesson-03:session-43:i02",
@@ -7150,6 +7470,22 @@
       "audioTargetId": "en:lesson-03:session-43:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-43:word:book",
+      "audioTargetId": "en:lesson-03:session-43:word:book:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:dictionary",
+      "audioTargetId": "en:lesson-03:session-43:word:dictionary:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:magazine",
+      "audioTargetId": "en:lesson-03:session-43:word:magazine:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:word:newspaper",
+      "audioTargetId": "en:lesson-03:session-43:word:newspaper:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-44:i02",
       "audioTargetId": "en:lesson-03:session-44:i02:audio"
     },
@@ -7180,6 +7516,22 @@
     {
       "interactionId": "en:lesson-03:session-44:i17",
       "audioTargetId": "en:lesson-03:session-44:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:assistant",
+      "audioTargetId": "en:lesson-03:session-44:word:assistant:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:customer",
+      "audioTargetId": "en:lesson-03:session-44:word:customer:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:queue",
+      "audioTargetId": "en:lesson-03:session-44:word:queue:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:word:seller",
+      "audioTargetId": "en:lesson-03:session-44:word:seller:audio"
     },
     {
       "interactionId": "en:lesson-03:session-45:i02",
@@ -7214,6 +7566,22 @@
       "audioTargetId": "en:lesson-03:session-45:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-45:word:brand",
+      "audioTargetId": "en:lesson-03:session-45:word:brand:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:colour",
+      "audioTargetId": "en:lesson-03:session-45:word:colour:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:model",
+      "audioTargetId": "en:lesson-03:session-45:word:model:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:word:size",
+      "audioTargetId": "en:lesson-03:session-45:word:size:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-46:i02",
       "audioTargetId": "en:lesson-03:session-46:i02:audio"
     },
@@ -7244,6 +7612,22 @@
     {
       "interactionId": "en:lesson-03:session-46:i17",
       "audioTargetId": "en:lesson-03:session-46:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:balcony",
+      "audioTargetId": "en:lesson-03:session-46:word:balcony:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:lift",
+      "audioTargetId": "en:lesson-03:session-46:word:lift:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:roof",
+      "audioTargetId": "en:lesson-03:session-46:word:roof:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-46:word:stairs",
+      "audioTargetId": "en:lesson-03:session-46:word:stairs:audio"
     },
     {
       "interactionId": "en:lesson-03:session-47:i02",
@@ -7278,6 +7662,22 @@
       "audioTargetId": "en:lesson-03:session-47:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-47:word:drill",
+      "audioTargetId": "en:lesson-03:session-47:word:drill:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:word:nail",
+      "audioTargetId": "en:lesson-03:session-47:word:nail:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:word:screw",
+      "audioTargetId": "en:lesson-03:session-47:word:screw:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-47:word:wrench",
+      "audioTargetId": "en:lesson-03:session-47:word:wrench:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-48:i02",
       "audioTargetId": "en:lesson-03:session-48:i02:audio"
     },
@@ -7310,12 +7710,32 @@
       "audioTargetId": "en:lesson-03:session-48:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-48:word:item",
+      "audioTargetId": "en:lesson-03:session-48:word:item:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:word:order",
+      "audioTargetId": "en:lesson-03:session-48:word:order:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:word:refund",
+      "audioTargetId": "en:lesson-03:session-48:word:refund:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:word:total",
+      "audioTargetId": "en:lesson-03:session-48:word:total:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-49:i02",
       "audioTargetId": "en:lesson-03:session-49:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-49:i05",
       "audioTargetId": "en:lesson-03:session-49:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:i06",
+      "audioTargetId": "en:lesson-03:session-49:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-49:i07",
@@ -7334,6 +7754,10 @@
       "audioTargetId": "en:lesson-03:session-49:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-49:i14",
+      "audioTargetId": "en:lesson-03:session-49:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-49:i15",
       "audioTargetId": "en:lesson-03:session-49:i15:audio"
     },
@@ -7342,12 +7766,32 @@
       "audioTargetId": "en:lesson-03:session-49:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-49:word:blue",
+      "audioTargetId": "en:lesson-03:session-49:word:blue:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:brown",
+      "audioTargetId": "en:lesson-03:session-49:word:brown:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:green",
+      "audioTargetId": "en:lesson-03:session-49:word:green:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-49:word:red",
+      "audioTargetId": "en:lesson-03:session-49:word:red:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-50:i02",
       "audioTargetId": "en:lesson-03:session-50:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-50:i05",
       "audioTargetId": "en:lesson-03:session-50:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:i06",
+      "audioTargetId": "en:lesson-03:session-50:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-50:i07",
@@ -7366,6 +7810,10 @@
       "audioTargetId": "en:lesson-03:session-50:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-50:i14",
+      "audioTargetId": "en:lesson-03:session-50:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-50:i15",
       "audioTargetId": "en:lesson-03:session-50:i15:audio"
     },
@@ -7374,12 +7822,32 @@
       "audioTargetId": "en:lesson-03:session-50:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-50:word:beige",
+      "audioTargetId": "en:lesson-03:session-50:word:beige:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:black",
+      "audioTargetId": "en:lesson-03:session-50:word:black:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:grey",
+      "audioTargetId": "en:lesson-03:session-50:word:grey:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-50:word:white",
+      "audioTargetId": "en:lesson-03:session-50:word:white:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-51:i02",
       "audioTargetId": "en:lesson-03:session-51:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-51:i05",
       "audioTargetId": "en:lesson-03:session-51:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i06",
+      "audioTargetId": "en:lesson-03:session-51:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-51:i07",
@@ -7398,6 +7866,10 @@
       "audioTargetId": "en:lesson-03:session-51:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-51:i14",
+      "audioTargetId": "en:lesson-03:session-51:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-51:i15",
       "audioTargetId": "en:lesson-03:session-51:i15:audio"
     },
@@ -7406,12 +7878,32 @@
       "audioTargetId": "en:lesson-03:session-51:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-51:word:navy",
+      "audioTargetId": "en:lesson-03:session-51:word:navy:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:word:olive",
+      "audioTargetId": "en:lesson-03:session-51:word:olive:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:word:purple",
+      "audioTargetId": "en:lesson-03:session-51:word:purple:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:word:yellow",
+      "audioTargetId": "en:lesson-03:session-51:word:yellow:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-52:i02",
       "audioTargetId": "en:lesson-03:session-52:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-52:i05",
       "audioTargetId": "en:lesson-03:session-52:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i06",
+      "audioTargetId": "en:lesson-03:session-52:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-52:i07",
@@ -7430,6 +7922,10 @@
       "audioTargetId": "en:lesson-03:session-52:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-52:i14",
+      "audioTargetId": "en:lesson-03:session-52:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-52:i15",
       "audioTargetId": "en:lesson-03:session-52:i15:audio"
     },
@@ -7438,12 +7934,32 @@
       "audioTargetId": "en:lesson-03:session-52:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-52:word:high",
+      "audioTargetId": "en:lesson-03:session-52:word:high:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:low",
+      "audioTargetId": "en:lesson-03:session-52:word:low:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:oval",
+      "audioTargetId": "en:lesson-03:session-52:word:oval:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:word:round",
+      "audioTargetId": "en:lesson-03:session-52:word:round:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-53:i02",
       "audioTargetId": "en:lesson-03:session-53:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-53:i05",
       "audioTargetId": "en:lesson-03:session-53:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:i06",
+      "audioTargetId": "en:lesson-03:session-53:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-53:i07",
@@ -7462,6 +7978,10 @@
       "audioTargetId": "en:lesson-03:session-53:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-53:i14",
+      "audioTargetId": "en:lesson-03:session-53:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-53:i15",
       "audioTargetId": "en:lesson-03:session-53:i15:audio"
     },
@@ -7470,12 +7990,32 @@
       "audioTargetId": "en:lesson-03:session-53:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-53:word:cotton",
+      "audioTargetId": "en:lesson-03:session-53:word:cotton:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:leather",
+      "audioTargetId": "en:lesson-03:session-53:word:leather:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:metal",
+      "audioTargetId": "en:lesson-03:session-53:word:metal:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-53:word:rubber",
+      "audioTargetId": "en:lesson-03:session-53:word:rubber:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-54:i02",
       "audioTargetId": "en:lesson-03:session-54:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-54:i05",
       "audioTargetId": "en:lesson-03:session-54:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i06",
+      "audioTargetId": "en:lesson-03:session-54:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-54:i07",
@@ -7494,6 +8034,10 @@
       "audioTargetId": "en:lesson-03:session-54:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-54:i14",
+      "audioTargetId": "en:lesson-03:session-54:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-54:i15",
       "audioTargetId": "en:lesson-03:session-54:i15:audio"
     },
@@ -7502,12 +8046,32 @@
       "audioTargetId": "en:lesson-03:session-54:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-54:word:checked",
+      "audioTargetId": "en:lesson-03:session-54:word:checked:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:word:floral",
+      "audioTargetId": "en:lesson-03:session-54:word:floral:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:word:spotted",
+      "audioTargetId": "en:lesson-03:session-54:word:spotted:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:word:striped",
+      "audioTargetId": "en:lesson-03:session-54:word:striped:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-55:i02",
       "audioTargetId": "en:lesson-03:session-55:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-55:i05",
       "audioTargetId": "en:lesson-03:session-55:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i06",
+      "audioTargetId": "en:lesson-03:session-55:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-55:i07",
@@ -7526,6 +8090,10 @@
       "audioTargetId": "en:lesson-03:session-55:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-55:i14",
+      "audioTargetId": "en:lesson-03:session-55:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-55:i15",
       "audioTargetId": "en:lesson-03:session-55:i15:audio"
     },
@@ -7534,12 +8102,32 @@
       "audioTargetId": "en:lesson-03:session-55:i17:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-55:word:material",
+      "audioTargetId": "en:lesson-03:session-55:word:material:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:word:pattern",
+      "audioTargetId": "en:lesson-03:session-55:word:pattern:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:word:shape",
+      "audioTargetId": "en:lesson-03:session-55:word:shape:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:word:style",
+      "audioTargetId": "en:lesson-03:session-55:word:style:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-56:i02",
       "audioTargetId": "en:lesson-03:session-56:i02:audio"
     },
     {
       "interactionId": "en:lesson-03:session-56:i05",
       "audioTargetId": "en:lesson-03:session-56:i05:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i06",
+      "audioTargetId": "en:lesson-03:session-56:i06:audio"
     },
     {
       "interactionId": "en:lesson-03:session-56:i07",
@@ -7558,12 +8146,32 @@
       "audioTargetId": "en:lesson-03:session-56:i13:audio"
     },
     {
+      "interactionId": "en:lesson-03:session-56:i14",
+      "audioTargetId": "en:lesson-03:session-56:i14:audio"
+    },
+    {
       "interactionId": "en:lesson-03:session-56:i15",
       "audioTargetId": "en:lesson-03:session-56:i15:audio"
     },
     {
       "interactionId": "en:lesson-03:session-56:i17",
       "audioTargetId": "en:lesson-03:session-56:i17:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:word:bin",
+      "audioTargetId": "en:lesson-03:session-56:word:bin:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:word:hook",
+      "audioTargetId": "en:lesson-03:session-56:word:hook:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:word:mat",
+      "audioTargetId": "en:lesson-03:session-56:word:mat:audio"
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:word:tray",
+      "audioTargetId": "en:lesson-03:session-56:word:tray:audio"
     },
     {
       "interactionId": "en:lesson-04:session-01:i02",

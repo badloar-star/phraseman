@@ -255,6 +255,9 @@ test("the routed production gate blocks on release-quality evidence", () => {
     // проверяется в learning_v2_release_parity_released_scope); состав, качество и файлы — по-прежнему обязательны
     /scopeResult\.ready\s*&&\s*\(semanticResult\.ready\s*\|\|\s*semanticAdvisory\)\s*&&\s*qualityResult\.ready\s*&&\s*copyResult\.ready/u,
   );
+  // зачем (координатор 17.10, правило владельца о месте карточки слова): проверка фабрики по копии приложения — блок
+  assert.match(gate, /const cardResult = await validateWordCardPlacementInAppCopy\(ceiling\);/u);
+  assert.match(gate, /copyResult\.ready\s*&&\s*cardResult\.ready\s*\?\s*0\s*:\s*1/u);
 });
 
 test("the EAS archive contains the parity gate while omitted authorities fail closed at runtime", () => {

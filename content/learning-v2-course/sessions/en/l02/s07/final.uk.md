@@ -1,138 +1,154 @@
-# Англійська · Урок 2 · Заняття 7 — Без зайвих клопотів
+# Англійська · Урок 2 · Заняття 7 — Без зайвого клопоту
 
-**Ситуація.** Ви готуєте домашній вечір настільних ігор. Обговорюєте, які приготування обов’язкові, а без яких можна обійтися.
+**Ситуація.** Ви готуєте домашній вечір настільних ігор. Обговорюєте, що купити, у чому приходити і як розібратися з новою грою.
 
-**Що ви опануєте:** сказати, що річ або дія не обов’язкова, зберігаючи not після be
-**Нові слова:** necessary
+**Що ви опануєте:** сказати, що щось не потрібно, не важливо, не суворо й не просто
+**Нові слова:** necessary, important, formal, simple
+**Повертаються:** fake, fresh, real, angry, scared, responsible, independent
 
 ---
 
 ## Інтро 1
 
-### Можна обійтися
+### Нова скатертина
 
-`necessary` — «необхідний», «потрібний». `It is not necessary` — «Це не обов’язково» або «У цьому немає потреби». Для вечора у друзів не потрібно друкувати запрошення. Особливо якщо друг уже сидить у вас на кухні.
+Ви кличете друзів на вечір настільних ігор. Мама радить купити нову скатертину: «Гості ж!» Але стіл чистий, а на ньому однаково будуть картки й чипси. necessary — «потрібний». It is not necessary, коротко It's not necessary — «Це не потрібно».
 
-**Друкувати запрошення на домашню зустріч не потрібно. Скажіть, що це необов’язково.**
+**Мама питає, чи купувати нову скатертину. Відповідайте коротко, що це не потрібно.**
 
-- ✅ **It is not necessary.**
-- ❌ It is necessary. — *Це «Необхідно». Тут потрібно `not` після `is`.*
-- ❌ It not necessary. — *Зберігаємо `is`: `It is not necessary`.*
+- ✅ **It's not necessary.**
+- ❌ It's necessary. — *Без not виходить «Це потрібно». А стіл і так чистий: It's not necessary.*
+- ❌ I'm not necessary. — *I'm — про себе. Про купівлю скатертини кажемо It's.*
 
 ---
 
 ## Інтро 2
 
-### Не обов’язково — не означає заборонено
+### Піджак чи светр
 
-`It's not necessary` — коротка форма `It is not necessary`. Фраза дозволяє обійтися без дії, але сама по собі не забороняє її. Якщо можна прийти без подарунка, це ще не заборона приносити подарунок.
+Гість Діма пише вам: «У чому приходити? Брати піджак?» Вечір у вас удома, усі будуть у светрах і капцях. formal — «офіційний», «суворий». It is not formal — «Він не офіційний».
 
-**Для цього вечора подарунок не обов’язковий, але принести його можна. Коротко скажіть, що в ньому немає потреби.**
+**Діма питає, чи суворий вечір. Відповідайте повною фразою, що він не офіційний.**
 
-- ✅ **It's not necessary.**
-- ❌ It's necessary. — *Це обов’язковість. Тут потрібно `not necessary`.*
-- ❌ They're not necessary. — *Обговорюється один подарунок: `It's`.*
+- ✅ **It is not formal.**
+- ❌ It is formal. — *Без not виходить «Він офіційний». А всі будуть у капцях: It is not formal.*
+- ❌ He is not formal. — *He — про чоловіка. Про вечір кажемо It.*
 
 ---
 
 ## Інтро 3
 
-### Кілька речей
+### Коробка з новою грою
 
-Про кілька необов’язкових речей — `They are not necessary`, коротко `They're not necessary`. Слово `necessary` залишається тим самим. Наприклад, додаткові стільці не потрібні, якщо місць уже достатньо.
+Діма приносить нову гру. Ви відкриваєте коробку: книжка правил завтовшки з цеглину й сорок видів карток. simple — «простий». They are not simple, коротко They're not simple — «Вони не прості». Правил багато, тому They.
 
-**Стільців вистачає всім гостям. Два додаткові стільці не потрібні. Скажіть про ці два стільці.**
+**Ваша сестра Аня питає, чи прості правила. Відповідайте коротко, що вони не прості.**
 
-- ✅ **They are not necessary.**
-- ❌ They is not necessary. — *Після `They` потрібно `are`.*
-- ❌ They are necessary. — *Це «Вони потрібні». Тут потрібне `not`.*
+- ✅ **They're not simple.**
+- ❌ It's not simple. — *It's — про одну річ, а правил багато: They're not simple.*
+- ❌ They're simple. — *Без not виходить «Вони прості». А книжка правил товста: They're not simple.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друкувати запрошення для домашнього вечора не потрібно. Скажіть, що це необов’язково**
+**1 · Картка слова — necessary**
+<!-- interaction_id: en:lesson-02:session-07:word:necessary; family: word_card -->
+> **necessary** — потрібний, необхідний. It's not necessary — «Це не потрібно». Про покупки, справи, речі, без яких можна обійтися.
+
+**2 · Друкувати запрошення на домашній вечір не потрібно. Скажіть про це**
 <!-- interaction_id: en:lesson-02:session-07:i01; family: phrase_builder -->
 Плитки: `necessary` `not` `is` `It` `are` → **It is not necessary.**
 *(плитка `are` зайва: тут потрібно `is` — `It is not necessary.`)*
 
-**2 · Послухайте й виберіть почуте**
+**3 · Картка слова — formal**
+<!-- interaction_id: en:lesson-02:session-07:word:formal; family: word_card -->
+> **formal** — офіційний, суворий. It's not formal — «Він не офіційний». Про вечір, зустріч, одяг, лист.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-02:session-07:i02; family: listen_choose -->
-🔊 *It is not necessary.* → **It is not necessary.** · It is not familiar. · It is not real.
-- It is not familiar. — *У записі останнє слово — `necessary`, а в цьому варіанті — `familiar`.*
+🔊 *It is not necessary.* → **It is not necessary.** · It is not formal. · It is not real.
+- It is not formal. — *У записі останнє слово — `necessary`, а в цьому варіанті — `formal`.*
 - It is not real. — *У записі останнє слово — `necessary`, а в цьому варіанті — `real`.*
 
-**3 · Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу**
+**5 · Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них**
 <!-- interaction_id: en:lesson-02:session-07:i03; family: context_gap_grammar -->
 They ___ not necessary. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
-- is — *Про два стільці — `They are not`.*
+- is — *Стільців два, тому `They are not`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-07:i04; family: speed_match -->
-necessary — необхідний · responsible — відповідальний · independent — незалежний · dependent — залежний
+necessary — потрібний · important — важливий · formal — офіційний · simple — простий
 
-**5 · Послухайте й складіть коротку фразу**
+**7 · Діма знову питає, чи брати піджак. Послухайте й складіть відповідь про вечір**
 <!-- interaction_id: en:lesson-02:session-07:i05; family: listen_build_dictation -->
-🔊 *It's not necessary.* Плитки: `necessary` `not` `It's` `He's` → **It's not necessary.**
-*(плитка `He's` зайва: тут потрібно `It's` — `It's not necessary.`)*
+🔊 *It's not formal.* Плитки: `formal` `not` `It's` `He's` → **It's not formal.**
+*(плитка `He's` зайва: тут потрібно `It's` — `It's not formal.`)*
 
-**6 · Додаткові тарілки не потрібні: посуду вистачає. Скажіть про ці тарілки**
+**8 · Картка слова — simple**
+<!-- interaction_id: en:lesson-02:session-07:word:simple; family: word_card -->
+> **simple** — простий. They're not simple — «Вони не прості». Про правила, завдання, рецепти.
+
+**9 · Правила нової гри займають двадцять сторінок. Скажіть, що вони не прості**
 <!-- interaction_id: en:lesson-02:session-07:i06; family: phrase_builder -->
-Плитки: `necessary` `not` `are` `They` `is` → **They are not necessary.**
-*(плитка `is` зайва: тут потрібно `are` — `They are not necessary.`)*
+Плитки: `simple` `not` `are` `They` `is` → **They are not simple.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not simple.`)*
 
-**7 · Друг пропонує роздрукувати правила, але ви можете читати їх з екрана. Коротко скажіть, що друкувати необов’язково**
+**10 · Картка слова — important**
+<!-- interaction_id: en:lesson-02:session-07:word:important; family: word_card -->
+> **important** — важливий. It's not important — «Це не важливо». Про дрібниці, помилки, справи, які можуть почекати.
+
+**11 · Діма засмутився: він програв першу партію. Скажіть йому коротко, що це не важливо**
 <!-- interaction_id: en:lesson-02:session-07:i07; family: scripted_repeat_compare -->
-🎙 **It's not necessary.**
+🎙 **It's not important.**
 
-**8 · Друг запізнився, але ви не сердитеся. Доповніть фразу про себе**
+**12 · Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе**
 <!-- interaction_id: en:lesson-02:session-07:i08; family: context_gap_grammar -->
 I ___ not angry. → **am** · is · are
 - is — *Про себе — `I am not`.*
 - are — *Після `I` потрібно `am`.*
 
-**9 · Послухайте фразу про друга**
+**13 · Послухайте фразу про Діму**
 <!-- interaction_id: en:lesson-02:session-07:i09; family: listen_choose -->
 🔊 *He is not scared.* → **He is not scared.** · He is not angry. · He is not responsible.
 - He is not angry. — *У записі останнє слово — `scared`, а в цьому варіанті — `angry`.*
 - He is not responsible. — *У записі останнє слово — `scared`, а в цьому варіанті — `responsible`.*
 
-**10 · З’єднайте короткі початки з повними**
+**14 · З’єднайте короткі початки з повними**
 <!-- interaction_id: en:lesson-02:session-07:i10; family: speed_match -->
 It's — It is · They're — They are · I'm — I am · He's — He is
 
-**11 · Послухайте й складіть коротку фразу**
+**15 · Аня перерахувала стільці: двох зайвих не потрібно. Послухайте й складіть фразу про них**
 <!-- interaction_id: en:lesson-02:session-07:i11; family: listen_build_dictation -->
 🔊 *They're not necessary.* Плитки: `necessary` `not` `They're` `He's` → **They're not necessary.**
 *(плитка `He's` зайва: тут потрібно `They're` — `They're not necessary.`)*
 
-**12 · Малюк поки не обходиться без постійної турботи дорослих. Скажіть, що він ще не незалежний**
+**16 · Синові Діми три роки, мама сама годує й одягає його. Скажіть про нього: «Він поки не незалежний»**
 <!-- interaction_id: en:lesson-02:session-07:i12; family: phrase_builder -->
 Плитки: `independent` `not` `is` `He` `are` → **He is not independent.**
 *(плитка `are` зайва: тут потрібно `is` — `He is not independent.`)*
 
-**13 · У грі попереду несподіване завдання, але вам не страшно. Коротко скажіть про це**
+**17 · Вам випала картка «Страшна історія», але вам анітрохи не страшно. Скажіть коротко про себе**
 <!-- interaction_id: en:lesson-02:session-07:i13; family: scripted_repeat_compare -->
 🎙 **I'm not scared.**
 
-**14 · Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу**
+**18 · Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього**
 <!-- interaction_id: en:lesson-02:session-07:i14; family: context_gap_grammar -->
-It ___ not necessary. → **is** · am · are
+It ___ not formal. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
-- are — *Про цю дію — `It is not`.*
+- are — *Вечір один, тому `It is not`.*
 
-**15 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте коротку фразу й виберіть її**
 <!-- interaction_id: en:lesson-02:session-07:i15; family: listen_choose -->
-🔊 *It's not necessary.* → **It's not necessary.** · It's not real. · It's not fake.
-- It's not real. — *У записі останнє слово — `necessary`, а в цьому варіанті — `real`.*
-- It's not fake. — *У записі останнє слово — `necessary`, а в цьому варіанті — `fake`.*
+🔊 *It's not important.* → **It's not important.** · It's not necessary. · It's not formal.
+- It's not necessary. — *У записі останнє слово — `important`, а в цьому варіанті — `necessary`.*
+- It's not formal. — *У записі останнє слово — `important`, а в цьому варіанті — `formal`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова минулого заняття й знайомі слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-07:i16; family: speed_match -->
-necessary — потрібний · angry — сердитий · scared — наляканий · responsible — відповідальний
+fake — підроблений · fresh — свіжий · angry — сердитий · scared — наляканий
 
-**17 · У поїздці друг пропонує роздрукувати карту, але потрібний маршрут уже збережений у вас у телефоні. За умовою паперова копія не потрібна. Скажіть, що друкувати необов’язково**
+**21 · Друг Костя пропонує роздрукувати карту для поїздки, але маршрут уже збережено у вас у телефоні. Скажіть, що друкувати не потрібно**
 <!-- interaction_id: en:lesson-02:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is not necessary.**
-

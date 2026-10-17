@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-09:intro1:r2": {
-          "ru": "После `Is` нужно `it`, затем `possible`.",
-          "uk": "Після `Is` потрібно `it`, потім `possible`."
+          "ru": "Так звучит утверждение «Это возможно». Чтобы спросить, ставим Is вперёд: Is it possible?",
+          "uk": "Так звучить твердження «Це можливо». Щоб запитати, ставимо Is наперед: Is it possible?"
         },
         "en:lesson-02:session-09:intro1:r3": {
-          "ru": "С `it` нужно `is`: `Is it possible?`.",
-          "uk": "З `it` потрібно `is`: `Is it possible?`."
+          "ru": "С it нужно is: Is it possible?",
+          "uk": "З it потрібно is: Is it possible?"
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-09:intro2:r2": {
-          "ru": "С `you` нужно `are`, и в вопросе оно стоит первым.",
-          "uk": "З `you` потрібно `are`, і в запитанні воно стоїть першим."
+          "ru": "Без not выходит «Оно занято». А кресло пустое: It's not taken.",
+          "uk": "Без not виходить «Воно зайняте». А крісло порожнє: It's not taken."
         },
         "en:lesson-02:session-09:intro2:r3": {
-          "ru": "После `Are` идёт `you`: `Are you sure?`.",
-          "uk": "Після `Are` йде `you`: `Are you sure?`."
+          "ru": "He's — о мужчине. Про кресло говорим It's.",
+          "uk": "He's — про чоловіка. Про крісло кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-09:intro3:r2": {
-          "ru": "С `she` нужно `is`: `Is she interested?`.",
-          "uk": "З `she` потрібно `is`: `Is she interested?`."
+          "ru": "С they нужно Are: Are they close?",
+          "uk": "З they потрібно Are: Are they close?"
         },
         "en:lesson-02:session-09:intro3:r3": {
-          "ru": "Анна — `she`. `He` означало бы «он».",
-          "uk": "Анна — `she`. `He` означало б «він»."
+          "ru": "taken — «занятые». Вы спрашиваете не об этом, а близко ли места: close.",
+          "uk": "taken — «зайняті». Ви питаєте не про це, а чи близько місця: close."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bba4e6eb18ee71595290bd23957da2fde7228354a6844d2779e7c752a9ec592a"
+  "auxiliaryFingerprint": "293fd29df25a9b1ec50317caca0379d7186e1b86f6210eb093b8c0dafc3dc584"
 }

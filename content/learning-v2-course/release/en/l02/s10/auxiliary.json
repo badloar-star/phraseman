@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-10:intro1:r2": {
-          "ru": "Это «Возможно», а пронести шкаф собранным не получится.",
-          "uk": "Це «Можливо», а пронести шафу зібраною не вийде."
+          "ru": "С not выходит «Она не узкая», а шкаф упёрся в косяк: It's narrow.",
+          "uk": "Із not виходить «Вони не вузькі», а шафа вперлася в одвірок: It's narrow."
         },
         "en:lesson-02:session-10:intro1:r3": {
-          "ru": "Обсуждается одна попытка перенести шкаф: `It's impossible`.",
-          "uk": "Обговорюється одна спроба перенести шафу: `It's impossible`."
+          "ru": "They're — про несколько вещей, а дверь одна: It's narrow.",
+          "uk": "They're — про кілька речей, а двері тут одні: It's narrow."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-10:intro2:r2": {
-          "ru": "Это полностью исключает возможность. Здесь нужно `not impossible`.",
-          "uk": "Це повністю виключає можливість. Тут потрібно `not impossible`."
+          "ru": "Без not вы соглашаетесь с Анной: «Это невозможно».",
+          "uk": "Без not ви погоджуєтеся з Анною: «Це неможливо»."
         },
         "en:lesson-02:session-10:intro2:r3": {
-          "ru": "После `It` сохраняем `is`: `It is not impossible`.",
-          "uk": "Після `It` зберігаємо `is`: `It is not impossible`."
+          "ru": "possible — «возможный». Выйдет «Это невозможно», то есть опять согласие с Анной.",
+          "uk": "possible — «можливий». Вийде «Це неможливо», тобто знову згода з Анною."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-10:intro3:r2": {
-          "ru": "С `it` нужно `is`, и в вопросе оно стоит первым.",
-          "uk": "З `it` потрібно `is`, і в запитанні воно стоїть першим."
+          "ru": "С it нужно is: Is it wooden?",
+          "uk": "З it потрібно is: Is it wooden?"
         },
         "en:lesson-02:session-10:intro3:r3": {
-          "ru": "После `Is` ставим `it`, потом `impossible`.",
-          "uk": "Після `Is` ставимо `it`, потім `impossible`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it wooden?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it wooden?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c2227d9cbdfb5cbe5f64bbb2cc4b9ba88f232863df23fa57da033b54ed3e7504"
+  "auxiliaryFingerprint": "4904f87fe9d1fbcd060e0240191b660e4668c580696f0e0fd2f8b86ea1cda5d4"
 }

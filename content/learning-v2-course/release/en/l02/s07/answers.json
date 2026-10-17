@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-07:word:necessary",
+    "correctText": "necessary",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-07:i01",
     "correctText": "It is not necessary.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:word:formal",
+    "correctText": "formal",
     "correctResponseId": null
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-07:i04",
-    "correctText": "en:lesson-02:session-07:i04:p1=necessary\nen:lesson-02:session-07:i04:p2=responsible\nen:lesson-02:session-07:i04:p3=independent\nen:lesson-02:session-07:i04:p4=dependent",
+    "correctText": "en:lesson-02:session-07:i04:p1=necessary\nen:lesson-02:session-07:i04:p2=important\nen:lesson-02:session-07:i04:p3=formal\nen:lesson-02:session-07:i04:p4=simple",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-07:i05",
-    "correctText": "It's not necessary.",
+    "correctText": "It's not formal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:word:simple",
+    "correctText": "simple",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-07:i06",
-    "correctText": "They are not necessary.",
+    "correctText": "They are not simple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:word:important",
+    "correctText": "important",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-07:i07",
-    "correctText": "It's not necessary.",
+    "correctText": "It's not important.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-07:i15",
-    "correctText": "It's not necessary.",
+    "correctText": "It's not important.",
     "correctResponseId": "en:lesson-02:session-07:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-07:i16",
-    "correctText": "en:lesson-02:session-07:i16:p1=necessary\nen:lesson-02:session-07:i16:p2=angry\nen:lesson-02:session-07:i16:p3=scared\nen:lesson-02:session-07:i16:p4=responsible",
+    "correctText": "en:lesson-02:session-07:i16:p1=fake\nen:lesson-02:session-07:i16:p2=fresh\nen:lesson-02:session-07:i16:p3=angry\nen:lesson-02:session-07:i16:p4=scared",
     "correctResponseId": null
   },
   {

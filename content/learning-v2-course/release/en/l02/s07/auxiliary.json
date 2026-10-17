@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-07:intro1:r2": {
-          "ru": "Это «Необходимо». Здесь нужно `not` после `is`.",
-          "uk": "Це «Необхідно». Тут потрібно `not` після `is`."
+          "ru": "Без not выходит «Это нужно». А стол и так чистый: It's not necessary.",
+          "uk": "Без not виходить «Це потрібно». А стіл і так чистий: It's not necessary."
         },
         "en:lesson-02:session-07:intro1:r3": {
-          "ru": "Сохраняем `is`: `It is not necessary`.",
-          "uk": "Зберігаємо `is`: `It is not necessary`."
+          "ru": "I'm — о себе. Про покупку скатерти говорим It's.",
+          "uk": "I'm — про себе. Про купівлю скатертини кажемо It's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-07:intro2:r2": {
-          "ru": "Это обязательность. Здесь нужно `not necessary`.",
-          "uk": "Це обов’язковість. Тут потрібно `not necessary`."
+          "ru": "Без not выходит «Он официальный». А все будут в тапках: It is not formal.",
+          "uk": "Без not виходить «Він офіційний». А всі будуть у капцях: It is not formal."
         },
         "en:lesson-02:session-07:intro2:r3": {
-          "ru": "Обсуждается один подарок: `It's`.",
-          "uk": "Обговорюється один подарунок: `It's`."
+          "ru": "He — о мужчине. Про вечер говорим It.",
+          "uk": "He — про чоловіка. Про вечір кажемо It."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-07:intro3:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "It's — про одну вещь, а правил много: They're not simple.",
+          "uk": "It's — про одну річ, а правил багато: They're not simple."
         },
         "en:lesson-02:session-07:intro3:r3": {
-          "ru": "Это «Они нужны». Здесь нужен `not`.",
-          "uk": "Це «Вони потрібні». Тут потрібне `not`."
+          "ru": "Без not выходит «Они простые». А книга правил толстая: They're not simple.",
+          "uk": "Без not виходить «Вони прості». А книжка правил товста: They're not simple."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8dca7db3ea852a16a8701ebbadb924986edc97137930a914e7421dfcf421f1fd"
+  "auxiliaryFingerprint": "a76fe84e7ba3182be768521658c34cb30512c5d65119832a5a14a183c191d85c"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-04:intro1:r2": {
-          "ru": "Это «Его видно». Здесь нужно `not` после `is`.",
-          "uk": "Це «Його видно». Тут потрібно `not` після `is`."
+          "ru": "Это «Его видно». Здесь нужно not после is.",
+          "uk": "Це «Його видно». Тут потрібно not після is."
         },
         "en:lesson-02:session-04:intro1:r3": {
-          "ru": "Нужна связка `is`: `It is not visible`.",
-          "uk": "Потрібна зв’язка `is`: `It is not visible`."
+          "ru": "Нужна связка is: It is not visible.",
+          "uk": "Потрібна зв’язка is: It is not visible."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-04:intro2:r2": {
-          "ru": "Это «Она спрятана». Здесь нужно отрицание: `is not hidden`.",
-          "uk": "Це «Вона схована». Тут потрібне заперечення: `is not hidden`."
+          "ru": "Это «Она спрятана». Здесь нужно отрицание: is not hidden.",
+          "uk": "Це «Вона схована». Тут потрібне заперечення: is not hidden."
         },
         "en:lesson-02:session-04:intro2:r3": {
-          "ru": "`is` сохраняется: `It is not hidden`.",
-          "uk": "`is` зберігається: `It is not hidden`."
+          "ru": "is сохраняется: It is not hidden.",
+          "uk": "is зберігається: It is not hidden."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-04:intro3:r2": {
-          "ru": "Это «Понятно». Здесь нужно `not`.",
-          "uk": "Це «Зрозуміло». Тут потрібно `not`."
+          "ru": "Это «Понятно». Здесь нужно not.",
+          "uk": "Це «Зрозуміло». Тут потрібно not."
         },
         "en:lesson-02:session-04:intro3:r3": {
-          "ru": "Это «Не видно». В задании неясен смысл: `clear`.",
-          "uk": "Це «Не видно». У завданні неясний зміст: `clear`."
+          "ru": "Это «Не видно». В задании неясен смысл: clear.",
+          "uk": "Це «Не видно». У завданні неясний зміст: clear."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b1d597ca69c1b8852acf3c442711368842f52307a343b7e7576d63064558bdab"
+  "auxiliaryFingerprint": "8ad182ee0dc2f69b976a49fce1cfb0494bfa11044bae45f202f38ccd9e100b7f"
 }

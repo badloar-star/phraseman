@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-08",
   "learningOutcomeByLocale": {
-    "ru": "выбрать точное отрицание с am, is или are и словами первой главы второго урока",
-    "uk": "вибрати точне заперечення з am, is або are та словами першого розділу другого уроку"
+    "ru": "сказать, что вещь не сломана, работа не закончена, что-то не разрешено или не темно, и повторить слова первой главы",
+    "uk": "сказати, що річ не зламана, робота не закінчена, щось не дозволено або не темно, і повторити слова першого розділу"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Связка остаётся",
-        "uk": "Зв’язка залишається"
+        "ru": "Меч за кулисами",
+        "uk": "Меч за лаштунками"
       },
       "bodyByLocale": {
-        "ru": "Для отрицания `not` стоит после `am`, `is` или `are`. `I am not sure` — «Я не уверен», `She is not interested` — «Ей неинтересно». Не выбрасывайте связку: `not` занимает своё место, а не чужое.",
-        "uk": "Для заперечення `not` стоїть після `am`, `is` або `are`. `I am not sure` — «Я не впевнений», `She is not interested` — «Їй нецікаво». Не викидайте зв’язку: `not` займає своє місце, а не чуже."
+        "ru": "За кулисами актёр Паша роняет деревянный меч, и режиссёр Нина ахает. Вы поднимаете меч и осматриваете: целый, ни трещинки. broken — «сломанный». It is not broken, коротко It's not broken — «Он не сломан».",
+        "uk": "За лаштунками актор Паша впускає дерев’яний меч, і режисерка Ніна ахає. Ви піднімаєте меч і оглядаєте: цілий, жодної тріщинки. broken — «зламаний». It is not broken, коротко It's not broken — «Він не зламаний»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-08:intro1:q",
         "promptByLocale": {
-          "ru": "Вы не уверены, во сколько начнётся показ. Скажите об этом.",
-          "uk": "Ви не впевнені, о котрій почнеться показ. Скажіть про це."
+          "ru": "Нина спрашивает, не сломан ли меч. Ответьте коротко, что он не сломан.",
+          "uk": "Ніна питає, чи не зламаний меч. Відповідайте коротко, що він не зламаний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-08:intro1:r1",
-              "text": "I am not sure."
+              "text": "It's not broken."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r2",
-              "text": "I not sure."
+              "text": "It's broken."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r3",
-              "text": "I am sure."
+              "text": "He's not broken."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-08:intro1:r1",
-              "text": "I am not sure."
+              "text": "It's not broken."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r2",
-              "text": "I not sure."
+              "text": "It's broken."
             },
             {
               "responseId": "en:lesson-02:session-08:intro1:r3",
-              "text": "I am sure."
+              "text": "He's not broken."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы не уверены, во сколько начнётся показ. Скажите об этом.",
-          "uk": "Ви не впевнені, о котрій почнеться показ. Скажіть про це."
+          "ru": "Нина спрашивает, не сломан ли меч. Ответьте коротко, что он не сломан.",
+          "uk": "Ніна питає, чи не зламаний меч. Відповідайте коротко, що він не зламаний."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сокращаем начало",
-        "uk": "Скорочуємо початок"
+        "ru": "Картонный дом",
+        "uk": "Картонний будинок"
       },
       "bodyByLocale": {
-        "ru": "`We are not comfortable` и `We're not comfortable` значат «Нам неудобно». В сокращении `not` по-прежнему отдельно. Про сестру можно сказать `She's not relaxed`: она не расслаблена.",
-        "uk": "`We are not comfortable` і `We're not comfortable` означають «Нам незручно». У скороченні `not` і далі окремо. Про сестру можна сказати `She's not relaxed`: вона не розслаблена."
+        "ru": "До показа час, а вы с Пашей ещё красите картонный дом для сцены: одна стена готова, вторая серая. finished — «законченный». We are not finished, коротко We're not finished — «Мы не закончили».",
+        "uk": "До показу година, а ви з Пашею ще фарбуєте картонний будинок для сцени: одна стіна готова, друга сіра. finished — «закінчений». We are not finished, коротко We're not finished — «Ми не закінчили»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-08:intro2:q",
         "promptByLocale": {
-          "ru": "Вам с другом неудобно на узкой скамье. Коротко скажите за вас обоих.",
-          "uk": "Вам із другом незручно на вузькій лаві. Коротко скажіть за вас обох."
+          "ru": "Нина спрашивает, закончили ли вы с Пашей. Ответьте полной фразой за вас обоих, что вы не закончили.",
+          "uk": "Ніна питає, чи закінчили ви з Пашею. Відповідайте повною фразою за вас обох, що ви не закінчили."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-08:intro2:r1",
-              "text": "We're not comfortable."
+              "text": "We are not finished."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r2",
-              "text": "We're comfortable."
+              "text": "We are finished."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r3",
-              "text": "She's not comfortable."
+              "text": "They are not finished."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-08:intro2:r1",
-              "text": "We're not comfortable."
+              "text": "We are not finished."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r2",
-              "text": "We're comfortable."
+              "text": "We are finished."
             },
             {
               "responseId": "en:lesson-02:session-08:intro2:r3",
-              "text": "She's not comfortable."
+              "text": "They are not finished."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам с другом неудобно на узкой скамье. Коротко скажите за вас обоих.",
-          "uk": "Вам із другом незручно на вузькій лаві. Коротко скажіть за вас обох."
+          "ru": "Нина спрашивает, закончили ли вы с Пашей. Ответьте полной фразой за вас обоих, что вы не закончили.",
+          "uk": "Ніна питає, чи закінчили ви з Пашею. Відповідайте повною фразою за вас обох, що ви не закінчили."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что именно отрицаем",
-        "uk": "Що саме заперечуємо"
+        "ru": "Телефон в третьем ряду",
+        "uk": "Телефон у третьому ряду"
       },
       "bodyByLocale": {
-        "ru": "`It is not real` — не настоящее; `It is not fake` — не подделка; `It is not necessary` — необязательно. Одно маленькое `not` меняет смысл. Перед вами настоящий букет среди пластиковых декораций: цветам повезло, им досталась настоящая вода.",
-        "uk": "`It is not real` — не справжнє; `It is not fake` — не підробка; `It is not necessary` — необов’язково. Одне маленьке `not` змінює зміст. Перед вами справжній букет серед пластикових декорацій: квітам пощастило, їм дісталася справжня вода."
+        "ru": "Зрители рассаживаются. Мальчик в третьем ряду поднимает телефон, чтобы снимать, а на двери зала висит табличка с перечёркнутой камерой. allowed — «разрешённый». It is not allowed, коротко It's not allowed — «Это не разрешено».",
+        "uk": "Глядачі розсідаються. Хлопчик у третьому ряду піднімає телефон, щоб знімати, а на дверях зали висить табличка з перекресленою камерою. allowed — «дозволений». It is not allowed, коротко It's not allowed — «Це не дозволено»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-08:intro3:q",
         "promptByLocale": {
-          "ru": "Букет настоящий. Друг принял его за искусственный. Скажите, что он не искусственный.",
-          "uk": "Букет справжній. Друг сприйняв його як штучний. Скажіть, що він не штучний."
+          "ru": "Мама мальчика спрашивает у вас, можно ли снимать. Ответьте коротко, что это не разрешено.",
+          "uk": "Мама хлопчика питає у вас, чи можна знімати. Відповідайте коротко, що це не дозволено."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-08:intro3:r1",
-              "text": "It is not fake."
+              "text": "It's not allowed."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r2",
-              "text": "It is not real."
+              "text": "It's allowed."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r3",
-              "text": "It is fake."
+              "text": "It's not necessary."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-08:intro3:r1",
-              "text": "It is not fake."
+              "text": "It's not allowed."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r2",
-              "text": "It is not real."
+              "text": "It's allowed."
             },
             {
               "responseId": "en:lesson-02:session-08:intro3:r3",
-              "text": "It is fake."
+              "text": "It's not necessary."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Букет настоящий. Друг принял его за искусственный. Скажите, что он не искусственный.",
-          "uk": "Букет справжній. Друг сприйняв його як штучний. Скажіть, що він не штучний."
+          "ru": "Мама мальчика спрашивает у вас, можно ли снимать. Ответьте коротко, что это не разрешено.",
+          "uk": "Мама хлопчика питає у вас, чи можна знімати. Відповідайте коротко, що це не дозволено."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07172c692ceaa1ed2385957132eeb7e26ad5206b339ef483f2dbad11f7d059fd"
+  "introFingerprint": "ccaeef8a70f55c9615f2ca7efaed8d0ce3b178736ac70b181f4bef7c5b7cefa3"
 }

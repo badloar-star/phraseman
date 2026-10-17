@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-12:intro1:r2": {
-          "ru": "Это означает, что письмо не личное. Здесь нужно `private` без `not`.",
-          "uk": "Це означає, що лист не особистий. Тут потрібно `private` без `not`."
+          "ru": "С not выходит «Это не личное», а письмо от бабушки только вам: It's private.",
+          "uk": "Із not виходить «Це не особисте», а лист від бабусі тільки вам: It's private."
         },
         "en:lesson-02:session-12:intro1:r3": {
-          "ru": "Речь об одном письме: `It's private`.",
-          "uk": "Йдеться про один лист: `It's private`."
+          "ru": "They're — про несколько вещей, а снимок один: It's private.",
+          "uk": "They're — про кілька речей, а знімок один: It's private."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-12:intro2:r2": {
-          "ru": "С `it` нужно `is`: `Is it private?`.",
-          "uk": "З `it` потрібно `is`: `Is it private?`."
+          "ru": "Без not выходит «Они напечатаны». А фото только в телефоне: They are not printed.",
+          "uk": "Без not виходить «Вони надруковані». А фото тільки в телефоні: They are not printed."
         },
         "en:lesson-02:session-12:intro2:r3": {
-          "ru": "После `Is` идёт `it`, затем `private`.",
-          "uk": "Після `Is` йде `it`, потім `private`."
+          "ru": "It — про одну вещь, а фотографий много: They are not printed.",
+          "uk": "It — про одну річ, а фотографій багато: They are not printed."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-12:intro3:r2": {
-          "ru": "Это «Личное». Заметка предназначена для всех, нужно `not private`.",
-          "uk": "Це «Особисте». Нотатка призначена для всіх, потрібно `not private`."
+          "ru": "private — «личный». Вы спрашиваете, видят ли альбом все: public.",
+          "uk": "private — «особистий». Ви питаєте, чи бачать альбом усі: public."
         },
         "en:lesson-02:session-12:intro3:r3": {
-          "ru": "После `It` сохраняем `is`: `It is not private`.",
-          "uk": "Після `It` зберігаємо `is`: `It is not private`."
+          "ru": "С it нужно is: Is it public?",
+          "uk": "З it потрібно is: Is it public?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "741d9eeeb74d58305486095a4ab43fa22bfef1723de2a047abf7274289074b07"
+  "auxiliaryFingerprint": "4062f1bc40ebbe6691952d2ff90eef7daec4c5cfc5ddc0f3a8e84f6818e22b7d"
 }

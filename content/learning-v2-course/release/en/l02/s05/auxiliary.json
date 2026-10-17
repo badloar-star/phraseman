@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-05:intro1:r2": {
-          "ru": "Это «Оно настоящее». Здесь нужно `not` после `is`.",
-          "uk": "Це «Воно справжнє». Тут потрібно `not` після `is`."
+          "ru": "Без not выходит «Оно настоящее». А яблоко пластиковое: It is not real.",
+          "uk": "Без not виходить «Воно справжнє». А яблуко пластикове: It is not real."
         },
         "en:lesson-02:session-05:intro1:r3": {
-          "ru": "Нужно сохранить `is`: `It is not real`.",
-          "uk": "Потрібно зберегти `is`: `It is not real`."
+          "ru": "hot — «горячий». Ира спрашивает не о температуре, а настоящее ли яблоко: real.",
+          "uk": "hot — «гарячий». Іра питає не про температуру, а чи справжнє яблуко: real."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-05:intro2:r2": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "Без not выходит «Она сырая». А курица готова: It's not raw.",
+          "uk": "Без not виходить «Вона сира». А курка готова: It's not raw."
         },
         "en:lesson-02:session-05:intro2:r3": {
-          "ru": "Без `not` получается, что пирожные настоящие.",
-          "uk": "Без `not` виходить, що тістечка справжні."
+          "ru": "She's — о женщине. Про курицу говорим It's.",
+          "uk": "She's — про жінку. Про курку кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-05:intro3:r2": {
-          "ru": "Это отрицание подлинности, а здесь речь о температуре: `hot`.",
-          "uk": "Це заперечення справжності, а тут ідеться про температуру: `hot`."
+          "ru": "It's — про одну вещь, а булочек много: They're not stale.",
+          "uk": "It's — про одну річ, а булочок багато: They're not stale."
         },
         "en:lesson-02:session-05:intro3:r3": {
-          "ru": "Суп не горячий. Нужно `not` после `is`.",
-          "uk": "Суп не гарячий. Потрібно `not` після `is`."
+          "ru": "Без not выходит «Они чёрствые». А булочки мягкие: They're not stale.",
+          "uk": "Без not виходить «Вони черстві». А булочки м’які: They're not stale."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "cbcbdd850204cf569da2dfc66c6f6609058e7f508b8771179c7c3f7cd4c29428"
+  "auxiliaryFingerprint": "153f68d6dde759f8fae24373a2dc9487f0bccb7f0f5068768fcfcd7c7d6f3d65"
 }

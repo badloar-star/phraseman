@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-10",
   "learningOutcomeByLocale": {
-    "ru": "различать impossible и not impossible, повторить вопросы и короткие формы",
-    "uk": "розрізняти impossible і not impossible, повторити запитання та короткі форми"
+    "ru": "сказать, что дверь узкая, что дело не невозможно, и спросить, деревянная ли вещь",
+    "uk": "сказати, що двері вузькі, що справа не неможлива, і запитати, чи дерев’яна річ"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Не получится",
-        "uk": "Не вийде"
+        "ru": "Шкаф упёрся в косяк",
+        "uk": "Шафа вперлася в одвірок"
       },
       "bodyByLocale": {
-        "ru": "`impossible` — «невозможный». `It is impossible` — «Это невозможно», коротко `It's impossible`. Собранный шкаф шире дверного проёма. Уговаривать дверь бесполезно: от «ну пожалуйста» она шире не станет.",
-        "uk": "`impossible` — «неможливий». `It is impossible` — «Це неможливо», коротко `It's impossible`. Зібрана шафа ширша за дверний отвір. Умовляти двері марно: від «ну будь ласка» вони ширшими не стануть."
+        "ru": "Вы с Олегом несёте собранный шкаф в комнату. Он упирается в косяк: дверь чуть шире вас самих. narrow — «узкий». It is narrow, коротко It's narrow — «Она узкая».",
+        "uk": "Ви з Олегом несете зібрану шафу в кімнату. Вона впирається в одвірок: двері трохи ширші за вас самих. narrow — «вузький». It is narrow, коротко It's narrow — «Вони вузькі»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "Собранный шкаф шире проёма, и повернуть его не удастся. Пронести его так невозможно. Коротко скажите об этом.",
-          "uk": "Зібрана шафа ширша за отвір, і повернути її не вдасться. Пронести її так неможливо. Коротко скажіть про це."
+          "ru": "Олег идёт сзади, двери не видит и спрашивает, что там. Ответьте коротко, что дверь узкая.",
+          "uk": "Олег іде позаду, дверей не бачить і питає, що там. Відповідайте коротко, що двері вузькі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-10:intro1:r1",
-              "text": "It's impossible."
+              "text": "It's narrow."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r2",
-              "text": "It's possible."
+              "text": "It's not narrow."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r3",
-              "text": "They're impossible."
+              "text": "They're narrow."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-10:intro1:r1",
-              "text": "It's impossible."
+              "text": "It's narrow."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r2",
-              "text": "It's possible."
+              "text": "It's not narrow."
             },
             {
               "responseId": "en:lesson-02:session-10:intro1:r3",
-              "text": "They're impossible."
+              "text": "They're narrow."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Собранный шкаф шире проёма, и повернуть его не удастся. Пронести его так невозможно. Коротко скажите об этом.",
-          "uk": "Зібрана шафа ширша за отвір, і повернути її не вдасться. Пронести її так неможливо. Коротко скажіть про це."
+          "ru": "Олег идёт сзади, двери не видит и спрашивает, что там. Ответьте коротко, что дверь узкая.",
+          "uk": "Олег іде позаду, дверей не бачить і питає, що там. Відповідайте коротко, що двері вузькі."
         }
       }
     },
@@ -65,18 +65,18 @@
       "pageId": "en:lesson-02:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "А если разобрать?",
-        "uk": "А якщо розібрати?"
+        "ru": "Разобрать на доски",
+        "uk": "Розібрати на дошки"
       },
       "bodyByLocale": {
-        "ru": "`It is not impossible` — «Это не невозможно», то есть такая возможность есть. Это ещё не обещание лёгкой работы. Здесь `not` отрицает именно невозможность. Чтобы сказать «Невозможно», достаточно `It is impossible`, без `not`.",
-        "uk": "`It is not impossible` — «Це не неможливо», тобто така можливість є. Це ще не обіцянка легкої роботи. Тут `not` заперечує саме неможливість. Щоб сказати «Неможливо», достатньо `It is impossible`, без `not`."
+        "ru": "Олег предлагает разобрать шкаф и собрать его уже в комнате. Его сестра Анна вздыхает: «Это невозможно!» А у вас в руках отвёртка, и впереди целый вечер. impossible — «невозможный». It is not impossible — «Это не невозможно», то есть сделать можно.",
+        "uk": "Олег пропонує розібрати шафу й зібрати її вже в кімнаті. Його сестра Анна зітхає: «Це неможливо!» А у вас у руках викрутка, і попереду цілий вечір. impossible — «неможливий». It is not impossible — «Це не неможливо», тобто зробити можна."
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro2:q",
         "promptByLocale": {
-          "ru": "После разборки детали пройдут в дверь. Скажите, что перенос не невозможен.",
-          "uk": "Після розбирання деталі пройдуть у двері. Скажіть, що перенесення не є неможливим."
+          "ru": "Анна говорит, что разобрать шкаф невозможно. Возразите ей полной фразой.",
+          "uk": "Анна каже, що розібрати шафу неможливо. Заперечте їй повною фразою."
         },
         "choicesByLocale": {
           "ru": [
@@ -90,7 +90,7 @@
             },
             {
               "responseId": "en:lesson-02:session-10:intro2:r3",
-              "text": "It not impossible."
+              "text": "It is not possible."
             }
           ],
           "uk": [
@@ -104,13 +104,13 @@
             },
             {
               "responseId": "en:lesson-02:session-10:intro2:r3",
-              "text": "It not impossible."
+              "text": "It is not possible."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "После разборки детали пройдут в дверь. Скажите, что перенос не невозможен.",
-          "uk": "Після розбирання деталі пройдуть у двері. Скажіть, що перенесення не є неможливим."
+          "ru": "Анна говорит, что разобрать шкаф невозможно. Возразите ей полной фразой.",
+          "uk": "Анна каже, що розібрати шафу неможливо. Заперечте їй повною фразою."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сначала уточним",
-        "uk": "Спочатку уточнімо"
+        "ru": "Лёгкая дверца",
+        "uk": "Легенькі дверцята"
       },
       "bodyByLocale": {
-        "ru": "`Is it impossible?` — «Это невозможно?» Вы ещё не делаете вывод, а спрашиваете. Про уверенность друга можно спросить `Are you confident?` — «Ты уверен в себе?» А после работы — `Are you satisfied?`: «Ты доволен результатом?»",
-        "uk": "`Is it impossible?` — «Це неможливо?» Ви ще не робите висновку, а запитуєте. Про впевненість друга можна запитати `Are you confident?` — «Ти впевнений у собі?» А після роботи — `Are you satisfied?`: «Ти задоволений результатом?»"
+        "ru": "Вы снимаете дверцу шкафа, и она оказывается подозрительно лёгкой, словно из картона. wooden — «деревянный». It is wooden — «Он деревянный». Чтобы спросить, ставим is вперёд: Is it wooden?",
+        "uk": "Ви знімаєте дверцята шафи, і вони виявляються підозріло легкими, наче з картону. wooden — «дерев’яний». It is wooden — «Вона дерев’яна». Щоб запитати, ставимо is наперед: Is it wooden?"
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Друг сомневается, можно ли снять дверцы шкафа. Спросите, невозможно ли это.",
-          "uk": "Друг сумнівається, чи можна зняти дверцята шафи. Запитайте, чи це неможливо."
+          "ru": "Спросите Олега, деревянный ли шкаф.",
+          "uk": "Запитайте Олега, чи дерев’яна шафа."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-10:intro3:r1",
-              "text": "Is it impossible?"
+              "text": "Is it wooden?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r2",
-              "text": "Are it impossible?"
+              "text": "Are it wooden?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r3",
-              "text": "Is impossible it?"
+              "text": "It is wooden."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-10:intro3:r1",
-              "text": "Is it impossible?"
+              "text": "Is it wooden?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r2",
-              "text": "Are it impossible?"
+              "text": "Are it wooden?"
             },
             {
               "responseId": "en:lesson-02:session-10:intro3:r3",
-              "text": "Is impossible it?"
+              "text": "It is wooden."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг сомневается, можно ли снять дверцы шкафа. Спросите, невозможно ли это.",
-          "uk": "Друг сумнівається, чи можна зняти дверцята шафи. Запитайте, чи це неможливо."
+          "ru": "Спросите Олега, деревянный ли шкаф.",
+          "uk": "Запитайте Олега, чи дерев’яна шафа."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a48dcc0082c857597b57b1befd72e5e6852dd861bb765c0e8ec71a4f0476b972"
+  "introFingerprint": "7229717c7241340cae6695c61df006b13c4ab935fa1428f03a0c6557e3d366b6"
 }

@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-12:i01",
+      "interactionId": "en:lesson-02:session-12:word:private",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — private",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:word:private:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — private",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:word:private:audio",
+          "transcript": "private"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:word:private:r1",
+            "targetText": "private",
+            "meaningByLocale": {
+              "ru": "личный. It's private — «Это личное». О письме, разговоре, фотографии, дневнике.",
+              "uk": "особистий. It's private — «Це особисте». Про лист, розмову, фотографію, щоденник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "private",
+          "definitionByLocale": {
+            "ru": "личный. It's private — «Это личное». О письме, разговоре, фотографии, дневнике.",
+            "uk": "особистий. It's private — «Це особисте». Про лист, розмову, фотографію, щоденник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На снимке ваше личное письмо. Скажите другу, что это личное",
+      "prompt": "На снимке бабушкино письмо. Скажите Косте, что это личное",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На снимке ваше личное письмо. Скажите другу, что это личное",
+      "accessibilityLabel": "На снимке бабушкино письмо. Скажите Косте, что это личное",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is private.",
         "localizedMeaning": {
-          "ru": "На снимке ваше личное письмо. Скажите другу, что это личное",
-          "uk": "На знімку ваш особистий лист. Скажіть другові, що це особисте"
+          "ru": "На снимке бабушкино письмо. Скажите Косте, что это личное",
+          "uk": "На знімку бабусин лист. Скажіть Кості, що це особисте"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-12:i01:tile:d1",
             "correct": false,
-            "testedDimension": "На снимке ваше личное письмо. Скажите другу, что это личное",
+            "testedDimension": "На снимке бабушкино письмо. Скажите Косте, что это личное",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is private.`",
               "uk": "тут потрібно `is` — `It is private.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о тексте на фотографии",
+      "prompt": "Послушайте вопрос о надписи на фотографии",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-12:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о тексте на фотографии",
+      "accessibilityLabel": "Послушайте вопрос о надписи на фотографии",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-12:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о тексте на фотографии",
+            "testedDimension": "Послушайте вопрос о надписи на фотографии",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `visible`, а в этом варианте — `hidden`.",
               "uk": "У записі останнє слово — `visible`, а в цьому варіанті — `hidden`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-12:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о тексте на фотографии",
+            "testedDimension": "Послушайте вопрос о надписи на фотографии",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `visible`, а в этом варианте — `clear`.",
               "uk": "У записі останнє слово — `visible`, а в цьому варіанті — `clear`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы не знаете, для кого написана записка. Спросите, личное ли это",
+      "prompt": "На одном фото видна записка, и вы не знаете, кому она. Спросите Костю, личное ли это",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-12:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы не знаете, для кого написана записка. Спросите, личное ли это",
+      "accessibilityLabel": "На одном фото видна записка, и вы не знаете, кому она. Спросите Костю, личное ли это",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы не знаете, для кого написана записка. Спросите, личное ли это",
-          "uk": "Ви не знаєте, для кого написана записка. Запитайте, чи це особисте"
+          "ru": "На одном фото видна записка, и вы не знаете, кому она. Спросите Костю, личное ли это",
+          "uk": "На одному фото видно записку, і ви не знаєте, кому вона. Запитайте Костю, чи це особисте"
         },
         "gappedTargetPhrase": "___ it private?",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вы не знаете, для кого написана записка. Спросите, личное ли это",
+        "testedDimension": "На одном фото видна записка, и вы не знаете, кому она. Спросите Костю, личное ли это",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Вы не знаете, для кого написана записка. Спросите, личное ли это",
+            "testedDimension": "На одном фото видна записка, и вы не знаете, кому она. Спросите Костю, личное ли это",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-12:i03:r3",
             "correct": false,
-            "testedDimension": "Вы не знаете, для кого написана записка. Спросите, личное ли это",
+            "testedDimension": "На одном фото видна записка, и вы не знаете, кому она. Спросите Костю, личное ли это",
             "feedbackByLocale": {
               "ru": "Вопрос начинается с `Is it`.",
               "uk": "Запитання починається з `Is it`."
@@ -193,16 +236,59 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-12:word:cute",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cute",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:word:cute:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cute",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:word:cute:audio",
+          "transcript": "cute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:word:cute:r1",
+            "targetText": "cute",
+            "meaningByLocale": {
+              "ru": "милый. Is it cute? — «Он милый?» О котёнке, ребёнке, картинке, шапке.",
+              "uk": "милий. Is it cute? — «Він милий?» Про кошеня, дитину, картинку, шапку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cute",
+          "definitionByLocale": {
+            "ru": "милый. Is it cute? — «Он милый?» О котёнке, ребёнке, картинке, шапке.",
+            "uk": "милий. Is it cute? — «Він милий?» Про кошеня, дитину, картинку, шапку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-12:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -210,46 +296,46 @@
             "pairId": "en:lesson-02:session-12:i04:p1",
             "target": "private",
             "meaningByLocale": {
-              "ru": "личный, не для посторонних",
-              "uk": "особистий, не для сторонніх"
+              "ru": "личный",
+              "uk": "особистий"
             }
           },
           {
             "pairId": "en:lesson-02:session-12:i04:p2",
-            "target": "visible",
+            "target": "public",
             "meaningByLocale": {
-              "ru": "видимый",
-              "uk": "видимий"
+              "ru": "открытый для всех",
+              "uk": "відкритий для всіх"
             }
           },
           {
             "pairId": "en:lesson-02:session-12:i04:p3",
-            "target": "hidden",
+            "target": "printed",
             "meaningByLocale": {
-              "ru": "спрятанный",
-              "uk": "схований"
+              "ru": "напечатанный",
+              "uk": "надрукований"
             }
           },
           {
             "pairId": "en:lesson-02:session-12:i04:p4",
-            "target": "clear",
+            "target": "cute",
             "meaningByLocale": {
-              "ru": "понятный",
-              "uk": "зрозумілий"
+              "ru": "милый",
+              "uk": "милий"
             }
           }
         ],
         "leftColumn": [
           "private",
-          "visible",
-          "hidden",
-          "clear"
+          "public",
+          "printed",
+          "cute"
         ],
         "rightColumn": [
-          "личный, не для посторонних",
-          "видимый",
-          "спрятанный",
-          "понятный"
+          "личный",
+          "открытый для всех",
+          "напечатанный",
+          "милый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,29 +352,72 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-12:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-12:word:public",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — public",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:word:public:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — public",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:word:public:audio",
+          "transcript": "public"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:word:public:r1",
+            "targetText": "public",
+            "meaningByLocale": {
+              "ru": "открытый для всех, общественный. Is it public? — «Он открыт для всех?» Об альбоме, парке, странице, пляже.",
+              "uk": "відкритий для всіх, громадський. Is it public? — «Він відкритий для всіх?» Про альбом, парк, сторінку, пляж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "public",
+          "definitionByLocale": {
+            "ru": "открытый для всех, общественный. Is it public? — «Он открыт для всех?» Об альбоме, парке, странице, пляже.",
+            "uk": "відкритий для всіх, громадський. Is it public? — «Він відкритий для всіх?» Про альбом, парк, сторінку, пляж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Костя проверил настройки: альбом видят все. Послушайте и соберите его ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-12:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Костя проверил настройки: альбом видят все. Послушайте и соберите его ответ",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-12:i05:audio",
-          "transcript": "It's private."
+          "transcript": "It's public."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's private.",
+        "hiddenTargetPhrase": "It's public.",
         "orderedTokens": [
           "It's",
-          "private"
+          "public"
         ],
         "authoredDistractorTokens": [
           "They're"
@@ -297,10 +426,10 @@
           {
             "responseId": "en:lesson-02:session-12:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Костя проверил настройки: альбом видят все. Послушайте и соберите его ответ",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's private.`",
-              "uk": "тут потрібно `It's` — `It's private.`"
+              "ru": "здесь нужно `It's` — `It's public.`",
+              "uk": "тут потрібно `It's` — `It's public.`"
             }
           }
         ],
@@ -313,21 +442,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Письмо лежит на виду. Скажите, что оно не спрятано",
+      "prompt": "Письмо на снимке лежит прямо на столе. Скажите, что оно не спрятано",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Письмо лежит на виду. Скажите, что оно не спрятано",
+      "accessibilityLabel": "Письмо на снимке лежит прямо на столе. Скажите, что оно не спрятано",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not hidden.",
         "localizedMeaning": {
-          "ru": "Письмо лежит на виду. Скажите, что оно не спрятано",
-          "uk": "Лист лежить на видноті. Скажіть, що він не схований"
+          "ru": "Письмо на снимке лежит прямо на столе. Скажите, что оно не спрятано",
+          "uk": "Лист на знімку лежить просто на столі. Скажіть, що він не схований"
         },
         "orderedTokens": [
           "It",
@@ -342,7 +471,7 @@
           {
             "responseId": "en:lesson-02:session-12:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Письмо лежит на виду. Скажите, что оно не спрятано",
+            "testedDimension": "Письмо на снимке лежит прямо на столе. Скажите, что оно не спрятано",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is not hidden.`",
               "uk": "тут потрібно `is` — `It is not hidden.`"
@@ -358,17 +487,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна собирается помочь с альбомом. Вы ещё с ней не знакомы. Спросите друга, дружелюбная ли она",
+      "prompt": "Анна собирается помочь с альбомом, а вы с ней ещё не знакомы. Спросите Костю, дружелюбная ли она",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-12:i07:audio"
       ],
-      "accessibilityLabel": "Анна собирается помочь с альбомом. Вы ещё с ней не знакомы. Спросите друга, дружелюбная ли она",
+      "accessibilityLabel": "Анна собирается помочь с альбомом, а вы с ней ещё не знакомы. Спросите Костю, дружелюбная ли она",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,11 +520,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег говорит тихо. Дополните фразу о том, что он не шумный",
+      "prompt": "Олег говорит еле слышно. Дополните фразу о том, что он не шумный",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-12:i08:r1",
@@ -412,12 +541,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег говорит тихо. Дополните фразу о том, что он не шумный",
+      "accessibilityLabel": "Олег говорит еле слышно. Дополните фразу о том, что он не шумный",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег говорит тихо. Дополните фразу о том, что он не шумный",
-          "uk": "Олег говорить тихо. Доповніть фразу про те, що він не галасливий"
+          "ru": "Олег говорит еле слышно. Дополните фразу о том, что он не шумный",
+          "uk": "Олег говорить ледь чутно. Доповніть фразу про те, що він не галасливий"
         },
         "gappedTargetPhrase": "He ___ not loud.",
         "gapOptions": [
@@ -434,12 +563,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег говорит тихо. Дополните фразу о том, что он не шумный",
+        "testedDimension": "Олег говорит еле слышно. Дополните фразу о том, что он не шумный",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-12:i08:r2",
             "correct": false,
-            "testedDimension": "Олег говорит тихо. Дополните фразу о том, что он не шумный",
+            "testedDimension": "Олег говорит еле слышно. Дополните фразу о том, что он не шумный",
             "feedbackByLocale": {
               "ru": "После `He` нужно `is`.",
               "uk": "Після `He` потрібно `is`."
@@ -448,10 +577,10 @@
           {
             "responseId": "en:lesson-02:session-12:i08:r3",
             "correct": false,
-            "testedDimension": "Олег говорит тихо. Дополните фразу о том, что он не шумный",
+            "testedDimension": "Олег говорит еле слышно. Дополните фразу о том, что он не шумный",
             "feedbackByLocale": {
-              "ru": "Про него — `He is not`.",
-              "uk": "Про нього — `He is not`."
+              "ru": "Олег один, поэтому `He is not`.",
+              "uk": "Олег один, тому `He is not`."
             }
           }
         ]
@@ -459,52 +588,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-12:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-12:word:printed",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Анне",
+      "prompt": "Карточка слова — printed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:word:printed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — printed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:word:printed:audio",
+          "transcript": "printed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:word:printed:r1",
+            "targetText": "printed",
+            "meaningByLocale": {
+              "ru": "напечатанный. They're not printed — «Они не напечатаны». О фотографиях, билетах, приглашениях.",
+              "uk": "надрукований. They're not printed — «Вони не надруковані». Про фотографії, квитки, запрошення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "printed",
+          "definitionByLocale": {
+            "ru": "напечатанный. They're not printed — «Они не напечатаны». О фотографиях, билетах, приглашениях.",
+            "uk": "надрукований. They're not printed — «Вони не надруковані». Про фотографії, квитки, запрошення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о фото с котёнком",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-12:i09:r1",
-          "text": "She is helpful."
+          "text": "Is it cute?"
         },
         {
           "responseId": "en:lesson-02:session-12:i09:r2",
-          "text": "She is friendly."
+          "text": "Is it public?"
         },
         {
           "responseId": "en:lesson-02:session-12:i09:r3",
-          "text": "She is loud."
+          "text": "Is it printed?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-12:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Анне",
+      "accessibilityLabel": "Послушайте вопрос о фото с котёнком",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-12:i09:audio",
-          "transcript": "She is helpful."
+          "transcript": "Is it cute?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-12:i09:r1",
-            "targetText": "She is helpful.",
+            "targetText": "Is it cute?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-12:i09:r2",
-            "targetText": "She is friendly.",
+            "targetText": "Is it public?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-12:i09:r3",
-            "targetText": "She is loud.",
+            "targetText": "Is it printed?",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +685,19 @@
           {
             "responseId": "en:lesson-02:session-12:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте вопрос о фото с котёнком",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `helpful`, а в этом варианте — `friendly`.",
-              "uk": "У записі останнє слово — `helpful`, а в цьому варіанті — `friendly`."
+              "ru": "В записи последнее слово — `cute`, а в этом варианте — `public`.",
+              "uk": "У записі останнє слово — `cute`, а в цьому варіанті — `public`."
             }
           },
           {
             "responseId": "en:lesson-02:session-12:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте вопрос о фото с котёнком",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `helpful`, а в этом варианте — `loud`.",
-              "uk": "У записі останнє слово — `helpful`, а в цьому варіанті — `loud`."
+              "ru": "В записи последнее слово — `cute`, а в этом варианте — `printed`.",
+              "uk": "У записі останнє слово — `cute`, а в цьому варіанті — `printed`."
             }
           }
         ],
@@ -536,15 +708,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините описания со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините описания со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -569,15 +741,15 @@
             "target": "helpful",
             "meaningByLocale": {
               "ru": "охотно помогающий",
-              "uk": "той, хто охоче допомагає"
+              "uk": "охочий допомогти"
             }
           },
           {
             "pairId": "en:lesson-02:session-12:i10:p4",
-            "target": "private",
+            "target": "visible",
             "meaningByLocale": {
-              "ru": "личный, не для посторонних",
-              "uk": "особистий, не для сторонніх"
+              "ru": "видимый",
+              "uk": "видимий"
             }
           }
         ],
@@ -585,13 +757,13 @@
           "loud",
           "friendly",
           "helpful",
-          "private"
+          "visible"
         ],
         "rightColumn": [
           "шумный",
           "дружелюбный",
           "охотно помогающий",
-          "личный, не для посторонних"
+          "видимый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,17 +781,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Костя читает подпись на старом фото и хмурится. Послушайте и соберите его фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-12:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Костя читает подпись на старом фото и хмурится. Послушайте и соберите его фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -640,7 +812,7 @@
           {
             "responseId": "en:lesson-02:session-12:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Костя читает подпись на старом фото и хмурится. Послушайте и соберите его фразу",
             "feedbackByLocale": {
               "ru": "здесь нужно `It's` — `It's not clear.`",
               "uk": "тут потрібно `It's` — `It's not clear.`"
@@ -656,26 +828,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы обсуждаете две подписи на фото. Спросите друга, видны ли они",
+      "prompt": "Утром вы отдали фото в фотоцентр. Спросите Костю, напечатаны ли они",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете две подписи на фото. Спросите друга, видны ли они",
+      "accessibilityLabel": "Утром вы отдали фото в фотоцентр. Спросите Костю, напечатаны ли они",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Are they visible?",
+        "targetPhrase": "Are they printed?",
         "localizedMeaning": {
-          "ru": "Вы обсуждаете две подписи на фото. Спросите друга, видны ли они",
-          "uk": "Ви обговорюєте два підписи на фото. Запитайте друга, чи їх видно"
+          "ru": "Утром вы отдали фото в фотоцентр. Спросите Костю, напечатаны ли они",
+          "uk": "Уранці ви віддали фото у фотоцентр. Запитайте Костю, чи вони надруковані"
         },
         "orderedTokens": [
           "Are",
           "they",
-          "visible"
+          "printed"
         ],
         "authoredDistractorTokens": [
           "Is"
@@ -684,10 +856,10 @@
           {
             "responseId": "en:lesson-02:session-12:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы обсуждаете две подписи на фото. Спросите друга, видны ли они",
+            "testedDimension": "Утром вы отдали фото в фотоцентр. Спросите Костю, напечатаны ли они",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Are` — `Are they visible?`",
-              "uk": "тут потрібно `Are` — `Are they visible?`"
+              "ru": "здесь нужно `Are` — `Are they printed?`",
+              "uk": "тут потрібно `Are` — `Are they printed?`"
             }
           }
         ],
@@ -700,17 +872,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Записка предназначена для всех гостей. Скажите, что это не личное",
+      "prompt": "Записка на фото написана для всех гостей праздника. Скажите, что это не личное",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-12:i13:audio"
       ],
-      "accessibilityLabel": "Записка предназначена для всех гостей. Скажите, что это не личное",
+      "accessibilityLabel": "Записка на фото написана для всех гостей праздника. Скажите, что это не личное",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -733,11 +905,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим",
+      "prompt": "Костя предлагает позвать Олега помочь с альбомом. Спросите, охотно ли Олег помогает",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-12:i14:r1",
@@ -754,12 +926,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим",
+      "accessibilityLabel": "Костя предлагает позвать Олега помочь с альбомом. Спросите, охотно ли Олег помогает",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим",
-          "uk": "Друг пропонує покликати Олега для роботи з альбомом. Запитайте, чи він охоче допомагає іншим"
+          "ru": "Костя предлагает позвать Олега помочь с альбомом. Спросите, охотно ли Олег помогает",
+          "uk": "Костя пропонує покликати Олега допомогти з альбомом. Запитайте, чи охоче Олег допомагає"
         },
         "gappedTargetPhrase": "___ he helpful?",
         "gapOptions": [
@@ -776,12 +948,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим",
+        "testedDimension": "Костя предлагает позвать Олега помочь с альбомом. Спросите, охотно ли Олег помогает",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим",
+            "testedDimension": "Костя предлагает позвать Олега помочь с альбомом. Спросите, охотно ли Олег помогает",
             "feedbackByLocale": {
               "ru": "С `he` нужно `Is`.",
               "uk": "З `he` потрібно `Is`."
@@ -790,7 +962,7 @@
           {
             "responseId": "en:lesson-02:session-12:i14:r3",
             "correct": false,
-            "testedDimension": "Друг предлагает позвать Олега для работы с альбомом. Спросите, охотно ли он помогает другим",
+            "testedDimension": "Костя предлагает позвать Олега помочь с альбомом. Спросите, охотно ли Олег помогает",
             "feedbackByLocale": {
               "ru": "Про Олега — `Is he`.",
               "uk": "Про Олега — `Is he`."
@@ -802,11 +974,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос об объяснении",
+      "prompt": "Послушайте вопрос об объяснении Кости",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-12:i15:r1",
@@ -825,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-12:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос об объяснении",
+      "accessibilityLabel": "Послушайте вопрос об объяснении Кости",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -855,7 +1027,7 @@
           {
             "responseId": "en:lesson-02:session-12:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об объяснении",
+            "testedDimension": "Послушайте вопрос об объяснении Кости",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `clear`, а в этом варианте — `private`.",
               "uk": "У записі останнє слово — `clear`, а в цьому варіанті — `private`."
@@ -864,7 +1036,7 @@
           {
             "responseId": "en:lesson-02:session-12:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об объяснении",
+            "testedDimension": "Послушайте вопрос об объяснении Кости",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `clear`, а в этом варианте — `hidden`.",
               "uk": "У записі останнє слово — `clear`, а в цьому варіанті — `hidden`."
@@ -878,62 +1050,62 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова прошлого занятия со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-12:i16:p1",
-            "target": "visible",
+            "target": "urgent",
             "meaningByLocale": {
-              "ru": "видимый",
-              "uk": "видимий"
+              "ru": "срочный",
+              "uk": "терміновий"
             }
           },
           {
             "pairId": "en:lesson-02:session-12:i16:p2",
+            "target": "signed",
+            "meaningByLocale": {
+              "ru": "подписанный",
+              "uk": "підписаний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i16:p3",
+            "target": "framed",
+            "meaningByLocale": {
+              "ru": "в рамке",
+              "uk": "у рамці"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i16:p4",
             "target": "hidden",
             "meaningByLocale": {
               "ru": "спрятанный",
               "uk": "схований"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-12:i16:p3",
-            "target": "friendly",
-            "meaningByLocale": {
-              "ru": "дружелюбный",
-              "uk": "привітний"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-12:i16:p4",
-            "target": "helpful",
-            "meaningByLocale": {
-              "ru": "охотно помогающий",
-              "uk": "той, хто охоче допомагає"
-            }
           }
         ],
         "leftColumn": [
-          "visible",
-          "hidden",
-          "friendly",
-          "helpful"
+          "urgent",
+          "signed",
+          "framed",
+          "hidden"
         ],
         "rightColumn": [
-          "видимый",
-          "спрятанный",
-          "дружелюбный",
-          "охотно помогающий"
+          "срочный",
+          "подписанный",
+          "в рамке",
+          "спрятанный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,17 +1123,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-12:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг показывает фотографию письма. Прежде чем добавить её в общий альбом, спросите, личное ли это",
+      "prompt": "Костя показывает фотографию чужого письма. Прежде чем добавить её в общий альбом, спросите, личное ли это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-12:i17:audio"
       ],
-      "accessibilityLabel": "Друг показывает фотографию письма. Прежде чем добавить её в общий альбом, спросите, личное ли это",
+      "accessibilityLabel": "Костя показывает фотографию чужого письма. Прежде чем добавить её в общий альбом, спросите, личное ли это",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "29e92896f01760ecc6b44b6a7378b4465a7757e27ebd0298b5f75f161f223f13"
+  "learnerFingerprint": "43d3091b218833d1931a1ccd22090d35f4412c617ce3db8d8f7377b67af1ab22"
 }

@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-12:word:private",
+    "correctText": "private",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-12:i01",
     "correctText": "It is private.",
     "correctResponseId": null
@@ -15,13 +20,23 @@
     "correctResponseId": "en:lesson-02:session-12:i03:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-12:word:cute",
+    "correctText": "cute",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-12:i04",
-    "correctText": "en:lesson-02:session-12:i04:p1=private\nen:lesson-02:session-12:i04:p2=visible\nen:lesson-02:session-12:i04:p3=hidden\nen:lesson-02:session-12:i04:p4=clear",
+    "correctText": "en:lesson-02:session-12:i04:p1=private\nen:lesson-02:session-12:i04:p2=public\nen:lesson-02:session-12:i04:p3=printed\nen:lesson-02:session-12:i04:p4=cute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:word:public",
+    "correctText": "public",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-12:i05",
-    "correctText": "It's private.",
+    "correctText": "It's public.",
     "correctResponseId": null
   },
   {
@@ -40,13 +55,18 @@
     "correctResponseId": "en:lesson-02:session-12:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-12:word:printed",
+    "correctText": "printed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-12:i09",
-    "correctText": "She is helpful.",
+    "correctText": "Is it cute?",
     "correctResponseId": "en:lesson-02:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-12:i10",
-    "correctText": "en:lesson-02:session-12:i10:p1=loud\nen:lesson-02:session-12:i10:p2=friendly\nen:lesson-02:session-12:i10:p3=helpful\nen:lesson-02:session-12:i10:p4=private",
+    "correctText": "en:lesson-02:session-12:i10:p1=loud\nen:lesson-02:session-12:i10:p2=friendly\nen:lesson-02:session-12:i10:p3=helpful\nen:lesson-02:session-12:i10:p4=visible",
     "correctResponseId": null
   },
   {
@@ -56,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i12",
-    "correctText": "Are they visible?",
+    "correctText": "Are they printed?",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i16",
-    "correctText": "en:lesson-02:session-12:i16:p1=visible\nen:lesson-02:session-12:i16:p2=hidden\nen:lesson-02:session-12:i16:p3=friendly\nen:lesson-02:session-12:i16:p4=helpful",
+    "correctText": "en:lesson-02:session-12:i16:p1=urgent\nen:lesson-02:session-12:i16:p2=signed\nen:lesson-02:session-12:i16:p3=framed\nen:lesson-02:session-12:i16:p4=hidden",
     "correctResponseId": null
   },
   {

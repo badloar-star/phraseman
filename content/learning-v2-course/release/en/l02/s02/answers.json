@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-02:word:confident",
+    "correctText": "confident",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-02:i01",
     "correctText": "I am not confident.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:word:satisfied",
+    "correctText": "satisfied",
     "correctResponseId": null
   },
   {
@@ -16,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-02:i04",
-    "correctText": "en:lesson-02:session-02:i04:p1=confident\nen:lesson-02:session-02:i04:p2=relaxed\nen:lesson-02:session-02:i04:p3=satisfied\nen:lesson-02:session-02:i04:p4=sure",
+    "correctText": "en:lesson-02:session-02:i04:p1=confident\nen:lesson-02:session-02:i04:p2=satisfied\nen:lesson-02:session-02:i04:p3=planned\nen:lesson-02:session-02:i04:p4=booked",
     "correctResponseId": null
   },
   {
@@ -35,18 +45,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-02:word:booked",
+    "correctText": "booked",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-02:i08",
-    "correctText": "am",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-02:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-02:word:planned",
+    "correctText": "planned",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-02:i09",
-    "correctText": "He is not interested.",
+    "correctText": "It is not booked.",
     "correctResponseId": "en:lesson-02:session-02:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-02:i10",
-    "correctText": "en:lesson-02:session-02:i10:p1=interested\nen:lesson-02:session-02:i10:p2=comfortable\nen:lesson-02:session-02:i10:p3=tired\nen:lesson-02:session-02:i10:p4=expensive",
+    "correctText": "en:lesson-02:session-02:i10:p1=relaxed\nen:lesson-02:session-02:i10:p2=interested\nen:lesson-02:session-02:i10:p3=comfortable\nen:lesson-02:session-02:i10:p4=tired",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-02:i16",
-    "correctText": "en:lesson-02:session-02:i16:p1=confident\nen:lesson-02:session-02:i16:p2=relaxed\nen:lesson-02:session-02:i16:p3=satisfied\nen:lesson-02:session-02:i16:p4=sad",
+    "correctText": "en:lesson-02:session-02:i16:p1=confident\nen:lesson-02:session-02:i16:p2=planned\nen:lesson-02:session-02:i16:p3=booked\nen:lesson-02:session-02:i16:p4=sad",
     "correctResponseId": null
   },
   {

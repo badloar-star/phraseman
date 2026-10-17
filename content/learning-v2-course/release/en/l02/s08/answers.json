@@ -16,37 +16,57 @@
   },
   {
     "interactionId": "en:lesson-02:session-08:i04",
-    "correctText": "en:lesson-02:session-08:i04:p1=confident\nen:lesson-02:session-08:i04:p2=relaxed\nen:lesson-02:session-08:i04:p3=satisfied\nen:lesson-02:session-08:i04:p4=concerned",
+    "correctText": "en:lesson-02:session-08:i04:p1=broken\nen:lesson-02:session-08:i04:p2=finished\nen:lesson-02:session-08:i04:p3=allowed\nen:lesson-02:session-08:i04:p4=dark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:word:broken",
+    "correctText": "broken",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-08:i05",
-    "correctText": "I'm not convinced.",
+    "correctText": "It's not broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:word:dark",
+    "correctText": "dark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-08:i06",
-    "correctText": "He is not aware.",
+    "correctText": "It is not dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:word:allowed",
+    "correctText": "allowed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-08:i07",
-    "correctText": "It's not clear.",
+    "correctText": "It's not allowed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:word:finished",
+    "correctText": "finished",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-08:i08",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-02:session-08:i09",
-    "correctText": "It is not hidden.",
+    "correctText": "It is not finished.",
     "correctResponseId": "en:lesson-02:session-08:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-08:i10",
-    "correctText": "en:lesson-02:session-08:i10:p1=aware\nen:lesson-02:session-08:i10:p2=convinced\nen:lesson-02:session-08:i10:p3=visible\nen:lesson-02:session-08:i10:p4=hidden",
+    "correctText": "en:lesson-02:session-08:i10:p1=real\nen:lesson-02:session-08:i10:p2=fake\nen:lesson-02:session-08:i10:p3=fresh\nen:lesson-02:session-08:i10:p4=stale",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-08:i15",
-    "correctText": "She's not concerned.",
+    "correctText": "She's not confident.",
     "correctResponseId": "en:lesson-02:session-08:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-08:i16",
-    "correctText": "en:lesson-02:session-08:i16:p1=real\nen:lesson-02:session-08:i16:p2=fake\nen:lesson-02:session-08:i16:p3=necessary\nen:lesson-02:session-08:i16:p4=clear",
+    "correctText": "en:lesson-02:session-08:i16:p1=necessary\nen:lesson-02:session-08:i16:p2=important\nen:lesson-02:session-08:i16:p3=formal\nen:lesson-02:session-08:i16:p4=pink",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-08:i17",
-    "correctText": "I am not convinced.",
+    "correctText": "It is not allowed.",
     "correctResponseId": null
   }
 ]

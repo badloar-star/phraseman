@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-11:word:urgent",
+    "correctText": "urgent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-11:i01",
     "correctText": "Is it urgent?",
     "correctResponseId": null
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-11:i04",
-    "correctText": "en:lesson-02:session-11:i04:p1=urgent\nen:lesson-02:session-11:i04:p2=smart\nen:lesson-02:session-11:i04:p3=strong\nen:lesson-02:session-11:i04:p4=quiet",
+    "correctText": "en:lesson-02:session-11:i04:p1=urgent\nen:lesson-02:session-11:i04:p2=signed\nen:lesson-02:session-11:i04:p3=framed\nen:lesson-02:session-11:i04:p4=sealed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-11:word:sealed",
+    "correctText": "sealed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-11:i05",
-    "correctText": "It's not urgent.",
+    "correctText": "It's not sealed.",
     "correctResponseId": null
   },
   {
@@ -40,13 +50,18 @@
     "correctResponseId": "en:lesson-02:session-11:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-11:word:signed",
+    "correctText": "signed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-11:i09",
-    "correctText": "Is she smart?",
+    "correctText": "Is it signed?",
     "correctResponseId": "en:lesson-02:session-11:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-11:i10",
-    "correctText": "en:lesson-02:session-11:i10:p1=aware\nen:lesson-02:session-11:i10:p2=convinced\nen:lesson-02:session-11:i10:p3=concerned\nen:lesson-02:session-11:i10:p4=urgent",
+    "correctText": "en:lesson-02:session-11:i10:p1=aware\nen:lesson-02:session-11:i10:p2=convinced\nen:lesson-02:session-11:i10:p3=concerned\nen:lesson-02:session-11:i10:p4=strong",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-11:word:framed",
+    "correctText": "framed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-11:i13",
-    "correctText": "She's quiet.",
+    "correctText": "They're not framed.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-11:i16",
-    "correctText": "en:lesson-02:session-11:i16:p1=smart\nen:lesson-02:session-11:i16:p2=strong\nen:lesson-02:session-11:i16:p3=quiet\nen:lesson-02:session-11:i16:p4=concerned",
+    "correctText": "en:lesson-02:session-11:i16:p1=smart\nen:lesson-02:session-11:i16:p2=strong\nen:lesson-02:session-11:i16:p3=quiet\nen:lesson-02:session-11:i16:p4=narrow",
     "correctResponseId": null
   },
   {

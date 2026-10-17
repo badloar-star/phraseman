@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-10:word:impossible",
+    "correctText": "impossible",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-10:i01",
     "correctText": "It is impossible.",
     "correctResponseId": null
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-10:i04",
-    "correctText": "en:lesson-02:session-10:i04:p1=impossible\nen:lesson-02:session-10:i04:p2=old\nen:lesson-02:session-10:i04:p3=kind\nen:lesson-02:session-10:i04:p4=funny",
+    "correctText": "en:lesson-02:session-10:i04:p1=impossible\nen:lesson-02:session-10:i04:p2=narrow\nen:lesson-02:session-10:i04:p3=wide\nen:lesson-02:session-10:i04:p4=wooden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:word:narrow",
+    "correctText": "narrow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-10:i05",
-    "correctText": "It's impossible.",
+    "correctText": "It's narrow.",
     "correctResponseId": null
   },
   {
@@ -40,13 +50,18 @@
     "correctResponseId": "en:lesson-02:session-10:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-10:word:wide",
+    "correctText": "wide",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-10:i09",
-    "correctText": "Is he kind?",
+    "correctText": "Is it wide?",
     "correctResponseId": "en:lesson-02:session-10:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-10:i10",
-    "correctText": "en:lesson-02:session-10:i10:p1=confident\nen:lesson-02:session-10:i10:p2=relaxed\nen:lesson-02:session-10:i10:p3=satisfied\nen:lesson-02:session-10:i10:p4=impossible",
+    "correctText": "en:lesson-02:session-10:i10:p1=confident\nen:lesson-02:session-10:i10:p2=relaxed\nen:lesson-02:session-10:i10:p3=satisfied\nen:lesson-02:session-10:i10:p4=taken",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-10:word:wooden",
+    "correctText": "wooden",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-10:i13",
-    "correctText": "He's funny.",
+    "correctText": "Is it wooden?",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-10:i16",
-    "correctText": "en:lesson-02:session-10:i16:p1=old\nen:lesson-02:session-10:i16:p2=kind\nen:lesson-02:session-10:i16:p3=funny\nen:lesson-02:session-10:i16:p4=satisfied",
+    "correctText": "en:lesson-02:session-10:i16:p1=old\nen:lesson-02:session-10:i16:p2=kind\nen:lesson-02:session-10:i16:p3=funny\nen:lesson-02:session-10:i16:p4=possible",
     "correctResponseId": null
   },
   {

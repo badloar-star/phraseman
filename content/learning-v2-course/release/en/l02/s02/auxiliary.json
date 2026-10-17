@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-02:intro1:r2": {
-          "ru": "Без `not` получается уверенность. Здесь нужно `I'm not confident`.",
-          "uk": "Без `not` виходить упевненість. Тут потрібно `I'm not confident`."
+          "ru": "Без not получается уверенность. Здесь нужно I'm not confident.",
+          "uk": "Без not виходить упевненість. Тут потрібно I'm not confident."
         },
         "en:lesson-02:session-02:intro1:r3": {
-          "ru": "Нужна связка: `I am not` или `I'm not`.",
-          "uk": "Потрібна зв’язка: `I am not` або `I'm not`."
+          "ru": "Нужна связка: I am not или I'm not.",
+          "uk": "Потрібна зв’язка: I am not або I'm not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-02:intro2:r2": {
-          "ru": "Это без напряжения. Здесь нужно отрицание: `is not relaxed`.",
-          "uk": "Це без напруження. Тут потрібне заперечення: `is not relaxed`."
+          "ru": "Это «продумано». Концовки нет: is not planned.",
+          "uk": "Це «продумано». Кінцівки немає: is not planned."
         },
         "en:lesson-02:session-02:intro2:r3": {
-          "ru": "`is` сохраняется: `She is not relaxed`.",
-          "uk": "`is` зберігається: `She is not relaxed`."
+          "ru": "После It сохраняем is: It is not planned.",
+          "uk": "Після It зберігаємо is: It is not planned."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-02:intro3:r2": {
-          "ru": "Без `not` это довольство результатом. Здесь нужно `We're not satisfied`.",
-          "uk": "Без `not` це задоволення результатом. Тут потрібно `We're not satisfied`."
+          "ru": "Без not это довольство результатом. Здесь нужно We're not satisfied.",
+          "uk": "Без not це задоволення результатом. Тут потрібно We're not satisfied."
         },
         "en:lesson-02:session-02:intro3:r3": {
-          "ru": "Это «Нам не грустно». Сейчас оцениваем результат: `satisfied`.",
-          "uk": "Це «Нам не сумно». Зараз оцінюємо результат: `satisfied`."
+          "ru": "Это «Нам не грустно». Сейчас оцениваем результат: satisfied.",
+          "uk": "Це «Нам не сумно». Зараз оцінюємо результат: satisfied."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9541547298cc9ce9a8c2295cb9a6c4b5a5cac99cb3f50c90922693d313913f6c"
+  "auxiliaryFingerprint": "19e6f2f852c463ae0539210fc732cc4cf2ba749f771dcdbdfda4ee6a561ff994"
 }

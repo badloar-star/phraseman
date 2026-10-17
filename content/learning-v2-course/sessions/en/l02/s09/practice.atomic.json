@@ -1,0 +1,2435 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-09:word:possible",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — possible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:possible:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — possible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:possible:audio",
+            "transcript": "possible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:possible:r1",
+              "targetText": "possible",
+              "meaningByLocale": {
+                "ru": "возможный. Is it possible? — «Это возможно?» О просьбе, пересадке, обмене, переносе встречи.",
+                "uk": "можливий. Is it possible? — «Це можливо?» Про прохання, пересадку, обмін, перенесення зустрічі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "possible",
+            "definitionByLocale": {
+              "ru": "возможный. Is it possible? — «Это возможно?» О просьбе, пересадке, обмене, переносе встречи.",
+              "uk": "можливий. Is it possible? — «Це можливо?» Про прохання, пересадку, обмін, перенесення зустрічі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вера поняла, что вы хотите пересесть. Спросите её, возможно ли это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вера поняла, что вы хотите пересесть. Спросите её, возможно ли это",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it possible?",
+          "localizedMeaning": {
+            "ru": "Вера поняла, что вы хотите пересесть. Спросите её, возможно ли это",
+            "uk": "Віра зрозуміла, що ви хочете пересісти. Запитайте її, чи можливо це"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "possible"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вера поняла, что вы хотите пересесть. Спросите её, возможно ли это",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it possible?`",
+                "uk": "тут потрібно `Is` — `Is it possible?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос Косте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i02:r1",
+            "text": "Are you sure?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r2",
+            "text": "Are you comfortable?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r3",
+            "text": "Are you interested?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос Косте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i02:audio",
+            "transcript": "Are you sure?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:i02:r1",
+              "targetText": "Are you sure?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i02:r2",
+              "targetText": "Are you comfortable?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i02:r3",
+              "targetText": "Are you interested?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос Косте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sure`, а в этом варианте — `comfortable`.",
+                "uk": "У записі останнє слово — `sure`, а в цьому варіанті — `comfortable`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос Косте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sure`, а в этом варианте — `interested`.",
+                "uk": "У записі останнє слово — `sure`, а в цьому варіанті — `interested`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя сел на новое место. Спросите, удобно ли ему",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя сел на новое место. Спросите, удобно ли ему",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя сел на новое место. Спросите, удобно ли ему",
+            "uk": "Костя сів на нове місце. Запитайте, чи зручно йому"
+          },
+          "gappedTargetPhrase": "___ you comfortable?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-09:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Костя сел на новое место. Спросите, удобно ли ему",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Костя сел на новое место. Спросите, удобно ли ему",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Are`.",
+                "uk": "З `you` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Костя сел на новое место. Спросите, удобно ли ему",
+              "feedbackByLocale": {
+                "ru": "С `you` вопрос начинается с `Are`.",
+                "uk": "З `you` запитання починається з `Are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-09:i04:p1",
+              "target": "possible",
+              "meaningByLocale": {
+                "ru": "возможный",
+                "uk": "можливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i04:p2",
+              "target": "taken",
+              "meaningByLocale": {
+                "ru": "занятый",
+                "uk": "зайнятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i04:p3",
+              "target": "close",
+              "meaningByLocale": {
+                "ru": "близкий",
+                "uk": "близький"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i04:p4",
+              "target": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий",
+                "uk": "м’який"
+              }
+            }
+          ],
+          "leftColumn": [
+            "possible",
+            "taken",
+            "close",
+            "soft"
+          ],
+          "rightColumn": [
+            "возможный",
+            "занятый",
+            "близкий",
+            "мягкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:word:taken",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — taken",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:taken:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — taken",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:taken:audio",
+            "transcript": "taken"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:taken:r1",
+              "targetText": "taken",
+              "meaningByLocale": {
+                "ru": "занятый. It's not taken — «Оно не занято». О кресле, месте, столике.",
+                "uk": "зайнятий. It's not taken — «Воно не зайняте». Про крісло, місце, столик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taken",
+            "definitionByLocale": {
+              "ru": "занятый. It's not taken — «Оно не занято». О кресле, месте, столике.",
+              "uk": "зайнятий. It's not taken — «Воно не зайняте». Про крісло, місце, столик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "На кресле в третьем ряду лежит чья-то куртка. Послушайте и соберите вопрос о кресле",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "На кресле в третьем ряду лежит чья-то куртка. Послушайте и соберите вопрос о кресле",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i05:audio",
+            "transcript": "Is it taken?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is it taken?",
+          "orderedTokens": [
+            "Is",
+            "it",
+            "taken"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "На кресле в третьем ряду лежит чья-то куртка. Послушайте и соберите вопрос о кресле",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it taken?`",
+                "uk": "тут потрібно `Is` — `Is it taken?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы встали рядом с высоким Костей. Спросите его, высокий ли вы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы встали рядом с высоким Костей. Спросите его, высокий ли вы",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Am I tall?",
+          "localizedMeaning": {
+            "ru": "Вы встали рядом с высоким Костей. Спросите его, высокий ли вы",
+            "uk": "Ви стали поруч із високим Костею. Запитайте його, чи високий ви"
+          },
+          "orderedTokens": [
+            "Am",
+            "I",
+            "tall"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы встали рядом с высоким Костей. Спросите его, высокий ли вы",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Am` — `Am I tall?`",
+                "uk": "тут потрібно `Am` — `Am I tall?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Анна разглядывает афишу. Спросите Костю, интересно ли ей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i07:audio"
+        ],
+        "accessibilityLabel": "Анна разглядывает афишу. Спросите Костю, интересно ли ей",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i07:audio",
+            "transcript": "Is she interested?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is she interested?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:word:close",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — close",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:close:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — close",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:close:audio",
+            "transcript": "close"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:close:r1",
+              "targetText": "close",
+              "meaningByLocale": {
+                "ru": "близкий, рядом. Are they close? — «Они близко?» О местах, магазине, остановке.",
+                "uk": "близький, поруч. Are they close? — «Вони близько?» Про місця, магазин, зупинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "close",
+            "definitionByLocale": {
+              "ru": "близкий, рядом. Are they close? — «Они близко?» О местах, магазине, остановке.",
+              "uk": "близький, поруч. Are they close? — «Вони близько?» Про місця, магазин, зупинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i08:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+            "uk": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени"
+          },
+          "gappedTargetPhrase": "___ they close?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-09:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i08:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+              "feedbackByLocale": {
+                "ru": "Мест два, поэтому `Are they`.",
+                "uk": "Місць два, тому `Are they`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:word:soft",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soft",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:soft:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soft",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:soft:audio",
+            "transcript": "soft"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:soft:r1",
+              "targetText": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий. Is it soft? — «Оно мягкое?» О кресле, подушке, хлебе, свитере.",
+                "uk": "м’який. Is it soft? — «Воно м’яке?» Про крісло, подушку, хліб, светр."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soft",
+            "definitionByLocale": {
+              "ru": "мягкий. Is it soft? — «Оно мягкое?» О кресле, подушке, хлебе, свитере.",
+              "uk": "м’який. Is it soft? — «Воно м’яке?» Про крісло, подушку, хліб, светр."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос о креслах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i09:r1",
+            "text": "Are they soft?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r2",
+            "text": "Are they close?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r3",
+            "text": "Are they taken?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос о креслах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i09:audio",
+            "transcript": "Are they soft?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:i09:r1",
+              "targetText": "Are they soft?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i09:r2",
+              "targetText": "Are they close?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i09:r3",
+              "targetText": "Are they taken?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос о креслах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soft`, а в этом варианте — `close`.",
+                "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `close`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос о креслах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soft`, а в этом варианте — `taken`.",
+                "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `taken`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-09:i10:p1",
+              "target": "tall",
+              "meaningByLocale": {
+                "ru": "высокий",
+                "uk": "високий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i10:p2",
+              "target": "short",
+              "meaningByLocale": {
+                "ru": "невысокий",
+                "uk": "невисокий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i10:p3",
+              "target": "young",
+              "meaningByLocale": {
+                "ru": "молодой",
+                "uk": "молодий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i10:p4",
+              "target": "sure",
+              "meaningByLocale": {
+                "ru": "уверенный",
+                "uk": "упевнений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tall",
+            "short",
+            "young",
+            "sure"
+          ],
+          "rightColumn": [
+            "высокий",
+            "невысокий",
+            "молодой",
+            "уверенный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Анна и её брат пересели на балкон. Послушайте и соберите вопрос о них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Анна и её брат пересели на балкон. Послушайте и соберите вопрос о них",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i11:audio",
+            "transcript": "Are they comfortable?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they comfortable?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "comfortable"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Анна и её брат пересели на балкон. Послушайте и соберите вопрос о них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they comfortable?`",
+                "uk": "тут потрібно `Are` — `Are they comfortable?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с Костей собираетесь сменить ряд, но ещё сомневаетесь. Спросите за вас обоих: «Мы уверены?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с Костей собираетесь сменить ряд, но ещё сомневаетесь. Спросите за вас обоих: «Мы уверены?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are we sure?",
+          "localizedMeaning": {
+            "ru": "Вы с Костей собираетесь сменить ряд, но ещё сомневаетесь. Спросите за вас обоих: «Мы уверены?»",
+            "uk": "Ви з Костею збираєтеся змінити ряд, але ще вагаєтеся. Запитайте за вас обох: «Ми впевнені?»"
+          },
+          "orderedTokens": [
+            "Are",
+            "we",
+            "sure"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с Костей собираетесь сменить ряд, но ещё сомневаетесь. Спросите за вас обоих: «Мы уверены?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are we sure?`",
+                "uk": "тут потрібно `Are` — `Are we sure?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы зовёте Костю на этот спектакль ещё раз. Спросите его, интересно ли ему",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i13:audio"
+        ],
+        "accessibilityLabel": "Вы зовёте Костю на этот спектакль ещё раз. Спросите его, интересно ли ему",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i13:audio",
+            "transcript": "Are you interested?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you interested?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+            "uk": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно"
+          },
+          "gappedTargetPhrase": "___ it soft?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-09:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i14:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i14:r2",
+              "correct": false,
+              "testedDimension": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i14:r3",
+              "correct": false,
+              "testedDimension": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+              "feedbackByLocale": {
+                "ru": "С `it` спрашиваем `Is it`.",
+                "uk": "З `it` питаємо `Is it`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос об актрисе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i15:r1",
+            "text": "Is she young?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i15:r2",
+            "text": "Is she tall?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i15:r3",
+            "text": "Is she short?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос об актрисе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i15:audio",
+            "transcript": "Is she young?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:i15:r1",
+              "targetText": "Is she young?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i15:r2",
+              "targetText": "Is she tall?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i15:r3",
+              "targetText": "Is she short?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос об актрисе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `young`, а в этом варианте — `tall`.",
+                "uk": "У записі останнє слово — `young`, а в цьому варіанті — `tall`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос об актрисе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `young`, а в этом варианте — `short`.",
+                "uk": "У записі останнє слово — `young`, а в цьому варіанті — `short`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова прошлого занятия со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова прошлого занятия со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-09:i16:p1",
+              "target": "broken",
+              "meaningByLocale": {
+                "ru": "сломанный",
+                "uk": "зламаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i16:p2",
+              "target": "finished",
+              "meaningByLocale": {
+                "ru": "законченный",
+                "uk": "закінчений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i16:p3",
+              "target": "allowed",
+              "meaningByLocale": {
+                "ru": "разрешённый",
+                "uk": "дозволений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i16:p4",
+              "target": "dark",
+              "meaningByLocale": {
+                "ru": "тёмный",
+                "uk": "темний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broken",
+            "finished",
+            "allowed",
+            "dark"
+          ],
+          "rightColumn": [
+            "сломанный",
+            "законченный",
+            "разрешённый",
+            "тёмный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В антракте вы просите Веру пересадить вас с Костей в первый ряд. Она ещё не ответила. Спросите, возможно ли это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "В антракте вы просите Веру пересадить вас с Костей в первый ряд. Она ещё не ответила. Спросите, возможно ли это",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i17:audio",
+            "transcript": "Is it possible?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it possible?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-09:word:possible",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — possible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:possible:audio"
+        ],
+        "accessibilityLabel": "Картка слова — possible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:possible:audio",
+            "transcript": "possible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:possible:r1",
+              "targetText": "possible",
+              "meaningByLocale": {
+                "ru": "возможный. Is it possible? — «Это возможно?» О просьбе, пересадке, обмене, переносе встречи.",
+                "uk": "можливий. Is it possible? — «Це можливо?» Про прохання, пересадку, обмін, перенесення зустрічі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "possible",
+            "definitionByLocale": {
+              "ru": "возможный. Is it possible? — «Это возможно?» О просьбе, пересадке, обмене, переносе встречи.",
+              "uk": "можливий. Is it possible? — «Це можливо?» Про прохання, пересадку, обмін, перенесення зустрічі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Віра зрозуміла, що ви хочете пересісти. Запитайте її, чи можливо це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Віра зрозуміла, що ви хочете пересісти. Запитайте її, чи можливо це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it possible?",
+          "localizedMeaning": {
+            "ru": "Вера поняла, что вы хотите пересесть. Спросите её, возможно ли это",
+            "uk": "Віра зрозуміла, що ви хочете пересісти. Запитайте її, чи можливо це"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "possible"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Віра зрозуміла, що ви хочете пересісти. Запитайте її, чи можливо це",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it possible?`",
+                "uk": "тут потрібно `Is` — `Is it possible?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання Кості",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i02:r1",
+            "text": "Are you sure?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r2",
+            "text": "Are you comfortable?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i02:r3",
+            "text": "Are you interested?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання Кості",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i02:audio",
+            "transcript": "Are you sure?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:i02:r1",
+              "targetText": "Are you sure?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i02:r2",
+              "targetText": "Are you comfortable?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i02:r3",
+              "targetText": "Are you interested?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання Кості",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sure`, а в этом варианте — `comfortable`.",
+                "uk": "У записі останнє слово — `sure`, а в цьому варіанті — `comfortable`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання Кості",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sure`, а в этом варианте — `interested`.",
+                "uk": "У записі останнє слово — `sure`, а в цьому варіанті — `interested`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя сів на нове місце. Запитайте, чи зручно йому",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя сів на нове місце. Запитайте, чи зручно йому",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя сел на новое место. Спросите, удобно ли ему",
+            "uk": "Костя сів на нове місце. Запитайте, чи зручно йому"
+          },
+          "gappedTargetPhrase": "___ you comfortable?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-09:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Костя сів на нове місце. Запитайте, чи зручно йому",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Костя сів на нове місце. Запитайте, чи зручно йому",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Are`.",
+                "uk": "З `you` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Костя сів на нове місце. Запитайте, чи зручно йому",
+              "feedbackByLocale": {
+                "ru": "С `you` вопрос начинается с `Are`.",
+                "uk": "З `you` запитання починається з `Are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-09:i04:p1",
+              "target": "possible",
+              "meaningByLocale": {
+                "ru": "возможный",
+                "uk": "можливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i04:p2",
+              "target": "taken",
+              "meaningByLocale": {
+                "ru": "занятый",
+                "uk": "зайнятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i04:p3",
+              "target": "close",
+              "meaningByLocale": {
+                "ru": "близкий",
+                "uk": "близький"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i04:p4",
+              "target": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий",
+                "uk": "м’який"
+              }
+            }
+          ],
+          "leftColumn": [
+            "possible",
+            "taken",
+            "close",
+            "soft"
+          ],
+          "rightColumn": [
+            "можливий",
+            "зайнятий",
+            "близький",
+            "м’який"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:word:taken",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — taken",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:taken:audio"
+        ],
+        "accessibilityLabel": "Картка слова — taken",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:taken:audio",
+            "transcript": "taken"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:taken:r1",
+              "targetText": "taken",
+              "meaningByLocale": {
+                "ru": "занятый. It's not taken — «Оно не занято». О кресле, месте, столике.",
+                "uk": "зайнятий. It's not taken — «Воно не зайняте». Про крісло, місце, столик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taken",
+            "definitionByLocale": {
+              "ru": "занятый. It's not taken — «Оно не занято». О кресле, месте, столике.",
+              "uk": "зайнятий. It's not taken — «Воно не зайняте». Про крісло, місце, столик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "На кріслі в третьому ряду лежить чиясь куртка. Послухайте й складіть запитання про крісло",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "На кріслі в третьому ряду лежить чиясь куртка. Послухайте й складіть запитання про крісло",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i05:audio",
+            "transcript": "Is it taken?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is it taken?",
+          "orderedTokens": [
+            "Is",
+            "it",
+            "taken"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "На кріслі в третьому ряду лежить чиясь куртка. Послухайте й складіть запитання про крісло",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it taken?`",
+                "uk": "тут потрібно `Is` — `Is it taken?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стали поруч із високим Костею. Запитайте його, чи високий ви",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стали поруч із високим Костею. Запитайте його, чи високий ви",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Am I tall?",
+          "localizedMeaning": {
+            "ru": "Вы встали рядом с высоким Костей. Спросите его, высокий ли вы",
+            "uk": "Ви стали поруч із високим Костею. Запитайте його, чи високий ви"
+          },
+          "orderedTokens": [
+            "Am",
+            "I",
+            "tall"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стали поруч із високим Костею. Запитайте його, чи високий ви",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Am` — `Am I tall?`",
+                "uk": "тут потрібно `Am` — `Am I tall?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Анна розглядає афішу. Запитайте Костю, чи їй цікаво",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i07:audio"
+        ],
+        "accessibilityLabel": "Анна розглядає афішу. Запитайте Костю, чи їй цікаво",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i07:audio",
+            "transcript": "Is she interested?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is she interested?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:word:close",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — close",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:close:audio"
+        ],
+        "accessibilityLabel": "Картка слова — close",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:close:audio",
+            "transcript": "close"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:close:r1",
+              "targetText": "close",
+              "meaningByLocale": {
+                "ru": "близкий, рядом. Are they close? — «Они близко?» О местах, магазине, остановке.",
+                "uk": "близький, поруч. Are they close? — «Вони близько?» Про місця, магазин, зупинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "close",
+            "definitionByLocale": {
+              "ru": "близкий, рядом. Are they close? — «Они близко?» О местах, магазине, остановке.",
+              "uk": "близький, поруч. Are they close? — «Вони близько?» Про місця, магазин, зупинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i08:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i08:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя показывает на два места во втором ряду. Дополните вопрос, близко ли они к сцене",
+            "uk": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени"
+          },
+          "gappedTargetPhrase": "___ they close?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-09:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i08:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i08:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Костя показує на два місця в другому ряду. Доповніть запитання, чи близько вони до сцени",
+              "feedbackByLocale": {
+                "ru": "Мест два, поэтому `Are they`.",
+                "uk": "Місць два, тому `Are they`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:word:soft",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soft",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:word:soft:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soft",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:word:soft:audio",
+            "transcript": "soft"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:word:soft:r1",
+              "targetText": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий. Is it soft? — «Оно мягкое?» О кресле, подушке, хлебе, свитере.",
+                "uk": "м’який. Is it soft? — «Воно м’яке?» Про крісло, подушку, хліб, светр."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soft",
+            "definitionByLocale": {
+              "ru": "мягкий. Is it soft? — «Оно мягкое?» О кресле, подушке, хлебе, свитере.",
+              "uk": "м’який. Is it soft? — «Воно м’яке?» Про крісло, подушку, хліб, светр."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання про крісла",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i09:r1",
+            "text": "Are they soft?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r2",
+            "text": "Are they close?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i09:r3",
+            "text": "Are they taken?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання про крісла",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i09:audio",
+            "transcript": "Are they soft?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:i09:r1",
+              "targetText": "Are they soft?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i09:r2",
+              "targetText": "Are they close?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i09:r3",
+              "targetText": "Are they taken?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання про крісла",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soft`, а в этом варианте — `close`.",
+                "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `close`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання про крісла",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soft`, а в этом варианте — `taken`.",
+                "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `taken`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-09:i10:p1",
+              "target": "tall",
+              "meaningByLocale": {
+                "ru": "высокий",
+                "uk": "високий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i10:p2",
+              "target": "short",
+              "meaningByLocale": {
+                "ru": "невысокий",
+                "uk": "невисокий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i10:p3",
+              "target": "young",
+              "meaningByLocale": {
+                "ru": "молодой",
+                "uk": "молодий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i10:p4",
+              "target": "sure",
+              "meaningByLocale": {
+                "ru": "уверенный",
+                "uk": "упевнений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tall",
+            "short",
+            "young",
+            "sure"
+          ],
+          "rightColumn": [
+            "високий",
+            "невисокий",
+            "молодий",
+            "упевнений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Анна та її брат пересіли на балкон. Послухайте й складіть запитання про них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Анна та її брат пересіли на балкон. Послухайте й складіть запитання про них",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i11:audio",
+            "transcript": "Are they comfortable?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they comfortable?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "comfortable"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Анна та її брат пересіли на балкон. Послухайте й складіть запитання про них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they comfortable?`",
+                "uk": "тут потрібно `Are` — `Are they comfortable?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з Костею збираєтеся змінити ряд, але ще вагаєтеся. Запитайте за вас обох: «Ми впевнені?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з Костею збираєтеся змінити ряд, але ще вагаєтеся. Запитайте за вас обох: «Ми впевнені?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are we sure?",
+          "localizedMeaning": {
+            "ru": "Вы с Костей собираетесь сменить ряд, но ещё сомневаетесь. Спросите за вас обоих: «Мы уверены?»",
+            "uk": "Ви з Костею збираєтеся змінити ряд, але ще вагаєтеся. Запитайте за вас обох: «Ми впевнені?»"
+          },
+          "orderedTokens": [
+            "Are",
+            "we",
+            "sure"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з Костею збираєтеся змінити ряд, але ще вагаєтеся. Запитайте за вас обох: «Ми впевнені?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are we sure?`",
+                "uk": "тут потрібно `Are` — `Are we sure?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви кличете Костю на цю виставу ще раз. Запитайте його, чи йому цікаво",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i13:audio"
+        ],
+        "accessibilityLabel": "Ви кличете Костю на цю виставу ще раз. Запитайте його, чи йому цікаво",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i13:audio",
+            "transcript": "Are you interested?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you interested?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Костя уже сел в кресло во втором ряду. Дополните вопрос, мягкое ли оно",
+            "uk": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно"
+          },
+          "gappedTargetPhrase": "___ it soft?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-09:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i14:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i14:r2",
+              "correct": false,
+              "testedDimension": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i14:r3",
+              "correct": false,
+              "testedDimension": "Костя вже сів у крісло в другому ряду. Доповніть запитання, чи м’яке воно",
+              "feedbackByLocale": {
+                "ru": "С `it` спрашиваем `Is it`.",
+                "uk": "З `it` питаємо `Is it`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання про акторку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-09:i15:r1",
+            "text": "Is she young?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i15:r2",
+            "text": "Is she tall?"
+          },
+          {
+            "responseId": "en:lesson-02:session-09:i15:r3",
+            "text": "Is she short?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання про акторку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i15:audio",
+            "transcript": "Is she young?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-09:i15:r1",
+              "targetText": "Is she young?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i15:r2",
+              "targetText": "Is she tall?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i15:r3",
+              "targetText": "Is she short?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання про акторку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `young`, а в этом варианте — `tall`.",
+                "uk": "У записі останнє слово — `young`, а в цьому варіанті — `tall`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-09:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання про акторку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `young`, а в этом варианте — `short`.",
+                "uk": "У записі останнє слово — `young`, а в цьому варіанті — `short`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова минулого заняття зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова минулого заняття зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-09:i16:p1",
+              "target": "broken",
+              "meaningByLocale": {
+                "ru": "сломанный",
+                "uk": "зламаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i16:p2",
+              "target": "finished",
+              "meaningByLocale": {
+                "ru": "законченный",
+                "uk": "закінчений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i16:p3",
+              "target": "allowed",
+              "meaningByLocale": {
+                "ru": "разрешённый",
+                "uk": "дозволений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-09:i16:p4",
+              "target": "dark",
+              "meaningByLocale": {
+                "ru": "тёмный",
+                "uk": "темний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "broken",
+            "finished",
+            "allowed",
+            "dark"
+          ],
+          "rightColumn": [
+            "зламаний",
+            "закінчений",
+            "дозволений",
+            "темний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-09:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В антракті ви просите Віру пересадити вас із Костею в перший ряд. Вона ще не відповіла. Запитайте, чи можливо це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "В антракті ви просите Віру пересадити вас із Костею в перший ряд. Вона ще не відповіла. Запитайте, чи можливо це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-09:i17:audio",
+            "transcript": "Is it possible?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it possible?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-09:word:possible",
+      "correctText": "possible",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i01",
+      "correctText": "Is it possible?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i02",
+      "correctText": "Are you sure?",
+      "correctResponseId": "en:lesson-02:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i03",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-02:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:word:taken",
+      "correctText": "taken",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i05",
+      "correctText": "Is it taken?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i06",
+      "correctText": "Am I tall?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i07",
+      "correctText": "Is she interested?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:word:close",
+      "correctText": "close",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i08",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-02:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:word:soft",
+      "correctText": "soft",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i09",
+      "correctText": "Are they soft?",
+      "correctResponseId": "en:lesson-02:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i11",
+      "correctText": "Are they comfortable?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i12",
+      "correctText": "Are we sure?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i13",
+      "correctText": "Are you interested?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i14",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-09:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i15",
+      "correctText": "Is she young?",
+      "correctResponseId": "en:lesson-02:session-09:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-09:i17",
+      "correctText": "Is it possible?",
+      "correctResponseId": null
+    }
+  ]
+}

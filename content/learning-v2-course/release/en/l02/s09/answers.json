@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-02:session-09:word:possible",
+    "correctText": "possible",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-09:i01",
     "correctText": "Is it possible?",
     "correctResponseId": null
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-09:i04",
-    "correctText": "en:lesson-02:session-09:i04:p1=possible\nen:lesson-02:session-09:i04:p2=sure\nen:lesson-02:session-09:i04:p3=interested\nen:lesson-02:session-09:i04:p4=comfortable",
+    "correctText": "en:lesson-02:session-09:i04:p1=possible\nen:lesson-02:session-09:i04:p2=taken\nen:lesson-02:session-09:i04:p3=close\nen:lesson-02:session-09:i04:p4=soft",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:word:taken",
+    "correctText": "taken",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-09:i05",
-    "correctText": "Is he tall?",
+    "correctText": "Is it taken?",
     "correctResponseId": null
   },
   {
@@ -35,18 +45,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-09:word:close",
+    "correctText": "close",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-09:i08",
-    "correctText": "Is",
+    "correctText": "Are",
     "correctResponseId": "en:lesson-02:session-09:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-09:word:soft",
+    "correctText": "soft",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-09:i09",
-    "correctText": "Is he short?",
+    "correctText": "Are they soft?",
     "correctResponseId": "en:lesson-02:session-09:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-09:i10",
-    "correctText": "en:lesson-02:session-09:i10:p1=tall\nen:lesson-02:session-09:i10:p2=short\nen:lesson-02:session-09:i10:p3=young\nen:lesson-02:session-09:i10:p4=possible",
+    "correctText": "en:lesson-02:session-09:i10:p1=tall\nen:lesson-02:session-09:i10:p2=short\nen:lesson-02:session-09:i10:p3=young\nen:lesson-02:session-09:i10:p4=sure",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-09:i16",
-    "correctText": "en:lesson-02:session-09:i16:p1=sure\nen:lesson-02:session-09:i16:p2=comfortable\nen:lesson-02:session-09:i16:p3=interested\nen:lesson-02:session-09:i16:p4=young",
+    "correctText": "en:lesson-02:session-09:i16:p1=broken\nen:lesson-02:session-09:i16:p2=finished\nen:lesson-02:session-09:i16:p3=allowed\nen:lesson-02:session-09:i16:p4=dark",
     "correctResponseId": null
   },
   {

@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-05:word:real",
+    "correctText": "real",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-05:i01",
     "correctText": "It is not real.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:word:raw",
+    "correctText": "raw",
     "correctResponseId": null
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-05:i04",
-    "correctText": "en:lesson-02:session-05:i04:p1=real\nen:lesson-02:session-05:i04:p2=cold\nen:lesson-02:session-05:i04:p3=hot\nen:lesson-02:session-05:i04:p4=warm",
+    "correctText": "en:lesson-02:session-05:i04:p1=real\nen:lesson-02:session-05:i04:p2=raw\nen:lesson-02:session-05:i04:p3=stale\nen:lesson-02:session-05:i04:p4=salty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i05",
-    "correctText": "It's not real.",
+    "correctText": "It's not raw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:word:stale",
+    "correctText": "stale",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i06",
-    "correctText": "They are not real.",
+    "correctText": "They are not stale.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:word:salty",
+    "correctText": "salty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-05:i07",
-    "correctText": "It's not real.",
+    "correctText": "It's not salty.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-05:i15",
-    "correctText": "It's not real.",
+    "correctText": "It's not stale.",
     "correctResponseId": "en:lesson-02:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-05:i16",
-    "correctText": "en:lesson-02:session-05:i16:p1=real\nen:lesson-02:session-05:i16:p2=full\nen:lesson-02:session-05:i16:p3=hot\nen:lesson-02:session-05:i16:p4=cold",
+    "correctText": "en:lesson-02:session-05:i16:p1=warm\nen:lesson-02:session-05:i16:p2=full\nen:lesson-02:session-05:i16:p3=hot\nen:lesson-02:session-05:i16:p4=cold",
     "correctResponseId": null
   },
   {

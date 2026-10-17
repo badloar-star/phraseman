@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-06:word:fake",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:fake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:fake:audio",
+            "transcript": "fake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:fake:r1",
+              "targetText": "fake",
+              "meaningByLocale": {
+                "ru": "поддельный. It's not fake — «Он не поддельный». О цветах, фруктах, часах, сумках, которые только выглядят настоящими.",
+                "uk": "підроблений. It's not fake — «Він не підроблений». Про квіти, фрукти, годинники, сумки, які лише здаються справжніми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fake",
+            "definitionByLocale": {
+              "ru": "поддельный. It's not fake — «Он не поддельный». О цветах, фруктах, часах, сумках, которые только выглядят настоящими.",
+              "uk": "підроблений. It's not fake — «Він не підроблений». Про квіти, фрукти, годинники, сумки, які лише здаються справжніми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розы в вазе на сцене живые. Скажите Олегу, что они не поддельные",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розы в вазе на сцене живые. Скажите Олегу, что они не поддельные",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are not fake.",
+          "localizedMeaning": {
+            "ru": "Розы в вазе на сцене живые. Скажите Олегу, что они не поддельные",
+            "uk": "Троянди у вазі на сцені живі. Скажіть Олегові, що вони не підроблені"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "fake"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Розы в вазе на сцене живые. Скажите Олегу, что они не поддельные",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not fake.`",
+                "uk": "тут потрібно `are` — `They are not fake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:word:fresh",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fresh",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:fresh:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fresh",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:fresh:audio",
+            "transcript": "fresh"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:fresh:r1",
+              "targetText": "fresh",
+              "meaningByLocale": {
+                "ru": "свежий. It's not fresh — «Он не свежий». О цветах, хлебе, рыбе, молоке.",
+                "uk": "свіжий. It's not fresh — «Він не свіжий». Про квіти, хліб, рибу, молоко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fresh",
+            "definitionByLocale": {
+              "ru": "свежий. It's not fresh — «Он не свежий». О цветах, хлебе, рыбе, молоке.",
+              "uk": "свіжий. It's not fresh — «Він не свіжий». Про квіти, хліб, рибу, молоко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i02:r1",
+            "text": "It is not fake."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i02:r2",
+            "text": "It is not fresh."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i02:r3",
+            "text": "It is not familiar."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i02:audio",
+            "transcript": "It is not fake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:i02:r1",
+              "targetText": "It is not fake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i02:r2",
+              "targetText": "It is not fresh.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i02:r3",
+              "targetText": "It is not familiar.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fake`, а в этом варианте — `fresh`.",
+                "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `fresh`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fake`, а в этом варианте — `familiar`.",
+                "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `familiar`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+            "uk": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них"
+          },
+          "gappedTargetPhrase": "They ___ not fake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-06:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+              "feedbackByLocale": {
+                "ru": "Ромашек две, поэтому `They are not`.",
+                "uk": "Ромашок дві, тому `They are not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-06:i04:p1",
+              "target": "fake",
+              "meaningByLocale": {
+                "ru": "поддельный",
+                "uk": "підроблений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i04:p2",
+              "target": "fresh",
+              "meaningByLocale": {
+                "ru": "свежий",
+                "uk": "свіжий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i04:p3",
+              "target": "pink",
+              "meaningByLocale": {
+                "ru": "розовый",
+                "uk": "рожевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i04:p4",
+              "target": "plastic",
+              "meaningByLocale": {
+                "ru": "пластиковый",
+                "uk": "пластиковий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fake",
+            "fresh",
+            "pink",
+            "plastic"
+          ],
+          "rightColumn": [
+            "поддельный",
+            "свежий",
+            "розовый",
+            "пластиковый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Букет у кулис стоит с прошлой недели. Послушайте и соберите фразу о нём",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Букет у кулис стоит с прошлой недели. Послушайте и соберите фразу о нём",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i05:audio",
+            "transcript": "It's not fresh."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's not fresh.",
+          "orderedTokens": [
+            "It's",
+            "not",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Букет у кулис стоит с прошлой недели. Послушайте и соберите фразу о нём",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's not fresh.`",
+                "uk": "тут потрібно `It's` — `It's not fresh.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:word:pink",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pink",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:pink:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pink",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:pink:audio",
+            "transcript": "pink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:pink:r1",
+              "targetText": "pink",
+              "meaningByLocale": {
+                "ru": "розовый. They're not pink — «Они не розовые». О цветах, платье, стенах.",
+                "uk": "рожевий. They're not pink — «Вони не рожеві». Про квіти, сукню, стіни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pink",
+            "definitionByLocale": {
+              "ru": "розовый. They're not pink — «Они не розовые». О цветах, платье, стенах.",
+              "uk": "рожевий. They're not pink — «Вони не рожеві». Про квіти, сукню, стіни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вместо розовых пионов привезли жёлтые. Скажите Вике, что они не розовые",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вместо розовых пионов привезли жёлтые. Скажите Вике, что они не розовые",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are not pink.",
+          "localizedMeaning": {
+            "ru": "Вместо розовых пионов привезли жёлтые. Скажите Вике, что они не розовые",
+            "uk": "Замість рожевих півоній привезли жовті. Скажіть Віці, що вони не рожеві"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "pink"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вместо розовых пионов привезли жёлтые. Скажите Вике, что они не розовые",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not pink.`",
+                "uk": "тут потрібно `are` — `They are not pink.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:word:plastic",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — plastic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:plastic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — plastic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:plastic:audio",
+            "transcript": "plastic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:plastic:r1",
+              "targetText": "plastic",
+              "meaningByLocale": {
+                "ru": "пластиковый. It's not plastic — «Она не пластиковая». О вазе, стуле, бутылке, игрушке.",
+                "uk": "пластиковий. It's not plastic — «Вона не пластикова». Про вазу, стілець, пляшку, іграшку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plastic",
+            "definitionByLocale": {
+              "ru": "пластиковый. It's not plastic — «Она не пластиковая». О вазе, стуле, бутылке, игрушке.",
+              "uk": "пластиковий. It's not plastic — «Вона не пластикова». Про вазу, стілець, пляшку, іграшку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вика стучит по вазе на сцене: звук звонкий, ваза стеклянная. Скажите коротко, что она не пластиковая",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Вика стучит по вазе на сцене: звук звонкий, ваза стеклянная. Скажите коротко, что она не пластиковая",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i07:audio",
+            "transcript": "It's not plastic."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's not plastic.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+            "uk": "До вистави година, а ви спокійні. Доповніть фразу про себе"
+          },
+          "gappedTargetPhrase": "I ___ not nervous.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-06:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+              "feedbackByLocale": {
+                "ru": "Про себя — `I am not`.",
+                "uk": "Про себе — `I am not`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `am`.",
+                "uk": "Після `I` потрібно `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу об Олеге",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i09:r1",
+            "text": "He is not calm."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i09:r2",
+            "text": "He is not nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i09:r3",
+            "text": "He is not excited."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу об Олеге",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i09:audio",
+            "transcript": "He is not calm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:i09:r1",
+              "targetText": "He is not calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i09:r2",
+              "targetText": "He is not nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i09:r3",
+              "targetText": "He is not excited.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об Олеге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `nervous`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `nervous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об Олеге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `excited`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `excited`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-06:i10:p1",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i10:p2",
+              "target": "nervous",
+              "meaningByLocale": {
+                "ru": "нервничающий",
+                "uk": "той, хто нервує"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i10:p3",
+              "target": "excited",
+              "meaningByLocale": {
+                "ru": "радостно взволнованный",
+                "uk": "радісно схвильований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i10:p4",
+              "target": "unknown",
+              "meaningByLocale": {
+                "ru": "неизвестный",
+                "uk": "невідомий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "calm",
+            "nervous",
+            "excited",
+            "unknown"
+          ],
+          "rightColumn": [
+            "спокойный",
+            "нервничающий",
+            "радостно взволнованный",
+            "неизвестный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Олег трогает розы в вазе и наконец верит. Послушайте и соберите фразу о них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Олег трогает розы в вазе и наконец верит. Послушайте и соберите фразу о них",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i11:audio",
+            "transcript": "They're not fake."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're not fake.",
+          "orderedTokens": [
+            "They're",
+            "not",
+            "fake"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Олег трогает розы в вазе и наконец верит. Послушайте и соберите фразу о них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're not fake.`",
+                "uk": "тут потрібно `They're` — `They're not fake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вика показывает узор на занавесе, а вы видите его впервые. Скажите, что он вам не знаком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вика показывает узор на занавесе, а вы видите его впервые. Скажите, что он вам не знаком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not familiar.",
+          "localizedMeaning": {
+            "ru": "Вика показывает узор на занавесе, а вы видите его впервые. Скажите, что он вам не знаком",
+            "uk": "Віка показує візерунок на завісі, а ви бачите його вперше. Скажіть, що він вам не знайомий"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "familiar"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вика показывает узор на занавесе, а вы видите его впервые. Скажите, что он вам не знаком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not familiar.`",
+                "uk": "тут потрібно `is` — `It is not familiar.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Репетиция назначена на семь утра, и радости у вас нет. Скажите о себе коротко: «Я не в восторге»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Репетиция назначена на семь утра, и радости у вас нет. Скажите о себе коротко: «Я не в восторге»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i13:audio",
+            "transcript": "I'm not excited."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm not excited.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лейка на сцене металлическая. Дополните фразу о ней",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лейка на сцене металлическая. Дополните фразу о ней",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Лейка на сцене металлическая. Дополните фразу о ней",
+            "uk": "Лійка на сцені металева. Доповніть фразу про неї"
+          },
+          "gappedTargetPhrase": "It ___ not plastic.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-06:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Лейка на сцене металлическая. Дополните фразу о ней",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Лейка на сцене металлическая. Дополните фразу о ней",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Лейка на сцене металлическая. Дополните фразу о ней",
+              "feedbackByLocale": {
+                "ru": "Лейка одна, поэтому `It is not`.",
+                "uk": "Лійка одна, тому `It is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте короткую фразу о пионах и выберите её",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i15:r1",
+            "text": "They're not pink."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i15:r2",
+            "text": "They're not fresh."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i15:r3",
+            "text": "It's not pink."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте короткую фразу о пионах и выберите её",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i15:audio",
+            "transcript": "They're not pink."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:i15:r1",
+              "targetText": "They're not pink.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i15:r2",
+              "targetText": "They're not fresh.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i15:r3",
+              "targetText": "It's not pink.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте короткую фразу о пионах и выберите её",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pink`, а в этом варианте — `fresh`.",
+                "uk": "У записі останнє слово — `pink`, а в цьому варіанті — `fresh`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте короткую фразу о пионах и выберите её",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `It's`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `It's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова прошлого занятия и знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова прошлого занятия и знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-06:i16:p1",
+              "target": "real",
+              "meaningByLocale": {
+                "ru": "настоящий",
+                "uk": "справжній"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i16:p2",
+              "target": "stale",
+              "meaningByLocale": {
+                "ru": "чёрствый",
+                "uk": "черствий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i16:p3",
+              "target": "familiar",
+              "meaningByLocale": {
+                "ru": "знакомый",
+                "uk": "знайомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i16:p4",
+              "target": "unfamiliar",
+              "meaningByLocale": {
+                "ru": "незнакомый",
+                "uk": "незнайомий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "real",
+            "stale",
+            "familiar",
+            "unfamiliar"
+          ],
+          "rightColumn": [
+            "настоящий",
+            "чёрствый",
+            "знакомый",
+            "незнакомый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В музее выставлен старинный шлем. Друг Костя думает, что это подделка. Скажите, что шлем не поддельный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "В музее выставлен старинный шлем. Друг Костя думает, что это подделка. Скажите, что шлем не поддельный",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i17:audio",
+            "transcript": "It is not fake."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is not fake.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-06:word:fake",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:fake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:fake:audio",
+            "transcript": "fake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:fake:r1",
+              "targetText": "fake",
+              "meaningByLocale": {
+                "ru": "поддельный. It's not fake — «Он не поддельный». О цветах, фруктах, часах, сумках, которые только выглядят настоящими.",
+                "uk": "підроблений. It's not fake — «Він не підроблений». Про квіти, фрукти, годинники, сумки, які лише здаються справжніми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fake",
+            "definitionByLocale": {
+              "ru": "поддельный. It's not fake — «Он не поддельный». О цветах, фруктах, часах, сумках, которые только выглядят настоящими.",
+              "uk": "підроблений. It's not fake — «Він не підроблений». Про квіти, фрукти, годинники, сумки, які лише здаються справжніми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Троянди у вазі на сцені живі. Скажіть Олегові, що вони не підроблені",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Троянди у вазі на сцені живі. Скажіть Олегові, що вони не підроблені",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are not fake.",
+          "localizedMeaning": {
+            "ru": "Розы в вазе на сцене живые. Скажите Олегу, что они не поддельные",
+            "uk": "Троянди у вазі на сцені живі. Скажіть Олегові, що вони не підроблені"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "fake"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Троянди у вазі на сцені живі. Скажіть Олегові, що вони не підроблені",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not fake.`",
+                "uk": "тут потрібно `are` — `They are not fake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:word:fresh",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fresh",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:fresh:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fresh",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:fresh:audio",
+            "transcript": "fresh"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:fresh:r1",
+              "targetText": "fresh",
+              "meaningByLocale": {
+                "ru": "свежий. It's not fresh — «Он не свежий». О цветах, хлебе, рыбе, молоке.",
+                "uk": "свіжий. It's not fresh — «Він не свіжий». Про квіти, хліб, рибу, молоко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fresh",
+            "definitionByLocale": {
+              "ru": "свежий. It's not fresh — «Он не свежий». О цветах, хлебе, рыбе, молоке.",
+              "uk": "свіжий. It's not fresh — «Він не свіжий». Про квіти, хліб, рибу, молоко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i02:r1",
+            "text": "It is not fake."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i02:r2",
+            "text": "It is not fresh."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i02:r3",
+            "text": "It is not familiar."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i02:audio",
+            "transcript": "It is not fake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:i02:r1",
+              "targetText": "It is not fake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i02:r2",
+              "targetText": "It is not fresh.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i02:r3",
+              "targetText": "It is not familiar.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fake`, а в этом варианте — `fresh`.",
+                "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `fresh`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fake`, а в этом варианте — `familiar`.",
+                "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `familiar`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две ромашки на столе живые, их только что сорвали. Дополните фразу о них",
+            "uk": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них"
+          },
+          "gappedTargetPhrase": "They ___ not fake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-06:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Дві ромашки на столі живі, їх щойно зірвали. Доповніть фразу про них",
+              "feedbackByLocale": {
+                "ru": "Ромашек две, поэтому `They are not`.",
+                "uk": "Ромашок дві, тому `They are not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-06:i04:p1",
+              "target": "fake",
+              "meaningByLocale": {
+                "ru": "поддельный",
+                "uk": "підроблений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i04:p2",
+              "target": "fresh",
+              "meaningByLocale": {
+                "ru": "свежий",
+                "uk": "свіжий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i04:p3",
+              "target": "pink",
+              "meaningByLocale": {
+                "ru": "розовый",
+                "uk": "рожевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i04:p4",
+              "target": "plastic",
+              "meaningByLocale": {
+                "ru": "пластиковый",
+                "uk": "пластиковий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fake",
+            "fresh",
+            "pink",
+            "plastic"
+          ],
+          "rightColumn": [
+            "підроблений",
+            "свіжий",
+            "рожевий",
+            "пластиковий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Букет біля лаштунків стоїть із минулого тижня. Послухайте й складіть фразу про нього",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Букет біля лаштунків стоїть із минулого тижня. Послухайте й складіть фразу про нього",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i05:audio",
+            "transcript": "It's not fresh."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's not fresh.",
+          "orderedTokens": [
+            "It's",
+            "not",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Букет біля лаштунків стоїть із минулого тижня. Послухайте й складіть фразу про нього",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It's` — `It's not fresh.`",
+                "uk": "тут потрібно `It's` — `It's not fresh.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:word:pink",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pink",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:pink:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pink",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:pink:audio",
+            "transcript": "pink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:pink:r1",
+              "targetText": "pink",
+              "meaningByLocale": {
+                "ru": "розовый. They're not pink — «Они не розовые». О цветах, платье, стенах.",
+                "uk": "рожевий. They're not pink — «Вони не рожеві». Про квіти, сукню, стіни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pink",
+            "definitionByLocale": {
+              "ru": "розовый. They're not pink — «Они не розовые». О цветах, платье, стенах.",
+              "uk": "рожевий. They're not pink — «Вони не рожеві». Про квіти, сукню, стіни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Замість рожевих півоній привезли жовті. Скажіть Віці, що вони не рожеві",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Замість рожевих півоній привезли жовті. Скажіть Віці, що вони не рожеві",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are not pink.",
+          "localizedMeaning": {
+            "ru": "Вместо розовых пионов привезли жёлтые. Скажите Вике, что они не розовые",
+            "uk": "Замість рожевих півоній привезли жовті. Скажіть Віці, що вони не рожеві"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "pink"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Замість рожевих півоній привезли жовті. Скажіть Віці, що вони не рожеві",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not pink.`",
+                "uk": "тут потрібно `are` — `They are not pink.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:word:plastic",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — plastic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:word:plastic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — plastic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:word:plastic:audio",
+            "transcript": "plastic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:word:plastic:r1",
+              "targetText": "plastic",
+              "meaningByLocale": {
+                "ru": "пластиковый. It's not plastic — «Она не пластиковая». О вазе, стуле, бутылке, игрушке.",
+                "uk": "пластиковий. It's not plastic — «Вона не пластикова». Про вазу, стілець, пляшку, іграшку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plastic",
+            "definitionByLocale": {
+              "ru": "пластиковый. It's not plastic — «Она не пластиковая». О вазе, стуле, бутылке, игрушке.",
+              "uk": "пластиковий. It's not plastic — «Вона не пластикова». Про вазу, стілець, пляшку, іграшку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Віка стукає по вазі на сцені: звук дзвінкий, ваза скляна. Скажіть коротко, що вона не пластикова",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Віка стукає по вазі на сцені: звук дзвінкий, ваза скляна. Скажіть коротко, що вона не пластикова",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i07:audio",
+            "transcript": "It's not plastic."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's not plastic.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "До вистави година, а ви спокійні. Доповніть фразу про себе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "До вистави година, а ви спокійні. Доповніть фразу про себе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "До спектакля час, а вы спокойны. Дополните фразу о себе",
+            "uk": "До вистави година, а ви спокійні. Доповніть фразу про себе"
+          },
+          "gappedTargetPhrase": "I ___ not nervous.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-06:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "До вистави година, а ви спокійні. Доповніть фразу про себе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "До вистави година, а ви спокійні. Доповніть фразу про себе",
+              "feedbackByLocale": {
+                "ru": "Про себя — `I am not`.",
+                "uk": "Про себе — `I am not`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "До вистави година, а ви спокійні. Доповніть фразу про себе",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `am`.",
+                "uk": "Після `I` потрібно `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про Олега",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i09:r1",
+            "text": "He is not calm."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i09:r2",
+            "text": "He is not nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i09:r3",
+            "text": "He is not excited."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про Олега",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i09:audio",
+            "transcript": "He is not calm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:i09:r1",
+              "targetText": "He is not calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i09:r2",
+              "targetText": "He is not nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i09:r3",
+              "targetText": "He is not excited.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про Олега",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `nervous`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `nervous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про Олега",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `excited`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `excited`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-06:i10:p1",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i10:p2",
+              "target": "nervous",
+              "meaningByLocale": {
+                "ru": "нервничающий",
+                "uk": "той, хто нервує"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i10:p3",
+              "target": "excited",
+              "meaningByLocale": {
+                "ru": "радостно взволнованный",
+                "uk": "радісно схвильований"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i10:p4",
+              "target": "unknown",
+              "meaningByLocale": {
+                "ru": "неизвестный",
+                "uk": "невідомий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "calm",
+            "nervous",
+            "excited",
+            "unknown"
+          ],
+          "rightColumn": [
+            "спокійний",
+            "той, хто нервує",
+            "радісно схвильований",
+            "невідомий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Олег торкається троянд у вазі й нарешті вірить. Послухайте й складіть фразу про них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Олег торкається троянд у вазі й нарешті вірить. Послухайте й складіть фразу про них",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i11:audio",
+            "transcript": "They're not fake."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're not fake.",
+          "orderedTokens": [
+            "They're",
+            "not",
+            "fake"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Олег торкається троянд у вазі й нарешті вірить. Послухайте й складіть фразу про них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're not fake.`",
+                "uk": "тут потрібно `They're` — `They're not fake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Віка показує візерунок на завісі, а ви бачите його вперше. Скажіть, що він вам не знайомий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Віка показує візерунок на завісі, а ви бачите його вперше. Скажіть, що він вам не знайомий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not familiar.",
+          "localizedMeaning": {
+            "ru": "Вика показывает узор на занавесе, а вы видите его впервые. Скажите, что он вам не знаком",
+            "uk": "Віка показує візерунок на завісі, а ви бачите його вперше. Скажіть, що він вам не знайомий"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "familiar"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Віка показує візерунок на завісі, а ви бачите його вперше. Скажіть, що він вам не знайомий",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not familiar.`",
+                "uk": "тут потрібно `is` — `It is not familiar.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Репетицію призначили на сьому ранку, і радості у вас немає. Скажіть про себе коротко: «Я не в захваті»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Репетицію призначили на сьому ранку, і радості у вас немає. Скажіть про себе коротко: «Я не в захваті»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i13:audio",
+            "transcript": "I'm not excited."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm not excited.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лійка на сцені металева. Доповніть фразу про неї",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лійка на сцені металева. Доповніть фразу про неї",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Лейка на сцене металлическая. Дополните фразу о ней",
+            "uk": "Лійка на сцені металева. Доповніть фразу про неї"
+          },
+          "gappedTargetPhrase": "It ___ not plastic.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-06:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Лійка на сцені металева. Доповніть фразу про неї",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Лійка на сцені металева. Доповніть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Лійка на сцені металева. Доповніть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "Лейка одна, поэтому `It is not`.",
+                "uk": "Лійка одна, тому `It is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте коротку фразу про півонії й виберіть її",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-06:i15:r1",
+            "text": "They're not pink."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i15:r2",
+            "text": "They're not fresh."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i15:r3",
+            "text": "It's not pink."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте коротку фразу про півонії й виберіть її",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i15:audio",
+            "transcript": "They're not pink."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-06:i15:r1",
+              "targetText": "They're not pink.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i15:r2",
+              "targetText": "They're not fresh.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i15:r3",
+              "targetText": "It's not pink.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте коротку фразу про півонії й виберіть її",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pink`, а в этом варианте — `fresh`.",
+                "uk": "У записі останнє слово — `pink`, а в цьому варіанті — `fresh`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте коротку фразу про півонії й виберіть її",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `It's`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `It's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова минулого заняття й знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова минулого заняття й знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-06:i16:p1",
+              "target": "real",
+              "meaningByLocale": {
+                "ru": "настоящий",
+                "uk": "справжній"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i16:p2",
+              "target": "stale",
+              "meaningByLocale": {
+                "ru": "чёрствый",
+                "uk": "черствий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i16:p3",
+              "target": "familiar",
+              "meaningByLocale": {
+                "ru": "знакомый",
+                "uk": "знайомий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-06:i16:p4",
+              "target": "unfamiliar",
+              "meaningByLocale": {
+                "ru": "незнакомый",
+                "uk": "незнайомий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "real",
+            "stale",
+            "familiar",
+            "unfamiliar"
+          ],
+          "rightColumn": [
+            "справжній",
+            "черствий",
+            "знайомий",
+            "незнайомий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У музеї виставлено старовинний шолом. Друг Костя думає, що це підробка. Скажіть, що шолом не підроблений",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "У музеї виставлено старовинний шолом. Друг Костя думає, що це підробка. Скажіть, що шолом не підроблений",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-06:i17:audio",
+            "transcript": "It is not fake."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is not fake.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-06:word:fake",
+      "correctText": "fake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i01",
+      "correctText": "They are not fake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:word:fresh",
+      "correctText": "fresh",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i02",
+      "correctText": "It is not fake.",
+      "correctResponseId": "en:lesson-02:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-02:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i05",
+      "correctText": "It's not fresh.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:word:pink",
+      "correctText": "pink",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i06",
+      "correctText": "They are not pink.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:word:plastic",
+      "correctText": "plastic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i07",
+      "correctText": "It's not plastic.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i08",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i09",
+      "correctText": "He is not calm.",
+      "correctResponseId": "en:lesson-02:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i11",
+      "correctText": "They're not fake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i12",
+      "correctText": "It is not familiar.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i13",
+      "correctText": "I'm not excited.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-06:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i15",
+      "correctText": "They're not pink.",
+      "correctResponseId": "en:lesson-02:session-06:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:i17",
+      "correctText": "It is not fake.",
+      "correctResponseId": null
+    }
+  ]
+}

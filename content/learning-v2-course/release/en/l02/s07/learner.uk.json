@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-07:i01",
+      "interactionId": "en:lesson-02:session-07:word:necessary",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — necessary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:word:necessary:audio"
+      ],
+      "accessibilityLabel": "Картка слова — necessary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:word:necessary:audio",
+          "transcript": "necessary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-07:word:necessary:r1",
+            "targetText": "necessary",
+            "meaningByLocale": {
+              "ru": "нужный, необходимый. It's not necessary — «Это не нужно». О покупках, делах, вещах, без которых можно обойтись.",
+              "uk": "потрібний, необхідний. It's not necessary — «Це не потрібно». Про покупки, справи, речі, без яких можна обійтися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "necessary",
+          "definitionByLocale": {
+            "ru": "нужный, необходимый. It's not necessary — «Это не нужно». О покупках, делах, вещах, без которых можно обойтись.",
+            "uk": "потрібний, необхідний. It's not necessary — «Це не потрібно». Про покупки, справи, речі, без яких можна обійтися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-07:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друкувати запрошення для домашнього вечора не потрібно. Скажіть, що це необов’язково",
+      "prompt": "Друкувати запрошення на домашній вечір не потрібно. Скажіть про це",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друкувати запрошення для домашнього вечора не потрібно. Скажіть, що це необов’язково",
+      "accessibilityLabel": "Друкувати запрошення на домашній вечір не потрібно. Скажіть про це",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not necessary.",
         "localizedMeaning": {
-          "ru": "Печатать приглашение для домашнего вечера не требуется. Скажите, что это необязательно",
-          "uk": "Друкувати запрошення для домашнього вечора не потрібно. Скажіть, що це необов’язково"
+          "ru": "Печатать приглашения на домашний вечер не нужно. Скажите об этом",
+          "uk": "Друкувати запрошення на домашній вечір не потрібно. Скажіть про це"
         },
         "orderedTokens": [
           "It",
@@ -34,7 +77,7 @@
           {
             "responseId": "en:lesson-02:session-07:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друкувати запрошення для домашнього вечора не потрібно. Скажіть, що це необов’язково",
+            "testedDimension": "Друкувати запрошення на домашній вечір не потрібно. Скажіть про це",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is not necessary.`",
               "uk": "тут потрібно `is` — `It is not necessary.`"
@@ -49,8 +92,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-07:word:formal",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — formal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:word:formal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — formal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:word:formal:audio",
+          "transcript": "formal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-07:word:formal:r1",
+            "targetText": "formal",
+            "meaningByLocale": {
+              "ru": "официальный, строгий. It's not formal — «Он не официальный». О вечере, встрече, одежде, письме.",
+              "uk": "офіційний, суворий. It's not formal — «Він не офіційний». Про вечір, зустріч, одяг, лист."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "formal",
+          "definitionByLocale": {
+            "ru": "официальный, строгий. It's not formal — «Он не официальный». О вечере, встрече, одежде, письме.",
+            "uk": "офіційний, суворий. It's not formal — «Він не офіційний». Про вечір, зустріч, одяг, лист."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-07:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -62,7 +148,7 @@
         },
         {
           "responseId": "en:lesson-02:session-07:i02:r2",
-          "text": "It is not familiar."
+          "text": "It is not formal."
         },
         {
           "responseId": "en:lesson-02:session-07:i02:r3",
@@ -89,7 +175,7 @@
           },
           {
             "responseId": "en:lesson-02:session-07:i02:r2",
-            "targetText": "It is not familiar.",
+            "targetText": "It is not formal.",
             "meaningByLocale": null
           },
           {
@@ -105,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `necessary`, а в этом варианте — `familiar`.",
-              "uk": "У записі останнє слово — `necessary`, а в цьому варіанті — `familiar`."
+              "ru": "В записи последнее слово — `necessary`, а в этом варианте — `formal`.",
+              "uk": "У записі останнє слово — `necessary`, а в цьому варіанті — `formal`."
             }
           },
           {
@@ -126,11 +212,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу",
+      "prompt": "Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-07:i03:r1",
@@ -147,12 +233,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу",
+      "accessibilityLabel": "Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Два дополнительных стула не нужны: мест достаточно. Дополните фразу",
-          "uk": "Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу"
+          "ru": "Два лишних стула не нужны: мест хватает. Дополните фразу о них",
+          "uk": "Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них"
         },
         "gappedTargetPhrase": "They ___ not necessary.",
         "gapOptions": [
@@ -169,12 +255,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу",
+        "testedDimension": "Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу",
+            "testedDimension": "Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -183,10 +269,10 @@
           {
             "responseId": "en:lesson-02:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Два додаткові стільці не потрібні: місць достатньо. Доповніть фразу",
+            "testedDimension": "Два зайві стільці не потрібні: місць вистачає. Доповніть фразу про них",
             "feedbackByLocale": {
-              "ru": "Про два стула — `They are not`.",
-              "uk": "Про два стільці — `They are not`."
+              "ru": "Стульев два, поэтому `They are not`.",
+              "uk": "Стільців два, тому `They are not`."
             }
           }
         ]
@@ -195,15 +281,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -211,46 +297,46 @@
             "pairId": "en:lesson-02:session-07:i04:p1",
             "target": "necessary",
             "meaningByLocale": {
-              "ru": "необходимый",
-              "uk": "необхідний"
+              "ru": "нужный",
+              "uk": "потрібний"
             }
           },
           {
             "pairId": "en:lesson-02:session-07:i04:p2",
-            "target": "responsible",
+            "target": "important",
             "meaningByLocale": {
-              "ru": "ответственный",
-              "uk": "відповідальний"
+              "ru": "важный",
+              "uk": "важливий"
             }
           },
           {
             "pairId": "en:lesson-02:session-07:i04:p3",
-            "target": "independent",
+            "target": "formal",
             "meaningByLocale": {
-              "ru": "независимый",
-              "uk": "незалежний"
+              "ru": "официальный",
+              "uk": "офіційний"
             }
           },
           {
             "pairId": "en:lesson-02:session-07:i04:p4",
-            "target": "dependent",
+            "target": "simple",
             "meaningByLocale": {
-              "ru": "зависимый",
-              "uk": "залежний"
+              "ru": "простой",
+              "uk": "простий"
             }
           }
         ],
         "leftColumn": [
           "necessary",
-          "responsible",
-          "independent",
-          "dependent"
+          "important",
+          "formal",
+          "simple"
         ],
         "rightColumn": [
-          "необхідний",
-          "відповідальний",
-          "незалежний",
-          "залежний"
+          "потрібний",
+          "важливий",
+          "офіційний",
+          "простий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -268,29 +354,29 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу",
+      "prompt": "Діма знову питає, чи брати піджак. Послухайте й складіть відповідь про вечір",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-07:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "accessibilityLabel": "Діма знову питає, чи брати піджак. Послухайте й складіть відповідь про вечір",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-07:i05:audio",
-          "transcript": "It's not necessary."
+          "transcript": "It's not formal."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's not necessary.",
+        "hiddenTargetPhrase": "It's not formal.",
         "orderedTokens": [
           "It's",
           "not",
-          "necessary"
+          "formal"
         ],
         "authoredDistractorTokens": [
           "He's"
@@ -299,10 +385,10 @@
           {
             "responseId": "en:lesson-02:session-07:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу",
+            "testedDimension": "Діма знову питає, чи брати піджак. Послухайте й складіть відповідь про вечір",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's not necessary.`",
-              "uk": "тут потрібно `It's` — `It's not necessary.`"
+              "ru": "здесь нужно `It's` — `It's not formal.`",
+              "uk": "тут потрібно `It's` — `It's not formal.`"
             }
           }
         ],
@@ -314,28 +400,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-07:word:simple",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — simple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:word:simple:audio"
+      ],
+      "accessibilityLabel": "Картка слова — simple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:word:simple:audio",
+          "transcript": "simple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-07:word:simple:r1",
+            "targetText": "simple",
+            "meaningByLocale": {
+              "ru": "простой. They're not simple — «Они не простые». О правилах, заданиях, рецептах.",
+              "uk": "простий. They're not simple — «Вони не прості». Про правила, завдання, рецепти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "simple",
+          "definitionByLocale": {
+            "ru": "простой. They're not simple — «Они не простые». О правилах, заданиях, рецептах.",
+            "uk": "простий. They're not simple — «Вони не прості». Про правила, завдання, рецепти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-07:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Додаткові тарілки не потрібні: посуду вистачає. Скажіть про ці тарілки",
+      "prompt": "Правила нової гри займають двадцять сторінок. Скажіть, що вони не прості",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Додаткові тарілки не потрібні: посуду вистачає. Скажіть про ці тарілки",
+      "accessibilityLabel": "Правила нової гри займають двадцять сторінок. Скажіть, що вони не прості",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are not necessary.",
+        "targetPhrase": "They are not simple.",
         "localizedMeaning": {
-          "ru": "Дополнительные тарелки не нужны: посуды хватает. Скажите об этих тарелках",
-          "uk": "Додаткові тарілки не потрібні: посуду вистачає. Скажіть про ці тарілки"
+          "ru": "Правила новой игры занимают двадцать страниц. Скажите, что они не простые",
+          "uk": "Правила нової гри займають двадцять сторінок. Скажіть, що вони не прості"
         },
         "orderedTokens": [
           "They",
           "are",
           "not",
-          "necessary"
+          "simple"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -344,10 +473,10 @@
           {
             "responseId": "en:lesson-02:session-07:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Додаткові тарілки не потрібні: посуду вистачає. Скажіть про ці тарілки",
+            "testedDimension": "Правила нової гри займають двадцять сторінок. Скажіть, що вони не прості",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not necessary.`",
-              "uk": "тут потрібно `are` — `They are not necessary.`"
+              "ru": "здесь нужно `are` — `They are not simple.`",
+              "uk": "тут потрібно `are` — `They are not simple.`"
             }
           }
         ],
@@ -359,26 +488,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-07:word:important",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — important",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:word:important:audio"
+      ],
+      "accessibilityLabel": "Картка слова — important",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:word:important:audio",
+          "transcript": "important"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-07:word:important:r1",
+            "targetText": "important",
+            "meaningByLocale": {
+              "ru": "важный. It's not important — «Это не важно». О мелочах, ошибках, делах, которые могут подождать.",
+              "uk": "важливий. It's not important — «Це не важливо». Про дрібниці, помилки, справи, які можуть почекати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "important",
+          "definitionByLocale": {
+            "ru": "важный. It's not important — «Это не важно». О мелочах, ошибках, делах, которые могут подождать.",
+            "uk": "важливий. It's not important — «Це не важливо». Про дрібниці, помилки, справи, які можуть почекати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-07:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг пропонує роздрукувати правила, але ви можете читати їх з екрана. Коротко скажіть, що друкувати необов’язково",
+      "prompt": "Діма засмутився: він програв першу партію. Скажіть йому коротко, що це не важливо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-07:i07:audio"
       ],
-      "accessibilityLabel": "Друг пропонує роздрукувати правила, але ви можете читати їх з екрана. Коротко скажіть, що друкувати необов’язково",
+      "accessibilityLabel": "Діма засмутився: він програв першу партію. Скажіть йому коротко, що це не важливо",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-07:i07:audio",
-          "transcript": "It's not necessary."
+          "transcript": "It's not important."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's not necessary.",
+        "targetPhrase": "It's not important.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,11 +565,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг запізнився, але ви не сердитеся. Доповніть фразу про себе",
+      "prompt": "Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-07:i08:r1",
@@ -414,12 +586,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запізнився, але ви не сердитеся. Доповніть фразу про себе",
+      "accessibilityLabel": "Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг опоздал, но вы не сердитесь. Дополните фразу о себе",
-          "uk": "Друг запізнився, але ви не сердитеся. Доповніть фразу про себе"
+          "ru": "Дима опоздал на полчаса, но вы не сердитесь. Дополните фразу о себе",
+          "uk": "Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе"
         },
         "gappedTargetPhrase": "I ___ not angry.",
         "gapOptions": [
@@ -436,12 +608,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Друг запізнився, але ви не сердитеся. Доповніть фразу про себе",
+        "testedDimension": "Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Друг запізнився, але ви не сердитеся. Доповніть фразу про себе",
+            "testedDimension": "Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе",
             "feedbackByLocale": {
               "ru": "Про себя — `I am not`.",
               "uk": "Про себе — `I am not`."
@@ -450,7 +622,7 @@
           {
             "responseId": "en:lesson-02:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Друг запізнився, але ви не сердитеся. Доповніть фразу про себе",
+            "testedDimension": "Діма запізнився на пів години, але ви не сердитеся. Доповніть фразу про себе",
             "feedbackByLocale": {
               "ru": "После `I` нужно `am`.",
               "uk": "Після `I` потрібно `am`."
@@ -462,11 +634,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про друга",
+      "prompt": "Послухайте фразу про Діму",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-07:i09:r1",
@@ -485,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про друга",
+      "accessibilityLabel": "Послухайте фразу про Діму",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -515,7 +687,7 @@
           {
             "responseId": "en:lesson-02:session-07:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про друга",
+            "testedDimension": "Послухайте фразу про Діму",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `scared`, а в этом варианте — `angry`.",
               "uk": "У записі останнє слово — `scared`, а в цьому варіанті — `angry`."
@@ -524,7 +696,7 @@
           {
             "responseId": "en:lesson-02:session-07:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про друга",
+            "testedDimension": "Послухайте фразу про Діму",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `scared`, а в этом варианте — `responsible`.",
               "uk": "У записі останнє слово — `scared`, а в цьому варіанті — `responsible`."
@@ -538,8 +710,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте короткі початки з повними",
@@ -611,17 +783,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу",
+      "prompt": "Аня перерахувала стільці: двох зайвих не потрібно. Послухайте й складіть фразу про них",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-07:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу",
+      "accessibilityLabel": "Аня перерахувала стільці: двох зайвих не потрібно. Послухайте й складіть фразу про них",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -642,7 +814,7 @@
           {
             "responseId": "en:lesson-02:session-07:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу",
+            "testedDimension": "Аня перерахувала стільці: двох зайвих не потрібно. Послухайте й складіть фразу про них",
             "feedbackByLocale": {
               "ru": "здесь нужно `They're` — `They're not necessary.`",
               "uk": "тут потрібно `They're` — `They're not necessary.`"
@@ -658,21 +830,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Малюк поки не обходиться без постійної турботи дорослих. Скажіть, що він ще не незалежний",
+      "prompt": "Синові Діми три роки, мама сама годує й одягає його. Скажіть про нього: «Він поки не незалежний»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Малюк поки не обходиться без постійної турботи дорослих. Скажіть, що він ще не незалежний",
+      "accessibilityLabel": "Синові Діми три роки, мама сама годує й одягає його. Скажіть про нього: «Він поки не незалежний»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is not independent.",
         "localizedMeaning": {
-          "ru": "Малыш пока не обходится без постоянной заботы взрослых. Скажите, что он ещё не независим",
-          "uk": "Малюк поки не обходиться без постійної турботи дорослих. Скажіть, що він ще не незалежний"
+          "ru": "Сыну Димы три года, мама сама кормит и одевает его. Скажите о нём: «Он пока не независимый»",
+          "uk": "Синові Діми три роки, мама сама годує й одягає його. Скажіть про нього: «Він поки не незалежний»"
         },
         "orderedTokens": [
           "He",
@@ -687,7 +859,7 @@
           {
             "responseId": "en:lesson-02:session-07:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Малюк поки не обходиться без постійної турботи дорослих. Скажіть, що він ще не незалежний",
+            "testedDimension": "Синові Діми три роки, мама сама годує й одягає його. Скажіть про нього: «Він поки не незалежний»",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is not independent.`",
               "uk": "тут потрібно `is` — `He is not independent.`"
@@ -703,17 +875,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У грі попереду несподіване завдання, але вам не страшно. Коротко скажіть про це",
+      "prompt": "Вам випала картка «Страшна історія», але вам анітрохи не страшно. Скажіть коротко про себе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-07:i13:audio"
       ],
-      "accessibilityLabel": "У грі попереду несподіване завдання, але вам не страшно. Коротко скажіть про це",
+      "accessibilityLabel": "Вам випала картка «Страшна історія», але вам анітрохи не страшно. Скажіть коротко про себе",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -736,11 +908,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу",
+      "prompt": "Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-07:i14:r1",
@@ -757,14 +929,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу",
+      "accessibilityLabel": "Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Покупать новую игру не требуется: у вас уже есть подходящая. Дополните фразу",
-          "uk": "Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу"
+          "ru": "Вечер у Димы дома, без костюмов и галстуков. Дополните фразу о нём",
+          "uk": "Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього"
         },
-        "gappedTargetPhrase": "It ___ not necessary.",
+        "gappedTargetPhrase": "It ___ not formal.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-07:i14:r1",
@@ -779,12 +951,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу",
+        "testedDimension": "Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-07:i14:r2",
             "correct": false,
-            "testedDimension": "Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу",
+            "testedDimension": "Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -793,10 +965,10 @@
           {
             "responseId": "en:lesson-02:session-07:i14:r3",
             "correct": false,
-            "testedDimension": "Купувати нову гру не потрібно: у вас уже є відповідна. Доповніть фразу",
+            "testedDimension": "Вечір у Діми вдома, без костюмів і краваток. Доповніть фразу про нього",
             "feedbackByLocale": {
-              "ru": "Про это действие — `It is not`.",
-              "uk": "Про цю дію — `It is not`."
+              "ru": "Вечер один, поэтому `It is not`.",
+              "uk": "Вечір один, тому `It is not`."
             }
           }
         ]
@@ -805,7 +977,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -813,15 +985,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-07:i15:r1",
-          "text": "It's not necessary."
+          "text": "It's not important."
         },
         {
           "responseId": "en:lesson-02:session-07:i15:r2",
-          "text": "It's not real."
+          "text": "It's not necessary."
         },
         {
           "responseId": "en:lesson-02:session-07:i15:r3",
-          "text": "It's not fake."
+          "text": "It's not formal."
         }
       ],
       "mediaIds": [],
@@ -833,23 +1005,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-07:i15:audio",
-          "transcript": "It's not necessary."
+          "transcript": "It's not important."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-07:i15:r1",
-            "targetText": "It's not necessary.",
+            "targetText": "It's not important.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-07:i15:r2",
-            "targetText": "It's not real.",
+            "targetText": "It's not necessary.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-07:i15:r3",
-            "targetText": "It's not fake.",
+            "targetText": "It's not formal.",
             "meaningByLocale": null
           }
         ],
@@ -860,8 +1032,8 @@
             "correct": false,
             "testedDimension": "Послухайте коротку фразу й виберіть її",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `necessary`, а в этом варианте — `real`.",
-              "uk": "У записі останнє слово — `necessary`, а в цьому варіанті — `real`."
+              "ru": "В записи последнее слово — `important`, а в этом варианте — `necessary`.",
+              "uk": "У записі останнє слово — `important`, а в цьому варіанті — `necessary`."
             }
           },
           {
@@ -869,8 +1041,8 @@
             "correct": false,
             "testedDimension": "Послухайте коротку фразу й виберіть її",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `necessary`, а в этом варианте — `fake`.",
-              "uk": "У записі останнє слово — `necessary`, а в цьому варіанті — `fake`."
+              "ru": "В записи последнее слово — `important`, а в этом варианте — `formal`.",
+              "uk": "У записі останнє слово — `important`, а в цьому варіанті — `formal`."
             }
           }
         ],
@@ -881,28 +1053,36 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте слова минулого заняття й знайомі слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте слова минулого заняття й знайомі слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-07:i16:p1",
-            "target": "necessary",
+            "target": "fake",
             "meaningByLocale": {
-              "ru": "нужный",
-              "uk": "потрібний"
+              "ru": "поддельный",
+              "uk": "підроблений"
             }
           },
           {
             "pairId": "en:lesson-02:session-07:i16:p2",
+            "target": "fresh",
+            "meaningByLocale": {
+              "ru": "свежий",
+              "uk": "свіжий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-07:i16:p3",
             "target": "angry",
             "meaningByLocale": {
               "ru": "сердитый",
@@ -910,33 +1090,25 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-07:i16:p3",
+            "pairId": "en:lesson-02:session-07:i16:p4",
             "target": "scared",
             "meaningByLocale": {
               "ru": "испуганный",
               "uk": "наляканий"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-07:i16:p4",
-            "target": "responsible",
-            "meaningByLocale": {
-              "ru": "ответственный",
-              "uk": "відповідальний"
-            }
           }
         ],
         "leftColumn": [
-          "necessary",
+          "fake",
+          "fresh",
           "angry",
-          "scared",
-          "responsible"
+          "scared"
         ],
         "rightColumn": [
-          "потрібний",
+          "підроблений",
+          "свіжий",
           "сердитий",
-          "наляканий",
-          "відповідальний"
+          "наляканий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,17 +1126,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-07:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У поїздці друг пропонує роздрукувати карту, але потрібний маршрут уже збережений у вас у телефоні. За умовою паперова копія не потрібна. Скажіть, що друкувати необов’язково",
+      "prompt": "Друг Костя пропонує роздрукувати карту для поїздки, але маршрут уже збережено у вас у телефоні. Скажіть, що друкувати не потрібно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-07:i17:audio"
       ],
-      "accessibilityLabel": "У поїздці друг пропонує роздрукувати карту, але потрібний маршрут уже збережений у вас у телефоні. За умовою паперова копія не потрібна. Скажіть, що друкувати необов’язково",
+      "accessibilityLabel": "Друг Костя пропонує роздрукувати карту для поїздки, але маршрут уже збережено у вас у телефоні. Скажіть, що друкувати не потрібно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -994,11 +1166,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fbd0633a6eda09d04bf1c11ae638123f0f5d0d62f4b51364e2671aef502370f0"
+  "learnerFingerprint": "8d3e3b3cfa866bd9754d0edfebdabbf80915f599f523685276a071994760b613"
 }

@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-03:word:aware",
+    "correctText": "aware",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-03:i01",
     "correctText": "He is not aware.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-03:word:convinced",
+    "correctText": "convinced",
     "correctResponseId": null
   },
   {
@@ -10,13 +20,18 @@
     "correctResponseId": "en:lesson-02:session-03:i02:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-03:word:concerned",
+    "correctText": "concerned",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-03:i03",
     "correctText": "are",
     "correctResponseId": "en:lesson-02:session-03:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-03:i04",
-    "correctText": "en:lesson-02:session-03:i04:p1=aware\nen:lesson-02:session-03:i04:p2=convinced\nen:lesson-02:session-03:i04:p3=concerned\nen:lesson-02:session-03:i04:p4=confident",
+    "correctText": "en:lesson-02:session-03:i04:p1=aware\nen:lesson-02:session-03:i04:p2=convinced\nen:lesson-02:session-03:i04:p3=concerned\nen:lesson-02:session-03:i04:p4=postponed",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-03:word:postponed",
+    "correctText": "postponed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-03:i13",
-    "correctText": "It is not heavy.",
+    "correctText": "It is not postponed.",
     "correctResponseId": null
   },
   {

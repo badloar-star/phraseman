@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 8 — Вечер без догадок
 
-**Ситуация.** Вы с друзьями готовите небольшой показ спектакля. Обсуждаете готовность людей, понятность объявлений и реквизит.
+**Ситуация.** Вы с друзьями показываете небольшой спектакль. До начала час: проверяете реквизит, декорации и зал. Это последнее занятие первой главы второго урока: по ходу повторим её слова.
 
-**Что вы освоите:** выбрать точное отрицание с am, is или are и словами первой главы второго урока
-**Новые слова:** —
+**Что вы освоите:** сказать, что вещь не сломана, работа не закончена, что-то не разрешено или не темно, и повторить слова первой главы
+**Новые слова:** broken, finished, allowed, dark
+**Возвращаются:** sure, comfortable, relaxed, interested, confident, satisfied, real, fake, fresh, pink, necessary, important, formal, stale
 
 ---
 
 ## Интро 1
 
-### Связка остаётся
+### Меч за кулисами
 
-Для отрицания `not` стоит после `am`, `is` или `are`. `I am not sure` — «Я не уверен», `She is not interested` — «Ей неинтересно». Не выбрасывайте связку: `not` занимает своё место, а не чужое.
+За кулисами актёр Паша роняет деревянный меч, и режиссёр Нина ахает. Вы поднимаете меч и осматриваете: целый, ни трещинки. broken — «сломанный». It is not broken, коротко It's not broken — «Он не сломан».
 
-**Вы не уверены, во сколько начнётся показ. Скажите об этом.**
+**Нина спрашивает, не сломан ли меч. Ответьте коротко, что он не сломан.**
 
-- ✅ **I am not sure.**
-- ❌ I not sure. — *Перед `not` нужно `am`: `I am not sure`.*
-- ❌ I am sure. — *Без `not` это уверенность. В условии вы сомневаетесь.*
+- ✅ **It's not broken.**
+- ❌ It's broken. — *Без not выходит «Он сломан». А меч целый: It's not broken.*
+- ❌ He's not broken. — *He's — о мужчине. Про меч говорим It's.*
 
 ---
 
 ## Интро 2
 
-### Сокращаем начало
+### Картонный дом
 
-`We are not comfortable` и `We're not comfortable` значат «Нам неудобно». В сокращении `not` по-прежнему отдельно. Про сестру можно сказать `She's not relaxed`: она не расслаблена.
+До показа час, а вы с Пашей ещё красите картонный дом для сцены: одна стена готова, вторая серая. finished — «законченный». We are not finished, коротко We're not finished — «Мы не закончили».
 
-**Вам с другом неудобно на узкой скамье. Коротко скажите за вас обоих.**
+**Нина спрашивает, закончили ли вы с Пашей. Ответьте полной фразой за вас обоих, что вы не закончили.**
 
-- ✅ **We're not comfortable.**
-- ❌ We're comfortable. — *Без `not` получается «Нам удобно».*
-- ❌ She's not comfortable. — *Это про неё. Про вас обоих — `We're`.*
+- ✅ **We are not finished.**
+- ❌ We are finished. — *Без not выходит «Мы закончили». А вторая стена ещё серая: We are not finished.*
+- ❌ They are not finished. — *They — о других людях. О вас с Пашей говорим We.*
 
 ---
 
 ## Интро 3
 
-### Что именно отрицаем
+### Телефон в третьем ряду
 
-`It is not real` — не настоящее; `It is not fake` — не подделка; `It is not necessary` — необязательно. Одно маленькое `not` меняет смысл. Перед вами настоящий букет среди пластиковых декораций: цветам повезло, им досталась настоящая вода.
+Зрители рассаживаются. Мальчик в третьем ряду поднимает телефон, чтобы снимать, а на двери зала висит табличка с перечёркнутой камерой. allowed — «разрешённый». It is not allowed, коротко It's not allowed — «Это не разрешено».
 
-**Букет настоящий. Друг принял его за искусственный. Скажите, что он не искусственный.**
+**Мама мальчика спрашивает у вас, можно ли снимать. Ответьте коротко, что это не разрешено.**
 
-- ✅ **It is not fake.**
-- ❌ It is not real. — *Это «Не настоящий», а букет настоящий. Нужно `not fake`.*
-- ❌ It is fake. — *Это искусственный букет. Здесь требуется отрицание.*
+- ✅ **It's not allowed.**
+- ❌ It's allowed. — *Без not выходит «Это разрешено». А на двери табличка: It's not allowed.*
+- ❌ It's not necessary. — *necessary — «нужный». Выйдет «Это не нужно», а снимать запрещено: allowed.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы сомневаетесь во времени начала. Скажите, что не уверены**
+**1 · Нина спрашивает, во сколько придут зрители, а вы точно не знаете. Скажите, что не уверены**
 <!-- interaction_id: en:lesson-02:session-08:i01; family: phrase_builder -->
 Плитки: `sure` `not` `am` `I` `is` → **I am not sure.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am not sure.`)*
 
-**2 · Послушайте фразу о сестре**
+**2 · Послушайте фразу о сестре Паши**
 <!-- interaction_id: en:lesson-02:session-08:i02; family: listen_choose -->
 🔊 *She is not interested.* → **She is not interested.** · She is not relaxed. · She is not confident.
 - She is not relaxed. — *В записи последнее слово — `interested`, а в этом варианте — `relaxed`.*
 - She is not confident. — *В записи последнее слово — `interested`, а в этом варианте — `confident`.*
 
-**3 · Вам обоим неудобно сидеть. Дополните фразу**
+**3 · Вам с Пашей неудобно на узкой скамейке за кулисами. Дополните фразу**
 <!-- interaction_id: en:lesson-02:session-08:i03; family: context_gap_grammar -->
 We ___ not comfortable. → **are** · am · is
 - am — *После `We` нужно `are`.*
-- is — *Про нас — `We are not`.*
+- is — *Вас двое, поэтому `We are not`.*
 
-**4 · Соедините состояния со значениями**
+**4 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-02:session-08:i04; family: speed_match -->
-confident — уверенный в себе · relaxed — расслабленный · satisfied — довольный результатом · concerned — обеспокоенный
+broken — сломанный · finished — законченный · allowed — разрешённый · dark — тёмный
 
-**5 · Послушайте и соберите короткую фразу**
+**5 · Карточка слова — broken**
+<!-- interaction_id: en:lesson-02:session-08:word:broken; family: word_card -->
+> **broken** — сломанный. It's not broken — «Он не сломан». О мече, лампе, стуле, телефоне.
+
+**6 · Паша проверяет фонарь для сцены: он светит. Послушайте и соберите фразу о фонаре**
 <!-- interaction_id: en:lesson-02:session-08:i05; family: listen_build_dictation -->
-🔊 *I'm not convinced.* Плитки: `convinced` `not` `I'm` `He's` → **I'm not convinced.**
-*(плитка `He's` лишняя: здесь нужно `I'm` — `I'm not convinced.`)*
+🔊 *It's not broken.* Плитки: `broken` `not` `It's` `He's` → **It's not broken.**
+*(плитка `He's` лишняя: здесь нужно `It's` — `It's not broken.`)*
 
-**6 · Олег ещё не знает, что показ перенесли. Вы обсуждаете эту новость. Скажите, что он не в курсе**
+**7 · Карточка слова — dark**
+<!-- interaction_id: en:lesson-02:session-08:word:dark; family: word_card -->
+> **dark** — тёмный. It's not dark — «Не темно». О комнате, улице, сцене.
+
+**8 · Осветитель включил все лампы над сценой. Скажите, что на сцене не темно**
 <!-- interaction_id: en:lesson-02:session-08:i06; family: phrase_builder -->
-Плитки: `aware` `not` `is` `He` `are` → **He is not aware.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is not aware.`)*
+Плитки: `dark` `not` `is` `It` `are` → **It is not dark.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not dark.`)*
 
-**7 · Объяснение организатора запутанное. Коротко скажите, что оно непонятно**
+**9 · Карточка слова — allowed**
+<!-- interaction_id: en:lesson-02:session-08:word:allowed; family: word_card -->
+> **allowed** — разрешённый. It's not allowed — «Это не разрешено». О съёмке, еде в зале, парковке.
+
+**10 · Ваша соседка Лида в первом ряду открывает пакет с чипсами, а еду в зал приносить нельзя. Скажите Лиде коротко, что это не разрешено**
 <!-- interaction_id: en:lesson-02:session-08:i07; family: scripted_repeat_compare -->
-🎙 **It's not clear.**
+🎙 **It's not allowed.**
 
-**8 · Указатель полностью закрыт декорацией. Дополните фразу о том, что его не видно**
+**11 · Карточка слова — finished**
+<!-- interaction_id: en:lesson-02:session-08:word:finished; family: word_card -->
+> **finished** — законченный. We're not finished — «Мы не закончили». О работе, уборке, ремонте и о людях, которые ещё заняты делом.
+
+**12 · Нина заглядывает за кулисы, а вы с Пашей ещё клеите афишу. Дополните фразу о вас**
 <!-- interaction_id: en:lesson-02:session-08:i08; family: context_gap_grammar -->
-It ___ not visible. → **is** · am · are
-- am — *После `It` нужно `is`.*
-- are — *Про один указатель — `It is not`.*
+We ___ not finished. → **are** · am · is
+- am — *После `We` нужно `are`.*
+- is — *Вас двое, поэтому `We are not`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте фразу о декорации**
 <!-- interaction_id: en:lesson-02:session-08:i09; family: listen_choose -->
-🔊 *It is not hidden.* → **It is not hidden.** · It is not visible. · It is not clear.
-- It is not visible. — *В записи последнее слово — `hidden`, а в этом варианте — `visible`.*
-- It is not clear. — *В записи последнее слово — `hidden`, а в этом варианте — `clear`.*
+🔊 *It is not finished.* → **It is not finished.** · It is not broken. · It is not real.
+- It is not broken. — *В записи последнее слово — `finished`, а в этом варианте — `broken`.*
+- It is not real. — *В записи последнее слово — `finished`, а в этом варианте — `real`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова первой главы со значениями**
 <!-- interaction_id: en:lesson-02:session-08:i10; family: speed_match -->
-aware — в курсе · convinced — убеждённый · visible — видимый · hidden — спрятанный
+real — настоящий · fake — поддельный · fresh — свежий · stale — чёрствый
 
-**11 · Послушайте и соберите короткую фразу**
+**15 · Паша держит пластиковые яблоки для сцены. Послушайте и соберите фразу о них**
 <!-- interaction_id: en:lesson-02:session-08:i11; family: listen_build_dictation -->
 🔊 *They're not real.* Плитки: `real` `not` `They're` `He's` → **They're not real.**
 *(плитка `He's` лишняя: здесь нужно `They're` — `They're not real.`)*
 
-**12 · Букет настоящий. Скажите другу, что он не искусственный**
+**16 · Букет на сцене живой. Скажите Паше, что он не поддельный**
 <!-- interaction_id: en:lesson-02:session-08:i12; family: phrase_builder -->
 Плитки: `fake` `not` `is` `It` `are` → **It is not fake.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is not fake.`)*
 
-**13 · Вас с другом не устраивает результат репетиции. Коротко скажите, что вы недовольны**
+**17 · Репетиция прошла кое-как, и вы с Пашей недовольны. Скажите коротко за вас обоих**
 <!-- interaction_id: en:lesson-02:session-08:i13; family: scripted_repeat_compare -->
 🎙 **We're not satisfied.**
 
-**14 · Мест хватает: два дополнительных стула не нужны. Дополните фразу о них**
+**18 · Мест в зале хватает: два лишних стула не нужны. Дополните фразу о них**
 <!-- interaction_id: en:lesson-02:session-08:i14; family: context_gap_grammar -->
 They ___ not necessary. → **are** · am · is
 - am — *После `They` нужно `are`.*
-- is — *Про два стула — `They are not`.*
+- is — *Стульев два, поэтому `They are not`.*
 
-**15 · Послушайте короткую фразу и выберите её**
+**19 · Послушайте короткую фразу о Нине**
 <!-- interaction_id: en:lesson-02:session-08:i15; family: listen_choose -->
-🔊 *She's not concerned.* → **She's not concerned.** · She's not convinced. · She's not aware.
-- She's not convinced. — *В записи последнее слово — `concerned`, а в этом варианте — `convinced`.*
-- She's not aware. — *В записи последнее слово — `concerned`, а в этом варианте — `aware`.*
+🔊 *She's not confident.* → **She's not confident.** · She's not interested. · She's not satisfied.
+- She's not interested. — *В записи последнее слово — `confident`, а в этом варианте — `interested`.*
+- She's not satisfied. — *В записи последнее слово — `confident`, а в этом варианте — `satisfied`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова первой главы со значениями**
 <!-- interaction_id: en:lesson-02:session-08:i16; family: speed_match -->
-real — настоящий · fake — поддельный · necessary — необходимый · clear — понятный
+necessary — нужный · important — важный · formal — официальный · pink — розовый
 
-**17 · После показа друг предлагает заменить декорации и объясняет свой выбор. Его доводы вас пока не убедили. Скажите, что вы не убеждены**
+**21 · После показа Нина хочет оставить декорации в зале до утра, но охранник сказал, что нельзя. Скажите Нине, что это не разрешено**
 <!-- interaction_id: en:lesson-02:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am not convinced.**
-
+🎙 **It is not allowed.**

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-11",
   "learningOutcomeByLocale": {
-    "ru": "уточнить срочность, сообщить о ней или сказать, что дело может подождать",
-    "uk": "уточнити терміновість, повідомити про неї або сказати, що справа може зачекати"
+    "ru": "спросить, срочно ли дело, и сказать, что рисунок не подписан, не в рамке, а коробка не заклеена",
+    "uk": "запитати, чи справа термінова, і сказати, що малюнок не підписаний, не в рамці, а коробка не заклеєна"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Срочно — значит не ждёт",
-        "uk": "Терміново — значить не чекає"
+        "ru": "Звонок соседки",
+        "uk": "Дзвінок сусідки"
       },
       "bodyByLocale": {
-        "ru": "`urgent` — «срочный», требующий скорого действия. `It is urgent` — «Это срочно», коротко `It's urgent`. Курьер уже едет, поэтому адрес на коробке нужен сейчас. Выбор печенья к открытию выставки подождёт, даже если любитель печенья не согласен.",
-        "uk": "`urgent` — «терміновий», що потребує швидкої дії. `It is urgent` — «Це терміново», коротко `It's urgent`. Кур’єр уже їде, тому адреса на коробці потрібна зараз. Вибір печива до відкриття виставки зачекає, навіть якщо любитель печива не згоден."
+        "ru": "Вы с Леной упаковываете рисунки, и тут звонит соседка Галя: просит помочь донести сумки до лифта. А курьер за коробкой приедет через десять минут. urgent — «срочный». Is it urgent? — «Это срочно?»",
+        "uk": "Ви з Оленою пакуєте малюнки, і тут дзвонить сусідка Галя: просить допомогти донести сумки до ліфта. А кур’єр по коробку приїде за десять хвилин. urgent — «терміновий». Is it urgent? — «Це терміново?»"
       },
       "question": {
         "interactionId": "en:lesson-02:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "Курьер вот-вот приедет, а коробка без адреса. Друг знает, что речь об адресе. Коротко скажите, что это срочно.",
-          "uk": "Кур’єр ось-ось приїде, а коробка без адреси. Друг знає, що йдеться про адресу. Коротко скажіть, що це терміново."
+          "ru": "Спросите Галю, срочно ли ей нужна помощь.",
+          "uk": "Запитайте Галю, чи терміново їй потрібна допомога."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-11:intro1:r1",
-              "text": "It's urgent."
+              "text": "Is it urgent?"
             },
             {
               "responseId": "en:lesson-02:session-11:intro1:r2",
-              "text": "It's not urgent."
+              "text": "It is urgent."
             },
             {
               "responseId": "en:lesson-02:session-11:intro1:r3",
-              "text": "They're urgent."
+              "text": "Are it urgent?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-11:intro1:r1",
-              "text": "It's urgent."
+              "text": "Is it urgent?"
             },
             {
               "responseId": "en:lesson-02:session-11:intro1:r2",
-              "text": "It's not urgent."
+              "text": "It is urgent."
             },
             {
               "responseId": "en:lesson-02:session-11:intro1:r3",
-              "text": "They're urgent."
+              "text": "Are it urgent?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Курьер вот-вот приедет, а коробка без адреса. Друг знает, что речь об адресе. Коротко скажите, что это срочно.",
-          "uk": "Кур’єр ось-ось приїде, а коробка без адреси. Друг знає, що йдеться про адресу. Коротко скажіть, що це терміново."
+          "ru": "Спросите Галю, срочно ли ей нужна помощь.",
+          "uk": "Запитайте Галю, чи терміново їй потрібна допомога."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спросите, можно ли подождать",
-        "uk": "Запитайте, чи можна зачекати"
+        "ru": "Зимний лес без подписи",
+        "uk": "Зимовий ліс без підпису"
       },
       "bodyByLocale": {
-        "ru": "`Is it urgent?` — «Это срочно?» Вы уточняете, насколько быстро нужно действовать. Не каждое важное дело срочное: выставка через месяц важна, но выбрать угощение можно позже.",
-        "uk": "`Is it urgent?` — «Це терміново?» Ви уточнюєте, наскільки швидко потрібно діяти. Не кожна важлива справа термінова: виставка за місяць важлива, але вибрати частування можна пізніше."
+        "ru": "Лена берёт последний рисунок, зимний лес. Вы смотрите в нижний угол: пусто, подписи художницы нет. signed — «подписанный». It is not signed, коротко It's not signed — «Он не подписан».",
+        "uk": "Олена бере останній малюнок, зимовий ліс. Ви дивитеся в нижній кут: порожньо, підпису художниці немає. signed — «підписаний». It is not signed, коротко It's not signed — «Він не підписаний»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "Друг просит посмотреть его новый рисунок. Спросите, срочно ли это.",
-          "uk": "Друг просить подивитися його новий малюнок. Запитайте, чи це терміново."
+          "ru": "Лена спрашивает, подписан ли рисунок. Ответьте коротко, что он не подписан.",
+          "uk": "Олена питає, чи підписаний малюнок. Відповідайте коротко, що він не підписаний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-11:intro2:r1",
-              "text": "Is it urgent?"
+              "text": "It's not signed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro2:r2",
-              "text": "Are it urgent?"
+              "text": "It's signed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro2:r3",
-              "text": "Is urgent it?"
+              "text": "She's not signed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-11:intro2:r1",
-              "text": "Is it urgent?"
+              "text": "It's not signed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro2:r2",
-              "text": "Are it urgent?"
+              "text": "It's signed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro2:r3",
-              "text": "Is urgent it?"
+              "text": "She's not signed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг просит посмотреть его новый рисунок. Спросите, срочно ли это.",
-          "uk": "Друг просить подивитися його новий малюнок. Запитайте, чи це терміново."
+          "ru": "Лена спрашивает, подписан ли рисунок. Ответьте коротко, что он не подписан.",
+          "uk": "Олена питає, чи підписаний малюнок. Відповідайте коротко, що він не підписаний."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сейчас можно не спешить",
-        "uk": "Зараз можна не поспішати"
+        "ru": "Два голых листа",
+        "uk": "Два голі аркуші"
       },
       "bodyByLocale": {
-        "ru": "`It is not urgent` — «Это не срочно». Коротко — `It's not urgent`. Вы не говорите, что дело бесполезно или не нужно: просто оно может подождать.",
-        "uk": "`It is not urgent` — «Це не терміново». Коротко — `It's not urgent`. Ви не кажете, що справа марна чи не потрібна: просто вона може зачекати."
+        "ru": "Два маленьких рисунка лежат на столе просто листами: рамки к ним ещё не купили. framed — «в рамке». They are not framed — «Они не в рамке». Рисунков два, поэтому They.",
+        "uk": "Два маленькі малюнки лежать на столі просто аркушами: рамки до них ще не купили. framed — «у рамці». They are not framed — «Вони не в рамці». Малюнків два, тому They."
       },
       "question": {
         "interactionId": "en:lesson-02:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "Цвет салфеток можно выбрать завтра. Скажите, что это не срочно.",
-          "uk": "Колір серветок можна вибрати завтра. Скажіть, що це не терміново."
+          "ru": "Лена спрашивает про два маленьких рисунка. Ответьте полной фразой, что они не в рамке.",
+          "uk": "Олена питає про два маленькі малюнки. Відповідайте повною фразою, що вони не в рамці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-11:intro3:r1",
-              "text": "It is not urgent."
+              "text": "They are not framed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro3:r2",
-              "text": "It is urgent."
+              "text": "They is not framed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro3:r3",
-              "text": "It not urgent."
+              "text": "They are not signed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-11:intro3:r1",
-              "text": "It is not urgent."
+              "text": "They are not framed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro3:r2",
-              "text": "It is urgent."
+              "text": "They is not framed."
             },
             {
               "responseId": "en:lesson-02:session-11:intro3:r3",
-              "text": "It not urgent."
+              "text": "They are not signed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Цвет салфеток можно выбрать завтра. Скажите, что это не срочно.",
-          "uk": "Колір серветок можна вибрати завтра. Скажіть, що це не терміново."
+          "ru": "Лена спрашивает про два маленьких рисунка. Ответьте полной фразой, что они не в рамке.",
+          "uk": "Олена питає про два маленькі малюнки. Відповідайте повною фразою, що вони не в рамці."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "49ef86b18529b12224fcdf63ff31b31dd68212afd2159ea6a4156ff27e50d3be"
+  "introFingerprint": "8a16c39bbe0f8a0415f8a1632656ad6b295777bf83dd405290b4a6910ae35268"
 }

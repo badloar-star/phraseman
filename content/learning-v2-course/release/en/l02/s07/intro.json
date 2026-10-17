@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-07",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что вещь или действие не обязательно, сохраняя not после be",
-    "uk": "сказати, що річ або дія не обов’язкова, зберігаючи not після be"
+    "ru": "сказать, что что-то не нужно, не важно, не строго и не просто",
+    "uk": "сказати, що щось не потрібно, не важливо, не суворо й не просто"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-02:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Можно обойтись",
-        "uk": "Можна обійтися"
+        "ru": "Новая скатерть",
+        "uk": "Нова скатертина"
       },
       "bodyByLocale": {
-        "ru": "`necessary` — «необходимый», «нужный». `It is not necessary` — «Это не обязательно» или «В этом нет необходимости». Для вечера у друзей не требуется распечатывать приглашение. Особенно если друг уже сидит у вас на кухне.",
-        "uk": "`necessary` — «необхідний», «потрібний». `It is not necessary` — «Це не обов’язково» або «У цьому немає потреби». Для вечора у друзів не потрібно друкувати запрошення. Особливо якщо друг уже сидить у вас на кухні."
+        "ru": "Вы зовёте друзей на вечер настольных игр. Мама советует купить новую скатерть: «Гости же!» Но стол чистый, а на нём всё равно будут карточки и чипсы. necessary — «нужный». It is not necessary, коротко It's not necessary — «Это не нужно».",
+        "uk": "Ви кличете друзів на вечір настільних ігор. Мама радить купити нову скатертину: «Гості ж!» Але стіл чистий, а на ньому однаково будуть картки й чипси. necessary — «потрібний». It is not necessary, коротко It's not necessary — «Це не потрібно»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-07:intro1:q",
         "promptByLocale": {
-          "ru": "Распечатывать приглашение для домашней встречи не требуется. Скажите, что это необязательно.",
-          "uk": "Друкувати запрошення на домашню зустріч не потрібно. Скажіть, що це необов’язково."
+          "ru": "Мама спрашивает, покупать ли новую скатерть. Ответьте коротко, что это не нужно.",
+          "uk": "Мама питає, чи купувати нову скатертину. Відповідайте коротко, що це не потрібно."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-07:intro1:r1",
-              "text": "It is not necessary."
+              "text": "It's not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r2",
-              "text": "It is necessary."
+              "text": "It's necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r3",
-              "text": "It not necessary."
+              "text": "I'm not necessary."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-07:intro1:r1",
-              "text": "It is not necessary."
+              "text": "It's not necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r2",
-              "text": "It is necessary."
+              "text": "It's necessary."
             },
             {
               "responseId": "en:lesson-02:session-07:intro1:r3",
-              "text": "It not necessary."
+              "text": "I'm not necessary."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Распечатывать приглашение для домашней встречи не требуется. Скажите, что это необязательно.",
-          "uk": "Друкувати запрошення на домашню зустріч не потрібно. Скажіть, що це необов’язково."
+          "ru": "Мама спрашивает, покупать ли новую скатерть. Ответьте коротко, что это не нужно.",
+          "uk": "Мама питає, чи купувати нову скатертину. Відповідайте коротко, що це не потрібно."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-02:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Не обязательно — не значит запрещено",
-        "uk": "Не обов’язково — не означає заборонено"
+        "ru": "Пиджак или свитер",
+        "uk": "Піджак чи светр"
       },
       "bodyByLocale": {
-        "ru": "`It's not necessary` — короткая форма `It is not necessary`. Фраза позволяет обойтись без действия, но сама по себе не запрещает его. Если можно прийти без подарка, это ещё не запрет приносить подарок.",
-        "uk": "`It's not necessary` — коротка форма `It is not necessary`. Фраза дозволяє обійтися без дії, але сама по собі не забороняє її. Якщо можна прийти без подарунка, це ще не заборона приносити подарунок."
+        "ru": "Гость Дима пишет вам: «В чём приходить? Брать пиджак?» Вечер у вас дома, все будут в свитерах и тапках. formal — «официальный», «строгий». It is not formal — «Он не официальный».",
+        "uk": "Гість Діма пише вам: «У чому приходити? Брати піджак?» Вечір у вас удома, усі будуть у светрах і капцях. formal — «офіційний», «суворий». It is not formal — «Він не офіційний»."
       },
       "question": {
         "interactionId": "en:lesson-02:session-07:intro2:q",
         "promptByLocale": {
-          "ru": "Для этого вечера подарок не обязателен, но принести его можно. Коротко скажите, что в нём нет необходимости.",
-          "uk": "Для цього вечора подарунок не обов’язковий, але принести його можна. Коротко скажіть, що в ньому немає потреби."
+          "ru": "Дима спрашивает, строгий ли вечер. Ответьте полной фразой, что он не официальный.",
+          "uk": "Діма питає, чи суворий вечір. Відповідайте повною фразою, що він не офіційний."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-07:intro2:r1",
-              "text": "It's not necessary."
+              "text": "It is not formal."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r2",
-              "text": "It's necessary."
+              "text": "It is formal."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r3",
-              "text": "They're not necessary."
+              "text": "He is not formal."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-07:intro2:r1",
-              "text": "It's not necessary."
+              "text": "It is not formal."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r2",
-              "text": "It's necessary."
+              "text": "It is formal."
             },
             {
               "responseId": "en:lesson-02:session-07:intro2:r3",
-              "text": "They're not necessary."
+              "text": "He is not formal."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Для этого вечера подарок не обязателен, но принести его можно. Коротко скажите, что в нём нет необходимости.",
-          "uk": "Для цього вечора подарунок не обов’язковий, але принести його можна. Коротко скажіть, що в ньому немає потреби."
+          "ru": "Дима спрашивает, строгий ли вечер. Ответьте полной фразой, что он не официальный.",
+          "uk": "Діма питає, чи суворий вечір. Відповідайте повною фразою, що він не офіційний."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Несколько вещей",
-        "uk": "Кілька речей"
+        "ru": "Коробка с новой игрой",
+        "uk": "Коробка з новою грою"
       },
       "bodyByLocale": {
-        "ru": "Про несколько необязательных вещей — `They are not necessary`, коротко `They're not necessary`. Слово `necessary` остаётся тем же. Например, дополнительные стулья не нужны, если мест уже достаточно.",
-        "uk": "Про кілька необов’язкових речей — `They are not necessary`, коротко `They're not necessary`. Слово `necessary` залишається тим самим. Наприклад, додаткові стільці не потрібні, якщо місць уже достатньо."
+        "ru": "Дима приносит новую игру. Вы открываете коробку: книга правил толщиной с кирпич и сорок видов карточек. simple — «простой». They are not simple, коротко They're not simple — «Они не простые». Правил много, поэтому They.",
+        "uk": "Діма приносить нову гру. Ви відкриваєте коробку: книжка правил завтовшки з цеглину й сорок видів карток. simple — «простий». They are not simple, коротко They're not simple — «Вони не прості». Правил багато, тому They."
       },
       "question": {
         "interactionId": "en:lesson-02:session-07:intro3:q",
         "promptByLocale": {
-          "ru": "Стульев хватает всем гостям. Два дополнительных стула не нужны. Скажите об этих двух стульях.",
-          "uk": "Стільців вистачає всім гостям. Два додаткові стільці не потрібні. Скажіть про ці два стільці."
+          "ru": "Ваша сестра Аня спрашивает, простые ли правила. Ответьте коротко, что они не простые.",
+          "uk": "Ваша сестра Аня питає, чи прості правила. Відповідайте коротко, що вони не прості."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-07:intro3:r1",
-              "text": "They are not necessary."
+              "text": "They're not simple."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r2",
-              "text": "They is not necessary."
+              "text": "It's not simple."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r3",
-              "text": "They are necessary."
+              "text": "They're simple."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-07:intro3:r1",
-              "text": "They are not necessary."
+              "text": "They're not simple."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r2",
-              "text": "They is not necessary."
+              "text": "It's not simple."
             },
             {
               "responseId": "en:lesson-02:session-07:intro3:r3",
-              "text": "They are necessary."
+              "text": "They're simple."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Стульев хватает всем гостям. Два дополнительных стула не нужны. Скажите об этих двух стульях.",
-          "uk": "Стільців вистачає всім гостям. Два додаткові стільці не потрібні. Скажіть про ці два стільці."
+          "ru": "Ваша сестра Аня спрашивает, простые ли правила. Ответьте коротко, что они не простые.",
+          "uk": "Ваша сестра Аня питає, чи прості правила. Відповідайте коротко, що вони не прості."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d55e250923a9b879d1b11b9b47e10f2cf394f26c89840025e265c084e01ca433"
+  "introFingerprint": "931eeda77406ab87e943ed3713b981d005374b404b2cf3f5679b150efefca5f6"
 }

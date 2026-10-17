@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-04:word:visible",
+    "correctText": "visible",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-04:i01",
     "correctText": "It is not visible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-04:word:hidden",
+    "correctText": "hidden",
     "correctResponseId": null
   },
   {
@@ -16,7 +26,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-04:i04",
-    "correctText": "en:lesson-02:session-04:i04:p1=visible\nen:lesson-02:session-04:i04:p2=hidden\nen:lesson-02:session-04:i04:p3=clear\nen:lesson-02:session-04:i04:p4=aware",
+    "correctText": "en:lesson-02:session-04:i04:p1=visible\nen:lesson-02:session-04:i04:p2=hidden\nen:lesson-02:session-04:i04:p3=clear\nen:lesson-02:session-04:i04:p4=marked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-04:word:clear",
+    "correctText": "clear",
     "correctResponseId": null
   },
   {
@@ -60,8 +75,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-04:word:marked",
+    "correctText": "marked",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-04:i13",
-    "correctText": "It is not light.",
+    "correctText": "It is not marked.",
     "correctResponseId": null
   },
   {

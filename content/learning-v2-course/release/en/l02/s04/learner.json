@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-04:i01",
+      "interactionId": "en:lesson-02:session-04:word:visible",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — visible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:word:visible:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — visible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:word:visible:audio",
+          "transcript": "visible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-04:word:visible:r1",
+            "targetText": "visible",
+            "meaningByLocale": {
+              "ru": "видимый, его видно. It is visible — «Его видно». It is not visible — «Его не видно».",
+              "uk": "видимий, його видно. It is visible — «Його видно». It is not visible — «Його не видно»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "visible",
+          "definitionByLocale": {
+            "ru": "видимый, его видно. It is visible — «Его видно». It is not visible — «Его не видно».",
+            "uk": "видимий, його видно. It is visible — «Його видно». It is not visible — «Його не видно»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,8 +92,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-04:word:hidden",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hidden",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:word:hidden:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hidden",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:word:hidden:audio",
+          "transcript": "hidden"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-04:word:hidden:r1",
+            "targetText": "hidden",
+            "meaningByLocale": {
+              "ru": "спрятанный, скрытый. It is hidden — «Это спрятано». It is not hidden — «Не спрятано».",
+              "uk": "схований, прихований. It is hidden — «Це сховано». It is not hidden — «Не сховано»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hidden",
+          "definitionByLocale": {
+            "ru": "спрятанный, скрытый. It is hidden — «Это спрятано». It is not hidden — «Не спрятано».",
+            "uk": "схований, прихований. It is hidden — «Це сховано». It is not hidden — «Не сховано»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-04:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -126,7 +212,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -195,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -233,10 +319,10 @@
           },
           {
             "pairId": "en:lesson-02:session-04:i04:p4",
-            "target": "aware",
+            "target": "marked",
             "meaningByLocale": {
-              "ru": "в курсе",
-              "uk": "у курсі"
+              "ru": "обозначен",
+              "uk": "позначений"
             }
           }
         ],
@@ -244,13 +330,13 @@
           "visible",
           "hidden",
           "clear",
-          "aware"
+          "marked"
         ],
         "rightColumn": [
           "видимый",
           "спрятанный",
           "понятный",
-          "в курсе"
+          "обозначен"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,9 +353,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-04:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-04:word:clear",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:word:clear:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:word:clear:audio",
+          "transcript": "clear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-04:word:clear:r1",
+            "targetText": "clear",
+            "meaningByLocale": {
+              "ru": "понятный, ясный. It's clear — «Понятно». It's not clear — «Непонятно».",
+              "uk": "зрозумілий, ясний. It's clear — «Зрозуміло». It's not clear — «Незрозуміло»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clear",
+          "definitionByLocale": {
+            "ru": "понятный, ясный. It's clear — «Понятно». It's not clear — «Непонятно».",
+            "uk": "зрозумілий, ясний. It's clear — «Зрозуміло». It's not clear — «Незрозуміло»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -315,8 +444,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Карта открыто лежит на столе. Скажите другу, что она не спрятана",
@@ -360,7 +489,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -393,7 +522,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -462,7 +591,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -538,7 +667,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -611,8 +740,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -658,7 +787,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -702,26 +831,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-04:word:marked",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — marked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:word:marked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:word:marked:audio",
+          "transcript": "marked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-04:word:marked:r1",
+            "targetText": "marked",
+            "meaningByLocale": {
+              "ru": "обозначен, отмечен знаком или табличкой. It is marked — «Это обозначено». It is not marked — «Не обозначено».",
+              "uk": "позначений знаком або табличкою. It is marked — «Це позначено». It is not marked — «Не позначено»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marked",
+          "definitionByLocale": {
+            "ru": "обозначен, отмечен знаком или табличкой. It is marked — «Это обозначено». It is not marked — «Не обозначено».",
+            "uk": "позначений знаком або табличкою. It is marked — «Це позначено». It is not marked — «Не позначено»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-04:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сумка с вещами много весит. Скажите, что она не лёгкая",
+      "prompt": "У двери выставки нет ни таблички, ни стрелки. Друг спрашивает, почему вы прошли мимо. Скажите, что вход не обозначен",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-04:i13:audio"
       ],
-      "accessibilityLabel": "Сумка с вещами много весит. Скажите, что она не лёгкая",
+      "accessibilityLabel": "У двери выставки нет ни таблички, ни стрелки. Друг спрашивает, почему вы прошли мимо. Скажите, что вход не обозначен",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-04:i13:audio",
-          "transcript": "It is not light."
+          "transcript": "It is not marked."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is not light.",
+        "targetPhrase": "It is not marked.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,8 +908,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Доводы организатора о новом маршруте вас с другом пока не убедили. Дополните фразу",
@@ -805,7 +977,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -881,7 +1053,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -954,7 +1126,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-04:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -994,11 +1166,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "64b0d0a61d2a32c23e0e49f102fd3c2a47f1a01b824048fcc80e428b8639a6b4"
+  "learnerFingerprint": "7abd2f1ced733459f9903f014f22f71b62d6a9d932478372a909af1c99b37661"
 }

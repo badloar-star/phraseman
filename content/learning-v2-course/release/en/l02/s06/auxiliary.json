@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-06:intro1:r2": {
-          "ru": "Это «Он искусственный». Здесь нужен `not` после `is`.",
-          "uk": "Це «Вона штучна». Тут потрібне `not` після `is`."
+          "ru": "Без not выходит «Он поддельный». А розы живые: It is not fake.",
+          "uk": "Без not виходить «Він підроблений». А троянди живі: It is not fake."
         },
         "en:lesson-02:session-06:intro1:r3": {
-          "ru": "Нужна связка `is`: `It is not fake`.",
-          "uk": "Потрібна зв’язка `is`: `It is not fake`."
+          "ru": "real — «настоящий». Получится «Он не настоящий», а букет живой: It is not fake.",
+          "uk": "real — «справжній». Вийде «Він не справжній», а букет живий: It is not fake."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-06:intro2:r2": {
-          "ru": "Это искусственные цветы. Здесь нужно `not`.",
-          "uk": "Це штучні квіти. Тут потрібно `not`."
+          "ru": "Без not выходит «Он свежий». А тюльпаны завяли: It's not fresh.",
+          "uk": "Без not виходить «Він свіжий». А тюльпани зів’яли: It's not fresh."
         },
         "en:lesson-02:session-06:intro2:r3": {
-          "ru": "После `They` нужно `are`.",
-          "uk": "Після `They` потрібно `are`."
+          "ru": "fake — «поддельный». Тюльпаны живые, просто стоят давно: fresh.",
+          "uk": "fake — «підроблений». Тюльпани живі, просто стоять давно: fresh."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-06:intro3:r2": {
-          "ru": "В условии цветок настоящий. Нужно `not fake`.",
-          "uk": "За умовою квітка справжня. Потрібно `not fake`."
+          "ru": "После They нужно are: They are not pink.",
+          "uk": "Після They потрібно are: They are not pink."
         },
         "en:lesson-02:session-06:intro3:r3": {
-          "ru": "Это означает «Он не настоящий», что противоречит условию.",
-          "uk": "Це означає «Вона не справжня», що суперечить умові."
+          "ru": "Пионы только что привезли, они свежие. Вика спрашивает про цвет: pink.",
+          "uk": "Півонії щойно привезли, вони свіжі. Віка питає про колір: pink."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dc025c95dc15546420eeb1787e2529415b6b762f47626fdb49740ed010cf063a"
+  "auxiliaryFingerprint": "a4d4f983e622909c1ef9247f0a3034e0ec5c82aa80c0f58cdcadbbc7a5c8dfdd"
 }

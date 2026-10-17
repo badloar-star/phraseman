@@ -1,7 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-02:session-06:word:fake",
+    "correctText": "fake",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-06:i01",
-    "correctText": "It is not fake.",
+    "correctText": "They are not fake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-06:word:fresh",
+    "correctText": "fresh",
     "correctResponseId": null
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-06:i04",
-    "correctText": "en:lesson-02:session-06:i04:p1=fake\nen:lesson-02:session-06:i04:p2=real\nen:lesson-02:session-06:i04:p3=familiar\nen:lesson-02:session-06:i04:p4=unfamiliar",
+    "correctText": "en:lesson-02:session-06:i04:p1=fake\nen:lesson-02:session-06:i04:p2=fresh\nen:lesson-02:session-06:i04:p3=pink\nen:lesson-02:session-06:i04:p4=plastic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-06:i05",
-    "correctText": "It's not fake.",
+    "correctText": "It's not fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-06:word:pink",
+    "correctText": "pink",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-06:i06",
-    "correctText": "They are not fake.",
+    "correctText": "They are not pink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-06:word:plastic",
+    "correctText": "plastic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-06:i07",
-    "correctText": "It's not fake.",
+    "correctText": "It's not plastic.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-06:i15",
-    "correctText": "It's not fake.",
+    "correctText": "They're not pink.",
     "correctResponseId": "en:lesson-02:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-06:i16",
-    "correctText": "en:lesson-02:session-06:i16:p1=fake\nen:lesson-02:session-06:i16:p2=real\nen:lesson-02:session-06:i16:p3=familiar\nen:lesson-02:session-06:i16:p4=unknown",
+    "correctText": "en:lesson-02:session-06:i16:p1=real\nen:lesson-02:session-06:i16:p2=stale\nen:lesson-02:session-06:i16:p3=familiar\nen:lesson-02:session-06:i16:p4=unfamiliar",
     "correctResponseId": null
   },
   {

@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-02:i01",
+      "interactionId": "en:lesson-02:session-02:word:confident",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — confident",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-02:word:confident:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — confident",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-02:word:confident:audio",
+          "transcript": "confident"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-02:word:confident:r1",
+            "targetText": "confident",
+            "meaningByLocale": {
+              "ru": "уверенный в себе, в своих силах. I am confident — «Я уверен в себе». I'm not confident — «Я не уверен в себе».",
+              "uk": "упевнений у собі, у своїх силах. I am confident — «Я впевнений у собі». I'm not confident — «Я не впевнений у собі»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "confident",
+          "definitionByLocale": {
+            "ru": "уверенный в себе, в своих силах. I am confident — «Я уверен в себе». I'm not confident — «Я не уверен в себе».",
+            "uk": "упевнений у собі, у своїх силах. I am confident — «Я впевнений у собі». I'm not confident — «Я не впевнений у собі»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-02:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,8 +92,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-02:word:satisfied",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — satisfied",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-02:word:satisfied:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — satisfied",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-02:word:satisfied:audio",
+          "transcript": "satisfied"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-02:word:satisfied:r1",
+            "targetText": "satisfied",
+            "meaningByLocale": {
+              "ru": "довольный результатом. We are satisfied — «Мы довольны». We're not satisfied — «Мы недовольны».",
+              "uk": "задоволений результатом. We are satisfied — «Ми задоволені». We're not satisfied — «Ми незадоволені»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "satisfied",
+          "definitionByLocale": {
+            "ru": "довольный результатом. We are satisfied — «Мы довольны». We're not satisfied — «Мы недовольны».",
+            "uk": "задоволений результатом. We are satisfied — «Ми задоволені». We're not satisfied — «Ми незадоволені»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-02:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -126,7 +212,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -195,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -212,19 +298,11 @@
             "target": "confident",
             "meaningByLocale": {
               "ru": "уверенный в себе",
-              "uk": "впевнений у собі"
+              "uk": "упевнений у собі"
             }
           },
           {
             "pairId": "en:lesson-02:session-02:i04:p2",
-            "target": "relaxed",
-            "meaningByLocale": {
-              "ru": "расслабленный",
-              "uk": "розслаблений"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-02:i04:p3",
             "target": "satisfied",
             "meaningByLocale": {
               "ru": "довольный результатом",
@@ -232,25 +310,33 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-02:i04:p4",
-            "target": "sure",
+            "pairId": "en:lesson-02:session-02:i04:p3",
+            "target": "planned",
             "meaningByLocale": {
-              "ru": "уверенный",
-              "uk": "впевнений"
+              "ru": "продуман заранее",
+              "uk": "продуманий заздалегідь"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-02:i04:p4",
+            "target": "booked",
+            "meaningByLocale": {
+              "ru": "забронирован",
+              "uk": "заброньований"
             }
           }
         ],
         "leftColumn": [
           "confident",
-          "relaxed",
           "satisfied",
-          "sure"
+          "planned",
+          "booked"
         ],
         "rightColumn": [
           "уверенный в себе",
-          "расслабленный",
           "довольный результатом",
-          "уверенный"
+          "продуман заранее",
+          "забронирован"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -268,7 +354,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -315,8 +401,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Сестра напряжена перед выходом. Скажите, что она не расслаблена",
@@ -360,7 +446,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -392,20 +478,63 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-02:word:booked",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — booked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-02:word:booked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — booked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-02:word:booked:audio",
+          "transcript": "booked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-02:word:booked:r1",
+            "targetText": "booked",
+            "meaningByLocale": {
+              "ru": "забронирован, заказан. It is booked — «Зал заказан». It's not booked — «Не заказан».",
+              "uk": "заброньований, замовлений. It is booked — «Залу замовлено». It's not booked — «Не замовлено»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "booked",
+          "definitionByLocale": {
+            "ru": "забронирован, заказан. It is booked — «Зал заказан». It's not booked — «Не заказан».",
+            "uk": "заброньований, замовлений. It is booked — «Залу замовлено». It's not booked — «Не замовлено»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-02:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы сомневаетесь, во сколько выходить на сцену. Дополните «Я не уверен»",
+      "prompt": "Вы позвонили в школу: актовый зал на пятницу никто не заказал. Дополните фразу о зале",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-02:i08:r1",
-          "text": "am"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-02:i08:r2",
-          "text": "is"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-02:i08:r3",
@@ -414,46 +543,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сомневаетесь, во сколько выходить на сцену. Дополните «Я не уверен»",
+      "accessibilityLabel": "Вы позвонили в школу: актовый зал на пятницу никто не заказал. Дополните фразу о зале",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы сомневаетесь, во сколько выходить на сцену. Дополните «Я не уверен»",
-          "uk": "Ви сумніваєтеся, о котрій виходити на сцену. Доповніть «Я не впевнений»"
+          "ru": "Вы позвонили в школу: актовый зал на пятницу никто не заказал. Дополните фразу о зале",
+          "uk": "Ви зателефонували до школи: актову залу на п’ятницю ніхто не замовив. Доповніть фразу про залу"
         },
-        "gappedTargetPhrase": "I ___ not sure.",
+        "gappedTargetPhrase": "It ___ not booked.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-02:i08:r1",
-            "text": "am"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-02:i08:r2",
-            "text": "is"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-02:i08:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Вы сомневаетесь, во сколько выходить на сцену. Дополните «Я не уверен»",
+        "testedDimension": "Вы позвонили в школу: актовый зал на пятницу никто не заказал. Дополните фразу о зале",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "Вы сомневаетесь, во сколько выходить на сцену. Дополните «Я не уверен»",
+            "testedDimension": "Вы позвонили в школу: актовый зал на пятницу никто не заказал. Дополните фразу о зале",
             "feedbackByLocale": {
-              "ru": "Про себя — `I am not`.",
-              "uk": "Про себе — `I am not`."
+              "ru": "После `It` нужно `is`.",
+              "uk": "Після `It` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "Вы сомневаетесь, во сколько выходить на сцену. Дополните «Я не уверен»",
+            "testedDimension": "Вы позвонили в школу: актовый зал на пятницу никто не заказал. Дополните фразу о зале",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `am`.",
-              "uk": "Після `I` потрібно `am`."
+              "ru": "Зал один — `It is not`.",
+              "uk": "Зала одна — `It is not`."
             }
           }
         ]
@@ -461,52 +590,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-02:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-02:word:planned",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о друге",
+      "prompt": "Карточка слова — planned",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-02:word:planned:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — planned",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-02:word:planned:audio",
+          "transcript": "planned"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-02:word:planned:r1",
+            "targetText": "planned",
+            "meaningByLocale": {
+              "ru": "запланирован, продуман заранее. It is planned — «Это продумано». It's not planned — «Это не продумано».",
+              "uk": "запланований, продуманий заздалегідь. It is planned — «Це продумано». It's not planned — «Це не продумано»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "planned",
+          "definitionByLocale": {
+            "ru": "запланирован, продуман заранее. It is planned — «Это продумано». It's not planned — «Это не продумано».",
+            "uk": "запланований, продуманий заздалегідь. It is planned — «Це продумано». It's not planned — «Це не продумано»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-02:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Олег позвонил администратору школы. Послушайте, что он передал вам о зале",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-02:i09:r1",
-          "text": "He is not interested."
+          "text": "It is not booked."
         },
         {
           "responseId": "en:lesson-02:session-02:i09:r2",
-          "text": "He is not comfortable."
+          "text": "It is not planned."
         },
         {
           "responseId": "en:lesson-02:session-02:i09:r3",
-          "text": "He is not tired."
+          "text": "It is booked."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-02:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о друге",
+      "accessibilityLabel": "Олег позвонил администратору школы. Послушайте, что он передал вам о зале",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-02:i09:audio",
-          "transcript": "He is not interested."
+          "transcript": "It is not booked."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-02:i09:r1",
-            "targetText": "He is not interested.",
+            "targetText": "It is not booked.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-02:i09:r2",
-            "targetText": "He is not comfortable.",
+            "targetText": "It is not planned.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-02:i09:r3",
-            "targetText": "He is not tired.",
+            "targetText": "It is booked.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +687,19 @@
           {
             "responseId": "en:lesson-02:session-02:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Олег позвонил администратору школы. Послушайте, что он передал вам о зале",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `interested`, а в этом варианте — `comfortable`.",
-              "uk": "У записі останнє слово — `interested`, а в цьому варіанті — `comfortable`."
+              "ru": "В записи последнее слово — `booked`, а в этом варианте — `planned`.",
+              "uk": "У записі останнє слово — `booked`, а в цьому варіанті — `planned`."
             }
           },
           {
             "responseId": "en:lesson-02:session-02:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о друге",
+            "testedDimension": "Олег позвонил администратору школы. Послушайте, что он передал вам о зале",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `interested`, а в этом варианте — `tired`.",
-              "uk": "У записі останнє слово — `interested`, а в цьому варіанті — `tired`."
+              "ru": "В записи есть `not`, а в этом варианте его нет.",
+              "uk": "У записі є `not`, а в цьому варіанті його немає."
             }
           }
         ],
@@ -538,8 +710,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова со значениями",
@@ -552,48 +724,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-02:i10:p1",
-            "target": "interested",
+            "target": "relaxed",
             "meaningByLocale": {
-              "ru": "заинтересованный",
-              "uk": "зацікавлений"
+              "ru": "расслабленный",
+              "uk": "розслаблений"
             }
           },
           {
             "pairId": "en:lesson-02:session-02:i10:p2",
-            "target": "comfortable",
+            "target": "interested",
             "meaningByLocale": {
-              "ru": "чувствует себя удобно",
-              "uk": "почувається зручно"
+              "ru": "заинтересован",
+              "uk": "зацікавлений"
             }
           },
           {
             "pairId": "en:lesson-02:session-02:i10:p3",
-            "target": "tired",
+            "target": "comfortable",
             "meaningByLocale": {
-              "ru": "уставший",
-              "uk": "втомлений"
+              "ru": "удобно",
+              "uk": "зручно"
             }
           },
           {
             "pairId": "en:lesson-02:session-02:i10:p4",
-            "target": "expensive",
+            "target": "tired",
             "meaningByLocale": {
-              "ru": "дорогой по цене",
-              "uk": "дорогий за ціною"
+              "ru": "уставший",
+              "uk": "утомлений"
             }
           }
         ],
         "leftColumn": [
+          "relaxed",
           "interested",
           "comfortable",
-          "tired",
-          "expensive"
+          "tired"
         ],
         "rightColumn": [
-          "заинтересованный",
-          "чувствует себя удобно",
-          "уставший",
-          "дорогой по цене"
+          "расслабленный",
+          "заинтересован",
+          "удобно",
+          "уставший"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,8 +783,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите короткую фразу",
@@ -658,7 +830,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -703,7 +875,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -736,8 +908,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Друг сомневается в своих силах перед сценой. Дополните фразу",
@@ -805,7 +977,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -881,7 +1053,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -898,23 +1070,23 @@
             "target": "confident",
             "meaningByLocale": {
               "ru": "уверенный в своих силах",
-              "uk": "впевнений у своїх силах"
+              "uk": "упевнений у своїх силах"
             }
           },
           {
             "pairId": "en:lesson-02:session-02:i16:p2",
-            "target": "relaxed",
+            "target": "planned",
             "meaningByLocale": {
-              "ru": "без напряжения",
-              "uk": "без напруження"
+              "ru": "продуман",
+              "uk": "продуманий"
             }
           },
           {
             "pairId": "en:lesson-02:session-02:i16:p3",
-            "target": "satisfied",
+            "target": "booked",
             "meaningByLocale": {
-              "ru": "довольный результатом",
-              "uk": "задоволений результатом"
+              "ru": "забронирован",
+              "uk": "заброньований"
             }
           },
           {
@@ -928,14 +1100,14 @@
         ],
         "leftColumn": [
           "confident",
-          "relaxed",
-          "satisfied",
+          "planned",
+          "booked",
           "sad"
         ],
         "rightColumn": [
           "уверенный в своих силах",
-          "без напряжения",
-          "довольный результатом",
+          "продуман",
+          "забронирован",
           "грустный"
         ],
         "pairingKey": "pair_id",
@@ -954,7 +1126,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-02:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -994,11 +1166,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bf353e73eedc922921e4bc317cdbc4e3c1691062bd76a2f6553cd2ee9c69a50e"
+  "learnerFingerprint": "8a85fdf9d21b1d050584a35a0de3b5dfc0d2016c4faea800b9693704d158b2af"
 }

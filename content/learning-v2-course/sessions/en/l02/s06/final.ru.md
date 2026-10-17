@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 6 — Цветы для сцены
 
-**Ситуация.** Вы помогаете оформить сцену. Среди искусственных цветов оказывается настоящий букет, и вы объясняете другу, где имитация, а где нет.
+**Ситуация.** Вы помогаете оформить сцену к вечернему спектаклю. Среди тканевых цветов попадается живой букет, а из цветочного магазина привозят не тот заказ.
 
-**Что вы освоите:** отрицать поддельность или искусственность вещи и отличать это от отрицания подлинности
-**Новые слова:** fake
+**Что вы освоите:** сказать о цветах и вещах на сцене, что они не поддельные, не свежие, не розовые и не пластиковые
+**Новые слова:** fake, fresh, pink, plastic
+**Возвращаются:** real, stale, calm, nervous, excited, familiar, unfamiliar, unknown
 
 ---
 
 ## Интро 1
 
-### Имитация
+### Розы среди тканевых цветов
 
-`fake` — «поддельный», «искусственный», когда вещь имитирует настоящую. Про пластиковый цветок можно сказать `It is fake`. Это не всегда обман: на сцене всем может быть известно, что цветы искусственные. Такие цветы переживут даже самого забывчивого поливальщика.
+Вы расставляете на сцене тканевые цветы. Среди них стоит букет роз, и звукорежиссёр Олег уверен, что это тоже бутафория. Вы нюхаете: пахнет садом, а на стебле капля воды. fake — «поддельный». It is not fake — «Он не поддельный».
 
-**Среди декораций стоит настоящий живой цветок. Друг принял его за искусственный. Скажите, что он не искусственный.**
+**Олег спрашивает, не поддельный ли букет. Ответьте полной фразой, что он не поддельный.**
 
 - ✅ **It is not fake.**
-- ❌ It is fake. — *Это «Он искусственный». Здесь нужен `not` после `is`.*
-- ❌ It not fake. — *Нужна связка `is`: `It is not fake`.*
+- ❌ It is fake. — *Без not выходит «Он поддельный». А розы живые: It is not fake.*
+- ❌ It is not real. — *real — «настоящий». Получится «Он не настоящий», а букет живой: It is not fake.*
 
 ---
 
 ## Интро 2
 
-### Следите за not
+### Тюльпаны у кулис
 
-`It is not real` — «Это не настоящее». `It is not fake` — «Это не подделка». Слово `not` отрицает именно то, что идёт после него. Про два настоящих цветка: `They are not fake`, коротко `They're not fake`.
+У кулис с прошлой недели стоит ваза с тюльпанами. Головки поникли, на полу лежат лепестки. fresh — «свежий». It is not fresh, коротко It's not fresh — «Он не свежий».
 
-**Эти два цветка настоящие, не искусственные. Скажите, что они не искусственные.**
+**Художница Вика спрашивает про букет у кулис. Ответьте коротко, что он не свежий.**
 
-- ✅ **They are not fake.**
-- ❌ They are fake. — *Это искусственные цветы. Здесь нужно `not`.*
-- ❌ They is not fake. — *После `They` нужно `are`.*
+- ✅ **It's not fresh.**
+- ❌ It's fresh. — *Без not выходит «Он свежий». А тюльпаны завяли: It's not fresh.*
+- ❌ It's not fake. — *fake — «поддельный». Тюльпаны живые, просто стоят давно: fresh.*
 
 ---
 
 ## Интро 3
 
-### Сначала выясните
+### Пионы из магазина
 
-Знакомый вид вещи ещё не доказывает её подлинность. `familiar` — знакомый, `unfamiliar` — незнакомый, `unknown` — неизвестный. В заданиях будет прямо сказано, настоящая вещь или имитация: по одному внешнему виду угадывать не нужно.
+Для финальной сцены заказали розовые пионы. Курьер открывает коробку, а там пионы жёлтые, как цыплята. pink — «розовый». They are not pink, коротко They're not pink — «Они не розовые». Пионов много, поэтому They.
 
-**По условию цветок настоящий. Коротко опровергните предположение друга, что он искусственный.**
+**Вика звонит из зала и спрашивает, розовые ли пионы. Ответьте полной фразой, что они не розовые.**
 
-- ✅ **It's not fake.**
-- ❌ It's fake. — *В условии цветок настоящий. Нужно `not fake`.*
-- ❌ It's not real. — *Это означает «Он не настоящий», что противоречит условию.*
+- ✅ **They are not pink.**
+- ❌ They is not pink. — *После They нужно are: They are not pink.*
+- ❌ They are not fresh. — *Пионы только что привезли, они свежие. Вика спрашивает про цвет: pink.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Этот цветок настоящий. Скажите другу, что он не искусственный**
+**1 · Карточка слова — fake**
+<!-- interaction_id: en:lesson-02:session-06:word:fake; family: word_card -->
+> **fake** — поддельный. It's not fake — «Он не поддельный». О цветах, фруктах, часах, сумках, которые только выглядят настоящими.
+
+**2 · Розы в вазе на сцене живые. Скажите Олегу, что они не поддельные**
 <!-- interaction_id: en:lesson-02:session-06:i01; family: phrase_builder -->
-Плитки: `fake` `not` `is` `It` `are` → **It is not fake.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is not fake.`)*
-
-**2 · Послушайте и выберите услышанное**
-<!-- interaction_id: en:lesson-02:session-06:i02; family: listen_choose -->
-🔊 *It is not fake.* → **It is not fake.** · It is not real. · It is not familiar.
-- It is not real. — *В записи последнее слово — `fake`, а в этом варианте — `real`.*
-- It is not familiar. — *В записи последнее слово — `fake`, а в этом варианте — `familiar`.*
-
-**3 · Два цветка настоящие, не искусственные. Дополните фразу**
-<!-- interaction_id: en:lesson-02:session-06:i03; family: context_gap_grammar -->
-They ___ not fake. → **are** · am · is
-- am — *После `They` нужно `are`.*
-- is — *Про два цветка — `They are not`.*
-
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-02:session-06:i04; family: speed_match -->
-fake — поддельный · real — настоящий · familiar — знакомый · unfamiliar — незнакомый
-
-**5 · Послушайте и соберите короткую фразу**
-<!-- interaction_id: en:lesson-02:session-06:i05; family: listen_build_dictation -->
-🔊 *It's not fake.* Плитки: `fake` `not` `It's` `He's` → **It's not fake.**
-*(плитка `He's` лишняя: здесь нужно `It's` — `It's not fake.`)*
-
-**6 · На стол поставили два настоящих яблока, не бутафорских. Скажите, что они не имитации**
-<!-- interaction_id: en:lesson-02:session-06:i06; family: phrase_builder -->
 Плитки: `fake` `not` `are` `They` `is` → **They are not fake.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are not fake.`)*
 
-**7 · Коротко скажите о настоящем букете, который друг счёл искусственным: «Он не искусственный»**
-<!-- interaction_id: en:lesson-02:session-06:i07; family: scripted_repeat_compare -->
-🎙 **It's not fake.**
+**3 · Карточка слова — fresh**
+<!-- interaction_id: en:lesson-02:session-06:word:fresh; family: word_card -->
+> **fresh** — свежий. It's not fresh — «Он не свежий». О цветах, хлебе, рыбе, молоке.
 
-**8 · Перед оформлением сцены вы не нервничаете. Дополните фразу о себе**
+**4 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-02:session-06:i02; family: listen_choose -->
+🔊 *It is not fake.* → **It is not fake.** · It is not fresh. · It is not familiar.
+- It is not fresh. — *В записи последнее слово — `fake`, а в этом варианте — `fresh`.*
+- It is not familiar. — *В записи последнее слово — `fake`, а в этом варианте — `familiar`.*
+
+**5 · Две ромашки на столе живые, их только что сорвали. Дополните фразу о них**
+<!-- interaction_id: en:lesson-02:session-06:i03; family: context_gap_grammar -->
+They ___ not fake. → **are** · am · is
+- am — *После `They` нужно `are`.*
+- is — *Ромашек две, поэтому `They are not`.*
+
+**6 · Соедините новые слова со значениями**
+<!-- interaction_id: en:lesson-02:session-06:i04; family: speed_match -->
+fake — поддельный · fresh — свежий · pink — розовый · plastic — пластиковый
+
+**7 · Букет у кулис стоит с прошлой недели. Послушайте и соберите фразу о нём**
+<!-- interaction_id: en:lesson-02:session-06:i05; family: listen_build_dictation -->
+🔊 *It's not fresh.* Плитки: `fresh` `not` `It's` `He's` → **It's not fresh.**
+*(плитка `He's` лишняя: здесь нужно `It's` — `It's not fresh.`)*
+
+**8 · Карточка слова — pink**
+<!-- interaction_id: en:lesson-02:session-06:word:pink; family: word_card -->
+> **pink** — розовый. They're not pink — «Они не розовые». О цветах, платье, стенах.
+
+**9 · Вместо розовых пионов привезли жёлтые. Скажите Вике, что они не розовые**
+<!-- interaction_id: en:lesson-02:session-06:i06; family: phrase_builder -->
+Плитки: `pink` `not` `are` `They` `is` → **They are not pink.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not pink.`)*
+
+**10 · Карточка слова — plastic**
+<!-- interaction_id: en:lesson-02:session-06:word:plastic; family: word_card -->
+> **plastic** — пластиковый. It's not plastic — «Она не пластиковая». О вазе, стуле, бутылке, игрушке.
+
+**11 · Вика стучит по вазе на сцене: звук звонкий, ваза стеклянная. Скажите коротко, что она не пластиковая**
+<!-- interaction_id: en:lesson-02:session-06:i07; family: scripted_repeat_compare -->
+🎙 **It's not plastic.**
+
+**12 · До спектакля час, а вы спокойны. Дополните фразу о себе**
 <!-- interaction_id: en:lesson-02:session-06:i08; family: context_gap_grammar -->
 I ___ not nervous. → **am** · is · are
 - is — *Про себя — `I am not`.*
 - are — *После `I` нужно `am`.*
 
-**9 · Послушайте фразу о друге**
+**13 · Послушайте фразу об Олеге**
 <!-- interaction_id: en:lesson-02:session-06:i09; family: listen_choose -->
 🔊 *He is not calm.* → **He is not calm.** · He is not nervous. · He is not excited.
 - He is not nervous. — *В записи последнее слово — `calm`, а в этом варианте — `nervous`.*
 - He is not excited. — *В записи последнее слово — `calm`, а в этом варианте — `excited`.*
 
-**10 · Соедините знакомые слова со значениями**
+**14 · Соедините знакомые слова со значениями**
 <!-- interaction_id: en:lesson-02:session-06:i10; family: speed_match -->
-calm — спокойный · nervous — нервничающий · excited — взволнованный от предвкушения · unknown — неизвестный
+calm — спокойный · nervous — нервничающий · excited — радостно взволнованный · unknown — неизвестный
 
-**11 · Послушайте и соберите короткую фразу**
+**15 · Олег трогает розы в вазе и наконец верит. Послушайте и соберите фразу о них**
 <!-- interaction_id: en:lesson-02:session-06:i11; family: listen_build_dictation -->
 🔊 *They're not fake.* Плитки: `fake` `not` `They're` `He's` → **They're not fake.**
 *(плитка `He's` лишняя: здесь нужно `They're` — `They're not fake.`)*
 
-**12 · Вы впервые видите этот узор и не узнаёте его. Скажите, что он вам не знаком**
+**16 · Вика показывает узор на занавесе, а вы видите его впервые. Скажите, что он вам не знаком**
 <!-- interaction_id: en:lesson-02:session-06:i12; family: phrase_builder -->
 Плитки: `familiar` `not` `is` `It` `are` → **It is not familiar.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is not familiar.`)*
 
-**13 · Предстоящая репетиция не вызывает у вас радостного волнения. Коротко скажите об отсутствии этого предвкушения**
+**17 · Репетиция назначена на семь утра, и радости у вас нет. Скажите о себе коротко: «Я не в восторге»**
 <!-- interaction_id: en:lesson-02:session-06:i13; family: scripted_repeat_compare -->
 🎙 **I'm not excited.**
 
-**14 · Один цветок настоящий. Дополните отрицание его искусственности**
+**18 · Лейка на сцене металлическая. Дополните фразу о ней**
 <!-- interaction_id: en:lesson-02:session-06:i14; family: context_gap_grammar -->
-It ___ not fake. → **is** · am · are
+It ___ not plastic. → **is** · am · are
 - am — *После `It` нужно `is`.*
-- are — *Про один цветок — `It is not`.*
+- are — *Лейка одна, поэтому `It is not`.*
 
-**15 · Послушайте короткую фразу и выберите её**
+**19 · Послушайте короткую фразу о пионах и выберите её**
 <!-- interaction_id: en:lesson-02:session-06:i15; family: listen_choose -->
-🔊 *It's not fake.* → **It's not fake.** · It's not real. · It's not unfamiliar.
-- It's not real. — *В записи последнее слово — `fake`, а в этом варианте — `real`.*
-- It's not unfamiliar. — *В записи последнее слово — `fake`, а в этом варианте — `unfamiliar`.*
+🔊 *They're not pink.* → **They're not pink.** · They're not fresh. · It's not pink.
+- They're not fresh. — *В записи последнее слово — `pink`, а в этом варианте — `fresh`.*
+- It's not pink. — *В записи первое слово — `They're`, а в этом варианте — `It's`.*
 
-**16 · Соедините слова с их значениями здесь**
+**20 · Соедините слова прошлого занятия и знакомые слова со значениями**
 <!-- interaction_id: en:lesson-02:session-06:i16; family: speed_match -->
-fake — имитация настоящего · real — настоящий · familiar — узнаваемый · unknown — неизвестный
+real — настоящий · stale — чёрствый · familiar — знакомый · unfamiliar — незнакомый
 
-**17 · В музее выставлен подлинный старинный шлем. Друг думает, что это подделка. Скажите, что шлем не поддельный**
+**21 · В музее выставлен старинный шлем. Друг Костя думает, что это подделка. Скажите, что шлем не поддельный**
 <!-- interaction_id: en:lesson-02:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is not fake.**
-

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-11:intro1:r2": {
-          "ru": "Это значит, что дело может подождать. Здесь оно срочное.",
-          "uk": "Це означає, що справа може зачекати. Тут вона термінова."
+          "ru": "Так звучит утверждение «Это срочно». Чтобы спросить, ставим Is вперёд: Is it urgent?",
+          "uk": "Так звучить твердження «Це терміново». Щоб запитати, ставимо Is наперед: Is it urgent?"
         },
         "en:lesson-02:session-11:intro1:r3": {
-          "ru": "Речь об одном деле — написать адрес: `It's urgent`.",
-          "uk": "Йдеться про одну справу — написати адресу: `It's urgent`."
+          "ru": "С it нужно is: Is it urgent?",
+          "uk": "З it потрібно is: Is it urgent?"
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-11:intro2:r2": {
-          "ru": "С `it` нужно `is`: `Is it urgent?`.",
-          "uk": "З `it` потрібно `is`: `Is it urgent?`."
+          "ru": "Без not выходит «Он подписан». А в углу пусто: It's not signed.",
+          "uk": "Без not виходить «Він підписаний». А в куті порожньо: It's not signed."
         },
         "en:lesson-02:session-11:intro2:r3": {
-          "ru": "После `Is` идёт `it`, затем `urgent`.",
-          "uk": "Після `Is` йде `it`, потім `urgent`."
+          "ru": "She's — о женщине. Про рисунок говорим It's.",
+          "uk": "She's — про жінку. Про малюнок кажемо It's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-11:intro3:r2": {
-          "ru": "Без `not` получается «Срочно». Здесь можно подождать.",
-          "uk": "Без `not` виходить «Терміново». Тут можна зачекати."
+          "ru": "После They нужно are: They are not framed.",
+          "uk": "Після They потрібно are: They are not framed."
         },
         "en:lesson-02:session-11:intro3:r3": {
-          "ru": "Между `It` и `not` нужно `is`.",
-          "uk": "Між `It` і `not` потрібно `is`."
+          "ru": "signed — «подписанные». Лена спрашивает про рамки: framed.",
+          "uk": "signed — «підписані». Олена питає про рамки: framed."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ffd11d0ffaf3bebf2e489c8147bf9afa09585b44fcc9f3752427a9bcd7fa990c"
+  "auxiliaryFingerprint": "604dafcf43e1a1cd0f68fc6bbce15102d9e8702cd84290c496560bfa10b8fdf9"
 }

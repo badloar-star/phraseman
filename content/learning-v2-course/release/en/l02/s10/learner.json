@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-10:i01",
+      "interactionId": "en:lesson-02:session-10:word:impossible",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — impossible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-10:word:impossible:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — impossible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-10:word:impossible:audio",
+          "transcript": "impossible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-10:word:impossible:r1",
+            "targetText": "impossible",
+            "meaningByLocale": {
+              "ru": "невозможный. It's not impossible — «Это не невозможно». О деле, которое кажется неподъёмным.",
+              "uk": "неможливий. It's not impossible — «Це не неможливо». Про справу, яка здається непідйомною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "impossible",
+          "definitionByLocale": {
+            "ru": "невозможный. It's not impossible — «Это не невозможно». О деле, которое кажется неподъёмным.",
+            "uk": "неможливий. It's not impossible — «Це не неможливо». Про справу, яка здається непідйомною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-10:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Пронести шкаф собранным не получится. Скажите, что это невозможно",
+      "prompt": "Пронести шкаф собранным не получится. Скажите Олегу, что это невозможно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пронести шкаф собранным не получится. Скажите, что это невозможно",
+      "accessibilityLabel": "Пронести шкаф собранным не получится. Скажите Олегу, что это невозможно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is impossible.",
         "localizedMeaning": {
-          "ru": "Пронести шкаф собранным не получится. Скажите, что это невозможно",
-          "uk": "Пронести шафу зібраною не вийде. Скажіть, що це неможливо"
+          "ru": "Пронести шкаф собранным не получится. Скажите Олегу, что это невозможно",
+          "uk": "Пронести шафу зібраною не вийде. Скажіть Олегові, що це неможливо"
         },
         "orderedTokens": [
           "It",
@@ -33,7 +76,7 @@
           {
             "responseId": "en:lesson-02:session-10:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Пронести шкаф собранным не получится. Скажите, что это невозможно",
+            "testedDimension": "Пронести шкаф собранным не получится. Скажите Олегу, что это невозможно",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is impossible.`",
               "uk": "тут потрібно `is` — `It is impossible.`"
@@ -49,11 +92,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос другу",
+      "prompt": "Послушайте вопрос Олегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-10:i02:r1",
@@ -72,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-10:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос другу",
+      "accessibilityLabel": "Послушайте вопрос Олегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-10:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос другу",
+            "testedDimension": "Послушайте вопрос Олегу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `confident`, а в этом варианте — `relaxed`.",
               "uk": "У записі останнє слово — `confident`, а в цьому варіанті — `relaxed`."
@@ -111,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-10:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос другу",
+            "testedDimension": "Послушайте вопрос Олегу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `confident`, а в этом варианте — `satisfied`.",
               "uk": "У записі останнє слово — `confident`, а в цьому варіанті — `satisfied`."
@@ -125,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы обсуждаете перенос шкафа через дверь. Уточните, невозможно ли это",
+      "prompt": "Олег смотрит на дверь и чешет затылок. Уточните у него, невозможно ли это",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-10:i03:r1",
@@ -146,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете перенос шкафа через дверь. Уточните, невозможно ли это",
+      "accessibilityLabel": "Олег смотрит на дверь и чешет затылок. Уточните у него, невозможно ли это",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы обсуждаете перенос шкафа через дверь. Уточните, невозможно ли это",
-          "uk": "Ви обговорюєте перенесення шафи через двері. Уточніть, чи це неможливо"
+          "ru": "Олег смотрит на дверь и чешет затылок. Уточните у него, невозможно ли это",
+          "uk": "Олег дивиться на двері й чухає потилицю. Уточніть у нього, чи це неможливо"
         },
         "gappedTargetPhrase": "___ it impossible?",
         "gapOptions": [
@@ -168,12 +211,12 @@
             "text": "Am"
           }
         ],
-        "testedDimension": "Вы обсуждаете перенос шкафа через дверь. Уточните, невозможно ли это",
+        "testedDimension": "Олег смотрит на дверь и чешет затылок. Уточните у него, невозможно ли это",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-10:i03:r2",
             "correct": false,
-            "testedDimension": "Вы обсуждаете перенос шкафа через дверь. Уточните, невозможно ли это",
+            "testedDimension": "Олег смотрит на дверь и чешет затылок. Уточните у него, невозможно ли это",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,7 +225,7 @@
           {
             "responseId": "en:lesson-02:session-10:i03:r3",
             "correct": false,
-            "testedDimension": "Вы обсуждаете перенос шкафа через дверь. Уточните, невозможно ли это",
+            "testedDimension": "Олег смотрит на дверь и чешет затылок. Уточните у него, невозможно ли это",
             "feedbackByLocale": {
               "ru": "Вопрос про это начинается с `Is it`.",
               "uk": "Запитання про це починається з `Is it`."
@@ -194,15 +237,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините новые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините новые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -216,40 +259,40 @@
           },
           {
             "pairId": "en:lesson-02:session-10:i04:p2",
-            "target": "old",
+            "target": "narrow",
             "meaningByLocale": {
-              "ru": "старый",
-              "uk": "старий"
+              "ru": "узкий",
+              "uk": "вузький"
             }
           },
           {
             "pairId": "en:lesson-02:session-10:i04:p3",
-            "target": "kind",
+            "target": "wide",
             "meaningByLocale": {
-              "ru": "добрый",
-              "uk": "добрий"
+              "ru": "широкий",
+              "uk": "широкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-10:i04:p4",
-            "target": "funny",
+            "target": "wooden",
             "meaningByLocale": {
-              "ru": "смешной",
-              "uk": "смішний"
+              "ru": "деревянный",
+              "uk": "дерев’яний"
             }
           }
         ],
         "leftColumn": [
           "impossible",
-          "old",
-          "kind",
-          "funny"
+          "narrow",
+          "wide",
+          "wooden"
         ],
         "rightColumn": [
           "невозможный",
-          "старый",
-          "добрый",
-          "смешной"
+          "узкий",
+          "широкий",
+          "деревянный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,29 +309,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-10:word:narrow",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — narrow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-10:word:narrow:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — narrow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-10:word:narrow:audio",
+          "transcript": "narrow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-10:word:narrow:r1",
+            "targetText": "narrow",
+            "meaningByLocale": {
+              "ru": "узкий. It's narrow — «Она узкая». О двери, коридоре, лестнице, улице.",
+              "uk": "вузький. It's narrow — «Він вузький». Про двері, коридор, сходи, вулицю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "narrow",
+          "definitionByLocale": {
+            "ru": "узкий. It's narrow — «Она узкая». О двери, коридоре, лестнице, улице.",
+            "uk": "вузький. It's narrow — «Він вузький». Про двері, коридор, сходи, вулицю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-10:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Олег меряет дверь рулеткой: семьдесят сантиметров. Послушайте и соберите фразу о двери",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Олег меряет дверь рулеткой: семьдесят сантиметров. Послушайте и соберите фразу о двери",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-10:i05:audio",
-          "transcript": "It's impossible."
+          "transcript": "It's narrow."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It's impossible.",
+        "hiddenTargetPhrase": "It's narrow.",
         "orderedTokens": [
           "It's",
-          "impossible"
+          "narrow"
         ],
         "authoredDistractorTokens": [
           "They're"
@@ -297,10 +383,10 @@
           {
             "responseId": "en:lesson-02:session-10:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Олег меряет дверь рулеткой: семьдесят сантиметров. Послушайте и соберите фразу о двери",
             "feedbackByLocale": {
-              "ru": "здесь нужно `It's` — `It's impossible.`",
-              "uk": "тут потрібно `It's` — `It's impossible.`"
+              "ru": "здесь нужно `It's` — `It's narrow.`",
+              "uk": "тут потрібно `It's` — `It's narrow.`"
             }
           }
         ],
@@ -313,21 +399,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Разобранный шкаф можно перенести. Скажите, что это не невозможно",
+      "prompt": "Разобранный шкаф пройдёт в дверь. Скажите Анне, что это не невозможно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Разобранный шкаф можно перенести. Скажите, что это не невозможно",
+      "accessibilityLabel": "Разобранный шкаф пройдёт в дверь. Скажите Анне, что это не невозможно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not impossible.",
         "localizedMeaning": {
-          "ru": "Разобранный шкаф можно перенести. Скажите, что это не невозможно",
-          "uk": "Розібрану шафу можна перенести. Скажіть, що це не є неможливим"
+          "ru": "Разобранный шкаф пройдёт в дверь. Скажите Анне, что это не невозможно",
+          "uk": "Розібрана шафа пройде у двері. Скажіть Анні, що це не неможливо"
         },
         "orderedTokens": [
           "It",
@@ -342,7 +428,7 @@
           {
             "responseId": "en:lesson-02:session-10:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Разобранный шкаф можно перенести. Скажите, что это не невозможно",
+            "testedDimension": "Разобранный шкаф пройдёт в дверь. Скажите Анне, что это не невозможно",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is not impossible.`",
               "uk": "тут потрібно `is` — `It is not impossible.`"
@@ -358,17 +444,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i07",
-      "ordinal": 10,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы не знаете возраст шкафа. Спросите друга, старый ли он",
+      "prompt": "Вы не знаете, сколько лет шкафу. Спросите Олега, старый ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i07:audio"
       ],
-      "accessibilityLabel": "Вы не знаете возраст шкафа. Спросите друга, старый ли он",
+      "accessibilityLabel": "Вы не знаете, сколько лет шкафу. Спросите Олега, старый ли он",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -391,11 +477,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег напряжён перед переносом шкафа. Дополните фразу о том, что он не расслаблен",
+      "prompt": "Олег напряжён перед переноской. Дополните фразу о том, что он не расслаблен",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-10:i08:r1",
@@ -412,12 +498,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег напряжён перед переносом шкафа. Дополните фразу о том, что он не расслаблен",
+      "accessibilityLabel": "Олег напряжён перед переноской. Дополните фразу о том, что он не расслаблен",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег напряжён перед переносом шкафа. Дополните фразу о том, что он не расслаблен",
-          "uk": "Олег напружений перед перенесенням шафи. Доповніть фразу про те, що він не розслаблений"
+          "ru": "Олег напряжён перед переноской. Дополните фразу о том, что он не расслаблен",
+          "uk": "Олег напружений перед перенесенням. Доповніть фразу про те, що він не розслаблений"
         },
         "gappedTargetPhrase": "He ___ not relaxed.",
         "gapOptions": [
@@ -434,12 +520,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег напряжён перед переносом шкафа. Дополните фразу о том, что он не расслаблен",
+        "testedDimension": "Олег напряжён перед переноской. Дополните фразу о том, что он не расслаблен",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-10:i08:r2",
             "correct": false,
-            "testedDimension": "Олег напряжён перед переносом шкафа. Дополните фразу о том, что он не расслаблен",
+            "testedDimension": "Олег напряжён перед переноской. Дополните фразу о том, что он не расслаблен",
             "feedbackByLocale": {
               "ru": "После `He` нужно `is`.",
               "uk": "Після `He` потрібно `is`."
@@ -448,10 +534,10 @@
           {
             "responseId": "en:lesson-02:session-10:i08:r3",
             "correct": false,
-            "testedDimension": "Олег напряжён перед переносом шкафа. Дополните фразу о том, что он не расслаблен",
+            "testedDimension": "Олег напряжён перед переноской. Дополните фразу о том, что он не расслаблен",
             "feedbackByLocale": {
-              "ru": "Про него — `He is not`.",
-              "uk": "Про нього — `He is not`."
+              "ru": "Олег один, поэтому `He is not`.",
+              "uk": "Олег один, тому `He is not`."
             }
           }
         ]
@@ -459,52 +545,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-10:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-10:word:wide",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о соседе",
+      "prompt": "Карточка слова — wide",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-10:word:wide:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wide",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-10:word:wide:audio",
+          "transcript": "wide"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-10:word:wide:r1",
+            "targetText": "wide",
+            "meaningByLocale": {
+              "ru": "широкий. Is it wide? — «Он широкий?» О коридоре, двери, дороге, кровати.",
+              "uk": "широкий. Is it wide? — «Він широкий?» Про коридор, двері, дорогу, ліжко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wide",
+          "definitionByLocale": {
+            "ru": "широкий. Is it wide? — «Он широкий?» О коридоре, двери, дороге, кровати.",
+            "uk": "широкий. Is it wide? — «Він широкий?» Про коридор, двері, дорогу, ліжко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос о коридоре",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-10:i09:r1",
-          "text": "Is he kind?"
+          "text": "Is it wide?"
         },
         {
           "responseId": "en:lesson-02:session-10:i09:r2",
-          "text": "Is he funny?"
+          "text": "Is it narrow?"
         },
         {
           "responseId": "en:lesson-02:session-10:i09:r3",
-          "text": "Is he old?"
+          "text": "Is it wooden?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о соседе",
+      "accessibilityLabel": "Послушайте вопрос о коридоре",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-10:i09:audio",
-          "transcript": "Is he kind?"
+          "transcript": "Is it wide?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-10:i09:r1",
-            "targetText": "Is he kind?",
+            "targetText": "Is it wide?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-10:i09:r2",
-            "targetText": "Is he funny?",
+            "targetText": "Is it narrow?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-10:i09:r3",
-            "targetText": "Is he old?",
+            "targetText": "Is it wooden?",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +642,19 @@
           {
             "responseId": "en:lesson-02:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о соседе",
+            "testedDimension": "Послушайте вопрос о коридоре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kind`, а в этом варианте — `funny`.",
-              "uk": "У записі останнє слово — `kind`, а в цьому варіанті — `funny`."
+              "ru": "В записи последнее слово — `wide`, а в этом варианте — `narrow`.",
+              "uk": "У записі останнє слово — `wide`, а в цьому варіанті — `narrow`."
             }
           },
           {
             "responseId": "en:lesson-02:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о соседе",
+            "testedDimension": "Послушайте вопрос о коридоре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kind`, а в этом варианте — `old`.",
-              "uk": "У записі останнє слово — `kind`, а в цьому варіанті — `old`."
+              "ru": "В записи последнее слово — `wide`, а в этом варианте — `wooden`.",
+              "uk": "У записі останнє слово — `wide`, а в цьому варіанті — `wooden`."
             }
           }
         ],
@@ -536,15 +665,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -553,7 +682,7 @@
             "target": "confident",
             "meaningByLocale": {
               "ru": "уверенный в себе",
-              "uk": "впевнений у собі"
+              "uk": "упевнений у собі"
             }
           },
           {
@@ -568,16 +697,16 @@
             "pairId": "en:lesson-02:session-10:i10:p3",
             "target": "satisfied",
             "meaningByLocale": {
-              "ru": "довольный результатом",
-              "uk": "задоволений результатом"
+              "ru": "довольный",
+              "uk": "задоволений"
             }
           },
           {
             "pairId": "en:lesson-02:session-10:i10:p4",
-            "target": "impossible",
+            "target": "taken",
             "meaningByLocale": {
-              "ru": "невозможный",
-              "uk": "неможливий"
+              "ru": "занятый",
+              "uk": "зайнятий"
             }
           }
         ],
@@ -585,13 +714,13 @@
           "confident",
           "relaxed",
           "satisfied",
-          "impossible"
+          "taken"
         ],
         "rightColumn": [
           "уверенный в себе",
           "расслабленный",
-          "довольный результатом",
-          "невозможный"
+          "довольный",
+          "занятый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,17 +738,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткую фразу",
+      "prompt": "Шкаф стоит в комнате, и вы с Олегом улыбаетесь. Послушайте и соберите фразу о вас",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткую фразу",
+      "accessibilityLabel": "Шкаф стоит в комнате, и вы с Олегом улыбаетесь. Послушайте и соберите фразу о вас",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -639,7 +768,7 @@
           {
             "responseId": "en:lesson-02:session-10:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткую фразу",
+            "testedDimension": "Шкаф стоит в комнате, и вы с Олегом улыбаетесь. Послушайте и соберите фразу о вас",
             "feedbackByLocale": {
               "ru": "здесь нужно `We're` — `We're satisfied.`",
               "uk": "тут потрібно `We're` — `We're satisfied.`"
@@ -655,21 +784,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг берётся разбирать шкаф. Спросите его, уверен ли он в себе",
+      "prompt": "Олег берётся разбирать шкаф сам. Спросите его, уверен ли он в себе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг берётся разбирать шкаф. Спросите его, уверен ли он в себе",
+      "accessibilityLabel": "Олег берётся разбирать шкаф сам. Спросите его, уверен ли он в себе",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you confident?",
         "localizedMeaning": {
-          "ru": "Друг берётся разбирать шкаф. Спросите его, уверен ли он в себе",
-          "uk": "Друг береться розбирати шафу. Запитайте його, чи він упевнений у собі"
+          "ru": "Олег берётся разбирать шкаф сам. Спросите его, уверен ли он в себе",
+          "uk": "Олег береться розбирати шафу сам. Запитайте його, чи він упевнений у собі"
         },
         "orderedTokens": [
           "Are",
@@ -683,7 +812,7 @@
           {
             "responseId": "en:lesson-02:session-10:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Друг берётся разбирать шкаф. Спросите его, уверен ли он в себе",
+            "testedDimension": "Олег берётся разбирать шкаф сам. Спросите его, уверен ли он в себе",
             "feedbackByLocale": {
               "ru": "здесь нужно `Are` — `Are you confident?`",
               "uk": "тут потрібно `Are` — `Are you confident?`"
@@ -698,26 +827,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-10:word:wooden",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wooden",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-10:word:wooden:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wooden",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-10:word:wooden:audio",
+          "transcript": "wooden"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-10:word:wooden:r1",
+            "targetText": "wooden",
+            "meaningByLocale": {
+              "ru": "деревянный. Is it wooden? — «Он деревянный?» О шкафе, столе, ложке, полу.",
+              "uk": "дерев’яний. Is it wooden? — «Вона дерев’яна?» Про шафу, стіл, ложку, підлогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wooden",
+          "definitionByLocale": {
+            "ru": "деревянный. Is it wooden? — «Он деревянный?» О шкафе, столе, ложке, полу.",
+            "uk": "дерев’яний. Is it wooden? — «Вона дерев’яна?» Про шафу, стіл, ложку, підлогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-10:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сосед шутит и всех смешит. Коротко скажите, что он смешной",
+      "prompt": "Вы стучите по полке: звук глухой и лёгкий. Спросите Олега коротко, деревянная ли она",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i13:audio"
       ],
-      "accessibilityLabel": "Сосед шутит и всех смешит. Коротко скажите, что он смешной",
+      "accessibilityLabel": "Вы стучите по полке: звук глухой и лёгкий. Спросите Олега коротко, деревянная ли она",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-10:i13:audio",
-          "transcript": "He's funny."
+          "transcript": "Is it wooden?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's funny.",
+        "targetPhrase": "Is it wooden?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -732,11 +904,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна и Олег осматривают собранный шкаф. Спросите друга, довольны ли они результатом",
+      "prompt": "Анна и Олег осматривают собранный шкаф. Дополните вопрос, довольны ли они",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-10:i14:r1",
@@ -753,12 +925,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна и Олег осматривают собранный шкаф. Спросите друга, довольны ли они результатом",
+      "accessibilityLabel": "Анна и Олег осматривают собранный шкаф. Дополните вопрос, довольны ли они",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна и Олег осматривают собранный шкаф. Спросите друга, довольны ли они результатом",
-          "uk": "Анна й Олег оглядають зібрану шафу. Запитайте друга, чи вони задоволені результатом"
+          "ru": "Анна и Олег осматривают собранный шкаф. Дополните вопрос, довольны ли они",
+          "uk": "Анна й Олег оглядають зібрану шафу. Доповніть запитання, чи вони задоволені"
         },
         "gappedTargetPhrase": "___ they satisfied?",
         "gapOptions": [
@@ -775,12 +947,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Анна и Олег осматривают собранный шкаф. Спросите друга, довольны ли они результатом",
+        "testedDimension": "Анна и Олег осматривают собранный шкаф. Дополните вопрос, довольны ли они",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-10:i14:r2",
             "correct": false,
-            "testedDimension": "Анна и Олег осматривают собранный шкаф. Спросите друга, довольны ли они результатом",
+            "testedDimension": "Анна и Олег осматривают собранный шкаф. Дополните вопрос, довольны ли они",
             "feedbackByLocale": {
               "ru": "С `they` нужно `Are`.",
               "uk": "З `they` потрібно `Are`."
@@ -789,10 +961,10 @@
           {
             "responseId": "en:lesson-02:session-10:i14:r3",
             "correct": false,
-            "testedDimension": "Анна и Олег осматривают собранный шкаф. Спросите друга, довольны ли они результатом",
+            "testedDimension": "Анна и Олег осматривают собранный шкаф. Дополните вопрос, довольны ли они",
             "feedbackByLocale": {
-              "ru": "Про них спрашиваем `Are they`.",
-              "uk": "Про них запитуємо `Are they`."
+              "ru": "Их двое, поэтому `Are they`.",
+              "uk": "Їх двоє, тому `Are they`."
             }
           }
         ]
@@ -801,7 +973,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -877,15 +1049,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините знакомые слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините знакомые слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -915,10 +1087,10 @@
           },
           {
             "pairId": "en:lesson-02:session-10:i16:p4",
-            "target": "satisfied",
+            "target": "possible",
             "meaningByLocale": {
-              "ru": "довольный результатом",
-              "uk": "задоволений результатом"
+              "ru": "возможный",
+              "uk": "можливий"
             }
           }
         ],
@@ -926,13 +1098,13 @@
           "old",
           "kind",
           "funny",
-          "satisfied"
+          "possible"
         ],
         "rightColumn": [
           "старый",
           "добрый",
           "смешной",
-          "довольный результатом"
+          "возможный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -950,17 +1122,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-10:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг измеряет дверь и качает головой. Вы оба обсуждаете перенос шкафа без разборки. Спросите, невозможно ли это",
+      "prompt": "Олег снова меряет дверь и качает головой. Спросите его, невозможно ли пронести шкаф целым",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Друг измеряет дверь и качает головой. Вы оба обсуждаете перенос шкафа без разборки. Спросите, невозможно ли это",
+      "accessibilityLabel": "Олег снова меряет дверь и качает головой. Спросите его, невозможно ли пронести шкаф целым",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -990,11 +1162,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "15a3e9365934fe97e045731a1892df0407ea3276d6a3be33752e55c09413df3e"
+  "learnerFingerprint": "af6d8cd82e86e2996079ddb4d749c69ef36b45021b3cc9a8a3839a410c5ad48f"
 }

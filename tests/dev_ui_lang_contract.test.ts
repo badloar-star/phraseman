@@ -4,6 +4,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { isInterfaceLangEnabled, triLang } from '../constants/i18n';
+
+// зачем (17.10): боевой флаг английского включён — сторож проверяет МЕХАНИЗМ dev-подмены, поэтому флаг здесь выключен.
+jest.mock('../app/config', () => ({ ...jest.requireActual('../app/config'), ENGLISH_UI_LOCALE_ENABLED: false }));
 import { isDevUiLangEnOn, peekDevUiLang, setDevUiLang, subscribeDevUiLang } from '../app/dev_ui_lang';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');

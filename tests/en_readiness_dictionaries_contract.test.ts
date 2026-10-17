@@ -62,8 +62,10 @@ describe('English interface dictionaries (preparation, flag stays off)', () => {
     expect(home).toMatch(/uk: GREETINGS_UK,/);
   });
 
-  it('the flag is still off — turning English on is the owner\'s decision on 14.10', () => {
-    expect(read('app/config.ts')).toMatch(/export const ENGLISH_UI_LOCALE_ENABLED = false;/);
+  // зачем: владелец 17.10 «доведи до конца и открой английский» — флаг включён; сторож держит его включённым,
+  // выключение — только новым словом владельца.
+  it('the flag is on — owner 17.10: «доведи до конца и открой английский»', () => {
+    expect(read('app/config.ts')).toMatch(/export const ENGLISH_UI_LOCALE_ENABLED = true;/);
   });
 });
 

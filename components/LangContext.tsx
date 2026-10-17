@@ -1217,6 +1217,15 @@ export function stringsForLang(lang: Lang): Strings {
 function initialLangFromPeekOrDevice(): Lang {
   const peeked = coerceInterfaceLang(peekAppLang());
   const initial = peeked ?? getDeviceBootstrapLocale();
+  // зачем (владелец 17.10 «доведи до конца и открой английский»): одна строка на старт — откуда взят язык первого кадра
+  // и открыт ли английский; английский телефон без выбора вручную обязан стартовать на en.
+  if (__DEV__) {
+    let deviceLocale = 'unknown';
+    try { deviceLocale = Intl.DateTimeFormat().resolvedOptions().locale; } catch (e) { deviceLocale = `error:${String(e)}`; }
+    if (initial === 'en' || /^en\b/iu.test(deviceLocale)) {
+      console.log(`[UI-LANG-EN] initial lang=${initial} source=${peeked ? 'peek' : 'device'} device=${deviceLocale} enOpen=${String(isInterfaceLangEnabled('en'))}`);
+    }
+  }
   // зачем (координатор 12.10, 🔴 Шпиль): замки вне React (Шпиль) должны знать язык, которым нарисован ПЕРВЫЙ кадр,
   // а не сырое app_lang (у кого язык не выбирался вручную, его нет). Запись идемпотентна — повторный вызов безвреден.
   publishResolvedUiLang(initial, 'initial');

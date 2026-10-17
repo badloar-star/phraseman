@@ -32,7 +32,9 @@ describe('bootstrap locale contract', () => {
   });
 
   it('falls back safely for unknown or malformed device locales', () => {
-    expect(resolveBootstrapLocaleFromDeviceLocale('en-US')).toBe('ru');
+    // зачем (владелец 17.10, английский открыт): en-телефон стартует на en; незнакомый язык телефона — запасной ru
+    expect(resolveBootstrapLocaleFromDeviceLocale('en-US')).toBe('en');
+    expect(resolveBootstrapLocaleFromDeviceLocale('de-DE')).toBe('ru');
     expect(resolveBootstrapLocaleFromDeviceLocale('')).toBe('ru');
     expect(resolveBootstrapLocaleFromDeviceLocale(null)).toBe('ru');
   });

@@ -46,13 +46,13 @@ describe('язык пушей = фактический язык интерфей
     expect(resolvePushUiLang({ resolvedUiLang: null, storedAppLang: 'ru', deviceLang: 'uk' }).lang).toBe('ru');
   });
 
-  it('английский интерфейс выключен: en-телефон получает язык, на котором видит интерфейс (ru), а не en', () => {
+  // зачем (владелец 17.10, английский открыт): пуши на том языке, которым нарисован интерфейс — en-телефону en.
+  it('английский интерфейс включён: en-телефон получает пуши на en', () => {
     const device = resolveBootstrapLocaleFromDeviceLocale('en-US');
-    expect(device).toBe('ru');
-    expect(resolvePushUiLang({ resolvedUiLang: null, storedAppLang: null, deviceLang: device }).lang).toBe('ru');
-    // даже если en когда-то оказался в app_lang — интерфейс его не показывает, пуши тоже не en
-    expect(resolvePushUiLang({ resolvedUiLang: null, storedAppLang: 'en', deviceLang: device }).lang).toBe('ru');
-    expect(resolvePushUiLang({ resolvedUiLang: 'en', storedAppLang: 'en', deviceLang: device }).lang).toBe('ru');
+    expect(device).toBe('en');
+    expect(resolvePushUiLang({ resolvedUiLang: null, storedAppLang: null, deviceLang: device }).lang).toBe('en');
+    expect(resolvePushUiLang({ resolvedUiLang: null, storedAppLang: 'en', deviceLang: device }).lang).toBe('en');
+    expect(resolvePushUiLang({ resolvedUiLang: 'en', storedAppLang: 'en', deviceLang: device }).lang).toBe('en');
   });
 
   it('фактический язык интерфейса важнее сохранённого значения', () => {

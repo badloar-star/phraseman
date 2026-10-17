@@ -1292,7 +1292,7 @@ export default function FlashcardsSpeakingSession() {
     const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
-      vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
+      vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje karty',
     });
     if (deckRef.kind === 'pack') {
       // зачем (DQA, 04.10): в шапке — название выбранного набора («Family»), а не безличное «Набор карточек»;
@@ -1302,7 +1302,7 @@ export default function FlashcardsSpeakingSession() {
     }
     if (deckRef.kind === 'pack') return triLang(lang, {
       ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
-      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
+      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw kart',
     });
     return triLang(lang, {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
@@ -1452,7 +1452,7 @@ export default function FlashcardsSpeakingSession() {
             dataText={`EN: ${card.en}
 RU: ${card.translation}`}
             variant="icon-flag"
-            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w karcie' })}
             testID="fc-speak-report"
           />
         ) : null}

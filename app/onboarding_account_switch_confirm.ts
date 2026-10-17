@@ -218,7 +218,7 @@ async function offerSwitchWithoutSaving(lang: Lang, reason: string, attemptStart
   const cards = await readAccountSwitchUnsavedCardsDecision(attemptStartedAtMs);
   if (cards.kind === 'confirm_unsaved_cards') {
     console.log(`[AUTH-SWITCH-OFFER] onboarding unsaved_cards_confirm shown reason=${cards.reason}`);
-    const title = triLang(lang, { ru: 'Несохранённые карточки будут удалены с этого телефона', uk: 'Незбережені картки буде видалено з цього телефона', en: 'Unsaved cards will be deleted from this phone', es: 'Las tarjetas sin guardar se eliminarán de este teléfono', 'pt-BR': 'Os cartões não salvos serão apagados deste telefone', vi: 'Các thẻ chưa lưu sẽ bị xóa khỏi điện thoại này', id: 'Kartu yang belum disimpan akan dihapus dari ponsel ini', tr: 'Kaydedilmemiş kartlar bu telefondan silinecek', pl: 'Niezapisane fiszki zostaną usunięte z tego telefonu' });
+    const title = triLang(lang, { ru: 'Несохранённые карточки будут удалены с этого телефона', uk: 'Незбережені картки буде видалено з цього телефона', en: 'Unsaved cards will be deleted from this phone', es: 'Las tarjetas sin guardar se eliminarán de este teléfono', 'pt-BR': 'Os cartões não salvos serão apagados deste telefone', vi: 'Các thẻ chưa lưu sẽ bị xóa khỏi điện thoại này', id: 'Kartu yang belum disimpan akan dihapus dari ponsel ini', tr: 'Kaydedilmemiş kartlar bu telefondan silinecek', pl: 'Niezapisane karty zostaną usunięte z tego telefonu' });
     if (!(await askStayOrForce(title, '', lang))) {
       console.log('[AUTH-SWITCH-OFFER] onboarding unsaved_cards_confirm stay');
       releaseReason('account_switch', 'unsaved_cards_declined', 'blocked');

@@ -16,7 +16,7 @@ const REFUSALS: Readonly<Record<string, Tuple9>> = {
     'В наборе должно остаться минимум {min} карточек.', 'У наборі має лишитися щонайменше {min} карток.',
     'At least {min} cards must stay in the pack.', 'En el pack deben quedar al menos {min} tarjetas.',
     'No pacote devem ficar pelo menos {min} cartões.', 'Bộ thẻ phải còn ít nhất {min} thẻ.',
-    'Paket harus menyisakan minimal {min} kartu.', 'Pakette en az {min} kart kalmalı.', 'W zestawie musi zostać co najmniej {min} fiszek.',
+    'Paket harus menyisakan minimal {min} kartu.', 'Pakette en az {min} kart kalmalı.', 'W zestawie musi zostać co najmniej {min} kart.',
   ],
   update_pending: [
     'Набор на проверке — удалить сейчас нельзя.', 'Набір на перевірці — зараз видалити не можна.',
@@ -31,7 +31,7 @@ const REFUSALS: Readonly<Record<string, Tuple9>> = {
   not_author: [
     'Удалять карточки может только автор.', 'Видаляти картки може лише автор.', 'Only the author can delete cards.',
     'Solo el autor puede eliminar tarjetas.', 'Só o autor pode excluir cartões.', 'Chỉ tác giả mới xóa được thẻ.',
-    'Hanya penulis yang bisa menghapus kartu.', 'Kartları yalnızca yazar silebilir.', 'Fiszki może usuwać tylko autor.',
+    'Hanya penulis yang bisa menghapus kartu.', 'Kartları yalnızca yazar silebilir.', 'Karty może usuwać tylko autor.',
   ],
   pack_not_found: [
     'Набор не найден.', 'Набір не знайдено.', 'Pack not found.', 'No se encontró el pack.', 'Pacote não encontrado.',
@@ -45,13 +45,13 @@ const REFUSALS: Readonly<Record<string, Tuple9>> = {
     'Нет связи — карточку не удалось удалить.', 'Немає зв’язку — картку не вдалося видалити.',
     'No connection — the card couldn’t be deleted.', 'Sin conexión: no se pudo eliminar la tarjeta.',
     'Sem conexão — não foi possível excluir o cartão.', 'Không có kết nối — không xóa được thẻ.',
-    'Tidak ada koneksi — kartu tidak bisa dihapus.', 'Bağlantı yok — kart silinemedi.', 'Brak połączenia — nie udało się usunąć fiszki.',
+    'Tidak ada koneksi — kartu tidak bisa dihapus.', 'Bağlantı yok — kart silinemedi.', 'Brak połączenia — nie udało się usunąć karty.',
   ],
 };
 
 const FALLBACK: Tuple9 = [
   'Не удалось удалить карточку.', 'Не вдалося видалити картку.', 'Couldn’t delete the card.', 'No se pudo eliminar la tarjeta.',
-  'Não foi possível excluir o cartão.', 'Không xóa được thẻ.', 'Kartu gagal dihapus.', 'Kart silinemedi.', 'Nie udało się usunąć fiszki.',
+  'Não foi possível excluir o cartão.', 'Không xóa được thẻ.', 'Kartu gagal dihapus.', 'Kart silinemedi.', 'Nie udało się usunąć karty.',
 ];
 
 export function packCardRemovalRefusalText(reason: string, lang: Lang | string): string {

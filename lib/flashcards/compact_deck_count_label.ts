@@ -15,6 +15,6 @@ export function compactDeckCountLabel(lang: Lang, count: number): string {
     vi: `${n} thẻ`,
     id: `${n} kartu`,
     tr: `${n} kart`,
-    pl: `${n} ${n === 1 ? 'fiszka' : polishFew ? 'fiszki' : 'fiszek'}`,
+    pl: `${n} ${n === 1 ? 'karta' : polishFew ? 'karty' : 'kart'}`,
   });
 }

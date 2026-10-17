@@ -432,7 +432,7 @@ export async function loadFcDeckOptions(
     title: triLang(lang, {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas',
       'pt-BR': 'Meus cartões', vi: 'Thẻ của tôi', id: 'Kartu saya',
-      tr: 'Kartlarım', pl: 'Moje fiszki',
+      tr: 'Kartlarım', pl: 'Moje karty',
     }),
     count: customCards.length,
     cardIds: customCards.map((c) => c.id),

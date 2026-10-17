@@ -92,7 +92,7 @@ export function packCardsWord(lang: Lang, count: number): string {
     vi: 'thẻ',
     id: 'kartu',
     tr: 'kart',
-    pl: pluralWord(lang, count, { one: 'fiszka', few: 'fiszki', many: 'fiszek' }),
+    pl: pluralWord(lang, count, { one: 'karta', few: 'karty', many: 'kart' }),
   });
 }
 

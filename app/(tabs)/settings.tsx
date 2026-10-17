@@ -1716,7 +1716,7 @@ export default function SettingsMain() {
                           'Các thẻ chưa lưu sẽ bị xóa khỏi điện thoại này',
                           'Kartu yang belum disimpan akan dihapus dari ponsel ini',
                           'Kaydedilmemiş kartlar bu telefondan silinecek',
-                          'Niezapisane fiszki zostaną usunięte z tego telefonu',
+                          'Niezapisane karty zostaną usunięte z tego telefonu',
                         ),
                         '',
                         [

@@ -182,7 +182,7 @@ export default function LingmanVideoWatchScreen() {
     uk: `Додати набір собі · ${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'картка', few: 'картки', many: 'карток' })}`,
     en: `Add the pack to mine · ${pack.cardCount} cards`, es: `Añadir el pack · ${pack.cardCount} tarjetas`, 'pt-BR': `Adicionar o pacote · ${pack.cardCount} cartões`,
     vi: `Thêm bộ thẻ · ${pack.cardCount} thẻ`, id: `Tambahkan paket · ${pack.cardCount} kartu`, tr: `Paketi ekle · ${pack.cardCount} kart`,
-    pl: `Dodaj zestaw · ${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'fiszka', few: 'fiszki', many: 'fiszek' })}`,
+    pl: `Dodaj zestaw · ${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'karta', few: 'karty', many: 'kart' })}`,
   }) : undefined;
   // зачем (координатор 11.10): после «Добавить набор себе» кнопка внизу становится «Тренировать» и ведёт к карточкам ролика —
   // тот же путь, что раньше шёл из встроенного плеера ленты.

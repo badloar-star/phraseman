@@ -1275,7 +1275,7 @@ export default function FlashcardsBlitzSession() {
     if (deckRefs.length === 0) return triLang(lang, {
       ru: 'Все карточки', uk: 'Усі картки', en: 'All cards', es: 'Todas las tarjetas',
       'pt-BR': 'Todos os cartões', vi: 'Tất cả thẻ', id: 'Semua kartu',
-      tr: 'Tüm kartlar', pl: 'Wszystkie fiszki',
+      tr: 'Tüm kartlar', pl: 'Wszystkie karty',
     });
     if (deckRefs.length > 1) {
       /** cards-2.1 (§6): форма слова по числу — «2 набора», а не «2 наборов». */
@@ -1284,7 +1284,7 @@ export default function FlashcardsBlitzSession() {
     const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
-      vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
+      vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje karty',
     });
     if (deckRef.kind === 'pack') {
       // зачем (DQA, 04.10): в шапке — название выбранного набора («Family»), а не безличное «Набор карточек»;
@@ -1294,7 +1294,7 @@ export default function FlashcardsBlitzSession() {
     }
     if (deckRef.kind === 'pack') return triLang(lang, {
       ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
-      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
+      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw kart',
     });
     return triLang(lang, {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',

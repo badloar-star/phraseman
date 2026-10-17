@@ -50,7 +50,7 @@ const CARD_FORMS = {
   vi: { one: 'thẻ', few: 'thẻ', many: 'thẻ' },
   id: { one: 'kartu', few: 'kartu', many: 'kartu' },
   tr: { one: 'kart', few: 'kart', many: 'kart' },
-  pl: { one: 'fiszka', few: 'fiszki', many: 'fiszek' },
+  pl: { one: 'karta', few: 'karty', many: 'kart' },
 } as const;
 
 type FormsKey = keyof typeof DAY_FORMS;

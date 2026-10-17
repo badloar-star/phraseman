@@ -39,7 +39,7 @@ const S = {
   dayDone: ['День выполнен', 'День виконано', 'Day complete', 'Día completado', 'Dia concluído', 'Đã xong hôm nay', 'Hari selesai', 'Gün tamamlandı', 'Dzień ukończony'],
   ringLesson: ['Пройти урок', 'Пройти урок', 'Finish a lesson', 'Completar una lección', 'Concluir uma lição', 'Hoàn thành một bài học', 'Selesaikan satu pelajaran', 'Bir ders bitir', 'Ukończ lekcję'],
   ringSpire: ['Пройти ступени Пика', 'Пройти сходинки Піку', 'Climb the Peak steps', 'Subir los escalones del Pico', 'Subir os degraus do Pico', 'Leo các bậc của Đỉnh', 'Naiki anak tangga Puncak', 'Zirvenin basamaklarını çık', 'Pokonaj stopnie Szczytu'],
-  ringCards: ['Повторить карточки', 'Повторити картки', 'Review cards', 'Repasar tarjetas', 'Revisar cartões', 'Ôn lại thẻ', 'Ulangi kartu', 'Kartları tekrarla', 'Powtórz fiszki'],
+  ringCards: ['Повторить карточки', 'Повторити картки', 'Review cards', 'Repasar tarjetas', 'Revisar cartões', 'Ôn lại thẻ', 'Ulangi kartu', 'Kartları tekrarla', 'Powtórz karty'],
   ringCardsSub: ['Не менее 10 слов', 'Не менше 10 слів', 'At least 10 words', 'Al menos 10 palabras', 'Pelo menos 10 palavras', 'Ít nhất 10 từ', 'Minimal 10 kata', 'En az 10 kelime', 'Co najmniej 10 słów'],
 } as const satisfies Readonly<Record<string, Nine>>;
 

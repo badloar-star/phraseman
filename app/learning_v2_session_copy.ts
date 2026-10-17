@@ -722,7 +722,7 @@ function makeCopy(
       "Lưu câu vào thẻ",
       "Simpan frasa ke kartu",
       "Cümleyi kartlara kaydet",
-      "Zapisz frazę w fiszkach",
+      "Zapisz frazę w kartach",
     ),
     saveAdded: phrase(
       "Фразу збережено в картки",
@@ -731,7 +731,7 @@ function makeCopy(
       "Đã lưu câu vào thẻ",
       "Frasa disimpan ke kartu",
       "Cümle kartlara kaydedildi",
-      "Fraza została zapisana w fiszkach",
+      "Fraza została zapisana w kartach",
     ),
     saveFirstEver: phrase(
       "Ти зберіг(ла) свою першу картку. Потренуй її будь-коли в розділі «Картки»",
@@ -740,7 +740,7 @@ function makeCopy(
       "Bạn đã lưu thẻ đầu tiên. Luyện tập bất cứ lúc nào trong mục «Thẻ»",
       "Kamu menyimpan kartu pertamamu. Latih kapan saja di bagian «Kartu»",
       "İlk kartını kaydettin. İstediğin zaman «Kartlar» bölümünde çalış",
-      "Zapisano pierwszą fiszkę. Poćwicz ją kiedy chcesz w sekcji «Fiszki»",
+      "Zapisano pierwszą kartę. Poćwicz ją kiedy chcesz w sekcji «Karty»",
     ),
     saveDuplicate: phrase(
       "Вислів уже є в картках",
@@ -749,7 +749,7 @@ function makeCopy(
       "Câu đã có trong thẻ",
       "Frasa sudah ada di kartu",
       "Cümle zaten kartlarda",
-      "Fraza jest już w fiszkach",
+      "Fraza jest już w kartach",
     ),
     saveFailed: phrase(
       "Не вдалося зберегти фразу",

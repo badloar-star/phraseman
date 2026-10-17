@@ -151,7 +151,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
     ru: 'Видео сейчас не открывается. Карточки набора доступны как обычно.',
     uk: 'Відео зараз не відкривається. Картки набору доступні як завжди.',
     es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.', en: 'This video isn\'t opening right now. The pack\'s cards are available as usual.',
-    'pt-BR': 'O vídeo não abre agora. Os cartões do pacote continuam disponíveis.', vi: 'Video hiện không mở được. Các thẻ trong bộ thẻ vẫn dùng bình thường.', id: 'Video tidak bisa dibuka sekarang. Kartu dalam paket tetap tersedia seperti biasa.', tr: 'Video şu anda açılmıyor. Paketteki kartlar her zamanki gibi kullanılabilir.', pl: 'Film nie otwiera się teraz. Fiszki z zestawu są dostępne jak zwykle.',
+    'pt-BR': 'O vídeo não abre agora. Os cartões do pacote continuam disponíveis.', vi: 'Video hiện không mở được. Các thẻ trong bộ thẻ vẫn dùng bình thường.', id: 'Video tidak bisa dibuka sekarang. Kartu dalam paket tetap tersedia seperti biasa.', tr: 'Video şu anda açılmıyor. Paketteki kartlar her zamanki gibi kullanılabilir.', pl: 'Film nie otwiera się teraz. Karty z zestawu są dostępne jak zwykle.',
   }), []);
 
   // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Из видео»): строка — карточка 87 высотой:
@@ -163,7 +163,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
       ru: pluralWord(lang, pack.cardCount, { one: 'карточка', few: 'карточки', many: 'карточек' }),
       uk: pluralWord(lang, pack.cardCount, { one: 'картка', few: 'картки', many: 'карток' }),
       en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart',
-      pl: pluralWord(lang, pack.cardCount, { one: 'fiszka', few: 'fiszki', many: 'fiszek' }),
+      pl: pluralWord(lang, pack.cardCount, { one: 'karta', few: 'karty', many: 'kart' }),
     })}`
     : `${pack.cardCount} ${triLang(lang, {
       ru: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фразы', many: 'фраз' }),

@@ -50,7 +50,7 @@ export function flashcardStatusA11yLabel(status: FlashcardStatus, lang: string):
   const byLang: Record<FlashcardStatus, Record<string, string>> = {
     new: {
       ru: 'Новая карточка', uk: 'Нова картка', es: 'Tarjeta nueva', en: 'New card', 'pt-BR': 'Cartão novo',
-      vi: 'Thẻ mới', id: 'Kartu baru', tr: 'Yeni kart', pl: 'Nowa fiszka',
+      vi: 'Thẻ mới', id: 'Kartu baru', tr: 'Yeni kart', pl: 'Nowa karta',
     },
     learning: {
       ru: 'Учу', uk: 'Вивчаю', es: 'Aprendiendo', en: 'Learning', 'pt-BR': 'Aprendendo',
@@ -66,7 +66,7 @@ export function flashcardStatusA11yLabel(status: FlashcardStatus, lang: string):
     },
     weak: {
       ru: 'Слабая карточка', uk: 'Слабка картка', es: 'Tarjeta débil', en: 'Weak card', 'pt-BR': 'Cartão fraco',
-      vi: 'Thẻ yếu', id: 'Kartu lemah', tr: 'Zayıf kart', pl: 'Słaba fiszka',
+      vi: 'Thẻ yếu', id: 'Kartu lemah', tr: 'Zayıf kart', pl: 'Słaba karta',
     },
   };
   return byLang[status][lang] ?? byLang[status].ru!;

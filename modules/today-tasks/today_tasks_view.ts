@@ -35,7 +35,7 @@ function copyFor(kind: TodayTaskKindCore, lang: Lang): { title: string; subtitle
       return { title: triLang(lang, { ru: 'Потренировать диалог', uk: 'Потренувати діалог', en: 'Practice a dialogue', es: 'Practica un diálogo', 'pt-BR': 'Pratique um diálogo', vi: 'Luyện một đoạn hội thoại', id: 'Latih dialog', tr: 'Bir diyalog çalış', pl: 'Przećwicz dialog' }) };
     case 'cards':
       return {
-        title: triLang(lang, { ru: 'Повторить карточки', uk: 'Повторити картки', en: 'Review cards', es: 'Repasa tarjetas', 'pt-BR': 'Revise cartões', vi: 'Ôn thẻ', id: 'Ulangi kartu', tr: 'Kartları tekrar et', pl: 'Powtórz fiszki' }),
+        title: triLang(lang, { ru: 'Повторить карточки', uk: 'Повторити картки', en: 'Review cards', es: 'Repasa tarjetas', 'pt-BR': 'Revise cartões', vi: 'Ôn thẻ', id: 'Ulangi kartu', tr: 'Kartları tekrar et', pl: 'Powtórz karty' }),
         subtitle: triLang(lang, { ru: 'Не менее 10 слов', uk: 'Не менше 10 слів', en: 'At least 10 words', es: 'Al menos 10 palabras', 'pt-BR': 'Pelo menos 10 palavras', vi: 'Ít nhất 10 từ', id: 'Minimal 10 kata', tr: 'En az 10 kelime', pl: 'Co najmniej 10 słów' }),
       };
     case 'video':

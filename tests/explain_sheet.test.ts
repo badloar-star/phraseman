@@ -247,7 +247,8 @@ describe('Lesson explain footer contract', () => {
     expect(src).toContain('testID="lesson1-explain"');
     // Гейт показа — статус результата + флаг фичи (kill-switch), НЕ wasWrong.
     expect(src).toContain("status === 'result' && explainFeatureOn");
-    expect(src).toContain('const explainFeatureOn = isExplainEnabled()');
+    // владелец 17.10: плитка скрыта общим флагом ИИ-объяснений (MISTAKE_EXPLAIN_ENABLED=false), env-kill-switch остаётся вторым замком.
+    expect(src).toContain('const explainFeatureOn = MISTAKE_EXPLAIN_ENABLED && isExplainEnabled()');
     // Тап открывает общую шторку ExplainSheet (кэш на сервере), без pre-answer-режима.
     expect(src).toContain('setExplainOpen(true)');
     expect(src).not.toContain('lesson1-explain-result');

@@ -79,6 +79,14 @@ describe('ИИ-разбор ошибок выключен (владелец 17.1
     expect(callExplainMistake).not.toHaveBeenCalled();
   });
 
+  it('плитка «Объяснить» в уроке и облачная подсказка хаба ошибок выключены тем же флагом', () => {
+    const lesson = fs.readFileSync(path.join(process.cwd(), 'app/lesson1.tsx'), 'utf8');
+    expect(lesson).toContain('MISTAKE_EXPLAIN_ENABLED && isExplainEnabled()');
+    const advice = fs.readFileSync(path.join(process.cwd(), 'app/mistake_hub_advice.ts'), 'utf8');
+    expect(advice).toContain('[MISTAKE-HUB-ADVICE] disabled');
+    expect(advice.indexOf('if (!MISTAKE_EXPLAIN_ENABLED)')).toBeLessThan(advice.indexOf('const pending = refreshInFlight.get(key)'));
+  });
+
   it('предгенерация текстов для разбора на экране ошибок выключена тем же флагом', () => {
     const src = fs.readFileSync(path.join(process.cwd(), 'app/mistake_practice_session.tsx'), 'utf8');
     expect(src).toContain('if (!MISTAKE_EXPLAIN_ENABLED)');

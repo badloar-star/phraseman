@@ -17,6 +17,7 @@ import {
   type MistakeSourceGroup,
 } from './mistake_practice_insights';
 import { getStableId } from './stable_id';
+import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
 
 /**
  * Подсказка хаба «Работа над ошибками»: одна фраза наблюдения о слабом месте
@@ -284,6 +285,11 @@ export async function refreshMistakeHubAdvice(input: Readonly<{
   call?: CallAdvice;
   nowMs?: number;
 }>): Promise<MistakeHubAdvice | null> {
+  // зачем (владелец 17.10, расходы на ИИ): облачная подсказка хаба ошибок выключена вместе с ИИ-разбором — клиент не зовёт mistakeHubAdvice; экран показывает кэш или локальный фолбэк
+  if (!MISTAKE_EXPLAIN_ENABLED) {
+    console.log('[MISTAKE-HUB-ADVICE] disabled refresh skipped'); // guard-ok: ИИ-подсказка хаба отключена владельцем
+    return null;
+  }
   const key = storageKey(input.accountScope, input.summary.studyTarget, input.summary.lang);
   const pending = refreshInFlight.get(key);
   if (pending) return pending;

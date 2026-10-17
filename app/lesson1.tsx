@@ -142,6 +142,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { emitAppEvent } from './events';
 import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
+import { MISTAKE_EXPLAIN_ENABLED } from './mistake_explain_flag';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
@@ -753,10 +754,16 @@ const LessonContent = React.memo(function LessonContent({
   }, [status, phraseWordIdx, contrExpanded, shuffled]);
   // [EXPLAIN] «Объясни проще» — только ПОСЛЕ ответа. Тот же дневной лимит (fifty_fifty_* счётчик).
   const [explainOpen, setExplainOpen] = useState(false);
+  const __explainTileLogged = useRef<string | null>(null);
   // Флаг-гейт фичи «Объясни проще» (kill-switch из «Пульта»/env). Кнопка в футере
   // видна на экране результата НЕЗАВИСИМО от того, верно ответил юзер или нет —
   // объясняет САМУ фразу простыми словами (CF explainPhrase, кэш per-(фраза+язык)).
-  const explainFeatureOn = isExplainEnabled();
+  // зачем (владелец 17.10): «кнопки Объяснить вообще не должно быть» — плитка «Объяснить» (лампочка) скрыта общим флагом ИИ-объяснений
+  const explainFeatureOn = MISTAKE_EXPLAIN_ENABLED && isExplainEnabled();
+  if (!explainFeatureOn && __explainTileLogged.current !== 'off') {
+    __explainTileLogged.current = 'off';
+    console.log(`[MISTAKE-EXPLAIN] disabled lesson tile hidden flag=${String(MISTAKE_EXPLAIN_ENABLED)} env=${String(isExplainEnabled())}`); // guard-ok: плитка «Объяснить» отключена владельцем
+  }
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
   // До ответа: открыть, только если ещё есть кредиты. Кредит НЕ списываем здесь —
   // только когда шторка реально сгенерит (cache MISS) в onExplainResolved: бесплатный

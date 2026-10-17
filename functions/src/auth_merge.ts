@@ -1452,7 +1452,9 @@ export const accountMergeOutboxWorker = onDocumentCreated({
 });
 
 export const accountMergeOutboxRetryCron = onSchedule({
-  schedule: 'every 5 minutes',
+  // зачем (владелец 17.10, расходы): повтор упавших задач слияния — основной путь accountMergeOutboxWorker
+  // срабатывает сразу при создании задачи. 5 мин → 30 мин: −7 тыс. запусков в месяц.
+  schedule: 'every 30 minutes',
   timeZone: 'UTC',
   region: 'us-central1',
   memory: '256MiB',

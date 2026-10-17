@@ -25,7 +25,8 @@ export const ACCOUNT_DELETE_WORKER_OPTIONS = {
 } as const;
 
 export const ACCOUNT_DELETE_RETRY_OPTIONS = {
-  schedule: 'every 30 minutes',
+  // зачем (владелец 17.10, расходы): только повтор задач удаления — сам воркер срабатывает по созданию задачи.
+  schedule: 'every 120 minutes',
   region: 'us-central1',
   retryCount: 3,
   timeoutSeconds: 60,

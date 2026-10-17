@@ -204,7 +204,8 @@ describe('admin analytics trends request and callable security contract', () => 
   test('sets explicit bounded callable runtime cost controls', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_analytics_trends.ts'), 'utf8');
     expect(source).toContain('maxInstances: 4');
-    expect(source).toContain('concurrency: 10');
+    // 17.10 (расходы): доля ядра (cpu gcf_gen1) — параллельность 1, явного concurrency быть не должно
+    expect(source).not.toMatch(/concurrency:\s*\d+/);
   });
 });
 

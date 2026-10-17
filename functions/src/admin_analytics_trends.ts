@@ -839,7 +839,7 @@ export const adminGetAnalyticsTrends = onCall({
   timeoutSeconds: 60,
   memory: '512MiB',
   maxInstances: 4,
-  concurrency: 10,
+  // зачем (17.10, расходы): при доле ядра (setGlobalOptions cpu gcf_gen1) параллельность > 1 запрещена.
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Authentication required.');

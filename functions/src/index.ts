@@ -24,7 +24,13 @@ admin.initializeApp();
 // Потолок общий и мягкий: функции, у которых есть свой maxInstances/minInstances
 // (включая тёплый auth_identity), сохраняют своё значение —
 // глобальные опции действуют только там, где своё не задано.
-functions.setGlobalOptions({ maxInstances: 10 });
+// зачем (владелец 17.10, сокращение расходов Firebase, docs/work/tasks/firebase-cost-cut-2026-10-17.md):
+// Gen2 по умолчанию даёт каждой функции ЦЕЛОЕ ядро, а платим мы за ядро всё время запроса. Замер прода
+// за 7 суток: загрузка CPU горячих функций ~1 %, остальное — ожидание Firestore → ≈35 $/мес впустую.
+// 'gcf_gen1' — доля ядра по памяти (256 МБ → 0,167 vCPU, 512 МБ → 0,333, 2 ГБ → 1). Старт не медленнее:
+// у Cloud Run включён startup-cpu-boost. При доле ядра один запрос на экземпляр, поэтому потолок
+// экземпляров поднят 10 → 30 (по квоте CPU это всё равно меньше прежнего: 30 × 0,167 < 10 × 1).
+functions.setGlobalOptions({ maxInstances: 30, cpu: "gcf_gen1" });
 
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires

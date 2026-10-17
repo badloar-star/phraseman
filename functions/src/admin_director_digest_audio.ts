@@ -138,6 +138,6 @@ export const adminGenerateDirectorDigestAudio = onCall({
   timeoutSeconds: 120,
   memory: '512MiB',
   maxInstances: 2,
-  concurrency: 4,
+  // зачем (17.10, расходы): при доле ядра (setGlobalOptions cpu gcf_gen1) параллельность > 1 запрещена.
   secrets: [OPENAI_API_KEY],
 }, async (request) => getDirectorDigestAudioResponse(request.data, request.auth));

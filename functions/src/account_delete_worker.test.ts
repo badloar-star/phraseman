@@ -20,7 +20,8 @@ describe('account deletion worker binding', () => {
 
   it('uses a lightweight retry dispatcher and preserves the heavy worker', () => {
     expect(ACCOUNT_DELETE_RETRY_OPTIONS).toMatchObject({
-      schedule: 'every 30 minutes',
+      // 17.10 (расходы): повтор раз в 2 ч — воркер срабатывает сразу по созданию задачи
+      schedule: 'every 120 minutes',
       region: 'us-central1',
       retryCount: 3,
       timeoutSeconds: 60,

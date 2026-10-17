@@ -389,7 +389,9 @@ export const adminAlertDispatchOnCreate = onDocumentCreated(
 
 export const adminAlertRecoveryCron = onSchedule(
   {
-    schedule: 'every 1 minutes',
+    // зачем (владелец 17.10, расходы): это лишь подбор зависших событий — основная отправка идёт триггером
+    // adminAlertDispatchOnCreate сразу. 1 мин давала ~43 тыс. холостых запусков в месяц; 15 мин хватает.
+    schedule: 'every 15 minutes',
     timeZone: 'UTC',
     region: REGION,
     secrets: [ADMIN_ALERT_DISPATCH_BOT_TOKEN],

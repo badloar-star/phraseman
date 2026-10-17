@@ -18,7 +18,7 @@ const md = `# [BLEND-AUDIT] 18.10 — «кнопки нигде не слива�
 
 Расчёт по токенам liquidGlassTokens: 23 темы × тёмная/светлая × 5 положений ползунка; в ячейке — ХУДШЕЕ значение по оформлениям и ползункам. Пороги: заливка/графика ≥ 3, тон ≥ 1,5, текст ≥ 4,5. ❌ — ниже порога.
 
-**Провалов по текущим токенам: ${failsAfter}** (по ${PAIRS.length} парам × 230 сочетаний тема/оформление/ползунок). Найден и исправлен 1 провал — выбранная плитка поля пар (alpha 0,16 → 0,32). Число «было ${failsBefore}» — РЕКОНСТРУКЦИЯ токенов до правок 17.10, не измерено, в отчёты не брать. Пары сверены с кодом: плитки хаба — plateGradient(g) = gradient180(plateFillFrom, plateFillTo); «неверно/верно» в поле пар — p.wrong/p.correct = theme.wrong/correct (#F05454/#47C870 для всех стеклянных тем).
+**Провалов по текущим токенам: ${failsAfter}** (по ${PAIRS.length} парам × 230 сочетаний тема/оформление/ползунок). Найден и исправлен 1 провал — выбранная плитка поля пар (alpha 0,16 → 0,32). Число «было ${failsBefore}» — РЕКОНСТРУКЦИЯ токенов до правок 17.10, не измерено, в отчёты не брать. ИЗВЕСТНЫЙ ДЕФИЦИТ (❌ в колонке «транскрипция»): 16-пиксельная транскрипция на стопке хаба Карточек (слой stackFill, цвет темы 50 % по макету) даёт 4,10–4,49 вместо 4,5 в 26 из 230 сочетаний (светлые темы при низком ползунке; graphite|тёмная|0–0,5); слово 36/700 — крупный текст, ≥3 соблюдён везде. Сторож держит пол 4,0. Решение за Макетами: доля 0,5 → 0,4 или крупнее транскрипция. Пары сверены с кодом: плитки хаба — plateGradient(g) = gradient180(plateFillFrom, plateFillTo); «неверно/верно» в поле пар — p.wrong/p.correct = theme.wrong/correct (#F05454/#47C870 для всех стеклянных тем).
 
 Пары (порог): ${PAIRS.map((p) => `${p.element} | ${p.what} (${p.min})`).join('; ')}.
 
@@ -27,5 +27,7 @@ const md = `# [BLEND-AUDIT] 18.10 — «кнопки нигде не слива�
 ${head}${rows}
 `;
 fs.mkdirSync(path.join(process.cwd(), 'docs/phraseman-2.0/evidence'), { recursive: true });
-fs.writeFileSync(path.join(process.cwd(), 'docs/phraseman-2.0/evidence/blend_1018.md'), md, 'utf8');
+const outPath = path.join(process.cwd(), 'docs/phraseman-2.0/evidence/blend_1018.md');
+fs.writeFileSync(outPath + '.tmp', md, 'utf8'); // зачем: прямая запись поверх файла иногда падает на Windows (UNKNOWN) — пишем рядом и переименовываем
+fs.renameSync(outPath + '.tmp', outPath);
 console.log(`BLEND failsBefore=${failsBefore} failsAfter=${failsAfter} pairs=${PAIRS.length}`);

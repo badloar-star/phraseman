@@ -100,8 +100,8 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
                 </View>
               ) : null}
             </View>
-            {/* зачем: плитка 72 dp, подпись не должна ломаться при крупном шрифте; потолок роста кегля 1,15, не ужатие ([LABEL-FIT] 18.10, решение координатора) */}
-            <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.15}>{tile.title}</Text>
+            {/* зачем: плитка 72 dp, подпись не должна ломаться при крупном шрифте; потолок роста кегля 1,05, не ужатие ([LABEL-FIT] 18.10, решение координатора) */}
+            <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05}>{tile.title}</Text>
           </V2Pressable>
         ))}
       </View>

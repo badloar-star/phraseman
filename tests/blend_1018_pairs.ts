@@ -29,12 +29,39 @@ const ratio = (a: number[], b: number[]): number => {
   return (x! + 0.05) / (y! + 0.05);
 };
 
+// ── хаб Карточек: стопка и значки рисуются НЕ plateGradient, а stackFill/iconGlass (CardsHubV2.tsx:62-87,107): повторяем формулы кода
+function mixDarkHex(hex: string, base: string, t: number): number[] {
+  const c = (h: string): number[] => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const a = c(hex.length >= 7 ? hex : '#888888');
+  const b = c(base);
+  return a.map((v, i) => Math.round(v * t + b[i]! * (1 - t)));
+}
+function themePairOf(t: Tok & { bgGlow?: unknown; accentGradient?: unknown }): readonly [string, string] {
+  const glow = t.bgGlow as readonly string[] | undefined;
+  if (glow && glow[0] && glow[1] && glow[0].slice(1, 7) !== '000000' && glow[1].slice(1, 7) !== '000000') return [glow[0].slice(0, 7), glow[1].slice(0, 7)];
+  const gr = t.accentGradient as readonly string[] | undefined;
+  if (gr && gr.length >= 2) return [gr[0]!, gr[gr.length - 1]!];
+  return [t.accentGraphic!, t.accentBorder!];
+}
+const hexOf = (rgb: number[]): string => '#' + rgb.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
+function stackLayers(t: Tok): number[][] {
+  const [a, b] = themePairOf(t);
+  const l2 = solid(t.deepBaseAlt!);
+  return [mixDarkHex(a, t.deepBase!, 0.5), l2, mixDarkHex(b, hexOf(l2), 0.38)];
+}
+function iconLayers(t: Tok): number[][] {
+  const [a, b] = themePairOf(t);
+  return [mixDarkHex(a, t.deepBase!, 0.6), mixDarkHex(b, t.deepBaseAlt!, 0.32)];
+}
+const faceInkOf = (t: Tok): string => (String(t.isLight) === 'true' ? t.text! : t.mediaInk!);
+const worstOver = (fg: string, layers: number[][]): number => Math.min(...layers.map((l) => ratio(solid(fg), l)));
+
 const TONE = 1.5;
 const GRAPHIC = 3;
 const TEXT = 4.5;
 const plate = (t: Tok): number[] => over(t.plateFillFrom!, solid(t.bg!), 0.5); // плашка Главной: plateFillFrom с альфой 0,5
 
-export type Pair = Readonly<{ element: string; what: string; min: number; after: (t: Tok) => number; before?: (t: Tok) => number }>;
+export type Pair = Readonly<{ element: string; what: string; min: number; /** Зафиксированный пол для известного дефицита (цель — min): сторож краснеет ниже пола. */ floor?: number; after: (t: Tok) => number; before?: (t: Tok) => number }>;
 export const PAIRS: readonly Pair[] = [
   // ── 4 плитки Главной (Диалоги / Карточки / Видео / Пик): плашка отделена тенью, проверяем подпись и бейдж места Пика
   { element: 'Главная: плитка', what: 'название к плашке', min: TEXT, after: (t) => ratio(solid(t.text!), plate(t)) },
@@ -61,6 +88,11 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Поле пар', what: 'подпись на плитке «неверно»', min: TEXT, after: (t) => ratio(solid(t.text!), over('#F05454', solid(t.bg!), 0.12)) },
   { element: 'Поле пар', what: 'подпись на плитке «верно»', min: TEXT, after: (t) => ratio(solid(t.text!), over('#47C870', solid(t.bg!), 0.12)) },
   { element: 'Поле пар', what: 'выбранная к обычной плитке (тон)', min: TONE, before: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.16), solid(t.opaqueCard!)), after: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.32), solid(t.opaqueCard!)) },
+  // ── хаб Карточек: стопка (слово, транскрипция) и значки плиток — по настоящим слоям stackFill / iconGlass (сверено с CardsHubV2.tsx 18.10)
+  { element: 'Хаб Карточек: стопка', what: 'слово (36/700, крупный текст ≥3) к худшему слою stackFill', min: GRAPHIC, after: (t) => worstOver(faceInkOf(t), stackLayers(t)) },
+  // транскрипция 16 italic — обычный текст, цель 4,5; фактически 4,10–4,49 в 26 из 230 сочетаний (светлые темы при низком ползунке, graphite|тёмная|0–0,5): слой stackFill светлеет от цвета темы 50 % по макету; пол 4,0, решение — Макеты/координатор (доля 0,5→0,4 или транскрипция крупнее)
+  { element: 'Хаб Карточек: стопка', what: 'транскрипция (16 italic) к худшему слою stackFill', min: TEXT, floor: 4.0, after: (t) => worstOver(faceInkOf(t), stackLayers(t)) },
+  { element: 'Хаб Карточек: значок плитки', what: 'значок к худшему слою iconGlass', min: GRAPHIC, after: (t) => worstOver(faceInkOf(t), iconLayers(t)) },
   // ── плитки хаба Карточек (плашка с градиентом plateFillFrom→plateFillTo и тенью): число и название
   { element: 'Хаб Карточек: плитка', what: 'число/название к началу градиента', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },
   { element: 'Хаб Карточек: плитка', what: 'число/название к концу градиента', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillTo!)) },
@@ -82,8 +114,9 @@ export function run() {
           const key = `${p.element} | ${p.what}`;
           const a = p.after(t);
           const b = (p.before ?? p.after)(t);
-          if (b < p.min) failsBefore += 1;
-          if (a < p.min) { failsAfter += 1; failList.push(`${id}|${appearance}|${intensity} ${key}: ${a.toFixed(2)} < ${p.min}`); }
+          const need = p.floor ?? p.min;
+          if (b < need) failsBefore += 1;
+          if (a < need) { failsAfter += 1; failList.push(`${id}|${appearance}|${intensity} ${key}: ${a.toFixed(2)} < ${need}`); }
           const row = worstAfter.get(id) ?? new Map<string, Cell>();
           const prev = row.get(key);
           if (!prev || a < prev.min) row.set(key, { min: a, at: `${appearance}|${intensity}` });

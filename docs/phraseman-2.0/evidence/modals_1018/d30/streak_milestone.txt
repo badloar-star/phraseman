@@ -1,0 +1,5 @@
+10-18 00:08:20.758 I/ReactNativeJS(17813): [STREAK-MILESTONE] layout {"milestone":30,"kind":"big","contentH":708,"viewportH":708,"overflow":false,"done":[],"calendar":false}
+10-18 00:08:21.469 I/ReactNativeJS(17813): [STREAK-MILESTONE] beat {"milestone":30,"kind":"big","id":"morph","sinceMountMs":937}
+10-18 00:08:22.074 I/ReactNativeJS(17813): [STREAK-MILESTONE] beat {"milestone":30,"kind":"big","id":"text","sinceMountMs":1543}
+10-18 00:08:22.213 I/ReactNativeJS(17813): [STREAK-MILESTONE] layout {"milestone":30,"kind":"big","contentH":712,"viewportH":712,"overflow":false,"done":["morph","text"],"calendar":false}
+10-18 00:08:22.278 I/ReactNativeJS(17813): [STREAK-MILESTONE] beat {"milestone":30,"kind":"big","id":"extra","sinceMountMs":1748}

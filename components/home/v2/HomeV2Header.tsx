@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import V2Pressable from '../../v2/V2Pressable';
 import { FlowText } from '../../text-integrity/FlowText';
@@ -31,7 +31,55 @@ type Props = {
 };
 
 /** One compact utility row; the Home title and slogan are intentionally absent. */
-export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing = false }: Props) {
+/**
+ * зачем (координатор 17.10, скорость Главной; «вид — ни на пиксель»): Главная на каждый рендер создаёт новые слоты-JSX, массив stats,
+ * значки и onPress — шапка перерисовывалась впустую. Разметку не трогаем: memo-вид сравнивает то, что РИСУЕТСЯ (строки, наличие onPress,
+ * тип и props значков/слотов на один уровень вглубь), а нажатия зовут самый свежий onPress из ref.
+ */
+export default function HomeV2Header(props: Props) {
+  const latestRef = useRef<Props>(props);
+  latestRef.current = props;
+  return <HomeV2HeaderView {...props} latestRef={latestRef} />;
+}
+
+function samePlain(a: unknown, b: unknown): boolean {
+  if (Object.is(a, b)) return true;
+  if (!a || !b || typeof a !== 'object' || typeof b !== 'object' || Array.isArray(a) !== Array.isArray(b)) return false;
+  const ak = Object.keys(a as object);
+  const bk = Object.keys(b as object);
+  return ak.length === bk.length && ak.every((k) => Object.is((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k]));
+}
+
+/** Тот же элемент по виду: тип, ключ и props (вложенные объекты — на один уровень, как style={{ width: 20 }}); функции считаются равными. */
+function sameElement(a: React.ReactNode, b: React.ReactNode): boolean {
+  if (Object.is(a, b)) return true;
+  if (!React.isValidElement(a) || !React.isValidElement(b)) return false;
+  if (a.type !== b.type || a.key !== b.key) return false;
+  const ap = a.props as Record<string, unknown>;
+  const bp = b.props as Record<string, unknown>;
+  const keys = new Set([...Object.keys(ap), ...Object.keys(bp)]);
+  for (const k of keys) {
+    const x = ap[k];
+    const y = bp[k];
+    if (typeof x === 'function' && typeof y === 'function') continue;
+    if (!samePlain(x, y)) return false;
+  }
+  return true;
+}
+
+function sameHeaderData(a: ViewProps, b: ViewProps): boolean {
+  if (a.refreshing !== b.refreshing || a.latestRef !== b.latestRef) return false;
+  if (!sameElement(a.bellSlot, b.bellSlot) || !sameElement(a.avatarSlot, b.avatarSlot)) return false;
+  return a.stats.every((x, i) => {
+    const y = b.stats[i];
+    return x.testID === y.testID && x.value === y.value && x.label === y.label && x.accessibilityLabel === y.accessibilityLabel
+      && Boolean(x.onPress) === Boolean(y.onPress) && sameElement(x.icon, y.icon);
+  });
+}
+
+type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
+
+const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, stats, refreshing = false, latestRef }: ViewProps) {
   useRenderCause('home:header', () => ({ bellSlot, avatarSlot, stats, refreshing }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
@@ -54,7 +102,7 @@ export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing =
                 testID={stat.testID}
                 accessibilityRole="button"
                 accessibilityLabel={stat.accessibilityLabel}
-                onPress={stat.onPress}
+                onPress={() => latestRef.current.stats.find((x) => x.testID === stat.testID)?.onPress?.()}
                 scaleTo={0.96}
                 outerStyle={s.statSlot}
                 style={[s.stat, glass]}
@@ -74,7 +122,7 @@ export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing =
       </View>
     </View>
   );
-}
+}, sameHeaderData);
 
 const s = StyleSheet.create({
   root: { paddingTop: 4 },

@@ -16,9 +16,10 @@ function renderHeader({ bellSlot, avatarSlot, stats }) {
     type,
     props: { ...props, children: children.length === 1 ? children[0] : children },
   });
-  const React = { createElement, Fragment: Symbol('Fragment') };
+  // зачем (Моменты 17.10, скорость Главной): шапка стала тонкой обёрткой + memo-видом (useRef, memo, isValidElement в сравнении) — песочнице нужны эти функции
+  const React = { createElement, Fragment: Symbol('Fragment'), memo: (component) => component, useRef: (value) => ({ current: value }), isValidElement: (node) => Boolean(node && typeof node === 'object' && 'type' in node) };
   const modules = {
-    react: { __esModule: true, default: React },
+    react: { __esModule: true, default: React, memo: React.memo, useRef: React.useRef, isValidElement: React.isValidElement },
     'react-native': { StyleSheet: { create: styles => styles, hairlineWidth: 1 }, View: 'View' },
     '../../v2/V2Pressable': { __esModule: true, default: 'V2Pressable' },
     '../../text-integrity/FlowText': { FlowText: 'FlowText' },
@@ -37,7 +38,10 @@ function renderHeader({ bellSlot, avatarSlot, stats }) {
   vm.runInNewContext(`(function(require,module,exports){${output}\n})`, {
     require: name => modules[name], module, exports: module.exports,
   })(name => modules[name], module, module.exports);
-  return module.exports.default({ bellSlot, avatarSlot, stats });
+  // обёртка возвращает элемент memo-вида — разворачиваем функции-компоненты до разметки, как это сделал бы React
+  let node = module.exports.default({ bellSlot, avatarSlot, stats });
+  while (node && typeof node.type === 'function') node = node.type(node.props);
+  return node;
 }
 
 function childrenOf(node) {
@@ -141,7 +145,8 @@ test('Home header renders stats left and a non-shrinking bell-avatar action grou
   assert.deepEqual(childrenOf(actions), [{ type: 'Bell' }, { type: 'Avatar' }]);
 
   const [streak, coins] = childrenOf(stats);
-  assert.equal(streak.props.onPress, onStreakPress);
+  // зачем (Моменты 17.10): шапка зовёт САМЫЙ СВЕЖИЙ onPress через ref — тождество функции не проверяем, поведение проверяется ниже (тап доходит до обработчика)
+  assert.equal(typeof streak.props.onPress, 'function');
   streak.props.onPress();
   assert.equal(streakPresses, 1);
   assert.equal(coins.type, 'View');

@@ -172,6 +172,22 @@ export function learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
   }
 }
 
+/**
+ * Запись слова карточки: голосом ash, если он записан; иначе — записанным голосом слова (onyx, nova, coral по порядку).
+ *
+ * зачем (координатор 17.10, слово владельца «все восемь уроков доступны»): после переписывания Codex озвучил слова
+ * карточек «одним голосом на задание» — «grateful» в l01/s17 есть только голосом onyx. Прежнее правило «слова только
+ * ash» роняло подготовку занятия (word_audio_missing) для l01 s17+ и всего, что за ним. Чужого текста не подставляем:
+ * нет ни одной записи слова → null, как раньше. Одно правило для подготовки занятия, «кармана слов», набора и сторожа.
+ */
+export function learningV2FactoryWordAudioFileV1(word: string): LearningV2CourseSessionAudioFileV1 | null {
+  const normalized = word.normalize("NFKC").trim();
+  if (!normalized) return null;
+  const voiceId = VOICES.find((candidate) =>
+    factoryAudioTables().entryByCoordinate.has(`${normalized}\u0000${candidate}`));
+  return voiceId ? learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(normalized, voiceId) : null;
+}
+
 export function learningV2FactoryMissingAudioInteractionIdsV1(
   learner: LearningV2CourseSessionLearnerChildV1,
 ): readonly string[] {

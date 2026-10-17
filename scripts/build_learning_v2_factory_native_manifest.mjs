@@ -41,6 +41,13 @@ const THROUGH = THROUGH_INDEX >= 0 ? process.argv[THROUGH_INDEX + 1] : null;
 const THROUGH_MATCH = THROUGH === null ? null : /^en\/l01\/s(\d{2})$/u.exec(THROUGH);
 if (THROUGH !== null && !THROUGH_MATCH) throw new Error(`invalid --through coordinate: ${THROUGH}`);
 const PREFIX_COUNT = THROUGH_MATCH ? Number(THROUGH_MATCH[1]) : null;
+// --extend (координатор 17.10, слово владельца «все восемь уроков доступны в релизе»): каталог ДОПОЛНЯЕТСЯ всеми
+// занятиями выпуска, которые проходят сверку сборщика; занятие с отказом (напр. l01/s09: интро расходится с проверенным
+// исходником) остаётся в каталоге ПРЕЖНИМ, а если его там не было — не попадает. Каждый отказ пишется с причиной.
+// Сверка с полным макетом не делается: каталог в этом режиме намеренно частичный. Без --extend поведение прежнее.
+const EXTEND = process.argv.includes("--extend");
+if (EXTEND && (SESSION !== null || THROUGH !== null)) throw new Error("--extend cannot be combined with --session/--through");
+const EXTEND_FAILURES = [];
 
 const read = (file) => fs.readFileSync(file, "utf8");
 const sha = (value) => crypto.createHash("sha256").update(value).digest("hex");
@@ -175,6 +182,7 @@ function rows(maxRows = null) {
       .filter((entry) => entry.isDirectory() && /^s\d{2}$/u.test(entry.name))
       .sort((left, right) => left.name.localeCompare(right.name));
     sessions.forEach((session, index) => {
+      try {
       if (SESSION && SESSION !== `en/${lesson.name}/${session.name}`) return;
       if (maxRows !== null && result.length >= maxRows) return;
       const sessionOrdinal = Number(session.name.slice(1));
@@ -272,6 +280,12 @@ function rows(maxRows = null) {
         hasAuxiliaryRelease: fs.existsSync(files.auxiliary),
         sourceFingerprint: sha(`${sourceRu}\u0000${sourceUk}\u0000${releaseBytes}`),
       });
+      } catch (error) {
+        if (!EXTEND) throw error;
+        const reason = error instanceof Error ? error.message : String(error);
+        EXTEND_FAILURES.push({ coordinate: `${lesson.name}/${session.name}`, reason });
+        console.warn(`[V2-MANIFEST-EXTEND] skip ${lesson.name}/${session.name}: ${reason.slice(0, 200)}`);
+      }
     });
   }
   if (maxRows !== null) {
@@ -279,6 +293,7 @@ function rows(maxRows = null) {
     return result;
   }
   if (SESSION) return result;
+  if (EXTEND) return result;
   if (!fs.existsSync(MOCKUP_DATA)) throw new Error("canonical mockup data missing");
   const mockupSource = read(MOCKUP_DATA).replace(/^window\.__DATA__\s*=\s*/u, "").replace(/;\s*$/u, "");
   const mockupRows = JSON.parse(mockupSource);
@@ -370,10 +385,33 @@ function replaceSessionRow(current, rendered) {
   if (!replacement || !pattern.test(current)) throw new Error(`session not in native catalog: ${SESSION}`);
   return current.replace(pattern, () => replacement);
 }
-const output = SESSION ? replaceSessionRow(read(OUTPUT), renderedOutput) : PREFIX_COUNT === null
+// Блоки строк каталога по координате: «  Object.freeze({\n    lessonOrdinal: L, sessionOrdinal: S, … \n  }),».
+function rowBlocks(text) {
+  const blocks = new Map();
+  const pattern = /^  Object\.freeze\(\{\r?\n    lessonOrdinal: (\d+), sessionOrdinal: (\d+),[\s\S]*?^  \}\),/gmu;
+  for (const match of text.matchAll(pattern)) blocks.set(`${match[1]}/${match[2]}`, match[0]);
+  return blocks;
+}
+function extendOutput(current, rendered) {
+  const fresh = rowBlocks(rendered);
+  const kept = rowBlocks(current);
+  const keys = new Set(fresh.keys());
+  for (const failure of EXTEND_FAILURES) {
+    const key = `${Number(failure.coordinate.slice(1, 3))}/${Number(failure.coordinate.slice(5, 7))}`;
+    if (kept.has(key)) keys.add(key);
+  }
+  const ordered = [...keys].sort((a, b) => {
+    const [la, sa] = a.split("/").map(Number);
+    const [lb, sb] = b.split("/").map(Number);
+    return la - lb || sa - sb;
+  });
+  const head = rendered.slice(0, rendered.indexOf("Object.freeze([\n") + "Object.freeze([\n".length);
+  return `${head}${ordered.map((key) => fresh.get(key) ?? kept.get(key)).join("\n")}\n]);\n`;
+}
+const output = EXTEND ? extendOutput(read(OUTPUT), renderedOutput) : SESSION ? replaceSessionRow(read(OUTPUT), renderedOutput) : PREFIX_COUNT === null
   ? renderedOutput
   : replaceGeneratedPrefixRows(read(OUTPUT), renderedOutput, PREFIX_COUNT);
-const catalogOutput = SESSION ? replaceSessionRow(read(CATALOG_OUTPUT), renderedCatalogOutput) : PREFIX_COUNT === null
+const catalogOutput = EXTEND ? extendOutput(read(CATALOG_OUTPUT), renderedCatalogOutput) : SESSION ? replaceSessionRow(read(CATALOG_OUTPUT), renderedCatalogOutput) : PREFIX_COUNT === null
   ? renderedCatalogOutput
   : replaceGeneratedPrefixRows(read(CATALOG_OUTPUT), renderedCatalogOutput, PREFIX_COUNT);
 if (CHECK) {
@@ -398,7 +436,7 @@ if (CHECK) {
     throw new Error("generated release root escaped factory module");
   }
   const desiredGeneratedFiles = new Set(generatedFiles.map(({ destination }) => path.resolve(destination)));
-  if (PREFIX_COUNT === null && !SESSION) {
+  if (PREFIX_COUNT === null && !SESSION && !EXTEND) {
     for (const existing of filesUnder(GENERATED_RELEASE_ROOT)) {
       if (!desiredGeneratedFiles.has(path.resolve(existing))) fs.rmSync(existing, { force: true });
     }
@@ -413,4 +451,8 @@ if (CHECK) {
   await writeMockupFile(OUTPUT, output);
   await writeMockupFile(CATALOG_OUTPUT, catalogOutput);
   console.log(`Learning V2 factory native manifest: wrote ${path.relative(ROOT, OUTPUT)}`);
+  if (EXTEND) {
+    const keptCount = EXTEND_FAILURES.filter((failure) => rowBlocks(read(OUTPUT)).has(`${Number(failure.coordinate.slice(1, 3))}/${Number(failure.coordinate.slice(5, 7))}`)).length;
+    console.log(`[V2-MANIFEST-EXTEND] built=${manifestRows.length} failed=${EXTEND_FAILURES.length} keptPrevious=${keptCount} rows=${rowBlocks(read(OUTPUT)).size}`);
+  }
 }

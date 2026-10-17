@@ -3,7 +3,7 @@ import { learningV2NativeDecoderIdentityForAudioFileV1 } from "./learning_v2_aud
 import { learningV2EsSession1RemoteAudioFilesV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { learningV2EsSession2RemoteAudioFilesV1 } from "./learning_v2_es_session2_production_audio_v1";
 import {
-  learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
+  learningV2FactoryWordAudioFileV1,
   learningV2FactoryRemoteAudioFilesForContentHashesV1,
 } from "./learning_v2_factory_production_audio_v1";
 import { lazyContent } from "./content_lazy";
@@ -65,7 +65,8 @@ const preparedFileUriByContentHash = new Map<string, string>();
 export function resolvePreparedLearningV2FactoryWordAudioV1(
   word: string,
 ): string | null {
-  const file = learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(word, "ash");
+  // зачем (17.10): тот же голос слова, что при подготовке занятия — ash, иначе записанный голос слова.
+  const file = learningV2FactoryWordAudioFileV1(word);
   if (!file) return null;
   return preparedFileUriByContentHash.get(file.contentHash) ?? null;
 }

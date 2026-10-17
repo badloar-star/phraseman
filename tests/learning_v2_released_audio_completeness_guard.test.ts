@@ -6,7 +6,7 @@
 // Проверяется тем же кодом, что у плеера:
 //  • фразы — материал занятия собирается (bundledLearningV2CourseSessionMaterialV3; задания без записи допускаются
 //    только по утверждённой таблице пропусков — иначе материал null), и каждый файл его озвучки лежит в наборе сборки;
-//  • слова карточек всех занятий ≤ текущего (как в подготовке занятия, client_v3) — запись голосом ash есть в таблице
+//  • слова карточек всех занятий ≤ текущего (как в подготовке занятия, client_v3) — запись голосом ash (или записанным голосом слова, 17.10) есть в таблице
 //    озвучки и файл лежит в наборе сборки (app/learning_v2_bootstrap_audio_assets_v1.generated.ts + папка на диске).
 // Красный — со списком «занятие → слово/фраза → голос». Чинить контент/запись/набор, а не ослаблять сторожа.
 jest.mock("@react-native-firebase/app", () => ({ getApp: jest.fn(() => ({})) }));
@@ -38,7 +38,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1 } from "../app/learning_v2_bootstrap_audio_assets_v1.generated";
 import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
-import { learningV2FactoryRemoteAudioFileForTranscriptVoiceV1 } from "../app/learning_v2_factory_production_audio_v1";
+import { learningV2FactoryWordAudioFileV1 } from "../app/learning_v2_factory_production_audio_v1";
 import { LEARNING_V2_RELEASED_SESSION_COUNT_V1 } from "../app/learning_v2_session_availability_v1";
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../modules/learning-v2/content/course_topology_v1";
 import {
@@ -47,7 +47,6 @@ import {
 /* eslint-enable import/first */
 
 const LOG = "[V2-AUDIO-COMPLETE]";
-const WORD_VOICE = "ash" as const;
 const BOOTSTRAP_DIRECTORY = path.join(__dirname, "..", "assets", "audio", "learning-v2-bootstrap-v1");
 
 const bundled = new Map<string, number>(
@@ -124,13 +123,14 @@ describe("Learning V2 released sessions: complete recorded audio inside the buil
         const text = encounter.save.targetText;
         if (checkedWords.has(text)) continue;
         checkedWords.add(text);
-        const file = learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(text, WORD_VOICE);
+        // Голос слова — как при подготовке занятия: ash, иначе записанный голос слова (17.10).
+        const file = learningV2FactoryWordAudioFileV1(text);
         if (!file) {
-          problems.push(`${where} → слово «${text}» → ${WORD_VOICE} → нет записи в таблице озвучки`);
+          problems.push(`${where} → слово «${text}» → ни одного голоса → нет записи в таблице озвучки`);
           continue;
         }
         const problem = bundleProblem(file.contentHash);
-        if (problem) problems.push(`${where} → слово «${text}» → ${WORD_VOICE} → ${problem}`);
+        if (problem) problems.push(`${where} → слово «${text}» → ${file.voiceId} → ${problem}`);
       }
     }
     console.log(`${LOG} ${JSON.stringify({

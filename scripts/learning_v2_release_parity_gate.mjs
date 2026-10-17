@@ -63,11 +63,18 @@ const DEFAULT_AUDIO_MANIFEST = path.join(
 );
 const REQUIRED_AUDIO_VOICES = Object.freeze(["ash", "onyx", "nova", "coral"]);
 const SHA256_RE = /^[a-f0-9]{64}$/u;
+// зачем (координатор 17.10, слово владельца «все восемь уроков… доступны… в релизе»): объём выпуска Codex — уроки 1–7
+// по 56 занятий и урок 8 до s49 (закоммиченный content/learning-v2-course/release). Прежние 186 (l04 до s18) объявляли
+// всё остальное «лишним» и блокировали выпуск даже за потолком. Число меняется вместе с выпуском Codex.
 const EXPECTED_ENGLISH_SESSIONS_BY_LESSON = Object.freeze({
   l01: 56,
   l02: 56,
   l03: 56,
-  l04: 18,
+  l04: 56,
+  l05: 56,
+  l06: 56,
+  l07: 56,
+  l08: 49,
 });
 
 function sha256(file) {
@@ -118,14 +125,36 @@ export function releasedSessionOrdinal(pathOrId) {
   return index >= 0 ? index + 1 : null;
 }
 
+/**
+ * Занятия, которые в приложении НАМЕРЕННО остаются на прежней выпущенной версии, потому что новый выпуск Codex не прошёл
+ * сверку сборщика (scripts/build_learning_v2_factory_native_manifest.mjs --extend оставляет прежнюю строку каталога).
+ * Расхождения «канон ↔ копия» и непроверенный звук НОВОЙ версии по ним — справка с причиной, не блок; всё прочее
+ * в них проверяется как обычно (звук прежней версии — learning_v2_owner_approved_audio_evidence / квитанции).
+ * зачем (координатор 17.10): закрыть такое занятие = закрыть весь курс после него (выпуск — сплошной префикс).
+ * Убрать запись, когда Codex исправит выпуск и сборщик примет новую версию.
+ */
+const PINNED_PREVIOUS_RELEASE = Object.freeze({
+  "en/l01/s09": "выпуск Codex 16.10: интро 3 ru — варианты ответа расходятся с проверенным исходником; в приложении версия s09, выпущенная 16.10",
+});
+
 export function splitByReleasedScope(issues, ceiling, keyOf = (issue) => issue.interactionId ?? issue.path) {
   if (!Number.isInteger(ceiling) || ceiling < 0) return { blocking: issues, deferred: [] };
   const blocking = [];
   const deferred = [];
+  const pinnedHits = new Map();
   for (const issue of issues) {
-    const ordinal = releasedSessionOrdinal(keyOf(issue));
+    const key = keyOf(issue);
+    const ordinal = releasedSessionOrdinal(key);
+    const identity = ordinal === null ? null : expectedEnglishSessionIdentities()[ordinal - 1];
+    if (identity && PINNED_PREVIOUS_RELEASE[identity]) {
+      pinnedHits.set(identity, (pinnedHits.get(identity) ?? 0) + 1);
+      deferred.push(issue);
+      continue;
+    }
     (ordinal !== null && ordinal > ceiling ? deferred : blocking).push(issue);
   }
+  for (const [identity, count] of pinnedHits)
+    console.log(`[V2-RELEASE-PARITY] ${identity}: ${count} расхождений — закреплена прежняя выпущенная версия (${PINNED_PREVIOUS_RELEASE[identity]}) — справка, не блок`);
   return { blocking, deferred };
 }
 
@@ -448,6 +477,9 @@ function audioEvidenceResolver(audioManifestPath, audioAssetRoot) {
 export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
   audioManifestPath = DEFAULT_AUDIO_MANIFEST,
   audioAssetRoot = PROJECT_ROOT,
+  // зачем (17.10): одобрение владельца относится к НАСТОЯЩЕМУ выпуску; на тестовых заготовках с теми же id оно не должно
+  // отключать проверку квитанций (иначе тест «нет квитанции → блок» молча зеленеет).
+  ownerApprovedAudioTargets = path.resolve(canonicalRoot) === path.resolve(DEFAULT_CANONICAL_ROOT) ? OWNER_APPROVED_AUDIO_TARGETS : new Set(),
 } = {}) {
   const issues = [];
   if (!fs.existsSync(canonicalRoot) || !fs.statSync(canonicalRoot).isDirectory()) {
@@ -510,7 +542,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
         const evidence = resolveAudioEvidence(interaction, audioTargetId);
         if (evidence.verified) {
           verifiedAudioTargets += 1;
-        } else if (OWNER_APPROVED_AUDIO_TARGETS.has(audioTargetId)) {
+        } else if (ownerApprovedAudioTargets.has(audioTargetId)) {
           // зачем: решение владельца 15.10 — звук есть и собирается (гейт озвучки PASS), нет только квитанции проверки; не блок
           advisories.push({ code: "AUDIO_EVIDENCE_OWNER_APPROVED", path: relativePath, interactionId: interaction.interactionId, audioTargetId, detail: evidence.detail });
         } else {

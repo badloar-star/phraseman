@@ -40,7 +40,6 @@ const BOOTSTRAP_SESSION_COUNT = Math.max(LAUNCH_SEED_SESSION_COUNT, Number(ceili
 const contentRoot = path.join(root, "modules/learning-v2/content/factory_native/generated_release/en");
 const singleVoiceModulePath = path.join(root, "app/learning_v2_factory_single_voice_v1.generated.ts");
 const SESSIONS_PER_LESSON = 56;
-const WORD_VOICE = "ash";
 const manifestPath = path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json");
 const outputDirectory = path.join(root, "assets/audio/learning-v2-bootstrap-v1");
 const outputModule = path.join(root, "app/learning_v2_bootstrap_audio_assets_v1.generated.ts");
@@ -142,11 +141,12 @@ for (let courseIndex = 0; courseIndex < BOOTSTRAP_SESSION_COUNT; courseIndex += 
     }
     for (const entry of files) add(entry, launchSeed);
   }
-  // Слова карточек звучат голосом ash (client_v3: WORD_VOICE).
+  // Слова карточек: голос ash, иначе записанный голос слова (как learningV2FactoryWordAudioFileV1 в приложении, 17.10).
   const words = new Set();
   collectWords(interactions, words);
   for (const word of words) {
-    const entry = byCoordinate.get(`${word}\u0000${WORD_VOICE}`);
+    const wordVoice = voices.find((voiceId) => byCoordinate.has(`${word}\u0000${voiceId}`));
+    const entry = wordVoice ? byCoordinate.get(`${word}\u0000${wordVoice}`) : undefined;
     if (entry) add(entry, launchSeed);
     else unvoiced.add(word);
   }

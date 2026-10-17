@@ -40,6 +40,8 @@ const lesson = `l${pad(lessonOrdinal)}`;
 const assignments = JSON.parse(fs.readFileSync(path.join(root, "content/learning-v2-course/audio/en/single-voice-v1.json"), "utf8")).assignments;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json"), "utf8"));
 const recorded = new Set(manifest.entries.map((entry) => `${entry.transcript}\u0000${entry.voiceId}`));
+const manifestByCoordinate = new Map(manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]));
+const FOUR = ["ash", "onyx", "nova", "coral"];
 for (const assignment of Object.values(assignments))
   for (const clip of assignment.clips ?? []) recorded.add(`${clip.text}\u0000${assignment.voice}`);
 
@@ -89,8 +91,9 @@ for (let sessionOrdinal = from; sessionOrdinal <= to; sessionOrdinal += 1) {
     if (interaction.isWordCard === true || interaction.modePayload?.isWordCard === true) {
       const word = String(interaction.modePayload?.wordCard?.word ?? interaction.wordCard?.word ?? "").normalize("NFKC").trim();
       row.wordCards += 1;
-      if (word && recorded.has(`${word}\u0000ash`)) row.wordCardsAsh += 1;
-      else row.issues.push(`карточка «${word}» без записи ash`);
+      // зачем (17.10): голос слова — ash, иначе записанный голос слова (как learningV2FactoryWordAudioFileV1).
+      if (word && FOUR.some((voiceId) => recorded.has(`${word}\u0000${voiceId}`))) row.wordCardsAsh += 1;
+      else row.issues.push(`карточка «${word}» без единой записи`);
     }
     const transcripts = referenceTranscripts(interaction);
     if (!(interaction.audioTargetIds ?? []).length || transcripts.length === 0) return;
@@ -99,23 +102,36 @@ for (let sessionOrdinal = from; sessionOrdinal <= to; sessionOrdinal += 1) {
     const assignment = assignments[key];
     if (!assignment) { row.issues.push(`${interaction.interactionId.split(":").slice(-2).join(":")}: нет назначения`); return; }
     if (!VOICES.has(assignment.voice)) { row.issues.push(`${key}: голос «${assignment.voice}» не одобрен`); return; }
-    const clips = transcripts.map((transcript) => (assignment.clips ?? []).find((clip) => clip.text === transcript));
-    if (clips.some((clip) => !clip)) { row.issues.push(`${key}: клипы не покрывают реплики (${transcripts.join(" | ")})`); return; }
+    let clips = transcripts.map((transcript) => (assignment.clips ?? []).find((clip) => clip.text === transcript));
+    let voiceForCheck = assignment.voice;
+    if (clips.some((clip) => !clip)) {
+      // зачем (17.10): назначение Codex сделано под НОВЫЙ текст, а в приложении осталась прежняя (уже выпущенная) версия
+      // занятия (напр. l01/s09 — сборщик не принял новое интро). Приложение тогда играет прежние записи во всех 4 голосах
+      // (factoryVoicePlanV1: «all_four_voices»). Проверяем ровно их; нет хотя бы одной — проблема, как раньше.
+      const fallback = transcripts.flatMap((transcript) => FOUR.map((voiceId) => manifestByCoordinate.get(`${transcript}\u0000${voiceId}`)));
+      if (fallback.some((entry) => !entry)) { row.issues.push(`${key}: клипы не покрывают реплики, прежних 4 голосов тоже нет (${transcripts.join(" | ")})`); return; }
+      clips = fallback.map((entry) => ({ text: entry.transcript, assetPath: entry.assetPath, contentHash: entry.contentHash, byteSize: entry.byteSize, voice: entry.voiceId }));
+      voiceForCheck = null;
+      row.legacyFourVoice = (row.legacyFourVoice ?? 0) + 1;
+    }
     row.assigned += 1;
     for (const clip of clips) {
       row.clips += 1;
       const named = /-(ash|onyx|nova|coral)\.mp3$/u.exec(clip.assetPath)?.[1];
-      if (named && named !== assignment.voice) row.issues.push(`${key}: голос в имени файла ${named} ≠ назначению ${assignment.voice}`);
+      if (voiceForCheck && named && named !== voiceForCheck) row.issues.push(`${key}: голос в имени файла ${named} ≠ назначению ${voiceForCheck}`);
       const file = path.join(root, clip.assetPath);
       if (!fs.existsSync(file)) { row.issues.push(`${key}: нет файла ${clip.assetPath}`); continue; }
       if (fs.statSync(file).size !== clip.byteSize || hashOf(file) !== clip.contentHash) { row.issues.push(`${key}: размер/отпечаток файла ≠ записи`); continue; }
+      // зачем (17.10): рантайм (контракт озвучки и офлайн-кэш) принимает файл не больше 64 КБ — больше = занятие не
+      // соберётся (l04/s38: audio_child_invalid). Ловим до сборки.
+      if (clip.byteSize > 64 * 1024) { row.issues.push(`${key}: файл ${clip.byteSize} Б больше предела рантайма 65536 Б («${clip.text}»)`); continue; }
       row.filesOk += 1;
       const media = inspect(file);
       if (!media.ok) { row.issues.push(`${key}: ${media.reason}`); continue; }
       row.decodeOk += 1;
       row.minDur = Math.min(row.minDur, media.duration);
       row.maxDur = Math.max(row.maxDur, media.duration);
-      sessionClips.push({ key, voice: assignment.voice, text: clip.text, assetPath: clip.assetPath, duration: media.duration });
+      sessionClips.push({ key, voice: clip.voice ?? assignment.voice, text: clip.text, assetPath: clip.assetPath, duration: media.duration });
     }
   });
   // Пакет на прослушивание: 2 клипа, по возможности разными голосами и самые длинные фразы (больше слышно).
@@ -125,7 +141,7 @@ for (let sessionOrdinal = from; sessionOrdinal <= to; sessionOrdinal += 1) {
   for (const clip of [first, second].filter(Boolean)) pack.push({ where, ...clip });
   for (const issue of row.issues) problems.push(`${where}: ${issue}`);
   rows.push(row);
-  console.log(`${LOG} ${where} audioTasks=${row.audioTasks} assigned=${row.assigned} clips=${row.clips} files=${row.filesOk} decode=${row.decodeOk} wordCards=${row.wordCards} issues=${row.issues.length}`);
+  console.log(`${LOG} ${where} audioTasks=${row.audioTasks} assigned=${row.assigned} legacyFourVoice=${row.legacyFourVoice ?? 0} clips=${row.clips} files=${row.filesOk} decode=${row.decodeOk} wordCards=${row.wordCards} issues=${row.issues.length}`);
 }
 
 const fmt = (value) => (Number.isFinite(value) ? value.toFixed(2) : "—");
@@ -137,11 +153,11 @@ const table = [
   "",
   `**Итог: ${problems.length === 0 ? "проблем нет ✅" : `проблем ${problems.length} ❌`}.**`,
   "",
-  "| Занятие | Заданий со звуком | С назначением | Клипов | Файл и отпечаток | Декодируется (mp3 24 кГц моно) | Длительность, с | Карточек слов (с записью ash) | Проблемы |",
+  "| Занятие | Заданий со звуком | С назначением (из них прежние 4 голоса) | Клипов | Файл и отпечаток | Декодируется (mp3 24 кГц моно) | Длительность, с | Карточек слов (с записью) | Проблемы |",
   "|---|---|---|---|---|---|---|---|---|",
   ...rows.map((row) => row.missing
     ? `| ${row.where} | — | — | — | — | — | — | — | нет текста занятия |`
-    : `| ${row.where} | ${row.audioTasks} | ${row.assigned} | ${row.clips} | ${row.filesOk} | ${row.decodeOk} | ${fmt(row.minDur)}–${fmt(row.maxDur)} | ${row.wordCards} (${row.wordCardsAsh}) | ${row.issues.length || "—"} |`),
+    : `| ${row.where} | ${row.audioTasks} | ${row.assigned}${row.legacyFourVoice ? ` (${row.legacyFourVoice})` : ""} | ${row.clips} | ${row.filesOk} | ${row.decodeOk} | ${fmt(row.minDur)}–${fmt(row.maxDur)} | ${row.wordCards} (${row.wordCardsAsh}) | ${row.issues.length || "—"} |`),
   "",
   ...(problems.length ? ["## Проблемы", "", ...problems.map((line) => `- ${line}`), ""] : []),
 ].join("\n");

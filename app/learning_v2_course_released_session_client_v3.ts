@@ -19,7 +19,7 @@ import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_sessio
 import {
   buildLearningV2FactoryBundledAudioChildV1,
   learningV2FactoryMissingAudioInteractionIdsV1,
-  learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
+  learningV2FactoryWordAudioFileV1,
 } from "./learning_v2_factory_production_audio_v1";
 import { resolveLearningV2FactoryRuntimeAudioOmissionsV1 } from "./learning_v2_factory_runtime_audio_omissions_v1";
 import { buildLearningV2EsSession1BundledAudioChildV1 } from "./learning_v2_es_session1_production_audio_v1";
@@ -1347,20 +1347,18 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
           }))
       : Object.values(result.material.factoryWordEncounterQueues ?? {})
           .map((encounters) => ({ wordSession: locator.sessionOrdinal, encounters }));
-    const WORD_VOICE = "ash";
+    // зачем (координатор 17.10): слово — голосом ash, а если ash не записан — записанным голосом слова (Codex озвучивает
+    // карточки «одним голосом на задание»); см. learningV2FactoryWordAudioFileV1.
     for (const { wordSession, encounters } of wordEncounterSets) {
       if (encounters === null) continue;
       for (const encounter of encounters) {
-        const file = learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
-          encounter.save.targetText,
-          WORD_VOICE,
-        );
+        const file = learningV2FactoryWordAudioFileV1(encounter.save.targetText);
         const wordWhere = {
           ...prepareWhere,
           wordSession,
           wordId: encounter.lexicalItemId,
           text: encounter.save.targetText,
-          voice: WORD_VOICE,
+          voice: file?.voiceId ?? "none_recorded",
         };
         if (!file) fail("word_audio_missing", wordWhere);
         const previous = supplementalWordAudio.get(encounter.lexicalItemId);

@@ -23,7 +23,8 @@ describe('[V2-PREPARE] · отказ подготовки занятия наз�
       expect(body).toContain(`"${reason}"`);
     }
     expect(body).toContain('wordId: encounter.lexicalItemId');
-    expect(body).toContain('voice: WORD_VOICE');
+    // зачем (17.10): голос слова больше не зашитый ash — причина отказа называет фактический голос записи или его отсутствие.
+    expect(body).toContain('voice: file?.voiceId ?? "none_recorded"');
   });
 });
 

@@ -60,7 +60,7 @@ describe("Learning V2: a session with zero word cards plays through cleanly", ()
     expect(source).toMatch(/disabled=\{unlockedWords\.length === 0\}/u);
   });
 
-  test("every lesson 1 session s16–s56 builds with empty card queues and only families the player already plays", () => {
+  test("every lesson 1 session s16–s56 builds and uses only families the player already plays (cards optional)", () => {
     const silence = jest.spyOn(console, "log").mockImplementation(() => undefined);
     try {
       const playedFamilies = new Set<string>();
@@ -74,8 +74,8 @@ describe("Learning V2: a session with zero word cards plays through cleanly", ()
         if (!built) { problems.push(`${where}: материал не собирается`); continue; }
         const interactions = built.learnerChild.interactions;
         if (interactions.length === 0) problems.push(`${where}: нет заданий`);
-        const cards = Object.values(built.factoryWordEncounterQueues ?? {}).flat().length;
-        if (cards !== 0) problems.push(`${where}: карточек ${cards} — проверка писалась под ноль карточек, пересмотри`);
+        // зачем (17.10): после переписывания Codex у s16+ появились карточки слов — их число больше не проверяется,
+        // проверка «0 карточек проходится чисто» — в первых двух тестах файла.
         for (const interaction of interactions) {
           const family = familyOf(interaction);
           if (!playedFamilies.has(family)) problems.push(`${where}: семейство «${family}» не встречалось в s01–s15`);

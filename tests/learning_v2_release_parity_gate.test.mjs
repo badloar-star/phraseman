@@ -163,20 +163,20 @@ test("fails closed when either release root is missing", (t) => {
   assert.deepEqual(missingAppCopy.issues.map(({ code }) => code), ["APP_COPY_ROOT_MISSING"]);
 });
 
-test("derives the exact 56/56/56/18 English scope from the authoritative source registry", (t) => {
+test("derives the exact 56×7 + 49 English scope from the authoritative source registry", (t) => {
   const { sourceRoot } = makeFullScopeFixture(t);
   fs.mkdirSync(path.join(sourceRoot, "l01", "notes"), { recursive: true });
   fs.mkdirSync(path.join(path.dirname(sourceRoot), "fr", "l01", "s01"), { recursive: true });
 
   const scope = sourceSessionScope(sourceRoot, "en");
   assert.deepEqual(scope, expectedEnglishSessionIdentities());
-  assert.equal(scope.length, 186);
+  assert.equal(scope.length, 441);
   assert.deepEqual(
-    Object.fromEntries(["l01", "l02", "l03", "l04"].map((lesson) => [
+    Object.fromEntries(["l01", "l02", "l03", "l04", "l05", "l06", "l07", "l08"].map((lesson) => [
       lesson,
       scope.filter((identity) => identity.includes(`/${lesson}/`)).length,
     ])),
-    { l01: 56, l02: 56, l03: 56, l04: 18 },
+    { l01: 56, l02: 56, l03: 56, l04: 56, l05: 56, l06: 56, l07: 56, l08: 49 },
   );
 });
 

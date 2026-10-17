@@ -43,41 +43,40 @@ describe("accepted green Learning V2 prefix runtime compatibility", () => {
     })).toThrow("learning_v2_factory_native_disabled_interaction_unknown");
   });
 
+  // зачем (17.10): Codex переписал урок 1 — номера заданий s12 сменились. Механизм проверяется на любом задании,
+  // перед которым стоят карточки слов: выключенное задание отдаёт свои карточки следующему оставшемуся.
   test("an omitted audio interaction carries its pending word cards to the next retained interaction", () => {
-    const raw = materializeFactoryNativeLearningV2SessionV1({
-      lessonOrdinal: 1,
-      sessionOrdinal: 12,
-      interfaceLocale: "ru",
-    });
-    const filtered = materializeFactoryNativeLearningV2SessionV1({
-      lessonOrdinal: 1,
-      sessionOrdinal: 12,
-      interfaceLocale: "ru",
-      disabledInteractionIds: ["en:lesson-01:session-12:i08"],
-    });
-    expect(raw).not.toBeNull();
-    expect(filtered).not.toBeNull();
-    expect(raw!.wordEncounterQueuesByInteractionId["lesson-01:session:12:i08"]).toHaveLength(1);
-    expect(filtered!.wordEncounterQueuesByInteractionId["lesson-01:session:12:i08"]).toBeUndefined();
-    expect(filtered!.wordEncounterQueuesByInteractionId["lesson-01:session:12:i09"])
-      .toEqual(raw!.wordEncounterQueuesByInteractionId["lesson-01:session:12:i08"]);
+    let checked = 0;
+    for (let sessionOrdinal = 1; sessionOrdinal <= 15 && checked === 0; sessionOrdinal += 1) {
+      const raw = materializeFactoryNativeLearningV2SessionV1({ lessonOrdinal: 1, sessionOrdinal, interfaceLocale: "ru" });
+      if (!raw) continue;
+      const order = raw.learnerChild.interactions.map((interaction) => interaction.interactionId);
+      const target = order.find((id, index) =>
+        index < order.length - 1 &&
+        (raw.wordEncounterQueuesByInteractionId[id]?.length ?? 0) > 0 &&
+        (raw.wordEncounterQueuesByInteractionId[order[index + 1]!]?.length ?? 0) === 0);
+      if (!target) continue;
+      const next = order[order.indexOf(target) + 1]!;
+      const rawId = `en:${target.replace(/:session:(\d{2}):/u, ":session-$1:")}`;
+      let filtered: ReturnType<typeof materializeFactoryNativeLearningV2SessionV1> = null;
+      try {
+        filtered = materializeFactoryNativeLearningV2SessionV1({
+          lessonOrdinal: 1, sessionOrdinal, interfaceLocale: "ru", disabledInteractionIds: [rawId],
+        });
+      } catch {
+        continue; // задание-карточку выключить нельзя — ищем другое
+      }
+      expect(filtered).not.toBeNull();
+      expect(filtered!.wordEncounterQueuesByInteractionId[target]).toBeUndefined();
+      expect(filtered!.wordEncounterQueuesByInteractionId[next]).toEqual(raw.wordEncounterQueuesByInteractionId[target]);
+      checked += 1;
+    }
+    expect(checked).toBe(1);
   });
 
-  test.each([
-    [6, ["lesson-01:session:06:i16", "lesson-01:session:06:i19"]],
-    [7, ["lesson-01:session:07:i14", "lesson-01:session:07:i16"]],
-    [8, ["lesson-01:session:08:i17:s02"]],
-    [9, ["lesson-01:session:09:i14", "lesson-01:session:09:i18:s02", "lesson-01:session:09:i18:s04"]],
-    [10, ["lesson-01:session:10:i12", "lesson-01:session:10:i18"]],
-    [11, ["lesson-01:session:11:i17", "lesson-01:session:11:i18"]],
-    [12, ["lesson-01:session:12:i08", "lesson-01:session:12:i16", "lesson-01:session:12:i20"]],
-    [13, ["lesson-01:session:13:i18"]],
-    [14, ["lesson-01:session:14:i10"]],
-    [15, ["lesson-01:session:15:i15", "lesson-01:session:15:i17:s02"]],
-  // зачем (15.10 ночь): эти задания прежде выключались — у их фраз не было записи («I am free.» и др.). Codex озвучил их
-  // «одним голосом на задание» (single-voice-v1.json), поэтому теперь они ОСТАЮТСЯ в занятии и звучат записью.
-  // Сторож ловит откат: задание снова выпало бы из занятия или осталось бы без записи.
-  ] as const)("released lesson 1 session %i keeps the formerly unvoiced tasks, now recorded", (sessionOrdinal, formerlyOmittedIds) => {
+  // зачем (17.10): после переписывания Codex и записи «один голос на задание» в выпущенных s01–s15 урока 1 ни одно
+  // задание не выключается из-за отсутствия записи: материал собирается со всеми заданиями исходника и без пропусков.
+  test.each([1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15])("released lesson 1 session %i keeps every task and every task is recorded", (sessionOrdinal) => {
     const material = bundledLearningV2CourseSessionMaterialV3({
       environment: "production",
       targetLanguage: "en",
@@ -88,12 +87,11 @@ describe("accepted green Learning V2 prefix runtime compatibility", () => {
       sessionOrdinal,
       activeRootFingerprint: "0".repeat(64),
     } as never);
+    const raw = materializeFactoryNativeLearningV2SessionV1({ lessonOrdinal: 1, sessionOrdinal, interfaceLocale: "ru" });
     expect(material).not.toBeNull();
-    const interactionIds = material!.learnerChild.interactions.map((interaction) => interaction.interactionId);
-    expect(interactionIds).toEqual(expect.arrayContaining([...formerlyOmittedIds]));
     expect(learningV2FactoryMissingAudioInteractionIdsV1(material!.learnerChild)).toEqual([]);
-    expect(material!.evaluatorCapsuleChild.entries.map((entry) => entry.interactionId))
-      .toEqual(expect.arrayContaining([...formerlyOmittedIds]));
+    expect(material!.learnerChild.interactions.map((interaction) => interaction.interactionId))
+      .toEqual(raw!.learnerChild.interactions.map((interaction) => interaction.interactionId));
   });
 
   // зачем (координатор 15.10, урок 1 целиком — потолок 15 → 56): не зашитое число, а потолок — он генерируется сторожем

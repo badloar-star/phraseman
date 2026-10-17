@@ -126,6 +126,7 @@ import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, useHomeContinueMarks } from '../home_continue_mark';
 import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
+import { isLearningV2Hidden } from '../learning_v2_visibility_switch';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
 
@@ -2300,9 +2301,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
             nav.push('/mistakes_hub' as never);
         };
-        // Плитка «Уроки» сохраняет push-презентацию /lessons_list, а вкладка с
-        // книжкой открывает тот же раздел как retained-tab. Продолжение последнего
-        // урока остаётся на отдельной плашке ниже.
+        // Плитка «Уроки» — push-презентация, вкладка «Обучение» — retained-tab; обе открывают карту V2 (новые уроки).
+        // зачем (владелец 17.10: «Обучение открывает новые уроки»): раньше плитка вела в старый список /lessons_list. Он остался только при рубильнике «V2 скрыт»
+        // (маршрут курса в этом случае уводит на Главную) и как выход из старых уроков; без выпущенных занятий маршрут курса сам открывает старый список.
+        // Продолжение последнего урока остаётся на отдельной плашке ниже.
         // Плитка «Диалоги» самодостаточна и озвучивается своим label.
         const quickItems = [
             {
@@ -2313,7 +2315,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições',
                     vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
                 }),
-                onPress: () => { go('/lessons_list'); },
+                onPress: () => { go(isLearningV2Hidden() ? '/lessons_list' : '/learning-v2/course'); },
             },
             {
                 key: 'dialogs',

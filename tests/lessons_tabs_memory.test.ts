@@ -43,10 +43,12 @@ describe('вкладка «Обучение»: карта V2 по умолчан
     expect(course).toContain('onPress={props.onLegacyLessons}');
   });
 
-  it('кнопка на карте: тон без обводки, подпись в одну строку и не ужимается шрифтом', () => {
+  it('кнопка на карте: тон без обводки, подпись не обрезается и не ужимается шрифтом (сторож карты запрещает numberOfLines)', () => {
     const chip = course.slice(course.indexOf('testID="learning-v2-open-classic-course"'), course.indexOf('</PressableHybrid>', course.indexOf('testID="learning-v2-open-classic-course"')));
     expect(chip).toContain('backgroundColor: g.buttonFill');
-    expect(chip).toContain('numberOfLines={1}');
+    expect(chip).not.toContain('numberOfLines');
+    // зачем (Макеты 17.10): кнопка 36 pt — цель нажатия добирается до 44 через hitSlop по вертикали
+    expect(chip).toContain('hitSlop={{ top: 4, bottom: 4 }}');
     expect(chip).not.toContain('borderWidth');
     expect(course).not.toContain('adjustsFontSizeToFit');
   });

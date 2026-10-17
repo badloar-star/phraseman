@@ -56,7 +56,8 @@ describe('home learning CTA contract', () => {
   // зачем: плитка быстрого старта «Уроки» открывает полный список уроков —
   // push-маршрут /lessons_list, заменивший убранный таб с книжкой.
   it('opens the full lessons list from the quick-start tile', () => {
-    expect(source).toContain("onPress: () => { go('/lessons_list'); }");
+    // зачем (владелец 17.10): плитка «Уроки» открывает карту V2; прежний список — только при рубильнике «V2 скрыт»
+    expect(source).toContain("onPress: () => { go(isLearningV2Hidden() ? '/lessons_list' : '/learning-v2/course'); }");
   });
 
   // зачем: владелец убрал с главной плашку «Выбрать свой план обучения» —

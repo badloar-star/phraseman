@@ -279,9 +279,9 @@ export default function LearningV2ChaptersCourse(props: Props) {
       {/* зачем (владелец 17.10: «старые уроки — отдельной кнопочкой»): кнопка «Классический курс» — в строке «Урок N» справа; в шапке с «назад» и HUD (словарь, монеты, энергия) на 360 dp места нет. Заливка тоном, без обводки */}
       <View style={styles.kickerRow}>
       <Text style={[styles.lessonKicker, { color: g.secondary }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text>
-      <PressableHybrid testID="learning-v2-open-classic-course" variant="chip" accessibilityLabel={props.legacyLessonsLabel} onPress={props.onLegacyLessons} style={[styles.classicChip, { backgroundColor: g.buttonFill }]} contentStyle={styles.classicChipContent}>
+      <PressableHybrid testID="learning-v2-open-classic-course" variant="chip" hitSlop={{ top: 4, bottom: 4 }} accessibilityLabel={props.legacyLessonsLabel} onPress={props.onLegacyLessons} style={[styles.classicChip, { backgroundColor: g.buttonFill }]} contentStyle={styles.classicChipContent}>
         <Ionicons name="library-outline" size={16} color={g.text} />
-        <Text numberOfLines={1} style={[styles.classicChipText, { color: g.text }]}>{props.legacyLessonsLabel}</Text>
+        <Text style={[styles.classicChipText, { color: g.text }]}>{props.legacyLessonsLabel}</Text>
       </PressableHybrid>
       </View>
       <Text accessibilityRole="header" style={[styles.lessonTitleWide, { color: g.text }]}>{currentLessonTitle}</Text>

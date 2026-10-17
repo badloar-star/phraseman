@@ -41,6 +41,10 @@ describe('хаб Карточек: число справа от иконки', (
     expect(view).toContain("{t.count === '' ? (countsGaveUp ? ' ' : '…') : t.count}");
   });
 
+  it('[LABEL-FIT] название плитки переносится на 2 строки, а не обрезается многоточием', () => {
+    expect(view).toContain('numberOfLines={fs > 1 ? undefined : 2}>{t.title}');
+  });
+
   it('«Из видео»: число без слова «наборов»', () => {
     expect(screen).toContain("title: copy.videoShort, count: fmt(videoPackCount)");
     expect(screen).not.toContain('fmtPacks');

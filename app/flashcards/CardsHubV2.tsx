@@ -234,7 +234,8 @@ function CardsHubV2Inner({
               </View>
               <Text testID={`fc-cards-hub-tile-count-${t.id}`} style={[styles.tileCount, { color: g.text, lineHeight: lh(28) }]} numberOfLines={1}>{t.count === '' ? (countsGaveUp ? ' ' : '…') : t.count}</Text>
             </View>
-            <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
+            {/* зачем ([LABEL-FIT] 18.10): название плитки при 360 dp и fontScale 1,0 шире 122 dp у ru «Сохранённые» (≈104 %), tr, vi, pl, pt-BR — раньше обрезалось многоточием; теперь переносится на 2 строки (плитка minHeight растёт), шрифт не ужимается */}
+            <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 2}>{t.title}</Text>
           </Pressable>
         ))}
       </View>

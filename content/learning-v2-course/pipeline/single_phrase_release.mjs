@@ -2090,7 +2090,7 @@ export function familyChoreographyIssues(interactions, {
     // зачем: владелец 17.10 — каждое слово прямо перед заданием, где оно используется; не 4 подряд.
     // Карточка остаётся настоящим знакомством со словом (три разных контакта выше), но в ступенчатый порядок
     // «все первые контакты раньше вторых» не входит: иначе четыре карточки обязаны стоять до первого задания
-    // с любым словом, то есть подряд. Место карточки стережёт wordCardPlacementIssues (уроки 1–4).
+    // с любым словом, то есть подряд. Место карточки стережёт wordCardPlacementIssues (все уроки).
     const stagedContacts = initialContacts.filter((entry) => !entry.isWordCard);
     if (stagedContacts.length >= 2) stages.push(stagedContacts.slice(0, 3).map((entry) => entry.index));
     const thirdContact = initialContacts[2].index;
@@ -2136,16 +2136,28 @@ export function familyChoreographyRequiredForSession(sessionIdentity) {
 export function wordCardPlacementApplies(sessionIdentity) {
   const match = /^en\/l(\d{2})\/s\d{2}$/u.exec(String(sessionIdentity ?? ""))
     ?? /^en:lesson-(\d{2}):session-\d{2}$/u.exec(String(sessionIdentity ?? ""));
-  return Boolean(match) && Number(match[1]) >= 1 && Number(match[1]) <= 4;
+  // зачем (Ревизор 3.17): в выпуске есть карточки и в L05–L08 — правило владельца действует на весь курс.
+  return Boolean(match) && Number(match[1]) >= 1;
 }
 
 const wordCardWord = (item) => String(item?.modePayload?.wordCard?.word ?? "").normalize("NFKC").trim().toLowerCase();
 
+// зачем (Ревизор 3.17): ищем слово только в ЗНАЧЕНИЯХ текстовых полей задания (фраза, плитки, варианты,
+// подсказка с английской репликой), а не в JSON целиком: имена полей («mode», «text») и идентификаторы
+// (interactionId, responseId, pairId, …Ids) давали ложные совпадения со словами text/mode/id.
+function interactionTextValues(value, key = "", into = []) {
+  if (/(?:^id|Id|Ids)$/u.test(key)) return into;
+  if (typeof value === "string") into.push(value);
+  else if (Array.isArray(value)) value.forEach((entry) => interactionTextValues(entry, "", into));
+  else if (value && typeof value === "object") Object.entries(value).forEach(([childKey, child]) => interactionTextValues(child, childKey, into));
+  return into;
+}
+
 function interactionUsesWord(item, word) {
   if (!word) return false;
-  const { interactionId: _id, ...rest } = item ?? {};
   const escaped = word.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&").replace(/\s+/gu, "\\s+");
-  return new RegExp(`(^|[^A-Za-z'])${escaped}([^A-Za-z]|$)`, "iu").test(JSON.stringify(rest));
+  const pattern = new RegExp(`(^|[^A-Za-z'])${escaped}([^A-Za-z]|$)`, "iu");
+  return interactionTextValues(item).some((text) => pattern.test(text));
 }
 
 export function wordCardPlacementIssues(interactions, { source = "" } = {}) {
@@ -2165,7 +2177,10 @@ export function wordCardPlacementIssues(interactions, { source = "" } = {}) {
     }
     const earlier = items.slice(0, index).findIndex((candidate, at) => countsAsUse(candidate)
       && interactionUsesWord(candidate, word)
-      && !(at > 0 && isCard(items[at - 1])));
+      // зачем (Ревизор 3.17): прощаем раннее задание только если это общий первый пример двух новых слов:
+      // перед ним стоит карточка ДРУГОГО слова, и это слово тоже есть в задании. Любая карточка не годится.
+      && !(at > 0 && isCard(items[at - 1]) && wordCardWord(items[at - 1]) !== word
+        && interactionUsesWord(candidate, wordCardWord(items[at - 1]))));
     if (earlier >= 0) {
       issues.push({ source, interactionId: item.interactionId, earlierInteractionId: items[earlier].interactionId, word, reason: "word_card_after_first_use" });
     }

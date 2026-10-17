@@ -1916,11 +1916,11 @@ async function main() {
     }
   }
   // зачем: владелец 17.10 — каждое слово прямо перед заданием, где оно используется; не 4 подряд (КОНСТИТУЦИЯ.md).
-  // Проверяем итоговую раскладку RU (её получает приложение; порядок UK тот же по interaction_id). Уроки 1–4.
+  // Проверяем итоговую раскладку RU (её получает приложение; порядок UK тот же по interaction_id). Все уроки (Ревизор 3.17).
   if (wordCardPlacementApplies(SESSION)) {
     const placement = wordCardPlacementIssues(interactions, { source: `${SESSION}:ru:projected` });
     if (placement.length) {
-      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: word_card_placement_hold:${JSON.stringify(placement[0])} (всего ${placement.length}; расставить: node place_cards.mjs ${SESSION.replace(/^en\//u, "").replace("/", " ")})`);
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: word_card_placement_hold:${JSON.stringify(placement[0])} (всего ${placement.length}; каждая карточка — прямо перед первым заданием со своим словом, без двух карточек подряд; у слова должно быть своё задание, не только таблица значений)`);
       process.exit(1);
     }
   }

@@ -73,9 +73,46 @@ test("два слова впервые в одном задании: втора�
   assert.deepEqual(wordCardPlacementIssues(interactions), []);
 });
 
-test("проверка действует на уроках 1–4 и только на них", () => {
+test("ранее задание прощается только при общем первом примере: карточка ДРУГОГО слова, которое тоже в задании (Ревизор 3.17 п.2)", () => {
+  // перед ранним заданием стоит карточка слова, которого в этом задании нет — это не общий пример, нарушение
+  const unrelatedCard = [
+    card("lamp"),
+    task("i01", "The lamp is on. The cable is here."),
+    task("i02", "That is a box."),
+    card("cable"),
+    task("i03", "This is a cable."),
+  ];
+  // lamp есть в i01 — значит i01 общий пример lamp и cable: прощается
+  assert.deepEqual(wordCardPlacementIssues(unrelatedCard), []);
+  const notShared = [
+    card("box"),
+    task("i00", "This is a box."),
+    card("lamp"),
+    task("i01", "The cable is here."),
+    card("cable"),
+    task("i03", "This is a cable."),
+  ];
+  const reasons = wordCardPlacementIssues(notShared).map((issue) => `${issue.reason}:${issue.word}`);
+  assert.ok(reasons.includes("word_card_after_first_use:cable"), reasons.join(","));
+});
+
+test("слово ищется только в текстах задания, а не в именах полей и идентификаторах (Ревизор 3.17 п.3)", () => {
+  // слова text / mode / id совпадают с именами полей; в самих текстах их нет — нарушений быть не должно
+  const interactions = [
+    { interactionId: "en:lesson-03:session-25:i01", family: "listen_choose", modePayload: { mode: "ordered_tokens", targetText: "This is a lamp.", responseOptions: [{ responseId: "r1", text: "This is a lamp." }] } },
+    card("text"),
+    task("i02", "The text is short."),
+    card("mode"),
+    task("i03", "The mode is new."),
+  ];
+  assert.deepEqual(wordCardPlacementIssues(interactions), []);
+});
+
+test("проверка действует на все уроки курса (Ревизор 3.17 п.1)", () => {
   assert.equal(wordCardPlacementApplies("en/l01/s01"), true);
   assert.equal(wordCardPlacementApplies("en/l04/s56"), true);
   assert.equal(wordCardPlacementApplies("en:lesson-03:session-25"), true);
-  assert.equal(wordCardPlacementApplies("en/l05/s01"), false);
+  assert.equal(wordCardPlacementApplies("en/l05/s01"), true);
+  assert.equal(wordCardPlacementApplies("en/l08/s56"), true);
+  assert.equal(wordCardPlacementApplies("de/l01/s01"), false);
 });

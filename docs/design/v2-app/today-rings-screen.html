@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кольца «Сегодня» — экран заданий дня</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · кольца «Сегодня» переезжают с Главной на экран заданий дня ─────────
+   зачем (владелец 17.10, через координатора): кольца НЕ на Главной, а внутри экрана заданий дня, который открывается по «Смотреть все».
+   Там — заполняющееся кольцо прогресса. Главная остаётся с тем же блоком «Сегодня» (строки HomeV2TodayCard), но без колец и монеты;
+   в заголовке блока — «Смотреть все ›» тем же видом, что у «Видео» на Главной.
+   Всё визуальное — 1:1 из одобренного эталона engagement-moments-v3-all.html (лаборатория «Кольца и огонь», момент m11–12):
+   три концентрических кольца = три настоящие задачи дня (modules/today-tasks), монета ранга в центре, цвета колец — токены темы
+   (акцент, второй цвет, золото), строки 58 / radius 14 / отметка 20, «День выполнен». Темы как в эталоне: «Аврора» тёмная и светлая. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.lab { max-width: 1480px; margin: 0 auto; padding: 24px 16px 100px; }
+.lab h1 { font-size: 26px; font-weight: 800; letter-spacing: -.3px; margin: 0; }
+.lab .lead { color: var(--sec); font-size: 15px; line-height: 1.5; margin: 8px 0 0; max-width: 980px; }
+.labsec { margin-top: 40px; }
+.labsec h2 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+.labsec p { color: var(--sec); font-size: 14px; line-height: 1.5; margin: 0 0 16px; max-width: 900px; }
+.lab .lrow { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+.lab .colx { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.lab .colx .lbl { font-size: 14px; font-weight: 700; color: #ECECEE; }
+.lab .btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 13px; border-radius: 17px; background: #1C1C20; color: #E6E6E8; font: 600 13px Inter, sans-serif; cursor: pointer; user-select: none; border: 0; }
+.lab .btn:active { transform: scale(.96); }
+
+/* ---------- телефон и темы — 1:1 эталон v3 ---------- */
+.lab .ph2 { position: relative; width: 390px; height: 844px; border-radius: 50px; overflow: hidden; flex: none; isolation: isolate; font-family: Inter, sans-serif; color: var(--tx);
+  box-shadow: 0 0 0 8px #121216, 0 0 0 9px #2A2A2E, 0 30px 80px rgba(0,0,0,.6); }
+.lab .ph2.aurora { --bg0: #181A1F; --bg1: #0C0D10; --tx: #FFFFFF; --sc: #BCBDC0; --mu: #BCBDC0; --acc: #7EF0C8; --r2: #7C5CFF; --r3: #F0C551;
+  --plate: rgba(33,34,36,.5); --raised: rgba(48,49,52,.5); --ti: rgba(255,255,255,.07); --check: #BCBDC0; --tile: rgba(255,255,255,.07);
+  --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sho: 0 26px 40px -14px rgba(0,0,0,.9); --sheet: #28282E; --link: #7EF0C8;
+  background: radial-gradient(78% 36% at 6% 2%, rgba(56,224,170,.7), transparent 72%), radial-gradient(62% 32% at 108% 56%, rgba(124,92,255,.7), transparent 74%), radial-gradient(80% 28% at 26% 108%, rgba(56,224,170,.7), transparent 76%), linear-gradient(180deg, var(--bg0), var(--bg1) 60%); }
+.lab .ph2.sage { --bg0: #CCF1E7; --bg1: #DED7F9; --tx: #111114; --sc: #5C5C63; --mu: #5B5B62; --acc: #48816E; --r2: #5B49D6; --r3: #7F5700;
+  --plate: rgba(255,255,255,.5); --raised: rgba(255,255,255,.5); --ti: rgba(20,20,40,.06); --check: #5B5B62; --tile: rgba(20,20,40,.06);
+  --sh: 0 14px 26px -14px rgba(10,10,20,.46), 0 1px 3px rgba(10,10,20,.08); --sho: 0 26px 40px -14px rgba(10,10,20,.62), 0 2px 4px rgba(10,10,20,.11); --sheet: #FFFFFF; --link: #185E47;
+  background: linear-gradient(180deg, var(--bg0), var(--bg1) 60%); }
+.lab .ph2 .sb { background: none; color: var(--tx); position: absolute; top: 0; left: 0; right: 0; height: 48px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 8px 28px 0 36px; font-weight: 600; font-size: 16px; }
+.lab .ph2 .in { position: absolute; inset: 0; padding: 60px 12px 0; overflow: hidden; }
+.lab .ph2 .hi { position: absolute; bottom: 8px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .9; z-index: 80; }
+.lab .io { font-family: IoniconsApp; font-style: normal; line-height: 1; display: inline-block; }
+.lab .hrow { display: flex; align-items: center; gap: 10px; }
+.lab .pl { height: 46px; padding: 0 14px; border-radius: 23px; display: inline-flex; align-items: center; gap: 10px; background: var(--plate); box-shadow: var(--sh); }
+.lab .pl b { font-size: 16px; line-height: 17px; font-weight: 700; } .lab .pl span { display: block; font-size: 13px; line-height: 15px; color: var(--sc); }
+.lab .cir { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--plate); box-shadow: var(--sh); font-size: 22px; flex: none; }
+
+/* ---------- блок «Сегодня» на Главной — строки 1:1 (HomeV2TodayCard), колец НЕТ ---------- */
+.lab .today { border-radius: 18px; padding: 16px 6px 6px; margin-top: 18px; }
+.lab .today .kh { display: flex; align-items: center; justify-content: space-between; margin: 0 6px 12px 12px; }
+.lab .today .k { font-size: 13px; line-height: 17px; letter-spacing: 1.6px; font-weight: 700; color: var(--sc); text-transform: uppercase; }
+/* «Смотреть все ›» — как у «Видео» на Главной: акцентный текст 16/600 и шеврон */
+.lab .seeall { display: inline-flex; align-items: center; gap: 2px; font-size: 16px; line-height: 20px; font-weight: 600; color: var(--link); cursor: pointer; }
+.lab .seeall .io { font-size: 16px; }
+.lab .list { display: flex; flex-direction: column; gap: 10px; }
+.lab .trow { min-height: 58px; padding: 10px 14px; border-radius: 14px; display: flex; align-items: center; gap: 12px; background: var(--raised); box-shadow: var(--sho); cursor: pointer; transition: transform 160ms cubic-bezier(.23,1,.32,1); }
+.lab .trow:active { transform: scale(.98); }
+.lab .trow .ck { width: 20px; height: 20px; border-radius: 10px; box-sizing: border-box; border: 1.5px solid var(--check); display: flex; align-items: center; justify-content: center; flex: none; }
+.lab .trow .ck .io { font-size: 14px; color: var(--sheet); opacity: 0; }
+.lab .trow.done .ck { background: var(--rc); border-color: var(--rc); }
+.lab .trow.done .ck .io { opacity: 1; }
+.lab .trow .tile { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--tile); flex: none; }
+.lab .trow .tile .io { font-size: 19px; color: var(--tx); }
+.lab .trow .cp { flex: 1; min-width: 0; } .lab .trow .tt { font-size: 16px; line-height: 20px; font-weight: 700; } .lab .trow .st { font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 1px; }
+.lab .trow .cn { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sc); font-variant-numeric: tabular-nums; }
+.lab .trow.done .cn { color: var(--tx); }
+
+/* ---------- экран «Сегодня» (новый, по «Смотреть все») ---------- */
+.lab .th { display: flex; align-items: center; gap: 12px; padding: 4px 4px 0; }
+.lab .th .cir .io { font-size: 22px; }
+.lab .th h3 { margin: 0; font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.3px; }
+.lab .rhero { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 28px 0 26px; }
+/* кольца — геометрия эталона, масштаб 1,5 (экран целиком про них): 148 → 222, монета 58 → 86 */
+.lab .rw { position: relative; width: 222px; height: 222px; }
+.lab .rw svg { position: absolute; inset: 0; transform: rotate(-90deg); overflow: visible; }
+.lab .rw .rg { fill: none; stroke-linecap: round; transition: stroke-dashoffset 900ms cubic-bezier(.23,1,.32,1); }
+.lab .rw .bgr { fill: none; opacity: .16; }
+.lab .rw .coin { position: absolute; left: 50%; top: 50%; width: 86px; height: 86px; margin: -43px; border-radius: 50%; display: block; }
+.lab .sum { font-size: 15px; line-height: 20px; font-weight: 700; color: var(--sc); font-variant-numeric: tabular-nums; }
+.lab .sum b { color: var(--tx); }
+.lab .dayok { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 10px; border-radius: 16px; background: var(--raised); box-shadow: var(--sh); font-size: 13px; font-weight: 700; color: var(--tx); }
+.lab .dayok .io { color: var(--acc); font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { .lab .rw .rg { transition: none; } .lab .trow { transition: none; } }
+</style>
+</head>
+<body>
+<div class="lab">
+  <h1>Кольца «Сегодня» → экран заданий дня</h1>
+  <p class="lead">Владелец 17.10: на Главной колец нет, блок «Сегодня» остаётся строками; по «Смотреть все» открывается экран заданий дня, и кольца — там. Визуал 1:1 из одобренного эталона «Моменты v3» (Кольца и огонь): три кольца = три задачи дня, монета ранга в центре, цвета — токены темы. «Повторить» на экране «Сегодня» — заново проигрывает заполнение колец.</p>
+
+  <section class="labsec" id="home"><h2>1 · Главная — без колец</h2><p>Тот же блок «Сегодня» (HomeV2TodayCard): три строки задач с отметкой цветом своего кольца. Колец и монеты над строками больше нет — блок стал ниже на ~160 pt, Главная короче. В заголовке блока — «Смотреть все ›» тем же видом, что у «Видео»; тап по строке по-прежнему ведёт сразу в активность.</p><div class="lrow" id="rowHome"></div></section>
+
+  <section class="labsec" id="screen"><h2>2 · Экран «Сегодня» — кольца заполняются</h2><p>Открывается по «Смотреть все». Сверху — кольца крупно (геометрия эталона ×1,5), под ними счёт «1 из 3», ниже — те же строки задач. При входе кольца докручиваются от нуля до текущего прогресса (900 мс, ease-out, без пружины); с reduced motion — сразу итог.</p><div class="lrow" id="rowScreen"></div></section>
+
+  <section class="labsec" id="done"><h2>3 · Все задачи закрыты — «День выполнен»</h2><p>Три кольца замкнуты, под ними — плашка «День выполнен» из эталона (без бонусов, D09).</p><div class="lrow" id="rowDone"></div></section>
+</div>
+<script>
+const IO = { book: '&#xf1a6;', copy: '&#xf290;', trend: '&#xf5fc;', check: '&#xf21d;', flame: '&#xf313;', bell: '&#xf47f;', back: '&#xf1e6;' };
+const TAB = { home: '&#xf382;', book: '&#xf1a6;', play: '&#xf4ce;', people: '&#xf4a3;', settings: '&#xf56c;', chevron: '&#xf23b;' };
+// Настоящие задачи «Сегодня» (modules/today-tasks/today_tasks_core.ts + today_tasks_view.ts) — как в эталоне
+const TASKS = [
+  { kind: 'lesson', title: 'Пройти урок', target: 1, icon: 'book' },
+  { kind: 'spire_steps', title: 'Пройти ступени Пика', target: 3, icon: 'trend' },
+  { kind: 'cards', title: 'Повторить карточки', sub: 'Не менее 10 слов', target: 10, icon: 'copy' },
+];
+const RING = ['var(--acc)', 'var(--r2)', 'var(--r3)'];
+const sb = () => `<div class="sb"><span>9:41</span><span style="display:flex;gap:6px;align-items:center"><svg width="17" height="11" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><span style="width:25px;height:12px;border-radius:4px;border:1.5px solid currentColor;position:relative"><span style="position:absolute;inset:1.5px;right:3px;background:currentColor;border-radius:2px"></span></span></span></div>`;
+const coin = (r, s) => `<img class="coin" src="assets/coin_rank_${String(r).padStart(2, '0')}.webp" width="${s}" height="${s}" alt="">`;
+const phone = (theme, inner) => `<div class="ph2 ${theme}">${sb()}<div class="in">${inner}</div><div class="hi"></div></div>`;
+const rows = (prog) => `<div class="list">${TASKS.map((t, i) => `<div class="trow ${prog[i] >= t.target ? 'done' : ''}" style="--rc:${RING[i]}"><span class="ck"><span class="io">${IO.check}</span></span><span class="tile"><span class="io">${IO[t.icon]}</span></span><div class="cp"><div class="tt">${t.title}</div>${t.sub ? `<div class="st">${t.sub}</div>` : ''}</div><span class="cn">${Math.min(prog[i], t.target)}/${t.target}</span></div>`).join('')}</div>`;
+
+/* ---------- Главная (как в эталоне v3, блок «Сегодня» без колец) ---------- */
+const head = () => `<div class="hrow"><span class="pl"><span class="io" style="font-size:18px;color:var(--acc)">${IO.flame}</span><div><b>5 дней</b><span>Серия</span></div></span><span class="pl" style="flex:1">${coin(5, 22)}<div><b>6 854</b><span>Монеты</span></div></span><span class="cir"><span class="io" style="font-size:20px">${IO.bell}</span></span><span style="width:52px;height:52px;flex:none">${coin(5, 52)}</span></div>`;
+const lesson = () => `<div style="margin-top:14px;padding:16px 18px;position:relative;border-radius:24px;background:var(--raised);box-shadow:var(--sh)"><div style="font-size:20px;line-height:25px;font-weight:700;padding-right:70px">Местоимения и глагол To Be</div><div style="display:flex;align-items:center;margin-top:12px;gap:12px"><div style="flex:1;height:6px;border-radius:3px;background:var(--ti)"><i style="display:block;width:8%;height:100%;border-radius:3px;background:var(--acc)"></i></div><span style="font-size:13px;font-weight:600;color:var(--sc)">4 / 50</span><span style="width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--plate)"><span class="io" style="font-size:18px">${TAB.chevron}</span></span></div><span style="position:absolute;right:14px;top:14px;height:34px;padding:0 14px;border-radius:17px;display:inline-flex;align-items:center;font-size:16px;font-weight:700;background:var(--ti)">Урок 1</span></div>`;
+const tiles = (theme) => `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">${[['lessons', 'Уроки'], ['dialogs', 'Диалоги'], ['cards', 'Карточки']].map(([k, t]) => `<div style="aspect-ratio:1;border-radius:22px;padding:0 10px 10px;display:flex;flex-direction:column;justify-content:space-between;font-size:16px;font-weight:800;background:var(--plate);box-shadow:var(--sh)"><div style="flex:1;display:flex;align-items:center;justify-content:center;padding-top:6px"><img src="assets/v2art/${theme === 'aurora' ? 'dark' : 'light'}/${k}.webp" style="width:84%;max-width:84px;max-height:84px;object-fit:contain" alt=""></div>${t}</div>`).join('')}</div>`;
+const tabbar = () => `<div style="position:absolute;left:12px;right:12px;bottom:14px;height:66px;border-radius:33px;z-index:20;display:flex;align-items:center;padding:0 9px;background:var(--plate);box-shadow:var(--sho);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)">${['home', 'book', 'play', 'people', 'settings'].map((k, i) => `<span style="flex:1;height:48px;border-radius:18px;display:flex;align-items:center;justify-content:center;color:${i ? 'var(--mu)' : 'var(--acc)'}"><span class="io" style="font-size:28px">${TAB[k]}</span></span>`).join('')}</div>`;
+const todayHome = (prog) => `<div class="today"><div class="kh"><span class="k">Сегодня</span><span class="seeall">Смотреть все<span class="io">${TAB.chevron}</span></span></div>${rows(prog)}</div>`;
+const home = (theme, prog) => `<div>${head()}${lesson()}${tiles(theme)}${todayHome(prog)}</div>${tabbar()}`;
+
+/* ---------- экран «Сегодня» ---------- */
+const ringsSvg = (vals, from0) => { const s = 222, c = 111, sw = 16, gap = 7; return `<svg viewBox="0 0 ${s} ${s}">${vals.map((v, i) => { const r = c - sw / 2 - i * (sw + gap); const len = 2 * Math.PI * r; return `<circle class="bgr" cx="${c}" cy="${c}" r="${r}" stroke="${RING[i]}" stroke-width="${sw}"/><circle class="rg" data-v="${v}" data-len="${len.toFixed(1)}" cx="${c}" cy="${c}" r="${r}" stroke="${RING[i]}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${(len * (1 - (from0 ? 0 : v))).toFixed(1)}" style="transition-delay:${i * 120}ms"/>`; }).join('')}</svg>`; };
+const screen = (prog, o = {}) => { const done = prog.filter((p, i) => p >= TASKS[i].target).length; const all = done === TASKS.length;
+  return `<div class="th"><span class="cir"><span class="io" style="transform:rotate(180deg)">${TAB.chevron}</span></span><h3>Сегодня</h3></div>
+  <div class="rhero"><div class="rw" data-rw>${ringsSvg(prog.map((p, i) => Math.min(1, p / TASKS[i].target)), o.animate)}${coin(5, 86)}</div>
+  ${all ? `<span class="dayok"><span class="io">${IO.check}</span>День выполнен</span>` : `<span class="sum"><b>${done}</b> из ${TASKS.length}</span>`}</div>${rows(prog)}`; };
+
+const THEMES = [['aurora', 'Аврора · тёмная'], ['sage', 'Аврора · светлая']];
+const put = (id, make, label, replay) => { const row = document.getElementById(id); THEMES.forEach(([th, name]) => { const c = document.createElement('div'); c.className = 'colx'; c.innerHTML = `<div class="lbl">${label} · ${name}</div>${phone(th, make(th))}${replay ? '<button class="btn" data-replay>Повторить заполнение</button>' : ''}`; row.appendChild(c); }); };
+// зачем: заполнение — только состояние «кольцо дошло до прогресса», 900 мс ease-out, кольца по очереди через 120 мс; без пружины
+const fill = (root) => root.querySelectorAll('.rg').forEach((r) => { const len = +r.dataset.len; r.style.strokeDashoffset = (len * (1 - +r.dataset.v)).toFixed(1); });
+const reset = (root) => root.querySelectorAll('.rg').forEach((r) => { r.style.transition = 'none'; r.style.strokeDashoffset = r.dataset.len; void r.getBoundingClientRect(); r.style.transition = ''; });
+
+put('rowHome', (th) => home(th, [0, 1, 2]), 'Главная');
+put('rowScreen', () => screen([1, 1, 2], { animate: true }), 'Сегодня · 1 из 3', true);
+put('rowDone', () => screen([1, 3, 10]), 'Сегодня · всё закрыто');
+requestAnimationFrame(() => requestAnimationFrame(() => fill(document.getElementById('rowScreen'))));
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-replay]'); if (!b) return; const col = b.closest('.colx'); reset(col); requestAnimationFrame(() => fill(col)); });
+</script>
+</body>
+</html>

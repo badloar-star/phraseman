@@ -26,6 +26,8 @@ const S = {
   // зачем (координатор 17.10, эталон #four-tiles (в)): бейдж места на плитке «Пик» Главной.
   // Переводчик 17.10: плитка ~74 dp, бейдж 11 pt растёт влево — id «Peringkat 12» (~92 dp) и pl «12. miejsce» залезали на соседнюю
   // плитку; короткие общепринятые формы: id «Ke-12» (как «peringkat ke-12»), pl «12. msc.» (сокращение из таблиц результатов).
+  // зачем (координатор 17.10): сбой системного «Поделиться» — короткая человеческая фраза, без системных слов
+  shareFailed: ['Не получилось поделиться, попробуй ещё раз', 'Не вдалося поділитися, спробуй ще раз', 'Couldn’t share — try again', 'No se pudo compartir, inténtalo de nuevo', 'Não deu para compartilhar, tente de novo', 'Chưa chia sẻ được, thử lại nhé', 'Belum bisa dibagikan, coba lagi', 'Paylaşılamadı, tekrar dene', 'Nie udało się udostępnić, spróbuj jeszcze raz'],
   placeBadge: ['{n} место', '{n} місце', 'Place {n}', 'Puesto {n}', '{n}º lugar', 'Hạng {n}', 'Ke-{n}', '{n}. sıra', '{n}. msc.'],
   floorTag: ['Этаж {n}', 'Поверх {n}', 'Floor {n}', 'Piso {n}', 'Andar {n}', 'Tầng {n}', 'Lantai {n}', 'Kat {n}', 'Piętro {n}'],
   promoBonus: ['+{n} {nw} за повышение', '+{n} {nw} за підвищення', '+{n} {nw} for moving up', '+{n} {nw} por subir', '+{n} {nw} por subir', '+{n} {nw} vì thăng hạng', '+{n} {nw} karena naik', 'Yükseldiğin için +{n} {nw}', '+{n} {nw} za awans'],

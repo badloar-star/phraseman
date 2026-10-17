@@ -7,8 +7,10 @@
 // нет полей — m01 без акта «лестница» (с места сразу к башне), m02 без строки «до топ-5 не хватило», ничего не выдумываем. «Играть» и закрытие — один обработчик (close хука).
 // «Напомнить вечером» (m03) — только если хук Ядра сказал, что напоминание доступно (weekMoment.remind.available); иначе второй кнопки нет.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useRef } from 'react';
-import { Modal, Share, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Modal, Share, StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { useSpirePalette } from '../useSpirePalette';
 import type { Lang } from '../../../constants/i18n';
 import type { SpireWeekMomentShow } from '../../../app/spire/spire_week_moment_gate';
 import { SheetSwipeRoot } from '../../modal_fx/SheetSwipeClose';
@@ -64,6 +66,16 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
   const rows = useMemo(() => spireWeekLadderRows(result.ladder), [result.ladder]);
   // зачем (координатор 15.10, m01 вариант B): «Поделиться» — системное окно с текстом из строк (лига, место, монеты недели; без имени и идентификаторов), на наш сервер ничего не уходит; пока окно открыто, второе не открываем
   const sharingRef = useRef(false);
+  // зачем (координатор 17.10): сбой «Поделиться» — короткая подсказка ВНУТРИ окна (общий тост рисуется под нативной модалкой и не виден), сама гаснет через 2,6 с
+  const [shareFailed, setShareFailed] = useState(false);
+  const p = useSpirePalette();
+  const shareHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showShareFailed = useCallback(() => {
+    setShareFailed(true);
+    if (shareHintTimerRef.current) clearTimeout(shareHintTimerRef.current);
+    shareHintTimerRef.current = setTimeout(() => { shareHintTimerRef.current = null; setShareFailed(false); }, 2600);
+  }, []);
+  useEffect(() => () => { if (shareHintTimerRef.current) clearTimeout(shareHintTimerRef.current); }, []);
   const handleShare = useCallback(() => {
     if (sharingRef.current) { console.log('[WEEK-MOMENT] share: окно уже открыто — пропуск'); return; }
     sharingRef.current = true;
@@ -71,9 +83,9 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
     console.log(`[WEEK-MOMENT] share: открываю системное окно, символов=${message.length}`); // guard-ok: единичный лог действия
     Share.share({ message })
       .then((r) => { console.log(`[WEEK-MOMENT] share: результат action=${String(r.action)}`); }) // guard-ok: итог
-      .catch((e: unknown) => { console.warn(`[WEEK-MOMENT] share: сбой ${e instanceof Error ? e.message : String(e)}`); }) // guard-ok: catch называет причину
+      .catch((e: unknown) => { console.warn(`[WEEK-MOMENT] share: сбой ${e instanceof Error ? e.message : String(e)} — показана подсказка`); showShareFailed(); }) // guard-ok: catch называет причину
       .finally(() => { sharingRef.current = false; });
-  }, [lang, result.newTier, result.roomRank, result.weekCoins]);
+  }, [lang, result.newTier, result.roomRank, result.weekCoins, showShareFailed]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
       <SheetSwipeRoot>
@@ -89,10 +101,20 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
           ) : (
             <MomentDown lang={lang} newTier={result.newTier} coinRank={coinRank} onPlay={handlePlay} onRemind={onRemind} />
           )}
+          {shareFailed ? (
+            <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(200)} pointerEvents="none" style={[s.toast, { backgroundColor: p.card }]} testID={`${testID}-share-failed`}>
+              <Text style={[s.toastText, { color: p.text }]}>{momentText(lang, 'shareFailed')}</Text>
+            </Animated.View>
+          ) : null}
         </View>
       </SheetSwipeRoot>
     </Modal>
   );
 }
+
+const s = StyleSheet.create({
+  toast: { position: 'absolute', left: 24, right: 24, bottom: 56, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center' },
+  toastText: { fontSize: 15, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
+});
 
 export default memo(SpireWeekMomentHost);

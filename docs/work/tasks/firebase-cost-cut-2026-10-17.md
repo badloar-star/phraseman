@@ -254,7 +254,22 @@
 - Адресный деплой: `firebase deploy --only functions:reEngagePushCron` (обновит и функцию, и расписание Scheduler; без `--force`). Риск низкий: повтор в пересечении прогонов гасит cooldown 2 дня; деньги не трогает. Стоимость: +1 прогон ≈ +450 чтений/сут сейчас. Удешевление — A10 в §7 п. 8, после релиза. Решение владельцу утром.
 
 ### В проде ЕСТЬ, но код изменился после выкладки (45 из 99 по файлам)
-Список — в рабочих файлах Ревизора (`drift.tsv`); разбор совместимости полей запроса/ответа — следующий шаг (см. ниже, дополню).
+Разбор совместимости (17.10, вечер). Метод: исходники каждой функции скачаны из прода и сравнены с HEAD и с тем, что шлёт и ждёт клиент HEAD. Пп. 1–3 Ревизор перепроверил сам по скомпилированному коду прода, пп. 4–6 — по отчёту помощника, не перепроверены.
+
+| # | Функция | Что не сходится | Что будет у человека со сборкой 18.10 | Лечение | Риск лечения |
+|---|---|---|---|---|---|
+| 1 | `levelSpinStarGrant` (прод 02.09) | прод требует точный набор ключей без `promotionEligibility` (`lib/functions/src/level_spin_star_grant.js:83-95`), клиент с 20.09 шлёт его всегда (app/level_spin_star_grants.ts:2173) → `invalid-argument level_spin_star_composite_invalid` | **монеты за репорты и «Дневной путь» не зачисляются на сервере**, операции висят в очереди | адресный деплой `functions:levelSpinStarGrant` (HEAD принимает поле как необязательное — старые сборки тоже проходят) | средний: деньги — прогнать сторожей кошелька |
+| 2 | `authRequestRecoveryCode`, `authConfirmRecoveryCode`, `authRequestCleanInstallRecoveryCode`, `authConfirmCleanInstallRecoveryCode`, `authIssueRecoveryHandoffToken`, `authCompleteRecoveryHandoff` | `if (!request.app) throw 'app_check_required'` — и в проде, и **в HEAD** (functions/src/auth_recovery.ts:133, :1677); клиент без App Check с 4a1c787b4 (01.10) | **восстановление аккаунта по коду не работает** в сборке 2.0 (старые сборки с App Check — работают) | правка кода как в auth_identity.ts:2448 (не голое снятие проверки) + адресный деплой; ревью безопасности | высокий: вход/захват аккаунта — только владелец Входа + security-review |
+| 3 | `submitLearningV2CourseSessionCompletedV1` (прод 04.09) | прод: 10…22 ответа (`course_session_device_run_v1.js:330-331`), HEAD: до 35. В выпуске 1..205 — **23 занятия > 22** (L01 s01–s27, макс. 28 у s08) | итог занятия отвергается навсегда; очередь (app/learning_v2_course_session_completed_sync_v1.ts:132-159) встаёт на первом отказе → **ни одно следующее занятие не уходит на сервер**; каждый прогон пишет `critical` в Firestore | адресный деплой `functions:submitLearningV2CourseSessionCompletedV1` (зовёт только V2 = только 2.0) | низкий |
+| 4 | `submitFeedbackEntry` | в проде нет `kind="learning_v2"` → `kind_invalid` | отзыв с итога занятия V2 не отправляется | адресный деплой | низкий |
+| 5 | `premiumDialogSend` | клиент требует `resetAtMs`, `quotaVersion`; прод их не отдаёт; прод знает только en/fr | режим «компаньон» падает всегда; для es/de ответы по-английски | адресный деплой вместе с `premiumDialogStream`/`Translate` — проверить старые сборки | средний: ИИ-диалоги и квоты, их зовут и старые сборки |
+| 6 | `premiumDialogTranslate` | прод игнорирует `direction`, не отдаёт `variants` | «Как сказать…» не работает | как п. 5 | средний |
+| 7 | `legacyBonusConvertMine`, `onboardingLevelRecord`, `communityAuthorRemoveCard` | нет в проде | см. таблицу ниже — переживает мягко | адресный деплой (R103) | см. выше |
+
+Под вопросом (не ломает сразу): `premiumDialogStream` — es/de по-английски; `mistakePracticeSyncEvents` — в проде нет `'it'`; Пик W43 (с 19.10 рейтинг по монетам) — старый крон не пишет `ladder`/`promotionLineCoins`, нужен деплой или откат через конфиг до 19.10; кошелёк required-session — прод строже (только старый путь).
+Совместимы (проверено): имена, друзья, удаление аккаунта, вход и склейка, `spireJoinRoom`/`spireReportSteps`, рефералы, опросы, сообщество (кроме п. 7), `dialogueV2*`, `premiumDialogReview`, `explain*`, согласия, отчёты, `progress*`, промокоды, `coinReconcileV1`, `practiceRuneGrant`.
+
+**Предложение владельцу на утро (R103, адресно, без `--force`, по одной функции, с проверкой журнала после каждой):** `levelSpinStarGrant`, `submitLearningV2CourseSessionCompletedV1`, `submitFeedbackEntry`, `reEngagePushCron`, `legacyBonusConvertMine`, `onboardingLevelRecord`, `communityAuthorRemoveCard`. Отдельно и не ночью: ИИ-диалоги (пп. 5–6) и восстановление аккаунта (п. 2, сперва правка кода).
 
 ### Как клиент 18.10 переживает отсутствие трёх функций (проверено по коду)
 | Функция | Что видит человек | Нагрузка |

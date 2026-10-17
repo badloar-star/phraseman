@@ -11,13 +11,13 @@ import type { SpireTaskTimerKind } from './config_contract';
 
 /**
  * Секунды «комфортно» на задание при типичных длинных вариантах (аудит, раздел 5).
- * timeattack рисуется тем же полем пар, что match; voice в аудите не замерен — 18 с между «на слух» и «переводом» (допущение, поправимо одним числом).
+ * timeattack — список по одному слову (поле пар только у match); voice в аудите не замерен — 18 с между «на слух» и «переводом» (допущение, поправимо одним числом).
  */
 export const SPIRE_COMFORT_BASE_MS: Readonly<Record<SpireTaskTimerKind, number>> = Object.freeze({
   choice: 11_000,
   translate: 20_000,
   match: 20_000,
-  timeattack: 20_000,
+  timeattack: 14_000, // зачем (Сайт 17.10): timeattack остаётся списком по одному слову (6 быстрых выборов ×~2,3 с), не полем пар
   listen: 14_000,
   dictate: 20_000,
   voice: 18_000,

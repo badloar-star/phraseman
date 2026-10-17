@@ -296,7 +296,7 @@ export const SPIRE_COMFORT_BASE_MS: Readonly<Record<SpireTaskTimerKind, number>>
   choice: 11_000,
   translate: 20_000,
   match: 20_000,
-  timeattack: 20_000,
+  timeattack: 14_000, // зачем (Сайт 17.10): timeattack остаётся списком по одному слову (6 быстрых выборов ×~2,3 с), не полем пар
   listen: 14_000,
   dictate: 20_000,
   voice: 18_000,

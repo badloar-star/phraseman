@@ -1,16 +1,34 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { sessionReadiness } from "../content/learning-v2-course/pipeline/session_readiness.mjs";
-import { sourceReleaseFindings } from "../content/learning-v2-course/pipeline/sync_mockup_source_release_findings.mjs";
+import { sessionReadiness } from "./session_readiness.mjs";
+import { sourceReleaseFindings } from "./sync_mockup_source_release_findings.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const PROJECT_ROOT = path.resolve(HERE, "..");
-const MOCKUP = path.join(PROJECT_ROOT, "content", "learning-v2-course", "mockup", "index.html");
+const PROJECT_ROOT = path.resolve(HERE, "../../../..");
 const SESSIONS_ROOT = path.join(PROJECT_ROOT, "content", "learning-v2-course", "sessions", "en");
+const TEMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-mockup-readiness-"));
+const MOCKUP = path.join(TEMP_ROOT, "index.html");
+
+test.before(() => {
+  const build = spawnSync(process.execPath, [
+    path.join(PROJECT_ROOT, "content", "learning-v2-course", "pipeline", "build_mockup.mjs"),
+    "--out",
+    MOCKUP,
+  ], { cwd: PROJECT_ROOT, encoding: "utf8" });
+  assert.ok(
+    build.status === 0 || (build.status === 1 && /factory_intro_practice_mockup_hold/u.test(`${build.stdout}\n${build.stderr}`)),
+    `isolated mockup build failed unexpectedly (status=${build.status}):\n${build.stdout}\n${build.stderr}`,
+  );
+  assert.ok(fs.existsSync(MOCKUP), "isolated build must produce the mockup before evidence assertions");
+});
+
+test.after(() => fs.rmSync(TEMP_ROOT, { recursive: true, force: true }));
 
 function embeddedJson(html, id) {
   const escapedId = id.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
@@ -47,7 +65,7 @@ test("every mockup card embeds its current per-card readiness evidence", () => {
   assert.deepEqual(Object.keys(embedded).sort(), cards.map(({ key }) => key).sort(), "readiness must cover every rendered card exactly once");
   assert.deepEqual(embedded, expected, "each card must carry the current sessionReadiness count and concrete first unresolved item");
   assert.equal(Object.values(embedded).filter(({ ready }) => ready).length, 0, "no card may be shown as fixed before fresh proof exists");
-  assert.match(html, /пока не собрано подтверждение качества/u, "each comparison must explain unresolved evidence in ordinary Russian");
+  assert.match(html, /пока не собрано подтверждение качества/iu, "each comparison must explain unresolved evidence in ordinary Russian");
   assert.match(html, /freshCardEvidenceText/u, "after-state must promise fresh card-specific evidence");
 });
 

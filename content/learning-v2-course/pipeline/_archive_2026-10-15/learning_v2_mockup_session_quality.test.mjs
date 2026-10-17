@@ -4,10 +4,10 @@ import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { validateReleaseQuality } from "../scripts/learning_v2_release_parity_gate.mjs";
+import { validateReleaseQuality } from "../../../../scripts/learning_v2_release_parity_gate.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const PROJECT_ROOT = path.resolve(HERE, "..");
+const PROJECT_ROOT = path.resolve(HERE, "../../../..");
 const MOCKUP = path.join(PROJECT_ROOT, "content", "learning-v2-course", "mockup", "index.html");
 const RELEASE_ROOT = path.join(PROJECT_ROOT, "content", "learning-v2-course", "release", "en");
 

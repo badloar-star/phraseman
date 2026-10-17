@@ -52,8 +52,10 @@ const LEGAL_FILES = [
   // 15.10 (координатор, к выкладке 17.10): §13 — запись голоса остаётся на телефоне во ВСЕХ голосовых упражнениях, iOS — распознаватель Apple,
   // Android — локальная модель Whisper (файл скачивается с Hugging Face); §16 — Hugging Face в списке сервисов. Пин догнан и под 3af755000 (D189, текст сменили, пин нет).
   // 15.10 (координатор, #52 «ДА»): §9 — проверка подписки RevenueCat при каждом запуске, до онбординга и без покупки; основание — исполнение и законный интерес.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '0d87656b683b8373e180be312fae723733a0f8b24616e0b5f86b3e6346c46497'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'b2e60d2df6b64d04947c5dcc44757c48ec536c51e33d26e9a294d3a1a0e81666'],
+  // 17.10 (координатор, слово владельца): ИИ-разбор ошибок в уроках выключен, кнопка «Объяснить» убрана — из §11 удалён абзац о
+  // согласии на «Mistake-explanation features in lessons»; дата «Last updated» → October 17, 2026. Остальной текст байт в байт.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '3db05b2f80c608578085f8f078bc6171a06fb39d9fbdc6b7999007f595f962c9'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '66e28a84345727a6a01f01b5f3a1653d0bc400db2a3048f9394deca58bf31150'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],

@@ -1,15 +1,18 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
+  PixelRatio,
   ScrollView,
   StyleSheet,
   Text,
   useWindowDimensions,
   View,
+  type LayoutChangeEvent,
 } from "react-native";
 import Animated, {
   FadeInDown,
   ReduceMotion,
+  runOnJS,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
@@ -280,6 +283,11 @@ function IntroReaderParagraph({
   );
 }
 
+// зачем ([INTRO-BLUR]): анимация появления страницы должна дойти до конца (finished=true); застрявшая на полупрозрачности/сдвиге даёт «мутный» текст
+function logIntroEntering(page: number, finished: boolean): void {
+  console.log('[INTRO-BLUR] entering done', JSON.stringify({ page, finished })); // guard-ok: итог анимации появления
+}
+
 function IntroAnswerShake({
   nudgeToken,
   reducedMotion,
@@ -358,6 +366,7 @@ export default function LearningV2SessionIntro({
   const { studyTarget } = useStudyTarget();
   // зачем (learning-v2.html, интро): все цвета экрана — токены Liquid Glass активной темы.
   const g = useLv2Glass();
+  
   const { height } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
   const reducedMotion = useReducedMotion();
@@ -382,6 +391,7 @@ export default function LearningV2SessionIntro({
   const copy = useMemo(() => stringsFor(lang), [lang]);
   const screens = introScreens.length > 0 ? introScreens : [];
   const safeIndex = Math.min(index, Math.max(0, screens.length - 1));
+  const introBlurPage = safeIndex;
   const screen = screens[safeIndex];
   const stageLabel = copy.stageLabels[safeIndex] ?? copy.stageLabels[0];
   const title = screen
@@ -508,6 +518,42 @@ export default function LearningV2SessionIntro({
     setIndex((value) => Math.min(value + 1, screens.length - 1));
   };
 
+  // зачем (координатор 17.10, владелец: «почему всё так размыто»; правило «сперва логи»): какие стили реально применены к тексту вступления и его карточке в момент показа страницы —
+  // тень текста, прозрачность, трансформ, тень карточки, шрифт/плотность. Рядом [INTRO-BLUR] entering/layout: дошла ли анимация появления до конца и какие размеры у карточки.
+  useEffect(() => {
+    const fx = (style: unknown) => {
+      const f = (StyleSheet.flatten(style as never) ?? {}) as Record<string, unknown>;
+      return {
+        fontSize: f.fontSize ?? null,
+        fontWeight: f.fontWeight ?? null,
+        opacity: f.opacity ?? null,
+        transform: f.transform ?? null,
+        textShadowRadius: f.textShadowRadius ?? null,
+        textShadowColor: f.textShadowColor ?? null,
+        boxShadow: f.boxShadow ? 'yes' : 'no',
+        backgroundColor: f.backgroundColor ?? null,
+      };
+    };
+    console.log('[INTRO-BLUR] page', JSON.stringify({
+      page: safeIndex,
+      lesson: lessonId,
+      entering: !reducedMotion,
+      reducedMotion,
+      pixelRatio: PixelRatio.get(),
+      fontScale: PixelRatio.getFontScale(),
+      title: fx(sx.title),
+      paragraph: fx(sx.readerParagraph),
+      card: fx([sx.knowledgeFlow, lv2CardStyle(g)]),
+      textColor: g.text,
+      titleColor: lv2Alpha(g.text, 0.86),
+      cardFill: g.plateFillFrom,
+    })); // guard-ok: журнал стилей текста вступления
+  }, [g, lessonId, reducedMotion, safeIndex, sx.knowledgeFlow, sx.readerParagraph, sx.title]);
+  const logIntroLayout = (node: string) => (e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    console.log('[INTRO-BLUR] layout', JSON.stringify({ node, page: safeIndex, x, y, w: width, h: height })); // guard-ok: размеры без округления — дробные значения тоже причина мути
+  };
+
   return (
     <LinearGradient
       colors={[g.bgTop, g.bg, g.bgBottom]}
@@ -536,16 +582,11 @@ export default function LearningV2SessionIntro({
           </PressableHybrid>
 
           <View style={sx.stageMeta}>
-            {/* зачем (Сверка df455f92d, кадр 12; координатор 15.10): подпись этапа переносилась по буквам («СМЫС»/«Л») — рядом с «1 / 3» и тремя плашками (сердца, энергия, монеты) ей не хватало ширины. Теперь метка в одну строку и не сжимается (ширина по содержимому), «N / 3» — отдельной строкой под ней; сжатие шрифта запрещено, поэтому место берётся высотой, а не шириной. */}
-            <Text
-              numberOfLines={1}
-              ellipsizeMode="clip"
-              style={[sx.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}
-            >
+            {/* зачем (Сверка df455f92d, кадр 12; координатор 15.10): подпись этапа переносилась по буквам («СМЫС»/«Л») — рядом с «1 / 3» и тремя плашками (сердца, энергия, монеты) ей не хватало ширины. Теперь метка не сжимается (flexShrink 0, ширина по содержимому), «N / 3» — отдельной строкой под ней; сжатие и обрезка текста запрещены сторожем, поэтому место берётся высотой, а не шириной. */}
+            <Text style={[sx.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}>
               {stageLabel}
             </Text>
             <Text
-              numberOfLines={1}
               accessibilityLabel={copy.progress(safeIndex + 1, screens.length)}
               style={[sx.pageCounter, { color: g.secondary }]}
             >
@@ -581,8 +622,12 @@ export default function LearningV2SessionIntro({
               ? undefined
               : FadeInDown.duration(LUM.contentMs).reduceMotion(
                   ReduceMotion.System,
-                )
+                ).withCallback((finished) => {
+                  'worklet';
+                  runOnJS(logIntroEntering)(introBlurPage, finished === true);
+                })
           }
+          onLayout={logIntroLayout('slide')}
           style={sx.slide}
         >
           <ScrollView
@@ -616,7 +661,7 @@ export default function LearningV2SessionIntro({
                 </Text>
               )}
 
-              <View style={[sx.knowledgeFlow, lv2CardStyle(g)]}>
+              <View onLayout={logIntroLayout('card')} style={[sx.knowledgeFlow, lv2CardStyle(g)]}>
                 {lines.map((line, lineIndex) => {
                   const text = lineText(line);
                   if (line.type === "spacer") {

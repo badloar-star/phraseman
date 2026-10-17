@@ -212,6 +212,7 @@ import {
 // раздела. Грузим лениво; проверка «есть ли озвучка» вынесена в лёгкий срез
 // на 1 КБ (learning_v2_published_audio_sessions_v1.generated).
 import { learningV2HasPublishedAudioV1 } from "../learning_v2_published_audio_sessions_v1.generated";
+import BackGlyph from '../../components/v2/BackGlyph';
 
 // Ленивые загрузчики тяжёлых модулей Learning V2.
 // Промис кэшируется: модуль парсится ОДИН раз, при первом запуске занятия,
@@ -250,6 +251,7 @@ import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } f
 import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import { recordHomeContinueV2 } from "../home_continue_mark";
+import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_probe";
 import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
 import {
   factoryNativeLearningV2AvailabilityV1,
@@ -3862,17 +3864,28 @@ export default function LessonsTab({
     });
   }, [selectedLearningV2Session?.traceId]);
   const handleLessonsBack = useCallback(() => {
+    // зачем (координатор 17.10, «назад» на карте V2 срабатывал с задержкой 3–6 с; «сперва логи»): [BACK-BTN] — экран, значения, которые решают ветку, и время тапа; итог — в эффектах ниже
+    let canGoBack: boolean | null = null;
+    try {
+      canGoBack = router.canGoBack();
+    } catch (error) {
+      console.warn(`[BACK-BTN] canGoBack не прочитался (${error instanceof Error ? error.message : String(error)})`);
+    }
+    noteBackTap(page === "v2" ? "v2_map" : page === "dialogs" ? "dialogs" : "legacy_lessons", "header_back_button", { page, isRetainedTab, initialPage, canGoBack, v2CanOpen: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY });
     if (page !== "lessons") {
       if (!isRetainedTab && initialPage === "v2") {
+        noteBackDecision("push_v2_route → safeRouterBack");
         safeRouterBack(router, HOME_BACK_FALLBACK as any);
         return;
       }
       // зачем (владелец 17.10): корневая вкладка открывается на карте V2 — «назад» с неё ведёт на Главную, а не в старый список (в него ведёт кнопка «Классический курс»)
       if (isRetainedTab && page === "v2") {
         console.log("[LESSONS-TABS] назад с карты V2 → Главная"); // guard-ok: итог нажатия «назад»
+        noteBackDecision("tab_v2_map → goHome");
         goHome();
         return;
       }
+      noteBackDecision("page_other → setPage(lessons)", { from: page });
       setPage("lessons");
       return;
     }
@@ -3880,14 +3893,28 @@ export default function LessonsTab({
       // зачем (владелец 17.10): старый список открыт кнопкой с карты — «назад» возвращает на новые уроки; без доступной карты (рубильник/нет занятий) — на Главную, как раньше
       if (LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {
         console.log("[LESSONS-TABS] назад из старого списка → карта V2"); // guard-ok: итог нажатия «назад»
+        noteBackDecision("tab_legacy_list → setPage(v2)");
         setPage("v2");
         return;
       }
+      noteBackDecision("tab_legacy_list_no_v2 → goHome");
       goHome();
       return;
     }
+    noteBackDecision("push_legacy_list → safeRouterBack");
     safeRouterBack(router, HOME_BACK_FALLBACK as any);
   }, [goHome, initialPage, isRetainedTab, page, router]);
+  // зачем ([BACK-BTN]): итог тапа «назад» — страница сменилась, вкладка скрыта (ушли на другую) или экран закрыт; время от тапа печатает noteBackArrived
+  const backProbePageRef = useRef(page);
+  useEffect(() => {
+    if (backProbePageRef.current === page) return;
+    noteBackArrived("lessons_tab", `page_${backProbePageRef.current}→${page}`);
+    backProbePageRef.current = page;
+  }, [page]);
+  useEffect(() => {
+    if (!lessonsTabVisible) noteBackArrived("lessons_tab", "tab_hidden");
+  }, [lessonsTabVisible]);
+  useEffect(() => () => noteBackArrived("lessons_tab", "unmount"), []);
   const openDialogs = useCallback(() => {
     if (page === "dialogs") return;
     hapticTap();
@@ -5163,7 +5190,7 @@ export default function LessonsTab({
                 flexShrink: 0,
               }}
             >
-              <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+              <BackGlyph size={20} color={t.textPrimary} />
             </TapScale>
             <View style={{ flex: 1, minWidth: 0, justifyContent: "center" }}>
               <Text
@@ -5413,7 +5440,7 @@ export default function LessonsTab({
                   style={{ width: 44, height: 44 }}
                   contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
                 >
-                  <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
+                  <BackGlyph size={23} color={t.textPrimary} />
                 </PressableHybrid>
               }
               titles={lessons}
@@ -5519,8 +5546,7 @@ export default function LessonsTab({
                     }}
                     contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
                   >
-                    <Ionicons
-                      name="chevron-back"
+                    <BackGlyph
                       size={22}
                       color={learnGlass.text}
                     />

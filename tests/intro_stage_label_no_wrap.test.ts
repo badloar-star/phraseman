@@ -7,7 +7,10 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_session_
 
 describe('интро занятия: подпись этапа не переносится по буквам', () => {
   it('метка в одну строку и не сжимается; счётчик — отдельный элемент под ней', () => {
-    expect(src).toMatch(/numberOfLines=\{1\}\n\s+ellipsizeMode="clip"\n\s+style=\{\[sx\.stageLabel,/);
+    // зачем (координатор 17.10, сторож learning_v2_liquid_glass_source_contract): обрезка запрещена — метка не сжимается и не обрезается, место берётся высотой
+    expect(src).not.toContain('numberOfLines');
+    expect(src).not.toContain('ellipsizeMode');
+    expect(src).toMatch(/<Text style=\{\[sx\.stageLabel,/);
     expect(src).toMatch(/stageMeta: \{\n\s+flex: 1,\n\s+minWidth: 0,\n\s+flexDirection: "column",/);
     expect(src).toMatch(/stageLabel: \{\n\s+flexShrink: 0,/);
     expect(src).toContain('pageCounter: { flexShrink: 0,');

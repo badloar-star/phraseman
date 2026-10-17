@@ -13,6 +13,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Animated, Easing, Modal, PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { triLang, type Lang } from '../../constants/i18n';
+import { pluralFormFor, type PluralForms } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -54,23 +55,39 @@ function attemptsPhrase(lang: Lang, n: number): string {
     'pt-BR': `${n} ${n === 1 ? 'tentativa' : 'tentativas'}`,
     vi: `${n} lượt`,
     id: `${n} percobaan`,
-    tr: `${n} hak`,
+    tr: `${n} ses hakkın`,
     pl: n === 1 ? '1 próba' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? `${n} próby` : `${n} prób`,
   });
 }
 
-// тексты — черновик под макет (владелец 17.10, «на ты»); вычитка 9 языков — у Переводчика
-const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { title: 'Голоса на всё занятие не хватит', lead: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ', tail: ' — закончить не получится. С Plus лимита на голос нет.', today: 'Голос на сегодня', of: 'из', plus: 'Попробовать Plus', start: 'Начать всё равно' },
-  uk: { title: 'Голосу на все заняття не вистачить', lead: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ', tail: ' — завершити не вийде. З Plus ліміту на голос немає.', today: 'Голос на сьогодні', of: 'з', plus: 'Спробувати Plus', start: 'Почати все одно' },
-  en: { title: 'Not enough voice for the whole session', lead: 'This session has voice tasks, and you have ', tail: ' left today — not enough to finish. With Plus there is no voice limit.', today: 'Voice today', of: 'of', plus: 'Try Plus', start: 'Start anyway' },
-  es: { title: 'No te alcanza la voz para toda la sesión', lead: 'Esta sesión tiene tareas de voz y hoy te quedan ', tail: ': no alcanzan para terminar. Con Plus no hay límite de voz.', today: 'Voz hoy', of: 'de', plus: 'Probar Plus', start: 'Empezar igualmente' },
-  'pt-BR': { title: 'A voz não dá para a sessão inteira', lead: 'Esta sessão tem tarefas de voz e hoje você ainda tem ', tail: ' — não dá para terminar. Com o Plus não há limite de voz.', today: 'Voz hoje', of: 'de', plus: 'Experimentar o Plus', start: 'Começar mesmo assim' },
-  vi: { title: 'Không đủ lượt nói cho cả buổi học', lead: 'Buổi học này có bài nói, hôm nay bạn còn ', tail: ' — không đủ để học hết. Với Plus, nói không giới hạn.', today: 'Lượt nói hôm nay', of: '/', plus: 'Dùng thử Plus', start: 'Vẫn bắt đầu' },
-  id: { title: 'Suara tidak cukup untuk seluruh sesi', lead: 'Sesi ini punya tugas suara, dan hari ini kamu masih punya ', tail: ' — tidak cukup sampai selesai. Dengan Plus, suara tanpa batas.', today: 'Suara hari ini', of: 'dari', plus: 'Coba Plus', start: 'Tetap mulai' },
-  tr: { title: 'Ses tüm derse yetmeyecek', lead: 'Bu derste sesli görevler var ve bugün ', tail: ' kaldı — bitirmeye yetmez. Plus ile ses sınırı yok.', today: 'Bugünkü ses', of: '/', plus: "Plus'ı dene", start: 'Yine de başla' },
-  pl: { title: 'Głosu nie starczy na całą lekcję', lead: 'W tej lekcji są zadania głosowe, a na dziś zostały ci ', tail: ' — nie dasz rady skończyć. Z Plus nie ma limitu głosu.', today: 'Głos na dziś', of: 'z', plus: 'Wypróbuj Plus', start: 'Zacznij mimo to' },
+type HeadsupCopy = Readonly<{
+  title: string;
+  lead: string;
+  /** Вступление по форме числа, где глагол согласуется с K: «осталась 1 попытка» / «осталось 2 попытки». */
+  leadByForm?: PluralForms;
+  tail: string;
+  today: string;
+  of: string;
+  plus: string;
+  start: string;
+}>;
+
+// тексты — по макету (владелец 17.10, «на ты»); вычитаны Переводчиком 17.10
+// зачем (переводчик 17.10): K ∈ {0, 1, 2}; при K = 1 (и при 0 в pl) глагол вступления меняется вместе со словом, иначе «осталось 1 попытка»
+const copyFor = (lang: Lang): HeadsupCopy => triLang(lang, {
+  ru: { title: 'Голоса на всё занятие не хватит', lead: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ', leadByForm: { one: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталась ', few: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ', many: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ' }, tail: ' — закончить не получится. С Plus лимита на голос нет.', today: 'Голос на сегодня', of: 'из', plus: 'Попробовать Plus', start: 'Начать всё равно' },
+  uk: { title: 'Голосу на все заняття не вистачить', lead: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ', leadByForm: { one: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилася ', few: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ', many: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ' }, tail: ' — завершити не вийде. З Plus ліміту на голос немає.', today: 'Голос на сьогодні', of: 'з', plus: 'Спробувати Plus', start: 'Почати все одно' },
+  en: { title: 'Not enough voice attempts for this session', lead: 'This session has voice tasks, and you have ', tail: ' left today — not enough to finish. Plus has no voice limit.', today: 'Voice today', of: 'of', plus: 'Try Plus', start: 'Start anyway' },
+  es: { title: 'Te faltan intentos de voz para esta sesión', lead: 'Esta sesión tiene tareas de voz y hoy te quedan ', leadByForm: { one: 'Esta sesión tiene tareas de voz y hoy te queda ', few: 'Esta sesión tiene tareas de voz y hoy te quedan ', many: 'Esta sesión tiene tareas de voz y hoy te quedan ' }, tail: ': no podrás terminarla. Con Plus no hay límite de voz.', today: 'Voz hoy', of: 'de', plus: 'Probar Plus', start: 'Empezar igualmente' },
+  'pt-BR': { title: 'Faltam tentativas de voz para esta sessão', lead: 'Esta sessão tem tarefas de voz e hoje você tem ', tail: ' — não dá para terminar. Com o Plus não há limite de voz.', today: 'Voz hoje', of: 'de', plus: 'Experimentar o Plus', start: 'Começar mesmo assim' },
+  vi: { title: 'Không đủ lượt nói cho cả buổi học', lead: 'Buổi học này có bài nói, nhưng hôm nay bạn chỉ còn ', tail: ' — không đủ để học hết. Với Plus, nói không giới hạn.', today: 'Lượt nói hôm nay', of: '/', plus: 'Dùng thử Plus', start: 'Vẫn bắt đầu' },
+  id: { title: 'Percobaan suara tak cukup untuk sesi ini', lead: 'Sesi ini punya tugas suara, dan hari ini kamu punya ', tail: ' — tidak cukup sampai selesai. Dengan Plus, suara tanpa batas.', today: 'Suara hari ini', of: 'dari', plus: 'Coba Plus', start: 'Tetap mulai' },
+  tr: { title: 'Ses hakkın bu derse yetmeyecek', lead: 'Bu derste sesli görevler var, bugün ise ', tail: ' kaldı — bitirmeye yetmez. Plus ile ses sınırı yok.', today: 'Bugünkü ses', of: '/', plus: "Plus'ı dene", start: 'Yine de başla' },
+  pl: { title: 'Głosu nie starczy na całą lekcję', lead: 'W tej lekcji są zadania głosowe, a na dziś zostało ci ', leadByForm: { one: 'W tej lekcji są zadania głosowe, a na dziś została ci ', few: 'W tej lekcji są zadania głosowe, a na dziś zostały ci ', many: 'W tej lekcji są zadania głosowe, a na dziś zostało ci ' }, tail: ' — nie dasz rady skończyć. Z Plus nie ma limitu głosu.', today: 'Głos na dziś', of: 'z', plus: 'Wypróbuj Plus', start: 'Zacznij mimo to' },
 });
+
+/** Вступление с глаголом в нужной форме для K. */
+const leadFor = (lang: Lang, copy: HeadsupCopy, n: number): string => copy.leadByForm?.[pluralFormFor(lang, n)] ?? copy.lead;
 
 function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlus, onStartAnyway }: Props) {
   const g = useLv2Glass();
@@ -173,7 +190,7 @@ function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlu
           </View>
           <Text style={[styles.title, { color: g.text }]} maxFontSizeMultiplier={1.4} accessibilityRole="header">{copy.title}</Text>
           <Text style={[styles.body, { color: g.secondary }]} maxFontSizeMultiplier={1.4}>
-            {copy.lead}
+            {leadFor(lang, copy, remaining)}
             <Text style={[styles.bodyEm, { color: g.text }]}>{attempts}</Text>
             {copy.tail}
           </Text>

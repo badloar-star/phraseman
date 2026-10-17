@@ -234,7 +234,7 @@ export function resolveHomeContinuePlaces(args: Readonly<{ marks: HomeContinueMa
 export function homeContinuePlaceBadge(lang: Lang, kind: HomeContinuePlaceKind): string {
   return kind === 'dialog'
     ? triLang(lang, { ru: 'Диалог', uk: 'Діалог', en: 'Dialogue', es: 'Diálogo', 'pt-BR': 'Diálogo', vi: 'Đối thoại', id: 'Dialog', tr: 'Diyalog', pl: 'Dialog' })
-    : triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' });
+    : triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' });
 }
 
 /** Заголовок карточки, когда меток нет вовсе (первый запуск): «Начать урок 1» — новые уроки. */

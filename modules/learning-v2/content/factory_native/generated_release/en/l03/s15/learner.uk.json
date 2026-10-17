@@ -4,28 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-15:i01",
+      "interactionId": "en:lesson-03:session-15:word:candle",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — candle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:word:candle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — candle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:word:candle:audio",
+          "transcript": "candle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:word:candle:r1",
+            "targetText": "candle",
+            "meaningByLocale": {
+              "ru": "свеча. It is a candle — «Это свеча». О свече на столе, на торте, в стакане.",
+              "uk": "свічка. It is a candle — «Це свічка». Про свічку на столі, на торті, в склянці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "candle",
+          "definitionByLocale": {
+            "ru": "свеча. It is a candle — «Это свеча». О свече на столе, на торте, в стакане.",
+            "uk": "свічка. It is a candle — «Це свічка». Про свічку на столі, на торті, в склянці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна запитує, що висить біля дверей. Назвіть предмет: «Це пальто»",
+      "prompt": "Сестра понюхала свічку. Скажіть їй повною фразою, що це свічка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна запитує, що висить біля дверей. Назвіть предмет: «Це пальто»",
+      "accessibilityLabel": "Сестра понюхала свічку. Скажіть їй повною фразою, що це свічка.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a coat.",
+        "targetPhrase": "It is a candle.",
         "localizedMeaning": {
-          "ru": "Анна спрашивает, что висит у двери. Назовите предмет: «Это пальто»",
-          "uk": "Анна запитує, що висить біля дверей. Назвіть предмет: «Це пальто»"
+          "ru": "Сестра понюхала свечу. Скажите ей полной фразой, что это свеча.",
+          "uk": "Сестра понюхала свічку. Скажіть їй повною фразою, що це свічка."
         },
         "orderedTokens": [
           "It",
           "is",
           "a",
-          "coat"
+          "candle"
         ],
         "authoredDistractorTokens": [
           "an"
@@ -34,10 +77,10 @@
           {
             "responseId": "en:lesson-03:session-15:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна запитує, що висить біля дверей. Назвіть предмет: «Це пальто»",
+            "testedDimension": "Сестра понюхала свічку. Скажіть їй повною фразою, що це свічка.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `a` — `It is a coat.`",
-              "uk": "тут потрібно `a` — `It is a coat.`"
+              "ru": "здесь нужно `a` — `It is a candle.`",
+              "uk": "тут потрібно `a` — `It is a candle.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-15:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-15:word:cushion",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про пальто",
+      "prompt": "Картка слова — cushion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:word:cushion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cushion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:word:cushion:audio",
+          "transcript": "cushion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:word:cushion:r1",
+            "targetText": "cushion",
+            "meaningByLocale": {
+              "ru": "подушка для дивана или кресла. Is it a cushion? — «Это подушка?» О мягкой декоративной подушке, а не для сна.",
+              "uk": "подушка для дивана або крісла. Is it a cushion? — «Це подушка?» Про м’яку декоративну подушку, а не для сну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cushion",
+          "definitionByLocale": {
+            "ru": "подушка для дивана или кресла. Is it a cushion? — «Это подушка?» О мягкой декоративной подушке, а не для сна.",
+            "uk": "подушка для дивана або крісла. Is it a cushion? — «Це подушка?» Про м’яку декоративну подушку, а не для сну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що продавчиня каже про м’яку річ на дивані",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-15:i02:r1",
-          "text": "The coat is here."
+          "text": "It is a cushion."
         },
         {
           "responseId": "en:lesson-03:session-15:i02:r2",
-          "text": "The coat is old."
+          "text": "It is a candle."
         },
         {
           "responseId": "en:lesson-03:session-15:i02:r3",
-          "text": "The coat is dirty."
+          "text": "It is an armchair."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте повідомлення про пальто",
+      "accessibilityLabel": "Послухайте, що продавчиня каже про м’яку річ на дивані",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i02:audio",
-          "transcript": "The coat is here."
+          "transcript": "It is a cushion."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-15:i02:r1",
-            "targetText": "The coat is here.",
+            "targetText": "It is a cushion.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-15:i02:r2",
-            "targetText": "The coat is old.",
+            "targetText": "It is a candle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-15:i02:r3",
-            "targetText": "The coat is dirty.",
+            "targetText": "It is an armchair.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-03:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про пальто",
+            "testedDimension": "Послухайте, що продавчиня каже про м’яку річ на дивані",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `old`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `old`."
+              "ru": "В записи последнее слово — `cushion`, а в этом варианте — `candle`.",
+              "uk": "У записі останнє слово — `cushion`, а в цьому варіанті — `candle`."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про пальто",
+            "testedDimension": "Послухайте, що продавчиня каже про м’яку річ на дивані",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `dirty`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `dirty`."
+              "ru": "В записи последнее слово — `cushion`, а в этом варианте — `armchair`.",
+              "uk": "У записі останнє слово — `cushion`, а в цьому варіанті — `armchair`."
             }
           }
         ],
@@ -125,12 +211,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-15:word:plant",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:word:plant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:word:plant:audio",
+          "transcript": "plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:word:plant:r1",
+            "targetText": "plant",
+            "meaningByLocale": {
+              "ru": "растение, цветок или куст в горшке. It's a plant — «Это растение». О комнатном растении, об огородном, о цветке.",
+              "uk": "рослина, квітка або кущ у горщику. It's a plant — «Це рослина». Про кімнатну рослину, про городню, про квітку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plant",
+          "definitionByLocale": {
+            "ru": "растение, цветок или куст в горшке. It's a plant — «Это растение». О комнатном растении, об огородном, о цветке.",
+            "uk": "рослина, квітка або кущ у горщику. It's a plant — «Це рослина». Про кімнатну рослину, про городню, про квітку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-15:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть назву одягу біля дверей",
+      "prompt": "Сестра торкається листя в горщику. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-15:i03:r1",
@@ -142,19 +271,19 @@
         },
         {
           "responseId": "en:lesson-03:session-15:i03:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть назву одягу біля дверей",
+      "accessibilityLabel": "Сестра торкається листя в горщику. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните название одежды у двери",
-          "uk": "Доповніть назву одягу біля дверей"
+          "ru": "Сестра трогает листья в горшке. Дополните фразу",
+          "uk": "Сестра торкається листя в горщику. Доповніть фразу"
         },
-        "gappedTargetPhrase": "It is ___ coat.",
+        "gappedTargetPhrase": "It is ___ plant.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-15:i03:r1",
@@ -166,27 +295,27 @@
           },
           {
             "responseId": "en:lesson-03:session-15:i03:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Доповніть назву одягу біля дверей",
+        "testedDimension": "Сестра торкається листя в горщику. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i03:r2",
             "correct": false,
-            "testedDimension": "Доповніть назву одягу біля дверей",
+            "testedDimension": "Сестра торкається листя в горщику. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Перед `coat` нужно `a`: первый звук согласный.",
-              "uk": "Перед `coat` потрібно `a`: перший звук приголосний."
+              "ru": "Слово plant начинается с согласного звука, поэтому здесь a.",
+              "uk": "Слово plant починається з приголосного звуку, тому тут a."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i03:r3",
             "correct": false,
-            "testedDimension": "Доповніть назву одягу біля дверей",
+            "testedDimension": "Сестра торкається листя в горщику. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Здесь нужно название `a coat`.",
-              "uk": "Тут потрібна назва `a coat`."
+              "ru": "Слово is уже стоит перед пропуском. Перед plant нужно a.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед plant потрібно a."
             }
           }
         ]
@@ -195,62 +324,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями; easy тут про завдання",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями; easy тут про завдання",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-15:i04:p1",
-            "target": "coat",
+            "target": "candle",
             "meaningByLocale": {
-              "ru": "пальто",
-              "uk": "пальто"
+              "ru": "свеча",
+              "uk": "свічка"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i04:p2",
-            "target": "cup",
+            "target": "cushion",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "подушка на диван",
+              "uk": "подушка на диван"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i04:p3",
-            "target": "easy",
+            "target": "plant",
             "meaningByLocale": {
-              "ru": "лёгкий, нетрудный",
-              "uk": "легкий, нескладний"
+              "ru": "растение",
+              "uk": "рослина"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i04:p4",
-            "target": "difficult",
+            "target": "armchair",
             "meaningByLocale": {
-              "ru": "трудный",
-              "uk": "складний"
+              "ru": "кресло",
+              "uk": "крісло"
             }
           }
         ],
         "leftColumn": [
-          "coat",
-          "cup",
-          "easy",
-          "difficult"
+          "candle",
+          "cushion",
+          "plant",
+          "armchair"
         ],
         "rightColumn": [
-          "пальто",
-          "чашка",
-          "легкий, нескладний",
-          "складний"
+          "свічка",
+          "подушка на диван",
+          "рослина",
+          "крісло"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,43 +396,85 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-15:word:lantern",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lantern",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:word:lantern:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lantern",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:word:lantern:audio",
+          "transcript": "lantern"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:word:lantern:r1",
+            "targetText": "lantern",
+            "meaningByLocale": {
+              "ru": "фонарь, переносной светильник со стеклом. It's a lantern — «Это фонарь». О фонаре со свечой, на балконе, в палатке.",
+              "uk": "ліхтар, переносний світильник зі склом. It's a lantern — «Це ліхтар». Про ліхтар зі свічкою, на балконі, в наметі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lantern",
+          "definitionByLocale": {
+            "ru": "фонарь, переносной светильник со стеклом. It's a lantern — «Это фонарь». О фонаре со свечой, на балконе, в палатке.",
+            "uk": "ліхтар, переносний світильник зі склом. It's a lantern — «Це ліхтар». Про ліхтар зі свічкою, на балконі, в наметі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-15:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте продавчиню й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте продавчиню й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i05:audio",
-          "transcript": "The cup is here."
+          "transcript": "It's a lantern."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cup is here.",
+        "hiddenTargetPhrase": "It's a lantern.",
         "orderedTokens": [
-          "The",
-          "cup",
-          "is",
-          "here"
+          "It's",
+          "a",
+          "lantern"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте продавчиню й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The cup is here.`",
-              "uk": "тут потрібно `is` — `The cup is here.`"
+              "ru": "здесь нужно `a` — `It's a lantern.`",
+              "uk": "тут потрібно `a` — `It's a lantern.`"
             }
           }
         ],
@@ -316,39 +487,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег шукає пальто, про яке ви вже говорили. Запитайте, де пальто",
+      "prompt": "Брат лежить на дивані з м’якою річчю під головою. Запитайте продавчиню, чи це подушка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег шукає пальто, про яке ви вже говорили. Запитайте, де пальто",
+      "accessibilityLabel": "Брат лежить на дивані з м’якою річчю під головою. Запитайте продавчиню, чи це подушка.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the coat?",
+        "targetPhrase": "Is it a cushion?",
         "localizedMeaning": {
-          "ru": "Олег ищет пальто, о котором вы уже говорили. Спросите, где пальто",
-          "uk": "Олег шукає пальто, про яке ви вже говорили. Запитайте, де пальто"
+          "ru": "Брат лежит на диване с мягкой вещью под головой. Спросите продавщицу, подушка ли это.",
+          "uk": "Брат лежить на дивані з м’якою річчю під головою. Запитайте продавчиню, чи це подушка."
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "coat"
+          "Is",
+          "it",
+          "a",
+          "cushion"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег шукає пальто, про яке ви вже говорили. Запитайте, де пальто",
+            "testedDimension": "Брат лежить на дивані з м’якою річчю під головою. Запитайте продавчиню, чи це подушка.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where is the coat?`",
-              "uk": "тут потрібно `Where` — `Where is the coat?`"
+              "ru": "здесь нужно `a` — `Is it a cushion?`",
+              "uk": "тут потрібно `a` — `Is it a cushion?`"
             }
           }
         ],
@@ -361,25 +532,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знайти пальто в маленькій кімнаті легко. Скажіть повною фразою «Це легко»",
+      "prompt": "Продавчиня запалює свічку. Скажіть коротко, що це свічка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i07:audio"
       ],
-      "accessibilityLabel": "Знайти пальто в маленькій кімнаті легко. Скажіть повною фразою «Це легко»",
+      "accessibilityLabel": "Продавчиня запалює свічку. Скажіть коротко, що це свічка.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i07:audio",
-          "transcript": "It is easy."
+          "transcript": "It's a candle."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is easy.",
+        "targetPhrase": "It's a candle.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -394,67 +565,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег мовчить, намагаючись пригадати власника речі. Доповніть повідомлення",
+      "prompt": "Сестра показує на духовку в кутку відділу. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-15:i08:r1",
-          "text": "is"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-15:i08:r2",
-          "text": "am"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-15:i08:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег мовчить, намагаючись пригадати власника речі. Доповніть повідомлення",
+      "accessibilityLabel": "Сестра показує на духовку в кутку відділу. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег молчит, пытаясь вспомнить владельца вещи. Дополните сообщение",
-          "uk": "Олег мовчить, намагаючись пригадати власника речі. Доповніть повідомлення"
+          "ru": "Сестра показывает на духовку в углу отдела. Дополните фразу",
+          "uk": "Сестра показує на духовку в кутку відділу. Доповніть фразу"
         },
-        "gappedTargetPhrase": "He ___ silent.",
+        "gappedTargetPhrase": "It is ___ oven.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-15:i08:r1",
-            "text": "is"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-15:i08:r2",
-            "text": "am"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-15:i08:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Олег мовчить, намагаючись пригадати власника речі. Доповніть повідомлення",
+        "testedDimension": "Сестра показує на духовку в кутку відділу. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Олег мовчить, намагаючись пригадати власника речі. Доповніть повідомлення",
+            "testedDimension": "Сестра показує на духовку в кутку відділу. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "С `He` нужно `is`.",
-              "uk": "З `He` потрібно `is`."
+              "ru": "Слово oven начинается с гласного звука, поэтому здесь an.",
+              "uk": "Слово oven починається з голосного звуку, тому тут an."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Олег мовчить, намагаючись пригадати власника речі. Доповніть повідомлення",
+            "testedDimension": "Сестра показує на духовку в кутку відділу. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "С `He` нужно `is`.",
-              "uk": "З `He` потрібно `is`."
+              "ru": "Слово is уже стоит перед пропуском. Перед oven нужно an.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед oven потрібно an."
             }
           }
         ]
@@ -463,51 +634,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте відповідь про пошук власника залишеного пальта",
+      "prompt": "Послухайте запитання сестри",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-15:i09:r1",
-          "text": "It is difficult."
+          "text": "Is it a plant?"
         },
         {
           "responseId": "en:lesson-03:session-15:i09:r2",
-          "text": "It is easy."
+          "text": "Is it a lantern?"
         },
         {
           "responseId": "en:lesson-03:session-15:i09:r3",
-          "text": "It is important."
+          "text": "Is it an oven?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте відповідь про пошук власника залишеного пальта",
+      "accessibilityLabel": "Послухайте запитання сестри",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i09:audio",
-          "transcript": "It is difficult."
+          "transcript": "Is it a plant?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-15:i09:r1",
-            "targetText": "It is difficult.",
+            "targetText": "Is it a plant?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-15:i09:r2",
-            "targetText": "It is easy.",
+            "targetText": "Is it a lantern?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-15:i09:r3",
-            "targetText": "It is important.",
+            "targetText": "Is it an oven?",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +687,19 @@
           {
             "responseId": "en:lesson-03:session-15:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте відповідь про пошук власника залишеного пальта",
+            "testedDimension": "Послухайте запитання сестри",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `difficult`, а в этом варианте — `easy`.",
-              "uk": "У записі останнє слово — `difficult`, а в цьому варіанті — `easy`."
+              "ru": "В записи последнее слово — `plant`, а в этом варианте — `lantern`.",
+              "uk": "У записі останнє слово — `plant`, а в цьому варіанті — `lantern`."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте відповідь про пошук власника залишеного пальта",
+            "testedDimension": "Послухайте запитання сестри",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `difficult`, а в этом варианте — `important`.",
-              "uk": "У записі останнє слово — `difficult`, а в цьому варіанті — `important`."
+              "ru": "В записи последнее слово — `plant`, а в этом варианте — `oven`.",
+              "uk": "У записі останнє слово — `plant`, а в цьому варіанті — `oven`."
             }
           }
         ],
@@ -539,62 +710,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями; silent тут описує людину",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями; silent тут описує людину",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-15:i10:p1",
-            "target": "important",
+            "target": "lantern",
             "meaningByLocale": {
-              "ru": "важный",
-              "uk": "важливий"
+              "ru": "фонарь",
+              "uk": "ліхтар"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i10:p2",
-            "target": "silent",
+            "target": "plant",
             "meaningByLocale": {
-              "ru": "молчащий",
-              "uk": "той, що мовчить"
+              "ru": "растение",
+              "uk": "рослина"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i10:p3",
-            "target": "coat",
+            "target": "cushion",
             "meaningByLocale": {
-              "ru": "пальто",
-              "uk": "пальто"
+              "ru": "подушка на диван",
+              "uk": "подушка на диван"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i10:p4",
-            "target": "cup",
+            "target": "oven",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "духовка",
+              "uk": "духовка"
             }
           }
         ],
         "leftColumn": [
-          "important",
-          "silent",
-          "coat",
-          "cup"
+          "lantern",
+          "plant",
+          "cushion",
+          "oven"
         ],
         "rightColumn": [
-          "важливий",
-          "той, що мовчить",
-          "пальто",
-          "чашка"
+          "ліхтар",
+          "рослина",
+          "подушка на диван",
+          "духовка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,42 +783,43 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте продавчиню й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте продавчиню й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i11:audio",
-          "transcript": "Where is the cup?"
+          "transcript": "It is not a candle."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the cup?",
+        "hiddenTargetPhrase": "It is not a candle.",
         "orderedTokens": [
-          "Where",
+          "It",
           "is",
-          "the",
-          "cup"
+          "not",
+          "a",
+          "candle"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть запитання",
+            "testedDimension": "Послухайте продавчиню й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where is the cup?`",
-              "uk": "тут потрібно `Where` — `Where is the cup?`"
+              "ru": "здесь нужно `a` — `It is not a candle.`",
+              "uk": "тут потрібно `a` — `It is not a candle.`"
             }
           }
         ],
@@ -660,39 +832,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте Олегу пальто, яке він шукав. Повідомте «Пальто тут»",
+      "prompt": "Брат тримає в руках ліхтар зі склом. Запитайте продавчиню, чи це ліхтар.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте Олегу пальто, яке він шукав. Повідомте «Пальто тут»",
+      "accessibilityLabel": "Брат тримає в руках ліхтар зі склом. Запитайте продавчиню, чи це ліхтар.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The coat is here.",
+        "targetPhrase": "Is it a lantern?",
         "localizedMeaning": {
-          "ru": "Вы показываете Олегу пальто, которое он искал. Сообщите «Пальто здесь»",
-          "uk": "Ви показуєте Олегу пальто, яке він шукав. Повідомте «Пальто тут»"
+          "ru": "Брат держит в руках фонарь со стеклом. Спросите продавщицу, фонарь ли это.",
+          "uk": "Брат тримає в руках ліхтар зі склом. Запитайте продавчиню, чи це ліхтар."
         },
         "orderedTokens": [
-          "The",
-          "coat",
-          "is",
-          "here"
+          "Is",
+          "it",
+          "a",
+          "lantern"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви показуєте Олегу пальто, яке він шукав. Повідомте «Пальто тут»",
+            "testedDimension": "Брат тримає в руках ліхтар зі склом. Запитайте продавчиню, чи це ліхтар.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The coat is here.`",
-              "uk": "тут потрібно `is` — `The coat is here.`"
+              "ru": "здесь нужно `a` — `Is it a lantern?`",
+              "uk": "тут потрібно `a` — `Is it a lantern?`"
             }
           }
         ],
@@ -705,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви обговорюєте повернення речі власнику. Скажіть «Це важливо» зі скороченням",
+      "prompt": "Сестра показує на горщик на підвіконні. Скажіть коротко, що це рослина.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i13:audio"
       ],
-      "accessibilityLabel": "Ви обговорюєте повернення речі власнику. Скажіть «Це важливо» зі скороченням",
+      "accessibilityLabel": "Сестра показує на горщик на підвіконні. Скажіть коротко, що це рослина.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i13:audio",
-          "transcript": "It's important."
+          "transcript": "It's a plant."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's important.",
+        "targetPhrase": "It's a plant.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -738,67 +910,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви знайшли чашку, яку щойно шукали разом з Анною. Доповніть повідомлення про неї",
+      "prompt": "Сестра тримає подушку з вишивкою. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-15:i14:r1",
-          "text": "The"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-15:i14:r2",
-          "text": "An"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-15:i14:r3",
-          "text": "Are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли чашку, яку щойно шукали разом з Анною. Доповніть повідомлення про неї",
+      "accessibilityLabel": "Сестра тримає подушку з вишивкою. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы нашли чашку, которую только что искали вместе с Анной. Дополните сообщение о ней",
-          "uk": "Ви знайшли чашку, яку щойно шукали разом з Анною. Доповніть повідомлення про неї"
+          "ru": "Сестра держит подушку с вышивкой. Дополните фразу",
+          "uk": "Сестра тримає подушку з вишивкою. Доповніть фразу"
         },
-        "gappedTargetPhrase": "___ cup is here.",
+        "gappedTargetPhrase": "It is ___ cushion.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-15:i14:r1",
-            "text": "The"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-15:i14:r2",
-            "text": "An"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-15:i14:r3",
-            "text": "Are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Ви знайшли чашку, яку щойно шукали разом з Анною. Доповніть повідомлення про неї",
+        "testedDimension": "Сестра тримає подушку з вишивкою. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i14:r2",
             "correct": false,
-            "testedDimension": "Ви знайшли чашку, яку щойно шукали разом з Анною. Доповніть повідомлення про неї",
+            "testedDimension": "Сестра тримає подушку з вишивкою. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Для известной вам обоим чашки здесь `The cup`; перед `cup` форма `An` также не подходит.",
-              "uk": "Для відомої вам обом чашки тут `The cup`; перед `cup` форма `An` також не підходить."
+              "ru": "Слово cushion начинается с согласного звука, поэтому здесь a.",
+              "uk": "Слово cushion починається з приголосного звуку, тому тут a."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i14:r3",
             "correct": false,
-            "testedDimension": "Ви знайшли чашку, яку щойно шукали разом з Анною. Доповніть повідомлення про неї",
+            "testedDimension": "Сестра тримає подушку з вишивкою. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Это сообщение `The cup is here`.",
-              "uk": "Це повідомлення `The cup is here`."
+              "ru": "Слово is уже стоит перед пропуском. Перед cushion нужно a.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед cushion потрібно a."
             }
           }
         ]
@@ -807,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис Олега",
+      "prompt": "Послухайте, що каже сестра",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-15:i15:r1",
-          "text": "He is silent."
+          "text": "It's a lantern."
         },
         {
           "responseId": "en:lesson-03:session-15:i15:r2",
-          "text": "He is loud."
+          "text": "It's a candle."
         },
         {
           "responseId": "en:lesson-03:session-15:i15:r3",
-          "text": "He is tired."
+          "text": "It's an umbrella."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте опис Олега",
+      "accessibilityLabel": "Послухайте, що каже сестра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i15:audio",
-          "transcript": "He is silent."
+          "transcript": "It's a lantern."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-15:i15:r1",
-            "targetText": "He is silent.",
+            "targetText": "It's a lantern.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-15:i15:r2",
-            "targetText": "He is loud.",
+            "targetText": "It's a candle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-15:i15:r3",
-            "targetText": "He is tired.",
+            "targetText": "It's an umbrella.",
             "meaningByLocale": null
           }
         ],
@@ -860,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-15:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис Олега",
+            "testedDimension": "Послухайте, що каже сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `silent`, а в этом варианте — `loud`.",
-              "uk": "У записі останнє слово — `silent`, а в цьому варіанті — `loud`."
+              "ru": "В записи последнее слово — `lantern`, а в этом варианте — `candle`.",
+              "uk": "У записі останнє слово — `lantern`, а в цьому варіанті — `candle`."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис Олега",
+            "testedDimension": "Послухайте, що каже сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `silent`, а в этом варианте — `tired`.",
-              "uk": "У записі останнє слово — `silent`, а в цьому варіанті — `tired`."
+              "ru": "В записи последнее слово — `lantern`, а в этом варианте — `umbrella`.",
+              "uk": "У записі останнє слово — `lantern`, а в цьому варіанті — `umbrella`."
             }
           }
         ],
@@ -883,62 +1055,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями в цій сцені",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями в цій сцені",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-15:i16:p1",
-            "target": "easy",
+            "target": "cushion",
             "meaningByLocale": {
-              "ru": "лёгкий, нетрудный",
-              "uk": "легкий, нескладний"
+              "ru": "подушка на диван",
+              "uk": "подушка на диван"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i16:p2",
-            "target": "difficult",
+            "target": "lantern",
             "meaningByLocale": {
-              "ru": "трудный",
-              "uk": "складний"
+              "ru": "фонарь",
+              "uk": "ліхтар"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i16:p3",
-            "target": "important",
+            "target": "candle",
             "meaningByLocale": {
-              "ru": "важный",
-              "uk": "важливий"
+              "ru": "свеча",
+              "uk": "свічка"
             }
           },
           {
             "pairId": "en:lesson-03:session-15:i16:p4",
-            "target": "silent",
+            "target": "armchair",
             "meaningByLocale": {
-              "ru": "молчащий",
-              "uk": "той, що мовчить"
+              "ru": "кресло",
+              "uk": "крісло"
             }
           }
         ],
         "leftColumn": [
-          "easy",
-          "difficult",
-          "important",
-          "silent"
+          "cushion",
+          "lantern",
+          "candle",
+          "armchair"
         ],
         "rightColumn": [
-          "легкий, нескладний",
-          "складний",
-          "важливий",
-          "той, що мовчить"
+          "подушка на диван",
+          "ліхтар",
+          "свічка",
+          "крісло"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-15:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Власник залишеного пальта повернувся, але річ уже прибрали зі стільця. Анна знає, про яке пальто йдеться. Запитайте, де пальто",
+      "prompt": "Ви підходите до полиці зі свічками. Запитайте продавчиню, чи це свічка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i17:audio"
       ],
-      "accessibilityLabel": "Власник залишеного пальта повернувся, але річ уже прибрали зі стільця. Анна знає, про яке пальто йдеться. Запитайте, де пальто",
+      "accessibilityLabel": "Ви підходите до полиці зі свічками. Запитайте продавчиню, чи це свічка.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-15:i17:audio",
-          "transcript": "Where is the coat?"
+          "transcript": "Is it a candle?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the coat?",
+        "targetPhrase": "Is it a candle?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7abb253ea425a50d8b6336481373cf441d2e7cdcf5a6518ba01848275cca8d14"
+  "learnerFingerprint": "ea53616b35996d9d33765ae7abb0531eda2aba8168f732c7033d4d83d5efe244"
 }

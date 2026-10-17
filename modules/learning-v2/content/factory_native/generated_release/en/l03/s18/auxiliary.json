@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-18:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-18:intro1:r2": {
-          "ru": "`box` называет одну коробку; здесь нужны `boxes`.",
-          "uk": "`box` називає одну коробку; тут потрібне `boxes`."
+          "ru": "После bus для нескольких нужно es: buses.",
+          "uk": "Після bus для кількох потрібно es: buses."
         },
         "en:lesson-03:session-18:intro1:r3": {
-          "ru": "В этом слове добавляем `es`: правильно `boxes`.",
-          "uk": "У цьому слові додаємо `es`: правильно `boxes`."
+          "ru": "Автобусов несколько, поэтому нужно buses.",
+          "uk": "Автобусів кілька, тому потрібно buses."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-18:intro2:r2": {
-          "ru": "Коробок несколько: нужно `boxes`.",
-          "uk": "Коробок кілька: потрібно `boxes`."
+          "ru": "После sh для нескольких нужно es: dishes.",
+          "uk": "Після sh для кількох потрібно es: dishes."
         },
         "en:lesson-03:session-18:intro2:r3": {
-          "ru": "С `They` здесь нужно `are`.",
-          "uk": "З `They` тут потрібно `are`."
+          "ru": "В вопросе с they нужно Are: Are they dishes?",
+          "uk": "У запитанні з they потрібно Are: Are they dishes?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-18:intro3:r2": {
-          "ru": "Вопрос с `they` здесь начинается с `Are`.",
-          "uk": "Запитання з `they` тут починається з `Are`."
+          "ru": "После ch для нескольких нужно es: watches.",
+          "uk": "Після ch для кількох потрібно es: watches."
         },
         "en:lesson-03:session-18:intro3:r3": {
-          "ru": "Нужна форма `boxes`, с `es`.",
-          "uk": "Потрібна форма `boxes`, з `es`."
+          "ru": "Часов несколько, поэтому нужно are: The watches are old.",
+          "uk": "Годинників кілька, тому потрібно are: The watches are old."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5ece12ef49350fed68e7b016ccb62b9ace1814df26c8dd55dd53d84d3fe4b5db"
+  "auxiliaryFingerprint": "50fe801d3b79250f41cf3b8c4bc6cfe6c61416baab020c1d8384a8618440953d"
 }

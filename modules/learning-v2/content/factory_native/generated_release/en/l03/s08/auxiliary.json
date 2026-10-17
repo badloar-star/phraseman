@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-08:intro1:r2": {
-          "ru": "Перед гласным звуком в `apple` нужно `an`.",
-          "uk": "Перед голосним звуком у `apple` потрібно `an`."
+          "ru": "Перед shelf нужно a: It is a shelf.",
+          "uk": "Перед shelf потрібне a: It is a shelf."
         },
         "en:lesson-03:session-08:intro1:r3": {
-          "ru": "В названии яблока здесь нельзя пропускать `an`.",
-          "uk": "У назві яблука тут не можна пропускати `an`."
+          "ru": "С It нужно is: It is a shelf.",
+          "uk": "З It потрібне is: It is a shelf."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-08:intro2:r2": {
-          "ru": "В названии `a book` пропало `a`.",
-          "uk": "У назві `a book` зникло `a`."
+          "ru": "Так звучит ответ «Это стремянка». Чтобы спросить, ставим Is вперёд: Is it a ladder?",
+          "uk": "Так звучить відповідь «Це драбина». Щоб запитати, ставимо Is наперед: Is it a ladder?"
         },
         "en:lesson-03:session-08:intro2:r3": {
-          "ru": "Это сообщение, а нужен вопрос.",
-          "uk": "Це повідомлення, а потрібне запитання."
+          "ru": "Перед ladder нужно a: Is it a ladder?",
+          "uk": "Перед ladder потрібне a: Is it a ladder?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-08:intro3:r2": {
-          "ru": "После `not` сохраняем `a map`.",
-          "uk": "Після `not` зберігаємо `a map`."
+          "ru": "Перед hammer нужно a: It's a hammer.",
+          "uk": "Перед hammer потрібне a: It's a hammer."
         },
         "en:lesson-03:session-08:intro3:r3": {
-          "ru": "Перед `not` нужно `is`.",
-          "uk": "Перед `not` потрібно `is`."
+          "ru": "С not выходит «Это не молоток». А им уже вбивают гвозди: It's a hammer.",
+          "uk": "З not виходить «Це не молоток». А ним уже забивають цвяхи: It's a hammer."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9b131f714288782973e369b4a3b2ef9ce3e6458f16a06e4a725e59ae48848a46"
+  "auxiliaryFingerprint": "dc78b3fc1f81b1b0f991725c774445a66e9e6bd75fcff1bfcf24559d6377f191"
 }

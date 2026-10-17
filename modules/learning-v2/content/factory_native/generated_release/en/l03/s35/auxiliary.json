@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-35:intro1:r2": {
-          "ru": "`photo` — одна фотография; несколько — `photos`.",
-          "uk": "`photo` — одна фотографія; кілька — `photos`."
+          "ru": "Фото одно, поэтому не these, а this: This is a photo.",
+          "uk": "Фото одне, тому не these, а this: This is a photo."
         },
         "en:lesson-03:session-35:intro1:r3": {
-          "ru": "У этого слова для нескольких добавляем только `s`: `photos`.",
-          "uk": "У цього слова для кількох додаємо лише `s`: `photos`."
+          "ru": "Перед photo нужно a: This is a photo.",
+          "uk": "Перед photo потрібно a: This is a photo."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-35:intro2:r2": {
-          "ru": "Снимки дальше: для этого упражнения нужно `Those`.",
-          "uk": "Знімки далі: для цієї вправи потрібне `Those`."
+          "ru": "Альбом один, поэтому не these, а this: This album is big.",
+          "uk": "Альбом один, тому не these, а this: This album is big."
         },
         "en:lesson-03:session-35:intro2:r3": {
-          "ru": "Фотографий несколько: `Those are photos`.",
-          "uk": "Фотографій кілька: `Those are photos`."
+          "ru": "Альбом один, поэтому нужно is: This album is big.",
+          "uk": "Альбом один, тому потрібно is: This album is big."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-35:intro3:r2": {
-          "ru": "`formal` — «официальный, сдержанный в общении», а «болен» — `ill`.",
-          "uk": "`formal` — «офіційний, стриманий у спілкуванні», а «хворий» — `ill`."
+          "ru": "Рамок несколько, поэтому не this, а these: These frames are cheap.",
+          "uk": "Рамок кілька, тому не this, а these: These frames are cheap."
         },
         "en:lesson-03:session-35:intro3:r3": {
-          "ru": "С `He` здесь нужно `is`.",
-          "uk": "З `He` тут потрібно `is`."
+          "ru": "С these нужно are: These frames are cheap.",
+          "uk": "З these потрібно are: These frames are cheap."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bedf85308812fe92f6b60894f9749821e59f071ffb11f15c82542a7d2d21c6b7"
+  "auxiliaryFingerprint": "a635efb77b84ede8b72207b42c9f92c4bfb3b2ffc881ca817a8643bdd9b1f40d"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-40:intro1:r2": {
-          "ru": "Так называют одну фотографию. Здесь несколько рядом: `These are photos`.",
-          "uk": "Так називають одну фотографію. Тут кілька поруч: `These are photos`."
+          "ru": "Штрихкод у вас в руках, а that говорим о далёком: This barcode is small.",
+          "uk": "Штрихкод у вас у руках, а that кажемо про далеке: This barcode is small."
         },
         "en:lesson-03:session-40:intro1:r3": {
-          "ru": "`Those` указывает дальше. Фотографии прямо перед вами: `These`.",
-          "uk": "`Those` вказує далі. Фотографії просто перед вами: `These`."
+          "ru": "Штрихкод один, поэтому нужно is: This barcode is small.",
+          "uk": "Штрихкод один, тому потрібно is: This barcode is small."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-40:intro2:r2": {
-          "ru": "`This` — рядом, а кошелёк дальше: `That`.",
-          "uk": "`This` — поруч, а гаманець далі: `That`."
+          "ru": "Пломбы на дальней полке, а these говорим о том, что рядом: Those seals are broken.",
+          "uk": "Пломби на дальній полиці, а these кажемо про те, що поруч: Those seals are broken."
         },
         "en:lesson-03:session-40:intro2:r3": {
-          "ru": "Так называют несколько кошельков. Здесь один: `That is a wallet`.",
-          "uk": "Так називають кілька гаманців. Тут один: `That is a wallet`."
+          "ru": "Пломб несколько, поэтому нужно seals с s.",
+          "uk": "Пломб кілька, тому потрібно seals з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-40:intro3:r2": {
-          "ru": "После `This` перед `ticket` не добавляем `a`.",
-          "uk": "Після `This` перед `ticket` не додаємо `a`."
+          "ru": "С these нужно Are: Are these coupons valid?",
+          "uk": "З these потрібно Are: Are these coupons valid?"
         },
         "en:lesson-03:session-40:intro3:r3": {
-          "ru": "Билет один: нужно `is`.",
-          "uk": "Квиток один: потрібне `is`."
+          "ru": "Купонов несколько, поэтому нужно coupons с s.",
+          "uk": "Купонів кілька, тому потрібно coupons з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "da0e2e2776560e47b932815fd5c8e745c263c7c762fa4ca477d1c8ed5f08d324"
+  "auxiliaryFingerprint": "a2769f94df0501da54d5510bcaef584c9aa0e31b00d9b2c1c8a60c0184abf8fb"
 }

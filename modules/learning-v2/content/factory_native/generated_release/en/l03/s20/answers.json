@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-03:session-20:word:glass",
+    "correctText": "glass",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-20:i01",
-    "correctText": "They are maps.",
+    "correctText": "They are glasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:word:brush",
+    "correctText": "brush",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i02",
-    "correctText": "The maps are lost.",
+    "correctText": "They are brushes.",
     "correctResponseId": "en:lesson-03:session-20:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-20:word:bench",
+    "correctText": "bench",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-20:i03",
-    "correctText": "maps",
+    "correctText": "benches",
     "correctResponseId": "en:lesson-03:session-20:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-20:i04",
-    "correctText": "en:lesson-03:session-20:i04:p1=maps\nen:lesson-03:session-20:i04:p2=lost\nen:lesson-03:session-20:i04:p3=prepared\nen:lesson-03:session-20:i04:p4=table",
+    "correctText": "en:lesson-03:session-20:i04:p1=glasses\nen:lesson-03:session-20:i04:p2=brushes\nen:lesson-03:session-20:i04:p3=benches\nen:lesson-03:session-20:i04:p4=box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:word:peach",
+    "correctText": "peach",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i05",
-    "correctText": "The table is here.",
+    "correctText": "Are they peaches?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i06",
-    "correctText": "Where are the maps?",
+    "correctText": "Are they brushes?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i07",
-    "correctText": "I'm prepared.",
+    "correctText": "The glasses are here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i08",
-    "correctText": "Yes",
+    "correctText": "are",
     "correctResponseId": "en:lesson-03:session-20:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-20:i09",
-    "correctText": "She is careful.",
+    "correctText": "It is a bench.",
     "correctResponseId": "en:lesson-03:session-20:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-20:i10",
-    "correctText": "en:lesson-03:session-20:i10:p1=careful\nen:lesson-03:session-20:i10:p2=yes\nen:lesson-03:session-20:i10:p3=innocent\nen:lesson-03:session-20:i10:p4=maps",
+    "correctText": "en:lesson-03:session-20:i10:p1=glass\nen:lesson-03:session-20:i10:p2=glasses\nen:lesson-03:session-20:i10:p3=bench\nen:lesson-03:session-20:i10:p4=benches",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i11",
-    "correctText": "The maps are here.",
+    "correctText": "The brushes are clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i12",
-    "correctText": "The maps are lost.",
+    "correctText": "They are peaches.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i13",
-    "correctText": "She's innocent.",
+    "correctText": "They are benches.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i14",
-    "correctText": "are",
+    "correctText": "glasses",
     "correctResponseId": "en:lesson-03:session-20:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-20:i15",
-    "correctText": "She is innocent.",
+    "correctText": "Are they peaches?",
     "correctResponseId": "en:lesson-03:session-20:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-20:i16",
-    "correctText": "en:lesson-03:session-20:i16:p1=prepared\nen:lesson-03:session-20:i16:p2=careful\nen:lesson-03:session-20:i16:p3=yes\nen:lesson-03:session-20:i16:p4=table",
+    "correctText": "en:lesson-03:session-20:i16:p1=brushes\nen:lesson-03:session-20:i16:p2=peaches\nen:lesson-03:session-20:i16:p3=glasses\nen:lesson-03:session-20:i16:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-20:i17",
-    "correctText": "Where are the maps?",
+    "correctText": "Are they glasses?",
     "correctResponseId": null
   }
 ]

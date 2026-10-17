@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-23:intro1:r2": {
-          "ru": "`ticket` — один билет; несколько — `tickets`.",
-          "uk": "`ticket` — один квиток; кілька — `tickets`."
+          "ru": "Ложек несколько, поэтому нужно spoons с s.",
+          "uk": "Ложок кілька, тому потрібно spoons з s."
         },
         "en:lesson-03:session-23:intro1:r3": {
-          "ru": "Перед названием нескольких билетов не ставим `a`.",
-          "uk": "Перед назвою кількох квитків не ставимо `a`."
+          "ru": "С They нужно are: They are spoons.",
+          "uk": "З They потрібно are: They are spoons."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-23:intro2:r2": {
-          "ru": "Билетов несколько: нужно `are`.",
-          "uk": "Квитків кілька: потрібно `are`."
+          "ru": "Вилок несколько, поэтому нужно forks с s.",
+          "uk": "Виделок кілька, тому потрібно forks з s."
         },
         "en:lesson-03:session-23:intro2:r3": {
-          "ru": "Здесь нужно сообщить, что билеты действительны: `valid`.",
-          "uk": "Тут потрібно повідомити, що квитки дійсні: `valid`."
+          "ru": "В вопросе с they нужно Are: Are they forks?",
+          "uk": "У запитанні з they потрібно Are: Are they forks?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-23:intro3:r2": {
-          "ru": "Билетов несколько: нужно `are`.",
-          "uk": "Квитків кілька: потрібно `are`."
+          "ru": "Чашек несколько, поэтому нужно are: The cups are hot.",
+          "uk": "Чашок кілька, тому потрібно are: The cups are hot."
         },
         "en:lesson-03:session-23:intro3:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "Чашек несколько, поэтому нужно cups с s.",
+          "uk": "Чашок кілька, тому потрібно cups з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3b61d902480bbf316302b65ba3494efc2e54341c42aa24c255dd583305dd53ad"
+  "auxiliaryFingerprint": "24263dda820668b75c383679683018fc5c86f18100710d4f549e173bda70502b"
 }

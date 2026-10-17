@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-16:intro1:r2": {
-          "ru": "Перед `lock` нужно `a`, потому что первый звук согласный.",
-          "uk": "Перед `lock` потрібно `a`, бо перший звук приголосний."
+          "ru": "Перед invoice нужно an: слово начинается с гласного звука.",
+          "uk": "Перед invoice потрібно an: слово починається з голосного звуку."
         },
         "en:lesson-03:session-16:intro1:r3": {
-          "ru": "В этой фразе перед названием одного замка нужно `a`.",
-          "uk": "У цій фразі перед назвою одного замка потрібно `a`."
+          "ru": "Между It и an нужно is: It is an invoice.",
+          "uk": "Між It і an потрібно is: It is an invoice."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-16:intro2:r2": {
-          "ru": "Нужно узнать место: `Where`, а не `What`.",
-          "uk": "Потрібно дізнатися місце: `Where`, а не `What`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a discount?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a discount?"
         },
         "en:lesson-03:session-16:intro2:r3": {
-          "ru": "С одним пальто здесь нужно `is`.",
-          "uk": "З одним пальтом тут потрібно `is`."
+          "ru": "Перед discount нужно a: слово начинается с согласного звука.",
+          "uk": "Перед discount потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-16:intro3:r2": {
-          "ru": "С одним окном здесь нужен вопрос с `Is`.",
-          "uk": "З одним вікном тут потрібне запитання з `Is`."
+          "ru": "Перед warranty нужно a: слово начинается с согласного звука.",
+          "uk": "Перед warranty потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-16:intro3:r3": {
-          "ru": "Это сообщение. Чтобы спросить, начните с `Is the window`.",
-          "uk": "Це повідомлення. Щоб запитати, почніть з `Is the window`."
+          "ru": "Перед warranty нужно a: It's a warranty.",
+          "uk": "Перед warranty потрібно a: It's a warranty."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2741cbf5ebdc5ae54efa70d52d845b773c662f1ebe80c49048d7800b8bfa8847"
+  "auxiliaryFingerprint": "9cc7dcd23de9f5e0149328dd6ae1d77b640e999c8e75f7e825d96b0a6c206278"
 }

@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-03:session-18:word:bus",
+    "correctText": "bus",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-18:i01",
-    "correctText": "They are boxes.",
+    "correctText": "They are buses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:word:dish",
+    "correctText": "dish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i02",
-    "correctText": "You are early.",
+    "correctText": "Are they dishes?",
     "correctResponseId": "en:lesson-03:session-18:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-18:word:watch",
+    "correctText": "watch",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-18:i03",
-    "correctText": "boxes",
+    "correctText": "watches",
     "correctResponseId": "en:lesson-03:session-18:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i04",
-    "correctText": "en:lesson-03:session-18:i04:p1=boxes\nen:lesson-03:session-18:i04:p2=early\nen:lesson-03:session-18:i04:p3=lucky\nen:lesson-03:session-18:i04:p4=lock",
+    "correctText": "en:lesson-03:session-18:i04:p1=buses\nen:lesson-03:session-18:i04:p2=dishes\nen:lesson-03:session-18:i04:p3=watches\nen:lesson-03:session-18:i04:p4=box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:word:dress",
+    "correctText": "dress",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i05",
-    "correctText": "The lock is here.",
+    "correctText": "They are dresses.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i06",
-    "correctText": "Are they boxes?",
+    "correctText": "Are they dresses?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i07",
-    "correctText": "You're lucky.",
+    "correctText": "The boxes are here.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-03:session-18:i09",
-    "correctText": "You are wrong.",
+    "correctText": "The buses are new.",
     "correctResponseId": "en:lesson-03:session-18:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i10",
-    "correctText": "en:lesson-03:session-18:i10:p1=wrong\nen:lesson-03:session-18:i10:p2=unwell\nen:lesson-03:session-18:i10:p3=boxes\nen:lesson-03:session-18:i10:p4=books",
+    "correctText": "en:lesson-03:session-18:i10:p1=dress\nen:lesson-03:session-18:i10:p2=dresses\nen:lesson-03:session-18:i10:p3=pen\nen:lesson-03:session-18:i10:p4=pens",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i11",
-    "correctText": "The boxes are here.",
+    "correctText": "The dishes are clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i12",
-    "correctText": "They are boxes.",
+    "correctText": "They are dishes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i13",
-    "correctText": "He's unwell.",
+    "correctText": "They are watches.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-03:session-18:i15",
-    "correctText": "The lock is old.",
+    "correctText": "They are watches.",
     "correctResponseId": "en:lesson-03:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-18:i16",
-    "correctText": "en:lesson-03:session-18:i16:p1=wrong\nen:lesson-03:session-18:i16:p2=early\nen:lesson-03:session-18:i16:p3=lucky\nen:lesson-03:session-18:i16:p4=unwell",
+    "correctText": "en:lesson-03:session-18:i16:p1=dishes\nen:lesson-03:session-18:i16:p2=watches\nen:lesson-03:session-18:i16:p3=dresses\nen:lesson-03:session-18:i16:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-18:i17",
-    "correctText": "Are they boxes?",
+    "correctText": "Are they buses?",
     "correctResponseId": null
   }
 ]

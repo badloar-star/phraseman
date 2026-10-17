@@ -9,35 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег шукає квитки на виставку. Повідомте «Квитки тут»",
+      "prompt": "Костюмерка показує на стіл поруч із вами. Скажіть, що це стіл.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег шукає квитки на виставку. Повідомте «Квитки тут»",
+      "accessibilityLabel": "Костюмерка показує на стіл поруч із вами. Скажіть, що це стіл.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The tickets are here.",
+        "targetPhrase": "This is a table.",
         "localizedMeaning": {
-          "ru": "Олег ищет билеты на выставку. Сообщите «Билеты здесь»",
-          "uk": "Олег шукає квитки на виставку. Повідомте «Квитки тут»"
+          "ru": "Костюмерша показывает на стол рядом с вами. Скажите, что это стол.",
+          "uk": "Костюмерка показує на стіл поруч із вами. Скажіть, що це стіл."
         },
         "orderedTokens": [
-          "The",
-          "tickets",
-          "are",
-          "here"
+          "This",
+          "is",
+          "a",
+          "table"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "That"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Олег шукає квитки на виставку. Повідомте «Квитки тут»",
+            "testedDimension": "Костюмерка показує на стіл поруч із вами. Скажіть, що це стіл.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The tickets are here.`",
-              "uk": "тут потрібно `are` — `The tickets are here.`"
+              "ru": "здесь нужно `This` — `This is a table.`",
+              "uk": "тут потрібно `This` — `This is a table.`"
             }
           }
         ],
@@ -54,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте, що каже костюмерка",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-31:i02:r1",
-          "text": "parks"
+          "text": "That is a chair."
         },
         {
           "responseId": "en:lesson-03:session-31:i02:r2",
-          "text": "pens"
+          "text": "This is a chair."
         },
         {
           "responseId": "en:lesson-03:session-31:i02:r3",
-          "text": "cars"
+          "text": "That is a door."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте, що каже костюмерка",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i02:audio",
-          "transcript": "parks"
+          "transcript": "That is a chair."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-31:i02:r1",
-            "targetText": "parks",
+            "targetText": "That is a chair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-31:i02:r2",
-            "targetText": "pens",
+            "targetText": "This is a chair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-31:i02:r3",
-            "targetText": "cars",
+            "targetText": "That is a door.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-31:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте, що каже костюмерка",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `parks`, а в этом варианте — `pens`.",
-              "uk": "У записі перше слово — `parks`, а в цьому варіанті — `pens`."
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
             }
           },
           {
             "responseId": "en:lesson-03:session-31:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте, що каже костюмерка",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `parks`, а в этом варианте — `cars`.",
-              "uk": "У записі перше слово — `parks`, а в цьому варіанті — `cars`."
+              "ru": "В записи последнее слово — `chair`, а в этом варианте — `door`.",
+              "uk": "У записі останнє слово — `chair`, а в цьому варіанті — `door`."
             }
           }
         ],
@@ -130,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть кілька парків одним англійським словом",
+      "prompt": "Коробка стоїть біля дальньої стіни. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-31:i03:r1",
-          "text": "parks"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-03:session-31:i03:r2",
-          "text": "park"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-03:session-31:i03:r3",
-          "text": "a parks"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кілька парків одним англійським словом",
+      "accessibilityLabel": "Коробка стоїть біля дальньої стіни. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите несколько парков одним английским словом",
-          "uk": "Назвіть кілька парків одним англійським словом"
+          "ru": "Коробка стоит у дальней стены. Дополните фразу",
+          "uk": "Коробка стоїть біля дальньої стіни. Доповніть фразу"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "That ___ a box.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-31:i03:r1",
-            "text": "parks"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-03:session-31:i03:r2",
-            "text": "park"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-03:session-31:i03:r3",
-            "text": "a parks"
+            "text": "am"
           }
         ],
-        "testedDimension": "Назвіть кілька парків одним англійським словом",
+        "testedDimension": "Коробка стоїть біля дальньої стіни. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть кілька парків одним англійським словом",
+            "testedDimension": "Коробка стоїть біля дальньої стіни. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Несколько парков — `parks`.",
-              "uk": "Кілька парків — `parks`."
+              "ru": "С that нужно is: That is a box.",
+              "uk": "З that потрібно is: That is a box."
             }
           },
           {
             "responseId": "en:lesson-03:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть кілька парків одним англійським словом",
+            "testedDimension": "Коробка стоїть біля дальньої стіни. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Перед `parks` не ставим `a`.",
-              "uk": "Перед `parks` не ставимо `a`."
+              "ru": "С that нужно is: That is a box.",
+              "uk": "З that потрібно is: That is a box."
             }
           }
         ]
@@ -209,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-31:i04:p1",
-            "target": "parks",
+            "target": "hat",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "шляпа",
+              "uk": "капелюх"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i04:p2",
-            "target": "tickets",
+            "target": "belt",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "ремень",
+              "uk": "пасок"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i04:p3",
-            "target": "equal",
+            "target": "boot",
             "meaningByLocale": {
-              "ru": "равный",
-              "uk": "рівний"
+              "ru": "ботинок",
+              "uk": "черевик"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i04:p4",
-            "target": "similar",
+            "target": "cape",
             "meaningByLocale": {
-              "ru": "похожий",
-              "uk": "схожий"
+              "ru": "накидка",
+              "uk": "накидка"
             }
           }
         ],
         "leftColumn": [
-          "parks",
-          "tickets",
-          "equal",
-          "similar"
+          "hat",
+          "belt",
+          "boot",
+          "cape"
         ],
         "rightColumn": [
-          "парки",
-          "квитки",
-          "рівний",
-          "схожий"
+          "капелюх",
+          "пасок",
+          "черевик",
+          "накидка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -272,38 +272,38 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте подругу й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте подругу й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i05:audio",
-          "transcript": "The parks are similar."
+          "transcript": "Is this a shelf?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The parks are similar.",
+        "hiddenTargetPhrase": "Is this a shelf?",
         "orderedTokens": [
-          "The",
-          "parks",
-          "are",
-          "similar"
+          "Is",
+          "this",
+          "a",
+          "shelf"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть питання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The parks are similar.`",
-              "uk": "тут потрібно `are` — `The parks are similar.`"
+              "ru": "здесь нужно `a` — `Is this a shelf?`",
+              "uk": "тут потрібно `a` — `Is this a shelf?`"
             }
           }
         ],
@@ -320,34 +320,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом",
+      "prompt": "Двері в дальньому кінці кімнати. Запитайте костюмерку, чи це двері.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом",
+      "accessibilityLabel": "Двері в дальньому кінці кімнати. Запитайте костюмерку, чи це двері.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Parks are important.",
+        "targetPhrase": "Is that a door?",
         "localizedMeaning": {
-          "ru": "Обсуждая места для прогулок, скажите «Парки важны» о парках вообще",
-          "uk": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом"
+          "ru": "Дверь в дальнем конце комнаты. Спросите костюмершу, дверь ли это.",
+          "uk": "Двері в дальньому кінці кімнати. Запитайте костюмерку, чи це двері."
         },
         "orderedTokens": [
-          "Parks",
-          "are",
-          "important"
+          "Is",
+          "that",
+          "a",
+          "door"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "this"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Обговорюючи місця для прогулянок, скажіть «Парки важливі» про парки загалом",
+            "testedDimension": "Двері в дальньому кінці кімнати. Запитайте костюмерку, чи це двері.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Parks are important.`",
-              "uk": "тут потрібно `are` — `Parks are important.`"
+              "ru": "здесь нужно `that` — `Is that a door?`",
+              "uk": "тут потрібно `that` — `Is that a door?`"
             }
           }
         ],
@@ -359,26 +360,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i07",
+      "interactionId": "en:lesson-03:session-31:word:hat",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:word:hat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:word:hat:audio",
+          "transcript": "hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:word:hat:r1",
+            "targetText": "hat",
+            "meaningByLocale": {
+              "ru": "шляпа, головной убор с полями. That is a hat — «Это шляпа». О шляпе для роли, для лета, для праздника.",
+              "uk": "капелюх, головний убір із крисами. That is a hat — «Це капелюх». Про капелюх для ролі, для літа, для свята."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hat",
+          "definitionByLocale": {
+            "ru": "шляпа, головной убор с полями. That is a hat — «Это шляпа». О шляпе для роли, для лета, для праздника.",
+            "uk": "капелюх, головний убір із крисами. That is a hat — «Це капелюх». Про капелюх для ролі, для літа, для свята."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег сприйняв два парки на карті як один. Скажіть про них «Вони окремі» зі скороченням",
+      "prompt": "Костюмерка називає річ, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i07:audio"
       ],
-      "accessibilityLabel": "Олег сприйняв два парки на карті як один. Скажіть про них «Вони окремі» зі скороченням",
+      "accessibilityLabel": "Костюмерка називає річ, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i07:audio",
-          "transcript": "They're separate."
+          "transcript": "hat"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're separate.",
+        "targetPhrase": "hat",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,68 +436,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-31:word:belt",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — belt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:word:belt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — belt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:word:belt:audio",
+          "transcript": "belt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:word:belt:r1",
+            "targetText": "belt",
+            "meaningByLocale": {
+              "ru": "ремень, кожаная полоса, которой подпоясывают одежду. This is a belt — «Это ремень». О ремне для брюк или для костюма.",
+              "uk": "пасок, шкіряна смуга, якою підперізують одяг. This is a belt — «Це пасок». Про пасок для штанів чи для костюма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "belt",
+          "definitionByLocale": {
+            "ru": "ремень, кожаная полоса, которой подпоясывают одежду. This is a belt — «Это ремень». О ремне для брюк или для костюма.",
+            "uk": "пасок, шкіряна смуга, якою підперізують одяг. This is a belt — «Це пасок». Про пасок для штанів чи для костюма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-31:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви говорите про користь парків загалом, не про конкретні парки",
+      "prompt": "Костюмерка показує довгу шкіряну смугу, якою підперізують одяг. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-31:i08:r1",
-          "text": "Parks"
+          "text": "belt"
         },
         {
           "responseId": "en:lesson-03:session-31:i08:r2",
-          "text": "The parks"
+          "text": "hat"
         },
         {
           "responseId": "en:lesson-03:session-31:i08:r3",
-          "text": "A parks"
+          "text": "table"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорите про користь парків загалом, не про конкретні парки",
+      "accessibilityLabel": "Костюмерка показує довгу шкіряну смугу, якою підперізують одяг. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите о пользе парков вообще, не о конкретных парках",
-          "uk": "Ви говорите про користь парків загалом, не про конкретні парки"
+          "ru": "Костюмерша показывает длинную кожаную полосу, которой подпоясывают одежду. Как она называется по-английски?",
+          "uk": "Костюмерка показує довгу шкіряну смугу, якою підперізують одяг. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "___ are important.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-31:i08:r1",
-            "text": "Parks"
+            "text": "belt"
           },
           {
             "responseId": "en:lesson-03:session-31:i08:r2",
-            "text": "The parks"
+            "text": "hat"
           },
           {
             "responseId": "en:lesson-03:session-31:i08:r3",
-            "text": "A parks"
+            "text": "table"
           }
         ],
-        "testedDimension": "Ви говорите про користь парків загалом, не про конкретні парки",
+        "testedDimension": "Костюмерка показує довгу шкіряну смугу, якою підперізують одяг. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i08:r2",
             "correct": false,
-            "testedDimension": "Ви говорите про користь парків загалом, не про конкретні парки",
+            "testedDimension": "Костюмерка показує довгу шкіряну смугу, якою підперізують одяг. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`The parks` — определённые парки. Здесь нужно общее `Parks`.",
-              "uk": "`The parks` — певні парки. Тут потрібне загальне `Parks`."
+              "ru": "hat — это шляпа, а полоса, которой подпоясывают одежду, называется belt.",
+              "uk": "hat — це капелюх, а смуга, якою підперізують одяг, називається belt."
             }
           },
           {
             "responseId": "en:lesson-03:session-31:i08:r3",
             "correct": false,
-            "testedDimension": "Ви говорите про користь парків загалом, не про конкретні парки",
+            "testedDimension": "Костюмерка показує довгу шкіряну смугу, якою підперізують одяг. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Перед `parks` не ставим `a`.",
-              "uk": "Перед `parks` не ставимо `a`."
+              "ru": "table — это стол, а полоса, которой подпоясывают одежду, называется belt.",
+              "uk": "table — це стіл, а смуга, якою підперізують одяг, називається belt."
             }
           }
         ]
@@ -462,51 +549,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис вибраних парків",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-31:i09:r1",
-          "text": "They are unusual."
+          "text": "That is not a hat."
         },
         {
           "responseId": "en:lesson-03:session-31:i09:r2",
-          "text": "They are similar."
+          "text": "This is not a hat."
         },
         {
           "responseId": "en:lesson-03:session-31:i09:r3",
-          "text": "They are separate."
+          "text": "That is not a table."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте опис вибраних парків",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i09:audio",
-          "transcript": "They are unusual."
+          "transcript": "That is not a hat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-31:i09:r1",
-            "targetText": "They are unusual.",
+            "targetText": "That is not a hat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-31:i09:r2",
-            "targetText": "They are similar.",
+            "targetText": "This is not a hat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-31:i09:r3",
-            "targetText": "They are separate.",
+            "targetText": "That is not a table.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +602,19 @@
           {
             "responseId": "en:lesson-03:session-31:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис вибраних парків",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `similar`.",
-              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `similar`."
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
             }
           },
           {
             "responseId": "en:lesson-03:session-31:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис вибраних парків",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `separate`.",
-              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `separate`."
+              "ru": "В записи последнее слово — `hat`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `hat`, а в цьому варіанті — `table`."
             }
           }
         ],
@@ -538,7 +625,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -552,48 +639,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-31:i10:p1",
-            "target": "separate",
+            "target": "hat",
             "meaningByLocale": {
-              "ru": "отдельный",
-              "uk": "окремий"
+              "ru": "шляпа",
+              "uk": "капелюх"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i10:p2",
-            "target": "unusual",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "стол",
+              "uk": "стіл"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i10:p3",
-            "target": "parks",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i10:p4",
-            "target": "tickets",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
-          "separate",
-          "unusual",
-          "parks",
-          "tickets"
+          "hat",
+          "table",
+          "shelf",
+          "door"
         ],
         "rightColumn": [
-          "окремий",
-          "незвичайний",
-          "парки",
-          "квитки"
+          "капелюх",
+          "стіл",
+          "полиця",
+          "двері"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,42 +698,43 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте костюмерку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте костюмерку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i11:audio",
-          "transcript": "The tickets are valid."
+          "transcript": "This is not a belt."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The tickets are valid.",
+        "hiddenTargetPhrase": "This is not a belt.",
         "orderedTokens": [
-          "The",
-          "tickets",
-          "are",
-          "valid"
+          "This",
+          "is",
+          "not",
+          "a",
+          "belt"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте костюмерку й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The tickets are valid.`",
-              "uk": "тут потрібно `are` — `The tickets are valid.`"
+              "ru": "здесь нужно `a` — `This is not a belt.`",
+              "uk": "тут потрібно `a` — `This is not a belt.`"
             }
           }
         ],
@@ -659,39 +747,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна знає, які парки ви вибрали. Запитайте, де парки",
+      "prompt": "Костюмерка питає, що лежить на верхній полиці. Скажіть, що це капелюх.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна знає, які парки ви вибрали. Запитайте, де парки",
+      "accessibilityLabel": "Костюмерка питає, що лежить на верхній полиці. Скажіть, що це капелюх.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the parks?",
+        "targetPhrase": "That is a hat.",
         "localizedMeaning": {
-          "ru": "Анна знает, какие парки вы выбрали. Спросите, где парки",
-          "uk": "Анна знає, які парки ви вибрали. Запитайте, де парки"
+          "ru": "Костюмерша спрашивает, что лежит на верхней полке. Скажите, что это шляпа.",
+          "uk": "Костюмерка питає, що лежить на верхній полиці. Скажіть, що це капелюх."
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "parks"
+          "That",
+          "is",
+          "a",
+          "hat"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "This"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна знає, які парки ви вибрали. Запитайте, де парки",
+            "testedDimension": "Костюмерка питає, що лежить на верхній полиці. Скажіть, що це капелюх.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where are the parks?`",
-              "uk": "тут потрібно `Where` — `Where are the parks?`"
+              "ru": "здесь нужно `That` — `That is a hat.`",
+              "uk": "тут потрібно `That` — `That is a hat.`"
             }
           }
         ],
@@ -703,26 +791,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-31:word:boot",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — boot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:word:boot:audio"
+      ],
+      "accessibilityLabel": "Картка слова — boot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:word:boot:audio",
+          "transcript": "boot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:word:boot:r1",
+            "targetText": "boot",
+            "meaningByLocale": {
+              "ru": "сапог, обувь с высоким верхом. Is that a boot? — «Это сапог?» Об одном сапоге: пара — это два сапога.",
+              "uk": "чобіт, взуття з високим верхом. Is that a boot? — «Це чобіт?» Про один чобіт: пара — це два чоботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boot",
+          "definitionByLocale": {
+            "ru": "сапог, обувь с высоким верхом. Is that a boot? — «Это сапог?» Об одном сапоге: пара — это два сапога.",
+            "uk": "чобіт, взуття з високим верхом. Is that a boot? — «Це чобіт?» Про один чобіт: пара — це два чоботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-31:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви порівняли дві суми за квитки: суми однакові. Скажіть про суми «Вони рівні» зі скороченням",
+      "prompt": "Костюмерка називає річ, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i13:audio"
       ],
-      "accessibilityLabel": "Ви порівняли дві суми за квитки: суми однакові. Скажіть про суми «Вони рівні» зі скороченням",
+      "accessibilityLabel": "Костюмерка називає річ, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i13:audio",
-          "transcript": "They're equal."
+          "transcript": "boot"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're equal.",
+        "targetPhrase": "boot",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,68 +867,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-31:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-31:word:cape",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:word:cape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:word:cape:audio",
+          "transcript": "cape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:word:cape:r1",
+            "targetText": "cape",
+            "meaningByLocale": {
+              "ru": "накидка, длинная ткань без рукавов, которую набрасывают на плечи. This is a cape — «Это накидка». О накидке для роли или для праздника.",
+              "uk": "накидка, довга тканина без рукавів, яку накидають на плечі. This is a cape — «Це накидка». Про накидку для ролі чи для свята."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cape",
+          "definitionByLocale": {
+            "ru": "накидка, длинная ткань без рукавов, которую набрасывают на плечи. This is a cape — «Это накидка». О накидке для роли или для праздника.",
+            "uk": "накидка, довга тканина без рукавів, яку накидають на плечі. This is a cape — «Це накидка». Про накидку для ролі чи для свята."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви повідомляєте, що два вибрані парки схожі",
+      "prompt": "Костюмерка показує довгу тканину без рукавів, яку накидають на плечі. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-31:i14:r1",
-          "text": "are"
+          "text": "cape"
         },
         {
           "responseId": "en:lesson-03:session-31:i14:r2",
-          "text": "is"
+          "text": "scarf"
         },
         {
           "responseId": "en:lesson-03:session-31:i14:r3",
-          "text": "am"
+          "text": "hat"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви повідомляєте, що два вибрані парки схожі",
+      "accessibilityLabel": "Костюмерка показує довгу тканину без рукавів, яку накидають на плечі. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы сообщаете, что два выбранных парка похожи",
-          "uk": "Ви повідомляєте, що два вибрані парки схожі"
+          "ru": "Костюмерша показывает длинную ткань без рукавов, которую набрасывают на плечи. Как она называется по-английски?",
+          "uk": "Костюмерка показує довгу тканину без рукавів, яку накидають на плечі. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "The parks ___ similar.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-31:i14:r1",
-            "text": "are"
+            "text": "cape"
           },
           {
             "responseId": "en:lesson-03:session-31:i14:r2",
-            "text": "is"
+            "text": "scarf"
           },
           {
             "responseId": "en:lesson-03:session-31:i14:r3",
-            "text": "am"
+            "text": "hat"
           }
         ],
-        "testedDimension": "Ви повідомляєте, що два вибрані парки схожі",
+        "testedDimension": "Костюмерка показує довгу тканину без рукавів, яку накидають на плечі. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-31:i14:r2",
             "correct": false,
-            "testedDimension": "Ви повідомляєте, що два вибрані парки схожі",
+            "testedDimension": "Костюмерка показує довгу тканину без рукавів, яку накидають на плечі. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Парков несколько: нужно `are`.",
-              "uk": "Парків кілька: потрібно `are`."
+              "ru": "scarf — это шарф на шею, а длинная накидка на плечи называется cape.",
+              "uk": "scarf — це шарф на шию, а довга накидка на плечі називається cape."
             }
           },
           {
             "responseId": "en:lesson-03:session-31:i14:r3",
             "correct": false,
-            "testedDimension": "Ви повідомляєте, що два вибрані парки схожі",
+            "testedDimension": "Костюмерка показує довгу тканину без рукавів, яку накидають на плечі. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "С `the parks` здесь нужно `are`.",
-              "uk": "З `the parks` тут потрібно `are`."
+              "ru": "hat — это шляпа, а длинная накидка на плечи называется cape.",
+              "uk": "hat — це капелюх, а довга накидка на плечі називається cape."
             }
           }
         ]
@@ -806,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про вибрані парки",
+      "prompt": "Послухайте питання подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-31:i15:r1",
-          "text": "They are separate."
+          "text": "Is this a boot?"
         },
         {
           "responseId": "en:lesson-03:session-31:i15:r2",
-          "text": "They are similar."
+          "text": "Is that a boot?"
         },
         {
           "responseId": "en:lesson-03:session-31:i15:r3",
-          "text": "They are unusual."
+          "text": "Is this a belt?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте повідомлення про вибрані парки",
+      "accessibilityLabel": "Послухайте питання подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i15:audio",
-          "transcript": "They are separate."
+          "transcript": "Is this a boot?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-31:i15:r1",
-            "targetText": "They are separate.",
+            "targetText": "Is this a boot?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-31:i15:r2",
-            "targetText": "They are similar.",
+            "targetText": "Is that a boot?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-31:i15:r3",
-            "targetText": "They are unusual.",
+            "targetText": "Is this a belt?",
             "meaningByLocale": null
           }
         ],
@@ -859,19 +1033,19 @@
           {
             "responseId": "en:lesson-03:session-31:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про вибрані парки",
+            "testedDimension": "Послухайте питання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `separate`, а в этом варианте — `similar`.",
-              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `similar`."
+              "ru": "В записи второе слово — `this`, а в этом варианте — `that`.",
+              "uk": "У записі друге слово — `this`, а в цьому варіанті — `that`."
             }
           },
           {
             "responseId": "en:lesson-03:session-31:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про вибрані парки",
+            "testedDimension": "Послухайте питання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `separate`, а в этом варианте — `unusual`.",
-              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `unusual`."
+              "ru": "В записи последнее слово — `boot`, а в этом варианте — `belt`.",
+              "uk": "У записі останнє слово — `boot`, а в цьому варіанті — `belt`."
             }
           }
         ],
@@ -882,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-31:i16:p1",
-            "target": "equal",
+            "target": "cape",
             "meaningByLocale": {
-              "ru": "равный",
-              "uk": "рівний"
+              "ru": "накидка",
+              "uk": "накидка"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i16:p2",
-            "target": "similar",
+            "target": "boot",
             "meaningByLocale": {
-              "ru": "похожий",
-              "uk": "схожий"
+              "ru": "ботинок",
+              "uk": "черевик"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i16:p3",
-            "target": "separate",
+            "target": "belt",
             "meaningByLocale": {
-              "ru": "отдельный",
-              "uk": "окремий"
+              "ru": "ремень",
+              "uk": "пасок"
             }
           },
           {
             "pairId": "en:lesson-03:session-31:i16:p4",
-            "target": "unusual",
+            "target": "hat",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "шляпа",
+              "uk": "капелюх"
             }
           }
         ],
         "leftColumn": [
-          "equal",
-          "similar",
-          "separate",
-          "unusual"
+          "cape",
+          "boot",
+          "belt",
+          "hat"
         ],
         "rightColumn": [
-          "рівний",
-          "схожий",
-          "окремий",
-          "незвичайний"
+          "накидка",
+          "черевик",
+          "пасок",
+          "капелюх"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому місті Анна вибрала кілька парків для прогулянок. Запитайте, де парки",
+      "prompt": "Костюмерка простягає вам накидку. Скажіть, що це.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-31:i17:audio"
       ],
-      "accessibilityLabel": "В іншому місті Анна вибрала кілька парків для прогулянок. Запитайте, де парки",
+      "accessibilityLabel": "Костюмерка простягає вам накидку. Скажіть, що це.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-31:i17:audio",
-          "transcript": "Where are the parks?"
+          "transcript": "This is a cape."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the parks?",
+        "targetPhrase": "This is a cape.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fb2314de6de4165cdbbb948f05110582eff2b0278e932811dc765ca754209b30"
+  "learnerFingerprint": "35129eb9f4b9308a42602e534771477333f8cc111597ddff596ed3766a69b498"
 }

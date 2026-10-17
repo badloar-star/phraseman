@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-32:intro1:r2": {
-          "ru": "Собак несколько: нужно `dogs`, без `a`.",
-          "uk": "Собак кілька: потрібно `dogs`, без `a`."
+          "ru": "Открытка лежит рядом, а that говорим о далёком: This is a postcard.",
+          "uk": "Листівка лежить поруч, а that кажемо про далеке: This is a postcard."
         },
         "en:lesson-03:session-32:intro1:r3": {
-          "ru": "С `They` нужно `are`.",
-          "uk": "З `They` потрібно `are`."
+          "ru": "Перед postcard нужно a: This is a postcard.",
+          "uk": "Перед postcard потрібно a: This is a postcard."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-32:intro2:r2": {
-          "ru": "`The parks` — конкретные парки. Здесь говорим о парках вообще: `Parks`.",
-          "uk": "`The parks` — конкретні парки. Тут говоримо про парки загалом: `Parks`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is that a magnet?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is that a magnet?"
         },
         "en:lesson-03:session-32:intro2:r3": {
-          "ru": "Перед `parks` не ставим `a`.",
-          "uk": "Перед `parks` не ставимо `a`."
+          "ru": "Витрина далеко, а this говорим о том, что рядом: Is that a magnet?",
+          "uk": "Вітрина далеко, а this кажемо про те, що поруч: Is that a magnet?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-32:intro3:r2": {
-          "ru": "Стульев несколько: нужно `are`.",
-          "uk": "Стільців кілька: потрібно `are`."
+          "ru": "На крючке нет брелка, поэтому нужно not: That is not a keyring.",
+          "uk": "На гачку немає брелка, тому потрібно not: That is not a keyring."
         },
         "en:lesson-03:session-32:intro3:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "Not стоит после is: That is not a keyring.",
+          "uk": "Not стоїть після is: That is not a keyring."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d925f9a3446317c164fb59ae768dbc1851300277873058b5440310a5fd125b06"
+  "auxiliaryFingerprint": "5e955cfc114d15790f835853ec00b49b934035e64849b9a09e9ce9465655873f"
 }

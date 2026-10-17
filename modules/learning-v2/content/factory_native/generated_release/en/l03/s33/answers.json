@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-33:i01",
-    "correctText": "The dogs are active.",
+    "correctText": "These boxes are heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i02",
-    "correctText": "phone",
+    "correctText": "Are these bags new?",
     "correctResponseId": "en:lesson-03:session-33:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i03",
-    "correctText": "phone",
+    "correctText": "sweaters",
     "correctResponseId": "en:lesson-03:session-33:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i04",
-    "correctText": "en:lesson-03:session-33:i04:p1=phone\nen:lesson-03:session-33:i04:p2=dogs\nen:lesson-03:session-33:i04:p3=okay\nen:lesson-03:session-33:i04:p4=active",
+    "correctText": "en:lesson-03:session-33:i04:p1=shoe\nen:lesson-03:session-33:i04:p2=sock\nen:lesson-03:session-33:i04:p3=shirt\nen:lesson-03:session-33:i04:p4=coat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i05",
-    "correctText": "This is a phone.",
+    "correctText": "These hats are old.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i06",
-    "correctText": "That is a phone.",
+    "correctText": "This is a bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:word:shoe",
+    "correctText": "shoe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i07",
-    "correctText": "These are dogs.",
+    "correctText": "shoe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:word:sock",
+    "correctText": "sock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i08",
-    "correctText": "This",
+    "correctText": "sock",
     "correctResponseId": "en:lesson-03:session-33:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i09",
-    "correctText": "Those are dogs.",
+    "correctText": "These shoes are new.",
     "correctResponseId": "en:lesson-03:session-33:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i10",
-    "correctText": "en:lesson-03:session-33:i10:p1=this\nen:lesson-03:session-33:i10:p2=that\nen:lesson-03:session-33:i10:p3=these\nen:lesson-03:session-33:i10:p4=those",
+    "correctText": "en:lesson-03:session-33:i10:p1=shoes\nen:lesson-03:session-33:i10:p2=boxes\nen:lesson-03:session-33:i10:p3=bags\nen:lesson-03:session-33:i10:p4=hats",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i11",
-    "correctText": "Those dogs are active.",
+    "correctText": "Are these socks big?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i12",
-    "correctText": "This phone is okay.",
+    "correctText": "This is a sock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:word:shirt",
+    "correctText": "shirt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i13",
-    "correctText": "That is okay.",
+    "correctText": "shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:word:coat",
+    "correctText": "coat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i14",
-    "correctText": "are",
+    "correctText": "coat",
     "correctResponseId": "en:lesson-03:session-33:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i15",
-    "correctText": "That phone is okay.",
+    "correctText": "Are these shirts clean?",
     "correctResponseId": "en:lesson-03:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-33:i16",
-    "correctText": "en:lesson-03:session-33:i16:p1=phone\nen:lesson-03:session-33:i16:p2=okay\nen:lesson-03:session-33:i16:p3=active\nen:lesson-03:session-33:i16:p4=dogs",
+    "correctText": "en:lesson-03:session-33:i16:p1=coat\nen:lesson-03:session-33:i16:p2=shirt\nen:lesson-03:session-33:i16:p3=sock\nen:lesson-03:session-33:i16:p4=shoe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i17",
-    "correctText": "This is a phone.",
+    "correctText": "These coats are warm.",
     "correctResponseId": null
   }
 ]

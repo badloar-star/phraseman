@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-26",
   "learningOutcomeByLocale": {
-    "ru": "назвать нескольких кошек и отличить разговор о кошках вообще от разговора об определённых кошках",
-    "uk": "назвати кількох котів і відрізнити розмову про котів загалом від розмови про певних котів"
+    "ru": "называть вещь, которая далеко: That is a … и That is an …, и отличать её от this",
+    "uk": "називати річ, що стоїть далеко: That is a … і That is an …, та відрізняти її від this"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кошек несколько",
-        "uk": "Котів кілька"
+        "ru": "Экран на дальней стене",
+        "uk": "Екран на дальній стіні"
       },
       "bodyByLocale": {
-        "ru": "`cat` — «кошка», `cats` — «кошки». `They are cats` — «Это кошки». Перед `cats` не ставим `a`: кошек несколько. Коробки — `boxes`. Олег принёс коробки для вещей, но кошки заселились первыми. Теперь вещи снова без жилья.",
-        "uk": "`cat` — «кіт, кішка», `cats` — «коти, кішки». `They are cats` — «Це коти». Перед `cats` не ставимо `a`: котів кілька. Коробки — `boxes`. Олег приніс коробки для речей, але коти заселилися першими. Тепер речі знову без житла."
+        "ru": "Вы с подругой пришли в зал за час до презентации. Техник стоит у входа и спрашивает, готов ли экран. Вы смотрите в другой конец зала. screen — «экран». Он висит на дальней стене, далеко от вас, поэтому не this, а that: That is a screen — «Это экран».",
+        "uk": "Ви з подругою прийшли до зали за годину до презентації. Технік стоїть біля входу й питає, чи готовий екран. Ви дивитеся в інший кінець зали. screen — «екран». Він висить на дальній стіні, далеко від вас, тому не this, а that: That is a screen — «Це екран»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "На фотографии несколько кошек. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька котів. Назвіть їх одним англійським словом."
+          "ru": "Техник показывает на дальнюю стену. Скажите, что это экран.",
+          "uk": "Технік показує на дальню стіну. Скажіть, що це екран."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-26:intro1:r1",
-              "text": "cats"
+              "text": "That is a screen."
             },
             {
               "responseId": "en:lesson-03:session-26:intro1:r2",
-              "text": "cat"
+              "text": "This is a screen."
             },
             {
               "responseId": "en:lesson-03:session-26:intro1:r3",
-              "text": "a cats"
+              "text": "That a screen."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-26:intro1:r1",
-              "text": "cats"
+              "text": "That is a screen."
             },
             {
               "responseId": "en:lesson-03:session-26:intro1:r2",
-              "text": "cat"
+              "text": "This is a screen."
             },
             {
               "responseId": "en:lesson-03:session-26:intro1:r3",
-              "text": "a cats"
+              "text": "That a screen."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На фотографии несколько кошек. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька котів. Назвіть їх одним англійським словом."
+          "ru": "Техник показывает на дальнюю стену. Скажите, что это экран.",
+          "uk": "Технік показує на дальню стіну. Скажіть, що це екран."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вообще или именно эти",
-        "uk": "Загалом чи саме ці"
+        "ru": "Коробка на столе",
+        "uk": "Коробка на столі"
       },
       "bodyByLocale": {
-        "ru": "`Cats are different` — «Кошки разные». Так можно сказать о кошках в целом: у них разные привычки и характеры. Перед `cats` здесь нет `the`. `The cats are inside` — «Кошки внутри»: здесь речь об определённых кошках, которых вы ищете. `Where are the cats?` — «Где кошки?»",
-        "uk": "`Cats are different` — «Коти різні». Так можна сказати про котів загалом: у них різні звички й характери. Перед `cats` тут немає `the`. `The cats are inside` — «Коти всередині»: тут ідеться про певних котів, яких ви шукаєте. `Where are the cats?` — «Де коти?»"
+        "ru": "Подруга ставит перед вами на стол небольшую чёрную коробку с линзой. projector — «проектор». Он стоит прямо перед вами, рядом, поэтому this, а экран на дальней стене — that. Подруга спрашивает, что это за коробка: This is a projector — «Это проектор».",
+        "uk": "Подруга ставить перед вами на стіл невелику чорну коробку з лінзою. projector — «проєктор». Він стоїть просто перед вами, поруч, тому this, а екран на дальній стіні — that. Подруга питає, що це за коробка: This is a projector — «Це проєктор»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Вы говорите, что у кошек вообще разные характеры, без указания на определённую группу. Выберите фразу «Кошки разные».",
-          "uk": "Ви говорите, що в котів загалом різні характери, без указівки на певну групу. Виберіть фразу «Коти різні»."
+          "ru": "Подруга показывает на стол перед вами. Скажите, что это проектор.",
+          "uk": "Подруга показує на стіл перед вами. Скажіть, що це проєктор."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-26:intro2:r1",
-              "text": "Cats are different."
+              "text": "This is a projector."
             },
             {
               "responseId": "en:lesson-03:session-26:intro2:r2",
-              "text": "The cats are different."
+              "text": "That is a projector."
             },
             {
               "responseId": "en:lesson-03:session-26:intro2:r3",
-              "text": "A cats are different."
+              "text": "This is an projector."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-26:intro2:r1",
-              "text": "Cats are different."
+              "text": "This is a projector."
             },
             {
               "responseId": "en:lesson-03:session-26:intro2:r2",
-              "text": "The cats are different."
+              "text": "That is a projector."
             },
             {
               "responseId": "en:lesson-03:session-26:intro2:r3",
-              "text": "A cats are different."
+              "text": "This is an projector."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы говорите, что у кошек вообще разные характеры, без указания на определённую группу. Выберите фразу «Кошки разные».",
-          "uk": "Ви говорите, що в котів загалом різні характери, без указівки на певну групу. Виберіть фразу «Коти різні»."
+          "ru": "Подруга показывает на стол перед вами. Скажите, что это проектор.",
+          "uk": "Подруга показує на стіл перед вами. Скажіть, що це проєктор."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Куда все делись",
-        "uk": "Куди всі поділися"
+        "ru": "Колонка в углу",
+        "uk": "Колонка в кутку"
       },
       "bodyByLocale": {
-        "ru": "`confused` — «растерянный, запутавшийся», `worried` — «обеспокоенный», `bored` — «скучающий», `careless` — «невнимательный, неосторожный». Олег не понимает, куда исчезли кошки: `He is confused` — «Он растерян». Анна знает, что они в коробках, поэтому не волнуется. Олег спрашивает её: `Where are the cats?` — «Где кошки?»",
-        "uk": "`confused` — «розгублений, спантеличений», `worried` — «стурбований», `bored` — «той, кому нудно», `careless` — «неуважний, необережний». Олег не розуміє, куди зникли коти: `He is confused` — «Він розгублений». Анна знає, що вони в коробках, тому не хвилюється. Олег запитує її: `Where are the cats?` — «Де коти?»"
+        "ru": "В дальнем углу зала стоит колонка, и ведущая просит вас проверить звук. speaker — «колонка». Она далеко от вас, у стены напротив, поэтому that. Перед speaker ставим a, потому что слово начинается с согласного звука: That is a speaker — «Это колонка».",
+        "uk": "У дальньому кутку зали стоїть колонка, і ведуча просить вас перевірити звук. speaker — «колонка». Вона далеко від вас, біля стіни навпроти, тому that. Перед speaker ставимо a, бо слово починається з приголосного звуку: That is a speaker — «Це колонка»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Анна знает, каких кошек вы ищете. Спросите, где кошки.",
-          "uk": "Анна знає, яких котів ви шукаєте. Запитайте, де коти."
+          "ru": "Ведущая показывает на дальний угол зала. Скажите, что это колонка.",
+          "uk": "Ведуча показує на дальній кут зали. Скажіть, що це колонка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-26:intro3:r1",
-              "text": "Where are the cats?"
+              "text": "That is a speaker."
             },
             {
               "responseId": "en:lesson-03:session-26:intro3:r2",
-              "text": "Where is the cats?"
+              "text": "That is speaker."
             },
             {
               "responseId": "en:lesson-03:session-26:intro3:r3",
-              "text": "What are the cats?"
+              "text": "That are a speaker."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-26:intro3:r1",
-              "text": "Where are the cats?"
+              "text": "That is a speaker."
             },
             {
               "responseId": "en:lesson-03:session-26:intro3:r2",
-              "text": "Where is the cats?"
+              "text": "That is speaker."
             },
             {
               "responseId": "en:lesson-03:session-26:intro3:r3",
-              "text": "What are the cats?"
+              "text": "That are a speaker."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна знает, каких кошек вы ищете. Спросите, где кошки.",
-          "uk": "Анна знає, яких котів ви шукаєте. Запитайте, де коти."
+          "ru": "Ведущая показывает на дальний угол зала. Скажите, что это колонка.",
+          "uk": "Ведуча показує на дальній кут зали. Скажіть, що це колонка."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1e838d08eb90d4a05617bf55886001d8c55ce45a8270b3139c01ae5484fbf809"
+  "introFingerprint": "0382cfb29ab8483edf482dc418a39807494acb4abe85c8f8a47a33aa3d3884bf"
 }

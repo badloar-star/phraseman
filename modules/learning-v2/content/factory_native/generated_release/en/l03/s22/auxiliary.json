@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-22:intro1:r2": {
-          "ru": "`cup` — одна чашка; несколько — `cups`.",
-          "uk": "`cup` — одна чашка; кілька — `cups`."
+          "ru": "Бутылок несколько, поэтому нужно bottles с s.",
+          "uk": "Пляшок кілька, тому потрібно bottles з s."
         },
         "en:lesson-03:session-22:intro1:r3": {
-          "ru": "Перед названием нескольких чашек не ставим `a`.",
-          "uk": "Перед назвою кількох чашок не ставимо `a`."
+          "ru": "Перед несколькими предметами a не ставим: They are bottles.",
+          "uk": "Перед кількома предметами a не ставимо: They are bottles."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-22:intro2:r2": {
-          "ru": "Чашек несколько: нужно `are`.",
-          "uk": "Чашок кілька: потрібно `are`."
+          "ru": "Мисок несколько, поэтому нужно are: Where are the bowls?",
+          "uk": "Мисок кілька, тому потрібно are: Where are the bowls?"
         },
         "en:lesson-03:session-22:intro2:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "Мисок несколько, поэтому нужно bowls с s.",
+          "uk": "Мисок кілька, тому потрібно bowls з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-22:intro3:r2": {
-          "ru": "`famous` — «известная», а здесь важно, что работа закончена: `complete`.",
-          "uk": "`famous` — «відома», а тут важливо, що роботу закінчено: `complete`."
+          "ru": "Тарелок несколько, поэтому нужно Are: Are the plates here?",
+          "uk": "Тарілок кілька, тому потрібно Are: Are the plates here?"
         },
         "en:lesson-03:session-22:intro3:r3": {
-          "ru": "Здесь нужно `complete` — «закончена». Слово `poor` этого не означает.",
-          "uk": "Тут потрібне `complete` — «закінчена». Слово `poor` цього не означає."
+          "ru": "Тарелок несколько, поэтому нужно plates с s.",
+          "uk": "Тарілок кілька, тому потрібно plates з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2af9085d1a0fa75e73ce0134a3219324ce89ce1adff1d57567ac319e42dead74"
+  "auxiliaryFingerprint": "542341d6afb8733dd85c56d5a41176dad7b039526192a250f077380b85d59877"
 }

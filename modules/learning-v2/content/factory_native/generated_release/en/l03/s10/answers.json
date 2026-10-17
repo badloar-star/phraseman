@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-03:session-10:word:kettle",
+    "correctText": "kettle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-10:i01",
-    "correctText": "It is a lock.",
+    "correctText": "It is a kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:word:toaster",
+    "correctText": "toaster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i02",
-    "correctText": "The lock is old.",
+    "correctText": "It is a toaster.",
     "correctResponseId": "en:lesson-03:session-10:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-10:word:vacuum",
+    "correctText": "vacuum",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-10:i03",
-    "correctText": "an",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-10:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-10:i04",
-    "correctText": "en:lesson-03:session-10:i04:p1=lock\nen:lesson-03:session-10:i04:p2=old\nen:lesson-03:session-10:i04:p3=kind\nen:lesson-03:session-10:i04:p4=apple",
+    "correctText": "en:lesson-03:session-10:i04:p1=kettle\nen:lesson-03:session-10:i04:p2=toaster\nen:lesson-03:session-10:i04:p3=vacuum\nen:lesson-03:session-10:i04:p4=oven",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:word:blender",
+    "correctText": "blender",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i05",
-    "correctText": "Where is the key?",
+    "correctText": "It is a blender.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i06",
-    "correctText": "The lock is old.",
+    "correctText": "Is it a toaster?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i07",
-    "correctText": "He is kind.",
+    "correctText": "It's a blender.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i08",
-    "correctText": "a",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-10:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-10:i09",
-    "correctText": "It is impossible.",
+    "correctText": "Is it a vacuum?",
     "correctResponseId": "en:lesson-03:session-10:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-10:i10",
-    "correctText": "en:lesson-03:session-10:i10:p1=funny\nen:lesson-03:session-10:i10:p2=impossible\nen:lesson-03:session-10:i10:p3=lock\nen:lesson-03:session-10:i10:p4=apple",
+    "correctText": "en:lesson-03:session-10:i10:p1=blender\nen:lesson-03:session-10:i10:p2=vacuum\nen:lesson-03:session-10:i10:p3=kettle\nen:lesson-03:session-10:i10:p4=umbrella",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i11",
-    "correctText": "It is an apple.",
+    "correctText": "It is not a toaster.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i12",
-    "correctText": "Where is the lock?",
+    "correctText": "Is it an oven?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i13",
-    "correctText": "It's funny.",
+    "correctText": "It's a kettle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i14",
-    "correctText": "The",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-10:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-10:i15",
-    "correctText": "He is kind.",
+    "correctText": "It's a vacuum.",
     "correctResponseId": "en:lesson-03:session-10:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-10:i16",
-    "correctText": "en:lesson-03:session-10:i16:p1=old\nen:lesson-03:session-10:i16:p2=kind\nen:lesson-03:session-10:i16:p3=funny\nen:lesson-03:session-10:i16:p4=impossible",
+    "correctText": "en:lesson-03:session-10:i16:p1=toaster\nen:lesson-03:session-10:i16:p2=blender\nen:lesson-03:session-10:i16:p3=armchair\nen:lesson-03:session-10:i16:p4=elevator",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i17",
-    "correctText": "Where is the lock?",
+    "correctText": "Is it a blender?",
     "correctResponseId": null
   }
 ]

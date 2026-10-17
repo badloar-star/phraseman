@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-45:intro1:r2": {
-          "ru": "Это «законно». В условии действие нарушает закон.",
-          "uk": "Це «законно». За умовою дія порушує закон."
+          "ru": "Это «острый». Но нож мнёт верёвку, а не режет: It is blunt.",
+          "uk": "Це «гострий». Але ніж мне мотузку, а не ріже: It is blunt."
         },
         "en:lesson-02:session-45:intro1:r3": {
-          "ru": "Между `It` и `illegal` нужно `is`.",
-          "uk": "Між `It` і `illegal` потрібно `is`."
+          "ru": "Между It и blunt нужно is: It is blunt.",
+          "uk": "Між It і blunt потрібно is: It is blunt."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-45:intro2:r2": {
-          "ru": "Это отрицает незаконность. В условии нарушение есть.",
-          "uk": "Це заперечує незаконність. За умовою порушення є."
+          "ru": "Так звучит утверждение «Она хлипкая». Чтобы спросить, ставим Is вперёд: Is it flimsy?",
+          "uk": "Так звучить твердження «Вона нетривка». Щоб запитати, ставимо Is наперед: Is it flimsy?"
         },
         "en:lesson-02:session-45:intro2:r3": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "С it нужно is: Is it flimsy?",
+          "uk": "З it потрібно is: Is it flimsy?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-45:intro3:r2": {
-          "ru": "Это «незаконно». Здесь нужно назвать пользу разъяснения.",
-          "uk": "Це «незаконно». Тут потрібно назвати користь роз’яснення."
+          "ru": "С not выходит «Тут прибрано». А ящик забит до краёв: It's cluttered.",
+          "uk": "З not виходить «Тут прибрано». А скриня забита по вінця: It's cluttered."
         },
         "en:lesson-02:session-45:intro3:r3": {
-          "ru": "Это об официальном источнике. В вопросе нужно сказать, что разъяснение помогает.",
-          "uk": "Це про офіційне джерело. У запитанні потрібно сказати, що роз’яснення допомагає."
+          "ru": "Ящик один, нужно It's: It's cluttered.",
+          "uk": "Скриня одна, потрібно It's: It's cluttered."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ad146c4fb3e70acb27330e091c8a5b90d68a9341260e1f4c8fa87551cae5a0b9"
+  "auxiliaryFingerprint": "cfffbde16445c4083794ab597204e5d5d65e212111f99206e799dae34b2093b3"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-09:intro1:r2": {
-          "ru": "С одной дверью здесь нужно `is`.",
-          "uk": "Українською «двері», але в цій англійській фразі один предмет `door` поєднується з `is`."
+          "ru": "Перед armchair нужно an: слово начинается с гласного звука.",
+          "uk": "Перед armchair потрібно an: слово починається з голосного звуку."
         },
         "en:lesson-03:session-09:intro1:r3": {
-          "ru": "Между `The door` и `open` нужно `is`.",
-          "uk": "Між `The door` і `open` потрібно `is`."
+          "ru": "Между It и an нужно is: It is an armchair.",
+          "uk": "Між It і an потрібно is: It is an armchair."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-09:intro2:r2": {
-          "ru": "С одним ключом здесь нужно `is`.",
-          "uk": "З одним ключем тут потрібно `is`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it an oven?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it an oven?"
         },
         "en:lesson-03:session-09:intro2:r3": {
-          "ru": "После `The key` нужно `is`.",
-          "uk": "Після `The key` потрібно `is`."
+          "ru": "Перед oven нужно an: Is it an oven?",
+          "uk": "Перед oven потрібно an: Is it an oven?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-09:intro3:r2": {
-          "ru": "Об одной двери здесь спрашиваем с `Is`.",
-          "uk": "Про один предмет `door` тут запитуємо з `Is`."
+          "ru": "Перед umbrella нужно an: слово начинается с гласного звука.",
+          "uk": "Перед umbrella потрібно an: слово починається з голосного звуку."
         },
         "en:lesson-03:session-09:intro3:r3": {
-          "ru": "Это сообщение. В вопросе начните с `Is the door`.",
-          "uk": "Це повідомлення. У запитанні почніть з `Is the door`."
+          "ru": "Перед umbrella нужно an: It's an umbrella.",
+          "uk": "Перед umbrella потрібно an: It's an umbrella."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3b79853ff14c33bb72f7ee9856d821887aeabc63760bebc94b47a8c72887d7f3"
+  "auxiliaryFingerprint": "a6109dfcd0a5afb630d99f42f6a2ad5372f62f685940165282de2bfe356f0a02"
 }

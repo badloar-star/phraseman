@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-33:intro1:r2": {
-          "ru": "Для этого упражнения выбираем по расстоянию: телефон рядом, поэтому `This`.",
-          "uk": "Для цієї вправи вибираємо за відстанню: телефон поруч, тому `This`."
+          "ru": "Туфель несколько, поэтому не This, а These: These are shoes.",
+          "uk": "Туфель кілька, тому не This, а These: These are shoes."
         },
         "en:lesson-03:session-33:intro1:r3": {
-          "ru": "С одним предметом после `This` здесь нужно `is`.",
-          "uk": "З одним предметом після `This` тут потрібно `is`."
+          "ru": "Перед shoes не ставим a: These are shoes.",
+          "uk": "Перед shoes не ставимо a: These are shoes."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-33:intro2:r2": {
-          "ru": "Так показывают на одну собаку. Здесь их несколько: `These are dogs`.",
-          "uk": "Так показують на одну собаку. Тут їх кілька: `These are dogs`."
+          "ru": "С these нужно Are: Are these socks new?",
+          "uk": "З these потрібно Are: Are these socks new?"
         },
         "en:lesson-03:session-33:intro2:r3": {
-          "ru": "Для собак рядом здесь выбираем `These`; `Those` — для тех, что дальше.",
-          "uk": "Для собак поруч тут вибираємо `These`; `Those` — для тих, що далі."
+          "ru": "Носков несколько, поэтому нужно socks с s.",
+          "uk": "Шкарпеток кілька, тому потрібно socks з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-33:intro3:r2": {
-          "ru": "Между `This` и `phone` не ставим `a`: `This phone`.",
-          "uk": "Між `This` і `phone` не ставимо `a`: `This phone`."
+          "ru": "Рубашек несколько, поэтому не This, а These: These shirts are clean.",
+          "uk": "Сорочок кілька, тому не This, а These: These shirts are clean."
         },
         "en:lesson-03:session-33:intro3:r3": {
-          "ru": "Телефон один: `This phone is okay`.",
-          "uk": "Телефон один: `This phone is okay`."
+          "ru": "С these нужно are: These shirts are clean.",
+          "uk": "З these потрібно are: These shirts are clean."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "06d713c854bf1032d8a620e810ce6ad23daca66800851540c26c7232a33c0bf5"
+  "auxiliaryFingerprint": "22ce842ef2194fb22de89f9db4894de19c94526db360f650ff756e6f3186d4a1"
 }

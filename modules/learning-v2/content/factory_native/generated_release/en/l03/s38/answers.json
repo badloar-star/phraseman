@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-38:i01",
-    "correctText": "These are windows.",
+    "correctText": "These baskets are heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i02",
-    "correctText": "ticket",
+    "correctText": "Are those peaches fresh?",
     "correctResponseId": "en:lesson-03:session-38:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i03",
-    "correctText": "ticket",
+    "correctText": "eggs",
     "correctResponseId": "en:lesson-03:session-38:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i04",
-    "correctText": "en:lesson-03:session-38:i04:p1=ticket\nen:lesson-03:session-38:i04:p2=weak\nen:lesson-03:session-38:i04:p3=unofficial\nen:lesson-03:session-38:i04:p4=windows",
+    "correctText": "en:lesson-03:session-38:i04:p1=apple\nen:lesson-03:session-38:i04:p2=banana\nen:lesson-03:session-38:i04:p3=orange\nen:lesson-03:session-38:i04:p4=pear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i05",
-    "correctText": "This is a ticket.",
+    "correctText": "Those jars are big.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i06",
-    "correctText": "That ticket is there.",
+    "correctText": "That is an egg.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:word:apple",
+    "correctText": "apple",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i07",
-    "correctText": "She's weak.",
+    "correctText": "apple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:word:banana",
+    "correctText": "banana",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i08",
-    "correctText": "a",
+    "correctText": "banana",
     "correctResponseId": "en:lesson-03:session-38:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i09",
-    "correctText": "It is unofficial.",
+    "correctText": "Those apples are cheap.",
     "correctResponseId": "en:lesson-03:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i10",
-    "correctText": "en:lesson-03:session-38:i10:p1=ticket\nen:lesson-03:session-38:i10:p2=tickets\nen:lesson-03:session-38:i10:p3=this\nen:lesson-03:session-38:i10:p4=those",
+    "correctText": "en:lesson-03:session-38:i10:p1=apple\nen:lesson-03:session-38:i10:p2=peach\nen:lesson-03:session-38:i10:p3=egg\nen:lesson-03:session-38:i10:p4=jar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i11",
-    "correctText": "Those are tickets.",
+    "correctText": "Are these bananas fresh?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i12",
-    "correctText": "This ticket is here.",
+    "correctText": "This is an apple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:word:orange",
+    "correctText": "orange",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i13",
-    "correctText": "It's unofficial.",
+    "correctText": "orange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:word:pear",
+    "correctText": "pear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i14",
-    "correctText": "are",
+    "correctText": "pear",
     "correctResponseId": "en:lesson-03:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i15",
-    "correctText": "She is weak.",
+    "correctText": "This is an orange.",
     "correctResponseId": "en:lesson-03:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i16",
-    "correctText": "en:lesson-03:session-38:i16:p1=ticket\nen:lesson-03:session-38:i16:p2=weak\nen:lesson-03:session-38:i16:p3=unofficial\nen:lesson-03:session-38:i16:p4=windows",
+    "correctText": "en:lesson-03:session-38:i16:p1=pear\nen:lesson-03:session-38:i16:p2=orange\nen:lesson-03:session-38:i16:p3=banana\nen:lesson-03:session-38:i16:p4=apple",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i17",
-    "correctText": "That is a ticket.",
+    "correctText": "These pears are soft.",
     "correctResponseId": null
   }
 ]

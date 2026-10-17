@@ -9,35 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
+      "prompt": "Соседка показывает на диван рядом с вами. Спросите, диван ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
+      "accessibilityLabel": "Соседка показывает на диван рядом с вами. Спросите, диван ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bags are here.",
+        "targetPhrase": "Is this a sofa?",
         "localizedMeaning": {
-          "ru": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
-          "uk": "Анна шукає підготовлені сумки. Повідомте «Сумки тут»"
+          "ru": "Соседка показывает на диван рядом с вами. Спросите, диван ли это.",
+          "uk": "Сусідка показує на диван поруч із вами. Запитайте, чи це диван."
         },
         "orderedTokens": [
-          "The",
-          "bags",
-          "are",
-          "here"
+          "Is",
+          "this",
+          "a",
+          "sofa"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна ищет приготовленные сумки. Сообщите «Сумки здесь»",
+            "testedDimension": "Соседка показывает на диван рядом с вами. Спросите, диван ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The bags are here.`",
-              "uk": "тут потрібно `are` — `The bags are here.`"
+              "ru": "здесь нужно `a` — `Is this a sofa?`",
+              "uk": "тут потрібно `a` — `Is this a sofa?`"
             }
           }
         ],
@@ -54,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте вопрос соседки",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-27:i02:r1",
-          "text": "cars"
+          "text": "Is that a shelf?"
         },
         {
           "responseId": "en:lesson-03:session-27:i02:r2",
-          "text": "cats"
+          "text": "Is this a shelf?"
         },
         {
           "responseId": "en:lesson-03:session-27:i02:r3",
-          "text": "cups"
+          "text": "Is that a clock?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте вопрос соседки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i02:audio",
-          "transcript": "cars"
+          "transcript": "Is that a shelf?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-27:i02:r1",
-            "targetText": "cars",
+            "targetText": "Is that a shelf?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-27:i02:r2",
-            "targetText": "cats",
+            "targetText": "Is this a shelf?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-27:i02:r3",
-            "targetText": "cups",
+            "targetText": "Is that a clock?",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте вопрос соседки",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `cars`, а в этом варианте — `cats`.",
-              "uk": "У записі перше слово — `cars`, а в цьому варіанті — `cats`."
+              "ru": "В записи второе слово — `that`, а в этом варианте — `this`.",
+              "uk": "У записі друге слово — `that`, а в цьому варіанті — `this`."
             }
           },
           {
             "responseId": "en:lesson-03:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте вопрос соседки",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `cars`, а в этом варианте — `cups`.",
-              "uk": "У записі перше слово — `cars`, а в цьому варіанті — `cups`."
+              "ru": "В записи последнее слово — `shelf`, а в этом варианте — `clock`.",
+              "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `clock`."
             }
           }
         ],
@@ -130,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите несколько автомобилей одним английским словом",
+      "prompt": "Лампа стоит рядом с вами. Дополните вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-27:i03:r1",
-          "text": "cars"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-27:i03:r2",
-          "text": "car"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-27:i03:r3",
-          "text": "a cars"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите несколько автомобилей одним английским словом",
+      "accessibilityLabel": "Лампа стоит рядом с вами. Дополните вопрос",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите несколько автомобилей одним английским словом",
-          "uk": "Назвіть кілька автомобілів одним англійським словом"
+          "ru": "Лампа стоит рядом с вами. Дополните вопрос",
+          "uk": "Лампа стоїть поруч із вами. Доповніть питання"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "Is this ___ lamp?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-27:i03:r1",
-            "text": "cars"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-27:i03:r2",
-            "text": "car"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-27:i03:r3",
-            "text": "a cars"
+            "text": "is"
           }
         ],
-        "testedDimension": "Назовите несколько автомобилей одним английским словом",
+        "testedDimension": "Лампа стоит рядом с вами. Дополните вопрос",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите несколько автомобилей одним английским словом",
+            "testedDimension": "Лампа стоит рядом с вами. Дополните вопрос",
             "feedbackByLocale": {
-              "ru": "Несколько машин — `cars`.",
-              "uk": "Кілька машин — `cars`."
+              "ru": "Слово lamp начинается с согласного звука, поэтому здесь a.",
+              "uk": "Слово lamp починається з приголосного звуку, тому тут a."
             }
           },
           {
             "responseId": "en:lesson-03:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите несколько автомобилей одним английским словом",
+            "testedDimension": "Лампа стоит рядом с вами. Дополните вопрос",
             "feedbackByLocale": {
-              "ru": "Перед `cars` не ставим `a`.",
-              "uk": "Перед `cars` не ставимо `a`."
+              "ru": "Слово Is уже стоит в начале вопроса. Перед lamp нужно a.",
+              "uk": "Слово Is уже стоїть на початку питання. Перед lamp потрібно a."
             }
           }
         ]
@@ -209,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-27:i04:p1",
-            "target": "cars",
+            "target": "remote",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "пульт",
+              "uk": "пульт"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i04:p2",
-            "target": "bags",
+            "target": "button",
             "meaningByLocale": {
-              "ru": "сумки",
-              "uk": "сумки"
+              "ru": "кнопка",
+              "uk": "кнопка"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i04:p3",
-            "target": "awake",
+            "target": "switch",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "выключатель",
+              "uk": "вимикач"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i04:p4",
-            "target": "asleep",
+            "target": "router",
             "meaningByLocale": {
-              "ru": "спит",
-              "uk": "спить"
+              "ru": "роутер",
+              "uk": "роутер"
             }
           }
         ],
         "leftColumn": [
-          "cars",
-          "bags",
-          "awake",
-          "asleep"
+          "remote",
+          "button",
+          "switch",
+          "router"
         ],
         "rightColumn": [
-          "машины",
-          "сумки",
-          "не спит",
-          "спит"
+          "пульт",
+          "кнопка",
+          "выключатель",
+          "роутер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -272,38 +272,38 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
+      "prompt": "Послушайте соседку и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте соседку и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i05:audio",
-          "transcript": "The cars are available."
+          "transcript": "Is that a table?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cars are available.",
+        "hiddenTargetPhrase": "Is that a table?",
         "orderedTokens": [
-          "The",
-          "cars",
-          "are",
-          "available"
+          "Is",
+          "that",
+          "a",
+          "table"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте соседку и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cars are available.`",
-              "uk": "тут потрібно `are` — `The cars are available.`"
+              "ru": "здесь нужно `a` — `Is that a table?`",
+              "uk": "тут потрібно `a` — `Is that a table?`"
             }
           }
         ],
@@ -320,34 +320,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+      "prompt": "Часы висят на дальней стене. Спросите соседку, часы ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+      "accessibilityLabel": "Часы висят на дальней стене. Спросите соседку, часы ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Cars are different.",
+        "targetPhrase": "Is that a clock?",
         "localizedMeaning": {
-          "ru": "Скажите «Машины разные» о машинах вообще, например об их размерах",
-          "uk": "Скажіть «Машини різні» про машини загалом, наприклад про їхні розміри"
+          "ru": "Часы висят на дальней стене. Спросите соседку, часы ли это.",
+          "uk": "Годинник висить на дальній стіні. Запитайте сусідку, чи це годинник."
         },
         "orderedTokens": [
-          "Cars",
-          "are",
-          "different"
+          "Is",
+          "that",
+          "a",
+          "clock"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "this"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Машины разные» о машинах вообще, например об их размерах",
+            "testedDimension": "Часы висят на дальней стене. Спросите соседку, часы ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Cars are different.`",
-              "uk": "тут потрібно `are` — `Cars are different.`"
+              "ru": "здесь нужно `that` — `Is that a clock?`",
+              "uk": "тут потрібно `that` — `Is that a clock?`"
             }
           }
         ],
@@ -359,26 +360,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i07",
+      "interactionId": "en:lesson-03:session-27:word:remote",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — remote",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:word:remote:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — remote",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:word:remote:audio",
+          "transcript": "remote"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-27:word:remote:r1",
+            "targetText": "remote",
+            "meaningByLocale": {
+              "ru": "пульт, прибор, которым включают технику на расстоянии. Is this a remote? — «Это пульт?» О пульте от телевизора или кондиционера.",
+              "uk": "пульт, прилад, яким вмикають техніку на відстані. Is this a remote? — «Це пульт?» Про пульт від телевізора чи кондиціонера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "remote",
+          "definitionByLocale": {
+            "ru": "пульт, прибор, которым включают технику на расстоянии. Is this a remote? — «Это пульт?» О пульте от телевизора или кондиционера.",
+            "uk": "пульт, прилад, яким вмикають техніку на відстані. Is this a remote? — «Це пульт?» Про пульт від телевізора чи кондиціонера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна уже проснулась. Скажите «Она не спит» с сокращением",
+      "prompt": "Соседка называет вещь, а вы повторяете за ней слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i07:audio"
       ],
-      "accessibilityLabel": "Анна уже проснулась. Скажите «Она не спит» с сокращением",
+      "accessibilityLabel": "Соседка называет вещь, а вы повторяете за ней слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i07:audio",
-          "transcript": "She's awake."
+          "transcript": "remote"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's awake.",
+        "targetPhrase": "remote",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,68 +436,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-27:word:button",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — button",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:word:button:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — button",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:word:button:audio",
+          "transcript": "button"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-27:word:button:r1",
+            "targetText": "button",
+            "meaningByLocale": {
+              "ru": "кнопка, маленькая деталь, которую нажимают. Is that a button? — «Это кнопка?» О кнопке на технике, на пульте, на звонке.",
+              "uk": "кнопка, маленька деталь, яку натискають. Is that a button? — «Це кнопка?» Про кнопку на техніці, на пульті, на дзвінку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "button",
+          "definitionByLocale": {
+            "ru": "кнопка, маленькая деталь, которую нажимают. Is that a button? — «Это кнопка?» О кнопке на технике, на пульте, на звонке.",
+            "uk": "кнопка, маленька деталь, яку натискають. Is that a button? — «Це кнопка?» Про кнопку на техніці, на пульті, на дзвінку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-27:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+      "prompt": "Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-27:i08:r1",
-          "text": "Cars"
+          "text": "button"
         },
         {
           "responseId": "en:lesson-03:session-27:i08:r2",
-          "text": "The cars"
+          "text": "switch"
         },
         {
           "responseId": "en:lesson-03:session-27:i08:r3",
-          "text": "A cars"
+          "text": "shelf"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+      "accessibilityLabel": "Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
-          "uk": "Ви говорите про різні розміри машин загалом, без указівки на певні машини"
+          "ru": "Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?",
+          "uk": "Сусідка показує на круглу деталь на телевізорі, яку натискають. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "___ are different.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-27:i08:r1",
-            "text": "Cars"
+            "text": "button"
           },
           {
             "responseId": "en:lesson-03:session-27:i08:r2",
-            "text": "The cars"
+            "text": "switch"
           },
           {
             "responseId": "en:lesson-03:session-27:i08:r3",
-            "text": "A cars"
+            "text": "shelf"
           }
         ],
-        "testedDimension": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+        "testedDimension": "Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i08:r2",
             "correct": false,
-            "testedDimension": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+            "testedDimension": "Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`The cars` — конкретные машины. Здесь нужно общее `Cars`.",
-              "uk": "`The cars` — конкретні машини. Тут потрібне загальне `Cars`."
+              "ru": "switch — это выключатель на стене, а деталь, которую нажимают, называется button.",
+              "uk": "switch — це вимикач на стіні, а деталь, яку натискають, називається button."
             }
           },
           {
             "responseId": "en:lesson-03:session-27:i08:r3",
             "correct": false,
-            "testedDimension": "Вы говорите о разных размерах машин вообще, без указания на определённые машины",
+            "testedDimension": "Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Перед `cars` не ставим `a`.",
-              "uk": "Перед `cars` не ставимо `a`."
+              "ru": "shelf — это полка, а деталь, которую нажимают, называется button.",
+              "uk": "shelf — це полиця, а деталь, яку натискають, називається button."
             }
           }
         ]
@@ -462,51 +549,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение о брате Анны",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-27:i09:r1",
-          "text": "He is asleep."
+          "text": "Is that a remote?"
         },
         {
           "responseId": "en:lesson-03:session-27:i09:r2",
-          "text": "He is awake."
+          "text": "Is this a remote?"
         },
         {
           "responseId": "en:lesson-03:session-27:i09:r3",
-          "text": "He is available."
+          "text": "Is that a lamp?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение о брате Анны",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i09:audio",
-          "transcript": "He is asleep."
+          "transcript": "Is that a remote?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-27:i09:r1",
-            "targetText": "He is asleep.",
+            "targetText": "Is that a remote?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-27:i09:r2",
-            "targetText": "He is awake.",
+            "targetText": "Is this a remote?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-27:i09:r3",
-            "targetText": "He is available.",
+            "targetText": "Is that a lamp?",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +602,19 @@
           {
             "responseId": "en:lesson-03:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о брате Анны",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
-              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
+              "ru": "В записи второе слово — `that`, а в этом варианте — `this`.",
+              "uk": "У записі друге слово — `that`, а в цьому варіанті — `this`."
             }
           },
           {
             "responseId": "en:lesson-03:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о брате Анны",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `asleep`, а в этом варианте — `available`.",
-              "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `available`."
+              "ru": "В записи последнее слово — `remote`, а в этом варианте — `lamp`.",
+              "uk": "У записі останнє слово — `remote`, а в цьому варіанті — `lamp`."
             }
           }
         ],
@@ -538,7 +625,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -552,48 +639,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-27:i10:p1",
-            "target": "available",
+            "target": "remote",
             "meaningByLocale": {
-              "ru": "доступный",
-              "uk": "доступний"
+              "ru": "пульт",
+              "uk": "пульт"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i10:p2",
-            "target": "generous",
+            "target": "sofa",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "диван",
+              "uk": "диван"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i10:p3",
-            "target": "cars",
+            "target": "lamp",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "лампа",
+              "uk": "лампа"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i10:p4",
-            "target": "bags",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "сумки",
-              "uk": "сумки"
+              "ru": "стол",
+              "uk": "стіл"
             }
           }
         ],
         "leftColumn": [
-          "available",
-          "generous",
-          "cars",
-          "bags"
+          "remote",
+          "sofa",
+          "lamp",
+          "table"
         ],
         "rightColumn": [
-          "доступный",
-          "щедрый",
-          "машины",
-          "сумки"
+          "пульт",
+          "диван",
+          "лампа",
+          "стол"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,42 +698,42 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
+      "prompt": "Послушайте соседку и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте соседку и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i11:audio",
-          "transcript": "The bags are inside."
+          "transcript": "Is this a button?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The bags are inside.",
+        "hiddenTargetPhrase": "Is this a button?",
         "orderedTokens": [
-          "The",
-          "bags",
-          "are",
-          "inside"
+          "Is",
+          "this",
+          "a",
+          "button"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте соседку и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The bags are inside.`",
-              "uk": "тут потрібно `are` — `The bags are inside.`"
+              "ru": "здесь нужно `a` — `Is this a button?`",
+              "uk": "тут потрібно `a` — `Is this a button?`"
             }
           }
         ],
@@ -659,39 +746,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег знает, какие машины нужны группе. Спросите, где машины",
+      "prompt": "Соседка протягивает вам прибор, которым включают телевизор. Спросите, пульт ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег знает, какие машины нужны группе. Спросите, где машины",
+      "accessibilityLabel": "Соседка протягивает вам прибор, которым включают телевизор. Спросите, пульт ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the cars?",
+        "targetPhrase": "Is this a remote?",
         "localizedMeaning": {
-          "ru": "Олег знает, какие машины нужны группе. Спросите, где машины",
-          "uk": "Олег знає, які машини потрібні групі. Запитайте, де машини"
+          "ru": "Соседка протягивает вам прибор, которым включают телевизор. Спросите, пульт ли это.",
+          "uk": "Сусідка простягає вам прилад, яким вмикають телевізор. Запитайте, чи це пульт."
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "cars"
+          "Is",
+          "this",
+          "a",
+          "remote"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "that"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Олег знает, какие машины нужны группе. Спросите, где машины",
+            "testedDimension": "Соседка протягивает вам прибор, которым включают телевизор. Спросите, пульт ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where are the cars?`",
-              "uk": "тут потрібно `Where` — `Where are the cars?`"
+              "ru": "здесь нужно `this` — `Is this a remote?`",
+              "uk": "тут потрібно `this` — `Is this a remote?`"
             }
           }
         ],
@@ -703,26 +790,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-27:word:switch",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — switch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:word:switch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — switch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:word:switch:audio",
+          "transcript": "switch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-27:word:switch:r1",
+            "targetText": "switch",
+            "meaningByLocale": {
+              "ru": "выключатель, им включают и выключают свет. Is this a switch? — «Это выключатель?» О выключателе на стене или на лампе.",
+              "uk": "вимикач, ним вмикають і вимикають світло. Is this a switch? — «Це вимикач?» Про вимикач на стіні чи на лампі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "switch",
+          "definitionByLocale": {
+            "ru": "выключатель, им включают и выключают свет. Is this a switch? — «Это выключатель?» О выключателе на стене или на лампе.",
+            "uk": "вимикач, ним вмикають і вимикають світло. Is this a switch? — «Це вимикач?» Про вимикач на стіні чи на лампі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-27:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег охотно делится тем, что у него есть. Скажите «Он щедрый» с сокращением",
+      "prompt": "Соседка называет вещь, а вы повторяете за ней слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i13:audio"
       ],
-      "accessibilityLabel": "Олег охотно делится тем, что у него есть. Скажите «Он щедрый» с сокращением",
+      "accessibilityLabel": "Соседка называет вещь, а вы повторяете за ней слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i13:audio",
-          "transcript": "He's generous."
+          "transcript": "switch"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's generous.",
+        "targetPhrase": "switch",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,68 +866,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-27:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-27:word:router",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — router",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-27:word:router:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — router",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-27:word:router:audio",
+          "transcript": "router"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-27:word:router:r1",
+            "targetText": "router",
+            "meaningByLocale": {
+              "ru": "роутер, коробка, которая раздаёт интернет. Is that a router? — «Это роутер?» О роутере дома или в офисе.",
+              "uk": "роутер, коробка, яка роздає інтернет. Is that a router? — «Це роутер?» Про роутер удома чи в офісі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "router",
+          "definitionByLocale": {
+            "ru": "роутер, коробка, которая раздаёт интернет. Is that a router? — «Это роутер?» О роутере дома или в офисе.",
+            "uk": "роутер, коробка, яка роздає інтернет. Is that a router? — «Це роутер?» Про роутер удома чи в офісі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+      "prompt": "На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-27:i14:r1",
-          "text": "are"
+          "text": "router"
         },
         {
           "responseId": "en:lesson-03:session-27:i14:r2",
-          "text": "is"
+          "text": "remote"
         },
         {
           "responseId": "en:lesson-03:session-27:i14:r3",
-          "text": "am"
+          "text": "shelf"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+      "accessibilityLabel": "На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
-          "uk": "Ви повідомляєте, що кількома вибраними машинами можна скористатися"
+          "ru": "На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?",
+          "uk": "На полиці в іншому кутку кімнати стоїть коробка з антенами, яка роздає інтернет. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "The cars ___ available.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-27:i14:r1",
-            "text": "are"
+            "text": "router"
           },
           {
             "responseId": "en:lesson-03:session-27:i14:r2",
-            "text": "is"
+            "text": "remote"
           },
           {
             "responseId": "en:lesson-03:session-27:i14:r3",
-            "text": "am"
+            "text": "shelf"
           }
         ],
-        "testedDimension": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+        "testedDimension": "На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-27:i14:r2",
             "correct": false,
-            "testedDimension": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+            "testedDimension": "На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Машин несколько: нужно `are`.",
-              "uk": "Машин кілька: потрібно `are`."
+              "ru": "remote — это пульт, а коробка, которая раздаёт интернет, называется router.",
+              "uk": "remote — це пульт, а коробка, яка роздає інтернет, називається router."
             }
           },
           {
             "responseId": "en:lesson-03:session-27:i14:r3",
             "correct": false,
-            "testedDimension": "Вы сообщаете, что несколькими выбранными машинами можно воспользоваться",
+            "testedDimension": "На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "С `the cars` здесь нужно `are`.",
-              "uk": "З `the cars` тут потрібно `are`."
+              "ru": "shelf — это полка, а коробка, которая раздаёт интернет, называется router.",
+              "uk": "shelf — це полиця, а коробка, яка роздає інтернет, називається router."
             }
           }
         ]
@@ -806,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение об Анне",
+      "prompt": "Послушайте вопрос соседки",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-27:i15:r1",
-          "text": "She is awake."
+          "text": "Is that a switch?"
         },
         {
           "responseId": "en:lesson-03:session-27:i15:r2",
-          "text": "She is asleep."
+          "text": "Is this a switch?"
         },
         {
           "responseId": "en:lesson-03:session-27:i15:r3",
-          "text": "She is available."
+          "text": "Is that a sofa?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение об Анне",
+      "accessibilityLabel": "Послушайте вопрос соседки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i15:audio",
-          "transcript": "She is awake."
+          "transcript": "Is that a switch?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-27:i15:r1",
-            "targetText": "She is awake.",
+            "targetText": "Is that a switch?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-27:i15:r2",
-            "targetText": "She is asleep.",
+            "targetText": "Is this a switch?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-27:i15:r3",
-            "targetText": "She is available.",
+            "targetText": "Is that a sofa?",
             "meaningByLocale": null
           }
         ],
@@ -859,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об Анне",
+            "testedDimension": "Послушайте вопрос соседки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awake`, а в этом варианте — `asleep`.",
-              "uk": "У записі останнє слово — `awake`, а в цьому варіанті — `asleep`."
+              "ru": "В записи второе слово — `that`, а в этом варианте — `this`.",
+              "uk": "У записі друге слово — `that`, а в цьому варіанті — `this`."
             }
           },
           {
             "responseId": "en:lesson-03:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об Анне",
+            "testedDimension": "Послушайте вопрос соседки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awake`, а в этом варианте — `available`.",
-              "uk": "У записі останнє слово — `awake`, а в цьому варіанті — `available`."
+              "ru": "В записи последнее слово — `switch`, а в этом варианте — `sofa`.",
+              "uk": "У записі останнє слово — `switch`, а в цьому варіанті — `sofa`."
             }
           }
         ],
@@ -882,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-27:i16:p1",
-            "target": "awake",
+            "target": "router",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "роутер",
+              "uk": "роутер"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i16:p2",
-            "target": "asleep",
+            "target": "button",
             "meaningByLocale": {
-              "ru": "спит",
-              "uk": "спить"
+              "ru": "кнопка",
+              "uk": "кнопка"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i16:p3",
-            "target": "available",
+            "target": "switch",
             "meaningByLocale": {
-              "ru": "доступный",
-              "uk": "доступний"
+              "ru": "выключатель",
+              "uk": "вимикач"
             }
           },
           {
             "pairId": "en:lesson-03:session-27:i16:p4",
-            "target": "generous",
+            "target": "remote",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "пульт",
+              "uk": "пульт"
             }
           }
         ],
         "leftColumn": [
-          "awake",
-          "asleep",
-          "available",
-          "generous"
+          "router",
+          "button",
+          "switch",
+          "remote"
         ],
         "rightColumn": [
-          "не спит",
-          "спит",
-          "доступный",
-          "щедрый"
+          "роутер",
+          "кнопка",
+          "выключатель",
+          "пульт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обсуждаете автомобили с другом: машины вообще бывают разных размеров. Скажите «Машины разные», без указания на конкретную группу",
+      "prompt": "Соседка показывает на коробку на дальней полке. Спросите, роутер ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-27:i17:audio"
       ],
-      "accessibilityLabel": "Вы обсуждаете автомобили с другом: машины вообще бывают разных размеров. Скажите «Машины разные», без указания на конкретную группу",
+      "accessibilityLabel": "Соседка показывает на коробку на дальней полке. Спросите, роутер ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-27:i17:audio",
-          "transcript": "Cars are different."
+          "transcript": "Is that a router?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Cars are different.",
+        "targetPhrase": "Is that a router?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "93d421c1b3eca65a0da93a4512f231cf60bb07722502db8f97c1c91c8019b9b4"
+  "learnerFingerprint": "575043d0499bf6e16ce5abebbd3da2a1bdcf2b78c8c8de3298221724854f1295"
 }

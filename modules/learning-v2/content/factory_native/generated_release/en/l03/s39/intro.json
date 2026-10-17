@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-39",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько бутылок рядом или дальше и связать указатель с формой are",
-    "uk": "назвати кілька пляшок поруч або далі й поєднати вказівне слово з формою are"
+    "ru": "показывать на продукты рядом и вдали без подсказок: this, that, these, those",
+    "uk": "показувати на продукти поруч і вдалині без підказок: this, that, these, those"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Несколько бутылок",
-        "uk": "Кілька пляшок"
+        "ru": "Виноград на весах",
+        "uk": "Виноград на вагах"
       },
       "bodyByLocale": {
-        "ru": "`bottles` — «бутылки», одна — `bottle`. Для нескольких добавляем `s`. `These are bottles` — «Это бутылки»: показываем на несколько рядом. Здесь нужно `are`, потому что бутылок несколько. Даже пустая бутылка считается: для выбора `is` или `are` считаем бутылки, а не воду.",
-        "uk": "`bottles` — «пляшки», одна — `bottle`. Для кількох додаємо `s`. `These are bottles` — «Це пляшки»: показуємо на кілька поруч. Тут потрібне `are`, бо пляшок кілька. Навіть порожня пляшка рахується: для вибору `is` чи `are` рахуємо пляшки, а не воду."
+        "ru": "Вы с братом стоите у овощной палатки. Продавец кладёт на весы перед вами гроздь винограда, и брат боится, что ягоды кислые. Вы пробуете одну и уверены в ответе. grape — «виноградина». Виноградин много, и они рядом: These grapes are sweet — «Эти виноградины сладкие».",
+        "uk": "Ви з братом стоїте біля овочевої палатки. Продавець кладе на ваги перед вами гроно винограду, і брат боїться, що ягоди кислі. Ви куштуєте одну й упевнені у відповіді. grape — «виноградина». Виноградин багато, і вони поруч: These grapes are sweet — «Ці виноградини солодкі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-39:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите несколько бутылок одним английским словом.",
-          "uk": "Назвіть кілька пляшок одним англійським словом."
+          "ru": "Продавец положил виноград перед вами. Скажите брату, что эти виноградины сладкие.",
+          "uk": "Продавець поклав виноград перед вами. Скажіть брату, що ці виноградини солодкі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-39:intro1:r1",
-              "text": "bottles"
+              "text": "These grapes are sweet."
             },
             {
               "responseId": "en:lesson-03:session-39:intro1:r2",
-              "text": "bottle"
+              "text": "This grapes are sweet."
             },
             {
               "responseId": "en:lesson-03:session-39:intro1:r3",
-              "text": "boxes"
+              "text": "These grapes is sweet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-39:intro1:r1",
-              "text": "bottles"
+              "text": "These grapes are sweet."
             },
             {
               "responseId": "en:lesson-03:session-39:intro1:r2",
-              "text": "bottle"
+              "text": "This grapes are sweet."
             },
             {
               "responseId": "en:lesson-03:session-39:intro1:r3",
-              "text": "boxes"
+              "text": "These grapes is sweet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите несколько бутылок одним английским словом.",
-          "uk": "Назвіть кілька пляшок одним англійським словом."
+          "ru": "Продавец положил виноград перед вами. Скажите брату, что эти виноградины сладкие.",
+          "uk": "Продавець поклав виноград перед вами. Скажіть брату, що ці виноградини солодкі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Эти здесь, те там",
-        "uk": "Ці тут, ті там"
+        "ru": "Лимон для чая",
+        "uk": "Лимон для чаю"
       },
       "bodyByLocale": {
-        "ru": "`These bottles are here` — «Эти бутылки здесь». `Those bottles are there` — «Те бутылки там». `These` указывает на несколько рядом, `those` — на несколько дальше. После `these bottles` и `those bottles` нужно `are`. Перед названием не добавляем `a`: оно относится к одному предмету.",
-        "uk": "`These bottles are here` — «Ці пляшки тут». `Those bottles are there` — «Ті пляшки там». `These` вказує на кілька поруч, `those` — на кілька далі. Після `these bottles` і `those bottles` потрібне `are`. Перед назвою не додаємо `a`: воно стосується одного предмета."
+        "ru": "Подруга заваривает чай и просит купить один лимон. Продавец берёт с прилавка лимон и держит его рядом с вами. Лимон нужен спелый, а по цвету сразу не понять. lemon — «лимон». Лимон один и он рядом, поэтому this. Вопрос начинаем с Is: Is this lemon ripe? — «Этот лимон спелый?»",
+        "uk": "Подруга заварює чай і просить купити один лимон. Продавець бере з прилавка лимон і тримає його поруч із вами. Лимон потрібен стиглий, а за кольором одразу не зрозуміти. lemon — «лимон». Лимон один і він поруч, тому this. Запитання починаємо з Is: Is this lemon ripe? — «Цей лимон стиглий?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-39:intro2:q",
         "promptByLocale": {
-          "ru": "Несколько бутылок стоят на дальнем столе. Скажите «Те бутылки там».",
-          "uk": "Кілька пляшок стоять на дальньому столі. Скажіть «Ті пляшки там»."
+          "ru": "Продавец держит лимон рядом с вами. Спросите его, спелый ли этот лимон.",
+          "uk": "Продавець тримає лимон поруч із вами. Запитайте його, чи стиглий цей лимон."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-39:intro2:r1",
-              "text": "Those bottles are there."
+              "text": "Is this lemon ripe?"
             },
             {
               "responseId": "en:lesson-03:session-39:intro2:r2",
-              "text": "That bottles are there."
+              "text": "Are this lemon ripe?"
             },
             {
               "responseId": "en:lesson-03:session-39:intro2:r3",
-              "text": "Those bottles is there."
+              "text": "Is this lemons ripe?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-39:intro2:r1",
-              "text": "Those bottles are there."
+              "text": "Is this lemon ripe?"
             },
             {
               "responseId": "en:lesson-03:session-39:intro2:r2",
-              "text": "That bottles are there."
+              "text": "Are this lemon ripe?"
             },
             {
               "responseId": "en:lesson-03:session-39:intro2:r3",
-              "text": "Those bottles is there."
+              "text": "Is this lemons ripe?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько бутылок стоят на дальнем столе. Скажите «Те бутылки там».",
-          "uk": "Кілька пляшок стоять на дальньому столі. Скажіть «Ті пляшки там»."
+          "ru": "Продавец держит лимон рядом с вами. Спросите его, спелый ли этот лимон.",
+          "uk": "Продавець тримає лимон поруч із вами. Запитайте його, чи стиглий цей лимон."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Смелость и полезное замечание",
-        "uk": "Сміливість і корисне зауваження"
+        "ru": "Лук для супа",
+        "uk": "Цибуля для супу"
       },
       "bodyByLocale": {
-        "ru": "`brave` — «смелый». Анне страшно говорить перед группой, но она решается: `She is brave` — «Она смелая». Смелость не обязательно означает отсутствие страха. `relevant` — «относящийся к делу, уместный». Об её замечании по выбору парка: `It is relevant` — «Оно относится к делу». На карте можно показать несколько парков: `Those are parks` — «Это парки», если они дальше от вас на карте.",
-        "uk": "`brave` — «сміливий». Анні страшно говорити перед групою, але вона наважується: `She is brave` — «Вона смілива». Сміливість не обов’язково означає відсутність страху. `relevant` — «що стосується справи, доречний». Про її зауваження щодо вибору парку: `It is relevant` — «Воно стосується справи». На карті можна показати кілька парків: `Those are parks` — «Це парки», якщо вони далі від вас на карті."
+        "ru": "Подруга варит суп и хочет крупный лук. На дальнем прилавке лежат луковицы в сетках, ближе их нет. Подруга спрашивает, какие они там. onion — «лук, луковица». Луковиц несколько, и они далеко, поэтому those: Those onions are big — «Те луковицы большие».",
+        "uk": "Подруга варить суп і хоче велику цибулю. На дальньому прилавку лежать цибулини в сітках, ближче їх немає. Подруга питає, які вони там. onion — «цибуля, цибулина». Цибулин кілька, і вони далеко, тому those: Those onions are big — «Ті цибулини великі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-39:intro3:q",
         "promptByLocale": {
-          "ru": "Анна решается говорить перед группой, несмотря на страх. Скажите «Она смелая».",
-          "uk": "Анна наважується говорити перед групою, попри страх. Скажіть «Вона смілива»."
+          "ru": "Подруга спрашивает о луке на дальнем прилавке. Скажите, что те луковицы большие.",
+          "uk": "Подруга питає про цибулю на дальньому прилавку. Скажіть, що ті цибулини великі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-39:intro3:r1",
-              "text": "She is brave."
+              "text": "Those onions are big."
             },
             {
               "responseId": "en:lesson-03:session-39:intro3:r2",
-              "text": "She is weak."
+              "text": "These onions are big."
             },
             {
               "responseId": "en:lesson-03:session-39:intro3:r3",
-              "text": "She are brave."
+              "text": "Those onion are big."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-39:intro3:r1",
-              "text": "She is brave."
+              "text": "Those onions are big."
             },
             {
               "responseId": "en:lesson-03:session-39:intro3:r2",
-              "text": "She is weak."
+              "text": "These onions are big."
             },
             {
               "responseId": "en:lesson-03:session-39:intro3:r3",
-              "text": "She are brave."
+              "text": "Those onion are big."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна решается говорить перед группой, несмотря на страх. Скажите «Она смелая».",
-          "uk": "Анна наважується говорити перед групою, попри страх. Скажіть «Вона смілива»."
+          "ru": "Подруга спрашивает о луке на дальнем прилавке. Скажите, что те луковицы большие.",
+          "uk": "Подруга питає про цибулю на дальньому прилавку. Скажіть, що ті цибулини великі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c562bd7890681da5d9c89646be3ec9c149c845adee9a16ecb07c212ecb8e36ba"
+  "introFingerprint": "0f91fcbe066514f9d579d4d51ed1f2fa50d2bfba66ce7eaa8c4f9948a33abd53"
 }

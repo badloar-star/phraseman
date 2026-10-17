@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-36:i01",
-    "correctText": "The chairs are here.",
+    "correctText": "Those windows are big.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i02",
-    "correctText": "children",
+    "correctText": "That door is old.",
     "correctResponseId": "en:lesson-03:session-36:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i03",
-    "correctText": "children",
+    "correctText": "benches",
     "correctResponseId": "en:lesson-03:session-36:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i04",
-    "correctText": "en:lesson-03:session-36:i04:p1=children\nen:lesson-03:session-36:i04:p2=sleepy\nen:lesson-03:session-36:i04:p3=informal\nen:lesson-03:session-36:i04:p4=chairs",
+    "correctText": "en:lesson-03:session-36:i04:p1=tree\nen:lesson-03:session-36:i04:p2=flower\nen:lesson-03:session-36:i04:p3=bicycle\nen:lesson-03:session-36:i04:p4=toy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i05",
-    "correctText": "These are children.",
+    "correctText": "That shelf is long.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i06",
-    "correctText": "Those children are sleepy.",
+    "correctText": "That is a bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:word:tree",
+    "correctText": "tree",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i07",
-    "correctText": "I'm sleepy.",
+    "correctText": "tree",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:word:flower",
+    "correctText": "flower",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i08",
-    "correctText": "These",
+    "correctText": "flower",
     "correctResponseId": "en:lesson-03:session-36:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i09",
-    "correctText": "It is informal.",
+    "correctText": "That tree is small.",
     "correctResponseId": "en:lesson-03:session-36:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i10",
-    "correctText": "en:lesson-03:session-36:i10:p1=these\nen:lesson-03:session-36:i10:p2=those\nen:lesson-03:session-36:i10:p3=children\nen:lesson-03:session-36:i10:p4=chairs",
+    "correctText": "en:lesson-03:session-36:i10:p1=tree\nen:lesson-03:session-36:i10:p2=window\nen:lesson-03:session-36:i10:p3=door\nen:lesson-03:session-36:i10:p4=bench",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i11",
-    "correctText": "Those chairs are outside.",
+    "correctText": "Are those flowers fresh?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i12",
-    "correctText": "These chairs are here.",
+    "correctText": "Those are trees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:word:bicycle",
+    "correctText": "bicycle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i13",
-    "correctText": "It's informal.",
+    "correctText": "bicycle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:word:toy",
+    "correctText": "toy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i14",
-    "correctText": "are",
+    "correctText": "toy",
     "correctResponseId": "en:lesson-03:session-36:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i15",
-    "correctText": "These children are sleepy.",
+    "correctText": "That bicycle is cheap.",
     "correctResponseId": "en:lesson-03:session-36:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-36:i16",
-    "correctText": "en:lesson-03:session-36:i16:p1=children\nen:lesson-03:session-36:i16:p2=sleepy\nen:lesson-03:session-36:i16:p3=informal\nen:lesson-03:session-36:i16:p4=chairs",
+    "correctText": "en:lesson-03:session-36:i16:p1=toy\nen:lesson-03:session-36:i16:p2=bicycle\nen:lesson-03:session-36:i16:p3=flower\nen:lesson-03:session-36:i16:p4=tree",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-36:i17",
-    "correctText": "Those are children.",
+    "correctText": "Those toys are new.",
     "correctResponseId": null
   }
 ]

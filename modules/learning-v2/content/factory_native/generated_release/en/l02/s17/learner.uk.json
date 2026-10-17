@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-17:i01",
+      "interactionId": "en:lesson-02:session-17:word:well",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — well",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:word:well:audio"
+      ],
+      "accessibilityLabel": "Картка слова — well",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:word:well:audio",
+          "transcript": "well"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:word:well:r1",
+            "targetText": "well",
+            "meaningByLocale": {
+              "ru": "хорошо себя чувствующий. Are you well? — «Как вы себя чувствуете? Всё хорошо?» О человеке после дороги или болезни.",
+              "uk": "який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "well",
+          "definitionByLocale": {
+            "ru": "хорошо себя чувствующий. Are you well? — «Как вы себя чувствуете? Всё хорошо?» О человеке после дороги или болезни.",
+            "uk": "який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -43,49 +86,6 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-17:word:well",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — well",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:word:well:audio"
-      ],
-      "accessibilityLabel": "Картка слова — well",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:word:well:audio",
-          "transcript": "well"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-17:word:well:r1",
-            "targetText": "well",
-            "meaningByLocale": {
-              "ru": "хорошо себя чувствующий. Are you well? — «Как вы себя чувствуете? Всё хорошо?» О человеке после дороги или болезни.",
-              "uk": "який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "well",
-          "definitionByLocale": {
-            "ru": "хорошо себя чувствующий. Are you well? — «Как вы себя чувствуете? Всё хорошо?» О человеке после дороги или болезни.",
-            "uk": "який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби."
-          }
         }
       },
       "scriptedAlternate": null
@@ -653,8 +653,51 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-17:i11",
+      "interactionId": "en:lesson-02:session-17:word:unpacked",
       "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unpacked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:word:unpacked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unpacked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:word:unpacked:audio",
+          "transcript": "unpacked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:word:unpacked:r1",
+            "targetText": "unpacked",
+            "meaningByLocale": {
+              "ru": "распакованный. They are unpacked — «Они распакованы». О сумках, чемоданах, коробках.",
+              "uk": "розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unpacked",
+          "definitionByLocale": {
+            "ru": "распакованный. They are unpacked — «Они распакованы». О сумках, чемоданах, коробках.",
+            "uk": "розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i11",
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -701,8 +744,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i12",
-      "ordinal": 16,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Сестрі й братові недобре після дороги. Подруга питає: «Are they well?» Відповідайте коротким «ні»",
@@ -746,7 +789,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:word:stiff",
-      "ordinal": 17,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -789,7 +832,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-17:i13",
-      "ordinal": 18,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -817,49 +860,6 @@
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-02:session-17:word:unpacked",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — unpacked",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-02:session-17:word:unpacked:audio"
-      ],
-      "accessibilityLabel": "Картка слова — unpacked",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-17:word:unpacked:audio",
-          "transcript": "unpacked"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-02:session-17:word:unpacked:r1",
-            "targetText": "unpacked",
-            "meaningByLocale": {
-              "ru": "распакованный. They are unpacked — «Они распакованы». О сумках, чемоданах, коробках.",
-              "uk": "розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "unpacked",
-          "definitionByLocale": {
-            "ru": "распакованный. They are unpacked — «Они распакованы». О сумках, чемоданах, коробках.",
-            "uk": "розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки."
-          }
-        }
       },
       "scriptedAlternate": null
     },
@@ -1172,5 +1172,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f79c11a480d00f606bf69321e5422b5e3e609df91d54369b6dbd0331b5c271af"
+  "learnerFingerprint": "0203dad4bb9916f51e64cab0cf2a4bfc04bc86f039f2d8033a120e2cf57229da"
 }

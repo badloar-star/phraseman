@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-51:word:baggy",
+    "correctText": "baggy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-51:i01",
-    "correctText": "It is ineffective.",
+    "correctText": "It is baggy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i02",
-    "correctText": "It is heavy.",
+    "correctText": "It is soft.",
     "correctResponseId": "en:lesson-02:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-51:word:stylish",
+    "correctText": "stylish",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-51:i04",
-    "correctText": "en:lesson-02:session-51:i04:p1=ineffective\nen:lesson-02:session-51:i04:p2=effective\nen:lesson-02:session-51:i04:p3=heavy\nen:lesson-02:session-51:i04:p4=uncertain",
+    "correctText": "en:lesson-02:session-51:i04:p1=baggy\nen:lesson-02:session-51:i04:p2=stylish\nen:lesson-02:session-51:i04:p3=stretchy\nen:lesson-02:session-51:i04:p4=short",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-51:word:stretchy",
+    "correctText": "stretchy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i05",
-    "correctText": "No, she is not.",
+    "correctText": "It is not stretchy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i06",
-    "correctText": "What is ineffective?",
+    "correctText": "What is baggy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i07",
-    "correctText": "It's ineffective.",
+    "correctText": "It's stylish.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-51:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-51:word:plain",
+    "correctText": "plain",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-51:i09",
-    "correctText": "She is uncertain.",
+    "correctText": "It is plain.",
     "correctResponseId": "en:lesson-02:session-51:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i10",
-    "correctText": "en:lesson-02:session-51:i10:p1=heavy\nen:lesson-02:session-51:i10:p2=uncertain\nen:lesson-02:session-51:i10:p3=effective\nen:lesson-02:session-51:i10:p4=ineffective",
+    "correctText": "en:lesson-02:session-51:i10:p1=plain\nen:lesson-02:session-51:i10:p2=stretchy\nen:lesson-02:session-51:i10:p3=stylish\nen:lesson-02:session-51:i10:p4=dark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i11",
-    "correctText": "It is not effective.",
+    "correctText": "It is not stylish.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i12",
-    "correctText": "Is she uncertain?",
+    "correctText": "Is it plain?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i13",
-    "correctText": "It's heavy.",
+    "correctText": "It's plain.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-51:i15",
-    "correctText": "Is it ineffective?",
+    "correctText": "Is it baggy?",
     "correctResponseId": "en:lesson-02:session-51:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i16",
-    "correctText": "en:lesson-02:session-51:i16:p1=uncertain\nen:lesson-02:session-51:i16:p2=ineffective\nen:lesson-02:session-51:i16:p3=heavy\nen:lesson-02:session-51:i16:p4=effective",
+    "correctText": "en:lesson-02:session-51:i16:p1=baggy\nen:lesson-02:session-51:i16:p2=stylish\nen:lesson-02:session-51:i16:p3=stretchy\nen:lesson-02:session-51:i16:p4=plain",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i17",
-    "correctText": "Is it ineffective?",
+    "correctText": "Is it stretchy?",
     "correctResponseId": null
   }
 ]

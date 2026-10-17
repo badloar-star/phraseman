@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-03:session-17:word:ticket",
+    "correctText": "ticket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-17:i01",
-    "correctText": "They are books.",
+    "correctText": "They are tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:word:coin",
+    "correctText": "coin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i02",
-    "correctText": "You are right.",
+    "correctText": "They are coins.",
     "correctResponseId": "en:lesson-03:session-17:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-17:word:card",
+    "correctText": "card",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-17:i03",
-    "correctText": "books",
+    "correctText": "cards",
     "correctResponseId": "en:lesson-03:session-17:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-17:i04",
-    "correctText": "en:lesson-03:session-17:i04:p1=books\nen:lesson-03:session-17:i04:p2=welcome\nen:lesson-03:session-17:i04:p3=safe\nen:lesson-03:session-17:i04:p4=right",
+    "correctText": "en:lesson-03:session-17:i04:p1=tickets\nen:lesson-03:session-17:i04:p2=coins\nen:lesson-03:session-17:i04:p3=cards\nen:lesson-03:session-17:i04:p4=key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:word:pen",
+    "correctText": "pen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i05",
-    "correctText": "The books are here.",
+    "correctText": "Are they pens?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i06",
-    "correctText": "Are they books?",
+    "correctText": "Are they coins?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i07",
-    "correctText": "You are welcome.",
+    "correctText": "The tickets are here.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-17:i09",
-    "correctText": "She is well.",
+    "correctText": "The tickets are new.",
     "correctResponseId": "en:lesson-03:session-17:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-17:i10",
-    "correctText": "en:lesson-03:session-17:i10:p1=well\nen:lesson-03:session-17:i10:p2=door\nen:lesson-03:session-17:i10:p3=book\nen:lesson-03:session-17:i10:p4=books",
+    "correctText": "en:lesson-03:session-17:i10:p1=pens\nen:lesson-03:session-17:i10:p2=pen\nen:lesson-03:session-17:i10:p3=lamp\nen:lesson-03:session-17:i10:p4=coins",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i11",
-    "correctText": "The door is open.",
+    "correctText": "The cards are old.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i12",
-    "correctText": "They are books.",
+    "correctText": "They are cards.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i13",
-    "correctText": "She's well.",
+    "correctText": "They are pens.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i14",
-    "correctText": "books",
+    "correctText": "tickets",
     "correctResponseId": "en:lesson-03:session-17:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-17:i15",
-    "correctText": "The books are safe.",
+    "correctText": "Are they coins?",
     "correctResponseId": "en:lesson-03:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-17:i16",
-    "correctText": "en:lesson-03:session-17:i16:p1=welcome\nen:lesson-03:session-17:i16:p2=safe\nen:lesson-03:session-17:i16:p3=right\nen:lesson-03:session-17:i16:p4=door",
+    "correctText": "en:lesson-03:session-17:i16:p1=cards\nen:lesson-03:session-17:i16:p2=tickets\nen:lesson-03:session-17:i16:p3=pens\nen:lesson-03:session-17:i16:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-17:i17",
-    "correctText": "Are they books?",
+    "correctText": "Are they tickets?",
     "correctResponseId": null
   }
 ]

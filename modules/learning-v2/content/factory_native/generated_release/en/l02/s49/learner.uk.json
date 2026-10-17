@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-49:i01",
+      "interactionId": "en:lesson-02:session-49:word:wrinkled",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wrinkled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-49:word:wrinkled:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wrinkled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-49:word:wrinkled:audio",
+          "transcript": "wrinkled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-49:word:wrinkled:r1",
+            "targetText": "wrinkled",
+            "meaningByLocale": {
+              "ru": "мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.",
+              "uk": "пом’ятий, у складках. It is wrinkled — «Вона пом’ята». Про сорочку, сукню, скатертину, папір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrinkled",
+          "definitionByLocale": {
+            "ru": "мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.",
+            "uk": "пом’ятий, у складках. It is wrinkled — «Вона пом’ята». Про сорочку, сукню, скатертину, папір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У замовленні неправильні дата й адреса. Такий результат прийняти не можна. Скажіть повною фразою, що він неприйнятний",
+      "prompt": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У замовленні неправильні дата й адреса. Такий результат прийняти не можна. Скажіть повною фразою, що він неприйнятний",
+      "accessibilityLabel": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is unacceptable.",
+        "targetPhrase": "It is wrinkled.",
         "localizedMeaning": {
-          "ru": "В заказе неверные дата и адрес. Такой результат принять нельзя. Скажите полной фразой, что он неприемлемый",
-          "uk": "У замовленні неправильні дата й адреса. Такий результат прийняти не можна. Скажіть повною фразою, що він неприйнятний"
+          "ru": "Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.",
+          "uk": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята."
         },
         "orderedTokens": [
           "It",
           "is",
-          "unacceptable"
+          "wrinkled"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-49:i01:tile:d1",
             "correct": false,
-            "testedDimension": "У замовленні неправильні дата й адреса. Такий результат прийняти не можна. Скажіть повною фразою, що він неприйнятний",
+            "testedDimension": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is unacceptable.`",
-              "uk": "тут потрібно `is` — `It is unacceptable.`"
+              "ru": "здесь нужно `is` — `It is wrinkled.`",
+              "uk": "тут потрібно `is` — `It is wrinkled.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про замовлення",
+      "prompt": "Послухайте, що мама каже про рукав",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i02:r1",
-          "text": "It is cheap."
+          "text": "It is torn."
         },
         {
           "responseId": "en:lesson-02:session-49:i02:r2",
-          "text": "It is accurate."
+          "text": "It is worn."
         },
         {
           "responseId": "en:lesson-02:session-49:i02:r3",
-          "text": "It is acceptable."
+          "text": "It is damp."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про замовлення",
+      "accessibilityLabel": "Послухайте, що мама каже про рукав",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i02:audio",
-          "transcript": "It is cheap."
+          "transcript": "It is torn."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-49:i02:r1",
-            "targetText": "It is cheap.",
+            "targetText": "It is torn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-49:i02:r2",
-            "targetText": "It is accurate.",
+            "targetText": "It is worn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-49:i02:r3",
-            "targetText": "It is acceptable.",
+            "targetText": "It is damp.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-49:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про замовлення",
+            "testedDimension": "Послухайте, що мама каже про рукав",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `accurate`.",
-              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `accurate`."
+              "ru": "В записи последнее слово — `torn`, а в этом варианте — `worn`.",
+              "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `worn`."
             }
           },
           {
             "responseId": "en:lesson-02:session-49:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про замовлення",
+            "testedDimension": "Послухайте, що мама каже про рукав",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи последнее слово — `torn`, а в этом варианте — `damp`.",
+              "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `damp`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-49:word:frayed",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frayed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-49:word:frayed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frayed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-49:word:frayed:audio",
+          "transcript": "frayed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-49:word:frayed:r1",
+            "targetText": "frayed",
+            "meaningByLocale": {
+              "ru": "истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.",
+              "uk": "пошарпаний: нитки стирчать по краю. It's frayed — «Тут усе в нитках». Про ремінь, шнурок, рукав, килим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frayed",
+          "definitionByLocale": {
+            "ru": "истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.",
+            "uk": "пошарпаний: нитки стирчать по краю. It's frayed — «Тут усе в нитках». Про ремінь, шнурок, рукав, килим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-49:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточніть, чи цей результат неприйнятний",
+      "prompt": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточніть, чи цей результат неприйнятний",
+      "accessibilityLabel": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, неприемлем ли этот результат",
-          "uk": "Уточніть, чи цей результат неприйнятний"
+          "ru": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+          "uk": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він"
         },
-        "gappedTargetPhrase": "___ it unacceptable?",
+        "gappedTargetPhrase": "___ it frayed?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-49:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточніть, чи цей результат неприйнятний",
+        "testedDimension": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-49:i03:r2",
             "correct": false,
-            "testedDimension": "Уточніть, чи цей результат неприйнятний",
+            "testedDimension": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-49:i03:r3",
             "correct": false,
-            "testedDimension": "Уточніть, чи цей результат неприйнятний",
+            "testedDimension": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it unacceptable?`.",
-              "uk": "Запитання — `Is it unacceptable?`."
+              "ru": "Вопрос — `Is it frayed?`.",
+              "uk": "Питання — `Is it frayed?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-49:i04:p1",
-            "target": "unacceptable",
+            "target": "wrinkled",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "мятый",
+              "uk": "пом’ятий"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i04:p2",
-            "target": "acceptable",
+            "target": "stained",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "в пятнах",
+              "uk": "у плямах"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i04:p3",
-            "target": "cheap",
+            "target": "frayed",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "истрёпанный",
+              "uk": "пошарпаний"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i04:p4",
-            "target": "accurate",
+            "target": "torn",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "порванный",
+              "uk": "порваний"
             }
           }
         ],
         "leftColumn": [
-          "unacceptable",
-          "acceptable",
-          "cheap",
-          "accurate"
+          "wrinkled",
+          "stained",
+          "frayed",
+          "torn"
         ],
         "rightColumn": [
-          "неприйнятний",
-          "прийнятний",
-          "дешевий",
-          "точний"
+          "пом’ятий",
+          "у плямах",
+          "пошарпаний",
+          "порваний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-49:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-49:word:stained",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stained",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-49:word:stained:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stained",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-49:word:stained:audio",
+          "transcript": "stained"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-49:word:stained:r1",
+            "targetText": "stained",
+            "meaningByLocale": {
+              "ru": "в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.",
+              "uk": "у плямах, з плямою. Is it stained? — «Вона в плямах?» Про скатертину, сорочку, килим, зуби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stained",
+          "definitionByLocale": {
+            "ru": "в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.",
+            "uk": "у плямах, з плямою. Is it stained? — «Вона в плямах?» Про скатертину, сорочку, килим, зуби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Мама випрала скатертину. Послухайте, що вона каже про неї, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Мама випрала скатертину. Послухайте, що вона каже про неї, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i05:audio",
-          "transcript": "Yes, it is."
+          "transcript": "It is not stained."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, it is.",
+        "hiddenTargetPhrase": "It is not stained.",
         "orderedTokens": [
-          "Yes,",
-          "it",
-          "is"
+          "It",
+          "is",
+          "not",
+          "stained"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-49:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Мама випрала скатертину. Послухайте, що вона каже про неї, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+              "ru": "здесь нужно `is` — `It is not stained.`",
+              "uk": "тут потрібно `is` — `It is not stained.`"
             }
           }
         ],
@@ -314,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна оглянула кілька зразків і відмовилася прийняти частину роботи. Запитайте, що неприйнятно",
+      "prompt": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна оглянула кілька зразків і відмовилася прийняти частину роботи. Запитайте, що неприйнятно",
+      "accessibilityLabel": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is unacceptable?",
+        "targetPhrase": "What is stained?",
         "localizedMeaning": {
-          "ru": "Анна осмотрела несколько образцов и отказалась принять часть работы. Спросите, что неприемлемо",
-          "uk": "Анна оглянула кілька зразків і відмовилася прийняти частину роботи. Запитайте, що неприйнятно"
+          "ru": "Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.",
+          "uk": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах."
         },
         "orderedTokens": [
           "What",
           "is",
-          "unacceptable"
+          "stained"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -342,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-49:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна оглянула кілька зразків і відмовилася прийняти частину роботи. Запитайте, що неприйнятно",
+            "testedDimension": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is unacceptable?`",
-              "uk": "тут потрібно `What` — `What is unacceptable?`"
+              "ru": "здесь нужно `What` — `What is stained?`",
+              "uk": "тут потрібно `What` — `What is stained?`"
             }
           }
         ],
@@ -358,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У запрошеннях неправильна адреса. Коротко повідомте, що такий результат неприйнятний",
+      "prompt": "Мама показує старий ремінь від сумки зі стирчачими нитками. Скажіть коротко, що він пошарпаний.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i07:audio"
       ],
-      "accessibilityLabel": "У запрошеннях неправильна адреса. Коротко повідомте, що такий результат неприйнятний",
+      "accessibilityLabel": "Мама показує старий ремінь від сумки зі стирчачими нитками. Скажіть коротко, що він пошарпаний.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i07:audio",
-          "transcript": "It's unacceptable."
+          "transcript": "It's frayed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unacceptable.",
+        "targetPhrase": "It's frayed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,15 +521,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»",
+      "prompt": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i08:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-49:i08:r2",
@@ -407,23 +537,23 @@
         },
         {
           "responseId": "en:lesson-02:session-49:i08:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В исправленном варианте дата и адрес точные. На «Are they accurate?» дополните короткое «да»",
-          "uk": "У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»"
+          "ru": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+          "uk": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Yes, they ___.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-49:i08:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-49:i08:r2",
@@ -431,27 +561,27 @@
           },
           {
             "responseId": "en:lesson-02:session-49:i08:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»",
+        "testedDimension": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-49:i08:r2",
             "correct": false,
-            "testedDimension": "У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»",
+            "testedDimension": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
             "feedbackByLocale": {
-              "ru": "С `they` нужно `are`.",
-              "uk": "З `they` потрібно `are`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-49:i08:r3",
             "correct": false,
-            "testedDimension": "У виправленому варіанті дата й адреса точні. На «Are they accurate?» доповніть коротку відповідь «так»",
+            "testedDimension": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, they are`.",
-              "uk": "Відповідь — `Yes, they are`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -459,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-49:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-49:word:smelly",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Картка слова — smelly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-49:word:smelly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — smelly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-49:word:smelly:audio",
+          "transcript": "smelly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-49:word:smelly:r1",
+            "targetText": "smelly",
+            "meaningByLocale": {
+              "ru": "вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.",
+              "uk": "смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smelly",
+          "definitionByLocale": {
+            "ru": "вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.",
+            "uk": "смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що мама каже про кросівки після дощу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i09:r1",
-          "text": "Are they accurate?"
+          "text": "They are smelly."
         },
         {
           "responseId": "en:lesson-02:session-49:i09:r2",
-          "text": "Are they cheap?"
+          "text": "They are dirty."
         },
         {
           "responseId": "en:lesson-02:session-49:i09:r3",
-          "text": "Are they acceptable?"
+          "text": "They are damp."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте, що мама каже про кросівки після дощу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i09:audio",
-          "transcript": "Are they accurate?"
+          "transcript": "They are smelly."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-49:i09:r1",
-            "targetText": "Are they accurate?",
+            "targetText": "They are smelly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-49:i09:r2",
-            "targetText": "Are they cheap?",
+            "targetText": "They are dirty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-49:i09:r3",
-            "targetText": "Are they acceptable?",
+            "targetText": "They are damp.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-49:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте, що мама каже про кросівки після дощу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `cheap`."
+              "ru": "В записи последнее слово — `smelly`, а в этом варианте — `dirty`.",
+              "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `dirty`."
             }
           },
           {
             "responseId": "en:lesson-02:session-49:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте, що мама каже про кросівки після дощу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи последнее слово — `smelly`, а в этом варианте — `damp`.",
+              "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `damp`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -550,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-49:i10:p1",
-            "target": "cheap",
+            "target": "smelly",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "вонючий",
+              "uk": "смердючий"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i10:p2",
-            "target": "accurate",
+            "target": "stained",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "в пятнах",
+              "uk": "у плямах"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i10:p3",
-            "target": "acceptable",
+            "target": "wrinkled",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "мятый",
+              "uk": "пом’ятий"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i10:p4",
-            "target": "unacceptable",
+            "target": "clean",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "чистый",
+              "uk": "чистий"
             }
           }
         ],
         "leftColumn": [
-          "cheap",
-          "accurate",
-          "acceptable",
-          "unacceptable"
+          "smelly",
+          "stained",
+          "wrinkled",
+          "clean"
         ],
         "rightColumn": [
-          "дешевий",
-          "точний",
-          "прийнятний",
-          "неприйнятний"
+          "смердючий",
+          "у плямах",
+          "пом’ятий",
+          "чистий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Ви попрасували дві сорочки. Послухайте, що каже мама, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Ви попрасували дві сорочки. Послухайте, що каже мама, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i11:audio",
-          "transcript": "It is not acceptable."
+          "transcript": "They are not wrinkled."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not acceptable.",
+        "hiddenTargetPhrase": "They are not wrinkled.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "acceptable"
+          "wrinkled"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-49:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Ви попрасували дві сорочки. Послухайте, що каже мама, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not acceptable.`",
-              "uk": "тут потрібно `is` — `It is not acceptable.`"
+              "ru": "здесь нужно `are` — `They are not wrinkled.`",
+              "uk": "тут потрібно `are` — `They are not wrinkled.`"
             }
           }
         ],
@@ -657,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна дізналася ціну нового друку. Запитайте, чи він недорогий",
+      "prompt": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна дізналася ціну нового друку. Запитайте, чи він недорогий",
+      "accessibilityLabel": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it cheap?",
+        "targetPhrase": "Is it smelly?",
         "localizedMeaning": {
-          "ru": "Анна узнала цену новой печати. Спросите, недорогая ли она",
-          "uk": "Анна дізналася ціну нового друку. Запитайте, чи він недорогий"
+          "ru": "Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.",
+          "uk": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне."
         },
         "orderedTokens": [
           "Is",
           "it",
-          "cheap"
+          "smelly"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -685,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-49:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна дізналася ціну нового друку. Запитайте, чи він недорогий",
+            "testedDimension": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it cheap?`",
-              "uk": "тут потрібно `Is` — `Is it cheap?`"
+              "ru": "здесь нужно `Is` — `Is it smelly?`",
+              "uk": "тут потрібно `Is` — `Is it smelly?`"
             }
           }
         ],
@@ -701,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви звірили виправлені дату й адресу. Коротко повідомте, що вони точні",
+      "prompt": "Ви дістали з рюкзака шкарпетки після походу. Скажіть коротко, що вони погано пахнуть.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i13:audio"
       ],
-      "accessibilityLabel": "Ви звірили виправлені дату й адресу. Коротко повідомте, що вони точні",
+      "accessibilityLabel": "Ви дістали з рюкзака шкарпетки після походу. Скажіть коротко, що вони погано пахнуть.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i13:audio",
-          "transcript": "They're accurate."
+          "transcript": "They're smelly."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're accurate.",
+        "targetPhrase": "They're smelly.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна",
+      "prompt": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i14:r1",
@@ -755,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна",
+      "accessibilityLabel": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В старом варианте неправильно указан адрес. Скажите, что он не точный",
-          "uk": "У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна"
+          "ru": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+          "uk": "Скатертину відпрали. Скажіть, що вона більше не в плямах"
         },
-        "gappedTargetPhrase": "It ___ not accurate.",
+        "gappedTargetPhrase": "It ___ not stained.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-49:i14:r1",
@@ -777,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна",
+        "testedDimension": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-49:i14:r2",
             "correct": false,
-            "testedDimension": "У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна",
+            "testedDimension": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -791,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-49:i14:r3",
             "correct": false,
-            "testedDimension": "У старому варіанті неправильно вказано адресу. Скажіть, що вона не точна",
+            "testedDimension": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not accurate`.",
-              "uk": "Фраза — `It is not accurate`."
+              "ru": "Фраза — `It is not stained`.",
+              "uk": "Фраза — `It is not stained`."
             }
           }
         ]
@@ -803,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте запитання мами",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i15:r1",
-          "text": "Is it unacceptable?"
+          "text": "Is it frayed?"
         },
         {
           "responseId": "en:lesson-02:session-49:i15:r2",
-          "text": "Is it acceptable?"
+          "text": "Is it stained?"
         },
         {
           "responseId": "en:lesson-02:session-49:i15:r3",
-          "text": "Is it accurate?"
+          "text": "Is it wrinkled?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте запитання мами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i15:audio",
-          "transcript": "Is it unacceptable?"
+          "transcript": "Is it frayed?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-49:i15:r1",
-            "targetText": "Is it unacceptable?",
+            "targetText": "Is it frayed?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-49:i15:r2",
-            "targetText": "Is it acceptable?",
+            "targetText": "Is it stained?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-49:i15:r3",
-            "targetText": "Is it accurate?",
+            "targetText": "Is it wrinkled?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-49:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання мами",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unacceptable`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `unacceptable`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи последнее слово — `frayed`, а в этом варианте — `stained`.",
+              "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `stained`."
             }
           },
           {
             "responseId": "en:lesson-02:session-49:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання мами",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unacceptable`, а в этом варианте — `accurate`.",
-              "uk": "У записі останнє слово — `unacceptable`, а в цьому варіанті — `accurate`."
+              "ru": "В записи последнее слово — `frayed`, а в этом варианте — `wrinkled`.",
+              "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `wrinkled`."
             }
           }
         ],
@@ -879,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-49:i16:p1",
-            "target": "accurate",
+            "target": "wrinkled",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "мятый",
+              "uk": "пом’ятий"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i16:p2",
-            "target": "unacceptable",
+            "target": "stained",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "в пятнах",
+              "uk": "у плямах"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i16:p3",
-            "target": "cheap",
+            "target": "frayed",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "истрёпанный",
+              "uk": "пошарпаний"
             }
           },
           {
             "pairId": "en:lesson-02:session-49:i16:p4",
-            "target": "acceptable",
+            "target": "smelly",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "вонючий",
+              "uk": "смердючий"
             }
           }
         ],
         "leftColumn": [
-          "accurate",
-          "unacceptable",
-          "cheap",
-          "acceptable"
+          "wrinkled",
+          "stained",
+          "frayed",
+          "smelly"
         ],
         "rightColumn": [
-          "точний",
-          "неприйнятний",
-          "дешевий",
-          "прийнятний"
+          "пом’ятий",
+          "у плямах",
+          "пошарпаний",
+          "смердючий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-49:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому зразку Анна помітила дефект. Запитайте, чи цей результат неприйнятний",
+      "prompt": "Мама дістає білу блузку з шафи. Запитайте її, чи є на ній плями.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i17:audio"
       ],
-      "accessibilityLabel": "В іншому зразку Анна помітила дефект. Запитайте, чи цей результат неприйнятний",
+      "accessibilityLabel": "Мама дістає білу блузку з шафи. Запитайте її, чи є на ній плями.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-49:i17:audio",
-          "transcript": "Is it unacceptable?"
+          "transcript": "Is it stained?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it unacceptable?",
+        "targetPhrase": "Is it stained?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "20c92189673956d8ba4bce821661432cf1c1d6b8228867c46cd476b19e7e2a31"
+  "learnerFingerprint": "d46f735f13d3e85830d32bc3135944286d11042cc2039fa865a3677f8422d653"
 }

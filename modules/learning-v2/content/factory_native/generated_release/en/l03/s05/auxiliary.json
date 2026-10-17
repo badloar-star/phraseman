@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-05:intro1:r2": {
-          "ru": "Перед `map` в этой фразе нужно `a`.",
-          "uk": "Перед `map` у цій фразі потрібно `a`."
+          "ru": "Здесь пропало a: It is a wall.",
+          "uk": "Тут пропало a: It is a wall."
         },
         "en:lesson-03:session-05:intro1:r3": {
-          "ru": "Перед согласным звуком в `map` нужно `a`, не `an`.",
-          "uk": "Перед приголосним звуком у `map` потрібно `a`, не `an`."
+          "ru": "Между It и a нужно is: It is a wall.",
+          "uk": "Між It і a потрібне is: It is a wall."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-05:intro2:r2": {
-          "ru": "В названии `a map` пропало `a`.",
-          "uk": "У назві `a map` зникло `a`."
+          "ru": "После not сохраняем a: It is not a floor.",
+          "uk": "Після not зберігаємо a: It is not a floor."
         },
         "en:lesson-03:session-05:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
-          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+          "ru": "Перед not нужно is: It is not a floor.",
+          "uk": "Перед not потрібне is: It is not a floor."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-05:intro3:r2": {
-          "ru": "Перед отдельным `warm` здесь не нужно `a`: вы описываете температуру.",
-          "uk": "Перед окремим `warm` тут не потрібно `a`: ви описуєте температуру."
+          "ru": "Здесь пропало a: It's a ceiling.",
+          "uk": "Тут пропало a: It's a ceiling."
         },
         "en:lesson-03:session-05:intro3:r3": {
-          "ru": "С `It` нужно `is`.",
-          "uk": "З `It` потрібно `is`."
+          "ru": "Потолок один, нужно It's: It's a ceiling.",
+          "uk": "Стеля одна, потрібне It's: It's a ceiling."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6298bee5871ccf01ca2b75b5f03bb807cfaa5d00a0ac8186e3459092c50ee6e2"
+  "auxiliaryFingerprint": "8fd88f3f4f9a15a36b7ec35888dd6ad26492dfc649916788dc1b332e91dcf9ac"
 }

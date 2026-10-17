@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-03:session-24:word:envelope",
+    "correctText": "envelope",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-24:i01",
-    "correctText": "They are books.",
+    "correctText": "They are envelopes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:word:label",
+    "correctText": "label",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i02",
-    "correctText": "The boxes are here.",
+    "correctText": "Is it a label?",
     "correctResponseId": "en:lesson-03:session-24:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-24:word:ribbon",
+    "correctText": "ribbon",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-24:i03",
-    "correctText": "maps",
+    "correctText": "ribbons",
     "correctResponseId": "en:lesson-03:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i04",
-    "correctText": "en:lesson-03:session-24:i04:p1=books\nen:lesson-03:session-24:i04:p2=boxes\nen:lesson-03:session-24:i04:p3=bags\nen:lesson-03:session-24:i04:p4=maps",
+    "correctText": "en:lesson-03:session-24:i04:p1=envelopes\nen:lesson-03:session-24:i04:p2=labels\nen:lesson-03:session-24:i04:p3=ribbons\nen:lesson-03:session-24:i04:p4=card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-24:word:sticker",
+    "correctText": "sticker",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i05",
-    "correctText": "The pens are inside.",
+    "correctText": "They are stickers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i06",
-    "correctText": "Where are the cups?",
+    "correctText": "Is it a label?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i07",
-    "correctText": "They are bags.",
+    "correctText": "It is an envelope.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i08",
-    "correctText": "are",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i09",
-    "correctText": "They are cups.",
+    "correctText": "They are tickets.",
     "correctResponseId": "en:lesson-03:session-24:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i10",
-    "correctText": "en:lesson-03:session-24:i10:p1=pens\nen:lesson-03:session-24:i10:p2=cups\nen:lesson-03:session-24:i10:p3=tickets\nen:lesson-03:session-24:i10:p4=boxes",
+    "correctText": "en:lesson-03:session-24:i10:p1=tickets\nen:lesson-03:session-24:i10:p2=pens\nen:lesson-03:session-24:i10:p3=watches\nen:lesson-03:session-24:i10:p4=stories",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i11",
-    "correctText": "The bags are here.",
+    "correctText": "The stickers are new.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i12",
-    "correctText": "Where are the maps?",
+    "correctText": "They are ribbons.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i13",
-    "correctText": "They are pens.",
+    "correctText": "It is a card.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i14",
-    "correctText": "a",
+    "correctText": "labels",
     "correctResponseId": "en:lesson-03:session-24:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i15",
-    "correctText": "The tickets are valid.",
+    "correctText": "Are they cities?",
     "correctResponseId": "en:lesson-03:session-24:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-24:i16",
-    "correctText": "en:lesson-03:session-24:i16:p1=books\nen:lesson-03:session-24:i16:p2=maps\nen:lesson-03:session-24:i16:p3=cups\nen:lesson-03:session-24:i16:p4=tickets",
+    "correctText": "en:lesson-03:session-24:i16:p1=bowls\nen:lesson-03:session-24:i16:p2=plates\nen:lesson-03:session-24:i16:p3=cups\nen:lesson-03:session-24:i16:p4=box",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-24:i17",
-    "correctText": "Where are the bags?",
+    "correctText": "Are the envelopes here?",
     "correctResponseId": null
   }
 ]

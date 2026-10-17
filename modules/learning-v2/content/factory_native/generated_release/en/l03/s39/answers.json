@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-39:i01",
-    "correctText": "Those are parks.",
+    "correctText": "These bags are light.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i02",
-    "correctText": "bottles",
+    "correctText": "Are those pears ripe?",
     "correctResponseId": "en:lesson-03:session-39:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i03",
-    "correctText": "bottles",
+    "correctText": "bananas",
     "correctResponseId": "en:lesson-03:session-39:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i04",
-    "correctText": "en:lesson-03:session-39:i04:p1=bottles\nen:lesson-03:session-39:i04:p2=brave\nen:lesson-03:session-39:i04:p3=relevant\nen:lesson-03:session-39:i04:p4=parks",
+    "correctText": "en:lesson-03:session-39:i04:p1=grape\nen:lesson-03:session-39:i04:p2=lemon\nen:lesson-03:session-39:i04:p3=onion\nen:lesson-03:session-39:i04:p4=cucumber",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i05",
-    "correctText": "These are bottles.",
+    "correctText": "That orange is sweet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i06",
-    "correctText": "Those bottles are there.",
+    "correctText": "This is a peach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:word:grape",
+    "correctText": "grape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i07",
-    "correctText": "She's brave.",
+    "correctText": "grape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:word:lemon",
+    "correctText": "lemon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i08",
-    "correctText": "These",
+    "correctText": "lemon",
     "correctResponseId": "en:lesson-03:session-39:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i09",
-    "correctText": "It is relevant.",
+    "correctText": "Those grapes are ripe.",
     "correctResponseId": "en:lesson-03:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i10",
-    "correctText": "en:lesson-03:session-39:i10:p1=bottles\nen:lesson-03:session-39:i10:p2=parks\nen:lesson-03:session-39:i10:p3=these\nen:lesson-03:session-39:i10:p4=those",
+    "correctText": "en:lesson-03:session-39:i10:p1=grape\nen:lesson-03:session-39:i10:p2=apple\nen:lesson-03:session-39:i10:p3=banana\nen:lesson-03:session-39:i10:p4=pear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i11",
-    "correctText": "These parks are here.",
+    "correctText": "Are these lemons cheap?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i12",
-    "correctText": "These bottles are here.",
+    "correctText": "This is a lemon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:word:onion",
+    "correctText": "onion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i13",
-    "correctText": "It's relevant.",
+    "correctText": "onion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:word:cucumber",
+    "correctText": "cucumber",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i14",
-    "correctText": "are",
+    "correctText": "cucumber",
     "correctResponseId": "en:lesson-03:session-39:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i15",
-    "correctText": "She is brave.",
+    "correctText": "Are those onions fresh?",
     "correctResponseId": "en:lesson-03:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i16",
-    "correctText": "en:lesson-03:session-39:i16:p1=bottles\nen:lesson-03:session-39:i16:p2=brave\nen:lesson-03:session-39:i16:p3=relevant\nen:lesson-03:session-39:i16:p4=parks",
+    "correctText": "en:lesson-03:session-39:i16:p1=cucumber\nen:lesson-03:session-39:i16:p2=onion\nen:lesson-03:session-39:i16:p3=lemon\nen:lesson-03:session-39:i16:p4=grape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i17",
-    "correctText": "Those are bottles.",
+    "correctText": "These cucumbers are fresh.",
     "correctResponseId": null
   }
 ]

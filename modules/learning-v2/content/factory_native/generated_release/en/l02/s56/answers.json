@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-56:word:hectic",
+    "correctText": "hectic",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-56:i01",
-    "correctText": "It is unacceptable.",
+    "correctText": "It is hectic.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i02",
-    "correctText": "It is ineffective.",
+    "correctText": "It is crowded.",
     "correctResponseId": "en:lesson-02:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-56:word:restless",
+    "correctText": "restless",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-56:i04",
-    "correctText": "en:lesson-02:session-56:i04:p1=unacceptable\nen:lesson-02:session-56:i04:p2=effective\nen:lesson-02:session-56:i04:p3=ineffective\nen:lesson-02:session-56:i04:p4=fair",
+    "correctText": "en:lesson-02:session-56:i04:p1=hectic\nen:lesson-02:session-56:i04:p2=restless\nen:lesson-02:session-56:i04:p3=cranky\nen:lesson-02:session-56:i04:p4=crowded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-56:word:cranky",
+    "correctText": "cranky",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i05",
-    "correctText": "No, he is not.",
+    "correctText": "He is not cranky.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i06",
-    "correctText": "Who is reliable?",
+    "correctText": "Who is restless?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i07",
-    "correctText": "It's effective.",
+    "correctText": "It's hectic.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-56:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-56:word:tedious",
+    "correctText": "tedious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-56:i09",
-    "correctText": "Is he unreliable?",
+    "correctText": "It is tedious.",
     "correctResponseId": "en:lesson-02:session-56:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-56:i10",
-    "correctText": "en:lesson-02:session-56:i10:p1=unfair\nen:lesson-02:session-56:i10:p2=reliable\nen:lesson-02:session-56:i10:p3=unreliable\nen:lesson-02:session-56:i10:p4=unacceptable",
+    "correctText": "en:lesson-02:session-56:i10:p1=tedious\nen:lesson-02:session-56:i10:p2=cranky\nen:lesson-02:session-56:i10:p3=restless\nen:lesson-02:session-56:i10:p4=patient",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i11",
-    "correctText": "It is not fair.",
+    "correctText": "He is not restless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i12",
-    "correctText": "Is it ineffective?",
+    "correctText": "Is it tedious?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i13",
-    "correctText": "He's unreliable.",
+    "correctText": "He's cranky.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-56:i15",
-    "correctText": "Is it unfair?",
+    "correctText": "Is it hectic?",
     "correctResponseId": "en:lesson-02:session-56:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-56:i16",
-    "correctText": "en:lesson-02:session-56:i16:p1=fair\nen:lesson-02:session-56:i16:p2=effective\nen:lesson-02:session-56:i16:p3=reliable\nen:lesson-02:session-56:i16:p4=ineffective",
+    "correctText": "en:lesson-02:session-56:i16:p1=hectic\nen:lesson-02:session-56:i16:p2=restless\nen:lesson-02:session-56:i16:p3=cranky\nen:lesson-02:session-56:i16:p4=tedious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-56:i17",
-    "correctText": "Is he reliable?",
+    "correctText": "Is it hectic?",
     "correctResponseId": null
   }
 ]

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-37:intro1:r2": {
-          "ru": "`cars` — несколько машин. Одна — `car`.",
-          "uk": "`cars` — кілька машин. Одна — `car`."
+          "ru": "Здание рядом с вами, а that говорим о далёком: This building is new.",
+          "uk": "Будівля поруч із вами, а that кажемо про далеке: This building is new."
         },
         "en:lesson-03:session-37:intro1:r3": {
-          "ru": "`cart` — тележка. Машина — `car`.",
-          "uk": "`cart` — візок. Машина — `car`."
+          "ru": "Здание одно, поэтому не these, а this: This building is new.",
+          "uk": "Будівля одна, тому не these, а this: This building is new."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-37:intro2:r2": {
-          "ru": "`Those` — несколько. Здесь одна машина дальше: `That car`.",
-          "uk": "`Those` — кілька. Тут одна машина далі: `That car`."
+          "ru": "Входов несколько, поэтому не this, а these: These entrances are open.",
+          "uk": "Входів кілька, тому не this, а these: These entrances are open."
         },
         "en:lesson-03:session-37:intro2:r3": {
-          "ru": "Машина одна: `That car is outside`.",
-          "uk": "Машина одна: `That car is outside`."
+          "ru": "С these нужно are: These entrances are open.",
+          "uk": "З these потрібно are: These entrances are open."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-37:intro3:r2": {
-          "ru": "`sleepy` — сонный. Олегу не хватает общения: `lonely`.",
-          "uk": "`sleepy` — сонний. Олегові бракує спілкування: `lonely`."
+          "ru": "Выходы далеко, а these говорим о том, что рядом: Those exits are closed.",
+          "uk": "Виходи далеко, а these кажемо про те, що поруч: Those exits are closed."
         },
         "en:lesson-03:session-37:intro3:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібне `is`."
+          "ru": "Выходов несколько, поэтому нужно exits с s.",
+          "uk": "Виходів кілька, тому потрібно exits з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "39502ea95eaba24e53b92d80b83c8c733f86f011ea5421a299d02de28c70f2f3"
+  "auxiliaryFingerprint": "444f6becffe066ea9cfc1c263d66af48f5c9e8a4911993f434608d240fe03de7"
 }

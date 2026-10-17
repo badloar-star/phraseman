@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-36:intro1:r2": {
-          "ru": "`child` — один ребёнок; несколько — `children`.",
-          "uk": "`child` — одна дитина; кілька — `children`."
+          "ru": "Дерево стоит далеко, за стеклом, а this говорим о том, что рядом: That is a tree.",
+          "uk": "Дерево стоїть далеко, за склом, а this кажемо про те, що поруч: That is a tree."
         },
         "en:lesson-03:session-36:intro1:r3": {
-          "ru": "`children` уже означает «дети», дополнительное `s` не нужно.",
-          "uk": "`children` уже означає «діти», додаткове `s` не потрібне."
+          "ru": "Перед tree нужно a: That is a tree.",
+          "uk": "Перед tree потрібно a: That is a tree."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-36:intro2:r2": {
-          "ru": "`That` — один. Детей несколько и они дальше: `Those`.",
-          "uk": "`That` — один. Дітей кілька й вони далі: `Those`."
+          "ru": "Цветы стоят далеко, за стеклом, а these говорим о том, что рядом: Those flowers are fresh.",
+          "uk": "Квіти стоять далеко, за склом, а these кажемо про те, що поруч: Those flowers are fresh."
         },
         "en:lesson-03:session-36:intro2:r3": {
-          "ru": "Детей несколько: нужно `are`.",
-          "uk": "Дітей кілька: потрібно `are`."
+          "ru": "Цветов несколько, поэтому нужно flowers с s.",
+          "uk": "Квітів кілька, тому потрібно flowers з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-36:intro3:r2": {
-          "ru": "`formal` — «официальная». Здесь встреча непринуждённая: `informal`.",
-          "uk": "`formal` — «офіційна». Тут зустріч невимушена: `informal`."
+          "ru": "С those нужно Are: Are those bicycles expensive?",
+          "uk": "З those потрібно Are: Are those bicycles expensive?"
         },
         "en:lesson-03:session-36:intro3:r3": {
-          "ru": "Речь об одной встрече: `It is informal`.",
-          "uk": "Ідеться про одну зустріч: `It is informal`."
+          "ru": "Велосипедов несколько, поэтому не that, а those: Are those bicycles expensive?",
+          "uk": "Велосипедів кілька, тому не that, а those: Are those bicycles expensive?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d909083825c19d7a700c5d375c28f9d8b15da460ba6cb049aafc71dbd0b04fe5"
+  "auxiliaryFingerprint": "e7d09903b365205a64a15b1bbe813f9aafad210e04375d5045d73b685860b122"
 }

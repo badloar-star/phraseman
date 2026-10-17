@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-30:i01",
-    "correctText": "The cups are missing.",
+    "correctText": "This is a mirror.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i02",
-    "correctText": "windows",
+    "correctText": "That is a hanger.",
     "correctResponseId": "en:lesson-03:session-30:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i03",
-    "correctText": "windows",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i04",
-    "correctText": "en:lesson-03:session-30:i04:p1=windows\nen:lesson-03:session-30:i04:p2=cups\nen:lesson-03:session-30:i04:p3=alive\nen:lesson-03:session-30:i04:p4=dead",
+    "correctText": "en:lesson-03:session-30:i04:p1=sweater\nen:lesson-03:session-30:i04:p2=scarf\nen:lesson-03:session-30:i04:p3=glove\nen:lesson-03:session-30:i04:p4=vest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i05",
-    "correctText": "The windows are open.",
+    "correctText": "This is not a hanger.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i06",
-    "correctText": "Windows are important.",
+    "correctText": "Is that a bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:word:sweater",
+    "correctText": "sweater",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i07",
-    "correctText": "It's alive.",
+    "correctText": "sweater",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:word:scarf",
+    "correctText": "scarf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i08",
-    "correctText": "Windows",
+    "correctText": "scarf",
     "correctResponseId": "en:lesson-03:session-30:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i09",
-    "correctText": "It is dead.",
+    "correctText": "This is not a sweater.",
     "correctResponseId": "en:lesson-03:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i10",
-    "correctText": "en:lesson-03:session-30:i10:p1=missing\nen:lesson-03:session-30:i10:p2=elsewhere\nen:lesson-03:session-30:i10:p3=windows\nen:lesson-03:session-30:i10:p4=cups",
+    "correctText": "en:lesson-03:session-30:i10:p1=sweater\nen:lesson-03:session-30:i10:p2=mirror\nen:lesson-03:session-30:i10:p3=shelf\nen:lesson-03:session-30:i10:p4=hanger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i11",
-    "correctText": "The cups are elsewhere.",
+    "correctText": "That is not a scarf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i12",
-    "correctText": "Where are the windows?",
+    "correctText": "This is a sweater.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:word:glove",
+    "correctText": "glove",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i13",
-    "correctText": "They're elsewhere.",
+    "correctText": "glove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:word:vest",
+    "correctText": "vest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i14",
-    "correctText": "are",
+    "correctText": "vest",
     "correctResponseId": "en:lesson-03:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i15",
-    "correctText": "It is alive.",
+    "correctText": "Is that a glove?",
     "correctResponseId": "en:lesson-03:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-30:i16",
-    "correctText": "en:lesson-03:session-30:i16:p1=alive\nen:lesson-03:session-30:i16:p2=dead\nen:lesson-03:session-30:i16:p3=missing\nen:lesson-03:session-30:i16:p4=elsewhere",
+    "correctText": "en:lesson-03:session-30:i16:p1=vest\nen:lesson-03:session-30:i16:p2=glove\nen:lesson-03:session-30:i16:p3=scarf\nen:lesson-03:session-30:i16:p4=sweater",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-30:i17",
-    "correctText": "Windows are important.",
+    "correctText": "That is a vest.",
     "correctResponseId": null
   }
 ]

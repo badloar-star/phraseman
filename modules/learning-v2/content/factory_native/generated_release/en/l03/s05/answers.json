@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-03:session-05:word:wall",
+    "correctText": "wall",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-05:i01",
-    "correctText": "It is a map.",
+    "correctText": "It is a wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:word:floor",
+    "correctText": "floor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i02",
-    "correctText": "It is hot.",
+    "correctText": "It is a crack.",
     "correctResponseId": "en:lesson-03:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:word:crack",
+    "correctText": "crack",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i03",
@@ -16,22 +31,27 @@
   },
   {
     "interactionId": "en:lesson-03:session-05:i04",
-    "correctText": "en:lesson-03:session-05:i04:p1=map\nen:lesson-03:session-05:i04:p2=cold\nen:lesson-03:session-05:i04:p3=hot\nen:lesson-03:session-05:i04:p4=warm",
+    "correctText": "en:lesson-03:session-05:i04:p1=wall\nen:lesson-03:session-05:i04:p2=floor\nen:lesson-03:session-05:i04:p3=ceiling\nen:lesson-03:session-05:i04:p4=crack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:word:ceiling",
+    "correctText": "ceiling",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i05",
-    "correctText": "It is a map.",
+    "correctText": "It is a ceiling.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i06",
-    "correctText": "What is it?",
+    "correctText": "Is it a floor?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i07",
-    "correctText": "It's cold.",
+    "correctText": "It's a ceiling.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-05:i09",
-    "correctText": "Is it unfair?",
+    "correctText": "Is it a wall?",
     "correctResponseId": "en:lesson-03:session-05:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-05:i10",
-    "correctText": "en:lesson-03:session-05:i10:p1=real\nen:lesson-03:session-05:i10:p2=unfair\nen:lesson-03:session-05:i10:p3=map\nen:lesson-03:session-05:i10:p4=book",
+    "correctText": "en:lesson-03:session-05:i10:p1=crack\nen:lesson-03:session-05:i10:p2=wall\nen:lesson-03:session-05:i10:p3=door\nen:lesson-03:session-05:i10:p4=window",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i11",
-    "correctText": "It is warm.",
+    "correctText": "It is not a wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i12",
-    "correctText": "Is it a map?",
+    "correctText": "It is not a wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i13",
-    "correctText": "It's unfair.",
+    "correctText": "It's a crack.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i14",
-    "correctText": "a",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-03:session-05:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-05:i15",
-    "correctText": "Is it real?",
+    "correctText": "It is a crack.",
     "correctResponseId": "en:lesson-03:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-05:i16",
-    "correctText": "en:lesson-03:session-05:i16:p1=map\nen:lesson-03:session-05:i16:p2=bag\nen:lesson-03:session-05:i16:p3=hot\nen:lesson-03:session-05:i16:p4=cold",
+    "correctText": "en:lesson-03:session-05:i16:p1=floor\nen:lesson-03:session-05:i16:p2=ceiling\nen:lesson-03:session-05:i16:p3=key\nen:lesson-03:session-05:i16:p4=lock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-05:i17",
-    "correctText": "It's a map.",
+    "correctText": "Is it a floor?",
     "correctResponseId": null
   }
 ]

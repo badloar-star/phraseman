@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-26:i01",
-    "correctText": "They are boxes.",
+    "correctText": "That is a door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i02",
-    "correctText": "cats",
+    "correctText": "That is a window.",
     "correctResponseId": "en:lesson-03:session-26:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i03",
-    "correctText": "cats",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-26:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i04",
-    "correctText": "en:lesson-03:session-26:i04:p1=cats\nen:lesson-03:session-26:i04:p2=boxes\nen:lesson-03:session-26:i04:p3=bored\nen:lesson-03:session-26:i04:p4=confused",
+    "correctText": "en:lesson-03:session-26:i04:p1=screen\nen:lesson-03:session-26:i04:p2=projector\nen:lesson-03:session-26:i04:p3=speaker\nen:lesson-03:session-26:i04:p4=banner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i05",
-    "correctText": "The cats are inside.",
+    "correctText": "That is not a table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i06",
-    "correctText": "Cats are different.",
+    "correctText": "This is a chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:word:screen",
+    "correctText": "screen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i07",
-    "correctText": "I'm worried.",
+    "correctText": "screen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:word:projector",
+    "correctText": "projector",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i08",
-    "correctText": "Cats",
+    "correctText": "projector",
     "correctResponseId": "en:lesson-03:session-26:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i09",
-    "correctText": "He is confused.",
+    "correctText": "That is not a screen.",
     "correctResponseId": "en:lesson-03:session-26:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i10",
-    "correctText": "en:lesson-03:session-26:i10:p1=worried\nen:lesson-03:session-26:i10:p2=careless\nen:lesson-03:session-26:i10:p3=cats\nen:lesson-03:session-26:i10:p4=boxes",
+    "correctText": "en:lesson-03:session-26:i10:p1=screen\nen:lesson-03:session-26:i10:p2=door\nen:lesson-03:session-26:i10:p3=window\nen:lesson-03:session-26:i10:p4=shelf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i11",
-    "correctText": "The boxes are here.",
+    "correctText": "This is not a projector.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i12",
-    "correctText": "Where are the cats?",
+    "correctText": "That is a screen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:word:speaker",
+    "correctText": "speaker",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i13",
-    "correctText": "He's bored.",
+    "correctText": "speaker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:word:banner",
+    "correctText": "banner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i14",
-    "correctText": "are",
+    "correctText": "banner",
     "correctResponseId": "en:lesson-03:session-26:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i15",
-    "correctText": "He is careless.",
+    "correctText": "This is not a speaker.",
     "correctResponseId": "en:lesson-03:session-26:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-26:i16",
-    "correctText": "en:lesson-03:session-26:i16:p1=bored\nen:lesson-03:session-26:i16:p2=confused\nen:lesson-03:session-26:i16:p3=worried\nen:lesson-03:session-26:i16:p4=careless",
+    "correctText": "en:lesson-03:session-26:i16:p1=banner\nen:lesson-03:session-26:i16:p2=speaker\nen:lesson-03:session-26:i16:p3=projector\nen:lesson-03:session-26:i16:p4=screen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-26:i17",
-    "correctText": "Cats are different.",
+    "correctText": "That is a banner.",
     "correctResponseId": null
   }
 ]

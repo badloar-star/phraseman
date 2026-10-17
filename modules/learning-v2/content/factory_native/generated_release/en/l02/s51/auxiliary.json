@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-51:intro1:r2": {
-          "ru": "Это «эффективный». В условии способ не помогает достичь цели.",
-          "uk": "Це «ефективний». За умовою спосіб не допомагає досягти мети."
+          "ru": "С not выходит «Она сидит как надо». А рукава закрывают пальцы: It is baggy.",
+          "uk": "З not виходить «Вона сидить як треба». А рукави закривають пальці: It is baggy."
         },
         "en:lesson-02:session-51:intro1:r3": {
-          "ru": "Между `It` и `ineffective` нужно `is`.",
-          "uk": "Між `It` і `ineffective` потрібно `is`."
+          "ru": "Между It и baggy нужно is: It is baggy.",
+          "uk": "Між It і baggy потрібно is: It is baggy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-51:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-51:intro2:r2": {
-          "ru": "Это отрицает неэффективность. По условию способ не помогает.",
-          "uk": "Це заперечує неефективність. За умовою спосіб не допомагає."
+          "ru": "Так звучит утверждение «Она стильная». Чтобы спросить, ставим Is вперёд: Is it stylish?",
+          "uk": "Так звучить твердження «Вона стильна». Щоб запитати, ставимо Is наперед: Is it stylish?"
         },
         "en:lesson-02:session-51:intro2:r3": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "С it нужно is: Is it stylish?",
+          "uk": "З it потрібно is: Is it stylish?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-51:intro3:r2": {
-          "ru": "Вы говорите об Анне: `She's`.",
-          "uk": "Ви говорите про Анну: `She's`."
+          "ru": "С not выходит «Ткань не тянется». А рукав растянулся и вернулся: It's stretchy.",
+          "uk": "З not виходить «Тканина не тягнеться». А рукав розтягнувся й повернувся: It's stretchy."
         },
         "en:lesson-02:session-51:intro3:r3": {
-          "ru": "Это о весе коробки. Нужно сказать о сомнении Анны.",
-          "uk": "Це про вагу коробки. Потрібно сказати про сумнів Анни."
+          "ru": "Ткань одна, нужно It's: It's stretchy.",
+          "uk": "Тканина одна, потрібно It's: It's stretchy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a985a80af0b16387a3c62e03eb194d04c7d9c4406deaed277f6114f68e4f643e"
+  "auxiliaryFingerprint": "aa589da9c425c7026dab8ef9b6b33dce4655e36e6099cf3e1c87a82de360cdbf"
 }

@@ -10,14 +10,14 @@
     "correctResponseId": "en:lesson-01:session-32:i02:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-32:i03",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-32:i03:r1"
-  },
-  {
     "interactionId": "en:lesson-01:session-32:word:crooked",
     "correctText": "crooked",
     "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-32:word:huge",
@@ -50,8 +50,8 @@
     "correctResponseId": "en:lesson-01:session-32:i08:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-32:word:blurry",
-    "correctText": "blurry",
+    "interactionId": "en:lesson-01:session-32:word:tiny",
+    "correctText": "tiny",
     "correctResponseId": null
   },
   {
@@ -90,8 +90,8 @@
     "correctResponseId": "en:lesson-01:session-32:i15:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-32:word:tiny",
-    "correctText": "tiny",
+    "interactionId": "en:lesson-01:session-32:word:blurry",
+    "correctText": "blurry",
     "correctResponseId": null
   },
   {

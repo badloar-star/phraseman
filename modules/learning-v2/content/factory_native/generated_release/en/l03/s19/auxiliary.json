@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-19:intro1:r2": {
-          "ru": "`bag` называет одну сумку, а здесь нужны `bags`.",
-          "uk": "`bag` називає одну сумку, а тут потрібне `bags`."
+          "ru": "В слове battery y меняется на ies: batteries.",
+          "uk": "У слові battery y змінюється на ies: batteries."
         },
         "en:lesson-03:session-19:intro1:r3": {
-          "ru": "Перед названием нескольких сумок не ставим `a`.",
-          "uk": "Перед назвою кількох сумок не ставимо `a`."
+          "ru": "Батареек несколько, поэтому нужно batteries.",
+          "uk": "Батарейок кілька, тому потрібно batteries."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-19:intro2:r2": {
-          "ru": "Сумок несколько, поэтому здесь нужно `are`.",
-          "uk": "Сумок кілька, тому тут потрібно `are`."
+          "ru": "В слове country y меняется на ies: countries.",
+          "uk": "У слові country y змінюється на ies: countries."
         },
         "en:lesson-03:session-19:intro2:r3": {
-          "ru": "После `The bags` нужно `are`.",
-          "uk": "Після `The bags` потрібно `are`."
+          "ru": "В вопросе с they нужно Are: Are they countries?",
+          "uk": "У запитанні з they потрібно Are: Are they countries?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-19:intro3:r2": {
-          "ru": "Сумок несколько: нужен вопрос с `are`.",
-          "uk": "Сумок кілька: потрібне запитання з `are`."
+          "ru": "В слове story y меняется на ies: stories.",
+          "uk": "У слові story y змінюється на ies: stories."
         },
         "en:lesson-03:session-19:intro3:r3": {
-          "ru": "`What` спрашивает, что это. О месте спрашиваем `Where`.",
-          "uk": "`What` запитує, що це. Про місце запитуємо `Where`."
+          "ru": "Сказок несколько, поэтому нужно are: Where are the stories?",
+          "uk": "Казок кілька, тому потрібно are: Where are the stories?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "378cfd3662accfe1bffed18b2cf8781d35908b62264ea850a95e47468ab1350a"
+  "auxiliaryFingerprint": "fb87bf9a0a442c97739ec3a5a111c6b9b2d68bfe424f5aff43d78179fd7474de"
 }

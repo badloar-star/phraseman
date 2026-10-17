@@ -9,35 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Гість запитує про предмет у вас у руці. Це телефон. Назвіть його зі словом для одного поруч",
+      "prompt": "Продавець поставив поруч із вами пляшки. Скажіть подрузі повною фразою: ці пляшки порожні.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гість запитує про предмет у вас у руці. Це телефон. Назвіть його зі словом для одного поруч",
+      "accessibilityLabel": "Продавець поставив поруч із вами пляшки. Скажіть подрузі повною фразою: ці пляшки порожні.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a phone.",
+        "targetPhrase": "These bottles are empty.",
         "localizedMeaning": {
-          "ru": "Гость спрашивает о предмете у вас в руке. Это телефон. Назовите его со словом для одного рядом",
-          "uk": "Гість запитує про предмет у вас у руці. Це телефон. Назвіть його зі словом для одного поруч"
+          "ru": "Продавец поставил рядом с вами бутылки. Скажите подруге полной фразой: эти бутылки пустые.",
+          "uk": "Продавець поставив поруч із вами пляшки. Скажіть подрузі повною фразою: ці пляшки порожні."
         },
         "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "phone"
+          "These",
+          "bottles",
+          "are",
+          "empty"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "bottle"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Гість запитує про предмет у вас у руці. Це телефон. Назвіть його зі словом для одного поруч",
+            "testedDimension": "Продавець поставив поруч із вами пляшки. Скажіть подрузі повною фразою: ці пляшки порожні.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a phone.`",
-              "uk": "тут потрібно `is` — `This is a phone.`"
+              "ru": "здесь нужно `bottles` — `These bottles are empty.`",
+              "uk": "тут потрібно `bottles` — `These bottles are empty.`"
             }
           }
         ],
@@ -54,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точну фразу",
+      "prompt": "Послухайте запитання продавця про банку",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i02:r1",
-          "text": "That is a wallet."
+          "text": "Is that jar full?"
         },
         {
           "responseId": "en:lesson-03:session-40:i02:r2",
-          "text": "This is a wallet."
+          "text": "Are those jars full?"
         },
         {
           "responseId": "en:lesson-03:session-40:i02:r3",
-          "text": "That is a ticket."
+          "text": "Is this jar full?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точну фразу",
+      "accessibilityLabel": "Послухайте запитання продавця про банку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i02:audio",
-          "transcript": "That is a wallet."
+          "transcript": "Is that jar full?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i02:r1",
-            "targetText": "That is a wallet.",
+            "targetText": "Is that jar full?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r2",
-            "targetText": "This is a wallet.",
+            "targetText": "Are those jars full?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r3",
-            "targetText": "That is a ticket.",
+            "targetText": "Is this jar full?",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-40:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точну фразу",
+            "testedDimension": "Послухайте запитання продавця про банку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              "ru": "В записи `Is that jar` — банка одна, а в этом варианте `Are those jars` — несколько.",
+              "uk": "У записі `Is that jar` — банка одна, а в цьому варіанті `Are those jars` — кілька."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точну фразу",
+            "testedDimension": "Послухайте запитання продавця про банку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wallet`, а в этом варианте — `ticket`.",
-              "uk": "У записі останнє слово — `wallet`, а в цьому варіанті — `ticket`."
+              "ru": "В записи первое слово после Is — `that` (далеко), а в этом варианте — `this` (рядом).",
+              "uk": "У записі перше слово після Is — `that` (далеко), а в цьому варіанті — `this` (поруч)."
             }
           }
         ],
@@ -130,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перед вами кілька фотографій. Ви показуєте на них",
+      "prompt": "Продавець показує на коробку вдалині. Доповніть його фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i03:r1",
-          "text": "These"
+          "text": "box"
         },
         {
           "responseId": "en:lesson-03:session-40:i03:r2",
-          "text": "This"
+          "text": "boxes"
         },
         {
           "responseId": "en:lesson-03:session-40:i03:r3",
-          "text": "Those"
+          "text": "a box"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед вами кілька фотографій. Ви показуєте на них",
+      "accessibilityLabel": "Продавець показує на коробку вдалині. Доповніть його фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перед вами несколько фотографий. Вы показываете на них",
-          "uk": "Перед вами кілька фотографій. Ви показуєте на них"
+          "ru": "Продавец показывает на коробку вдали. Дополните его фразу",
+          "uk": "Продавець показує на коробку вдалині. Доповніть його фразу"
         },
-        "gappedTargetPhrase": "___ are photos.",
+        "gappedTargetPhrase": "That ___ is heavy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-40:i03:r1",
-            "text": "These"
+            "text": "box"
           },
           {
             "responseId": "en:lesson-03:session-40:i03:r2",
-            "text": "This"
+            "text": "boxes"
           },
           {
             "responseId": "en:lesson-03:session-40:i03:r3",
-            "text": "Those"
+            "text": "a box"
           }
         ],
-        "testedDimension": "Перед вами кілька фотографій. Ви показуєте на них",
+        "testedDimension": "Продавець показує на коробку вдалині. Доповніть його фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i03:r2",
             "correct": false,
-            "testedDimension": "Перед вами кілька фотографій. Ви показуєте на них",
+            "testedDimension": "Продавець показує на коробку вдалині. Доповніть його фразу",
             "feedbackByLocale": {
-              "ru": "Фотографий несколько: нужно `These`.",
-              "uk": "Фотографій кілька: потрібне `These`."
+              "ru": "После That нужен один предмет: box без es.",
+              "uk": "Після That потрібен один предмет: box без es."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i03:r3",
             "correct": false,
-            "testedDimension": "Перед вами кілька фотографій. Ви показуєте на них",
+            "testedDimension": "Продавець показує на коробку вдалині. Доповніть його фразу",
             "feedbackByLocale": {
-              "ru": "`Those` — дальше. Здесь фотографии рядом: `These`.",
-              "uk": "`Those` — далі. Тут фотографії поруч: `These`."
+              "ru": "После That артикль a не ставим: That box is heavy.",
+              "uk": "Після That артикль a не ставимо: That box is heavy."
             }
           }
         ]
@@ -209,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-40:i04:p1",
-            "target": "phone",
+            "target": "barcode",
             "meaningByLocale": {
-              "ru": "телефон",
-              "uk": "телефон"
+              "ru": "штрихкод",
+              "uk": "штрихкод"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i04:p2",
-            "target": "wallet",
+            "target": "seal",
             "meaningByLocale": {
-              "ru": "кошелёк",
-              "uk": "гаманець"
+              "ru": "пломба",
+              "uk": "пломба"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i04:p3",
-            "target": "photos",
+            "target": "coupon",
             "meaningByLocale": {
-              "ru": "фотографии",
-              "uk": "фотографії"
+              "ru": "купон",
+              "uk": "купон"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i04:p4",
-            "target": "children",
+            "target": "scanner",
             "meaningByLocale": {
-              "ru": "дети",
-              "uk": "діти"
+              "ru": "сканер",
+              "uk": "сканер"
             }
           }
         ],
         "leftColumn": [
-          "phone",
-          "wallet",
-          "photos",
-          "children"
+          "barcode",
+          "seal",
+          "coupon",
+          "scanner"
         ],
         "rightColumn": [
-          "телефон",
-          "гаманець",
-          "фотографії",
-          "діти"
+          "штрихкод",
+          "пломба",
+          "купон",
+          "сканер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -272,26 +272,26 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i05:audio",
-          "transcript": "Those bottles are there."
+          "transcript": "Those apples are fresh."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Those bottles are there.",
+        "hiddenTargetPhrase": "Those apples are fresh.",
         "orderedTokens": [
           "Those",
-          "bottles",
+          "apples",
           "are",
-          "there"
+          "fresh"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -300,10 +300,10 @@
           {
             "responseId": "en:lesson-03:session-40:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those bottles are there.`",
-              "uk": "тут потрібно `are` — `Those bottles are there.`"
+              "ru": "здесь нужно `are` — `Those apples are fresh.`",
+              "uk": "тут потрібно `are` — `Those apples are fresh.`"
             }
           }
         ],
@@ -320,35 +320,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви стоїте біля машини. Назвіть її: «Це машина», використовуючи слово для одного поруч",
+      "prompt": "Банка стоїть далеко від вас на полиці. Скажіть продавцю, що це банка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви стоїте біля машини. Назвіть її: «Це машина», використовуючи слово для одного поруч",
+      "accessibilityLabel": "Банка стоїть далеко від вас на полиці. Скажіть продавцю, що це банка.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a car.",
+        "targetPhrase": "That is a jar.",
         "localizedMeaning": {
-          "ru": "Вы стоите у машины. Назовите её: «Это машина», используя слово для одного рядом",
-          "uk": "Ви стоїте біля машини. Назвіть її: «Це машина», використовуючи слово для одного поруч"
+          "ru": "Банка стоит далеко от вас на полке. Скажите продавцу, что это банка.",
+          "uk": "Банка стоїть далеко від вас на полиці. Скажіть продавцю, що це банка."
         },
         "orderedTokens": [
-          "This",
+          "That",
           "is",
           "a",
-          "car"
+          "jar"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "This"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви стоїте біля машини. Назвіть її: «Це машина», використовуючи слово для одного поруч",
+            "testedDimension": "Банка стоїть далеко від вас на полиці. Скажіть продавцю, що це банка.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a car.`",
-              "uk": "тут потрібно `is` — `This is a car.`"
+              "ru": "здесь нужно `That` — `That is a jar.`",
+              "uk": "тут потрібно `That` — `That is a jar.`"
             }
           }
         ],
@@ -360,26 +360,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-40:i07",
+      "interactionId": "en:lesson-03:session-40:word:barcode",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — barcode",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:word:barcode:audio"
+      ],
+      "accessibilityLabel": "Картка слова — barcode",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:word:barcode:audio",
+          "transcript": "barcode"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:word:barcode:r1",
+            "targetText": "barcode",
+            "meaningByLocale": {
+              "ru": "штрихкод. This barcode is small — «Этот штрихкод маленький». О полосках на упаковке, которые читает прибор в магазине.",
+              "uk": "штрихкод. This barcode is small — «Цей штрихкод малий». Про смужки на упаковці, які читає прилад у магазині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barcode",
+          "definitionByLocale": {
+            "ru": "штрихкод. This barcode is small — «Этот штрихкод маленький». О полосках на упаковке, которые читает прибор в магазине.",
+            "uk": "штрихкод. This barcode is small — «Цей штрихкод малий». Про смужки на упаковці, які читає прилад у магазині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Гість запитує про групу людей удалині. Це діти. Назвіть їх зі словом для кількох далі",
+      "prompt": "Продавець показує на смужки на коробці й називає їх, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i07:audio"
       ],
-      "accessibilityLabel": "Гість запитує про групу людей удалині. Це діти. Назвіть їх зі словом для кількох далі",
+      "accessibilityLabel": "Продавець показує на смужки на коробці й називає їх, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i07:audio",
-          "transcript": "Those are children."
+          "transcript": "barcode"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are children.",
+        "targetPhrase": "barcode",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,68 +436,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-40:word:seal",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:word:seal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:word:seal:audio",
+          "transcript": "seal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:word:seal:r1",
+            "targetText": "seal",
+            "meaningByLocale": {
+              "ru": "пломба. Those seals are broken — «Те пломбы сорваны». О защитной плёнке или наклейке на крышке.",
+              "uk": "пломба. Those seals are broken — «Ті пломби зірвані». Про захисну плівку чи наліпку на кришці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seal",
+          "definitionByLocale": {
+            "ru": "пломба. Those seals are broken — «Те пломбы сорваны». О защитной плёнке или наклейке на крышке.",
+            "uk": "пломба. Those seals are broken — «Ті пломби зірвані». Про захисну плівку чи наліпку на кришці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-40:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви говорите про один квиток у вас у руці",
+      "prompt": "Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i08:r1",
-          "text": "is"
+          "text": "seal"
         },
         {
           "responseId": "en:lesson-03:session-40:i08:r2",
-          "text": "are"
+          "text": "jar"
         },
         {
           "responseId": "en:lesson-03:session-40:i08:r3",
-          "text": "am"
+          "text": "bag"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорите про один квиток у вас у руці",
+      "accessibilityLabel": "Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите об одном билете у вас в руке",
-          "uk": "Ви говорите про один квиток у вас у руці"
+          "ru": "Подруга показывает на защитную плёнку, которую рвут при открытии банки. Как она называется по-английски?",
+          "uk": "Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "This ticket ___ here.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-40:i08:r1",
-            "text": "is"
+            "text": "seal"
           },
           {
             "responseId": "en:lesson-03:session-40:i08:r2",
-            "text": "are"
+            "text": "jar"
           },
           {
             "responseId": "en:lesson-03:session-40:i08:r3",
-            "text": "am"
+            "text": "bag"
           }
         ],
-        "testedDimension": "Ви говорите про один квиток у вас у руці",
+        "testedDimension": "Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i08:r2",
             "correct": false,
-            "testedDimension": "Ви говорите про один квиток у вас у руці",
+            "testedDimension": "Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Билет один: `This ticket is here`.",
-              "uk": "Квиток один: `This ticket is here`."
+              "ru": "jar — это банка, а защитная плёнка на крышке называется seal.",
+              "uk": "jar — це банка, а захисна плівка на кришці називається seal."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i08:r3",
             "correct": false,
-            "testedDimension": "Ви говорите про один квиток у вас у руці",
+            "testedDimension": "Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "С `This ticket` нужно `is`.",
-              "uk": "З `This ticket` потрібне `is`."
+              "ru": "bag — это сумка, а защитная плёнка на крышке называется seal.",
+              "uk": "bag — це сумка, а захисна плівка на кришці називається seal."
             }
           }
         ]
@@ -463,51 +549,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точну фразу",
+      "prompt": "Послухайте, що каже продавець про штрихкод",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i09:r1",
-          "text": "These are bottles."
+          "text": "That barcode is old."
         },
         {
           "responseId": "en:lesson-03:session-40:i09:r2",
-          "text": "Those are bottles."
+          "text": "Those barcodes are old."
         },
         {
           "responseId": "en:lesson-03:session-40:i09:r3",
-          "text": "These are photos."
+          "text": "This barcode is old."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точну фразу",
+      "accessibilityLabel": "Послухайте, що каже продавець про штрихкод",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i09:audio",
-          "transcript": "These are bottles."
+          "transcript": "That barcode is old."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i09:r1",
-            "targetText": "These are bottles.",
+            "targetText": "That barcode is old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-40:i09:r2",
-            "targetText": "Those are bottles.",
+            "targetText": "Those barcodes are old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-40:i09:r3",
-            "targetText": "These are photos.",
+            "targetText": "This barcode is old.",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +602,19 @@
           {
             "responseId": "en:lesson-03:session-40:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точну фразу",
+            "testedDimension": "Послухайте, що каже продавець про штрихкод",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `These`, а в этом варианте — `Those`.",
-              "uk": "У записі перше слово — `These`, а в цьому варіанті — `Those`."
+              "ru": "В записи `That barcode` — штрихкод один, а в этом варианте `Those barcodes` — несколько.",
+              "uk": "У записі `That barcode` — штрихкод один, а в цьому варіанті `Those barcodes` — кілька."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точну фразу",
+            "testedDimension": "Послухайте, що каже продавець про штрихкод",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bottles`, а в этом варианте — `photos`.",
-              "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `photos`."
+              "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
+              "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
             }
           }
         ],
@@ -539,7 +625,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -553,48 +639,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-40:i10:p1",
-            "target": "car",
+            "target": "barcode",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "штрихкод",
+              "uk": "штрихкод"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i10:p2",
-            "target": "ticket",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "билет",
-              "uk": "квиток"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i10:p3",
-            "target": "bottles",
+            "target": "box",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "коробка",
+              "uk": "коробка"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i10:p4",
-            "target": "wallet",
+            "target": "jar",
             "meaningByLocale": {
-              "ru": "кошелёк",
-              "uk": "гаманець"
+              "ru": "банка",
+              "uk": "банка"
             }
           }
         ],
         "leftColumn": [
-          "car",
-          "ticket",
-          "bottles",
-          "wallet"
+          "barcode",
+          "bag",
+          "box",
+          "jar"
         ],
         "rightColumn": [
-          "машина",
-          "квиток",
-          "пляшки",
-          "гаманець"
+          "штрихкод",
+          "сумка",
+          "коробка",
+          "банка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,42 +698,42 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте продавця й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте продавця й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i11:audio",
-          "transcript": "That phone is there."
+          "transcript": "Are these seals broken?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That phone is there.",
+        "hiddenTargetPhrase": "Are these seals broken?",
         "orderedTokens": [
-          "That",
-          "phone",
-          "is",
-          "there"
+          "Are",
+          "these",
+          "seals",
+          "broken"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте продавця й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That phone is there.`",
-              "uk": "тут потрібно `is` — `That phone is there.`"
+              "ru": "здесь нужно `Are` — `Are these seals broken?`",
+              "uk": "тут потрібно `Are` — `Are these seals broken?`"
             }
           }
         ],
@@ -660,39 +746,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Фотографії лежать просто перед вами. Скажіть «Ці фотографії тут»",
+      "prompt": "Продавець тримає одну пломбу поруч із вами. Скажіть подрузі, що це пломба.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Фотографії лежать просто перед вами. Скажіть «Ці фотографії тут»",
+      "accessibilityLabel": "Продавець тримає одну пломбу поруч із вами. Скажіть подрузі, що це пломба.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "These photos are here.",
+        "targetPhrase": "This is a seal.",
         "localizedMeaning": {
-          "ru": "Фотографии лежат прямо перед вами. Скажите «Эти фотографии здесь»",
-          "uk": "Фотографії лежать просто перед вами. Скажіть «Ці фотографії тут»"
+          "ru": "Продавец держит одну пломбу рядом с вами. Скажите подруге, что это пломба.",
+          "uk": "Продавець тримає одну пломбу поруч із вами. Скажіть подрузі, що це пломба."
         },
         "orderedTokens": [
-          "These",
-          "photos",
-          "are",
-          "here"
+          "This",
+          "is",
+          "a",
+          "seal"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "These"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Фотографії лежать просто перед вами. Скажіть «Ці фотографії тут»",
+            "testedDimension": "Продавець тримає одну пломбу поруч із вами. Скажіть подрузі, що це пломба.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These photos are here.`",
-              "uk": "тут потрібно `are` — `These photos are here.`"
+              "ru": "здесь нужно `This` — `This is a seal.`",
+              "uk": "тут потрібно `This` — `This is a seal.`"
             }
           }
         ],
@@ -704,26 +790,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-40:word:coupon",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coupon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:word:coupon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coupon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:word:coupon:audio",
+          "transcript": "coupon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:word:coupon:r1",
+            "targetText": "coupon",
+            "meaningByLocale": {
+              "ru": "купон. Are these coupons valid? — «Эти купоны действительны?» О бумажке, по которой дают скидку.",
+              "uk": "купон. Are these coupons valid? — «Ці купони дійсні?» Про папірець, за яким дають знижку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coupon",
+          "definitionByLocale": {
+            "ru": "купон. Are these coupons valid? — «Эти купоны действительны?» О бумажке, по которой дают скидку.",
+            "uk": "купон. Are these coupons valid? — «Ці купони дійсні?» Про папірець, за яким дають знижку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-40:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На дальньому столі один квиток. Назвіть його повною фразою зі словом для одного далі",
+      "prompt": "Продавець дістає папірець зі знижкою й називає його, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i13:audio"
       ],
-      "accessibilityLabel": "На дальньому столі один квиток. Назвіть його повною фразою зі словом для одного далі",
+      "accessibilityLabel": "Продавець дістає папірець зі знижкою й називає його, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i13:audio",
-          "transcript": "That is a ticket."
+          "transcript": "coupon"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is a ticket.",
+        "targetPhrase": "coupon",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,68 +866,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-40:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-40:word:scanner",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scanner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:word:scanner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scanner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:word:scanner:audio",
+          "transcript": "scanner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:word:scanner:r1",
+            "targetText": "scanner",
+            "meaningByLocale": {
+              "ru": "сканер. That is a scanner — «Это сканер». О приборе, который читает штрихкод.",
+              "uk": "сканер. That is a scanner — «Це сканер». Про прилад, який читає штрихкод."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scanner",
+          "definitionByLocale": {
+            "ru": "сканер. That is a scanner — «Это сканер». О приборе, который читает штрихкод.",
+            "uk": "сканер. That is a scanner — «Це сканер». Про прилад, який читає штрихкод."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вперше називаєте один предмет удалині: це машина",
+      "prompt": "Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i14:r1",
-          "text": "a"
+          "text": "scanner"
         },
         {
           "responseId": "en:lesson-03:session-40:i14:r2",
-          "text": "an"
+          "text": "barcode"
         },
         {
           "responseId": "en:lesson-03:session-40:i14:r3",
-          "text": "are"
+          "text": "box"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вперше називаєте один предмет удалині: це машина",
+      "accessibilityLabel": "Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы впервые называете один предмет вдалеке: это машина",
-          "uk": "Ви вперше називаєте один предмет удалині: це машина"
+          "ru": "Продавец проводит по коробке прибором, который читает штрихкод. Как он называется по-английски?",
+          "uk": "Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "That is ___ car.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-40:i14:r1",
-            "text": "a"
+            "text": "scanner"
           },
           {
             "responseId": "en:lesson-03:session-40:i14:r2",
-            "text": "an"
+            "text": "barcode"
           },
           {
             "responseId": "en:lesson-03:session-40:i14:r3",
-            "text": "are"
+            "text": "box"
           }
         ],
-        "testedDimension": "Ви вперше називаєте один предмет удалині: це машина",
+        "testedDimension": "Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-40:i14:r2",
             "correct": false,
-            "testedDimension": "Ви вперше називаєте один предмет удалині: це машина",
+            "testedDimension": "Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`car` начинается с согласного звука: `a car`.",
-              "uk": "`car` починається з приголосного звука: `a car`."
+              "ru": "barcode — это штрихкод, а прибор, который его читает, называется scanner.",
+              "uk": "barcode — це штрихкод, а прилад, який його читає, називається scanner."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i14:r3",
             "correct": false,
-            "testedDimension": "Ви вперше називаєте один предмет удалині: це машина",
+            "testedDimension": "Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "Перед названием одной машины здесь нужно `a`: `a car`.",
-              "uk": "Перед назвою однієї машини тут потрібне `a`: `a car`."
+              "ru": "box — это коробка, а прибор, который читает штрихкод, называется scanner.",
+              "uk": "box — це коробка, а прилад, який читає штрихкод, називається scanner."
             }
           }
         ]
@@ -807,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точну фразу",
+      "prompt": "Послухайте, що каже подруга про купони",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i15:r1",
-          "text": "These children are here."
+          "text": "Those coupons are old."
         },
         {
           "responseId": "en:lesson-03:session-40:i15:r2",
-          "text": "Those children are here."
+          "text": "That coupon is old."
         },
         {
           "responseId": "en:lesson-03:session-40:i15:r3",
-          "text": "The children are here."
+          "text": "Those coupons are new."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точну фразу",
+      "accessibilityLabel": "Послухайте, що каже подруга про купони",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i15:audio",
-          "transcript": "These children are here."
+          "transcript": "Those coupons are old."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i15:r1",
-            "targetText": "These children are here.",
+            "targetText": "Those coupons are old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-40:i15:r2",
-            "targetText": "Those children are here.",
+            "targetText": "That coupon is old.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-40:i15:r3",
-            "targetText": "The children are here.",
+            "targetText": "Those coupons are new.",
             "meaningByLocale": null
           }
         ],
@@ -860,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-40:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точну фразу",
+            "testedDimension": "Послухайте, що каже подруга про купони",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `These`, а в этом варианте — `Those`.",
-              "uk": "У записі перше слово — `These`, а в цьому варіанті — `Those`."
+              "ru": "В записи `Those coupons` — купонов несколько, а в этом варианте `That coupon` — один.",
+              "uk": "У записі `Those coupons` — купонів кілька, а в цьому варіанті `That coupon` — один."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точну фразу",
+            "testedDimension": "Послухайте, що каже подруга про купони",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `These`, а в этом варианте — `The`.",
-              "uk": "У записі перше слово — `These`, а в цьому варіанті — `The`."
+              "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+              "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
             }
           }
         ],
@@ -883,62 +1055,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте вказівні слова зі значеннями в наших прикладах",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте вказівні слова зі значеннями в наших прикладах",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-40:i16:p1",
-            "target": "this",
+            "target": "scanner",
             "meaningByLocale": {
-              "ru": "этот, один рядом",
-              "uk": "цей, один поруч"
+              "ru": "сканер",
+              "uk": "сканер"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i16:p2",
-            "target": "that",
+            "target": "coupon",
             "meaningByLocale": {
-              "ru": "тот, один дальше",
-              "uk": "той, один далі"
+              "ru": "купон",
+              "uk": "купон"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i16:p3",
-            "target": "these",
+            "target": "seal",
             "meaningByLocale": {
-              "ru": "эти, несколько рядом",
-              "uk": "ці, кілька поруч"
+              "ru": "пломба",
+              "uk": "пломба"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i16:p4",
-            "target": "those",
+            "target": "barcode",
             "meaningByLocale": {
-              "ru": "те, несколько дальше",
-              "uk": "ті, кілька далі"
+              "ru": "штрихкод",
+              "uk": "штрихкод"
             }
           }
         ],
         "leftColumn": [
-          "this",
-          "that",
-          "these",
-          "those"
+          "scanner",
+          "coupon",
+          "seal",
+          "barcode"
         ],
         "rightColumn": [
-          "цей, один поруч",
-          "той, один далі",
-          "ці, кілька поруч",
-          "ті, кілька далі"
+          "сканер",
+          "купон",
+          "пломба",
+          "штрихкод"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-40:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви приїхали на пікнік. Друг запитує про кілька предметів на дальньому столі. Це пляшки. Назвіть їх одним повним реченням із вказівним словом для кількох далі",
+      "prompt": "Продавець питає, який прилад біля каси працює. Скажіть йому коротко: той сканер новий.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Ви приїхали на пікнік. Друг запитує про кілька предметів на дальньому столі. Це пляшки. Назвіть їх одним повним реченням із вказівним словом для кількох далі",
+      "accessibilityLabel": "Продавець питає, який прилад біля каси працює. Скажіть йому коротко: той сканер новий.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i17:audio",
-          "transcript": "Those are bottles."
+          "transcript": "That scanner is new."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are bottles.",
+        "targetPhrase": "That scanner is new.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ac321d5a05b01595de2e1471a0a57a88e13907e30a7e96b35987c4c2c361f49e"
+  "learnerFingerprint": "6bd4e066d5be69d421f7edc68bb2063bd10765fb5d2119f02afacbabc4a180d0"
 }

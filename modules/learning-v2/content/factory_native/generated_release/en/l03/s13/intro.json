@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-13",
   "learningOutcomeByLocale": {
-    "ru": "назвать окно и спросить, где находится знакомая карта",
-    "uk": "назвати вікно й запитати, де розташована знайома карта"
+    "ru": "выбирать a или an по первому звуку слова, которое стоит сразу после",
+    "uk": "обирати a чи an за першим звуком слова, яке стоїть одразу після"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что показано на плане",
-        "uk": "Що показано на плані"
+        "ru": "Одна серьга на подушке",
+        "uk": "Одна сережка на подушці"
       },
       "bodyByLocale": {
-        "ru": "`window` — «окно». `It is a window` — «Это окно». Перед названием одного предмета здесь нужно `a`: слово `window` начинается с согласного звука. Вы объясняете Анне, что означает незнакомый ей элемент плана.",
-        "uk": "`window` — «вікно». `It is a window` — «Це вікно». Перед назвою одного предмета тут потрібно `a`: слово `window` починається з приголосного звука. Ви пояснюєте Анні, що означає незнайомий їй елемент плану."
+        "ru": "Продавщица достаёт из витрины маленькую вещь и кладёт на бархатную подушку: одна серьга без пары. Сестра берёт её двумя пальцами и поворачивает к свету. earring — «серьга». Слово начинается с гласного звука, поэтому an: It is an earring — «Это серьга».",
+        "uk": "Продавчиня дістає з вітрини маленьку річ і кладе на оксамитову подушку: одна сережка без пари. Сестра бере її двома пальцями й повертає до світла. earring — «сережка». Слово починається з голосного звуку, тому an: It is an earring — «Це сережка»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "Анна указывает на элемент плана и спрашивает, что это. Назовите его: «Это окно».",
-          "uk": "Анна вказує на елемент плану й запитує, що це. Назвіть його: «Це вікно»."
+          "ru": "Сестра спрашивает, что это. Скажите полной фразой, что это серьга.",
+          "uk": "Сестра питає, що це. Скажіть повною фразою, що це сережка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-13:intro1:r1",
-              "text": "It is a window."
+              "text": "It is an earring."
             },
             {
               "responseId": "en:lesson-03:session-13:intro1:r2",
-              "text": "It is an window."
+              "text": "It is a earring."
             },
             {
               "responseId": "en:lesson-03:session-13:intro1:r3",
-              "text": "It is window."
+              "text": "It an earring."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-13:intro1:r1",
-              "text": "It is a window."
+              "text": "It is an earring."
             },
             {
               "responseId": "en:lesson-03:session-13:intro1:r2",
-              "text": "It is an window."
+              "text": "It is a earring."
             },
             {
               "responseId": "en:lesson-03:session-13:intro1:r3",
-              "text": "It is window."
+              "text": "It an earring."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна указывает на элемент плана и спрашивает, что это. Назовите его: «Это окно».",
-          "uk": "Анна вказує на елемент плану й запитує, що це. Назвіть його: «Це вікно»."
+          "ru": "Сестра спрашивает, что это. Скажите полной фразой, что это серьга.",
+          "uk": "Сестра питає, що це. Скажіть повною фразою, що це сережка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Чистое окно",
-        "uk": "Чисте вікно"
+        "ru": "Цепочка с камнем",
+        "uk": "Ланцюжок із каменем"
       },
       "bodyByLocale": {
-        "ru": "`The window is clean` — «Окно чистое». Вы с Анной смотрите на одно и то же окно, поэтому `the window` понятно вам обоим. `clean` — «чистый», `big` — «большой», `small` — «маленький». Олег так старательно вымыл окно, что теперь замечает каждое пятно на соседнем. Это уже не ошибка в слове `clean`, а новое дело для Олега.",
-        "uk": "`The window is clean` — «Вікно чисте». Ви з Анною дивитеся на те саме вікно, тому `the window` зрозуміле вам обом. `clean` — «чистий», `big` — «великий», `small` — «маленький». Олег так старанно вимив вікно, що тепер помічає кожну пляму на сусідньому. Це вже не помилка у слові `clean`, а нова справа для Олега."
+        "ru": "На витрине висит длинная цепочка с большим камнем. Сестра не знает, как это называется по-английски, и просит вас уточнить у продавщицы. necklace — «ожерелье». Слово начинается с согласного звука, поэтому перед ним a: Is it a necklace? — «Это ожерелье?»",
+        "uk": "На вітрині висить довгий ланцюжок із великим каменем. Сестра не знає, як це називається англійською, і просить вас уточнити в продавчині. necklace — «намисто». Слово починається з приголосного звуку, тому перед ним a: Is it a necklace? — «Це намисто?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "Вы с Анной смотрите на вымытое окно. Сообщите «Окно чистое».",
-          "uk": "Ви з Анною дивитеся на вимите вікно. Повідомте «Вікно чисте»."
+          "ru": "Вы подходите к продавщице. Спросите, ожерелье ли это.",
+          "uk": "Ви підходите до продавчині. Запитайте, чи це намисто."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-13:intro2:r1",
-              "text": "The window is clean."
+              "text": "Is it a necklace?"
             },
             {
               "responseId": "en:lesson-03:session-13:intro2:r2",
-              "text": "The window are clean."
+              "text": "It is a necklace."
             },
             {
               "responseId": "en:lesson-03:session-13:intro2:r3",
-              "text": "The window clean."
+              "text": "Is it an necklace?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-13:intro2:r1",
-              "text": "The window is clean."
+              "text": "Is it a necklace?"
             },
             {
               "responseId": "en:lesson-03:session-13:intro2:r2",
-              "text": "The window are clean."
+              "text": "It is a necklace."
             },
             {
               "responseId": "en:lesson-03:session-13:intro2:r3",
-              "text": "The window clean."
+              "text": "Is it an necklace?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с Анной смотрите на вымытое окно. Сообщите «Окно чистое».",
-          "uk": "Ви з Анною дивитеся на вимите вікно. Повідомте «Вікно чисте»."
+          "ru": "Вы подходите к продавщице. Спросите, ожерелье ли это.",
+          "uk": "Ви підходите до продавчині. Запитайте, чи це намисто."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Карта для гостей",
-        "uk": "Карта для гостей"
+        "ru": "Вещь на запястье",
+        "uk": "Річ на зап’ястку"
       },
       "bodyByLocale": {
-        "ru": "`Where is the map?` — «Где карта?» Вы оба знаете, какая карта нужна гостям. Вопрос о месте начинается с `Where`, затем идут `is` и название предмета с `the`. `public` здесь означает «открытый для всех»: `It is public` — так можно сказать о встрече, на которую пускают всех желающих. Это не обещание бесплатного входа.",
-        "uk": "`Where is the map?` — «Де карта?» Ви обоє знаєте, яка карта потрібна гостям. Запитання про місце починається з `Where`, потім ідуть `is` і назва предмета з `the`. `public` тут означає «відкритий для всіх»: `It is public` — так можна сказати про зустріч, на яку пускають усіх охочих. Це не обіцянка безплатного входу."
+        "ru": "Сестра вспоминает, что мама всегда носит на запястье тонкую металлическую вещь и никогда её не снимает, даже когда моет посуду. Продавщица кладёт вам на ладонь такую же. Сестра шепчет, что нужна именно эта. bracelet — «браслет». It's a bracelet — «Это браслет».",
+        "uk": "Сестра згадує, що мама завжди носить на зап’ясті тонку металеву річ і ніколи її не знімає, навіть коли миє посуд. Продавчиня кладе вам на долоню таку саму. Сестра шепоче, що потрібна саме ця. bracelet — «браслет». It's a bracelet — «Це браслет»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Вы с Анной ищете приготовленную для гостей карту. Спросите, где карта.",
-          "uk": "Ви з Анною шукаєте підготовлену для гостей карту. Запитайте, де карта."
+          "ru": "Продавщица ждёт ответа. Скажите коротко, что это браслет.",
+          "uk": "Продавчиня чекає відповіді. Скажіть коротко, що це браслет."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-13:intro3:r1",
-              "text": "Where is the map?"
+              "text": "It's a bracelet."
             },
             {
               "responseId": "en:lesson-03:session-13:intro3:r2",
-              "text": "What is the map?"
+              "text": "It's an bracelet."
             },
             {
               "responseId": "en:lesson-03:session-13:intro3:r3",
-              "text": "Where are the map?"
+              "text": "It's bracelet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-13:intro3:r1",
-              "text": "Where is the map?"
+              "text": "It's a bracelet."
             },
             {
               "responseId": "en:lesson-03:session-13:intro3:r2",
-              "text": "What is the map?"
+              "text": "It's an bracelet."
             },
             {
               "responseId": "en:lesson-03:session-13:intro3:r3",
-              "text": "Where are the map?"
+              "text": "It's bracelet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с Анной ищете приготовленную для гостей карту. Спросите, где карта.",
-          "uk": "Ви з Анною шукаєте підготовлену для гостей карту. Запитайте, де карта."
+          "ru": "Продавщица ждёт ответа. Скажите коротко, что это браслет.",
+          "uk": "Продавчиня чекає відповіді. Скажіть коротко, що це браслет."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e5744bad9949aae1cd07a60cc60a0694934021dad3584f87a35b4cc514e69210"
+  "introFingerprint": "541abf4434fabe7bfc61108078982d96fb001ff4562050256483d019c82f08aa"
 }

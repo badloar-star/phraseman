@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-11:intro1:r2": {
-          "ru": "Перед `room` нужно `a`, потому что первый звук согласный.",
-          "uk": "Перед `room` потрібно `a`, бо перший звук приголосний."
+          "ru": "Слово hour звучит как «ауэр»: первый звук гласный, нужно an.",
+          "uk": "Слово hour звучить як «ауер»: перший звук голосний, потрібно an."
         },
         "en:lesson-03:session-11:intro1:r3": {
-          "ru": "В этой фразе перед названием комнаты нужно `a`.",
-          "uk": "У цій фразі перед назвою кімнати потрібно `a`."
+          "ru": "Перед hour нужно an: It is an hour.",
+          "uk": "Перед hour потрібно an: It is an hour."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-11:intro2:r2": {
-          "ru": "С одной комнатой здесь нужно `is`.",
-          "uk": "З однією кімнатою тут потрібно `is`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a uniform?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a uniform?"
         },
         "en:lesson-03:session-11:intro2:r3": {
-          "ru": "После `The room` нужно `is`.",
-          "uk": "Після `The room` потрібно `is`."
+          "ru": "Слово uniform читается «юниформ»: первый звук «й», перед ним a.",
+          "uk": "Слово uniform читається «юніформ»: перший звук «й», перед ним a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-11:intro3:r2": {
-          "ru": "О месте спрашиваем `Where`, а не `What`.",
-          "uk": "Про місце запитуємо `Where`, а не `What`."
+          "ru": "Слово euro читается «юро»: первый звук «й», перед ним a.",
+          "uk": "Слово euro читається «юро»: перший звук «й», перед ним a."
         },
         "en:lesson-03:session-11:intro3:r3": {
-          "ru": "С одной книгой здесь нужно `is`.",
-          "uk": "З однією книжкою тут потрібно `is`."
+          "ru": "Перед euro нужно a: It's a euro.",
+          "uk": "Перед euro потрібно a: It's a euro."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "428fc21f1934fdf754f25ed16d5300982f0497f5809a19054fad67d6c124db08"
+  "auxiliaryFingerprint": "bf4628e41efda0219aae9087f1e7180aaabecc02a5109f0031dc50e0fe76d2d3"
 }

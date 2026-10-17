@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-54:intro1:r2": {
-          "ru": "Между `He` и `reliable` нужно `is`.",
-          "uk": "Між `He` і `reliable` потрібно `is`."
+          "ru": "С not выходит «Он играет плохо». А он не сделал ни одной ошибки: He is talented.",
+          "uk": "З not виходить «Він грає погано». А він не зробив жодної помилки: He is talented."
         },
         "en:lesson-02:session-54:intro1:r3": {
-          "ru": "С `He` нужно `is`, не `are`.",
-          "uk": "З `He` потрібно `is`, не `are`."
+          "ru": "Между He и talented нужно is: He is talented.",
+          "uk": "Між He і talented потрібно is: He is talented."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-54:intro2:r2": {
-          "ru": "Это сообщение, а вы пока спрашиваете.",
-          "uk": "Це повідомлення, а ви поки запитуєте."
+          "ru": "Так звучит утверждение «Он грациозный». Чтобы спросить, ставим Is вперёд: Is he graceful?",
+          "uk": "Так звучить твердження «Він граціозний». Щоб запитати, ставимо Is наперед: Is he graceful?"
         },
         "en:lesson-02:session-54:intro2:r3": {
-          "ru": "Это вопрос о том, знакомо ли что-то. Вы спрашиваете о надёжности мужчины.",
-          "uk": "Це запитання про те, чи щось знайоме. Ви запитуєте про надійність чоловіка."
+          "ru": "С he нужно is: Is he graceful?",
+          "uk": "З he потрібно is: Is he graceful?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-54:intro3:r2": {
-          "ru": "Это «знакомо», а имя автора не установлено.",
-          "uk": "Це «знайоме», а ім’я автора не встановлено."
+          "ru": "С not выходит «Это ничем не удивляет». А зал разом ахнул: It's stunning.",
+          "uk": "З not виходить «Це нічим не дивує». А зала враз ахнула: It's stunning."
         },
         "en:lesson-02:session-54:intro3:r3": {
-          "ru": "Это «уместно», а вы говорите, что имя неизвестно.",
-          "uk": "Це «доречне», а ви кажете, що ім’я невідоме."
+          "ru": "Номер один, нужно It's: It's stunning.",
+          "uk": "Номер один, потрібно It's: It's stunning."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "235d722f071f06849687a252ec88146a0b207bdb00cadb00b56d1b586e6f9f87"
+  "auxiliaryFingerprint": "72510c36a593ecafe8739fcbd15fddd0b71dfedf6440de3f878636ba2365a9cb"
 }

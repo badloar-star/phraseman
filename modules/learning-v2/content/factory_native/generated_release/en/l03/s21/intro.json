@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-21",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько ручек и уточнить, где они находятся",
-    "uk": "назвати кілька ручок і уточнити, де вони розташовані"
+    "ru": "различать один предмет с a и несколько предметов без a",
+    "uk": "розрізняти один предмет з a і кілька предметів без a"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одной ручки мало",
-        "uk": "Однієї ручки замало"
+        "ru": "Первая строка накладной",
+        "uk": "Перший рядок накладної"
       },
       "bodyByLocale": {
-        "ru": "`pen` — «ручка», `pens` — «ручки». `They are pens` — «Это ручки». Для нескольких ручек нужны `pens` и `are`; `a` перед `pens` не ставим. Анна приготовила одну ручку на всех гостей. Очередь за автографом получилась, хотя писателя никто не приглашал. Лучше принести `pens` — несколько ручек.",
-        "uk": "`pen` — «ручка», `pens` — «ручки». `They are pens` — «Це ручки». Для кількох ручок потрібні `pens` і `are`; `a` перед `pens` не ставимо. Анна приготувала одну ручку на всіх гостей. Черга по автограф вийшла, хоча письменника ніхто не запрошував. Краще принести `pens` — кілька ручок."
+        "ru": "В накладной напечатано «a towels», но подруга заглядывает в открытую коробку и видит стопку мягких полотенец в голубую полоску. towel — «полотенце». Для одного ставим a, а для нескольких a не нужно, добавляем только s: towels. They are towels — «Это полотенца».",
+        "uk": "У накладній надруковано «a towels», але подруга зазирає у відкриту коробку й бачить стос м’яких рушників у блакитну смужку. towel — «рушник». Для одного ставимо a, а для кількох a не потрібно, додаємо тільки s: towels. They are towels — «Це рушники»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "На столе лежат несколько ручек. Назовите их одним английским словом.",
-          "uk": "На столі лежать кілька ручок. Назвіть їх одним англійським словом."
+          "ru": "Подруга показывает на стопку полотенец. Скажите ей полной фразой: это полотенца.",
+          "uk": "Подруга показує на стос рушників. Скажіть їй повною фразою: це рушники."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-21:intro1:r1",
-              "text": "pens"
+              "text": "They are towels."
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r2",
-              "text": "pen"
+              "text": "They are a towels."
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r3",
-              "text": "a pens"
+              "text": "They are towel."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-21:intro1:r1",
-              "text": "pens"
+              "text": "They are towels."
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r2",
-              "text": "pen"
+              "text": "They are a towels."
             },
             {
               "responseId": "en:lesson-03:session-21:intro1:r3",
-              "text": "a pens"
+              "text": "They are towel."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На столе лежат несколько ручек. Назовите их одним английским словом.",
-          "uk": "На столі лежать кілька ручок. Назвіть їх одним англійським словом."
+          "ru": "Подруга показывает на стопку полотенец. Скажите ей полной фразой: это полотенца.",
+          "uk": "Подруга показує на стос рушників. Скажіть їй повною фразою: це рушники."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Снаружи или внутри",
-        "uk": "Зовні чи всередині"
+        "ru": "Вторая строка",
+        "uk": "Другий рядок"
       },
       "bodyByLocale": {
-        "ru": "`inside` — «внутри», `outside` — «снаружи». `The pens are inside` — «Ручки внутри». `the pens` — те ручки, которые вы сейчас ищете. `Where are the pens?` — «Где ручки?» После `Where` ставим `are`: ручек несколько.",
-        "uk": "`inside` — «всередині», `outside` — «зовні, надворі». `The pens are inside` — «Ручки всередині». `the pens` — ті ручки, які ви зараз шукаєте. `Where are the pens?` — «Де ручки?» Після `Where` ставимо `are`: ручок кілька."
+        "ru": "Во второй строке написано «curtains», а в коробке на самом дне лежит только одна занавеска для ванной, аккуратно сложенная вчетверо. Брат достаёт её, разворачивает и показывает вам. curtain — «занавеска». Одну занавеску называем с a: It is a curtain — «Это занавеска».",
+        "uk": "У другому рядку написано «curtains», а в коробці на самому дні лежить лише одна завіса для ванної, охайно складена вчетверо. Брат дістає її, розгортає й показує вам. curtain — «завіса». Одну завісу називаємо з a: It is a curtain — «Це завіса»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Анна знает, какие ручки нужны гостям. Спросите, где ручки.",
-          "uk": "Анна знає, які ручки потрібні гостям. Запитайте, де ручки."
+          "ru": "Брат держит одну занавеску. Скажите ему полной фразой: это занавеска.",
+          "uk": "Брат тримає одну завісу. Скажіть йому повною фразою: це завіса."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-21:intro2:r1",
-              "text": "Where are the pens?"
+              "text": "It is a curtain."
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r2",
-              "text": "Where is the pens?"
+              "text": "It is curtain."
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r3",
-              "text": "What are the pens?"
+              "text": "It is curtains."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-21:intro2:r1",
-              "text": "Where are the pens?"
+              "text": "It is a curtain."
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r2",
-              "text": "Where is the pens?"
+              "text": "It is curtain."
             },
             {
               "responseId": "en:lesson-03:session-21:intro2:r3",
-              "text": "What are the pens?"
+              "text": "It is curtains."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна знает, какие ручки нужны гостям. Спросите, где ручки.",
-          "uk": "Анна знає, які ручки потрібні гостям. Запитайте, де ручки."
+          "ru": "Брат держит одну занавеску. Скажите ему полной фразой: это занавеска.",
+          "uk": "Брат тримає одну завісу. Скажіть йому повною фразою: це завіса."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Они наверху",
-        "uk": "Вони нагорі"
+        "ru": "Третья строка",
+        "uk": "Третій рядок"
       },
       "bodyByLocale": {
-        "ru": "`upstairs` — «наверху, на верхнем этаже». `The pens are upstairs` — «Ручки наверху». Олег спрашивает, лежат ли они снаружи. Вы знаете, что они наверху в здании, и отвечаете `No` — «Нет». Рядом с дверью вы замечаете окно: `The window is broken` — «Окно разбито». Окно одно, поэтому здесь `is`.",
-        "uk": "`upstairs` — «нагорі, на верхньому поверсі». `The pens are upstairs` — «Ручки нагорі». Олег запитує, чи лежать вони надворі. Ви знаєте, що вони нагорі в будівлі, й відповідаєте `No` — «Ні». Біля дверей ви помічаєте вікно: `The window is broken` — «Вікно розбите». Вікно одне, тому тут `is`."
+        "ru": "В третьей строке курьер не уверен и спешит к следующему заказу: он приложил к накладной упаковку с жёлтыми губками для посуды. Подруга показывает вам на неё и ждёт уточнения. sponge — «губка». Несколько губок — sponges, без a. Are they sponges? — «Это губки?»",
+        "uk": "У третьому рядку кур’єр не впевнений і поспішає до наступного замовлення: він доклав до накладної упаковку з жовтими губками для посуду. Подруга показує вам на неї й чекає уточнення. sponge — «губка». Кілька губок — sponges, без a. Are they sponges? — «Це губки?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Олег спрашивает, лежат ли ручки снаружи. Они внутри здания. Ответьте одним словом «Нет».",
-          "uk": "Олег запитує, чи лежать ручки надворі. Вони всередині будівлі. Дайте відповідь одним словом «Ні»."
+          "ru": "Подруга показывает на упаковку. Спросите курьера, губки ли это.",
+          "uk": "Подруга показує на упаковку. Запитайте кур’єра, чи це губки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-21:intro3:r1",
-              "text": "No."
+              "text": "Are they sponges?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r2",
-              "text": "Yes."
+              "text": "Are they a sponges?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r3",
-              "text": "Not."
+              "text": "Are they sponge?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-21:intro3:r1",
-              "text": "No."
+              "text": "Are they sponges?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r2",
-              "text": "Yes."
+              "text": "Are they a sponges?"
             },
             {
               "responseId": "en:lesson-03:session-21:intro3:r3",
-              "text": "Not."
+              "text": "Are they sponge?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Олег спрашивает, лежат ли ручки снаружи. Они внутри здания. Ответьте одним словом «Нет».",
-          "uk": "Олег запитує, чи лежать ручки надворі. Вони всередині будівлі. Дайте відповідь одним словом «Ні»."
+          "ru": "Подруга показывает на упаковку. Спросите курьера, губки ли это.",
+          "uk": "Подруга показує на упаковку. Запитайте кур’єра, чи це губки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ba301e1aeb0aa5cd1e55cbea50d416c969828b799d0ad2d08fd74293c2ea394a"
+  "introFingerprint": "5f2b79de62c14970716d803a8e558ed4bd9a4c438645f25404def62f6e3b5ef4"
 }

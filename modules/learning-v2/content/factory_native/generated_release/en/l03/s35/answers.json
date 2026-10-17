@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-35:i01",
-    "correctText": "He is ill.",
+    "correctText": "These pictures are new.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i02",
-    "correctText": "photos",
+    "correctText": "Is this mirror big?",
     "correctResponseId": "en:lesson-03:session-35:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i03",
-    "correctText": "photos",
+    "correctText": "clock",
     "correctResponseId": "en:lesson-03:session-35:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i04",
-    "correctText": "en:lesson-03:session-35:i04:p1=photos\nen:lesson-03:session-35:i04:p2=ill\nen:lesson-03:session-35:i04:p3=formal\nen:lesson-03:session-35:i04:p4=cars",
+    "correctText": "en:lesson-03:session-35:i04:p1=photo\nen:lesson-03:session-35:i04:p2=frame\nen:lesson-03:session-35:i04:p3=album\nen:lesson-03:session-35:i04:p4=map",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i05",
-    "correctText": "These are photos.",
+    "correctText": "These lamps are big.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i06",
-    "correctText": "Those are photos.",
+    "correctText": "This is a shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:word:photo",
+    "correctText": "photo",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i07",
-    "correctText": "These photos are formal.",
+    "correctText": "photo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:word:frame",
+    "correctText": "frame",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i08",
-    "correctText": "These",
+    "correctText": "frame",
     "correctResponseId": "en:lesson-03:session-35:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i09",
-    "correctText": "Those cars are outside.",
+    "correctText": "This photo is old.",
     "correctResponseId": "en:lesson-03:session-35:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i10",
-    "correctText": "en:lesson-03:session-35:i10:p1=these\nen:lesson-03:session-35:i10:p2=those\nen:lesson-03:session-35:i10:p3=photos\nen:lesson-03:session-35:i10:p4=cars",
+    "correctText": "en:lesson-03:session-35:i10:p1=photo\nen:lesson-03:session-35:i10:p2=wall\nen:lesson-03:session-35:i10:p3=mirror\nen:lesson-03:session-35:i10:p4=clock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i11",
-    "correctText": "Those photos are formal.",
+    "correctText": "Are these frames old?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i12",
-    "correctText": "These cars are here.",
+    "correctText": "This is a frame.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:word:album",
+    "correctText": "album",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i13",
-    "correctText": "He's ill.",
+    "correctText": "album",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:word:map",
+    "correctText": "map",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i14",
-    "correctText": "are",
+    "correctText": "map",
     "correctResponseId": "en:lesson-03:session-35:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i15",
-    "correctText": "These photos are formal.",
+    "correctText": "Is this album new?",
     "correctResponseId": "en:lesson-03:session-35:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-35:i16",
-    "correctText": "en:lesson-03:session-35:i16:p1=photos\nen:lesson-03:session-35:i16:p2=ill\nen:lesson-03:session-35:i16:p3=formal\nen:lesson-03:session-35:i16:p4=cars",
+    "correctText": "en:lesson-03:session-35:i16:p1=map\nen:lesson-03:session-35:i16:p2=album\nen:lesson-03:session-35:i16:p3=frame\nen:lesson-03:session-35:i16:p4=photo",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i17",
-    "correctText": "Those are photos.",
+    "correctText": "This map is old.",
     "correctResponseId": null
   }
 ]

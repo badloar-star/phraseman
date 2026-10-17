@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-55:intro1:r2": {
-          "ru": "Между `He` и `unreliable` нужно `is`.",
-          "uk": "Між `He` і `unreliable` потрібно `is`."
+          "ru": "С not выходит «Он не хочет играть». А он принёс вам мячик: He is playful.",
+          "uk": "З not виходить «Воно не хоче гратися». А воно принесло вам м’ячик: He is playful."
         },
         "en:lesson-02:session-55:intro1:r3": {
-          "ru": "С `He` нужно `is`, не `are`.",
-          "uk": "З `He` потрібно `is`, не `are`."
+          "ru": "Между He и playful нужно is: He is playful.",
+          "uk": "Між He і playful потрібно is: He is playful."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-55:intro2:r2": {
-          "ru": "Это «Она зависима». По условию Анна справляется самостоятельно.",
-          "uk": "Це «Вона залежна». За умовою Анна справляється самостійно."
+          "ru": "Так звучит утверждение «Она робкая». Чтобы спросить, ставим Is вперёд: Is she timid?",
+          "uk": "Так звучить твердження «Вона полохлива». Щоб запитати, ставимо Is наперед: Is she timid?"
         },
         "en:lesson-02:session-55:intro2:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "С she нужно is: Is she timid?",
+          "uk": "З she потрібно is: Is she timid?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-55:intro3:r2": {
-          "ru": "Это сообщение, а вы спрашиваете.",
-          "uk": "Це повідомлення, а ви запитуєте."
+          "ru": "С not выходит «Он забыл хозяина». А он неделю ждал у калитки: He's loyal.",
+          "uk": "З not виходить «Він забув господаря». А він тиждень чекав біля хвіртки: He's loyal."
         },
         "en:lesson-02:session-55:intro3:r3": {
-          "ru": "Это вопрос о ненадёжности мужчины, а сейчас речь о сроке.",
-          "uk": "Це запитання про ненадійність чоловіка, а зараз ідеться про термін."
+          "ru": "Пёс один, нужно He's: He's loyal.",
+          "uk": "Пес один, потрібно He's: He's loyal."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dff8e2a57428278c521797c04dde2c3d0f222e1e5c913d6b05a6727a99d12d37"
+  "auxiliaryFingerprint": "819eb9078ac83a694a2f850e0c9a7b6b183469abcbf15d8566598f862c7ec66f"
 }

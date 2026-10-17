@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-04:intro1:r2": {
-          "ru": "Перед `bag` в этом названии нужно `a`.",
-          "uk": "Перед `bag` у цій назві потрібно `a`."
+          "ru": "Хозяин сказал a, оно слышно между is и key: It is a key.",
+          "uk": "Господар сказав a, воно чутне між is і key: It is a key."
         },
         "en:lesson-03:session-04:intro1:r3": {
-          "ru": "Первый звук в `bag` согласный: нужно `a bag`.",
-          "uk": "Перший звук у `bag` приголосний: потрібно `a bag`."
+          "ru": "Между It и a нужно is: It is a key.",
+          "uk": "Між It і a потрібне is: It is a key."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-04:intro2:r2": {
-          "ru": "Это «Что это?» Название вам известно, нужно узнать место.",
-          "uk": "Це «Що це?» Назва вам відома, треба дізнатися місце."
+          "ru": "Так звучит ответ «Это дверь». Чтобы спросить, ставим Is вперёд: Is it a door?",
+          "uk": "Так звучить відповідь «Це двері». Щоб запитати, ставимо Is наперед: Is it a door?"
         },
         "en:lesson-03:session-04:intro2:r3": {
-          "ru": "Между `Where` и `it` нужно `is`.",
-          "uk": "Між `Where` і `it` потрібно `is`."
+          "ru": "Перед door нужно a: Is it a door?",
+          "uk": "Перед door потрібне a: Is it a door?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-04:intro3:r2": {
-          "ru": "Перед отдельным `hungry` в сообщении о состоянии не нужно `a`.",
-          "uk": "Перед окремим `hungry` у повідомленні про стан не потрібно `a`."
+          "ru": "После not сохраняем a: It is not a window.",
+          "uk": "Після not зберігаємо a: It is not a window."
         },
         "en:lesson-03:session-04:intro3:r3": {
-          "ru": "С `I` нужно `am`.",
-          "uk": "З `I` потрібно `am`."
+          "ru": "Перед not нужно is: It is not a window.",
+          "uk": "Перед not потрібне is: It is not a window."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dd04f5ec0c7e0717a5b41bd83a0c41375cb638f317d975b657b6e6491e134a20"
+  "auxiliaryFingerprint": "c95177505c073b508e5a8c9754b48904862a910b813801a86f4ea4d252d12802"
 }

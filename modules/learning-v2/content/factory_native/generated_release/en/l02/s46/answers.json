@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-46:word:sour",
+    "correctText": "sour",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-46:i01",
-    "correctText": "It is appropriate.",
+    "correctText": "It is sour.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i02",
-    "correctText": "It is useless.",
+    "correctText": "It is salty.",
     "correctResponseId": "en:lesson-02:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:word:mushy",
+    "correctText": "mushy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-46:i04",
-    "correctText": "en:lesson-02:session-46:i04:p1=appropriate\nen:lesson-02:session-46:i04:p2=useless\nen:lesson-02:session-46:i04:p3=unofficial\nen:lesson-02:session-46:i04:p4=useful",
+    "correctText": "en:lesson-02:session-46:i04:p1=sour\nen:lesson-02:session-46:i04:p2=bland\nen:lesson-02:session-46:i04:p3=mushy\nen:lesson-02:session-46:i04:p4=salty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:word:bland",
+    "correctText": "bland",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i05",
-    "correctText": "No, it is not.",
+    "correctText": "It is not bland.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i06",
-    "correctText": "What is appropriate?",
+    "correctText": "What is bland?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i07",
-    "correctText": "It's appropriate.",
+    "correctText": "It's mushy.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-46:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-46:word:runny",
+    "correctText": "runny",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-46:i09",
-    "correctText": "Is it unofficial?",
+    "correctText": "They are runny.",
     "correctResponseId": "en:lesson-02:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i10",
-    "correctText": "en:lesson-02:session-46:i10:p1=unofficial\nen:lesson-02:session-46:i10:p2=useful\nen:lesson-02:session-46:i10:p3=appropriate\nen:lesson-02:session-46:i10:p4=useless",
+    "correctText": "en:lesson-02:session-46:i10:p1=runny\nen:lesson-02:session-46:i10:p2=bland\nen:lesson-02:session-46:i10:p3=sour\nen:lesson-02:session-46:i10:p4=spicy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i11",
-    "correctText": "It is not appropriate.",
+    "correctText": "They are not mushy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i12",
-    "correctText": "Is it useless?",
+    "correctText": "Is it runny?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i13",
-    "correctText": "It's unofficial.",
+    "correctText": "They're runny.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-46:i15",
-    "correctText": "Is it appropriate?",
+    "correctText": "Is it bland?",
     "correctResponseId": "en:lesson-02:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-46:i16",
-    "correctText": "en:lesson-02:session-46:i16:p1=useless\nen:lesson-02:session-46:i16:p2=appropriate\nen:lesson-02:session-46:i16:p3=useful\nen:lesson-02:session-46:i16:p4=unofficial",
+    "correctText": "en:lesson-02:session-46:i16:p1=sour\nen:lesson-02:session-46:i16:p2=bland\nen:lesson-02:session-46:i16:p3=mushy\nen:lesson-02:session-46:i16:p4=runny",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-46:i17",
-    "correctText": "Is it appropriate?",
+    "correctText": "Is it sour?",
     "correctResponseId": null
   }
 ]

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-15:intro1:r2": {
-          "ru": "Перед `coat` нужно `a`: первый звук согласный.",
-          "uk": "Перед `coat` потрібно `a`: перший звук приголосний."
+          "ru": "Перед candle нужно a: слово начинается с согласного звука.",
+          "uk": "Перед candle потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-15:intro1:r3": {
-          "ru": "В этой фразе перед названием одного пальто нужно `a`.",
-          "uk": "У цій фразі перед назвою одного пальта потрібно `a`."
+          "ru": "Перед названием одной такой вещи нужно a: It is a candle.",
+          "uk": "Перед назвою однієї такої речі потрібно a: It is a candle."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-15:intro2:r2": {
-          "ru": "О месте спрашиваем `Where`, а не `What`.",
-          "uk": "Про місце запитуємо `Where`, а не `What`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a cushion?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a cushion?"
         },
         "en:lesson-03:session-15:intro2:r3": {
-          "ru": "С одним пальто здесь нужно `is`.",
-          "uk": "З одним пальтом тут потрібно `is`."
+          "ru": "Перед cushion нужно a: слово начинается с согласного звука.",
+          "uk": "Перед cushion потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-15:intro3:r2": {
-          "ru": "С `It` нужно `is`.",
-          "uk": "З `It` потрібно `is`."
+          "ru": "Перед plant нужно a: слово начинается с согласного звука.",
+          "uk": "Перед plant потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-15:intro3:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "Перед plant нужно a: It's a plant.",
+          "uk": "Перед plant потрібно a: It's a plant."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "870ebb6f425d1af4a5d9670be59a719975c55ce175209ea04a12a25a7f5c7f6d"
+  "auxiliaryFingerprint": "7d6e8053888b0605d4d33f2a8969546b8cd828c5695814d97267e544e20ff021"
 }

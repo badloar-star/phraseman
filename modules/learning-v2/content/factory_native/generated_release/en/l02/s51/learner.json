@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-51:i01",
+      "interactionId": "en:lesson-02:session-51:word:baggy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — baggy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:word:baggy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — baggy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:word:baggy:audio",
+          "transcript": "baggy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-51:word:baggy:r1",
+            "targetText": "baggy",
+            "meaningByLocale": {
+              "ru": "мешковатый, слишком свободный. It is baggy — «Она сидит мешком». О куртке, брюках, свитере, платье.",
+              "uk": "мішкуватий, надто вільний. It is baggy — «Вона сидить мішком». Про куртку, штани, светр, сукню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baggy",
+          "definitionByLocale": {
+            "ru": "мешковатый, слишком свободный. It is baggy — «Она сидит мешком». О куртке, брюках, свитере, платье.",
+            "uk": "мішкуватий, надто вільний. It is baggy — «Вона сидить мішком». Про куртку, штани, светр, сукню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Одинаковые метки не помогают различать коробки. Скажите полной фразой, что способ неэффективный",
+      "prompt": "Вы вышли из кабинки в слишком свободной куртке. Продавец спрашивает, как она. Скажите ему полной фразой, что она мешковатая.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Одинаковые метки не помогают различать коробки. Скажите полной фразой, что способ неэффективный",
+      "accessibilityLabel": "Вы вышли из кабинки в слишком свободной куртке. Продавец спрашивает, как она. Скажите ему полной фразой, что она мешковатая.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is ineffective.",
+        "targetPhrase": "It is baggy.",
         "localizedMeaning": {
-          "ru": "Одинаковые метки не помогают различать коробки. Скажите полной фразой, что способ неэффективный",
-          "uk": "Однакові позначки не допомагають розрізняти коробки. Скажіть повною фразою, що спосіб неефективний"
+          "ru": "Вы вышли из кабинки в слишком свободной куртке. Продавец спрашивает, как она. Скажите ему полной фразой, что она мешковатая.",
+          "uk": "Ви вийшли з кабінки в надто вільній куртці. Продавець питає, як вона. Скажіть йому повною фразою, що вона мішкувата."
         },
         "orderedTokens": [
           "It",
           "is",
-          "ineffective"
+          "baggy"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-51:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Одинаковые метки не помогают различать коробки. Скажите полной фразой, что способ неэффективный",
+            "testedDimension": "Вы вышли из кабинки в слишком свободной куртке. Продавец спрашивает, как она. Скажите ему полной фразой, что она мешковатая.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is ineffective.`",
-              "uk": "тут потрібно `is` — `It is ineffective.`"
+              "ru": "здесь нужно `is` — `It is baggy.`",
+              "uk": "тут потрібно `is` — `It is baggy.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о коробке",
+      "prompt": "Послушайте, что продавец говорит о перчатках",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i02:r1",
-          "text": "It is heavy."
+          "text": "It is soft."
         },
         {
           "responseId": "en:lesson-02:session-51:i02:r2",
-          "text": "It is effective."
+          "text": "It is tight."
         },
         {
           "responseId": "en:lesson-02:session-51:i02:r3",
-          "text": "It is ineffective."
+          "text": "It is short."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о коробке",
+      "accessibilityLabel": "Послушайте, что продавец говорит о перчатках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i02:audio",
-          "transcript": "It is heavy."
+          "transcript": "It is soft."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-51:i02:r1",
-            "targetText": "It is heavy.",
+            "targetText": "It is soft.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-51:i02:r2",
-            "targetText": "It is effective.",
+            "targetText": "It is tight.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-51:i02:r3",
-            "targetText": "It is ineffective.",
+            "targetText": "It is short.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-51:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о коробке",
+            "testedDimension": "Послушайте, что продавец говорит о перчатках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `effective`.",
-              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `effective`."
+              "ru": "В записи последнее слово — `soft`, а в этом варианте — `tight`.",
+              "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `tight`."
             }
           },
           {
             "responseId": "en:lesson-02:session-51:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о коробке",
+            "testedDimension": "Послушайте, что продавец говорит о перчатках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `ineffective`.",
-              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `ineffective`."
+              "ru": "В записи последнее слово — `soft`, а в этом варианте — `short`.",
+              "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `short`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-51:word:stylish",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stylish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:word:stylish:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stylish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:word:stylish:audio",
+          "transcript": "stylish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-51:word:stylish:r1",
+            "targetText": "stylish",
+            "meaningByLocale": {
+              "ru": "стильный, модный. Is it stylish? — «Это стильно?» О куртке, сумке, причёске, комнате.",
+              "uk": "стильний, модний. Is it stylish? — «Це стильно?» Про куртку, сумку, зачіску, кімнату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stylish",
+          "definitionByLocale": {
+            "ru": "стильный, модный. Is it stylish? — «Это стильно?» О куртке, сумке, причёске, комнате.",
+            "uk": "стильний, модний. Is it stylish? — «Це стильно?» Про куртку, сумку, зачіску, кімнату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-51:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните, неэффективен ли способ с метками",
+      "prompt": "Подруга выбрала для вас куртку. Спросите её, стильная ли она",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните, неэффективен ли способ с метками",
+      "accessibilityLabel": "Подруга выбрала для вас куртку. Спросите её, стильная ли она",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, неэффективен ли способ с метками",
-          "uk": "Уточніть, чи неефективний спосіб із позначками"
+          "ru": "Подруга выбрала для вас куртку. Спросите её, стильная ли она",
+          "uk": "Подруга вибрала для вас куртку. Запитайте її, чи вона стильна"
         },
-        "gappedTargetPhrase": "___ it ineffective?",
+        "gappedTargetPhrase": "___ it stylish?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-51:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточните, неэффективен ли способ с метками",
+        "testedDimension": "Подруга выбрала для вас куртку. Спросите её, стильная ли она",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-51:i03:r2",
             "correct": false,
-            "testedDimension": "Уточните, неэффективен ли способ с метками",
+            "testedDimension": "Подруга выбрала для вас куртку. Спросите её, стильная ли она",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-51:i03:r3",
             "correct": false,
-            "testedDimension": "Уточните, неэффективен ли способ с метками",
+            "testedDimension": "Подруга выбрала для вас куртку. Спросите её, стильная ли она",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it ineffective?`.",
-              "uk": "Запитання — `Is it ineffective?`."
+              "ru": "Вопрос — `Is it stylish?`.",
+              "uk": "Питання — `Is it stylish?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-51:i04:p1",
-            "target": "ineffective",
+            "target": "baggy",
             "meaningByLocale": {
-              "ru": "неэффективный",
-              "uk": "неефективний"
+              "ru": "мешковатый",
+              "uk": "мішкуватий"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i04:p2",
-            "target": "effective",
+            "target": "stylish",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "стильный",
+              "uk": "стильний"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i04:p3",
-            "target": "heavy",
+            "target": "stretchy",
             "meaningByLocale": {
-              "ru": "тяжёлый",
-              "uk": "важкий"
+              "ru": "тянущийся, эластичный",
+              "uk": "еластичний, що тягнеться"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i04:p4",
-            "target": "uncertain",
+            "target": "short",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "короткий",
+              "uk": "короткий"
             }
           }
         ],
         "leftColumn": [
-          "ineffective",
-          "effective",
-          "heavy",
-          "uncertain"
+          "baggy",
+          "stylish",
+          "stretchy",
+          "short"
         ],
         "rightColumn": [
-          "неэффективный",
-          "эффективный",
-          "тяжёлый",
-          "неуверенный"
+          "мешковатый",
+          "стильный",
+          "тянущийся, эластичный",
+          "короткий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-51:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-51:word:stretchy",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stretchy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:word:stretchy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stretchy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:word:stretchy:audio",
+          "transcript": "stretchy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-51:word:stretchy:r1",
+            "targetText": "stretchy",
+            "meaningByLocale": {
+              "ru": "тянущийся, эластичный. It's stretchy — «Ткань тянется». О ткани, свитере, ленте, резинке.",
+              "uk": "еластичний, що тягнеться. It's stretchy — «Тканина тягнеться». Про тканину, светр, стрічку, гумку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stretchy",
+          "definitionByLocale": {
+            "ru": "тянущийся, эластичный. It's stretchy — «Ткань тянется». О ткани, свитере, ленте, резинке.",
+            "uk": "еластичний, що тягнеться. It's stretchy — «Тканина тягнеться». Про тканину, светр, стрічку, гумку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Послушайте, что продавец говорит о свитере, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Послушайте, что продавец говорит о свитере, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i05:audio",
-          "transcript": "No, she is not."
+          "transcript": "It is not stretchy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "No, she is not.",
+        "hiddenTargetPhrase": "It is not stretchy.",
         "orderedTokens": [
-          "No,",
-          "she",
+          "It",
           "is",
-          "not"
+          "not",
+          "stretchy"
         ],
         "authoredDistractorTokens": [
-          "Yes,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-51:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Послушайте, что продавец говорит о свитере, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `No,` — `No, she is not.`",
-              "uk": "тут потрібно `No,` — `No, she is not.`"
+              "ru": "здесь нужно `is` — `It is not stretchy.`",
+              "uk": "тут потрібно `is` — `It is not stretchy.`"
             }
           }
         ],
@@ -315,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы сравниваете несколько способов сортировки. Спросите Анну, что неэффективно",
+      "prompt": "Подруга говорит, что одна вещь вам не подходит. Спросите её, что здесь слишком свободное.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сравниваете несколько способов сортировки. Спросите Анну, что неэффективно",
+      "accessibilityLabel": "Подруга говорит, что одна вещь вам не подходит. Спросите её, что здесь слишком свободное.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is ineffective?",
+        "targetPhrase": "What is baggy?",
         "localizedMeaning": {
-          "ru": "Вы сравниваете несколько способов сортировки. Спросите Анну, что неэффективно",
-          "uk": "Ви порівнюєте кілька способів сортування. Запитайте Анну, що неефективно"
+          "ru": "Подруга говорит, что одна вещь вам не подходит. Спросите её, что здесь слишком свободное.",
+          "uk": "Подруга каже, що одна річ вам не пасує. Запитайте її, що тут надто вільне."
         },
         "orderedTokens": [
           "What",
           "is",
-          "ineffective"
+          "baggy"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -343,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-51:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы сравниваете несколько способов сортировки. Спросите Анну, что неэффективно",
+            "testedDimension": "Подруга говорит, что одна вещь вам не подходит. Спросите её, что здесь слишком свободное.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is ineffective?`",
-              "uk": "тут потрібно `What` — `What is ineffective?`"
+              "ru": "здесь нужно `What` — `What is baggy?`",
+              "uk": "тут потрібно `What` — `What is baggy?`"
             }
           }
         ],
@@ -359,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Метки не помогают находить вещи быстрее. Коротко сообщите, что способ неэффективный",
+      "prompt": "Продавец спрашивает про вторую куртку. Скажите коротко, что она стильная.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i07:audio"
       ],
-      "accessibilityLabel": "Метки не помогают находить вещи быстрее. Коротко сообщите, что способ неэффективный",
+      "accessibilityLabel": "Продавец спрашивает про вторую куртку. Скажите коротко, что она стильная.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i07:audio",
-          "transcript": "It's ineffective."
+          "transcript": "It's stylish."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's ineffective.",
+        "targetPhrase": "It's stylish.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Коробка с книгами много весит. На «Is it heavy?» дополните короткое «да»",
+      "prompt": "Продавец спросил: «Is it stretchy?» Вы потянули рукав, и он растянулся. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i08:r1",
@@ -413,12 +542,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коробка с книгами много весит. На «Is it heavy?» дополните короткое «да»",
+      "accessibilityLabel": "Продавец спросил: «Is it stretchy?» Вы потянули рукав, и он растянулся. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Коробка с книгами много весит. На «Is it heavy?» дополните короткое «да»",
-          "uk": "Коробка з книжками багато важить. На «Is it heavy?» доповніть коротку відповідь «так»"
+          "ru": "Продавец спросил: «Is it stretchy?» Вы потянули рукав, и он растянулся. Дополните короткое «да»",
+          "uk": "Продавець спитав: «Is it stretchy?» Ви потягнули рукав, і він розтягнувся. Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -435,12 +564,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Коробка с книгами много весит. На «Is it heavy?» дополните короткое «да»",
+        "testedDimension": "Продавец спросил: «Is it stretchy?» Вы потянули рукав, и он растянулся. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-51:i08:r2",
             "correct": false,
-            "testedDimension": "Коробка с книгами много весит. На «Is it heavy?» дополните короткое «да»",
+            "testedDimension": "Продавец спросил: «Is it stretchy?» Вы потянули рукав, и он растянулся. Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,7 +578,7 @@
           {
             "responseId": "en:lesson-02:session-51:i08:r3",
             "correct": false,
-            "testedDimension": "Коробка с книгами много весит. На «Is it heavy?» дополните короткое «да»",
+            "testedDimension": "Продавец спросил: «Is it stretchy?» Вы потянули рукав, и он растянулся. Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -460,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-51:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-51:word:plain",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Анне",
+      "prompt": "Карточка слова — plain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:word:plain:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:word:plain:audio",
+          "transcript": "plain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-51:word:plain:r1",
+            "targetText": "plain",
+            "meaningByLocale": {
+              "ru": "простой, без узора и украшений. It is plain — «Она простая, без рисунка». О футболке, ткани, чашке, платье.",
+              "uk": "простий, без візерунка й прикрас. It is plain — «Вона проста, без малюнка». Про футболку, тканину, чашку, сукню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plain",
+          "definitionByLocale": {
+            "ru": "простой, без узора и украшений. It is plain — «Она простая, без рисунка». О футболке, ткани, чашке, платье.",
+            "uk": "простий, без візерунка й прикрас. It is plain — «Вона проста, без малюнка». Про футболку, тканину, чашку, сукню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что продавец говорит о футболке",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i09:r1",
-          "text": "She is uncertain."
+          "text": "It is plain."
         },
         {
           "responseId": "en:lesson-02:session-51:i09:r2",
-          "text": "She is patient."
+          "text": "It is dark."
         },
         {
           "responseId": "en:lesson-02:session-51:i09:r3",
-          "text": "She is polite."
+          "text": "It is tight."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Анне",
+      "accessibilityLabel": "Послушайте, что продавец говорит о футболке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i09:audio",
-          "transcript": "She is uncertain."
+          "transcript": "It is plain."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-51:i09:r1",
-            "targetText": "She is uncertain.",
+            "targetText": "It is plain.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-51:i09:r2",
-            "targetText": "She is patient.",
+            "targetText": "It is dark.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-51:i09:r3",
-            "targetText": "She is polite.",
+            "targetText": "It is tight.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-51:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте, что продавец говорит о футболке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `uncertain`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `uncertain`, а в цьому варіанті — `patient`."
+              "ru": "В записи последнее слово — `plain`, а в этом варианте — `dark`.",
+              "uk": "У записі останнє слово — `plain`, а в цьому варіанті — `dark`."
             }
           },
           {
             "responseId": "en:lesson-02:session-51:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Анне",
+            "testedDimension": "Послушайте, что продавец говорит о футболке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `uncertain`, а в этом варианте — `polite`.",
-              "uk": "У записі останнє слово — `uncertain`, а в цьому варіанті — `polite`."
+              "ru": "В записи последнее слово — `plain`, а в этом варианте — `tight`.",
+              "uk": "У записі останнє слово — `plain`, а в цьому варіанті — `tight`."
             }
           }
         ],
@@ -537,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -551,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-51:i10:p1",
-            "target": "heavy",
+            "target": "plain",
             "meaningByLocale": {
-              "ru": "тяжёлый",
-              "uk": "важкий"
+              "ru": "простой, без узора",
+              "uk": "простий, без візерунка"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i10:p2",
-            "target": "uncertain",
+            "target": "stretchy",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "тянущийся, эластичный",
+              "uk": "еластичний, що тягнеться"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i10:p3",
-            "target": "effective",
+            "target": "stylish",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "стильный",
+              "uk": "стильний"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i10:p4",
-            "target": "ineffective",
+            "target": "dark",
             "meaningByLocale": {
-              "ru": "неэффективный",
-              "uk": "неефективний"
+              "ru": "тёмный",
+              "uk": "темний"
             }
           }
         ],
         "leftColumn": [
-          "heavy",
-          "uncertain",
-          "effective",
-          "ineffective"
+          "plain",
+          "stretchy",
+          "stylish",
+          "dark"
         ],
         "rightColumn": [
-          "тяжёлый",
-          "неуверенный",
-          "эффективный",
-          "неэффективный"
+          "простой, без узора",
+          "тянущийся, эластичный",
+          "стильный",
+          "тёмный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,30 +782,30 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте, что подруга говорит о куртке, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте, что подруга говорит о куртке, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i11:audio",
-          "transcript": "It is not effective."
+          "transcript": "It is not stylish."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not effective.",
+        "hiddenTargetPhrase": "It is not stylish.",
         "orderedTokens": [
           "It",
           "is",
           "not",
-          "effective"
+          "stylish"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -642,10 +814,10 @@
           {
             "responseId": "en:lesson-02:session-51:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте, что подруга говорит о куртке, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not effective.`",
-              "uk": "тут потрібно `is` — `It is not effective.`"
+              "ru": "здесь нужно `is` — `It is not stylish.`",
+              "uk": "тут потрібно `is` — `It is not stylish.`"
             }
           }
         ],
@@ -658,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна рассматривает два плана сортировки. Спросите Олега, не уверена ли она в выборе",
+      "prompt": "Вы смотрите на футболку в витрине. Спросите продавца, простая ли она.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна рассматривает два плана сортировки. Спросите Олега, не уверена ли она в выборе",
+      "accessibilityLabel": "Вы смотрите на футболку в витрине. Спросите продавца, простая ли она.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is she uncertain?",
+        "targetPhrase": "Is it plain?",
         "localizedMeaning": {
-          "ru": "Анна рассматривает два плана сортировки. Спросите Олега, не уверена ли она в выборе",
-          "uk": "Анна розглядає два плани сортування. Запитайте Олега, чи вона не впевнена у виборі"
+          "ru": "Вы смотрите на футболку в витрине. Спросите продавца, простая ли она.",
+          "uk": "Ви дивитеся на футболку у вітрині. Запитайте продавця, чи вона проста."
         },
         "orderedTokens": [
           "Is",
-          "she",
-          "uncertain"
+          "it",
+          "plain"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -686,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-51:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна рассматривает два плана сортировки. Спросите Олега, не уверена ли она в выборе",
+            "testedDimension": "Вы смотрите на футболку в витрине. Спросите продавца, простая ли она.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is she uncertain?`",
-              "uk": "тут потрібно `Is` — `Is she uncertain?`"
+              "ru": "здесь нужно `Is` — `Is it plain?`",
+              "uk": "тут потрібно `Is` — `Is it plain?`"
             }
           }
         ],
@@ -702,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы оцениваете вес коробки с книгами: она тяжёлая. Коротко сообщите об этом",
+      "prompt": "Подруга показывает футболку без рисунка. Скажите коротко, что она простая.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i13:audio"
       ],
-      "accessibilityLabel": "Вы оцениваете вес коробки с книгами: она тяжёлая. Коротко сообщите об этом",
+      "accessibilityLabel": "Подруга показывает футболку без рисунка. Скажите коротко, что она простая.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i13:audio",
-          "transcript": "It's heavy."
+          "transcript": "It's plain."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's heavy.",
+        "targetPhrase": "It's plain.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна ещё не решила, какой способ выбрать. Скажите, что она не уверена",
+      "prompt": "Подруга вышла из кабинки в удачной куртке. Скажите, что она и сама выглядит стильно",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i14:r1",
@@ -756,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна ещё не решила, какой способ выбрать. Скажите, что она не уверена",
+      "accessibilityLabel": "Подруга вышла из кабинки в удачной куртке. Скажите, что она и сама выглядит стильно",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна ещё не решила, какой способ выбрать. Скажите, что она не уверена",
-          "uk": "Анна ще не вирішила, який спосіб вибрати. Скажіть, що вона не впевнена"
+          "ru": "Подруга вышла из кабинки в удачной куртке. Скажите, что она и сама выглядит стильно",
+          "uk": "Подруга вийшла з кабінки у вдалій куртці. Скажіть, що вона й сама виглядає стильно"
         },
-        "gappedTargetPhrase": "She ___ uncertain.",
+        "gappedTargetPhrase": "She ___ stylish.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-51:i14:r1",
@@ -778,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Анна ещё не решила, какой способ выбрать. Скажите, что она не уверена",
+        "testedDimension": "Подруга вышла из кабинки в удачной куртке. Скажите, что она и сама выглядит стильно",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-51:i14:r2",
             "correct": false,
-            "testedDimension": "Анна ещё не решила, какой способ выбрать. Скажите, что она не уверена",
+            "testedDimension": "Подруга вышла из кабинки в удачной куртке. Скажите, что она и сама выглядит стильно",
             "feedbackByLocale": {
               "ru": "С `She` нужно `is`.",
               "uk": "З `She` потрібно `is`."
@@ -792,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-51:i14:r3",
             "correct": false,
-            "testedDimension": "Анна ещё не решила, какой способ выбрать. Скажите, что она не уверена",
+            "testedDimension": "Подруга вышла из кабинки в удачной куртке. Скажите, что она и сама выглядит стильно",
             "feedbackByLocale": {
-              "ru": "Фраза — `She is uncertain`.",
-              "uk": "Фраза — `She is uncertain`."
+              "ru": "Фраза — `She is stylish`.",
+              "uk": "Фраза — `She is stylish`."
             }
           }
         ]
@@ -804,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос продавца",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i15:r1",
-          "text": "Is it ineffective?"
+          "text": "Is it baggy?"
         },
         {
           "responseId": "en:lesson-02:session-51:i15:r2",
-          "text": "Is it effective?"
+          "text": "Is it plain?"
         },
         {
           "responseId": "en:lesson-02:session-51:i15:r3",
-          "text": "Is it heavy?"
+          "text": "Is it stylish?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос продавца",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i15:audio",
-          "transcript": "Is it ineffective?"
+          "transcript": "Is it baggy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-51:i15:r1",
-            "targetText": "Is it ineffective?",
+            "targetText": "Is it baggy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-51:i15:r2",
-            "targetText": "Is it effective?",
+            "targetText": "Is it plain?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-51:i15:r3",
-            "targetText": "Is it heavy?",
+            "targetText": "Is it stylish?",
             "meaningByLocale": null
           }
         ],
@@ -857,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-51:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос продавца",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ineffective`, а в этом варианте — `effective`.",
-              "uk": "У записі останнє слово — `ineffective`, а в цьому варіанті — `effective`."
+              "ru": "В записи последнее слово — `baggy`, а в этом варианте — `plain`.",
+              "uk": "У записі останнє слово — `baggy`, а в цьому варіанті — `plain`."
             }
           },
           {
             "responseId": "en:lesson-02:session-51:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос продавца",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ineffective`, а в этом варианте — `heavy`.",
-              "uk": "У записі останнє слово — `ineffective`, а в цьому варіанті — `heavy`."
+              "ru": "В записи последнее слово — `baggy`, а в этом варианте — `stylish`.",
+              "uk": "У записі останнє слово — `baggy`, а в цьому варіанті — `stylish`."
             }
           }
         ],
@@ -880,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-51:i16:p1",
-            "target": "uncertain",
+            "target": "baggy",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "мешковатый",
+              "uk": "мішкуватий"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i16:p2",
-            "target": "ineffective",
+            "target": "stylish",
             "meaningByLocale": {
-              "ru": "неэффективный",
-              "uk": "неефективний"
+              "ru": "стильный",
+              "uk": "стильний"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i16:p3",
-            "target": "heavy",
+            "target": "stretchy",
             "meaningByLocale": {
-              "ru": "тяжёлый",
-              "uk": "важкий"
+              "ru": "тянущийся, эластичный",
+              "uk": "еластичний, що тягнеться"
             }
           },
           {
             "pairId": "en:lesson-02:session-51:i16:p4",
-            "target": "effective",
+            "target": "plain",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "простой, без узора",
+              "uk": "простий, без візерунка"
             }
           }
         ],
         "leftColumn": [
-          "uncertain",
-          "ineffective",
-          "heavy",
-          "effective"
+          "baggy",
+          "stylish",
+          "stretchy",
+          "plain"
         ],
         "rightColumn": [
-          "неуверенный",
-          "неэффективный",
-          "тяжёлый",
-          "эффективный"
+          "мешковатый",
+          "стильный",
+          "тянущийся, эластичный",
+          "простой, без узора"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег сообщил, что другой способ тоже испытали. Спросите, неэффективен ли он",
+      "prompt": "Продавец принёс новый свитер. Спросите его, тянется ли ткань.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i17:audio"
       ],
-      "accessibilityLabel": "Олег сообщил, что другой способ тоже испытали. Спросите, неэффективен ли он",
+      "accessibilityLabel": "Продавец принёс новый свитер. Спросите его, тянется ли ткань.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-51:i17:audio",
-          "transcript": "Is it ineffective?"
+          "transcript": "Is it stretchy?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it ineffective?",
+        "targetPhrase": "Is it stretchy?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "81f5eb9ba4ddc8724c2092bde9a7e7082247d98fbb3293adaf5e0bbb3fe7d1ed"
+  "learnerFingerprint": "594945378dd2da55b677e44291a4cc0b1a9f8f134d7712a37c12d531e8a72794"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-10:intro1:r2": {
-          "ru": "Перед `lock` здесь нужно `a`.",
-          "uk": "Перед `lock` тут потрібно `a`."
+          "ru": "Перед kettle нужно a: слово начинается с согласного звука.",
+          "uk": "Перед kettle потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-10:intro1:r3": {
-          "ru": "Перед названием одного такого предмета здесь нужно `a`.",
-          "uk": "Перед назвою одного такого предмета тут потрібно `a`."
+          "ru": "Перед названием одного такого предмета нужно a: It is a kettle.",
+          "uk": "Перед назвою одного такого предмета потрібно a: It is a kettle."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-10:intro2:r2": {
-          "ru": "С одним замком здесь нужно `is`.",
-          "uk": "З одним замком тут потрібно `is`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a toaster?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a toaster?"
         },
         "en:lesson-03:session-10:intro2:r3": {
-          "ru": "После `The lock` нужно `is`.",
-          "uk": "Після `The lock` потрібно `is`."
+          "ru": "Перед toaster нужно a: слово начинается с согласного звука.",
+          "uk": "Перед toaster потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-10:intro3:r2": {
-          "ru": "`What` спрашивает, что это. О месте спрашиваем `Where`.",
-          "uk": "`What` запитує, що це. Про місце запитуємо `Where`."
+          "ru": "Перед vacuum нужно a: слово начинается с согласного звука.",
+          "uk": "Перед vacuum потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-10:intro3:r3": {
-          "ru": "С одним ключом здесь нужно `is`.",
-          "uk": "З одним ключем тут потрібно `is`."
+          "ru": "Перед vacuum нужно a: It's a vacuum.",
+          "uk": "Перед vacuum потрібно a: It's a vacuum."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4bb01fd849dabf13158c9ed79ab9a32978b10ba3b14970f96bf5613ed6840737"
+  "auxiliaryFingerprint": "f01b74115d6b10339f3be0668e4b9eb5af76e854bd441b3bff7d4fc2323b6881"
 }

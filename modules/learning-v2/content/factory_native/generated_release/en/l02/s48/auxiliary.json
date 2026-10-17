@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-48:intro1:r2": {
-          "ru": "Это утверждение об ошибке в подписи. Вы пока только сомневаетесь.",
-          "uk": "Це твердження про помилку в підписі. Ви поки лише сумніваєтеся."
+          "ru": "Это «полный». А на листе нет ни одной линии: It is blank.",
+          "uk": "Це «повний». А на аркуші немає жодної лінії: It is blank."
         },
         "en:lesson-02:session-48:intro1:r3": {
-          "ru": "Это «Я терпеливый». Нужно сказать о сомнении.",
-          "uk": "Це «Я терплячий». Потрібно сказати про сумнів."
+          "ru": "Между It и blank нужно is: It is blank.",
+          "uk": "Між It і blank потрібно is: It is blank."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-48:intro2:r2": {
-          "ru": "Это «законно». По условию второй способ запрещён.",
-          "uk": "Це «законно». За умовою другий спосіб заборонений."
+          "ru": "Так звучит утверждение «Это еле заметно». Чтобы спросить, ставим Is вперёд: Is it faint?",
+          "uk": "Так звучить твердження «Це ледь помітно». Щоб запитати, ставимо Is наперед: Is it faint?"
         },
         "en:lesson-02:session-48:intro2:r3": {
-          "ru": "Между `It` и `illegal` нужно `is`.",
-          "uk": "Між `It` і `illegal` потрібно `is`."
+          "ru": "С it нужно is: Is it faint?",
+          "uk": "З it потрібно is: Is it faint?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-48:intro3:r2": {
-          "ru": "Это «неточный». Здесь вы оцениваете приемлемость качества печати.",
-          "uk": "Це «неточний». Тут ви оцінюєте прийнятність якості друку."
+          "ru": "С not выходит «Он ровный». А верхушка сползла набок: It's lopsided.",
+          "uk": "З not виходить «Він рівний». А верхівка сповзла набік: It's lopsided."
         },
         "en:lesson-02:session-48:intro3:r3": {
-          "ru": "Это «незаконно». О нарушении закона в условии ничего нет.",
-          "uk": "Це «незаконно». Про порушення закону в умові нічого немає."
+          "ru": "Торт один, нужно It's: It's lopsided.",
+          "uk": "Торт один, потрібно It's: It's lopsided."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "426df27a2796b587d59053ab1f1d18c78425b97ca04f1d125b022834be4d4005"
+  "auxiliaryFingerprint": "2138045affeaec9fdef95c30debd36be0d3d29d1aa4af6411e7b81b8a8f60985"
 }

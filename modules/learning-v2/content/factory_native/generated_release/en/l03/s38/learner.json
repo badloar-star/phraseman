@@ -9,34 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Гость показывает на несколько окон прямо рядом с вами. Скажите «Это окна», используя слово для нескольких рядом",
+      "prompt": "Продавец поставил рядом с вами корзины. Скажите подруге полной фразой: эти корзины тяжёлые.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гость показывает на несколько окон прямо рядом с вами. Скажите «Это окна», используя слово для нескольких рядом",
+      "accessibilityLabel": "Продавец поставил рядом с вами корзины. Скажите подруге полной фразой: эти корзины тяжёлые.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "These are windows.",
+        "targetPhrase": "These baskets are heavy.",
         "localizedMeaning": {
-          "ru": "Гость показывает на несколько окон прямо рядом с вами. Скажите «Это окна», используя слово для нескольких рядом",
-          "uk": "Гість показує на кілька вікон просто поруч із вами. Скажіть «Це вікна», використовуючи слово для кількох поруч"
+          "ru": "Продавец поставил рядом с вами корзины. Скажите подруге полной фразой: эти корзины тяжёлые.",
+          "uk": "Продавець поставив поруч із вами кошики. Скажіть подрузі повною фразою: ці кошики важкі."
         },
         "orderedTokens": [
           "These",
+          "baskets",
           "are",
-          "windows"
+          "heavy"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "basket"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Гость показывает на несколько окон прямо рядом с вами. Скажите «Это окна», используя слово для нескольких рядом",
+            "testedDimension": "Продавец поставил рядом с вами корзины. Скажите подруге полной фразой: эти корзины тяжёлые.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These are windows.`",
-              "uk": "тут потрібно `are` — `These are windows.`"
+              "ru": "здесь нужно `baskets` — `These baskets are heavy.`",
+              "uk": "тут потрібно `baskets` — `These baskets are heavy.`"
             }
           }
         ],
@@ -53,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте вопрос подруги о персиках",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i02:r1",
-          "text": "ticket"
+          "text": "Are those peaches fresh?"
         },
         {
           "responseId": "en:lesson-03:session-38:i02:r2",
-          "text": "table"
+          "text": "Is that peach fresh?"
         },
         {
           "responseId": "en:lesson-03:session-38:i02:r3",
-          "text": "picture"
+          "text": "Are these peaches fresh?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте вопрос подруги о персиках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i02:audio",
-          "transcript": "ticket"
+          "transcript": "Are those peaches fresh?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-38:i02:r1",
-            "targetText": "ticket",
+            "targetText": "Are those peaches fresh?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-38:i02:r2",
-            "targetText": "table",
+            "targetText": "Is that peach fresh?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-38:i02:r3",
-            "targetText": "picture",
+            "targetText": "Are these peaches fresh?",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте вопрос подруги о персиках",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `ticket`, а в этом варианте — `table`.",
-              "uk": "У записі перше слово — `ticket`, а в цьому варіанті — `table`."
+              "ru": "В записи `Are those peaches` — персиков несколько, а в этом варианте `Is that peach` — один.",
+              "uk": "У записі `Are those peaches` — персиків кілька, а в цьому варіанті `Is that peach` — один."
             }
           },
           {
             "responseId": "en:lesson-03:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте вопрос подруги о персиках",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `ticket`, а в этом варианте — `picture`.",
-              "uk": "У записі перше слово — `ticket`, а в цьому варіанті — `picture`."
+              "ru": "В записи слово `those` — персики далеко, а в этом варианте `these` — рядом.",
+              "uk": "У записі слово `those` — персики далеко, а в цьому варіанті `these` — поруч."
             }
           }
         ],
@@ -129,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите один билет одним английским словом",
+      "prompt": "Продавец показывает на яйца рядом с вами. Дополните его фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i03:r1",
-          "text": "ticket"
+          "text": "eggs"
         },
         {
           "responseId": "en:lesson-03:session-38:i03:r2",
-          "text": "tickets"
+          "text": "egg"
         },
         {
           "responseId": "en:lesson-03:session-38:i03:r3",
-          "text": "table"
+          "text": "an egg"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите один билет одним английским словом",
+      "accessibilityLabel": "Продавец показывает на яйца рядом с вами. Дополните его фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите один билет одним английским словом",
-          "uk": "Назвіть один квиток одним англійським словом"
+          "ru": "Продавец показывает на яйца рядом с вами. Дополните его фразу",
+          "uk": "Продавець показує на яйця поруч із вами. Доповніть його фразу"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "These ___ are small.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-38:i03:r1",
-            "text": "ticket"
+            "text": "eggs"
           },
           {
             "responseId": "en:lesson-03:session-38:i03:r2",
-            "text": "tickets"
+            "text": "egg"
           },
           {
             "responseId": "en:lesson-03:session-38:i03:r3",
-            "text": "table"
+            "text": "an egg"
           }
         ],
-        "testedDimension": "Назовите один билет одним английским словом",
+        "testedDimension": "Продавец показывает на яйца рядом с вами. Дополните его фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите один билет одним английским словом",
+            "testedDimension": "Продавец показывает на яйца рядом с вами. Дополните его фразу",
             "feedbackByLocale": {
-              "ru": "`tickets` — билеты. Один — `ticket`.",
-              "uk": "`tickets` — квитки. Один — `ticket`."
+              "ru": "Яиц несколько, поэтому нужно eggs с s.",
+              "uk": "Яєць кілька, тому потрібно eggs з s."
             }
           },
           {
             "responseId": "en:lesson-03:session-38:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите один билет одним английским словом",
+            "testedDimension": "Продавец показывает на яйца рядом с вами. Дополните его фразу",
             "feedbackByLocale": {
-              "ru": "`table` — стол. Билет — `ticket`.",
-              "uk": "`table` — стіл. Квиток — `ticket`."
+              "ru": "После These нужно несколько яиц: eggs с s.",
+              "uk": "Після These потрібно кілька яєць: eggs з s."
             }
           }
         ]
@@ -208,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-38:i04:p1",
-            "target": "ticket",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "билет",
-              "uk": "квиток"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i04:p2",
-            "target": "weak",
+            "target": "banana",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "банан",
+              "uk": "банан"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i04:p3",
-            "target": "unofficial",
+            "target": "orange",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "апельсин",
+              "uk": "апельсин"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i04:p4",
-            "target": "windows",
+            "target": "pear",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "груша",
+              "uk": "груша"
             }
           }
         ],
         "leftColumn": [
-          "ticket",
-          "weak",
-          "unofficial",
-          "windows"
+          "apple",
+          "banana",
+          "orange",
+          "pear"
         ],
         "rightColumn": [
-          "билет",
-          "слабый",
-          "неофициальный",
-          "окна"
+          "яблоко",
+          "банан",
+          "апельсин",
+          "груша"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -271,38 +272,38 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте продавца и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте продавца и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i05:audio",
-          "transcript": "This is a ticket."
+          "transcript": "Those jars are big."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a ticket.",
+        "hiddenTargetPhrase": "Those jars are big.",
         "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "ticket"
+          "Those",
+          "jars",
+          "are",
+          "big"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "jar"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте продавца и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a ticket.`",
-              "uk": "тут потрібно `is` — `This is a ticket.`"
+              "ru": "здесь нужно `jars` — `Those jars are big.`",
+              "uk": "тут потрібно `jars` — `Those jars are big.`"
             }
           }
         ],
@@ -319,35 +320,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Один билет лежит дальше от вас. Скажите «Тот билет там»",
+      "prompt": "Одно яйцо лежит на дальнем прилавке. Скажите подруге, что это яйцо.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Один билет лежит дальше от вас. Скажите «Тот билет там»",
+      "accessibilityLabel": "Одно яйцо лежит на дальнем прилавке. Скажите подруге, что это яйцо.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "That ticket is there.",
+        "targetPhrase": "That is an egg.",
         "localizedMeaning": {
-          "ru": "Один билет лежит дальше от вас. Скажите «Тот билет там»",
-          "uk": "Один квиток лежить далі від вас. Скажіть «Той квиток там»"
+          "ru": "Одно яйцо лежит на дальнем прилавке. Скажите подруге, что это яйцо.",
+          "uk": "Одне яйце лежить на дальньому прилавку. Скажіть подрузі, що це яйце."
         },
         "orderedTokens": [
           "That",
-          "ticket",
           "is",
-          "there"
+          "an",
+          "egg"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Один билет лежит дальше от вас. Скажите «Тот билет там»",
+            "testedDimension": "Одно яйцо лежит на дальнем прилавке. Скажите подруге, что это яйцо.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That ticket is there.`",
-              "uk": "тут потрібно `is` — `That ticket is there.`"
+              "ru": "здесь нужно `an` — `That is an egg.`",
+              "uk": "тут потрібно `an` — `That is an egg.`"
             }
           }
         ],
@@ -359,26 +360,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-38:i07",
+      "interactionId": "en:lesson-03:session-38:word:apple",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — apple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:word:apple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — apple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:word:apple:audio",
+          "transcript": "apple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-38:word:apple:r1",
+            "targetText": "apple",
+            "meaningByLocale": {
+              "ru": "яблоко. These apples are big — «Эти яблоки большие». О круглом плоде, который растёт на яблоне.",
+              "uk": "яблуко. These apples are big — «Ці яблука великі». Про круглий плід, що росте на яблуні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apple",
+          "definitionByLocale": {
+            "ru": "яблоко. These apples are big — «Эти яблоки большие». О круглом плоде, который растёт на яблоне.",
+            "uk": "яблуко. These apples are big — «Ці яблука великі». Про круглий плід, що росте на яблуні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После дороги у Анны мало сил. Скажите «Она слаба» с сокращением",
+      "prompt": "Продавец берёт круглый плод с ящика и называет его, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i07:audio"
       ],
-      "accessibilityLabel": "После дороги у Анны мало сил. Скажите «Она слаба» с сокращением",
+      "accessibilityLabel": "Продавец берёт круглый плод с ящика и называет его, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i07:audio",
-          "transcript": "She's weak."
+          "transcript": "apple"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's weak.",
+        "targetPhrase": "apple",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,68 +436,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-38:word:banana",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — banana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:word:banana:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — banana",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:word:banana:audio",
+          "transcript": "banana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-38:word:banana:r1",
+            "targetText": "banana",
+            "meaningByLocale": {
+              "ru": "банан. Are those bananas cheap? — «Те бананы дешёвые?» О длинном жёлтом фрукте, который чистят перед едой.",
+              "uk": "банан. Are those bananas cheap? — «Ті банани дешеві?» Про довгий жовтий фрукт, який чистять перед їжею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "banana",
+          "definitionByLocale": {
+            "ru": "банан. Are those bananas cheap? — «Те бананы дешёвые?» О длинном жёлтом фрукте, который чистят перед едой.",
+            "uk": "банан. Are those bananas cheap? — «Ті банани дешеві?» Про довгий жовтий фрукт, який чистять перед їжею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-38:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы впервые называете один предмет рядом: это билет",
+      "prompt": "Подруга просит длинный жёлтый фрукт, который чистят перед едой. Как он называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i08:r1",
-          "text": "a"
+          "text": "banana"
         },
         {
           "responseId": "en:lesson-03:session-38:i08:r2",
-          "text": "an"
+          "text": "peach"
         },
         {
           "responseId": "en:lesson-03:session-38:i08:r3",
-          "text": "are"
+          "text": "egg"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы впервые называете один предмет рядом: это билет",
+      "accessibilityLabel": "Подруга просит длинный жёлтый фрукт, который чистят перед едой. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы впервые называете один предмет рядом: это билет",
-          "uk": "Ви вперше називаєте один предмет поруч: це квиток"
+          "ru": "Подруга просит длинный жёлтый фрукт, который чистят перед едой. Как он называется по-английски?",
+          "uk": "Подруга просить довгий жовтий фрукт, який чистять перед їжею. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "This is ___ ticket.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-38:i08:r1",
-            "text": "a"
+            "text": "banana"
           },
           {
             "responseId": "en:lesson-03:session-38:i08:r2",
-            "text": "an"
+            "text": "peach"
           },
           {
             "responseId": "en:lesson-03:session-38:i08:r3",
-            "text": "are"
+            "text": "egg"
           }
         ],
-        "testedDimension": "Вы впервые называете один предмет рядом: это билет",
+        "testedDimension": "Подруга просит длинный жёлтый фрукт, который чистят перед едой. Как он называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Вы впервые называете один предмет рядом: это билет",
+            "testedDimension": "Подруга просит длинный жёлтый фрукт, который чистят перед едой. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`ticket` начинается с согласного звука: `a ticket`.",
-              "uk": "`ticket` починається з приголосного звука: `a ticket`."
+              "ru": "peach — это персик, а длинный жёлтый фрукт называется banana.",
+              "uk": "peach — це персик, а довгий жовтий фрукт називається banana."
             }
           },
           {
             "responseId": "en:lesson-03:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Вы впервые называете один предмет рядом: это билет",
+            "testedDimension": "Подруга просит длинный жёлтый фрукт, который чистят перед едой. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Перед названием одного билета здесь нужно `a`: `a ticket`.",
-              "uk": "Перед назвою одного квитка тут потрібне `a`: `a ticket`."
+              "ru": "egg — это яйцо, а длинный жёлтый фрукт называется banana.",
+              "uk": "egg — це яйце, а довгий жовтий фрукт називається banana."
             }
           }
         ]
@@ -462,51 +549,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте описание статуса встречи",
+      "prompt": "Послушайте, что говорит подруга о яблоках",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i09:r1",
-          "text": "It is unofficial."
+          "text": "Those apples are cheap."
         },
         {
           "responseId": "en:lesson-03:session-38:i09:r2",
-          "text": "It is official."
+          "text": "That apple is cheap."
         },
         {
           "responseId": "en:lesson-03:session-38:i09:r3",
-          "text": "It is informal."
+          "text": "Those apples are old."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте описание статуса встречи",
+      "accessibilityLabel": "Послушайте, что говорит подруга о яблоках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i09:audio",
-          "transcript": "It is unofficial."
+          "transcript": "Those apples are cheap."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-38:i09:r1",
-            "targetText": "It is unofficial.",
+            "targetText": "Those apples are cheap.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-38:i09:r2",
-            "targetText": "It is official.",
+            "targetText": "That apple is cheap.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-38:i09:r3",
-            "targetText": "It is informal.",
+            "targetText": "Those apples are old.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +602,19 @@
           {
             "responseId": "en:lesson-03:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте описание статуса встречи",
+            "testedDimension": "Послушайте, что говорит подруга о яблоках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `official`."
+              "ru": "В записи `Those apples` — яблок несколько, а в этом варианте `That apple` — одно.",
+              "uk": "У записі `Those apples` — яблук кілька, а в цьому варіанті `That apple` — одне."
             }
           },
           {
             "responseId": "en:lesson-03:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте описание статуса встречи",
+            "testedDimension": "Послушайте, что говорит подруга о яблоках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unofficial`, а в этом варианте — `informal`.",
-              "uk": "У записі останнє слово — `unofficial`, а в цьому варіанті — `informal`."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `old`."
             }
           }
         ],
@@ -538,62 +625,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями для наших примеров",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями для наших примеров",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-38:i10:p1",
-            "target": "ticket",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "билет",
-              "uk": "квиток"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i10:p2",
-            "target": "tickets",
+            "target": "peach",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "персик",
+              "uk": "персик"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i10:p3",
-            "target": "this",
+            "target": "egg",
             "meaningByLocale": {
-              "ru": "этот, один рядом",
-              "uk": "цей, один поруч"
+              "ru": "яйцо",
+              "uk": "яйце"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i10:p4",
-            "target": "those",
+            "target": "jar",
             "meaningByLocale": {
-              "ru": "те, несколько дальше",
-              "uk": "ті, кілька далі"
+              "ru": "банка",
+              "uk": "банка"
             }
           }
         ],
         "leftColumn": [
-          "ticket",
-          "tickets",
-          "this",
-          "those"
+          "apple",
+          "peach",
+          "egg",
+          "jar"
         ],
         "rightColumn": [
-          "билет",
-          "билеты",
-          "этот, один рядом",
-          "те, несколько дальше"
+          "яблоко",
+          "персик",
+          "яйцо",
+          "банка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,41 +698,42 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i11:audio",
-          "transcript": "Those are tickets."
+          "transcript": "Are these bananas fresh?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Those are tickets.",
+        "hiddenTargetPhrase": "Are these bananas fresh?",
         "orderedTokens": [
-          "Those",
-          "are",
-          "tickets"
+          "Are",
+          "these",
+          "bananas",
+          "fresh"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those are tickets.`",
-              "uk": "тут потрібно `are` — `Those are tickets.`"
+              "ru": "здесь нужно `Are` — `Are these bananas fresh?`",
+              "uk": "тут потрібно `Are` — `Are these bananas fresh?`"
             }
           }
         ],
@@ -658,39 +746,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы показываете на билет в своей руке. Скажите «Этот билет здесь»",
+      "prompt": "Продавец держит одно яблоко рядом с вами. Скажите подруге, что это яблоко.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на билет в своей руке. Скажите «Этот билет здесь»",
+      "accessibilityLabel": "Продавец держит одно яблоко рядом с вами. Скажите подруге, что это яблоко.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This ticket is here.",
+        "targetPhrase": "This is an apple.",
         "localizedMeaning": {
-          "ru": "Вы показываете на билет в своей руке. Скажите «Этот билет здесь»",
-          "uk": "Ви показуєте на квиток у своїй руці. Скажіть «Цей квиток тут»"
+          "ru": "Продавец держит одно яблоко рядом с вами. Скажите подруге, что это яблоко.",
+          "uk": "Продавець тримає одне яблуко поруч із вами. Скажіть подрузі, що це яблуко."
         },
         "orderedTokens": [
           "This",
-          "ticket",
           "is",
-          "here"
+          "an",
+          "apple"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы показываете на билет в своей руке. Скажите «Этот билет здесь»",
+            "testedDimension": "Продавец держит одно яблоко рядом с вами. Скажите подруге, что это яблоко.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This ticket is here.`",
-              "uk": "тут потрібно `is` — `This ticket is here.`"
+              "ru": "здесь нужно `an` — `This is an apple.`",
+              "uk": "тут потрібно `an` — `This is an apple.`"
             }
           }
         ],
@@ -702,26 +790,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-38:word:orange",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — orange",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:word:orange:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — orange",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:word:orange:audio",
+          "transcript": "orange"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-38:word:orange:r1",
+            "targetText": "orange",
+            "meaningByLocale": {
+              "ru": "апельсин. That is an orange — «Это апельсин». О круглом сладком фрукте с толстой кожурой.",
+              "uk": "апельсин. That is an orange — «Це апельсин». Про круглий солодкий фрукт із товстою шкіркою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "orange",
+          "definitionByLocale": {
+            "ru": "апельсин. That is an orange — «Это апельсин». О круглом сладком фрукте с толстой кожурой.",
+            "uk": "апельсин. That is an orange — «Це апельсин». Про круглий солодкий фрукт із товстою шкіркою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-38:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У встречи нет официального статуса. Скажите «Она неофициальная» с сокращением",
+      "prompt": "Продавец показывает круглый сладкий фрукт с толстой кожурой и называет его, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i13:audio"
       ],
-      "accessibilityLabel": "У встречи нет официального статуса. Скажите «Она неофициальная» с сокращением",
+      "accessibilityLabel": "Продавец показывает круглый сладкий фрукт с толстой кожурой и называет его, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i13:audio",
-          "transcript": "It's unofficial."
+          "transcript": "orange"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unofficial.",
+        "targetPhrase": "orange",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,68 +866,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-38:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-38:word:pear",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:word:pear:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:word:pear:audio",
+          "transcript": "pear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-38:word:pear:r1",
+            "targetText": "pear",
+            "meaningByLocale": {
+              "ru": "груша. Those are pears — «Это груши». О фрукте с широким низом и узким верхом.",
+              "uk": "груша. Those are pears — «Це груші». Про фрукт із широким низом і вузьким верхом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pear",
+          "definitionByLocale": {
+            "ru": "груша. Those are pears — «Это груши». О фрукте с широким низом и узким верхом.",
+            "uk": "груша. Those are pears — «Це груші». Про фрукт із широким низом і вузьким верхом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы показываете на несколько окон вдалеке",
+      "prompt": "Продавец протягивает фрукт с широким низом и узким верхом. Как он называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i14:r1",
-          "text": "are"
+          "text": "pear"
         },
         {
           "responseId": "en:lesson-03:session-38:i14:r2",
-          "text": "is"
+          "text": "apple"
         },
         {
           "responseId": "en:lesson-03:session-38:i14:r3",
-          "text": "am"
+          "text": "peach"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на несколько окон вдалеке",
+      "accessibilityLabel": "Продавец протягивает фрукт с широким низом и узким верхом. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы показываете на несколько окон вдалеке",
-          "uk": "Ви показуєте на кілька вікон удалині"
+          "ru": "Продавец протягивает фрукт с широким низом и узким верхом. Как он называется по-английски?",
+          "uk": "Продавець простягає фрукт із широким низом і вузьким верхом. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "Those ___ windows.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-38:i14:r1",
-            "text": "are"
+            "text": "pear"
           },
           {
             "responseId": "en:lesson-03:session-38:i14:r2",
-            "text": "is"
+            "text": "apple"
           },
           {
             "responseId": "en:lesson-03:session-38:i14:r3",
-            "text": "am"
+            "text": "peach"
           }
         ],
-        "testedDimension": "Вы показываете на несколько окон вдалеке",
+        "testedDimension": "Продавец протягивает фрукт с широким низом и узким верхом. Как он называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-38:i14:r2",
             "correct": false,
-            "testedDimension": "Вы показываете на несколько окон вдалеке",
+            "testedDimension": "Продавец протягивает фрукт с широким низом и узким верхом. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Окон несколько: `Those are windows`.",
-              "uk": "Вікон кілька: `Those are windows`."
+              "ru": "apple — это яблоко, а фрукт с узким верхом называется pear.",
+              "uk": "apple — це яблуко, а фрукт із вузьким верхом називається pear."
             }
           },
           {
             "responseId": "en:lesson-03:session-38:i14:r3",
             "correct": false,
-            "testedDimension": "Вы показываете на несколько окон вдалеке",
+            "testedDimension": "Продавец протягивает фрукт с широким низом и узким верхом. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Для нескольких с `Those` нужно `are`.",
-              "uk": "Для кількох із `Those` потрібне `are`."
+              "ru": "peach — это персик, а фрукт с узким верхом называется pear.",
+              "uk": "peach — це персик, а фрукт із вузьким верхом називається pear."
             }
           }
         ]
@@ -805,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, как чувствует себя Анна",
+      "prompt": "Послушайте, что говорит продавец об апельсине",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i15:r1",
-          "text": "She is weak."
+          "text": "This is an orange."
         },
         {
           "responseId": "en:lesson-03:session-38:i15:r2",
-          "text": "She is lonely."
+          "text": "These are oranges."
         },
         {
           "responseId": "en:lesson-03:session-38:i15:r3",
-          "text": "She is sleepy."
+          "text": "This is an apple."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, как чувствует себя Анна",
+      "accessibilityLabel": "Послушайте, что говорит продавец об апельсине",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i15:audio",
-          "transcript": "She is weak."
+          "transcript": "This is an orange."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-38:i15:r1",
-            "targetText": "She is weak.",
+            "targetText": "This is an orange.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-38:i15:r2",
-            "targetText": "She is lonely.",
+            "targetText": "These are oranges.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-38:i15:r3",
-            "targetText": "She is sleepy.",
+            "targetText": "This is an apple.",
             "meaningByLocale": null
           }
         ],
@@ -858,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-38:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, как чувствует себя Анна",
+            "testedDimension": "Послушайте, что говорит продавец об апельсине",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `lonely`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `lonely`."
+              "ru": "В записи `This is an` — апельсин один, а в этом варианте `These are` — несколько.",
+              "uk": "У записі `This is an` — апельсин один, а в цьому варіанті `These are` — кілька."
             }
           },
           {
             "responseId": "en:lesson-03:session-38:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, как чувствует себя Анна",
+            "testedDimension": "Послушайте, что говорит продавец об апельсине",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `weak`, а в этом варианте — `sleepy`.",
-              "uk": "У записі останнє слово — `weak`, а в цьому варіанті — `sleepy`."
+              "ru": "В записи последнее слово — `orange`, а в этом варианте — `apple`.",
+              "uk": "У записі останнє слово — `orange`, а в цьому варіанті — `apple`."
             }
           }
         ],
@@ -881,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -895,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-38:i16:p1",
-            "target": "ticket",
+            "target": "pear",
             "meaningByLocale": {
-              "ru": "билет",
-              "uk": "квиток"
+              "ru": "груша",
+              "uk": "груша"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i16:p2",
-            "target": "weak",
+            "target": "orange",
             "meaningByLocale": {
-              "ru": "слабый",
-              "uk": "слабкий"
+              "ru": "апельсин",
+              "uk": "апельсин"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i16:p3",
-            "target": "unofficial",
+            "target": "banana",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "банан",
+              "uk": "банан"
             }
           },
           {
             "pairId": "en:lesson-03:session-38:i16:p4",
-            "target": "windows",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           }
         ],
         "leftColumn": [
-          "ticket",
-          "weak",
-          "unofficial",
-          "windows"
+          "pear",
+          "orange",
+          "banana",
+          "apple"
         ],
         "rightColumn": [
-          "билет",
-          "слабый",
-          "неофициальный",
-          "окна"
+          "груша",
+          "апельсин",
+          "банан",
+          "яблоко"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-38:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На другой встрече гость спрашивает об одном предмете на дальнем столе. Это билет. Назовите его полной фразой, начав с указателя на один предмет дальше",
+      "prompt": "Продавец спрашивает, какие фрукты вам нужны. Скажите ему коротко: эти груши мягкие.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i17:audio"
       ],
-      "accessibilityLabel": "На другой встрече гость спрашивает об одном предмете на дальнем столе. Это билет. Назовите его полной фразой, начав с указателя на один предмет дальше",
+      "accessibilityLabel": "Продавец спрашивает, какие фрукты вам нужны. Скажите ему коротко: эти груши мягкие.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i17:audio",
-          "transcript": "That is a ticket."
+          "transcript": "These pears are soft."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is a ticket.",
+        "targetPhrase": "These pears are soft.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -994,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "67bc823c93b94ea403b4c746237be602369407698baa7bdbeda1dedcf22d5655"
+  "learnerFingerprint": "c471bd3d0eecba60109aeb41ebeecd3872783e33d53435e15ac0e71107c1acab"
 }

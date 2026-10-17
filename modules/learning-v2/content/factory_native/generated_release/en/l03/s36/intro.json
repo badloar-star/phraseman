@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-36",
   "learningOutcomeByLocale": {
-    "ru": "назвать детей рядом и дальше, используя форму children, и описать их состояние",
-    "uk": "назвати дітей поруч і далі, використовуючи форму children, та описати їхній стан"
+    "ru": "слышать разницу между that и those и называть далёкие предметы",
+    "uk": "чути різницю між that і those та називати далекі предмети"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Дети без лишнего s",
-        "uk": "Діти без зайвого s"
+        "ru": "Дерево в горшке",
+        "uk": "Дерево в горщику"
       },
       "bodyByLocale": {
-        "ru": "`child` — «ребёнок», `children` — «дети». Здесь для нескольких не добавляем обычное `s`: запоминаем `children`, не `childs` и не `childrens`. `These are children` — «Это дети», показываем на нескольких рядом. `children` уже означает нескольких: дополнительное `s` не приведёт на встречу ещё одного ребёнка.",
-        "uk": "`child` — «дитина», `children` — «діти». Тут для кількох не додаємо звичайне `s`: запам’ятовуємо `children`, не `childs` і не `childrens`. `These are children` — «Це діти», показуємо на кількох поруч. `children` уже означає кількох: додаткове `s` не приведе на зустріч іще одну дитину."
+        "ru": "Вы с подругой гуляете по улице. В витрине садового магазина стоит маленькое дерево в горшке. Оно за стеклом, далеко от вас, и подруга спрашивает, что это за растение. tree — «дерево». Дерево одно и оно далеко, поэтому that: That is a tree — «Это дерево».",
+        "uk": "Ви з подругою гуляєте вулицею. У вітрині садового магазину стоїть невелике дерево в горщику. Воно за склом, далеко від вас, і подруга питає, що це за рослина. tree — «дерево». Дерево одне і воно далеко, тому that: That is a tree — «Це дерево»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Перед вами несколько детей. Назовите их одним английским словом.",
-          "uk": "Перед вами кілька дітей. Назвіть їх одним англійським словом."
+          "ru": "Подруга показывает на витрину. Скажите, что это дерево.",
+          "uk": "Подруга показує на вітрину. Скажіть, що це дерево."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-36:intro1:r1",
-              "text": "children"
+              "text": "That is a tree."
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r2",
-              "text": "child"
+              "text": "This is a tree."
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r3",
-              "text": "childrens"
+              "text": "That is tree."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-36:intro1:r1",
-              "text": "children"
+              "text": "That is a tree."
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r2",
-              "text": "child"
+              "text": "This is a tree."
             },
             {
               "responseId": "en:lesson-03:session-36:intro1:r3",
-              "text": "childrens"
+              "text": "That is tree."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Перед вами несколько детей. Назовите их одним английским словом.",
-          "uk": "Перед вами кілька дітей. Назвіть їх одним англійським словом."
+          "ru": "Подруга показывает на витрину. Скажите, что это дерево.",
+          "uk": "Подруга показує на вітрину. Скажіть, що це дерево."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Те дети ещё сонные",
-        "uk": "Ті діти ще сонні"
+        "ru": "Букет для мамы",
+        "uk": "Букет для мами"
       },
       "bodyByLocale": {
-        "ru": "`sleepy` — «сонный»: хочется спать, но человек не обязательно уже спит. `Those children are sleepy` — «Те дети сонные», говорим о группе дальше от нас. `Those children` — несколько детей дальше, поэтому после них нужно `are`. Для детей рядом меняем `Those` на `These`.",
-        "uk": "`sleepy` — «сонний»: хочеться спати, але людина не обов’язково вже спить. `Those children are sleepy` — «Ті діти сонні», говоримо про групу далі від нас. `Those children` — кілька дітей далі, тому після них потрібно `are`. Для дітей поруч змінюємо `Those` на `These`."
+        "ru": "Подруга хочет купить маме букет. В витрине цветочного магазина стоят в вазах несколько цветов, но подойти ближе она не может: магазин закрыт. Она просит вас оценить их издалека. flower — «цветок». Цветов несколько, и они далеко: Those flowers are fresh — «Те цветы свежие».",
+        "uk": "Подруга хоче купити мамі букет. У вітрині квіткового магазину стоять у вазах кілька квітів, але підійти ближче вона не може: магазин зачинений. Вона просить вас оцінити їх здалеку. flower — «квітка». Квітів кілька, і вони далеко: Those flowers are fresh — «Ті квіти свіжі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "Дети в дальнем конце комнаты зевают, им хочется спать. Скажите «Те дети сонные».",
-          "uk": "Діти в дальньому кінці кімнати позіхають, їм хочеться спати. Скажіть «Ті діти сонні»."
+          "ru": "Подруга просит оценить цветы в витрине. Скажите, что те цветы свежие.",
+          "uk": "Подруга просить оцінити квіти у вітрині. Скажіть, що ті квіти свіжі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-36:intro2:r1",
-              "text": "Those children are sleepy."
+              "text": "Those flowers are fresh."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r2",
-              "text": "That children are sleepy."
+              "text": "These flowers are fresh."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r3",
-              "text": "Those children is sleepy."
+              "text": "Those flower are fresh."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-36:intro2:r1",
-              "text": "Those children are sleepy."
+              "text": "Those flowers are fresh."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r2",
-              "text": "That children are sleepy."
+              "text": "These flowers are fresh."
             },
             {
               "responseId": "en:lesson-03:session-36:intro2:r3",
-              "text": "Those children is sleepy."
+              "text": "Those flower are fresh."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Дети в дальнем конце комнаты зевают, им хочется спать. Скажите «Те дети сонные».",
-          "uk": "Діти в дальньому кінці кімнати позіхають, їм хочеться спати. Скажіть «Ті діти сонні»."
+          "ru": "Подруга просит оценить цветы в витрине. Скажите, что те цветы свежие.",
+          "uk": "Подруга просить оцінити квіти у вітрині. Скажіть, що ті квіти свіжі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Встреча без церемоний",
-        "uk": "Зустріч без церемоній"
+        "ru": "Велосипеды за стеклом",
+        "uk": "Велосипеди за склом"
       },
       "bodyByLocale": {
-        "ru": "`informal` — «неформальный, непринуждённый». О нашей встрече можно сказать `It is informal` — «Она неформальная»: нет строгого порядка выступлений, участники просто общаются. Это не значит, что встреча тайная или запрещённая. Пока все знакомятся, Олег расставляет стулья: `These chairs are here` — «Эти стулья здесь». `these chairs` — несколько стульев рядом.",
-        "uk": "`informal` — «неформальний, невимушений». Про нашу зустріч можна сказати `It is informal` — «Вона неформальна»: немає суворого порядку виступів, учасники просто спілкуються. Це не означає, що зустріч таємна чи заборонена. Поки всі знайомляться, Олег розставляє стільці: `These chairs are here` — «Ці стільці тут». `these chairs` — кілька стільців поруч."
+        "ru": "Брат хочет купить велосипед. Магазин закрыт, и вы смотрите через витрину на велосипеды, которые стоят в ряд далеко за стеклом. bicycle — «велосипед». Велосипедов несколько, и они далеко. Брат смотрит на цены и ждёт вашего вопроса: Are those bicycles expensive? — «Те велосипеды дорогие?»",
+        "uk": "Брат хоче купити велосипед. Магазин зачинений, і ви дивитеся через вітрину на велосипеди, що стоять у ряд далеко за склом. bicycle — «велосипед». Велосипедів кілька, і вони далеко. Брат дивиться на ціни й чекає вашого запитання: Are those bicycles expensive? — «Ті велосипеди дорогі?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "Встреча проходит непринуждённо, без официальных выступлений. Скажите о ней «Она неформальная».",
-          "uk": "Зустріч проходить невимушено, без офіційних виступів. Скажіть про неї «Вона неформальна»."
+          "ru": "Брат смотрит на витрину. Спросите его, дорогие ли те велосипеды.",
+          "uk": "Брат дивиться на вітрину. Запитайте його, чи дорогі ті велосипеди."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-36:intro3:r1",
-              "text": "It is informal."
+              "text": "Are those bicycles expensive?"
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r2",
-              "text": "It is formal."
+              "text": "Is those bicycles expensive?"
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r3",
-              "text": "It are informal."
+              "text": "Are that bicycles expensive?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-36:intro3:r1",
-              "text": "It is informal."
+              "text": "Are those bicycles expensive?"
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r2",
-              "text": "It is formal."
+              "text": "Is those bicycles expensive?"
             },
             {
               "responseId": "en:lesson-03:session-36:intro3:r3",
-              "text": "It are informal."
+              "text": "Are that bicycles expensive?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Встреча проходит непринуждённо, без официальных выступлений. Скажите о ней «Она неформальная».",
-          "uk": "Зустріч проходить невимушено, без офіційних виступів. Скажіть про неї «Вона неформальна»."
+          "ru": "Брат смотрит на витрину. Спросите его, дорогие ли те велосипеды.",
+          "uk": "Брат дивиться на вітрину. Запитайте його, чи дорогі ті велосипеди."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f69463cb9631e9ac4d2b5a72c4ae6b9ce128bafd8cf883b355375d4467afa8a8"
+  "introFingerprint": "94f3a3fbbb552b485c0f16cc11c3a061fca9a556112943dbdd18a0cf1e9bfd00"
 }

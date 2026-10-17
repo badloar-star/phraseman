@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-49:intro1:r2": {
-          "ru": "Это «приемлемый». По условию результат принять нельзя.",
-          "uk": "Це «прийнятний». За умовою результат прийняти не можна."
+          "ru": "Это «поглаженная». А рубашка вся в складках: It is wrinkled.",
+          "uk": "Це «попрасована». А сорочка вся в складках: It is wrinkled."
         },
         "en:lesson-02:session-49:intro1:r3": {
-          "ru": "Между `It` и `unacceptable` нужно `is`.",
-          "uk": "Між `It` і `unacceptable` потрібно `is`."
+          "ru": "Между It и wrinkled нужно is: It is wrinkled.",
+          "uk": "Між It і wrinkled потрібно is: It is wrinkled."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-49:intro2:r2": {
-          "ru": "Это отрицает неприемлемость. По условию результат нельзя принять.",
-          "uk": "Це заперечує неприйнятність. За умовою результат не можна прийняти."
+          "ru": "Так звучит утверждение «Она в пятнах». Чтобы спросить, ставим Is вперёд: Is it stained?",
+          "uk": "Так звучить твердження «Вона в плямах». Щоб запитати, ставимо Is наперед: Is it stained?"
         },
         "en:lesson-02:session-49:intro2:r3": {
-          "ru": "С `it` нужно `is`.",
-          "uk": "З `it` потрібно `is`."
+          "ru": "С it нужно is: Is it stained?",
+          "uk": "З it потрібно is: Is it stained?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-49:intro3:r2": {
-          "ru": "Это о цене. Вы проверили точность сведений.",
-          "uk": "Це про ціну. Ви перевірили точність відомостей."
+          "ru": "С not выходит «Он целый». А нитки торчат по всему краю: It's frayed.",
+          "uk": "З not виходить «Він цілий». А нитки стирчать по всьому краю: It's frayed."
         },
         "en:lesson-02:session-49:intro3:r3": {
-          "ru": "Здесь говорим сразу о дате и адресе: `They're`.",
-          "uk": "Тут говоримо одразу про дату й адресу: `They're`."
+          "ru": "Ремень один, нужно It's: It's frayed.",
+          "uk": "Ремінь один, потрібно It's: It's frayed."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1c075f613155534782d736407afce2fb42d9dc45745b38024df502433f9a3d4f"
+  "auxiliaryFingerprint": "85cf4001d89426adc4f97504cbe3c6b32d786996f326d1f51763bd0af5317899"
 }

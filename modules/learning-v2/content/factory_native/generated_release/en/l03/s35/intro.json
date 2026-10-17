@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-35",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько фотографий рядом или дальше и указать на нужную группу",
-    "uk": "назвати кілька фотографій поруч або далі й указати на потрібну групу"
+    "ru": "выбирать между this для одного предмета и these для нескольких",
+    "uk": "обирати між this для одного предмета й these для кількох"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Не один снимок",
-        "uk": "Не один знімок"
+        "ru": "Фото из конверта",
+        "uk": "Фото з конверта"
       },
       "bodyByLocale": {
-        "ru": "`photo` — «фотография», `photos` — «фотографии». Для нескольких добавляем `s`: `photos`, не `photoes`. `These are photos` — «Это фотографии», показываем на снимки рядом. Перед `photos` не ставим `a`. Анна просила одну фотографию, а Олег прислал двадцать почти одинаковых: на каждой кто-нибудь моргает. Это уже точно `photos`.",
-        "uk": "`photo` — «фотографія», `photos` — «фотографії». Для кількох додаємо `s`: `photos`, не `photoes`. `These are photos` — «Це фотографії», показуємо на знімки поруч. Перед `photos` не ставимо `a`. Анна просила одну фотографію, а Олег надіслав двадцять майже однакових: на кожній хтось моргає. Це вже точно `photos`."
+        "ru": "Вы с братом и соседкой украшаете стену в комнате. Брат достаёт из конверта одну фотографию и держит её перед вами. Соседка спрашивает, что это за снимок и куда его повесить. photo — «фото». Фото одно, и оно рядом, поэтому this: This is a photo — «Это фото».",
+        "uk": "Ви з братом і сусідкою прикрашаєте стіну в кімнаті. Брат дістає з конверта одну фотографію й тримає її перед вами. Сусідка питає, що це за знімок і куди його повісити. photo — «фото». Фото одне, і воно поруч, тому this: This is a photo — «Це фото»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-35:intro1:q",
         "promptByLocale": {
-          "ru": "На столе лежит несколько фотографий. Назовите их одним английским словом.",
-          "uk": "На столі лежить кілька фотографій. Назвіть їх одним англійським словом."
+          "ru": "Брат держит одну фотографию перед вами. Скажите соседке, что это фото.",
+          "uk": "Брат тримає одну фотографію перед вами. Скажіть сусідці, що це фото."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-35:intro1:r1",
-              "text": "photos"
+              "text": "This is a photo."
             },
             {
               "responseId": "en:lesson-03:session-35:intro1:r2",
-              "text": "photo"
+              "text": "These are photos."
             },
             {
               "responseId": "en:lesson-03:session-35:intro1:r3",
-              "text": "photoes"
+              "text": "This is photo."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-35:intro1:r1",
-              "text": "photos"
+              "text": "This is a photo."
             },
             {
               "responseId": "en:lesson-03:session-35:intro1:r2",
-              "text": "photo"
+              "text": "These are photos."
             },
             {
               "responseId": "en:lesson-03:session-35:intro1:r3",
-              "text": "photoes"
+              "text": "This is photo."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На столе лежит несколько фотографий. Назовите их одним английским словом.",
-          "uk": "На столі лежить кілька фотографій. Назвіть їх одним англійським словом."
+          "ru": "Брат держит одну фотографию перед вами. Скажите соседке, что это фото.",
+          "uk": "Брат тримає одну фотографію перед вами. Скажіть сусідці, що це фото."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Эти и те",
-        "uk": "Ці й ті"
+        "ru": "Толстый альбом",
+        "uk": "Товстий альбом"
       },
       "bodyByLocale": {
-        "ru": "`These are photos` — снимки рядом; `Those are photos` — снимки дальше. `these` и `those` относятся к нескольким предметам, поэтому здесь нужно `are`. Можно сказать `These photos are formal` — «Эти фотографии в официальном стиле»: люди специально позировали в официальной обстановке. Между `These` и `photos` не ставим `a`.",
-        "uk": "`These are photos` — знімки поруч; `Those are photos` — знімки далі. `these` і `those` стосуються кількох предметів, тому тут потрібно `are`. Можна сказати `These photos are formal` — «Ці фотографії в офіційному стилі»: люди спеціально позували в офіційній обстановці. Між `These` і `photos` не ставимо `a`."
+        "ru": "Соседка принесла толстый альбом со старыми снимками и кладёт его на стол прямо перед вами. Она хочет знать, подойдёт ли он для подарка брату. album — «альбом». Альбом один и лежит рядом, поэтому this: This album is big — «Этот альбом большой».",
+        "uk": "Сусідка принесла товстий альбом зі старими знімками й кладе його на стіл просто перед вами. Вона хоче знати, чи підійде він для подарунка брату. album — «альбом». Альбом один і лежить поруч, тому this: This album is big — «Цей альбом великий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Несколько фотографий лежат на дальней полке. Назовите их со словом для нескольких предметов дальше.",
-          "uk": "Кілька фотографій лежать на дальній полиці. Назвіть їх зі словом для кількох предметів далі."
+          "ru": "Соседка положила альбом перед вами. Скажите ей, что этот альбом большой.",
+          "uk": "Сусідка поклала альбом перед вами. Скажіть їй, що цей альбом великий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-35:intro2:r1",
-              "text": "Those are photos."
+              "text": "This album is big."
             },
             {
               "responseId": "en:lesson-03:session-35:intro2:r2",
-              "text": "These are photos."
+              "text": "These album is big."
             },
             {
               "responseId": "en:lesson-03:session-35:intro2:r3",
-              "text": "That is photos."
+              "text": "This album are big."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-35:intro2:r1",
-              "text": "Those are photos."
+              "text": "This album is big."
             },
             {
               "responseId": "en:lesson-03:session-35:intro2:r2",
-              "text": "These are photos."
+              "text": "These album is big."
             },
             {
               "responseId": "en:lesson-03:session-35:intro2:r3",
-              "text": "That is photos."
+              "text": "This album are big."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько фотографий лежат на дальней полке. Назовите их со словом для нескольких предметов дальше.",
-          "uk": "Кілька фотографій лежать на дальній полиці. Назвіть їх зі словом для кількох предметів далі."
+          "ru": "Соседка положила альбом перед вами. Скажите ей, что этот альбом большой.",
+          "uk": "Сусідка поклала альбом перед вами. Скажіть їй, що цей альбом великий."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Олег остался дома",
-        "uk": "Олег залишився вдома"
+        "ru": "Рамки в магазине",
+        "uk": "Рамки в магазині"
       },
       "bodyByLocale": {
-        "ru": "`ill` — «болен», `formal` — «официальный». `He is ill` — «Он болен»: поэтому Олег не пришёл. `These photos are formal` — о снимках с официальной встречи. На фотографиях поездки видны машины клуба. Показывая на настоящие машины во дворе, можно сказать `Those cars are outside` — «Те машины снаружи». `Those cars` выбирает несколько машин дальше от нас.",
-        "uk": "`ill` — «хворий», `formal` — «офіційний». `He is ill` — «Він хворий»: тому Олег не прийшов. `These photos are formal` — про знімки з офіційної зустрічі. На фотографіях поїздки видно машини клубу. Показуючи на справжні машини у дворі, можна сказати `Those cars are outside` — «Ті машини надворі». `Those cars` вибирає кілька машин далі від нас."
+        "ru": "В маленьком магазине продавец достаёт из ящика несколько рамок и кладёт их перед вами на прилавок. Брат хочет знать, не дорого ли это. frame — «рамка». Рамок несколько, и они рядом, поэтому these: These frames are cheap — «Эти рамки дешёвые».",
+        "uk": "У маленькому магазині продавець дістає з шухляди кілька рамок і кладе їх перед вами на прилавок. Брат хоче знати, чи не дорого це коштуватиме. frame — «рамка». Рамок кілька, і вони поруч, тому these: These frames are cheap — «Ці рамки дешеві»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Олег заболел и остался дома. Сообщите «Он болен».",
-          "uk": "Олег захворів і залишився вдома. Повідомте «Він хворий»."
+          "ru": "Продавец положил рамки перед вами. Скажите брату, что эти рамки дешёвые.",
+          "uk": "Продавець поклав рамки перед вами. Скажіть брату, що ці рамки дешеві."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-35:intro3:r1",
-              "text": "He is ill."
+              "text": "These frames are cheap."
             },
             {
               "responseId": "en:lesson-03:session-35:intro3:r2",
-              "text": "He is formal."
+              "text": "This frames are cheap."
             },
             {
               "responseId": "en:lesson-03:session-35:intro3:r3",
-              "text": "He are ill."
+              "text": "These frames is cheap."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-35:intro3:r1",
-              "text": "He is ill."
+              "text": "These frames are cheap."
             },
             {
               "responseId": "en:lesson-03:session-35:intro3:r2",
-              "text": "He is formal."
+              "text": "This frames are cheap."
             },
             {
               "responseId": "en:lesson-03:session-35:intro3:r3",
-              "text": "He are ill."
+              "text": "These frames is cheap."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Олег заболел и остался дома. Сообщите «Он болен».",
-          "uk": "Олег захворів і залишився вдома. Повідомте «Він хворий»."
+          "ru": "Продавец положил рамки перед вами. Скажите брату, что эти рамки дешёвые.",
+          "uk": "Продавець поклав рамки перед вами. Скажіть брату, що ці рамки дешеві."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b014e2e4bebc15897e22de98b8acc1ec7d00178afeb02aa6cdcc5cb9a68380b5"
+  "introFingerprint": "df7a2e46416745c4c2f8ca3f54ab28af3f9420fc5facabfa3179291868f02079"
 }

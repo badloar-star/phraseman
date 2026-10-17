@@ -4,28 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-03:i01",
+      "interactionId": "en:lesson-03:session-03:word:stool",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:word:stool:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:word:stool:audio",
+          "transcript": "stool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:word:stool:r1",
+            "targetText": "stool",
+            "meaningByLocale": {
+              "ru": "табурет. It is a stool — «Это табурет». Сиденье без спинки на трёх или четырёх ножках.",
+              "uk": "табурет. It is a stool — «Це табурет». Сидіння без спинки на трьох або чотирьох ніжках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stool",
+          "definitionByLocale": {
+            "ru": "табурет. It is a stool — «Это табурет». Сиденье без спинки на трёх или четырёх ножках.",
+            "uk": "табурет. It is a stool — «Це табурет». Сидіння без спинки на трьох або чотирьох ніжках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы подняли книгу со стула. Назовите предмет полной фразой",
+      "prompt": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы подняли книгу со стула. Назовите предмет полной фразой",
+      "accessibilityLabel": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a book.",
+        "targetPhrase": "It is a stool.",
         "localizedMeaning": {
-          "ru": "Вы подняли книгу со стула. Назовите предмет полной фразой",
-          "uk": "Ви підняли книжку зі стільця. Назвіть предмет повною фразою"
+          "ru": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
+          "uk": "Подруга просила принести з комори будь-який табурет. Ви принесли. Скажіть їй повною фразою, що це табурет."
         },
         "orderedTokens": [
           "It",
           "is",
           "a",
-          "book"
+          "stool"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -34,10 +77,10 @@
           {
             "responseId": "en:lesson-03:session-03:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы подняли книгу со стула. Назовите предмет полной фразой",
+            "testedDimension": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is a book.`",
-              "uk": "тут потрібно `is` — `It is a book.`"
+              "ru": "здесь нужно `is` — `It is a stool.`",
+              "uk": "тут потрібно `is` — `It is a stool.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-03:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-03:word:mirror",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение об Олеге",
+      "prompt": "Карточка слова — mirror",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:word:mirror:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mirror",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:word:mirror:audio",
+          "transcript": "mirror"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:word:mirror:r1",
+            "targetText": "mirror",
+            "meaningByLocale": {
+              "ru": "зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.",
+              "uk": "дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mirror",
+          "definitionByLocale": {
+            "ru": "зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.",
+            "uk": "дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что подруга говорит о вещи у двери",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i02:r1",
-          "text": "He is busy."
+          "text": "It is a rug."
         },
         {
           "responseId": "en:lesson-03:session-03:i02:r2",
-          "text": "He is free."
+          "text": "It is a mirror."
         },
         {
           "responseId": "en:lesson-03:session-03:i02:r3",
-          "text": "He is late."
+          "text": "It is a stool."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение об Олеге",
+      "accessibilityLabel": "Послушайте, что подруга говорит о вещи у двери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i02:audio",
-          "transcript": "He is busy."
+          "transcript": "It is a rug."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-03:i02:r1",
-            "targetText": "He is busy.",
+            "targetText": "It is a rug.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-03:i02:r2",
-            "targetText": "He is free.",
+            "targetText": "It is a mirror.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-03:i02:r3",
-            "targetText": "He is late.",
+            "targetText": "It is a stool.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об Олеге",
+            "testedDimension": "Послушайте, что подруга говорит о вещи у двери",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `busy`, а в этом варианте — `free`.",
-              "uk": "У записі останнє слово — `busy`, а в цьому варіанті — `free`."
+              "ru": "В записи последнее слово — `rug`, а в этом варианте — `mirror`.",
+              "uk": "У записі останнє слово — `rug`, а в цьому варіанті — `mirror`."
             }
           },
           {
             "responseId": "en:lesson-03:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об Олеге",
+            "testedDimension": "Послушайте, что подруга говорит о вещи у двери",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `busy`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `busy`, а в цьому варіанті — `late`."
+              "ru": "В записи последнее слово — `rug`, а в этом варианте — `stool`.",
+              "uk": "У записі останнє слово — `rug`, а в цьому варіанті — `stool`."
             }
           }
         ],
@@ -126,11 +212,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните название книги",
+      "prompt": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i03:r1",
@@ -138,23 +224,23 @@
         },
         {
           "responseId": "en:lesson-03:session-03:i03:r2",
-          "text": "an"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-03:session-03:i03:r3",
-          "text": "is"
+          "text": "it"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните название книги",
+      "accessibilityLabel": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните название книги",
-          "uk": "Доповніть назву книжки"
+          "ru": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+          "uk": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»"
         },
-        "gappedTargetPhrase": "It is ___ book.",
+        "gappedTargetPhrase": "It is ___ mirror.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-03:i03:r1",
@@ -162,31 +248,31 @@
           },
           {
             "responseId": "en:lesson-03:session-03:i03:r2",
-            "text": "an"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-03:session-03:i03:r3",
-            "text": "is"
+            "text": "it"
           }
         ],
-        "testedDimension": "Дополните название книги",
+        "testedDimension": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "Дополните название книги",
+            "testedDimension": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
             "feedbackByLocale": {
-              "ru": "Перед согласным звуком в `book` нужно `a`.",
-              "uk": "Перед приголосним звуком у `book` потрібно `a`."
+              "ru": "is",
+              "uk": "Слово `is` в этой фразе уже есть. Перед `mirror` нужно `a`.,Слово `is` у цій фразі вже є. Перед `mirror` потрібне `a`."
             }
           },
           {
             "responseId": "en:lesson-03:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "Дополните название книги",
+            "testedDimension": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
             "feedbackByLocale": {
-              "ru": "`is` уже стоит после `It`. Перед `book` нужно `a`.",
-              "uk": "`is` уже стоїть після `It`. Перед `book` потрібно `a`."
+              "ru": "it",
+              "uk": "Слово `It` в этой фразе уже есть. Перед `mirror` нужно `a`.,Слово `It` у цій фразі вже є. Перед `mirror` потрібне `a`."
             }
           }
         ]
@@ -195,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +295,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-03:i04:p1",
-            "target": "book",
+            "target": "stool",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книжка"
+              "ru": "табурет",
+              "uk": "табурет"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i04:p2",
-            "target": "busy",
+            "target": "mirror",
             "meaningByLocale": {
-              "ru": "занятый",
-              "uk": "зайнятий"
+              "ru": "зеркало",
+              "uk": "дзеркало"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i04:p3",
-            "target": "free",
+            "target": "rug",
             "meaningByLocale": {
-              "ru": "свободный",
-              "uk": "вільний"
+              "ru": "коврик",
+              "uk": "килимок"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i04:p4",
-            "target": "late",
+            "target": "picture",
             "meaningByLocale": {
-              "ru": "опоздавший",
-              "uk": "той, хто запізнився"
+              "ru": "картина",
+              "uk": "картина"
             }
           }
         ],
         "leftColumn": [
-          "book",
-          "busy",
-          "free",
-          "late"
+          "stool",
+          "mirror",
+          "rug",
+          "picture"
         ],
         "rightColumn": [
-          "книга",
-          "занятый",
-          "свободный",
-          "опоздавший"
+          "табурет",
+          "зеркало",
+          "коврик",
+          "картина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -268,30 +354,30 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте, что говорит подруга, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте, что говорит подруга, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i05:audio",
-          "transcript": "It is a book."
+          "transcript": "It is a mirror."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is a book.",
+        "hiddenTargetPhrase": "It is a mirror.",
         "orderedTokens": [
           "It",
           "is",
           "a",
-          "book"
+          "mirror"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -300,54 +386,98 @@
           {
             "responseId": "en:lesson-03:session-03:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте, что говорит подруга, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is a book.`",
-              "uk": "тут потрібно `is` — `It is a book.`"
+              "ru": "здесь нужно `is` — `It is a mirror.`",
+              "uk": "тут потрібно `is` — `It is a mirror.`"
             }
           }
         ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:word:picture",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — picture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:word:picture:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — picture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:word:picture:audio",
+          "transcript": "picture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:word:picture:r1",
+            "targetText": "picture",
+            "meaningByLocale": {
+              "ru": "картина. It is a picture — «Это картина». Висит на стене в раме, а ещё это рисунок или фото.",
+              "uk": "картина. It is a picture — «Це картина». Висить на стіні в рамі, а ще це малюнок або фото."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "picture",
+          "definitionByLocale": {
+            "ru": "картина. It is a picture — «Это картина». Висит на стене в раме, а ещё это рисунок или фото.",
+            "uk": "картина. It is a picture — «Це картина». Висить на стіні в рамі, а ще це малюнок або фото."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-03:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы хотите попросить помощи с подготовкой. Спросите, кто свободен",
+      "prompt": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы хотите попросить помощи с подготовкой. Спросите, кто свободен",
+      "accessibilityLabel": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is free?",
+        "targetPhrase": "Is it a picture?",
         "localizedMeaning": {
-          "ru": "Вы хотите попросить помощи с подготовкой. Спросите, кто свободен",
-          "uk": "Ви хочете попросити допомоги з підготовкою. Запитайте, хто вільний"
+          "ru": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
+          "uk": "Подруга дістає річ із рулону паперу. Запитайте її, чи це картина."
         },
         "orderedTokens": [
-          "Who",
-          "is",
-          "free"
+          "Is",
+          "it",
+          "a",
+          "picture"
         ],
         "authoredDistractorTokens": [
-          "Where"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы хотите попросить помощи с подготовкой. Спросите, кто свободен",
+            "testedDimension": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is free?`",
-              "uk": "тут потрібно `Who` — `Who is free?`"
+              "ru": "здесь нужно `Is` — `Is it a picture?`",
+              "uk": "тут потрібно `Is` — `Is it a picture?`"
             }
           }
         ],
@@ -359,26 +489,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-03:word:rug",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:word:rug:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:word:rug:audio",
+          "transcript": "rug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:word:rug:r1",
+            "targetText": "rug",
+            "meaningByLocale": {
+              "ru": "коврик. It's a rug — «Это коврик». Лежит на полу у двери, у кровати или под столом.",
+              "uk": "килимок. It's a rug — «Це килимок». Лежить на підлозі біля дверей, біля ліжка або під столом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rug",
+          "definitionByLocale": {
+            "ru": "коврик. It's a rug — «Это коврик». Лежит на полу у двери, у кровати или под столом.",
+            "uk": "килимок. It's a rug — «Це килимок». Лежить на підлозі біля дверей, біля ліжка або під столом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-03:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна объяснила свой план, её доводы вас убедили. Скажите «Я убеждён» с сокращением",
+      "prompt": "Подруга спрашивает, что лежит у двери. Скажите коротко, что это коврик.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i07:audio"
       ],
-      "accessibilityLabel": "Анна объяснила свой план, её доводы вас убедили. Скажите «Я убеждён» с сокращением",
+      "accessibilityLabel": "Подруга спрашивает, что лежит у двери. Скажите коротко, что это коврик.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i07:audio",
-          "transcript": "I'm convinced."
+          "transcript": "It's a rug."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm convinced.",
+        "targetPhrase": "It's a rug.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна знает об изменении времени встречи. Сообщите, что она в курсе",
+      "prompt": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i08:r1",
@@ -405,7 +578,7 @@
         },
         {
           "responseId": "en:lesson-03:session-03:i08:r2",
-          "text": "is a"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-03:session-03:i08:r3",
@@ -414,14 +587,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна знает об изменении времени встречи. Сообщите, что она в курсе",
+      "accessibilityLabel": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна знает об изменении времени встречи. Сообщите, что она в курсе",
-          "uk": "Анна знає про зміну часу зустрічі. Повідомте, що вона обізнана"
+          "ru": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+          "uk": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "She ___ aware.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-03:i08:r1",
@@ -429,31 +602,31 @@
           },
           {
             "responseId": "en:lesson-03:session-03:i08:r2",
-            "text": "is a"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-03:session-03:i08:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Анна знает об изменении времени встречи. Сообщите, что она в курсе",
+        "testedDimension": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "Анна знает об изменении времени встречи. Сообщите, что она в курсе",
+            "testedDimension": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Перед отдельным `aware` не ставим `a`.",
-              "uk": "Перед окремим `aware` не ставимо `a`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-03:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "Анна знает об изменении времени встречи. Сообщите, что она в курсе",
+            "testedDimension": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `She` нужно `is`.",
-              "uk": "З `She` потрібно `is`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -462,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос об участнике",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i09:r1",
-          "text": "Is he late?"
+          "text": "Is it a picture?"
         },
         {
           "responseId": "en:lesson-03:session-03:i09:r2",
-          "text": "Is he busy?"
+          "text": "Is it a mirror?"
         },
         {
           "responseId": "en:lesson-03:session-03:i09:r3",
-          "text": "Is he free?"
+          "text": "Is it a rug?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос об участнике",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i09:audio",
-          "transcript": "Is he late?"
+          "transcript": "Is it a picture?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-03:i09:r1",
-            "targetText": "Is he late?",
+            "targetText": "Is it a picture?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-03:i09:r2",
-            "targetText": "Is he busy?",
+            "targetText": "Is it a mirror?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-03:i09:r3",
-            "targetText": "Is he free?",
+            "targetText": "Is it a rug?",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +688,19 @@
           {
             "responseId": "en:lesson-03:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об участнике",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `late`, а в этом варианте — `busy`.",
-              "uk": "У записі останнє слово — `late`, а в цьому варіанті — `busy`."
+              "ru": "В записи последнее слово — `picture`, а в этом варианте — `mirror`.",
+              "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `mirror`."
             }
           },
           {
             "responseId": "en:lesson-03:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об участнике",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `late`, а в этом варианте — `free`.",
-              "uk": "У записі останнє слово — `late`, а в цьому варіанті — `free`."
+              "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
+              "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
             }
           }
         ],
@@ -538,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -552,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-03:i10:p1",
-            "target": "aware",
+            "target": "picture",
             "meaningByLocale": {
-              "ru": "осведомлённый",
-              "uk": "обізнаний"
+              "ru": "картина",
+              "uk": "картина"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i10:p2",
-            "target": "convinced",
+            "target": "rug",
             "meaningByLocale": {
-              "ru": "убеждённый",
-              "uk": "переконаний"
+              "ru": "коврик",
+              "uk": "килимок"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i10:p3",
-            "target": "concerned",
+            "target": "stool",
             "meaningByLocale": {
-              "ru": "обеспокоенный",
-              "uk": "стурбований"
+              "ru": "табурет",
+              "uk": "табурет"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i10:p4",
-            "target": "ineffective",
+            "target": "closed",
             "meaningByLocale": {
-              "ru": "неэффективный",
-              "uk": "неефективний"
+              "ru": "закрытый",
+              "uk": "закритий"
             }
           }
         ],
         "leftColumn": [
-          "aware",
-          "convinced",
-          "concerned",
-          "ineffective"
+          "picture",
+          "rug",
+          "stool",
+          "closed"
         ],
         "rightColumn": [
-          "осведомлённый",
-          "убеждённый",
-          "обеспокоенный",
-          "неэффективный"
+          "картина",
+          "коврик",
+          "табурет",
+          "закрытый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,29 +784,31 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу об Анне",
+      "prompt": "Послушайте, что подруга говорит о табурете, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу об Анне",
+      "accessibilityLabel": "Послушайте, что подруга говорит о табурете, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i11:audio",
-          "transcript": "She is concerned."
+          "transcript": "It is not a stool."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She is concerned.",
+        "hiddenTargetPhrase": "It is not a stool.",
         "orderedTokens": [
-          "She",
+          "It",
           "is",
-          "concerned"
+          "not",
+          "a",
+          "stool"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -642,10 +817,10 @@
           {
             "responseId": "en:lesson-03:session-03:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу об Анне",
+            "testedDimension": "Послушайте, что подруга говорит о табурете, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is concerned.`",
-              "uk": "тут потрібно `is` — `She is concerned.`"
+              "ru": "здесь нужно `is` — `It is not a stool.`",
+              "uk": "тут потрібно `is` — `It is not a stool.`"
             }
           }
         ],
@@ -658,39 +833,40 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На полке лежит предмет в бумажной упаковке. Спросите, книга ли это",
+      "prompt": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На полке лежит предмет в бумажной упаковке. Спросите, книга ли это",
+      "accessibilityLabel": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it a book?",
+        "targetPhrase": "It is not a mirror.",
         "localizedMeaning": {
-          "ru": "На полке лежит предмет в бумажной упаковке. Спросите, книга ли это",
-          "uk": "На полиці лежить предмет у паперовій упаковці. Запитайте, чи це книжка"
+          "ru": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
+          "uk": "Подруга сплутала картину з дзеркалом. Скажіть їй повною фразою, що це не дзеркало."
         },
         "orderedTokens": [
-          "Is",
-          "it",
+          "It",
+          "is",
+          "not",
           "a",
-          "book"
+          "mirror"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i12:tile:d1",
             "correct": false,
-            "testedDimension": "На полке лежит предмет в бумажной упаковке. Спросите, книга ли это",
+            "testedDimension": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it a book?`",
-              "uk": "тут потрібно `Is` — `Is it a book?`"
+              "ru": "здесь нужно `is` — `It is not a mirror.`",
+              "uk": "тут потрібно `is` — `It is not a mirror.`"
             }
           }
         ],
@@ -703,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Напоминание не помогает участникам приходить вовремя. Скажите «Это неэффективно» с сокращением",
+      "prompt": "Вы держите картину в руках. Скажите коротко, что это картина.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i13:audio"
       ],
-      "accessibilityLabel": "Напоминание не помогает участникам приходить вовремя. Скажите «Это неэффективно» с сокращением",
+      "accessibilityLabel": "Вы держите картину в руках. Скажите коротко, что это картина.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i13:audio",
-          "transcript": "It's ineffective."
+          "transcript": "It's a picture."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's ineffective.",
+        "targetPhrase": "It's a picture.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна приняла плоскую коробку за книгу. Дополните «Это не книга»",
+      "prompt": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i14:r1",
-          "text": "a"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-03:session-03:i14:r2",
-          "text": "an"
+          "text": "Am"
         },
         {
           "responseId": "en:lesson-03:session-03:i14:r3",
-          "text": "is"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна приняла плоскую коробку за книгу. Дополните «Это не книга»",
+      "accessibilityLabel": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна приняла плоскую коробку за книгу. Дополните «Это не книга»",
-          "uk": "Анна прийняла пласку коробку за книжку. Доповніть «Це не книжка»"
+          "ru": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+          "uk": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок"
         },
-        "gappedTargetPhrase": "It is not ___ book.",
+        "gappedTargetPhrase": "___ it a rug?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-03:i14:r1",
-            "text": "a"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-03:session-03:i14:r2",
-            "text": "an"
+            "text": "Am"
           },
           {
             "responseId": "en:lesson-03:session-03:i14:r3",
-            "text": "is"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Анна приняла плоскую коробку за книгу. Дополните «Это не книга»",
+        "testedDimension": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i14:r2",
             "correct": false,
-            "testedDimension": "Анна приняла плоскую коробку за книгу. Дополните «Это не книга»",
+            "testedDimension": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
             "feedbackByLocale": {
-              "ru": "После `not` всё равно нужно `a book`.",
-              "uk": "Після `not` усе одно потрібно `a book`."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-03:session-03:i14:r3",
             "correct": false,
-            "testedDimension": "Анна приняла плоскую коробку за книгу. Дополните «Это не книга»",
+            "testedDimension": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
             "feedbackByLocale": {
-              "ru": "`is` уже есть; перед `book` нужно `a`.",
-              "uk": "`is` уже є; перед `book` потрібно `a`."
+              "ru": "Вопрос — `Is it a rug?`.",
+              "uk": "Питання — `Is it a rug?`."
             }
           }
         ]
@@ -805,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос после объяснения плана",
+      "prompt": "Послушайте, что подруга говорит о картине",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i15:r1",
-          "text": "Are you convinced?"
+          "text": "It is a picture."
         },
         {
           "responseId": "en:lesson-03:session-03:i15:r2",
-          "text": "Are you concerned?"
+          "text": "It is a rug."
         },
         {
           "responseId": "en:lesson-03:session-03:i15:r3",
-          "text": "Are you aware?"
+          "text": "It is a stool."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос после объяснения плана",
+      "accessibilityLabel": "Послушайте, что подруга говорит о картине",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i15:audio",
-          "transcript": "Are you convinced?"
+          "transcript": "It is a picture."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-03:i15:r1",
-            "targetText": "Are you convinced?",
+            "targetText": "It is a picture.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-03:i15:r2",
-            "targetText": "Are you concerned?",
+            "targetText": "It is a rug.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-03:i15:r3",
-            "targetText": "Are you aware?",
+            "targetText": "It is a stool.",
             "meaningByLocale": null
           }
         ],
@@ -858,19 +1034,19 @@
           {
             "responseId": "en:lesson-03:session-03:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос после объяснения плана",
+            "testedDimension": "Послушайте, что подруга говорит о картине",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `convinced`, а в этом варианте — `concerned`.",
-              "uk": "У записі останнє слово — `convinced`, а в цьому варіанті — `concerned`."
+              "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
+              "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
             }
           },
           {
             "responseId": "en:lesson-03:session-03:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос после объяснения плана",
+            "testedDimension": "Послушайте, что подруга говорит о картине",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `convinced`, а в этом варианте — `aware`.",
-              "uk": "У записі останнє слово — `convinced`, а в цьому варіанті — `aware`."
+              "ru": "В записи последнее слово — `picture`, а в этом варианте — `stool`.",
+              "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `stool`."
             }
           }
         ],
@@ -881,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -895,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-03:i16:p1",
-            "target": "book",
+            "target": "mirror",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книжка"
+              "ru": "зеркало",
+              "uk": "дзеркало"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i16:p2",
-            "target": "apple",
+            "target": "picture",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "картина",
+              "uk": "картина"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i16:p3",
-            "target": "busy",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "занятый",
-              "uk": "зайнятий"
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
             }
           },
           {
             "pairId": "en:lesson-03:session-03:i16:p4",
-            "target": "free",
+            "target": "bed",
             "meaningByLocale": {
-              "ru": "свободный",
-              "uk": "вільний"
+              "ru": "кровать",
+              "uk": "ліжко"
             }
           }
         ],
         "leftColumn": [
-          "book",
-          "apple",
-          "busy",
-          "free"
+          "mirror",
+          "picture",
+          "desk",
+          "bed"
         ],
         "rightColumn": [
-          "книга",
-          "яблоко",
-          "занятый",
-          "свободный"
+          "зеркало",
+          "картина",
+          "письменный стол",
+          "кровать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-03:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Дома вы достали из пакета книгу для следующей встречи. Назовите её: «Это книга», с сокращением",
+      "prompt": "Подруга показывает на вещь у стены. Спросите её, зеркало ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i17:audio"
       ],
-      "accessibilityLabel": "Дома вы достали из пакета книгу для следующей встречи. Назовите её: «Это книга», с сокращением",
+      "accessibilityLabel": "Подруга показывает на вещь у стены. Спросите её, зеркало ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-03:i17:audio",
-          "transcript": "It's a book."
+          "transcript": "Is it a mirror?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's a book.",
+        "targetPhrase": "Is it a mirror?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -994,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fff7940670cc70d07f8c1c484d4688a76db8983104f78f4bf53b7e449b0d33e3"
+  "learnerFingerprint": "861711bdec67fd554b5567d2640462ddb090866d38053b3f9e99d518a1d5bfee"
 }

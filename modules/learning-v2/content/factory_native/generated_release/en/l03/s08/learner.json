@@ -4,28 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-08:i01",
+      "interactionId": "en:lesson-03:session-08:word:shelf",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shelf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-08:word:shelf:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shelf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-08:word:shelf:audio",
+          "transcript": "shelf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-08:word:shelf:r1",
+            "targetText": "shelf",
+            "meaningByLocale": {
+              "ru": "полка. It is a shelf — «Это полка». На неё ставят книги, чашки и лампы.",
+              "uk": "полиця. It is a shelf — «Це полиця». На неї ставлять книжки, чашки й лампи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shelf",
+          "definitionByLocale": {
+            "ru": "полка. It is a shelf — «Это полка». На неё ставят книги, чашки и лампы.",
+            "uk": "полиця. It is a shelf — «Це полиця». На неї ставлять книжки, чашки й лампи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На столе яблоко. Назовите его полной фразой",
+      "prompt": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На столе яблоко. Назовите его полной фразой",
+      "accessibilityLabel": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is an apple.",
+        "targetPhrase": "It is a shelf.",
         "localizedMeaning": {
-          "ru": "На столе яблоко. Назовите его полной фразой",
-          "uk": "На столі яблуко. Назвіть його повною фразою"
+          "ru": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
+          "uk": "Подруга прикладає дошку до стіни над столом. Скажіть їй повною фразою, що це полиця."
         },
         "orderedTokens": [
           "It",
           "is",
-          "an",
-          "apple"
+          "a",
+          "shelf"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -34,10 +77,10 @@
           {
             "responseId": "en:lesson-03:session-08:i01:tile:d1",
             "correct": false,
-            "testedDimension": "На столе яблоко. Назовите его полной фразой",
+            "testedDimension": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is an apple.`",
-              "uk": "тут потрібно `is` — `It is an apple.`"
+              "ru": "здесь нужно `is` — `It is a shelf.`",
+              "uk": "тут потрібно `is` — `It is a shelf.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-08:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-08:word:hammer",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что за предмет называет Анна",
+      "prompt": "Карточка слова — hammer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-08:word:hammer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hammer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-08:word:hammer:audio",
+          "transcript": "hammer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-08:word:hammer:r1",
+            "targetText": "hammer",
+            "meaningByLocale": {
+              "ru": "молоток. It's a hammer — «Это молоток». Им вбивают гвозди.",
+              "uk": "молоток. It's a hammer — «Це молоток». Ним забивають цвяхи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hammer",
+          "definitionByLocale": {
+            "ru": "молоток. It's a hammer — «Это молоток». Им вбивают гвозди.",
+            "uk": "молоток. It's a hammer — «Це молоток». Ним забивають цвяхи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что подруга говорит о вещах в коридоре",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i02:r1",
-          "text": "It is a book."
+          "text": "It is a bucket."
         },
         {
           "responseId": "en:lesson-03:session-08:i02:r2",
-          "text": "It is a bag."
+          "text": "It is a ladder."
         },
         {
           "responseId": "en:lesson-03:session-08:i02:r3",
-          "text": "It is a map."
+          "text": "It is a hammer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что за предмет называет Анна",
+      "accessibilityLabel": "Послушайте, что подруга говорит о вещах в коридоре",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i02:audio",
-          "transcript": "It is a book."
+          "transcript": "It is a bucket."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-08:i02:r1",
-            "targetText": "It is a book.",
+            "targetText": "It is a bucket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-08:i02:r2",
-            "targetText": "It is a bag.",
+            "targetText": "It is a ladder.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-08:i02:r3",
-            "targetText": "It is a map.",
+            "targetText": "It is a hammer.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-03:session-08:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что за предмет называет Анна",
+            "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `book`, а в этом варианте — `bag`.",
-              "uk": "У записі останнє слово — `book`, а в цьому варіанті — `bag`."
+              "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
+              "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
             }
           },
           {
             "responseId": "en:lesson-03:session-08:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что за предмет называет Анна",
+            "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `book`, а в этом варианте — `map`.",
-              "uk": "У записі останнє слово — `book`, а в цьому варіанті — `map`."
+              "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
+              "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
             }
           }
         ],
@@ -125,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-08:word:bucket",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bucket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-08:word:bucket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bucket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-08:word:bucket:audio",
+          "transcript": "bucket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-08:word:bucket:r1",
+            "targetText": "bucket",
+            "meaningByLocale": {
+              "ru": "ведро. It is a bucket — «Это ведро». В него наливают воду или краску.",
+              "uk": "відро. It is a bucket — «Це відро». У нього наливають воду або фарбу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bucket",
+          "definitionByLocale": {
+            "ru": "ведро. It is a bucket — «Это ведро». В него наливают воду или краску.",
+            "uk": "відро. It is a bucket — «Це відро». У нього наливають воду або фарбу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-08:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Под упаковкой круглый плод. Спросите, яблоко ли это",
+      "prompt": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i03:r1",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-08:i03:r2",
           "text": "a"
         },
         {
-          "responseId": "en:lesson-03:session-08:i03:r3",
+          "responseId": "en:lesson-03:session-08:i03:r2",
           "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-08:i03:r3",
+          "text": "it"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Под упаковкой круглый плод. Спросите, яблоко ли это",
+      "accessibilityLabel": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Под упаковкой круглый плод. Спросите, яблоко ли это",
-          "uk": "Під упаковкою круглий плід. Запитайте, чи це яблуко"
+          "ru": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+          "uk": "Подруга показує на відро з фарбою. Доповніть: «Це відро»"
         },
-        "gappedTargetPhrase": "Is it ___ apple?",
+        "gappedTargetPhrase": "It is ___ bucket.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-08:i03:r1",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-08:i03:r2",
             "text": "a"
           },
           {
-            "responseId": "en:lesson-03:session-08:i03:r3",
+            "responseId": "en:lesson-03:session-08:i03:r2",
             "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i03:r3",
+            "text": "it"
           }
         ],
-        "testedDimension": "Под упаковкой круглый плод. Спросите, яблоко ли это",
+        "testedDimension": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-08:i03:r2",
             "correct": false,
-            "testedDimension": "Под упаковкой круглый плод. Спросите, яблоко ли это",
+            "testedDimension": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
             "feedbackByLocale": {
-              "ru": "Перед гласным звуком в `apple` нужно `an`, в вопросе тоже.",
-              "uk": "Перед голосним звуком у `apple` потрібно `an`, у запитанні також."
+              "ru": "is",
+              "uk": "Слово `is` в этой фразе уже есть. Перед `bucket` нужно `a`.,Слово `is` у цій фразі вже є. Перед `bucket` потрібне `a`."
             }
           },
           {
             "responseId": "en:lesson-03:session-08:i03:r3",
             "correct": false,
-            "testedDimension": "Под упаковкой круглый плод. Спросите, яблоко ли это",
+            "testedDimension": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
             "feedbackByLocale": {
-              "ru": "После `it` здесь нужно название `an apple`, не ещё одно `is`.",
-              "uk": "Після `it` тут потрібна назва `an apple`, не ще одне `is`."
+              "ru": "it",
+              "uk": "Слово `It` в этой фразе уже есть. Перед `bucket` нужно `a`.,Слово `It` у цій фразі вже є. Перед `bucket` потрібне `a`."
             }
           }
         ]
@@ -195,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-08:i04:p1",
-            "target": "key",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "ключ",
-              "uk": "ключ"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i04:p2",
-            "target": "apple",
+            "target": "hammer",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "молоток",
+              "uk": "молоток"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i04:p3",
-            "target": "book",
+            "target": "ladder",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книжка"
+              "ru": "лестница-стремянка",
+              "uk": "драбина"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i04:p4",
-            "target": "bag",
+            "target": "bucket",
             "meaningByLocale": {
-              "ru": "сумка",
-              "uk": "сумка"
+              "ru": "ведро",
+              "uk": "відро"
             }
           }
         ],
         "leftColumn": [
-          "key",
-          "apple",
-          "book",
-          "bag"
+          "shelf",
+          "hammer",
+          "ladder",
+          "bucket"
         ],
         "rightColumn": [
-          "ключ",
-          "яблоко",
-          "книга",
-          "сумка"
+          "полка",
+          "молоток",
+          "лестница-стремянка",
+          "ведро"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,31 +396,74 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-08:word:ladder",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ladder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-08:word:ladder:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ladder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-08:word:ladder:audio",
+          "transcript": "ladder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-08:word:ladder:r1",
+            "targetText": "ladder",
+            "meaningByLocale": {
+              "ru": "стремянка, лестница. Is it a ladder? — «Это стремянка?» По ней залезают наверх.",
+              "uk": "драбина. Is it a ladder? — «Це драбина?» По ній лізуть угору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ladder",
+          "definitionByLocale": {
+            "ru": "стремянка, лестница. Is it a ladder? — «Это стремянка?» По ней залезают наверх.",
+            "uk": "драбина. Is it a ladder? — «Це драбина?» По ній лізуть угору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-08:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите название находки",
+      "prompt": "Послушайте, что говорит подруга, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите название находки",
+      "accessibilityLabel": "Послушайте, что говорит подруга, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i05:audio",
-          "transcript": "It is a key."
+          "transcript": "It is a ladder."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is a key.",
+        "hiddenTargetPhrase": "It is a ladder.",
         "orderedTokens": [
           "It",
           "is",
           "a",
-          "key"
+          "ladder"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -300,10 +472,10 @@
           {
             "responseId": "en:lesson-03:session-08:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите название находки",
+            "testedDimension": "Послушайте, что говорит подруга, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is a key.`",
-              "uk": "тут потрібно `is` — `It is a key.`"
+              "ru": "здесь нужно `is` — `It is a ladder.`",
+              "uk": "тут потрібно `is` — `It is a ladder.`"
             }
           }
         ],
@@ -316,38 +488,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы уже говорите о сумке, но теперь не видите её. Спросите, где она",
+      "prompt": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже говорите о сумке, но теперь не видите её. Спросите, где она",
+      "accessibilityLabel": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is it?",
+        "targetPhrase": "Is it a picture?",
         "localizedMeaning": {
-          "ru": "Вы уже говорите о сумке, но теперь не видите её. Спросите, где она",
-          "uk": "Ви вже говорите про сумку, але тепер не бачите її. Запитайте, де вона"
+          "ru": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
+          "uk": "Подруга показує на малюнок на стіні. Запитайте її, чи це картина."
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "it"
+          "Is",
+          "it",
+          "a",
+          "picture"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-08:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы уже говорите о сумке, но теперь не видите её. Спросите, где она",
+            "testedDimension": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where is it?`",
-              "uk": "тут потрібно `Where` — `Where is it?`"
+              "ru": "здесь нужно `Is` — `Is it a picture?`",
+              "uk": "тут потрібно `Is` — `Is it a picture?`"
             }
           }
         ],
@@ -360,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна подняла чашку. Назовите её с сокращением",
+      "prompt": "Подруга поставила доску на два ящика. Скажите коротко, что это полка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i07:audio"
       ],
-      "accessibilityLabel": "Анна подняла чашку. Назовите её с сокращением",
+      "accessibilityLabel": "Подруга поставила доску на два ящика. Скажите коротко, что это полка.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i07:audio",
-          "transcript": "It's a cup."
+          "transcript": "It's a shelf."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's a cup.",
+        "targetPhrase": "It's a shelf.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег показывает ручку. Дополните её название полной фразой",
+      "prompt": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i08:r1",
@@ -405,23 +578,23 @@
         },
         {
           "responseId": "en:lesson-03:session-08:i08:r2",
-          "text": "are"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-03:session-08:i08:r3",
-          "text": "am"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег показывает ручку. Дополните её название полной фразой",
+      "accessibilityLabel": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег показывает ручку. Дополните её название полной фразой",
-          "uk": "Олег показує ручку. Доповніть її назву повною фразою"
+          "ru": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+          "uk": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "It ___ a pen.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-08:i08:r1",
@@ -429,31 +602,31 @@
           },
           {
             "responseId": "en:lesson-03:session-08:i08:r2",
-            "text": "are"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-03:session-08:i08:r3",
-            "text": "am"
+            "text": "are"
           }
         ],
-        "testedDimension": "Олег показывает ручку. Дополните её название полной фразой",
+        "testedDimension": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-08:i08:r2",
             "correct": false,
-            "testedDimension": "Олег показывает ручку. Дополните её название полной фразой",
+            "testedDimension": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `It` нужно `is`.",
-              "uk": "З `It` потрібно `is`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-03:session-08:i08:r3",
             "correct": false,
-            "testedDimension": "Олег показывает ручку. Дополните её название полной фразой",
+            "testedDimension": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is a pen`.",
-              "uk": "Фраза — `It is a pen`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -462,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о находке",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i09:r1",
-          "text": "Is it a bag?"
+          "text": "Is it a bucket?"
         },
         {
           "responseId": "en:lesson-03:session-08:i09:r2",
-          "text": "Is it a book?"
+          "text": "Is it a ladder?"
         },
         {
           "responseId": "en:lesson-03:session-08:i09:r3",
-          "text": "Is it a cup?"
+          "text": "Is it a hammer?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о находке",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i09:audio",
-          "transcript": "Is it a bag?"
+          "transcript": "Is it a bucket?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-08:i09:r1",
-            "targetText": "Is it a bag?",
+            "targetText": "Is it a bucket?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-08:i09:r2",
-            "targetText": "Is it a book?",
+            "targetText": "Is it a ladder?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-08:i09:r3",
-            "targetText": "Is it a cup?",
+            "targetText": "Is it a hammer?",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +688,19 @@
           {
             "responseId": "en:lesson-03:session-08:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о находке",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bag`, а в этом варианте — `book`.",
-              "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `book`."
+              "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
+              "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
             }
           },
           {
             "responseId": "en:lesson-03:session-08:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о находке",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bag`, а в этом варианте — `cup`.",
-              "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `cup`."
+              "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
+              "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
             }
           }
         ],
@@ -538,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -552,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-08:i10:p1",
-            "target": "map",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i10:p2",
-            "target": "pen",
+            "target": "lamp",
             "meaningByLocale": {
-              "ru": "ручка",
-              "uk": "ручка"
+              "ru": "лампа",
+              "uk": "лампа"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i10:p3",
-            "target": "cup",
+            "target": "mirror",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "зеркало",
+              "uk": "дзеркало"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i10:p4",
-            "target": "key",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "ключ",
-              "uk": "ключ"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
-          "map",
-          "pen",
-          "cup",
-          "key"
+          "shelf",
+          "lamp",
+          "mirror",
+          "door"
         ],
         "rightColumn": [
-          "карта",
-          "ручка",
-          "чашка",
-          "ключ"
+          "полка",
+          "лампа",
+          "зеркало",
+          "дверь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,31 +784,31 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите возражение Олега",
+      "prompt": "Послушайте, что подруга говорит о стремянке, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите возражение Олега",
+      "accessibilityLabel": "Послушайте, что подруга говорит о стремянке, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i11:audio",
-          "transcript": "It is not a book."
+          "transcript": "It is not a ladder."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not a book.",
+        "hiddenTargetPhrase": "It is not a ladder.",
         "orderedTokens": [
           "It",
           "is",
           "not",
           "a",
-          "book"
+          "ladder"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -644,10 +817,10 @@
           {
             "responseId": "en:lesson-03:session-08:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите возражение Олега",
+            "testedDimension": "Послушайте, что подруга говорит о стремянке, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not a book.`",
-              "uk": "тут потрібно `is` — `It is not a book.`"
+              "ru": "здесь нужно `is` — `It is not a ladder.`",
+              "uk": "тут потрібно `is` — `It is not a ladder.`"
             }
           }
         ],
@@ -660,28 +833,28 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна приняла лист с рисунком за карту. Скажите полной фразой «Это не карта»",
+      "prompt": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна приняла лист с рисунком за карту. Скажите полной фразой «Это не карта»",
+      "accessibilityLabel": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is not a map.",
+        "targetPhrase": "It is not a basket.",
         "localizedMeaning": {
-          "ru": "Анна приняла лист с рисунком за карту. Скажите полной фразой «Это не карта»",
-          "uk": "Анна прийняла аркуш із малюнком за карту. Скажіть повною фразою «Це не карта»"
+          "ru": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
+          "uk": "Подруга сплутала відро з кошиком. Скажіть їй повною фразою, що це не кошик."
         },
         "orderedTokens": [
           "It",
           "is",
           "not",
           "a",
-          "map"
+          "basket"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -690,10 +863,10 @@
           {
             "responseId": "en:lesson-03:session-08:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна приняла лист с рисунком за карту. Скажите полной фразой «Это не карта»",
+            "testedDimension": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not a map.`",
-              "uk": "тут потрібно `is` — `It is not a map.`"
+              "ru": "здесь нужно `is` — `It is not a basket.`",
+              "uk": "тут потрібно `is` — `It is not a basket.`"
             }
           }
         ],
@@ -706,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег спрашивает, что вы достали из сумки. Это яблоко. Назовите его с сокращением",
+      "prompt": "Вы держите молоток в руке. Скажите коротко, что это молоток.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i13:audio"
       ],
-      "accessibilityLabel": "Олег спрашивает, что вы достали из сумки. Это яблоко. Назовите его с сокращением",
+      "accessibilityLabel": "Вы держите молоток в руке. Скажите коротко, что это молоток.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i13:audio",
-          "transcript": "It's an apple."
+          "transcript": "It's a hammer."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's an apple.",
+        "targetPhrase": "It's a hammer.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -739,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег принял металлическую подвеску за ключ. Дополните «Это не ключ»",
+      "prompt": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i14:r1",
-          "text": "a"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-03:session-08:i14:r2",
-          "text": "an"
+          "text": "Am"
         },
         {
           "responseId": "en:lesson-03:session-08:i14:r3",
-          "text": "is"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег принял металлическую подвеску за ключ. Дополните «Это не ключ»",
+      "accessibilityLabel": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег принял металлическую подвеску за ключ. Дополните «Это не ключ»",
-          "uk": "Олег прийняв металеву підвіску за ключ. Доповніть «Це не ключ»"
+          "ru": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+          "uk": "Подруга показує на складану драбину. Запитайте її, чи це драбина"
         },
-        "gappedTargetPhrase": "It is not ___ key.",
+        "gappedTargetPhrase": "___ it a ladder?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-08:i14:r1",
-            "text": "a"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-03:session-08:i14:r2",
-            "text": "an"
+            "text": "Am"
           },
           {
             "responseId": "en:lesson-03:session-08:i14:r3",
-            "text": "is"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Олег принял металлическую подвеску за ключ. Дополните «Это не ключ»",
+        "testedDimension": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-08:i14:r2",
             "correct": false,
-            "testedDimension": "Олег принял металлическую подвеску за ключ. Дополните «Это не ключ»",
+            "testedDimension": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
             "feedbackByLocale": {
-              "ru": "Перед согласным звуком в `key` нужно `a`.",
-              "uk": "Перед приголосним звуком у `key` потрібно `a`."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-03:session-08:i14:r3",
             "correct": false,
-            "testedDimension": "Олег принял металлическую подвеску за ключ. Дополните «Это не ключ»",
+            "testedDimension": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
             "feedbackByLocale": {
-              "ru": "Перед `key` нужно `a`; `is` уже есть.",
-              "uk": "Перед `key` потрібно `a`; `is` уже є."
+              "ru": "Вопрос — `Is it a ladder?`.",
+              "uk": "Питання — `Is it a ladder?`."
             }
           }
         ]
@@ -808,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте название предмета",
+      "prompt": "Послушайте, что подруга говорит о полке",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i15:r1",
-          "text": "It is a pen."
+          "text": "It is a shelf."
         },
         {
           "responseId": "en:lesson-03:session-08:i15:r2",
-          "text": "It is a key."
+          "text": "It is a hammer."
         },
         {
           "responseId": "en:lesson-03:session-08:i15:r3",
-          "text": "It is a cup."
+          "text": "It is a bucket."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте название предмета",
+      "accessibilityLabel": "Послушайте, что подруга говорит о полке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i15:audio",
-          "transcript": "It is a pen."
+          "transcript": "It is a shelf."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-08:i15:r1",
-            "targetText": "It is a pen.",
+            "targetText": "It is a shelf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-08:i15:r2",
-            "targetText": "It is a key.",
+            "targetText": "It is a hammer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-08:i15:r3",
-            "targetText": "It is a cup.",
+            "targetText": "It is a bucket.",
             "meaningByLocale": null
           }
         ],
@@ -861,19 +1034,19 @@
           {
             "responseId": "en:lesson-03:session-08:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте название предмета",
+            "testedDimension": "Послушайте, что подруга говорит о полке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pen`, а в этом варианте — `key`.",
-              "uk": "У записі останнє слово — `pen`, а в цьому варіанті — `key`."
+              "ru": "В записи последнее слово — `shelf`, а в этом варианте — `hammer`.",
+              "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `hammer`."
             }
           },
           {
             "responseId": "en:lesson-03:session-08:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте название предмета",
+            "testedDimension": "Послушайте, что подруга говорит о полке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pen`, а в этом варианте — `cup`.",
-              "uk": "У записі останнє слово — `pen`, а в цьому варіанті — `cup`."
+              "ru": "В записи последнее слово — `shelf`, а в этом варианте — `bucket`.",
+              "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `bucket`."
             }
           }
         ],
@@ -884,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -898,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-08:i16:p1",
-            "target": "apple",
+            "target": "bucket",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "ведро",
+              "uk": "відро"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i16:p2",
-            "target": "book",
+            "target": "ladder",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книжка"
+              "ru": "лестница-стремянка",
+              "uk": "драбина"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i16:p3",
-            "target": "map",
+            "target": "picture",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "картина",
+              "uk": "картина"
             }
           },
           {
             "pairId": "en:lesson-03:session-08:i16:p4",
-            "target": "cup",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
-          "apple",
-          "book",
-          "map",
-          "cup"
+          "bucket",
+          "ladder",
+          "picture",
+          "door"
         ],
         "rightColumn": [
-          "яблоко",
-          "книга",
-          "карта",
-          "чашка"
+          "ведро",
+          "лестница-стремянка",
+          "картина",
+          "дверь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -957,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-08:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У выхода вы заметили тонкий предмет под стулом, но не можете рассмотреть его. Спросите Анну, ручка ли это",
+      "prompt": "Подруга показывает на ведро с краской. Спросите её, ведро ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-08:i17:audio"
       ],
-      "accessibilityLabel": "У выхода вы заметили тонкий предмет под стулом, но не можете рассмотреть его. Спросите Анну, ручка ли это",
+      "accessibilityLabel": "Подруга показывает на ведро с краской. Спросите её, ведро ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i17:audio",
-          "transcript": "Is it a pen?"
+          "transcript": "Is it a bucket?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it a pen?",
+        "targetPhrase": "Is it a bucket?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -997,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "521814354901dc056b5bd7a432d84034ed6a3cb5554dbaf1ac959022f3f11497"
+  "learnerFingerprint": "7831f1582b0809ef091887bd57bb21226a035fedc583402ed294e0bbe9adf846"
 }

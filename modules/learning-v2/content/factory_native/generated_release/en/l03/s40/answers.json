@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-40:i01",
-    "correctText": "This is a phone.",
+    "correctText": "These bottles are empty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i02",
-    "correctText": "That is a wallet.",
+    "correctText": "Is that jar full?",
     "correctResponseId": "en:lesson-03:session-40:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i03",
-    "correctText": "These",
+    "correctText": "box",
     "correctResponseId": "en:lesson-03:session-40:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i04",
-    "correctText": "en:lesson-03:session-40:i04:p1=phone\nen:lesson-03:session-40:i04:p2=wallet\nen:lesson-03:session-40:i04:p3=photos\nen:lesson-03:session-40:i04:p4=children",
+    "correctText": "en:lesson-03:session-40:i04:p1=barcode\nen:lesson-03:session-40:i04:p2=seal\nen:lesson-03:session-40:i04:p3=coupon\nen:lesson-03:session-40:i04:p4=scanner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i05",
-    "correctText": "Those bottles are there.",
+    "correctText": "Those apples are fresh.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i06",
-    "correctText": "This is a car.",
+    "correctText": "That is a jar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:word:barcode",
+    "correctText": "barcode",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i07",
-    "correctText": "Those are children.",
+    "correctText": "barcode",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:word:seal",
+    "correctText": "seal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i08",
-    "correctText": "is",
+    "correctText": "seal",
     "correctResponseId": "en:lesson-03:session-40:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i09",
-    "correctText": "These are bottles.",
+    "correctText": "That barcode is old.",
     "correctResponseId": "en:lesson-03:session-40:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i10",
-    "correctText": "en:lesson-03:session-40:i10:p1=car\nen:lesson-03:session-40:i10:p2=ticket\nen:lesson-03:session-40:i10:p3=bottles\nen:lesson-03:session-40:i10:p4=wallet",
+    "correctText": "en:lesson-03:session-40:i10:p1=barcode\nen:lesson-03:session-40:i10:p2=bag\nen:lesson-03:session-40:i10:p3=box\nen:lesson-03:session-40:i10:p4=jar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i11",
-    "correctText": "That phone is there.",
+    "correctText": "Are these seals broken?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i12",
-    "correctText": "These photos are here.",
+    "correctText": "This is a seal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:word:coupon",
+    "correctText": "coupon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i13",
-    "correctText": "That is a ticket.",
+    "correctText": "coupon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:word:scanner",
+    "correctText": "scanner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i14",
-    "correctText": "a",
+    "correctText": "scanner",
     "correctResponseId": "en:lesson-03:session-40:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i15",
-    "correctText": "These children are here.",
+    "correctText": "Those coupons are old.",
     "correctResponseId": "en:lesson-03:session-40:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i16",
-    "correctText": "en:lesson-03:session-40:i16:p1=this\nen:lesson-03:session-40:i16:p2=that\nen:lesson-03:session-40:i16:p3=these\nen:lesson-03:session-40:i16:p4=those",
+    "correctText": "en:lesson-03:session-40:i16:p1=scanner\nen:lesson-03:session-40:i16:p2=coupon\nen:lesson-03:session-40:i16:p3=seal\nen:lesson-03:session-40:i16:p4=barcode",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i17",
-    "correctText": "Those are bottles.",
+    "correctText": "That scanner is new.",
     "correctResponseId": null
   }
 ]

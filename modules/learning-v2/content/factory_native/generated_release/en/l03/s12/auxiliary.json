@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-12:intro1:r2": {
-          "ru": "Перед `table` нужно `a`: первый звук согласный.",
-          "uk": "Перед `table` потрібно `a`: перший звук приголосний."
+          "ru": "Перед vase нужно a: слово начинается с согласного звука.",
+          "uk": "Перед vase потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-12:intro1:r3": {
-          "ru": "В этой фразе перед названием одного стола нужно `a`.",
-          "uk": "У цій фразі перед назвою одного столу потрібно `a`."
+          "ru": "Перед названием одного такого предмета нужно a: It is a vase.",
+          "uk": "Перед назвою одного такого предмета потрібно a: It is a vase."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-12:intro2:r2": {
-          "ru": "О месте спрашиваем `Where`, а не `What`.",
-          "uk": "Про місце запитуємо `Where`, а не `What`."
+          "ru": "Перед clock нужно a: слово начинается с согласного звука.",
+          "uk": "Перед clock потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-12:intro2:r3": {
-          "ru": "С одним столом здесь нужно `is`.",
-          "uk": "З одним столом тут потрібно `is`."
+          "ru": "Между It и not нужно is: It is not a clock.",
+          "uk": "Між It і not потрібно is: It is not a clock."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-12:intro3:r2": {
-          "ru": "С `It` нужно `is`.",
-          "uk": "З `It` потрібно `is`."
+          "ru": "Перед radio нужно a: слово начинается с согласного звука.",
+          "uk": "Перед radio потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-12:intro3:r3": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "Перед radio нужно a: It's a radio.",
+          "uk": "Перед radio потрібно a: It's a radio."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7eb873c2a4b173c397ffe05599122266986ec74fc6a61a314822f0a0f4c71499"
+  "auxiliaryFingerprint": "3ad80aa066da0e02abdd3fb8b91d2b97a5a4b504645480cd97eed6bf07204b23"
 }

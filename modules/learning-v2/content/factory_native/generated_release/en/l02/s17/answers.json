@@ -1,12 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-02:session-17:i01",
-    "correctText": "Yes, I am.",
+    "interactionId": "en:lesson-02:session-17:word:well",
+    "correctText": "well",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-17:word:well",
-    "correctText": "well",
+    "interactionId": "en:lesson-02:session-17:i01",
+    "correctText": "Yes, I am.",
     "correctResponseId": null
   },
   {
@@ -55,6 +55,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-17:word:unpacked",
+    "correctText": "unpacked",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-17:i11",
     "correctText": "Yes, they are.",
     "correctResponseId": null
@@ -72,11 +77,6 @@
   {
     "interactionId": "en:lesson-02:session-17:i13",
     "correctText": "I'm stiff.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-02:session-17:word:unpacked",
-    "correctText": "unpacked",
     "correctResponseId": null
   },
   {

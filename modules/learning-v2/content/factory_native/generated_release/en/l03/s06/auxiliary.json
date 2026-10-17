@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-06:intro1:r2": {
-          "ru": "Перед `pen` в этом названии нужно `a`.",
-          "uk": "Перед `pen` у цій назві потрібно `a`."
+          "ru": "Перед basket нужно a: It's a basket.",
+          "uk": "Перед basket потрібне a: It's a basket."
         },
         "en:lesson-03:session-06:intro1:r3": {
-          "ru": "Перед согласным звуком в `pen` нужно `a`, не `an`.",
-          "uk": "Перед приголосним звуком у `pen` потрібно `a`, не `an`."
+          "ru": "С not выходит «Это не корзина». А подруга уже несёт её на руке: It's a basket.",
+          "uk": "З not виходить «Це не кошик». А подруга вже несе його на руці: It's a basket."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-06:intro2:r2": {
-          "ru": "В названии `a pen` пропало `a`.",
-          "uk": "У назві `a pen` зникло `a`."
+          "ru": "Так звучит ответ «Это тележка». Чтобы спросить, ставим Is вперёд: Is it a trolley?",
+          "uk": "Так звучить відповідь «Це візок». Щоб запитати, ставимо Is наперед: Is it a trolley?"
         },
         "en:lesson-03:session-06:intro2:r3": {
-          "ru": "Это вопрос о надёжном человеке, а вы уточняете название предмета.",
-          "uk": "Це запитання про надійну людину, а ви уточнюєте назву предмета."
+          "ru": "Перед trolley нужно a: Is it a trolley?",
+          "uk": "Перед trolley потрібне a: Is it a trolley?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-06:intro3:r2": {
-          "ru": "Перед отдельным `excited` здесь не нужно `a`.",
-          "uk": "Перед окремим `excited` тут не потрібно `a`."
+          "ru": "Перед tag нужно a: It is a tag.",
+          "uk": "Перед tag потрібне a: It is a tag."
         },
         "en:lesson-03:session-06:intro3:r3": {
-          "ru": "С `I` нужно `am`.",
-          "uk": "З `I` потрібно `am`."
+          "ru": "С not выходит «Это не бирка». А на бумажке цена: It is a tag.",
+          "uk": "З not виходить «Це не бирка». А на папірці ціна: It is a tag."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9cdc1a2eff92884e173d31505521ad026c30b8208c644b961907ea977645a4fa"
+  "auxiliaryFingerprint": "7fc6433b4f0df178c011b2c6d5e2394ec26ab3b2c520d90c660f3874684d2833"
 }

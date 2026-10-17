@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-20:i01",
+      "interactionId": "en:lesson-03:session-20:word:glass",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glass",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:word:glass:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glass",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:word:glass:audio",
+          "transcript": "glass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:word:glass:r1",
+            "targetText": "glass",
+            "meaningByLocale": {
+              "ru": "стакан. They are glasses — «Это стаканы». О стеклянном стакане для воды.",
+              "uk": "склянка. They are glasses — «Це склянки». Про скляну склянку для води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glass",
+          "definitionByLocale": {
+            "ru": "стакан. They are glasses — «Это стаканы». О стеклянном стакане для воды.",
+            "uk": "склянка. They are glasses — «Це склянки». Про скляну склянку для води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег спрашивает про несколько сложенных листов. Это карты местности. Назовите их полной фразой",
+      "prompt": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег спрашивает про несколько сложенных листов. Это карты местности. Назовите их полной фразой",
+      "accessibilityLabel": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are maps.",
+        "targetPhrase": "They are glasses.",
         "localizedMeaning": {
-          "ru": "Олег спрашивает про несколько сложенных листов. Это карты местности. Назовите их полной фразой",
-          "uk": "Олег запитує про кілька складених аркушів. Це карти місцевості. Назвіть їх повною фразою"
+          "ru": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
+          "uk": "Кур’єр диктує по телефону: у посилці склянки. Скажіть подрузі повною фразою: це склянки."
         },
         "orderedTokens": [
           "They",
           "are",
-          "maps"
+          "glasses"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "glass"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Олег спрашивает про несколько сложенных листов. Это карты местности. Назовите их полной фразой",
+            "testedDimension": "Курьер диктует по телефону: в посылке стаканы. Скажите подруге полной фразой: это стаканы.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are maps.`",
-              "uk": "тут потрібно `are` — `They are maps.`"
+              "ru": "здесь нужно `glasses` — `They are glasses.`",
+              "uk": "тут потрібно `glasses` — `They are glasses.`"
             }
           }
         ],
@@ -48,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-20:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-20:word:brush",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение о картах",
+      "prompt": "Карточка слова — brush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:word:brush:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:word:brush:audio",
+          "transcript": "brush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:word:brush:r1",
+            "targetText": "brush",
+            "meaningByLocale": {
+              "ru": "щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.",
+              "uk": "щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brush",
+          "definitionByLocale": {
+            "ru": "щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.",
+            "uk": "щітка або пензлик. Are they brushes? — «Це щітки?» Про щітку для прибирання, для одягу, для волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте курьера: что он диктует сейчас",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-20:i02:r1",
-          "text": "The maps are lost."
+          "text": "They are brushes."
         },
         {
           "responseId": "en:lesson-03:session-20:i02:r2",
-          "text": "The maps are here."
+          "text": "It is a brush."
         },
         {
           "responseId": "en:lesson-03:session-20:i02:r3",
-          "text": "The maps are nearby."
+          "text": "They are benches."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение о картах",
+      "accessibilityLabel": "Послушайте курьера: что он диктует сейчас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i02:audio",
-          "transcript": "The maps are lost."
+          "transcript": "They are brushes."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-20:i02:r1",
-            "targetText": "The maps are lost.",
+            "targetText": "They are brushes.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-20:i02:r2",
-            "targetText": "The maps are here.",
+            "targetText": "It is a brush.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-20:i02:r3",
-            "targetText": "The maps are nearby.",
+            "targetText": "They are benches.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-03:session-20:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о картах",
+            "testedDimension": "Послушайте курьера: что он диктует сейчас",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lost`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `here`."
+              "ru": "В записи последнее слово — `brushes`, а в этом варианте — `brush`.",
+              "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `brush`."
             }
           },
           {
             "responseId": "en:lesson-03:session-20:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о картах",
+            "testedDimension": "Послушайте курьера: что он диктует сейчас",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lost`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `nearby`."
+              "ru": "В записи последнее слово — `brushes`, а в этом варианте — `benches`.",
+              "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `benches`."
             }
           }
         ],
@@ -124,68 +210,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-20:word:bench",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bench",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:word:bench:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bench",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:word:bench:audio",
+          "transcript": "bench"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:word:bench:r1",
+            "targetText": "bench",
+            "meaningByLocale": {
+              "ru": "скамейка. The benches are here — «Скамейки здесь». О скамейке в саду, в парке, у дома.",
+              "uk": "лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bench",
+          "definitionByLocale": {
+            "ru": "скамейка. The benches are here — «Скамейки здесь». О скамейке в саду, в парке, у дома.",
+            "uk": "лавка. The benches are here — «Лавки тут». Про лавку в саду, в парку, біля дому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-20:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы называете несколько карт для гостей",
+      "prompt": "Курьер сообщает, что привёз скамейки. Дополните фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-20:i03:r1",
-          "text": "maps"
+          "text": "benches"
         },
         {
           "responseId": "en:lesson-03:session-20:i03:r2",
-          "text": "map"
+          "text": "bench"
         },
         {
           "responseId": "en:lesson-03:session-20:i03:r3",
-          "text": "a maps"
+          "text": "benchs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы называете несколько карт для гостей",
+      "accessibilityLabel": "Курьер сообщает, что привёз скамейки. Дополните фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы называете несколько карт для гостей",
-          "uk": "Ви називаєте кілька карт для гостей"
+          "ru": "Курьер сообщает, что привёз скамейки. Дополните фразу",
+          "uk": "Кур’єр повідомляє, що привіз лавки. Доповніть фразу"
         },
-        "gappedTargetPhrase": "They are ___.",
+        "gappedTargetPhrase": "The ___ are here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-20:i03:r1",
-            "text": "maps"
+            "text": "benches"
           },
           {
             "responseId": "en:lesson-03:session-20:i03:r2",
-            "text": "map"
+            "text": "bench"
           },
           {
             "responseId": "en:lesson-03:session-20:i03:r3",
-            "text": "a maps"
+            "text": "benchs"
           }
         ],
-        "testedDimension": "Вы называете несколько карт для гостей",
+        "testedDimension": "Курьер сообщает, что привёз скамейки. Дополните фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i03:r2",
             "correct": false,
-            "testedDimension": "Вы называете несколько карт для гостей",
+            "testedDimension": "Курьер сообщает, что привёз скамейки. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Карт несколько, поэтому нужно `maps`.",
-              "uk": "Карт кілька, тому потрібно `maps`."
+              "ru": "Скамеек несколько, поэтому нужно benches с es.",
+              "uk": "Лавок кілька, тому потрібно benches з es."
             }
           },
           {
             "responseId": "en:lesson-03:session-20:i03:r3",
             "correct": false,
-            "testedDimension": "Вы называете несколько карт для гостей",
+            "testedDimension": "Курьер сообщает, что привёз скамейки. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Перед названием нескольких карт не ставим `a`.",
-              "uk": "Перед назвою кількох карт не ставимо `a`."
+              "ru": "После ch для нескольких нужно es: benches.",
+              "uk": "Після ch для кількох потрібно es: benches."
             }
           }
         ]
@@ -194,62 +323,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями в этой сцене",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями в этой сцене",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-20:i04:p1",
-            "target": "maps",
+            "target": "glasses",
             "meaningByLocale": {
-              "ru": "карты местности",
-              "uk": "карти місцевості"
+              "ru": "стаканы",
+              "uk": "склянки"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i04:p2",
-            "target": "lost",
+            "target": "brushes",
             "meaningByLocale": {
-              "ru": "потерянный",
-              "uk": "загублений"
+              "ru": "щётки, кисти",
+              "uk": "щітки, пензлики"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i04:p3",
-            "target": "prepared",
+            "target": "benches",
             "meaningByLocale": {
-              "ru": "подготовленный",
-              "uk": "підготовлений"
+              "ru": "скамейки",
+              "uk": "лавки"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i04:p4",
-            "target": "table",
+            "target": "box",
             "meaningByLocale": {
-              "ru": "стол",
-              "uk": "стіл"
+              "ru": "коробка",
+              "uk": "коробка"
             }
           }
         ],
         "leftColumn": [
-          "maps",
-          "lost",
-          "prepared",
-          "table"
+          "glasses",
+          "brushes",
+          "benches",
+          "box"
         ],
         "rightColumn": [
-          "карты местности",
-          "потерянный",
-          "подготовленный",
-          "стол"
+          "стаканы",
+          "щётки, кисти",
+          "скамейки",
+          "коробка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +395,85 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-20:word:peach",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — peach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:word:peach:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — peach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:word:peach:audio",
+          "transcript": "peach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:word:peach:r1",
+            "targetText": "peach",
+            "meaningByLocale": {
+              "ru": "персик. Are they peaches? — «Это персики?» О сладком мягком фрукте.",
+              "uk": "персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peach",
+          "definitionByLocale": {
+            "ru": "персик. Are they peaches? — «Это персики?» О сладком мягком фрукте.",
+            "uk": "персик. Are they peaches? — «Це персики?» Про солодкий м’який фрукт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-20:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
+      "prompt": "Послушайте курьера и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте курьера и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i05:audio",
-          "transcript": "The table is here."
+          "transcript": "Are they peaches?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The table is here.",
+        "hiddenTargetPhrase": "Are they peaches?",
         "orderedTokens": [
-          "The",
-          "table",
-          "is",
-          "here"
+          "Are",
+          "they",
+          "peaches"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "peach"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте курьера и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The table is here.`",
-              "uk": "тут потрібно `is` — `The table is here.`"
+              "ru": "здесь нужно `peaches` — `Are they peaches?`",
+              "uk": "тут потрібно `peaches` — `Are they peaches?`"
             }
           }
         ],
@@ -315,39 +486,38 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег знает, какие карты нужны гостям. Спросите, где карты",
+      "prompt": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег знает, какие карты нужны гостям. Спросите, где карты",
+      "accessibilityLabel": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the maps?",
+        "targetPhrase": "Are they brushes?",
         "localizedMeaning": {
-          "ru": "Олег знает, какие карты нужны гостям. Спросите, где карты",
-          "uk": "Олег знає, які карти потрібні гостям. Запитайте, де карти"
+          "ru": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
+          "uk": "Кур’єр продиктував щітки, але ви не розчули. Запитайте його, чи це щітки."
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "maps"
+          "Are",
+          "they",
+          "brushes"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "Is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег знает, какие карты нужны гостям. Спросите, где карты",
+            "testedDimension": "Курьер продиктовал щётки, но вы не расслышали. Спросите его, щётки ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where are the maps?`",
-              "uk": "тут потрібно `Where` — `Where are the maps?`"
+              "ru": "здесь нужно `Are` — `Are they brushes?`",
+              "uk": "тут потрібно `Are` — `Are they brushes?`"
             }
           }
         ],
@@ -360,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы закончили подготовку к прогулке. Скажите «Я подготовлен» с сокращением",
+      "prompt": "Курьер спрашивает, где стаканы. Скажите ему, что стаканы здесь.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i07:audio"
       ],
-      "accessibilityLabel": "Вы закончили подготовку к прогулке. Скажите «Я подготовлен» с сокращением",
+      "accessibilityLabel": "Курьер спрашивает, где стаканы. Скажите ему, что стаканы здесь.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i07:audio",
-          "transcript": "I'm prepared."
+          "transcript": "The glasses are here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm prepared.",
+        "targetPhrase": "The glasses are here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,67 +563,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег спрашивает, всё ли у вас готово. Всё готово. Ответьте одним словом «Да»",
+      "prompt": "Персики лежат в пакете. Дополните фразу подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-20:i08:r1",
-          "text": "Yes"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-03:session-20:i08:r2",
-          "text": "No"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-03:session-20:i08:r3",
-          "text": "Not"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег спрашивает, всё ли у вас готово. Всё готово. Ответьте одним словом «Да»",
+      "accessibilityLabel": "Персики лежат в пакете. Дополните фразу подруги",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег спрашивает, всё ли у вас готово. Всё готово. Ответьте одним словом «Да»",
-          "uk": "Олег запитує, чи все у вас готове. Усе готове. Дайте відповідь одним словом «Так»"
+          "ru": "Персики лежат в пакете. Дополните фразу подруги",
+          "uk": "Персики лежать у пакеті. Доповніть фразу подруги"
         },
-        "gappedTargetPhrase": "___.",
+        "gappedTargetPhrase": "The peaches ___ here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-20:i08:r1",
-            "text": "Yes"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-03:session-20:i08:r2",
-            "text": "No"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-03:session-20:i08:r3",
-            "text": "Not"
+            "text": "am"
           }
         ],
-        "testedDimension": "Олег спрашивает, всё ли у вас готово. Всё готово. Ответьте одним словом «Да»",
+        "testedDimension": "Персики лежат в пакете. Дополните фразу подруги",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i08:r2",
             "correct": false,
-            "testedDimension": "Олег спрашивает, всё ли у вас готово. Всё готово. Ответьте одним словом «Да»",
+            "testedDimension": "Персики лежат в пакете. Дополните фразу подруги",
             "feedbackByLocale": {
-              "ru": "`No` означает «Нет», а здесь нужен ответ «Да»: `Yes`.",
-              "uk": "`No` означає «Ні», а тут потрібна відповідь «Так»: `Yes`."
+              "ru": "Персиков несколько: The peaches are here.",
+              "uk": "Персиків кілька: The peaches are here."
             }
           },
           {
             "responseId": "en:lesson-03:session-20:i08:r3",
             "correct": false,
-            "testedDimension": "Олег спрашивает, всё ли у вас готово. Всё готово. Ответьте одним словом «Да»",
+            "testedDimension": "Персики лежат в пакете. Дополните фразу подруги",
             "feedbackByLocale": {
-              "ru": "Для ответа «Да» нужно `Yes`, а не слово отрицания `Not`.",
-              "uk": "Для відповіді «Так» потрібне `Yes`, а не слово заперечення `Not`."
+              "ru": "С The peaches нужно are: The peaches are here.",
+              "uk": "З The peaches потрібно are: The peaches are here."
             }
           }
         ]
@@ -462,51 +632,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте описание Анны",
+      "prompt": "Послушайте курьера: он называет скамейку",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-20:i09:r1",
-          "text": "She is careful."
+          "text": "It is a bench."
         },
         {
           "responseId": "en:lesson-03:session-20:i09:r2",
-          "text": "She is tired."
+          "text": "They are benches."
         },
         {
           "responseId": "en:lesson-03:session-20:i09:r3",
-          "text": "She is prepared."
+          "text": "It is a peach."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте описание Анны",
+      "accessibilityLabel": "Послушайте курьера: он называет скамейку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i09:audio",
-          "transcript": "She is careful."
+          "transcript": "It is a bench."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-20:i09:r1",
-            "targetText": "She is careful.",
+            "targetText": "It is a bench.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-20:i09:r2",
-            "targetText": "She is tired.",
+            "targetText": "They are benches.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-20:i09:r3",
-            "targetText": "She is prepared.",
+            "targetText": "It is a peach.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +685,19 @@
           {
             "responseId": "en:lesson-03:session-20:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте описание Анны",
+            "testedDimension": "Послушайте курьера: он называет скамейку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `careful`, а в этом варианте — `tired`.",
-              "uk": "У записі останнє слово — `careful`, а в цьому варіанті — `tired`."
+              "ru": "В записи последнее слово — `bench`, а в этом варианте — `benches`.",
+              "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `benches`."
             }
           },
           {
             "responseId": "en:lesson-03:session-20:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте описание Анны",
+            "testedDimension": "Послушайте курьера: он называет скамейку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `careful`, а в этом варианте — `prepared`.",
-              "uk": "У записі останнє слово — `careful`, а в цьому варіанті — `prepared`."
+              "ru": "В записи последнее слово — `bench`, а в этом варианте — `peach`.",
+              "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `peach`."
             }
           }
         ],
@@ -538,62 +708,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями в этой сцене",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями в этой сцене",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-20:i10:p1",
-            "target": "careful",
+            "target": "glass",
             "meaningByLocale": {
-              "ru": "внимательный, осторожный",
-              "uk": "уважний, обережний"
+              "ru": "стакан",
+              "uk": "склянка"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i10:p2",
-            "target": "yes",
+            "target": "glasses",
             "meaningByLocale": {
-              "ru": "да",
-              "uk": "так"
+              "ru": "стаканы",
+              "uk": "склянки"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i10:p3",
-            "target": "innocent",
+            "target": "bench",
             "meaningByLocale": {
-              "ru": "невиновен",
-              "uk": "невинний"
+              "ru": "скамейка",
+              "uk": "лавка"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i10:p4",
-            "target": "maps",
+            "target": "benches",
             "meaningByLocale": {
-              "ru": "карты местности",
-              "uk": "карти місцевості"
+              "ru": "скамейки",
+              "uk": "лавки"
             }
           }
         ],
         "leftColumn": [
-          "careful",
-          "yes",
-          "innocent",
-          "maps"
+          "glass",
+          "glasses",
+          "bench",
+          "benches"
         ],
         "rightColumn": [
-          "внимательный, осторожный",
-          "да",
-          "невиновен",
-          "карты местности"
+          "стакан",
+          "стаканы",
+          "скамейка",
+          "скамейки"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,30 +781,30 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i11:audio",
-          "transcript": "The maps are here."
+          "transcript": "The brushes are clean."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The maps are here.",
+        "hiddenTargetPhrase": "The brushes are clean.",
         "orderedTokens": [
           "The",
-          "maps",
+          "brushes",
           "are",
-          "here"
+          "clean"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -643,10 +813,10 @@
           {
             "responseId": "en:lesson-03:session-20:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The maps are here.`",
-              "uk": "тут потрібно `are` — `The maps are here.`"
+              "ru": "здесь нужно `are` — `The brushes are clean.`",
+              "uk": "тут потрібно `are` — `The brushes are clean.`"
             }
           }
         ],
@@ -659,39 +829,38 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с Анной не можете найти нужные карты. Сообщите «Карты потерялись»",
+      "prompt": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с Анной не можете найти нужные карты. Сообщите «Карты потерялись»",
+      "accessibilityLabel": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The maps are lost.",
+        "targetPhrase": "They are peaches.",
         "localizedMeaning": {
-          "ru": "Вы с Анной не можете найти нужные карты. Сообщите «Карты потерялись»",
-          "uk": "Ви з Анною не можете знайти потрібні карти. Повідомте «Карти загубилися»"
+          "ru": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
+          "uk": "Подруга дістала з пакета персики. Скажіть їй повною фразою: це персики."
         },
         "orderedTokens": [
-          "The",
-          "maps",
+          "They",
           "are",
-          "lost"
+          "peaches"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "peach"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы с Анной не можете найти нужные карты. Сообщите «Карты потерялись»",
+            "testedDimension": "Подруга достала из пакета персики. Скажите ей полной фразой: это персики.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The maps are lost.`",
-              "uk": "тут потрібно `are` — `The maps are lost.`"
+              "ru": "здесь нужно `peaches` — `They are peaches.`",
+              "uk": "тут потрібно `peaches` — `They are peaches.`"
             }
           }
         ],
@@ -704,25 +873,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы узнали, что Анна не виновата в путанице: карты убрал Олег. Скажите «Она невиновна» с сокращением",
+      "prompt": "Курьер уточняет, что стоит у стены. Скажите коротко, что это скамейки.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i13:audio"
       ],
-      "accessibilityLabel": "Вы узнали, что Анна не виновата в путанице: карты убрал Олег. Скажите «Она невиновна» с сокращением",
+      "accessibilityLabel": "Курьер уточняет, что стоит у стены. Скажите коротко, что это скамейки.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i13:audio",
-          "transcript": "She's innocent."
+          "transcript": "They are benches."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's innocent.",
+        "targetPhrase": "They are benches.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,67 +906,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы спрашиваете, где несколько нужных карт",
+      "prompt": "Курьер диктует дальше. Дополните вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-20:i14:r1",
-          "text": "are"
+          "text": "glasses"
         },
         {
           "responseId": "en:lesson-03:session-20:i14:r2",
-          "text": "is"
+          "text": "glass"
         },
         {
           "responseId": "en:lesson-03:session-20:i14:r3",
-          "text": "am"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы спрашиваете, где несколько нужных карт",
+      "accessibilityLabel": "Курьер диктует дальше. Дополните вопрос подруги",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы спрашиваете, где несколько нужных карт",
-          "uk": "Ви запитуєте, де кілька потрібних карт"
+          "ru": "Курьер диктует дальше. Дополните вопрос подруги",
+          "uk": "Кур’єр диктує далі. Доповніть запитання подруги"
         },
-        "gappedTargetPhrase": "Where ___ the maps?",
+        "gappedTargetPhrase": "Are they ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-20:i14:r1",
-            "text": "are"
+            "text": "glasses"
           },
           {
             "responseId": "en:lesson-03:session-20:i14:r2",
-            "text": "is"
+            "text": "glass"
           },
           {
             "responseId": "en:lesson-03:session-20:i14:r3",
-            "text": "am"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вы спрашиваете, где несколько нужных карт",
+        "testedDimension": "Курьер диктует дальше. Дополните вопрос подруги",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-20:i14:r2",
             "correct": false,
-            "testedDimension": "Вы спрашиваете, где несколько нужных карт",
+            "testedDimension": "Курьер диктует дальше. Дополните вопрос подруги",
             "feedbackByLocale": {
-              "ru": "Карт несколько: `Where are the maps?`.",
-              "uk": "Карт кілька: `Where are the maps?`."
+              "ru": "В вопросе о нескольких стаканах тоже нужно glasses.",
+              "uk": "У запитанні про кілька склянок теж потрібно glasses."
             }
           },
           {
             "responseId": "en:lesson-03:session-20:i14:r3",
             "correct": false,
-            "testedDimension": "Вы спрашиваете, где несколько нужных карт",
+            "testedDimension": "Курьер диктует дальше. Дополните вопрос подруги",
             "feedbackByLocale": {
-              "ru": "С `the maps` здесь нужно `are`.",
-              "uk": "З `the maps` тут потрібно `are`."
+              "ru": "Слово Are уже стоит в начале. В пропуск нужно название стаканов: glasses.",
+              "uk": "Слово Are вже стоїть на початку. У пропуск потрібна назва склянок: glasses."
             }
           }
         ]
@@ -806,51 +975,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение об Анне после выяснения путаницы",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-20:i15:r1",
-          "text": "She is innocent."
+          "text": "Are they peaches?"
         },
         {
           "responseId": "en:lesson-03:session-20:i15:r2",
-          "text": "She is guilty."
+          "text": "Is it a peach?"
         },
         {
           "responseId": "en:lesson-03:session-20:i15:r3",
-          "text": "She is alone."
+          "text": "Are they benches?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение об Анне после выяснения путаницы",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i15:audio",
-          "transcript": "She is innocent."
+          "transcript": "Are they peaches?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-20:i15:r1",
-            "targetText": "She is innocent.",
+            "targetText": "Are they peaches?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-20:i15:r2",
-            "targetText": "She is guilty.",
+            "targetText": "Is it a peach?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-20:i15:r3",
-            "targetText": "She is alone.",
+            "targetText": "Are they benches?",
             "meaningByLocale": null
           }
         ],
@@ -859,19 +1028,19 @@
           {
             "responseId": "en:lesson-03:session-20:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об Анне после выяснения путаницы",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `innocent`, а в этом варианте — `guilty`.",
-              "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `guilty`."
+              "ru": "В записи последнее слово — `peaches`, а в этом варианте — `peach`.",
+              "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `peach`."
             }
           },
           {
             "responseId": "en:lesson-03:session-20:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение об Анне после выяснения путаницы",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `innocent`, а в этом варианте — `alone`.",
-              "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `alone`."
+              "ru": "В записи последнее слово — `peaches`, а в этом варианте — `benches`.",
+              "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `benches`."
             }
           }
         ],
@@ -882,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1065,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-20:i16:p1",
-            "target": "prepared",
+            "target": "brushes",
             "meaningByLocale": {
-              "ru": "подготовленный",
-              "uk": "підготовлений"
+              "ru": "щётки, кисти",
+              "uk": "щітки, пензлики"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i16:p2",
-            "target": "careful",
+            "target": "peaches",
             "meaningByLocale": {
-              "ru": "внимательный, осторожный",
-              "uk": "уважний, обережний"
+              "ru": "персики",
+              "uk": "персики"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i16:p3",
-            "target": "yes",
+            "target": "glasses",
             "meaningByLocale": {
-              "ru": "да",
-              "uk": "так"
+              "ru": "стаканы",
+              "uk": "склянки"
             }
           },
           {
             "pairId": "en:lesson-03:session-20:i16:p4",
-            "target": "table",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "стол",
-              "uk": "стіл"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           }
         ],
         "leftColumn": [
-          "prepared",
-          "careful",
-          "yes",
-          "table"
+          "brushes",
+          "peaches",
+          "glasses",
+          "bag"
         ],
         "rightColumn": [
-          "подготовленный",
-          "внимательный, осторожный",
-          "да",
-          "стол"
+          "щётки, кисти",
+          "персики",
+          "стаканы",
+          "сумка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1124,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-20:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед другой прогулкой гостям снова нужны карты. Анна знает, какие именно. Спросите, где карты",
+      "prompt": "Курьер диктует, что лежит в пакете. Вы не расслышали. Спросите, стаканы ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i17:audio"
       ],
-      "accessibilityLabel": "Перед другой прогулкой гостям снова нужны карты. Анна знает, какие именно. Спросите, где карты",
+      "accessibilityLabel": "Курьер диктует, что лежит в пакете. Вы не расслышали. Спросите, стаканы ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-20:i17:audio",
-          "transcript": "Where are the maps?"
+          "transcript": "Are they glasses?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the maps?",
+        "targetPhrase": "Are they glasses?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "50450bc8269de5fd918d8a6cb4a6ac36c1896ac2f1904f0f52dde8c53299c709"
+  "learnerFingerprint": "76c5e06e76fcedb63ce2ea204b87a7a1d10943773dcbb468e7c6f7022bc5be1b"
 }

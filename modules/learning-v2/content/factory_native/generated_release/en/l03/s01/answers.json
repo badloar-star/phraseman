@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-03:session-01:word:chair",
+    "correctText": "chair",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-01:i01",
-    "correctText": "It is a key.",
+    "correctText": "It is a chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:word:table",
+    "correctText": "table",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i02",
-    "correctText": "I am fine.",
+    "correctText": "It is a table.",
     "correctResponseId": "en:lesson-03:session-01:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-01:word:lamp",
+    "correctText": "lamp",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-01:i03",
-    "correctText": "is a",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-01:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-01:i04",
-    "correctText": "en:lesson-03:session-01:i04:p1=key\nen:lesson-03:session-01:i04:p2=here\nen:lesson-03:session-01:i04:p3=ready\nen:lesson-03:session-01:i04:p4=fine",
+    "correctText": "en:lesson-03:session-01:i04:p1=chair\nen:lesson-03:session-01:i04:p2=table\nen:lesson-03:session-01:i04:p3=lamp\nen:lesson-03:session-01:i04:p4=small",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i05",
-    "correctText": "It is a key.",
+    "correctText": "It is a lamp.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i06",
-    "correctText": "Is it a key?",
+    "correctText": "Is it a table?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i07",
-    "correctText": "I'm happy.",
+    "correctText": "It's a chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i08",
-    "correctText": "sure",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-01:i08:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-01:word:box",
+    "correctText": "box",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-01:i09",
-    "correctText": "Are you ready?",
+    "correctText": "Is it a box?",
     "correctResponseId": "en:lesson-03:session-01:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-01:i10",
-    "correctText": "en:lesson-03:session-01:i10:p1=happy\nen:lesson-03:session-01:i10:p2=sure\nen:lesson-03:session-01:i10:p3=interested\nen:lesson-03:session-01:i10:p4=comfortable",
+    "correctText": "en:lesson-03:session-01:i10:p1=box\nen:lesson-03:session-01:i10:p2=lamp\nen:lesson-03:session-01:i10:p3=chair\nen:lesson-03:session-01:i10:p4=dark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i11",
-    "correctText": "He is interested.",
+    "correctText": "It is not a box.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i12",
-    "correctText": "It is not a key.",
+    "correctText": "It is not a chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i13",
-    "correctText": "I'm comfortable.",
+    "correctText": "It's a box.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i14",
-    "correctText": "is",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-03:session-01:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-01:i15",
-    "correctText": "Are you interested?",
+    "correctText": "It is a box.",
     "correctResponseId": "en:lesson-03:session-01:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-01:i16",
-    "correctText": "en:lesson-03:session-01:i16:p1=key\nen:lesson-03:session-01:i16:p2=unacceptable\nen:lesson-03:session-01:i16:p3=here\nen:lesson-03:session-01:i16:p4=ready",
+    "correctText": "en:lesson-03:session-01:i16:p1=box\nen:lesson-03:session-01:i16:p2=table\nen:lesson-03:session-01:i16:p3=small\nen:lesson-03:session-01:i16:p4=dark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i17",
-    "correctText": "It's a key.",
+    "correctText": "Is it a lamp?",
     "correctResponseId": null
   }
 ]

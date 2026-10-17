@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-02:intro1:r2": {
-          "ru": "Перед гласным звуком в `apple` нужно `an`.",
-          "uk": "Перед голосним звуком у `apple` потрібно `an`."
+          "ru": "Перед sofa нужно a: It is a sofa.",
+          "uk": "Перед sofa потрібне a: It is a sofa."
         },
         "en:lesson-03:session-02:intro1:r3": {
-          "ru": "В этой фразе перед названием яблока нужно `an`.",
-          "uk": "У цій фразі перед назвою яблука потрібно `an`."
+          "ru": "Диван один, нужно It is: It is a sofa.",
+          "uk": "Диван один, потрібне It is: It is a sofa."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-02:intro2:r2": {
-          "ru": "Это «Где это?» Вы спрашиваете, что за предмет.",
-          "uk": "Це «Де це?» Ви запитуєте, що за предмет."
+          "ru": "Перед bed нужно a: It's a bed.",
+          "uk": "Перед bed потрібне a: It's a bed."
         },
         "en:lesson-03:session-02:intro2:r3": {
-          "ru": "Между `What` и `it` нужно `is`.",
-          "uk": "Між `What` і `it` потрібно `is`."
+          "ru": "С not выходит «Это не кровать». А рейки и матрас ждут на кровати: It's a bed.",
+          "uk": "З not виходить «Це не ліжко». А рейки й матрац чекають на ліжку: It's a bed."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-02:intro3:r2": {
-          "ru": "Перед отдельным `tired` здесь не ставим `a`: это состояние.",
-          "uk": "Перед окремим `tired` тут не ставимо `a`: це стан."
+          "ru": "Так звучит ответ «Это письменный стол». Чтобы спросить, ставим Is вперёд: Is it a desk?",
+          "uk": "Так звучить відповідь «Це письмовий стіл». Щоб запитати, ставимо Is наперед: Is it a desk?"
         },
         "en:lesson-03:session-02:intro3:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібно `is`."
+          "ru": "Перед desk нужно a: Is it a desk?",
+          "uk": "Перед desk потрібне a: Is it a desk?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "79a01cd58d29fa7de0779fc1085a9ce9e3c6686c03c812c42942455fe624fc58"
+  "auxiliaryFingerprint": "6b71087175b4dea774a1a9577c88bf9f09819a1ddc9b481caa5efcf92d85f994"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-01:intro1:r2": {
-          "ru": "В этой фразе перед названием одного предмета нужно `a`: `a key`.",
-          "uk": "У цій фразі перед назвою одного предмета потрібно `a`: `a key`."
+          "ru": "Перед chair нужно a: It is a chair.",
+          "uk": "Перед chair потрібне a: It is a chair."
         },
         "en:lesson-03:session-01:intro1:r3": {
-          "ru": "После `It` нужно `is`; `a` его не заменяет.",
-          "uk": "Після `It` потрібно `is`; `a` його не замінює."
+          "ru": "Между It и a нужно is: It is a chair.",
+          "uk": "Між It і a потрібне is: It is a chair."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-01:intro2:r2": {
-          "ru": "В `key` первый звук согласный. Здесь нужно `a key`.",
-          "uk": "У `key` перший звук приголосний. Тут потрібно `a key`."
+          "ru": "Так звучит ответ «Это стол». Чтобы спросить, ставим Is вперёд: Is it a table?",
+          "uk": "Так звучить відповідь «Це стіл». Щоб запитати, ставимо Is наперед: Is it a table?"
         },
         "en:lesson-03:session-01:intro2:r3": {
-          "ru": "Это «Он готов», а вы называете предмет: ключ.",
-          "uk": "Це «Він готовий», а ви називаєте предмет: ключ."
+          "ru": "Перед table нужно a: Is it a table?",
+          "uk": "Перед table потрібне a: Is it a table?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-01:intro3:r2": {
-          "ru": "В названии `a key` пропало `a`.",
-          "uk": "У назві `a key` зникло `a`."
+          "ru": "Перед lamp нужно a: It's a lamp.",
+          "uk": "Перед lamp потрібне a: It's a lamp."
         },
         "en:lesson-03:session-01:intro3:r3": {
-          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
-          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+          "ru": "С not выходит «Это не лампа». А вы достали лампу: It's a lamp.",
+          "uk": "З not виходить «Це не лампа». А ви дістали лампу: It's a lamp."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9ac262d61c068ffe9b2b89afa9641898de900b53c6f0d2c0cfb8d4042787ded5"
+  "auxiliaryFingerprint": "2dfe486ba110a5503768d14d42e60a1c9bf9f1c127a2b97afdec6d21a3c2ef9c"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-50:intro1:r2": {
-          "ru": "Между `It` и `effective` нужно `is`.",
-          "uk": "Між `It` і `effective` потрібно `is`."
+          "ru": "Это «старый». А телефон новый и гладкий: It is sleek.",
+          "uk": "Це «старий». А телефон новий і гладкий: It is sleek."
         },
         "en:lesson-02:session-50:intro1:r3": {
-          "ru": "Это отрицает результативность. По условию способ помог.",
-          "uk": "Це заперечує результативність. За умовою спосіб допоміг."
+          "ru": "Между It и sleek нужно is: It is sleek.",
+          "uk": "Між It і sleek потрібно is: It is sleek."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-50:intro2:r2": {
-          "ru": "Это вопрос о цене, которая уже известна. Сейчас нужен результат.",
-          "uk": "Це запитання про ціну, яка вже відома. Зараз потрібен результат."
+          "ru": "Так звучит утверждение «Это дороговато». Чтобы спросить, ставим Is вперёд: Is it pricey?",
+          "uk": "Так звучить твердження «Це дороговато». Щоб запитати, ставимо Is наперед: Is it pricey?"
         },
         "en:lesson-02:session-50:intro2:r3": {
-          "ru": "Это утверждение. Вы ещё спрашиваете.",
-          "uk": "Це твердження. Ви ще запитуєте."
+          "ru": "С it нужно is: Is it pricey?",
+          "uk": "З it потрібно is: Is it pricey?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-50:intro3:r2": {
-          "ru": "Здесь речь о нескольких номерах: `They're`.",
-          "uk": "Тут ідеться про кілька номерів: `They're`."
+          "ru": "С not выходит «Она не пригодилась». А винт открутили за секунду: It's handy.",
+          "uk": "З not виходить «Вона не знадобилася». А гвинт відкрутили за секунду: It's handy."
         },
         "en:lesson-02:session-50:intro3:r3": {
-          "ru": "Это о цене, а вы обнаружили неточности.",
-          "uk": "Це про ціну, а ви виявили неточності."
+          "ru": "Отвёртка одна, нужно It's: It's handy.",
+          "uk": "Викрутка одна, потрібно It's: It's handy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8da72ab9bcd71ecf7bd314246ff6c5d80c84ef7ef8dc0eddba0bb53718fd6681"
+  "auxiliaryFingerprint": "df9b96b4e0558580ae242c0f419bf19f7f93dd5cc69d629cca4f83bcbe414cdb"
 }

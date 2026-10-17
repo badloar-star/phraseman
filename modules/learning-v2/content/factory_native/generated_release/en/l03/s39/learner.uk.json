@@ -9,34 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте на кілька парків у дальній частині карти. Скажіть «Це парки» зі словом для кількох далі",
+      "prompt": "Продавець поставив поруч із вами сумки. Скажіть брату повною фразою: ці сумки легкі.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на кілька парків у дальній частині карти. Скажіть «Це парки» зі словом для кількох далі",
+      "accessibilityLabel": "Продавець поставив поруч із вами сумки. Скажіть брату повною фразою: ці сумки легкі.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Those are parks.",
+        "targetPhrase": "These bags are light.",
         "localizedMeaning": {
-          "ru": "Вы показываете на несколько парков в дальней части карты. Скажите «Это парки» со словом для нескольких дальше",
-          "uk": "Ви показуєте на кілька парків у дальній частині карти. Скажіть «Це парки» зі словом для кількох далі"
+          "ru": "Продавец поставил рядом с вами сумки. Скажите брату полной фразой: эти сумки лёгкие.",
+          "uk": "Продавець поставив поруч із вами сумки. Скажіть брату повною фразою: ці сумки легкі."
         },
         "orderedTokens": [
-          "Those",
+          "These",
+          "bags",
           "are",
-          "parks"
+          "light"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "bag"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька парків у дальній частині карти. Скажіть «Це парки» зі словом для кількох далі",
+            "testedDimension": "Продавець поставив поруч із вами сумки. Скажіть брату повною фразою: ці сумки легкі.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those are parks.`",
-              "uk": "тут потрібно `are` — `Those are parks.`"
+              "ru": "здесь нужно `bags` — `These bags are light.`",
+              "uk": "тут потрібно `bags` — `These bags are light.`"
             }
           }
         ],
@@ -53,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте запитання брата про груші",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i02:r1",
-          "text": "bottles"
+          "text": "Are those pears ripe?"
         },
         {
           "responseId": "en:lesson-03:session-39:i02:r2",
-          "text": "boxes"
+          "text": "Is that pear ripe?"
         },
         {
           "responseId": "en:lesson-03:session-39:i02:r3",
-          "text": "tables"
+          "text": "Are these pears ripe?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте запитання брата про груші",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i02:audio",
-          "transcript": "bottles"
+          "transcript": "Are those pears ripe?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-39:i02:r1",
-            "targetText": "bottles",
+            "targetText": "Are those pears ripe?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-39:i02:r2",
-            "targetText": "boxes",
+            "targetText": "Is that pear ripe?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-39:i02:r3",
-            "targetText": "tables",
+            "targetText": "Are these pears ripe?",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-39:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте запитання брата про груші",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `bottles`, а в этом варианте — `boxes`.",
-              "uk": "У записі перше слово — `bottles`, а в цьому варіанті — `boxes`."
+              "ru": "В записи `Are those pears` — груш несколько, а в этом варианте `Is that pear` — одна.",
+              "uk": "У записі `Are those pears` — груш кілька, а в цьому варіанті `Is that pear` — одна."
             }
           },
           {
             "responseId": "en:lesson-03:session-39:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте запитання брата про груші",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `bottles`, а в этом варианте — `tables`.",
-              "uk": "У записі перше слово — `bottles`, а в цьому варіанті — `tables`."
+              "ru": "В записи слово `those` — груши далеко, а в этом варианте `these` — рядом.",
+              "uk": "У записі слово `those` — груші далеко, а в цьому варіанті `these` — поруч."
             }
           }
         ],
@@ -129,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть кілька пляшок одним англійським словом",
+      "prompt": "Подруга показує на банани вдалині. Доповніть її фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i03:r1",
-          "text": "bottles"
+          "text": "bananas"
         },
         {
           "responseId": "en:lesson-03:session-39:i03:r2",
-          "text": "bottle"
+          "text": "banana"
         },
         {
           "responseId": "en:lesson-03:session-39:i03:r3",
-          "text": "boxes"
+          "text": "a banana"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кілька пляшок одним англійським словом",
+      "accessibilityLabel": "Подруга показує на банани вдалині. Доповніть її фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите несколько бутылок одним английским словом",
-          "uk": "Назвіть кілька пляшок одним англійським словом"
+          "ru": "Подруга показывает на бананы вдали. Дополните её фразу",
+          "uk": "Подруга показує на банани вдалині. Доповніть її фразу"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "Those ___ are cheap.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-39:i03:r1",
-            "text": "bottles"
+            "text": "bananas"
           },
           {
             "responseId": "en:lesson-03:session-39:i03:r2",
-            "text": "bottle"
+            "text": "banana"
           },
           {
             "responseId": "en:lesson-03:session-39:i03:r3",
-            "text": "boxes"
+            "text": "a banana"
           }
         ],
-        "testedDimension": "Назвіть кілька пляшок одним англійським словом",
+        "testedDimension": "Подруга показує на банани вдалині. Доповніть її фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть кілька пляшок одним англійським словом",
+            "testedDimension": "Подруга показує на банани вдалині. Доповніть її фразу",
             "feedbackByLocale": {
-              "ru": "`bottle` — одна бутылка. Несколько — `bottles`.",
-              "uk": "`bottle` — одна пляшка. Кілька — `bottles`."
+              "ru": "Бананов несколько, поэтому нужно bananas с s.",
+              "uk": "Бананів кілька, тому потрібно bananas з s."
             }
           },
           {
             "responseId": "en:lesson-03:session-39:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть кілька пляшок одним англійським словом",
+            "testedDimension": "Подруга показує на банани вдалині. Доповніть її фразу",
             "feedbackByLocale": {
-              "ru": "`boxes` — коробки. Бутылки — `bottles`.",
-              "uk": "`boxes` — коробки. Пляшки — `bottles`."
+              "ru": "После Those нужно несколько бананов: bananas с s.",
+              "uk": "Після Those потрібно кілька бананів: bananas з s."
             }
           }
         ]
@@ -208,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-39:i04:p1",
-            "target": "bottles",
+            "target": "grape",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "виноградина",
+              "uk": "виноградина"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i04:p2",
-            "target": "brave",
+            "target": "lemon",
             "meaningByLocale": {
-              "ru": "смелый",
-              "uk": "сміливий"
+              "ru": "лимон",
+              "uk": "лимон"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i04:p3",
-            "target": "relevant",
+            "target": "onion",
             "meaningByLocale": {
-              "ru": "относящийся к делу",
-              "uk": "що стосується справи"
+              "ru": "лук (луковица)",
+              "uk": "цибуля (цибулина)"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i04:p4",
-            "target": "parks",
+            "target": "cucumber",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "огурец",
+              "uk": "огірок"
             }
           }
         ],
         "leftColumn": [
-          "bottles",
-          "brave",
-          "relevant",
-          "parks"
+          "grape",
+          "lemon",
+          "onion",
+          "cucumber"
         ],
         "rightColumn": [
-          "пляшки",
-          "сміливий",
-          "що стосується справи",
-          "парки"
+          "виноградина",
+          "лимон",
+          "цибуля (цибулина)",
+          "огірок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -271,37 +272,38 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i05:audio",
-          "transcript": "These are bottles."
+          "transcript": "That orange is sweet."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These are bottles.",
+        "hiddenTargetPhrase": "That orange is sweet.",
         "orderedTokens": [
-          "These",
-          "are",
-          "bottles"
+          "That",
+          "orange",
+          "is",
+          "sweet"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These are bottles.`",
-              "uk": "тут потрібно `are` — `These are bottles.`"
+              "ru": "здесь нужно `is` — `That orange is sweet.`",
+              "uk": "тут потрібно `is` — `That orange is sweet.`"
             }
           }
         ],
@@ -318,35 +320,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Пляшки стоять на дальньому столі. Скажіть «Ті пляшки там»",
+      "prompt": "Продавець тримає один персик поруч із вами. Скажіть брату, що це персик.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пляшки стоять на дальньому столі. Скажіть «Ті пляшки там»",
+      "accessibilityLabel": "Продавець тримає один персик поруч із вами. Скажіть брату, що це персик.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Those bottles are there.",
+        "targetPhrase": "This is a peach.",
         "localizedMeaning": {
-          "ru": "Бутылки стоят на дальнем столе. Скажите «Те бутылки там»",
-          "uk": "Пляшки стоять на дальньому столі. Скажіть «Ті пляшки там»"
+          "ru": "Продавец держит один персик рядом с вами. Скажите брату, что это персик.",
+          "uk": "Продавець тримає один персик поруч із вами. Скажіть брату, що це персик."
         },
         "orderedTokens": [
-          "Those",
-          "bottles",
-          "are",
-          "there"
+          "This",
+          "is",
+          "a",
+          "peach"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "These"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Пляшки стоять на дальньому столі. Скажіть «Ті пляшки там»",
+            "testedDimension": "Продавець тримає один персик поруч із вами. Скажіть брату, що це персик.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those bottles are there.`",
-              "uk": "тут потрібно `are` — `Those bottles are there.`"
+              "ru": "здесь нужно `This` — `This is a peach.`",
+              "uk": "тут потрібно `This` — `This is a peach.`"
             }
           }
         ],
@@ -358,26 +360,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-39:i07",
+      "interactionId": "en:lesson-03:session-39:word:grape",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:word:grape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:word:grape:audio",
+          "transcript": "grape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:word:grape:r1",
+            "targetText": "grape",
+            "meaningByLocale": {
+              "ru": "виноградина. These grapes are sweet — «Эти виноградины сладкие». О ягоде, которая растёт гроздью.",
+              "uk": "виноградина. These grapes are sweet — «Ці виноградини солодкі». Про ягоду, що росте гроном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grape",
+          "definitionByLocale": {
+            "ru": "виноградина. These grapes are sweet — «Эти виноградины сладкие». О ягоде, которая растёт гроздью.",
+            "uk": "виноградина. These grapes are sweet — «Ці виноградини солодкі». Про ягоду, що росте гроном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна подолала страх виступити. Скажіть «Вона смілива» зі скороченням",
+      "prompt": "Продавець бере ягоди з грона й називає їх, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i07:audio"
       ],
-      "accessibilityLabel": "Анна подолала страх виступити. Скажіть «Вона смілива» зі скороченням",
+      "accessibilityLabel": "Продавець бере ягоди з грона й називає їх, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i07:audio",
-          "transcript": "She's brave."
+          "transcript": "grape"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She's brave.",
+        "targetPhrase": "grape",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,68 +436,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-39:word:lemon",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lemon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:word:lemon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lemon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:word:lemon:audio",
+          "transcript": "lemon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:word:lemon:r1",
+            "targetText": "lemon",
+            "meaningByLocale": {
+              "ru": "лимон. Is this lemon ripe? — «Этот лимон спелый?» О кислом жёлтом фрукте, который кладут в чай.",
+              "uk": "лимон. Is this lemon ripe? — «Цей лимон стиглий?» Про кислий жовтий фрукт, який кладуть у чай."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lemon",
+          "definitionByLocale": {
+            "ru": "лимон. Is this lemon ripe? — «Этот лимон спелый?» О кислом жёлтом фрукте, который кладут в чай.",
+            "uk": "лимон. Is this lemon ripe? — «Цей лимон стиглий?» Про кислий жовтий фрукт, який кладуть у чай."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-39:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви показуєте на кілька пляшок просто поруч із вами",
+      "prompt": "Брат хоче покласти в чай кислий жовтий фрукт. Як він називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i08:r1",
-          "text": "These"
+          "text": "lemon"
         },
         {
           "responseId": "en:lesson-03:session-39:i08:r2",
-          "text": "This"
+          "text": "apple"
         },
         {
           "responseId": "en:lesson-03:session-39:i08:r3",
-          "text": "That"
+          "text": "pear"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на кілька пляшок просто поруч із вами",
+      "accessibilityLabel": "Брат хоче покласти в чай кислий жовтий фрукт. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы показываете на несколько бутылок прямо рядом с вами",
-          "uk": "Ви показуєте на кілька пляшок просто поруч із вами"
+          "ru": "Брат хочет положить в чай кислый жёлтый фрукт. Как он называется по-английски?",
+          "uk": "Брат хоче покласти в чай кислий жовтий фрукт. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "___ are bottles.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-39:i08:r1",
-            "text": "These"
+            "text": "lemon"
           },
           {
             "responseId": "en:lesson-03:session-39:i08:r2",
-            "text": "This"
+            "text": "apple"
           },
           {
             "responseId": "en:lesson-03:session-39:i08:r3",
-            "text": "That"
+            "text": "pear"
           }
         ],
-        "testedDimension": "Ви показуєте на кілька пляшок просто поруч із вами",
+        "testedDimension": "Брат хоче покласти в чай кислий жовтий фрукт. Як він називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i08:r2",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька пляшок просто поруч із вами",
+            "testedDimension": "Брат хоче покласти в чай кислий жовтий фрукт. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`This` — один предмет. Для нескольких рядом нужно `These`.",
-              "uk": "`This` — один предмет. Для кількох поруч потрібне `These`."
+              "ru": "apple — это яблоко, а кислый жёлтый фрукт для чая называется lemon.",
+              "uk": "apple — це яблуко, а кислий жовтий фрукт для чаю називається lemon."
             }
           },
           {
             "responseId": "en:lesson-03:session-39:i08:r3",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька пляшок просто поруч із вами",
+            "testedDimension": "Брат хоче покласти в чай кислий жовтий фрукт. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`That` — один дальше. Здесь несколько рядом: `These`.",
-              "uk": "`That` — один далі. Тут кілька поруч: `These`."
+              "ru": "pear — это груша, а кислый жёлтый фрукт для чая называется lemon.",
+              "uk": "pear — це груша, а кислий жовтий фрукт для чаю називається lemon."
             }
           }
         ]
@@ -461,51 +549,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте оцінку зауваження Анни",
+      "prompt": "Послухайте, що каже продавець про виноград",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i09:r1",
-          "text": "It is relevant."
+          "text": "Those grapes are ripe."
         },
         {
           "responseId": "en:lesson-03:session-39:i09:r2",
-          "text": "It is official."
+          "text": "That grape is ripe."
         },
         {
           "responseId": "en:lesson-03:session-39:i09:r3",
-          "text": "It is informal."
+          "text": "Those grapes are old."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте оцінку зауваження Анни",
+      "accessibilityLabel": "Послухайте, що каже продавець про виноград",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i09:audio",
-          "transcript": "It is relevant."
+          "transcript": "Those grapes are ripe."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-39:i09:r1",
-            "targetText": "It is relevant.",
+            "targetText": "Those grapes are ripe.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-39:i09:r2",
-            "targetText": "It is official.",
+            "targetText": "That grape is ripe.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-39:i09:r3",
-            "targetText": "It is informal.",
+            "targetText": "Those grapes are old.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +602,19 @@
           {
             "responseId": "en:lesson-03:session-39:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте оцінку зауваження Анни",
+            "testedDimension": "Послухайте, що каже продавець про виноград",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `relevant`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `relevant`, а в цьому варіанті — `official`."
+              "ru": "В записи `Those grapes` — виноградин несколько, а в этом варианте `That grape` — одна.",
+              "uk": "У записі `Those grapes` — виноградин кілька, а в цьому варіанті `That grape` — одна."
             }
           },
           {
             "responseId": "en:lesson-03:session-39:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте оцінку зауваження Анни",
+            "testedDimension": "Послухайте, що каже продавець про виноград",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `relevant`, а в этом варианте — `informal`.",
-              "uk": "У записі останнє слово — `relevant`, а в цьому варіанті — `informal`."
+              "ru": "В записи последнее слово — `ripe`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `ripe`, а в цьому варіанті — `old`."
             }
           }
         ],
@@ -537,62 +625,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями для наших прикладів",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями для наших прикладів",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-39:i10:p1",
-            "target": "bottles",
+            "target": "grape",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "виноградина",
+              "uk": "виноградина"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i10:p2",
-            "target": "parks",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i10:p3",
-            "target": "these",
+            "target": "banana",
             "meaningByLocale": {
-              "ru": "эти, несколько рядом",
-              "uk": "ці, кілька поруч"
+              "ru": "банан",
+              "uk": "банан"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i10:p4",
-            "target": "those",
+            "target": "pear",
             "meaningByLocale": {
-              "ru": "те, несколько дальше",
-              "uk": "ті, кілька далі"
+              "ru": "груша",
+              "uk": "груша"
             }
           }
         ],
         "leftColumn": [
-          "bottles",
-          "parks",
-          "these",
-          "those"
+          "grape",
+          "apple",
+          "banana",
+          "pear"
         ],
         "rightColumn": [
-          "пляшки",
-          "парки",
-          "ці, кілька поруч",
-          "ті, кілька далі"
+          "виноградина",
+          "яблуко",
+          "банан",
+          "груша"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,42 +698,42 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i11:audio",
-          "transcript": "These parks are here."
+          "transcript": "Are these lemons cheap?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These parks are here.",
+        "hiddenTargetPhrase": "Are these lemons cheap?",
         "orderedTokens": [
-          "These",
-          "parks",
-          "are",
-          "here"
+          "Are",
+          "these",
+          "lemons",
+          "cheap"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These parks are here.`",
-              "uk": "тут потрібно `are` — `These parks are here.`"
+              "ru": "здесь нужно `Are` — `Are these lemons cheap?`",
+              "uk": "тут потрібно `Are` — `Are these lemons cheap?`"
             }
           }
         ],
@@ -658,39 +746,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте на пляшки просто перед вами. Скажіть «Ці пляшки тут»",
+      "prompt": "Продавець кладе на ваги один лимон поруч із вами. Скажіть подрузі, що це лимон.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на пляшки просто перед вами. Скажіть «Ці пляшки тут»",
+      "accessibilityLabel": "Продавець кладе на ваги один лимон поруч із вами. Скажіть подрузі, що це лимон.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "These bottles are here.",
+        "targetPhrase": "This is a lemon.",
         "localizedMeaning": {
-          "ru": "Вы показываете на бутылки прямо перед вами. Скажите «Эти бутылки здесь»",
-          "uk": "Ви показуєте на пляшки просто перед вами. Скажіть «Ці пляшки тут»"
+          "ru": "Продавец кладёт на весы один лимон рядом с вами. Скажите подруге, что это лимон.",
+          "uk": "Продавець кладе на ваги один лимон поруч із вами. Скажіть подрузі, що це лимон."
         },
         "orderedTokens": [
-          "These",
-          "bottles",
-          "are",
-          "here"
+          "This",
+          "is",
+          "a",
+          "lemon"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "These"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви показуєте на пляшки просто перед вами. Скажіть «Ці пляшки тут»",
+            "testedDimension": "Продавець кладе на ваги один лимон поруч із вами. Скажіть подрузі, що це лимон.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These bottles are here.`",
-              "uk": "тут потрібно `are` — `These bottles are here.`"
+              "ru": "здесь нужно `This` — `This is a lemon.`",
+              "uk": "тут потрібно `This` — `This is a lemon.`"
             }
           }
         ],
@@ -702,26 +790,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-39:word:onion",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — onion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:word:onion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — onion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:word:onion:audio",
+          "transcript": "onion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:word:onion:r1",
+            "targetText": "onion",
+            "meaningByLocale": {
+              "ru": "лук, луковица. Those onions are big — «Те луковицы большие». Об овоще, который кладут в суп.",
+              "uk": "цибуля, цибулина. Those onions are big — «Ті цибулини великі». Про овоч, який кладуть у суп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "onion",
+          "definitionByLocale": {
+            "ru": "лук, луковица. Those onions are big — «Те луковицы большие». Об овоще, который кладут в суп.",
+            "uk": "цибуля, цибулина. Those onions are big — «Ті цибулини великі». Про овоч, який кладуть у суп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-39:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Зауваження Анни стосується саме вибору парку. Скажіть про зауваження «Воно стосується справи» зі скороченням",
+      "prompt": "Подруга дістає із сітки овоч для супу й називає його, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i13:audio"
       ],
-      "accessibilityLabel": "Зауваження Анни стосується саме вибору парку. Скажіть про зауваження «Воно стосується справи» зі скороченням",
+      "accessibilityLabel": "Подруга дістає із сітки овоч для супу й називає його, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i13:audio",
-          "transcript": "It's relevant."
+          "transcript": "onion"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's relevant.",
+        "targetPhrase": "onion",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,68 +866,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-39:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-39:word:cucumber",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cucumber",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:word:cucumber:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cucumber",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:word:cucumber:audio",
+          "transcript": "cucumber"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:word:cucumber:r1",
+            "targetText": "cucumber",
+            "meaningByLocale": {
+              "ru": "огурец. That is a cucumber — «Это огурец». О длинном зелёном овоще для салата.",
+              "uk": "огірок. That is a cucumber — «Це огірок». Про довгий зелений овоч для салату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cucumber",
+          "definitionByLocale": {
+            "ru": "огурец. That is a cucumber — «Это огурец». О длинном зелёном овоще для салата.",
+            "uk": "огірок. That is a cucumber — «Це огірок». Про довгий зелений овоч для салату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви говорите про кілька пляшок на дальньому столі",
+      "prompt": "Подруга ріже в салат довгий зелений овоч. Як він називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i14:r1",
-          "text": "are"
+          "text": "cucumber"
         },
         {
           "responseId": "en:lesson-03:session-39:i14:r2",
-          "text": "is"
+          "text": "onion"
         },
         {
           "responseId": "en:lesson-03:session-39:i14:r3",
-          "text": "am"
+          "text": "lemon"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорите про кілька пляшок на дальньому столі",
+      "accessibilityLabel": "Подруга ріже в салат довгий зелений овоч. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите о нескольких бутылках на дальнем столе",
-          "uk": "Ви говорите про кілька пляшок на дальньому столі"
+          "ru": "Подруга режет в салат длинный зелёный овощ. Как он называется по-английски?",
+          "uk": "Подруга ріже в салат довгий зелений овоч. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "Those bottles ___ there.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-39:i14:r1",
-            "text": "are"
+            "text": "cucumber"
           },
           {
             "responseId": "en:lesson-03:session-39:i14:r2",
-            "text": "is"
+            "text": "onion"
           },
           {
             "responseId": "en:lesson-03:session-39:i14:r3",
-            "text": "am"
+            "text": "lemon"
           }
         ],
-        "testedDimension": "Ви говорите про кілька пляшок на дальньому столі",
+        "testedDimension": "Подруга ріже в салат довгий зелений овоч. Як він називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-39:i14:r2",
             "correct": false,
-            "testedDimension": "Ви говорите про кілька пляшок на дальньому столі",
+            "testedDimension": "Подруга ріже в салат довгий зелений овоч. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "Бутылок несколько: `Those bottles are there`.",
-              "uk": "Пляшок кілька: `Those bottles are there`."
+              "ru": "onion — это лук, а длинный зелёный овощ для салата называется cucumber.",
+              "uk": "onion — це цибуля, а довгий зелений овоч для салату називається cucumber."
             }
           },
           {
             "responseId": "en:lesson-03:session-39:i14:r3",
             "correct": false,
-            "testedDimension": "Ви говорите про кілька пляшок на дальньому столі",
+            "testedDimension": "Подруга ріже в салат довгий зелений овоч. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "С `Those bottles` нужно `are`.",
-              "uk": "З `Those bottles` потрібне `are`."
+              "ru": "lemon — это лимон, а длинный зелёный овощ для салата называется cucumber.",
+              "uk": "lemon — це лимон, а довгий зелений овоч для салату називається cucumber."
             }
           }
         ]
@@ -805,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис Анни",
+      "prompt": "Послухайте запитання подруги про цибулю",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i15:r1",
-          "text": "She is brave."
+          "text": "Are those onions fresh?"
         },
         {
           "responseId": "en:lesson-03:session-39:i15:r2",
-          "text": "She is weak."
+          "text": "Is that onion fresh?"
         },
         {
           "responseId": "en:lesson-03:session-39:i15:r3",
-          "text": "She is afraid."
+          "text": "Are these onions fresh?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте опис Анни",
+      "accessibilityLabel": "Послухайте запитання подруги про цибулю",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i15:audio",
-          "transcript": "She is brave."
+          "transcript": "Are those onions fresh?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-39:i15:r1",
-            "targetText": "She is brave.",
+            "targetText": "Are those onions fresh?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-39:i15:r2",
-            "targetText": "She is weak.",
+            "targetText": "Is that onion fresh?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-39:i15:r3",
-            "targetText": "She is afraid.",
+            "targetText": "Are these onions fresh?",
             "meaningByLocale": null
           }
         ],
@@ -858,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-39:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис Анни",
+            "testedDimension": "Послухайте запитання подруги про цибулю",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `brave`, а в этом варианте — `weak`.",
-              "uk": "У записі останнє слово — `brave`, а в цьому варіанті — `weak`."
+              "ru": "В записи `Are those onions` — луковиц несколько, а в этом варианте `Is that onion` — одна.",
+              "uk": "У записі `Are those onions` — цибулин кілька, а в цьому варіанті `Is that onion` — одна."
             }
           },
           {
             "responseId": "en:lesson-03:session-39:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис Анни",
+            "testedDimension": "Послухайте запитання подруги про цибулю",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `brave`, а в этом варианте — `afraid`.",
-              "uk": "У записі останнє слово — `brave`, а в цьому варіанті — `afraid`."
+              "ru": "В записи слово `those` — луковицы далеко, а в этом варианте `these` — рядом.",
+              "uk": "У записі слово `those` — цибулини далеко, а в цьому варіанті `these` — поруч."
             }
           }
         ],
@@ -881,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -895,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-39:i16:p1",
-            "target": "bottles",
+            "target": "cucumber",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "огурец",
+              "uk": "огірок"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i16:p2",
-            "target": "brave",
+            "target": "onion",
             "meaningByLocale": {
-              "ru": "смелый",
-              "uk": "сміливий"
+              "ru": "лук (луковица)",
+              "uk": "цибуля (цибулина)"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i16:p3",
-            "target": "relevant",
+            "target": "lemon",
             "meaningByLocale": {
-              "ru": "относящийся к делу",
-              "uk": "що стосується справи"
+              "ru": "лимон",
+              "uk": "лимон"
             }
           },
           {
             "pairId": "en:lesson-03:session-39:i16:p4",
-            "target": "parks",
+            "target": "grape",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "виноградина",
+              "uk": "виноградина"
             }
           }
         ],
         "leftColumn": [
-          "bottles",
-          "brave",
-          "relevant",
-          "parks"
+          "cucumber",
+          "onion",
+          "lemon",
+          "grape"
         ],
         "rightColumn": [
-          "пляшки",
-          "сміливий",
-          "що стосується справи",
-          "парки"
+          "огірок",
+          "цибуля (цибулина)",
+          "лимон",
+          "виноградина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-39:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На пікніку друг запитує про кілька предметів на дальньому столі. Це пляшки. Назвіть їх повною фразою, почавши з вказівного слова для кількох предметів далі",
+      "prompt": "Продавець питає, які овочі потрібні для салату. Скажіть йому коротко: ці огірки свіжі.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-39:i17:audio"
       ],
-      "accessibilityLabel": "На пікніку друг запитує про кілька предметів на дальньому столі. Це пляшки. Назвіть їх повною фразою, почавши з вказівного слова для кількох предметів далі",
+      "accessibilityLabel": "Продавець питає, які овочі потрібні для салату. Скажіть йому коротко: ці огірки свіжі.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-39:i17:audio",
-          "transcript": "Those are bottles."
+          "transcript": "These cucumbers are fresh."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are bottles.",
+        "targetPhrase": "These cucumbers are fresh.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -994,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bf8a3f031eb0f226fc65262b37f05216a9b2b999a649bb436f576c9a179a342e"
+  "learnerFingerprint": "fa70a83300544cda1bc44c30d0dc60cf79b8f9526c369ce121f8c4c2c699ffe2"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-30:intro1:r2": {
-          "ru": "`window` — одно окно; несколько — `windows`.",
-          "uk": "`window` — одне вікно; кілька — `windows`."
+          "ru": "Свитер у вас в руках, а that говорим о далёком: This is a sweater.",
+          "uk": "Светр у вас у руках, а that кажемо про далеке: This is a sweater."
         },
         "en:lesson-03:session-30:intro1:r3": {
-          "ru": "Перед названием нескольких окон не ставим `a`.",
-          "uk": "Перед назвою кількох вікон не ставимо `a`."
+          "ru": "Перед sweater нужно a: слово начинается с согласного звука.",
+          "uk": "Перед sweater потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-30:intro2:r2": {
-          "ru": "`The windows` — определённые окна. Здесь говорим об окнах вообще: `Windows`.",
-          "uk": "`The windows` — певні вікна. Тут говоримо про вікна загалом: `Windows`."
+          "ru": "Полка далеко, а this говорим о том, что рядом: That is a scarf.",
+          "uk": "Полиця далеко, а this кажемо про те, що поруч: That is a scarf."
         },
         "en:lesson-03:session-30:intro2:r3": {
-          "ru": "Перед `windows` не ставим `a`.",
-          "uk": "Перед `windows` не ставимо `a`."
+          "ru": "Перед scarf нужно a: That is a scarf.",
+          "uk": "Перед scarf потрібно a: That is a scarf."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-30:intro3:r2": {
-          "ru": "`dead` — «погибшее», а растение живое: `alive`.",
-          "uk": "`dead` — «загибла», а рослина жива: `alive`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is this a glove?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is this a glove?"
         },
         "en:lesson-03:session-30:intro3:r3": {
-          "ru": "`missing` означает, что предмет отсутствует или его не могут найти. Растение перед вами и живо: `alive`.",
-          "uk": "`missing` означає, що предмет відсутній або його не можуть знайти. Рослина перед вами й жива: `alive`."
+          "ru": "Перед glove нужно a: Is this a glove?",
+          "uk": "Перед glove потрібно a: Is this a glove?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0b2808ba74d1ea25000c4241bc04fbfd412985b02a1dccd852ae4416d3cbce76"
+  "auxiliaryFingerprint": "6a0fd6160e9e031dbb27faaf7ab54b0916cedc38b0f574e4a1cc3f1c12933057"
 }

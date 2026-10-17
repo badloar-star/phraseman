@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-54:word:talented",
+    "correctText": "talented",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-54:i01",
-    "correctText": "He is reliable.",
+    "correctText": "He is talented.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i02",
-    "correctText": "It is familiar.",
+    "correctText": "He is nervous.",
     "correctResponseId": "en:lesson-02:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:word:graceful",
+    "correctText": "graceful",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i03",
@@ -16,22 +26,22 @@
   },
   {
     "interactionId": "en:lesson-02:session-54:i04",
-    "correctText": "en:lesson-02:session-54:i04:p1=reliable\nen:lesson-02:session-54:i04:p2=familiar\nen:lesson-02:session-54:i04:p3=unfamiliar\nen:lesson-02:session-54:i04:p4=unknown",
+    "correctText": "en:lesson-02:session-54:i04:p1=talented\nen:lesson-02:session-54:i04:p2=graceful\nen:lesson-02:session-54:i04:p3=stunning\nen:lesson-02:session-54:i04:p4=shy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i05",
-    "correctText": "Yes, he is.",
+    "correctText": "He is not graceful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i06",
-    "correctText": "Who is reliable?",
+    "correctText": "Who is talented?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i07",
-    "correctText": "He's reliable.",
+    "correctText": "He's talented.",
     "correctResponseId": null
   },
   {
@@ -40,28 +50,38 @@
     "correctResponseId": "en:lesson-02:session-54:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-54:word:stunning",
+    "correctText": "stunning",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-54:i09",
-    "correctText": "Is it appropriate?",
+    "correctText": "It is dramatic.",
     "correctResponseId": "en:lesson-02:session-54:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i10",
-    "correctText": "en:lesson-02:session-54:i10:p1=appropriate\nen:lesson-02:session-54:i10:p2=unknown\nen:lesson-02:session-54:i10:p3=reliable\nen:lesson-02:session-54:i10:p4=familiar",
+    "correctText": "en:lesson-02:session-54:i10:p1=dramatic\nen:lesson-02:session-54:i10:p2=graceful\nen:lesson-02:session-54:i10:p3=proud\nen:lesson-02:session-54:i10:p4=talented",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i11",
-    "correctText": "He is not reliable.",
+    "correctText": "It is not stunning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:word:dramatic",
+    "correctText": "dramatic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i12",
-    "correctText": "Is it unfamiliar?",
+    "correctText": "Is it dramatic?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i13",
-    "correctText": "It's appropriate.",
+    "correctText": "It's stunning.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-54:i15",
-    "correctText": "Is he reliable?",
+    "correctText": "Is he talented?",
     "correctResponseId": "en:lesson-02:session-54:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-54:i16",
-    "correctText": "en:lesson-02:session-54:i16:p1=unfamiliar\nen:lesson-02:session-54:i16:p2=appropriate\nen:lesson-02:session-54:i16:p3=familiar\nen:lesson-02:session-54:i16:p4=reliable",
+    "correctText": "en:lesson-02:session-54:i16:p1=talented\nen:lesson-02:session-54:i16:p2=graceful\nen:lesson-02:session-54:i16:p3=stunning\nen:lesson-02:session-54:i16:p4=dramatic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-54:i17",
-    "correctText": "Is he reliable?",
+    "correctText": "Is he talented?",
     "correctResponseId": null
   }
 ]

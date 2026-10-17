@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-17:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-17:intro1:r2": {
-          "ru": "`book` называет одну книгу. Здесь книг несколько: `books`.",
-          "uk": "`book` називає одну книжку. Тут книжок кілька: `books`."
+          "ru": "Билетов несколько, поэтому нужно tickets с s.",
+          "uk": "Квитків кілька, тому потрібно tickets з s."
         },
         "en:lesson-03:session-17:intro1:r3": {
-          "ru": "`a book` тоже называет одну книгу, а не всю группу.",
-          "uk": "`a book` теж називає одну книжку, а не всю групу."
+          "ru": "С They нужно are: They are tickets.",
+          "uk": "З They потрібно are: They are tickets."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-17:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-17:intro2:r2": {
-          "ru": "Книг несколько, поэтому нужно `books` с `s`.",
-          "uk": "Книжок кілька, тому потрібно `books` з `s`."
+          "ru": "В вопросе с they нужно Are: Are they coins?",
+          "uk": "У запитанні з they потрібно Are: Are they coins?"
         },
         "en:lesson-03:session-17:intro2:r3": {
-          "ru": "С `They` здесь нужно `are`.",
-          "uk": "З `They` тут потрібно `are`."
+          "ru": "Монет несколько, поэтому нужно coins с s.",
+          "uk": "Монет кілька, тому потрібно coins з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-17:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-17:intro3:r2": {
-          "ru": "Вопрос с `they` здесь начинается с `Are`.",
-          "uk": "Запитання з `they` тут починається з `Are`."
+          "ru": "Открыток несколько, поэтому нужно are: The cards are new.",
+          "uk": "Листівок кілька, тому потрібно are: The cards are new."
         },
         "en:lesson-03:session-17:intro3:r3": {
-          "ru": "Спрашиваем о нескольких предметах: нужно `books`.",
-          "uk": "Запитуємо про кілька предметів: потрібно `books`."
+          "ru": "Открыток несколько, поэтому нужно cards с s.",
+          "uk": "Листівок кілька, тому потрібно cards з s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c29b950fe6e709e5a05f48f8890083da7f33aac47b794e7e25ecdf68f802b700"
+  "auxiliaryFingerprint": "978a7a5169598a5afa07da67c0ed43e5ca816af50b9e426c6547fbdbe823ba9c"
 }

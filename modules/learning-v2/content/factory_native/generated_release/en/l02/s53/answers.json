@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-53:word:sweaty",
+    "correctText": "sweaty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-53:i01",
-    "correctText": "It is unfair.",
+    "correctText": "It is sweaty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i02",
-    "correctText": "It is full.",
+    "correctText": "It is windy.",
     "correctResponseId": "en:lesson-02:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-53:word:tough",
+    "correctText": "tough",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-53:i04",
-    "correctText": "en:lesson-02:session-53:i04:p1=unfair\nen:lesson-02:session-53:i04:p2=full\nen:lesson-02:session-53:i04:p3=illegal\nen:lesson-02:session-53:i04:p4=fair",
+    "correctText": "en:lesson-02:session-53:i04:p1=sweaty\nen:lesson-02:session-53:i04:p2=tough\nen:lesson-02:session-53:i04:p3=upbeat\nen:lesson-02:session-53:i04:p4=sore",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i05",
-    "correctText": "No, it is not.",
+    "correctText": "It is not tough.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i06",
-    "correctText": "What is unfair?",
+    "correctText": "What is tough?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-53:word:upbeat",
+    "correctText": "upbeat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i07",
-    "correctText": "It's unfair.",
+    "correctText": "It's upbeat.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-53:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-53:word:steady",
+    "correctText": "steady",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-53:i09",
-    "correctText": "Is it illegal?",
+    "correctText": "It is steady.",
     "correctResponseId": "en:lesson-02:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i10",
-    "correctText": "en:lesson-02:session-53:i10:p1=illegal\nen:lesson-02:session-53:i10:p2=fair\nen:lesson-02:session-53:i10:p3=unfair\nen:lesson-02:session-53:i10:p4=full",
+    "correctText": "en:lesson-02:session-53:i10:p1=steady\nen:lesson-02:session-53:i10:p2=tough\nen:lesson-02:session-53:i10:p3=stiff\nen:lesson-02:session-53:i10:p4=upbeat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i11",
-    "correctText": "It is not unfair.",
+    "correctText": "It is not upbeat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i12",
-    "correctText": "Is it full?",
+    "correctText": "Is it steady?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i13",
-    "correctText": "It's illegal.",
+    "correctText": "It's sweaty.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-53:i15",
-    "correctText": "Is it unfair?",
+    "correctText": "Is it steady?",
     "correctResponseId": "en:lesson-02:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-53:i16",
-    "correctText": "en:lesson-02:session-53:i16:p1=full\nen:lesson-02:session-53:i16:p2=unfair\nen:lesson-02:session-53:i16:p3=fair\nen:lesson-02:session-53:i16:p4=illegal",
+    "correctText": "en:lesson-02:session-53:i16:p1=sweaty\nen:lesson-02:session-53:i16:p2=tough\nen:lesson-02:session-53:i16:p3=upbeat\nen:lesson-02:session-53:i16:p4=steady",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-53:i17",
-    "correctText": "Is it unfair?",
+    "correctText": "Is it tough?",
     "correctResponseId": null
   }
 ]

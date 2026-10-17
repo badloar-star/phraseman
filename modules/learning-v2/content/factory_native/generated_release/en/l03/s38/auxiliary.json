@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-38:intro1:r2": {
-          "ru": "`tickets` — несколько билетов. Один — `ticket`.",
-          "uk": "`tickets` — кілька квитків. Один — `ticket`."
+          "ru": "Яблок несколько, поэтому не this, а these: These apples are big.",
+          "uk": "Яблук кілька, тому не this, а these: These apples are big."
         },
         "en:lesson-03:session-38:intro1:r3": {
-          "ru": "`table` — стол. Билет — `ticket`.",
-          "uk": "`table` — стіл. Квиток — `ticket`."
+          "ru": "Яблок несколько, поэтому нужно apples с s.",
+          "uk": "Яблук кілька, тому потрібно apples з s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-38:intro2:r2": {
-          "ru": "`Those` — несколько, а билет один: `That ticket`.",
-          "uk": "`Those` — кілька, а квиток один: `That ticket`."
+          "ru": "С those нужно Are: Are those bananas cheap?",
+          "uk": "З those потрібно Are: Are those bananas cheap?"
         },
         "en:lesson-03:session-38:intro2:r3": {
-          "ru": "Один билет требует `is`: `That ticket is there`.",
-          "uk": "Один квиток потребує `is`: `That ticket is there`."
+          "ru": "Бананов несколько, поэтому нужно bananas с s.",
+          "uk": "Бананів кілька, тому потрібно bananas з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-38:intro3:r2": {
-          "ru": "`lonely` — одинокая. Здесь Анне не хватает сил: `weak`.",
-          "uk": "`lonely` — самотня. Тут Анні бракує сил: `weak`."
+          "ru": "Слово orange начинается с гласного звука, поэтому здесь an.",
+          "uk": "Слово orange починається з голосного звуку, тому тут an."
         },
         "en:lesson-03:session-38:intro3:r3": {
-          "ru": "С `She` нужно `is`.",
-          "uk": "З `She` потрібне `is`."
+          "ru": "Апельсин лежит далеко, а this говорим о том, что рядом: That is an orange.",
+          "uk": "Апельсин лежить далеко, а this кажемо про те, що поруч: That is an orange."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c62363793024d8e38ab38a99f6253b6d3c985af5ee051f955960950575626e24"
+  "auxiliaryFingerprint": "78cc34fc422609f4187dd20bd8d6b546b9d062d50f9e367a6da17c06cb5c0dcb"
 }

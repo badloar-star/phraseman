@@ -737,26 +737,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-33:i13",
+      "interactionId": "en:lesson-01:session-33:word:shy",
       "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-33:word:shy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:word:shy:audio",
+          "transcript": "shy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-33:word:shy:r1",
+            "targetText": "shy",
+            "meaningByLocale": {
+              "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+              "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shy",
+          "definitionByLocale": {
+            "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+            "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i13",
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг удивлён аплодисментами. Скажите о его удивлении короткой фразой",
+      "prompt": "Друга зовут на поклон, а он прячется за кулисами и краснеет. Скажите о нём короткой фразой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-33:i13:audio"
       ],
-      "accessibilityLabel": "Друг удивлён аплодисментами. Скажите о его удивлении короткой фразой",
+      "accessibilityLabel": "Друга зовут на поклон, а он прячется за кулисами и краснеет. Скажите о нём короткой фразой",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-33:i13:audio",
-          "transcript": "He's surprised."
+          "transcript": "He's shy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's surprised.",
+        "targetPhrase": "He's shy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -771,7 +814,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i14",
-      "ordinal": 18,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -840,7 +883,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:word:amazing",
-      "ordinal": 19,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -883,8 +926,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-33:i15",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Зал аплодирует стоя. Послушайте, что говорит подруга, и выберите услышанное",
@@ -954,49 +997,6 @@
         ],
         "isWordCard": false,
         "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-33:word:shy",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — shy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-33:word:shy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — shy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-33:word:shy:audio",
-          "transcript": "shy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-33:word:shy:r1",
-            "targetText": "shy",
-            "meaningByLocale": {
-              "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
-              "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "shy",
-          "definitionByLocale": {
-            "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
-            "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
-          }
-        }
       },
       "scriptedAlternate": null
     },
@@ -1164,5 +1164,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "213ba9e4c435b64ff0ce0a85062b747373a1fcb58b8ac8f88b4af563a92f43f4"
+  "learnerFingerprint": "fa2f86dbac314eb955f879b9ea4cc68f04c125085ed8d46c936f1b916f5ba34e"
 }

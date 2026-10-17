@@ -55,6 +55,7 @@ import {
 
 import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
 import { ensureMyInviteCodeForFriends, isTransientFirestoreRead, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
+import { friendTag, logFriendAdd } from '../friend_add_trace';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -1403,16 +1404,20 @@ export default function FriendsTabScreen() {
         setRequests(demo.requests.map((r) => ({ fromUid: r.fromUid, fromName: r.fromName, status: r.status, createdAt: r.createdAt })));
         return;
       }
+      // зачем (владелец 17.10 «друзья должны находиться мгновенно», логи до починки): когда вкладка запускает чтения.
+      logFriendAdd('tab_active', { runtimeActive: friendsRuntimeActive });
       await startFriendsTabSwrPrime();
       if (cancelled) return;
 
       let canonical: string | null = null;
       try {
         canonical = await getCanonicalUserId();
-      } catch {
+      } catch (e) {
+        logFriendAdd('tab_active', { step: 'canonical_failed', code: String((e as { code?: unknown })?.code ?? (e instanceof Error ? e.message : 'unknown')).slice(0, 60) });
         canonical = null;
       }
       if (cancelled) return;
+      logFriendAdd('tab_reads_start', { me: friendTag(canonical), warmFor: friendTag(peekFriendsTabSwrWarm()?.canonicalUid ?? null) });
 
       // После prime модульный кеш уже заполнен — не читаем диск снова (async лишний раунд).
       const profilesCache = peekProfilesCache();

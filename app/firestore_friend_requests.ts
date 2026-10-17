@@ -753,7 +753,11 @@ export function subscribeToFriends(
       }
       const friendsReadStartedAt = Date.now();
       const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
-      if (cancelled || !authLinkReady) return;
+      if (cancelled || !authLinkReady) {
+        // зачем (владелец 17.10, логи до починки): ранний выход без чтения — экран остаётся со старым списком.
+        logFriendAdd('friends_read', { me: friendTag(myUid), source: 'skipped', reason: cancelled ? 'cancelled' : 'auth_link_not_ready', ms: Date.now() - friendsReadStartedAt });
+        return;
+      }
       const db = getFirestore();
       if (!db) {
         callback([], { fromCache: true });
@@ -821,7 +825,10 @@ export function subscribeToIncomingRequests(
       }
       const requestsReadStartedAt = Date.now();
       const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
-      if (cancelled || !authLinkReady) return;
+      if (cancelled || !authLinkReady) {
+        logFriendAdd('requests_read', { me: friendTag(myUid), source: 'skipped', reason: cancelled ? 'cancelled' : 'auth_link_not_ready', ms: Date.now() - requestsReadStartedAt });
+        return;
+      }
       const db = getFirestore();
       if (!db) {
         callback([]);

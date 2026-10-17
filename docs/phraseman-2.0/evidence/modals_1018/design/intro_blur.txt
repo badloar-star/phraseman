@@ -1,0 +1,4 @@
+10-18 00:06:43.034 I/ReactNativeJS(16704): '[INTRO-BLUR] page', '{"page":0,"lesson":1,"entering":true,"reducedMotion":false,"pixelRatio":2.625,"fontScale":1,"title":{"fontSize":26,"fontWeight":"700","opacity":null,"transform":null,"textShadowRadius":null,"textShadowColor":null,"boxShadow":"no","back
+10-18 00:06:43.101 I/ReactNativeJS(16704): '[INTRO-BLUR] layout', '{"node":"slide","page":0,"x":0,"y":118.47618865966797,"w":411.4285583496094,"h":795.8095092773438}'
+10-18 00:06:43.101 I/ReactNativeJS(16704): '[INTRO-BLUR] layout', '{"node":"card","page":0,"x":0,"y":60.19047546386719,"w":371.4285888671875,"h":200.7619171142578}'
+10-18 00:06:43.281 I/ReactNativeJS(16704): '[INTRO-BLUR] entering done', '{"page":0,"finished":true}'

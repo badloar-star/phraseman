@@ -171,7 +171,16 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
                 <Text style={[s.achText, { color: p.text }]}>{streakMomentText(lang, 'achievementRow', { n: milestone })}</Text>
               </View>
             ) : null}
-            {milestone === 30 && has('extra') ? <View style={s.extra}><MonthCalendar lit={30} /></View> : null}
+            {milestone === 30 && has('extra') ? (
+              <View
+                style={s.extra}
+                onLayout={(e) => {
+                  // зачем (Сверка r8 b705b923f: calendar=false, высота сцены после такта extra не изменилась) — сперва логи: реальный размер календаря
+                  const { width, height } = e.nativeEvent.layout;
+                  console.log(`[STREAK-MILESTONE] calendar:layout ${JSON.stringify({ milestone, w: Math.round(width), h: Math.round(height), zero: Math.round(width) === 0 || Math.round(height) === 0 })}`); // guard-ok: строка на раскладку календаря
+                }}
+              ><MonthCalendar lit={30} /></View>
+            ) : null}
           </View></Beat>
         ) : null}
       </>

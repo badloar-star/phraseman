@@ -222,6 +222,9 @@ export const DIALOGUE_V2_SESSION_START_OPTIONS = Object.freeze({
   memory: '256MiB' as const,
   minInstances: 0,
   maxInstances: 20,
+  // зачем (владелец 17.10): вход, старт приложения, Пик и диалоги — полное ядро (белый список к setGlobalOptions cpu gcf_gen1):
+  // при доле ядра ответ замедлялся на 30–100 % (замер Cloud Monitoring 17.10), владелец заметил долгую загрузку Пика.
+  cpu: 1,
   secrets: [DIALOGUE_V2_SESSION_HMAC_KEY],
 });
 

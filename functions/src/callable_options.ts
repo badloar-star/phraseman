@@ -121,5 +121,8 @@ export const HOT_CALLABLE_OPTIONS = {
   timeoutSeconds: 15,
   memory: '256MiB' as const,
   maxInstances: 80,
+  // зачем (владелец 17.10): вход, старт приложения, Пик и диалоги — полное ядро (белый список к setGlobalOptions cpu gcf_gen1):
+  // при доле ядра ответ замедлялся на 30–100 % (замер Cloud Monitoring 17.10), владелец заметил долгую загрузку Пика.
+  cpu: 1,
 } as const;
 

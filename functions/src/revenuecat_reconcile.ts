@@ -399,6 +399,9 @@ export const revenueCatPremiumReconcileMine = onCall({
   timeoutSeconds: 20,
   memory: '256MiB',
   maxInstances: 40,
+  // зачем (владелец 17.10): вход, старт приложения, Пик и диалоги — полное ядро (белый список к setGlobalOptions cpu gcf_gen1):
+  // при доле ядра ответ замедлялся на 30–100 % (замер Cloud Monitoring 17.10), владелец заметил долгую загрузку Пика.
+  cpu: 1,
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();

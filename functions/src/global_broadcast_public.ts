@@ -73,7 +73,8 @@ export function buildGlobalBroadcastPublicListResult(
 }
 
 export const globalBroadcastListActive = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  // зачем (владелец 17.10): вызывается на старте приложения — полное ядро, белый список к cpu gcf_gen1.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, cpu: 1 },
   async (request) => {
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
     const inputLimit = normalizeGlobalBroadcastPublicListLimit(request.data?.limit);

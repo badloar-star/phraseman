@@ -185,6 +185,9 @@ export const premiumDialogStream = onRequest({
   memory: '512MiB',
   minInstances: 0,
   maxInstances: 20,
+  // зачем (владелец 17.10): вход, старт приложения, Пик и диалоги — полное ядро (белый список к setGlobalOptions cpu gcf_gen1):
+  // при доле ядра ответ замедлялся на 30–100 % (замер Cloud Monitoring 17.10), владелец заметил долгую загрузку Пика.
+  cpu: 1,
   cors: true,
   secrets: [OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN],
 }, async (req, res) => {

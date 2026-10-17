@@ -8,7 +8,8 @@ test('ActionToast applies one active Liquid Glass material to all five real tone
   assert.ok(toast.includes("'success' | 'error' | 'info' | 'warning' | 'reward'"), 'all five production tones remain');
   assert.ok(toast.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
   assert.ok(toast.includes('actionToastGlassChrome(actionToastGlass)'), 'both card variants receive the local glass chrome');
-  assert.ok(toast.includes('glass.card'), 'toast surface uses translucent glass');
+  // зачем (перепин 18.10, причина): решение владельца «стекло 2.0 непрозрачное» (заливка ≥0,9 альфы, иначе текст читается насквозь) — тост рисуется opaqueCard/opaqueControl, а не прозрачным glass.card; ожидание «translucent» устарело, поведение тоста не менялось.
+  assert.ok(toast.includes('glass.opaqueCard') && toast.includes('glass.opaqueControl'), 'toast surface uses the opaque glass tokens');
   // зачем (владелец 12.10, стиль «Тень»): у тоста нет обводки.
   assert.ok(!toast.includes('borderColor: chrome.border'), 'toast has no outline');
   assert.ok(toast.includes('chrome={chrome}'), 'hybrid branch receives the active passive glass chrome');

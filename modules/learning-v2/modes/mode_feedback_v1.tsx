@@ -190,17 +190,15 @@ const styles = {
   lane: {
     marginTop: 18,
     borderRadius: 18,
-    borderWidth: 1,
+    // зачем (стиль «Тень», храповик shadow_style_no_container_borders 18.10): у панели нет обводки — различие верно/неверно держит тинт 12 %
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
   correct: {
     backgroundColor: MODE_FEEDBACK_ART.correctTint,
-    borderColor: MODE_FEEDBACK_ART.correctEdge,
   },
   wrong: {
     backgroundColor: MODE_FEEDBACK_ART.wrongTint,
-    borderColor: MODE_FEEDBACK_ART.wrongEdge,
   },
   text: {
     color: MODE_FEEDBACK_ART.ink,

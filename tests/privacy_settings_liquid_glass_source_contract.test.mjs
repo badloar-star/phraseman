@@ -122,6 +122,7 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
     react: { __esModule: true, default: React, ...React },
     'react-native': { Text: 'Text', View: 'View' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
+    '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
     'expo-router': { useRouter: () => router },
     '../components/BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
@@ -205,8 +206,9 @@ function assertCloseHeaderGeometry(candidate) {
   assert.equal(flatStyle(close.props.contentStyle).width, 48);
   assert.equal(flatStyle(close.props.contentStyle).height, 44);
   assert.equal(flatStyle(close.props.contentStyle).borderRadius, undefined);
-  const icon = visit(close).find(node => node.type === 'Ionicons');
-  assert.equal(icon?.props.name, 'chevron-back');
+  // 17.10 (слово владельца): шеврон — общий значок «назад» BackGlyph (контур макета kit.js), а не системный Ionicons
+  const icon = visit(close).find(node => node.type === 'BackGlyph');
+  assert.ok(icon, 'close uses the shared BackGlyph');
   assert.equal(icon?.props.size, 21);
 }
 

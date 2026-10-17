@@ -34,6 +34,7 @@ import { getAiDialogConsentState, setAiDialogConsent, recordAiDialogConsentToClo
 import { scheduleConsentCloudRecord } from './consent_cloud_coalescer';
 import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
 import { emitAppEvent } from './events';
+import BackGlyph from '../components/v2/BackGlyph';
 
 /** Строка на 9 UI-языках (форма triLang). */
 interface Text8 {
@@ -283,7 +284,7 @@ export default function PrivacySettings() {
               contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
               {/* зачем: паритет с макетом profile.html PRF-07 — в шапке «назад» (шеврон), не крестик */}
-              <Ionicons name="chevron-back" size={21} color={glass.text} />
+              <BackGlyph size={21} color={glass.text} />
             </PressableHybrid>
             {/* зачем (координатор 12.10, кадр settings-gap-016): «Приватность и данные» в Inter Bold 34 = 384 dp, vi = 402 dp — больше места на
                 Pixel 8 (372 dp между полями 20), заголовок переносился. Вёрсткой не решается (он уже на всю ширину), сжимать шрифт нельзя

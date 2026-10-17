@@ -30,6 +30,7 @@ import { useSpireShadow } from './useSpireShadow';
 import SpireEnergyPill from './SpireEnergyPill';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
+import BackGlyph from '../v2/BackGlyph';
 
 type Props = Readonly<{
   lang: Lang;
@@ -100,7 +101,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           style={[s.back, { backgroundColor: p.control }, sh.nested]}
           testID="spire-step-back"
         >
-          <Ionicons name="chevron-back" size={20} color={p.text} />
+          <BackGlyph size={20} color={p.text} />
         </V2Pressable>
         <View style={s.headText}>
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{`${spireGameText(lang, 'step')} ${ctx.stepInFloor + 1}`}</Text>

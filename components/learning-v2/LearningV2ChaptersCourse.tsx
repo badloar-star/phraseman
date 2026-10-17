@@ -18,6 +18,7 @@ import {
   type LearningV2CourseAccordionRowV1,
   type LearningV2PreparedAccordionProgressV1,
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
+import BackGlyph from '../v2/BackGlyph';
 
 interface Props {
   titles: readonly string[];
@@ -251,7 +252,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
     return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
       <View style={styles.header}>
         <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => setAllLessonsOpen(false)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
-          <Ionicons name="chevron-back" size={24} color={g.text} />
+          <BackGlyph size={24} color={g.text} />
         </PressableHybrid>
         <Text style={[styles.headerTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text>
         {props.headerAccessory}

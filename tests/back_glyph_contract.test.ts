@@ -30,14 +30,10 @@ describe('значок «назад»: один контур — как в ма�
     expect(BACK_ICON_NAMES).toHaveLength(4);
   });
 
-  // Места, где системная стрелка ещё стоит: разработческие экраны (подчёркивание в имени), демо лаборатории, текстовая кнопка «Назад» с глифом,
-  // и три файла, где параллельно правят другие сессии (замена — отдельными хунками после их коммитов). Список только УМЕНЬШАЕТСЯ.
+  // Места, где системная стрелка ещё стоит: разработческие экраны (подчёркивание в имени), демо лаборатории и текстовая кнопка «Назад» с глифом. Список только УМЕНЬШАЕТСЯ.
   const ALLOWED_DIRECT = new Set<string>([
     'components/learning-v2-lab/ModeDemoPlayer.tsx',
     'app/flashcards_speaking_session.tsx',
-    'app/privacy_settings.tsx',
-    'components/spire/SpireStepScreen.tsx',
-    'components/learning-v2/LearningV2ChaptersCourse.tsx',
   ]);
   const walk = (dir: string): string[] => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap((e) => {
     const rel = `${dir}/${e.name}`;

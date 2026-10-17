@@ -1,0 +1,1 @@
+23:27:57 MemAvailable=769МБ SwapFree=1611МБ load=1.33, 2.21, 1.14

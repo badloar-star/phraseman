@@ -800,7 +800,9 @@ export function materializeFactoryNativeLearningV2SessionV1(input: FactoryNative
     // свежий доступ — в конец (LRU)
     factoryNativeMaterializeCache.delete(key);
     factoryNativeMaterializeCache.set(key, hit);
-    if (typeof __DEV__ !== "undefined" && __DEV__) console.log(`[V2-PREP] materialize cache_hit l=${input.lessonOrdinal} s=${input.sessionOrdinal} locale=${input.interfaceLocale} disabled=${input.disabledInteractionIds?.length ?? 0}`);
+    // зачем (17.10, сборка functions): модуль собирается и в приложение, и в серверные функции, где __DEV__ не объявлен —
+    // tsc functions падал (TS2304). Флаг читаем через globalThis: в приложении поведение то же, на сервере — false.
+    if ((globalThis as { __DEV__?: boolean }).__DEV__ === true) console.log(`[V2-PREP] materialize cache_hit l=${input.lessonOrdinal} s=${input.sessionOrdinal} locale=${input.interfaceLocale} disabled=${input.disabledInteractionIds?.length ?? 0}`);
     return hit;
   }
   const startedAt = Date.now();

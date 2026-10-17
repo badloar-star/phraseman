@@ -211,7 +211,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     contentHRef.current = h;
     const pending = pendingRef.current;
     console.log('[SPIRE-SCROLL] размер содержимого', JSON.stringify({ h: roundLayout(h), pending: pending ? { floor: pending.floor } : null })); // guard-ok: единичный лог на изменение размера
-    if (pending) scrollToFloor(pending.floor, false, 'после-layout'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    if (pending) scrollToFloor(pending.floor, false, 'после-layout'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   }, [scrollToFloor]);
 
   const onScrollEcho = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
@@ -231,22 +231,22 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // зачем (координатор 15.10, 🔴 Pixel 8: «в окне этажи 5 и 4, хотя твой этаж — 1»): без своего этажа (нет недели) окно после сжатия 400 → ~120 оставалось на старом смещении — ранний выход пропускал этот случай; теперь и «низ башни» пересчитывается по новой высоте
   useEffect(() => {
     if (scale <= 0) return;
-    if (myFloor === null) { scrollToFloor(null, false, 'окно-изменило-высоту'); return; } // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    if (myFloor === null) { scrollToFloor(null, false, 'окно-изменило-высоту'); return; } // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     if (!placedRef.current) return;
-    scrollToFloor(myFloor, false, 'окно-изменило-высоту'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    scrollToFloor(myFloor, false, 'окно-изменило-высоту'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowHeight]);
 
   useEffect(() => {
     if (scale <= 0) return;
-    if (myFloor === null) { placedRef.current = false; scrollToFloor(null, false, 'нет-этажа'); return; } // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    if (myFloor === null) { placedRef.current = false; scrollToFloor(null, false, 'нет-этажа'); return; } // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     const target = markerTarget(myFloor, scale);
     if (!placedRef.current || reduceMotion) {
       // Первый кадр и «уменьшить движение»: маркер сразу на месте.
       tx.setValue(target.x);
       ty.setValue(target.y);
       placedRef.current = true;
-      scrollToFloor(myFloor, false, 'первый-показ'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+      scrollToFloor(myFloor, false, 'первый-показ'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
       return;
     }
     // Подъём на этаж выше: перелёт на нативном драйвере, окно догоняет.
@@ -254,13 +254,13 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       Animated.timing(tx, { toValue: target.x, duration: 900, easing: Easing.bezier(0.2, 0.9, 0.2, 1), useNativeDriver: true }),
       Animated.timing(ty, { toValue: target.y, duration: 900, easing: Easing.bezier(0.2, 0.9, 0.2, 1), useNativeDriver: true }),
     ]).start();
-    scrollToFloor(myFloor, true, 'смена-этажа'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    scrollToFloor(myFloor, true, 'смена-этажа'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   }, [myFloor, scale, reduceMotion, tx, ty, scrollToFloor]);
 
   // зачем (Ревизор 15.10, R02 п.5): тап по этажу 14–15 с нижнего этажа оставлял верх башни (шпиль, ореол) за краем окна — выбранный верхний этаж прокручивает окно к верху башни (общий расчёт spireWindowScrollY)
   useEffect(() => {
     if (scale <= 0 || !placedRef.current || selected < SPIRE_FLOOR_COUNT - 1 || selected === myFloor) return;
-    scrollToFloor(selected, true, 'выбран-верхний-этаж'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    scrollToFloor(selected, true, 'выбран-верхний-этаж'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 

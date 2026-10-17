@@ -269,7 +269,7 @@ export default function FlashcardsCardEditorScreen() {
   useEffect(() => {
     const show = Keyboard.addListener('keyboardDidShow', (e) => {
       DebugLogger.info('[CARD-EDITOR-KB]', `клавиатура показана высота=${Math.round(e.endCoordinates?.height ?? 0)} фокус=${focusedFieldRef.current}`);
-      revealField(focusedFieldRef.current, 'клавиатура');
+      revealField(focusedFieldRef.current, 'клавиатура'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     });
     return () => {
       show.remove();
@@ -759,7 +759,7 @@ export default function FlashcardsCardEditorScreen() {
                         onSubmitEditing={() => backInputRef.current?.focus()}
                         blurOnSubmit={false}
                         maxLength={80}
-                        onFocus={() => { focusedFieldRef.current = 'front'; setFocusedField('front'); revealField('front', 'фокус'); }}
+                        onFocus={() => { focusedFieldRef.current = 'front'; setFocusedField('front'); revealField('front', 'фокус'); }} // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
                         placeholderTextColor={g.mutedText}
                       />
                       {/* E13: TTS-превью введённого EN */}
@@ -842,7 +842,7 @@ export default function FlashcardsCardEditorScreen() {
                       onSubmitEditing={() => descriptionInputRef.current?.focus()}
                       blurOnSubmit={false}
                       maxLength={80}
-                      onFocus={() => { focusedFieldRef.current = 'back'; setFocusedField('back'); revealField('back', 'фокус'); }}
+                      onFocus={() => { focusedFieldRef.current = 'back'; setFocusedField('back'); revealField('back', 'фокус'); }} // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
                       placeholderTextColor={g.mutedText}
                     />
                   </EditorField>
@@ -887,7 +887,7 @@ export default function FlashcardsCardEditorScreen() {
                       onSubmitEditing={handleSave}
                       blurOnSubmit
                       maxLength={220}
-                      onFocus={() => { focusedFieldRef.current = 'description'; setFocusedField('description'); revealField('description', 'фокус'); }}
+                      onFocus={() => { focusedFieldRef.current = 'description'; setFocusedField('description'); revealField('description', 'фокус'); }} // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
                       placeholderTextColor={g.mutedText}
                     />
                   </EditorField>

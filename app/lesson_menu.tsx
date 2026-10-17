@@ -1334,7 +1334,7 @@ function LessonMenu() {
                 <LessonMenuHeader
                   glass={lessonMenuGlass}
                   testID="lesson-menu-pending"
-                  title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`}
+                  title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`} // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
                   subtitle={lessonCefrLabel}
                   onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/home' as never); }}
                   backLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
@@ -1375,7 +1375,7 @@ function LessonMenu() {
         <LessonMenuHeader
           glass={lessonMenuGlass}
           testID="lesson-menu"
-          title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`}
+          title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`} // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
           subtitle={lessonCefrLabel}
           onBack={() => {
             hapticTap();

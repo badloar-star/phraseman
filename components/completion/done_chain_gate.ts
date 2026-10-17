@@ -109,9 +109,9 @@ export function deriveStreakRow(before: StreakDayState | null, after: StreakDayS
   if (after.counted && before && !before.counted && before.dayKey === after.dayKey) {
     // зачем: «до» берём из снимка (вчерашняя серия), а если серия сбросилась — честно «N−1 → N» не выдумываем: показываем то, что было
     const fromDays = Math.max(0, Math.min(before.days, to.days));
-    return { from: { days: fromDays, counted: false }, to, animate: true, reason: `день засчитан этим уроком: ${fromDays} → ${to.days}` };
+    return { from: { days: fromDays, counted: false }, to, animate: true, reason: `день засчитан этим уроком: ${fromDays} → ${to.days}` }; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   }
-  return { from: to, to, animate: false, reason: after.counted ? `день уже был засчитан раньше (до=${before ? String(before.counted) : 'неизвестно'})` : 'день ещё не засчитан' };
+  return { from: to, to, animate: false, reason: after.counted ? `день уже был засчитан раньше (до=${before ? String(before.counted) : 'неизвестно'})` : 'день ещё не засчитан' }; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 export type DoneChainTodayRow = Readonly<{
@@ -130,5 +130,5 @@ export function deriveTodayRow(before: DoneChainBefore, after: TodayTasksDayStat
   const sameDay = before.dayKey == null || after?.dayKey === before.dayKey;
   const from = sameDay && before.lessonProgress != null ? Math.min(before.lessonProgress, to) : to;
   const animate = from < to;
-  return { from, to, target, animate, reason: animate ? `задачу продвинул этот урок: ${from}/${target} → ${to}/${target}` : `без изменений ${to}/${target} (до=${String(before.lessonProgress)})` };
+  return { from, to, target, animate, reason: animate ? `задачу продвинул этот урок: ${from}/${target} → ${to}/${target}` : `без изменений ${to}/${target} (до=${String(before.lessonProgress)})` }; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }

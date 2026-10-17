@@ -38,7 +38,7 @@ export type DialogueV2RankGateRow = Readonly<{
   id: string;
   cefr: string;
   unlockRank: number;
-  decision: 'открыт' | 'закрыт' | 'пройден';
+  decision: 'открыт' | 'закрыт' | 'пройден'; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }>;
 
 let lastRankGateLogKey = '';

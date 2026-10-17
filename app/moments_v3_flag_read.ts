@@ -27,15 +27,15 @@ async function readDevOverride(): Promise<boolean | null> {
 export async function readMomentsV3Flag(source: string): Promise<boolean> {
   const dev = await readDevOverride();
   let bools: Readonly<Record<string, unknown>> | null = null;
-  let cache: 'есть' | 'нет' | 'битый' = 'нет';
+  let cache: 'есть' | 'нет' | 'битый' = 'нет'; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   try {
     const raw = await readRemoteConfigCacheRaw();
     if (raw) {
-      cache = 'есть';
+      cache = 'есть'; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
       bools = (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools ?? null;
     }
   } catch (error) {
-    cache = 'битый';
+    cache = 'битый'; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     console.warn(`${LOG} кэш конфига не прочитался — правило по умолчанию (${error instanceof Error ? error.message : String(error)})`);
   }
   const remote = momentsV3RemoteState(bools);

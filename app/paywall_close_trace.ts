@@ -25,7 +25,7 @@ function total_share(): string {
 
 function finish(reason: string): void {
   if (!active) return;
-  emit(`[PAYWALL-CLOSE-TIMING] END reason=${reason} total=${Date.now() - t0}ms settingsRenders=${renders} selfLogMs=${selfLogMs.toFixed(1)} (${total_share()}% of total; dev-зонд и старые [WINBACK-FREEZE] см. dismiss:pre_log -> dismiss:call)`); // итог закрытия
+  emit(`[PAYWALL-CLOSE-TIMING] END reason=${reason} total=${Date.now() - t0}ms settingsRenders=${renders} selfLogMs=${selfLogMs.toFixed(1)} (${total_share()}% of total; dev-зонд и старые [WINBACK-FREEZE] см. dismiss:pre_log -> dismiss:call)`); // итог закрытия // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   active = false;
   if (safety) { clearTimeout(safety); safety = null; }
 }
@@ -70,7 +70,7 @@ export function paywallCloseRenderCause(name: string, getValues: Readonly<Record
   if (!active) return;
   if (!prev) { emit(`[PAYWALL-CLOSE-TIMING] cause ${name} n=${renders} baseline`); return; }
   const changed = Object.keys(values).filter((k) => !Object.is(values[k], prev[k]));
-  emit(`[PAYWALL-CLOSE-TIMING] cause ${name} n=${renders} +${Date.now() - t0}ms changed=${changed.length ? changed.join(',') : 'нет'}`); // причина перерисовки
+  emit(`[PAYWALL-CLOSE-TIMING] cause ${name} n=${renders} +${Date.now() - t0}ms changed=${changed.length ? changed.join(',') : 'нет'}`); // причина перерисовки // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 /** Цена отрисовки по React.Profiler: сколько мс ушло на каждый коммит, пока пейвол закрывается. */

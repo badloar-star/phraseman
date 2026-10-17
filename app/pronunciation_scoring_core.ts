@@ -60,7 +60,7 @@ const CONTRACTIONS: ReadonlyArray<readonly [RegExp, string]> = [
   [/\b(i|you|we|they|he|she|it|that|who)'?ll\b/g, '$1 will'],
   [/\b(i|you|we|they|he|she|it|that|who)'?ve\b/g, '$1 have'],
   [/\b(i|you|we|they|he|she|it|that|who)'?d\b/g, '$1 would'],
-  // "won't"/"can't" должны разойтись ДО общего n't-правила, иначе "wo not"/"ca not".
+  // "won't"/"can't" должны разойтись ДО общего n't-правила, иначе "wo not"/"ca not". — guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   [/\bcan'?t\b/g, 'can not'],
   [/\bwon'?t\b/g, 'will not'],
   [/\b(is|are|was|were|do|does|did|have|has|had|would|could|should|will|can|must|ai)n'?t\b/g, "$1 not"],
@@ -242,7 +242,7 @@ const ELISION_RE = /\b(l|d|j|c|n|s|m|t|qu|lorsqu|puisqu|jusqu|dell|dall|nell|sul
 function normalizePhrase(value: string): string {
   const expanded = expandContractions(
     foldDiacritics(value.toLowerCase())
-      .replace(/[’`ʼ]/g, "'"),
+      .replace(/[’`ʼ]/g, "'"), // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   )
     .replace(ELISION_RE, '$1 ')
     .replace(/[^a-z0-9'\s]+/g, ' ')
@@ -385,7 +385,7 @@ function strictWordMatch(target: string, heard: string): boolean {
 /**
  * Строгая проверка: каждое значимое слово цели найдено в распознанном тексте (одно распознанное слово
  * закрывает только одно слово цели). Порядок и лишние слова не важны — их учитывает процент.
- * `lowConfidenceSlack` — сколько слов распознаватель сам пометил как неуверенные (огрех движка, не ученика).
+ * `lowConfidenceSlack` — сколько слов распознаватель сам пометил как неуверенные (огрех движка, не ученика). guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
  */
 function strictWordCheck(
   targetWords: readonly string[],

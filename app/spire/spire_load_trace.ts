@@ -54,7 +54,7 @@ export async function spireFirstFrameRoom(uid: string, lang: SpireLang, identity
   const disk = await spireReadRoomCache(uid, lang);
   const weekId = spireCurrentWeekKey(Date.now());
   if (!disk || disk.weekId !== weekId) {
-    spireLoadMark('room:first_frame', { source: 'none', why: disk ? `кэш прошлой недели ${disk.weekId}` : 'кэша на диске нет', readMs: Date.now() - startedAt });
+    spireLoadMark('room:first_frame', { source: 'none', why: disk ? `кэш прошлой недели ${disk.weekId}` : 'кэша на диске нет', readMs: Date.now() - startedAt }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     return null;
   }
   spireLoadMark('room:first_frame', { source: 'disk', ageMs: Date.now() - disk.fetchedAtMs, members: disk.members.length, tier: disk.tier, readMs: Date.now() - startedAt });
@@ -69,8 +69,8 @@ type ReadinessInput = Readonly<{
 export function useSpireLoadReadiness(game: ReadinessInput, preview: boolean): void {
   const lastRef = useRef<string | null>(null);
   const reasons: string[] = [];
-  if (!game.live) reasons.push('live=false (конфиг не прочитан или Пик закрыт)');
-  if (game.tier === null) reasons.push('tier=null (нет комнаты и недели)');
+  if (!game.live) reasons.push('live=false (конфиг не прочитан или Пик закрыт)'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  if (game.tier === null) reasons.push('tier=null (нет комнаты и недели)'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   if (game.session !== null) reasons.push('session!=null');
   if (game.pending !== null) reasons.push('pending!=null');
   const key = `${reasons.join('|')}#${game.rows ? game.rows.length : 'null'}#${game.roomLoad ? `${game.roomLoad.status}/${game.roomLoad.reason}` : 'none'}`;

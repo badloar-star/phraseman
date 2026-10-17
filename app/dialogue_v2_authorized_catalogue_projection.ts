@@ -169,8 +169,8 @@ export function projectAuthorizedDialogueV2Catalogue(
       const unlocked = rankAccess.access.status === 'unlocked';
       const isDone = doneIds?.has(entry.id) === true;
       const status: DialogueV2CatalogueLearnerItem['status'] = isDone ? 'done' : unlocked ? 'available' : 'locked';
-      if (isDone || !unlocked) statusLog.push(`${entry.id}:${status}(${isDone ? 'в_хранилище_прохождений' : `ранг_${entry.unlockRank}_закрыт`})`);
-      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: isDone ? 'пройден' : unlocked ? 'открыт' : 'закрыт' });
+      if (isDone || !unlocked) statusLog.push(`${entry.id}:${status}(${isDone ? 'в_хранилище_прохождений' : `ранг_${entry.unlockRank}_закрыт`})`); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: isDone ? 'пройден' : unlocked ? 'открыт' : 'закрыт' }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
       items.push(Object.freeze({
         id: entry.id,
         worldId: entry.worldId,

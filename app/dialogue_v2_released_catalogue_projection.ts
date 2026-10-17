@@ -120,7 +120,7 @@ export function projectReleasedDialogueV2Catalogue(
         rankRequired: entry.unlockRank,
         status: rankAccess.access.status === 'unlocked' ? 'available' : 'locked',
       }));
-      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: rankAccess.access.status === 'unlocked' ? 'открыт' : 'закрыт' });
+      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: rankAccess.access.status === 'unlocked' ? 'открыт' : 'закрыт' }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     }
     logDialogueV2RankGate('released', input.studyTarget, input.localCoinRank, gateRows);
     return Object.freeze({ worlds, items: Object.freeze(items) });

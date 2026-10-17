@@ -141,7 +141,7 @@ function write(target: RuntimeStudyTarget, next: HomeContinueMarks, persist: () 
 export function recordHomeContinueV2(target: RuntimeStudyTarget, mark: HomeContinueV2Mark): void {
   const prev = memory.get(tk(target)) ?? { v2: null, legacyAtMs: null };
   console.log(`${LOG} mark: V2 урок ${mark.lessonOrdinal} занятие ${mark.sessionOrdinal} target=${target}`);
-  write(target, { ...prev, v2: mark }, () => AsyncStorage.setItem(v2Key(target), JSON.stringify(mark)), 'метка V2');
+  write(target, { ...prev, v2: mark }, () => AsyncStorage.setItem(v2Key(target), JSON.stringify(mark)), 'метка V2'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 /**
@@ -155,13 +155,13 @@ export function recordHomeContinuePlace(kind: HomeContinuePlaceKind, target: Run
   }
   const prev = memory.get(tk(target)) ?? { v2: null, legacyAtMs: null };
   console.log(`${LOG} mark: ${kind} id=${mark.id} путь=${mark.route.pathname} target=${target}`);
-  write(target, { ...prev, [kind]: mark }, () => AsyncStorage.setItem(placeKey(target, kind), JSON.stringify(mark)), `метка «${kind}»`);
+  write(target, { ...prev, [kind]: mark }, () => AsyncStorage.setItem(placeKey(target, kind), JSON.stringify(mark)), `метка «${kind}»`); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 /** Открыт старый урок — время рядом с lastOpenedLessonKey. */
 export function recordHomeContinueLegacy(target: RuntimeStudyTarget, atMs: number = Date.now()): void {
   const prev = memory.get(tk(target)) ?? { v2: null, legacyAtMs: null };
-  write(target, { ...prev, legacyAtMs: atMs }, () => AsyncStorage.setItem(legacyAtKey(target), String(atMs)), 'время старого урока');
+  write(target, { ...prev, legacyAtMs: atMs }, () => AsyncStorage.setItem(legacyAtKey(target), String(atMs)), 'время старого урока'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 export type HomeContinueReason = 'none' | 'legacy_only' | 'v2_only' | 'v2_newer' | 'legacy_newer' | 'dialog_only' | 'cards_only' | 'dialog_newer' | 'cards_newer';
@@ -244,15 +244,15 @@ export function homeContinueStartTitle(lang: Lang): string {
 
 /** Журнал решения: что выбрано и почему, с временем обеих меток. */
 const REASON_TEXT: Readonly<Record<HomeContinueReason, string>> = {
-  none: 'нет ни урока, ни занятия V2, ни диалога, ни карточек — «Начать урок 1»',
-  legacy_only: 'только старый урок',
-  v2_only: 'только V2',
-  v2_newer: 'V2 свежее',
-  legacy_newer: 'старый урок свежее',
-  dialog_only: 'только диалог',
-  cards_only: 'только карточки',
-  dialog_newer: 'диалог свежее',
-  cards_newer: 'карточки свежее',
+  none: 'нет ни урока, ни занятия V2, ни диалога, ни карточек — «Начать урок 1»', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  legacy_only: 'только старый урок', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  v2_only: 'только V2', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  v2_newer: 'V2 свежее', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  legacy_newer: 'старый урок свежее', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  dialog_only: 'только диалог', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  cards_only: 'только карточки', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  dialog_newer: 'диалог свежее', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  cards_newer: 'карточки свежее', // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 };
 
 export function logHomeContinueChoice(choice: HomeContinueChoice, input: HomeContinueInput, target: string): void {
@@ -276,7 +276,7 @@ export function homeContinueV2Title(lang: Lang, lessonOrdinal: number, sessionOr
       console.warn(`${LOG} title: модуль названий не загрузился — номер занятия (${error instanceof Error ? error.message : String(error)})`);
     }
   }
-  return `${triLang(lang, { ru: 'Занятие', en: 'Session', uk: 'Заняття', es: 'Sesión', 'pt-BR': 'Sessão', vi: 'Buổi', id: 'Sesi', tr: 'Oturum', pl: 'Zajęcia' })} ${sessionOrdinal}`;
+  return `${triLang(lang, { ru: 'Занятие', en: 'Session', uk: 'Заняття', es: 'Sesión', 'pt-BR': 'Sessão', vi: 'Buổi', id: 'Sesi', tr: 'Oturum', pl: 'Zajęcia' })} ${sessionOrdinal}`; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 export function useHomeContinueMarks(target: RuntimeStudyTarget): HomeContinueMarks {

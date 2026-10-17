@@ -508,7 +508,7 @@ function logPackTitleFallback(packId: string, lang: string, source: PackTitleSou
   const key = `${packId}:${lang}`;
   if (packTitleFallbackLogged.has(key)) return;
   packTitleFallbackLogged.add(key);
-  const line = `[PACK-TITLE] ${packId} lang=${lang}: своего названия нет → ${source}`;
+  const line = `[PACK-TITLE] ${packId} lang=${lang}: своего названия нет → ${source}`; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
   if (source === 'code') console.warn(line); // guard-ok: настоящий набор сюда не доходит — если дошёл, это баг данных
   else console.log(line); // guard-ok: раз на набор и язык
 }

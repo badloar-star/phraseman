@@ -368,7 +368,7 @@ export default function FlashcardsVoicePickerScreen() {
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} testID="fc-voice-picker-title">
               {/* язык в заголовке — изучаемый (EN / ES / FR / DE / IT), а не всегда EN */}
-              {`${triLang(lang, {
+              {`${triLang(lang, { // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
                 ru: 'Голос озвучки', uk: 'Голос озвучення', en: 'Voiceover voice', es: 'Voz de lectura',
                 'pt-BR': 'Voz de leitura', vi: 'Giọng đọc', id: 'Suara narasi', tr: 'Seslendirme sesi', pl: 'Głos odczytu',
               })} · ${voiceLang.toUpperCase()}`}

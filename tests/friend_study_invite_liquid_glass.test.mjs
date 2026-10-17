@@ -8,16 +8,17 @@ const friendsPath = new URL('../app/(tabs)/friends.tsx', import.meta.url);
 const modal = readFileSync(modalPath, 'utf8');
 const friends = readFileSync(friendsPath, 'utf8');
 
+// зачем (переводчик 17.10): заголовок переформулирован по D188 (1bf5288b4) — без «английского», человек может учить любой язык
 const TITLE_COPY = [
-  'Пять минут на английский?',
-  'П’ять хвилин на англійську?',
-  'Five minutes of English?',
-  '¿Cinco minutos de inglés?',
-  'Cinco minutos de inglês?',
-  'Năm phút học tiếng Anh?',
-  'Lima menit bahasa Inggris?',
-  'Beş dakika İngilizce?',
-  'Pięć minut angielskiego?',
+  'Пять минут на практику?',
+  'П’ять хвилин на практику?',
+  'Five minutes of practice?',
+  '¿Cinco minutos de práctica?',
+  'Cinco minutos de prática?',
+  'Năm phút luyện tập?',
+  'Lima menit latihan?',
+  'Beş dakika pratik?',
+  'Pięć minut praktyki?',
 ];
 
 const BODY_COPY = [

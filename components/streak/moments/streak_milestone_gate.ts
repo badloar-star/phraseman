@@ -29,5 +29,5 @@ export function decideStreakMilestone(input: StreakMilestoneGateInput): StreakMi
   if (!input.fact) return { show: false, reason: 'состояние серии ещё неизвестно' }; // guard-ok: log-only reason
   if (!input.fact.counted || input.fact.dayKey !== input.today) return { show: false, reason: `день не засчитан (fact.day=${input.fact.dayKey} counted=${String(input.fact.counted)})` }; // guard-ok: log-only reason
   if (input.fact.days !== days) return { show: false, reason: `число дней сменилось (рубеж=${days} сейчас=${input.fact.days})` }; // guard-ok: log-only reason
-  return { show: true, milestone: days, reason: `рубеж ${days} засчитан сегодня (${dayKey})` };
+  return { show: true, milestone: days, reason: `рубеж ${days} засчитан сегодня (${dayKey})` }; // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }

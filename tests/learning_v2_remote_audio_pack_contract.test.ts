@@ -198,18 +198,26 @@ const exactBootstrapEntries = bootstrapEntries as readonly {
   contentHash: string;
   byteSize: number;
 }[];
-assert.equal(exactBootstrapEntries.length, 28);
-assert.equal(exactBootstrapEntries.reduce((sum, entry) => sum + entry.byteSize, 0), 863_232);
+// зачем (Ядро 18.10): 28 записей / 863 232 байта были слепком старого текста l01/s01 (7 реплик); после переписывания
+// урока 1 реплик стало больше. Смысл тот же, без слепка: каждая реплика занятия 1 — во всех четырёх голосах, и размер
+// записи в манифесте равен размеру файла в наборе сборки.
+assert.ok(bootstrapTranscripts.size > 0, "Session 1 has voiced coordinates");
+assert.equal(exactBootstrapEntries.length, bootstrapTranscripts.size * voices.length);
 const bootstrapAudioFiles = readdirSync(join(root, bootstrapDirectory)).filter((name) => name.endsWith(".mp3"));
 assert.ok(
   bootstrapAudioFiles.length >= exactBootstrapEntries.length,
   "bootstrap directory may retain additional generated voice assets",
 );
-for (const entry of exactBootstrapEntries) {
-  assert.match(
-    bootstrapModule,
-    new RegExp(`require\\(\"\\.\\./assets/audio/learning-v2-bootstrap-v1/${entry.contentHash}\\.mp3\"\\)`, "u"),
-  );
+// зачем (Ядро 18.10): с «одним голосом на задание» в сборку едет назначенный голос реплики, а не все четыре —
+// проверяем, что КАЖДАЯ реплика занятия 1 есть в наборе сборки хотя бы одним голосом и подключена require (файл на месте).
+const bundledByTranscript = new Map<string, string>();
+for (const match of bootstrapModule.matchAll(/transcript: ("(?:[^"\\]|\\.)*"), voiceId: "[a-z]+" as const, contentHash: "([0-9a-f]{64})"/gu))
+  if (!bundledByTranscript.has(JSON.parse(match[1]))) bundledByTranscript.set(JSON.parse(match[1]), match[2]);
+for (const transcript of bootstrapTranscripts) {
+  const contentHash = bundledByTranscript.get(transcript);
+  assert.ok(contentHash, `Session 1 transcript «${transcript}» is in the bootstrap bundle`);
+  assert.match(bootstrapModule, new RegExp(`require\\(\"\\.\\./assets/audio/learning-v2-bootstrap-v1/${contentHash}\\.mp3\"\\)`, "u"));
+  assert.ok(existsSync(join(root, bootstrapDirectory, `${contentHash}.mp3`)), `bundled file for «${transcript}»`);
 }
 assert.match(easIgnore, /^!assets\/audio\/learning-v2-bootstrap-v1\/$/mu);
 

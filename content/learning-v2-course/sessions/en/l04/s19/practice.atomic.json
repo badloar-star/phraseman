@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-19:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-19:i01:p1",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i01:p2",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i01:p3",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i01:p4",
+              "target": "salt",
+              "meaningByLocale": {
+                "ru": "соль",
+                "uk": "сіль"
+              }
+            }
+          ],
+          "leftColumn": [
+            "soup",
+            "rice",
+            "pasta",
+            "salt"
+          ],
+          "rightColumn": [
+            "суп",
+            "рис",
+            "макароны",
+            "соль"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:soup",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:soup:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:soup:audio",
+            "transcript": "soup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:soup:r1",
+              "targetText": "soup",
+              "meaningByLocale": {
+                "ru": "суп. Is there any soup here? — «Здесь есть суп?» О горячем блюде в тарелке.",
+                "uk": "суп. Is there any soup here? — «Тут є суп?» Про гарячу страву в тарілці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soup",
+            "definitionByLocale": {
+              "ru": "суп. Is there any soup here? — «Здесь есть суп?» О горячем блюде в тарелке.",
+              "uk": "суп. Is there any soup here? — «Тут є суп?» Про гарячу страву в тарілці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ставит на стол тарелку горячего блюда и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга ставит на стол тарелку горячего блюда и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i02:audio",
+            "transcript": "soup"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "soup",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы голодны. Спросите подругу полной фразой: рядом с кастрюлей есть суп?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы голодны. Спросите подругу полной фразой: рядом с кастрюлей есть суп?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any soup near the pot?",
+          "localizedMeaning": {
+            "ru": "Вы голодны. Спросите подругу полной фразой: рядом с кастрюлей есть суп?",
+            "uk": "Ви голодні. Запитайте подругу повною фразою: поруч із каструлею є суп?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "soup",
+            "near",
+            "the",
+            "pot"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы голодны. Спросите подругу полной фразой: рядом с кастрюлей есть суп?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any soup near the pot?`",
+                "uk": "тут потрібно `Is` — `Is there any soup near the pot?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:rice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:rice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:rice:audio",
+            "transcript": "rice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:rice:r1",
+              "targetText": "rice",
+              "meaningByLocale": {
+                "ru": "рис. Is there any rice near the pot? — «Рядом с кастрюлей есть рис?» О белых зёрнах, которые варят на гарнир.",
+                "uk": "рис. Is there any rice near the pot? — «Поруч із каструлею є рис?» Про білі зерна, які варять на гарнір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rice",
+            "definitionByLocale": {
+              "ru": "рис. Is there any rice near the pot? — «Рядом с кастрюлей есть рис?» О белых зёрнах, которые варят на гарнир.",
+              "uk": "рис. Is there any rice near the pot? — «Поруч із каструлею є рис?» Про білі зерна, які варять на гарнір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i04:r1",
+            "text": "rice"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i04:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i04:r3",
+            "text": "bread"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+            "uk": "Білі зерна, які варять на гарнір. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-19:i04:r1",
+              "text": "rice"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i04:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i04:r3",
+              "text": "bread"
+            }
+          ],
+          "testedDimension": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i04:r2",
+              "correct": false,
+              "testedDimension": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "milk — это молоко, а белые зёрна для гарнира называются rice.",
+                "uk": "milk — це молоко, а білі зерна для гарніру називаються rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i04:r3",
+              "correct": false,
+              "testedDimension": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "bread — это хлеб, а белые зёрна для гарнира называются rice.",
+                "uk": "bread — це хліб, а білі зерна для гарніру називаються rice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i05:r1",
+            "text": "Is there any rice here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i05:r2",
+            "text": "Is there any soup here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i05:r3",
+            "text": "There is some rice here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i05:audio",
+            "transcript": "Is there any rice here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:i05:r1",
+              "targetText": "Is there any rice here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i05:r2",
+              "targetText": "Is there any soup here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i05:r3",
+              "targetText": "There is some rice here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `rice`, а в этом варианте про `soup`.",
+                "uk": "У записі питають про `rice`, а в цьому варіанті про `soup`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there any`, а в этом варианте сообщение `There is some`.",
+                "uk": "У записі запитання `Is there any`, а в цьому варіанті повідомлення `There is some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:pasta",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pasta",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:pasta:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pasta",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:pasta:audio",
+            "transcript": "pasta"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:pasta:r1",
+              "targetText": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны, паста. Is there any pasta behind the basket? — «За корзиной есть макароны?» О сваренном тесте из муки.",
+                "uk": "макарони, паста. Is there any pasta behind the basket? — «За кошиком є макарони?» Про зварене тісто з борошна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pasta",
+            "definitionByLocale": {
+              "ru": "макароны, паста. Is there any pasta behind the basket? — «За корзиной есть макароны?» О сваренном тесте из муки.",
+              "uk": "макарони, паста. Is there any pasta behind the basket? — «За кошиком є макарони?» Про зварене тісто з борошна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка показывает длинные сухие макароны и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i06:audio"
+        ],
+        "accessibilityLabel": "Соседка показывает длинные сухие макароны и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i06:audio",
+            "transcript": "pasta"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pasta",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i07:audio",
+            "transcript": "Is there any pasta here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there any pasta here?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "pasta",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any pasta here?`",
+                "uk": "тут потрібно `Is` — `Is there any pasta here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:salt",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — salt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:salt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — salt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:salt:audio",
+            "transcript": "salt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:salt:r1",
+              "targetText": "salt",
+              "meaningByLocale": {
+                "ru": "соль. Is there any salt near the cup? — «Рядом с чашкой есть соль?» О белых крупинках, которыми солят еду.",
+                "uk": "сіль. Is there any salt near the cup? — «Поруч із чашкою є сіль?» Про білі крупинки, якими солять їжу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "salt",
+            "definitionByLocale": {
+              "ru": "соль. Is there any salt near the cup? — «Рядом с чашкой есть соль?» О белых крупинках, которыми солят еду.",
+              "uk": "сіль. Is there any salt near the cup? — «Поруч із чашкою є сіль?» Про білі крупинки, якими солять їжу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i08:r1",
+            "text": "salt"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r2",
+            "text": "sugar"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r3",
+            "text": "butter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+            "uk": "Білі крупинки, якими солять їжу. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-19:i08:r1",
+              "text": "salt"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i08:r2",
+              "text": "sugar"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i08:r3",
+              "text": "butter"
+            }
+          ],
+          "testedDimension": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "sugar — это сладкий сахар, а крупинки, которыми солят еду, называются salt.",
+                "uk": "sugar — це солодкий цукор, а крупинки, якими солять їжу, називаються salt."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "butter — это сливочное масло, а крупинки, которыми солят еду, называются salt.",
+                "uk": "butter — це вершкове масло, а крупинки, якими солять їжу, називаються salt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Суп получился пресным. Спросите подругу полной фразой: рядом с тарелкой есть соль?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп получился пресным. Спросите подругу полной фразой: рядом с тарелкой есть соль?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any salt near the plate?",
+          "localizedMeaning": {
+            "ru": "Суп получился пресным. Спросите подругу полной фразой: рядом с тарелкой есть соль?",
+            "uk": "Суп вийшов прісним. Запитайте подругу повною фразою: поруч із тарілкою є сіль?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "salt",
+            "near",
+            "the",
+            "plate"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Суп получился пресным. Спросите подругу полной фразой: рядом с тарелкой есть соль?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any salt near the plate?`",
+                "uk": "тут потрібно `Is` — `Is there any salt near the plate?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-19:i10:p1",
+              "target": "salt",
+              "meaningByLocale": {
+                "ru": "соль",
+                "uk": "сіль"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i10:p2",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i10:p3",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i10:p4",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            }
+          ],
+          "leftColumn": [
+            "salt",
+            "pasta",
+            "soup",
+            "rice"
+          ],
+          "rightColumn": [
+            "соль",
+            "макароны",
+            "суп",
+            "рис"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте короткий ответ подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i11:r1",
+            "text": "Yes, there is."
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i11:r2",
+            "text": "No, there isn't."
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i11:r3",
+            "text": "Yes, there are."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте короткий ответ подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i11:audio",
+            "transcript": "Yes, there is."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:i11:r1",
+              "targetText": "Yes, there is.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i11:r2",
+              "targetText": "No, there isn't.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i11:r3",
+              "targetText": "Yes, there are.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте короткий ответ подруги",
+              "feedbackByLocale": {
+                "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+                "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте короткий ответ подруги",
+              "feedbackByLocale": {
+                "ru": "В записи `there is`, а в этом варианте `there are`.",
+                "uk": "У записі `there is`, а в цьому варіанті `there are`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+            "uk": "Брат хоче дізнатися, чи є рис. Доповніть його запитання"
+          },
+          "gappedTargetPhrase": "Is there ___ rice here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-19:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а рис не считают штуками: any rice.",
+                "uk": "Слово a ставлять перед одним предметом, а рис не рахують штуками: any rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже ставят перед одним предметом, а здесь нужно any rice.",
+                "uk": "Слово an теж ставлять перед одним предметом, а тут потрібно any rice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i13:audio",
+            "transcript": "Is there any rice near the bowl?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there any rice near the bowl?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "rice",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any rice near the bowl?`",
+                "uk": "тут потрібно `Is` — `Is there any rice near the bowl?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы не нашли макароны. Спросите соседку, есть ли они за миской",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Вы не нашли макароны. Спросите соседку, есть ли они за миской",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i14:audio",
+            "transcript": "Is there any pasta behind the bowl?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there any pasta behind the bowl?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете соль для супа. Спросите брата полной фразой: рядом с миской есть соль?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете соль для супа. Спросите брата полной фразой: рядом с миской есть соль?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any salt near the bowl?",
+          "localizedMeaning": {
+            "ru": "Вы ищете соль для супа. Спросите брата полной фразой: рядом с миской есть соль?",
+            "uk": "Ви шукаєте сіль для супу. Запитайте брата повною фразою: поруч із мискою є сіль?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "salt",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы ищете соль для супа. Спросите брата полной фразой: рядом с миской есть соль?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any salt near the bowl?`",
+                "uk": "тут потрібно `Is` — `Is there any salt near the bowl?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-19:i16:p1",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i16:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i16:p3",
+              "target": "salt",
+              "meaningByLocale": {
+                "ru": "соль",
+                "uk": "сіль"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i16:p4",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rice",
+            "soup",
+            "salt",
+            "pasta"
+          ],
+          "rightColumn": [
+            "рис",
+            "суп",
+            "соль",
+            "макароны"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, остался ли суп. Супа нет. Ответьте ей коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, остался ли суп. Супа нет. Ответьте ей коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i17:audio",
+            "transcript": "No, there isn't."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there isn't.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-19:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-19:i01:p1",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i01:p2",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i01:p3",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i01:p4",
+              "target": "salt",
+              "meaningByLocale": {
+                "ru": "соль",
+                "uk": "сіль"
+              }
+            }
+          ],
+          "leftColumn": [
+            "soup",
+            "rice",
+            "pasta",
+            "salt"
+          ],
+          "rightColumn": [
+            "суп",
+            "рис",
+            "макарони",
+            "сіль"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:soup",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:soup:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:soup:audio",
+            "transcript": "soup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:soup:r1",
+              "targetText": "soup",
+              "meaningByLocale": {
+                "ru": "суп. Is there any soup here? — «Здесь есть суп?» О горячем блюде в тарелке.",
+                "uk": "суп. Is there any soup here? — «Тут є суп?» Про гарячу страву в тарілці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soup",
+            "definitionByLocale": {
+              "ru": "суп. Is there any soup here? — «Здесь есть суп?» О горячем блюде в тарелке.",
+              "uk": "суп. Is there any soup here? — «Тут є суп?» Про гарячу страву в тарілці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ставить на стіл тарілку гарячої страви й називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга ставить на стіл тарілку гарячої страви й називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i02:audio",
+            "transcript": "soup"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "soup",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви голодні. Запитайте подругу повною фразою: поруч із каструлею є суп?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви голодні. Запитайте подругу повною фразою: поруч із каструлею є суп?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any soup near the pot?",
+          "localizedMeaning": {
+            "ru": "Вы голодны. Спросите подругу полной фразой: рядом с кастрюлей есть суп?",
+            "uk": "Ви голодні. Запитайте подругу повною фразою: поруч із каструлею є суп?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "soup",
+            "near",
+            "the",
+            "pot"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви голодні. Запитайте подругу повною фразою: поруч із каструлею є суп?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any soup near the pot?`",
+                "uk": "тут потрібно `Is` — `Is there any soup near the pot?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:rice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:rice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:rice:audio",
+            "transcript": "rice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:rice:r1",
+              "targetText": "rice",
+              "meaningByLocale": {
+                "ru": "рис. Is there any rice near the pot? — «Рядом с кастрюлей есть рис?» О белых зёрнах, которые варят на гарнир.",
+                "uk": "рис. Is there any rice near the pot? — «Поруч із каструлею є рис?» Про білі зерна, які варять на гарнір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rice",
+            "definitionByLocale": {
+              "ru": "рис. Is there any rice near the pot? — «Рядом с кастрюлей есть рис?» О белых зёрнах, которые варят на гарнир.",
+              "uk": "рис. Is there any rice near the pot? — «Поруч із каструлею є рис?» Про білі зерна, які варять на гарнір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Білі зерна, які варять на гарнір. Як вони називаються англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i04:r1",
+            "text": "rice"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i04:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i04:r3",
+            "text": "bread"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Білі зерна, які варять на гарнір. Як вони називаються англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белые зёрна, которые варят на гарнир. Как они называются по-английски?",
+            "uk": "Білі зерна, які варять на гарнір. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-19:i04:r1",
+              "text": "rice"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i04:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i04:r3",
+              "text": "bread"
+            }
+          ],
+          "testedDimension": "Білі зерна, які варять на гарнір. Як вони називаються англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i04:r2",
+              "correct": false,
+              "testedDimension": "Білі зерна, які варять на гарнір. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "milk — это молоко, а белые зёрна для гарнира называются rice.",
+                "uk": "milk — це молоко, а білі зерна для гарніру називаються rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i04:r3",
+              "correct": false,
+              "testedDimension": "Білі зерна, які варять на гарнір. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "bread — это хлеб, а белые зёрна для гарнира называются rice.",
+                "uk": "bread — це хліб, а білі зерна для гарніру називаються rice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i05:r1",
+            "text": "Is there any rice here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i05:r2",
+            "text": "Is there any soup here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i05:r3",
+            "text": "There is some rice here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i05:audio",
+            "transcript": "Is there any rice here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:i05:r1",
+              "targetText": "Is there any rice here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i05:r2",
+              "targetText": "Is there any soup here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i05:r3",
+              "targetText": "There is some rice here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `rice`, а в этом варианте про `soup`.",
+                "uk": "У записі питають про `rice`, а в цьому варіанті про `soup`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there any`, а в этом варианте сообщение `There is some`.",
+                "uk": "У записі запитання `Is there any`, а в цьому варіанті повідомлення `There is some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:pasta",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pasta",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:pasta:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pasta",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:pasta:audio",
+            "transcript": "pasta"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:pasta:r1",
+              "targetText": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны, паста. Is there any pasta behind the basket? — «За корзиной есть макароны?» О сваренном тесте из муки.",
+                "uk": "макарони, паста. Is there any pasta behind the basket? — «За кошиком є макарони?» Про зварене тісто з борошна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pasta",
+            "definitionByLocale": {
+              "ru": "макароны, паста. Is there any pasta behind the basket? — «За корзиной есть макароны?» О сваренном тесте из муки.",
+              "uk": "макарони, паста. Is there any pasta behind the basket? — «За кошиком є макарони?» Про зварене тісто з борошна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка показує довгі сухі макарони й називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i06:audio"
+        ],
+        "accessibilityLabel": "Сусідка показує довгі сухі макарони й називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i06:audio",
+            "transcript": "pasta"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pasta",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i07:audio",
+            "transcript": "Is there any pasta here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there any pasta here?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "pasta",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any pasta here?`",
+                "uk": "тут потрібно `Is` — `Is there any pasta here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:word:salt",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — salt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:word:salt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — salt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:word:salt:audio",
+            "transcript": "salt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:word:salt:r1",
+              "targetText": "salt",
+              "meaningByLocale": {
+                "ru": "соль. Is there any salt near the cup? — «Рядом с чашкой есть соль?» О белых крупинках, которыми солят еду.",
+                "uk": "сіль. Is there any salt near the cup? — «Поруч із чашкою є сіль?» Про білі крупинки, якими солять їжу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "salt",
+            "definitionByLocale": {
+              "ru": "соль. Is there any salt near the cup? — «Рядом с чашкой есть соль?» О белых крупинках, которыми солят еду.",
+              "uk": "сіль. Is there any salt near the cup? — «Поруч із чашкою є сіль?» Про білі крупинки, якими солять їжу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Білі крупинки, якими солять їжу. Як вони називаються англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i08:r1",
+            "text": "salt"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r2",
+            "text": "sugar"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i08:r3",
+            "text": "butter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Білі крупинки, якими солять їжу. Як вони називаються англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белые крупинки, которыми солят еду. Как они называются по-английски?",
+            "uk": "Білі крупинки, якими солять їжу. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-19:i08:r1",
+              "text": "salt"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i08:r2",
+              "text": "sugar"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i08:r3",
+              "text": "butter"
+            }
+          ],
+          "testedDimension": "Білі крупинки, якими солять їжу. Як вони називаються англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Білі крупинки, якими солять їжу. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "sugar — это сладкий сахар, а крупинки, которыми солят еду, называются salt.",
+                "uk": "sugar — це солодкий цукор, а крупинки, якими солять їжу, називаються salt."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Білі крупинки, якими солять їжу. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "butter — это сливочное масло, а крупинки, которыми солят еду, называются salt.",
+                "uk": "butter — це вершкове масло, а крупинки, якими солять їжу, називаються salt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Суп вийшов прісним. Запитайте подругу повною фразою: поруч із тарілкою є сіль?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп вийшов прісним. Запитайте подругу повною фразою: поруч із тарілкою є сіль?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any salt near the plate?",
+          "localizedMeaning": {
+            "ru": "Суп получился пресным. Спросите подругу полной фразой: рядом с тарелкой есть соль?",
+            "uk": "Суп вийшов прісним. Запитайте подругу повною фразою: поруч із тарілкою є сіль?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "salt",
+            "near",
+            "the",
+            "plate"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Суп вийшов прісним. Запитайте подругу повною фразою: поруч із тарілкою є сіль?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any salt near the plate?`",
+                "uk": "тут потрібно `Is` — `Is there any salt near the plate?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-19:i10:p1",
+              "target": "salt",
+              "meaningByLocale": {
+                "ru": "соль",
+                "uk": "сіль"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i10:p2",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i10:p3",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i10:p4",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            }
+          ],
+          "leftColumn": [
+            "salt",
+            "pasta",
+            "soup",
+            "rice"
+          ],
+          "rightColumn": [
+            "сіль",
+            "макарони",
+            "суп",
+            "рис"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте коротку відповідь подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i11:r1",
+            "text": "Yes, there is."
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i11:r2",
+            "text": "No, there isn't."
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i11:r3",
+            "text": "Yes, there are."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте коротку відповідь подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i11:audio",
+            "transcript": "Yes, there is."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-19:i11:r1",
+              "targetText": "Yes, there is.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i11:r2",
+              "targetText": "No, there isn't.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i11:r3",
+              "targetText": "Yes, there are.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте коротку відповідь подруги",
+              "feedbackByLocale": {
+                "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+                "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте коротку відповідь подруги",
+              "feedbackByLocale": {
+                "ru": "В записи `there is`, а в этом варианте `there are`.",
+                "uk": "У записі `there is`, а в цьому варіанті `there are`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хоче дізнатися, чи є рис. Доповніть його запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-19:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-19:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче дізнатися, чи є рис. Доповніть його запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет узнать, есть ли рис. Дополните его вопрос",
+            "uk": "Брат хоче дізнатися, чи є рис. Доповніть його запитання"
+          },
+          "gappedTargetPhrase": "Is there ___ rice here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-19:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Брат хоче дізнатися, чи є рис. Доповніть його запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Брат хоче дізнатися, чи є рис. Доповніть його запитання",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а рис не считают штуками: any rice.",
+                "uk": "Слово a ставлять перед одним предметом, а рис не рахують штуками: any rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Брат хоче дізнатися, чи є рис. Доповніть його запитання",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже ставят перед одним предметом, а здесь нужно any rice.",
+                "uk": "Слово an теж ставлять перед одним предметом, а тут потрібно any rice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i13:audio",
+            "transcript": "Is there any rice near the bowl?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there any rice near the bowl?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "rice",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any rice near the bowl?`",
+                "uk": "тут потрібно `Is` — `Is there any rice near the bowl?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви не знайшли макарони. Запитайте сусідку, чи є вони за мискою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Ви не знайшли макарони. Запитайте сусідку, чи є вони за мискою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i14:audio",
+            "transcript": "Is there any pasta behind the bowl?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there any pasta behind the bowl?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте сіль для супу. Запитайте брата повною фразою: поруч із мискою є сіль?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте сіль для супу. Запитайте брата повною фразою: поруч із мискою є сіль?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any salt near the bowl?",
+          "localizedMeaning": {
+            "ru": "Вы ищете соль для супа. Спросите брата полной фразой: рядом с миской есть соль?",
+            "uk": "Ви шукаєте сіль для супу. Запитайте брата повною фразою: поруч із мискою є сіль?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "salt",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-19:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви шукаєте сіль для супу. Запитайте брата повною фразою: поруч із мискою є сіль?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any salt near the bowl?`",
+                "uk": "тут потрібно `Is` — `Is there any salt near the bowl?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-19:i16:p1",
+              "target": "rice",
+              "meaningByLocale": {
+                "ru": "рис",
+                "uk": "рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i16:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i16:p3",
+              "target": "salt",
+              "meaningByLocale": {
+                "ru": "соль",
+                "uk": "сіль"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-19:i16:p4",
+              "target": "pasta",
+              "meaningByLocale": {
+                "ru": "макароны",
+                "uk": "макарони"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rice",
+            "soup",
+            "salt",
+            "pasta"
+          ],
+          "rightColumn": [
+            "рис",
+            "суп",
+            "сіль",
+            "макарони"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чи лишився суп. Супу немає. Відповідайте їй коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чи лишився суп. Супу немає. Відповідайте їй коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-19:i17:audio",
+            "transcript": "No, there isn't."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there isn't.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-19:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:word:soup",
+      "correctText": "soup",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i02",
+      "correctText": "soup",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i03",
+      "correctText": "Is there any soup near the pot?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:word:rice",
+      "correctText": "rice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i04",
+      "correctText": "rice",
+      "correctResponseId": "en:lesson-04:session-19:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i05",
+      "correctText": "Is there any rice here?",
+      "correctResponseId": "en:lesson-04:session-19:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:word:pasta",
+      "correctText": "pasta",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i06",
+      "correctText": "pasta",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i07",
+      "correctText": "Is there any pasta here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:word:salt",
+      "correctText": "salt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i08",
+      "correctText": "salt",
+      "correctResponseId": "en:lesson-04:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i09",
+      "correctText": "Is there any salt near the plate?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i11",
+      "correctText": "Yes, there is.",
+      "correctResponseId": "en:lesson-04:session-19:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i13",
+      "correctText": "Is there any rice near the bowl?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i14",
+      "correctText": "Is there any pasta behind the bowl?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i15",
+      "correctText": "Is there any salt near the bowl?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-19:i17",
+      "correctText": "No, there isn't.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-24:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-24:i01:p1",
+              "target": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт",
+                "uk": "йогурт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i01:p2",
+              "target": "cream",
+              "meaningByLocale": {
+                "ru": "сливки",
+                "uk": "вершки"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i01:p3",
+              "target": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина",
+                "uk": "шинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i01:p4",
+              "target": "flour",
+              "meaningByLocale": {
+                "ru": "мука",
+                "uk": "борошно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "yoghurt",
+            "cream",
+            "ham",
+            "flour"
+          ],
+          "rightColumn": [
+            "йогурт",
+            "сливки",
+            "ветчина",
+            "мука"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:yoghurt",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — yoghurt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:yoghurt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — yoghurt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:yoghurt:audio",
+            "transcript": "yoghurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:yoghurt:r1",
+              "targetText": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт. There is some yoghurt near the milk. — «Рядом с молоком есть немного йогурта». О густом кисломолочном продукте в стаканчике.",
+                "uk": "йогурт. There is some yoghurt near the milk. — «Поруч із молоком є трохи йогурту». Про густий кисломолочний продукт у стаканчику."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yoghurt",
+            "definitionByLocale": {
+              "ru": "йогурт. There is some yoghurt near the milk. — «Рядом с молоком есть немного йогурта». О густом кисломолочном продукте в стаканчике.",
+              "uk": "йогурт. There is some yoghurt near the milk. — «Поруч із молоком є трохи йогурту». Про густий кисломолочний продукт у стаканчику."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед открывает стаканчик белого кисломолочного продукта и называет слово, а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Сосед открывает стаканчик белого кисломолочного продукта и называет слово, а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i02:audio",
+            "transcript": "yoghurt"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "yoghurt",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед ищет, чем позавтракать. Скажите ему полной фразой: рядом с холодильником есть немного йогурта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед ищет, чем позавтракать. Скажите ему полной фразой: рядом с холодильником есть немного йогурта",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some yoghurt near the fridge.",
+          "localizedMeaning": {
+            "ru": "Сосед ищет, чем позавтракать. Скажите ему полной фразой: рядом с холодильником есть немного йогурта",
+            "uk": "Сусід шукає, чим поснідати. Скажіть йому повною фразою: поруч із холодильником є трохи йогурту"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "yoghurt",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед ищет, чем позавтракать. Скажите ему полной фразой: рядом с холодильником есть немного йогурта",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some yoghurt near the fridge.`",
+                "uk": "тут потрібно `is` — `There is some yoghurt near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:cream",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:cream:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:cream:audio",
+            "transcript": "cream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:cream:r1",
+              "targetText": "cream",
+              "meaningByLocale": {
+                "ru": "сливки. Is there any cream behind the cheese? — «За сыром есть сливки?» О густой белой жидкости для десерта.",
+                "uk": "вершки. Is there any cream behind the cheese? — «За сиром є вершки?» Про густу білу рідину для десерту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cream",
+            "definitionByLocale": {
+              "ru": "сливки. Is there any cream behind the cheese? — «За сыром есть сливки?» О густой белой жидкости для десерта.",
+              "uk": "вершки. Is there any cream behind the cheese? — «За сиром є вершки?» Про густу білу рідину для десерту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i04:r1",
+            "text": "cream"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i04:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i04:r3",
+            "text": "butter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+            "uk": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-24:i04:r1",
+              "text": "cream"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i04:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i04:r3",
+              "text": "butter"
+            }
+          ],
+          "testedDimension": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i04:r2",
+              "correct": false,
+              "testedDimension": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "milk — это жидкое молоко, а густую белую жидкость для десерта называют cream.",
+                "uk": "milk — це рідке молоко, а густу білу рідину для десерту називають cream."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i04:r3",
+              "correct": false,
+              "testedDimension": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "butter — это плотное масло, а густую белую жидкость для десерта называют cream.",
+                "uk": "butter — це щільне масло, а густу білу рідину для десерту називають cream."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i05:r1",
+            "text": "Is there any cream here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i05:r2",
+            "text": "There isn't any cream here."
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i05:r3",
+            "text": "Is there any yoghurt here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i05:audio",
+            "transcript": "Is there any cream here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:i05:r1",
+              "targetText": "Is there any cream here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i05:r2",
+              "targetText": "There isn't any cream here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i05:r3",
+              "targetText": "Is there any yoghurt here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there any`, а в этом варианте сообщение `There isn't any`.",
+                "uk": "У записі запитання `Is there any`, а в цьому варіанті повідомлення `There isn't any`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `cream`, а в этом варианте про `yoghurt`.",
+                "uk": "У записі питають про `cream`, а в цьому варіанті про `yoghurt`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:ham",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ham",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:ham:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ham",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:ham:audio",
+            "transcript": "ham"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:ham:r1",
+              "targetText": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина. There isn't any ham near the bread. — «Рядом с хлебом нет ветчины». О розовых ломтиках мяса для бутербродов.",
+                "uk": "шинка. There isn't any ham near the bread. — «Поруч із хлібом немає шинки». Про рожеві скибочки м’яса для бутербродів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ham",
+            "definitionByLocale": {
+              "ru": "ветчина. There isn't any ham near the bread. — «Рядом с хлебом нет ветчины». О розовых ломтиках мяса для бутербродов.",
+              "uk": "шинка. There isn't any ham near the bread. — «Поруч із хлібом немає шинки». Про рожеві скибочки м’яса для бутербродів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка показывает розовые ломтики для бутерброда и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i06:audio"
+        ],
+        "accessibilityLabel": "Соседка показывает розовые ломтики для бутерброда и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i06:audio",
+            "transcript": "ham"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "ham",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i07:audio",
+            "transcript": "There isn't any ham here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn't any ham here.",
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "ham",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any ham here.`",
+                "uk": "тут потрібно `isn't` — `There isn't any ham here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:flour",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:flour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:flour:audio",
+            "transcript": "flour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:flour:r1",
+              "targetText": "flour",
+              "meaningByLocale": {
+                "ru": "мука. Is there any flour near the sugar? — «Рядом с сахаром есть мука?» О белом порошке из зёрен для выпечки.",
+                "uk": "борошно. Is there any flour near the sugar? — «Поруч із цукром є борошно?» Про білий порошок із зерна для випічки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flour",
+            "definitionByLocale": {
+              "ru": "мука. Is there any flour near the sugar? — «Рядом с сахаром есть мука?» О белом порошке из зёрен для выпечки.",
+              "uk": "борошно. Is there any flour near the sugar? — «Поруч із цукром є борошно?» Про білий порошок із зерна для випічки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i08:r1",
+            "text": "flour"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r2",
+            "text": "sugar"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r3",
+            "text": "salt"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+            "uk": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-24:i08:r1",
+              "text": "flour"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i08:r2",
+              "text": "sugar"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i08:r3",
+              "text": "salt"
+            }
+          ],
+          "testedDimension": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "sugar — это сладкие крупинки, а белый порошок для выпечки называется flour.",
+                "uk": "sugar — це солодкі крупинки, а білий порошок для випічки називається flour."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "salt — это крупинки, которыми солят еду, а белый порошок для выпечки называется flour.",
+                "uk": "salt — це крупинки, якими солять їжу, а білий порошок для випічки називається flour."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат печёт хлеб. Спросите его полной фразой: за коробкой есть мука?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат печёт хлеб. Спросите его полной фразой: за коробкой есть мука?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any flour behind the box?",
+          "localizedMeaning": {
+            "ru": "Брат печёт хлеб. Спросите его полной фразой: за коробкой есть мука?",
+            "uk": "Брат пече хліб. Запитайте його повною фразою: за коробкою є борошно?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "flour",
+            "behind",
+            "the",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат печёт хлеб. Спросите его полной фразой: за коробкой есть мука?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any flour behind the box?`",
+                "uk": "тут потрібно `Is` — `Is there any flour behind the box?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-24:i10:p1",
+              "target": "flour",
+              "meaningByLocale": {
+                "ru": "мука",
+                "uk": "борошно"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i10:p2",
+              "target": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина",
+                "uk": "шинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i10:p3",
+              "target": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт",
+                "uk": "йогурт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i10:p4",
+              "target": "cream",
+              "meaningByLocale": {
+                "ru": "сливки",
+                "uk": "вершки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "flour",
+            "ham",
+            "yoghurt",
+            "cream"
+          ],
+          "rightColumn": [
+            "мука",
+            "ветчина",
+            "йогурт",
+            "сливки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сообщение подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i11:r1",
+            "text": "There are some plums here."
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i11:r2",
+            "text": "There aren't any plums here."
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i11:r3",
+            "text": "Are there any plums here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте сообщение подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i11:audio",
+            "transcript": "There are some plums here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:i11:r1",
+              "targetText": "There are some plums here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i11:r2",
+              "targetText": "There aren't any plums here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i11:r3",
+              "targetText": "Are there any plums here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение подруги",
+              "feedbackByLocale": {
+                "ru": "В записи слив много: `There are some`, а в этом варианте их нет: `There aren't any`.",
+                "uk": "У записі слив є: `There are some`, а в цьому варіанті їх немає: `There aren't any`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение подруги",
+              "feedbackByLocale": {
+                "ru": "В записи сообщение `There are some`, а в этом варианте вопрос `Are there any`.",
+                "uk": "У записі повідомлення `There are some`, а в цьому варіанті запитання `Are there any`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+            "uk": "Сусід питає, чи є ягоди. Доповніть його запитання"
+          },
+          "gappedTargetPhrase": "Are there ___ berries here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-24:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+              "feedbackByLocale": {
+                "ru": "В вопросе, когда ответа мы не знаем, нужно any: Are there any berries?",
+                "uk": "У запитанні, коли відповіді ми не знаємо, потрібно any: Are there any berries?"
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а ягод несколько: any berries.",
+                "uk": "Слово a ставлять перед одним предметом, а ягід кілька: any berries."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i13:audio",
+            "transcript": "Are there any carrots near the door?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any carrots near the door?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "carrots",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any carrots near the door?`",
+                "uk": "тут потрібно `Are` — `Are there any carrots near the door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка ищет йогурт. Скажите ей, что за миской есть немного йогурта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Соседка ищет йогурт. Скажите ей, что за миской есть немного йогурта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i14:audio",
+            "transcript": "There is some yoghurt behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is some yoghurt behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат хочет орехи. Скажите ему полной фразой: рядом с корзиной нет орехов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет орехи. Скажите ему полной фразой: рядом с корзиной нет орехов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any nuts near the basket.",
+          "localizedMeaning": {
+            "ru": "Брат хочет орехи. Скажите ему полной фразой: рядом с корзиной нет орехов",
+            "uk": "Брат хоче горіхи. Скажіть йому повною фразою: поруч із кошиком немає горіхів"
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "nuts",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "isn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат хочет орехи. Скажите ему полной фразой: рядом с корзиной нет орехов",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren't` — `There aren't any nuts near the basket.`",
+                "uk": "тут потрібно `aren't` — `There aren't any nuts near the basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-24:i16:p1",
+              "target": "cream",
+              "meaningByLocale": {
+                "ru": "сливки",
+                "uk": "вершки"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i16:p2",
+              "target": "flour",
+              "meaningByLocale": {
+                "ru": "мука",
+                "uk": "борошно"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i16:p3",
+              "target": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт",
+                "uk": "йогурт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i16:p4",
+              "target": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина",
+                "uk": "шинка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cream",
+            "flour",
+            "yoghurt",
+            "ham"
+          ],
+          "rightColumn": [
+            "сливки",
+            "мука",
+            "йогурт",
+            "ветчина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, остались ли сливки. Они есть. Ответьте ей коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, остались ли сливки. Они есть. Ответьте ей коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i17:audio",
+            "transcript": "Yes, there is."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, there is.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-24:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-24:i01:p1",
+              "target": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт",
+                "uk": "йогурт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i01:p2",
+              "target": "cream",
+              "meaningByLocale": {
+                "ru": "сливки",
+                "uk": "вершки"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i01:p3",
+              "target": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина",
+                "uk": "шинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i01:p4",
+              "target": "flour",
+              "meaningByLocale": {
+                "ru": "мука",
+                "uk": "борошно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "yoghurt",
+            "cream",
+            "ham",
+            "flour"
+          ],
+          "rightColumn": [
+            "йогурт",
+            "вершки",
+            "шинка",
+            "борошно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:yoghurt",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — yoghurt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:yoghurt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — yoghurt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:yoghurt:audio",
+            "transcript": "yoghurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:yoghurt:r1",
+              "targetText": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт. There is some yoghurt near the milk. — «Рядом с молоком есть немного йогурта». О густом кисломолочном продукте в стаканчике.",
+                "uk": "йогурт. There is some yoghurt near the milk. — «Поруч із молоком є трохи йогурту». Про густий кисломолочний продукт у стаканчику."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yoghurt",
+            "definitionByLocale": {
+              "ru": "йогурт. There is some yoghurt near the milk. — «Рядом с молоком есть немного йогурта». О густом кисломолочном продукте в стаканчике.",
+              "uk": "йогурт. There is some yoghurt near the milk. — «Поруч із молоком є трохи йогурту». Про густий кисломолочний продукт у стаканчику."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід відкриває стаканчик білого кисломолочного продукту й називає слово, а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Сусід відкриває стаканчик білого кисломолочного продукту й називає слово, а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i02:audio",
+            "transcript": "yoghurt"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "yoghurt",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід шукає, чим поснідати. Скажіть йому повною фразою: поруч із холодильником є трохи йогурту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід шукає, чим поснідати. Скажіть йому повною фразою: поруч із холодильником є трохи йогурту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some yoghurt near the fridge.",
+          "localizedMeaning": {
+            "ru": "Сосед ищет, чем позавтракать. Скажите ему полной фразой: рядом с холодильником есть немного йогурта",
+            "uk": "Сусід шукає, чим поснідати. Скажіть йому повною фразою: поруч із холодильником є трохи йогурту"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "yoghurt",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід шукає, чим поснідати. Скажіть йому повною фразою: поруч із холодильником є трохи йогурту",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some yoghurt near the fridge.`",
+                "uk": "тут потрібно `is` — `There is some yoghurt near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:cream",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:cream:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:cream:audio",
+            "transcript": "cream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:cream:r1",
+              "targetText": "cream",
+              "meaningByLocale": {
+                "ru": "сливки. Is there any cream behind the cheese? — «За сыром есть сливки?» О густой белой жидкости для десерта.",
+                "uk": "вершки. Is there any cream behind the cheese? — «За сиром є вершки?» Про густу білу рідину для десерту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cream",
+            "definitionByLocale": {
+              "ru": "сливки. Is there any cream behind the cheese? — «За сыром есть сливки?» О густой белой жидкости для десерта.",
+              "uk": "вершки. Is there any cream behind the cheese? — «За сиром є вершки?» Про густу білу рідину для десерту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i04:r1",
+            "text": "cream"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i04:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i04:r3",
+            "text": "butter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Густая белая жидкость, которую взбивают для десерта. Как она называется по-английски?",
+            "uk": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-24:i04:r1",
+              "text": "cream"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i04:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i04:r3",
+              "text": "butter"
+            }
+          ],
+          "testedDimension": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i04:r2",
+              "correct": false,
+              "testedDimension": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "milk — это жидкое молоко, а густую белую жидкость для десерта называют cream.",
+                "uk": "milk — це рідке молоко, а густу білу рідину для десерту називають cream."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i04:r3",
+              "correct": false,
+              "testedDimension": "Густа біла рідина, яку збивають для десерту. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "butter — это плотное масло, а густую белую жидкость для десерта называют cream.",
+                "uk": "butter — це щільне масло, а густу білу рідину для десерту називають cream."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i05:r1",
+            "text": "Is there any cream here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i05:r2",
+            "text": "There isn't any cream here."
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i05:r3",
+            "text": "Is there any yoghurt here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i05:audio",
+            "transcript": "Is there any cream here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:i05:r1",
+              "targetText": "Is there any cream here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i05:r2",
+              "targetText": "There isn't any cream here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i05:r3",
+              "targetText": "Is there any yoghurt here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there any`, а в этом варианте сообщение `There isn't any`.",
+                "uk": "У записі запитання `Is there any`, а в цьому варіанті повідомлення `There isn't any`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `cream`, а в этом варианте про `yoghurt`.",
+                "uk": "У записі питають про `cream`, а в цьому варіанті про `yoghurt`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:ham",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ham",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:ham:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ham",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:ham:audio",
+            "transcript": "ham"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:ham:r1",
+              "targetText": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина. There isn't any ham near the bread. — «Рядом с хлебом нет ветчины». О розовых ломтиках мяса для бутербродов.",
+                "uk": "шинка. There isn't any ham near the bread. — «Поруч із хлібом немає шинки». Про рожеві скибочки м’яса для бутербродів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ham",
+            "definitionByLocale": {
+              "ru": "ветчина. There isn't any ham near the bread. — «Рядом с хлебом нет ветчины». О розовых ломтиках мяса для бутербродов.",
+              "uk": "шинка. There isn't any ham near the bread. — «Поруч із хлібом немає шинки». Про рожеві скибочки м’яса для бутербродів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка показує рожеві скибочки для бутерброда й називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i06:audio"
+        ],
+        "accessibilityLabel": "Сусідка показує рожеві скибочки для бутерброда й називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i06:audio",
+            "transcript": "ham"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "ham",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i07:audio",
+            "transcript": "There isn't any ham here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn't any ham here.",
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "ham",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any ham here.`",
+                "uk": "тут потрібно `isn't` — `There isn't any ham here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:word:flour",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:word:flour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:word:flour:audio",
+            "transcript": "flour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:word:flour:r1",
+              "targetText": "flour",
+              "meaningByLocale": {
+                "ru": "мука. Is there any flour near the sugar? — «Рядом с сахаром есть мука?» О белом порошке из зёрен для выпечки.",
+                "uk": "борошно. Is there any flour near the sugar? — «Поруч із цукром є борошно?» Про білий порошок із зерна для випічки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flour",
+            "definitionByLocale": {
+              "ru": "мука. Is there any flour near the sugar? — «Рядом с сахаром есть мука?» О белом порошке из зёрен для выпечки.",
+              "uk": "борошно. Is there any flour near the sugar? — «Поруч із цукром є борошно?» Про білий порошок із зерна для випічки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i08:r1",
+            "text": "flour"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r2",
+            "text": "sugar"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i08:r3",
+            "text": "salt"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белый порошок из зёрен, из которого пекут хлеб. Как он называется по-английски?",
+            "uk": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-24:i08:r1",
+              "text": "flour"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i08:r2",
+              "text": "sugar"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i08:r3",
+              "text": "salt"
+            }
+          ],
+          "testedDimension": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "sugar — это сладкие крупинки, а белый порошок для выпечки называется flour.",
+                "uk": "sugar — це солодкі крупинки, а білий порошок для випічки називається flour."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Білий порошок із зерна, з якого печуть хліб. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "salt — это крупинки, которыми солят еду, а белый порошок для выпечки называется flour.",
+                "uk": "salt — це крупинки, якими солять їжу, а білий порошок для випічки називається flour."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат пече хліб. Запитайте його повною фразою: за коробкою є борошно?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат пече хліб. Запитайте його повною фразою: за коробкою є борошно?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any flour behind the box?",
+          "localizedMeaning": {
+            "ru": "Брат печёт хлеб. Спросите его полной фразой: за коробкой есть мука?",
+            "uk": "Брат пече хліб. Запитайте його повною фразою: за коробкою є борошно?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "flour",
+            "behind",
+            "the",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат пече хліб. Запитайте його повною фразою: за коробкою є борошно?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there any flour behind the box?`",
+                "uk": "тут потрібно `Is` — `Is there any flour behind the box?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-24:i10:p1",
+              "target": "flour",
+              "meaningByLocale": {
+                "ru": "мука",
+                "uk": "борошно"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i10:p2",
+              "target": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина",
+                "uk": "шинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i10:p3",
+              "target": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт",
+                "uk": "йогурт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i10:p4",
+              "target": "cream",
+              "meaningByLocale": {
+                "ru": "сливки",
+                "uk": "вершки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "flour",
+            "ham",
+            "yoghurt",
+            "cream"
+          ],
+          "rightColumn": [
+            "борошно",
+            "шинка",
+            "йогурт",
+            "вершки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте повідомлення подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i11:r1",
+            "text": "There are some plums here."
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i11:r2",
+            "text": "There aren't any plums here."
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i11:r3",
+            "text": "Are there any plums here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте повідомлення подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i11:audio",
+            "transcript": "There are some plums here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-24:i11:r1",
+              "targetText": "There are some plums here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i11:r2",
+              "targetText": "There aren't any plums here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i11:r3",
+              "targetText": "Are there any plums here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення подруги",
+              "feedbackByLocale": {
+                "ru": "В записи слив много: `There are some`, а в этом варианте их нет: `There aren't any`.",
+                "uk": "У записі слив є: `There are some`, а в цьому варіанті їх немає: `There aren't any`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення подруги",
+              "feedbackByLocale": {
+                "ru": "В записи сообщение `There are some`, а в этом варианте вопрос `Are there any`.",
+                "uk": "У записі повідомлення `There are some`, а в цьому варіанті запитання `Are there any`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід питає, чи є ягоди. Доповніть його запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-24:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-24:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає, чи є ягоди. Доповніть його запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, есть ли ягоды. Дополните его вопрос",
+            "uk": "Сусід питає, чи є ягоди. Доповніть його запитання"
+          },
+          "gappedTargetPhrase": "Are there ___ berries here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-24:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Сусід питає, чи є ягоди. Доповніть його запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Сусід питає, чи є ягоди. Доповніть його запитання",
+              "feedbackByLocale": {
+                "ru": "В вопросе, когда ответа мы не знаем, нужно any: Are there any berries?",
+                "uk": "У запитанні, коли відповіді ми не знаємо, потрібно any: Are there any berries?"
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Сусід питає, чи є ягоди. Доповніть його запитання",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а ягод несколько: any berries.",
+                "uk": "Слово a ставлять перед одним предметом, а ягід кілька: any berries."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i13:audio",
+            "transcript": "Are there any carrots near the door?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any carrots near the door?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "carrots",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any carrots near the door?`",
+                "uk": "тут потрібно `Are` — `Are there any carrots near the door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка шукає йогурт. Скажіть їй, що за мискою є трохи йогурту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Сусідка шукає йогурт. Скажіть їй, що за мискою є трохи йогурту",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i14:audio",
+            "transcript": "There is some yoghurt behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is some yoghurt behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат хоче горіхи. Скажіть йому повною фразою: поруч із кошиком немає горіхів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче горіхи. Скажіть йому повною фразою: поруч із кошиком немає горіхів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any nuts near the basket.",
+          "localizedMeaning": {
+            "ru": "Брат хочет орехи. Скажите ему полной фразой: рядом с корзиной нет орехов",
+            "uk": "Брат хоче горіхи. Скажіть йому повною фразою: поруч із кошиком немає горіхів"
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "nuts",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "isn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-24:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат хоче горіхи. Скажіть йому повною фразою: поруч із кошиком немає горіхів",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `aren't` — `There aren't any nuts near the basket.`",
+                "uk": "тут потрібно `aren't` — `There aren't any nuts near the basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-24:i16:p1",
+              "target": "cream",
+              "meaningByLocale": {
+                "ru": "сливки",
+                "uk": "вершки"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i16:p2",
+              "target": "flour",
+              "meaningByLocale": {
+                "ru": "мука",
+                "uk": "борошно"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i16:p3",
+              "target": "yoghurt",
+              "meaningByLocale": {
+                "ru": "йогурт",
+                "uk": "йогурт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-24:i16:p4",
+              "target": "ham",
+              "meaningByLocale": {
+                "ru": "ветчина",
+                "uk": "шинка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cream",
+            "flour",
+            "yoghurt",
+            "ham"
+          ],
+          "rightColumn": [
+            "вершки",
+            "борошно",
+            "йогурт",
+            "шинка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, чи лишилися вершки. Вони є. Відповідайте їй коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, чи лишилися вершки. Вони є. Відповідайте їй коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-24:i17:audio",
+            "transcript": "Yes, there is."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, there is.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-24:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:word:yoghurt",
+      "correctText": "yoghurt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i02",
+      "correctText": "yoghurt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i03",
+      "correctText": "There is some yoghurt near the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:word:cream",
+      "correctText": "cream",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i04",
+      "correctText": "cream",
+      "correctResponseId": "en:lesson-04:session-24:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i05",
+      "correctText": "Is there any cream here?",
+      "correctResponseId": "en:lesson-04:session-24:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:word:ham",
+      "correctText": "ham",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i06",
+      "correctText": "ham",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i07",
+      "correctText": "There isn't any ham here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:word:flour",
+      "correctText": "flour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i08",
+      "correctText": "flour",
+      "correctResponseId": "en:lesson-04:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i09",
+      "correctText": "Is there any flour behind the box?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i11",
+      "correctText": "There are some plums here.",
+      "correctResponseId": "en:lesson-04:session-24:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-24:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i13",
+      "correctText": "Are there any carrots near the door?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i14",
+      "correctText": "There is some yoghurt behind the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i15",
+      "correctText": "There aren't any nuts near the basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-24:i17",
+      "correctText": "Yes, there is.",
+      "correctResponseId": null
+    }
+  ]
+}

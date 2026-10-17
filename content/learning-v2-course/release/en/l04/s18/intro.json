@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-18",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о молоке с some и спросить о нём с any, различая milk и boxes",
-    "uk": "повідомити про молоко із some і запитати про нього з any, розрізняючи milk і boxes"
+    "ru": "сказать, что чего-то есть немного, фразой There is some…",
+    "uk": "сказати, що чогось є трохи, фразою There is some…"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Молоко не считаем по каплям",
-        "uk": "Молоко не рахуємо краплями"
+        "ru": "Каша для гостьи",
+        "uk": "Каша для гості"
       },
       "bodyByLocale": {
-        "ru": "`milk` — «молоко». Когда говорим просто о продукте, не ставим перед ним `a` и не добавляем `s`. `There is some milk` — «Есть немного молока». Даже если молока много, начало остаётся `There is`: мы сейчас не считаем бутылки. Считать молоко по каплям можно, но завтрак тогда станет ужином.",
-        "uk": "`milk` — «молоко». Коли говоримо просто про продукт, не ставимо перед ним `a` й не додаємо `s`. `There is some milk` — «Є трохи молока». Навіть якщо молока багато, початок залишається `There is`: ми зараз не рахуємо пляшки. Рахувати молоко краплями можна, але сніданок тоді стане вечерею."
+        "ru": "Вы завтракаете в гостевом доме. Гостья хочет молока в кашу, а вы только что открыли холодильник и видите там пакет. milk — «молоко». Молоко не считают штуками: перед ним нет a, на конце нет -s. Скажите ей: There is some milk here. — «Здесь есть немного молока».",
+        "uk": "Ви снідаєте в гостьовому домі. Гостя хоче молока до каші, а ви щойно відчинили холодильник і бачите там пакет. milk — «молоко». Молоко не рахують штуками: перед ним немає a, наприкінці немає -s. Скажіть їй: There is some milk here. — «Тут є трохи молока»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-18:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите «Есть немного молока».",
-          "uk": "Повідомте «Є трохи молока»."
+          "ru": "Гостья хочет молока в кашу. Скажите ей, что здесь есть немного молока.",
+          "uk": "Гостя хоче молока до каші. Скажіть їй, що тут є трохи молока."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-18:intro1:r1",
-              "text": "There is some milk."
+              "text": "There is some milk here."
             },
             {
               "responseId": "en:lesson-04:session-18:intro1:r2",
-              "text": "There are some milk."
+              "text": "There are some milk here."
             },
             {
               "responseId": "en:lesson-04:session-18:intro1:r3",
-              "text": "There is a milk."
+              "text": "There is a milk here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-18:intro1:r1",
-              "text": "There is some milk."
+              "text": "There is some milk here."
             },
             {
               "responseId": "en:lesson-04:session-18:intro1:r2",
-              "text": "There are some milk."
+              "text": "There are some milk here."
             },
             {
               "responseId": "en:lesson-04:session-18:intro1:r3",
-              "text": "There is a milk."
+              "text": "There is a milk here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите «Есть немного молока».",
-          "uk": "Повідомте «Є трохи молока»."
+          "ru": "Гостья хочет молока в кашу. Скажите ей, что здесь есть немного молока.",
+          "uk": "Гостя хоче молока до каші. Скажіть їй, що тут є трохи молока."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проверяем, есть ли",
-        "uk": "Перевіряємо, чи є"
+        "ru": "Бутерброды для брата",
+        "uk": "Бутерброди для брата"
       },
       "bodyByLocale": {
-        "ru": "`Is there any milk?` — «Есть ли молоко?» Вы пока не знаете ответа, поэтому здесь подходит `any`. С коробками иначе: `boxes` — «коробки», их несколько. `Are there any boxes?` — «Есть ли коробки?» Сравните начало: молоко — `Is there`, коробки — `Are there`.",
-        "uk": "`Is there any milk?` — «Чи є молоко?» Ви поки не знаєте відповіді, тому тут підходить `any`. Із коробками інакше: `boxes` — «коробки», їх кілька. `Are there any boxes?` — «Чи є коробки?» Порівняйте початок: молоко — `Is there`, коробки — `Are there`."
+        "ru": "Брат собирается сделать бутерброды и ищет, из чего. На столе лежит буханка, часть уже нарезана. bread — «хлеб». Хлеб тоже не считают штуками: There is some bread. Скажите брату: There is some bread near the basket. — «Рядом с корзиной есть немного хлеба».",
+        "uk": "Брат збирається зробити бутерброди й шукає, з чого. На столі лежить буханець, частина вже нарізана. bread — «хліб». Хліб теж не рахують штуками: There is some bread. Скажіть братові: There is some bread near the basket. — «Поруч із кошиком є трохи хліба»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-18:intro2:q",
         "promptByLocale": {
-          "ru": "Вы ещё не проверили молоко. Спросите «Здесь есть молоко?» с `any`.",
-          "uk": "Ви ще не перевірили молоко. Запитайте «Тут є молоко?» з `any`."
+          "ru": "Брат хочет сделать бутерброды. Скажите ему, что рядом с корзиной есть немного хлеба.",
+          "uk": "Брат хоче зробити бутерброди. Скажіть йому, що поруч із кошиком є трохи хліба."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-18:intro2:r1",
-              "text": "Is there any milk here?"
+              "text": "There is some bread near the basket."
             },
             {
               "responseId": "en:lesson-04:session-18:intro2:r2",
-              "text": "Are there any milk here?"
+              "text": "There are some bread near the basket."
             },
             {
               "responseId": "en:lesson-04:session-18:intro2:r3",
-              "text": "Is there a milk here?"
+              "text": "There is some breads near the basket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-18:intro2:r1",
-              "text": "Is there any milk here?"
+              "text": "There is some bread near the basket."
             },
             {
               "responseId": "en:lesson-04:session-18:intro2:r2",
-              "text": "Are there any milk here?"
+              "text": "There are some bread near the basket."
             },
             {
               "responseId": "en:lesson-04:session-18:intro2:r3",
-              "text": "Is there a milk here?"
+              "text": "There is some breads near the basket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы ещё не проверили молоко. Спросите «Здесь есть молоко?» с `any`.",
-          "uk": "Ви ще не перевірили молоко. Запитайте «Тут є молоко?» з `any`."
+          "ru": "Брат хочет сделать бутерброды. Скажите ему, что рядом с корзиной есть немного хлеба.",
+          "uk": "Брат хоче зробити бутерброди. Скажіть йому, що поруч із кошиком є трохи хліба."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Друг остался в номере",
-        "uk": "Друг залишився в номері"
+        "ru": "Масло для подруги",
+        "uk": "Масло для подруги"
       },
       "bodyByLocale": {
-        "ru": "`unwell` — «нездоровый, плохо себя чувствующий». О друге: `He is unwell` — «Он плохо себя чувствует». Сокращённо: `He’s unwell`. `hotel` — «отель»: `This is a hotel` — «Это отель». `There are some boxes here` — «Здесь есть несколько коробок». Перед отъездом они пригодятся для вещей.",
-        "uk": "`unwell` — «нездоровий, той, хто погано почувається». Про друга: `He is unwell` — «Він погано почувається». Скорочено: `He’s unwell`. `hotel` — «готель»: `This is a hotel` — «Це готель». `There are some boxes here` — «Тут є кілька коробок». Перед від’їздом вони знадобляться для речей."
+        "ru": "Подруга хочет намазать на хлеб что-нибудь вкусное. Вы замечаете на столе рядом с миской жёлтый брусок в бумаге. butter — «сливочное масло», его тоже не считают штуками. Скажите ей: There is some butter near the bowl. — «Рядом с миской есть немного масла».",
+        "uk": "Подруга хоче намастити на хліб щось смачне. Ви помічаєте на столі поруч із мискою жовтий брусок у папері. butter — «вершкове масло», його теж не рахують штуками. Скажіть їй: There is some butter near the bowl. — «Поруч із мискою є трохи масла»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-18:intro3:q",
         "promptByLocale": {
-          "ru": "Друг плохо себя чувствует. Скажите об этом с сокращением.",
-          "uk": "Друг погано почувається. Скажіть про це зі скороченням."
+          "ru": "Подруга хочет намазать хлеб. Скажите ей, что рядом с миской есть немного масла.",
+          "uk": "Подруга хоче намастити хліб. Скажіть їй, що поруч із мискою є трохи масла."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-18:intro3:r1",
-              "text": "He's unwell."
+              "text": "There is some butter near the bowl."
             },
             {
               "responseId": "en:lesson-04:session-18:intro3:r2",
-              "text": "He's well."
+              "text": "There is a butter near the bowl."
             },
             {
               "responseId": "en:lesson-04:session-18:intro3:r3",
-              "text": "He are unwell."
+              "text": "There are some butter near the bowl."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-18:intro3:r1",
-              "text": "He's unwell."
+              "text": "There is some butter near the bowl."
             },
             {
               "responseId": "en:lesson-04:session-18:intro3:r2",
-              "text": "He's well."
+              "text": "There is a butter near the bowl."
             },
             {
               "responseId": "en:lesson-04:session-18:intro3:r3",
-              "text": "He are unwell."
+              "text": "There are some butter near the bowl."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг плохо себя чувствует. Скажите об этом с сокращением.",
-          "uk": "Друг погано почувається. Скажіть про це зі скороченням."
+          "ru": "Подруга хочет намазать хлеб. Скажите ей, что рядом с миской есть немного масла.",
+          "uk": "Подруга хоче намастити хліб. Скажіть їй, що поруч із мискою є трохи масла."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5e41080edd7bb4238139c7194283be7bef58fdcdd1259be4d451d17cad1325a0"
+  "introFingerprint": "ee91beba04f3056cab33b47fb7c552a4a9e453c502df2b0fcbab5cab2da664d3"
 }

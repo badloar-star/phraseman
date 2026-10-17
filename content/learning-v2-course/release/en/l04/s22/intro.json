@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-22",
   "learningOutcomeByLocale": {
-    "ru": "назвать морковь, спросить о ней с any и сообщить о наличии с some",
-    "uk": "назвати моркву, запитати про неї з any і повідомити про наявність із some"
+    "ru": "сказать, что нескольких предметов нет, фразой There aren't any…",
+    "uk": "сказати, що кількох предметів немає, фразою There aren't any…"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна морковка",
-        "uk": "Одна морквина"
+        "ru": "Заказ из магазина",
+        "uk": "Замовлення з магазину"
       },
       "bodyByLocale": {
-        "ru": "`carrot` — «морковь, морковка». Одну морковку можно назвать `a carrot`, несколько — `carrots`. `This is a carrot` — «Это морковка». Даже самая длинная морковка остаётся одной: длина не добавляет ей `s`.",
-        "uk": "`carrot` — «морква, морквина». Одну морквину можна назвати `a carrot`, кілька — `carrots`. `This is a carrot` — «Це морквина». Навіть найдовша морквина залишається однією: довжина не додає їй `s`."
+        "ru": "Курьер привёз продукты, и вы сверяете пакеты со списком. Подруга ждёт морковь для супа, но в пакетах её нет. carrot — «морковь», а несколько морковок — carrots. В отрицании снова any, а are not сокращаем до aren't. Скажите ей: There aren't any carrots here. — «Здесь нет моркови».",
+        "uk": "Кур’єр привіз продукти, і ви звіряєте пакети зі списком. Подруга чекає моркву для супу, але в пакетах її немає. carrot — «морква», а кілька морквин — carrots. У запереченні знову any, а are not скорочуємо до aren't. Скажіть їй: There aren't any carrots here. — «Тут немає моркви»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-22:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одну морковку рядом.",
-          "uk": "Назвіть одну морквину поруч."
+          "ru": "Подруга ждёт морковь для супа. Скажите ей, что моркови здесь нет.",
+          "uk": "Подруга чекає моркву для супу. Скажіть їй, що моркви тут немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-22:intro1:r1",
-              "text": "This is a carrot."
+              "text": "There aren't any carrots here."
             },
             {
               "responseId": "en:lesson-04:session-22:intro1:r2",
-              "text": "These are carrots."
+              "text": "There isn't any carrots here."
             },
             {
               "responseId": "en:lesson-04:session-22:intro1:r3",
-              "text": "This is a carrots."
+              "text": "There aren't some carrots here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-22:intro1:r1",
-              "text": "This is a carrot."
+              "text": "There aren't any carrots here."
             },
             {
               "responseId": "en:lesson-04:session-22:intro1:r2",
-              "text": "These are carrots."
+              "text": "There isn't any carrots here."
             },
             {
               "responseId": "en:lesson-04:session-22:intro1:r3",
-              "text": "This is a carrots."
+              "text": "There aren't some carrots here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одну морковку рядом.",
-          "uk": "Назвіть одну морквину поруч."
+          "ru": "Подруга ждёт морковь для супа. Скажите ей, что моркови здесь нет.",
+          "uk": "Подруга чекає моркву для супу. Скажіть їй, що моркви тут немає."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проверяем продукты и чашки",
-        "uk": "Перевіряємо продукти й чашки"
+        "ru": "Печенье к чаю",
+        "uk": "Печиво до чаю"
       },
       "bodyByLocale": {
-        "ru": "`There are some carrots` — «Есть немного моркови»: речь о нескольких морковках. `Are there any carrots?` — «Есть ли морковь?» Вы пока не знаете ответа. `cups` — «чашки»: `Are there any cups?` — «Есть ли чашки?» И морковок, и чашек несколько, поэтому начало — `Are there`.",
-        "uk": "`There are some carrots` — «Є трохи моркви»: ідеться про кілька морквин. `Are there any carrots?` — «Чи є морква?» Ви поки не знаєте відповіді. `cups` — «чашки»: `Are there any cups?` — «Чи є чашки?» І морквин, і чашок кілька, тому початок — `Are there`."
+        "ru": "К чаю придут гости, и вы ищете печенье. Вы осматриваете стол и видите только пустую тарелку и крошки. biscuit — «печенье» (одно печенье), а несколько — biscuits. Скажите: There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья».",
+        "uk": "До чаю прийдуть гості, і ви шукаєте печиво. Ви оглядаєте стіл і бачите лише порожню тарілку й крихти. biscuit — «печиво» (одна штука), а кілька — biscuits. Скажіть: There aren't any biscuits near the plate. — «Поруч із тарілкою немає печива»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-22:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите «Здесь есть морковь?» с `any`.",
-          "uk": "Запитайте «Тут є морква?» з `any`."
+          "ru": "Гости придут к чаю. Скажите, что рядом с тарелкой печенья нет.",
+          "uk": "Гості прийдуть до чаю. Скажіть, що поруч із тарілкою печива немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-22:intro2:r1",
-              "text": "Are there any carrots here?"
+              "text": "There aren't any biscuits near the plate."
             },
             {
               "responseId": "en:lesson-04:session-22:intro2:r2",
-              "text": "Is there any carrots here?"
+              "text": "There aren't any biscuit near the plate."
             },
             {
               "responseId": "en:lesson-04:session-22:intro2:r3",
-              "text": "Are there a carrots here?"
+              "text": "There are any biscuits near the plate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-22:intro2:r1",
-              "text": "Are there any carrots here?"
+              "text": "There aren't any biscuits near the plate."
             },
             {
               "responseId": "en:lesson-04:session-22:intro2:r2",
-              "text": "Is there any carrots here?"
+              "text": "There aren't any biscuit near the plate."
             },
             {
               "responseId": "en:lesson-04:session-22:intro2:r3",
-              "text": "Are there a carrots here?"
+              "text": "There are any biscuits near the plate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Здесь есть морковь?» с `any`.",
-          "uk": "Запитайте «Тут є морква?» з `any`."
+          "ru": "Гости придут к чаю. Скажите, что рядом с тарелкой печенья нет.",
+          "uk": "Гості прийдуть до чаю. Скажіть, що поруч із тарілкою печива немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ничего не забыли",
-        "uk": "Нічого не забули"
+        "ru": "Сосиски на огне",
+        "uk": "Сосиски на вогні"
       },
       "bodyByLocale": {
-        "ru": "`complete` — «полный, завершённый». Вы проверили список: все нужные дела записаны, ничего не пропущено. `It is complete` — «Он полный». Сокращённо: `It’s complete`. Это о списке, а не о том, что все дела уже сделаны. `laundrette` — «прачечная самообслуживания»: `Is there a laundrette here?` — «Здесь есть прачечная самообслуживания?»",
-        "uk": "`complete` — «повний, завершений». Ви перевірили список: усі потрібні справи записані, нічого не пропущено. `It is complete` — «Він повний». Скорочено: `It’s complete`. Це про список, а не про те, що всі справи вже зроблено. `laundrette` — «пральня самообслуговування»: `Is there a laundrette here?` — «Тут є пральня самообслуговування?»"
+        "ru": "На выходные вы с друзьями собираетесь жарить сосиски на огне. Брат заглядывает за коробку, где лежал пакет, но там пусто. sausage — «сосиска», а несколько — sausages. Скажите ему: There aren't any sausages behind the box. — «За коробкой нет сосисок».",
+        "uk": "На вихідні ви з друзями збираєтеся смажити сосиски на вогні. Брат заглядає за коробку, де лежав пакет, але там порожньо. sausage — «сосиска», а кілька — sausages. Скажіть йому: There aren't any sausages behind the box. — «За коробкою немає сосисок»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-22:intro3:q",
         "promptByLocale": {
-          "ru": "Все нужные пункты внесены в список. Скажите о нём «Он полный» с сокращением.",
-          "uk": "Усі потрібні пункти внесено до списку. Скажіть про нього «Він повний» зі скороченням."
+          "ru": "Брат ищет сосиски для огня. Скажите ему, что за коробкой сосисок нет.",
+          "uk": "Брат шукає сосиски для вогню. Скажіть йому, що за коробкою сосисок немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-22:intro3:r1",
-              "text": "It's complete."
+              "text": "There aren't any sausages behind the box."
             },
             {
               "responseId": "en:lesson-04:session-22:intro3:r2",
-              "text": "It's broken."
+              "text": "There isn't any sausages behind the box."
             },
             {
               "responseId": "en:lesson-04:session-22:intro3:r3",
-              "text": "It are complete."
+              "text": "There aren't any sausage behind the box."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-22:intro3:r1",
-              "text": "It's complete."
+              "text": "There aren't any sausages behind the box."
             },
             {
               "responseId": "en:lesson-04:session-22:intro3:r2",
-              "text": "It's broken."
+              "text": "There isn't any sausages behind the box."
             },
             {
               "responseId": "en:lesson-04:session-22:intro3:r3",
-              "text": "It are complete."
+              "text": "There aren't any sausage behind the box."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Все нужные пункты внесены в список. Скажите о нём «Он полный» с сокращением.",
-          "uk": "Усі потрібні пункти внесено до списку. Скажіть про нього «Він повний» зі скороченням."
+          "ru": "Брат ищет сосиски для огня. Скажите ему, что за коробкой сосисок нет.",
+          "uk": "Брат шукає сосиски для вогню. Скажіть йому, що за коробкою сосисок немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5c85951a37614e3b99fa64ca21bf6e9e7b9f404d6c46de11ad2bafea51040915"
+  "introFingerprint": "45639f19a2a8db4757925cfbc473925519ddc1d0f83ae7574b79c7725bdba513"
 }

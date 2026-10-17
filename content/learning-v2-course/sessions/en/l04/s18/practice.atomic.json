@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-18",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-18:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-18:i01:p1",
+              "target": "milk",
+              "meaningByLocale": {
+                "ru": "молоко",
+                "uk": "молоко"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i01:p2",
+              "target": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб",
+                "uk": "хліб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i01:p3",
+              "target": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло",
+                "uk": "вершкове масло"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i01:p4",
+              "target": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар",
+                "uk": "цукор"
+              }
+            }
+          ],
+          "leftColumn": [
+            "milk",
+            "bread",
+            "butter",
+            "sugar"
+          ],
+          "rightColumn": [
+            "молоко",
+            "хлеб",
+            "сливочное масло",
+            "сахар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:milk",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — milk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:milk:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — milk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:milk:audio",
+            "transcript": "milk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:milk:r1",
+              "targetText": "milk",
+              "meaningByLocale": {
+                "ru": "молоко. There is some milk here. — «Здесь есть немного молока». О белом напитке из пакета.",
+                "uk": "молоко. There is some milk here. — «Тут є трохи молока». Про білий напій із пакета."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "milk",
+            "definitionByLocale": {
+              "ru": "молоко. There is some milk here. — «Здесь есть немного молока». О белом напитке из пакета.",
+              "uk": "молоко. There is some milk here. — «Тут є трохи молока». Про білий напій із пакета."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гостья показывает на пакет и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Гостья показывает на пакет и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i02:audio",
+            "transcript": "milk"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "milk",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гостья хочет молока в кашу. Скажите ей полной фразой: рядом с холодильником есть немного молока",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гостья хочет молока в кашу. Скажите ей полной фразой: рядом с холодильником есть немного молока",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some milk near the fridge.",
+          "localizedMeaning": {
+            "ru": "Гостья хочет молока в кашу. Скажите ей полной фразой: рядом с холодильником есть немного молока",
+            "uk": "Гостя хоче молока до каші. Скажіть їй повною фразою: поруч із холодильником є трохи молока"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "milk",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Гостья хочет молока в кашу. Скажите ей полной фразой: рядом с холодильником есть немного молока",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some milk near the fridge.`",
+                "uk": "тут потрібно `is` — `There is some milk near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:bread",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bread",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:bread:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bread",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:bread:audio",
+            "transcript": "bread"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:bread:r1",
+              "targetText": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб. There is some bread near the basket. — «Рядом с корзиной есть немного хлеба». О хлебе, который режут на ломти.",
+                "uk": "хліб. There is some bread near the basket. — «Поруч із кошиком є трохи хліба». Про хліб, який ріжуть на скибки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bread",
+            "definitionByLocale": {
+              "ru": "хлеб. There is some bread near the basket. — «Рядом с корзиной есть немного хлеба». О хлебе, который режут на ломти.",
+              "uk": "хліб. There is some bread near the basket. — «Поруч із кошиком є трохи хліба». Про хліб, який ріжуть на скибки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i04:r1",
+            "text": "bread"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r2",
+            "text": "egg"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r3",
+            "text": "apple"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+            "uk": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-18:i04:r1",
+              "text": "bread"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i04:r2",
+              "text": "egg"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i04:r3",
+              "text": "apple"
+            }
+          ],
+          "testedDimension": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i04:r2",
+              "correct": false,
+              "testedDimension": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "egg — это яйцо, а то, что режут на ломти, называется bread.",
+                "uk": "egg — це яйце, а те, що ріжуть на скибки, називається bread."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i04:r3",
+              "correct": false,
+              "testedDimension": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "apple — это яблоко, а то, что режут на ломти, называется bread.",
+                "uk": "apple — це яблуко, а те, що ріжуть на скибки, називається bread."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сообщение брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i05:r1",
+            "text": "There is some bread here."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i05:r2",
+            "text": "There is some milk here."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i05:r3",
+            "text": "There are some berries here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сообщение брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i05:audio",
+            "transcript": "There is some bread here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:i05:r1",
+              "targetText": "There is some bread here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i05:r2",
+              "targetText": "There is some milk here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i05:r3",
+              "targetText": "There are some berries here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение брата",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `bread`, а в этом варианте про `milk`.",
+                "uk": "У записі говорять про `bread`, а в цьому варіанті про `milk`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение брата",
+              "feedbackByLocale": {
+                "ru": "В записи хлеб: `There is some`, а в этом варианте ягоды: `There are some`.",
+                "uk": "У записі хліб: `There is some`, а в цьому варіанті ягоди: `There are some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:butter",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — butter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:butter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — butter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:butter:audio",
+            "transcript": "butter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:butter:r1",
+              "targetText": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло. There is some butter near the bowl. — «Рядом с миской есть немного масла». О жёлтом масле, которое мажут на хлеб.",
+                "uk": "вершкове масло. There is some butter near the bowl. — «Поруч із мискою є трохи масла». Про жовте масло, яке мажуть на хліб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "butter",
+            "definitionByLocale": {
+              "ru": "сливочное масло. There is some butter near the bowl. — «Рядом с миской есть немного масла». О жёлтом масле, которое мажут на хлеб.",
+              "uk": "вершкове масло. There is some butter near the bowl. — «Поруч із мискою є трохи масла». Про жовте масло, яке мажуть на хліб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат достаёт жёлтый брусок и называет слово, а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i06:audio"
+        ],
+        "accessibilityLabel": "Брат достаёт жёлтый брусок и называет слово, а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i06:audio",
+            "transcript": "butter"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "butter",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i07:audio",
+            "transcript": "There is some butter here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is some butter here.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "butter",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some butter here.`",
+                "uk": "тут потрібно `is` — `There is some butter here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:sugar",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sugar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:sugar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sugar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:sugar:audio",
+            "transcript": "sugar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:sugar:r1",
+              "targetText": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар. There is some sugar near the cup. — «Рядом с чашкой есть немного сахара». О сладких крупинках для чая.",
+                "uk": "цукор. There is some sugar near the cup. — «Поруч із чашкою є трохи цукру». Про солодкі крупинки для чаю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sugar",
+            "definitionByLocale": {
+              "ru": "сахар. There is some sugar near the cup. — «Рядом с чашкой есть немного сахара». О сладких крупинках для чая.",
+              "uk": "цукор. There is some sugar near the cup. — «Поруч із чашкою є трохи цукру». Про солодкі крупинки для чаю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i08:r1",
+            "text": "sugar"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r2",
+            "text": "cup"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r3",
+            "text": "spoon"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+            "uk": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-18:i08:r1",
+              "text": "sugar"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i08:r2",
+              "text": "cup"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i08:r3",
+              "text": "spoon"
+            }
+          ],
+          "testedDimension": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "cup — это чашка, а белые сладкие крупинки называются sugar.",
+                "uk": "cup — це чашка, а білі солодкі крупинки називаються sugar."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "spoon — это ложка, а белые сладкие крупинки называются sugar.",
+                "uk": "spoon — це ложка, а білі солодкі крупинки називаються sugar."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга пьёт чай без сладкого. Скажите ей полной фразой: рядом с чашкой есть немного сахара",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга пьёт чай без сладкого. Скажите ей полной фразой: рядом с чашкой есть немного сахара",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some sugar near the cup.",
+          "localizedMeaning": {
+            "ru": "Подруга пьёт чай без сладкого. Скажите ей полной фразой: рядом с чашкой есть немного сахара",
+            "uk": "Подруга п’є чай без цукру. Скажіть їй повною фразою: поруч із чашкою є трохи цукру"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "sugar",
+            "near",
+            "the",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга пьёт чай без сладкого. Скажите ей полной фразой: рядом с чашкой есть немного сахара",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some sugar near the cup.`",
+                "uk": "тут потрібно `is` — `There is some sugar near the cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-18:i10:p1",
+              "target": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар",
+                "uk": "цукор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i10:p2",
+              "target": "milk",
+              "meaningByLocale": {
+                "ru": "молоко",
+                "uk": "молоко"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i10:p3",
+              "target": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло",
+                "uk": "вершкове масло"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i10:p4",
+              "target": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб",
+                "uk": "хліб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sugar",
+            "milk",
+            "butter",
+            "bread"
+          ],
+          "rightColumn": [
+            "сахар",
+            "молоко",
+            "сливочное масло",
+            "хлеб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостью",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i11:r1",
+            "text": "There is some milk near the bowl."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r2",
+            "text": "There are some berries near the bowl."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r3",
+            "text": "There is some butter near the bowl."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i11:audio",
+            "transcript": "There is some milk near the bowl."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:i11:r1",
+              "targetText": "There is some milk near the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i11:r2",
+              "targetText": "There are some berries near the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i11:r3",
+              "targetText": "There is some butter near the bowl.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи молоко: `There is some`, а в этом варианте ягоды: `There are some`.",
+                "uk": "У записі молоко: `There is some`, а в цьому варіанті ягоди: `There are some`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `milk`, а в этом варианте про `butter`.",
+                "uk": "У записі говорять про `milk`, а в цьому варіанті про `butter`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i12:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+            "uk": "Подруга питає про масло. Його трохи. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ butter here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-18:i12:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а масло не считают штуками: some butter.",
+                "uk": "Слово a ставлять перед одним предметом, а масло не рахують штуками: some butter."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже ставят перед одним предметом, а здесь нужно some butter.",
+                "uk": "Слово an теж ставлять перед одним предметом, а тут потрібно some butter."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостью и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i13:audio",
+            "transcript": "There is some bread behind the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is some bread behind the door.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "bread",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостью и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some bread behind the door.`",
+                "uk": "тут потрібно `is` — `There is some bread behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ищет сахар. Скажите ей, что за коробкой есть немного сахара",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга ищет сахар. Скажите ей, что за коробкой есть немного сахара",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i14:audio",
+            "transcript": "There is some sugar behind the box."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is some sugar behind the box.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат ищет масло. Скажите ему полной фразой: рядом с корзиной есть немного масла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат ищет масло. Скажите ему полной фразой: рядом с корзиной есть немного масла",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some butter near the basket.",
+          "localizedMeaning": {
+            "ru": "Брат ищет масло. Скажите ему полной фразой: рядом с корзиной есть немного масла",
+            "uk": "Брат шукає масло. Скажіть йому повною фразою: поруч із кошиком є трохи масла"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "butter",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат ищет масло. Скажите ему полной фразой: рядом с корзиной есть немного масла",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some butter near the basket.`",
+                "uk": "тут потрібно `is` — `There is some butter near the basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-18:i16:p1",
+              "target": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб",
+                "uk": "хліб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i16:p2",
+              "target": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар",
+                "uk": "цукор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i16:p3",
+              "target": "milk",
+              "meaningByLocale": {
+                "ru": "молоко",
+                "uk": "молоко"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i16:p4",
+              "target": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло",
+                "uk": "вершкове масло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bread",
+            "sugar",
+            "milk",
+            "butter"
+          ],
+          "rightColumn": [
+            "хлеб",
+            "сахар",
+            "молоко",
+            "сливочное масло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гостья спрашивает, осталось ли молоко. Оно стоит за миской. Ответьте ей полной фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Гостья спрашивает, осталось ли молоко. Оно стоит за миской. Ответьте ей полной фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i17:audio",
+            "transcript": "There is some milk behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is some milk behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-18:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-18:i01:p1",
+              "target": "milk",
+              "meaningByLocale": {
+                "ru": "молоко",
+                "uk": "молоко"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i01:p2",
+              "target": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб",
+                "uk": "хліб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i01:p3",
+              "target": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло",
+                "uk": "вершкове масло"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i01:p4",
+              "target": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар",
+                "uk": "цукор"
+              }
+            }
+          ],
+          "leftColumn": [
+            "milk",
+            "bread",
+            "butter",
+            "sugar"
+          ],
+          "rightColumn": [
+            "молоко",
+            "хліб",
+            "вершкове масло",
+            "цукор"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:milk",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — milk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:milk:audio"
+        ],
+        "accessibilityLabel": "Картка слова — milk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:milk:audio",
+            "transcript": "milk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:milk:r1",
+              "targetText": "milk",
+              "meaningByLocale": {
+                "ru": "молоко. There is some milk here. — «Здесь есть немного молока». О белом напитке из пакета.",
+                "uk": "молоко. There is some milk here. — «Тут є трохи молока». Про білий напій із пакета."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "milk",
+            "definitionByLocale": {
+              "ru": "молоко. There is some milk here. — «Здесь есть немного молока». О белом напитке из пакета.",
+              "uk": "молоко. There is some milk here. — «Тут є трохи молока». Про білий напій із пакета."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гостя показує на пакет і називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Гостя показує на пакет і називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i02:audio",
+            "transcript": "milk"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "milk",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гостя хоче молока до каші. Скажіть їй повною фразою: поруч із холодильником є трохи молока",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гостя хоче молока до каші. Скажіть їй повною фразою: поруч із холодильником є трохи молока",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some milk near the fridge.",
+          "localizedMeaning": {
+            "ru": "Гостья хочет молока в кашу. Скажите ей полной фразой: рядом с холодильником есть немного молока",
+            "uk": "Гостя хоче молока до каші. Скажіть їй повною фразою: поруч із холодильником є трохи молока"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "milk",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Гостя хоче молока до каші. Скажіть їй повною фразою: поруч із холодильником є трохи молока",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some milk near the fridge.`",
+                "uk": "тут потрібно `is` — `There is some milk near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:bread",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bread",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:bread:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bread",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:bread:audio",
+            "transcript": "bread"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:bread:r1",
+              "targetText": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб. There is some bread near the basket. — «Рядом с корзиной есть немного хлеба». О хлебе, который режут на ломти.",
+                "uk": "хліб. There is some bread near the basket. — «Поруч із кошиком є трохи хліба». Про хліб, який ріжуть на скибки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bread",
+            "definitionByLocale": {
+              "ru": "хлеб. There is some bread near the basket. — «Рядом с корзиной есть немного хлеба». О хлебе, который режут на ломти.",
+              "uk": "хліб. There is some bread near the basket. — «Поруч із кошиком є трохи хліба». Про хліб, який ріжуть на скибки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i04:r1",
+            "text": "bread"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r2",
+            "text": "egg"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r3",
+            "text": "apple"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мягкий продукт из муки: его режут на ломти и едят с маслом. Как он называется по-английски?",
+            "uk": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-18:i04:r1",
+              "text": "bread"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i04:r2",
+              "text": "egg"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i04:r3",
+              "text": "apple"
+            }
+          ],
+          "testedDimension": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i04:r2",
+              "correct": false,
+              "testedDimension": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "egg — это яйцо, а то, что режут на ломти, называется bread.",
+                "uk": "egg — це яйце, а те, що ріжуть на скибки, називається bread."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i04:r3",
+              "correct": false,
+              "testedDimension": "М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "apple — это яблоко, а то, что режут на ломти, называется bread.",
+                "uk": "apple — це яблуко, а те, що ріжуть на скибки, називається bread."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте повідомлення брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i05:r1",
+            "text": "There is some bread here."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i05:r2",
+            "text": "There is some milk here."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i05:r3",
+            "text": "There are some berries here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте повідомлення брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i05:audio",
+            "transcript": "There is some bread here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:i05:r1",
+              "targetText": "There is some bread here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i05:r2",
+              "targetText": "There is some milk here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i05:r3",
+              "targetText": "There are some berries here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення брата",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `bread`, а в этом варианте про `milk`.",
+                "uk": "У записі говорять про `bread`, а в цьому варіанті про `milk`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення брата",
+              "feedbackByLocale": {
+                "ru": "В записи хлеб: `There is some`, а в этом варианте ягоды: `There are some`.",
+                "uk": "У записі хліб: `There is some`, а в цьому варіанті ягоди: `There are some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:butter",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — butter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:butter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — butter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:butter:audio",
+            "transcript": "butter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:butter:r1",
+              "targetText": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло. There is some butter near the bowl. — «Рядом с миской есть немного масла». О жёлтом масле, которое мажут на хлеб.",
+                "uk": "вершкове масло. There is some butter near the bowl. — «Поруч із мискою є трохи масла». Про жовте масло, яке мажуть на хліб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "butter",
+            "definitionByLocale": {
+              "ru": "сливочное масло. There is some butter near the bowl. — «Рядом с миской есть немного масла». О жёлтом масле, которое мажут на хлеб.",
+              "uk": "вершкове масло. There is some butter near the bowl. — «Поруч із мискою є трохи масла». Про жовте масло, яке мажуть на хліб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат дістає жовтий брусок і називає слово, а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i06:audio"
+        ],
+        "accessibilityLabel": "Брат дістає жовтий брусок і називає слово, а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i06:audio",
+            "transcript": "butter"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "butter",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i07:audio",
+            "transcript": "There is some butter here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is some butter here.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "butter",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some butter here.`",
+                "uk": "тут потрібно `is` — `There is some butter here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:word:sugar",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sugar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:word:sugar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sugar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:word:sugar:audio",
+            "transcript": "sugar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:word:sugar:r1",
+              "targetText": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар. There is some sugar near the cup. — «Рядом с чашкой есть немного сахара». О сладких крупинках для чая.",
+                "uk": "цукор. There is some sugar near the cup. — «Поруч із чашкою є трохи цукру». Про солодкі крупинки для чаю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sugar",
+            "definitionByLocale": {
+              "ru": "сахар. There is some sugar near the cup. — «Рядом с чашкой есть немного сахара». О сладких крупинках для чая.",
+              "uk": "цукор. There is some sugar near the cup. — «Поруч із чашкою є трохи цукру». Про солодкі крупинки для чаю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i08:r1",
+            "text": "sugar"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r2",
+            "text": "cup"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r3",
+            "text": "spoon"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Белые сладкие крупинки, которые кладут в чай. Как они называются по-английски?",
+            "uk": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-18:i08:r1",
+              "text": "sugar"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i08:r2",
+              "text": "cup"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i08:r3",
+              "text": "spoon"
+            }
+          ],
+          "testedDimension": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "cup — это чашка, а белые сладкие крупинки называются sugar.",
+                "uk": "cup — це чашка, а білі солодкі крупинки називаються sugar."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "spoon — это ложка, а белые сладкие крупинки называются sugar.",
+                "uk": "spoon — це ложка, а білі солодкі крупинки називаються sugar."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга п’є чай без цукру. Скажіть їй повною фразою: поруч із чашкою є трохи цукру",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга п’є чай без цукру. Скажіть їй повною фразою: поруч із чашкою є трохи цукру",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some sugar near the cup.",
+          "localizedMeaning": {
+            "ru": "Подруга пьёт чай без сладкого. Скажите ей полной фразой: рядом с чашкой есть немного сахара",
+            "uk": "Подруга п’є чай без цукру. Скажіть їй повною фразою: поруч із чашкою є трохи цукру"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "sugar",
+            "near",
+            "the",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга п’є чай без цукру. Скажіть їй повною фразою: поруч із чашкою є трохи цукру",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some sugar near the cup.`",
+                "uk": "тут потрібно `is` — `There is some sugar near the cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-18:i10:p1",
+              "target": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар",
+                "uk": "цукор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i10:p2",
+              "target": "milk",
+              "meaningByLocale": {
+                "ru": "молоко",
+                "uk": "молоко"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i10:p3",
+              "target": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло",
+                "uk": "вершкове масло"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i10:p4",
+              "target": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб",
+                "uk": "хліб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sugar",
+            "milk",
+            "butter",
+            "bread"
+          ],
+          "rightColumn": [
+            "цукор",
+            "молоко",
+            "вершкове масло",
+            "хліб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i11:r1",
+            "text": "There is some milk near the bowl."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r2",
+            "text": "There are some berries near the bowl."
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r3",
+            "text": "There is some butter near the bowl."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i11:audio",
+            "transcript": "There is some milk near the bowl."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-18:i11:r1",
+              "targetText": "There is some milk near the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i11:r2",
+              "targetText": "There are some berries near the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i11:r3",
+              "targetText": "There is some butter near the bowl.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи молоко: `There is some`, а в этом варианте ягоды: `There are some`.",
+                "uk": "У записі молоко: `There is some`, а в цьому варіанті ягоди: `There are some`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `milk`, а в этом варианте про `butter`.",
+                "uk": "У записі говорять про `milk`, а в цьому варіанті про `butter`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про масло. Його трохи. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i12:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про масло. Його трохи. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает про масло. Его немного. Дополните фразу",
+            "uk": "Подруга питає про масло. Його трохи. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ butter here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-18:i12:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Подруга питає про масло. Його трохи. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про масло. Його трохи. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а масло не считают штуками: some butter.",
+                "uk": "Слово a ставлять перед одним предметом, а масло не рахують штуками: some butter."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про масло. Його трохи. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже ставят перед одним предметом, а здесь нужно some butter.",
+                "uk": "Слово an теж ставлять перед одним предметом, а тут потрібно some butter."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостю й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i13:audio",
+            "transcript": "There is some bread behind the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is some bread behind the door.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "bread",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостю й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some bread behind the door.`",
+                "uk": "тут потрібно `is` — `There is some bread behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шукає цукор. Скажіть їй, що за коробкою є трохи цукру",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга шукає цукор. Скажіть їй, що за коробкою є трохи цукру",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i14:audio",
+            "transcript": "There is some sugar behind the box."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is some sugar behind the box.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат шукає масло. Скажіть йому повною фразою: поруч із кошиком є трохи масла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат шукає масло. Скажіть йому повною фразою: поруч із кошиком є трохи масла",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some butter near the basket.",
+          "localizedMeaning": {
+            "ru": "Брат ищет масло. Скажите ему полной фразой: рядом с корзиной есть немного масла",
+            "uk": "Брат шукає масло. Скажіть йому повною фразою: поруч із кошиком є трохи масла"
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "butter",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-18:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат шукає масло. Скажіть йому повною фразою: поруч із кошиком є трохи масла",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is some butter near the basket.`",
+                "uk": "тут потрібно `is` — `There is some butter near the basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-18:i16:p1",
+              "target": "bread",
+              "meaningByLocale": {
+                "ru": "хлеб",
+                "uk": "хліб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i16:p2",
+              "target": "sugar",
+              "meaningByLocale": {
+                "ru": "сахар",
+                "uk": "цукор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i16:p3",
+              "target": "milk",
+              "meaningByLocale": {
+                "ru": "молоко",
+                "uk": "молоко"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-18:i16:p4",
+              "target": "butter",
+              "meaningByLocale": {
+                "ru": "сливочное масло",
+                "uk": "вершкове масло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bread",
+            "sugar",
+            "milk",
+            "butter"
+          ],
+          "rightColumn": [
+            "хліб",
+            "цукор",
+            "молоко",
+            "вершкове масло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-18:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гостя питає, чи лишилося молоко. Воно стоїть за мискою. Відповідайте їй повною фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Гостя питає, чи лишилося молоко. Воно стоїть за мискою. Відповідайте їй повною фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-18:i17:audio",
+            "transcript": "There is some milk behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is some milk behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-18:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:word:milk",
+      "correctText": "milk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i02",
+      "correctText": "milk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i03",
+      "correctText": "There is some milk near the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:word:bread",
+      "correctText": "bread",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i04",
+      "correctText": "bread",
+      "correctResponseId": "en:lesson-04:session-18:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i05",
+      "correctText": "There is some bread here.",
+      "correctResponseId": "en:lesson-04:session-18:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:word:butter",
+      "correctText": "butter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i06",
+      "correctText": "butter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i07",
+      "correctText": "There is some butter here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:word:sugar",
+      "correctText": "sugar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i08",
+      "correctText": "sugar",
+      "correctResponseId": "en:lesson-04:session-18:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i09",
+      "correctText": "There is some sugar near the cup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i11",
+      "correctText": "There is some milk near the bowl.",
+      "correctResponseId": "en:lesson-04:session-18:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i12",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-04:session-18:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i13",
+      "correctText": "There is some bread behind the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i14",
+      "correctText": "There is some sugar behind the box.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i15",
+      "correctText": "There is some butter near the basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i17",
+      "correctText": "There is some milk behind the bowl.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,136 +1,152 @@
-# Англійська · Урок 4 · Заняття 21 — Сік перед виїздом
+# Англійська · Урок 4 · Заняття 21 — Сік до сніданку
 
-**Ситуація.** Ви чекаєте на таксі біля стійки готелю. Перед дорогою хочеться соку, а для записки потрібна ручка. Друг пропонує одну, але вона зламана.
+**Ситуація.** Зранку у спільному домі ви перевіряєте, чого не вистачає до сніданку. Щоб сказати, що соку, чаю, кави або води немає, кажемо There isn't any juice — «Соку немає».
 
-**Що ви опануєте:** запитати про сік з any, повідомити про нього із some та пояснити відмову
-**Нові слова:** juice
+**Що ви опануєте:** сказати, що чогось немає, фразою There isn't any…
+**Нові слова:** juice, tea, coffee, water
+**Повертаються:** milk, kettle, fridge, near, behind
 
 ---
 
 ## Інтро 1
 
-### Сік
+### Порожня пляшка
 
-`juice` — «сік». Про напій загалом: `There is some juice` — «Є трохи соку». Перед `juice` тут не потрібне `a`, а початок — `There is`. Дві склянки не перетворюють сам сік на `juices`: зараз ми говоримо про напій, а не рахуємо порції. Склянки можна порахувати, сік краще не розливати заради лічби.
+Подруга хоче соку й просить дістати пляшку з холодильника. Ви берете її й бачите, що вона порожня. juice — «сік». Сік не рахують штуками. У запереченні замість some ставимо any, а is not скорочуємо до isn't. Скажіть: There isn't any juice here. — «Тут немає соку».
 
-**Повідомте «Тут є трохи соку».**
+**Подруга хоче соку, але пляшка порожня. Скажіть їй, що соку тут немає.**
 
-- ✅ **There is some juice here.**
-- ❌ There are some juice here. — *Про сік як напій кажемо `There is some juice here`.*
-- ❌ There is a juice here. — *Тут ідеться про напій загалом, а не замовлену порцію: `some juice`.*
+- ✅ **There isn't any juice here.**
+- ❌ There isn't some juice here. — *У запереченні замість some потрібно any: There isn't any juice.*
+- ❌ There aren't any juice here. — *Сік не рахують штуками, тому потрібно isn't, а не aren't.*
 
 ---
 
 ## Інтро 2
 
-### Сік і ручки
+### Гість із морозу
 
-`Is there any juice?` — «Чи є сік?» Так запитуємо, коли ще не знаємо відповіді. `pens` — «ручки». Їх кілька: `Are there any pens?` — «Чи є ручки?» Повідомлення: `There are some pens` — «Є кілька ручок». Напій — `is`, кілька ручок — `are`.
+Гість прийшов із морозу, змерз і просить гарячого чаю. Ви відчиняєте бляшану коробку поруч із чайником, але вона зовсім порожня. tea — «чай». Чай теж не рахують штуками. Скажіть йому: There isn't any tea near the kettle. — «Поруч із чайником немає чаю».
 
-**Запитайте «Тут є сік?» з `any`.**
+**Гість просить гарячого чаю. Скажіть йому, що поруч із чайником чаю немає.**
 
-- ✅ **Is there any juice here?**
-- ❌ Are there any juice here? — *Із соком як напоєм потрібне `Is there`.*
-- ❌ There is any juice here? — *У цьому запитанні спочатку `Is there`: `Is there any juice here?`.*
+- ✅ **There isn't any tea near the kettle.**
+- ❌ There isn't a tea near the kettle. — *Чай не рахують штуками, тому замість a потрібно any.*
+- ❌ There is any tea near the kettle. — *Щоб сказати «немає», потрібно isn't: There isn't any tea.*
 
 ---
 
 ## Інтро 3
 
-### Ні, зламана
+### Кава перед роботою
 
-`no` — «ні», `broken` — «зламаний». Друг запитує, чи працює ручка. Вона зламана: `No, it is broken` — «Ні, вона зламана». Скорочено: `No, it’s broken`. Слово `broken` указує на поломку; ручка, у якій закінчилося чорнило, не обов’язково зламана. `taxi` — «таксі»: `That is a taxi` — «То — таксі».
+Зранку брат хоче кави перед роботою, а часу мало. Ви заглядаєте за кошик, де зазвичай стоїть банка з кавою, але там порожньо. coffee — «кава». Скажіть йому: There isn't any coffee behind the basket. — «За кошиком немає кави». Каву теж не рахують штуками.
 
-**Ручка зламана. На запитання, чи працює вона, дайте відповідь «Ні, вона зламана» зі скороченням.**
+**Брат хоче кави перед роботою. Скажіть йому, що за кошиком кави немає.**
 
-- ✅ **No, it's broken.**
-- ❌ Yes, it's broken. — *На запитання, чи працює зламана ручка, відповідаємо «Ні»: `No`.*
-- ❌ No, it are broken. — *З `it` потрібне `is`: `it’s broken`.*
+- ✅ **There isn't any coffee behind the basket.**
+- ❌ There aren't any coffee behind the basket. — *Каву не рахують штуками, тому потрібно isn't, а не aren't.*
+- ❌ There isn't any coffees behind the basket. — *Каву не рахують штуками, тому наприкінці немає -s: coffee.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Назвіть машину вдалині: «То — таксі»**
-<!-- interaction_id: en:lesson-04:session-21:i01; family: phrase_builder -->
-Плитки: `taxi` `a` `is` `That` `are` → **That is a taxi.**
-*(плитка `are` зайва: тут потрібно `is` — `That is a taxi.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-21:i01; family: speed_match -->
+juice — сік · tea — чай · coffee — кава · water — вода
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-21:i02; family: listen_choose -->
-🔊 *juice* → **juice** · soup · milk
-- soup — *У записі перше слово — `juice`, а в цьому варіанті — `soup`.*
-- milk — *У записі перше слово — `juice`, а в цьому варіанті — `milk`.*
+**2 · Картка слова — juice**
+<!-- interaction_id: en:lesson-04:session-21:word:juice; family: word_card -->
+> **juice** — сік. There isn't any juice here. — «Тут немає соку». Про напій із фруктів.
 
-**3 · Назвіть сік одним словом**
-<!-- interaction_id: en:lesson-04:session-21:i03; family: context_gap_grammar -->
-___ → **juice** · soup · pens
-- soup — *`soup` — суп; сік — `juice`.*
-- pens — *`pens` — ручки; сік — `juice`.*
+**3 · Подруга показує на склянку з фруктовим напоєм і називає слово, а ви повторюєте за нею**
+<!-- interaction_id: en:lesson-04:session-21:i02; family: scripted_repeat_compare -->
+🎙 **juice**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-21:i04; family: speed_match -->
-juice — сік · broken — зламаний · pens — ручки · taxi — таксі
+**4 · Подруга хоче соку. Скажіть їй повною фразою: поруч із холодильником немає соку**
+<!-- interaction_id: en:lesson-04:session-21:i03; family: phrase_builder -->
+Плитки: `juice` `any` `near` `the` `fridge` `There` `isn't` `aren't` → **There isn't any juice near the fridge.**
+*(плитка `aren't` зайва: тут потрібно `isn't` — `There isn't any juice near the fridge.`)*
 
-**5 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-21:i05; family: listen_build_dictation -->
-🔊 *There is some juice.* Плитки: `juice` `some` `is` `There` `are` → **There is some juice.**
-*(плитка `are` зайва: тут потрібно `is` — `There is some juice.`)*
+**5 · Картка слова — tea**
+<!-- interaction_id: en:lesson-04:session-21:word:tea; family: word_card -->
+> **tea** — чай. There isn't any tea near the kettle. — «Поруч із чайником немає чаю». Про гарячий напій із заварки.
 
-**6 · Ви знайшли ручки. Повідомте «Тут є кілька ручок» із some**
-<!-- interaction_id: en:lesson-04:session-21:i06; family: phrase_builder -->
-Плитки: `here` `pens` `some` `are` `There` `is` → **There are some pens here.**
-*(плитка `is` зайва: тут потрібно `are` — `There are some pens here.`)*
+**6 · Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?**
+<!-- interaction_id: en:lesson-04:session-21:i04; family: context_gap_grammar -->
+___ → **tea** · milk · juice
+- milk — *milk — це молоко, а гарячий напій із сухого листя називається tea.*
+- juice — *juice — це сік із фруктів, а гарячий напій із сухого листя називається tea.*
 
-**7 · Друг запитує, чи працює зламана ручка. Дайте відповідь «Ні, вона зламана» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-21:i07; family: scripted_repeat_compare -->
-🎙 **No, it's broken.**
+**7 · Послухайте повідомлення гостя**
+<!-- interaction_id: en:lesson-04:session-21:i05; family: listen_choose -->
+🔊 *There isn't any tea here.* → **There isn't any tea here.** · There isn't any juice here. · There is some tea here.
+- There isn't any juice here. — *У записі говорять про `tea`, а в цьому варіанті про `juice`.*
+- There is some tea here. — *У записі чаю немає: `There isn't any`, а в цьому варіанті він є: `There is some`.*
 
-**8 · Повідомте «Тут є трохи соку»**
+**8 · Картка слова — coffee**
+<!-- interaction_id: en:lesson-04:session-21:word:coffee; family: word_card -->
+> **coffee** — кава. There isn't any coffee behind the basket. — «За кошиком немає кави». Про темний бадьорий напій.
+
+**9 · Брат зранку дістає темний бадьорий напій і називає слово, а ви повторюєте за ним**
+<!-- interaction_id: en:lesson-04:session-21:i06; family: scripted_repeat_compare -->
+🎙 **coffee**
+
+**10 · Послухайте брата й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-21:i07; family: listen_build_dictation -->
+🔊 *There isn't any coffee here.* Плитки: `coffee` `any` `There` `isn't` `here` `aren't` → **There isn't any coffee here.**
+*(плитка `aren't` зайва: тут потрібно `isn't` — `There isn't any coffee here.`)*
+
+**11 · Картка слова — water**
+<!-- interaction_id: en:lesson-04:session-21:word:water; family: word_card -->
+> **water** — вода. There isn't any water near the cup. — «Поруч із чашкою немає води». Про прозору рідину, яку п’ють зі склянки.
+
+**12 · Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-21:i08; family: context_gap_grammar -->
-There ___ some juice here. → **is** · are · am
-- are — *Про сік як напій кажемо `There is some juice here`.*
-- am — *Наявність соку передаємо через `There is`.*
+___ → **water** · milk · tea
+- milk — *milk — це біле молоко, а прозора рідина без смаку називається water.*
+- tea — *tea — це темний чай, а прозора рідина без смаку називається water.*
 
-**9 · Послухайте запитання**
-<!-- interaction_id: en:lesson-04:session-21:i09; family: listen_choose -->
-🔊 *Are there any pens?* → **Are there any pens?** · Are there any maps? · Are there any bags?
-- Are there any maps? — *У записі останнє слово — `pens`, а в цьому варіанті — `maps`.*
-- Are there any bags? — *У записі останнє слово — `pens`, а в цьому варіанті — `bags`.*
+**13 · Гостя просить води. Скажіть їй повною фразою: поруч із чашкою немає води**
+<!-- interaction_id: en:lesson-04:session-21:i09; family: phrase_builder -->
+Плитки: `water` `any` `near` `the` `cup` `There` `isn't` `aren't` → **There isn't any water near the cup.**
+*(плитка `aren't` зайва: тут потрібно `isn't` — `There isn't any water near the cup.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-21:i10; family: speed_match -->
-juice — сік · no — ні · pens — ручки · taxi — таксі
+water — вода · coffee — кава · juice — сік · tea — чай
 
-**11 · Послухайте й складіть запитання**
-<!-- interaction_id: en:lesson-04:session-21:i11; family: listen_build_dictation -->
-🔊 *Is there any juice?* Плитки: `juice` `any` `there` `Is` → **Is there any juice?**
+**15 · Послухайте брата**
+<!-- interaction_id: en:lesson-04:session-21:i11; family: listen_choose -->
+🔊 *There isn't any coffee near the kettle.* → **There isn't any coffee near the kettle.** · There isn't any tea near the kettle. · There is some coffee near the kettle.
+- There isn't any tea near the kettle. — *У записі говорять про `coffee`, а в цьому варіанті про `tea`.*
+- There is some coffee near the kettle. — *У записі кави немає: `There isn't any`, а в цьому варіанті вона є: `There is some`.*
 
-**12 · Для записки потрібна ручка. Запитайте «Тут є ручки?» з any**
-<!-- interaction_id: en:lesson-04:session-21:i12; family: phrase_builder -->
-Плитки: `here` `pens` `any` `there` `Are` → **Are there any pens here?**
+**16 · Подруга каже, що соку немає зовсім. Доповніть її фразу**
+<!-- interaction_id: en:lesson-04:session-21:i12; family: context_gap_grammar -->
+There isn't ___ juice here. → **any** · some · a
+- some — *У запереченні some не потрібно: There isn't any juice.*
+- a — *Слово a ставлять перед одним предметом, а сік не рахують штуками: any juice.*
 
-**13 · Друг запитує про інший стіл. Повідомте «Там є трохи соку» із some**
-<!-- interaction_id: en:lesson-04:session-21:i13; family: scripted_repeat_compare -->
-🎙 **There is some juice there.**
+**17 · Послухайте гостя й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-21:i13; family: listen_build_dictation -->
+🔊 *There isn't any tea near the box.* Плитки: `tea` `any` `near` `the` `box` `There` `isn't` `aren't` → **There isn't any tea near the box.**
+*(плитка `aren't` зайва: тут потрібно `isn't` — `There isn't any tea near the box.`)*
 
-**14 · Запитайте «Тут є сік?»**
-<!-- interaction_id: en:lesson-04:session-21:i14; family: context_gap_grammar -->
-___ there any juice here? → **Is** · Are · Am
-- Are — *Про сік як напій запитуємо `Is there any juice here?`.*
-- Am — *Запитання про наявність соку починається з `Is there`.*
+**18 · Подруга шукає воду. За кошиком її немає. Скажіть їй повною фразою, що води за кошиком немає**
+<!-- interaction_id: en:lesson-04:session-21:i14; family: scripted_repeat_compare -->
+🎙 **There isn't any water behind the basket.**
 
-**15 · Послухайте відповідь про ручку**
-<!-- interaction_id: en:lesson-04:session-21:i15; family: listen_choose -->
-🔊 *No, it is broken.* → **No, it is broken.** · No, it is dirty. · No, it is wet.
-- No, it is dirty. — *У записі останнє слово — `broken`, а в цьому варіанті — `dirty`.*
-- No, it is wet. — *У записі останнє слово — `broken`, а в цьому варіанті — `wet`.*
+**19 · Брат шукає каву. Скажіть йому повною фразою: поруч із мискою немає кави**
+<!-- interaction_id: en:lesson-04:session-21:i15; family: phrase_builder -->
+Плитки: `coffee` `any` `near` `the` `bowl` `There` `isn't` `aren't` → **There isn't any coffee near the bowl.**
+*(плитка `aren't` зайва: тут потрібно `isn't` — `There isn't any coffee near the bowl.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-21:i16; family: speed_match -->
-juice — сік · broken — зламаний · no — ні · pens — ручки
+tea — чай · water — вода · coffee — кава · juice — сік
 
-**17 · В іншій подорожі ви шукаєте напій до сніданку. Запитайте «Тут є сік?» з any**
+**21 · Гість просить соку, але пляшка за мискою порожня. Скажіть йому повною фразою, що соку за мискою немає**
 <!-- interaction_id: en:lesson-04:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there any juice here?**
-
+🎙 **There isn't any juice behind the bowl.**

@@ -1,136 +1,152 @@
 # Английский · Урок 4 · Занятие 22 — Морковь по списку
 
-**Ситуация.** Вы составляете список дел: купить морковь, найти чашки для гостей и отнести вещи в прачечную. Проверив всё, вы сообщаете другу, что список полный.
+**Ситуация.** Вы разбираете заказ из магазина и сверяете его со списком. Чтобы сказать, что моркови, печенья, сосисок или слив нет, говорим There aren't any carrots — «Моркови нет».
 
-**Что вы освоите:** назвать морковь, спросить о ней с any и сообщить о наличии с some
-**Новые слова:** carrot
+**Что вы освоите:** сказать, что нескольких предметов нет, фразой There aren't any…
+**Новые слова:** carrot, biscuit, sausage, plum
+**Возвращаются:** fridge, bowl, box, near, behind
 
 ---
 
 ## Интро 1
 
-### Одна морковка
+### Заказ из магазина
 
-`carrot` — «морковь, морковка». Одну морковку можно назвать `a carrot`, несколько — `carrots`. `This is a carrot` — «Это морковка». Даже самая длинная морковка остаётся одной: длина не добавляет ей `s`.
+Курьер привёз продукты, и вы сверяете пакеты со списком. Подруга ждёт морковь для супа, но в пакетах её нет. carrot — «морковь», а несколько морковок — carrots. В отрицании снова any, а are not сокращаем до aren't. Скажите ей: There aren't any carrots here. — «Здесь нет моркови».
 
-**Назовите одну морковку рядом.**
+**Подруга ждёт морковь для супа. Скажите ей, что моркови здесь нет.**
 
-- ✅ **This is a carrot.**
-- ❌ These are carrots. — *Это несколько морковок; здесь одна: `This is a carrot`.*
-- ❌ This is a carrots. — *После `a` нужна форма для одной морковки: `carrot`.*
+- ✅ **There aren't any carrots here.**
+- ❌ There isn't any carrots here. — *Морковок несколько, поэтому нужно aren't, а не isn't.*
+- ❌ There aren't some carrots here. — *В отрицании вместо some нужно any: There aren't any carrots.*
 
 ---
 
 ## Интро 2
 
-### Проверяем продукты и чашки
+### Печенье к чаю
 
-`There are some carrots` — «Есть немного моркови»: речь о нескольких морковках. `Are there any carrots?` — «Есть ли морковь?» Вы пока не знаете ответа. `cups` — «чашки»: `Are there any cups?` — «Есть ли чашки?» И морковок, и чашек несколько, поэтому начало — `Are there`.
+К чаю придут гости, и вы ищете печенье. Вы осматриваете стол и видите только пустую тарелку и крошки. biscuit — «печенье» (одно печенье), а несколько — biscuits. Скажите: There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья».
 
-**Спросите «Здесь есть морковь?» с `any`.**
+**Гости придут к чаю. Скажите, что рядом с тарелкой печенья нет.**
 
-- ✅ **Are there any carrots here?**
-- ❌ Is there any carrots here? — *`carrots` — несколько морковок: `Are there`.*
-- ❌ Are there a carrots here? — *Перед несколькими морковками не ставим `a`; здесь нужно `any carrots`.*
+- ✅ **There aren't any biscuits near the plate.**
+- ❌ There aren't any biscuit near the plate. — *Печенья несколько, поэтому на конце biscuits, а не biscuit.*
+- ❌ There are any biscuits near the plate. — *Чтобы сказать «нет», нужно aren't: There aren't any biscuits.*
 
 ---
 
 ## Интро 3
 
-### Ничего не забыли
+### Сосиски на огне
 
-`complete` — «полный, завершённый». Вы проверили список: все нужные дела записаны, ничего не пропущено. `It is complete` — «Он полный». Сокращённо: `It’s complete`. Это о списке, а не о том, что все дела уже сделаны. `laundrette` — «прачечная самообслуживания»: `Is there a laundrette here?` — «Здесь есть прачечная самообслуживания?»
+На выходные вы с друзьями собираетесь жарить сосиски на огне. Брат заглядывает за коробку, где лежал пакет, но там пусто. sausage — «сосиска», а несколько — sausages. Скажите ему: There aren't any sausages behind the box. — «За коробкой нет сосисок».
 
-**Все нужные пункты внесены в список. Скажите о нём «Он полный» с сокращением.**
+**Брат ищет сосиски для огня. Скажите ему, что за коробкой сосисок нет.**
 
-- ✅ **It's complete.**
-- ❌ It's broken. — *`broken` — сломанный; полный список — `complete`.*
-- ❌ It are complete. — *С `It` нужно `is`: `It’s complete`.*
+- ✅ **There aren't any sausages behind the box.**
+- ❌ There isn't any sausages behind the box. — *Сосисок несколько, поэтому нужно aren't, а не isn't.*
+- ❌ There aren't any sausage behind the box. — *Сосисок несколько, поэтому на конце sausages, а не sausage.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Чашки для гостей нашлись. Сообщите «Есть несколько чашек» с some**
-<!-- interaction_id: en:lesson-04:session-22:i01; family: phrase_builder -->
-Плитки: `cups` `some` `are` `There` `is` → **There are some cups.**
-*(плитка `is` лишняя: здесь нужно `are` — `There are some cups.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-22:i01; family: speed_match -->
+carrot — морковь · biscuit — печенье · sausage — сосиска · plum — слива
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-22:i02; family: listen_choose -->
-🔊 *carrot* → **carrot** · carrots · mushroom
-- carrots — *В записи первое слово — `carrot`, а в этом варианте — `carrots`.*
-- mushroom — *В записи первое слово — `carrot`, а в этом варианте — `mushroom`.*
+**2 · Карточка слова — carrot**
+<!-- interaction_id: en:lesson-04:session-22:word:carrot; family: word_card -->
+> **carrot** — морковь, морковка. There aren't any carrots here. — «Здесь нет моркови». Об оранжевом корнеплоде.
 
-**3 · Назовите одну морковку**
-<!-- interaction_id: en:lesson-04:session-22:i03; family: context_gap_grammar -->
-___ → **carrot** · carrots · cups
-- carrots — *`carrots` — несколько морковок; одна — `carrot`.*
-- cups — *`cups` — чашки; морковка — `carrot`.*
+**3 · Подруга показывает длинный оранжевый корнеплод и называет слово, а вы повторяете за ней**
+<!-- interaction_id: en:lesson-04:session-22:i02; family: scripted_repeat_compare -->
+🎙 **carrot**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-22:i04; family: speed_match -->
-carrot — морковка · complete — полный, завершённый · cups — чашки · laundrette — прачечная самообслуживания
+**4 · Подруга варит суп. Скажите ей полной фразой: рядом с холодильником нет моркови**
+<!-- interaction_id: en:lesson-04:session-22:i03; family: phrase_builder -->
+Плитки: `carrots` `any` `near` `the` `fridge` `There` `aren't` `isn't` → **There aren't any carrots near the fridge.**
+*(плитка `isn't` лишняя: здесь нужно `aren't` — `There aren't any carrots near the fridge.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-22:i05; family: listen_build_dictation -->
-🔊 *This is a carrot.* Плитки: `carrot` `a` `is` `This` `are` → **This is a carrot.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a carrot.`)*
+**5 · Карточка слова — biscuit**
+<!-- interaction_id: en:lesson-04:session-22:word:biscuit; family: word_card -->
+> **biscuit** — печенье. There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья». О сухой сладкой выпечке к чаю.
 
-**6 · Спросите «Здесь есть чашки?» с any**
-<!-- interaction_id: en:lesson-04:session-22:i06; family: phrase_builder -->
-Плитки: `here` `cups` `any` `there` `Are` → **Are there any cups here?**
+**6 · Сухая сладкая выпечка, которую едят к чаю. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-22:i04; family: context_gap_grammar -->
+___ → **biscuit** · bread · sugar
+- bread — *bread — это хлеб, а сухая сладкая выпечка к чаю называется biscuit.*
+- sugar — *sugar — это сахар, а сухая сладкая выпечка к чаю называется biscuit.*
 
-**7 · Вы внесли в список все нужные пункты. Скажите «Он полный» с сокращением**
-<!-- interaction_id: en:lesson-04:session-22:i07; family: scripted_repeat_compare -->
-🎙 **It's complete.**
+**7 · Послушайте сообщение подруги**
+<!-- interaction_id: en:lesson-04:session-22:i05; family: listen_choose -->
+🔊 *There aren't any biscuits here.* → **There aren't any biscuits here.** · There aren't any carrots here. · There are some biscuits here.
+- There aren't any carrots here. — *В записи говорят про `biscuits`, а в этом варианте про `carrots`.*
+- There are some biscuits here. — *В записи печенья нет: `There aren't any`, а в этом варианте оно есть: `There are some`.*
 
-**8 · Сообщите «Здесь есть немного моркови»**
+**8 · Карточка слова — sausage**
+<!-- interaction_id: en:lesson-04:session-22:word:sausage; family: word_card -->
+> **sausage** — сосиска. There aren't any sausages behind the box. — «За коробкой нет сосисок». О мясной колбаске для жарки.
+
+**9 · Брат достаёт из сумки розовую колбаску для жарки и называет слово, а вы повторяете за ним**
+<!-- interaction_id: en:lesson-04:session-22:i06; family: scripted_repeat_compare -->
+🎙 **sausage**
+
+**10 · Послушайте брата и соберите сообщение**
+<!-- interaction_id: en:lesson-04:session-22:i07; family: listen_build_dictation -->
+🔊 *There aren't any sausages here.* Плитки: `sausages` `any` `There` `aren't` `here` `isn't` → **There aren't any sausages here.**
+*(плитка `isn't` лишняя: здесь нужно `aren't` — `There aren't any sausages here.`)*
+
+**11 · Карточка слова — plum**
+<!-- interaction_id: en:lesson-04:session-22:word:plum; family: word_card -->
+> **plum** — слива. There aren't any plums near the bowl. — «Рядом с миской нет слив». О фиолетовом сладком фрукте с косточкой.
+
+**12 · Сладкий фиолетовый фрукт с косточкой, похожий на крупную вишню. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-22:i08; family: context_gap_grammar -->
-There are ___ carrots here. → **some** · a · an
-- a — *`a` относится к одной морковке; здесь нужно `some carrots`.*
-- an — *`an` тоже относится к одной вещи; здесь несколько морковок: `some carrots`.*
+___ → **plum** · cherry · pear
+- cherry — *cherry — это маленькая вишня, а крупный фиолетовый фрукт называется plum.*
+- pear — *pear — это зелёная груша, а крупный фиолетовый фрукт называется plum.*
 
-**9 · Послушайте вопрос**
-<!-- interaction_id: en:lesson-04:session-22:i09; family: listen_choose -->
-🔊 *Is there a laundrette?* → **Is there a laundrette?** · Is there a gym? · Is there a hotel?
-- Is there a gym? — *В записи последнее слово — `laundrette`, а в этом варианте — `gym`.*
-- Is there a hotel? — *В записи последнее слово — `laundrette`, а в этом варианте — `hotel`.*
+**13 · Подруга хочет слив к чаю. Скажите ей полной фразой: рядом с миской нет слив**
+<!-- interaction_id: en:lesson-04:session-22:i09; family: phrase_builder -->
+Плитки: `plums` `any` `near` `the` `bowl` `There` `aren't` `isn't` → **There aren't any plums near the bowl.**
+*(плитка `isn't` лишняя: здесь нужно `aren't` — `There aren't any plums near the bowl.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-22:i10; family: speed_match -->
-carrot — морковка · carrots — морковь, несколько морковок · cups — чашки · complete — полный, завершённый
+plum — слива · sausage — сосиска · carrot — морковь · biscuit — печенье
 
-**11 · Послушайте и соберите сообщение**
-<!-- interaction_id: en:lesson-04:session-22:i11; family: listen_build_dictation -->
-🔊 *There are some carrots.* Плитки: `carrots` `some` `are` `There` `is` → **There are some carrots.**
-*(плитка `is` лишняя: здесь нужно `are` — `There are some carrots.`)*
+**15 · Послушайте короткий ответ брата**
+<!-- interaction_id: en:lesson-04:session-22:i11; family: listen_choose -->
+🔊 *No, there aren't.* → **No, there aren't.** · Yes, there are. · No, there isn't.
+- Yes, there are. — *В записи ответ начинается с `No`, а в этом варианте — с `Yes`.*
+- No, there isn't. — *В записи `there aren't`, а в этом варианте `there isn't`.*
 
-**12 · Вы проверяете продукты по списку. Спросите «Есть ли морковь?» с any**
-<!-- interaction_id: en:lesson-04:session-22:i12; family: phrase_builder -->
-Плитки: `carrots` `any` `there` `Are` → **Are there any carrots?**
+**16 · Подруга говорит, что моркови нет совсем. Дополните её фразу**
+<!-- interaction_id: en:lesson-04:session-22:i12; family: context_gap_grammar -->
+There aren't ___ carrots here. → **any** · some · a
+- some — *В отрицании some не нужно: There aren't any carrots.*
+- a — *Слово a ставят перед одним предметом, а морковок несколько: any carrots.*
 
-**13 · Чтобы постирать вещи, спросите «Здесь есть прачечная самообслуживания?»**
-<!-- interaction_id: en:lesson-04:session-22:i13; family: scripted_repeat_compare -->
-🎙 **Is there a laundrette here?**
+**17 · Послушайте подругу и соберите сообщение**
+<!-- interaction_id: en:lesson-04:session-22:i13; family: listen_build_dictation -->
+🔊 *There aren't any biscuits near the door.* Плитки: `biscuits` `any` `near` `the` `door` `There` `aren't` `isn't` → **There aren't any biscuits near the door.**
+*(плитка `isn't` лишняя: здесь нужно `aren't` — `There aren't any biscuits near the door.`)*
 
-**14 · Спросите «Здесь есть морковь?»**
-<!-- interaction_id: en:lesson-04:session-22:i14; family: context_gap_grammar -->
-___ there any carrots here? → **Are** · Is · Am
-- Is — *`carrots` — несколько морковок: `Are there any carrots here?`.*
-- Am — *Вопрос о нескольких морковках начинается с `Are there`.*
+**18 · Брат ищет сосиски. Рядом с корзиной их нет. Скажите ему об этом полной фразой**
+<!-- interaction_id: en:lesson-04:session-22:i14; family: scripted_repeat_compare -->
+🎙 **There aren't any sausages near the basket.**
 
-**15 · Послушайте, что друг говорит о списке**
-<!-- interaction_id: en:lesson-04:session-22:i15; family: listen_choose -->
-🔊 *It is complete.* → **It is complete.** · It is broken. · It is wet.
-- It is broken. — *В записи последнее слово — `complete`, а в этом варианте — `broken`.*
-- It is wet. — *В записи последнее слово — `complete`, а в этом варианте — `wet`.*
+**19 · Подруга проверяет заказ. Скажите ей полной фразой: за миской нет моркови**
+<!-- interaction_id: en:lesson-04:session-22:i15; family: phrase_builder -->
+Плитки: `carrots` `any` `behind` `the` `bowl` `There` `aren't` `isn't` → **There aren't any carrots behind the bowl.**
+*(плитка `isn't` лишняя: здесь нужно `aren't` — `There aren't any carrots behind the bowl.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-22:i16; family: speed_match -->
-carrot — морковка · complete — полный, завершённый · cups — чашки · laundrette — прачечная самообслуживания
+biscuit — печенье · plum — слива · carrot — морковь · sausage — сосиска
 
-**17 · В другой день вы собираетесь варить суп. Спросите «Здесь есть морковь?» с any**
+**21 · Брат спрашивает, остались ли сливы. Слив нет. Скажите ему об этом полной фразой**
 <!-- interaction_id: en:lesson-04:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Are there any carrots here?**
-
+🎙 **There aren't any plums here.**

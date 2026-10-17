@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-32:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-32:i01:p1",
+              "target": "fountain",
+              "meaningByLocale": {
+                "ru": "фонтан",
+                "uk": "фонтан"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i01:p2",
+              "target": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь",
+                "uk": "голуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i01:p3",
+              "target": "monument",
+              "meaningByLocale": {
+                "ru": "памятник",
+                "uk": "пам’ятник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i01:p4",
+              "target": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка",
+                "uk": "торговий намет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fountain",
+            "pigeon",
+            "monument",
+            "stall"
+          ],
+          "rightColumn": [
+            "фонтан",
+            "голубь",
+            "памятник",
+            "торговая палатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:fountain",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fountain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:fountain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fountain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:fountain:audio",
+            "transcript": "fountain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:fountain:r1",
+              "targetText": "fountain",
+              "meaningByLocale": {
+                "ru": "фонтан. The fountain is near the library. — «Фонтан рядом с библиотекой». О месте, где вода бьёт вверх и стекает в чашу.",
+                "uk": "фонтан. The fountain is near the library. — «Фонтан поруч із бібліотекою». Про місце, де вода б’є вгору й стікає в чашу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fountain",
+            "definitionByLocale": {
+              "ru": "фонтан. The fountain is near the library. — «Фонтан рядом с библиотекой». О месте, где вода бьёт вверх и стекает в чашу.",
+              "uk": "фонтан. The fountain is near the library. — «Фонтан поруч із бібліотекою». Про місце, де вода б’є вгору й стікає в чашу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показывает каменную чашу с бьющей водой на площади, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Друг показывает каменную чашу с бьющей водой на площади, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i02:audio",
+            "transcript": "fountain"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "fountain",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ждёт у отеля. Скажите ему полной фразой: фонтан рядом с библиотекой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ждёт у отеля. Скажите ему полной фразой: фонтан рядом с библиотекой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fountain is near the library.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт у отеля. Скажите ему полной фразой: фонтан рядом с библиотекой",
+            "uk": "Друг чекає біля готелю. Скажіть йому повною фразою: фонтан поруч із бібліотекою"
+          },
+          "orderedTokens": [
+            "The",
+            "fountain",
+            "is",
+            "near",
+            "the",
+            "library"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ждёт у отеля. Скажите ему полной фразой: фонтан рядом с библиотекой",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The fountain is near the library.`",
+                "uk": "тут потрібно `is` — `The fountain is near the library.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:pigeon",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pigeon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:pigeon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pigeon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:pigeon:audio",
+            "transcript": "pigeon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:pigeon:r1",
+              "targetText": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь. The pigeons are near the fountain. — «Голуби рядом с фонтаном». О серой городской птице.",
+                "uk": "голуб. The pigeons are near the fountain. — «Голуби поруч із фонтаном». Про сірого міського птаха."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pigeon",
+            "definitionByLocale": {
+              "ru": "голубь. The pigeons are near the fountain. — «Голуби рядом с фонтаном». О серой городской птице.",
+              "uk": "голуб. The pigeons are near the fountain. — «Голуби поруч із фонтаном». Про сірого міського птаха."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i04:r1",
+            "text": "pigeon"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i04:r2",
+            "text": "statue"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i04:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+            "uk": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-32:i04:r1",
+              "text": "pigeon"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i04:r2",
+              "text": "statue"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i04:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i04:r2",
+              "correct": false,
+              "testedDimension": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "statue — это каменная статуя, а серая городская птица называется pigeon.",
+                "uk": "statue — це кам’яна статуя, а сірий міський птах називається pigeon."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i04:r3",
+              "correct": false,
+              "testedDimension": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а серая городская птица называется pigeon.",
+                "uk": "bench — це лавка, а сірий міський птах називається pigeon."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i05:r1",
+            "text": "The pigeon is under the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i05:r2",
+            "text": "The pigeon is on the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i05:r3",
+            "text": "The pigeons are under the bench."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i05:audio",
+            "transcript": "The pigeon is under the bench."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:i05:r1",
+              "targetText": "The pigeon is under the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i05:r2",
+              "targetText": "The pigeon is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i05:r3",
+              "targetText": "The pigeons are under the bench.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `under` — под скамейкой, а в этом варианте `on` — на скамейке.",
+                "uk": "У записі `under` — під лавкою, а в цьому варіанті `on` — на лавці."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи голубь один (`pigeon is`), а в этом варианте несколько.",
+                "uk": "У записі голуб один (`pigeon is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:monument",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — monument",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:monument:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — monument",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:monument:audio",
+            "transcript": "monument"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:monument:r1",
+              "targetText": "monument",
+              "meaningByLocale": {
+                "ru": "памятник. The monument is in the park. — «Памятник в парке». О высоком каменном знаке в память о людях или событии.",
+                "uk": "пам’ятник. The monument is in the park. — «Пам’ятник у парку». Про високий кам’яний знак на згадку про людей або подію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "monument",
+            "definitionByLocale": {
+              "ru": "памятник. The monument is in the park. — «Памятник в парке». О высоком каменном знаке в память о людях или событии.",
+              "uk": "пам’ятник. The monument is in the park. — «Пам’ятник у парку». Про високий кам’яний знак на згадку про людей або подію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Турист показывает высокий каменный знак на площади, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i06:audio"
+        ],
+        "accessibilityLabel": "Турист показывает высокий каменный знак на площади, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i06:audio",
+            "transcript": "monument"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "monument",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте туриста и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте туриста и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i07:audio",
+            "transcript": "The monument is in the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The monument is in the park.",
+          "orderedTokens": [
+            "The",
+            "monument",
+            "is",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте туриста и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The monument is in the park.`",
+                "uk": "тут потрібно `is` — `The monument is in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:stall",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:stall:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:stall:audio",
+            "transcript": "stall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:stall:r1",
+              "targetText": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка. The stall is under the awning. — «Палатка под навесом». О небольшой лавке на улице или рынке, где продают товары.",
+                "uk": "торговий намет. The stall is under the awning. — «Намет під навісом». Про невелику лавку на вулиці або ринку, де продають товари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stall",
+            "definitionByLocale": {
+              "ru": "торговая палатка. The stall is under the awning. — «Палатка под навесом». О небольшой лавке на улице или рынке, где продают товары.",
+              "uk": "торговий намет. The stall is under the awning. — «Намет під навісом». Про невелику лавку на вулиці або ринку, де продають товари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i08:r1",
+            "text": "stall"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r2",
+            "text": "table"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r3",
+            "text": "shelf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+            "uk": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-32:i08:r1",
+              "text": "stall"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i08:r2",
+              "text": "table"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i08:r3",
+              "text": "shelf"
+            }
+          ],
+          "testedDimension": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "table — это стол, а небольшая торговая лавка на рынке называется stall.",
+                "uk": "table — це стіл, а невелика торгова лавка на ринку називається stall."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "shelf — это полка, а небольшая торговая лавка на рынке называется stall.",
+                "uk": "shelf — це полиця, а невелика торгова лавка на ринку називається stall."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет палатку. Скажите ей полной фразой: палатка под навесом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет палатку. Скажите ей полной фразой: палатка под навесом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The stall is under the awning.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет палатку. Скажите ей полной фразой: палатка под навесом",
+            "uk": "Подруга шукає намет. Скажіть їй повною фразою: намет під навісом"
+          },
+          "orderedTokens": [
+            "The",
+            "stall",
+            "is",
+            "under",
+            "the",
+            "awning"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет палатку. Скажите ей полной фразой: палатка под навесом",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The stall is under the awning.`",
+                "uk": "тут потрібно `is` — `The stall is under the awning.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-32:i10:p1",
+              "target": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка",
+                "uk": "торговий намет"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i10:p2",
+              "target": "monument",
+              "meaningByLocale": {
+                "ru": "памятник",
+                "uk": "пам’ятник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i10:p3",
+              "target": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь",
+                "uk": "голуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stall",
+            "monument",
+            "pigeon",
+            "bench"
+          ],
+          "rightColumn": [
+            "торговая палатка",
+            "памятник",
+            "голубь",
+            "скамейка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i11:r1",
+            "text": "The cup is on the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i11:r2",
+            "text": "The cup is under the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i11:r3",
+            "text": "The cup is behind the bench."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i11:audio",
+            "transcript": "The cup is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:i11:r1",
+              "targetText": "The cup is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i11:r2",
+              "targetText": "The cup is under the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i11:r3",
+              "targetText": "The cup is behind the bench.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `on` — на скамейке, а в этом варианте `under` — под ней.",
+                "uk": "У записі `on` — на лавці, а в цьому варіанті `under` — під нею."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `on` — на скамейке, а в этом варианте `behind` — за ней.",
+                "uk": "У записі `on` — на лавці, а в цьому варіанті `behind` — за нею."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i12:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i12:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+            "uk": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The bench is ___ the fountain and the statue.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-32:i12:r1",
+              "text": "between"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i12:r2",
+              "text": "under"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i12:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "under — «под», а скамейка стоит посередине между двумя местами: нужно between.",
+                "uk": "under — «під», а лавка стоїть посередині між двома місцями: потрібно between."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "in — «внутри», а скамейка стоит посередине между двумя местами: нужно between.",
+                "uk": "in — «всередині», а лавка стоїть посередині між двома місцями: потрібно between."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i13:audio",
+            "transcript": "The pigeons are near the fountain."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The pigeons are near the fountain.",
+          "orderedTokens": [
+            "The",
+            "pigeons",
+            "are",
+            "near",
+            "the",
+            "fountain"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The pigeons are near the fountain.`",
+                "uk": "тут потрібно `are` — `The pigeons are near the fountain.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, где фонтан. Ответьте ему: фонтан за отелем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, где фонтан. Ответьте ему: фонтан за отелем",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i14:audio",
+            "transcript": "The fountain is behind the hotel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The fountain is behind the hotel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Турист ищет памятник. Скажите ему полной фразой: памятник между парком и школой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Турист ищет памятник. Скажите ему полной фразой: памятник между парком и школой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The monument is between the park and the school.",
+          "localizedMeaning": {
+            "ru": "Турист ищет памятник. Скажите ему полной фразой: памятник между парком и школой",
+            "uk": "Турист шукає пам’ятник. Скажіть йому повною фразою: пам’ятник між парком і школою"
+          },
+          "orderedTokens": [
+            "The",
+            "monument",
+            "is",
+            "between",
+            "the",
+            "park",
+            "and",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Турист ищет памятник. Скажите ему полной фразой: памятник между парком и школой",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The monument is between the park and the school.`",
+                "uk": "тут потрібно `is` — `The monument is between the park and the school.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-32:i16:p1",
+              "target": "fountain",
+              "meaningByLocale": {
+                "ru": "фонтан",
+                "uk": "фонтан"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i16:p2",
+              "target": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь",
+                "uk": "голуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i16:p3",
+              "target": "monument",
+              "meaningByLocale": {
+                "ru": "памятник",
+                "uk": "пам’ятник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i16:p4",
+              "target": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка",
+                "uk": "торговий намет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fountain",
+            "pigeon",
+            "monument",
+            "stall"
+          ],
+          "rightColumn": [
+            "фонтан",
+            "голубь",
+            "памятник",
+            "торговая палатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В другом городе друг ищет палатку. Скажите ему: «Палатка рядом с фонтаном»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "В другом городе друг ищет палатку. Скажите ему: «Палатка рядом с фонтаном»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i17:audio",
+            "transcript": "The stall is next to the fountain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The stall is next to the fountain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-32:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-32:i01:p1",
+              "target": "fountain",
+              "meaningByLocale": {
+                "ru": "фонтан",
+                "uk": "фонтан"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i01:p2",
+              "target": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь",
+                "uk": "голуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i01:p3",
+              "target": "monument",
+              "meaningByLocale": {
+                "ru": "памятник",
+                "uk": "пам’ятник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i01:p4",
+              "target": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка",
+                "uk": "торговий намет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fountain",
+            "pigeon",
+            "monument",
+            "stall"
+          ],
+          "rightColumn": [
+            "фонтан",
+            "голуб",
+            "пам’ятник",
+            "торговий намет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:fountain",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fountain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:fountain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fountain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:fountain:audio",
+            "transcript": "fountain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:fountain:r1",
+              "targetText": "fountain",
+              "meaningByLocale": {
+                "ru": "фонтан. The fountain is near the library. — «Фонтан рядом с библиотекой». О месте, где вода бьёт вверх и стекает в чашу.",
+                "uk": "фонтан. The fountain is near the library. — «Фонтан поруч із бібліотекою». Про місце, де вода б’є вгору й стікає в чашу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fountain",
+            "definitionByLocale": {
+              "ru": "фонтан. The fountain is near the library. — «Фонтан рядом с библиотекой». О месте, где вода бьёт вверх и стекает в чашу.",
+              "uk": "фонтан. The fountain is near the library. — «Фонтан поруч із бібліотекою». Про місце, де вода б’є вгору й стікає в чашу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показує кам’яну чашу з водою, що б’є, на площі, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Друг показує кам’яну чашу з водою, що б’є, на площі, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i02:audio",
+            "transcript": "fountain"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "fountain",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг чекає біля готелю. Скажіть йому повною фразою: фонтан поруч із бібліотекою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг чекає біля готелю. Скажіть йому повною фразою: фонтан поруч із бібліотекою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fountain is near the library.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт у отеля. Скажите ему полной фразой: фонтан рядом с библиотекой",
+            "uk": "Друг чекає біля готелю. Скажіть йому повною фразою: фонтан поруч із бібліотекою"
+          },
+          "orderedTokens": [
+            "The",
+            "fountain",
+            "is",
+            "near",
+            "the",
+            "library"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг чекає біля готелю. Скажіть йому повною фразою: фонтан поруч із бібліотекою",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The fountain is near the library.`",
+                "uk": "тут потрібно `is` — `The fountain is near the library.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:pigeon",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pigeon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:pigeon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pigeon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:pigeon:audio",
+            "transcript": "pigeon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:pigeon:r1",
+              "targetText": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь. The pigeons are near the fountain. — «Голуби рядом с фонтаном». О серой городской птице.",
+                "uk": "голуб. The pigeons are near the fountain. — «Голуби поруч із фонтаном». Про сірого міського птаха."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pigeon",
+            "definitionByLocale": {
+              "ru": "голубь. The pigeons are near the fountain. — «Голуби рядом с фонтаном». О серой городской птице.",
+              "uk": "голуб. The pigeons are near the fountain. — «Голуби поруч із фонтаном». Про сірого міського птаха."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i04:r1",
+            "text": "pigeon"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i04:r2",
+            "text": "statue"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i04:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?",
+            "uk": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-32:i04:r1",
+              "text": "pigeon"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i04:r2",
+              "text": "statue"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i04:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i04:r2",
+              "correct": false,
+              "testedDimension": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "statue — это каменная статуя, а серая городская птица называется pigeon.",
+                "uk": "statue — це кам’яна статуя, а сірий міський птах називається pigeon."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i04:r3",
+              "correct": false,
+              "testedDimension": "Сірий міський птах, який ходить по площі й дзьобає крихти. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а серая городская птица называется pigeon.",
+                "uk": "bench — це лавка, а сірий міський птах називається pigeon."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i05:r1",
+            "text": "The pigeon is under the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i05:r2",
+            "text": "The pigeon is on the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i05:r3",
+            "text": "The pigeons are under the bench."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i05:audio",
+            "transcript": "The pigeon is under the bench."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:i05:r1",
+              "targetText": "The pigeon is under the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i05:r2",
+              "targetText": "The pigeon is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i05:r3",
+              "targetText": "The pigeons are under the bench.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `under` — под скамейкой, а в этом варианте `on` — на скамейке.",
+                "uk": "У записі `under` — під лавкою, а в цьому варіанті `on` — на лавці."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи голубь один (`pigeon is`), а в этом варианте несколько.",
+                "uk": "У записі голуб один (`pigeon is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:monument",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — monument",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:monument:audio"
+        ],
+        "accessibilityLabel": "Картка слова — monument",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:monument:audio",
+            "transcript": "monument"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:monument:r1",
+              "targetText": "monument",
+              "meaningByLocale": {
+                "ru": "памятник. The monument is in the park. — «Памятник в парке». О высоком каменном знаке в память о людях или событии.",
+                "uk": "пам’ятник. The monument is in the park. — «Пам’ятник у парку». Про високий кам’яний знак на згадку про людей або подію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "monument",
+            "definitionByLocale": {
+              "ru": "памятник. The monument is in the park. — «Памятник в парке». О высоком каменном знаке в память о людях или событии.",
+              "uk": "пам’ятник. The monument is in the park. — «Пам’ятник у парку». Про високий кам’яний знак на згадку про людей або подію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Турист показує високий кам’яний знак на площі, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i06:audio"
+        ],
+        "accessibilityLabel": "Турист показує високий кам’яний знак на площі, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i06:audio",
+            "transcript": "monument"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "monument",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте туриста й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте туриста й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i07:audio",
+            "transcript": "The monument is in the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The monument is in the park.",
+          "orderedTokens": [
+            "The",
+            "monument",
+            "is",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте туриста й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The monument is in the park.`",
+                "uk": "тут потрібно `is` — `The monument is in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:word:stall",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:word:stall:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:word:stall:audio",
+            "transcript": "stall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:word:stall:r1",
+              "targetText": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка. The stall is under the awning. — «Палатка под навесом». О небольшой лавке на улице или рынке, где продают товары.",
+                "uk": "торговий намет. The stall is under the awning. — «Намет під навісом». Про невелику лавку на вулиці або ринку, де продають товари."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stall",
+            "definitionByLocale": {
+              "ru": "торговая палатка. The stall is under the awning. — «Палатка под навесом». О небольшой лавке на улице или рынке, где продают товары.",
+              "uk": "торговий намет. The stall is under the awning. — «Намет під навісом». Про невелику лавку на вулиці або ринку, де продають товари."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i08:r1",
+            "text": "stall"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r2",
+            "text": "table"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i08:r3",
+            "text": "shelf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?",
+            "uk": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-32:i08:r1",
+              "text": "stall"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i08:r2",
+              "text": "table"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i08:r3",
+              "text": "shelf"
+            }
+          ],
+          "testedDimension": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "table — это стол, а небольшая торговая лавка на рынке называется stall.",
+                "uk": "table — це стіл, а невелика торгова лавка на ринку називається stall."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Невелика лавка на ринку, де продають фрукти й сувеніри. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "shelf — это полка, а небольшая торговая лавка на рынке называется stall.",
+                "uk": "shelf — це полиця, а невелика торгова лавка на ринку називається stall."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає намет. Скажіть їй повною фразою: намет під навісом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає намет. Скажіть їй повною фразою: намет під навісом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The stall is under the awning.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет палатку. Скажите ей полной фразой: палатка под навесом",
+            "uk": "Подруга шукає намет. Скажіть їй повною фразою: намет під навісом"
+          },
+          "orderedTokens": [
+            "The",
+            "stall",
+            "is",
+            "under",
+            "the",
+            "awning"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає намет. Скажіть їй повною фразою: намет під навісом",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The stall is under the awning.`",
+                "uk": "тут потрібно `is` — `The stall is under the awning.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-32:i10:p1",
+              "target": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка",
+                "uk": "торговий намет"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i10:p2",
+              "target": "monument",
+              "meaningByLocale": {
+                "ru": "памятник",
+                "uk": "пам’ятник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i10:p3",
+              "target": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь",
+                "uk": "голуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stall",
+            "monument",
+            "pigeon",
+            "bench"
+          ],
+          "rightColumn": [
+            "торговий намет",
+            "пам’ятник",
+            "голуб",
+            "лавка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i11:r1",
+            "text": "The cup is on the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i11:r2",
+            "text": "The cup is under the bench."
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i11:r3",
+            "text": "The cup is behind the bench."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i11:audio",
+            "transcript": "The cup is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-32:i11:r1",
+              "targetText": "The cup is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i11:r2",
+              "targetText": "The cup is under the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i11:r3",
+              "targetText": "The cup is behind the bench.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `on` — на скамейке, а в этом варианте `under` — под ней.",
+                "uk": "У записі `on` — на лавці, а в цьому варіанті `under` — під нею."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `on` — на скамейке, а в этом варианте `behind` — за ней.",
+                "uk": "У записі `on` — на лавці, а в цьому варіанті `behind` — за нею."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-32:i12:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-32:i12:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово",
+            "uk": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The bench is ___ the fountain and the statue.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-32:i12:r1",
+              "text": "between"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i12:r2",
+              "text": "under"
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i12:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "under — «под», а скамейка стоит посередине между двумя местами: нужно between.",
+                "uk": "under — «під», а лавка стоїть посередині між двома місцями: потрібно between."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Лавка стоїть рівно посередині між фонтаном і статуєю. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "in — «внутри», а скамейка стоит посередине между двумя местами: нужно between.",
+                "uk": "in — «всередині», а лавка стоїть посередині між двома місцями: потрібно between."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i13:audio",
+            "transcript": "The pigeons are near the fountain."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The pigeons are near the fountain.",
+          "orderedTokens": [
+            "The",
+            "pigeons",
+            "are",
+            "near",
+            "the",
+            "fountain"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The pigeons are near the fountain.`",
+                "uk": "тут потрібно `are` — `The pigeons are near the fountain.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, де фонтан. Відповідайте йому: фонтан за готелем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Друг питає, де фонтан. Відповідайте йому: фонтан за готелем",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i14:audio",
+            "transcript": "The fountain is behind the hotel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The fountain is behind the hotel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Турист шукає пам’ятник. Скажіть йому повною фразою: пам’ятник між парком і школою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Турист шукає пам’ятник. Скажіть йому повною фразою: пам’ятник між парком і школою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The monument is between the park and the school.",
+          "localizedMeaning": {
+            "ru": "Турист ищет памятник. Скажите ему полной фразой: памятник между парком и школой",
+            "uk": "Турист шукає пам’ятник. Скажіть йому повною фразою: пам’ятник між парком і школою"
+          },
+          "orderedTokens": [
+            "The",
+            "monument",
+            "is",
+            "between",
+            "the",
+            "park",
+            "and",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-32:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Турист шукає пам’ятник. Скажіть йому повною фразою: пам’ятник між парком і школою",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The monument is between the park and the school.`",
+                "uk": "тут потрібно `is` — `The monument is between the park and the school.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-32:i16:p1",
+              "target": "fountain",
+              "meaningByLocale": {
+                "ru": "фонтан",
+                "uk": "фонтан"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i16:p2",
+              "target": "pigeon",
+              "meaningByLocale": {
+                "ru": "голубь",
+                "uk": "голуб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i16:p3",
+              "target": "monument",
+              "meaningByLocale": {
+                "ru": "памятник",
+                "uk": "пам’ятник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-32:i16:p4",
+              "target": "stall",
+              "meaningByLocale": {
+                "ru": "торговая палатка",
+                "uk": "торговий намет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fountain",
+            "pigeon",
+            "monument",
+            "stall"
+          ],
+          "rightColumn": [
+            "фонтан",
+            "голуб",
+            "пам’ятник",
+            "торговий намет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В іншому місті друг шукає намет. Скажіть йому: «Намет поруч із фонтаном»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "В іншому місті друг шукає намет. Скажіть йому: «Намет поруч із фонтаном»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-32:i17:audio",
+            "transcript": "The stall is next to the fountain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The stall is next to the fountain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-32:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:word:fountain",
+      "correctText": "fountain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i02",
+      "correctText": "fountain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i03",
+      "correctText": "The fountain is near the library.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:word:pigeon",
+      "correctText": "pigeon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i04",
+      "correctText": "pigeon",
+      "correctResponseId": "en:lesson-04:session-32:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i05",
+      "correctText": "The pigeon is under the bench.",
+      "correctResponseId": "en:lesson-04:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:word:monument",
+      "correctText": "monument",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i06",
+      "correctText": "monument",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i07",
+      "correctText": "The monument is in the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:word:stall",
+      "correctText": "stall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i08",
+      "correctText": "stall",
+      "correctResponseId": "en:lesson-04:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i09",
+      "correctText": "The stall is under the awning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i11",
+      "correctText": "The cup is on the bench.",
+      "correctResponseId": "en:lesson-04:session-32:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i12",
+      "correctText": "between",
+      "correctResponseId": "en:lesson-04:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i13",
+      "correctText": "The pigeons are near the fountain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i14",
+      "correctText": "The fountain is behind the hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i15",
+      "correctText": "The monument is between the park and the school.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-32:i17",
+      "correctText": "The stall is next to the fountain.",
+      "correctResponseId": null
+    }
+  ]
+}

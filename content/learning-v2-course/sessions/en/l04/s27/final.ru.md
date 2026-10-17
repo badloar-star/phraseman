@@ -1,138 +1,152 @@
-# Английский · Урок 4 · Занятие 27 — Обед под навесом
+# Английский · Урок 4 · Занятие 27 — Что лежит снизу
 
-**Ситуация.** Друг устроил обед во дворе и щедро угощает гостей. Вы объясняете, где стол с супом и где стоят машины. Над столом натянут навес.
+**Ситуация.** Вы проводите день с друзьями на улице: идёт дождь, потом выходит солнце, а запасной ключ спрятан у двери. Вы говорите, что находится снизу, словом under, и не путаете его с on.
 
-**Что вы освоите:** назвать навес и описать расположение вещей с under, on, next to и between
-**Новые слова:** awning
+**Что вы освоите:** сказать, что предмет находится под другим предметом, словом under
+**Новые слова:** awning, doormat, parasol, archway
+**Возвращаются:** key, bag, chair, bench, towel, bicycle
 
 ---
 
 ## Интро 1
 
-### Навес над столом
+### Дождь у кафе
 
-`awning` — «навес», например тканевый навес над входом или столиками. Один — `an awning`: слово начинается с гласного звука. `The table is under the awning` — «Стол под навесом». `under` — под ним, `on` — на нём. Обедать лучше `under the awning`: на самом навесе столу делать нечего.
+Вы с подругой застали дождь у кафе, а зонтов у вас нет. Над входом натянута плотная ткань, и скамейка стоит прямо под ней, там сухо. awning — «навес над входом». Слово under значит «под»: The bench is under the awning — «Скамейка под навесом».
 
-**Стол стоит под навесом. Выберите описание.**
+**Подруга ищет, где укрыться от дождя. Скажите ей, что скамейка под навесом.**
 
-- ✅ **The table is under the awning.**
-- ❌ The table is on the awning. — *`on` — на поверхности навеса; стол стоит под ним: `under`.*
-- ❌ The table are under the awning. — *Один стол: `The table is`.*
+- ✅ **The bench is under the awning.**
+- ❌ The bench is on the awning. — *on — «на поверхности», а скамейка стоит снизу: нужно under.*
+- ❌ The bench is under awning. — *Навес вы оба видите, поэтому перед ним нужно the: under the awning.*
 
 ---
 
 ## Интро 2
 
-### Суп и машины
+### Запасной ключ
 
-`soup` — «суп»: `The soup is on the table` — «Суп на столе». Речь о супе в посуде, а не о разлитом супе. `cars` — «машины»: `The cars are next to the house` — «Машины рядом с домом». `between` — «между»: `The table is between the cars` — «Стол между машинами». Для нескольких машин — `are`, для стола и супа — `is`.
+Вы уезжаете на целый день, а подруга придёт позже и не сможет войти. Запасной ключ вы оставили у двери, не на виду, под небольшим ковриком, о который вытирают ноги. doormat — «коврик у двери». The key is under the doormat — «Ключ под ковриком».
 
-**Машины припаркованы рядом с домом. Выберите описание.**
+**Подруга звонит и спрашивает, где ключ. Скажите ей, что он под ковриком.**
 
-- ✅ **The cars are next to the house.**
-- ❌ The cars is next to the house. — *Машин несколько: `The cars are`.*
-- ❌ The cars are in the house. — *`in` — внутри; в условии рядом с домом: `next to`.*
+- ✅ **The key is under the doormat.**
+- ❌ The key is on the doormat. — *on — «сверху», а ключ лежит снизу: нужно under.*
+- ❌ The key is under doormat. — *Коврик вы оба знаете, поэтому перед ним нужно the: under the doormat.*
 
 ---
 
 ## Интро 3
 
-### Щедрый хозяин
+### День в парке
 
-`generous` — «щедрый». Друг принёс угощение для всех и охотно делится. `He is generous` — «Он щедрый». Сокращённо: `He’s generous`. Это не просто «у него много»: важно, что он готов делиться с другими.
+Вы с сестрой пришли в парк на целый день. Солнце печёт, поэтому вы поставили большой зонт от солнца и сидите в его тени, а вещи сложили рядом, чтобы они не нагрелись. parasol — «зонт от солнца». Сумка одна: The bag is under the parasol — «Сумка под зонтом».
 
-**Друг охотно угощает всех. Скажите «Он щедрый» с сокращением.**
+**Сестра ищет сумку. Скажите ей, что она под зонтом.**
 
-- ✅ **He's generous.**
-- ❌ He's careless. — *`careless` — неосторожный; щедрый — `generous`.*
-- ❌ He are generous. — *С `He` нужно `is`: `He’s generous`.*
+- ✅ **The bag is under the parasol.**
+- ❌ The bag is in the parasol. — *in — «внутри», а сумка стоит в тени, снизу: нужно under.*
+- ❌ The bag are under the parasol. — *Сумка одна, поэтому нужно is: The bag is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Друг охотно делится угощением. Скажите «Он щедрый» без сокращения**
-<!-- interaction_id: en:lesson-04:session-27:i01; family: phrase_builder -->
-Плитки: `generous` `is` `He` `are` → **He is generous.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is generous.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-27:i01; family: speed_match -->
+awning — навес над входом · doormat — коврик у двери · parasol — зонт от солнца · archway — арка
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-27:i02; family: listen_choose -->
-🔊 *awning* → **awning** · window · worktop
-- window — *В записи первое слово — `awning`, а в этом варианте — `window`.*
-- worktop — *В записи первое слово — `awning`, а в этом варианте — `worktop`.*
+**2 · Карточка слова — awning**
+<!-- interaction_id: en:lesson-04:session-27:word:awning; family: word_card -->
+> **awning** — навес над входом. The chairs are under the awning. — «Стулья под навесом». О ткани или крыше над входом, которая защищает от дождя.
 
-**3 · Назовите тканевый навес одним словом**
-<!-- interaction_id: en:lesson-04:session-27:i03; family: context_gap_grammar -->
-___ → **awning** · table · sink
-- table — *`table` — стол; навес — `awning`.*
-- sink — *`sink` — раковина; навес — `awning`.*
+**3 · Подруга показывает тканевый навес над входом в кафе, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-27:i02; family: scripted_repeat_compare -->
+🎙 **awning**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-27:i04; family: speed_match -->
-awning — навес · generous — щедрый · cars — машины · soup — суп
+**4 · Подруга ищет, где укрыться от дождя. Скажите ей полной фразой: стулья под навесом**
+<!-- interaction_id: en:lesson-04:session-27:i03; family: phrase_builder -->
+Плитки: `chairs` `the` `under` `are` `The` `awning` `is` → **The chairs are under the awning.**
+*(плитка `is` лишняя: здесь нужно `are` — `The chairs are under the awning.`)*
 
-**5 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-27:i05; family: listen_build_dictation -->
-🔊 *The table is under the awning.* Плитки: `awning` `the` `under` `is` `table` `The` `are` → **The table is under the awning.**
-*(плитка `are` лишняя: здесь нужно `is` — `The table is under the awning.`)*
+**5 · Карточка слова — doormat**
+<!-- interaction_id: en:lesson-04:session-27:word:doormat; family: word_card -->
+> **doormat** — коврик у двери. The key is under the doormat. — «Ключ под ковриком». О коврике, о который вытирают ноги.
 
-**6 · Суп в посуде стоит на столе. Скажите «Суп на столе»**
-<!-- interaction_id: en:lesson-04:session-27:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `soup` `The` `are` → **The soup is on the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `The soup is on the table.`)*
+**6 · Небольшой коврик у входной двери, о который вытирают ноги. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-27:i04; family: context_gap_grammar -->
+___ → **doormat** · rug · towel
+- rug — *rug — это большой ковёр в комнате, а коврик у двери называется doormat.*
+- towel — *towel — это полотенце, а коврик у двери называется doormat.*
 
-**7 · Друг приготовил угощение всем и охотно делится. Скажите «Он щедрый» с сокращением**
-<!-- interaction_id: en:lesson-04:session-27:i07; family: scripted_repeat_compare -->
-🎙 **He's generous.**
+**7 · Послушайте подругу**
+<!-- interaction_id: en:lesson-04:session-27:i05; family: listen_choose -->
+🔊 *The keys are under the doormat.* → **The keys are under the doormat.** · The keys are on the doormat. · The key is under the doormat.
+- The keys are on the doormat. — *В записи `under` — под ковриком, а в этом варианте `on` — на коврике.*
+- The key is under the doormat. — *В записи ключей несколько (`keys are`), а в этом варианте один.*
 
-**8 · Машины стоят рядом с домом, снаружи. Выберите слова**
+**8 · Карточка слова — parasol**
+<!-- interaction_id: en:lesson-04:session-27:word:parasol; family: word_card -->
+> **parasol** — зонт от солнца. The towels are under the parasol. — «Полотенца под зонтом». О большом зонте, который даёт тень.
+
+**9 · Сестра показывает большой зонт от солнца, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-27:i06; family: scripted_repeat_compare -->
+🎙 **parasol**
+
+**10 · Послушайте сестру и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-27:i07; family: listen_build_dictation -->
+🔊 *The towels are under the parasol.* Плитки: `towels` `the` `under` `are` `The` `parasol` `is` → **The towels are under the parasol.**
+*(плитка `is` лишняя: здесь нужно `are` — `The towels are under the parasol.`)*
+
+**11 · Карточка слова — archway**
+<!-- interaction_id: en:lesson-04:session-27:word:archway; family: word_card -->
+> **archway** — арка. The bicycles are under the archway. — «Велосипеды под аркой». О высоком проходе в форме дуги.
+
+**12 · Высокий проход в форме дуги между двумя домами. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-27:i08; family: context_gap_grammar -->
-The cars are ___ the house. → **next to** · in · on
-- in — *`in` — внутри; здесь рядом: `next to`.*
-- on — *`on` — на поверхности; рядом с домом — `next to the house`.*
+___ → **archway** · bridge · door
+- bridge — *bridge — это мост, а проход-дуга между домами называется archway.*
+- door — *door — это дверь, а проход-дуга между домами называется archway.*
 
-**9 · Послушайте, где суп**
-<!-- interaction_id: en:lesson-04:session-27:i09; family: listen_choose -->
-🔊 *The soup is under the awning.* → **The soup is under the awning.** · The soup is under the table. · The soup is under the window.
-- The soup is under the table. — *В записи последнее слово — `awning`, а в этом варианте — `table`.*
-- The soup is under the window. — *В записи последнее слово — `awning`, а в этом варианте — `window`.*
+**13 · Вы ищете велосипеды. Скажите брату полной фразой: велосипеды под аркой**
+<!-- interaction_id: en:lesson-04:session-27:i09; family: phrase_builder -->
+Плитки: `bicycles` `the` `under` `are` `The` `archway` `is` → **The bicycles are under the archway.**
+*(плитка `is` лишняя: здесь нужно `are` — `The bicycles are under the archway.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-27:i10; family: speed_match -->
-awning — навес · under — под · on — на поверхности · between — между
+archway — арка · parasol — зонт от солнца · awning — навес над входом · bench — скамейка
 
-**11 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-27:i11; family: listen_build_dictation -->
-🔊 *The cars are under the awning.* Плитки: `awning` `the` `under` `are` `cars` `The` `is` → **The cars are under the awning.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cars are under the awning.`)*
+**15 · Послушайте брата**
+<!-- interaction_id: en:lesson-04:session-27:i11; family: listen_choose -->
+🔊 *The bag is under the table.* → **The bag is under the table.** · The bag is on the table. · The bags are under the table.
+- The bag is on the table. — *В записи `under` — под столом, а в этом варианте `on` — на столе.*
+- The bags are under the table. — *В записи сумка одна (`bag is`), а в этом варианте несколько.*
 
-**12 · Друг показывает на тканевый навес. Назовите его: «Это навес»**
-<!-- interaction_id: en:lesson-04:session-27:i12; family: phrase_builder -->
-Плитки: `awning` `an` `is` `This` `a` → **This is an awning.**
-*(плитка `a` лишняя: здесь нужно `an` — `This is an awning.`)*
+**16 · Туфли стоят снизу, под кроватью. Выберите слово**
+<!-- interaction_id: en:lesson-04:session-27:i12; family: context_gap_grammar -->
+The shoes are ___ the bed. → **under** · on · in
+- on — *on — «на поверхности», а туфли стоят снизу: нужно under.*
+- in — *in — «внутри», а туфли стоят снизу: нужно under.*
 
-**13 · Стол стоит между двумя припаркованными машинами. Скажите «Стол между машинами»**
-<!-- interaction_id: en:lesson-04:session-27:i13; family: scripted_repeat_compare -->
-🎙 **The table is between the cars.**
+**17 · Послушайте брата и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-27:i13; family: listen_build_dictation -->
+🔊 *The bag is under the chair.* Плитки: `bag` `the` `under` `is` `The` `chair` `are` → **The bag is under the chair.**
+*(плитка `are` лишняя: здесь нужно `is` — `The bag is under the chair.`)*
 
-**14 · Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-27:i14; family: context_gap_grammar -->
-The soup is ___ the cups. → **between** · under · in
-- under — *`under` — под; между — `between`.*
-- in — *`in` — внутри; между чашками — `between the cups`.*
+**18 · Подруга спрашивает, где скамейка. Ответьте ей: скамейка под навесом**
+<!-- interaction_id: en:lesson-04:session-27:i14; family: scripted_repeat_compare -->
+🎙 **The bench is under the awning.**
 
-**15 · Послушайте сообщение о навесе**
-<!-- interaction_id: en:lesson-04:session-27:i15; family: listen_choose -->
-🔊 *That is an awning.* → **That is an awning.** · This is an awning. · That is an apple.
-- This is an awning. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is an apple. — *В записи последнее слово — `awning`, а в этом варианте — `apple`.*
+**19 · Сестра ищет сумки. Скажите ей полной фразой: сумки под зонтом**
+<!-- interaction_id: en:lesson-04:session-27:i15; family: phrase_builder -->
+Плитки: `bags` `the` `under` `are` `The` `parasol` `is` → **The bags are under the parasol.**
+*(плитка `is` лишняя: здесь нужно `are` — `The bags are under the parasol.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-27:i16; family: speed_match -->
-awning — навес · generous — щедрый · cars — машины · soup — суп
+awning — навес над входом · doormat — коврик у двери · parasol — зонт от солнца · archway — арка
 
-**17 · В другом дворе друг ищет стол для обеда. Стол под тканевым навесом. Скажите «Стол под навесом»**
+**21 · В другом доме друг ищет запасной ключ. Он под ковриком. Скажите ему: «Ключ под ковриком»**
 <!-- interaction_id: en:lesson-04:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The table is under the awning.**
-
+🎙 **The key is under the doormat.**

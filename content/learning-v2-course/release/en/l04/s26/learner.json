@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-26:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы признаёте свою неосторожность. Скажите «Я неосторожный» без сокращения",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы признаёте свою неосторожность. Скажите «Я неосторожный» без сокращения",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am careless.",
-        "localizedMeaning": {
-          "ru": "Вы признаёте свою неосторожность. Скажите «Я неосторожный» без сокращения",
-          "uk": "Ви визнаєте свою необережність. Скажіть «Я необережний» без скорочення"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "careless"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-26:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Вы признаёте свою неосторожность. Скажите «Я неосторожный» без сокращения",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am careless.`",
-              "uk": "тут потрібно `am` — `I am careless.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-26:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-26:i02:r1",
-          "text": "worktop"
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i02:r2",
-          "text": "window"
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i02:r3",
-          "text": "table"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-26:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-26:i02:audio",
-          "transcript": "worktop"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-26:i02:r1",
-            "targetText": "worktop",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i02:r2",
-            "targetText": "window",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i02:r3",
-            "targetText": "table",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-26:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `worktop`, а в этом варианте — `window`.",
-              "uk": "У записі перше слово — `worktop`, а в цьому варіанті — `window`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `worktop`, а в этом варианте — `table`.",
-              "uk": "У записі перше слово — `worktop`, а в цьому варіанті — `table`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-26:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите кухонную столешницу одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-26:i03:r1",
-          "text": "worktop"
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i03:r2",
-          "text": "sink"
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i03:r3",
-          "text": "window"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите кухонную столешницу одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите кухонную столешницу одним словом",
-          "uk": "Назвіть кухонну стільницю одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-26:i03:r1",
-            "text": "worktop"
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i03:r2",
-            "text": "sink"
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i03:r3",
-            "text": "window"
-          }
-        ],
-        "testedDimension": "Назовите кухонную столешницу одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-26:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите кухонную столешницу одним словом",
-            "feedbackByLocale": {
-              "ru": "`sink` — раковина; столешница — `worktop`.",
-              "uk": "`sink` — раковина; стільниця — `worktop`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите кухонную столешницу одним словом",
-            "feedbackByLocale": {
-              "ru": "`window` — окно; столешница — `worktop`.",
-              "uk": "`window` — вікно; стільниця — `worktop`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-26:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -207,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-26:i04:p1",
+            "pairId": "en:lesson-04:session-26:i01:p1",
             "target": "worktop",
             "meaningByLocale": {
               "ru": "кухонная столешница",
@@ -215,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-26:i04:p2",
-            "target": "careless",
+            "pairId": "en:lesson-04:session-26:i01:p2",
+            "target": "windowsill",
             "meaningByLocale": {
-              "ru": "неосторожный",
-              "uk": "необережний"
+              "ru": "подоконник",
+              "uk": "підвіконня"
             }
           },
           {
-            "pairId": "en:lesson-04:session-26:i04:p3",
-            "target": "cats",
+            "pairId": "en:lesson-04:session-26:i01:p3",
+            "target": "radiator",
             "meaningByLocale": {
-              "ru": "кошки",
-              "uk": "коти"
+              "ru": "батарея отопления",
+              "uk": "радіатор опалення"
             }
           },
           {
-            "pairId": "en:lesson-04:session-26:i04:p4",
-            "target": "milk",
+            "pairId": "en:lesson-04:session-26:i01:p4",
+            "target": "noticeboard",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "доска объявлений",
+              "uk": "дошка оголошень"
             }
           }
         ],
         "leftColumn": [
           "worktop",
-          "careless",
-          "cats",
-          "milk"
+          "windowsill",
+          "radiator",
+          "noticeboard"
         ],
         "rightColumn": [
           "кухонная столешница",
-          "неосторожный",
-          "кошки",
-          "молоко"
+          "подоконник",
+          "батарея отопления",
+          "доска объявлений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,123 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-26:word:worktop",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите описание",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — worktop",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-26:i05:audio"
+        "en:lesson-04:session-26:word:worktop:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите описание",
+      "accessibilityLabel": "Карточка слова — worktop",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-26:i05:audio",
-          "transcript": "The milk is on the worktop."
+          "audioTargetId": "en:lesson-04:session-26:word:worktop:audio",
+          "transcript": "worktop"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The milk is on the worktop.",
-        "orderedTokens": [
-          "The",
-          "milk",
-          "is",
-          "on",
-          "the",
-          "worktop"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-26:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите описание",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The milk is on the worktop.`",
-              "uk": "тут потрібно `is` — `The milk is on the worktop.`"
+            "responseId": "en:lesson-04:session-26:word:worktop:r1",
+            "targetText": "worktop",
+            "meaningByLocale": {
+              "ru": "кухонная столешница. The plates are on the worktop. — «Тарелки на столешнице». О ровной рабочей поверхности на кухне.",
+              "uk": "кухонна стільниця. The plates are on the worktop. — «Тарілки на стільниці». Про рівну робочу поверхню на кухні."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worktop",
+          "definitionByLocale": {
+            "ru": "кухонная столешница. The plates are on the worktop. — «Тарелки на столешнице». О ровной рабочей поверхности на кухне.",
+            "uk": "кухонна стільниця. The plates are on the worktop. — «Тарілки на стільниці». Про рівну робочу поверхню на кухні."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Кошки под столешницей»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Кошки под столешницей»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The cats are under the worktop.",
-        "localizedMeaning": {
-          "ru": "Скажите «Кошки под столешницей»",
-          "uk": "Скажіть «Коти під стільницею»"
-        },
-        "orderedTokens": [
-          "The",
-          "cats",
-          "are",
-          "under",
-          "the",
-          "worktop"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-26:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Скажите «Кошки под столешницей»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cats are under the worktop.`",
-              "uk": "тут потрібно `are` — `The cats are under the worktop.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-26:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-26:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы оставили открытый пакет у края, и он упал. Признайте «Я неосторожный» с сокращением",
+      "prompt": "Друг показывает ровную рабочую поверхность на кухне, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-26:i07:audio"
+        "en:lesson-04:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Вы оставили открытый пакет у края, и он упал. Признайте «Я неосторожный» с сокращением",
+      "accessibilityLabel": "Друг показывает ровную рабочую поверхность на кухне, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-26:i07:audio",
-          "transcript": "I'm careless."
+          "audioTargetId": "en:lesson-04:session-26:i02:audio",
+          "transcript": "worktop"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm careless.",
+        "targetPhrase": "worktop",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,68 +153,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-26:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет тарелки. Скажите ему полной фразой: тарелки на столешнице",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ищет тарелки. Скажите ему полной фразой: тарелки на столешнице",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The plates are on the worktop.",
+        "localizedMeaning": {
+          "ru": "Друг ищет тарелки. Скажите ему полной фразой: тарелки на столешнице",
+          "uk": "Друг шукає тарілки. Скажіть йому повною фразою: тарілки на стільниці"
+        },
+        "orderedTokens": [
+          "The",
+          "plates",
+          "are",
+          "on",
+          "the",
+          "worktop"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-26:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг ищет тарелки. Скажите ему полной фразой: тарелки на столешнице",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The plates are on the worktop.`",
+              "uk": "тут потрібно `are` — `The plates are on the worktop.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:word:windowsill",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — windowsill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-26:word:windowsill:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — windowsill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-26:word:windowsill:audio",
+          "transcript": "windowsill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-26:word:windowsill:r1",
+            "targetText": "windowsill",
+            "meaningByLocale": {
+              "ru": "подоконник. The candle is on the windowsill. — «Свеча на подоконнике». О широкой полке под окном.",
+              "uk": "підвіконня. The candle is on the windowsill. — «Свічка на підвіконні». Про широку полицю під вікном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "windowsill",
+          "definitionByLocale": {
+            "ru": "подоконник. The candle is on the windowsill. — «Свеча на подоконнике». О широкой полке под окном.",
+            "uk": "підвіконня. The candle is on the windowsill. — «Свічка на підвіконні». Про широку полицю під вікном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Столешница рядом с раковиной, не под ней. Выберите слова",
+      "prompt": "Широкая полка под окном, на которую ставят цветы и свечи. Как она называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-26:i08:r1",
-          "text": "next to"
+          "responseId": "en:lesson-04:session-26:i04:r1",
+          "text": "windowsill"
         },
         {
-          "responseId": "en:lesson-04:session-26:i08:r2",
-          "text": "under"
+          "responseId": "en:lesson-04:session-26:i04:r2",
+          "text": "worktop"
         },
         {
-          "responseId": "en:lesson-04:session-26:i08:r3",
-          "text": "in"
+          "responseId": "en:lesson-04:session-26:i04:r3",
+          "text": "shelf"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Столешница рядом с раковиной, не под ней. Выберите слова",
+      "accessibilityLabel": "Широкая полка под окном, на которую ставят цветы и свечи. Как она называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Столешница рядом с раковиной, не под ней. Выберите слова",
-          "uk": "Стільниця поруч із раковиною, не під нею. Виберіть слова"
+          "ru": "Широкая полка под окном, на которую ставят цветы и свечи. Как она называется по-английски?",
+          "uk": "Широка полиця під вікном, на яку ставлять квіти й свічки. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "The worktop is ___ the sink.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-26:i08:r1",
-            "text": "next to"
+            "responseId": "en:lesson-04:session-26:i04:r1",
+            "text": "windowsill"
           },
           {
-            "responseId": "en:lesson-04:session-26:i08:r2",
-            "text": "under"
+            "responseId": "en:lesson-04:session-26:i04:r2",
+            "text": "worktop"
           },
           {
-            "responseId": "en:lesson-04:session-26:i08:r3",
-            "text": "in"
+            "responseId": "en:lesson-04:session-26:i04:r3",
+            "text": "shelf"
           }
         ],
-        "testedDimension": "Столешница рядом с раковиной, не под ней. Выберите слова",
+        "testedDimension": "Широкая полка под окном, на которую ставят цветы и свечи. Как она называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-26:i08:r2",
+            "responseId": "en:lesson-04:session-26:i04:r2",
             "correct": false,
-            "testedDimension": "Столешница рядом с раковиной, не под ней. Выберите слова",
+            "testedDimension": "Широкая полка под окном, на которую ставят цветы и свечи. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`under` — под; рядом с — `next to`.",
-              "uk": "`under` — під; поруч із — `next to`."
+              "ru": "worktop — это столешница на кухне, а полка под окном называется windowsill.",
+              "uk": "worktop — це стільниця на кухні, а полиця під вікном називається windowsill."
             }
           },
           {
-            "responseId": "en:lesson-04:session-26:i08:r3",
+            "responseId": "en:lesson-04:session-26:i04:r3",
             "correct": false,
-            "testedDimension": "Столешница рядом с раковиной, не под ней. Выберите слова",
+            "testedDimension": "Широкая полка под окном, на которую ставят цветы и свечи. Как она называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`in` — внутри; здесь рядом: `next to`.",
-              "uk": "`in` — усередині; тут поруч: `next to`."
+              "ru": "shelf — это обычная полка, а полка под окном называется windowsill.",
+              "uk": "shelf — це звичайна полиця, а полиця під вікном називається windowsill."
             }
           }
         ]
@@ -465,73 +312,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-26:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где молоко",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-26:i09:r1",
-          "text": "The milk is between the cups."
+          "responseId": "en:lesson-04:session-26:i05:r1",
+          "text": "The candle is on the windowsill."
         },
         {
-          "responseId": "en:lesson-04:session-26:i09:r2",
-          "text": "The milk is between the boxes."
+          "responseId": "en:lesson-04:session-26:i05:r2",
+          "text": "The candle is on the worktop."
         },
         {
-          "responseId": "en:lesson-04:session-26:i09:r3",
-          "text": "The milk is between the bags."
+          "responseId": "en:lesson-04:session-26:i05:r3",
+          "text": "The candles are on the windowsill."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-26:i09:audio"
+        "en:lesson-04:session-26:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, где молоко",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-26:i09:audio",
-          "transcript": "The milk is between the cups."
+          "audioTargetId": "en:lesson-04:session-26:i05:audio",
+          "transcript": "The candle is on the windowsill."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-26:i09:r1",
-            "targetText": "The milk is between the cups.",
+            "responseId": "en:lesson-04:session-26:i05:r1",
+            "targetText": "The candle is on the windowsill.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-26:i09:r2",
-            "targetText": "The milk is between the boxes.",
+            "responseId": "en:lesson-04:session-26:i05:r2",
+            "targetText": "The candle is on the worktop.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-26:i09:r3",
-            "targetText": "The milk is between the bags.",
+            "responseId": "en:lesson-04:session-26:i05:r3",
+            "targetText": "The candles are on the windowsill.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-26:i09:r2",
+            "responseId": "en:lesson-04:session-26:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где молоко",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cups`, а в этом варианте — `boxes`.",
-              "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `boxes`."
+              "ru": "В записи `windowsill`, а в этом варианте `worktop`.",
+              "uk": "У записі `windowsill`, а в цьому варіанті `worktop`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-26:i09:r3",
+            "responseId": "en:lesson-04:session-26:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где молоко",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cups`, а в этом варианте — `bags`.",
-              "uk": "У записі останнє слово — `cups`, а в цьому варіанті — `bags`."
+              "ru": "В записи свеча одна (`candle is`), а в этом варианте несколько.",
+              "uk": "У записі свічка одна (`candle is`), а в цьому варіанті кілька."
             }
           }
         ],
@@ -541,9 +388,294 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i10",
+      "interactionId": "en:lesson-04:session-26:word:radiator",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — radiator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-26:word:radiator:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — radiator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-26:word:radiator:audio",
+          "transcript": "radiator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-26:word:radiator:r1",
+            "targetText": "radiator",
+            "meaningByLocale": {
+              "ru": "батарея отопления. The gloves are on the radiator. — «Перчатки на батарее». О тёплой трубе, которая греет комнату.",
+              "uk": "батарея опалення. The gloves are on the radiator. — «Рукавички на батареї». Про теплу трубу, яка гріє кімнату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "radiator",
+          "definitionByLocale": {
+            "ru": "батарея отопления. The gloves are on the radiator. — «Перчатки на батарее». О тёплой трубе, которая греет комнату.",
+            "uk": "батарея опалення. The gloves are on the radiator. — «Рукавички на батареї». Про теплу трубу, яка гріє кімнату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг показывает тёплую батарею под окном, а вы повторяете за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Друг показывает тёплую батарею под окном, а вы повторяете за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-26:i06:audio",
+          "transcript": "radiator"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "radiator",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте друга и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте друга и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-26:i07:audio",
+          "transcript": "The gloves are on the radiator."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The gloves are on the radiator.",
+        "orderedTokens": [
+          "The",
+          "gloves",
+          "are",
+          "on",
+          "the",
+          "radiator"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-26:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте друга и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The gloves are on the radiator.`",
+              "uk": "тут потрібно `are` — `The gloves are on the radiator.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:word:noticeboard",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noticeboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-26:word:noticeboard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noticeboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-26:word:noticeboard:audio",
+          "transcript": "noticeboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-26:word:noticeboard:r1",
+            "targetText": "noticeboard",
+            "meaningByLocale": {
+              "ru": "доска объявлений. The notice is on the noticeboard. — «Объявление на доске объявлений». О доске на стене, где висят бумажки.",
+              "uk": "дошка оголошень. The notice is on the noticeboard. — «Оголошення на дошці оголошень». Про дошку на стіні, де висять папірці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noticeboard",
+          "definitionByLocale": {
+            "ru": "доска объявлений. The notice is on the noticeboard. — «Объявление на доске объявлений». О доске на стене, где висят бумажки.",
+            "uk": "дошка оголошень. The notice is on the noticeboard. — «Оголошення на дошці оголошень». Про дошку на стіні, де висять папірці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доска на стене, на которую вешают бумажные объявления. Как она называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-26:i08:r1",
+          "text": "noticeboard"
+        },
+        {
+          "responseId": "en:lesson-04:session-26:i08:r2",
+          "text": "picture"
+        },
+        {
+          "responseId": "en:lesson-04:session-26:i08:r3",
+          "text": "mirror"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доска на стене, на которую вешают бумажные объявления. Как она называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Доска на стене, на которую вешают бумажные объявления. Как она называется по-английски?",
+          "uk": "Дошка на стіні, на яку вішають паперові оголошення. Як вона називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-26:i08:r1",
+            "text": "noticeboard"
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i08:r2",
+            "text": "picture"
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i08:r3",
+            "text": "mirror"
+          }
+        ],
+        "testedDimension": "Доска на стене, на которую вешают бумажные объявления. Как она называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Доска на стене, на которую вешают бумажные объявления. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "picture — это картина, а доска для объявлений называется noticeboard.",
+              "uk": "picture — це картина, а дошка для оголошень називається noticeboard."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Доска на стене, на которую вешают бумажные объявления. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "mirror — это зеркало, а доска для объявлений называется noticeboard.",
+              "uk": "mirror — це дзеркало, а дошка для оголошень називається noticeboard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы повесили лист у входа. Скажите соседу полной фразой: объявление на доске объявлений",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы повесили лист у входа. Скажите соседу полной фразой: объявление на доске объявлений",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The notice is on the noticeboard.",
+        "localizedMeaning": {
+          "ru": "Вы повесили лист у входа. Скажите соседу полной фразой: объявление на доске объявлений",
+          "uk": "Ви повісили аркуш біля входу. Скажіть сусідові повною фразою: оголошення на дошці оголошень"
+        },
+        "orderedTokens": [
+          "The",
+          "notice",
+          "is",
+          "on",
+          "the",
+          "noticeboard"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-26:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы повесили лист у входа. Скажите соседу полной фразой: объявление на доске объявлений",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The notice is on the noticeboard.`",
+              "uk": "тут потрібно `is` — `The notice is on the noticeboard.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -556,48 +688,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-26:i10:p1",
-            "target": "worktop",
+            "target": "noticeboard",
             "meaningByLocale": {
-              "ru": "кухонная столешница",
-              "uk": "кухонна стільниця"
+              "ru": "доска объявлений",
+              "uk": "дошка оголошень"
             }
           },
           {
             "pairId": "en:lesson-04:session-26:i10:p2",
-            "target": "on",
+            "target": "radiator",
             "meaningByLocale": {
-              "ru": "на поверхности",
-              "uk": "на поверхні"
+              "ru": "батарея отопления",
+              "uk": "радіатор опалення"
             }
           },
           {
             "pairId": "en:lesson-04:session-26:i10:p3",
-            "target": "under",
+            "target": "windowsill",
             "meaningByLocale": {
-              "ru": "под",
-              "uk": "під"
+              "ru": "подоконник",
+              "uk": "підвіконня"
             }
           },
           {
             "pairId": "en:lesson-04:session-26:i10:p4",
-            "target": "between",
+            "target": "plate",
             "meaningByLocale": {
-              "ru": "между",
-              "uk": "між"
+              "ru": "тарелка",
+              "uk": "тарілка"
             }
           }
         ],
         "leftColumn": [
-          "worktop",
-          "on",
-          "under",
-          "between"
+          "noticeboard",
+          "radiator",
+          "windowsill",
+          "plate"
         ],
         "rightColumn": [
-          "кухонная столешница",
-          "на поверхности",
-          "под",
-          "между"
+          "доска объявлений",
+          "батарея отопления",
+          "подоконник",
+          "тарелка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -615,92 +747,189 @@
     },
     {
       "interactionId": "en:lesson-04:session-26:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите описание",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте друга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-26:i11:r1",
+          "text": "The apple is on the plate."
+        },
+        {
+          "responseId": "en:lesson-04:session-26:i11:r2",
+          "text": "The apple is in the bowl."
+        },
+        {
+          "responseId": "en:lesson-04:session-26:i11:r3",
+          "text": "The apples are on the plate."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-26:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите описание",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-26:i11:audio",
-          "transcript": "The cats are next to the table."
+          "transcript": "The apple is on the plate."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cats are next to the table.",
-        "orderedTokens": [
-          "The",
-          "cats",
-          "are",
-          "next",
-          "to",
-          "the",
-          "table"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-26:i11:tile:d1",
+            "responseId": "en:lesson-04:session-26:i11:r1",
+            "targetText": "The apple is on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i11:r2",
+            "targetText": "The apple is in the bowl.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i11:r3",
+            "targetText": "The apples are on the plate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-26:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите описание",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cats are next to the table.`",
-              "uk": "тут потрібно `are` — `The cats are next to the table.`"
+              "ru": "В записи `on the plate` — на тарелке, а в этом варианте `in the bowl` — в миске.",
+              "uk": "У записі `on the plate` — на тарілці, а в цьому варіанті `in the bowl` — у мисці."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте друга",
+            "feedbackByLocale": {
+              "ru": "В записи яблоко одно (`apple is`), а в этом варианте несколько.",
+              "uk": "У записі яблуко одне (`apple is`), а в цьому варіанті кілька."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-26:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Пакет переставили на стол. Скажите «Молоко на столе»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Чашка стоит на столешнице, а не внутри неё. Выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-26:i12:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-26:i12:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-04:session-26:i12:r3",
+          "text": "near"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пакет переставили на стол. Скажите «Молоко на столе»",
+      "accessibilityLabel": "Чашка стоит на столешнице, а не внутри неё. Выберите слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The milk is on the table.",
-        "localizedMeaning": {
-          "ru": "Пакет переставили на стол. Скажите «Молоко на столе»",
-          "uk": "Пакет переставили на стіл. Скажіть «Молоко на столі»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Чашка стоит на столешнице, а не внутри неё. Выберите слово",
+          "uk": "Чашка стоїть на стільниці, а не всередині неї. Виберіть слово"
         },
+        "gappedTargetPhrase": "The cup is ___ the worktop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-26:i12:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i12:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i12:r3",
+            "text": "near"
+          }
+        ],
+        "testedDimension": "Чашка стоит на столешнице, а не внутри неё. Выберите слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Чашка стоит на столешнице, а не внутри неё. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "in — «внутри», а чашка стоит сверху: нужно on.",
+              "uk": "in — «всередині», а чашка стоїть зверху: потрібно on."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Чашка стоит на столешнице, а не внутри неё. Выберите слово",
+            "feedbackByLocale": {
+              "ru": "near — «рядом», а чашка стоит прямо сверху: нужно on.",
+              "uk": "near — «поруч», а чашка стоїть просто зверху: потрібно on."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-26:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте друга и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте друга и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-26:i13:audio",
+          "transcript": "The clock is on the wall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The clock is on the wall.",
         "orderedTokens": [
           "The",
-          "milk",
+          "clock",
           "is",
           "on",
           "the",
-          "table"
+          "wall"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-26:i12:tile:d1",
+            "responseId": "en:lesson-04:session-26:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Пакет переставили на стол. Скажите «Молоко на столе»",
+            "testedDimension": "Послушайте друга и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The milk is on the table.`",
-              "uk": "тут потрібно `is` — `The milk is on the table.`"
+              "ru": "здесь нужно `is` — `The clock is on the wall.`",
+              "uk": "тут потрібно `is` — `The clock is on the wall.`"
             }
           }
         ],
@@ -712,26 +941,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-26:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Столешница рядом с окном. Скажите, где она",
+      "prompt": "Подруга спрашивает, где цветы. Ответьте ей: цветы на подоконнике",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-26:i13:audio"
+        "en:lesson-04:session-26:i14:audio"
       ],
-      "accessibilityLabel": "Столешница рядом с окном. Скажите, где она",
+      "accessibilityLabel": "Подруга спрашивает, где цветы. Ответьте ей: цветы на подоконнике",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-26:i13:audio",
-          "transcript": "The worktop is next to the window."
+          "audioTargetId": "en:lesson-04:session-26:i14:audio",
+          "transcript": "The plants are on the windowsill."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The worktop is next to the window.",
+        "targetPhrase": "The plants are on the windowsill.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -745,153 +974,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-26:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Кошки лежат на полу под столом. Выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-26:i14:r1",
-          "text": "under"
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i14:r2",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i14:r3",
-          "text": "in"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-26:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете ключи. Скажите брату полной фразой: ключи на столешнице",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Кошки лежат на полу под столом. Выберите слово",
+      "accessibilityLabel": "Вы ищете ключи. Скажите брату полной фразой: ключи на столешнице",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Кошки лежат на полу под столом. Выберите слово",
-          "uk": "Коти лежать на підлозі під столом. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "The keys are on the worktop.",
+        "localizedMeaning": {
+          "ru": "Вы ищете ключи. Скажите брату полной фразой: ключи на столешнице",
+          "uk": "Ви шукаєте ключі. Скажіть братові повною фразою: ключі на стільниці"
         },
-        "gappedTargetPhrase": "The cats are ___ the table.",
-        "gapOptions": [
+        "orderedTokens": [
+          "The",
+          "keys",
+          "are",
+          "on",
+          "the",
+          "worktop"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-26:i14:r1",
-            "text": "under"
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i14:r2",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i14:r3",
-            "text": "in"
+            "responseId": "en:lesson-04:session-26:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы ищете ключи. Скажите брату полной фразой: ключи на столешнице",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The keys are on the worktop.`",
+              "uk": "тут потрібно `are` — `The keys are on the worktop.`"
+            }
           }
         ],
-        "testedDimension": "Кошки лежат на полу под столом. Выберите слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-26:i14:r2",
-            "correct": false,
-            "testedDimension": "Кошки лежат на полу под столом. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`on` — на поверхности стола; здесь под ним: `under`.",
-              "uk": "`on` — на поверхні столу; тут під ним: `under`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i14:r3",
-            "correct": false,
-            "testedDimension": "Кошки лежат на полу под столом. Выберите слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; под столом — `under the table`.",
-              "uk": "`in` — усередині; під столом — `under the table`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-26:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте описание кухни",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-26:i15:r1",
-          "text": "The worktop is between the windows."
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i15:r2",
-          "text": "The worktop is between the doors."
-        },
-        {
-          "responseId": "en:lesson-04:session-26:i15:r3",
-          "text": "The worktop is between the tables."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-26:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте описание кухни",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-26:i15:audio",
-          "transcript": "The worktop is between the windows."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-26:i15:r1",
-            "targetText": "The worktop is between the windows.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i15:r2",
-            "targetText": "The worktop is between the doors.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i15:r3",
-            "targetText": "The worktop is between the tables.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-26:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте описание кухни",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `windows`, а в этом варианте — `doors`.",
-              "uk": "У записі останнє слово — `windows`, а в цьому варіанті — `doors`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-26:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте описание кухни",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `windows`, а в этом варианте — `tables`.",
-              "uk": "У записі останнє слово — `windows`, а в цьому варіанті — `tables`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-26:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -913,40 +1044,40 @@
           },
           {
             "pairId": "en:lesson-04:session-26:i16:p2",
-            "target": "careless",
+            "target": "windowsill",
             "meaningByLocale": {
-              "ru": "неосторожный",
-              "uk": "необережний"
+              "ru": "подоконник",
+              "uk": "підвіконня"
             }
           },
           {
             "pairId": "en:lesson-04:session-26:i16:p3",
-            "target": "cats",
+            "target": "radiator",
             "meaningByLocale": {
-              "ru": "кошки",
-              "uk": "коти"
+              "ru": "батарея отопления",
+              "uk": "радіатор опалення"
             }
           },
           {
             "pairId": "en:lesson-04:session-26:i16:p4",
-            "target": "milk",
+            "target": "noticeboard",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "доска объявлений",
+              "uk": "дошка оголошень"
             }
           }
         ],
         "leftColumn": [
           "worktop",
-          "careless",
-          "cats",
-          "milk"
+          "windowsill",
+          "radiator",
+          "noticeboard"
         ],
         "rightColumn": [
           "кухонная столешница",
-          "неосторожный",
-          "кошки",
-          "молоко"
+          "подоконник",
+          "батарея отопления",
+          "доска объявлений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -964,25 +1095,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-26:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На другой кухне друг ищет молоко. Пакет стоит на столешнице. Скажите «Молоко на столешнице»",
+      "prompt": "В другой квартире друг ищет шарф. Он на батарее. Скажите ему: «Шарф на батарее»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-26:i17:audio"
       ],
-      "accessibilityLabel": "На другой кухне друг ищет молоко. Пакет стоит на столешнице. Скажите «Молоко на столешнице»",
+      "accessibilityLabel": "В другой квартире друг ищет шарф. Он на батарее. Скажите ему: «Шарф на батарее»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-26:i17:audio",
-          "transcript": "The milk is on the worktop."
+          "transcript": "The scarf is on the radiator."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The milk is on the worktop.",
+        "targetPhrase": "The scarf is on the radiator.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1004,11 +1135,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3d884407a38a877ec3b74198ec11c483d06fb8f5b6eb7bca8b2cb0e56af290b6"
+  "learnerFingerprint": "28e8de1bbdcd187b8c7707c32bba25ace12215026c0007bd649e731e47cd67f3"
 }

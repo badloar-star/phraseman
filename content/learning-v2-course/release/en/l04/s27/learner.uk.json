@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-27:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг охоче ділиться частуванням. Скажіть «Він щедрий» без скорочення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг охоче ділиться частуванням. Скажіть «Він щедрий» без скорочення",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is generous.",
-        "localizedMeaning": {
-          "ru": "Друг охотно делится угощением. Скажите «Он щедрый» без сокращения",
-          "uk": "Друг охоче ділиться частуванням. Скажіть «Він щедрий» без скорочення"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "generous"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-27:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Друг охоче ділиться частуванням. Скажіть «Він щедрий» без скорочення",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is generous.`",
-              "uk": "тут потрібно `is` — `He is generous.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-27:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-27:i02:r1",
-          "text": "awning"
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i02:r2",
-          "text": "window"
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i02:r3",
-          "text": "worktop"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-27:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-27:i02:audio",
-          "transcript": "awning"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-27:i02:r1",
-            "targetText": "awning",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i02:r2",
-            "targetText": "window",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i02:r3",
-            "targetText": "worktop",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-27:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `awning`, а в этом варианте — `window`.",
-              "uk": "У записі перше слово — `awning`, а в цьому варіанті — `window`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `awning`, а в этом варианте — `worktop`.",
-              "uk": "У записі перше слово — `awning`, а в цьому варіанті — `worktop`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-27:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть тканинний навіс одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-27:i03:r1",
-          "text": "awning"
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i03:r2",
-          "text": "table"
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i03:r3",
-          "text": "sink"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть тканинний навіс одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите тканевый навес одним словом",
-          "uk": "Назвіть тканинний навіс одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-27:i03:r1",
-            "text": "awning"
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i03:r2",
-            "text": "table"
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i03:r3",
-            "text": "sink"
-          }
-        ],
-        "testedDimension": "Назвіть тканинний навіс одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-27:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть тканинний навіс одним словом",
-            "feedbackByLocale": {
-              "ru": "`table` — стол; навес — `awning`.",
-              "uk": "`table` — стіл; навіс — `awning`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть тканинний навіс одним словом",
-            "feedbackByLocale": {
-              "ru": "`sink` — раковина; навес — `awning`.",
-              "uk": "`sink` — раковина; навіс — `awning`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-27:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -207,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-27:i04:p1",
+            "pairId": "en:lesson-04:session-27:i01:p1",
             "target": "awning",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "навес над входом",
+              "uk": "навіс над входом"
             }
           },
           {
-            "pairId": "en:lesson-04:session-27:i04:p2",
-            "target": "generous",
+            "pairId": "en:lesson-04:session-27:i01:p2",
+            "target": "doormat",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "коврик у двери",
+              "uk": "килимок біля дверей"
             }
           },
           {
-            "pairId": "en:lesson-04:session-27:i04:p3",
-            "target": "cars",
+            "pairId": "en:lesson-04:session-27:i01:p3",
+            "target": "parasol",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "зонт от солнца",
+              "uk": "парасоля від сонця"
             }
           },
           {
-            "pairId": "en:lesson-04:session-27:i04:p4",
-            "target": "soup",
+            "pairId": "en:lesson-04:session-27:i01:p4",
+            "target": "archway",
             "meaningByLocale": {
-              "ru": "суп",
-              "uk": "суп"
+              "ru": "арка",
+              "uk": "арка"
             }
           }
         ],
         "leftColumn": [
           "awning",
-          "generous",
-          "cars",
-          "soup"
+          "doormat",
+          "parasol",
+          "archway"
         ],
         "rightColumn": [
-          "навіс",
-          "щедрий",
-          "машини",
-          "суп"
+          "навіс над входом",
+          "килимок біля дверей",
+          "парасоля від сонця",
+          "арка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,123 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-27:word:awning",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть опис",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — awning",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-27:i05:audio"
+        "en:lesson-04:session-27:word:awning:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть опис",
+      "accessibilityLabel": "Картка слова — awning",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-27:i05:audio",
-          "transcript": "The table is under the awning."
+          "audioTargetId": "en:lesson-04:session-27:word:awning:audio",
+          "transcript": "awning"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The table is under the awning.",
-        "orderedTokens": [
-          "The",
-          "table",
-          "is",
-          "under",
-          "the",
-          "awning"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-27:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть опис",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The table is under the awning.`",
-              "uk": "тут потрібно `is` — `The table is under the awning.`"
+            "responseId": "en:lesson-04:session-27:word:awning:r1",
+            "targetText": "awning",
+            "meaningByLocale": {
+              "ru": "навес над входом. The chairs are under the awning. — «Стулья под навесом». О ткани или крыше над входом, которая защищает от дождя.",
+              "uk": "навіс над входом. The chairs are under the awning. — «Стільці під навісом». Про тканину або дах над входом, які захищають від дощу."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awning",
+          "definitionByLocale": {
+            "ru": "навес над входом. The chairs are under the awning. — «Стулья под навесом». О ткани или крыше над входом, которая защищает от дождя.",
+            "uk": "навіс над входом. The chairs are under the awning. — «Стільці під навісом». Про тканину або дах над входом, які захищають від дощу."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Суп у посуді стоїть на столі. Скажіть «Суп на столі»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Суп у посуді стоїть на столі. Скажіть «Суп на столі»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The soup is on the table.",
-        "localizedMeaning": {
-          "ru": "Суп в посуде стоит на столе. Скажите «Суп на столе»",
-          "uk": "Суп у посуді стоїть на столі. Скажіть «Суп на столі»"
-        },
-        "orderedTokens": [
-          "The",
-          "soup",
-          "is",
-          "on",
-          "the",
-          "table"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-27:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Суп у посуді стоїть на столі. Скажіть «Суп на столі»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The soup is on the table.`",
-              "uk": "тут потрібно `is` — `The soup is on the table.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-27:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-27:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг приготував частування всім і охоче ділиться. Скажіть «Він щедрий» зі скороченням",
+      "prompt": "Подруга показує тканинний навіс над входом у кафе, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-27:i07:audio"
+        "en:lesson-04:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Друг приготував частування всім і охоче ділиться. Скажіть «Він щедрий» зі скороченням",
+      "accessibilityLabel": "Подруга показує тканинний навіс над входом у кафе, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-27:i07:audio",
-          "transcript": "He's generous."
+          "audioTargetId": "en:lesson-04:session-27:i02:audio",
+          "transcript": "awning"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's generous.",
+        "targetPhrase": "awning",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,68 +153,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга шукає, де вкритися від дощу. Скажіть їй повною фразою: стільці під навісом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга шукає, де вкритися від дощу. Скажіть їй повною фразою: стільці під навісом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chairs are under the awning.",
+        "localizedMeaning": {
+          "ru": "Подруга ищет, где укрыться от дождя. Скажите ей полной фразой: стулья под навесом",
+          "uk": "Подруга шукає, де вкритися від дощу. Скажіть їй повною фразою: стільці під навісом"
+        },
+        "orderedTokens": [
+          "The",
+          "chairs",
+          "are",
+          "under",
+          "the",
+          "awning"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга шукає, де вкритися від дощу. Скажіть їй повною фразою: стільці під навісом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The chairs are under the awning.`",
+              "uk": "тут потрібно `are` — `The chairs are under the awning.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:word:doormat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — doormat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:word:doormat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — doormat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:word:doormat:audio",
+          "transcript": "doormat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-27:word:doormat:r1",
+            "targetText": "doormat",
+            "meaningByLocale": {
+              "ru": "коврик у двери. The key is under the doormat. — «Ключ под ковриком». О коврике, о который вытирают ноги.",
+              "uk": "килимок біля дверей. The key is under the doormat. — «Ключ під килимком». Про килимок, об який витирають ноги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doormat",
+          "definitionByLocale": {
+            "ru": "коврик у двери. The key is under the doormat. — «Ключ под ковриком». О коврике, о который вытирают ноги.",
+            "uk": "килимок біля дверей. The key is under the doormat. — «Ключ під килимком». Про килимок, об який витирають ноги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Машини стоять поруч із будинком, зовні. Виберіть слова",
+      "prompt": "Невеликий килимок біля вхідних дверей, об який витирають ноги. Як він називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-27:i08:r1",
-          "text": "next to"
+          "responseId": "en:lesson-04:session-27:i04:r1",
+          "text": "doormat"
         },
         {
-          "responseId": "en:lesson-04:session-27:i08:r2",
-          "text": "in"
+          "responseId": "en:lesson-04:session-27:i04:r2",
+          "text": "rug"
         },
         {
-          "responseId": "en:lesson-04:session-27:i08:r3",
-          "text": "on"
+          "responseId": "en:lesson-04:session-27:i04:r3",
+          "text": "towel"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Машини стоять поруч із будинком, зовні. Виберіть слова",
+      "accessibilityLabel": "Невеликий килимок біля вхідних дверей, об який витирають ноги. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Машины стоят рядом с домом, снаружи. Выберите слова",
-          "uk": "Машини стоять поруч із будинком, зовні. Виберіть слова"
+          "ru": "Небольшой коврик у входной двери, о который вытирают ноги. Как он называется по-английски?",
+          "uk": "Невеликий килимок біля вхідних дверей, об який витирають ноги. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "The cars are ___ the house.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-27:i08:r1",
-            "text": "next to"
+            "responseId": "en:lesson-04:session-27:i04:r1",
+            "text": "doormat"
           },
           {
-            "responseId": "en:lesson-04:session-27:i08:r2",
-            "text": "in"
+            "responseId": "en:lesson-04:session-27:i04:r2",
+            "text": "rug"
           },
           {
-            "responseId": "en:lesson-04:session-27:i08:r3",
-            "text": "on"
+            "responseId": "en:lesson-04:session-27:i04:r3",
+            "text": "towel"
           }
         ],
-        "testedDimension": "Машини стоять поруч із будинком, зовні. Виберіть слова",
+        "testedDimension": "Невеликий килимок біля вхідних дверей, об який витирають ноги. Як він називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-27:i08:r2",
+            "responseId": "en:lesson-04:session-27:i04:r2",
             "correct": false,
-            "testedDimension": "Машини стоять поруч із будинком, зовні. Виберіть слова",
+            "testedDimension": "Невеликий килимок біля вхідних дверей, об який витирають ноги. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`in` — внутри; здесь рядом: `next to`.",
-              "uk": "`in` — усередині; тут поруч: `next to`."
+              "ru": "rug — это большой ковёр в комнате, а коврик у двери называется doormat.",
+              "uk": "rug — це великий килим у кімнаті, а килимок біля дверей називається doormat."
             }
           },
           {
-            "responseId": "en:lesson-04:session-27:i08:r3",
+            "responseId": "en:lesson-04:session-27:i04:r3",
             "correct": false,
-            "testedDimension": "Машини стоять поруч із будинком, зовні. Виберіть слова",
+            "testedDimension": "Невеликий килимок біля вхідних дверей, об який витирають ноги. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`on` — на поверхности; рядом с домом — `next to the house`.",
-              "uk": "`on` — на поверхні; поруч із будинком — `next to the house`."
+              "ru": "towel — это полотенце, а коврик у двери называется doormat.",
+              "uk": "towel — це рушник, а килимок біля дверей називається doormat."
             }
           }
         ]
@@ -465,73 +312,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де суп",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-27:i09:r1",
-          "text": "The soup is under the awning."
+          "responseId": "en:lesson-04:session-27:i05:r1",
+          "text": "The keys are under the doormat."
         },
         {
-          "responseId": "en:lesson-04:session-27:i09:r2",
-          "text": "The soup is under the table."
+          "responseId": "en:lesson-04:session-27:i05:r2",
+          "text": "The keys are on the doormat."
         },
         {
-          "responseId": "en:lesson-04:session-27:i09:r3",
-          "text": "The soup is under the window."
+          "responseId": "en:lesson-04:session-27:i05:r3",
+          "text": "The key is under the doormat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-27:i09:audio"
+        "en:lesson-04:session-27:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де суп",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-27:i09:audio",
-          "transcript": "The soup is under the awning."
+          "audioTargetId": "en:lesson-04:session-27:i05:audio",
+          "transcript": "The keys are under the doormat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-27:i09:r1",
-            "targetText": "The soup is under the awning.",
+            "responseId": "en:lesson-04:session-27:i05:r1",
+            "targetText": "The keys are under the doormat.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-27:i09:r2",
-            "targetText": "The soup is under the table.",
+            "responseId": "en:lesson-04:session-27:i05:r2",
+            "targetText": "The keys are on the doormat.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-27:i09:r3",
-            "targetText": "The soup is under the window.",
+            "responseId": "en:lesson-04:session-27:i05:r3",
+            "targetText": "The key is under the doormat.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-27:i09:r2",
+            "responseId": "en:lesson-04:session-27:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де суп",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awning`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `table`."
+              "ru": "В записи `under` — под ковриком, а в этом варианте `on` — на коврике.",
+              "uk": "У записі `under` — під килимком, а в цьому варіанті `on` — на килимку."
             }
           },
           {
-            "responseId": "en:lesson-04:session-27:i09:r3",
+            "responseId": "en:lesson-04:session-27:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де суп",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awning`, а в этом варианте — `window`.",
-              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `window`."
+              "ru": "В записи ключей несколько (`keys are`), а в этом варианте один.",
+              "uk": "У записі ключів кілька (`keys are`), а в цьому варіанті один."
             }
           }
         ],
@@ -541,9 +388,294 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i10",
+      "interactionId": "en:lesson-04:session-27:word:parasol",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — parasol",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:word:parasol:audio"
+      ],
+      "accessibilityLabel": "Картка слова — parasol",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:word:parasol:audio",
+          "transcript": "parasol"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-27:word:parasol:r1",
+            "targetText": "parasol",
+            "meaningByLocale": {
+              "ru": "зонт от солнца. The towels are under the parasol. — «Полотенца под зонтом». О большом зонте, который даёт тень.",
+              "uk": "парасоля від сонця. The towels are under the parasol. — «Рушники під парасолею». Про велику парасолю, яка дає тінь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parasol",
+          "definitionByLocale": {
+            "ru": "зонт от солнца. The towels are under the parasol. — «Полотенца под зонтом». О большом зонте, который даёт тень.",
+            "uk": "парасоля від сонця. The towels are under the parasol. — «Рушники під парасолею». Про велику парасолю, яка дає тінь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра показує велику парасолю від сонця, а ви повторюєте за нею слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Сестра показує велику парасолю від сонця, а ви повторюєте за нею слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i06:audio",
+          "transcript": "parasol"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "parasol",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте сестру й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте сестру й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i07:audio",
+          "transcript": "The towels are under the parasol."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The towels are under the parasol.",
+        "orderedTokens": [
+          "The",
+          "towels",
+          "are",
+          "under",
+          "the",
+          "parasol"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сестру й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The towels are under the parasol.`",
+              "uk": "тут потрібно `are` — `The towels are under the parasol.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:word:archway",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — archway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:word:archway:audio"
+      ],
+      "accessibilityLabel": "Картка слова — archway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:word:archway:audio",
+          "transcript": "archway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-27:word:archway:r1",
+            "targetText": "archway",
+            "meaningByLocale": {
+              "ru": "арка. The bicycles are under the archway. — «Велосипеды под аркой». О высоком проходе в форме дуги.",
+              "uk": "арка. The bicycles are under the archway. — «Велосипеди під аркою». Про високий прохід у формі дуги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "archway",
+          "definitionByLocale": {
+            "ru": "арка. The bicycles are under the archway. — «Велосипеды под аркой». О высоком проходе в форме дуги.",
+            "uk": "арка. The bicycles are under the archway. — «Велосипеди під аркою». Про високий прохід у формі дуги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Високий прохід у формі дуги між двома будинками. Як він називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i08:r1",
+          "text": "archway"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i08:r2",
+          "text": "bridge"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i08:r3",
+          "text": "door"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Високий прохід у формі дуги між двома будинками. Як він називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Высокий проход в форме дуги между двумя домами. Как он называется по-английски?",
+          "uk": "Високий прохід у формі дуги між двома будинками. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-27:i08:r1",
+            "text": "archway"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i08:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i08:r3",
+            "text": "door"
+          }
+        ],
+        "testedDimension": "Високий прохід у формі дуги між двома будинками. Як він називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Високий прохід у формі дуги між двома будинками. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "bridge — это мост, а проход-дуга между домами называется archway.",
+              "uk": "bridge — це міст, а прохід-дуга між будинками називається archway."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Високий прохід у формі дуги між двома будинками. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "door — это дверь, а проход-дуга между домами называется archway.",
+              "uk": "door — це двері, а прохід-дуга між будинками називається archway."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте велосипеди. Скажіть братові повною фразою: велосипеди під аркою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте велосипеди. Скажіть братові повною фразою: велосипеди під аркою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bicycles are under the archway.",
+        "localizedMeaning": {
+          "ru": "Вы ищете велосипеды. Скажите брату полной фразой: велосипеды под аркой",
+          "uk": "Ви шукаєте велосипеди. Скажіть братові повною фразою: велосипеди під аркою"
+        },
+        "orderedTokens": [
+          "The",
+          "bicycles",
+          "are",
+          "under",
+          "the",
+          "archway"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте велосипеди. Скажіть братові повною фразою: велосипеди під аркою",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bicycles are under the archway.`",
+              "uk": "тут потрібно `are` — `The bicycles are under the archway.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -556,48 +688,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-27:i10:p1",
-            "target": "awning",
+            "target": "archway",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "арка",
+              "uk": "арка"
             }
           },
           {
             "pairId": "en:lesson-04:session-27:i10:p2",
-            "target": "under",
+            "target": "parasol",
             "meaningByLocale": {
-              "ru": "под",
-              "uk": "під"
+              "ru": "зонт от солнца",
+              "uk": "парасоля від сонця"
             }
           },
           {
             "pairId": "en:lesson-04:session-27:i10:p3",
-            "target": "on",
+            "target": "awning",
             "meaningByLocale": {
-              "ru": "на поверхности",
-              "uk": "на поверхні"
+              "ru": "навес над входом",
+              "uk": "навіс над входом"
             }
           },
           {
             "pairId": "en:lesson-04:session-27:i10:p4",
-            "target": "between",
+            "target": "bench",
             "meaningByLocale": {
-              "ru": "между",
-              "uk": "між"
+              "ru": "скамейка",
+              "uk": "лавка"
             }
           }
         ],
         "leftColumn": [
+          "archway",
+          "parasol",
           "awning",
-          "under",
-          "on",
-          "between"
+          "bench"
         ],
         "rightColumn": [
-          "навіс",
-          "під",
-          "на поверхні",
-          "між"
+          "арка",
+          "парасоля від сонця",
+          "навіс над входом",
+          "лавка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -615,89 +747,189 @@
     },
     {
       "interactionId": "en:lesson-04:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть опис",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте брата",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i11:r1",
+          "text": "The bag is under the table."
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i11:r2",
+          "text": "The bag is on the table."
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i11:r3",
+          "text": "The bags are under the table."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-27:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть опис",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-27:i11:audio",
-          "transcript": "The cars are under the awning."
+          "transcript": "The bag is under the table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cars are under the awning.",
-        "orderedTokens": [
-          "The",
-          "cars",
-          "are",
-          "under",
-          "the",
-          "awning"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-27:i11:tile:d1",
+            "responseId": "en:lesson-04:session-27:i11:r1",
+            "targetText": "The bag is under the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i11:r2",
+            "targetText": "The bag is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i11:r3",
+            "targetText": "The bags are under the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте й складіть опис",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cars are under the awning.`",
-              "uk": "тут потрібно `are` — `The cars are under the awning.`"
+              "ru": "В записи `under` — под столом, а в этом варианте `on` — на столе.",
+              "uk": "У записі `under` — під столом, а в цьому варіанті `on` — на столі."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте брата",
+            "feedbackByLocale": {
+              "ru": "В записи сумка одна (`bag is`), а в этом варианте несколько.",
+              "uk": "У записі сумка одна (`bag is`), а в цьому варіанті кілька."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг показує на тканинний навіс. Назвіть його: «Це навіс»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Туфлі стоять знизу, під ліжком. Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-27:i12:r1",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i12:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-04:session-27:i12:r3",
+          "text": "in"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг показує на тканинний навіс. Назвіть його: «Це навіс»",
+      "accessibilityLabel": "Туфлі стоять знизу, під ліжком. Виберіть слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is an awning.",
-        "localizedMeaning": {
-          "ru": "Друг показывает на тканевый навес. Назовите его: «Это навес»",
-          "uk": "Друг показує на тканинний навіс. Назвіть його: «Це навіс»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Туфли стоят снизу, под кроватью. Выберите слово",
+          "uk": "Туфлі стоять знизу, під ліжком. Виберіть слово"
         },
+        "gappedTargetPhrase": "The shoes are ___ the bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-27:i12:r1",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i12:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i12:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Туфлі стоять знизу, під ліжком. Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Туфлі стоять знизу, під ліжком. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "on — «на поверхности», а туфли стоят снизу: нужно under.",
+              "uk": "on — «на поверхні», а туфлі стоять знизу: потрібно under."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Туфлі стоять знизу, під ліжком. Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "in — «внутри», а туфли стоят снизу: нужно under.",
+              "uk": "in — «всередині», а туфлі стоять знизу: потрібно under."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте брата й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-27:i13:audio",
+          "transcript": "The bag is under the chair."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag is under the chair.",
         "orderedTokens": [
-          "This",
+          "The",
+          "bag",
           "is",
-          "an",
-          "awning"
+          "under",
+          "the",
+          "chair"
         ],
         "authoredDistractorTokens": [
-          "a"
+          "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-27:i12:tile:d1",
+            "responseId": "en:lesson-04:session-27:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Друг показує на тканинний навіс. Назвіть його: «Це навіс»",
+            "testedDimension": "Послухайте брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `an` — `This is an awning.`",
-              "uk": "тут потрібно `an` — `This is an awning.`"
+              "ru": "здесь нужно `is` — `The bag is under the chair.`",
+              "uk": "тут потрібно `is` — `The bag is under the chair.`"
             }
           }
         ],
@@ -709,26 +941,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-27:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Стіл стоїть між двома припаркованими машинами. Скажіть «Стіл між машинами»",
+      "prompt": "Подруга питає, де лавка. Відповідайте їй: лавка під навісом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-27:i13:audio"
+        "en:lesson-04:session-27:i14:audio"
       ],
-      "accessibilityLabel": "Стіл стоїть між двома припаркованими машинами. Скажіть «Стіл між машинами»",
+      "accessibilityLabel": "Подруга питає, де лавка. Відповідайте їй: лавка під навісом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-27:i13:audio",
-          "transcript": "The table is between the cars."
+          "audioTargetId": "en:lesson-04:session-27:i14:audio",
+          "transcript": "The bench is under the awning."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The table is between the cars.",
+        "targetPhrase": "The bench is under the awning.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -742,153 +974,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-27:i14:r1",
-          "text": "between"
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i14:r2",
-          "text": "under"
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i14:r3",
-          "text": "in"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра шукає сумки. Скажіть їй повною фразою: сумки під парасолею",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово",
+      "accessibilityLabel": "Сестра шукає сумки. Скажіть їй повною фразою: сумки під парасолею",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Миска с супом стоит между чашками, не внутри и не под ними. Выберите слово",
-          "uk": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "The bags are under the parasol.",
+        "localizedMeaning": {
+          "ru": "Сестра ищет сумки. Скажите ей полной фразой: сумки под зонтом",
+          "uk": "Сестра шукає сумки. Скажіть їй повною фразою: сумки під парасолею"
         },
-        "gappedTargetPhrase": "The soup is ___ the cups.",
-        "gapOptions": [
+        "orderedTokens": [
+          "The",
+          "bags",
+          "are",
+          "under",
+          "the",
+          "parasol"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-27:i14:r1",
-            "text": "between"
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i14:r2",
-            "text": "under"
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i14:r3",
-            "text": "in"
+            "responseId": "en:lesson-04:session-27:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Сестра шукає сумки. Скажіть їй повною фразою: сумки під парасолею",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bags are under the parasol.`",
+              "uk": "тут потрібно `are` — `The bags are under the parasol.`"
+            }
           }
         ],
-        "testedDimension": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-27:i14:r2",
-            "correct": false,
-            "testedDimension": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; между — `between`.",
-              "uk": "`under` — під; між — `between`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i14:r3",
-            "correct": false,
-            "testedDimension": "Миска із супом стоїть між чашками, не всередині й не під ними. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; между чашками — `between the cups`.",
-              "uk": "`in` — усередині; між чашками — `between the cups`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-27:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про навіс",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-27:i15:r1",
-          "text": "That is an awning."
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i15:r2",
-          "text": "This is an awning."
-        },
-        {
-          "responseId": "en:lesson-04:session-27:i15:r3",
-          "text": "That is an apple."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-27:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте повідомлення про навіс",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-27:i15:audio",
-          "transcript": "That is an awning."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-27:i15:r1",
-            "targetText": "That is an awning.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i15:r2",
-            "targetText": "This is an awning.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i15:r3",
-            "targetText": "That is an apple.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-27:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте повідомлення про навіс",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-27:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте повідомлення про навіс",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awning`, а в этом варианте — `apple`.",
-              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `apple`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -904,46 +1038,46 @@
             "pairId": "en:lesson-04:session-27:i16:p1",
             "target": "awning",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "навес над входом",
+              "uk": "навіс над входом"
             }
           },
           {
             "pairId": "en:lesson-04:session-27:i16:p2",
-            "target": "generous",
+            "target": "doormat",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "коврик у двери",
+              "uk": "килимок біля дверей"
             }
           },
           {
             "pairId": "en:lesson-04:session-27:i16:p3",
-            "target": "cars",
+            "target": "parasol",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "зонт от солнца",
+              "uk": "парасоля від сонця"
             }
           },
           {
             "pairId": "en:lesson-04:session-27:i16:p4",
-            "target": "soup",
+            "target": "archway",
             "meaningByLocale": {
-              "ru": "суп",
-              "uk": "суп"
+              "ru": "арка",
+              "uk": "арка"
             }
           }
         ],
         "leftColumn": [
           "awning",
-          "generous",
-          "cars",
-          "soup"
+          "doormat",
+          "parasol",
+          "archway"
         ],
         "rightColumn": [
-          "навіс",
-          "щедрий",
-          "машини",
-          "суп"
+          "навіс над входом",
+          "килимок біля дверей",
+          "парасоля від сонця",
+          "арка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -961,25 +1095,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому дворі друг шукає стіл для обіду. Стіл під тканинним навісом. Скажіть «Стіл під навісом»",
+      "prompt": "В іншому будинку друг шукає запасний ключ. Він під килимком. Скажіть йому: «Ключ під килимком»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-27:i17:audio"
       ],
-      "accessibilityLabel": "В іншому дворі друг шукає стіл для обіду. Стіл під тканинним навісом. Скажіть «Стіл під навісом»",
+      "accessibilityLabel": "В іншому будинку друг шукає запасний ключ. Він під килимком. Скажіть йому: «Ключ під килимком»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-27:i17:audio",
-          "transcript": "The table is under the awning."
+          "transcript": "The key is under the doormat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The table is under the awning.",
+        "targetPhrase": "The key is under the doormat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1001,11 +1135,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "152c0a968577725eec801c1d6d277796122edd39804fa8780cc0cdbac4fc76d9"
+  "learnerFingerprint": "2e6e3a0cd026c58e6e2829ba6f00f9a1167dc8018d68b2566f91101d47c4d022"
 }

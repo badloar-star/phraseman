@@ -1,138 +1,152 @@
-# Англійська · Урок 4 · Заняття 26 — На кухонній стільниці
+# Англійська · Урок 4 · Заняття 26 — Що лежить зверху
 
-**Ситуація.** Друг показує нову кухню. Ви уточнюєте, де стільниця, молоко й коти. Він залишив відкритий пакет біля самого краю та визнає свою необережність.
+**Ситуація.** Друг показує свою нову квартиру перед приходом гостей: на кухні, біля вікна й у коридорі ви допомагаєте йому знайти речі. Ви кажете, що лежить або стоїть зверху, словом on, і не плутаєте його з in.
 
-**Що ви опануєте:** описати розташування стільниці та знайомих предметів, повторити on/under/next to/between
-**Нові слова:** worktop
+**Що ви опануєте:** сказати, що предмет лежить або стоїть зверху, словом on
+**Нові слова:** worktop, windowsill, radiator, noticeboard
+**Повертаються:** plate, plant, key, glove, clock, notice, scarf
 
 ---
 
 ## Інтро 1
 
-### Поверхня для готування
+### Кухня перед гістьми
 
-`worktop` — «кухонна стільниця»: поверхня, на якій готують їжу. `The milk is on the worktop` — «Молоко на стільниці». Тут ідеться про молоко в пакеті: його не обов’язково вилили просто на поверхню. `on` указує, де стоїть пакет. Стільниця для готування, але кіт може вважати інакше.
+Друг показує нову кухню: гості прийдуть за годину, а на кухні ще порожньо. Ви допомагаєте й ставите чашки вздовж стіни, на рівну робочу поверхню. worktop — «кухонна стільниця». Слово on означає «на поверхні»: The cups are on the worktop — «Чашки на стільниці».
 
-**Молоко в пакеті стоїть на стільниці. Виберіть опис.**
+**Друг питає, де чашки. Скажіть йому, що вони на стільниці.**
 
-- ✅ **The milk is on the worktop.**
-- ❌ The milk is under the worktop. — *`under` — під; пакет стоїть на поверхні: `on`.*
-- ❌ The milk are on the worktop. — *Про молоко кажемо `The milk is`.*
+- ✅ **The cups are on the worktop.**
+- ❌ The cups are in the worktop. — *in — «всередині», а чашки стоять зверху: потрібно on.*
+- ❌ The cups is on the worktop. — *Чашок кілька, тому потрібно are: The cups are.*
 
 ---
 
 ## Інтро 2
 
-### Де коти?
+### Квітка на тиждень
 
-`cats` — «коти»: `The cats are under the worktop` — «Коти під стільницею». `next to` — «поруч із»: `The worktop is next to the sink` — «Стільниця поруч із раковиною». `between` — «між»: `The milk is between the cups` — «Молоко між чашками». Для кількох котів — `are`, для стільниці чи молока — `is`.
+Подруга їде на тиждень і просить вас поливати квітку, поки її немає. Вона стоїть біля вікна, на широкій дошці, що йде вздовж стіни під склом. windowsill — «підвіконня». Квітка одна, тому is: The plant is on the windowsill — «Квітка на підвіконні».
 
-**Коти сидять під стільницею. Виберіть опис.**
+**Подруга телефонує й питає, де квітка. Скажіть їй, що вона на підвіконні.**
 
-- ✅ **The cats are under the worktop.**
-- ❌ The cats are on the worktop. — *Це «на стільниці»; в умові під нею: `under`.*
-- ❌ The cats is under the worktop. — *Котів кілька: `The cats are`.*
+- ✅ **The plant is on the windowsill.**
+- ❌ The plant is in the windowsill. — *in — «всередині», а квітка стоїть зверху: потрібно on.*
+- ❌ The plant are on the windowsill. — *Квітка одна, тому потрібно is: The plant is.*
 
 ---
 
 ## Інтро 3
 
-### Необережний учинок
+### Мокрий шарф
 
-`careless` — «необережний, неуважний». Друг залишив відкритий пакет молока біля краю, і пакет упав. Він зізнається: `I am careless` — «Я необережний». Скорочено: `I’m careless`. Це опис людини, яка не приділяє достатньо уваги тому, що робить.
+Ви потрапили під дощ, і шарф промок наскрізь. Ввечері ви повісили його на теплу трубу під вікном, щоб він висох до ранку, а вранці брат збирається на вулицю. radiator — «батарея опалення». Шарф один, тому is: The scarf is on the radiator — «Шарф на батареї».
 
-**Ви залишили пакет біля краю, і він упав. Визнайте «Я необережний» зі скороченням.**
+**Брат шукає ваш шарф. Скажіть йому, що він на батареї.**
 
-- ✅ **I'm careless.**
-- ❌ I'm careful. — *`careful` — обережний; тут визнаєте необережність: `careless`.*
-- ❌ I is careless. — *З `I` потрібне `am`: `I’m careless`.*
+- ✅ **The scarf is on the radiator.**
+- ❌ The scarf is in the radiator. — *in — «всередині», а шарф висить зверху: потрібно on.*
+- ❌ The scarf is on radiator. — *Батарею ви обоє знаєте, тому перед нею потрібно the: on the radiator.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви визнаєте свою необережність. Скажіть «Я необережний» без скорочення**
-<!-- interaction_id: en:lesson-04:session-26:i01; family: phrase_builder -->
-Плитки: `careless` `am` `I` `is` → **I am careless.**
-*(плитка `is` зайва: тут потрібно `am` — `I am careless.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-26:i01; family: speed_match -->
+worktop — кухонна стільниця · windowsill — підвіконня · radiator — радіатор опалення · noticeboard — дошка оголошень
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-26:i02; family: listen_choose -->
-🔊 *worktop* → **worktop** · window · table
-- window — *У записі перше слово — `worktop`, а в цьому варіанті — `window`.*
-- table — *У записі перше слово — `worktop`, а в цьому варіанті — `table`.*
+**2 · Картка слова — worktop**
+<!-- interaction_id: en:lesson-04:session-26:word:worktop; family: word_card -->
+> **worktop** — кухонна стільниця. The plates are on the worktop. — «Тарілки на стільниці». Про рівну робочу поверхню на кухні.
 
-**3 · Назвіть кухонну стільницю одним словом**
-<!-- interaction_id: en:lesson-04:session-26:i03; family: context_gap_grammar -->
-___ → **worktop** · sink · window
-- sink — *`sink` — раковина; стільниця — `worktop`.*
-- window — *`window` — вікно; стільниця — `worktop`.*
+**3 · Друг показує рівну робочу поверхню на кухні, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-26:i02; family: scripted_repeat_compare -->
+🎙 **worktop**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-26:i04; family: speed_match -->
-worktop — кухонна стільниця · careless — необережний · cats — коти · milk — молоко
+**4 · Друг шукає тарілки. Скажіть йому повною фразою: тарілки на стільниці**
+<!-- interaction_id: en:lesson-04:session-26:i03; family: phrase_builder -->
+Плитки: `plates` `the` `on` `are` `The` `worktop` `is` → **The plates are on the worktop.**
+*(плитка `is` зайва: тут потрібно `are` — `The plates are on the worktop.`)*
 
-**5 · Послухайте й складіть опис**
-<!-- interaction_id: en:lesson-04:session-26:i05; family: listen_build_dictation -->
-🔊 *The milk is on the worktop.* Плитки: `worktop` `the` `on` `is` `milk` `The` `are` → **The milk is on the worktop.**
-*(плитка `are` зайва: тут потрібно `is` — `The milk is on the worktop.`)*
+**5 · Картка слова — windowsill**
+<!-- interaction_id: en:lesson-04:session-26:word:windowsill; family: word_card -->
+> **windowsill** — підвіконня. The candle is on the windowsill. — «Свічка на підвіконні». Про широку полицю під вікном.
 
-**6 · Скажіть «Коти під стільницею»**
-<!-- interaction_id: en:lesson-04:session-26:i06; family: phrase_builder -->
-Плитки: `worktop` `the` `under` `are` `cats` `The` `is` → **The cats are under the worktop.**
-*(плитка `is` зайва: тут потрібно `are` — `The cats are under the worktop.`)*
+**6 · Широка полиця під вікном, на яку ставлять квіти й свічки. Як вона називається англійською?**
+<!-- interaction_id: en:lesson-04:session-26:i04; family: context_gap_grammar -->
+___ → **windowsill** · worktop · shelf
+- worktop — *worktop — це стільниця на кухні, а полиця під вікном називається windowsill.*
+- shelf — *shelf — це звичайна полиця, а полиця під вікном називається windowsill.*
 
-**7 · Ви залишили відкритий пакет біля краю, і він упав. Визнайте «Я необережний» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-26:i07; family: scripted_repeat_compare -->
-🎙 **I'm careless.**
+**7 · Послухайте подругу**
+<!-- interaction_id: en:lesson-04:session-26:i05; family: listen_choose -->
+🔊 *The candle is on the windowsill.* → **The candle is on the windowsill.** · The candle is on the worktop. · The candles are on the windowsill.
+- The candle is on the worktop. — *У записі `windowsill`, а в цьому варіанті `worktop`.*
+- The candles are on the windowsill. — *У записі свічка одна (`candle is`), а в цьому варіанті кілька.*
 
-**8 · Стільниця поруч із раковиною, не під нею. Виберіть слова**
+**8 · Картка слова — radiator**
+<!-- interaction_id: en:lesson-04:session-26:word:radiator; family: word_card -->
+> **radiator** — батарея опалення. The gloves are on the radiator. — «Рукавички на батареї». Про теплу трубу, яка гріє кімнату.
+
+**9 · Друг показує теплу батарею під вікном, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-26:i06; family: scripted_repeat_compare -->
+🎙 **radiator**
+
+**10 · Послухайте друга й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-26:i07; family: listen_build_dictation -->
+🔊 *The gloves are on the radiator.* Плитки: `gloves` `the` `on` `are` `The` `radiator` `is` → **The gloves are on the radiator.**
+*(плитка `is` зайва: тут потрібно `are` — `The gloves are on the radiator.`)*
+
+**11 · Картка слова — noticeboard**
+<!-- interaction_id: en:lesson-04:session-26:word:noticeboard; family: word_card -->
+> **noticeboard** — дошка оголошень. The notice is on the noticeboard. — «Оголошення на дошці оголошень». Про дошку на стіні, де висять папірці.
+
+**12 · Дошка на стіні, на яку вішають паперові оголошення. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-26:i08; family: context_gap_grammar -->
-The worktop is ___ the sink. → **next to** · under · in
-- under — *`under` — під; поруч із — `next to`.*
-- in — *`in` — усередині; тут поруч: `next to`.*
+___ → **noticeboard** · picture · mirror
+- picture — *picture — це картина, а дошка для оголошень називається noticeboard.*
+- mirror — *mirror — це дзеркало, а дошка для оголошень називається noticeboard.*
 
-**9 · Послухайте, де молоко**
-<!-- interaction_id: en:lesson-04:session-26:i09; family: listen_choose -->
-🔊 *The milk is between the cups.* → **The milk is between the cups.** · The milk is between the boxes. · The milk is between the bags.
-- The milk is between the boxes. — *У записі останнє слово — `cups`, а в цьому варіанті — `boxes`.*
-- The milk is between the bags. — *У записі останнє слово — `cups`, а в цьому варіанті — `bags`.*
+**13 · Ви повісили аркуш біля входу. Скажіть сусідові повною фразою: оголошення на дошці оголошень**
+<!-- interaction_id: en:lesson-04:session-26:i09; family: phrase_builder -->
+Плитки: `notice` `the` `on` `is` `The` `noticeboard` `are` → **The notice is on the noticeboard.**
+*(плитка `are` зайва: тут потрібно `is` — `The notice is on the noticeboard.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-26:i10; family: speed_match -->
-worktop — кухонна стільниця · on — на поверхні · under — під · between — між
+noticeboard — дошка оголошень · radiator — радіатор опалення · windowsill — підвіконня · plate — тарілка
 
-**11 · Послухайте й складіть опис**
-<!-- interaction_id: en:lesson-04:session-26:i11; family: listen_build_dictation -->
-🔊 *The cats are next to the table.* Плитки: `table` `the` `to` `next` `are` `cats` `The` `is` → **The cats are next to the table.**
-*(плитка `is` зайва: тут потрібно `are` — `The cats are next to the table.`)*
+**15 · Послухайте друга**
+<!-- interaction_id: en:lesson-04:session-26:i11; family: listen_choose -->
+🔊 *The apple is on the plate.* → **The apple is on the plate.** · The apple is in the bowl. · The apples are on the plate.
+- The apple is in the bowl. — *У записі `on the plate` — на тарілці, а в цьому варіанті `in the bowl` — у мисці.*
+- The apples are on the plate. — *У записі яблуко одне (`apple is`), а в цьому варіанті кілька.*
 
-**12 · Пакет переставили на стіл. Скажіть «Молоко на столі»**
-<!-- interaction_id: en:lesson-04:session-26:i12; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `milk` `The` `are` → **The milk is on the table.**
-*(плитка `are` зайва: тут потрібно `is` — `The milk is on the table.`)*
+**16 · Чашка стоїть на стільниці, а не всередині неї. Виберіть слово**
+<!-- interaction_id: en:lesson-04:session-26:i12; family: context_gap_grammar -->
+The cup is ___ the worktop. → **on** · in · near
+- in — *in — «всередині», а чашка стоїть зверху: потрібно on.*
+- near — *near — «поруч», а чашка стоїть просто зверху: потрібно on.*
 
-**13 · Стільниця поруч із вікном. Скажіть, де вона**
-<!-- interaction_id: en:lesson-04:session-26:i13; family: scripted_repeat_compare -->
-🎙 **The worktop is next to the window.**
+**17 · Послухайте друга й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-26:i13; family: listen_build_dictation -->
+🔊 *The clock is on the wall.* Плитки: `clock` `the` `on` `is` `The` `wall` `are` → **The clock is on the wall.**
+*(плитка `are` зайва: тут потрібно `is` — `The clock is on the wall.`)*
 
-**14 · Коти лежать на підлозі під столом. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-26:i14; family: context_gap_grammar -->
-The cats are ___ the table. → **under** · on · in
-- on — *`on` — на поверхні столу; тут під ним: `under`.*
-- in — *`in` — усередині; під столом — `under the table`.*
+**18 · Подруга питає, де квіти. Відповідайте їй: квіти на підвіконні**
+<!-- interaction_id: en:lesson-04:session-26:i14; family: scripted_repeat_compare -->
+🎙 **The plants are on the windowsill.**
 
-**15 · Послухайте опис кухні**
-<!-- interaction_id: en:lesson-04:session-26:i15; family: listen_choose -->
-🔊 *The worktop is between the windows.* → **The worktop is between the windows.** · The worktop is between the doors. · The worktop is between the tables.
-- The worktop is between the doors. — *У записі останнє слово — `windows`, а в цьому варіанті — `doors`.*
-- The worktop is between the tables. — *У записі останнє слово — `windows`, а в цьому варіанті — `tables`.*
+**19 · Ви шукаєте ключі. Скажіть братові повною фразою: ключі на стільниці**
+<!-- interaction_id: en:lesson-04:session-26:i15; family: phrase_builder -->
+Плитки: `keys` `the` `on` `are` `The` `worktop` `is` → **The keys are on the worktop.**
+*(плитка `is` зайва: тут потрібно `are` — `The keys are on the worktop.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-26:i16; family: speed_match -->
-worktop — кухонна стільниця · careless — необережний · cats — коти · milk — молоко
+worktop — кухонна стільниця · windowsill — підвіконня · radiator — радіатор опалення · noticeboard — дошка оголошень
 
-**17 · На іншій кухні друг шукає молоко. Пакет стоїть на стільниці. Скажіть «Молоко на стільниці»**
+**21 · В іншій квартирі друг шукає шарф. Він на батареї. Скажіть йому: «Шарф на батареї»**
 <!-- interaction_id: en:lesson-04:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The milk is on the worktop.**
-
+🎙 **The scarf is on the radiator.**

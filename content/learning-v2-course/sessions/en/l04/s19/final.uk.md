@@ -1,136 +1,152 @@
-# Англійська · Урок 4 · Заняття 19 — Суп перед дорогою
+# Англійська · Урок 4 · Заняття 19 — Суп на вечерю
 
-**Ситуація.** Перед поїздкою на трамваї ви збираєте сумки й перевіряєте, чи є суп на обід. Друг без дозволу з’їв усі залишені всім ягоди й визнає, що винен.
+**Ситуація.** Ввечері у спільному домі ви перевіряєте, що є на вечерю. Щоб спитати, чи є суп, рис, макарони або сіль, додаємо any: Is there any soup? — «Чи є суп?» Коротко відповідаємо: Yes, there is. No, there isn't.
 
-**Що ви опануєте:** запитати про суп з any і повідомити про нього із some, повторити сумки та транспорт
-**Нові слова:** soup
+**Що ви опануєте:** спитати, чи є їжа, запитанням Is there any…? і коротко відповісти
+**Нові слова:** soup, rice, pasta, salt
+**Повертаються:** milk, bread, fridge, near, bowl
 
 ---
 
 ## Інтро 1
 
-### Суп на обід
+### Голодні з роботи
 
-`soup` — «суп». Коли говоримо про їжу загалом, не рахуємо окремі порції: `There is some soup` — «Є трохи супу». Перед `soup` тут не потрібне `a`, а початок — `There is`. Навіть ціла каструля супу не перетворює `is` на `are`. Каструля велика, правило те саме.
+Ви прийшли додому голодні. Подруга вже на кухні, а ви хочете дізнатися, чи лишився суп з обіду. soup — «суп». Суп не рахують штуками. Коли ми не знаємо, чи він є взагалі, питаємо з any. Запитайте подругу: Is there any soup here? — «Тут є суп?»
 
-**Повідомте «Тут є трохи супу».**
+**Ви голодні. Запитайте подругу, чи є тут суп.**
 
-- ✅ **There is some soup here.**
-- ❌ There are some soup here. — *Про суп як їжу кажемо `There is some soup here`.*
-- ❌ There is a soup here. — *Тут ідеться про суп загалом, не про окремий вид чи замовлену порцію: `some soup`.*
+- ✅ **Is there any soup here?**
+- ❌ There is any soup here? — *Запитання починаємо з Is there, а не з There is.*
+- ❌ Are there any soup here? — *Суп не рахують штуками, тому потрібно Is there, а не Are there.*
 
 ---
 
 ## Інтро 2
 
-### Суп і сумки
+### Вечеря для родини
 
-`Is there any soup?` — «Чи є суп?» Так запитуємо, коли ще не знаємо, чи є він. `bags` — «сумки». Їх кілька: `Are there any bags?` — «Чи є сумки?» У повідомленні: `There are some bags` — «Є кілька сумок». Суп — `is`, кілька сумок — `are`.
+Брат готує вечерю для всієї родини, але не може знайти гарнір. Ви разом заглядаєте до кухонної шафи біля вікна. rice — «рис». Рис теж не рахують штуками, тому знову any. Запитайте брата: Is there any rice near the pot? — «Поруч із каструлею є рис?»
 
-**Ви не знаєте, чи залишився суп. Запитайте «Тут є суп?» з `any`.**
+**Брат шукає гарнір на вечерю. Запитайте його, чи є поруч із каструлею рис.**
 
-- ✅ **Is there any soup here?**
-- ❌ Are there any soup here? — *Із супом як їжею потрібне `Is there`.*
-- ❌ There is any soup here? — *У цьому запитанні спочатку `Is there`: `Is there any soup here?`.*
+- ✅ **Is there any rice near the pot?**
+- ❌ Is there a rice near the pot? — *Рис не рахують штуками, тому замість a потрібно any.*
+- ❌ Are there any rice near the pot? — *Рис не рахують штуками, тому потрібно Is there, а не Are there.*
 
 ---
 
 ## Інтро 3
 
-### Хто з’їв ягоди?
+### Вечеря в сусідки
 
-`guilty` — «винний». Друг зізнається, що без дозволу з’їв усі ягоди, залишені для всіх: `I am guilty` — «Я винен». Скорочено: `I’m guilty`. Тут це зізнання в невеликій провині, не розмова про суд. `tram` — «трамвай»: `That is a tram` — «То — трамвай». Після обіду час до зупинки.
+Ви готуєте вечерю в сусідки й просите її допомогти знайти макарони. Вона господиня й краще знає, де що лежить, а ви вже відчинили три шафи. pasta — «макарони, паста». Запитайте її: Is there any pasta behind the basket? — «За кошиком є макарони?»
 
-**Ви самі без дозволу з’їли всі спільні ягоди. Зізнайтеся «Я винен» зі скороченням.**
+**Ви шукаєте макарони. Запитайте сусідку, чи є вони за кошиком.**
 
-- ✅ **I'm guilty.**
-- ❌ I are guilty. — *З `I` потрібне `am`: `I’m guilty`.*
-- ❌ He is guilty. — *Це «Він винен», а ви зізнаєтеся за себе: `I’m guilty`.*
+- ✅ **Is there any pasta behind the basket?**
+- ❌ Is there any pastas behind the basket? — *Макарони не рахують штуками, тому наприкінці немає -s: pasta.*
+- ❌ There is any pasta behind the basket? — *Запитання починаємо з Is there, а не з There is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Назвіть транспорт удалині: «То — трамвай»**
-<!-- interaction_id: en:lesson-04:session-19:i01; family: phrase_builder -->
-Плитки: `tram` `a` `is` `That` `are` → **That is a tram.**
-*(плитка `are` зайва: тут потрібно `is` — `That is a tram.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-19:i01; family: speed_match -->
+soup — суп · rice — рис · pasta — макарони · salt — сіль
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-19:i02; family: listen_choose -->
-🔊 *soup* → **soup** · milk · tram
-- milk — *У записі перше слово — `soup`, а в цьому варіанті — `milk`.*
-- tram — *У записі перше слово — `soup`, а в цьому варіанті — `tram`.*
+**2 · Картка слова — soup**
+<!-- interaction_id: en:lesson-04:session-19:word:soup; family: word_card -->
+> **soup** — суп. Is there any soup here? — «Тут є суп?» Про гарячу страву в тарілці.
 
-**3 · Назвіть суп одним словом**
-<!-- interaction_id: en:lesson-04:session-19:i03; family: context_gap_grammar -->
-___ → **soup** · milk · bags
-- milk — *`milk` — молоко; суп — `soup`.*
-- bags — *`bags` — сумки; суп — `soup`.*
+**3 · Подруга ставить на стіл тарілку гарячої страви й називає слово, а ви повторюєте за нею**
+<!-- interaction_id: en:lesson-04:session-19:i02; family: scripted_repeat_compare -->
+🎙 **soup**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-19:i04; family: speed_match -->
-soup — суп · guilty — винний · bags — сумки · tram — трамвай
+**4 · Ви голодні. Запитайте подругу повною фразою: поруч із каструлею є суп?**
+<!-- interaction_id: en:lesson-04:session-19:i03; family: phrase_builder -->
+Плитки: `soup` `any` `near` `the` `pot` `there` `Is` `Are` → **Is there any soup near the pot?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there any soup near the pot?`)*
 
-**5 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-19:i05; family: listen_build_dictation -->
-🔊 *There is some soup.* Плитки: `soup` `some` `is` `There` `are` → **There is some soup.**
-*(плитка `are` зайва: тут потрібно `is` — `There is some soup.`)*
+**5 · Картка слова — rice**
+<!-- interaction_id: en:lesson-04:session-19:word:rice; family: word_card -->
+> **rice** — рис. Is there any rice near the pot? — «Поруч із каструлею є рис?» Про білі зерна, які варять на гарнір.
 
-**6 · Сумки для дороги знайшлися. Повідомте «Тут є кілька сумок» із some**
-<!-- interaction_id: en:lesson-04:session-19:i06; family: phrase_builder -->
-Плитки: `here` `bags` `some` `are` `There` `is` → **There are some bags here.**
-*(плитка `is` зайва: тут потрібно `are` — `There are some bags here.`)*
+**6 · Білі зерна, які варять на гарнір. Як вони називаються англійською?**
+<!-- interaction_id: en:lesson-04:session-19:i04; family: context_gap_grammar -->
+___ → **rice** · milk · bread
+- milk — *milk — це молоко, а білі зерна для гарніру називаються rice.*
+- bread — *bread — це хліб, а білі зерна для гарніру називаються rice.*
 
-**7 · Ви без дозволу з’їли всі спільні ягоди. Зізнайтеся «Я винен» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-19:i07; family: scripted_repeat_compare -->
-🎙 **I'm guilty.**
+**7 · Послухайте запитання брата**
+<!-- interaction_id: en:lesson-04:session-19:i05; family: listen_choose -->
+🔊 *Is there any rice here?* → **Is there any rice here?** · Is there any soup here? · There is some rice here.
+- Is there any soup here? — *У записі питають про `rice`, а в цьому варіанті про `soup`.*
+- There is some rice here. — *У записі запитання `Is there any`, а в цьому варіанті повідомлення `There is some`.*
 
-**8 · Повідомте «Тут є трохи супу»**
+**8 · Картка слова — pasta**
+<!-- interaction_id: en:lesson-04:session-19:word:pasta; family: word_card -->
+> **pasta** — макарони, паста. Is there any pasta behind the basket? — «За кошиком є макарони?» Про зварене тісто з борошна.
+
+**9 · Сусідка показує довгі сухі макарони й називає слово, а ви повторюєте за нею**
+<!-- interaction_id: en:lesson-04:session-19:i06; family: scripted_repeat_compare -->
+🎙 **pasta**
+
+**10 · Послухайте сусідку й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-19:i07; family: listen_build_dictation -->
+🔊 *Is there any pasta here?* Плитки: `pasta` `any` `there` `Is` `here` `Are` → **Is there any pasta here?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there any pasta here?`)*
+
+**11 · Картка слова — salt**
+<!-- interaction_id: en:lesson-04:session-19:word:salt; family: word_card -->
+> **salt** — сіль. Is there any salt near the cup? — «Поруч із чашкою є сіль?» Про білі крупинки, якими солять їжу.
+
+**12 · Білі крупинки, якими солять їжу. Як вони називаються англійською?**
 <!-- interaction_id: en:lesson-04:session-19:i08; family: context_gap_grammar -->
-There ___ some soup here. → **is** · are · am
-- are — *Про суп як їжу кажемо `There is some soup here`.*
-- am — *Наявність супу передаємо через `There is`.*
+___ → **salt** · sugar · butter
+- sugar — *sugar — це солодкий цукор, а крупинки, якими солять їжу, називаються salt.*
+- butter — *butter — це вершкове масло, а крупинки, якими солять їжу, називаються salt.*
 
-**9 · Послухайте запитання**
-<!-- interaction_id: en:lesson-04:session-19:i09; family: listen_choose -->
-🔊 *Are there any bags?* → **Are there any bags?** · Are there any boxes? · Are there any books?
-- Are there any boxes? — *У записі останнє слово — `bags`, а в цьому варіанті — `boxes`.*
-- Are there any books? — *У записі останнє слово — `bags`, а в цьому варіанті — `books`.*
+**13 · Суп вийшов прісним. Запитайте подругу повною фразою: поруч із тарілкою є сіль?**
+<!-- interaction_id: en:lesson-04:session-19:i09; family: phrase_builder -->
+Плитки: `salt` `any` `near` `the` `plate` `there` `Is` `Are` → **Is there any salt near the plate?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there any salt near the plate?`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-19:i10; family: speed_match -->
-soup — суп · bags — сумки · tram — трамвай · guilty — винний
+salt — сіль · pasta — макарони · soup — суп · rice — рис
 
-**11 · Послухайте й складіть запитання**
-<!-- interaction_id: en:lesson-04:session-19:i11; family: listen_build_dictation -->
-🔊 *Is there any soup?* Плитки: `soup` `any` `there` `Is` → **Is there any soup?**
+**15 · Послухайте коротку відповідь подруги**
+<!-- interaction_id: en:lesson-04:session-19:i11; family: listen_choose -->
+🔊 *Yes, there is.* → **Yes, there is.** · No, there isn't. · Yes, there are.
+- No, there isn't. — *У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`.*
+- Yes, there are. — *У записі `there is`, а в цьому варіанті `there are`.*
 
-**12 · Ви шукаєте сумки перед виходом. Запитайте «Тут є сумки?» з any**
-<!-- interaction_id: en:lesson-04:session-19:i12; family: phrase_builder -->
-Плитки: `here` `bags` `any` `there` `Are` → **Are there any bags here?**
+**16 · Брат хоче дізнатися, чи є рис. Доповніть його запитання**
+<!-- interaction_id: en:lesson-04:session-19:i12; family: context_gap_grammar -->
+Is there ___ rice here? → **any** · a · an
+- a — *Слово a ставлять перед одним предметом, а рис не рахують штуками: any rice.*
+- an — *Слово an теж ставлять перед одним предметом, а тут потрібно any rice.*
 
-**13 · Друг запитує про інший стіл. Повідомте «Там є трохи супу» із some**
-<!-- interaction_id: en:lesson-04:session-19:i13; family: scripted_repeat_compare -->
-🎙 **There is some soup there.**
+**17 · Послухайте брата й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-19:i13; family: listen_build_dictation -->
+🔊 *Is there any rice near the bowl?* Плитки: `rice` `any` `near` `the` `bowl` `there` `Is` `Are` → **Is there any rice near the bowl?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there any rice near the bowl?`)*
 
-**14 · Запитайте «Тут є суп?»**
-<!-- interaction_id: en:lesson-04:session-19:i14; family: context_gap_grammar -->
-___ there any soup here? → **Is** · Are · Am
-- Are — *Про суп як їжу запитуємо `Is there any soup here?`.*
-- Am — *Запитання про наявність супу починається з `Is there`.*
+**18 · Ви не знайшли макарони. Запитайте сусідку, чи є вони за мискою**
+<!-- interaction_id: en:lesson-04:session-19:i14; family: scripted_repeat_compare -->
+🎙 **Is there any pasta behind the bowl?**
 
-**15 · Послухайте зізнання друга**
-<!-- interaction_id: en:lesson-04:session-19:i15; family: listen_choose -->
-🔊 *I am guilty.* → **I am guilty.** · I am tired. · I am hungry.
-- I am tired. — *У записі останнє слово — `guilty`, а в цьому варіанті — `tired`.*
-- I am hungry. — *У записі останнє слово — `guilty`, а в цьому варіанті — `hungry`.*
+**19 · Ви шукаєте сіль для супу. Запитайте брата повною фразою: поруч із мискою є сіль?**
+<!-- interaction_id: en:lesson-04:session-19:i15; family: phrase_builder -->
+Плитки: `salt` `any` `near` `the` `bowl` `there` `Is` `Are` → **Is there any salt near the bowl?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there any salt near the bowl?`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-19:i16; family: speed_match -->
-soup — суп · guilty — винний · bags — сумки · tram — трамвай
+rice — рис · soup — суп · salt — сіль · pasta — макарони
 
-**17 · В іншій подорожі ви зайшли пообідати й ще не знаєте меню. Запитайте «Тут є суп?» з any**
+**21 · Подруга питає, чи лишився суп. Супу немає. Відповідайте їй коротко**
 <!-- interaction_id: en:lesson-04:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there any soup here?**
-
+🎙 **No, there isn't.**

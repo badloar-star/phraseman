@@ -1,138 +1,152 @@
-# Английский · Урок 4 · Занятие 25 — Где лежит ягода?
+# Английский · Урок 4 · Занятие 25 — Что лежит внутри
 
-**Ситуация.** Вы помогаете на кухне: ищете упавшую ягоду и объясняете, где раковина. Собаки устроились под столом, а хозяин пока отсутствует.
+**Ситуация.** Вы помогаете брату обустроиться в новой квартире: что-то лежит в раковине, что-то в посудомоечной машине, а велосипед стоит в подвале. Вы говорите, где что находится, и учитесь сказать «внутри» словом in.
 
-**Что вы освоите:** указать место с in, on, under, next to и between
-**Новые слова:** sink
+**Что вы освоите:** сказать, что предмет находится внутри места, со словом in
+**Новые слова:** sink, dishwasher, basement, bathtub
+**Возвращаются:** lemon, apple, cup, spoon, bottle, bicycle, towel
 
 ---
 
 ## Интро 1
 
-### Внутри или сверху
+### Чай для сестры
 
-`sink` — «раковина», на кухне также «мойка». `in` — «внутри»: `The berry is in the sink` — «Ягода в раковине». `on` — «на поверхности»: `The berry is on the table` — «Ягода на столе». Здесь говорим о конкретной ягоде и знакомом месте, поэтому используем `the`. Ягода в раковине — `in`, на столе — `on`; для ягоды это короткое путешествие, для нас — два разных слова.
+Сестра заваривает чай и просит лимон. Вы заглядываете в раковину: лимон лежит там, среди мокрых тарелок. sink — «раковина». Слово in значит «внутри»: The lemon is in the sink — «Лимон в раковине». Вы оба знаете и лимон, и раковину, поэтому the.
 
-**Ягода лежит внутри раковины. Выберите описание.**
+**Сестра ищет лимон. Скажите ей, что он в раковине.**
 
-- ✅ **The berry is in the sink.**
-- ❌ The berry is on the sink. — *`on` — на поверхности; в условии ягода внутри: `in the sink`.*
-- ❌ The berry are in the sink. — *Одна ягода: `The berry is`.*
+- ✅ **The lemon is in the sink.**
+- ❌ The lemon is in sink. — *Раковину вы оба знаете, поэтому перед ней нужно the: in the sink.*
+- ❌ The lemon are in the sink. — *Лимон один, поэтому нужно is: The lemon is.*
 
 ---
 
 ## Интро 2
 
-### Под, рядом и между
+### Грязные чашки
 
-`under` — «под»: `The dogs are under the table` — «Собаки под столом». `next to` — «рядом с»: `The sink is next to the window` — «Раковина рядом с окном». `between` — «между»: `The berry is between the cups` — «Ягода между чашками». Сначала называем предмет, затем `is` или `are`, потом место.
+Брат пришёл с работы и спрашивает, куда делись чашки со стола. Вы уже убрали их в большой шкаф на кухне, который моет посуду сам. dishwasher — «посудомоечная машина». Чашек несколько, поэтому are: The cups are in the dishwasher — «Чашки в посудомоечной машине».
 
-**Раковина стоит рядом с окном. Выберите описание.**
+**Брат ищет чашки. Скажите ему, что они в посудомоечной машине.**
 
-- ✅ **The sink is next to the window.**
-- ❌ The sink is under the window. — *Это «под окном», а в условии рядом: `next to`.*
-- ❌ The sink are next to the window. — *Одна раковина: `The sink is`.*
+- ✅ **The cups are in the dishwasher.**
+- ❌ The cups is in the dishwasher. — *Чашек несколько, поэтому нужно are: The cups are.*
+- ❌ The cups are in dishwasher. — *Посудомоечную машину вы оба знаете, поэтому перед ней нужно the.*
 
 ---
 
 ## Интро 3
 
-### Кто где
+### Зимний велосипед
 
-`dogs` — «собаки», поэтому `The dogs are`. `berry` — одна «ягода», поэтому `The berry is`. `absent` — «отсутствующий». Хозяин не пришёл на запланированную встречу: `He is absent` — «Он отсутствует». Сокращённо: `He’s absent`. Эта фраза сообщает об отсутствии, но не объясняет, куда он ушёл.
+Соседка собралась на прогулку и спрашивает, где ваш велосипед. Зимой он вам не нужен: он стоит в подвале дома, где сухо и никто не ходит. basement — «подвал». Велосипед один, поэтому is: The bicycle is in the basement — «Велосипед в подвале».
 
-**Хозяина нет на запланированной встрече. Скажите «Он отсутствует» с сокращением.**
+**Соседка ищет ваш велосипед. Скажите ей, что он в подвале.**
 
-- ✅ **He's absent.**
-- ❌ He's present. — *`present` — присутствует; здесь отсутствует: `absent`.*
-- ❌ He are absent. — *С `He` нужно `is`: `He’s absent`.*
+- ✅ **The bicycle is in the basement.**
+- ❌ The bicycle is in basement. — *Подвал вы оба знаете, поэтому перед ним нужно the: in the basement.*
+- ❌ The bicycle are in the basement. — *Велосипед один, поэтому нужно is: The bicycle is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Хозяин не пришёл на встречу. Скажите «Он отсутствует» без сокращения**
-<!-- interaction_id: en:lesson-04:session-25:i01; family: phrase_builder -->
-Плитки: `absent` `is` `He` `are` → **He is absent.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is absent.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-25:i01; family: speed_match -->
+sink — раковина · dishwasher — посудомоечная машина · basement — подвал · bathtub — ванна
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-25:i02; family: listen_choose -->
-🔊 *sink* → **sink** · soup · milk
-- soup — *В записи первое слово — `sink`, а в этом варианте — `soup`.*
-- milk — *В записи первое слово — `sink`, а в этом варианте — `milk`.*
+**2 · Карточка слова — sink**
+<!-- interaction_id: en:lesson-04:session-25:word:sink; family: word_card -->
+> **sink** — раковина. The cup is in the sink. — «Чашка в раковине». О месте, где моют руки и посуду.
 
-**3 · Назовите раковину одним словом**
-<!-- interaction_id: en:lesson-04:session-25:i03; family: context_gap_grammar -->
-___ → **sink** · table · window
-- table — *`table` — стол; раковина — `sink`.*
-- window — *`window` — окно; раковина — `sink`.*
+**3 · Сестра показывает на кухне место, где моют посуду, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-25:i02; family: scripted_repeat_compare -->
+🎙 **sink**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-25:i04; family: speed_match -->
-sink — раковина · absent — отсутствующий · dogs — собаки · berry — ягода
+**4 · Сестра ищет ложку. Скажите ей полной фразой: ложка в раковине**
+<!-- interaction_id: en:lesson-04:session-25:i03; family: phrase_builder -->
+Плитки: `spoon` `the` `in` `is` `The` `sink` `are` → **The spoon is in the sink.**
+*(плитка `are` лишняя: здесь нужно `is` — `The spoon is in the sink.`)*
 
-**5 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-25:i05; family: listen_build_dictation -->
-🔊 *The berry is in the sink.* Плитки: `sink` `the` `in` `is` `berry` `The` `are` → **The berry is in the sink.**
-*(плитка `are` лишняя: здесь нужно `is` — `The berry is in the sink.`)*
+**5 · Карточка слова — dishwasher**
+<!-- interaction_id: en:lesson-04:session-25:word:dishwasher; family: word_card -->
+> **dishwasher** — посудомоечная машина. The cups are in the dishwasher. — «Чашки в посудомоечной машине». О машине, которая моет посуду.
 
-**6 · Ягода лежит на поверхности стола. Скажите «Ягода на столе»**
-<!-- interaction_id: en:lesson-04:session-25:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `berry` `The` `are` → **The berry is on the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `The berry is on the table.`)*
+**6 · Кухонная машина, в которой посуда моется сама. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-25:i04; family: context_gap_grammar -->
+___ → **dishwasher** · sink · bucket
+- sink — *sink — это раковина, а машина для мытья посуды называется dishwasher.*
+- bucket — *bucket — это ведро, а машина для мытья посуды называется dishwasher.*
 
-**7 · Собаки лежат под столом. Скажите, где они**
-<!-- interaction_id: en:lesson-04:session-25:i07; family: scripted_repeat_compare -->
-🎙 **The dogs are under the table.**
+**7 · Послушайте брата**
+<!-- interaction_id: en:lesson-04:session-25:i05; family: listen_choose -->
+🔊 *The bottles are in the dishwasher.* → **The bottles are in the dishwasher.** · The bottles are in the sink. · The bottle is in the dishwasher.
+- The bottles are in the sink. — *В записи `dishwasher`, а в этом варианте `sink`.*
+- The bottle is in the dishwasher. — *В записи бутылок несколько (`bottles are`), а в этом варианте одна.*
 
-**8 · Раковина рядом с окном, не под ним. Закончите описание**
+**8 · Карточка слова — basement**
+<!-- interaction_id: en:lesson-04:session-25:word:basement; family: word_card -->
+> **basement** — подвал. The bicycle is in the basement. — «Велосипед в подвале». О помещении под домом.
+
+**9 · Соседка называет помещение под домом, где зимой стоят велосипеды, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-25:i06; family: scripted_repeat_compare -->
+🎙 **basement**
+
+**10 · Послушайте соседку и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-25:i07; family: listen_build_dictation -->
+🔊 *The bicycles are in the basement.* Плитки: `basement` `bicycles` `the` `in` `are` `The` `is` → **The bicycles are in the basement.**
+*(плитка `is` лишняя: здесь нужно `are` — `The bicycles are in the basement.`)*
+
+**11 · Карточка слова — bathtub**
+<!-- interaction_id: en:lesson-04:session-25:word:bathtub; family: word_card -->
+> **bathtub** — ванна. The towel is in the bathtub. — «Полотенце в ванне». О большой ёмкости для мытья, в которой лежат в воде.
+
+**12 · Большая ёмкость в ванной комнате, в которой лежат в воде. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-25:i08; family: context_gap_grammar -->
-The sink is ___ the window. → **next to** · under · in
-- under — *`under` — под; рядом с — `next to`.*
-- in — *`in` — внутри; здесь рядом с окном: `next to the window`.*
+___ → **bathtub** · sink · bucket
+- sink — *sink — это раковина, а большая ёмкость, где лежат в воде, называется bathtub.*
+- bucket — *bucket — это ведро, а большая ёмкость, где лежат в воде, называется bathtub.*
 
-**9 · Послушайте описание**
-<!-- interaction_id: en:lesson-04:session-25:i09; family: listen_choose -->
-🔊 *The sink is between the tables.* → **The sink is between the tables.** · The sink is between the windows. · The sink is between the chairs.
-- The sink is between the windows. — *В записи последнее слово — `tables`, а в этом варианте — `windows`.*
-- The sink is between the chairs. — *В записи последнее слово — `tables`, а в этом варианте — `chairs`.*
+**13 · Полотенце упало в ванну. Скажите брату полной фразой: полотенце в ванне**
+<!-- interaction_id: en:lesson-04:session-25:i09; family: phrase_builder -->
+Плитки: `towel` `the` `in` `is` `The` `bathtub` `are` → **The towel is in the bathtub.**
+*(плитка `are` лишняя: здесь нужно `is` — `The towel is in the bathtub.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-25:i10; family: speed_match -->
-sink — раковина · in — внутри · on — на поверхности · under — под
+bathtub — ванна · basement — подвал · dishwasher — посудомоечная машина · towel — полотенце
 
-**11 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-25:i11; family: listen_build_dictation -->
-🔊 *The dogs are next to the sink.* Плитки: `sink` `the` `to` `next` `are` `dogs` `The` `is` → **The dogs are next to the sink.**
-*(плитка `is` лишняя: здесь нужно `are` — `The dogs are next to the sink.`)*
+**15 · Послушайте сестру**
+<!-- interaction_id: en:lesson-04:session-25:i11; family: listen_choose -->
+🔊 *The apples are in the sink.* → **The apples are in the sink.** · The apples are in the bathtub. · The apple is in the sink.
+- The apples are in the bathtub. — *В записи `sink`, а в этом варианте `bathtub`.*
+- The apple is in the sink. — *В записи яблок несколько (`apples are`), а в этом варианте одно.*
 
-**12 · Ягода укатилась под стол. Скажите «Ягода под столом»**
-<!-- interaction_id: en:lesson-04:session-25:i12; family: phrase_builder -->
-Плитки: `table` `the` `under` `is` `berry` `The` `are` → **The berry is under the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `The berry is under the table.`)*
+**16 · Лимонов в раковине несколько. Выберите нужное слово**
+<!-- interaction_id: en:lesson-04:session-25:i12; family: context_gap_grammar -->
+The lemons ___ in the sink. → **are** · is · am
+- is — *Лимонов несколько, поэтому нужно are, а не is.*
+- am — *am бывает только с I; здесь лимоны, поэтому are.*
 
-**13 · Хозяина нет на встрече. Скажите «Он отсутствует» с сокращением**
-<!-- interaction_id: en:lesson-04:session-25:i13; family: scripted_repeat_compare -->
-🎙 **He's absent.**
+**17 · Послушайте брата и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-25:i13; family: listen_build_dictation -->
+🔊 *The bottle is in the dishwasher.* Плитки: `bottle` `the` `in` `is` `The` `dishwasher` `are` → **The bottle is in the dishwasher.**
+*(плитка `are` лишняя: здесь нужно `is` — `The bottle is in the dishwasher.`)*
 
-**14 · Ягода лежит между двумя чашками, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-25:i14; family: context_gap_grammar -->
-The berry is ___ the cups. → **between** · under · in
-- under — *`under` — под; между — `between`.*
-- in — *`in` — внутри; между чашками — `between the cups`.*
+**18 · Сестра спрашивает, где чашка. Ответьте ей: чашка в раковине**
+<!-- interaction_id: en:lesson-04:session-25:i14; family: scripted_repeat_compare -->
+🎙 **The cup is in the sink.**
 
-**15 · Послушайте, где собаки**
-<!-- interaction_id: en:lesson-04:session-25:i15; family: listen_choose -->
-🔊 *The dogs are in the room.* → **The dogs are in the room.** · The dogs are in the garden. · The dogs are in the hotel.
-- The dogs are in the garden. — *В записи последнее слово — `room`, а в этом варианте — `garden`.*
-- The dogs are in the hotel. — *В записи последнее слово — `room`, а в этом варианте — `hotel`.*
+**19 · Брат ищет бутылки. Скажите ему полной фразой: бутылки в подвале**
+<!-- interaction_id: en:lesson-04:session-25:i15; family: phrase_builder -->
+Плитки: `bottles` `the` `in` `are` `The` `basement` `is` → **The bottles are in the basement.**
+*(плитка `is` лишняя: здесь нужно `are` — `The bottles are in the basement.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-25:i16; family: speed_match -->
-sink — раковина · absent — отсутствующий · dogs — собаки · berry — ягода
+sink — раковина · dishwasher — посудомоечная машина · basement — подвал · bathtub — ванна
 
-**17 · В другой квартире друг ищет раковину. Она рядом с окном. Скажите «Раковина рядом с окном»**
+**21 · В другой квартире друг ищет велосипед. Он в подвале. Скажите ему: «Велосипед в подвале»**
 <!-- interaction_id: en:lesson-04:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The sink is next to the window.**
-
+🎙 **The bicycle is in the basement.**

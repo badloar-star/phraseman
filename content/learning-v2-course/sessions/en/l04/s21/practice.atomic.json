@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-21:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-21:i01:p1",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i01:p2",
+              "target": "tea",
+              "meaningByLocale": {
+                "ru": "чай",
+                "uk": "чай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i01:p3",
+              "target": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе",
+                "uk": "кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i01:p4",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "juice",
+            "tea",
+            "coffee",
+            "water"
+          ],
+          "rightColumn": [
+            "сок",
+            "чай",
+            "кофе",
+            "вода"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:juice",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:juice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:juice:audio",
+            "transcript": "juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:juice:r1",
+              "targetText": "juice",
+              "meaningByLocale": {
+                "ru": "сок. There isn't any juice here. — «Здесь нет сока». О напитке из фруктов.",
+                "uk": "сік. There isn't any juice here. — «Тут немає соку». Про напій із фруктів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "juice",
+            "definitionByLocale": {
+              "ru": "сок. There isn't any juice here. — «Здесь нет сока». О напитке из фруктов.",
+              "uk": "сік. There isn't any juice here. — «Тут немає соку». Про напій із фруктів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на стакан с фруктовым напитком и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на стакан с фруктовым напитком и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i02:audio",
+            "transcript": "juice"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "juice",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хочет сока. Скажите ей полной фразой: рядом с холодильником нет сока",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хочет сока. Скажите ей полной фразой: рядом с холодильником нет сока",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn't any juice near the fridge.",
+          "localizedMeaning": {
+            "ru": "Подруга хочет сока. Скажите ей полной фразой: рядом с холодильником нет сока",
+            "uk": "Подруга хоче соку. Скажіть їй повною фразою: поруч із холодильником немає соку"
+          },
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "juice",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хочет сока. Скажите ей полной фразой: рядом с холодильником нет сока",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any juice near the fridge.`",
+                "uk": "тут потрібно `isn't` — `There isn't any juice near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:tea",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:tea:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:tea:audio",
+            "transcript": "tea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:tea:r1",
+              "targetText": "tea",
+              "meaningByLocale": {
+                "ru": "чай. There isn't any tea near the kettle. — «Рядом с чайником нет чая». О горячем напитке из заварки.",
+                "uk": "чай. There isn't any tea near the kettle. — «Поруч із чайником немає чаю». Про гарячий напій із заварки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tea",
+            "definitionByLocale": {
+              "ru": "чай. There isn't any tea near the kettle. — «Рядом с чайником нет чая». О горячем напитке из заварки.",
+              "uk": "чай. There isn't any tea near the kettle. — «Поруч із чайником немає чаю». Про гарячий напій із заварки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i04:r1",
+            "text": "tea"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i04:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i04:r3",
+            "text": "juice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+            "uk": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-21:i04:r1",
+              "text": "tea"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i04:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i04:r3",
+              "text": "juice"
+            }
+          ],
+          "testedDimension": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i04:r2",
+              "correct": false,
+              "testedDimension": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "milk — это молоко, а горячий напиток из сухих листьев называется tea.",
+                "uk": "milk — це молоко, а гарячий напій із сухого листя називається tea."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i04:r3",
+              "correct": false,
+              "testedDimension": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "juice — это сок из фруктов, а горячий напиток из сухих листьев называется tea.",
+                "uk": "juice — це сік із фруктів, а гарячий напій із сухого листя називається tea."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сообщение гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i05:r1",
+            "text": "There isn't any tea here."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i05:r2",
+            "text": "There isn't any juice here."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i05:r3",
+            "text": "There is some tea here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сообщение гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i05:audio",
+            "transcript": "There isn't any tea here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:i05:r1",
+              "targetText": "There isn't any tea here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i05:r2",
+              "targetText": "There isn't any juice here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i05:r3",
+              "targetText": "There is some tea here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение гостя",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `tea`, а в этом варианте про `juice`.",
+                "uk": "У записі говорять про `tea`, а в цьому варіанті про `juice`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение гостя",
+              "feedbackByLocale": {
+                "ru": "В записи чая нет: `There isn't any`, а в этом варианте он есть: `There is some`.",
+                "uk": "У записі чаю немає: `There isn't any`, а в цьому варіанті він є: `There is some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:coffee",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — coffee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:coffee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — coffee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:coffee:audio",
+            "transcript": "coffee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:coffee:r1",
+              "targetText": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе. There isn't any coffee behind the basket. — «За корзиной нет кофе». О тёмном бодрящем напитке.",
+                "uk": "кава. There isn't any coffee behind the basket. — «За кошиком немає кави». Про темний бадьорий напій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coffee",
+            "definitionByLocale": {
+              "ru": "кофе. There isn't any coffee behind the basket. — «За корзиной нет кофе». О тёмном бодрящем напитке.",
+              "uk": "кава. There isn't any coffee behind the basket. — «За кошиком немає кави». Про темний бадьорий напій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат утром достаёт тёмный бодрящий напиток и называет слово, а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i06:audio"
+        ],
+        "accessibilityLabel": "Брат утром достаёт тёмный бодрящий напиток и называет слово, а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i06:audio",
+            "transcript": "coffee"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "coffee",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i07:audio",
+            "transcript": "There isn't any coffee here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn't any coffee here.",
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "coffee",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any coffee here.`",
+                "uk": "тут потрібно `isn't` — `There isn't any coffee here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:water",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — water",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:water:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — water",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:water:audio",
+            "transcript": "water"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:water:r1",
+              "targetText": "water",
+              "meaningByLocale": {
+                "ru": "вода. There isn't any water near the cup. — «Рядом с чашкой нет воды». О прозрачной жидкости, которую пьют из стакана.",
+                "uk": "вода. There isn't any water near the cup. — «Поруч із чашкою немає води». Про прозору рідину, яку п’ють зі склянки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "water",
+            "definitionByLocale": {
+              "ru": "вода. There isn't any water near the cup. — «Рядом с чашкой нет воды». О прозрачной жидкости, которую пьют из стакана.",
+              "uk": "вода. There isn't any water near the cup. — «Поруч із чашкою немає води». Про прозору рідину, яку п’ють зі склянки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i08:r1",
+            "text": "water"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i08:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i08:r3",
+            "text": "tea"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+            "uk": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-21:i08:r1",
+              "text": "water"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i08:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i08:r3",
+              "text": "tea"
+            }
+          ],
+          "testedDimension": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "milk — это белое молоко, а прозрачная жидкость без вкуса называется water.",
+                "uk": "milk — це біле молоко, а прозора рідина без смаку називається water."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "tea — это тёмный чай, а прозрачная жидкость без вкуса называется water.",
+                "uk": "tea — це темний чай, а прозора рідина без смаку називається water."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гостья просит воды. Скажите ей полной фразой: рядом с чашкой нет воды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гостья просит воды. Скажите ей полной фразой: рядом с чашкой нет воды",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn't any water near the cup.",
+          "localizedMeaning": {
+            "ru": "Гостья просит воды. Скажите ей полной фразой: рядом с чашкой нет воды",
+            "uk": "Гостя просить води. Скажіть їй повною фразою: поруч із чашкою немає води"
+          },
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "water",
+            "near",
+            "the",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Гостья просит воды. Скажите ей полной фразой: рядом с чашкой нет воды",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any water near the cup.`",
+                "uk": "тут потрібно `isn't` — `There isn't any water near the cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-21:i10:p1",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i10:p2",
+              "target": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе",
+                "uk": "кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i10:p3",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i10:p4",
+              "target": "tea",
+              "meaningByLocale": {
+                "ru": "чай",
+                "uk": "чай"
+              }
+            }
+          ],
+          "leftColumn": [
+            "water",
+            "coffee",
+            "juice",
+            "tea"
+          ],
+          "rightColumn": [
+            "вода",
+            "кофе",
+            "сок",
+            "чай"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i11:r1",
+            "text": "There isn't any coffee near the kettle."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i11:r2",
+            "text": "There isn't any tea near the kettle."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i11:r3",
+            "text": "There is some coffee near the kettle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i11:audio",
+            "transcript": "There isn't any coffee near the kettle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:i11:r1",
+              "targetText": "There isn't any coffee near the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i11:r2",
+              "targetText": "There isn't any tea near the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i11:r3",
+              "targetText": "There is some coffee near the kettle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `coffee`, а в этом варианте про `tea`.",
+                "uk": "У записі говорять про `coffee`, а в цьому варіанті про `tea`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи кофе нет: `There isn't any`, а в этом варианте он есть: `There is some`.",
+                "uk": "У записі кави немає: `There isn't any`, а в цьому варіанті вона є: `There is some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+            "uk": "Подруга каже, що соку немає зовсім. Доповніть її фразу"
+          },
+          "gappedTargetPhrase": "There isn't ___ juice here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-21:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+              "feedbackByLocale": {
+                "ru": "В отрицании some не нужно: There isn't any juice.",
+                "uk": "У запереченні some не потрібно: There isn't any juice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а сок не считают штуками: any juice.",
+                "uk": "Слово a ставлять перед одним предметом, а сік не рахують штуками: any juice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i13:audio",
+            "transcript": "There isn't any tea near the box."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn't any tea near the box.",
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "tea",
+            "near",
+            "the",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any tea near the box.`",
+                "uk": "тут потрібно `isn't` — `There isn't any tea near the box.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ищет воду. За корзиной её нет. Скажите ей полной фразой, что воды за корзиной нет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга ищет воду. За корзиной её нет. Скажите ей полной фразой, что воды за корзиной нет",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i14:audio",
+            "transcript": "There isn't any water behind the basket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn't any water behind the basket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат ищет кофе. Скажите ему полной фразой: рядом с миской нет кофе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат ищет кофе. Скажите ему полной фразой: рядом с миской нет кофе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn't any coffee near the bowl.",
+          "localizedMeaning": {
+            "ru": "Брат ищет кофе. Скажите ему полной фразой: рядом с миской нет кофе",
+            "uk": "Брат шукає каву. Скажіть йому повною фразою: поруч із мискою немає кави"
+          },
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "coffee",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат ищет кофе. Скажите ему полной фразой: рядом с миской нет кофе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any coffee near the bowl.`",
+                "uk": "тут потрібно `isn't` — `There isn't any coffee near the bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-21:i16:p1",
+              "target": "tea",
+              "meaningByLocale": {
+                "ru": "чай",
+                "uk": "чай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i16:p2",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i16:p3",
+              "target": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе",
+                "uk": "кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i16:p4",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tea",
+            "water",
+            "coffee",
+            "juice"
+          ],
+          "rightColumn": [
+            "чай",
+            "вода",
+            "кофе",
+            "сок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость просит сока, но бутылка за миской пуста. Скажите ему полной фразой, что сока за миской нет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Гость просит сока, но бутылка за миской пуста. Скажите ему полной фразой, что сока за миской нет",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i17:audio",
+            "transcript": "There isn't any juice behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn't any juice behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-21:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-21:i01:p1",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i01:p2",
+              "target": "tea",
+              "meaningByLocale": {
+                "ru": "чай",
+                "uk": "чай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i01:p3",
+              "target": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе",
+                "uk": "кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i01:p4",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "juice",
+            "tea",
+            "coffee",
+            "water"
+          ],
+          "rightColumn": [
+            "сік",
+            "чай",
+            "кава",
+            "вода"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:juice",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:juice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:juice:audio",
+            "transcript": "juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:juice:r1",
+              "targetText": "juice",
+              "meaningByLocale": {
+                "ru": "сок. There isn't any juice here. — «Здесь нет сока». О напитке из фруктов.",
+                "uk": "сік. There isn't any juice here. — «Тут немає соку». Про напій із фруктів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "juice",
+            "definitionByLocale": {
+              "ru": "сок. There isn't any juice here. — «Здесь нет сока». О напитке из фруктов.",
+              "uk": "сік. There isn't any juice here. — «Тут немає соку». Про напій із фруктів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на склянку з фруктовим напоєм і називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на склянку з фруктовим напоєм і називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i02:audio",
+            "transcript": "juice"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "juice",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хоче соку. Скажіть їй повною фразою: поруч із холодильником немає соку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хоче соку. Скажіть їй повною фразою: поруч із холодильником немає соку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn't any juice near the fridge.",
+          "localizedMeaning": {
+            "ru": "Подруга хочет сока. Скажите ей полной фразой: рядом с холодильником нет сока",
+            "uk": "Подруга хоче соку. Скажіть їй повною фразою: поруч із холодильником немає соку"
+          },
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "juice",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хоче соку. Скажіть їй повною фразою: поруч із холодильником немає соку",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any juice near the fridge.`",
+                "uk": "тут потрібно `isn't` — `There isn't any juice near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:tea",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:tea:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:tea:audio",
+            "transcript": "tea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:tea:r1",
+              "targetText": "tea",
+              "meaningByLocale": {
+                "ru": "чай. There isn't any tea near the kettle. — «Рядом с чайником нет чая». О горячем напитке из заварки.",
+                "uk": "чай. There isn't any tea near the kettle. — «Поруч із чайником немає чаю». Про гарячий напій із заварки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tea",
+            "definitionByLocale": {
+              "ru": "чай. There isn't any tea near the kettle. — «Рядом с чайником нет чая». О горячем напитке из заварки.",
+              "uk": "чай. There isn't any tea near the kettle. — «Поруч із чайником немає чаю». Про гарячий напій із заварки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i04:r1",
+            "text": "tea"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i04:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i04:r3",
+            "text": "juice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Горячий напиток, который заваривают в чайнике из сухих листьев. Как он называется по-английски?",
+            "uk": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-21:i04:r1",
+              "text": "tea"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i04:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i04:r3",
+              "text": "juice"
+            }
+          ],
+          "testedDimension": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i04:r2",
+              "correct": false,
+              "testedDimension": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "milk — это молоко, а горячий напиток из сухих листьев называется tea.",
+                "uk": "milk — це молоко, а гарячий напій із сухого листя називається tea."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i04:r3",
+              "correct": false,
+              "testedDimension": "Гарячий напій, який заварюють у чайнику із сухого листя. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "juice — это сок из фруктов, а горячий напиток из сухих листьев называется tea.",
+                "uk": "juice — це сік із фруктів, а гарячий напій із сухого листя називається tea."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте повідомлення гостя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i05:r1",
+            "text": "There isn't any tea here."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i05:r2",
+            "text": "There isn't any juice here."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i05:r3",
+            "text": "There is some tea here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте повідомлення гостя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i05:audio",
+            "transcript": "There isn't any tea here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:i05:r1",
+              "targetText": "There isn't any tea here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i05:r2",
+              "targetText": "There isn't any juice here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i05:r3",
+              "targetText": "There is some tea here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення гостя",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `tea`, а в этом варианте про `juice`.",
+                "uk": "У записі говорять про `tea`, а в цьому варіанті про `juice`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення гостя",
+              "feedbackByLocale": {
+                "ru": "В записи чая нет: `There isn't any`, а в этом варианте он есть: `There is some`.",
+                "uk": "У записі чаю немає: `There isn't any`, а в цьому варіанті він є: `There is some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:coffee",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — coffee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:coffee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — coffee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:coffee:audio",
+            "transcript": "coffee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:coffee:r1",
+              "targetText": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе. There isn't any coffee behind the basket. — «За корзиной нет кофе». О тёмном бодрящем напитке.",
+                "uk": "кава. There isn't any coffee behind the basket. — «За кошиком немає кави». Про темний бадьорий напій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coffee",
+            "definitionByLocale": {
+              "ru": "кофе. There isn't any coffee behind the basket. — «За корзиной нет кофе». О тёмном бодрящем напитке.",
+              "uk": "кава. There isn't any coffee behind the basket. — «За кошиком немає кави». Про темний бадьорий напій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат зранку дістає темний бадьорий напій і називає слово, а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i06:audio"
+        ],
+        "accessibilityLabel": "Брат зранку дістає темний бадьорий напій і називає слово, а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i06:audio",
+            "transcript": "coffee"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "coffee",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i07:audio",
+            "transcript": "There isn't any coffee here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn't any coffee here.",
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "coffee",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any coffee here.`",
+                "uk": "тут потрібно `isn't` — `There isn't any coffee here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:word:water",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — water",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:word:water:audio"
+        ],
+        "accessibilityLabel": "Картка слова — water",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:word:water:audio",
+            "transcript": "water"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:word:water:r1",
+              "targetText": "water",
+              "meaningByLocale": {
+                "ru": "вода. There isn't any water near the cup. — «Рядом с чашкой нет воды». О прозрачной жидкости, которую пьют из стакана.",
+                "uk": "вода. There isn't any water near the cup. — «Поруч із чашкою немає води». Про прозору рідину, яку п’ють зі склянки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "water",
+            "definitionByLocale": {
+              "ru": "вода. There isn't any water near the cup. — «Рядом с чашкой нет воды». О прозрачной жидкости, которую пьют из стакана.",
+              "uk": "вода. There isn't any water near the cup. — «Поруч із чашкою немає води». Про прозору рідину, яку п’ють зі склянки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i08:r1",
+            "text": "water"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i08:r2",
+            "text": "milk"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i08:r3",
+            "text": "tea"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прозрачная жидкость без вкуса, которую пьют из стакана. Как она называется по-английски?",
+            "uk": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-21:i08:r1",
+              "text": "water"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i08:r2",
+              "text": "milk"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i08:r3",
+              "text": "tea"
+            }
+          ],
+          "testedDimension": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "milk — это белое молоко, а прозрачная жидкость без вкуса называется water.",
+                "uk": "milk — це біле молоко, а прозора рідина без смаку називається water."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Прозора рідина без смаку, яку п’ють зі склянки. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "tea — это тёмный чай, а прозрачная жидкость без вкуса называется water.",
+                "uk": "tea — це темний чай, а прозора рідина без смаку називається water."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гостя просить води. Скажіть їй повною фразою: поруч із чашкою немає води",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гостя просить води. Скажіть їй повною фразою: поруч із чашкою немає води",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn't any water near the cup.",
+          "localizedMeaning": {
+            "ru": "Гостья просит воды. Скажите ей полной фразой: рядом с чашкой нет воды",
+            "uk": "Гостя просить води. Скажіть їй повною фразою: поруч із чашкою немає води"
+          },
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "water",
+            "near",
+            "the",
+            "cup"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Гостя просить води. Скажіть їй повною фразою: поруч із чашкою немає води",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any water near the cup.`",
+                "uk": "тут потрібно `isn't` — `There isn't any water near the cup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-21:i10:p1",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i10:p2",
+              "target": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе",
+                "uk": "кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i10:p3",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i10:p4",
+              "target": "tea",
+              "meaningByLocale": {
+                "ru": "чай",
+                "uk": "чай"
+              }
+            }
+          ],
+          "leftColumn": [
+            "water",
+            "coffee",
+            "juice",
+            "tea"
+          ],
+          "rightColumn": [
+            "вода",
+            "кава",
+            "сік",
+            "чай"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i11:r1",
+            "text": "There isn't any coffee near the kettle."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i11:r2",
+            "text": "There isn't any tea near the kettle."
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i11:r3",
+            "text": "There is some coffee near the kettle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i11:audio",
+            "transcript": "There isn't any coffee near the kettle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-21:i11:r1",
+              "targetText": "There isn't any coffee near the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i11:r2",
+              "targetText": "There isn't any tea near the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i11:r3",
+              "targetText": "There is some coffee near the kettle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `coffee`, а в этом варианте про `tea`.",
+                "uk": "У записі говорять про `coffee`, а в цьому варіанті про `tea`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи кофе нет: `There isn't any`, а в этом варианте он есть: `There is some`.",
+                "uk": "У записі кави немає: `There isn't any`, а в цьому варіанті вона є: `There is some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга каже, що соку немає зовсім. Доповніть її фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-21:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-21:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга каже, що соку немає зовсім. Доповніть її фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга говорит, что сока нет совсем. Дополните её фразу",
+            "uk": "Подруга каже, що соку немає зовсім. Доповніть її фразу"
+          },
+          "gappedTargetPhrase": "There isn't ___ juice here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-21:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Подруга каже, що соку немає зовсім. Доповніть її фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга каже, що соку немає зовсім. Доповніть її фразу",
+              "feedbackByLocale": {
+                "ru": "В отрицании some не нужно: There isn't any juice.",
+                "uk": "У запереченні some не потрібно: There isn't any juice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга каже, що соку немає зовсім. Доповніть її фразу",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а сок не считают штуками: any juice.",
+                "uk": "Слово a ставлять перед одним предметом, а сік не рахують штуками: any juice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i13:audio",
+            "transcript": "There isn't any tea near the box."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There isn't any tea near the box.",
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "tea",
+            "near",
+            "the",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any tea near the box.`",
+                "uk": "тут потрібно `isn't` — `There isn't any tea near the box.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шукає воду. За кошиком її немає. Скажіть їй повною фразою, що води за кошиком немає",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга шукає воду. За кошиком її немає. Скажіть їй повною фразою, що води за кошиком немає",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i14:audio",
+            "transcript": "There isn't any water behind the basket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn't any water behind the basket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат шукає каву. Скажіть йому повною фразою: поруч із мискою немає кави",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат шукає каву. Скажіть йому повною фразою: поруч із мискою немає кави",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There isn't any coffee near the bowl.",
+          "localizedMeaning": {
+            "ru": "Брат ищет кофе. Скажите ему полной фразой: рядом с миской нет кофе",
+            "uk": "Брат шукає каву. Скажіть йому повною фразою: поруч із мискою немає кави"
+          },
+          "orderedTokens": [
+            "There",
+            "isn't",
+            "any",
+            "coffee",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "aren't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-21:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат шукає каву. Скажіть йому повною фразою: поруч із мискою немає кави",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `isn't` — `There isn't any coffee near the bowl.`",
+                "uk": "тут потрібно `isn't` — `There isn't any coffee near the bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-21:i16:p1",
+              "target": "tea",
+              "meaningByLocale": {
+                "ru": "чай",
+                "uk": "чай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i16:p2",
+              "target": "water",
+              "meaningByLocale": {
+                "ru": "вода",
+                "uk": "вода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i16:p3",
+              "target": "coffee",
+              "meaningByLocale": {
+                "ru": "кофе",
+                "uk": "кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-21:i16:p4",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tea",
+            "water",
+            "coffee",
+            "juice"
+          ],
+          "rightColumn": [
+            "чай",
+            "вода",
+            "кава",
+            "сік"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість просить соку, але пляшка за мискою порожня. Скажіть йому повною фразою, що соку за мискою немає",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Гість просить соку, але пляшка за мискою порожня. Скажіть йому повною фразою, що соку за мискою немає",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-21:i17:audio",
+            "transcript": "There isn't any juice behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There isn't any juice behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-21:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:word:juice",
+      "correctText": "juice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i02",
+      "correctText": "juice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i03",
+      "correctText": "There isn't any juice near the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:word:tea",
+      "correctText": "tea",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i04",
+      "correctText": "tea",
+      "correctResponseId": "en:lesson-04:session-21:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i05",
+      "correctText": "There isn't any tea here.",
+      "correctResponseId": "en:lesson-04:session-21:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:word:coffee",
+      "correctText": "coffee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i06",
+      "correctText": "coffee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i07",
+      "correctText": "There isn't any coffee here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:word:water",
+      "correctText": "water",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i08",
+      "correctText": "water",
+      "correctResponseId": "en:lesson-04:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i09",
+      "correctText": "There isn't any water near the cup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i11",
+      "correctText": "There isn't any coffee near the kettle.",
+      "correctResponseId": "en:lesson-04:session-21:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-21:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i13",
+      "correctText": "There isn't any tea near the box.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i14",
+      "correctText": "There isn't any water behind the basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i15",
+      "correctText": "There isn't any coffee near the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-21:i17",
+      "correctText": "There isn't any juice behind the bowl.",
+      "correctResponseId": null
+    }
+  ]
+}

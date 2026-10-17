@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-28",
   "learningOutcomeByLocale": {
-    "ru": "назвать переулок и описать, где находятся стулья и знакомые предметы",
-    "uk": "назвати провулок і описати, де розташовані стільці та знайомі предмети"
+    "ru": "сказать, что предмет находится рядом с другим, словами next to",
+    "uk": "сказати, що предмет перебуває поруч з іншим, словами next to"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Узкий проход между зданиями",
-        "uk": "Вузький прохід між будівлями"
+        "ru": "Курьер заблудился",
+        "uk": "Кур’єр заблукав"
       },
       "bodyByLocale": {
-        "ru": "`alley` — «переулок, узкий проход между зданиями». Не путайте с русским «аллея»: деревья здесь не обязательны. Один переулок — `an alley`, потому что первый звук гласный. `The chairs are in the alley` — «Стулья в переулке». Для слова `alley` достаточно узкого прохода: сажать деревья ради перевода не надо.",
-        "uk": "`alley` — «провулок, вузький прохід між будівлями». Не плутайте з українським «алея»: дерева тут не обов’язкові. Один провулок — `an alley`, бо перший звук голосний. `The chairs are in the alley` — «Стільці в провулку». Для слова `alley` достатньо вузького проходу: садити дерева заради перекладу не треба."
+        "ru": "Курьер везёт вам обед и звонит: он стоит на большой улице и не видит кафе. Вы объясняете, что оно в узком проходе между двумя домами, рядом с отелем. alley — «переулок». Слова next to значат «рядом с»: The alley is next to the hotel — «Переулок рядом с отелем».",
+        "uk": "Кур’єр везе вам обід і телефонує: він стоїть на великій вулиці й не бачить кафе. Ви пояснюєте, що воно у вузькому проході між двома будинками, поруч із готелем. alley — «провулок». Слова next to означають «поруч із»: The alley is next to the hotel — «Провулок поруч із готелем»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Стулья стоят в переулке. Выберите описание.",
-          "uk": "Стільці стоять у провулку. Виберіть опис."
+          "ru": "Курьер ищет переулок. Скажите ему, что он рядом с отелем.",
+          "uk": "Кур’єр шукає провулок. Скажіть йому, що він поруч із готелем."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-28:intro1:r1",
-              "text": "The chairs are in the alley."
+              "text": "The alley is next to the hotel."
             },
             {
               "responseId": "en:lesson-04:session-28:intro1:r2",
-              "text": "The chairs are on the alley."
+              "text": "The alley is under the hotel."
             },
             {
               "responseId": "en:lesson-04:session-28:intro1:r3",
-              "text": "The chairs is in the alley."
+              "text": "The alley is next the hotel."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-28:intro1:r1",
-              "text": "The chairs are in the alley."
+              "text": "The alley is next to the hotel."
             },
             {
               "responseId": "en:lesson-04:session-28:intro1:r2",
-              "text": "The chairs are on the alley."
+              "text": "The alley is under the hotel."
             },
             {
               "responseId": "en:lesson-04:session-28:intro1:r3",
-              "text": "The chairs is in the alley."
+              "text": "The alley is next the hotel."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Стулья стоят в переулке. Выберите описание.",
-          "uk": "Стільці стоять у провулку. Виберіть опис."
+          "ru": "Курьер ищет переулок. Скажите ему, что он рядом с отелем.",
+          "uk": "Кур’єр шукає провулок. Скажіть йому, що він поруч із готелем."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Переулок и стулья",
-        "uk": "Провулок і стільці"
+        "ru": "Встреча вечером",
+        "uk": "Зустріч увечері"
       },
       "bodyByLocale": {
-        "ru": "`chairs` — «стулья». `The chairs are next to the table` — «Стулья рядом со столом». `The alley is between the buildings` — «Переулок между зданиями». `mushroom` — «гриб»: `The mushroom is on the table` — «Гриб на столе». Для нескольких стульев — `are`, для одного гриба или переулка — `is`.",
-        "uk": "`chairs` — «стільці». `The chairs are next to the table` — «Стільці поруч зі столом». `The alley is between the buildings` — «Провулок між будівлями». `mushroom` — «гриб»: `The mushroom is on the table` — «Гриб на столі». Для кількох стільців — `are`, для одного гриба чи провулка — `is`."
+        "ru": "Вы договорились встретиться с подругой вечером. Уже темно, и она никак не может найти вас на улице. Вы стоите у высокого столба с горящим фонарём, а рядом с ним стоит скамейка. lamppost — «фонарный столб». The bench is next to the lamppost — «Скамейка рядом с фонарным столбом».",
+        "uk": "Ви домовилися зустрітися з подругою ввечері. Вже темно, і вона ніяк не може знайти вас на вулиці. Ви стоїте біля високого стовпа з увімкненим ліхтарем, а поруч із ним стоїть лавка. lamppost — «ліхтарний стовп». The bench is next to the lamppost — «Лавка поруч із ліхтарним стовпом»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Переулок проходит между зданиями. Выберите описание.",
-          "uk": "Провулок проходить між будівлями. Виберіть опис."
+          "ru": "Подруга не видит вас в темноте. Скажите ей, что скамейка рядом с фонарным столбом.",
+          "uk": "Подруга не бачить вас у темряві. Скажіть їй, що лавка поруч із ліхтарним стовпом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-28:intro2:r1",
-              "text": "The alley is between the buildings."
+              "text": "The bench is next to the lamppost."
             },
             {
               "responseId": "en:lesson-04:session-28:intro2:r2",
-              "text": "The alley are between the buildings."
+              "text": "The bench is on the lamppost."
             },
             {
               "responseId": "en:lesson-04:session-28:intro2:r3",
-              "text": "The alley is on the buildings."
+              "text": "The bench is next to lamppost."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-28:intro2:r1",
-              "text": "The alley is between the buildings."
+              "text": "The bench is next to the lamppost."
             },
             {
               "responseId": "en:lesson-04:session-28:intro2:r2",
-              "text": "The alley are between the buildings."
+              "text": "The bench is on the lamppost."
             },
             {
               "responseId": "en:lesson-04:session-28:intro2:r3",
-              "text": "The alley is on the buildings."
+              "text": "The bench is next to lamppost."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Переулок проходит между зданиями. Выберите описание.",
-          "uk": "Провулок проходить між будівлями. Виберіть опис."
+          "ru": "Подруга не видит вас в темноте. Скажите ей, что скамейка рядом с фонарным столбом.",
+          "uk": "Подруга не бачить вас у темряві. Скажіть їй, що лавка поруч із ліхтарним стовпом."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Можно договориться",
-        "uk": "Можна домовитися"
+        "ru": "Куда поставить велосипед",
+        "uk": "Куди поставити велосипед"
       },
       "bodyByLocale": {
-        "ru": "`flexible` — «гибкий». О человеке это может значить, что он готов менять планы и подстраиваться. Встречу перенесли, друг без проблем согласился: `He is flexible` — «Он гибкий, готов подстроиться». Сокращённо: `He’s flexible`. Здесь речь о планах, а не о том, умеет ли он садиться на шпагат.",
-        "uk": "`flexible` — «гнучкий». Про людину це може означати, що вона готова змінювати плани й підлаштовуватися. Зустріч перенесли, друг без проблем погодився: `He is flexible` — «Він гнучкий, готовий підлаштуватися». Скорочено: `He’s flexible`. Тут ідеться про плани, а не про те, чи вміє він сідати на шпагат."
+        "ru": "Брат приехал к вам на велосипеде и спрашивает, куда его ставить. Во дворе у дома есть калитка, и вы уже оставили там свой велосипед. gate — «ворота, калитка». Велосипед один, поэтому is: The bicycle is next to the gate — «Велосипед рядом с воротами».",
+        "uk": "Брат приїхав до вас на велосипеді й питає, куди його ставити. У дворі біля будинку є хвіртка, і ви вже залишили там свій велосипед. gate — «ворота, хвіртка». Велосипед один, тому is: The bicycle is next to the gate — «Велосипед поруч із воротами»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Друг готов менять время встречи. Скажите «Он готов подстроиться» с сокращением и словом flexible.",
-          "uk": "Друг готовий змінювати час зустрічі. Скажіть «Він готовий підлаштуватися» зі скороченням і словом flexible."
+          "ru": "Брат спрашивает, где ваш велосипед. Скажите ему, что он рядом с воротами.",
+          "uk": "Брат питає, де ваш велосипед. Скажіть йому, що він поруч із воротами."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-28:intro3:r1",
-              "text": "He's flexible."
+              "text": "The bicycle is next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-28:intro3:r2",
-              "text": "He's careless."
+              "text": "The bicycle are next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-28:intro3:r3",
-              "text": "He are flexible."
+              "text": "The bicycle is next the gate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-28:intro3:r1",
-              "text": "He's flexible."
+              "text": "The bicycle is next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-28:intro3:r2",
-              "text": "He's careless."
+              "text": "The bicycle are next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-28:intro3:r3",
-              "text": "He are flexible."
+              "text": "The bicycle is next the gate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг готов менять время встречи. Скажите «Он готов подстроиться» с сокращением и словом flexible.",
-          "uk": "Друг готовий змінювати час зустрічі. Скажіть «Він готовий підлаштуватися» зі скороченням і словом flexible."
+          "ru": "Брат спрашивает, где ваш велосипед. Скажите ему, что он рядом с воротами.",
+          "uk": "Брат питає, де ваш велосипед. Скажіть йому, що він поруч із воротами."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "36b28fb1b6a0038f35e976b45419e19d0cf07cdce362b27c5c55599c3872188b"
+  "introFingerprint": "46afd8abed81748c809b857667de1394ca808a035584eb9939ae86a420f5f03f"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-32",
   "learningOutcomeByLocale": {
-    "ru": "назвать фонтан и повторить, как описывать расположение знакомых мест и вещей",
-    "uk": "назвати фонтан і повторити, як описувати розташування знайомих місць та речей"
+    "ru": "самому выбрать нужное слово места и сказать, где что находится",
+    "uk": "самому вибрати потрібне слово місця й сказати, де що перебуває"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вода на площади",
-        "uk": "Вода на площі"
+        "ru": "Встреча у фонтана",
+        "uk": "Зустріч біля фонтану"
       },
       "bodyByLocale": {
-        "ru": "`fountain` — «фонтан». `This is a fountain` — «Это фонтан». Один фонтан — `a fountain`: струй может быть десять, но фонтан всё равно один. `The fountain is next to the car park` — «Фонтан рядом с парковкой». `car park` — парковка для машин.",
-        "uk": "`fountain` — «фонтан». `This is a fountain` — «Це фонтан». Один фонтан — `a fountain`: струменів може бути десять, але фонтан усе одно один. `The fountain is next to the car park` — «Фонтан поруч із парковкою». `car park` — парковка для машин."
+        "ru": "Вы договорились встретиться с другом у большой каменной чаши, из которой бьёт вода. Друг уже ждёт у входа в отель и не знает, куда идти дальше. fountain — «фонтан». Он стоит за зданием отеля: The fountain is behind the hotel — «Фонтан за отелем».",
+        "uk": "Ви домовилися зустрітися з другом біля великої кам’яної чаші, з якої б’є вода. Друг уже чекає біля входу в готель і не знає, куди йти далі. fountain — «фонтан». Він стоїть за будівлею готелю: The fountain is behind the hotel — «Фонтан за готелем»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один фонтан рядом.",
-          "uk": "Назвіть один фонтан поруч."
+          "ru": "Друг ищет фонтан. Скажите ему, что он за отелем.",
+          "uk": "Друг шукає фонтан. Скажіть йому, що він за готелем."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-32:intro1:r1",
-              "text": "This is a fountain."
+              "text": "The fountain is behind the hotel."
             },
             {
               "responseId": "en:lesson-04:session-32:intro1:r2",
-              "text": "This is fountain."
+              "text": "The fountain is between the hotel."
             },
             {
               "responseId": "en:lesson-04:session-32:intro1:r3",
-              "text": "These are fountains."
+              "text": "The fountain are behind the hotel."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-32:intro1:r1",
-              "text": "This is a fountain."
+              "text": "The fountain is behind the hotel."
             },
             {
               "responseId": "en:lesson-04:session-32:intro1:r2",
-              "text": "This is fountain."
+              "text": "The fountain is between the hotel."
             },
             {
               "responseId": "en:lesson-04:session-32:intro1:r3",
-              "text": "These are fountains."
+              "text": "The fountain are behind the hotel."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один фонтан рядом.",
-          "uk": "Назвіть один фонтан поруч."
+          "ru": "Друг ищет фонтан. Скажите ему, что он за отелем.",
+          "uk": "Друг шукає фонтан. Скажіть йому, що він за готелем."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Перед выходом",
-        "uk": "Перед виходом"
+        "ru": "Страх перед птицами",
+        "uk": "Страх перед птахами"
       },
       "bodyByLocale": {
-        "ru": "`yoghurt` — «йогурт», `sink` — «раковина», `worktop` — «кухонная столешница». `The yoghurt is on the worktop` — «Йогурт на столешнице». `The sink is next to the worktop` — «Раковина рядом со столешницей». В этих фразах `on` означает на поверхности, `next to` — рядом.",
-        "uk": "`yoghurt` — «йогурт», `sink` — «раковина», `worktop` — «кухонна стільниця». `The yoghurt is on the worktop` — «Йогурт на стільниці». `The sink is next to the worktop` — «Раковина поруч зі стільницею». У цих фразах `on` означає на поверхні, `next to` — поруч."
+        "ru": "Сестра боится птиц и идёт по площади очень осторожно. Она просит вас сказать, где сидит серая городская птица, которая ходит по площади и клюёт крошки. pigeon — «голубь». Он сидит сверху на статуе: The pigeon is on the statue — «Голубь на статуе».",
+        "uk": "Сестра боїться птахів і йде площею дуже обережно. Вона просить вас сказати, де сидить сірий міський птах, який ходить по площі й дзьобає крихти. pigeon — «голуб». Він сидить зверху на статуї: The pigeon is on the statue — «Голуб на статуї»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Йогурт стоит на поверхности столешницы. Выберите описание.",
-          "uk": "Йогурт стоїть на поверхні стільниці. Виберіть опис."
+          "ru": "Сестра боится птиц. Скажите ей, что голубь на статуе.",
+          "uk": "Сестра боїться птахів. Скажіть їй, що голуб на статуї."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-32:intro2:r1",
-              "text": "The yoghurt is on the worktop."
+              "text": "The pigeon is on the statue."
             },
             {
               "responseId": "en:lesson-04:session-32:intro2:r2",
-              "text": "The yoghurt is under the worktop."
+              "text": "The pigeon is in the statue."
             },
             {
               "responseId": "en:lesson-04:session-32:intro2:r3",
-              "text": "The yoghurt are on the worktop."
+              "text": "The pigeon are on the statue."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-32:intro2:r1",
-              "text": "The yoghurt is on the worktop."
+              "text": "The pigeon is on the statue."
             },
             {
               "responseId": "en:lesson-04:session-32:intro2:r2",
-              "text": "The yoghurt is under the worktop."
+              "text": "The pigeon is in the statue."
             },
             {
               "responseId": "en:lesson-04:session-32:intro2:r3",
-              "text": "The yoghurt are on the worktop."
+              "text": "The pigeon are on the statue."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Йогурт стоит на поверхности столешницы. Выберите описание.",
-          "uk": "Йогурт стоїть на поверхні стільниці. Виберіть опис."
+          "ru": "Сестра боится птиц. Скажите ей, что голубь на статуе.",
+          "uk": "Сестра боїться птахів. Скажіть їй, що голуб на статуї."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ориентиры по пути",
-        "uk": "Орієнтири дорогою"
+        "ru": "Турист на площади",
+        "uk": "Турист на площі"
       },
       "bodyByLocale": {
-        "ru": "`awning` — «навес», `alley` — «узкий переулок», `bus stop` — «автобусная остановка», `signpost` — «столб с указателями». `The signpost is in the alley` — «Столб с указателями в переулке». `The bus stop is next to the fountain` — «Остановка рядом с фонтаном». `The bag is under the awning` — «Сумка под навесом». Слова места помогают другу найти вас, а не просто узнать, что в городе есть фонтан.",
-        "uk": "`awning` — «навіс», `alley` — «вузький провулок», `bus stop` — «автобусна зупинка», `signpost` — «стовп із вказівниками». `The signpost is in the alley` — «Стовп із вказівниками в провулку». `The bus stop is next to the fountain` — «Зупинка поруч із фонтаном». `The bag is under the awning` — «Сумка під навісом». Слова місця допомагають другу знайти вас, а не просто дізнатися, що в місті є фонтан."
+        "ru": "Турист хочет сфотографировать высокий каменный знак, который поставили в память о людях и событии. Вы знаете, что он стоит ровно между банком и школой. monument — «памятник». The monument is between the bank and the school — «Памятник между банком и школой».",
+        "uk": "Турист хоче сфотографувати високий кам’яний знак, який поставили на згадку про людей і подію. Ви знаєте, що він стоїть рівно між банком і школою. monument — «пам’ятник». The monument is between the bank and the school — «Пам’ятник між банком і школою»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Остановка рядом с фонтаном. Выберите описание.",
-          "uk": "Зупинка поруч із фонтаном. Виберіть опис."
+          "ru": "Турист ищет памятник. Скажите ему, что он между банком и школой.",
+          "uk": "Турист шукає пам’ятник. Скажіть йому, що він між банком і школою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-32:intro3:r1",
-              "text": "The bus stop is next to the fountain."
+              "text": "The monument is between the bank and the school."
             },
             {
               "responseId": "en:lesson-04:session-32:intro3:r2",
-              "text": "The bus stop is in the fountain."
+              "text": "The monument is between the bank."
             },
             {
               "responseId": "en:lesson-04:session-32:intro3:r3",
-              "text": "The bus stop are next to the fountain."
+              "text": "The monument is between the bank and school."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-32:intro3:r1",
-              "text": "The bus stop is next to the fountain."
+              "text": "The monument is between the bank and the school."
             },
             {
               "responseId": "en:lesson-04:session-32:intro3:r2",
-              "text": "The bus stop is in the fountain."
+              "text": "The monument is between the bank."
             },
             {
               "responseId": "en:lesson-04:session-32:intro3:r3",
-              "text": "The bus stop are next to the fountain."
+              "text": "The monument is between the bank and school."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Остановка рядом с фонтаном. Выберите описание.",
-          "uk": "Зупинка поруч із фонтаном. Виберіть опис."
+          "ru": "Турист ищет памятник. Скажите ему, что он между банком и школой.",
+          "uk": "Турист шукає пам’ятник. Скажіть йому, що він між банком і школою."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "442338c3963163932ecf27710112be33385d5cfd25d5d32fcc565e0c31661b41"
+  "introFingerprint": "11d45df0defb53c210255d6c88a24372df7ae1a0198d75970c60990c4511ab05"
 }

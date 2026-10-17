@@ -1,138 +1,152 @@
-# Английский · Урок 4 · Занятие 30 — Указатель у магазина
+# Английский · Урок 4 · Занятие 30 — Рядом и за
 
-**Ситуация.** Вы встречаетесь у овощного магазина. Друг ищет столб с указателями, рассматривает окна и замечает морковку на столе у входа. Машину он оставил в другом месте.
+**Ситуация.** Вы гуляете с подругой по парку и за городом, а потом помогаете соседу в саду. Новой грамматики нет: знакомые слова near («рядом») и behind («за») помогают сказать, где что стоит.
 
-**Что вы освоите:** назвать столб с указателями, описать расположение и сказать «в другом месте»
-**Новые слова:** signpost
+**Что вы освоите:** сказать, что предмет рядом с чем-то или за чем-то, словами near и behind
+**Новые слова:** signpost, hedge, shed, pond
+**Возвращаются:** lake, bridge, bench, gate, bicycle, ladder, bin, statue
 
 ---
 
 ## Интро 1
 
-### Куда идти
+### Развилка
 
-`signpost` — «столб с указателями», например со стрелками к разным местам. `The signpost is next to the shop` — «Столб с указателями рядом с магазином». Один такой столб — `a signpost`. На нём может быть пять стрелок, но сам столб всё равно один: `signpost`, а не `signposts`.
+Вы с подругой гуляете за городом и остановились на развилке: тропинок три, и вы не знаете, куда идти. Недалеко от моста стоит столб со стрелками, на которых написаны названия мест. signpost — «столб с указателями». The signpost is near the bridge.
 
-**Назовите один столб с указателями рядом.**
+**Подруга ищет указатель. Скажите ей, что он рядом с мостом.**
 
-- ✅ **This is a signpost.**
-- ❌ These are signposts. — *Это несколько столбов; здесь один: `This is a signpost`.*
-- ❌ This is signpost. — *Перед одним столбом нужно `a`: `a signpost`.*
+- ✅ **The signpost is near the bridge.**
+- ❌ The signpost is behind the bridge. — *behind — «за», а указатель стоит недалеко от моста: нужно near.*
+- ❌ The signpost are near the bridge. — *Указатель один, поэтому нужно is: The signpost is.*
 
 ---
 
 ## Интро 2
 
-### Окна и морковка
+### Спрятанная калитка
 
-`windows` — «окна»: `The signpost is between the windows` — «Столб с указателями между окнами». Представьте его перед стеной в промежутке между двумя окнами. `carrot` — «морковка»: `The carrot is on the table` — «Морковка на столе». `The windows are next to the door` — «Окна рядом с дверью». Несколько окон требуют `are`, один столб или морковка — `is`.
+Друг впервые идёт к вам в гости и не может найти вход во двор, хотя адрес он знает. Густые зелёные кусты растут вдоль всей улицы, как стена, и калитку отсюда совсем не видно. hedge — «живая изгородь». The gate is behind the hedge — «Калитка за живой изгородью».
 
-**Морковка лежит на столе. Выберите описание.**
+**Друг не видит калитку. Скажите ему, что она за живой изгородью.**
 
-- ✅ **The carrot is on the table.**
-- ❌ The carrot is under the table. — *`under` — под; морковка на поверхности стола: `on`.*
-- ❌ The carrot are on the table. — *Одна морковка: `The carrot is`.*
+- ✅ **The gate is behind the hedge.**
+- ❌ The gate is under the hedge. — *under — «под», а калитка стоит позади кустов: нужно behind.*
+- ❌ The gate is behind hedge. — *Изгородь вы оба видите, поэтому перед ней нужно the: behind the hedge.*
 
 ---
 
 ## Интро 3
 
-### В другом месте
+### Лестница для соседа
 
-`elsewhere` — «в другом месте». Вы ищете машину у магазина, но друг оставил её в другом месте: `It is elsewhere` — «Она в другом месте». Сокращённо: `It’s elsewhere`. После `elsewhere` не нужно добавлять ещё одно слово «место»: оно уже входит в смысл. Точного адреса эта фраза не сообщает.
+Сосед хочет завтра починить крышу и просит у вас лестницу. Вы убрали её в сад, за небольшой деревянный дом, где хранят лопаты и другие инструменты. shed — «сарай». Лестница одна, поэтому is: The ladder is behind the shed — «Лестница за сараем».
 
-**Машину оставили в другом месте. Скажите об этом с сокращением.**
+**Сосед просит лестницу. Скажите ему, что она за сараем.**
 
-- ✅ **It's elsewhere.**
-- ❌ It's here. — *`here` — здесь; в условии в другом месте: `elsewhere`.*
-- ❌ It are elsewhere. — *С `It` нужно `is`: `It’s elsewhere`.*
+- ✅ **The ladder is behind the shed.**
+- ❌ The ladder is behind shed. — *Сарай вы оба знаете, поэтому перед ним нужно the: behind the shed.*
+- ❌ The ladder are behind the shed. — *Лестница одна, поэтому нужно is: The ladder is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Машина в другом месте. Скажите об этом без сокращения**
-<!-- interaction_id: en:lesson-04:session-30:i01; family: phrase_builder -->
-Плитки: `elsewhere` `is` `It` `are` → **It is elsewhere.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is elsewhere.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-30:i01; family: speed_match -->
+signpost — столб с указателями · hedge — живая изгородь · shed — сарай · pond — пруд
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-30:i02; family: listen_choose -->
-🔊 *signpost* → **signpost** · signposts · sink
-- signposts — *В записи первое слово — `signpost`, а в этом варианте — `signposts`.*
-- sink — *В записи первое слово — `signpost`, а в этом варианте — `sink`.*
+**2 · Карточка слова — signpost**
+<!-- interaction_id: en:lesson-04:session-30:word:signpost; family: word_card -->
+> **signpost** — столб с указателями. The signpost is near the lake. — «Столб с указателями рядом с озером». О столбе со стрелками, которые показывают, куда идти.
 
-**3 · Назовите столб с указателями одним словом**
-<!-- interaction_id: en:lesson-04:session-30:i03; family: context_gap_grammar -->
-___ → **signpost** · window · awning
-- window — *`window` — окно; столб с указателями — `signpost`.*
-- awning — *`awning` — навес; столб с указателями — `signpost`.*
+**3 · Подруга показывает столб со стрелками на развилке, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-30:i02; family: scripted_repeat_compare -->
+🎙 **signpost**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-30:i04; family: speed_match -->
-signpost — столб с указателями · elsewhere — в другом месте · windows — окна · carrot — морковка
+**4 · Подруга потерялась на тропинке. Скажите ей полной фразой: указатель рядом с озером**
+<!-- interaction_id: en:lesson-04:session-30:i03; family: phrase_builder -->
+Плитки: `signpost` `the` `near` `is` `The` `lake` `are` → **The signpost is near the lake.**
+*(плитка `are` лишняя: здесь нужно `is` — `The signpost is near the lake.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-30:i05; family: listen_build_dictation -->
-🔊 *This is a signpost.* Плитки: `signpost` `a` `is` `This` `are` → **This is a signpost.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a signpost.`)*
+**5 · Карточка слова — hedge**
+<!-- interaction_id: en:lesson-04:session-30:word:hedge; family: word_card -->
+> **hedge** — живая изгородь. The bench is behind the hedge. — «Скамейка за живой изгородью». О густых кустах, которые растут в ряд.
 
-**6 · Морковка на столе. Скажите, где она**
-<!-- interaction_id: en:lesson-04:session-30:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `carrot` `The` `are` → **The carrot is on the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `The carrot is on the table.`)*
+**6 · Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?**
+<!-- interaction_id: en:lesson-04:session-30:i04; family: context_gap_grammar -->
+___ → **hedge** · tree · fence
+- tree — *tree — это одно дерево, а кусты в ряд называются hedge.*
+- fence — *fence — это забор из досок, а кусты в ряд называются hedge.*
 
-**7 · Друг спрашивает о машине. Она в другом месте. Ответьте с сокращением**
-<!-- interaction_id: en:lesson-04:session-30:i07; family: scripted_repeat_compare -->
-🎙 **It's elsewhere.**
+**7 · Послушайте подругу**
+<!-- interaction_id: en:lesson-04:session-30:i05; family: listen_choose -->
+🔊 *The bench is behind the hedge.* → **The bench is behind the hedge.** · The bench is near the hedge. · The benches are behind the hedge.
+- The bench is near the hedge. — *В записи `behind` — за изгородью, а в этом варианте `near` — рядом.*
+- The benches are behind the hedge. — *В записи скамейка одна (`bench is`), а в этом варианте несколько.*
 
-**8 · Столб стоит рядом с магазином, снаружи. Выберите слова**
+**8 · Карточка слова — shed**
+<!-- interaction_id: en:lesson-04:session-30:word:shed; family: word_card -->
+> **shed** — сарай. The bicycles are behind the shed. — «Велосипеды за сараем». О маленьком доме для инструментов в саду.
+
+**9 · Сосед показывает маленький деревянный дом для инструментов, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-30:i06; family: scripted_repeat_compare -->
+🎙 **shed**
+
+**10 · Послушайте соседа и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-30:i07; family: listen_build_dictation -->
+🔊 *The bicycles are behind the shed.* Плитки: `bicycles` `the` `behind` `are` `The` `shed` `is` → **The bicycles are behind the shed.**
+*(плитка `is` лишняя: здесь нужно `are` — `The bicycles are behind the shed.`)*
+
+**11 · Карточка слова — pond**
+<!-- interaction_id: en:lesson-04:session-30:word:pond; family: word_card -->
+> **pond** — пруд. The bench is near the pond. — «Скамейка рядом с прудом». О небольшом озере в парке.
+
+**12 · Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-30:i08; family: context_gap_grammar -->
-The signpost is ___ the shop. → **next to** · in · on
-- in — *`in` — внутри; здесь рядом: `next to`.*
-- on — *`on` — на поверхности; рядом с магазином — `next to the shop`.*
+___ → **pond** · lake · bridge
+- lake — *lake — это большое озеро, а небольшое озеро в парке называется pond.*
+- bridge — *bridge — это мост, а небольшое озеро в парке называется pond.*
 
-**9 · Послушайте описание окон**
-<!-- interaction_id: en:lesson-04:session-30:i09; family: listen_choose -->
-🔊 *The windows are next to the door.* → **The windows are next to the door.** · The windows are next to the sink. · The windows are next to the worktop.
-- The windows are next to the sink. — *В записи последнее слово — `door`, а в этом варианте — `sink`.*
-- The windows are next to the worktop. — *В записи последнее слово — `door`, а в этом варианте — `worktop`.*
+**13 · Подруга ищет, где присесть. Скажите ей полной фразой: скамейка рядом с прудом**
+<!-- interaction_id: en:lesson-04:session-30:i09; family: phrase_builder -->
+Плитки: `bench` `the` `near` `is` `The` `pond` `are` → **The bench is near the pond.**
+*(плитка `are` лишняя: здесь нужно `is` — `The bench is near the pond.`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-30:i10; family: speed_match -->
-signpost — столб с указателями · between — между · windows — окна · carrot — морковка
+pond — пруд · shed — сарай · hedge — живая изгородь · bridge — мост
 
-**11 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-30:i11; family: listen_build_dictation -->
-🔊 *The signpost is between the windows.* Плитки: `windows` `the` `between` `is` `signpost` `The` `are` → **The signpost is between the windows.**
-*(плитка `are` лишняя: здесь нужно `is` — `The signpost is between the windows.`)*
+**15 · Послушайте соседа**
+<!-- interaction_id: en:lesson-04:session-30:i11; family: listen_choose -->
+🔊 *The bin is near the shed.* → **The bin is near the shed.** · The bin is behind the shed. · The bins are near the shed.
+- The bin is behind the shed. — *В записи `near` — рядом, а в этом варианте `behind` — за.*
+- The bins are near the shed. — *В записи урна одна (`bin is`), а в этом варианте несколько.*
 
-**12 · Морковка укатилась под стол. Скажите, где она**
-<!-- interaction_id: en:lesson-04:session-30:i12; family: phrase_builder -->
-Плитки: `table` `the` `under` `is` `carrot` `The` `are` → **The carrot is under the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `The carrot is under the table.`)*
+**16 · Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово**
+<!-- interaction_id: en:lesson-04:session-30:i12; family: context_gap_grammar -->
+The ladder is ___ the shed. → **behind** · under · between
+- under — *under — «под», а лестница стоит позади сарая: нужно behind.*
+- between — *between — «между двумя местами», а здесь одно место: нужно behind.*
 
-**13 · Друг ищет столб с указателями. Он рядом с отелем. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-30:i13; family: scripted_repeat_compare -->
-🎙 **The signpost is next to the hotel.**
+**17 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-30:i13; family: listen_build_dictation -->
+🔊 *The statue is near the pond.* Плитки: `statue` `the` `near` `is` `The` `pond` `are` → **The statue is near the pond.**
+*(плитка `are` лишняя: здесь нужно `is` — `The statue is near the pond.`)*
 
-**14 · Морковка лежит между чашками, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-30:i14; family: context_gap_grammar -->
-The carrot is ___ the cups. → **between** · in · under
-- in — *`in` — внутри; между чашками — `between the cups`.*
-- under — *`under` — под; между — `between`.*
+**18 · Подруга спрашивает про указатель. Ответьте ей: указатель рядом с мостом**
+<!-- interaction_id: en:lesson-04:session-30:i14; family: scripted_repeat_compare -->
+🎙 **The signpost is near the bridge.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-30:i15; family: listen_choose -->
-🔊 *That is a signpost.* → **That is a signpost.** · This is a signpost. · That is a table.
-- This is a signpost. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a table. — *В записи последнее слово — `signpost`, а в этом варианте — `table`.*
+**19 · Друг ищет вход во двор. Скажите ему полной фразой: ворота за сараем**
+<!-- interaction_id: en:lesson-04:session-30:i15; family: phrase_builder -->
+Плитки: `gate` `the` `behind` `is` `The` `shed` `are` → **The gate is behind the shed.**
+*(плитка `are` лишняя: здесь нужно `is` — `The gate is behind the shed.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-30:i16; family: speed_match -->
-signpost — столб с указателями · elsewhere — в другом месте · windows — окна · carrot — морковка
+signpost — столб с указателями · hedge — живая изгородь · shed — сарай · pond — пруд
 
-**17 · В другом городе друг ищет столб со стрелками. Он рядом с магазином. Скажите «Столб с указателями рядом с магазином»**
+**21 · В другом саду сосед ищет лестницу. Она за сараем. Скажите ему: «Лестница за сараем»**
 <!-- interaction_id: en:lesson-04:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The signpost is next to the shop.**
-
+🎙 **The ladder is behind the shed.**

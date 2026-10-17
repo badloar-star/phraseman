@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-19:i01",
-    "correctText": "That is a tram.",
+    "correctText": "en:lesson-04:session-19:i01:p1=soup\nen:lesson-04:session-19:i01:p2=rice\nen:lesson-04:session-19:i01:p3=pasta\nen:lesson-04:session-19:i01:p4=salt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:word:soup",
+    "correctText": "soup",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i02",
     "correctText": "soup",
-    "correctResponseId": "en:lesson-04:session-19:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-19:i03",
-    "correctText": "soup",
-    "correctResponseId": "en:lesson-04:session-19:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-19:i04",
-    "correctText": "en:lesson-04:session-19:i04:p1=soup\nen:lesson-04:session-19:i04:p2=guilty\nen:lesson-04:session-19:i04:p3=bags\nen:lesson-04:session-19:i04:p4=tram",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-19:i03",
+    "correctText": "Is there any soup near the pot?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:word:rice",
+    "correctText": "rice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:i04",
+    "correctText": "rice",
+    "correctResponseId": "en:lesson-04:session-19:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-19:i05",
-    "correctText": "There is some soup.",
+    "correctText": "Is there any rice here?",
+    "correctResponseId": "en:lesson-04:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:word:pasta",
+    "correctText": "pasta",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i06",
-    "correctText": "There are some bags here.",
+    "correctText": "pasta",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i07",
-    "correctText": "I'm guilty.",
+    "correctText": "Is there any pasta here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-19:word:salt",
+    "correctText": "salt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i08",
-    "correctText": "is",
+    "correctText": "salt",
     "correctResponseId": "en:lesson-04:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-19:i09",
-    "correctText": "Are there any bags?",
-    "correctResponseId": "en:lesson-04:session-19:i09:r1"
+    "correctText": "Is there any salt near the plate?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i10",
-    "correctText": "en:lesson-04:session-19:i10:p1=soup\nen:lesson-04:session-19:i10:p2=bags\nen:lesson-04:session-19:i10:p3=tram\nen:lesson-04:session-19:i10:p4=guilty",
+    "correctText": "en:lesson-04:session-19:i10:p1=salt\nen:lesson-04:session-19:i10:p2=pasta\nen:lesson-04:session-19:i10:p3=soup\nen:lesson-04:session-19:i10:p4=rice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i11",
-    "correctText": "Is there any soup?",
-    "correctResponseId": null
+    "correctText": "Yes, there is.",
+    "correctResponseId": "en:lesson-04:session-19:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-19:i12",
-    "correctText": "Are there any bags here?",
-    "correctResponseId": null
+    "correctText": "any",
+    "correctResponseId": "en:lesson-04:session-19:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-19:i13",
-    "correctText": "There is some soup there.",
+    "correctText": "Is there any rice near the bowl?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i14",
-    "correctText": "Is",
-    "correctResponseId": "en:lesson-04:session-19:i14:r1"
+    "correctText": "Is there any pasta behind the bowl?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i15",
-    "correctText": "I am guilty.",
-    "correctResponseId": "en:lesson-04:session-19:i15:r1"
+    "correctText": "Is there any salt near the bowl?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i16",
-    "correctText": "en:lesson-04:session-19:i16:p1=soup\nen:lesson-04:session-19:i16:p2=guilty\nen:lesson-04:session-19:i16:p3=bags\nen:lesson-04:session-19:i16:p4=tram",
+    "correctText": "en:lesson-04:session-19:i16:p1=rice\nen:lesson-04:session-19:i16:p2=soup\nen:lesson-04:session-19:i16:p3=salt\nen:lesson-04:session-19:i16:p4=pasta",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-19:i17",
-    "correctText": "Is there any soup here?",
+    "correctText": "No, there isn't.",
     "correctResponseId": null
   }
 ]

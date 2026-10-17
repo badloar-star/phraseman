@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-26",
   "learningOutcomeByLocale": {
-    "ru": "описать расположение столешницы и знакомых предметов, повторить on/under/next to/between",
-    "uk": "описати розташування стільниці та знайомих предметів, повторити on/under/next to/between"
+    "ru": "сказать, что предмет лежит или стоит сверху, словом on",
+    "uk": "сказати, що предмет лежить або стоїть зверху, словом on"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Поверхность для готовки",
-        "uk": "Поверхня для готування"
+        "ru": "Кухня перед гостями",
+        "uk": "Кухня перед гістьми"
       },
       "bodyByLocale": {
-        "ru": "`worktop` — «кухонная столешница»: поверхность, на которой готовят еду. `The milk is on the worktop` — «Молоко на столешнице». Здесь речь о молоке в пакете: его не обязательно вылили прямо на поверхность. `on` указывает, где стоит пакет. Столешница для готовки, но кошка может считать иначе.",
-        "uk": "`worktop` — «кухонна стільниця»: поверхня, на якій готують їжу. `The milk is on the worktop` — «Молоко на стільниці». Тут ідеться про молоко в пакеті: його не обов’язково вилили просто на поверхню. `on` указує, де стоїть пакет. Стільниця для готування, але кіт може вважати інакше."
+        "ru": "Друг показывает новую кухню: гости придут через час, а на кухне ещё пусто. Вы помогаете и ставите чашки вдоль стены, на ровную рабочую поверхность. worktop — «кухонная столешница». Слово on значит «на поверхности»: The cups are on the worktop — «Чашки на столешнице».",
+        "uk": "Друг показує нову кухню: гості прийдуть за годину, а на кухні ще порожньо. Ви допомагаєте й ставите чашки вздовж стіни, на рівну робочу поверхню. worktop — «кухонна стільниця». Слово on означає «на поверхні»: The cups are on the worktop — «Чашки на стільниці»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "Молоко в пакете стоит на столешнице. Выберите описание.",
-          "uk": "Молоко в пакеті стоїть на стільниці. Виберіть опис."
+          "ru": "Друг спрашивает, где чашки. Скажите ему, что они на столешнице.",
+          "uk": "Друг питає, де чашки. Скажіть йому, що вони на стільниці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-26:intro1:r1",
-              "text": "The milk is on the worktop."
+              "text": "The cups are on the worktop."
             },
             {
               "responseId": "en:lesson-04:session-26:intro1:r2",
-              "text": "The milk is under the worktop."
+              "text": "The cups are in the worktop."
             },
             {
               "responseId": "en:lesson-04:session-26:intro1:r3",
-              "text": "The milk are on the worktop."
+              "text": "The cups is on the worktop."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-26:intro1:r1",
-              "text": "The milk is on the worktop."
+              "text": "The cups are on the worktop."
             },
             {
               "responseId": "en:lesson-04:session-26:intro1:r2",
-              "text": "The milk is under the worktop."
+              "text": "The cups are in the worktop."
             },
             {
               "responseId": "en:lesson-04:session-26:intro1:r3",
-              "text": "The milk are on the worktop."
+              "text": "The cups is on the worktop."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Молоко в пакете стоит на столешнице. Выберите описание.",
-          "uk": "Молоко в пакеті стоїть на стільниці. Виберіть опис."
+          "ru": "Друг спрашивает, где чашки. Скажите ему, что они на столешнице.",
+          "uk": "Друг питає, де чашки. Скажіть йому, що вони на стільниці."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где кошки?",
-        "uk": "Де коти?"
+        "ru": "Цветок на неделю",
+        "uk": "Квітка на тиждень"
       },
       "bodyByLocale": {
-        "ru": "`cats` — «кошки»: `The cats are under the worktop` — «Кошки под столешницей». `next to` — «рядом с»: `The worktop is next to the sink` — «Столешница рядом с раковиной». `between` — «между»: `The milk is between the cups` — «Молоко между чашками». Для нескольких кошек — `are`, для столешницы или молока — `is`.",
-        "uk": "`cats` — «коти»: `The cats are under the worktop` — «Коти під стільницею». `next to` — «поруч із»: `The worktop is next to the sink` — «Стільниця поруч із раковиною». `between` — «між»: `The milk is between the cups` — «Молоко між чашками». Для кількох котів — `are`, для стільниці чи молока — `is`."
+        "ru": "Подруга уезжает на неделю и просит вас поливать цветок, пока её нет. Он стоит у окна, на широкой доске, которая идёт вдоль стены под стеклом. windowsill — «подоконник». Цветок один, поэтому is: The plant is on the windowsill — «Цветок на подоконнике».",
+        "uk": "Подруга їде на тиждень і просить вас поливати квітку, поки її немає. Вона стоїть біля вікна, на широкій дошці, що йде вздовж стіни під склом. windowsill — «підвіконня». Квітка одна, тому is: The plant is on the windowsill — «Квітка на підвіконні»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Кошки сидят под столешницей. Выберите описание.",
-          "uk": "Коти сидять під стільницею. Виберіть опис."
+          "ru": "Подруга звонит и спрашивает, где цветок. Скажите ей, что он на подоконнике.",
+          "uk": "Подруга телефонує й питає, де квітка. Скажіть їй, що вона на підвіконні."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-26:intro2:r1",
-              "text": "The cats are under the worktop."
+              "text": "The plant is on the windowsill."
             },
             {
               "responseId": "en:lesson-04:session-26:intro2:r2",
-              "text": "The cats are on the worktop."
+              "text": "The plant is in the windowsill."
             },
             {
               "responseId": "en:lesson-04:session-26:intro2:r3",
-              "text": "The cats is under the worktop."
+              "text": "The plant are on the windowsill."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-26:intro2:r1",
-              "text": "The cats are under the worktop."
+              "text": "The plant is on the windowsill."
             },
             {
               "responseId": "en:lesson-04:session-26:intro2:r2",
-              "text": "The cats are on the worktop."
+              "text": "The plant is in the windowsill."
             },
             {
               "responseId": "en:lesson-04:session-26:intro2:r3",
-              "text": "The cats is under the worktop."
+              "text": "The plant are on the windowsill."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кошки сидят под столешницей. Выберите описание.",
-          "uk": "Коти сидять під стільницею. Виберіть опис."
+          "ru": "Подруга звонит и спрашивает, где цветок. Скажите ей, что он на подоконнике.",
+          "uk": "Подруга телефонує й питає, де квітка. Скажіть їй, що вона на підвіконні."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Неосторожный поступок",
-        "uk": "Необережний учинок"
+        "ru": "Мокрый шарф",
+        "uk": "Мокрий шарф"
       },
       "bodyByLocale": {
-        "ru": "`careless` — «неосторожный, невнимательный». Друг оставил открытый пакет молока у края, и пакет упал. Он признаётся: `I am careless` — «Я неосторожный». Сокращённо: `I’m careless`. Это описание человека, который не уделяет достаточно внимания тому, что делает.",
-        "uk": "`careless` — «необережний, неуважний». Друг залишив відкритий пакет молока біля краю, і пакет упав. Він зізнається: `I am careless` — «Я необережний». Скорочено: `I’m careless`. Це опис людини, яка не приділяє достатньо уваги тому, що робить."
+        "ru": "Вы попали под дождь, и шарф промок насквозь. Вечером вы повесили его на тёплую трубу под окном, чтобы он высох к утру, а утром брат собирается на улицу. radiator — «батарея отопления». Шарф один, поэтому is: The scarf is on the radiator — «Шарф на батарее».",
+        "uk": "Ви потрапили під дощ, і шарф промок наскрізь. Ввечері ви повісили його на теплу трубу під вікном, щоб він висох до ранку, а вранці брат збирається на вулицю. radiator — «батарея опалення». Шарф один, тому is: The scarf is on the radiator — «Шарф на батареї»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Вы оставили пакет у края, и он упал. Признайте «Я неосторожный» с сокращением.",
-          "uk": "Ви залишили пакет біля краю, і він упав. Визнайте «Я необережний» зі скороченням."
+          "ru": "Брат ищет ваш шарф. Скажите ему, что он на батарее.",
+          "uk": "Брат шукає ваш шарф. Скажіть йому, що він на батареї."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-26:intro3:r1",
-              "text": "I'm careless."
+              "text": "The scarf is on the radiator."
             },
             {
               "responseId": "en:lesson-04:session-26:intro3:r2",
-              "text": "I'm careful."
+              "text": "The scarf is in the radiator."
             },
             {
               "responseId": "en:lesson-04:session-26:intro3:r3",
-              "text": "I is careless."
+              "text": "The scarf is on radiator."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-26:intro3:r1",
-              "text": "I'm careless."
+              "text": "The scarf is on the radiator."
             },
             {
               "responseId": "en:lesson-04:session-26:intro3:r2",
-              "text": "I'm careful."
+              "text": "The scarf is in the radiator."
             },
             {
               "responseId": "en:lesson-04:session-26:intro3:r3",
-              "text": "I is careless."
+              "text": "The scarf is on radiator."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы оставили пакет у края, и он упал. Признайте «Я неосторожный» с сокращением.",
-          "uk": "Ви залишили пакет біля краю, і він упав. Визнайте «Я необережний» зі скороченням."
+          "ru": "Брат ищет ваш шарф. Скажите ему, что он на батарее.",
+          "uk": "Брат шукає ваш шарф. Скажіть йому, що він на батареї."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5b00ea049c5a3d62e0199616b99058df05e5d6a750664c9860c0042334136290"
+  "introFingerprint": "3aa61f8d00c932e994e068ee9e91784d2673610163c7ed623bc599b673f30eb5"
 }

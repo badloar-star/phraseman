@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-19:intro1:r2": {
-          "ru": "О супе как еде говорим `There is some soup here`.",
-          "uk": "Про суп як їжу кажемо `There is some soup here`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         },
         "en:lesson-04:session-19:intro1:r3": {
-          "ru": "Здесь речь о супе вообще, не об отдельном виде или заказанной порции: `some soup`.",
-          "uk": "Тут ідеться про суп загалом, не про окремий вид чи замовлену порцію: `some soup`."
+          "ru": "Суп не считают штуками, поэтому нужно Is there, а не Are there.",
+          "uk": "Суп не рахують штуками, тому потрібно Is there, а не Are there."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-19:intro2:r2": {
-          "ru": "С супом как едой нужно `Is there`.",
-          "uk": "Із супом як їжею потрібне `Is there`."
+          "ru": "Рис не считают штуками, поэтому вместо a нужно any.",
+          "uk": "Рис не рахують штуками, тому замість a потрібно any."
         },
         "en:lesson-04:session-19:intro2:r3": {
-          "ru": "В этом вопросе сначала `Is there`: `Is there any soup here?`.",
-          "uk": "У цьому запитанні спочатку `Is there`: `Is there any soup here?`."
+          "ru": "Рис не считают штуками, поэтому нужно Is there, а не Are there.",
+          "uk": "Рис не рахують штуками, тому потрібно Is there, а не Are there."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-19:intro3:r2": {
-          "ru": "С `I` нужно `am`: `I’m guilty`.",
-          "uk": "З `I` потрібне `am`: `I’m guilty`."
+          "ru": "Макароны не считают штуками, поэтому на конце нет -s: pasta.",
+          "uk": "Макарони не рахують штуками, тому наприкінці немає -s: pasta."
         },
         "en:lesson-04:session-19:intro3:r3": {
-          "ru": "Это «Он виноват», а вы признаётесь за себя: `I’m guilty`.",
-          "uk": "Це «Він винен», а ви зізнаєтеся за себе: `I’m guilty`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d244166c68cbc517b05c079cf41ac9c3b8d337dea0bfbc90fffe21a0d5cefc32"
+  "auxiliaryFingerprint": "fcb72393e9c06f7a3df795c6b5fb0e345b2f3ca1702c80641e1ff0fadcd66f6c"
 }

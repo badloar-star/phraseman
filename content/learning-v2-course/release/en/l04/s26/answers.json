@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-26:i01",
-    "correctText": "I am careless.",
+    "correctText": "en:lesson-04:session-26:i01:p1=worktop\nen:lesson-04:session-26:i01:p2=windowsill\nen:lesson-04:session-26:i01:p3=radiator\nen:lesson-04:session-26:i01:p4=noticeboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:word:worktop",
+    "correctText": "worktop",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i02",
     "correctText": "worktop",
-    "correctResponseId": "en:lesson-04:session-26:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-26:i03",
-    "correctText": "worktop",
-    "correctResponseId": "en:lesson-04:session-26:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-26:i04",
-    "correctText": "en:lesson-04:session-26:i04:p1=worktop\nen:lesson-04:session-26:i04:p2=careless\nen:lesson-04:session-26:i04:p3=cats\nen:lesson-04:session-26:i04:p4=milk",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-26:i03",
+    "correctText": "The plates are on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:word:windowsill",
+    "correctText": "windowsill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:i04",
+    "correctText": "windowsill",
+    "correctResponseId": "en:lesson-04:session-26:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-26:i05",
-    "correctText": "The milk is on the worktop.",
+    "correctText": "The candle is on the windowsill.",
+    "correctResponseId": "en:lesson-04:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:word:radiator",
+    "correctText": "radiator",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i06",
-    "correctText": "The cats are under the worktop.",
+    "correctText": "radiator",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i07",
-    "correctText": "I'm careless.",
+    "correctText": "The gloves are on the radiator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-26:word:noticeboard",
+    "correctText": "noticeboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i08",
-    "correctText": "next to",
+    "correctText": "noticeboard",
     "correctResponseId": "en:lesson-04:session-26:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-26:i09",
-    "correctText": "The milk is between the cups.",
-    "correctResponseId": "en:lesson-04:session-26:i09:r1"
+    "correctText": "The notice is on the noticeboard.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i10",
-    "correctText": "en:lesson-04:session-26:i10:p1=worktop\nen:lesson-04:session-26:i10:p2=on\nen:lesson-04:session-26:i10:p3=under\nen:lesson-04:session-26:i10:p4=between",
+    "correctText": "en:lesson-04:session-26:i10:p1=noticeboard\nen:lesson-04:session-26:i10:p2=radiator\nen:lesson-04:session-26:i10:p3=windowsill\nen:lesson-04:session-26:i10:p4=plate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i11",
-    "correctText": "The cats are next to the table.",
-    "correctResponseId": null
+    "correctText": "The apple is on the plate.",
+    "correctResponseId": "en:lesson-04:session-26:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-26:i12",
-    "correctText": "The milk is on the table.",
-    "correctResponseId": null
+    "correctText": "on",
+    "correctResponseId": "en:lesson-04:session-26:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-26:i13",
-    "correctText": "The worktop is next to the window.",
+    "correctText": "The clock is on the wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i14",
-    "correctText": "under",
-    "correctResponseId": "en:lesson-04:session-26:i14:r1"
+    "correctText": "The plants are on the windowsill.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i15",
-    "correctText": "The worktop is between the windows.",
-    "correctResponseId": "en:lesson-04:session-26:i15:r1"
+    "correctText": "The keys are on the worktop.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i16",
-    "correctText": "en:lesson-04:session-26:i16:p1=worktop\nen:lesson-04:session-26:i16:p2=careless\nen:lesson-04:session-26:i16:p3=cats\nen:lesson-04:session-26:i16:p4=milk",
+    "correctText": "en:lesson-04:session-26:i16:p1=worktop\nen:lesson-04:session-26:i16:p2=windowsill\nen:lesson-04:session-26:i16:p3=radiator\nen:lesson-04:session-26:i16:p4=noticeboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-26:i17",
-    "correctText": "The milk is on the worktop.",
+    "correctText": "The scarf is on the radiator.",
     "correctResponseId": null
   }
 ]

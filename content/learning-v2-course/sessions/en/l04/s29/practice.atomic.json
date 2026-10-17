@@ -1,0 +1,2411 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-29:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-29:i01:p1",
+              "target": "bus stop",
+              "meaningByLocale": {
+                "ru": "автобусная остановка",
+                "uk": "автобусна зупинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i01:p2",
+              "target": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор",
+                "uk": "світлофор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i01:p3",
+              "target": "statue",
+              "meaningByLocale": {
+                "ru": "статуя",
+                "uk": "статуя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i01:p4",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bus stop",
+            "traffic light",
+            "statue",
+            "pavement"
+          ],
+          "rightColumn": [
+            "автобусная остановка",
+            "светофор",
+            "статуя",
+            "тротуар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:bus stop",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus stop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:bus stop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus stop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:bus stop:audio",
+            "transcript": "bus stop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:bus stop:r1",
+              "targetText": "bus stop",
+              "meaningByLocale": {
+                "ru": "автобусная остановка. The bus stop is between the school and the park. — «Остановка между школой и парком». О месте, где останавливается автобус.",
+                "uk": "автобусна зупинка. The bus stop is between the school and the park. — «Зупинка між школою й парком». Про місце, де зупиняється автобус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus stop",
+            "definitionByLocale": {
+              "ru": "автобусная остановка. The bus stop is between the school and the park. — «Остановка между школой и парком». О месте, где останавливается автобус.",
+              "uk": "автобусна зупинка. The bus stop is between the school and the park. — «Зупинка між школою й парком». Про місце, де зупиняється автобус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показывает место, где останавливается автобус, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Друг показывает место, где останавливается автобус, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i02:audio",
+            "transcript": "bus stop"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bus stop",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ждёт автобус. Скажите ему полной фразой: остановка между школой и парком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ждёт автобус. Скажите ему полной фразой: остановка между школой и парком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bus stop is between the school and the park.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт автобус. Скажите ему полной фразой: остановка между школой и парком",
+            "uk": "Друг чекає на автобус. Скажіть йому повною фразою: зупинка між школою й парком"
+          },
+          "orderedTokens": [
+            "The",
+            "bus",
+            "stop",
+            "is",
+            "between",
+            "the",
+            "school",
+            "and",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ждёт автобус. Скажите ему полной фразой: остановка между школой и парком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bus stop is between the school and the park.`",
+                "uk": "тут потрібно `is` — `The bus stop is between the school and the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:traffic light",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — traffic light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:traffic light:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — traffic light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:traffic light:audio",
+            "transcript": "traffic light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:traffic light:r1",
+              "targetText": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор. The traffic light is between the bank and the school. — «Светофор между банком и школой». О столбе с красным, жёлтым и зелёным сигналами.",
+                "uk": "світлофор. The traffic light is between the bank and the school. — «Світлофор між банком і школою». Про стовп із червоним, жовтим і зеленим сигналами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "traffic light",
+            "definitionByLocale": {
+              "ru": "светофор. The traffic light is between the bank and the school. — «Светофор между банком и школой». О столбе с красным, жёлтым и зелёным сигналами.",
+              "uk": "світлофор. The traffic light is between the bank and the school. — «Світлофор між банком і школою». Про стовп із червоним, жовтим і зеленим сигналами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i04:r1",
+            "text": "traffic light"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i04:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i04:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+            "uk": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-29:i04:r1",
+              "text": "traffic light"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i04:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i04:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i04:r2",
+              "correct": false,
+              "testedDimension": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "tree — это дерево, а столб с цветными сигналами называется traffic light.",
+                "uk": "tree — це дерево, а стовп із кольоровими сигналами називається traffic light."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i04:r3",
+              "correct": false,
+              "testedDimension": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а столб с цветными сигналами называется traffic light.",
+                "uk": "bridge — це міст, а стовп із кольоровими сигналами називається traffic light."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i05:r1",
+            "text": "The traffic light is between the bank and the school."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i05:r2",
+            "text": "The traffic light is between the bank and the park."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i05:r3",
+            "text": "The traffic lights are between the bank and the school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i05:audio",
+            "transcript": "The traffic light is between the bank and the school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:i05:r1",
+              "targetText": "The traffic light is between the bank and the school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i05:r2",
+              "targetText": "The traffic light is between the bank and the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i05:r3",
+              "targetText": "The traffic lights are between the bank and the school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `school`, а в этом варианте `park`.",
+                "uk": "У записі останнє місце `school`, а в цьому варіанті `park`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи светофор один (`light is`), а в этом варианте несколько.",
+                "uk": "У записі світлофор один (`light is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:statue",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — statue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:statue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — statue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:statue:audio",
+            "transcript": "statue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:statue:r1",
+              "targetText": "statue",
+              "meaningByLocale": {
+                "ru": "статуя. The statue is between the cafe and the hotel. — «Статуя между кафе и отелем». О фигуре человека или животного из камня.",
+                "uk": "статуя. The statue is between the cafe and the hotel. — «Статуя між кафе й готелем». Про фігуру людини або тварини з каменю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "statue",
+            "definitionByLocale": {
+              "ru": "статуя. The statue is between the cafe and the hotel. — «Статуя между кафе и отелем». О фигуре человека или животного из камня.",
+              "uk": "статуя. The statue is between the cafe and the hotel. — «Статуя між кафе й готелем». Про фігуру людини або тварини з каменю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость показывает фигуру из камня в парке, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i06:audio"
+        ],
+        "accessibilityLabel": "Гость показывает фигуру из камня в парке, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i06:audio",
+            "transcript": "statue"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "statue",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостя и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостя и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i07:audio",
+            "transcript": "The statue is between the cafe and the hotel."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The statue is between the cafe and the hotel.",
+          "orderedTokens": [
+            "The",
+            "statue",
+            "is",
+            "between",
+            "the",
+            "cafe",
+            "and",
+            "the",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостя и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The statue is between the cafe and the hotel.`",
+                "uk": "тут потрібно `is` — `The statue is between the cafe and the hotel.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:pavement",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pavement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:pavement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pavement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:pavement:audio",
+            "transcript": "pavement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:pavement:r1",
+              "targetText": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар. The pavement is between the road and the park. — «Тротуар между дорогой и парком». О дорожке для пешеходов вдоль дороги.",
+                "uk": "тротуар. The pavement is between the road and the park. — «Тротуар між дорогою й парком». Про доріжку для пішоходів уздовж дороги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pavement",
+            "definitionByLocale": {
+              "ru": "тротуар. The pavement is between the road and the park. — «Тротуар между дорогой и парком». О дорожке для пешеходов вдоль дороги.",
+              "uk": "тротуар. The pavement is between the road and the park. — «Тротуар між дорогою й парком». Про доріжку для пішоходів уздовж дороги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i08:r1",
+            "text": "pavement"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i08:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i08:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+            "uk": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-29:i08:r1",
+              "text": "pavement"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i08:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i08:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "road — это дорога для машин, а дорожка для пешеходов называется pavement.",
+                "uk": "road — це дорога для машин, а доріжка для пішоходів називається pavement."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а дорожка для пешеходов называется pavement.",
+                "uk": "bridge — це міст, а доріжка для пішоходів називається pavement."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра идёт в школу. Скажите ей полной фразой: тротуар между дорогой и парком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра идёт в школу. Скажите ей полной фразой: тротуар между дорогой и парком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The pavement is between the road and the park.",
+          "localizedMeaning": {
+            "ru": "Сестра идёт в школу. Скажите ей полной фразой: тротуар между дорогой и парком",
+            "uk": "Сестра йде до школи. Скажіть їй повною фразою: тротуар між дорогою й парком"
+          },
+          "orderedTokens": [
+            "The",
+            "pavement",
+            "is",
+            "between",
+            "the",
+            "road",
+            "and",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра идёт в школу. Скажите ей полной фразой: тротуар между дорогой и парком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The pavement is between the road and the park.`",
+                "uk": "тут потрібно `is` — `The pavement is between the road and the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-29:i10:p1",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i10:p2",
+              "target": "statue",
+              "meaningByLocale": {
+                "ru": "статуя",
+                "uk": "статуя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i10:p3",
+              "target": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор",
+                "uk": "світлофор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i10:p4",
+              "target": "bank",
+              "meaningByLocale": {
+                "ru": "банк",
+                "uk": "банк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pavement",
+            "statue",
+            "traffic light",
+            "bank"
+          ],
+          "rightColumn": [
+            "тротуар",
+            "статуя",
+            "светофор",
+            "банк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i11:r1",
+            "text": "The cafe is between the bank and the hotel."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i11:r2",
+            "text": "The cafe is next to the bank."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i11:r3",
+            "text": "The cafe is between the bank and the school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i11:audio",
+            "transcript": "The cafe is between the bank and the hotel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:i11:r1",
+              "targetText": "The cafe is between the bank and the hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i11:r2",
+              "targetText": "The cafe is next to the bank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i11:r3",
+              "targetText": "The cafe is between the bank and the school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `between` — между двумя местами, а в этом варианте `next to` — рядом с одним.",
+                "uk": "У записі `between` — між двома місцями, а в цьому варіанті `next to` — поруч з одним."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `hotel`, а в этом варианте `school`.",
+                "uk": "У записі останнє місце `hotel`, а в цьому варіанті `school`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i12:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i12:r3",
+            "text": "on"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+            "uk": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The park is ___ the lake and the zoo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-29:i12:r1",
+              "text": "between"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i12:r2",
+              "text": "under"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i12:r3",
+              "text": "on"
+            }
+          ],
+          "testedDimension": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "under — «под», а парк стоит посередине между двумя местами: нужно between.",
+                "uk": "under — «під», а парк стоїть посередині між двома місцями: потрібно between."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "on — «на поверхности», а парк стоит посередине между двумя местами: нужно between.",
+                "uk": "on — «на поверхні», а парк стоїть посередині між двома місцями: потрібно between."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i13:audio",
+            "transcript": "The hotel is between the bank and the school."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The hotel is between the bank and the school.",
+          "orderedTokens": [
+            "The",
+            "hotel",
+            "is",
+            "between",
+            "the",
+            "bank",
+            "and",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The hotel is between the bank and the school.`",
+                "uk": "тут потрібно `is` — `The hotel is between the bank and the school.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает про остановку. Ответьте ему: остановка между банком и библиотекой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает про остановку. Ответьте ему: остановка между банком и библиотекой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i14:audio",
+            "transcript": "The bus stop is between the bank and the library."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bus stop is between the bank and the library.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость ищет статую. Скажите ему полной фразой: статуя между деревом и скамейкой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость ищет статую. Скажите ему полной фразой: статуя между деревом и скамейкой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The statue is between the tree and the bench.",
+          "localizedMeaning": {
+            "ru": "Гость ищет статую. Скажите ему полной фразой: статуя между деревом и скамейкой",
+            "uk": "Гість шукає статую. Скажіть йому повною фразою: статуя між деревом і лавкою"
+          },
+          "orderedTokens": [
+            "The",
+            "statue",
+            "is",
+            "between",
+            "the",
+            "tree",
+            "and",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость ищет статую. Скажите ему полной фразой: статуя между деревом и скамейкой",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The statue is between the tree and the bench.`",
+                "uk": "тут потрібно `is` — `The statue is between the tree and the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-29:i16:p1",
+              "target": "bus stop",
+              "meaningByLocale": {
+                "ru": "автобусная остановка",
+                "uk": "автобусна зупинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i16:p2",
+              "target": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор",
+                "uk": "світлофор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i16:p3",
+              "target": "statue",
+              "meaningByLocale": {
+                "ru": "статуя",
+                "uk": "статуя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i16:p4",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bus stop",
+            "traffic light",
+            "statue",
+            "pavement"
+          ],
+          "rightColumn": [
+            "автобусная остановка",
+            "светофор",
+            "статуя",
+            "тротуар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В другом городе друг ищет светофор. Он между школой и парком. Скажите ему: «Светофор между школой и парком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "В другом городе друг ищет светофор. Он между школой и парком. Скажите ему: «Светофор между школой и парком»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i17:audio",
+            "transcript": "The traffic light is between the school and the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The traffic light is between the school and the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-29:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-29:i01:p1",
+              "target": "bus stop",
+              "meaningByLocale": {
+                "ru": "автобусная остановка",
+                "uk": "автобусна зупинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i01:p2",
+              "target": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор",
+                "uk": "світлофор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i01:p3",
+              "target": "statue",
+              "meaningByLocale": {
+                "ru": "статуя",
+                "uk": "статуя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i01:p4",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bus stop",
+            "traffic light",
+            "statue",
+            "pavement"
+          ],
+          "rightColumn": [
+            "автобусна зупинка",
+            "світлофор",
+            "статуя",
+            "тротуар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:bus stop",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus stop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:bus stop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus stop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:bus stop:audio",
+            "transcript": "bus stop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:bus stop:r1",
+              "targetText": "bus stop",
+              "meaningByLocale": {
+                "ru": "автобусная остановка. The bus stop is between the school and the park. — «Остановка между школой и парком». О месте, где останавливается автобус.",
+                "uk": "автобусна зупинка. The bus stop is between the school and the park. — «Зупинка між школою й парком». Про місце, де зупиняється автобус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus stop",
+            "definitionByLocale": {
+              "ru": "автобусная остановка. The bus stop is between the school and the park. — «Остановка между школой и парком». О месте, где останавливается автобус.",
+              "uk": "автобусна зупинка. The bus stop is between the school and the park. — «Зупинка між школою й парком». Про місце, де зупиняється автобус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показує місце, де зупиняється автобус, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Друг показує місце, де зупиняється автобус, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i02:audio",
+            "transcript": "bus stop"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bus stop",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг чекає на автобус. Скажіть йому повною фразою: зупинка між школою й парком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг чекає на автобус. Скажіть йому повною фразою: зупинка між школою й парком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bus stop is between the school and the park.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт автобус. Скажите ему полной фразой: остановка между школой и парком",
+            "uk": "Друг чекає на автобус. Скажіть йому повною фразою: зупинка між школою й парком"
+          },
+          "orderedTokens": [
+            "The",
+            "bus",
+            "stop",
+            "is",
+            "between",
+            "the",
+            "school",
+            "and",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг чекає на автобус. Скажіть йому повною фразою: зупинка між школою й парком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bus stop is between the school and the park.`",
+                "uk": "тут потрібно `is` — `The bus stop is between the school and the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:traffic light",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — traffic light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:traffic light:audio"
+        ],
+        "accessibilityLabel": "Картка слова — traffic light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:traffic light:audio",
+            "transcript": "traffic light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:traffic light:r1",
+              "targetText": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор. The traffic light is between the bank and the school. — «Светофор между банком и школой». О столбе с красным, жёлтым и зелёным сигналами.",
+                "uk": "світлофор. The traffic light is between the bank and the school. — «Світлофор між банком і школою». Про стовп із червоним, жовтим і зеленим сигналами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "traffic light",
+            "definitionByLocale": {
+              "ru": "светофор. The traffic light is between the bank and the school. — «Светофор между банком и школой». О столбе с красным, жёлтым и зелёным сигналами.",
+              "uk": "світлофор. The traffic light is between the bank and the school. — «Світлофор між банком і школою». Про стовп із червоним, жовтим і зеленим сигналами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i04:r1",
+            "text": "traffic light"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i04:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i04:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Столб с красным, жёлтым и зелёным сигналами на перекрёстке. Как он называется по-английски?",
+            "uk": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-29:i04:r1",
+              "text": "traffic light"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i04:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i04:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i04:r2",
+              "correct": false,
+              "testedDimension": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "tree — это дерево, а столб с цветными сигналами называется traffic light.",
+                "uk": "tree — це дерево, а стовп із кольоровими сигналами називається traffic light."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i04:r3",
+              "correct": false,
+              "testedDimension": "Стовп із червоним, жовтим і зеленим сигналами на перехресті. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а столб с цветными сигналами называется traffic light.",
+                "uk": "bridge — це міст, а стовп із кольоровими сигналами називається traffic light."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i05:r1",
+            "text": "The traffic light is between the bank and the school."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i05:r2",
+            "text": "The traffic light is between the bank and the park."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i05:r3",
+            "text": "The traffic lights are between the bank and the school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i05:audio",
+            "transcript": "The traffic light is between the bank and the school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:i05:r1",
+              "targetText": "The traffic light is between the bank and the school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i05:r2",
+              "targetText": "The traffic light is between the bank and the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i05:r3",
+              "targetText": "The traffic lights are between the bank and the school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `school`, а в этом варианте `park`.",
+                "uk": "У записі останнє місце `school`, а в цьому варіанті `park`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи светофор один (`light is`), а в этом варианте несколько.",
+                "uk": "У записі світлофор один (`light is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:statue",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — statue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:statue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — statue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:statue:audio",
+            "transcript": "statue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:statue:r1",
+              "targetText": "statue",
+              "meaningByLocale": {
+                "ru": "статуя. The statue is between the cafe and the hotel. — «Статуя между кафе и отелем». О фигуре человека или животного из камня.",
+                "uk": "статуя. The statue is between the cafe and the hotel. — «Статуя між кафе й готелем». Про фігуру людини або тварини з каменю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "statue",
+            "definitionByLocale": {
+              "ru": "статуя. The statue is between the cafe and the hotel. — «Статуя между кафе и отелем». О фигуре человека или животного из камня.",
+              "uk": "статуя. The statue is between the cafe and the hotel. — «Статуя між кафе й готелем». Про фігуру людини або тварини з каменю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість показує фігуру з каменю в парку, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i06:audio"
+        ],
+        "accessibilityLabel": "Гість показує фігуру з каменю в парку, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i06:audio",
+            "transcript": "statue"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "statue",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостя й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостя й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i07:audio",
+            "transcript": "The statue is between the cafe and the hotel."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The statue is between the cafe and the hotel.",
+          "orderedTokens": [
+            "The",
+            "statue",
+            "is",
+            "between",
+            "the",
+            "cafe",
+            "and",
+            "the",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостя й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The statue is between the cafe and the hotel.`",
+                "uk": "тут потрібно `is` — `The statue is between the cafe and the hotel.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:word:pavement",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pavement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:word:pavement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pavement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:word:pavement:audio",
+            "transcript": "pavement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:word:pavement:r1",
+              "targetText": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар. The pavement is between the road and the park. — «Тротуар между дорогой и парком». О дорожке для пешеходов вдоль дороги.",
+                "uk": "тротуар. The pavement is between the road and the park. — «Тротуар між дорогою й парком». Про доріжку для пішоходів уздовж дороги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pavement",
+            "definitionByLocale": {
+              "ru": "тротуар. The pavement is between the road and the park. — «Тротуар между дорогой и парком». О дорожке для пешеходов вдоль дороги.",
+              "uk": "тротуар. The pavement is between the road and the park. — «Тротуар між дорогою й парком». Про доріжку для пішоходів уздовж дороги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i08:r1",
+            "text": "pavement"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i08:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i08:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дорожка вдоль дороги, по которой идут пешеходы. Как она называется по-английски?",
+            "uk": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-29:i08:r1",
+              "text": "pavement"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i08:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i08:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "road — это дорога для машин, а дорожка для пешеходов называется pavement.",
+                "uk": "road — це дорога для машин, а доріжка для пішоходів називається pavement."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Доріжка вздовж дороги, по якій ідуть пішоходи. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а дорожка для пешеходов называется pavement.",
+                "uk": "bridge — це міст, а доріжка для пішоходів називається pavement."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра йде до школи. Скажіть їй повною фразою: тротуар між дорогою й парком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра йде до школи. Скажіть їй повною фразою: тротуар між дорогою й парком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The pavement is between the road and the park.",
+          "localizedMeaning": {
+            "ru": "Сестра идёт в школу. Скажите ей полной фразой: тротуар между дорогой и парком",
+            "uk": "Сестра йде до школи. Скажіть їй повною фразою: тротуар між дорогою й парком"
+          },
+          "orderedTokens": [
+            "The",
+            "pavement",
+            "is",
+            "between",
+            "the",
+            "road",
+            "and",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра йде до школи. Скажіть їй повною фразою: тротуар між дорогою й парком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The pavement is between the road and the park.`",
+                "uk": "тут потрібно `is` — `The pavement is between the road and the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-29:i10:p1",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i10:p2",
+              "target": "statue",
+              "meaningByLocale": {
+                "ru": "статуя",
+                "uk": "статуя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i10:p3",
+              "target": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор",
+                "uk": "світлофор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i10:p4",
+              "target": "bank",
+              "meaningByLocale": {
+                "ru": "банк",
+                "uk": "банк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pavement",
+            "statue",
+            "traffic light",
+            "bank"
+          ],
+          "rightColumn": [
+            "тротуар",
+            "статуя",
+            "світлофор",
+            "банк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i11:r1",
+            "text": "The cafe is between the bank and the hotel."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i11:r2",
+            "text": "The cafe is next to the bank."
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i11:r3",
+            "text": "The cafe is between the bank and the school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i11:audio",
+            "transcript": "The cafe is between the bank and the hotel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-29:i11:r1",
+              "targetText": "The cafe is between the bank and the hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i11:r2",
+              "targetText": "The cafe is next to the bank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i11:r3",
+              "targetText": "The cafe is between the bank and the school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `between` — между двумя местами, а в этом варианте `next to` — рядом с одним.",
+                "uk": "У записі `between` — між двома місцями, а в цьому варіанті `next to` — поруч з одним."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее место `hotel`, а в этом варианте `school`.",
+                "uk": "У записі останнє місце `hotel`, а в цьому варіанті `school`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-29:i12:r1",
+            "text": "between"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-29:i12:r3",
+            "text": "on"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Парк стоит ровно посередине между озером и зоопарком. Выберите слово",
+            "uk": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The park is ___ the lake and the zoo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-29:i12:r1",
+              "text": "between"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i12:r2",
+              "text": "under"
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i12:r3",
+              "text": "on"
+            }
+          ],
+          "testedDimension": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "under — «под», а парк стоит посередине между двумя местами: нужно between.",
+                "uk": "under — «під», а парк стоїть посередині між двома місцями: потрібно between."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Парк стоїть рівно посередині між озером і зоопарком. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "on — «на поверхности», а парк стоит посередине между двумя местами: нужно between.",
+                "uk": "on — «на поверхні», а парк стоїть посередині між двома місцями: потрібно between."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i13:audio",
+            "transcript": "The hotel is between the bank and the school."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The hotel is between the bank and the school.",
+          "orderedTokens": [
+            "The",
+            "hotel",
+            "is",
+            "between",
+            "the",
+            "bank",
+            "and",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The hotel is between the bank and the school.`",
+                "uk": "тут потрібно `is` — `The hotel is between the bank and the school.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає про зупинку. Відповідайте йому: зупинка між банком і бібліотекою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Друг питає про зупинку. Відповідайте йому: зупинка між банком і бібліотекою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i14:audio",
+            "transcript": "The bus stop is between the bank and the library."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bus stop is between the bank and the library.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість шукає статую. Скажіть йому повною фразою: статуя між деревом і лавкою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість шукає статую. Скажіть йому повною фразою: статуя між деревом і лавкою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The statue is between the tree and the bench.",
+          "localizedMeaning": {
+            "ru": "Гость ищет статую. Скажите ему полной фразой: статуя между деревом и скамейкой",
+            "uk": "Гість шукає статую. Скажіть йому повною фразою: статуя між деревом і лавкою"
+          },
+          "orderedTokens": [
+            "The",
+            "statue",
+            "is",
+            "between",
+            "the",
+            "tree",
+            "and",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-29:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість шукає статую. Скажіть йому повною фразою: статуя між деревом і лавкою",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The statue is between the tree and the bench.`",
+                "uk": "тут потрібно `is` — `The statue is between the tree and the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-29:i16:p1",
+              "target": "bus stop",
+              "meaningByLocale": {
+                "ru": "автобусная остановка",
+                "uk": "автобусна зупинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i16:p2",
+              "target": "traffic light",
+              "meaningByLocale": {
+                "ru": "светофор",
+                "uk": "світлофор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i16:p3",
+              "target": "statue",
+              "meaningByLocale": {
+                "ru": "статуя",
+                "uk": "статуя"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-29:i16:p4",
+              "target": "pavement",
+              "meaningByLocale": {
+                "ru": "тротуар",
+                "uk": "тротуар"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bus stop",
+            "traffic light",
+            "statue",
+            "pavement"
+          ],
+          "rightColumn": [
+            "автобусна зупинка",
+            "світлофор",
+            "статуя",
+            "тротуар"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-29:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В іншому місті друг шукає світлофор. Він між школою й парком. Скажіть йому: «Світлофор між школою й парком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "В іншому місті друг шукає світлофор. Він між школою й парком. Скажіть йому: «Світлофор між школою й парком»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-29:i17:audio",
+            "transcript": "The traffic light is between the school and the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The traffic light is between the school and the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-29:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:word:bus stop",
+      "correctText": "bus stop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i02",
+      "correctText": "bus stop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i03",
+      "correctText": "The bus stop is between the school and the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:word:traffic light",
+      "correctText": "traffic light",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i04",
+      "correctText": "traffic light",
+      "correctResponseId": "en:lesson-04:session-29:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i05",
+      "correctText": "The traffic light is between the bank and the school.",
+      "correctResponseId": "en:lesson-04:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:word:statue",
+      "correctText": "statue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i06",
+      "correctText": "statue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i07",
+      "correctText": "The statue is between the cafe and the hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:word:pavement",
+      "correctText": "pavement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i08",
+      "correctText": "pavement",
+      "correctResponseId": "en:lesson-04:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i09",
+      "correctText": "The pavement is between the road and the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i11",
+      "correctText": "The cafe is between the bank and the hotel.",
+      "correctResponseId": "en:lesson-04:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i12",
+      "correctText": "between",
+      "correctResponseId": "en:lesson-04:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i13",
+      "correctText": "The hotel is between the bank and the school.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i14",
+      "correctText": "The bus stop is between the bank and the library.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i15",
+      "correctText": "The statue is between the tree and the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-29:i17",
+      "correctText": "The traffic light is between the school and the park.",
+      "correctResponseId": null
+    }
+  ]
+}

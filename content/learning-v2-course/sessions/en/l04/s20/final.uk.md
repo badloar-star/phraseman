@@ -1,137 +1,152 @@
-# Англійська · Урок 4 · Заняття 20 — Гриби до обіду
+# Англійська · Урок 4 · Заняття 20 — Гриби для піци
 
-**Ситуація.** Перед поїздкою ви перевіряєте продукти для обіду й карти міста. Друг не може знайти карту й підозрює, що ви її сховали. Але карта лежить у його сумці.
+**Ситуація.** Ви розбираєте велику скриню з продуктами у спільному домі. Щоб спитати, чи є гриби, квасоля, горіхи або горох, кажемо Are there any…? Коротко відповідаємо: Yes, there are. No, there aren't.
 
-**Що ви опануєте:** назвати гриб і запитати про гриби з any, повідомити про їхню наявність із some
-**Нові слова:** mushroom
+**Що ви опануєте:** спитати, чи є кілька предметів, запитанням Are there any…?
+**Нові слова:** mushroom, bean, nut, pea
+**Повертаються:** berry, soup, near, behind, bowl
 
 ---
 
 ## Інтро 1
 
-### Один гриб і кілька
+### Піца з братом
 
-`mushroom` — «гриб», `mushrooms` — «гриби». `This is a mushroom` — «Це гриб». Один великий гриб — усе ще `a mushroom`, навіть якщо він зайняв усю тарілку. Кілька маленьких — уже `mushrooms`. Розмір і кількість — різні речі.
+Ви печете піцу разом із братом, і він хоче додати гриби. Ви заглядаєте до великої скрині з продуктами. mushroom — «гриб», а кілька грибів — mushrooms. Коли предметів кілька, починаємо з Are there. Запитайте брата: Are there any mushrooms here? — «Тут є гриби?»
 
-**Назвіть один гриб поруч: «Це гриб».**
+**Ви печете піцу з братом. Запитайте його, чи є тут гриби.**
 
-- ✅ **This is a mushroom.**
-- ❌ These are mushrooms. — *Це кілька грибів; тут один: `This is a mushroom`.*
-- ❌ This is a mushrooms. — *Після `a` потрібна форма для одного гриба: `mushroom`.*
+- ✅ **Are there any mushrooms here?**
+- ❌ Is there any mushrooms here? — *Грибів кілька, тому потрібно Are there, а не Is there.*
+- ❌ Are there any mushroom here? — *Грибів кілька, тому наприкінці mushrooms, а не mushroom.*
 
 ---
 
 ## Інтро 2
 
-### Чи є гриби?
+### Густий суп
 
-`There are some mushrooms` — «Є трохи грибів». Точної кількості не називаємо. `Are there any mushrooms?` — «Чи є гриби?» Так запитуємо, коли ще не знаємо відповіді. Із знайомими картами: `maps` — «карти», `Are there any maps?` — «Чи є карти?»
+Ви з подругою варите густий суп. На полиці стоять банки, і ви читаєте написи на них. bean — «квасолина, біб», а кілька — beans. Запитайте подругу: Are there any beans near the jar? — «Поруч із банкою є квасоля?» Запитання знову починається з Are there.
 
-**Ви ще не подивилися продукти. Запитайте «Тут є гриби?» з `any`.**
+**Ви варите суп із подругою. Запитайте її, чи є поруч із банкою квасоля.**
 
-- ✅ **Are there any mushrooms here?**
-- ❌ Is there any mushrooms here? — *Грибів кілька: `Are there any mushrooms here?`.*
-- ❌ Are there a mushrooms here? — *`a` стосується одного гриба; тут потрібне запитання з `any mushrooms`.*
+- ✅ **Are there any beans near the jar?**
+- ❌ Are there any bean near the jar? — *Квасолин кілька, тому наприкінці beans, а не bean.*
+- ❌ Is there any beans near the jar? — *Квасолин кілька, тому потрібно Are there, а не Is there.*
 
 ---
 
 ## Інтро 3
 
-### Карту не ховав
+### Перекус у похід
 
-`innocent` — «невинний», `yes` — «так». Друг знайшов свою карту й запитує: «Отже, ти невинний?» Ви відповідаєте: `Yes, I am innocent` — «Так, я невинний». Скорочено: `Yes, I’m innocent`. Це можна сказати й жартома про зниклу карту. `platform` — «платформа»: `That is a platform` — «То — платформа». На карті можна знайти і її.
+Подруга збирається в похід і складає до рюкзака перекус. Ви допомагаєте їй і перебираєте продукти на столі. nut — «горіх», а кілька — nuts. Запитайте її: Are there any nuts behind the bowl? — «За мискою є горіхи?» Слово any лишається на місці.
 
-**Друг переконався, що ви не ховали карту. Дайте відповідь «Так, я невинний» зі скороченням.**
+**Подруга збирає перекус у похід. Запитайте її, чи є за мискою горіхи.**
 
-- ✅ **Yes, I'm innocent.**
-- ❌ Yes, I'm guilty. — *`guilty` — винний; тут ви невинні: `innocent`.*
-- ❌ No, I'm innocent. — *В умові потрібно підтвердити «Так»: `Yes`.*
+- ✅ **Are there any nuts behind the bowl?**
+- ❌ Are there any nut behind the bowl? — *Горіхів кілька, тому наприкінці nuts, а не nut.*
+- ❌ There are any nuts behind the bowl? — *Запитання починаємо з Are there: Are there any nuts…?*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви не ховали карту. Підтвердьте «Так, я невинний» без скорочення**
-<!-- interaction_id: en:lesson-04:session-20:i01; family: phrase_builder -->
-Плитки: `innocent` `am` `I` `Yes,` `are` → **Yes, I am innocent.**
-*(плитка `are` зайва: тут потрібно `am` — `Yes, I am innocent.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-20:i01; family: speed_match -->
+mushroom — гриб · bean — квасолина · nut — горіх · pea — горошина
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-20:i02; family: listen_choose -->
-🔊 *mushroom* → **mushroom** · mushrooms · milk
-- mushrooms — *У записі перше слово — `mushroom`, а в цьому варіанті — `mushrooms`.*
-- milk — *У записі перше слово — `mushroom`, а в цьому варіанті — `milk`.*
+**2 · Картка слова — mushroom**
+<!-- interaction_id: en:lesson-04:session-20:word:mushroom; family: word_card -->
+> **mushroom** — гриб. Are there any mushrooms here? — «Тут є гриби?» Про їстівний гриб із капелюшком.
 
-**3 · Назвіть один гриб**
-<!-- interaction_id: en:lesson-04:session-20:i03; family: context_gap_grammar -->
-___ → **mushroom** · mushrooms · maps
-- mushrooms — *`mushrooms` — кілька грибів; один — `mushroom`.*
-- maps — *`maps` — карти; гриб — `mushroom`.*
+**3 · Брат дістає зі скрині гриб із коричневим капелюшком і називає слово, а ви повторюєте за ним**
+<!-- interaction_id: en:lesson-04:session-20:i02; family: scripted_repeat_compare -->
+🎙 **mushroom**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-20:i04; family: speed_match -->
-mushroom — гриб · innocent — невинний · maps — карти · platform — платформа
+**4 · Ви печете піцу з братом. Запитайте його повною фразою: поруч із коробкою є гриби?**
+<!-- interaction_id: en:lesson-04:session-20:i03; family: phrase_builder -->
+Плитки: `mushrooms` `any` `near` `the` `box` `there` `Are` `Is` → **Are there any mushrooms near the box?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any mushrooms near the box?`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-20:i05; family: listen_build_dictation -->
-🔊 *This is a mushroom.* Плитки: `mushroom` `a` `is` `This` `are` → **This is a mushroom.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a mushroom.`)*
+**5 · Картка слова — bean**
+<!-- interaction_id: en:lesson-04:session-20:word:bean; family: word_card -->
+> **bean** — квасолина, біб. Are there any beans near the jar? — «Поруч із банкою є квасоля?» Про овальне зернятко зі стручка.
 
-**6 · Ви знайшли карти для поїздки. Повідомте «Тут є кілька карт» із some**
-<!-- interaction_id: en:lesson-04:session-20:i06; family: phrase_builder -->
-Плитки: `here` `maps` `some` `are` `There` `is` → **There are some maps here.**
-*(плитка `is` зайва: тут потрібно `are` — `There are some maps here.`)*
+**6 · Овальне зернятко, яке варять у густому супі. Як воно називається англійською?**
+<!-- interaction_id: en:lesson-04:session-20:i04; family: context_gap_grammar -->
+___ → **bean** · berry · cherry
+- berry — *berry — це ягода, а овальне зернятко для густого супу називається bean.*
+- cherry — *cherry — це вишня, а овальне зернятко для густого супу називається bean.*
 
-**7 · Друг переконався, що ви не ховали карту. Дайте відповідь «Так, я невинний» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-20:i07; family: scripted_repeat_compare -->
-🎙 **Yes, I'm innocent.**
+**7 · Послухайте запитання подруги**
+<!-- interaction_id: en:lesson-04:session-20:i05; family: listen_choose -->
+🔊 *Are there any beans here?* → **Are there any beans here?** · Are there any mushrooms here? · There are some beans here.
+- Are there any mushrooms here? — *У записі питають про `beans`, а в цьому варіанті про `mushrooms`.*
+- There are some beans here. — *У записі запитання `Are there any`, а в цьому варіанті повідомлення `There are some`.*
 
-**8 · Повідомте «Тут є трохи грибів»**
+**8 · Картка слова — nut**
+<!-- interaction_id: en:lesson-04:session-20:word:nut; family: word_card -->
+> **nut** — горіх. Are there any nuts behind the bowl? — «За мискою є горіхи?» Про твердий плід у шкаралупі.
+
+**9 · Подруга дістає з рюкзака горіх у шкаралупі й називає слово, а ви повторюєте за нею**
+<!-- interaction_id: en:lesson-04:session-20:i06; family: scripted_repeat_compare -->
+🎙 **nut**
+
+**10 · Послухайте подругу й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-20:i07; family: listen_build_dictation -->
+🔊 *Are there any nuts here?* Плитки: `nuts` `any` `there` `Are` `here` `Is` → **Are there any nuts here?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any nuts here?`)*
+
+**11 · Картка слова — pea**
+<!-- interaction_id: en:lesson-04:session-20:word:pea; family: word_card -->
+> **pea** — горошина, горох. Are there any peas here? — «Тут є горох?» Про маленьку круглу зелену кульку зі стручка.
+
+**12 · Маленька кругла зелена кулька зі стручка. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-20:i08; family: context_gap_grammar -->
-There are ___ mushrooms here. → **some** · a · an
-- a — *`a` стосується одного гриба; тут потрібне `some mushrooms`.*
-- an — *`an` теж стосується однієї речі; тут кілька грибів: `some mushrooms`.*
+___ → **pea** · bean · nut
+- bean — *bean — це овальна квасолина, а маленька кругла зелена кулька називається pea.*
+- nut — *nut — це горіх у шкаралупі, а маленька кругла зелена кулька називається pea.*
 
-**9 · Послухайте запитання**
-<!-- interaction_id: en:lesson-04:session-20:i09; family: listen_choose -->
-🔊 *Are there any maps?* → **Are there any maps?** · Are there any bags? · Are there any mushrooms?
-- Are there any bags? — *У записі останнє слово — `maps`, а в цьому варіанті — `bags`.*
-- Are there any mushrooms? — *У записі останнє слово — `maps`, а в цьому варіанті — `mushrooms`.*
+**13 · Ви варите суп. Запитайте подругу повною фразою: поруч із мискою є горох?**
+<!-- interaction_id: en:lesson-04:session-20:i09; family: phrase_builder -->
+Плитки: `peas` `any` `near` `the` `bowl` `there` `Are` `Is` → **Are there any peas near the bowl?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any peas near the bowl?`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-20:i10; family: speed_match -->
-mushroom — гриб · mushrooms — гриби · maps — карти · platform — платформа
+pea — горошина · nut — горіх · mushroom — гриб · bean — квасолина
 
-**11 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-20:i11; family: listen_build_dictation -->
-🔊 *There are some mushrooms.* Плитки: `mushrooms` `some` `are` `There` `is` → **There are some mushrooms.**
-*(плитка `is` зайва: тут потрібно `are` — `There are some mushrooms.`)*
+**15 · Послухайте коротку відповідь брата**
+<!-- interaction_id: en:lesson-04:session-20:i11; family: listen_choose -->
+🔊 *Yes, there are.* → **Yes, there are.** · No, there aren't. · Yes, there is.
+- No, there aren't. — *У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`.*
+- Yes, there is. — *У записі `there are`, а в цьому варіанті `there is`.*
 
-**12 · Ви ще не перевірили продукти. Запитайте «Чи є гриби?» з any**
-<!-- interaction_id: en:lesson-04:session-20:i12; family: phrase_builder -->
-Плитки: `mushrooms` `any` `there` `Are` → **Are there any mushrooms?**
+**16 · Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання**
+<!-- interaction_id: en:lesson-04:session-20:i12; family: context_gap_grammar -->
+Are there ___ nuts here? → **any** · a · an
+- a — *Слово a ставлять перед одним предметом, а горіхів кілька: any nuts.*
+- an — *Слово an теж ставлять перед одним предметом, а тут потрібно any nuts.*
 
-**13 · На фотографії вокзалу вкажіть на далеку платформу: «То — платформа»**
-<!-- interaction_id: en:lesson-04:session-20:i13; family: scripted_repeat_compare -->
-🎙 **That is a platform.**
+**17 · Послухайте брата й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-20:i13; family: listen_build_dictation -->
+🔊 *Are there any beans near the door?* Плитки: `beans` `any` `near` `the` `door` `there` `Are` `Is` → **Are there any beans near the door?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any beans near the door?`)*
 
-**14 · Запитайте «Тут є гриби?»**
-<!-- interaction_id: en:lesson-04:session-20:i14; family: context_gap_grammar -->
-___ there any mushrooms here? → **Are** · Is · Am
-- Is — *Грибів кілька: `Are there any mushrooms here?`.*
-- Am — *Запитання про гриби починається з `Are there`.*
+**18 · Ви шукаєте гриби для піци. Запитайте брата, чи є вони за коробкою**
+<!-- interaction_id: en:lesson-04:session-20:i14; family: scripted_repeat_compare -->
+🎙 **Are there any mushrooms behind the box?**
 
-**15 · Послухайте, що назвав друг**
-<!-- interaction_id: en:lesson-04:session-20:i15; family: listen_choose -->
-🔊 *It is a mushroom.* → **It is a mushroom.** · It is a berry. · It is a book.
-- It is a berry. — *У записі останнє слово — `mushroom`, а в цьому варіанті — `berry`.*
-- It is a book. — *У записі останнє слово — `mushroom`, а в цьому варіанті — `book`.*
+**19 · Подруга збирається в похід. Запитайте її повною фразою: поруч із кошиком є горіхи?**
+<!-- interaction_id: en:lesson-04:session-20:i15; family: phrase_builder -->
+Плитки: `nuts` `any` `near` `the` `basket` `there` `Are` `Is` → **Are there any nuts near the basket?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are there any nuts near the basket?`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-20:i16; family: speed_match -->
-mushroom — гриб · yes — так · innocent — невинний · maps — карти
+mushroom — гриб · pea — горошина · bean — квасолина · nut — горіх
 
-**17 · Іншого дня ви обираєте продукти для вечері. Запитайте «Тут є гриби?» з any**
+**21 · Брат питає, чи лишилися гриби. Грибів немає. Відповідайте йому коротко**
 <!-- interaction_id: en:lesson-04:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Are there any mushrooms here?**
-
+🎙 **No, there aren't.**

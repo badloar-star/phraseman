@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-24:intro1:r2": {
-          "ru": "О йогурте как продукте спрашиваем `Is there`.",
-          "uk": "Про йогурт як продукт запитуємо `Is there`."
+          "ru": "Йогурт не считают штуками, поэтому нужно There is, а не There are.",
+          "uk": "Йогурт не рахують штуками, тому потрібно There is, а не There are."
         },
         "en:lesson-04:session-24:intro1:r3": {
-          "ru": "Здесь не спрашивают об отдельной порции или баночке: нужно `any yoghurt`.",
-          "uk": "Тут не запитують про окрему порцію чи баночку: потрібне `any yoghurt`."
+          "ru": "Когда мы просто сообщаем, что есть, ставим some, а не any.",
+          "uk": "Коли ми просто повідомляємо, що є, ставимо some, а не any."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-24:intro2:r2": {
-          "ru": "О супе как еде говорим `There is some soup`.",
-          "uk": "Про суп як їжу кажемо `There is some soup`."
+          "ru": "Сливки не считают штуками, поэтому нужно Is there, а не Are there.",
+          "uk": "Вершки не рахують штуками, тому потрібно Is there, а не Are there."
         },
         "en:lesson-04:session-24:intro2:r3": {
-          "ru": "Здесь речь о продукте вообще: `some soup`.",
-          "uk": "Тут ідеться про продукт загалом: `some soup`."
+          "ru": "Сливки не считают штуками, поэтому вместо a нужно any.",
+          "uk": "Вершки не рахують штуками, тому замість a потрібно any."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-24:intro3:r2": {
-          "ru": "Один бассейн: `Is there a swimming pool here?`.",
-          "uk": "Один басейн: `Is there a swimming pool here?`."
+          "ru": "Когда чего-то нет, вместо some нужно any: There isn't any ham.",
+          "uk": "Коли чогось немає, замість some потрібно any: There isn't any ham."
         },
         "en:lesson-04:session-24:intro3:r3": {
-          "ru": "Перед одним бассейном нужно `a`.",
-          "uk": "Перед одним басейном потрібне `a`."
+          "ru": "Ветчину не считают штуками, поэтому нужно isn't, а не aren't.",
+          "uk": "Шинку не рахують штуками, тому потрібно isn't, а не aren't."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5973dbc1d7b1e4527fe079c90997f149d606375e063a31fda5faed1d9c64b4e1"
+  "auxiliaryFingerprint": "35cb5da931bfacbbd4c995af539db5d5ecef11d88e34203e3fbc884c2291f3e8"
 }

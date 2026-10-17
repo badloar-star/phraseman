@@ -1,136 +1,152 @@
 # Англійська · Урок 4 · Заняття 18 — Молоко до сніданку
 
-**Ситуація.** Ви готуєте сніданок у готелі. Друг погано почувається й залишився в кімнаті. Ви перевіряєте молоко та шукаєте коробки, щоб зібрати речі перед від’їздом.
+**Ситуація.** Ви снідаєте в гостьовому домі й перевіряєте, що є на кухні. Молоко, хліб, масло й цукор не рахують штуками, тому тут інша форма: There is some milk — «Є трохи молока».
 
-**Що ви опануєте:** повідомити про молоко із some і запитати про нього з any, розрізняючи milk і boxes
-**Нові слова:** milk
+**Що ви опануєте:** сказати, що чогось є трохи, фразою There is some…
+**Нові слова:** milk, bread, butter, sugar
+**Повертаються:** berry, fridge, near, behind, bowl
 
 ---
 
 ## Інтро 1
 
-### Молоко не рахуємо краплями
+### Каша для гості
 
-`milk` — «молоко». Коли говоримо просто про продукт, не ставимо перед ним `a` й не додаємо `s`. `There is some milk` — «Є трохи молока». Навіть якщо молока багато, початок залишається `There is`: ми зараз не рахуємо пляшки. Рахувати молоко краплями можна, але сніданок тоді стане вечерею.
+Ви снідаєте в гостьовому домі. Гостя хоче молока до каші, а ви щойно відчинили холодильник і бачите там пакет. milk — «молоко». Молоко не рахують штуками: перед ним немає a, наприкінці немає -s. Скажіть їй: There is some milk here. — «Тут є трохи молока».
 
-**Повідомте «Є трохи молока».**
+**Гостя хоче молока до каші. Скажіть їй, що тут є трохи молока.**
 
-- ✅ **There is some milk.**
-- ❌ There are some milk. — *Про молоко як продукт кажемо `There is some milk`.*
-- ❌ There is a milk. — *Тут ідеться про продукт, без замовлення окремої порції: `some milk`.*
+- ✅ **There is some milk here.**
+- ❌ There are some milk here. — *Молоко не рахують штуками, тому потрібно There is, а не There are.*
+- ❌ There is a milk here. — *Молоко не рахують штуками, тому замість a потрібно some.*
 
 ---
 
 ## Інтро 2
 
-### Перевіряємо, чи є
+### Бутерброди для брата
 
-`Is there any milk?` — «Чи є молоко?» Ви поки не знаєте відповіді, тому тут підходить `any`. Із коробками інакше: `boxes` — «коробки», їх кілька. `Are there any boxes?` — «Чи є коробки?» Порівняйте початок: молоко — `Is there`, коробки — `Are there`.
+Брат збирається зробити бутерброди й шукає, з чого. На столі лежить буханець, частина вже нарізана. bread — «хліб». Хліб теж не рахують штуками: There is some bread. Скажіть братові: There is some bread near the basket. — «Поруч із кошиком є трохи хліба».
 
-**Ви ще не перевірили молоко. Запитайте «Тут є молоко?» з `any`.**
+**Брат хоче зробити бутерброди. Скажіть йому, що поруч із кошиком є трохи хліба.**
 
-- ✅ **Is there any milk here?**
-- ❌ Are there any milk here? — *З молоком як продуктом потрібне `Is there`.*
-- ❌ Is there a milk here? — *Тут запитуємо про наявність молока взагалі: `any milk`.*
+- ✅ **There is some bread near the basket.**
+- ❌ There are some bread near the basket. — *Хліб не рахують штуками, тому потрібно There is, а не There are.*
+- ❌ There is some breads near the basket. — *Хліб не рахують штуками, тому наприкінці немає -s: bread.*
 
 ---
 
 ## Інтро 3
 
-### Друг залишився в номері
+### Масло для подруги
 
-`unwell` — «нездоровий, той, хто погано почувається». Про друга: `He is unwell` — «Він погано почувається». Скорочено: `He’s unwell`. `hotel` — «готель»: `This is a hotel` — «Це готель». `There are some boxes here` — «Тут є кілька коробок». Перед від’їздом вони знадобляться для речей.
+Подруга хоче намастити на хліб щось смачне. Ви помічаєте на столі поруч із мискою жовтий брусок у папері. butter — «вершкове масло», його теж не рахують штуками. Скажіть їй: There is some butter near the bowl. — «Поруч із мискою є трохи масла».
 
-**Друг погано почувається. Скажіть про це зі скороченням.**
+**Подруга хоче намастити хліб. Скажіть їй, що поруч із мискою є трохи масла.**
 
-- ✅ **He's unwell.**
-- ❌ He's well. — *`well` — здоровий, добре почувається; тут потрібне `unwell`.*
-- ❌ He are unwell. — *З `He` потрібне `is`: `He’s unwell`.*
+- ✅ **There is some butter near the bowl.**
+- ❌ There is a butter near the bowl. — *Масло не рахують штуками, тому замість a потрібно some.*
+- ❌ There are some butter near the bowl. — *Масло не рахують штуками, тому потрібно There is, а не There are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Показуючи будівлю поруч, скажіть «Це готель»**
-<!-- interaction_id: en:lesson-04:session-18:i01; family: phrase_builder -->
-Плитки: `hotel` `a` `is` `This` `are` → **This is a hotel.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a hotel.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-18:i01; family: speed_match -->
+milk — молоко · bread — хліб · butter — вершкове масло · sugar — цукор
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-18:i02; family: listen_choose -->
-🔊 *milk* → **milk** · berry · boxes
-- berry — *У записі перше слово — `milk`, а в цьому варіанті — `berry`.*
-- boxes — *У записі перше слово — `milk`, а в цьому варіанті — `boxes`.*
+**2 · Картка слова — milk**
+<!-- interaction_id: en:lesson-04:session-18:word:milk; family: word_card -->
+> **milk** — молоко. There is some milk here. — «Тут є трохи молока». Про білий напій із пакета.
 
-**3 · Назвіть молоко одним словом**
-<!-- interaction_id: en:lesson-04:session-18:i03; family: context_gap_grammar -->
-___ → **milk** · berries · boxes
-- berries — *`berries` — ягоди; молоко — `milk`.*
-- boxes — *`boxes` — коробки; молоко — `milk`.*
+**3 · Гостя показує на пакет і називає слово, а ви повторюєте за нею**
+<!-- interaction_id: en:lesson-04:session-18:i02; family: scripted_repeat_compare -->
+🎙 **milk**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-18:i04; family: speed_match -->
-milk — молоко · unwell — той, хто погано почувається · boxes — коробки · hotel — готель
+**4 · Гостя хоче молока до каші. Скажіть їй повною фразою: поруч із холодильником є трохи молока**
+<!-- interaction_id: en:lesson-04:session-18:i03; family: phrase_builder -->
+Плитки: `milk` `some` `near` `the` `fridge` `There` `is` `are` → **There is some milk near the fridge.**
+*(плитка `are` зайва: тут потрібно `is` — `There is some milk near the fridge.`)*
 
-**5 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-18:i05; family: listen_build_dictation -->
-🔊 *There is some milk.* Плитки: `milk` `some` `is` `There` `are` → **There is some milk.**
-*(плитка `are` зайва: тут потрібно `is` — `There is some milk.`)*
+**5 · Картка слова — bread**
+<!-- interaction_id: en:lesson-04:session-18:word:bread; family: word_card -->
+> **bread** — хліб. There is some bread near the basket. — «Поруч із кошиком є трохи хліба». Про хліб, який ріжуть на скибки.
 
-**6 · Ви знайшли коробки для речей. Повідомте «Тут є кілька коробок» із some**
-<!-- interaction_id: en:lesson-04:session-18:i06; family: phrase_builder -->
-Плитки: `here` `boxes` `some` `are` `There` `is` → **There are some boxes here.**
-*(плитка `is` зайва: тут потрібно `are` — `There are some boxes here.`)*
+**6 · М’який продукт із борошна: його ріжуть на скибки й їдять із маслом. Як він називається англійською?**
+<!-- interaction_id: en:lesson-04:session-18:i04; family: context_gap_grammar -->
+___ → **bread** · egg · apple
+- egg — *egg — це яйце, а те, що ріжуть на скибки, називається bread.*
+- apple — *apple — це яблуко, а те, що ріжуть на скибки, називається bread.*
 
-**7 · Друг погано почувається. Скажіть про це зі скороченням**
-<!-- interaction_id: en:lesson-04:session-18:i07; family: scripted_repeat_compare -->
-🎙 **He's unwell.**
+**7 · Послухайте повідомлення брата**
+<!-- interaction_id: en:lesson-04:session-18:i05; family: listen_choose -->
+🔊 *There is some bread here.* → **There is some bread here.** · There is some milk here. · There are some berries here.
+- There is some milk here. — *У записі говорять про `bread`, а в цьому варіанті про `milk`.*
+- There are some berries here. — *У записі хліб: `There is some`, а в цьому варіанті ягоди: `There are some`.*
 
-**8 · Повідомте «Тут є трохи молока»**
+**8 · Картка слова — butter**
+<!-- interaction_id: en:lesson-04:session-18:word:butter; family: word_card -->
+> **butter** — вершкове масло. There is some butter near the bowl. — «Поруч із мискою є трохи масла». Про жовте масло, яке мажуть на хліб.
+
+**9 · Брат дістає жовтий брусок і називає слово, а ви повторюєте за ним**
+<!-- interaction_id: en:lesson-04:session-18:i06; family: scripted_repeat_compare -->
+🎙 **butter**
+
+**10 · Послухайте подругу й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-18:i07; family: listen_build_dictation -->
+🔊 *There is some butter here.* Плитки: `butter` `some` `There` `is` `here` `are` → **There is some butter here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is some butter here.`)*
+
+**11 · Картка слова — sugar**
+<!-- interaction_id: en:lesson-04:session-18:word:sugar; family: word_card -->
+> **sugar** — цукор. There is some sugar near the cup. — «Поруч із чашкою є трохи цукру». Про солодкі крупинки для чаю.
+
+**12 · Білі солодкі крупинки, які кладуть у чай. Як вони називаються англійською?**
 <!-- interaction_id: en:lesson-04:session-18:i08; family: context_gap_grammar -->
-There ___ some milk here. → **is** · are · am
-- are — *Ідеться про молоко як продукт: `There is some milk here`.*
-- am — *Наявність молока передаємо через `There is`.*
+___ → **sugar** · cup · spoon
+- cup — *cup — це чашка, а білі солодкі крупинки називаються sugar.*
+- spoon — *spoon — це ложка, а білі солодкі крупинки називаються sugar.*
 
-**9 · Послухайте запитання**
-<!-- interaction_id: en:lesson-04:session-18:i09; family: listen_choose -->
-🔊 *Are there any boxes?* → **Are there any boxes?** · Are there any books? · Are there any berries?
-- Are there any books? — *У записі останнє слово — `boxes`, а в цьому варіанті — `books`.*
-- Are there any berries? — *У записі останнє слово — `boxes`, а в цьому варіанті — `berries`.*
+**13 · Подруга п’є чай без цукру. Скажіть їй повною фразою: поруч із чашкою є трохи цукру**
+<!-- interaction_id: en:lesson-04:session-18:i09; family: phrase_builder -->
+Плитки: `sugar` `some` `near` `the` `cup` `There` `is` `are` → **There is some sugar near the cup.**
+*(плитка `are` зайва: тут потрібно `is` — `There is some sugar near the cup.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-18:i10; family: speed_match -->
-milk — молоко · boxes — коробки · hotel — готель · unwell — той, хто погано почувається
+sugar — цукор · milk — молоко · butter — вершкове масло · bread — хліб
 
-**11 · Послухайте й складіть запитання**
-<!-- interaction_id: en:lesson-04:session-18:i11; family: listen_build_dictation -->
-🔊 *Is there any milk?* Плитки: `milk` `any` `there` `Is` → **Is there any milk?**
+**15 · Послухайте гостю**
+<!-- interaction_id: en:lesson-04:session-18:i11; family: listen_choose -->
+🔊 *There is some milk near the bowl.* → **There is some milk near the bowl.** · There are some berries near the bowl. · There is some butter near the bowl.
+- There are some berries near the bowl. — *У записі молоко: `There is some`, а в цьому варіанті ягоди: `There are some`.*
+- There is some butter near the bowl. — *У записі говорять про `milk`, а в цьому варіанті про `butter`.*
 
-**12 · Біля стійки готелю запитайте «Тут є коробки?» з any**
-<!-- interaction_id: en:lesson-04:session-18:i12; family: phrase_builder -->
-Плитки: `here` `boxes` `any` `there` `Are` → **Are there any boxes here?**
+**16 · Подруга питає про масло. Його трохи. Доповніть фразу**
+<!-- interaction_id: en:lesson-04:session-18:i12; family: context_gap_grammar -->
+There is ___ butter here. → **some** · a · an
+- a — *Слово a ставлять перед одним предметом, а масло не рахують штуками: some butter.*
+- an — *Слово an теж ставлять перед одним предметом, а тут потрібно some butter.*
 
-**13 · Друг запитує про інший стіл. Повідомте «Там є трохи молока» із some**
-<!-- interaction_id: en:lesson-04:session-18:i13; family: scripted_repeat_compare -->
-🎙 **There is some milk there.**
+**17 · Послухайте гостю й складіть повідомлення**
+<!-- interaction_id: en:lesson-04:session-18:i13; family: listen_build_dictation -->
+🔊 *There is some bread behind the door.* Плитки: `bread` `some` `behind` `the` `door` `There` `is` `are` → **There is some bread behind the door.**
+*(плитка `are` зайва: тут потрібно `is` — `There is some bread behind the door.`)*
 
-**14 · Запитайте «Тут є молоко?»**
-<!-- interaction_id: en:lesson-04:session-18:i14; family: context_gap_grammar -->
-___ there any milk here? → **Is** · Are · Am
-- Are — *Про молоко як продукт запитуємо `Is there any milk here?`.*
-- Am — *Запитання про наявність молока починається з `Is there`.*
+**18 · Подруга шукає цукор. Скажіть їй, що за коробкою є трохи цукру**
+<!-- interaction_id: en:lesson-04:session-18:i14; family: scripted_repeat_compare -->
+🎙 **There is some sugar behind the box.**
 
-**15 · Послухайте, як почувається друг**
-<!-- interaction_id: en:lesson-04:session-18:i15; family: listen_choose -->
-🔊 *He is unwell.* → **He is unwell.** · He is well. · He is tired.
-- He is well. — *У записі останнє слово — `unwell`, а в цьому варіанті — `well`.*
-- He is tired. — *У записі останнє слово — `unwell`, а в цьому варіанті — `tired`.*
+**19 · Брат шукає масло. Скажіть йому повною фразою: поруч із кошиком є трохи масла**
+<!-- interaction_id: en:lesson-04:session-18:i15; family: phrase_builder -->
+Плитки: `butter` `some` `near` `the` `basket` `There` `is` `are` → **There is some butter near the basket.**
+*(плитка `are` зайва: тут потрібно `is` — `There is some butter near the basket.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-18:i16; family: speed_match -->
-milk — молоко · unwell — той, хто погано почувається · boxes — коробки · hotel — готель
+bread — хліб · sugar — цукор · milk — молоко · butter — вершкове масло
 
-**17 · У наступній подорожі ви готуєте сніданок на новій кухні. Запитайте «Тут є молоко?» з any**
+**21 · Гостя питає, чи лишилося молоко. Воно стоїть за мискою. Відповідайте їй повною фразою**
 <!-- interaction_id: en:lesson-04:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there any milk here?**
-
+🎙 **There is some milk behind the bowl.**

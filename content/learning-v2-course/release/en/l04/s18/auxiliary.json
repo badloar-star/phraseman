@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-18:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-18:intro1:r2": {
-          "ru": "О молоке как продукте говорим `There is some milk`.",
-          "uk": "Про молоко як продукт кажемо `There is some milk`."
+          "ru": "Молоко не считают штуками, поэтому нужно There is, а не There are.",
+          "uk": "Молоко не рахують штуками, тому потрібно There is, а не There are."
         },
         "en:lesson-04:session-18:intro1:r3": {
-          "ru": "Здесь речь о продукте, без заказа отдельной порции: `some milk`.",
-          "uk": "Тут ідеться про продукт, без замовлення окремої порції: `some milk`."
+          "ru": "Молоко не считают штуками, поэтому вместо a нужно some.",
+          "uk": "Молоко не рахують штуками, тому замість a потрібно some."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-18:intro2:r2": {
-          "ru": "С молоком как продуктом нужно `Is there`.",
-          "uk": "З молоком як продуктом потрібне `Is there`."
+          "ru": "Хлеб не считают штуками, поэтому нужно There is, а не There are.",
+          "uk": "Хліб не рахують штуками, тому потрібно There is, а не There are."
         },
         "en:lesson-04:session-18:intro2:r3": {
-          "ru": "Здесь спрашиваем о наличии молока вообще: `any milk`.",
-          "uk": "Тут запитуємо про наявність молока взагалі: `any milk`."
+          "ru": "Хлеб не считают штуками, поэтому на конце нет -s: bread.",
+          "uk": "Хліб не рахують штуками, тому наприкінці немає -s: bread."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-18:intro3:r2": {
-          "ru": "`well` — здоров, хорошо себя чувствует; здесь нужно `unwell`.",
-          "uk": "`well` — здоровий, добре почувається; тут потрібне `unwell`."
+          "ru": "Масло не считают штуками, поэтому вместо a нужно some.",
+          "uk": "Масло не рахують штуками, тому замість a потрібно some."
         },
         "en:lesson-04:session-18:intro3:r3": {
-          "ru": "С `He` нужно `is`: `He’s unwell`.",
-          "uk": "З `He` потрібне `is`: `He’s unwell`."
+          "ru": "Масло не считают штуками, поэтому нужно There is, а не There are.",
+          "uk": "Масло не рахують штуками, тому потрібно There is, а не There are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6d7a04ed758fcbc5e34f920c6f28ff9bab2167e7526f6e9d0963b6fabdd89022"
+  "auxiliaryFingerprint": "b832127a0d6ac55bd4c107a2e14e33d46ce9822e667a04d2b68483216e7f5185"
 }

@@ -1,138 +1,152 @@
-# Английский · Урок 4 · Занятие 32 — Встреча у фонтана
+# Английский · Урок 4 · Занятие 32 — Квест по району
 
-**Ситуация.** Вы собираетесь встретиться у фонтана. Перед выходом находите йогурт на кухне, а потом объясняете другу, где фонтан, остановка и парковка.
+**Ситуация.** Вы устроили друзьям небольшой квест по району: надо найти фонтан, голубей, памятник и палатку на рынке. Новой грамматики нет: вы сами выбираете in, on, under, next to, between, near или behind.
 
-**Что вы освоите:** назвать фонтан и повторить, как описывать расположение знакомых мест и вещей
-**Новые слова:** fountain
+**Что вы освоите:** самому выбрать нужное слово места и сказать, где что находится
+**Новые слова:** fountain, pigeon, monument, stall
+**Возвращаются:** statue, bench, bank, library, school, hotel, park, awning
 
 ---
 
 ## Интро 1
 
-### Вода на площади
+### Встреча у фонтана
 
-`fountain` — «фонтан». `This is a fountain` — «Это фонтан». Один фонтан — `a fountain`: струй может быть десять, но фонтан всё равно один. `The fountain is next to the car park` — «Фонтан рядом с парковкой». `car park` — парковка для машин.
+Вы договорились встретиться с другом у большой каменной чаши, из которой бьёт вода. Друг уже ждёт у входа в отель и не знает, куда идти дальше. fountain — «фонтан». Он стоит за зданием отеля: The fountain is behind the hotel — «Фонтан за отелем».
 
-**Назовите один фонтан рядом.**
+**Друг ищет фонтан. Скажите ему, что он за отелем.**
 
-- ✅ **This is a fountain.**
-- ❌ This is fountain. — *Перед одним фонтаном нужно `a`: `a fountain`.*
-- ❌ These are fountains. — *Здесь один фонтан: `This is a fountain`.*
+- ✅ **The fountain is behind the hotel.**
+- ❌ The fountain is between the hotel. — *Для between нужны два места, а здесь одно: за отелем — behind the hotel.*
+- ❌ The fountain are behind the hotel. — *Фонтан один, поэтому нужно is: The fountain is.*
 
 ---
 
 ## Интро 2
 
-### Перед выходом
+### Страх перед птицами
 
-`yoghurt` — «йогурт», `sink` — «раковина», `worktop` — «кухонная столешница». `The yoghurt is on the worktop` — «Йогурт на столешнице». `The sink is next to the worktop` — «Раковина рядом со столешницей». В этих фразах `on` означает на поверхности, `next to` — рядом.
+Сестра боится птиц и идёт по площади очень осторожно. Она просит вас сказать, где сидит серая городская птица, которая ходит по площади и клюёт крошки. pigeon — «голубь». Он сидит сверху на статуе: The pigeon is on the statue — «Голубь на статуе».
 
-**Йогурт стоит на поверхности столешницы. Выберите описание.**
+**Сестра боится птиц. Скажите ей, что голубь на статуе.**
 
-- ✅ **The yoghurt is on the worktop.**
-- ❌ The yoghurt is under the worktop. — *`under` — под; на поверхности — `on`.*
-- ❌ The yoghurt are on the worktop. — *Здесь йогурт как продукт: `The yoghurt is`.*
+- ✅ **The pigeon is on the statue.**
+- ❌ The pigeon is in the statue. — *in — «внутри», а голубь сидит сверху: нужно on.*
+- ❌ The pigeon are on the statue. — *Голубь один, поэтому нужно is: The pigeon is.*
 
 ---
 
 ## Интро 3
 
-### Ориентиры по пути
+### Турист на площади
 
-`awning` — «навес», `alley` — «узкий переулок», `bus stop` — «автобусная остановка», `signpost` — «столб с указателями». `The signpost is in the alley` — «Столб с указателями в переулке». `The bus stop is next to the fountain` — «Остановка рядом с фонтаном». `The bag is under the awning` — «Сумка под навесом». Слова места помогают другу найти вас, а не просто узнать, что в городе есть фонтан.
+Турист хочет сфотографировать высокий каменный знак, который поставили в память о людях и событии. Вы знаете, что он стоит ровно между банком и школой. monument — «памятник». The monument is between the bank and the school — «Памятник между банком и школой».
 
-**Остановка рядом с фонтаном. Выберите описание.**
+**Турист ищет памятник. Скажите ему, что он между банком и школой.**
 
-- ✅ **The bus stop is next to the fountain.**
-- ❌ The bus stop is in the fountain. — *`in` — внутри; остановка рядом: `next to`.*
-- ❌ The bus stop are next to the fountain. — *Одна остановка: `The bus stop is`.*
+- ✅ **The monument is between the bank and the school.**
+- ❌ The monument is between the bank. — *Для between нужны два места: the bank and the school.*
+- ❌ The monument is between the bank and school. — *Школу вы оба знаете, поэтому и перед ней нужно the: the school.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Йогурт на кухонной столешнице. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-32:i01; family: phrase_builder -->
-Плитки: `worktop` `the` `on` `is` `yoghurt` `The` `are` → **The yoghurt is on the worktop.**
-*(плитка `are` лишняя: здесь нужно `is` — `The yoghurt is on the worktop.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-32:i01; family: speed_match -->
+fountain — фонтан · pigeon — голубь · monument — памятник · stall — торговая палатка
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-32:i02; family: listen_choose -->
-🔊 *fountain* → **fountain** · fountains · table
-- fountains — *В записи первое слово — `fountain`, а в этом варианте — `fountains`.*
-- table — *В записи первое слово — `fountain`, а в этом варианте — `table`.*
+**2 · Карточка слова — fountain**
+<!-- interaction_id: en:lesson-04:session-32:word:fountain; family: word_card -->
+> **fountain** — фонтан. The fountain is near the library. — «Фонтан рядом с библиотекой». О месте, где вода бьёт вверх и стекает в чашу.
 
-**3 · Назовите фонтан одним словом**
-<!-- interaction_id: en:lesson-04:session-32:i03; family: context_gap_grammar -->
-___ → **fountain** · sink · awning
-- sink — *`sink` — раковина; фонтан — `fountain`.*
-- awning — *`awning` — навес; фонтан — `fountain`.*
+**3 · Друг показывает каменную чашу с бьющей водой на площади, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-32:i02; family: scripted_repeat_compare -->
+🎙 **fountain**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-32:i04; family: speed_match -->
-fountain — фонтан · yoghurt — йогурт · sink — раковина · worktop — кухонная столешница
+**4 · Друг ждёт у отеля. Скажите ему полной фразой: фонтан рядом с библиотекой**
+<!-- interaction_id: en:lesson-04:session-32:i03; family: phrase_builder -->
+Плитки: `fountain` `the` `near` `is` `The` `library` `are` → **The fountain is near the library.**
+*(плитка `are` лишняя: здесь нужно `is` — `The fountain is near the library.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-32:i05; family: listen_build_dictation -->
-🔊 *This is a fountain.* Плитки: `fountain` `a` `is` `This` `are` → **This is a fountain.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a fountain.`)*
+**5 · Карточка слова — pigeon**
+<!-- interaction_id: en:lesson-04:session-32:word:pigeon; family: word_card -->
+> **pigeon** — голубь. The pigeons are near the fountain. — «Голуби рядом с фонтаном». О серой городской птице.
 
-**6 · Раковина рядом со столешницей. Скажите, где она**
-<!-- interaction_id: en:lesson-04:session-32:i06; family: phrase_builder -->
-Плитки: `worktop` `the` `to` `next` `is` `sink` `The` `are` → **The sink is next to the worktop.**
-*(плитка `are` лишняя: здесь нужно `is` — `The sink is next to the worktop.`)*
+**6 · Серая городская птица, которая ходит по площади и клюёт крошки. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-32:i04; family: context_gap_grammar -->
+___ → **pigeon** · statue · bench
+- statue — *statue — это каменная статуя, а серая городская птица называется pigeon.*
+- bench — *bench — это скамейка, а серая городская птица называется pigeon.*
 
-**7 · Столб с указателями находится в переулке. Скажите, где он**
-<!-- interaction_id: en:lesson-04:session-32:i07; family: scripted_repeat_compare -->
-🎙 **The signpost is in the alley.**
+**7 · Послушайте сестру**
+<!-- interaction_id: en:lesson-04:session-32:i05; family: listen_choose -->
+🔊 *The pigeon is under the bench.* → **The pigeon is under the bench.** · The pigeon is on the bench. · The pigeons are under the bench.
+- The pigeon is on the bench. — *В записи `under` — под скамейкой, а в этом варианте `on` — на скамейке.*
+- The pigeons are under the bench. — *В записи голубь один (`pigeon is`), а в этом варианте несколько.*
 
-**8 · Навес над сумкой: сумка под ним, не на нём и не внутри. Выберите слово**
+**8 · Карточка слова — monument**
+<!-- interaction_id: en:lesson-04:session-32:word:monument; family: word_card -->
+> **monument** — памятник. The monument is in the park. — «Памятник в парке». О высоком каменном знаке в память о людях или событии.
+
+**9 · Турист показывает высокий каменный знак на площади, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-32:i06; family: scripted_repeat_compare -->
+🎙 **monument**
+
+**10 · Послушайте туриста и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-32:i07; family: listen_build_dictation -->
+🔊 *The monument is in the park.* Плитки: `monument` `the` `in` `is` `The` `park` `are` → **The monument is in the park.**
+*(плитка `are` лишняя: здесь нужно `is` — `The monument is in the park.`)*
+
+**11 · Карточка слова — stall**
+<!-- interaction_id: en:lesson-04:session-32:word:stall; family: word_card -->
+> **stall** — торговая палатка. The stall is under the awning. — «Палатка под навесом». О небольшой лавке на улице или рынке, где продают товары.
+
+**12 · Небольшая лавка на рынке, где продают фрукты и сувениры. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-32:i08; family: context_gap_grammar -->
-The bag is ___ the awning. → **under** · on · in
-- on — *`on` — на поверхности; под навесом — `under the awning`.*
-- in — *`in` — внутри; здесь под: `under`.*
+___ → **stall** · table · shelf
+- table — *table — это стол, а небольшая торговая лавка на рынке называется stall.*
+- shelf — *shelf — это полка, а небольшая торговая лавка на рынке называется stall.*
 
-**9 · Послушайте, где остановка**
-<!-- interaction_id: en:lesson-04:session-32:i09; family: listen_choose -->
-🔊 *The bus stop is next to the fountain.* → **The bus stop is next to the fountain.** · The bus stop is next to the hotel. · The bus stop is next to the shop.
-- The bus stop is next to the hotel. — *В записи последнее слово — `fountain`, а в этом варианте — `hotel`.*
-- The bus stop is next to the shop. — *В записи последнее слово — `fountain`, а в этом варианте — `shop`.*
+**13 · Подруга ищет палатку. Скажите ей полной фразой: палатка под навесом**
+<!-- interaction_id: en:lesson-04:session-32:i09; family: phrase_builder -->
+Плитки: `stall` `the` `under` `awning` `is` `The` `are` → **The stall is under the awning.**
+*(плитка `are` лишняя: здесь нужно `is` — `The stall is under the awning.`)*
 
-**10 · Соедините ориентиры со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-32:i10; family: speed_match -->
-awning — навес · alley — узкий переулок · bus stop — автобусная остановка · signpost — столб с указателями
+stall — торговая палатка · monument — памятник · pigeon — голубь · bench — скамейка
 
-**11 · Послушайте и соберите описание**
-<!-- interaction_id: en:lesson-04:session-32:i11; family: listen_build_dictation -->
-🔊 *The fountain is next to the car park.* Плитки: `park` `car` `the` `to` `next` `is` `fountain` `The` `are` → **The fountain is next to the car park.**
-*(плитка `are` лишняя: здесь нужно `is` — `The fountain is next to the car park.`)*
+**15 · Послушайте друга**
+<!-- interaction_id: en:lesson-04:session-32:i11; family: listen_choose -->
+🔊 *The cup is on the bench.* → **The cup is on the bench.** · The cup is under the bench. · The cup is behind the bench.
+- The cup is under the bench. — *В записи `on` — на скамейке, а в этом варианте `under` — под ней.*
+- The cup is behind the bench. — *В записи `on` — на скамейке, а в этом варианте `behind` — за ней.*
 
-**12 · Есть немного йогурта. Сообщите об этом**
-<!-- interaction_id: en:lesson-04:session-32:i12; family: phrase_builder -->
-Плитки: `yoghurt` `some` `is` `There` `are` → **There is some yoghurt.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is some yoghurt.`)*
+**16 · Скамейка стоит ровно посередине между фонтаном и статуей. Выберите слово**
+<!-- interaction_id: en:lesson-04:session-32:i12; family: context_gap_grammar -->
+The bench is ___ the fountain and the statue. → **between** · under · in
+- under — *under — «под», а скамейка стоит посередине между двумя местами: нужно between.*
+- in — *in — «внутри», а скамейка стоит посередине между двумя местами: нужно between.*
 
-**13 · Вы в незнакомом месте. Спросите, есть ли здесь фонтан**
-<!-- interaction_id: en:lesson-04:session-32:i13; family: scripted_repeat_compare -->
-🎙 **Is there a fountain?**
+**17 · Послушайте сестру и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-32:i13; family: listen_build_dictation -->
+🔊 *The pigeons are near the fountain.* Плитки: `pigeons` `the` `near` `are` `The` `fountain` `is` → **The pigeons are near the fountain.**
+*(плитка `is` лишняя: здесь нужно `are` — `The pigeons are near the fountain.`)*
 
-**14 · Фонтан между двумя магазинами, не внутри и не под ними. Выберите слово**
-<!-- interaction_id: en:lesson-04:session-32:i14; family: context_gap_grammar -->
-The fountain is ___ the shops. → **between** · in · under
-- in — *`in` — внутри; между — `between`.*
-- under — *`under` — под; между — `between`.*
+**18 · Друг спрашивает, где фонтан. Ответьте ему: фонтан за отелем**
+<!-- interaction_id: en:lesson-04:session-32:i14; family: scripted_repeat_compare -->
+🎙 **The fountain is behind the hotel.**
 
-**15 · Послушайте, что показывает друг**
-<!-- interaction_id: en:lesson-04:session-32:i15; family: listen_choose -->
-🔊 *That is a fountain.* → **That is a fountain.** · This is a fountain. · That is a table.
-- This is a fountain. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- That is a table. — *В записи последнее слово — `fountain`, а в этом варианте — `table`.*
+**19 · Турист ищет памятник. Скажите ему полной фразой: памятник между парком и школой**
+<!-- interaction_id: en:lesson-04:session-32:i15; family: phrase_builder -->
+Плитки: `monument` `the` `the` `between` `and` `is` `The` `park` `school` `are` → **The monument is between the park and the school.**
+*(плитка `are` лишняя: здесь нужно `is` — `The monument is between the park and the school.`)*
 
-**16 · Соедините названия со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-32:i16; family: speed_match -->
-car park — парковка · awning — навес · alley — узкий переулок · fountain — фонтан
+fountain — фонтан · pigeon — голубь · monument — памятник · stall — торговая палатка
 
-**17 · В другом городе друг ищет фонтан. Он рядом с отелем. Скажите «Фонтан рядом с отелем»**
+**21 · В другом городе друг ищет палатку. Скажите ему: «Палатка рядом с фонтаном»**
 <!-- interaction_id: en:lesson-04:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The fountain is next to the hotel.**
-
+🎙 **The stall is next to the fountain.**

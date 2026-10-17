@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-30:i01",
-    "correctText": "It is elsewhere.",
+    "correctText": "en:lesson-04:session-30:i01:p1=signpost\nen:lesson-04:session-30:i01:p2=hedge\nen:lesson-04:session-30:i01:p3=shed\nen:lesson-04:session-30:i01:p4=pond",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:word:signpost",
+    "correctText": "signpost",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i02",
     "correctText": "signpost",
-    "correctResponseId": "en:lesson-04:session-30:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-30:i03",
-    "correctText": "signpost",
-    "correctResponseId": "en:lesson-04:session-30:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-30:i04",
-    "correctText": "en:lesson-04:session-30:i04:p1=signpost\nen:lesson-04:session-30:i04:p2=elsewhere\nen:lesson-04:session-30:i04:p3=windows\nen:lesson-04:session-30:i04:p4=carrot",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-30:i03",
+    "correctText": "The signpost is near the lake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:word:hedge",
+    "correctText": "hedge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:i04",
+    "correctText": "hedge",
+    "correctResponseId": "en:lesson-04:session-30:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-30:i05",
-    "correctText": "This is a signpost.",
+    "correctText": "The bench is behind the hedge.",
+    "correctResponseId": "en:lesson-04:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:word:shed",
+    "correctText": "shed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i06",
-    "correctText": "The carrot is on the table.",
+    "correctText": "shed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i07",
-    "correctText": "It's elsewhere.",
+    "correctText": "The bicycles are behind the shed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-30:word:pond",
+    "correctText": "pond",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i08",
-    "correctText": "next to",
+    "correctText": "pond",
     "correctResponseId": "en:lesson-04:session-30:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-30:i09",
-    "correctText": "The windows are next to the door.",
-    "correctResponseId": "en:lesson-04:session-30:i09:r1"
+    "correctText": "The bench is near the pond.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i10",
-    "correctText": "en:lesson-04:session-30:i10:p1=signpost\nen:lesson-04:session-30:i10:p2=between\nen:lesson-04:session-30:i10:p3=windows\nen:lesson-04:session-30:i10:p4=carrot",
+    "correctText": "en:lesson-04:session-30:i10:p1=pond\nen:lesson-04:session-30:i10:p2=shed\nen:lesson-04:session-30:i10:p3=hedge\nen:lesson-04:session-30:i10:p4=bridge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i11",
-    "correctText": "The signpost is between the windows.",
-    "correctResponseId": null
+    "correctText": "The bin is near the shed.",
+    "correctResponseId": "en:lesson-04:session-30:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-30:i12",
-    "correctText": "The carrot is under the table.",
-    "correctResponseId": null
+    "correctText": "behind",
+    "correctResponseId": "en:lesson-04:session-30:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-30:i13",
-    "correctText": "The signpost is next to the hotel.",
+    "correctText": "The statue is near the pond.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-30:i14:r1"
+    "correctText": "The signpost is near the bridge.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i15",
-    "correctText": "That is a signpost.",
-    "correctResponseId": "en:lesson-04:session-30:i15:r1"
+    "correctText": "The gate is behind the shed.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i16",
-    "correctText": "en:lesson-04:session-30:i16:p1=signpost\nen:lesson-04:session-30:i16:p2=elsewhere\nen:lesson-04:session-30:i16:p3=windows\nen:lesson-04:session-30:i16:p4=carrot",
+    "correctText": "en:lesson-04:session-30:i16:p1=signpost\nen:lesson-04:session-30:i16:p2=hedge\nen:lesson-04:session-30:i16:p3=shed\nen:lesson-04:session-30:i16:p4=pond",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-30:i17",
-    "correctText": "The signpost is next to the shop.",
+    "correctText": "The ladder is behind the shed.",
     "correctResponseId": null
   }
 ]

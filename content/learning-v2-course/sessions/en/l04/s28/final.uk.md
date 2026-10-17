@@ -1,138 +1,152 @@
-# Англійська · Урок 4 · Заняття 28 — Столики в провулку
+# Англійська · Урок 4 · Заняття 28 — Поруч із чим
 
-**Ситуація.** Ви зустрічаєтеся з другом біля кафе у вузькому провулку. Шукаєте стільці й розглядаєте гриб на тарілці. Час зустрічі довелося змінити, але друг легко підлаштувався.
+**Ситуація.** Ви пояснюєте знайомим, як вас знайти: кафе в провулку, лавка біля ліхтаря, велосипед біля воріт. Ви кажете «поруч із» словами next to і не плутаєте їх з in, on та under.
 
-**Що ви опануєте:** назвати провулок і описати, де розташовані стільці та знайомі предмети
-**Нові слова:** alley
+**Що ви опануєте:** сказати, що предмет перебуває поруч з іншим, словами next to
+**Нові слова:** alley, lamppost, gate, fence
+**Повертаються:** bench, bicycle, bin, bag, chair, tree, cafe, hotel, bank, library
 
 ---
 
 ## Інтро 1
 
-### Вузький прохід між будівлями
+### Кур’єр заблукав
 
-`alley` — «провулок, вузький прохід між будівлями». Не плутайте з українським «алея»: дерева тут не обов’язкові. Один провулок — `an alley`, бо перший звук голосний. `The chairs are in the alley` — «Стільці в провулку». Для слова `alley` достатньо вузького проходу: садити дерева заради перекладу не треба.
+Кур’єр везе вам обід і телефонує: він стоїть на великій вулиці й не бачить кафе. Ви пояснюєте, що воно у вузькому проході між двома будинками, поруч із готелем. alley — «провулок». Слова next to означають «поруч із»: The alley is next to the hotel — «Провулок поруч із готелем».
 
-**Стільці стоять у провулку. Виберіть опис.**
+**Кур’єр шукає провулок. Скажіть йому, що він поруч із готелем.**
 
-- ✅ **The chairs are in the alley.**
-- ❌ The chairs are on the alley. — *Про місце в провулку кажемо `in the alley`.*
-- ❌ The chairs is in the alley. — *Стільців кілька: `The chairs are`.*
+- ✅ **The alley is next to the hotel.**
+- ❌ The alley is under the hotel. — *under — «під», а провулок стоїть збоку: потрібно next to.*
+- ❌ The alley is next the hotel. — *Після next потрібно to: next to the hotel.*
 
 ---
 
 ## Інтро 2
 
-### Провулок і стільці
+### Зустріч увечері
 
-`chairs` — «стільці». `The chairs are next to the table` — «Стільці поруч зі столом». `The alley is between the buildings` — «Провулок між будівлями». `mushroom` — «гриб»: `The mushroom is on the table` — «Гриб на столі». Для кількох стільців — `are`, для одного гриба чи провулка — `is`.
+Ви домовилися зустрітися з подругою ввечері. Вже темно, і вона ніяк не може знайти вас на вулиці. Ви стоїте біля високого стовпа з увімкненим ліхтарем, а поруч із ним стоїть лавка. lamppost — «ліхтарний стовп». The bench is next to the lamppost — «Лавка поруч із ліхтарним стовпом».
 
-**Провулок проходить між будівлями. Виберіть опис.**
+**Подруга не бачить вас у темряві. Скажіть їй, що лавка поруч із ліхтарним стовпом.**
 
-- ✅ **The alley is between the buildings.**
-- ❌ The alley are between the buildings. — *Один провулок: `The alley is`.*
-- ❌ The alley is on the buildings. — *`on` — на поверхні; між будівлями — `between the buildings`.*
+- ✅ **The bench is next to the lamppost.**
+- ❌ The bench is on the lamppost. — *on — «на поверхні», а лавка стоїть збоку: потрібно next to.*
+- ❌ The bench is next to lamppost. — *Стовп ви обоє бачите, тому перед ним потрібно the: next to the lamppost.*
 
 ---
 
 ## Інтро 3
 
-### Можна домовитися
+### Куди поставити велосипед
 
-`flexible` — «гнучкий». Про людину це може означати, що вона готова змінювати плани й підлаштовуватися. Зустріч перенесли, друг без проблем погодився: `He is flexible` — «Він гнучкий, готовий підлаштуватися». Скорочено: `He’s flexible`. Тут ідеться про плани, а не про те, чи вміє він сідати на шпагат.
+Брат приїхав до вас на велосипеді й питає, куди його ставити. У дворі біля будинку є хвіртка, і ви вже залишили там свій велосипед. gate — «ворота, хвіртка». Велосипед один, тому is: The bicycle is next to the gate — «Велосипед поруч із воротами».
 
-**Друг готовий змінювати час зустрічі. Скажіть «Він готовий підлаштуватися» зі скороченням і словом flexible.**
+**Брат питає, де ваш велосипед. Скажіть йому, що він поруч із воротами.**
 
-- ✅ **He's flexible.**
-- ❌ He's careless. — *`careless` — необережний; готовий підлаштовуватися — `flexible`.*
-- ❌ He are flexible. — *З `He` потрібне `is`: `He’s flexible`.*
+- ✅ **The bicycle is next to the gate.**
+- ❌ The bicycle are next to the gate. — *Велосипед один, тому потрібно is: The bicycle is.*
+- ❌ The bicycle is next the gate. — *Після next потрібно to: next to the gate.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друг готовий змінювати плани. Скажіть це без скорочення зі словом flexible**
-<!-- interaction_id: en:lesson-04:session-28:i01; family: phrase_builder -->
-Плитки: `flexible` `is` `He` `are` → **He is flexible.**
-*(плитка `are` зайва: тут потрібно `is` — `He is flexible.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-28:i01; family: speed_match -->
+alley — провулок · lamppost — ліхтарний стовп · gate — ворота, хвіртка · fence — паркан
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-28:i02; family: listen_choose -->
-🔊 *alley* → **alley** · awning · table
-- awning — *У записі перше слово — `alley`, а в цьому варіанті — `awning`.*
-- table — *У записі перше слово — `alley`, а в цьому варіанті — `table`.*
+**2 · Картка слова — alley**
+<!-- interaction_id: en:lesson-04:session-28:word:alley; family: word_card -->
+> **alley** — провулок. The alley is next to the bank. — «Провулок поруч із банком». Про вузький прохід між двома будинками.
 
-**3 · Назвіть вузький провулок одним словом**
-<!-- interaction_id: en:lesson-04:session-28:i03; family: context_gap_grammar -->
-___ → **alley** · awning · window
-- awning — *`awning` — навіс; провулок — `alley`.*
-- window — *`window` — вікно; провулок — `alley`.*
+**3 · Кур’єр називає вузький прохід між будинками, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-28:i02; family: scripted_repeat_compare -->
+🎙 **alley**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-28:i04; family: speed_match -->
-alley — провулок · flexible — гнучкий · chairs — стільці · mushroom — гриб
+**4 · Кур’єр шукає кафе. Скажіть йому повною фразою: провулок поруч із банком**
+<!-- interaction_id: en:lesson-04:session-28:i03; family: phrase_builder -->
+Плитки: `alley` `the` `next` `to` `is` `The` `bank` `are` → **The alley is next to the bank.**
+*(плитка `are` зайва: тут потрібно `is` — `The alley is next to the bank.`)*
 
-**5 · Послухайте й складіть опис**
-<!-- interaction_id: en:lesson-04:session-28:i05; family: listen_build_dictation -->
-🔊 *The chairs are in the alley.* Плитки: `alley` `the` `in` `are` `chairs` `The` `is` → **The chairs are in the alley.**
-*(плитка `is` зайва: тут потрібно `are` — `The chairs are in the alley.`)*
+**5 · Картка слова — lamppost**
+<!-- interaction_id: en:lesson-04:session-28:word:lamppost; family: word_card -->
+> **lamppost** — ліхтарний стовп. The bin is next to the lamppost. — «Урна поруч із ліхтарним стовпом». Про високий стовп із ліхтарем на вулиці.
 
-**6 · Гриб лежить на столі. Скажіть, де він**
-<!-- interaction_id: en:lesson-04:session-28:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `mushroom` `The` `are` → **The mushroom is on the table.**
-*(плитка `are` зайва: тут потрібно `is` — `The mushroom is on the table.`)*
+**6 · Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?**
+<!-- interaction_id: en:lesson-04:session-28:i04; family: context_gap_grammar -->
+___ → **lamppost** · tree · clock
+- tree — *tree — це дерево, а стовп із ліхтарем називається lamppost.*
+- clock — *clock — це годинник, а стовп із ліхтарем називається lamppost.*
 
-**7 · Друг легко погодився змінити плани. Опишіть його зі словом flexible і скороченням**
-<!-- interaction_id: en:lesson-04:session-28:i07; family: scripted_repeat_compare -->
-🎙 **He's flexible.**
+**7 · Послухайте подругу**
+<!-- interaction_id: en:lesson-04:session-28:i05; family: listen_choose -->
+🔊 *The bin is next to the lamppost.* → **The bin is next to the lamppost.** · The bin is next to the bench. · The bins are next to the lamppost.
+- The bin is next to the bench. — *У записі `lamppost`, а в цьому варіанті `bench`.*
+- The bins are next to the lamppost. — *У записі урна одна (`bin is`), а в цьому варіанті кілька.*
 
-**8 · Провулок проходить між двома будівлями, не під ними. Виберіть слово**
+**8 · Картка слова — gate**
+<!-- interaction_id: en:lesson-04:session-28:word:gate; family: word_card -->
+> **gate** — ворота, хвіртка. The bicycles are next to the gate. — «Велосипеди поруч із воротами». Про двері в паркані або стіні двору.
+
+**9 · Брат показує хвіртку у двір, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-28:i06; family: scripted_repeat_compare -->
+🎙 **gate**
+
+**10 · Послухайте брата й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-28:i07; family: listen_build_dictation -->
+🔊 *The bicycles are next to the gate.* Плитки: `bicycles` `the` `next` `to` `are` `The` `gate` `is` → **The bicycles are next to the gate.**
+*(плитка `is` зайва: тут потрібно `are` — `The bicycles are next to the gate.`)*
+
+**11 · Картка слова — fence**
+<!-- interaction_id: en:lesson-04:session-28:word:fence; family: word_card -->
+> **fence** — паркан. The tree is next to the fence. — «Дерево поруч із парканом». Про невисоку стіну з дощок навколо двору.
+
+**12 · Невисока стіна з дощок навколо двору. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-28:i08; family: context_gap_grammar -->
-The alley is ___ the buildings. → **between** · on · under
-- on — *`on` — на поверхні; між — `between`.*
-- under — *`under` — під; тут між будівлями: `between the buildings`.*
+___ → **fence** · wall · door
+- wall — *wall — це стіна будівлі, а стіна з дощок навколо двору називається fence.*
+- door — *door — це двері, а стіна з дощок навколо двору називається fence.*
 
-**9 · Послухайте, де стільці**
-<!-- interaction_id: en:lesson-04:session-28:i09; family: listen_choose -->
-🔊 *The chairs are under the awning.* → **The chairs are under the awning.** · The chairs are under the table. · The chairs are under the window.
-- The chairs are under the table. — *У записі останнє слово — `awning`, а в цьому варіанті — `table`.*
-- The chairs are under the window. — *У записі останнє слово — `awning`, а в цьому варіанті — `window`.*
+**13 · Ви шукаєте дерево. Скажіть братові повною фразою: дерево поруч із парканом**
+<!-- interaction_id: en:lesson-04:session-28:i09; family: phrase_builder -->
+Плитки: `tree` `the` `next` `to` `is` `The` `fence` `are` → **The tree is next to the fence.**
+*(плитка `are` зайва: тут потрібно `is` — `The tree is next to the fence.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-28:i10; family: speed_match -->
-alley — провулок · in — усередині · under — під · between — між
+fence — паркан · gate — ворота, хвіртка · lamppost — ліхтарний стовп · hotel — готель
 
-**11 · Послухайте й складіть опис**
-<!-- interaction_id: en:lesson-04:session-28:i11; family: listen_build_dictation -->
-🔊 *The mushroom is next to the cup.* Плитки: `cup` `the` `to` `next` `is` `mushroom` `The` `are` → **The mushroom is next to the cup.**
-*(плитка `are` зайва: тут потрібно `is` — `The mushroom is next to the cup.`)*
+**15 · Послухайте друга**
+<!-- interaction_id: en:lesson-04:session-28:i11; family: listen_choose -->
+🔊 *The bag is next to the chair.* → **The bag is next to the chair.** · The bag is under the chair. · The bag is on the chair.
+- The bag is under the chair. — *У записі `next to` — поруч, а в цьому варіанті `under` — під.*
+- The bag is on the chair. — *У записі `next to` — поруч, а в цьому варіанті `on` — на.*
 
-**12 · Покажіть на вузький прохід між будівлями: «Це провулок»**
-<!-- interaction_id: en:lesson-04:session-28:i12; family: phrase_builder -->
-Плитки: `alley` `an` `is` `This` `a` → **This is an alley.**
-*(плитка `a` зайва: тут потрібно `an` — `This is an alley.`)*
+**16 · Кафе стоїть збоку від готелю, поруч. Виберіть слова**
+<!-- interaction_id: en:lesson-04:session-28:i12; family: context_gap_grammar -->
+The cafe is ___ the hotel. → **next to** · under · in
+- under — *under — «під», а кафе стоїть збоку: потрібно next to.*
+- in — *in — «всередині», а кафе стоїть збоку: потрібно next to.*
 
-**13 · Стільці поруч зі столом. Скажіть, де вони**
-<!-- interaction_id: en:lesson-04:session-28:i13; family: scripted_repeat_compare -->
-🎙 **The chairs are next to the table.**
+**17 · Послухайте друга й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-28:i13; family: listen_build_dictation -->
+🔊 *The cafe is next to the library.* Плитки: `cafe` `the` `next` `to` `is` `The` `library` `are` → **The cafe is next to the library.**
+*(плитка `are` зайва: тут потрібно `is` — `The cafe is next to the library.`)*
 
-**14 · Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-28:i14; family: context_gap_grammar -->
-The mushroom is ___ the cups. → **between** · in · under
-- in — *`in` — усередині; між чашками — `between the cups`.*
-- under — *`under` — під; між — `between`.*
+**18 · Кур’єр питає, де провулок. Відповідайте йому: провулок поруч із готелем**
+<!-- interaction_id: en:lesson-04:session-28:i14; family: scripted_repeat_compare -->
+🎙 **The alley is next to the hotel.**
 
-**15 · Послухайте, що показує друг**
-<!-- interaction_id: en:lesson-04:session-28:i15; family: listen_choose -->
-🔊 *That is an alley.* → **That is an alley.** · This is an alley. · That is an awning.
-- This is an alley. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is an awning. — *У записі останнє слово — `alley`, а в цьому варіанті — `awning`.*
+**19 · Подруга шукає вас. Скажіть їй повною фразою: лавка поруч із парканом**
+<!-- interaction_id: en:lesson-04:session-28:i15; family: phrase_builder -->
+Плитки: `bench` `the` `next` `to` `is` `The` `fence` `are` → **The bench is next to the fence.**
+*(плитка `are` зайва: тут потрібно `is` — `The bench is next to the fence.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-28:i16; family: speed_match -->
-alley — провулок · flexible — гнучкий · chairs — стільці · mushroom — гриб
+alley — провулок · lamppost — ліхтарний стовп · gate — ворота, хвіртка · fence — паркан
 
-**17 · В іншому кафе друг шукає винесені стільці. Вони у вузькому провулку. Скажіть «Стільці в провулку»**
+**21 · В іншому дворі друг шукає велосипед. Він поруч із воротами. Скажіть йому: «Велосипед поруч із воротами»**
 <!-- interaction_id: en:lesson-04:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The chairs are in the alley.**
-
+🎙 **The bicycle is next to the gate.**

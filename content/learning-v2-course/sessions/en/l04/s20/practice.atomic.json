@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-20",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-20:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-20:i01:p1",
+              "target": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб",
+                "uk": "гриб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i01:p2",
+              "target": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина",
+                "uk": "квасолина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i01:p3",
+              "target": "nut",
+              "meaningByLocale": {
+                "ru": "орех",
+                "uk": "горіх"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i01:p4",
+              "target": "pea",
+              "meaningByLocale": {
+                "ru": "горошина",
+                "uk": "горошина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mushroom",
+            "bean",
+            "nut",
+            "pea"
+          ],
+          "rightColumn": [
+            "гриб",
+            "фасолина",
+            "орех",
+            "горошина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:mushroom",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mushroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:mushroom:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mushroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:mushroom:audio",
+            "transcript": "mushroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:mushroom:r1",
+              "targetText": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб. Are there any mushrooms here? — «Здесь есть грибы?» О съедобном грибе с шляпкой.",
+                "uk": "гриб. Are there any mushrooms here? — «Тут є гриби?» Про їстівний гриб із капелюшком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mushroom",
+            "definitionByLocale": {
+              "ru": "гриб. Are there any mushrooms here? — «Здесь есть грибы?» О съедобном грибе с шляпкой.",
+              "uk": "гриб. Are there any mushrooms here? — «Тут є гриби?» Про їстівний гриб із капелюшком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат достаёт из ящика гриб с коричневой шляпкой и называет слово, а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Брат достаёт из ящика гриб с коричневой шляпкой и называет слово, а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i02:audio",
+            "transcript": "mushroom"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "mushroom",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы печёте пиццу с братом. Спросите его полной фразой: рядом с коробкой есть грибы?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы печёте пиццу с братом. Спросите его полной фразой: рядом с коробкой есть грибы?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any mushrooms near the box?",
+          "localizedMeaning": {
+            "ru": "Вы печёте пиццу с братом. Спросите его полной фразой: рядом с коробкой есть грибы?",
+            "uk": "Ви печете піцу з братом. Запитайте його повною фразою: поруч із коробкою є гриби?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "mushrooms",
+            "near",
+            "the",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы печёте пиццу с братом. Спросите его полной фразой: рядом с коробкой есть грибы?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any mushrooms near the box?`",
+                "uk": "тут потрібно `Are` — `Are there any mushrooms near the box?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:bean",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bean",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:bean:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bean",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:bean:audio",
+            "transcript": "bean"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:bean:r1",
+              "targetText": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина, боб. Are there any beans near the jar? — «Рядом с банкой есть фасоль?» Об овальном зёрнышке из стручка.",
+                "uk": "квасолина, біб. Are there any beans near the jar? — «Поруч із банкою є квасоля?» Про овальне зернятко зі стручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bean",
+            "definitionByLocale": {
+              "ru": "фасолина, боб. Are there any beans near the jar? — «Рядом с банкой есть фасоль?» Об овальном зёрнышке из стручка.",
+              "uk": "квасолина, біб. Are there any beans near the jar? — «Поруч із банкою є квасоля?» Про овальне зернятко зі стручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i04:r1",
+            "text": "bean"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i04:r2",
+            "text": "berry"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i04:r3",
+            "text": "cherry"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+            "uk": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-20:i04:r1",
+              "text": "bean"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i04:r2",
+              "text": "berry"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i04:r3",
+              "text": "cherry"
+            }
+          ],
+          "testedDimension": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i04:r2",
+              "correct": false,
+              "testedDimension": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "berry — это ягода, а овальное зёрнышко для густого супа называется bean.",
+                "uk": "berry — це ягода, а овальне зернятко для густого супу називається bean."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i04:r3",
+              "correct": false,
+              "testedDimension": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "cherry — это вишня, а овальное зёрнышко для густого супа называется bean.",
+                "uk": "cherry — це вишня, а овальне зернятко для густого супу називається bean."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i05:r1",
+            "text": "Are there any beans here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i05:r2",
+            "text": "Are there any mushrooms here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i05:r3",
+            "text": "There are some beans here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i05:audio",
+            "transcript": "Are there any beans here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:i05:r1",
+              "targetText": "Are there any beans here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i05:r2",
+              "targetText": "Are there any mushrooms here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i05:r3",
+              "targetText": "There are some beans here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `beans`, а в этом варианте про `mushrooms`.",
+                "uk": "У записі питають про `beans`, а в цьому варіанті про `mushrooms`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there any`, а в этом варианте сообщение `There are some`.",
+                "uk": "У записі запитання `Are there any`, а в цьому варіанті повідомлення `There are some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:nut",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nut",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:nut:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nut",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:nut:audio",
+            "transcript": "nut"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:nut:r1",
+              "targetText": "nut",
+              "meaningByLocale": {
+                "ru": "орех. Are there any nuts behind the bowl? — «За миской есть орехи?» О твёрдом плоде в скорлупе.",
+                "uk": "горіх. Are there any nuts behind the bowl? — «За мискою є горіхи?» Про твердий плід у шкаралупі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nut",
+            "definitionByLocale": {
+              "ru": "орех. Are there any nuts behind the bowl? — «За миской есть орехи?» О твёрдом плоде в скорлупе.",
+              "uk": "горіх. Are there any nuts behind the bowl? — «За мискою є горіхи?» Про твердий плід у шкаралупі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга достаёт из рюкзака орех в скорлупе и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга достаёт из рюкзака орех в скорлупе и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i06:audio",
+            "transcript": "nut"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "nut",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i07:audio",
+            "transcript": "Are there any nuts here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any nuts here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "nuts",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any nuts here?`",
+                "uk": "тут потрібно `Are` — `Are there any nuts here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:pea",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:pea:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:pea:audio",
+            "transcript": "pea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:pea:r1",
+              "targetText": "pea",
+              "meaningByLocale": {
+                "ru": "горошина, горох. Are there any peas here? — «Здесь есть горох?» О маленьком круглом зелёном шарике из стручка.",
+                "uk": "горошина, горох. Are there any peas here? — «Тут є горох?» Про маленьку круглу зелену кульку зі стручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pea",
+            "definitionByLocale": {
+              "ru": "горошина, горох. Are there any peas here? — «Здесь есть горох?» О маленьком круглом зелёном шарике из стручка.",
+              "uk": "горошина, горох. Are there any peas here? — «Тут є горох?» Про маленьку круглу зелену кульку зі стручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i08:r1",
+            "text": "pea"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i08:r2",
+            "text": "bean"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i08:r3",
+            "text": "nut"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+            "uk": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-20:i08:r1",
+              "text": "pea"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i08:r2",
+              "text": "bean"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i08:r3",
+              "text": "nut"
+            }
+          ],
+          "testedDimension": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bean — это овальная фасолина, а маленький круглый зелёный шарик называется pea.",
+                "uk": "bean — це овальна квасолина, а маленька кругла зелена кулька називається pea."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "nut — это орех в скорлупе, а маленький круглый зелёный шарик называется pea.",
+                "uk": "nut — це горіх у шкаралупі, а маленька кругла зелена кулька називається pea."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы варите суп. Спросите подругу полной фразой: рядом с миской есть горох?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы варите суп. Спросите подругу полной фразой: рядом с миской есть горох?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any peas near the bowl?",
+          "localizedMeaning": {
+            "ru": "Вы варите суп. Спросите подругу полной фразой: рядом с миской есть горох?",
+            "uk": "Ви варите суп. Запитайте подругу повною фразою: поруч із мискою є горох?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "peas",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы варите суп. Спросите подругу полной фразой: рядом с миской есть горох?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any peas near the bowl?`",
+                "uk": "тут потрібно `Are` — `Are there any peas near the bowl?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-20:i10:p1",
+              "target": "pea",
+              "meaningByLocale": {
+                "ru": "горошина",
+                "uk": "горошина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i10:p2",
+              "target": "nut",
+              "meaningByLocale": {
+                "ru": "орех",
+                "uk": "горіх"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i10:p3",
+              "target": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб",
+                "uk": "гриб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i10:p4",
+              "target": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина",
+                "uk": "квасолина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pea",
+            "nut",
+            "mushroom",
+            "bean"
+          ],
+          "rightColumn": [
+            "горошина",
+            "орех",
+            "гриб",
+            "фасолина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте короткий ответ брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i11:r1",
+            "text": "Yes, there are."
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i11:r2",
+            "text": "No, there aren't."
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i11:r3",
+            "text": "Yes, there is."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте короткий ответ брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i11:audio",
+            "transcript": "Yes, there are."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:i11:r1",
+              "targetText": "Yes, there are.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i11:r2",
+              "targetText": "No, there aren't.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i11:r3",
+              "targetText": "Yes, there is.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте короткий ответ брата",
+              "feedbackByLocale": {
+                "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+                "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте короткий ответ брата",
+              "feedbackByLocale": {
+                "ru": "В записи `there are`, а в этом варианте `there is`.",
+                "uk": "У записі `there are`, а в цьому варіанті `there is`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+            "uk": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Are there ___ nuts here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-20:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а орехов несколько: any nuts.",
+                "uk": "Слово a ставлять перед одним предметом, а горіхів кілька: any nuts."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже ставят перед одним предметом, а здесь нужно any nuts.",
+                "uk": "Слово an теж ставлять перед одним предметом, а тут потрібно any nuts."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i13:audio",
+            "transcript": "Are there any beans near the door?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any beans near the door?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "beans",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any beans near the door?`",
+                "uk": "тут потрібно `Are` — `Are there any beans near the door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы ищете грибы для пиццы. Спросите брата, есть ли они за коробкой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Вы ищете грибы для пиццы. Спросите брата, есть ли они за коробкой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i14:audio",
+            "transcript": "Are there any mushrooms behind the box?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there any mushrooms behind the box?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга собирается в поход. Спросите её полной фразой: рядом с корзиной есть орехи?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга собирается в поход. Спросите её полной фразой: рядом с корзиной есть орехи?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any nuts near the basket?",
+          "localizedMeaning": {
+            "ru": "Подруга собирается в поход. Спросите её полной фразой: рядом с корзиной есть орехи?",
+            "uk": "Подруга збирається в похід. Запитайте її повною фразою: поруч із кошиком є горіхи?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "nuts",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга собирается в поход. Спросите её полной фразой: рядом с корзиной есть орехи?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any nuts near the basket?`",
+                "uk": "тут потрібно `Are` — `Are there any nuts near the basket?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-20:i16:p1",
+              "target": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб",
+                "uk": "гриб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i16:p2",
+              "target": "pea",
+              "meaningByLocale": {
+                "ru": "горошина",
+                "uk": "горошина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i16:p3",
+              "target": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина",
+                "uk": "квасолина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i16:p4",
+              "target": "nut",
+              "meaningByLocale": {
+                "ru": "орех",
+                "uk": "горіх"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mushroom",
+            "pea",
+            "bean",
+            "nut"
+          ],
+          "rightColumn": [
+            "гриб",
+            "горошина",
+            "фасолина",
+            "орех"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, остались ли грибы. Грибов нет. Ответьте ему коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, остались ли грибы. Грибов нет. Ответьте ему коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i17:audio",
+            "transcript": "No, there aren't."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there aren't.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-20:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-20:i01:p1",
+              "target": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб",
+                "uk": "гриб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i01:p2",
+              "target": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина",
+                "uk": "квасолина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i01:p3",
+              "target": "nut",
+              "meaningByLocale": {
+                "ru": "орех",
+                "uk": "горіх"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i01:p4",
+              "target": "pea",
+              "meaningByLocale": {
+                "ru": "горошина",
+                "uk": "горошина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mushroom",
+            "bean",
+            "nut",
+            "pea"
+          ],
+          "rightColumn": [
+            "гриб",
+            "квасолина",
+            "горіх",
+            "горошина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:mushroom",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mushroom",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:mushroom:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mushroom",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:mushroom:audio",
+            "transcript": "mushroom"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:mushroom:r1",
+              "targetText": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб. Are there any mushrooms here? — «Здесь есть грибы?» О съедобном грибе с шляпкой.",
+                "uk": "гриб. Are there any mushrooms here? — «Тут є гриби?» Про їстівний гриб із капелюшком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mushroom",
+            "definitionByLocale": {
+              "ru": "гриб. Are there any mushrooms here? — «Здесь есть грибы?» О съедобном грибе с шляпкой.",
+              "uk": "гриб. Are there any mushrooms here? — «Тут є гриби?» Про їстівний гриб із капелюшком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат дістає зі скрині гриб із коричневим капелюшком і називає слово, а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Брат дістає зі скрині гриб із коричневим капелюшком і називає слово, а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i02:audio",
+            "transcript": "mushroom"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "mushroom",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви печете піцу з братом. Запитайте його повною фразою: поруч із коробкою є гриби?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви печете піцу з братом. Запитайте його повною фразою: поруч із коробкою є гриби?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any mushrooms near the box?",
+          "localizedMeaning": {
+            "ru": "Вы печёте пиццу с братом. Спросите его полной фразой: рядом с коробкой есть грибы?",
+            "uk": "Ви печете піцу з братом. Запитайте його повною фразою: поруч із коробкою є гриби?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "mushrooms",
+            "near",
+            "the",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви печете піцу з братом. Запитайте його повною фразою: поруч із коробкою є гриби?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any mushrooms near the box?`",
+                "uk": "тут потрібно `Are` — `Are there any mushrooms near the box?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:bean",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bean",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:bean:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bean",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:bean:audio",
+            "transcript": "bean"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:bean:r1",
+              "targetText": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина, боб. Are there any beans near the jar? — «Рядом с банкой есть фасоль?» Об овальном зёрнышке из стручка.",
+                "uk": "квасолина, біб. Are there any beans near the jar? — «Поруч із банкою є квасоля?» Про овальне зернятко зі стручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bean",
+            "definitionByLocale": {
+              "ru": "фасолина, боб. Are there any beans near the jar? — «Рядом с банкой есть фасоль?» Об овальном зёрнышке из стручка.",
+              "uk": "квасолина, біб. Are there any beans near the jar? — «Поруч із банкою є квасоля?» Про овальне зернятко зі стручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i04:r1",
+            "text": "bean"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i04:r2",
+            "text": "berry"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i04:r3",
+            "text": "cherry"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Овальное зёрнышко, которое варят в густом супе. Как оно называется по-английски?",
+            "uk": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-20:i04:r1",
+              "text": "bean"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i04:r2",
+              "text": "berry"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i04:r3",
+              "text": "cherry"
+            }
+          ],
+          "testedDimension": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i04:r2",
+              "correct": false,
+              "testedDimension": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "berry — это ягода, а овальное зёрнышко для густого супа называется bean.",
+                "uk": "berry — це ягода, а овальне зернятко для густого супу називається bean."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i04:r3",
+              "correct": false,
+              "testedDimension": "Овальне зернятко, яке варять у густому супі. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "cherry — это вишня, а овальное зёрнышко для густого супа называется bean.",
+                "uk": "cherry — це вишня, а овальне зернятко для густого супу називається bean."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i05:r1",
+            "text": "Are there any beans here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i05:r2",
+            "text": "Are there any mushrooms here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i05:r3",
+            "text": "There are some beans here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i05:audio",
+            "transcript": "Are there any beans here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:i05:r1",
+              "targetText": "Are there any beans here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i05:r2",
+              "targetText": "Are there any mushrooms here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i05:r3",
+              "targetText": "There are some beans here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `beans`, а в этом варианте про `mushrooms`.",
+                "uk": "У записі питають про `beans`, а в цьому варіанті про `mushrooms`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there any`, а в этом варианте сообщение `There are some`.",
+                "uk": "У записі запитання `Are there any`, а в цьому варіанті повідомлення `There are some`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:nut",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nut",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:nut:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nut",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:nut:audio",
+            "transcript": "nut"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:nut:r1",
+              "targetText": "nut",
+              "meaningByLocale": {
+                "ru": "орех. Are there any nuts behind the bowl? — «За миской есть орехи?» О твёрдом плоде в скорлупе.",
+                "uk": "горіх. Are there any nuts behind the bowl? — «За мискою є горіхи?» Про твердий плід у шкаралупі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nut",
+            "definitionByLocale": {
+              "ru": "орех. Are there any nuts behind the bowl? — «За миской есть орехи?» О твёрдом плоде в скорлупе.",
+              "uk": "горіх. Are there any nuts behind the bowl? — «За мискою є горіхи?» Про твердий плід у шкаралупі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга дістає з рюкзака горіх у шкаралупі й називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга дістає з рюкзака горіх у шкаралупі й називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i06:audio",
+            "transcript": "nut"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "nut",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i07:audio",
+            "transcript": "Are there any nuts here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any nuts here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "nuts",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any nuts here?`",
+                "uk": "тут потрібно `Are` — `Are there any nuts here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:word:pea",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:word:pea:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:word:pea:audio",
+            "transcript": "pea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:word:pea:r1",
+              "targetText": "pea",
+              "meaningByLocale": {
+                "ru": "горошина, горох. Are there any peas here? — «Здесь есть горох?» О маленьком круглом зелёном шарике из стручка.",
+                "uk": "горошина, горох. Are there any peas here? — «Тут є горох?» Про маленьку круглу зелену кульку зі стручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pea",
+            "definitionByLocale": {
+              "ru": "горошина, горох. Are there any peas here? — «Здесь есть горох?» О маленьком круглом зелёном шарике из стручка.",
+              "uk": "горошина, горох. Are there any peas here? — «Тут є горох?» Про маленьку круглу зелену кульку зі стручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i08:r1",
+            "text": "pea"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i08:r2",
+            "text": "bean"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i08:r3",
+            "text": "nut"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Маленький круглый зелёный шарик из стручка. Как он называется по-английски?",
+            "uk": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-20:i08:r1",
+              "text": "pea"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i08:r2",
+              "text": "bean"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i08:r3",
+              "text": "nut"
+            }
+          ],
+          "testedDimension": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bean — это овальная фасолина, а маленький круглый зелёный шарик называется pea.",
+                "uk": "bean — це овальна квасолина, а маленька кругла зелена кулька називається pea."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Маленька кругла зелена кулька зі стручка. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "nut — это орех в скорлупе, а маленький круглый зелёный шарик называется pea.",
+                "uk": "nut — це горіх у шкаралупі, а маленька кругла зелена кулька називається pea."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви варите суп. Запитайте подругу повною фразою: поруч із мискою є горох?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви варите суп. Запитайте подругу повною фразою: поруч із мискою є горох?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any peas near the bowl?",
+          "localizedMeaning": {
+            "ru": "Вы варите суп. Спросите подругу полной фразой: рядом с миской есть горох?",
+            "uk": "Ви варите суп. Запитайте подругу повною фразою: поруч із мискою є горох?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "peas",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви варите суп. Запитайте подругу повною фразою: поруч із мискою є горох?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any peas near the bowl?`",
+                "uk": "тут потрібно `Are` — `Are there any peas near the bowl?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-20:i10:p1",
+              "target": "pea",
+              "meaningByLocale": {
+                "ru": "горошина",
+                "uk": "горошина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i10:p2",
+              "target": "nut",
+              "meaningByLocale": {
+                "ru": "орех",
+                "uk": "горіх"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i10:p3",
+              "target": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб",
+                "uk": "гриб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i10:p4",
+              "target": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина",
+                "uk": "квасолина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pea",
+            "nut",
+            "mushroom",
+            "bean"
+          ],
+          "rightColumn": [
+            "горошина",
+            "горіх",
+            "гриб",
+            "квасолина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте коротку відповідь брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i11:r1",
+            "text": "Yes, there are."
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i11:r2",
+            "text": "No, there aren't."
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i11:r3",
+            "text": "Yes, there is."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте коротку відповідь брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i11:audio",
+            "transcript": "Yes, there are."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-20:i11:r1",
+              "targetText": "Yes, there are.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i11:r2",
+              "targetText": "No, there aren't.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i11:r3",
+              "targetText": "Yes, there is.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте коротку відповідь брата",
+              "feedbackByLocale": {
+                "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+                "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте коротку відповідь брата",
+              "feedbackByLocale": {
+                "ru": "В записи `there are`, а в этом варианте `there is`.",
+                "uk": "У записі `there are`, а в цьому варіанті `there is`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-20:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-20:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга хочет узнать, есть ли орехи. Дополните её вопрос",
+            "uk": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання"
+          },
+          "gappedTargetPhrase": "Are there ___ nuts here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-20:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "Слово a ставят перед одним предметом, а орехов несколько: any nuts.",
+                "uk": "Слово a ставлять перед одним предметом, а горіхів кілька: any nuts."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "Подруга хоче дізнатися, чи є горіхи. Доповніть її запитання",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже ставят перед одним предметом, а здесь нужно any nuts.",
+                "uk": "Слово an теж ставлять перед одним предметом, а тут потрібно any nuts."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i13:audio",
+            "transcript": "Are there any beans near the door?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any beans near the door?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "beans",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any beans near the door?`",
+                "uk": "тут потрібно `Are` — `Are there any beans near the door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви шукаєте гриби для піци. Запитайте брата, чи є вони за коробкою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Ви шукаєте гриби для піци. Запитайте брата, чи є вони за коробкою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i14:audio",
+            "transcript": "Are there any mushrooms behind the box?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there any mushrooms behind the box?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга збирається в похід. Запитайте її повною фразою: поруч із кошиком є горіхи?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга збирається в похід. Запитайте її повною фразою: поруч із кошиком є горіхи?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any nuts near the basket?",
+          "localizedMeaning": {
+            "ru": "Подруга собирается в поход. Спросите её полной фразой: рядом с корзиной есть орехи?",
+            "uk": "Подруга збирається в похід. Запитайте її повною фразою: поруч із кошиком є горіхи?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "nuts",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-20:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга збирається в похід. Запитайте її повною фразою: поруч із кошиком є горіхи?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there any nuts near the basket?`",
+                "uk": "тут потрібно `Are` — `Are there any nuts near the basket?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-20:i16:p1",
+              "target": "mushroom",
+              "meaningByLocale": {
+                "ru": "гриб",
+                "uk": "гриб"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i16:p2",
+              "target": "pea",
+              "meaningByLocale": {
+                "ru": "горошина",
+                "uk": "горошина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i16:p3",
+              "target": "bean",
+              "meaningByLocale": {
+                "ru": "фасолина",
+                "uk": "квасолина"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-20:i16:p4",
+              "target": "nut",
+              "meaningByLocale": {
+                "ru": "орех",
+                "uk": "горіх"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mushroom",
+            "pea",
+            "bean",
+            "nut"
+          ],
+          "rightColumn": [
+            "гриб",
+            "горошина",
+            "квасолина",
+            "горіх"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат питає, чи лишилися гриби. Грибів немає. Відповідайте йому коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "Брат питає, чи лишилися гриби. Грибів немає. Відповідайте йому коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-20:i17:audio",
+            "transcript": "No, there aren't."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there aren't.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-20:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:word:mushroom",
+      "correctText": "mushroom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i02",
+      "correctText": "mushroom",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i03",
+      "correctText": "Are there any mushrooms near the box?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:word:bean",
+      "correctText": "bean",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i04",
+      "correctText": "bean",
+      "correctResponseId": "en:lesson-04:session-20:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i05",
+      "correctText": "Are there any beans here?",
+      "correctResponseId": "en:lesson-04:session-20:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:word:nut",
+      "correctText": "nut",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i06",
+      "correctText": "nut",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i07",
+      "correctText": "Are there any nuts here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:word:pea",
+      "correctText": "pea",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i08",
+      "correctText": "pea",
+      "correctResponseId": "en:lesson-04:session-20:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i09",
+      "correctText": "Are there any peas near the bowl?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i11",
+      "correctText": "Yes, there are.",
+      "correctResponseId": "en:lesson-04:session-20:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-04:session-20:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i13",
+      "correctText": "Are there any beans near the door?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i14",
+      "correctText": "Are there any mushrooms behind the box?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i15",
+      "correctText": "Are there any nuts near the basket?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-20:i17",
+      "correctText": "No, there aren't.",
+      "correctResponseId": null
+    }
+  ]
+}

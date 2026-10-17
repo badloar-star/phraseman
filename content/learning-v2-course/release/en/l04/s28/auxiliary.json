@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-28:intro1:r2": {
-          "ru": "О месте в переулке говорим `in the alley`.",
-          "uk": "Про місце в провулку кажемо `in the alley`."
+          "ru": "under — «под», а переулок стоит сбоку: нужно next to.",
+          "uk": "under — «під», а провулок стоїть збоку: потрібно next to."
         },
         "en:lesson-04:session-28:intro1:r3": {
-          "ru": "Стульев несколько: `The chairs are`.",
-          "uk": "Стільців кілька: `The chairs are`."
+          "ru": "После next нужно to: next to the hotel.",
+          "uk": "Після next потрібно to: next to the hotel."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-28:intro2:r2": {
-          "ru": "Один переулок: `The alley is`.",
-          "uk": "Один провулок: `The alley is`."
+          "ru": "on — «на поверхности», а скамейка стоит сбоку: нужно next to.",
+          "uk": "on — «на поверхні», а лавка стоїть збоку: потрібно next to."
         },
         "en:lesson-04:session-28:intro2:r3": {
-          "ru": "`on` — на поверхности; между зданиями — `between the buildings`.",
-          "uk": "`on` — на поверхні; між будівлями — `between the buildings`."
+          "ru": "Столб вы оба видите, поэтому перед ним нужно the: next to the lamppost.",
+          "uk": "Стовп ви обоє бачите, тому перед ним потрібно the: next to the lamppost."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-28:intro3:r2": {
-          "ru": "`careless` — неосторожный; готовый подстраиваться — `flexible`.",
-          "uk": "`careless` — необережний; готовий підлаштовуватися — `flexible`."
+          "ru": "Велосипед один, поэтому нужно is: The bicycle is.",
+          "uk": "Велосипед один, тому потрібно is: The bicycle is."
         },
         "en:lesson-04:session-28:intro3:r3": {
-          "ru": "С `He` нужно `is`: `He’s flexible`.",
-          "uk": "З `He` потрібне `is`: `He’s flexible`."
+          "ru": "После next нужно to: next to the gate.",
+          "uk": "Після next потрібно to: next to the gate."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c18b84643f2a3e6a0feeb2133cf467f1411db3c1973436779e3fb5d8626e3234"
+  "auxiliaryFingerprint": "2bb61ba58839bbd677f2fa015ae8498e6cdc19dde843820e9de177feabc75852"
 }

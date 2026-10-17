@@ -1,138 +1,152 @@
-# Англійська · Урок 4 · Заняття 25 — Де лежить ягода?
+# Англійська · Урок 4 · Заняття 25 — Що лежить усередині
 
-**Ситуація.** Ви допомагаєте на кухні: шукаєте ягоду, що впала, й пояснюєте, де раковина. Собаки вмостилися під столом, а господар поки відсутній.
+**Ситуація.** Ви допомагаєте братові облаштуватися в новій квартирі: щось лежить у раковині, щось у посудомийній машині, а велосипед стоїть у підвалі. Ви кажете, де що є, і вчитеся сказати «усередині» словом in.
 
-**Що ви опануєте:** указати місце з in, on, under, next to та between
-**Нові слова:** sink
+**Що ви опануєте:** сказати, що предмет перебуває всередині місця, зі словом in
+**Нові слова:** sink, dishwasher, basement, bathtub
+**Повертаються:** lemon, apple, cup, spoon, bottle, bicycle, towel
 
 ---
 
 ## Інтро 1
 
-### Усередині чи зверху
+### Чай для сестри
 
-`sink` — «раковина», на кухні також «мийка». `in` — «усередині»: `The berry is in the sink` — «Ягода в раковині». `on` — «на поверхні»: `The berry is on the table` — «Ягода на столі». Тут говоримо про конкретну ягоду й знайоме місце, тому використовуємо `the`. Ягода в раковині — `in`, на столі — `on`; для ягоди це коротка подорож, для нас — два різні слова.
+Сестра заварює чай і просить лимон. Ви зазираєте в раковину: лимон лежить там, серед мокрих тарілок. sink — «раковина». Слово in означає «усередині»: The lemon is in the sink — «Лимон у раковині». Ви обоє знаєте і лимон, і раковину, тому the.
 
-**Ягода лежить усередині раковини. Виберіть опис.**
+**Сестра шукає лимон. Скажіть їй, що він у раковині.**
 
-- ✅ **The berry is in the sink.**
-- ❌ The berry is on the sink. — *`on` — на поверхні; в умові ягода всередині: `in the sink`.*
-- ❌ The berry are in the sink. — *Одна ягода: `The berry is`.*
+- ✅ **The lemon is in the sink.**
+- ❌ The lemon is in sink. — *Раковину ви обоє знаєте, тому перед нею потрібно the: in the sink.*
+- ❌ The lemon are in the sink. — *Лимон один, тому потрібно is: The lemon is.*
 
 ---
 
 ## Інтро 2
 
-### Під, поруч і між
+### Брудні чашки
 
-`under` — «під»: `The dogs are under the table` — «Собаки під столом». `next to` — «поруч із»: `The sink is next to the window` — «Раковина поруч із вікном». `between` — «між»: `The berry is between the cups` — «Ягода між чашками». Спочатку називаємо предмет, потім `is` або `are`, далі місце.
+Брат прийшов з роботи й питає, куди поділися чашки зі столу. Ви вже прибрали їх у велику шафу на кухні, яка сама миє посуд. dishwasher — «посудомийна машина». Чашок кілька, тому are: The cups are in the dishwasher — «Чашки в посудомийній машині».
 
-**Раковина стоїть поруч із вікном. Виберіть опис.**
+**Брат шукає чашки. Скажіть йому, що вони в посудомийній машині.**
 
-- ✅ **The sink is next to the window.**
-- ❌ The sink is under the window. — *Це «під вікном», а в умові поруч: `next to`.*
-- ❌ The sink are next to the window. — *Одна раковина: `The sink is`.*
+- ✅ **The cups are in the dishwasher.**
+- ❌ The cups is in the dishwasher. — *Чашок кілька, тому потрібно are: The cups are.*
+- ❌ The cups are in dishwasher. — *Посудомийну машину ви обоє знаєте, тому перед нею потрібно the.*
 
 ---
 
 ## Інтро 3
 
-### Хто де
+### Зимовий велосипед
 
-`dogs` — «собаки», тому `The dogs are`. `berry` — одна «ягода», тому `The berry is`. `absent` — «відсутній». Господар не прийшов на заплановану зустріч: `He is absent` — «Він відсутній». Скорочено: `He’s absent`. Ця фраза повідомляє про відсутність, але не пояснює, куди він пішов.
+Сусідка зібралася на прогулянку й питає, де ваш велосипед. Узимку він вам не потрібен: він стоїть у підвалі будинку, де сухо й ніхто не ходить. basement — «підвал». Велосипед один, тому is: The bicycle is in the basement — «Велосипед у підвалі».
 
-**Господаря немає на запланованій зустрічі. Скажіть «Він відсутній» зі скороченням.**
+**Сусідка шукає ваш велосипед. Скажіть їй, що він у підвалі.**
 
-- ✅ **He's absent.**
-- ❌ He's present. — *`present` — присутній; тут відсутній: `absent`.*
-- ❌ He are absent. — *З `He` потрібне `is`: `He’s absent`.*
+- ✅ **The bicycle is in the basement.**
+- ❌ The bicycle is in basement. — *Підвал ви обоє знаєте, тому перед ним потрібно the: in the basement.*
+- ❌ The bicycle are in the basement. — *Велосипед один, тому потрібно is: The bicycle is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Господар не прийшов на зустріч. Скажіть «Він відсутній» без скорочення**
-<!-- interaction_id: en:lesson-04:session-25:i01; family: phrase_builder -->
-Плитки: `absent` `is` `He` `are` → **He is absent.**
-*(плитка `are` зайва: тут потрібно `is` — `He is absent.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-25:i01; family: speed_match -->
+sink — раковина · dishwasher — посудомийна машина · basement — підвал · bathtub — ванна
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-25:i02; family: listen_choose -->
-🔊 *sink* → **sink** · soup · milk
-- soup — *У записі перше слово — `sink`, а в цьому варіанті — `soup`.*
-- milk — *У записі перше слово — `sink`, а в цьому варіанті — `milk`.*
+**2 · Картка слова — sink**
+<!-- interaction_id: en:lesson-04:session-25:word:sink; family: word_card -->
+> **sink** — раковина. The cup is in the sink. — «Чашка в раковині». Про місце, де миють руки й посуд.
 
-**3 · Назвіть раковину одним словом**
-<!-- interaction_id: en:lesson-04:session-25:i03; family: context_gap_grammar -->
-___ → **sink** · table · window
-- table — *`table` — стіл; раковина — `sink`.*
-- window — *`window` — вікно; раковина — `sink`.*
+**3 · Сестра показує на кухні місце, де миють посуд, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-25:i02; family: scripted_repeat_compare -->
+🎙 **sink**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-25:i04; family: speed_match -->
-sink — раковина · absent — відсутній · dogs — собаки · berry — ягода
+**4 · Сестра шукає ложку. Скажіть їй повною фразою: ложка в раковині**
+<!-- interaction_id: en:lesson-04:session-25:i03; family: phrase_builder -->
+Плитки: `spoon` `the` `in` `is` `The` `sink` `are` → **The spoon is in the sink.**
+*(плитка `are` зайва: тут потрібно `is` — `The spoon is in the sink.`)*
 
-**5 · Послухайте й складіть опис**
-<!-- interaction_id: en:lesson-04:session-25:i05; family: listen_build_dictation -->
-🔊 *The berry is in the sink.* Плитки: `sink` `the` `in` `is` `berry` `The` `are` → **The berry is in the sink.**
-*(плитка `are` зайва: тут потрібно `is` — `The berry is in the sink.`)*
+**5 · Картка слова — dishwasher**
+<!-- interaction_id: en:lesson-04:session-25:word:dishwasher; family: word_card -->
+> **dishwasher** — посудомийна машина. The cups are in the dishwasher. — «Чашки в посудомийній машині». Про машину, яка миє посуд.
 
-**6 · Ягода лежить на поверхні столу. Скажіть «Ягода на столі»**
-<!-- interaction_id: en:lesson-04:session-25:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `berry` `The` `are` → **The berry is on the table.**
-*(плитка `are` зайва: тут потрібно `is` — `The berry is on the table.`)*
+**6 · Кухонна машина, у якій посуд миється сам. Як вона називається англійською?**
+<!-- interaction_id: en:lesson-04:session-25:i04; family: context_gap_grammar -->
+___ → **dishwasher** · sink · bucket
+- sink — *sink — це раковина, а машина для миття посуду називається dishwasher.*
+- bucket — *bucket — це відро, а машина для миття посуду називається dishwasher.*
 
-**7 · Собаки лежать під столом. Скажіть, де вони**
-<!-- interaction_id: en:lesson-04:session-25:i07; family: scripted_repeat_compare -->
-🎙 **The dogs are under the table.**
+**7 · Послухайте брата**
+<!-- interaction_id: en:lesson-04:session-25:i05; family: listen_choose -->
+🔊 *The bottles are in the dishwasher.* → **The bottles are in the dishwasher.** · The bottles are in the sink. · The bottle is in the dishwasher.
+- The bottles are in the sink. — *У записі `dishwasher`, а в цьому варіанті `sink`.*
+- The bottle is in the dishwasher. — *У записі пляшок кілька (`bottles are`), а в цьому варіанті одна.*
 
-**8 · Раковина поруч із вікном, не під ним. Закінчіть опис**
+**8 · Картка слова — basement**
+<!-- interaction_id: en:lesson-04:session-25:word:basement; family: word_card -->
+> **basement** — підвал. The bicycle is in the basement. — «Велосипед у підвалі». Про приміщення під будинком.
+
+**9 · Сусідка називає приміщення під будинком, де взимку стоять велосипеди, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-25:i06; family: scripted_repeat_compare -->
+🎙 **basement**
+
+**10 · Послухайте сусідку й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-25:i07; family: listen_build_dictation -->
+🔊 *The bicycles are in the basement.* Плитки: `basement` `bicycles` `the` `in` `are` `The` `is` → **The bicycles are in the basement.**
+*(плитка `is` зайва: тут потрібно `are` — `The bicycles are in the basement.`)*
+
+**11 · Картка слова — bathtub**
+<!-- interaction_id: en:lesson-04:session-25:word:bathtub; family: word_card -->
+> **bathtub** — ванна. The towel is in the bathtub. — «Рушник у ванні». Про велику ємність для миття, у якій лежать у воді.
+
+**12 · Велика ємність у ванній кімнаті, у якій лежать у воді. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-04:session-25:i08; family: context_gap_grammar -->
-The sink is ___ the window. → **next to** · under · in
-- under — *`under` — під; поруч із — `next to`.*
-- in — *`in` — усередині; тут поруч із вікном: `next to the window`.*
+___ → **bathtub** · sink · bucket
+- sink — *sink — це раковина, а велика ємність, де лежать у воді, називається bathtub.*
+- bucket — *bucket — це відро, а велика ємність, де лежать у воді, називається bathtub.*
 
-**9 · Послухайте опис**
-<!-- interaction_id: en:lesson-04:session-25:i09; family: listen_choose -->
-🔊 *The sink is between the tables.* → **The sink is between the tables.** · The sink is between the windows. · The sink is between the chairs.
-- The sink is between the windows. — *У записі останнє слово — `tables`, а в цьому варіанті — `windows`.*
-- The sink is between the chairs. — *У записі останнє слово — `tables`, а в цьому варіанті — `chairs`.*
+**13 · Рушник упав у ванну. Скажіть братові повною фразою: рушник у ванні**
+<!-- interaction_id: en:lesson-04:session-25:i09; family: phrase_builder -->
+Плитки: `towel` `the` `in` `is` `The` `bathtub` `are` → **The towel is in the bathtub.**
+*(плитка `are` зайва: тут потрібно `is` — `The towel is in the bathtub.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-25:i10; family: speed_match -->
-sink — раковина · in — усередині · on — на поверхні · under — під
+bathtub — ванна · basement — підвал · dishwasher — посудомийна машина · towel — рушник
 
-**11 · Послухайте й складіть опис**
-<!-- interaction_id: en:lesson-04:session-25:i11; family: listen_build_dictation -->
-🔊 *The dogs are next to the sink.* Плитки: `sink` `the` `to` `next` `are` `dogs` `The` `is` → **The dogs are next to the sink.**
-*(плитка `is` зайва: тут потрібно `are` — `The dogs are next to the sink.`)*
+**15 · Послухайте сестру**
+<!-- interaction_id: en:lesson-04:session-25:i11; family: listen_choose -->
+🔊 *The apples are in the sink.* → **The apples are in the sink.** · The apples are in the bathtub. · The apple is in the sink.
+- The apples are in the bathtub. — *У записі `sink`, а в цьому варіанті `bathtub`.*
+- The apple is in the sink. — *У записі яблук кілька (`apples are`), а в цьому варіанті одне.*
 
-**12 · Ягода закотилася під стіл. Скажіть «Ягода під столом»**
-<!-- interaction_id: en:lesson-04:session-25:i12; family: phrase_builder -->
-Плитки: `table` `the` `under` `is` `berry` `The` `are` → **The berry is under the table.**
-*(плитка `are` зайва: тут потрібно `is` — `The berry is under the table.`)*
+**16 · Лимонів у раковині кілька. Виберіть потрібне слово**
+<!-- interaction_id: en:lesson-04:session-25:i12; family: context_gap_grammar -->
+The lemons ___ in the sink. → **are** · is · am
+- is — *Лимонів кілька, тому потрібно are, а не is.*
+- am — *am буває лише з I; тут лимони, тому are.*
 
-**13 · Господаря немає на зустрічі. Скажіть «Він відсутній» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-25:i13; family: scripted_repeat_compare -->
-🎙 **He's absent.**
+**17 · Послухайте брата й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-25:i13; family: listen_build_dictation -->
+🔊 *The bottle is in the dishwasher.* Плитки: `bottle` `the` `in` `is` `The` `dishwasher` `are` → **The bottle is in the dishwasher.**
+*(плитка `are` зайва: тут потрібно `is` — `The bottle is in the dishwasher.`)*
 
-**14 · Ягода лежить між двома чашками, не всередині й не під ними. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-25:i14; family: context_gap_grammar -->
-The berry is ___ the cups. → **between** · under · in
-- under — *`under` — під; між — `between`.*
-- in — *`in` — усередині; між чашками — `between the cups`.*
+**18 · Сестра питає, де чашка. Відповідайте їй: чашка в раковині**
+<!-- interaction_id: en:lesson-04:session-25:i14; family: scripted_repeat_compare -->
+🎙 **The cup is in the sink.**
 
-**15 · Послухайте, де собаки**
-<!-- interaction_id: en:lesson-04:session-25:i15; family: listen_choose -->
-🔊 *The dogs are in the room.* → **The dogs are in the room.** · The dogs are in the garden. · The dogs are in the hotel.
-- The dogs are in the garden. — *У записі останнє слово — `room`, а в цьому варіанті — `garden`.*
-- The dogs are in the hotel. — *У записі останнє слово — `room`, а в цьому варіанті — `hotel`.*
+**19 · Брат шукає пляшки. Скажіть йому повною фразою: пляшки в підвалі**
+<!-- interaction_id: en:lesson-04:session-25:i15; family: phrase_builder -->
+Плитки: `bottles` `the` `in` `are` `The` `basement` `is` → **The bottles are in the basement.**
+*(плитка `is` зайва: тут потрібно `are` — `The bottles are in the basement.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-25:i16; family: speed_match -->
-sink — раковина · absent — відсутній · dogs — собаки · berry — ягода
+sink — раковина · dishwasher — посудомийна машина · basement — підвал · bathtub — ванна
 
-**17 · В іншій квартирі друг шукає раковину. Вона поруч із вікном. Скажіть «Раковина поруч із вікном»**
+**21 · В іншій квартирі друг шукає велосипед. Він у підвалі. Скажіть йому: «Велосипед у підвалі»**
 <!-- interaction_id: en:lesson-04:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The sink is next to the window.**
-
+🎙 **The bicycle is in the basement.**

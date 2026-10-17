@@ -1,137 +1,152 @@
-# Англійська · Урок 4 · Заняття 31 — Парковка біля готелю
+# Англійська · Урок 4 · Заняття 31 — Нове чи вже відоме
 
-**Ситуація.** Ви приїхали до готелю. Поруч парковка, а далі два парки. Друг дістає сир для перекусу й помічає, що парковка незвичайна: на ній немає машин.
+**Ситуація.** Ви зустрічаєте гостя, який приїхав на машині, і за мапою пояснюєте йому дорогу. Якщо предмет названо вперше, ви кажете There is a… Якщо обоє вже знають предмет, ви кажете The… is…
 
-**Що ви опануєте:** назвати парковку, відрізнити її від парку та описати розташування
-**Нові слова:** car park
+**Що ви опануєте:** розрізняти There is a… (предмет називаємо вперше) і The… is… (предмет уже відомий)
+**Нові слова:** car park, barrier, petrol station, roundabout
+**Повертаються:** hotel, library, bank, school, gate, park
 
 ---
 
 ## Інтро 1
 
-### Місце для машин
+### Де залишити машину
 
-`car park` — «парковка», місце для машин. Це два слова, але одна назва: `a car park`. `This is a car park` — «Це парковка». У парку гуляють, на парковці залишають машину: слово `car` допомагає не відправити автомобіль на прогулянку.
+Гість приїхав на машині й не знає вашого району. Він питає, де її залишити. Ви дивитеся на мапу й знаходите майданчик для машин поруч із готелем. car park — «автостоянка». Гість про неї ще не чув, тому: There is a car park near the hotel — «Поруч із готелем є автостоянка».
 
-**Покажіть одну парковку поруч.**
+**Гість питає, де залишити машину. Скажіть йому, що поруч із готелем є автостоянка.**
 
-- ✅ **This is a car park.**
-- ❌ This is a park. — *`park` — парк; парковка — `car park`.*
-- ❌ This are a car park. — *Одна парковка: `This is`.*
+- ✅ **There is a car park near the hotel.**
+- ❌ The car park is near the hotel. — *The — коли обоє вже знають предмет, а гість про стоянку ще не чув: There is a car park.*
+- ❌ There is car park near the hotel. — *Стоянка одна й названа вперше, тому потрібно a: a car park.*
 
 ---
 
 ## Інтро 2
 
-### Незвичайна парковка
+### Біля в’їзду
 
-`unusual` — «незвичайний»: `The car park is unusual` — «Парковка незвичайна». `parks` — «парки»: `The parks are next to the hotel` — «Парки поруч із готелем». Кілька парків потребують `are`, одна парковка — `is`. Незвичайною буває й порожня парковка біля жвавого готелю: `There aren’t any cars` — «Немає жодної машини».
+Ви під’їхали до стоянки. Перед в’їздом лежить довга смугаста перекладина, яка піднімається, коли машині треба проїхати. Ви обоє її бачите. barrier — «шлагбаум». Предмет відомий, тому the: The barrier is near the gate — «Шлагбаум поруч із воротами».
 
-**Два парки розташовані поруч із готелем. Виберіть опис.**
+**Гість показує на смугасту перекладину. Скажіть йому, що шлагбаум поруч із воротами.**
 
-- ✅ **The parks are next to the hotel.**
-- ❌ The parks is next to the hotel. — *Кілька парків: `The parks are`.*
-- ❌ The parks are in the hotel. — *`in` — усередині; тут парки поруч із готелем: `next to`.*
+- ✅ **The barrier is near the gate.**
+- ❌ There is a barrier near the gate. — *There is a — для нового предмета, а шлагбаум ви обоє вже бачите: The barrier is.*
+- ❌ The barrier are near the gate. — *Шлагбаум один, тому потрібно is: The barrier is.*
 
 ---
 
 ## Інтро 3
 
-### Перекус поруч
+### Не вистачає бензину
 
-`cheese` — «сир». `There is some cheese` — «Є трохи сиру». `The cheese is in the bag` — «Сир у сумці». Коли йдеться про сир як продукт, використовуємо `is`. `The bag is under the table` — «Сумка під столом». Зручно спочатку знайти сумку, а потім обговорювати незвичайну парковку.
+Гість збирається їхати назад, але бензину в машині майже немає. Він питає, де його купити. Ви пам’ятаєте одне таке місце у вашому районі, поруч із банком. petrol station — «заправка». Для гостя вона нова: There is a petrol station next to the bank.
 
-**Сир лежить усередині сумки. Виберіть опис.**
+**Гість шукає, де заправити машину. Скажіть йому, що поруч із банком є заправка.**
 
-- ✅ **The cheese is in the bag.**
-- ❌ The cheese is on the bag. — *`on` — на поверхні; усередині сумки — `in the bag`.*
-- ❌ The cheese are in the bag. — *Сир як продукт: `The cheese is`.*
+- ✅ **There is a petrol station next to the bank.**
+- ❌ The petrol station is next to the bank. — *The — коли обоє знають предмет, а для гостя заправка нова: There is a petrol station.*
+- ❌ There are a petrol station next to the bank. — *Заправка одна, тому потрібно is: There is a petrol station.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Сир у сумці. Скажіть, де він**
-<!-- interaction_id: en:lesson-04:session-31:i01; family: phrase_builder -->
-Плитки: `bag` `the` `in` `is` `cheese` `The` `are` → **The cheese is in the bag.**
-*(плитка `are` зайва: тут потрібно `is` — `The cheese is in the bag.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-31:i01; family: speed_match -->
+car park — автостоянка · barrier — шлагбаум · petrol station — заправка · roundabout — кільцева розв’язка
 
-**2 · Послухайте й виберіть назву**
-<!-- interaction_id: en:lesson-04:session-31:i02; family: listen_choose -->
-🔊 *car park* → **car park** · car parks · car door
-- car parks — *У записі останнє слово — `park`, а в цьому варіанті — `parks`.*
-- car door — *У записі останнє слово — `park`, а в цьому варіанті — `door`.*
+**2 · Картка слова — car park**
+<!-- interaction_id: en:lesson-04:session-31:word:car park; family: word_card -->
+> **car park** — автостоянка. There is a car park near the library. — «Поруч із бібліотекою є автостоянка». Про майданчик, де залишають машини.
 
-**3 · Назвіть місце для стоянки машин**
-<!-- interaction_id: en:lesson-04:session-31:i03; family: context_gap_grammar -->
-___ → **car park** · park · hotel
-- park — *`park` — парк; парковка — `car park`.*
-- hotel — *`hotel` — готель; парковка — `car park`.*
+**3 · Гість показує майданчик, де залишають машини, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-31:i02; family: scripted_repeat_compare -->
+🎙 **car park**
 
-**4 · З’єднайте назви зі значеннями**
-<!-- interaction_id: en:lesson-04:session-31:i04; family: speed_match -->
-car park — парковка · unusual — незвичайний · parks — парки · cheese — сир
+**4 · Гість шукає, де залишити машину. Скажіть йому повною фразою: біля бібліотеки є автостоянка**
+<!-- interaction_id: en:lesson-04:session-31:i03; family: phrase_builder -->
+Плитки: `There` `is` `a` `car` `park` `near` `the` `library` `are` → **There is a car park near the library.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a car park near the library.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-31:i05; family: listen_build_dictation -->
-🔊 *This is a car park.* Плитки: `park` `car` `a` `is` `This` `are` → **This is a car park.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a car park.`)*
+**5 · Картка слова — barrier**
+<!-- interaction_id: en:lesson-04:session-31:word:barrier; family: word_card -->
+> **barrier** — шлагбаум. The barrier is next to the car park. — «Шлагбаум поруч з автостоянкою». Про перекладину на в’їзді, яка піднімається для машин.
 
-**6 · Ця парковка незвичайна. Опишіть її**
-<!-- interaction_id: en:lesson-04:session-31:i06; family: phrase_builder -->
-Плитки: `unusual` `is` `park` `car` `The` `are` → **The car park is unusual.**
-*(плитка `are` зайва: тут потрібно `is` — `The car park is unusual.`)*
+**6 · Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?**
+<!-- interaction_id: en:lesson-04:session-31:i04; family: context_gap_grammar -->
+___ → **barrier** · gate · fence
+- gate — *gate — це ворота або хвіртка, а смугаста перекладина називається barrier.*
+- fence — *fence — це паркан, а смугаста перекладина називається barrier.*
 
-**7 · Для перекусу є трохи сиру. Повідомте про це**
-<!-- interaction_id: en:lesson-04:session-31:i07; family: scripted_repeat_compare -->
-🎙 **There is some cheese.**
+**7 · Послухайте гостя**
+<!-- interaction_id: en:lesson-04:session-31:i05; family: listen_choose -->
+🔊 *The barrier is near the car park.* → **The barrier is near the car park.** · There is a barrier near the car park. · The barrier is near the bank.
+- There is a barrier near the car park. — *У записі `The barrier` — шлагбаум уже відомий, а в цьому варіанті `There is a` — новий.*
+- The barrier is near the bank. — *У записі останнє місце `car park`, а в цьому варіанті `bank`.*
 
-**8 · Парковка зовні поруч із готелем, не під ним. Виберіть слова**
+**8 · Картка слова — petrol station**
+<!-- interaction_id: en:lesson-04:session-31:word:petrol station; family: word_card -->
+> **petrol station** — заправка. There is a petrol station near the bank. — «Поруч із банком є заправка». Про місце, де машинам дають бензин.
+
+**9 · Гість показує місце, де машинам дають бензин, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-31:i06; family: scripted_repeat_compare -->
+🎙 **petrol station**
+
+**10 · Послухайте гостя й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-31:i07; family: listen_build_dictation -->
+🔊 *There is a petrol station near the bank.* Плитки: `There` `is` `a` `petrol` `station` `near` `the` `bank` `are` → **There is a petrol station near the bank.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a petrol station near the bank.`)*
+
+**11 · Картка слова — roundabout**
+<!-- interaction_id: en:lesson-04:session-31:word:roundabout; family: word_card -->
+> **roundabout** — кільцева розв’язка. The roundabout is near the bank. — «Кільце поруч із банком». Про кругле перехрестя, де машини їдуть по колу.
+
+**12 · Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?**
 <!-- interaction_id: en:lesson-04:session-31:i08; family: context_gap_grammar -->
-The car park is ___ the hotel. → **next to** · under · in
-- under — *`under` — під; тут поруч: `next to`.*
-- in — *`in` — усередині; парковка зовні поруч: `next to`.*
+___ → **roundabout** · bridge · road
+- bridge — *bridge — це міст, а кругле перехрестя називається roundabout.*
+- road — *road — це звичайна дорога, а кругле перехрестя називається roundabout.*
 
-**9 · Послухайте, де розташовані парки**
-<!-- interaction_id: en:lesson-04:session-31:i09; family: listen_choose -->
-🔊 *The parks are next to the hotel.* → **The parks are next to the hotel.** · The parks are next to the shop. · The parks are next to the gym.
-- The parks are next to the shop. — *У записі останнє слово — `hotel`, а в цьому варіанті — `shop`.*
-- The parks are next to the gym. — *У записі останнє слово — `hotel`, а в цьому варіанті — `gym`.*
+**13 · Гість питає про дорогу. Скажіть йому повною фразою: кільце поруч із банком**
+<!-- interaction_id: en:lesson-04:session-31:i09; family: phrase_builder -->
+Плитки: `roundabout` `the` `near` `is` `The` `bank` `are` → **The roundabout is near the bank.**
+*(плитка `are` зайва: тут потрібно `is` — `The roundabout is near the bank.`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-31:i10; family: speed_match -->
-car park — парковка · unusual — незвичайний · parks — парки · cheese — сир
+roundabout — кільцева розв’язка · petrol station — заправка · barrier — шлагбаум · bank — банк
 
-**11 · Послухайте й складіть фразу про машини**
-<!-- interaction_id: en:lesson-04:session-31:i11; family: listen_build_dictation -->
-🔊 *There aren't any cars.* Плитки: `cars` `any` `aren't` `There` → **There aren't any cars.**
+**15 · Послухайте гостя**
+<!-- interaction_id: en:lesson-04:session-31:i11; family: listen_choose -->
+🔊 *There is a hotel near the park.* → **There is a hotel near the park.** · The hotel is near the park. · There is a hotel near the bank.
+- The hotel is near the park. — *У записі `There is a` — предмет названо вперше, а в цьому варіанті `The hotel is` — уже відомий.*
+- There is a hotel near the bank. — *У записі останнє місце `park`, а в цьому варіанті `bank`.*
 
-**12 · Сумка під столом. Скажіть, де вона**
-<!-- interaction_id: en:lesson-04:session-31:i12; family: phrase_builder -->
-Плитки: `table` `the` `under` `is` `bag` `The` `are` → **The bag is under the table.**
-*(плитка `are` зайва: тут потрібно `is` — `The bag is under the table.`)*
+**16 · Ви обоє вже бачите шлагбаум. Виберіть перше слово**
+<!-- interaction_id: en:lesson-04:session-31:i12; family: context_gap_grammar -->
+___ barrier is near the gate. → **The** · A · There
+- A — *A — для нового предмета, а шлагбаум ви обоє вже бачите: потрібно The.*
+- There — *Після There потрібно is, а тут одразу barrier is: потрібно The.*
 
-**13 · Парковка розташована між двома парками. Скажіть, де вона**
-<!-- interaction_id: en:lesson-04:session-31:i13; family: scripted_repeat_compare -->
-🎙 **The car park is between the parks.**
+**17 · Послухайте гостя й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-31:i13; family: listen_build_dictation -->
+🔊 *The car park is near the hotel.* Плитки: `car` `park` `the` `near` `is` `The` `hotel` `are` → **The car park is near the hotel.**
+*(плитка `are` зайва: тут потрібно `is` — `The car park is near the hotel.`)*
 
-**14 · Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово**
-<!-- interaction_id: en:lesson-04:session-31:i14; family: context_gap_grammar -->
-The cheese is ___ the table. → **on** · under · in
-- under — *`under` — під; на поверхні — `on`.*
-- in — *`in` — усередині; на поверхні — `on`.*
+**18 · Гість питає про дорогу до школи. Відповідайте йому: поруч зі школою є кільце**
+<!-- interaction_id: en:lesson-04:session-31:i14; family: scripted_repeat_compare -->
+🎙 **There is a roundabout near the school.**
 
-**15 · Послухайте реакцію друга**
-<!-- interaction_id: en:lesson-04:session-31:i15; family: listen_choose -->
-🔊 *That is unusual.* → **That is unusual.** · This is unusual. · That is normal.
-- This is unusual. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is normal. — *У записі останнє слово — `unusual`, а в цьому варіанті — `normal`.*
+**19 · Гість питає про шлагбаум. Скажіть йому повною фразою: шлагбаум поруч з автостоянкою**
+<!-- interaction_id: en:lesson-04:session-31:i15; family: phrase_builder -->
+Плитки: `barrier` `the` `next` `to` `is` `The` `car` `park` `are` → **The barrier is next to the car park.**
+*(плитка `are` зайва: тут потрібно `is` — `The barrier is next to the car park.`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-31:i16; family: speed_match -->
-car park — парковка · unusual — незвичайний · parks — парки · cheese — сир
+car park — автостоянка · barrier — шлагбаум · petrol station — заправка · roundabout — кільцева розв’язка
 
-**17 · В іншому місті знайомий шукає парковку. Вона поруч із готелем. Скажіть «Парковка поруч із готелем»**
+**21 · В іншому місті друг шукає заправку. Скажіть йому: «Поруч із банком є заправка»**
 <!-- interaction_id: en:lesson-04:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The car park is next to the hotel.**
-
+🎙 **There is a petrol station next to the bank.**

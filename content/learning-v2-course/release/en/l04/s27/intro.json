@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-27",
   "learningOutcomeByLocale": {
-    "ru": "назвать навес и описать расположение вещей с under, on, next to и between",
-    "uk": "назвати навіс і описати розташування речей з under, on, next to та between"
+    "ru": "сказать, что предмет находится под другим предметом, словом under",
+    "uk": "сказати, що предмет перебуває під іншим предметом, словом under"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Навес над столом",
-        "uk": "Навіс над столом"
+        "ru": "Дождь у кафе",
+        "uk": "Дощ біля кафе"
       },
       "bodyByLocale": {
-        "ru": "`awning` — «навес», например тканевый навес над входом или столиками. Один — `an awning`: слово начинается с гласного звука. `The table is under the awning` — «Стол под навесом». `under` — под ним, `on` — на нём. Обедать лучше `under the awning`: на самом навесе столу делать нечего.",
-        "uk": "`awning` — «навіс», наприклад тканинний навіс над входом чи столиками. Один — `an awning`: слово починається з голосного звука. `The table is under the awning` — «Стіл під навісом». `under` — під ним, `on` — на ньому. Обідати краще `under the awning`: на самому навісі столу робити нічого."
+        "ru": "Вы с подругой застали дождь у кафе, а зонтов у вас нет. Над входом натянута плотная ткань, и скамейка стоит прямо под ней, там сухо. awning — «навес над входом». Слово under значит «под»: The bench is under the awning — «Скамейка под навесом».",
+        "uk": "Ви з подругою застали дощ біля кафе, а парасольок у вас немає. Над входом натягнута щільна тканина, і лавка стоїть просто під нею, там сухо. awning — «навіс над входом». Слово under означає «під»: The bench is under the awning — «Лавка під навісом»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-27:intro1:q",
         "promptByLocale": {
-          "ru": "Стол стоит под навесом. Выберите описание.",
-          "uk": "Стіл стоїть під навісом. Виберіть опис."
+          "ru": "Подруга ищет, где укрыться от дождя. Скажите ей, что скамейка под навесом.",
+          "uk": "Подруга шукає, де вкритися від дощу. Скажіть їй, що лавка під навісом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-27:intro1:r1",
-              "text": "The table is under the awning."
+              "text": "The bench is under the awning."
             },
             {
               "responseId": "en:lesson-04:session-27:intro1:r2",
-              "text": "The table is on the awning."
+              "text": "The bench is on the awning."
             },
             {
               "responseId": "en:lesson-04:session-27:intro1:r3",
-              "text": "The table are under the awning."
+              "text": "The bench is under awning."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-27:intro1:r1",
-              "text": "The table is under the awning."
+              "text": "The bench is under the awning."
             },
             {
               "responseId": "en:lesson-04:session-27:intro1:r2",
-              "text": "The table is on the awning."
+              "text": "The bench is on the awning."
             },
             {
               "responseId": "en:lesson-04:session-27:intro1:r3",
-              "text": "The table are under the awning."
+              "text": "The bench is under awning."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Стол стоит под навесом. Выберите описание.",
-          "uk": "Стіл стоїть під навісом. Виберіть опис."
+          "ru": "Подруга ищет, где укрыться от дождя. Скажите ей, что скамейка под навесом.",
+          "uk": "Подруга шукає, де вкритися від дощу. Скажіть їй, що лавка під навісом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Суп и машины",
-        "uk": "Суп і машини"
+        "ru": "Запасной ключ",
+        "uk": "Запасний ключ"
       },
       "bodyByLocale": {
-        "ru": "`soup` — «суп»: `The soup is on the table` — «Суп на столе». Речь о супе в посуде, а не о разлитом супе. `cars` — «машины»: `The cars are next to the house` — «Машины рядом с домом». `between` — «между»: `The table is between the cars` — «Стол между машинами». Для нескольких машин — `are`, для стола и супа — `is`.",
-        "uk": "`soup` — «суп»: `The soup is on the table` — «Суп на столі». Ідеться про суп у посуді, а не про розлитий суп. `cars` — «машини»: `The cars are next to the house` — «Машини поруч із будинком». `between` — «між»: `The table is between the cars` — «Стіл між машинами». Для кількох машин — `are`, для столу й супу — `is`."
+        "ru": "Вы уезжаете на целый день, а подруга придёт позже и не сможет войти. Запасной ключ вы оставили у двери, не на виду, под небольшим ковриком, о который вытирают ноги. doormat — «коврик у двери». The key is under the doormat — «Ключ под ковриком».",
+        "uk": "Ви їдете на цілий день, а подруга прийде пізніше й не зможе зайти. Запасний ключ ви залишили біля дверей, не на видноті, під невеликим килимком, об який витирають ноги. doormat — «килимок біля дверей». The key is under the doormat — «Ключ під килимком»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Машины припаркованы рядом с домом. Выберите описание.",
-          "uk": "Машини припарковані поруч із будинком. Виберіть опис."
+          "ru": "Подруга звонит и спрашивает, где ключ. Скажите ей, что он под ковриком.",
+          "uk": "Подруга телефонує й питає, де ключ. Скажіть їй, що він під килимком."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-27:intro2:r1",
-              "text": "The cars are next to the house."
+              "text": "The key is under the doormat."
             },
             {
               "responseId": "en:lesson-04:session-27:intro2:r2",
-              "text": "The cars is next to the house."
+              "text": "The key is on the doormat."
             },
             {
               "responseId": "en:lesson-04:session-27:intro2:r3",
-              "text": "The cars are in the house."
+              "text": "The key is under doormat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-27:intro2:r1",
-              "text": "The cars are next to the house."
+              "text": "The key is under the doormat."
             },
             {
               "responseId": "en:lesson-04:session-27:intro2:r2",
-              "text": "The cars is next to the house."
+              "text": "The key is on the doormat."
             },
             {
               "responseId": "en:lesson-04:session-27:intro2:r3",
-              "text": "The cars are in the house."
+              "text": "The key is under doormat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Машины припаркованы рядом с домом. Выберите описание.",
-          "uk": "Машини припарковані поруч із будинком. Виберіть опис."
+          "ru": "Подруга звонит и спрашивает, где ключ. Скажите ей, что он под ковриком.",
+          "uk": "Подруга телефонує й питає, де ключ. Скажіть їй, що він під килимком."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Щедрый хозяин",
-        "uk": "Щедрий господар"
+        "ru": "День в парке",
+        "uk": "День у парку"
       },
       "bodyByLocale": {
-        "ru": "`generous` — «щедрый». Друг принёс угощение для всех и охотно делится. `He is generous` — «Он щедрый». Сокращённо: `He’s generous`. Это не просто «у него много»: важно, что он готов делиться с другими.",
-        "uk": "`generous` — «щедрий». Друг приніс частування для всіх і охоче ділиться. `He is generous` — «Він щедрий». Скорочено: `He’s generous`. Це не просто «у нього багато»: важливо, що він готовий ділитися з іншими."
+        "ru": "Вы с сестрой пришли в парк на целый день. Солнце печёт, поэтому вы поставили большой зонт от солнца и сидите в его тени, а вещи сложили рядом, чтобы они не нагрелись. parasol — «зонт от солнца». Сумка одна: The bag is under the parasol — «Сумка под зонтом».",
+        "uk": "Ви з сестрою прийшли в парк на цілий день. Сонце пече, тому ви поставили велику парасолю від сонця й сидите в її тіні, а речі склали поруч, щоб вони не нагрілися. parasol — «парасоля від сонця». Сумка одна: The bag is under the parasol — «Сумка під парасолею»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Друг охотно угощает всех. Скажите «Он щедрый» с сокращением.",
-          "uk": "Друг охоче пригощає всіх. Скажіть «Він щедрий» зі скороченням."
+          "ru": "Сестра ищет сумку. Скажите ей, что она под зонтом.",
+          "uk": "Сестра шукає сумку. Скажіть їй, що вона під парасолею."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-27:intro3:r1",
-              "text": "He's generous."
+              "text": "The bag is under the parasol."
             },
             {
               "responseId": "en:lesson-04:session-27:intro3:r2",
-              "text": "He's careless."
+              "text": "The bag is in the parasol."
             },
             {
               "responseId": "en:lesson-04:session-27:intro3:r3",
-              "text": "He are generous."
+              "text": "The bag are under the parasol."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-27:intro3:r1",
-              "text": "He's generous."
+              "text": "The bag is under the parasol."
             },
             {
               "responseId": "en:lesson-04:session-27:intro3:r2",
-              "text": "He's careless."
+              "text": "The bag is in the parasol."
             },
             {
               "responseId": "en:lesson-04:session-27:intro3:r3",
-              "text": "He are generous."
+              "text": "The bag are under the parasol."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг охотно угощает всех. Скажите «Он щедрый» с сокращением.",
-          "uk": "Друг охоче пригощає всіх. Скажіть «Він щедрий» зі скороченням."
+          "ru": "Сестра ищет сумку. Скажите ей, что она под зонтом.",
+          "uk": "Сестра шукає сумку. Скажіть їй, що вона під парасолею."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f4cd5cfc44c1efdc443f1841629834833f54eb1447501b8d38925fc862c5c54f"
+  "introFingerprint": "16b096b84d6724ac0b2990f7aaa0ca4efbafe8f126e9360b05f76ee43bf7bb64"
 }

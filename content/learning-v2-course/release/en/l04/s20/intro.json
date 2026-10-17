@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-20",
   "learningOutcomeByLocale": {
-    "ru": "назвать гриб и спросить о грибах с any, сообщить об их наличии с some",
-    "uk": "назвати гриб і запитати про гриби з any, повідомити про їхню наявність із some"
+    "ru": "спросить, есть ли несколько предметов, вопросом Are there any…?",
+    "uk": "спитати, чи є кілька предметів, запитанням Are there any…?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один гриб и несколько",
-        "uk": "Один гриб і кілька"
+        "ru": "Пицца с братом",
+        "uk": "Піца з братом"
       },
       "bodyByLocale": {
-        "ru": "`mushroom` — «гриб», `mushrooms` — «грибы». `This is a mushroom` — «Это гриб». Один большой гриб — всё ещё `a mushroom`, даже если он занял всю тарелку. Несколько маленьких — уже `mushrooms`. Размер и количество — разные вещи.",
-        "uk": "`mushroom` — «гриб», `mushrooms` — «гриби». `This is a mushroom` — «Це гриб». Один великий гриб — усе ще `a mushroom`, навіть якщо він зайняв усю тарілку. Кілька маленьких — уже `mushrooms`. Розмір і кількість — різні речі."
+        "ru": "Вы печёте пиццу вместе с братом, и он хочет добавить грибы. Вы заглядываете в большой ящик с продуктами. mushroom — «гриб», а несколько грибов — mushrooms. Когда предметов несколько, начинаем с Are there. Спросите брата: Are there any mushrooms here? — «Здесь есть грибы?»",
+        "uk": "Ви печете піцу разом із братом, і він хоче додати гриби. Ви заглядаєте до великої скрині з продуктами. mushroom — «гриб», а кілька грибів — mushrooms. Коли предметів кілька, починаємо з Are there. Запитайте брата: Are there any mushrooms here? — «Тут є гриби?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-20:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один гриб рядом: «Это гриб».",
-          "uk": "Назвіть один гриб поруч: «Це гриб»."
+          "ru": "Вы печёте пиццу с братом. Спросите его, есть ли здесь грибы.",
+          "uk": "Ви печете піцу з братом. Запитайте його, чи є тут гриби."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-20:intro1:r1",
-              "text": "This is a mushroom."
+              "text": "Are there any mushrooms here?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro1:r2",
-              "text": "These are mushrooms."
+              "text": "Is there any mushrooms here?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro1:r3",
-              "text": "This is a mushrooms."
+              "text": "Are there any mushroom here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-20:intro1:r1",
-              "text": "This is a mushroom."
+              "text": "Are there any mushrooms here?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro1:r2",
-              "text": "These are mushrooms."
+              "text": "Is there any mushrooms here?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro1:r3",
-              "text": "This is a mushrooms."
+              "text": "Are there any mushroom here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один гриб рядом: «Это гриб».",
-          "uk": "Назвіть один гриб поруч: «Це гриб»."
+          "ru": "Вы печёте пиццу с братом. Спросите его, есть ли здесь грибы.",
+          "uk": "Ви печете піцу з братом. Запитайте його, чи є тут гриби."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Есть ли грибы?",
-        "uk": "Чи є гриби?"
+        "ru": "Густой суп",
+        "uk": "Густий суп"
       },
       "bodyByLocale": {
-        "ru": "`There are some mushrooms` — «Есть немного грибов». Точное количество не называем. `Are there any mushrooms?` — «Есть ли грибы?» Так спрашиваем, когда ещё не знаем ответа. Со знакомыми картами: `maps` — «карты», `Are there any maps?` — «Есть ли карты?»",
-        "uk": "`There are some mushrooms` — «Є трохи грибів». Точної кількості не називаємо. `Are there any mushrooms?` — «Чи є гриби?» Так запитуємо, коли ще не знаємо відповіді. Із знайомими картами: `maps` — «карти», `Are there any maps?` — «Чи є карти?»"
+        "ru": "Вы с подругой варите густой суп. На полке стоят банки, и вы читаете надписи на них. bean — «фасолина, боб», а несколько — beans. Спросите подругу: Are there any beans near the jar? — «Рядом с банкой есть фасоль?» Вопрос снова начинается с Are there.",
+        "uk": "Ви з подругою варите густий суп. На полиці стоять банки, і ви читаєте написи на них. bean — «квасолина, біб», а кілька — beans. Запитайте подругу: Are there any beans near the jar? — «Поруч із банкою є квасоля?» Запитання знову починається з Are there."
       },
       "question": {
         "interactionId": "en:lesson-04:session-20:intro2:q",
         "promptByLocale": {
-          "ru": "Вы ещё не посмотрели продукты. Спросите «Здесь есть грибы?» с `any`.",
-          "uk": "Ви ще не подивилися продукти. Запитайте «Тут є гриби?» з `any`."
+          "ru": "Вы варите суп с подругой. Спросите её, есть ли рядом с банкой фасоль.",
+          "uk": "Ви варите суп із подругою. Запитайте її, чи є поруч із банкою квасоля."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-20:intro2:r1",
-              "text": "Are there any mushrooms here?"
+              "text": "Are there any beans near the jar?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro2:r2",
-              "text": "Is there any mushrooms here?"
+              "text": "Are there any bean near the jar?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro2:r3",
-              "text": "Are there a mushrooms here?"
+              "text": "Is there any beans near the jar?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-20:intro2:r1",
-              "text": "Are there any mushrooms here?"
+              "text": "Are there any beans near the jar?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro2:r2",
-              "text": "Is there any mushrooms here?"
+              "text": "Are there any bean near the jar?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro2:r3",
-              "text": "Are there a mushrooms here?"
+              "text": "Is there any beans near the jar?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы ещё не посмотрели продукты. Спросите «Здесь есть грибы?» с `any`.",
-          "uk": "Ви ще не подивилися продукти. Запитайте «Тут є гриби?» з `any`."
+          "ru": "Вы варите суп с подругой. Спросите её, есть ли рядом с банкой фасоль.",
+          "uk": "Ви варите суп із подругою. Запитайте її, чи є поруч із банкою квасоля."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Карту не прятал",
-        "uk": "Карту не ховав"
+        "ru": "Перекус в поход",
+        "uk": "Перекус у похід"
       },
       "bodyByLocale": {
-        "ru": "`innocent` — «невиновный», `yes` — «да». Друг нашёл свою карту и спрашивает: «Значит, ты невиновен?» Вы отвечаете: `Yes, I am innocent` — «Да, я невиновен». Сокращённо: `Yes, I’m innocent`. Это можно сказать и шутливо о пропавшей карте. `platform` — «платформа»: `That is a platform` — «То — платформа». На карте можно найти и её.",
-        "uk": "`innocent` — «невинний», `yes` — «так». Друг знайшов свою карту й запитує: «Отже, ти невинний?» Ви відповідаєте: `Yes, I am innocent` — «Так, я невинний». Скорочено: `Yes, I’m innocent`. Це можна сказати й жартома про зниклу карту. `platform` — «платформа»: `That is a platform` — «То — платформа». На карті можна знайти і її."
+        "ru": "Подруга собирается в поход и укладывает в рюкзак перекус. Вы помогаете ей и перебираете продукты на столе. nut — «орех», а несколько — nuts. Спросите её: Are there any nuts behind the bowl? — «За миской есть орехи?» Слово any остаётся на месте.",
+        "uk": "Подруга збирається в похід і складає до рюкзака перекус. Ви допомагаєте їй і перебираєте продукти на столі. nut — «горіх», а кілька — nuts. Запитайте її: Are there any nuts behind the bowl? — «За мискою є горіхи?» Слово any лишається на місці."
       },
       "question": {
         "interactionId": "en:lesson-04:session-20:intro3:q",
         "promptByLocale": {
-          "ru": "Друг убедился, что вы не прятали карту. Ответьте «Да, я невиновен» с сокращением.",
-          "uk": "Друг переконався, що ви не ховали карту. Дайте відповідь «Так, я невинний» зі скороченням."
+          "ru": "Подруга собирает перекус в поход. Спросите её, есть ли за миской орехи.",
+          "uk": "Подруга збирає перекус у похід. Запитайте її, чи є за мискою горіхи."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-20:intro3:r1",
-              "text": "Yes, I'm innocent."
+              "text": "Are there any nuts behind the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro3:r2",
-              "text": "Yes, I'm guilty."
+              "text": "Are there any nut behind the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro3:r3",
-              "text": "No, I'm innocent."
+              "text": "There are any nuts behind the bowl?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-20:intro3:r1",
-              "text": "Yes, I'm innocent."
+              "text": "Are there any nuts behind the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro3:r2",
-              "text": "Yes, I'm guilty."
+              "text": "Are there any nut behind the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-20:intro3:r3",
-              "text": "No, I'm innocent."
+              "text": "There are any nuts behind the bowl?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг убедился, что вы не прятали карту. Ответьте «Да, я невиновен» с сокращением.",
-          "uk": "Друг переконався, що ви не ховали карту. Дайте відповідь «Так, я невинний» зі скороченням."
+          "ru": "Подруга собирает перекус в поход. Спросите её, есть ли за миской орехи.",
+          "uk": "Подруга збирає перекус у похід. Запитайте її, чи є за мискою горіхи."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "66716cd03c4920b2b3e7f2a7b1f7c95e6ca425c1f8839040c448c02c310d720d"
+  "introFingerprint": "8f2ca2c7b646accce559b88aa130d9211367196c0218e65b567e710d993ef4e5"
 }

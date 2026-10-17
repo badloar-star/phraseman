@@ -1,0 +1,2379 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-30:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-30:i01:p1",
+              "target": "signpost",
+              "meaningByLocale": {
+                "ru": "столб с указателями",
+                "uk": "стовп із покажчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i01:p2",
+              "target": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь",
+                "uk": "живопліт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i01:p3",
+              "target": "shed",
+              "meaningByLocale": {
+                "ru": "сарай",
+                "uk": "сарай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i01:p4",
+              "target": "pond",
+              "meaningByLocale": {
+                "ru": "пруд",
+                "uk": "ставок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "signpost",
+            "hedge",
+            "shed",
+            "pond"
+          ],
+          "rightColumn": [
+            "столб с указателями",
+            "живая изгородь",
+            "сарай",
+            "пруд"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:signpost",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — signpost",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:signpost:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — signpost",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:signpost:audio",
+            "transcript": "signpost"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:signpost:r1",
+              "targetText": "signpost",
+              "meaningByLocale": {
+                "ru": "столб с указателями. The signpost is near the lake. — «Столб с указателями рядом с озером». О столбе со стрелками, которые показывают, куда идти.",
+                "uk": "стовп із покажчиками. The signpost is near the lake. — «Стовп із покажчиками поруч з озером». Про стовп зі стрілками, які показують, куди йти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "signpost",
+            "definitionByLocale": {
+              "ru": "столб с указателями. The signpost is near the lake. — «Столб с указателями рядом с озером». О столбе со стрелками, которые показывают, куда идти.",
+              "uk": "стовп із покажчиками. The signpost is near the lake. — «Стовп із покажчиками поруч з озером». Про стовп зі стрілками, які показують, куди йти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает столб со стрелками на развилке, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает столб со стрелками на развилке, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i02:audio",
+            "transcript": "signpost"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "signpost",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга потерялась на тропинке. Скажите ей полной фразой: указатель рядом с озером",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга потерялась на тропинке. Скажите ей полной фразой: указатель рядом с озером",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The signpost is near the lake.",
+          "localizedMeaning": {
+            "ru": "Подруга потерялась на тропинке. Скажите ей полной фразой: указатель рядом с озером",
+            "uk": "Подруга заблукала на стежці. Скажіть їй повною фразою: покажчик поруч з озером"
+          },
+          "orderedTokens": [
+            "The",
+            "signpost",
+            "is",
+            "near",
+            "the",
+            "lake"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга потерялась на тропинке. Скажите ей полной фразой: указатель рядом с озером",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The signpost is near the lake.`",
+                "uk": "тут потрібно `is` — `The signpost is near the lake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:hedge",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hedge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:hedge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hedge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:hedge:audio",
+            "transcript": "hedge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:hedge:r1",
+              "targetText": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь. The bench is behind the hedge. — «Скамейка за живой изгородью». О густых кустах, которые растут в ряд.",
+                "uk": "живопліт. The bench is behind the hedge. — «Лавка за живоплотом». Про густі кущі, які ростуть у ряд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hedge",
+            "definitionByLocale": {
+              "ru": "живая изгородь. The bench is behind the hedge. — «Скамейка за живой изгородью». О густых кустах, которые растут в ряд.",
+              "uk": "живопліт. The bench is behind the hedge. — «Лавка за живоплотом». Про густі кущі, які ростуть у ряд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i04:r1",
+            "text": "hedge"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i04:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i04:r3",
+            "text": "fence"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+            "uk": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-30:i04:r1",
+              "text": "hedge"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i04:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i04:r3",
+              "text": "fence"
+            }
+          ],
+          "testedDimension": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i04:r2",
+              "correct": false,
+              "testedDimension": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "tree — это одно дерево, а кусты в ряд называются hedge.",
+                "uk": "tree — це одне дерево, а кущі в ряд називаються hedge."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i04:r3",
+              "correct": false,
+              "testedDimension": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+              "feedbackByLocale": {
+                "ru": "fence — это забор из досок, а кусты в ряд называются hedge.",
+                "uk": "fence — це паркан із дощок, а кущі в ряд називаються hedge."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i05:r1",
+            "text": "The bench is behind the hedge."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i05:r2",
+            "text": "The bench is near the hedge."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i05:r3",
+            "text": "The benches are behind the hedge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i05:audio",
+            "transcript": "The bench is behind the hedge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:i05:r1",
+              "targetText": "The bench is behind the hedge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i05:r2",
+              "targetText": "The bench is near the hedge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i05:r3",
+              "targetText": "The benches are behind the hedge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `behind` — за изгородью, а в этом варианте `near` — рядом.",
+                "uk": "У записі `behind` — за живоплотом, а в цьому варіанті `near` — поруч."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи скамейка одна (`bench is`), а в этом варианте несколько.",
+                "uk": "У записі лавка одна (`bench is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:shed",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:shed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:shed:audio",
+            "transcript": "shed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:shed:r1",
+              "targetText": "shed",
+              "meaningByLocale": {
+                "ru": "сарай. The bicycles are behind the shed. — «Велосипеды за сараем». О маленьком доме для инструментов в саду.",
+                "uk": "сарай. The bicycles are behind the shed. — «Велосипеди за сараєм». Про маленький будиночок для інструментів у саду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shed",
+            "definitionByLocale": {
+              "ru": "сарай. The bicycles are behind the shed. — «Велосипеды за сараем». О маленьком доме для инструментов в саду.",
+              "uk": "сарай. The bicycles are behind the shed. — «Велосипеди за сараєм». Про маленький будиночок для інструментів у саду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед показывает маленький деревянный дом для инструментов, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i06:audio"
+        ],
+        "accessibilityLabel": "Сосед показывает маленький деревянный дом для инструментов, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i06:audio",
+            "transcript": "shed"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "shed",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i07:audio",
+            "transcript": "The bicycles are behind the shed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bicycles are behind the shed.",
+          "orderedTokens": [
+            "The",
+            "bicycles",
+            "are",
+            "behind",
+            "the",
+            "shed"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The bicycles are behind the shed.`",
+                "uk": "тут потрібно `are` — `The bicycles are behind the shed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:pond",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pond",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:pond:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pond",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:pond:audio",
+            "transcript": "pond"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:pond:r1",
+              "targetText": "pond",
+              "meaningByLocale": {
+                "ru": "пруд. The bench is near the pond. — «Скамейка рядом с прудом». О небольшом озере в парке.",
+                "uk": "ставок. The bench is near the pond. — «Лавка поруч зі ставком». Про невелике озеро в парку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pond",
+            "definitionByLocale": {
+              "ru": "пруд. The bench is near the pond. — «Скамейка рядом с прудом». О небольшом озере в парке.",
+              "uk": "ставок. The bench is near the pond. — «Лавка поруч зі ставком». Про невелике озеро в парку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i08:r1",
+            "text": "pond"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r2",
+            "text": "lake"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+            "uk": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-30:i08:r1",
+              "text": "pond"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i08:r2",
+              "text": "lake"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i08:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "lake — это большое озеро, а небольшое озеро в парке называется pond.",
+                "uk": "lake — це велике озеро, а невелике озеро в парку називається pond."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а небольшое озеро в парке называется pond.",
+                "uk": "bridge — це міст, а невелике озеро в парку називається pond."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет, где присесть. Скажите ей полной фразой: скамейка рядом с прудом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет, где присесть. Скажите ей полной фразой: скамейка рядом с прудом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bench is near the pond.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет, где присесть. Скажите ей полной фразой: скамейка рядом с прудом",
+            "uk": "Подруга шукає, де присісти. Скажіть їй повною фразою: лавка поруч зі ставком"
+          },
+          "orderedTokens": [
+            "The",
+            "bench",
+            "is",
+            "near",
+            "the",
+            "pond"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет, где присесть. Скажите ей полной фразой: скамейка рядом с прудом",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bench is near the pond.`",
+                "uk": "тут потрібно `is` — `The bench is near the pond.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-30:i10:p1",
+              "target": "pond",
+              "meaningByLocale": {
+                "ru": "пруд",
+                "uk": "ставок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i10:p2",
+              "target": "shed",
+              "meaningByLocale": {
+                "ru": "сарай",
+                "uk": "сарай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i10:p3",
+              "target": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь",
+                "uk": "живопліт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i10:p4",
+              "target": "bridge",
+              "meaningByLocale": {
+                "ru": "мост",
+                "uk": "міст"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pond",
+            "shed",
+            "hedge",
+            "bridge"
+          ],
+          "rightColumn": [
+            "пруд",
+            "сарай",
+            "живая изгородь",
+            "мост"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i11:r1",
+            "text": "The bin is near the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i11:r2",
+            "text": "The bin is behind the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i11:r3",
+            "text": "The bins are near the shed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i11:audio",
+            "transcript": "The bin is near the shed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:i11:r1",
+              "targetText": "The bin is near the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i11:r2",
+              "targetText": "The bin is behind the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i11:r3",
+              "targetText": "The bins are near the shed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `near` — рядом, а в этом варианте `behind` — за.",
+                "uk": "У записі `near` — поруч, а в цьому варіанті `behind` — за."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи урна одна (`bin is`), а в этом варианте несколько.",
+                "uk": "У записі урна одна (`bin is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i12:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i12:r3",
+            "text": "between"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+            "uk": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The ladder is ___ the shed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-30:i12:r1",
+              "text": "behind"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i12:r2",
+              "text": "under"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i12:r3",
+              "text": "between"
+            }
+          ],
+          "testedDimension": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i12:r2",
+              "correct": false,
+              "testedDimension": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "under — «под», а лестница стоит позади сарая: нужно behind.",
+                "uk": "under — «під», а драбина стоїть позаду сараю: потрібно behind."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i12:r3",
+              "correct": false,
+              "testedDimension": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "between — «между двумя местами», а здесь одно место: нужно behind.",
+                "uk": "between — «між двома місцями», а тут одне місце: потрібно behind."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i13:audio",
+            "transcript": "The statue is near the pond."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The statue is near the pond.",
+          "orderedTokens": [
+            "The",
+            "statue",
+            "is",
+            "near",
+            "the",
+            "pond"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The statue is near the pond.`",
+                "uk": "тут потрібно `is` — `The statue is near the pond.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про указатель. Ответьте ей: указатель рядом с мостом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про указатель. Ответьте ей: указатель рядом с мостом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i14:audio",
+            "transcript": "The signpost is near the bridge."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The signpost is near the bridge.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ищет вход во двор. Скажите ему полной фразой: ворота за сараем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ищет вход во двор. Скажите ему полной фразой: ворота за сараем",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The gate is behind the shed.",
+          "localizedMeaning": {
+            "ru": "Друг ищет вход во двор. Скажите ему полной фразой: ворота за сараем",
+            "uk": "Друг шукає вхід у двір. Скажіть йому повною фразою: ворота за сараєм"
+          },
+          "orderedTokens": [
+            "The",
+            "gate",
+            "is",
+            "behind",
+            "the",
+            "shed"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ищет вход во двор. Скажите ему полной фразой: ворота за сараем",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The gate is behind the shed.`",
+                "uk": "тут потрібно `is` — `The gate is behind the shed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-30:i16:p1",
+              "target": "signpost",
+              "meaningByLocale": {
+                "ru": "столб с указателями",
+                "uk": "стовп із покажчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i16:p2",
+              "target": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь",
+                "uk": "живопліт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i16:p3",
+              "target": "shed",
+              "meaningByLocale": {
+                "ru": "сарай",
+                "uk": "сарай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i16:p4",
+              "target": "pond",
+              "meaningByLocale": {
+                "ru": "пруд",
+                "uk": "ставок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "signpost",
+            "hedge",
+            "shed",
+            "pond"
+          ],
+          "rightColumn": [
+            "столб с указателями",
+            "живая изгородь",
+            "сарай",
+            "пруд"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В другом саду сосед ищет лестницу. Она за сараем. Скажите ему: «Лестница за сараем»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "В другом саду сосед ищет лестницу. Она за сараем. Скажите ему: «Лестница за сараем»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i17:audio",
+            "transcript": "The ladder is behind the shed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The ladder is behind the shed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-30:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-30:i01:p1",
+              "target": "signpost",
+              "meaningByLocale": {
+                "ru": "столб с указателями",
+                "uk": "стовп із покажчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i01:p2",
+              "target": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь",
+                "uk": "живопліт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i01:p3",
+              "target": "shed",
+              "meaningByLocale": {
+                "ru": "сарай",
+                "uk": "сарай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i01:p4",
+              "target": "pond",
+              "meaningByLocale": {
+                "ru": "пруд",
+                "uk": "ставок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "signpost",
+            "hedge",
+            "shed",
+            "pond"
+          ],
+          "rightColumn": [
+            "стовп із покажчиками",
+            "живопліт",
+            "сарай",
+            "ставок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:signpost",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — signpost",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:signpost:audio"
+        ],
+        "accessibilityLabel": "Картка слова — signpost",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:signpost:audio",
+            "transcript": "signpost"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:signpost:r1",
+              "targetText": "signpost",
+              "meaningByLocale": {
+                "ru": "столб с указателями. The signpost is near the lake. — «Столб с указателями рядом с озером». О столбе со стрелками, которые показывают, куда идти.",
+                "uk": "стовп із покажчиками. The signpost is near the lake. — «Стовп із покажчиками поруч з озером». Про стовп зі стрілками, які показують, куди йти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "signpost",
+            "definitionByLocale": {
+              "ru": "столб с указателями. The signpost is near the lake. — «Столб с указателями рядом с озером». О столбе со стрелками, которые показывают, куда идти.",
+              "uk": "стовп із покажчиками. The signpost is near the lake. — «Стовп із покажчиками поруч з озером». Про стовп зі стрілками, які показують, куди йти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує стовп зі стрілками на роздоріжжі, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показує стовп зі стрілками на роздоріжжі, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i02:audio",
+            "transcript": "signpost"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "signpost",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга заблукала на стежці. Скажіть їй повною фразою: покажчик поруч з озером",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга заблукала на стежці. Скажіть їй повною фразою: покажчик поруч з озером",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The signpost is near the lake.",
+          "localizedMeaning": {
+            "ru": "Подруга потерялась на тропинке. Скажите ей полной фразой: указатель рядом с озером",
+            "uk": "Подруга заблукала на стежці. Скажіть їй повною фразою: покажчик поруч з озером"
+          },
+          "orderedTokens": [
+            "The",
+            "signpost",
+            "is",
+            "near",
+            "the",
+            "lake"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга заблукала на стежці. Скажіть їй повною фразою: покажчик поруч з озером",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The signpost is near the lake.`",
+                "uk": "тут потрібно `is` — `The signpost is near the lake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:hedge",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hedge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:hedge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hedge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:hedge:audio",
+            "transcript": "hedge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:hedge:r1",
+              "targetText": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь. The bench is behind the hedge. — «Скамейка за живой изгородью». О густых кустах, которые растут в ряд.",
+                "uk": "живопліт. The bench is behind the hedge. — «Лавка за живоплотом». Про густі кущі, які ростуть у ряд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hedge",
+            "definitionByLocale": {
+              "ru": "живая изгородь. The bench is behind the hedge. — «Скамейка за живой изгородью». О густых кустах, которые растут в ряд.",
+              "uk": "живопліт. The bench is behind the hedge. — «Лавка за живоплотом». Про густі кущі, які ростуть у ряд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i04:r1",
+            "text": "hedge"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i04:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i04:r3",
+            "text": "fence"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Густые кусты, которые растут в ряд, как зелёная стена. Как они называются по-английски?",
+            "uk": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-30:i04:r1",
+              "text": "hedge"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i04:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i04:r3",
+              "text": "fence"
+            }
+          ],
+          "testedDimension": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i04:r2",
+              "correct": false,
+              "testedDimension": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "tree — это одно дерево, а кусты в ряд называются hedge.",
+                "uk": "tree — це одне дерево, а кущі в ряд називаються hedge."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i04:r3",
+              "correct": false,
+              "testedDimension": "Густі кущі, які ростуть у ряд, як зелена стіна. Як вони називаються англійською?",
+              "feedbackByLocale": {
+                "ru": "fence — это забор из досок, а кусты в ряд называются hedge.",
+                "uk": "fence — це паркан із дощок, а кущі в ряд називаються hedge."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i05:r1",
+            "text": "The bench is behind the hedge."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i05:r2",
+            "text": "The bench is near the hedge."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i05:r3",
+            "text": "The benches are behind the hedge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i05:audio",
+            "transcript": "The bench is behind the hedge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:i05:r1",
+              "targetText": "The bench is behind the hedge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i05:r2",
+              "targetText": "The bench is near the hedge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i05:r3",
+              "targetText": "The benches are behind the hedge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `behind` — за изгородью, а в этом варианте `near` — рядом.",
+                "uk": "У записі `behind` — за живоплотом, а в цьому варіанті `near` — поруч."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи скамейка одна (`bench is`), а в этом варианте несколько.",
+                "uk": "У записі лавка одна (`bench is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:shed",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:shed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:shed:audio",
+            "transcript": "shed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:shed:r1",
+              "targetText": "shed",
+              "meaningByLocale": {
+                "ru": "сарай. The bicycles are behind the shed. — «Велосипеды за сараем». О маленьком доме для инструментов в саду.",
+                "uk": "сарай. The bicycles are behind the shed. — «Велосипеди за сараєм». Про маленький будиночок для інструментів у саду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shed",
+            "definitionByLocale": {
+              "ru": "сарай. The bicycles are behind the shed. — «Велосипеды за сараем». О маленьком доме для инструментов в саду.",
+              "uk": "сарай. The bicycles are behind the shed. — «Велосипеди за сараєм». Про маленький будиночок для інструментів у саду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід показує маленький дерев’яний будиночок для інструментів, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i06:audio"
+        ],
+        "accessibilityLabel": "Сусід показує маленький дерев’яний будиночок для інструментів, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i06:audio",
+            "transcript": "shed"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "shed",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i07:audio",
+            "transcript": "The bicycles are behind the shed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bicycles are behind the shed.",
+          "orderedTokens": [
+            "The",
+            "bicycles",
+            "are",
+            "behind",
+            "the",
+            "shed"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The bicycles are behind the shed.`",
+                "uk": "тут потрібно `are` — `The bicycles are behind the shed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:word:pond",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pond",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:word:pond:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pond",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:word:pond:audio",
+            "transcript": "pond"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:word:pond:r1",
+              "targetText": "pond",
+              "meaningByLocale": {
+                "ru": "пруд. The bench is near the pond. — «Скамейка рядом с прудом». О небольшом озере в парке.",
+                "uk": "ставок. The bench is near the pond. — «Лавка поруч зі ставком». Про невелике озеро в парку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pond",
+            "definitionByLocale": {
+              "ru": "пруд. The bench is near the pond. — «Скамейка рядом с прудом». О небольшом озере в парке.",
+              "uk": "ставок. The bench is near the pond. — «Лавка поруч зі ставком». Про невелике озеро в парку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i08:r1",
+            "text": "pond"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r2",
+            "text": "lake"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i08:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Небольшое озеро в парке, где плавают утки. Как оно называется по-английски?",
+            "uk": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-30:i08:r1",
+              "text": "pond"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i08:r2",
+              "text": "lake"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i08:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "lake — это большое озеро, а небольшое озеро в парке называется pond.",
+                "uk": "lake — це велике озеро, а невелике озеро в парку називається pond."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Невелике озеро в парку, де плавають качки. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а небольшое озеро в парке называется pond.",
+                "uk": "bridge — це міст, а невелике озеро в парку називається pond."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає, де присісти. Скажіть їй повною фразою: лавка поруч зі ставком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає, де присісти. Скажіть їй повною фразою: лавка поруч зі ставком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bench is near the pond.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет, где присесть. Скажите ей полной фразой: скамейка рядом с прудом",
+            "uk": "Подруга шукає, де присісти. Скажіть їй повною фразою: лавка поруч зі ставком"
+          },
+          "orderedTokens": [
+            "The",
+            "bench",
+            "is",
+            "near",
+            "the",
+            "pond"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає, де присісти. Скажіть їй повною фразою: лавка поруч зі ставком",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bench is near the pond.`",
+                "uk": "тут потрібно `is` — `The bench is near the pond.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-30:i10:p1",
+              "target": "pond",
+              "meaningByLocale": {
+                "ru": "пруд",
+                "uk": "ставок"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i10:p2",
+              "target": "shed",
+              "meaningByLocale": {
+                "ru": "сарай",
+                "uk": "сарай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i10:p3",
+              "target": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь",
+                "uk": "живопліт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i10:p4",
+              "target": "bridge",
+              "meaningByLocale": {
+                "ru": "мост",
+                "uk": "міст"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pond",
+            "shed",
+            "hedge",
+            "bridge"
+          ],
+          "rightColumn": [
+            "ставок",
+            "сарай",
+            "живопліт",
+            "міст"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i11:r1",
+            "text": "The bin is near the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i11:r2",
+            "text": "The bin is behind the shed."
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i11:r3",
+            "text": "The bins are near the shed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i11:audio",
+            "transcript": "The bin is near the shed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-30:i11:r1",
+              "targetText": "The bin is near the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i11:r2",
+              "targetText": "The bin is behind the shed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i11:r3",
+              "targetText": "The bins are near the shed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `near` — рядом, а в этом варианте `behind` — за.",
+                "uk": "У записі `near` — поруч, а в цьому варіанті `behind` — за."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи урна одна (`bin is`), а в этом варианте несколько.",
+                "uk": "У записі урна одна (`bin is`), а в цьому варіанті кілька."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-30:i12:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-30:i12:r3",
+            "text": "between"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Лестницы с дорожки не видно: она стоит позади сарая. Выберите слово",
+            "uk": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The ladder is ___ the shed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-30:i12:r1",
+              "text": "behind"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i12:r2",
+              "text": "under"
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i12:r3",
+              "text": "between"
+            }
+          ],
+          "testedDimension": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i12:r2",
+              "correct": false,
+              "testedDimension": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "under — «под», а лестница стоит позади сарая: нужно behind.",
+                "uk": "under — «під», а драбина стоїть позаду сараю: потрібно behind."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-30:i12:r3",
+              "correct": false,
+              "testedDimension": "Драбини зі стежки не видно: вона стоїть позаду сараю. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "between — «между двумя местами», а здесь одно место: нужно behind.",
+                "uk": "between — «між двома місцями», а тут одне місце: потрібно behind."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i13:audio",
+            "transcript": "The statue is near the pond."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The statue is near the pond.",
+          "orderedTokens": [
+            "The",
+            "statue",
+            "is",
+            "near",
+            "the",
+            "pond"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The statue is near the pond.`",
+                "uk": "тут потрібно `is` — `The statue is near the pond.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про покажчик. Відповідайте їй: покажчик поруч із мостом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про покажчик. Відповідайте їй: покажчик поруч із мостом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i14:audio",
+            "transcript": "The signpost is near the bridge."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The signpost is near the bridge.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг шукає вхід у двір. Скажіть йому повною фразою: ворота за сараєм",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг шукає вхід у двір. Скажіть йому повною фразою: ворота за сараєм",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The gate is behind the shed.",
+          "localizedMeaning": {
+            "ru": "Друг ищет вход во двор. Скажите ему полной фразой: ворота за сараем",
+            "uk": "Друг шукає вхід у двір. Скажіть йому повною фразою: ворота за сараєм"
+          },
+          "orderedTokens": [
+            "The",
+            "gate",
+            "is",
+            "behind",
+            "the",
+            "shed"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-30:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг шукає вхід у двір. Скажіть йому повною фразою: ворота за сараєм",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The gate is behind the shed.`",
+                "uk": "тут потрібно `is` — `The gate is behind the shed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-30:i16:p1",
+              "target": "signpost",
+              "meaningByLocale": {
+                "ru": "столб с указателями",
+                "uk": "стовп із покажчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i16:p2",
+              "target": "hedge",
+              "meaningByLocale": {
+                "ru": "живая изгородь",
+                "uk": "живопліт"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i16:p3",
+              "target": "shed",
+              "meaningByLocale": {
+                "ru": "сарай",
+                "uk": "сарай"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-30:i16:p4",
+              "target": "pond",
+              "meaningByLocale": {
+                "ru": "пруд",
+                "uk": "ставок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "signpost",
+            "hedge",
+            "shed",
+            "pond"
+          ],
+          "rightColumn": [
+            "стовп із покажчиками",
+            "живопліт",
+            "сарай",
+            "ставок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В іншому саду сусід шукає драбину. Вона за сараєм. Скажіть йому: «Драбина за сараєм»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "В іншому саду сусід шукає драбину. Вона за сараєм. Скажіть йому: «Драбина за сараєм»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-30:i17:audio",
+            "transcript": "The ladder is behind the shed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The ladder is behind the shed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-30:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:word:signpost",
+      "correctText": "signpost",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i02",
+      "correctText": "signpost",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i03",
+      "correctText": "The signpost is near the lake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:word:hedge",
+      "correctText": "hedge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i04",
+      "correctText": "hedge",
+      "correctResponseId": "en:lesson-04:session-30:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i05",
+      "correctText": "The bench is behind the hedge.",
+      "correctResponseId": "en:lesson-04:session-30:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:word:shed",
+      "correctText": "shed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i06",
+      "correctText": "shed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i07",
+      "correctText": "The bicycles are behind the shed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:word:pond",
+      "correctText": "pond",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i08",
+      "correctText": "pond",
+      "correctResponseId": "en:lesson-04:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i09",
+      "correctText": "The bench is near the pond.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i11",
+      "correctText": "The bin is near the shed.",
+      "correctResponseId": "en:lesson-04:session-30:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i12",
+      "correctText": "behind",
+      "correctResponseId": "en:lesson-04:session-30:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i13",
+      "correctText": "The statue is near the pond.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i14",
+      "correctText": "The signpost is near the bridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i15",
+      "correctText": "The gate is behind the shed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-30:i17",
+      "correctText": "The ladder is behind the shed.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-25:i01",
-    "correctText": "He is absent.",
+    "correctText": "en:lesson-04:session-25:i01:p1=sink\nen:lesson-04:session-25:i01:p2=dishwasher\nen:lesson-04:session-25:i01:p3=basement\nen:lesson-04:session-25:i01:p4=bathtub",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:word:sink",
+    "correctText": "sink",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i02",
     "correctText": "sink",
-    "correctResponseId": "en:lesson-04:session-25:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-25:i03",
-    "correctText": "sink",
-    "correctResponseId": "en:lesson-04:session-25:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-25:i04",
-    "correctText": "en:lesson-04:session-25:i04:p1=sink\nen:lesson-04:session-25:i04:p2=absent\nen:lesson-04:session-25:i04:p3=dogs\nen:lesson-04:session-25:i04:p4=berry",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-25:i03",
+    "correctText": "The spoon is in the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:word:dishwasher",
+    "correctText": "dishwasher",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:i04",
+    "correctText": "dishwasher",
+    "correctResponseId": "en:lesson-04:session-25:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-25:i05",
-    "correctText": "The berry is in the sink.",
+    "correctText": "The bottles are in the dishwasher.",
+    "correctResponseId": "en:lesson-04:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:word:basement",
+    "correctText": "basement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i06",
-    "correctText": "The berry is on the table.",
+    "correctText": "basement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i07",
-    "correctText": "The dogs are under the table.",
+    "correctText": "The bicycles are in the basement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-25:word:bathtub",
+    "correctText": "bathtub",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i08",
-    "correctText": "next to",
+    "correctText": "bathtub",
     "correctResponseId": "en:lesson-04:session-25:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-25:i09",
-    "correctText": "The sink is between the tables.",
-    "correctResponseId": "en:lesson-04:session-25:i09:r1"
+    "correctText": "The towel is in the bathtub.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i10",
-    "correctText": "en:lesson-04:session-25:i10:p1=sink\nen:lesson-04:session-25:i10:p2=in\nen:lesson-04:session-25:i10:p3=on\nen:lesson-04:session-25:i10:p4=under",
+    "correctText": "en:lesson-04:session-25:i10:p1=bathtub\nen:lesson-04:session-25:i10:p2=basement\nen:lesson-04:session-25:i10:p3=dishwasher\nen:lesson-04:session-25:i10:p4=towel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i11",
-    "correctText": "The dogs are next to the sink.",
-    "correctResponseId": null
+    "correctText": "The apples are in the sink.",
+    "correctResponseId": "en:lesson-04:session-25:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-25:i12",
-    "correctText": "The berry is under the table.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-25:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-25:i13",
-    "correctText": "He's absent.",
+    "correctText": "The bottle is in the dishwasher.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-25:i14:r1"
+    "correctText": "The cup is in the sink.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i15",
-    "correctText": "The dogs are in the room.",
-    "correctResponseId": "en:lesson-04:session-25:i15:r1"
+    "correctText": "The bottles are in the basement.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i16",
-    "correctText": "en:lesson-04:session-25:i16:p1=sink\nen:lesson-04:session-25:i16:p2=absent\nen:lesson-04:session-25:i16:p3=dogs\nen:lesson-04:session-25:i16:p4=berry",
+    "correctText": "en:lesson-04:session-25:i16:p1=sink\nen:lesson-04:session-25:i16:p2=dishwasher\nen:lesson-04:session-25:i16:p3=basement\nen:lesson-04:session-25:i16:p4=bathtub",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-25:i17",
-    "correctText": "The sink is next to the window.",
+    "correctText": "The bicycle is in the basement.",
     "correctResponseId": null
   }
 ]

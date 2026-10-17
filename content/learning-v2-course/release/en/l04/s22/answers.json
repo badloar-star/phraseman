@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-22:i01",
-    "correctText": "There are some cups.",
+    "correctText": "en:lesson-04:session-22:i01:p1=carrot\nen:lesson-04:session-22:i01:p2=biscuit\nen:lesson-04:session-22:i01:p3=sausage\nen:lesson-04:session-22:i01:p4=plum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-22:word:carrot",
+    "correctText": "carrot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i02",
     "correctText": "carrot",
-    "correctResponseId": "en:lesson-04:session-22:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-22:i03",
-    "correctText": "carrot",
-    "correctResponseId": "en:lesson-04:session-22:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-22:i04",
-    "correctText": "en:lesson-04:session-22:i04:p1=carrot\nen:lesson-04:session-22:i04:p2=complete\nen:lesson-04:session-22:i04:p3=cups\nen:lesson-04:session-22:i04:p4=laundrette",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-22:i03",
+    "correctText": "There aren't any carrots near the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-22:word:biscuit",
+    "correctText": "biscuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-22:i04",
+    "correctText": "biscuit",
+    "correctResponseId": "en:lesson-04:session-22:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-22:i05",
-    "correctText": "This is a carrot.",
+    "correctText": "There aren't any biscuits here.",
+    "correctResponseId": "en:lesson-04:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-22:word:sausage",
+    "correctText": "sausage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i06",
-    "correctText": "Are there any cups here?",
+    "correctText": "sausage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i07",
-    "correctText": "It's complete.",
+    "correctText": "There aren't any sausages here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-22:word:plum",
+    "correctText": "plum",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i08",
-    "correctText": "some",
+    "correctText": "plum",
     "correctResponseId": "en:lesson-04:session-22:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-22:i09",
-    "correctText": "Is there a laundrette?",
-    "correctResponseId": "en:lesson-04:session-22:i09:r1"
+    "correctText": "There aren't any plums near the bowl.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i10",
-    "correctText": "en:lesson-04:session-22:i10:p1=carrot\nen:lesson-04:session-22:i10:p2=carrots\nen:lesson-04:session-22:i10:p3=cups\nen:lesson-04:session-22:i10:p4=complete",
+    "correctText": "en:lesson-04:session-22:i10:p1=plum\nen:lesson-04:session-22:i10:p2=sausage\nen:lesson-04:session-22:i10:p3=carrot\nen:lesson-04:session-22:i10:p4=biscuit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i11",
-    "correctText": "There are some carrots.",
-    "correctResponseId": null
+    "correctText": "No, there aren't.",
+    "correctResponseId": "en:lesson-04:session-22:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-22:i12",
-    "correctText": "Are there any carrots?",
-    "correctResponseId": null
+    "correctText": "any",
+    "correctResponseId": "en:lesson-04:session-22:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-22:i13",
-    "correctText": "Is there a laundrette here?",
+    "correctText": "There aren't any biscuits near the door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i14",
-    "correctText": "Are",
-    "correctResponseId": "en:lesson-04:session-22:i14:r1"
+    "correctText": "There aren't any sausages near the basket.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i15",
-    "correctText": "It is complete.",
-    "correctResponseId": "en:lesson-04:session-22:i15:r1"
+    "correctText": "There aren't any carrots behind the bowl.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i16",
-    "correctText": "en:lesson-04:session-22:i16:p1=carrot\nen:lesson-04:session-22:i16:p2=complete\nen:lesson-04:session-22:i16:p3=cups\nen:lesson-04:session-22:i16:p4=laundrette",
+    "correctText": "en:lesson-04:session-22:i16:p1=biscuit\nen:lesson-04:session-22:i16:p2=plum\nen:lesson-04:session-22:i16:p3=carrot\nen:lesson-04:session-22:i16:p4=sausage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-22:i17",
-    "correctText": "Are there any carrots here?",
+    "correctText": "There aren't any plums here.",
     "correctResponseId": null
   }
 ]

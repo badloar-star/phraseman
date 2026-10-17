@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-17:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-17:i01:p1",
+              "target": "berry",
+              "meaningByLocale": {
+                "ru": "ягода",
+                "uk": "ягода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i01:p2",
+              "target": "container",
+              "meaningByLocale": {
+                "ru": "контейнер для еды",
+                "uk": "контейнер для їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i01:p3",
+              "target": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня",
+                "uk": "вишня, черешня"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i01:p4",
+              "target": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник",
+                "uk": "холодильник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "berry",
+            "container",
+            "cherry",
+            "fridge"
+          ],
+          "rightColumn": [
+            "ягода",
+            "контейнер для еды",
+            "вишня, черешня",
+            "холодильник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:berry",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — berry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:berry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — berry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:berry:audio",
+            "transcript": "berry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:berry:r1",
+              "targetText": "berry",
+              "meaningByLocale": {
+                "ru": "ягода. There are some berries here. — «Здесь есть немного ягод». О мелком сладком плоде, например малине.",
+                "uk": "ягода. There are some berries here. — «Тут є трохи ягід». Про дрібний солодкий плід, наприклад малину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "berry",
+            "definitionByLocale": {
+              "ru": "ягода. There are some berries here. — «Здесь есть немного ягод». О мелком сладком плоде, например малине.",
+              "uk": "ягода. There are some berries here. — «Тут є трохи ягід». Про дрібний солодкий плід, наприклад малину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка достаёт из пакета малину и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Соседка достаёт из пакета малину и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i02:audio",
+            "transcript": "berry"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "berry",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы вернулись с рынка. Скажите соседке полной фразой: рядом с миской есть немного ягод",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вернулись с рынка. Скажите соседке полной фразой: рядом с миской есть немного ягод",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some berries near the bowl.",
+          "localizedMeaning": {
+            "ru": "Вы вернулись с рынка. Скажите соседке полной фразой: рядом с миской есть немного ягод",
+            "uk": "Ви повернулися з ринку. Скажіть сусідці повною фразою: поруч із мискою є трохи ягід"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "berries",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы вернулись с рынка. Скажите соседке полной фразой: рядом с миской есть немного ягод",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some berries near the bowl.`",
+                "uk": "тут потрібно `are` — `There are some berries near the bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:container",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — container",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:container:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — container",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:container:audio",
+            "transcript": "container"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:container:r1",
+              "targetText": "container",
+              "meaningByLocale": {
+                "ru": "контейнер. There are some containers near the door. — «Рядом с дверью есть несколько контейнеров». О коробке с крышкой для еды.",
+                "uk": "контейнер. There are some containers near the door. — «Поруч із дверима є кілька контейнерів». Про коробку з кришкою для їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "container",
+            "definitionByLocale": {
+              "ru": "контейнер. There are some containers near the door. — «Рядом с дверью есть несколько контейнеров». О коробке с крышкой для еды.",
+              "uk": "контейнер. There are some containers near the door. — «Поруч із дверима є кілька контейнерів». Про коробку з кришкою для їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i04:r1",
+            "text": "container"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i04:r2",
+            "text": "bag"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i04:r3",
+            "text": "bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+            "uk": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-17:i04:r1",
+              "text": "container"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i04:r2",
+              "text": "bag"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i04:r3",
+              "text": "bottle"
+            }
+          ],
+          "testedDimension": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i04:r2",
+              "correct": false,
+              "testedDimension": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bag — это сумка, а коробка с крышкой для еды называется container.",
+                "uk": "bag — це сумка, а коробка з кришкою для їжі називається container."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i04:r3",
+              "correct": false,
+              "testedDimension": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bottle — это бутылка, а коробка с крышкой для еды называется container.",
+                "uk": "bottle — це пляшка, а коробка з кришкою для їжі називається container."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сообщение подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i05:r1",
+            "text": "There are some containers here."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i05:r2",
+            "text": "There are some berries here."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i05:r3",
+            "text": "There is a container here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте сообщение подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i05:audio",
+            "transcript": "There are some containers here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:i05:r1",
+              "targetText": "There are some containers here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i05:r2",
+              "targetText": "There are some berries here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i05:r3",
+              "targetText": "There is a container here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение подруги",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `containers`, а в этом варианте про `berries`.",
+                "uk": "У записі говорять про `containers`, а в цьому варіанті про `berries`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сообщение подруги",
+              "feedbackByLocale": {
+                "ru": "В записи несколько контейнеров: `There are some`, а в этом варианте один: `There is a`.",
+                "uk": "У записі кілька контейнерів: `There are some`, а в цьому варіанті один: `There is a`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:cherry",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cherry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:cherry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cherry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:cherry:audio",
+            "transcript": "cherry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:cherry:r1",
+              "targetText": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня. There are some cherries behind the bowl. — «За миской есть несколько вишен». О тёмно-красной ягоде с косточкой.",
+                "uk": "вишня, черешня. There are some cherries behind the bowl. — «За мискою є кілька вишень». Про темно-червону ягоду з кісточкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cherry",
+            "definitionByLocale": {
+              "ru": "вишня, черешня. There are some cherries behind the bowl. — «За миской есть несколько вишен». О тёмно-красной ягоде с косточкой.",
+              "uk": "вишня, черешня. There are some cherries behind the bowl. — «За мискою є кілька вишень». Про темно-червону ягоду з кісточкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает тёмно-красную ягоду с косточкой и называет слово, а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i06:audio"
+        ],
+        "accessibilityLabel": "Брат показывает тёмно-красную ягоду с косточкой и называет слово, а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i06:audio",
+            "transcript": "cherry"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "cherry",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i07:audio",
+            "transcript": "There are some cherries here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some cherries here.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "cherries",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some cherries here.`",
+                "uk": "тут потрібно `are` — `There are some cherries here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:fridge",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fridge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:fridge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fridge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:fridge:audio",
+            "transcript": "fridge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:fridge:r1",
+              "targetText": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник. There are some berries near the fridge. — «Рядом с холодильником есть немного ягод». О шкафе, где продукты остаются холодными.",
+                "uk": "холодильник. There are some berries near the fridge. — «Поруч із холодильником є трохи ягід». Про шафу, де продукти лишаються холодними."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fridge",
+            "definitionByLocale": {
+              "ru": "холодильник. There are some berries near the fridge. — «Рядом с холодильником есть немного ягод». О шкафе, где продукты остаются холодными.",
+              "uk": "холодильник. There are some berries near the fridge. — «Поруч із холодильником є трохи ягід». Про шафу, де продукти лишаються холодними."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i08:r1",
+            "text": "fridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i08:r2",
+            "text": "oven"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i08:r3",
+            "text": "table"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+            "uk": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-17:i08:r1",
+              "text": "fridge"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i08:r2",
+              "text": "oven"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i08:r3",
+              "text": "table"
+            }
+          ],
+          "testedDimension": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "oven — это духовка, где еду готовят горячей, а шкаф для холодных продуктов называется fridge.",
+                "uk": "oven — це духовка, де їжу готують гарячою, а шафа для холодних продуктів називається fridge."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "table — это стол, а шкаф для холодных продуктов называется fridge.",
+                "uk": "table — це стіл, а шафа для холодних продуктів називається fridge."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка ищет ягоды. Скажите ей полной фразой: рядом с холодильником есть немного ягод",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка ищет ягоды. Скажите ей полной фразой: рядом с холодильником есть немного ягод",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some berries near the fridge.",
+          "localizedMeaning": {
+            "ru": "Соседка ищет ягоды. Скажите ей полной фразой: рядом с холодильником есть немного ягод",
+            "uk": "Сусідка шукає ягоди. Скажіть їй повною фразою: поруч із холодильником є трохи ягід"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "berries",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка ищет ягоды. Скажите ей полной фразой: рядом с холодильником есть немного ягод",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some berries near the fridge.`",
+                "uk": "тут потрібно `are` — `There are some berries near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-17:i10:p1",
+              "target": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник",
+                "uk": "холодильник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i10:p2",
+              "target": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня",
+                "uk": "вишня, черешня"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i10:p3",
+              "target": "berry",
+              "meaningByLocale": {
+                "ru": "ягода",
+                "uk": "ягода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i10:p4",
+              "target": "container",
+              "meaningByLocale": {
+                "ru": "контейнер для еды",
+                "uk": "контейнер для їжі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fridge",
+            "cherry",
+            "berry",
+            "container"
+          ],
+          "rightColumn": [
+            "холодильник",
+            "вишня, черешня",
+            "ягода",
+            "контейнер для еды"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i11:r1",
+            "text": "There are some cherries near the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i11:r2",
+            "text": "There are some containers near the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i11:r3",
+            "text": "There is a cherry near the fridge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i11:audio",
+            "transcript": "There are some cherries near the fridge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:i11:r1",
+              "targetText": "There are some cherries near the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i11:r2",
+              "targetText": "There are some containers near the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i11:r3",
+              "targetText": "There is a cherry near the fridge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `cherries`, а в этом варианте про `containers`.",
+                "uk": "У записі говорять про `cherries`, а в цьому варіанті про `containers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи несколько вишен: `There are some cherries`, а в этом варианте один: `There is a cherry`.",
+                "uk": "У записі кілька вишень: `There are some cherries`, а в цьому варіанті один: `There is a cherry`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i12:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+            "uk": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There are ___ cherries here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-17:i12:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово a относится к одному предмету, а вишен несколько: some cherries.",
+                "uk": "Слово a стосується одного предмета, а вишень кілька: some cherries."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже относится к одному предмету, а здесь нужно some cherries.",
+                "uk": "Слово an теж стосується одного предмета, а тут потрібно some cherries."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i13:audio",
+            "transcript": "There are some containers behind the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some containers behind the door.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "containers",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите сообщение",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some containers behind the door.`",
+                "uk": "тут потрібно `are` — `There are some containers behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат ищет вишни. Скажите ему, что за холодильником есть несколько вишен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Брат ищет вишни. Скажите ему, что за холодильником есть несколько вишен",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i14:audio",
+            "transcript": "There are some cherries behind the fridge."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are some cherries behind the fridge.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет коробки для пикника. Скажите ей полной фразой: рядом с корзиной есть несколько контейнеров",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет коробки для пикника. Скажите ей полной фразой: рядом с корзиной есть несколько контейнеров",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some containers near the basket.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет коробки для пикника. Скажите ей полной фразой: рядом с корзиной есть несколько контейнеров",
+            "uk": "Подруга шукає коробки для пікніка. Скажіть їй повною фразою: поруч із кошиком є кілька контейнерів"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "containers",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет коробки для пикника. Скажите ей полной фразой: рядом с корзиной есть несколько контейнеров",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some containers near the basket.`",
+                "uk": "тут потрібно `are` — `There are some containers near the basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-17:i16:p1",
+              "target": "berry",
+              "meaningByLocale": {
+                "ru": "ягода",
+                "uk": "ягода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i16:p2",
+              "target": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня",
+                "uk": "вишня, черешня"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i16:p3",
+              "target": "container",
+              "meaningByLocale": {
+                "ru": "контейнер для еды",
+                "uk": "контейнер для їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i16:p4",
+              "target": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник",
+                "uk": "холодильник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "berry",
+            "cherry",
+            "container",
+            "fridge"
+          ],
+          "rightColumn": [
+            "ягода",
+            "вишня, черешня",
+            "контейнер для еды",
+            "холодильник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, где ягоды. Они лежат за миской. Ответьте ей полной фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, где ягоды. Они лежат за миской. Ответьте ей полной фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i17:audio",
+            "transcript": "There are some berries behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are some berries behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-17:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-17:i01:p1",
+              "target": "berry",
+              "meaningByLocale": {
+                "ru": "ягода",
+                "uk": "ягода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i01:p2",
+              "target": "container",
+              "meaningByLocale": {
+                "ru": "контейнер для еды",
+                "uk": "контейнер для їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i01:p3",
+              "target": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня",
+                "uk": "вишня, черешня"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i01:p4",
+              "target": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник",
+                "uk": "холодильник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "berry",
+            "container",
+            "cherry",
+            "fridge"
+          ],
+          "rightColumn": [
+            "ягода",
+            "контейнер для їжі",
+            "вишня, черешня",
+            "холодильник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:berry",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — berry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:berry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — berry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:berry:audio",
+            "transcript": "berry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:berry:r1",
+              "targetText": "berry",
+              "meaningByLocale": {
+                "ru": "ягода. There are some berries here. — «Здесь есть немного ягод». О мелком сладком плоде, например малине.",
+                "uk": "ягода. There are some berries here. — «Тут є трохи ягід». Про дрібний солодкий плід, наприклад малину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "berry",
+            "definitionByLocale": {
+              "ru": "ягода. There are some berries here. — «Здесь есть немного ягод». О мелком сладком плоде, например малине.",
+              "uk": "ягода. There are some berries here. — «Тут є трохи ягід». Про дрібний солодкий плід, наприклад малину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка дістає з пакета малину й називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Сусідка дістає з пакета малину й називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i02:audio",
+            "transcript": "berry"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "berry",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви повернулися з ринку. Скажіть сусідці повною фразою: поруч із мискою є трохи ягід",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви повернулися з ринку. Скажіть сусідці повною фразою: поруч із мискою є трохи ягід",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some berries near the bowl.",
+          "localizedMeaning": {
+            "ru": "Вы вернулись с рынка. Скажите соседке полной фразой: рядом с миской есть немного ягод",
+            "uk": "Ви повернулися з ринку. Скажіть сусідці повною фразою: поруч із мискою є трохи ягід"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "berries",
+            "near",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви повернулися з ринку. Скажіть сусідці повною фразою: поруч із мискою є трохи ягід",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some berries near the bowl.`",
+                "uk": "тут потрібно `are` — `There are some berries near the bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:container",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — container",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:container:audio"
+        ],
+        "accessibilityLabel": "Картка слова — container",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:container:audio",
+            "transcript": "container"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:container:r1",
+              "targetText": "container",
+              "meaningByLocale": {
+                "ru": "контейнер. There are some containers near the door. — «Рядом с дверью есть несколько контейнеров». О коробке с крышкой для еды.",
+                "uk": "контейнер. There are some containers near the door. — «Поруч із дверима є кілька контейнерів». Про коробку з кришкою для їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "container",
+            "definitionByLocale": {
+              "ru": "контейнер. There are some containers near the door. — «Рядом с дверью есть несколько контейнеров». О коробке с крышкой для еды.",
+              "uk": "контейнер. There are some containers near the door. — «Поруч із дверима є кілька контейнерів». Про коробку з кришкою для їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i04:r1",
+            "text": "container"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i04:r2",
+            "text": "bag"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i04:r3",
+            "text": "bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пластиковая коробка с крышкой, в которой хранят еду. Как она называется по-английски?",
+            "uk": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-17:i04:r1",
+              "text": "container"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i04:r2",
+              "text": "bag"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i04:r3",
+              "text": "bottle"
+            }
+          ],
+          "testedDimension": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i04:r2",
+              "correct": false,
+              "testedDimension": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bag — это сумка, а коробка с крышкой для еды называется container.",
+                "uk": "bag — це сумка, а коробка з кришкою для їжі називається container."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i04:r3",
+              "correct": false,
+              "testedDimension": "Пластикова коробка з кришкою, у якій зберігають їжу. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bottle — это бутылка, а коробка с крышкой для еды называется container.",
+                "uk": "bottle — це пляшка, а коробка з кришкою для їжі називається container."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте повідомлення подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i05:r1",
+            "text": "There are some containers here."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i05:r2",
+            "text": "There are some berries here."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i05:r3",
+            "text": "There is a container here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте повідомлення подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i05:audio",
+            "transcript": "There are some containers here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:i05:r1",
+              "targetText": "There are some containers here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i05:r2",
+              "targetText": "There are some berries here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i05:r3",
+              "targetText": "There is a container here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення подруги",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `containers`, а в этом варианте про `berries`.",
+                "uk": "У записі говорять про `containers`, а в цьому варіанті про `berries`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте повідомлення подруги",
+              "feedbackByLocale": {
+                "ru": "В записи несколько контейнеров: `There are some`, а в этом варианте один: `There is a`.",
+                "uk": "У записі кілька контейнерів: `There are some`, а в цьому варіанті один: `There is a`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:cherry",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cherry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:cherry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cherry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:cherry:audio",
+            "transcript": "cherry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:cherry:r1",
+              "targetText": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня. There are some cherries behind the bowl. — «За миской есть несколько вишен». О тёмно-красной ягоде с косточкой.",
+                "uk": "вишня, черешня. There are some cherries behind the bowl. — «За мискою є кілька вишень». Про темно-червону ягоду з кісточкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cherry",
+            "definitionByLocale": {
+              "ru": "вишня, черешня. There are some cherries behind the bowl. — «За миской есть несколько вишен». О тёмно-красной ягоде с косточкой.",
+              "uk": "вишня, черешня. There are some cherries behind the bowl. — «За мискою є кілька вишень». Про темно-червону ягоду з кісточкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує темно-червону ягоду з кісточкою й називає слово, а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i06:audio"
+        ],
+        "accessibilityLabel": "Брат показує темно-червону ягоду з кісточкою й називає слово, а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i06:audio",
+            "transcript": "cherry"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "cherry",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i07:audio",
+            "transcript": "There are some cherries here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some cherries here.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "cherries",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some cherries here.`",
+                "uk": "тут потрібно `are` — `There are some cherries here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:word:fridge",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fridge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:word:fridge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fridge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:word:fridge:audio",
+            "transcript": "fridge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:word:fridge:r1",
+              "targetText": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник. There are some berries near the fridge. — «Рядом с холодильником есть немного ягод». О шкафе, где продукты остаются холодными.",
+                "uk": "холодильник. There are some berries near the fridge. — «Поруч із холодильником є трохи ягід». Про шафу, де продукти лишаються холодними."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fridge",
+            "definitionByLocale": {
+              "ru": "холодильник. There are some berries near the fridge. — «Рядом с холодильником есть немного ягод». О шкафе, где продукты остаются холодными.",
+              "uk": "холодильник. There are some berries near the fridge. — «Поруч із холодильником є трохи ягід». Про шафу, де продукти лишаються холодними."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i08:r1",
+            "text": "fridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i08:r2",
+            "text": "oven"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i08:r3",
+            "text": "table"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Большой шкаф на кухне, где продукты остаются холодными. Как он называется по-английски?",
+            "uk": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-17:i08:r1",
+              "text": "fridge"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i08:r2",
+              "text": "oven"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i08:r3",
+              "text": "table"
+            }
+          ],
+          "testedDimension": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "oven — это духовка, где еду готовят горячей, а шкаф для холодных продуктов называется fridge.",
+                "uk": "oven — це духовка, де їжу готують гарячою, а шафа для холодних продуктів називається fridge."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Велика шафа на кухні, де продукти лишаються холодними. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "table — это стол, а шкаф для холодных продуктов называется fridge.",
+                "uk": "table — це стіл, а шафа для холодних продуктів називається fridge."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка шукає ягоди. Скажіть їй повною фразою: поруч із холодильником є трохи ягід",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка шукає ягоди. Скажіть їй повною фразою: поруч із холодильником є трохи ягід",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some berries near the fridge.",
+          "localizedMeaning": {
+            "ru": "Соседка ищет ягоды. Скажите ей полной фразой: рядом с холодильником есть немного ягод",
+            "uk": "Сусідка шукає ягоди. Скажіть їй повною фразою: поруч із холодильником є трохи ягід"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "berries",
+            "near",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка шукає ягоди. Скажіть їй повною фразою: поруч із холодильником є трохи ягід",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some berries near the fridge.`",
+                "uk": "тут потрібно `are` — `There are some berries near the fridge.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-17:i10:p1",
+              "target": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник",
+                "uk": "холодильник"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i10:p2",
+              "target": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня",
+                "uk": "вишня, черешня"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i10:p3",
+              "target": "berry",
+              "meaningByLocale": {
+                "ru": "ягода",
+                "uk": "ягода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i10:p4",
+              "target": "container",
+              "meaningByLocale": {
+                "ru": "контейнер для еды",
+                "uk": "контейнер для їжі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fridge",
+            "cherry",
+            "berry",
+            "container"
+          ],
+          "rightColumn": [
+            "холодильник",
+            "вишня, черешня",
+            "ягода",
+            "контейнер для їжі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i11:r1",
+            "text": "There are some cherries near the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i11:r2",
+            "text": "There are some containers near the fridge."
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i11:r3",
+            "text": "There is a cherry near the fridge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i11:audio",
+            "transcript": "There are some cherries near the fridge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-17:i11:r1",
+              "targetText": "There are some cherries near the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i11:r2",
+              "targetText": "There are some containers near the fridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i11:r3",
+              "targetText": "There is a cherry near the fridge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи говорят про `cherries`, а в этом варианте про `containers`.",
+                "uk": "У записі говорять про `cherries`, а в цьому варіанті про `containers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи несколько вишен: `There are some cherries`, а в этом варианте один: `There is a cherry`.",
+                "uk": "У записі кілька вишень: `There are some cherries`, а в цьому варіанті один: `There is a cherry`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-17:i12:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-17:i12:r3",
+            "text": "an"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка просит рассказать про вишни. Их несколько. Дополните фразу",
+            "uk": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There are ___ cherries here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-17:i12:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i12:r3",
+              "text": "an"
+            }
+          ],
+          "testedDimension": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово a относится к одному предмету, а вишен несколько: some cherries.",
+                "uk": "Слово a стосується одного предмета, а вишень кілька: some cherries."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Сусідка просить розповісти про вишні. Їх кілька. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово an тоже относится к одному предмету, а здесь нужно some cherries.",
+                "uk": "Слово an теж стосується одного предмета, а тут потрібно some cherries."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i13:audio",
+            "transcript": "There are some containers behind the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are some containers behind the door.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "containers",
+            "behind",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть повідомлення",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some containers behind the door.`",
+                "uk": "тут потрібно `are` — `There are some containers behind the door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат шукає вишні. Скажіть йому, що за холодильником є кілька вишень",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Брат шукає вишні. Скажіть йому, що за холодильником є кілька вишень",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i14:audio",
+            "transcript": "There are some cherries behind the fridge."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are some cherries behind the fridge.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає коробки для пікніка. Скажіть їй повною фразою: поруч із кошиком є кілька контейнерів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає коробки для пікніка. Скажіть їй повною фразою: поруч із кошиком є кілька контейнерів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are some containers near the basket.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет коробки для пикника. Скажите ей полной фразой: рядом с корзиной есть несколько контейнеров",
+            "uk": "Подруга шукає коробки для пікніка. Скажіть їй повною фразою: поруч із кошиком є кілька контейнерів"
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "some",
+            "containers",
+            "near",
+            "the",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-17:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає коробки для пікніка. Скажіть їй повною фразою: поруч із кошиком є кілька контейнерів",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are some containers near the basket.`",
+                "uk": "тут потрібно `are` — `There are some containers near the basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-17:i16:p1",
+              "target": "berry",
+              "meaningByLocale": {
+                "ru": "ягода",
+                "uk": "ягода"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i16:p2",
+              "target": "cherry",
+              "meaningByLocale": {
+                "ru": "вишня, черешня",
+                "uk": "вишня, черешня"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i16:p3",
+              "target": "container",
+              "meaningByLocale": {
+                "ru": "контейнер для еды",
+                "uk": "контейнер для їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-17:i16:p4",
+              "target": "fridge",
+              "meaningByLocale": {
+                "ru": "холодильник",
+                "uk": "холодильник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "berry",
+            "cherry",
+            "container",
+            "fridge"
+          ],
+          "rightColumn": [
+            "ягода",
+            "вишня, черешня",
+            "контейнер для їжі",
+            "холодильник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-17:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, де ягоди. Вони лежать за мискою. Відповідайте їй повною фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, де ягоди. Вони лежать за мискою. Відповідайте їй повною фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-17:i17:audio",
+            "transcript": "There are some berries behind the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are some berries behind the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-17:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:word:berry",
+      "correctText": "berry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i02",
+      "correctText": "berry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i03",
+      "correctText": "There are some berries near the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:word:container",
+      "correctText": "container",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i04",
+      "correctText": "container",
+      "correctResponseId": "en:lesson-04:session-17:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i05",
+      "correctText": "There are some containers here.",
+      "correctResponseId": "en:lesson-04:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:word:cherry",
+      "correctText": "cherry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i06",
+      "correctText": "cherry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i07",
+      "correctText": "There are some cherries here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:word:fridge",
+      "correctText": "fridge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i08",
+      "correctText": "fridge",
+      "correctResponseId": "en:lesson-04:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i09",
+      "correctText": "There are some berries near the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i11",
+      "correctText": "There are some cherries near the fridge.",
+      "correctResponseId": "en:lesson-04:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i12",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-04:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i13",
+      "correctText": "There are some containers behind the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i14",
+      "correctText": "There are some cherries behind the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i15",
+      "correctText": "There are some containers near the basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-17:i17",
+      "correctText": "There are some berries behind the bowl.",
+      "correctResponseId": null
+    }
+  ]
+}

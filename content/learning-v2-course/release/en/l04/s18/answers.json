@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-18:i01",
-    "correctText": "This is a hotel.",
+    "correctText": "en:lesson-04:session-18:i01:p1=milk\nen:lesson-04:session-18:i01:p2=bread\nen:lesson-04:session-18:i01:p3=butter\nen:lesson-04:session-18:i01:p4=sugar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:word:milk",
+    "correctText": "milk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i02",
     "correctText": "milk",
-    "correctResponseId": "en:lesson-04:session-18:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-18:i03",
-    "correctText": "milk",
-    "correctResponseId": "en:lesson-04:session-18:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-18:i04",
-    "correctText": "en:lesson-04:session-18:i04:p1=milk\nen:lesson-04:session-18:i04:p2=unwell\nen:lesson-04:session-18:i04:p3=boxes\nen:lesson-04:session-18:i04:p4=hotel",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-18:i03",
+    "correctText": "There is some milk near the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:word:bread",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i04",
+    "correctText": "bread",
+    "correctResponseId": "en:lesson-04:session-18:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-18:i05",
-    "correctText": "There is some milk.",
+    "correctText": "There is some bread here.",
+    "correctResponseId": "en:lesson-04:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:word:butter",
+    "correctText": "butter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i06",
-    "correctText": "There are some boxes here.",
+    "correctText": "butter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i07",
-    "correctText": "He's unwell.",
+    "correctText": "There is some butter here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:word:sugar",
+    "correctText": "sugar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i08",
-    "correctText": "is",
+    "correctText": "sugar",
     "correctResponseId": "en:lesson-04:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-18:i09",
-    "correctText": "Are there any boxes?",
-    "correctResponseId": "en:lesson-04:session-18:i09:r1"
+    "correctText": "There is some sugar near the cup.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i10",
-    "correctText": "en:lesson-04:session-18:i10:p1=milk\nen:lesson-04:session-18:i10:p2=boxes\nen:lesson-04:session-18:i10:p3=hotel\nen:lesson-04:session-18:i10:p4=unwell",
+    "correctText": "en:lesson-04:session-18:i10:p1=sugar\nen:lesson-04:session-18:i10:p2=milk\nen:lesson-04:session-18:i10:p3=butter\nen:lesson-04:session-18:i10:p4=bread",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i11",
-    "correctText": "Is there any milk?",
-    "correctResponseId": null
+    "correctText": "There is some milk near the bowl.",
+    "correctResponseId": "en:lesson-04:session-18:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-18:i12",
-    "correctText": "Are there any boxes here?",
-    "correctResponseId": null
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-18:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-18:i13",
-    "correctText": "There is some milk there.",
+    "correctText": "There is some bread behind the door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i14",
-    "correctText": "Is",
-    "correctResponseId": "en:lesson-04:session-18:i14:r1"
+    "correctText": "There is some sugar behind the box.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i15",
-    "correctText": "He is unwell.",
-    "correctResponseId": "en:lesson-04:session-18:i15:r1"
+    "correctText": "There is some butter near the basket.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i16",
-    "correctText": "en:lesson-04:session-18:i16:p1=milk\nen:lesson-04:session-18:i16:p2=unwell\nen:lesson-04:session-18:i16:p3=boxes\nen:lesson-04:session-18:i16:p4=hotel",
+    "correctText": "en:lesson-04:session-18:i16:p1=bread\nen:lesson-04:session-18:i16:p2=sugar\nen:lesson-04:session-18:i16:p3=milk\nen:lesson-04:session-18:i16:p4=butter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-18:i17",
-    "correctText": "Is there any milk here?",
+    "correctText": "There is some milk behind the bowl.",
     "correctResponseId": null
   }
 ]

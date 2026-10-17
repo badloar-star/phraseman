@@ -24,7 +24,7 @@ Owner: 5 · АВТОРИЗАЦИЯ
 
 functions/src/auth_recovery.ts:
 1. Снять проверку `request.app` в двух помощниках сессии (пломба App Check владельца).
-2. `consumeRecoveryCallerRate` — окно 1 ч: ≤ 15 вызовов на uid вызывающего и ≤ 30 на IP по всем функциям восстановления
+2. `consumeRecoveryCallerRate` — окно 1 ч: ≤ 10 вызовов на uid вызывающего и ≤ 30 на IP; ставится в authRequestRecoveryCode ПЕРЕД отправкой письма (чистая установка уже имеет корзины requester/email/pair)
    (документы `caller_uid_<sha256>` / `caller_ip_<sha256>` в уже закрытой правилами коллекции auth_recovery_rate_limits —
    новой коллекции и правок firestore.rules нет). Превышение → resource-exhausted `recovery_caller_rate_limited`.
 3. Логи [AUTH-RECOVERY] на каждом решении лимита (без uid/IP в открытом виде).
@@ -51,3 +51,13 @@ stableId и попытки кода. Хэши вместо uid/IP. Ревизо�
 ## Rollback
 
 Обратный собственный патч; прод не меняется до деплоя.
+
+## Итог 17.10 21:01 — 40ad95e86 (в прод НЕ выкладывалось)
+
+Тесты auth_recovery + app_check_sealed 140/140 (2 прежних «требует App Check» перевёрнуты, +4 теста лимита), типы
+functions 0 ошибок. Лимит без транзакции (гонка даёт максимум +1, фазы основной транзакции не сдвигаются).
+Деплой (утром словом владельца, адресно): authRequestRecoveryCode, authConfirmRecoveryCode,
+authRequestCleanInstallRecoveryCode, authConfirmCleanInstallRecoveryCode, authIssueRecoveryHandoffToken,
+authCompleteRecoveryHandoff. firestore.rules не менялись. Ревизору на security-review — сообщение не доставлено (разные
+режимы разрешений сессий). Вопросы ему: (а) нужен ли лимит вызывающего и на confirm; (б) при срабатывании лимита после
+создания кода код остаётся active без письма.

@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-28:word:correct",
+    "correctText": "correct",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:word:certain",
+    "correctText": "certain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:word:punctual",
+    "correctText": "punctual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:word:strict",
+    "correctText": "strict",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-28:i01",
     "correctText": "It is correct.",
     "correctResponseId": null
@@ -11,12 +31,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-28:i03",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-01:session-28:i03:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i04",
-    "correctText": "en:lesson-01:session-28:i04:p1=correct\nen:lesson-01:session-28:i04:p2=certain\nen:lesson-01:session-28:i04:p3=serious\nen:lesson-01:session-28:i04:p4=prepared",
+    "correctText": "en:lesson-01:session-28:i04:p1=correct\nen:lesson-01:session-28:i04:p2=certain\nen:lesson-01:session-28:i04:p3=punctual\nen:lesson-01:session-28:i04:p4=strict",
     "correctResponseId": null
   },
   {
@@ -31,12 +51,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-28:i07",
-    "correctText": "I am certain.",
+    "correctText": "I am punctual.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i08",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-28:i08:r1"
   },
   {
@@ -46,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-28:i10",
-    "correctText": "en:lesson-01:session-28:i10:p1=awake\nen:lesson-01:session-28:i10:p2=asleep\nen:lesson-01:session-28:i10:p3=available\nen:lesson-01:session-28:i10:p4=lost",
+    "correctText": "en:lesson-01:session-28:i10:p1=serious\nen:lesson-01:session-28:i10:p2=careful\nen:lesson-01:session-28:i10:p3=prepared\nen:lesson-01:session-28:i10:p4=awake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i11",
-    "correctText": "They are certain.",
+    "correctText": "He is punctual.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-28:i15",
-    "correctText": "We are prepared.",
+    "correctText": "He is strict.",
     "correctResponseId": "en:lesson-01:session-28:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-28:i16",
-    "correctText": "en:lesson-01:session-28:i16:p1=careful\nen:lesson-01:session-28:i16:p2=correct\nen:lesson-01:session-28:i16:p3=certain\nen:lesson-01:session-28:i16:p4=serious",
+    "correctText": "en:lesson-01:session-28:i16:p1=strict\nen:lesson-01:session-28:i16:p2=punctual\nen:lesson-01:session-28:i16:p3=certain\nen:lesson-01:session-28:i16:p4=serious",
     "correctResponseId": null
   },
   {

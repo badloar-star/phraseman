@@ -175,7 +175,7 @@ const TABS = {
   it: [ALL_TABS[0], ['cardsT', 'Карточки'], ALL_TABS[2], ALL_TABS[3], ALL_TABS[4]],
 };
 const TILE = { lessons: ['book_stack', 'Уроки'], dialogs: ['chat_bubbles', 'Диалоги'], cards: ['notecard_stack', 'Карточки'] };
-const TASK = { lesson: ['Пройти урок', '', 1], dialog: ['Потренировать диалог', '', 1], cards: ['Повторить карточки', 'Не менее 10 слов', 10], video: ['Посмотреть видео', '', 1], mistakes: ['Исправить ошибки', '', 5], spire: ['Пройти ступени Пика', '', 3] };
+const TASK = { lesson: ['Пройти урок', '', 1], dialog: ['Потренировать диалог', '', 1], cards: ['Повторить карточки', 'Не менее 10 слов', 10], video: ['Посмотреть видео', '', 10], mistakes: ['Исправить ошибки', '', 5], spire: ['Пройти ступени Пика', '', 3] };
 const tk = (k, p, sub) => ({ k, t: TASK[k][0], s: sub ?? TASK[k][1], p, n: TASK[k][2], done: p >= TASK[k][2] });
 const LESSON = 'Местоимения и глагол To Be';
 const SC = {

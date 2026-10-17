@@ -78,6 +78,12 @@
 .sh .cnt i { width: 7px; height: 7px; border-radius: 4px; background: var(--acc); display: inline-block; }
 .sh .cnt i.off { background: var(--sec); opacity: .35; }
 .sh .bcta { margin-top: 20px; }
+/* зачем (53d0f8288): низкий экран 360×640 и шрифт ×1,3 — шторка не выше 92 %, текст в прокрутке, кнопки закреплены */
+.ph.lo { width: 360px; height: 640px; }
+.ph.lo .sh { max-height: 92%; display: flex; flex-direction: column; }
+.ph.lo .sh .scrl { flex: 0 1 auto; min-height: 0; overflow: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+.ph.lo .sh .h { font-size: 28px; line-height: 35px; } .ph.lo .sh .p { font-size: 21px; line-height: 29px; }
+.ph.lo .sh .cnt { height: 40px; font-size: 17px; } .ph.lo .sh .bcta, .ph.lo .sh .ghost { flex: none; font-size: 20px; }
 
 /* вариант 2: плашка на вступлении — тон акцента, без обводки и без тревожного цвета; встаёт под полоски страниц */
 .vp { margin-top: 16px; border-radius: 20px; background: var(--acc-soft); padding: 14px; display: flex; gap: 12px; }
@@ -129,6 +135,15 @@ const sheet = (th) => theme(th, phone(intro(), { time: '9:41', fixed: fixedNext,
     <div class="bcta t">Попробовать Plus</div>
     <div class="ghost t">Начать всё равно</div></div>` }));
 
+// ── вариант 1 на низком экране с крупным шрифтом (53d0f8288): текст в прокрутке, кнопки всегда достижимы
+const sheetScroll = (th) => theme(th, phone(intro(), { time: '9:41', fixed: fixedNext, overlay: `<div class="scrim"></div>
+  <div class="sh"><div class="gr"></div><div class="scrl">${mic(LEFT, true)}
+    <div class="h">Голоса на всё занятие не хватит</div>
+    <div class="p">${msg}</div>
+    <div class="cnt"><i></i><i></i><i class="off"></i>Голос на сегодня · ${LEFT} из 3</div></div>
+    <div class="bcta t">Попробовать Plus</div>
+    <div class="ghost t">Начать всё равно</div></div>` })).replace(`class="ph ${th}"`, `class="ph ${th} lo"`);
+
 // ── вариант 2: плашка на самом вступлении, под полосками страниц; «Начать всё равно» прячет плашку
 const plate = (th) => theme(th, phone(intro({ plate: `<div class="vp">${mic(LEFT)}<div><div class="vtx">${msg}</div>
     <div class="bb"><span class="vbtn pri t">Попробовать Plus</span><span class="vbtn vsec t">Начать всё равно</span></div></div></div>` }), { time: '9:41', fixed: fixedNext }));
@@ -137,7 +152,9 @@ document.getElementById('root').innerHTML =
   block('sheet', 'Вариант 1 — шторка снизу', `Поверх вступления занятия, до первого задания. В занятии ${N_VOICE} задания с голосом, осталось ${LEFT} попытки из общего дневного лимита. Главная кнопка — «Попробовать Plus», под ней тихое «Начать всё равно»: человек не заперт. Свайп вниз = «Начать всё равно». Счётчик «${LEFT} из 3» — тот же, что цифра на всех микрофонах.`, [
     col('Шторка · «Сумерки»', sheet('th-ink')), col('Шторка · «Океан»', sheet('th-marine'))]) +
   block('plate', 'Вариант 2 — плашка на вступлении', 'Без окна: плашка тоном акцента (без обводки и без красного) встаёт под полоски страниц, вступление читается дальше. «Попробовать Plus» — маленькая тёмная кнопка, «Начать всё равно» — светлая рядом, тап прячет плашку. «Дальше» внизу работает как обычно.', [
-    col('Плашка · «Сумерки»', plate('th-ink')), col('Плашка · «Океан»', plate('th-marine'))]);
+    col('Плашка · «Сумерки»', plate('th-ink')), col('Плашка · «Океан»', plate('th-marine'))]) +
+  block('sheet-scroll', 'Вариант 1 — низкий экран и крупный шрифт (53d0f8288)', 'Шторка не выше 92 % экрана: текст уходит в прокрутку (без полосы, мягко тает к кнопкам), «Попробовать Plus» и «Начать всё равно» всегда на месте над нижней безопасной зоной.', [
+    col('Шторка · крупный шрифт, 360×640 · «Сумерки»', sheetScroll('th-ink'))]);
 K.init();
 </script>
 </body>

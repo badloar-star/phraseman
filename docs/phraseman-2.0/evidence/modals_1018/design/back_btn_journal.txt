@@ -1,0 +1,4 @@
+10-17 23:46:03.469 I/ReactNativeJS( 6288): [BACK-BTN] tap {"seq":1,"screen":"v2_map","handler":"header_back_button","page":"v2","isRetainedTab":true,"initialPage":"lessons","canGoBack":true,"v2CanOpen":true}
+10-17 23:46:03.472 I/ReactNativeJS( 6288): [BACK-BTN] decision {"seq":1,"screen":"v2_map","decision":"tab_v2_map → goHome","ms":6}
+10-17 23:46:03.483 I/ReactNativeJS( 6288): [BACK-BTN] interactions-free {"seq":1,"screen":"v2_map","ms":17}
+10-17 23:46:03.906 I/ReactNativeJS( 6288): [BACK-BTN] arrived {"seq":1,"tapScreen":"v2_map","handler":"header_back_button","arrivedAt":"lessons_tab","via":"tab_hidden","ms":439}

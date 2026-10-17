@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний отчёт 18.10</title>
+<!-- зачем (владелец 17.10 через координатора): утренний отчёт «по всему абсолютно» — одна страница, человеческими словами,
+     каждый пункт со статусом и хешем, решения владельцу — отдельным блоком. Стиль 2.0: тёмный, Inter, плашки тоном и тенью. -->
+<style>
+:root { --bg: #0B0B0D; --plate: #161618; --raised: #1E1E21; --tx: #F4F4F6; --sec: #A9A9B0; --mu: #75757C; --line: rgba(255,255,255,.07);
+  --ok: #6FD08C; --ok-s: rgba(111,208,140,.13); --wip: #F0C551; --wip-s: rgba(240,197,81,.13); --red: #F2766B; --red-s: rgba(242,118,107,.13);
+  --own: #9C8CFF; --own-s: rgba(156,140,255,.15); --sh: 0 16px 28px -14px rgba(0,0,0,.75); }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--tx); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 32px 16px 80px; }
+h1 { font-size: 34px; line-height: 40px; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
+.lead { color: var(--sec); margin: 8px 0 0; max-width: 70ch; }
+nav { position: sticky; top: 0; z-index: 2; display: flex; gap: 8px; overflow-x: auto; padding: 14px 0; margin: 18px 0 8px; background: linear-gradient(var(--bg) 75%, transparent); scrollbar-width: none; }
+nav a { flex: none; color: var(--tx); text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 18px; background: var(--plate); box-shadow: var(--sh); }
+section { margin-top: 40px; scroll-margin-top: 70px; }
+h2 { font-size: 24px; line-height: 30px; margin: 0 0 6px; letter-spacing: -.3px; }
+h2 .n { color: var(--mu); font-weight: 600; margin-right: 8px; }
+.sub { color: var(--sec); margin: 0 0 16px; font-size: 15px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 22px; }
+.kpi { background: var(--plate); border-radius: 18px; padding: 14px 16px; box-shadow: var(--sh); }
+.kpi b { display: block; font-size: 26px; line-height: 32px; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--sec); font-size: 14px; }
+.list { display: flex; flex-direction: column; gap: 8px; }
+.it { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: start; background: var(--plate); border-radius: 16px; padding: 12px 14px; box-shadow: var(--sh); }
+.it .id { color: var(--mu); font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 2px; }
+.it .t { font-weight: 600; }
+.it .d { color: var(--sec); font-size: 14px; margin-top: 2px; }
+.it code, .hash { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--sec); }
+.st { white-space: nowrap; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
+.st.ok { color: var(--ok); background: var(--ok-s); } .st.wip { color: var(--wip); background: var(--wip-s); }
+.st.red { color: var(--red); background: var(--red-s); } .st.own { color: var(--own); background: var(--own-s); }
+.card { background: var(--plate); border-radius: 20px; padding: 18px 20px; box-shadow: var(--sh); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--sec); font-weight: 600; font-size: 13px; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.total td { font-weight: 700; border-bottom: none; }
+.tbl { overflow-x: auto; background: var(--plate); border-radius: 20px; box-shadow: var(--sh); }
+.bar { height: 10px; border-radius: 5px; background: var(--raised); overflow: hidden; margin-top: 10px; }
+.bar i { display: block; height: 100%; border-radius: 5px; background: var(--ok); }
+.bar i.b { background: #5CCFEB; }
+.dec { display: flex; flex-direction: column; gap: 10px; }
+.dec .card h3 { margin: 0; font-size: 18px; line-height: 24px; }
+.dec .card p { margin: 6px 0 0; color: var(--sec); font-size: 15px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.opts span { font-size: 14px; font-weight: 600; padding: 7px 12px; border-radius: 14px; background: var(--raised); }
+.opts span.rec { background: var(--own-s); color: var(--own); }
+.thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.thumbs a { display: block; border-radius: 12px; overflow: hidden; background: var(--raised); }
+.thumbs img { display: block; width: 100%; height: 120px; object-fit: cover; object-position: top left; }
+.thumbs figcaption { font-size: 13px; color: var(--sec); padding: 6px 8px; }
+.wait { border-radius: 20px; padding: 28px 20px; text-align: center; color: var(--sec); background: var(--plate); box-shadow: var(--sh); }
+ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk li b { color: var(--tx); }
+.foot { margin-top: 48px; color: var(--mu); font-size: 13px; }
+@media (max-width: 560px) { .it { grid-template-columns: 44px 1fr; } .it .st { grid-column: 2; justify-self: start; margin-top: 6px; } h1 { font-size: 28px; line-height: 34px; } .thumbs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Утренний отчёт&nbsp;· 18&nbsp;октября</h1>
+  <p class="lead">Всё, что сделано за 17.10, что ещё в работе, сколько стоит сервер и какие решения нужны от вас сегодня. Статусы: <span class="st ok">готово</span> <span class="st wip">в работе</span> <span class="st red">мешает сборке</span> <span class="st own">ждёт вашего решения</span></p>
+
+  <div class="kpis">
+    <div class="kpi"><b>17 из 32</b><span>задач дня готово</span></div>
+    <div class="kpi"><b>205</b><span>занятий нового курса открыто</span></div>
+    <div class="kpi"><b>84 из 441</b><span>занятий переписано</span></div>
+    <div class="kpi"><b>≈&nbsp;62&nbsp;€ → ≈&nbsp;50&nbsp;€</b><span>сервер в месяц, дальше цель ≈ 6–9 €</span></div>
+    <div class="kpi"><b>6</b><span>решений ждут вас</span></div>
+  </div>
+
+  <nav aria-label="Разделы">
+    <a href="#done">1 · Сделано</a><a href="#modals">2 · Анимированные окна</a><a href="#course">3 · Новый курс</a><a href="#cost">4 · Расходы</a><a href="#decide">5 · Ваши решения</a><a href="#left">6 · Осталось и риски</a>
+  </nav>
+
+  <!-- ─────────────────────────── 1 ─────────────────────────── -->
+  <section id="done">
+    <h2><span class="n">1</span>Что сделано за 17.10</h2>
+    <p class="sub">Задачи R79–R110 из журнала выпуска. Хеш — номер изменения в коде, по нему всё находится.</p>
+    <div class="list">
+      <div class="it"><span class="id">R79</span><div><div class="t">Новый курс открыт целиком</div><div class="d">Все 8 уроков в каталоге (441 занятие), человеку доступно 205; звук для них есть и проверен. <code>9543b98c2</code> <code>2d7da68ad</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R80</span><div><div class="t">Вкладка «Обучение» открывает новые уроки</div><div class="d">Старые уроки — отдельной кнопкой на месте «Новые уроки». Кадры Сверки — в работе. <code>98f738846</code> <code>c92f7585d</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R81</span><div><div class="t">Кольца с монетой ушли с Главной</div><div class="d">На Главной — просто задания дня; кольцо заполняется на экране «Сегодня» («Смотреть все»). <code>8b41a51b7</code> <code>c9a5ca93d</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R82</span><div><div class="t">Предупреждение о голосовом лимите при старте занятия</div><div class="d">Шторка снизу, как вы выбрали: «голоса на всё занятие не хватит», с Plus — без лимита. <code>eb0cf55d1</code> <code>1c2823b95</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R83</span><div><div class="t">Кнопка «Объяснить» (ИИ-разбор ошибки) убрана</div><div class="d">Вариантов перевода пока не добавляли — как договорились. <code>7a40c6921</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R84</span><div><div class="t">Расходы сервера: первые три шага</div><div class="d">Джарвис выключен, 82 ненужные функции удалены (с копиями), фоновым функциям — доля ядра. Подробно — раздел 4. <code>fd15b3a00</code> <code>ff4c18772</code> <code>4d53d8c52</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R85</span><div><div class="t">Ник гостя больше не создаётся дважды</div><div class="d">Минус лишний вызов сервера на каждом новом госте. <code>5e910033a</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R86</span><div><div class="t">Окно «Пропуск основателя» удалено полностью</div><div class="d"><code>31c521702</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R87</span><div><div class="t">Пик: проверили, хватает ли времени на задания</div><div class="d">Не хватало уже с первого этажа, лига на время не влияла. Внедрение — R97. <code>33e89b88e</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R88</span><div><div class="t">Пик открывается сразу</div><div class="d">Берёт данные из памяти телефона, сервер догоняет фоном; Пику вернули полное ядро сервера после вашей жалобы на скорость. <code>3402bc5f0</code> <code>fef378a62</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R89</span><div><div class="t">Иконки уроков и глав нового курса + свой узор у каждой главы</div><div class="d">Уроки 1–8, у главы — открыта / пройдена / закрыта. Кадры Сверки — в работе. <code>16566bd7d</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R90</span><div><div class="t">Карточка «Продолжить: последнее место» на Главной</div><div class="d">Занятие, классический урок, диалог или набор карточек — где остановились. <code>719e4c771</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R91</span><div><div class="t">Размытый текст во вступлении занятия</div><div class="d">Поставлены подробные журналы, причина ищется по ним. <code>37f546656</code></div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R92</span><div><div class="t">Новый курс — только там, где для языка интерфейса есть тексты</div><div class="d">В работе у Ядра.</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R93</span><div><div class="t">Переписывание занятий нового курса</div><div class="d">84 из 441: урок 1 целиком, урок 2 — по 28-е. Заморозка для сборки — 18.10 08:00. Подробно — раздел 3.</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R94</span><div><div class="t">Кнопка «назад» — ваш значок везде</div><div class="d">Все экраны переведены на общий значок; проверка Сверкой — в работе. <code>37f546656</code> <code>89a360603</code> <code>8317a2ffc</code> <code>3b742cb2d</code> <code>b57613ea1</code></div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R95</span><div><div class="t">Английский язык интерфейса</div><div class="d">Шпаргалки и заголовки переведены, «навсегда» про Plus убрано; в список языков ещё не открыт. <code>31fa965f7</code> <code>e380c2107</code> <code>c409ac0f8</code></div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R96</span><div><div class="t">Справка по уведомлениям: что уходит, когда, какие тексты</div><div class="d">В работе у Ядра.</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R97</span><div><div class="t">Пик: щедрее время и все пары на одном экране</div><div class="d">Время = «комфортно» × лига × этаж (лига 1, этаж 1: выбор ответа ≈ 20 с); поле пар — две колонки. <code>cf8df70c3</code> <code>8ab7d49e0</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R98</span><div><div class="t">Все анимированные окна — проход Сверки</div><div class="d">Таблица к 07:00 — раздел 2.</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R99</span><div><div class="t">Расходы сервера −99 %</div><div class="d">План готов; полный перевыклад функций — после выхода версии в сторы, как вы сказали вечером.</div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R100</span><div><div class="t">Друзья: заявка видна сразу, поиск находит новый ник быстро</div><div class="d">Починка заявок есть; прогон Сверкой — в работе. <code>834cced52</code></div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R101</span><div><div class="t">«Объяснить» убрано и из урока, и из хаба ошибок</div><div class="d">«Почему так» в Диалогах — другая функция, оставлена до вашего решения. <code>7d5db3c80</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R102</span><div><div class="t">«Аккаунт» после входа сразу показывает имя</div><div class="d">Раньше было «Не задано» до перезапуска. <code>a1c103a44</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R103</span><div><div class="t">4 функции на сервер до релиза</div><div class="d">Решение — раздел 5.</div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R104</span><div><div class="t">Пик: все пары на одном экране</div><div class="d"><code>8ab7d49e0</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R105</span><div><div class="t">Выкладка сайта и политики</div><div class="d">Подготовлена из чистой копии, пробный прогон прошёл. Решение — раздел 5. <code>e3c6aaf04</code></div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R106</span><div><div class="t">«Посмотреть видео» засчитывается после 10 минут</div><div class="d">Подписи «хотя бы минуту» нет; счёт минут не теряется при перезапуске. <code>715073062</code> <code>33cee2830</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R107</span><div><div class="t">Новые опросы, несколько в день</div><div class="d">Набор из 36 вопросов готов, старые не удаляются. Решение — раздел 5. <code>1b3e47a38</code></div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R108</span><div><div class="t">Главная: 4 плитки — Уроки, Диалоги, Карточки, Пик</div><div class="d">Три варианта на выбор; пока вы не выбрали, в коде делается вариант (в). <code>d5913e0f5</code></div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R109</span><div><div class="t">Карточки: число справа от иконки</div><div class="d">Эталон готов, «6 наборов» → «6»; в коде — в работе. <code>2ad48d298</code></div></div><span class="st wip">в работе</span></div>
+      <div class="it"><span class="id">R110</span><div><div class="t">Админка: автоназвание набора из видео</div><div class="d">После опросов; серверная часть — только с вашего «да».</div></div><span class="st wip">в работе</span></div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 2 ─────────────────────────── -->
+  <section id="modals">
+    <h2><span class="n">2</span>Анимированные окна</h2>
+    <p class="sub">Проход Сверки по всем анимированным окнам: кадр, ✅ или 🔴 и что не так.</p>
+    <!-- зачем: раздел заполняется из docs/phraseman-2.0/evidence/modals_1018/README.md, когда Сверка его закоммитит (≈ 07:00) -->
+    <div class="wait" id="modals-wait">Таблица Сверки будет здесь к ≈ 07:00 — кадры миниатюрами, ✅/🔴 и что не так.</div>
+  </section>
+
+  <!-- ─────────────────────────── 3 ─────────────────────────── -->
+  <section id="course">
+    <h2><span class="n">3</span>Новый курс</h2>
+    <p class="sub">Английский, 8 уроков по 56 занятий; тексты — на русском и украинском.</p>
+    <div class="grid2">
+      <div class="card">
+        <div style="font-weight:700">Открыто людям</div>
+        <div style="font-size:30px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums">205 <span style="font-size:16px;color:var(--sec);font-weight:600">из 441 в каталоге</span></div>
+        <div class="bar" aria-hidden="true"><i class="b" style="width:46.5%"></i></div>
+        <p class="sub" style="margin:10px 0 0">Было 15 занятий — подняли до 205 по вашему слову 17.10. Звук есть у всех 441: машинная проверка нашла 4 мелких замечания. <span class="hash">9543b98c2 · 648f2ec14</span></p>
+      </div>
+      <div class="card">
+        <div style="font-weight:700">Переписано по правилу 16.10</div>
+        <div style="font-size:30px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums">84 <span style="font-size:16px;color:var(--sec);font-weight:600">из 441</span></div>
+        <div class="bar" aria-hidden="true"><i style="width:19%"></i></div>
+        <p class="sub" style="margin:10px 0 0">Урок 1 — все 56; урок 2 — с 1-го по 28-е. В каждом: 4 новых слова с карточкой прямо перед заданием, три разных вступления, озвучка. <span class="hash">19c4ec903 · a1ab0dd90 · f7ba42125</span></p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div style="font-weight:700">Что дальше</div>
+      <ul class="risk" style="margin-top:6px;color:var(--sec)">
+        <li>Урок 2 с 29-го, затем уроки 3–8. Помощник Codex в лимите до 22.10 — темп ниже обычного.</li>
+        <li>Заморозка текстов для сборки — 18.10 08:00: что не переписано к этому часу, уходит в версии до правки.</li>
+        <li>Перевод нового курса на остальные 7 языков приложения — ваше решение (раздел 5).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 4 ─────────────────────────── -->
+  <section id="cost">
+    <h2><span class="n">4</span>Расходы сервера</h2>
+    <p class="sub">Цифры по реальному серверу за 7 суток, расчёт по публичным тарифам (±20 %).</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Статья</th><th>Было, $/мес</th><th>Стало после 17.10</th><th>Цель после релиза</th></tr></thead>
+        <tbody>
+          <tr><td>Время работы функций (процессор)</td><td class="num">≈ 35</td><td class="num">≈ 24–26</td><td class="num">≈ 3–5</td></tr>
+          <tr><td>Чтения базы</td><td class="num">≈ 15</td><td class="num">≈ 15</td><td class="num">≈ 1–2</td></tr>
+          <tr><td>Расписания (кроны)</td><td class="num">2,4</td><td class="num">2,1</td><td class="num">≈ 0,3</td></tr>
+          <tr><td>Резервные копии (69 ГБ)</td><td class="num">≈ 2–3</td><td class="num">≈ 2–3</td><td class="num">≈ 0,3</td></tr>
+          <tr><td>ИИ Джарвиса (не Firebase)</td><td class="num">до 50</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr class="total"><td>Firebase итого</td><td class="num">≈ 55 $ (≈ 62 €)</td><td class="num">≈ 43–46 $ (≈ 48–52 €)</td><td class="num">≈ 5–8 $ (≈ 0,15–0,25 €/день)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="card"><div style="font-weight:700">Сделано 17.10</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
+        <li>Джарвис выключен, его задания на паузе.</li>
+        <li>Удалено 82 функции без вызовов за неделю; у каждой — копия, вернуть можно одной командой.</li>
+        <li>22 фоновые функции работают на доле ядра; вход, старт, Пик и диалоги — на полном (после замера скорости).</li>
+        <li>Кроны-повторы реже: 1 → 15, 5 → 30, 30 → 120 минут.</li>
+        <li>Проверка Сверки после урезания: Главная 0,87 с, вход ≈ 3,8 с, Пик 1,55 с. <span class="hash">501558120</span></li>
+      </ul></div>
+      <div class="card"><div style="font-weight:700">Дальше (после выхода версии)</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
+        <li>Горячие функции — в Европу, рядом с базой: главный шаг.</li>
+        <li>Меньше вызовов на каждом старте приложения; каталоги одним файлом.</li>
+        <li>Резервные копии — раз в неделю, хранить 14 дней.</li>
+        <li>Полный перевыклад функций — после выхода релиза, как вы решили вечером 17.10.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 5 ─────────────────────────── -->
+  <section id="decide">
+    <h2><span class="n">5</span>Решения на утро</h2>
+    <p class="sub">Шесть вопросов. По каждому есть рекомендация, она отмечена цветом.</p>
+    <div class="dec">
+      <div class="card"><h3>1. Четыре функции на сервер до релиза (R103)</h3>
+        <p>Сборка 18.10 зовёт три функции, которых на сервере нет: обмен старых бонусов в монеты, счётчик уровня при знакомстве, удаление своей карточки из набора сообщества. Четвёртая — напоминание «вернись»: на сервере старая версия, людям в Америке оно не уходит. Выкладываются только эти четыре, остальное не трогается. Без них приложение не ломается, но эти четыре вещи не работают.</p>
+        <div class="opts"><span class="rec">Выложить 4 функции до релиза</span><span>Отложить до полного перевыклада</span></div></div>
+      <div class="card"><h3>2. Выкладка сайта и политики (R105)</h3>
+        <p>Собрано из чистой копии, политика — из тех же текстов, что в приложении; пробный прогон прошёл.</p>
+        <div class="opts"><span class="rec">Выкладывать</span><span>Сначала показать сайт</span></div></div>
+      <div class="card"><h3>3. Главная: какой ряд из 4 плиток (R108)</h3>
+        <p>Пока вы не выбрали, в коде делается (в). 4 плитки видны только там, где доступны все четыре раздела; иначе остаётся 3.</p>
+        <div class="thumbs">
+          <a href="home-by-language-mockup.html#four-tiles"><figure style="margin:0"><img src="previews/home-four-tiles-a.jpg" alt="Вариант (а): 4 в ряд"><figcaption>(а) 4 в ряд, название под плиткой</figcaption></figure></a>
+          <a href="home-by-language-mockup.html#four-tiles-b"><figure style="margin:0"><img src="previews/home-four-tiles-b.jpg" alt="Вариант (б): сетка 2×2"><figcaption>(б) сетка 2×2</figcaption></figure></a>
+          <a href="home-by-language-mockup.html#four-tiles-c"><figure style="margin:0"><img src="previews/home-four-tiles-c.jpg" alt="Вариант (в): иконки и место в лиге"><figcaption>(в) иконки + «3 место» у Пика</figcaption></figure></a>
+        </div>
+        <div class="opts"><span>(а)</span><span>(б)</span><span class="rec">(в)</span></div></div>
+      <div class="card"><h3>4. Опросы (R107) — 4 вопроса</h3>
+        <p>1) Утвердить набор из 36 вопросов (вычеркнуть или добавить). 2) Награда за опрос: энергия +1, монеты или без награды. 3) Сколько опросов в день — предложено 3. 4) Старые опросы выключить целиком в день выхода новых (ответы остаются в админке).</p>
+        <div class="opts"><span class="rec">Набор как есть</span><span class="rec">Энергия +1</span><span class="rec">3 в день</span><span class="rec">Старые выключить</span></div></div>
+      <div class="card"><h3>5. «Почему так» в Диалогах</h3>
+        <p>«Объяснить» в уроках и ошибках убрано. В Диалогах осталась похожая кнопка «Почему так» — это отдельная функция, её не трогали без вас.</p>
+        <div class="opts"><span>Оставить</span><span>Убрать, как «Объяснить»</span></div></div>
+      <div class="card"><h3>6. Перевод нового курса на 7 языков</h3>
+        <p>Тексты нового курса сейчас только на русском и украинском. Для остальных 7 языков приложения (en, es, pt-BR, vi, id, tr, pl) курс показывать нельзя, пока нет перевода (R92).</p>
+        <div class="opts"><span>Переводить сейчас</span><span class="rec">После переписывания всех 8 уроков</span><span>Не переводить</span></div></div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 6 ─────────────────────────── -->
+  <section id="left">
+    <h2><span class="n">6</span>Что осталось и риски</h2>
+    <div class="grid2">
+      <div class="card"><div style="font-weight:700;color:var(--red)">Мешает сборке</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
+        <li><b>Размытый текст во вступлении занятия (R91)</b> — журналы стоят, причина ищется.</li>
+        <li><b>Английский интерфейс (R95)</b> — строки почти готовы, в список языков ещё не открыт.</li>
+        <li><b>Кнопка «назад» (R94)</b> — код готов, ждёт проверки на всех экранах.</li>
+        <li><b>Друзья (R100)</b> — починка есть, ждёт прогона.</li>
+      </ul></div>
+      <div class="card"><div style="font-weight:700;color:var(--wip)">Риски</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
+        <li><b>Новый курс</b>: к заморозке 08:00 переписано 84 из 441 — остальные уходят в прежнем виде.</li>
+        <li><b>Без R103</b> обмен старых бонусов, счётчик знакомства и удаление своей карточки молча не работают.</li>
+        <li><b>Кадры Сверки</b> по R80, R89, R94, R100, R102, R104 ещё не сняты — без них «готово» только по коду.</li>
+        <li><b>Расходы</b>: главная экономия (функции в Европу) возможна только после выхода версии.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <p class="foot">Собрано сессией «Макеты» 17.10 вечером по журналу выпуска (docs/work/tasks/release-ledger-2026-10-15.md), плану расходов (firebase-cost-cut-2026-10-17.md) и ходу курса. Раздел 2 — из таблицы Сверки.</p>
+</div>
+</body>
+</html>

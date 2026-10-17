@@ -58,8 +58,8 @@ export const PAIRS: readonly Pair[] = [
   // ── поле пар Пика (плитки лежат на странице; обычная — opaqueCard с тенью nested, выбранная — accentGraphic 16 % поверх страницы)
   { element: 'Поле пар', what: 'подпись на обычной плитке', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.opaqueCard!)) },
   { element: 'Поле пар', what: 'подпись на выбранной плитке', min: TEXT, after: (t) => ratio(solid(t.text!), over(t.accentGraphic!, solid(t.bg!), 0.32)) },
-  { element: 'Поле пар', what: 'подпись на плитке «неверно»', min: TEXT, after: (t) => ratio(solid(t.text!), over(t.bad!, solid(t.bg!), 0.12)) },
-  { element: 'Поле пар', what: 'подпись на плитке «верно»', min: TEXT, after: (t) => ratio(solid(t.text!), over(t.good!, solid(t.bg!), 0.12)) },
+  { element: 'Поле пар', what: 'подпись на плитке «неверно»', min: TEXT, after: (t) => ratio(solid(t.text!), over('#F05454', solid(t.bg!), 0.12)) },
+  { element: 'Поле пар', what: 'подпись на плитке «верно»', min: TEXT, after: (t) => ratio(solid(t.text!), over('#47C870', solid(t.bg!), 0.12)) },
   { element: 'Поле пар', what: 'выбранная к обычной плитке (тон)', min: TONE, before: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.16), solid(t.opaqueCard!)), after: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.32), solid(t.opaqueCard!)) },
   // ── плитки хаба Карточек (плашка с градиентом plateFillFrom→plateFillTo и тенью): число и название
   { element: 'Хаб Карточек: плитка', what: 'число/название к началу градиента', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },

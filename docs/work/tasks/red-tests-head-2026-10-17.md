@@ -101,3 +101,8 @@ Contain: каждая красная строка — чей-то долг; чи
 | Макеты | 28, 18 | 28: render_daily_phrase_content_preview (strict equal на предпросмотре); 18: в макетах нет встроенного JSON #session-audio-evidence |
 | V2 (курс и релиз) | 17, 19, 20, 30 | 17: нет content/learning-v2-course/pipeline/session_readiness.mjs; 19, 20: паритет релиза (состав выпущенных занятий, validateReleaseQuality); 30: saved_packs_completion — язык наборов (4 вместо 1) |
 | Переводчик | 9, 14, 15 | 9: одобренный текст «Пять минут на английский?»; 14: scan_i18n_design_zone падает; 15: «вы/Нажмите» в ru/uk |
+
+## Разбор 18.10 (Темы): два красных теста — не от TTL каталогов db44eece1
+
+- **video_market_loader_error_contract** — устарел (заглушка): communityFirestore давно (fdab41c40) тянет `hub_lifecycle_probe` (импортирует react-native с Flow-синтаксисом) и `dev_cards_state`; в тесте не было заглушек этих импортов — падал на загрузке модуля (`Unexpected "typeof"`), а не на поведении кэша. После заглушек все 6 проверок зелёные: ошибка индекса без кэша отклоняется, пустая витрина легитимна, кэш того же языка живёт, чужой язык не отдаётся, forceRemote обходит кэш — поведение при TTL 24 ч не сломано.
+- **saved_packs_completion** — устарел (заглушки), не связан с каталогом: 3 падения — (1) `filterCardsByPackLanguage(cards,'en')` вернул 4 вместо 1 в тесте загрузки сохранённых (контур хранения/язык, файлы db44eece1 их не трогал), (2) `TypeError: isDevPackDraftNone is not a function` — в заглушке `dev_cards_state` нет нового экспорта, (3) `ReferenceError: STUDY_SPEECH_LOCALE is not defined` — `extract(...)` для `inferExpoSpeechLanguage` не получил новую константу. Чинить владельцу зоны «Карточки»; поведение сохранения карточки (Optimistic UI) тестом не затронуто.

@@ -70,6 +70,9 @@ Module._load = function loadVideoCatalogWithStubs(request, parent, isMain) {
   if (request === '../debug-logger') {
     return { DebugLogger: { error() {}, info() {}, warn() {} } };
   }
+  // зачем (17.10, red-tests-head): communityFirestore давно тянет hub_lifecycle_probe (импортирует react-native с Flow-синтаксисом — esbuild в node:test не собирает) и dev_cards_state; заглушки нового импорта не было — тест падал на загрузке, а не на поведении кэша.
+  if (request === '../hub_lifecycle_probe') return { registerHubCacheProbe() {} };
+  if (request === '../dev_cards_state') return { getDevCommunityPack: () => null, isDevCommunityPackId: () => false };
   return originalModuleLoad.call(this, request, parent, isMain);
 };
 

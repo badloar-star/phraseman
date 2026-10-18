@@ -41,8 +41,9 @@ describe('clean onboarding auth placement contract', () => {
     expect(src).toContain('onSlow();');
     expect(src).toContain('catch (error)');
     expect(src).toContain("code.includes('google_signin_timeout')");
-    expect(src).toContain('Вход всё ещё выполняется');
-    expect(src).toContain('Кнопки останутся недоступны');
+    // зачем (Переводчик 18.10, acd0c034c): без «провайдера» — «Вход ещё идёт… когда ответит Google или Apple»
+    expect(src).toContain('Вход ещё идёт');
+    expect(src).toContain('Кнопки снова заработают');
     expect(src).toContain('const ONBOARDING_AUTH_UI_TIMEOUT_MS = 8_000;');
     expect(src).toContain('setAuthSlow(true)');
     expect(src).toContain('disabled={!!authLoading}');

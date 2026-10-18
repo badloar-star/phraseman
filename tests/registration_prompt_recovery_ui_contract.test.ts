@@ -95,7 +95,8 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     const copySource = fs.readFileSync(path.join(__dirname, '..', 'app', 'account_switch_copy.ts'), 'utf8');
     expect(copySource).toContain('Твой прогресс на месте');
     expect(onboardingSource).toContain("code === 'account_switch_required'");
-    expect(onboardingSource).toContain('Локальный прогресс сохранён');
+    // зачем (Переводчик 18.10, c073caee1): «Локальный прогресс» — слово разработчика; текст тот же по смыслу, простыми словами
+    expect(onboardingSource).toContain('Прогресс на этом телефоне сохранён');
     // зачем (04.10): техническая строка с кодом ошибки добавляется к тексту ТОЛЬКО при включённых dev-инструментах (ENABLE_DEV_TOOLS) — в сборке
     // для людей её нет; прежняя проверка «этой строки в файле нет» была записана до появления dev-замка и ловила его. Охраняем суть: код
     // никогда не показывается без замка и сам текст account_switch_required берётся из простого текста, а не из кода ошибки.

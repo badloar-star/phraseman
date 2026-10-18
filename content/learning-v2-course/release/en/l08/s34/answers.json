@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-34:word:interrupt",
+    "correctText": "interrupt",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-34:i01",
     "correctText": "Please don’t interrupt.",
     "correctResponseId": null
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-34:word:snatch",
+    "correctText": "snatch",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-34:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t snatch it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-34:word:mock",
+    "correctText": "mock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-34:i07",
-    "correctText": "Please don’t rush.",
+    "correctText": "Please don’t mock me.",
     "correctResponseId": null
   },
   {
@@ -46,37 +61,42 @@
   },
   {
     "interactionId": "en:lesson-08:session-34:i10",
-    "correctText": "en:lesson-08:session-34:i10:p1=plug in\nen:lesson-08:session-34:i10:p2=interrupt\nen:lesson-08:session-34:i10:p3=drink\nen:lesson-08:session-34:i10:p4=handrail",
+    "correctText": "en:lesson-08:session-34:i10:p1=interrupt\nen:lesson-08:session-34:i10:p2=snatch\nen:lesson-08:session-34:i10:p3=mock\nen:lesson-08:session-34:i10:p4=wait",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-34:i11",
-    "correctText": "Please don’t rush.",
+    "correctText": "Please don’t mock me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-34:word:slam",
+    "correctText": "slam",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-34:i12",
-    "correctText": "Plug it in.",
+    "correctText": "Don’t slam the drawer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-34:i13",
-    "correctText": "I often volunteer.",
+    "correctText": "Please don’t interrupt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-34:i14",
-    "correctText": "touch",
+    "correctText": "snatch",
     "correctResponseId": "en:lesson-08:session-34:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-34:i15",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t snatch it.",
     "correctResponseId": "en:lesson-08:session-34:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-34:i16",
-    "correctText": "en:lesson-08:session-34:i16:p1=interrupt\nen:lesson-08:session-34:i16:p2=volunteer\nen:lesson-08:session-34:i16:p3=plug in\nen:lesson-08:session-34:i16:p4=handrail",
+    "correctText": "en:lesson-08:session-34:i16:p1=interrupt\nen:lesson-08:session-34:i16:p2=snatch\nen:lesson-08:session-34:i16:p3=mock\nen:lesson-08:session-34:i16:p4=slam",
     "correctResponseId": null
   },
   {

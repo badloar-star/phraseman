@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 34 — Дай договорить
 
-**Ситуация.** Вы просите не перебивать рассказ, не трогать подключённый прибор и не спешить на лестнице.
+**Ситуация.** Дать гостю закончить ответ, не выхватывать телефон и попросить не высмеивать ошибку в произношении.
 
 **Что вы освоите:** вежливо попросить не делать что-либо через Please don’t
-**Новые слова:** interrupt
+**Новые слова:** interrupt, snatch, mock, slam
 
 ---
 
 ## Интро 1
 
-### История ещё не закончена
+### Гость отвечает в подкасте
 
-Вы рассказываете другу, как прошла поездка, а он начинает говорить посреди вашей фразы. `Interrupt` — «перебивать». `Please don’t interrupt` — «Пожалуйста, не перебивай». После `don’t` действие остаётся без `to` и `s`: `interrupt`. История короткая — если дать ей закончиться.
+Вы записываете школьный подкаст вдвоём. Гость ещё отвечает, а ваш соведущий уже начинает следующий вопрос. Interrupt — «перебивать». `Please don’t interrupt` — «Пожалуйста, не перебивай». Вы просите соведущего дать гостю закончить. После don’t нужно interrupt, без to и s.
 
-**Попросите друга вежливо не перебивать.**
+**Вежливо попросите соведущего не перебивать.**
 
 - ✅ **Please don’t interrupt.**
-- ❌ Please don’t to interrupt. — *После `don’t` нужно `interrupt`, без `to`.*
-- ❌ Please doesn’t interrupt. — *В обращении к человеку нужно `don’t`, не `doesn’t`.*
+- ❌ Please don’t interrupts. — *После don’t нужна форма без s/es.*
+- ❌ Please don’t to interrupt. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 2
 
-### Прибор уже подключён
+### Фотография на чужом телефоне
 
-Вы подключили прибор к розетке. Друг тянется к нему, хотя вы ещё не закончили настройку. Покажите на прибор: `Don’t touch this` — «Не трогай это». В такой просьбе после `don’t` нужно `touch`, без окончания.
+Подруга показывает фотографию на телефоне. Друг нетерпеливо тянет телефон к себе, хотя она держит его. Snatch — «выхватывать». `Don’t snatch it` — «Не выхватывай его». It заменяет phone. Вы просите друга спокойно дождаться своей очереди посмотреть.
 
-**Скажите другу: «Не трогай это».**
+**Скажите другу: «Не выхватывай его».**
 
-- ✅ **Don’t touch this.**
-- ❌ Don’t touches this. — *После `don’t` нужно `touch`, без `es`.*
-- ❌ Don’t to touch this. — *После `don’t` нужно `touch`, без `to`.*
+- ✅ **Don’t snatch it.**
+- ❌ Don’t snatches it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to snatch it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 3
 
-### На лестнице
+### Ошибка при чтении вслух
 
-Друг спешит вниз по лестнице. Вы хотите, чтобы он шёл спокойнее. `Please don’t rush` — «Пожалуйста, не торопись». `Please` делает просьбу вежливее; `don’t rush` означает «не торопись».
+Вы читаете текст на новом языке и ошибаетесь в произношении. Друг передразнивает вас, и вам неприятно. Mock — «высмеивать». `Please don’t mock me` — «Пожалуйста, не высмеивай меня». Это просьба прекратить насмешку; me означает «меня».
 
-**Вежливо попросите друга не торопиться.**
+**Вежливо попросите не высмеивать вас.**
 
-- ✅ **Please don’t rush.**
-- ❌ Please don’t rushes. — *После `don’t` нужно `rush`, без `es`.*
-- ❌ Please not rush. — *Для просьбы не делать что-то используйте `don’t`: `Please don’t rush`.*
+- ✅ **Please don’t mock me.**
+- ❌ Please don’t mocks me. — *После don’t нужна форма без s/es.*
+- ❌ Please don’t to mock me. — *После don’t не нужно to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Попросите «Пожалуйста, не перебивай»**
+**1 · Карточка слова — interrupt**
+<!-- interaction_id: en:lesson-08:session-34:word:interrupt; family: word_card -->
+> **interrupt** — перебивать. Please don’t interrupt. — «Пожалуйста, не перебивай». Начать говорить, не дав другому закончить.
+
+**2 · Попросите «Пожалуйста, не перебивай»**
 <!-- interaction_id: en:lesson-08:session-34:i01; family: phrase_builder -->
 Плитки: `interrupt` `don’t` `Please` → **Please don’t interrupt.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-34:i02; family: listen_choose -->
 🔊 *interrupt* → **interrupt** · drink · volunteer
 - drink — *В записи первое слово — `interrupt`, а в этом варианте — `drink`.*
 - volunteer — *В записи первое слово — `interrupt`, а в этом варианте — `volunteer`.*
 
-**3 · Попросите не перебивать**
+**4 · Выберите форму для просьбы не перебивать**
 <!-- interaction_id: en:lesson-08:session-34:i03; family: context_gap_grammar -->
 Please don’t ___. → **interrupt** · interrupts · to interrupt
 - interrupts — *После `don’t` нужно `interrupt`, без `s`.*
 - to interrupt — *После `don’t` нужно `interrupt`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-34:i04; family: speed_match -->
 interrupt — перебивать · handrail — поручень · drink — пить · volunteer — быть волонтёром
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-34:i05; family: listen_build_dictation -->
 🔊 *Please don’t interrupt.* Плитки: `interrupt` `don’t` `Please` → **Please don’t interrupt.**
 
-**6 · Покажите на прибор: «Не трогай это»**
+**7 · Карточка слова — snatch**
+<!-- interaction_id: en:lesson-08:session-34:word:snatch; family: word_card -->
+> **snatch** — выхватывать. Don’t snatch it. — «Не выхватывай его». Резко забирать предмет из чужих рук.
+
+**8 · Скажите о телефоне: «Не выхватывай его»**
 <!-- interaction_id: en:lesson-08:session-34:i06; family: phrase_builder -->
-Плитки: `this` `touch` `Don’t` → **Don’t touch this.**
+Плитки: `it` `snatch` `Don’t` → **Don’t snatch it.**
 
-**7 · На лестнице попросите «Пожалуйста, не торопись»**
+**9 · Карточка слова — mock**
+<!-- interaction_id: en:lesson-08:session-34:word:mock; family: word_card -->
+> **mock** — высмеивать. Please don’t mock me. — «Пожалуйста, не высмеивай меня». Насмехаться над человеком или его действиями.
+
+**10 · Вас передразнивают. Скажите «Пожалуйста, не высмеивай меня»**
 <!-- interaction_id: en:lesson-08:session-34:i07; family: scripted_repeat_compare -->
-🎙 **Please don’t rush.**
+🎙 **Please don’t mock me.**
 
-**8 · Скажите «Пожалуйста, не перебивай»**
+**11 · Выберите форму для просьбы «Пожалуйста, не перебивай»**
 <!-- interaction_id: en:lesson-08:session-34:i08; family: context_gap_grammar -->
 Please ___ interrupt. → **don’t** · doesn’t · not
 - doesn’t — *В обращении нужно `don’t interrupt`.*
 - not — *Нужно `don’t`: `Please don’t interrupt`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-34:i09; family: listen_choose -->
 🔊 *Please don’t interrupt.* → **Please don’t interrupt.** · Please don’t wait. · Please don’t rush.
 - Please don’t wait. — *В записи последнее слово — `interrupt`, а в этом варианте — `wait`.*
 - Please don’t rush. — *В записи последнее слово — `interrupt`, а в этом варианте — `rush`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-34:i10; family: speed_match -->
-plug in — подключить к розетке · interrupt — перебивать · drink — пить · handrail — поручень
+interrupt — перебивать · snatch — выхватывать · mock — высмеивать · wait — ждать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-34:i11; family: listen_build_dictation -->
-🔊 *Please don’t rush.* Плитки: `rush` `don’t` `Please` → **Please don’t rush.**
+🔊 *Please don’t mock me.* Плитки: `me` `mock` `don’t` `Please` → **Please don’t mock me.**
 
-**12 · Покажите на прибор: «Подключи его к розетке»**
+**15 · Карточка слова — slam**
+<!-- interaction_id: en:lesson-08:session-34:word:slam; family: word_card -->
+> **slam** — захлопывать с силой. Don’t slam the drawer. — «Не хлопай ящиком». Резко и шумно закрывать дверь или ящик.
+
+**16 · Друг резко закрывает ящик стола. Скажите «Не хлопай ящиком»**
 <!-- interaction_id: en:lesson-08:session-34:i12; family: phrase_builder -->
-Плитки: `in` `it` `Plug` → **Plug it in.**
+Плитки: `drawer` `the` `slam` `Don’t` → **Don’t slam the drawer.**
 
-**13 · Расскажите «Я часто бываю волонтёром» — используйте volunteer**
+**17 · Друг перебивает ответ гостя. Повторите просьбу «Пожалуйста, не перебивай»**
 <!-- interaction_id: en:lesson-08:session-34:i13; family: scripted_repeat_compare -->
-🎙 **I often volunteer.**
+🎙 **Please don’t interrupt.**
 
-**14 · Скажите «Не трогай это»**
+**18 · Выберите форму для просьбы не выхватывать телефон**
 <!-- interaction_id: en:lesson-08:session-34:i14; family: context_gap_grammar -->
-Don’t ___ this. → **touch** · touches · to touch
-- touches — *После `don’t` нужно `touch`, без `es`.*
-- to touch — *После `don’t` нужно `touch`, без `to`.*
+Don’t ___ it. → **snatch** · snatches · to snatch
+- snatches — *После don’t нужно snatch, без es.*
+- to snatch — *После don’t не нужно to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-34:i15; family: listen_choose -->
-🔊 *Don’t touch this.* → **Don’t touch this.** · Don’t touch that. · Don’t touch it.
-- Don’t touch that. — *В записи последнее слово — `this`, а в этом варианте — `that`.*
-- Don’t touch it. — *В записи последнее слово — `this`, а в этом варианте — `it`.*
+🔊 *Don’t snatch it.* → **Don’t snatch it.** · Don’t snatch this. · Don’t snatch that.
+- Don’t snatch this. — *В записи it, а не this.*
+- Don’t snatch that. — *В записи it, а не that.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-34:i16; family: speed_match -->
-interrupt — перебивать · volunteer — быть волонтёром · plug in — подключить к розетке · handrail — поручень
+interrupt — перебивать · snatch — выхватывать · mock — высмеивать · slam — захлопывать с силой
 
-**17 · Вы объясняете правила игры, но друг начинает говорить до конца объяснения. Попросите «Пожалуйста, не перебивай»**
+**21 · Вы объясняете правила игры, но друг начинает говорить до конца объяснения. Попросите «Пожалуйста, не перебивай»**
 <!-- interaction_id: en:lesson-08:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Please don’t interrupt.**
 

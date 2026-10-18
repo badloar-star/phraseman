@@ -67,7 +67,7 @@
 .lastp { margin-top: 16px; border-radius: 22px; min-height: 96px; background: color-mix(in srgb, var(--card-2) 50%, transparent); position: relative; overflow: hidden; display: flex; align-items: stretch; }
 .lastp .cp { flex: 1; min-width: 0; padding: 16px 0 14px 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
 .lastp .tt { font-size: 18px; line-height: 22px; font-weight: 800; letter-spacing: -.3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.lastp .pr { display: flex; align-items: center; gap: 10px; min-height: 32px; }
+.lastp .pr { display: flex; align-items: center; gap: 12px; min-height: 28px; }
 .lastp .pr .trk2 { flex: 1; height: 6px; border-radius: 3px; background: color-mix(in srgb, #2A2A2C 80%, transparent); overflow: hidden; }
 .lastp .pr .trk2 i { display: block; height: 100%; border-radius: 3px; background: #fff; }
 .lastp .pr .ct2 { font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
@@ -110,8 +110,10 @@
 .h4lp .tk { flex: 1; height: 6px; border-radius: 3px; background: var(--track); } .h4lp .tk i { display: block; height: 100%; width: 24%; border-radius: 3px; background: var(--tx); }
 .h4lp img { width: 64px; height: 64px; object-fit: contain; flex: none; }
 /* (а) 4 в ряд: та же квадратная плашка с артом, название под плашкой — у 360 dp в плашке 74 dp на название места нет, а ужимать шрифт запрещено */
-.h4ra { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
-.h4ra .it { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 0; }
+/* зачем (слово владельца 18.10, e4bb7ea0c — HomeV2FeatureTiles): лента вбок — три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за краем;
+   лента выходит за поля страницы, затухание справа ~24 dp; сверху запас 8 px, чтобы бейдж «N место» не срезался. */
+.h4ra { display: flex; gap: 10px; margin: 6px -16px 0; padding: 8px 16px 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); }
+.h4ra .it { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; width: calc((100% - 20px) / 3); }
 .h4ra .pt { position: relative; width: 100%; aspect-ratio: 1; border-radius: 16px; background: var(--plate); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; }
 .h4ra .pt img { width: 74%; height: 74%; object-fit: contain; }
 .h4ra .nm { font-size: 14px; line-height: 18px; font-weight: 700; text-align: center; white-space: nowrap; }
@@ -187,7 +189,7 @@ const home = (code) => {
 };
 
 // ── карточка «последнее место» (719e4c771): варианты по месту, где человек остановился ──
-const lastPlace = (o) => `<div class="lastp"><div class="cp"><div class="tt">${o.title}</div><div class="pr">${o.total ? `<div class="trk2"><i style="width:${Math.max(4, Math.round(o.done / o.total * 100))}%"></i></div><span class="ct2">${o.done} / ${o.total}</span>` : ''}<span class="ar2">${icon('fwd', 's16')}</span></div></div><div class="art2${o.badge ? '' : ' nb'}"><img src="${img(o.art)}" alt="">${o.badge ? `<span class="bdg2">${o.badge}</span>` : ''}</div></div>`;
+const lastPlace = (o) => `<div class="lastp"><div class="cp"><div class="tt">${o.title}</div><div class="pr">${o.total ? `<div class="trk2"><i style="width:${Math.max(4, Math.round(o.done / o.total * 100))}%"></i></div><span class="ct2">${o.done} / ${o.total}</span>` : ''}</div></div><div class="art2${o.badge ? '' : ' nb'}"><img src="${img(o.art)}" alt="">${o.badge ? `<span class="bdg2">${o.badge}</span>` : ''}</div></div>`;
 const PLACES = {
   v2: { title: 'Коллега приносит кофе', done: 9, total: 56, art: 'v2art/dark/continue.webp', badge: 'Урок 1' },
   legacy: { title: 'Местоимения и глагол To Be', done: 12, total: 50, art: 'v2art/dark/continue.webp', badge: 'Урок 1' },

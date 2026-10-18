@@ -4,6 +4,7 @@
 // Общий модуль для теста (tests/blend_1018_audit.test.ts) и отчёта (scripts/blend_1018_report.cjs). «Было» — токены до исправлений 17.10 (before), «стало» — текущие (after). BLEND_WRITE=1 пишет таблицу «тема × элемент × контраст» в docs/phraseman-2.0/evidence/blend_1018.md.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { lowChargeInk } from '../constants/energy_low_ink';
+import { streakStageColors } from '../components/streak/moments/streak_stage_colors';
 import { feedbackInkSoftForLight } from '../constants/learningV2ModeFeedbackPalette';
 
 type Tok = Record<string, string>;
@@ -61,6 +62,18 @@ const worstOver = (fg: string, layers: number[][]): number => Math.min(...layers
 // ── панель обратной связи режимов Learning V2 (modules/learning-v2/modes/mode_feedback_v1.tsx): тинт 12 % поверх страницы или карточки
 const FB_TINTS = ['rgba(43, 138, 94, 0.12)', 'rgba(190, 118, 28, 0.12)'] as const; // correctTint / wrongTint
 const fbWorst = (fg: string, t: Tok): number => Math.min(...FB_TINTS.flatMap((tint) => [ratio(solid(fg), over(tint, solid(t.bg!))), ratio(solid(fg), over(tint, solid(t.opaqueCard!)))]));
+
+// ── моменты (Шпиль/серия): ореол `.glowspot` (moment_glow_math.ts) — центр accentSoft с итоговой альфой min(собственная, эталон × 0,78); тексты лежат на фоне страницы или странице-верху
+const haloOver = (t: Tok, base: string): number[] => {
+  const own = parse(t.accentSoft!).a;
+  const target = (String(t.isLight) === 'true' ? 0.3 : 0.24) * 0.78;
+  return own > 0 ? over(t.accentSoft!, solid(base), Math.min(own, target)) : solid(base);
+};
+const haloWorst = (fg: string, t: Tok): number => Math.min(...[t.bg!, t.bgTop!].flatMap((base) => [ratio(solid(fg), haloOver(t, base)), ratio(solid(fg), solid(base))]));
+const STAGES = [1, 2, 3, 4, 5] as const;
+const stageColorsOf = (t: Tok, stage: 1 | 2 | 3 | 4 | 5) => streakStageColors(stage, { themeId: t.themeId!, accentGraphic: t.accentGraphic!, text: t.text!, bg: t.bg!, gold: t.warn! })!;
+const PLATE_RGB = [8, 10, 14];
+const plateOver = (under: string): number[] => [0, 1, 2].map((i) => PLATE_RGB[i]! * 0.82 + solid(under)[i]! * 0.18);
 
 const TONE = 1.5;
 const GRAPHIC = 3;
@@ -151,6 +164,14 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'значок к плашке', min: GRAPHIC, after: (t) => ratio(solid(String(t.isLight) === 'true' ? t.secondary! : t.accentBright!), solid(t.plateFillFrom!)) },
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'срок сброса (secondary) к плашке', min: TEXT, after: (t) => ratio(solid(t.secondary!), solid(t.plateFillFrom!)) },
   { element: 'Диалоги: капсула энергии', what: 'низкий заряд (красный из токена темы, сдвинут по яркости) к заливке buttonFill', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.buttonFill!, t.text!)), solid(t.buttonFill!)) },
+  // ── моменты серии (StreakMilestoneScreen): ореол шире и тусклее (095137518), золото d1000 = warn, звёзды d365 (f83d12491)
+  { element: 'Момент серии', what: 'надпись-оверлайн (accentTextSafe) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.accentTextSafe!, t) },
+  { element: 'Момент серии', what: 'заголовок (text) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.text!, t) },
+  { element: 'Момент серии', what: 'подзаголовок (secondary) к фону и ореолу', min: TEXT, floor: 4.3, after: (t) => haloWorst(t.secondary!, t) },
+  { element: 'Момент серии', what: 'цифра огня (белая) к тёмной плашке над худшим цветом огня стадий 1–5', min: TEXT, after: (t) => Math.min(...STAGES.flatMap((st) => { const c = stageColorsOf(t, st); return [c.outer, c.core].map((col) => ratio([255, 255, 255], plateOver(col))); })) },
+  { element: 'Момент серии', what: 'огонь: внешний цвет стадий 1–5 к фону (худшая стадия)', min: GRAPHIC, floor: 1.0, after: (t) => Math.min(...STAGES.map((st) => ratio(solid(stageColorsOf(t, st).outer), solid(t.bg!)))) },
+  { element: 'Момент серии', what: 'золото d1000 (warn) к фону', min: GRAPHIC, after: (t) => ratio(solid(t.warn!), solid(t.bg!)) },
+  { element: 'Момент серии', what: 'звёзды d365 (text) к фону', min: GRAPHIC, after: (t) => ratio(solid(t.text!), solid(t.bg!)) },
 ];
 
 const INTENSITIES = [0, 0.25, 0.5, 0.75, 1];
@@ -164,7 +185,7 @@ export function run() {
   for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
     for (const appearance of ['dark', 'light'] as const) {
       for (const intensity of INTENSITIES) {
-        const t = liquidGlassTokens(id as never, { intensity, appearance } as never) as unknown as Tok;
+        const t = { ...(liquidGlassTokens(id as never, { intensity, appearance } as never) as unknown as Tok), themeId: id };
         for (const p of PAIRS) {
           const key = `${p.element} | ${p.what}`;
           const a = p.after(t);

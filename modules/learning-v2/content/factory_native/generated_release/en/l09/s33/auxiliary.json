@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-33:intro1:r2": {
+          "ru": "В submitting нужны две t.",
+          "uk": "У submitting потрібні дві t."
+        },
+        "en:lesson-09:session-33:intro1:r3": {
+          "ru": "После am для действия сейчас нужна форма submitting.",
+          "uk": "Після am для дії зараз потрібна форма submitting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-33:intro2:r2": {
+          "ru": "В making конечная e из make исчезает.",
+          "uk": "У making кінцева e з make зникає."
+        },
+        "en:lesson-09:session-33:intro2:r3": {
+          "ru": "Для действия сейчас после am нужна форма making.",
+          "uk": "Для дії зараз після am потрібна форма making."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-33:intro3:r2": {
+          "ru": "В sitting нужны две t.",
+          "uk": "У sitting потрібні дві t."
+        },
+        "en:lesson-09:session-33:intro3:r3": {
+          "ru": "После am нужна форма sitting.",
+          "uk": "Після am потрібна форма sitting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2d24d605f6873a55ece3a2cf9769a44e9fcc0813e77cf79284f883c539f29909"
+}

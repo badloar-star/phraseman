@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-32:word:jellyfish",
+    "correctText": "jellyfish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i01",
+    "correctText": "The jellyfish is floating.",
+    "correctResponseId": "en:lesson-09:session-32:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i02",
+    "correctText": "It is a jellyfish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i04",
+    "correctText": "en:lesson-09:session-32:i04:p1=jellyfish\nen:lesson-09:session-32:i04:p2=float\nen:lesson-09:session-32:i04:p3=water\nen:lesson-09:session-32:i04:p4=small",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i05",
+    "correctText": "The jellyfish is not moving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:word:seahorse",
+    "correctText": "seahorse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i06",
+    "correctText": "Is the seahorse swimming?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i07",
+    "correctText": "The seahorse is not swimming.",
+    "correctResponseId": "en:lesson-09:session-32:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i08",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-09:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:word:tentacle",
+    "correctText": "tentacle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i09",
+    "correctText": "The tentacle is moving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i10",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-32:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i11",
+    "correctText": "I often swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:word:coral",
+    "correctText": "coral",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i12",
+    "correctText": "Please don't touch the coral.",
+    "correctResponseId": "en:lesson-09:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i13",
+    "correctText": "Please don't touch the coral.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i14",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i15",
+    "correctText": "The tentacle is moving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i16",
+    "correctText": "en:lesson-09:session-32:i16:p1=jellyfish\nen:lesson-09:session-32:i16:p2=seahorse\nen:lesson-09:session-32:i16:p3=tentacle\nen:lesson-09:session-32:i16:p4=coral",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-32:i17",
+    "correctText": "The seahorse is swimming.",
+    "correctResponseId": null
+  }
+]

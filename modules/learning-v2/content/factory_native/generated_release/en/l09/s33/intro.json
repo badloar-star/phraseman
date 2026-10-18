@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "submit → submitting; make → making; sit → sitting",
+    "uk": "submit → submitting; make → making; sit → sitting"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отправка ещё идёт",
+        "uk": "Надсилання ще триває"
+      },
+      "bodyByLocale": {
+        "ru": "Вы отправляете фотографию на конкурс через сайт. Друг хочет закрыть ноутбук, но загрузка ещё идёт. Submit — «подавать, отправлять на рассмотрение». I am submitting my work — «Я отправляю свою работу». В submitting удваивается t: в submit ударение на последнем слоге, в его конце короткий гласный перед одним t. Здесь submit — не просто показать фотографию другу, а подать её организаторам.",
+        "uk": "Ви надсилаєте фотографію на конкурс через сайт. Друг хоче закрити ноутбук, але завантаження ще триває. Submit — «подавати, надсилати на розгляд». I am submitting my work — «Я надсилаю свою роботу». У submitting подвоюється t: у submit наголос на останньому складі, наприкінці якого короткий голосний перед одним t. Тут submit — не просто показати фотографію другові, а подати її організаторам."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-33:intro1:r1",
+              "text": "I am submitting my work."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro1:r2",
+              "text": "I am submiting my work."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro1:r3",
+              "text": "I am submit my work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-33:intro1:r1",
+              "text": "I am submitting my work."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro1:r2",
+              "text": "I am submiting my work."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro1:r3",
+              "text": "I am submit my work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что вы собираете на столе?",
+        "uk": "Що ви збираєте на столі?"
+      },
+      "bodyByLocale": {
+        "ru": "В мастерской вы отбираете свои рисунки для встречи с заказчиком. Portfolio — «портфолио, подборка работ». Объясните, что делаете: I am making my portfolio — «Я составляю своё портфолио». В make конечная немая e исчезает перед -ing: making. Не переносите правило на любое слово с e: сейчас запоминаем именно make → making.",
+        "uk": "У майстерні ви добираєте свої малюнки для зустрічі із замовником. Portfolio — «портфоліо, добірка робіт». Поясніть, що робите: I am making my portfolio — «Я складаю своє портфоліо». У make кінцева німа e зникає перед -ing: making. Не переносьте правило на будь-яке слово з e: зараз запам’ятовуємо саме make → making."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-33:intro2:r1",
+              "text": "I am making my portfolio."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro2:r2",
+              "text": "I am makeing my portfolio."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro2:r3",
+              "text": "I am make my portfolio."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-33:intro2:r1",
+              "text": "I am making my portfolio."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro2:r2",
+              "text": "I am makeing my portfolio."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro2:r3",
+              "text": "I am make my portfolio."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поза для наброска",
+        "uk": "Поза для начерку"
+      },
+      "bodyByLocale": {
+        "ru": "Художник рисует вас по видеосвязи, но видит только лицо и спрашивает, стоите вы или сидите. I am sitting — «Я сижу». В sit один слог с коротким гласным и конечным t; перед -ing удваиваем t: sitting. Речь о вашей позе сейчас. Это не команда «Сядь» и не рассказ о привычке.",
+        "uk": "Художник малює вас через відеозв’язок, але бачить лише обличчя й запитує, стоїте ви чи сидите. I am sitting — «Я сиджу». У sit один склад із коротким голосним і кінцевим t; перед -ing подвоюємо t: sitting. Ідеться про вашу позу зараз. Це не команда «Сядь» і не розповідь про звичку."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-33:intro3:r1",
+              "text": "I am sitting."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro3:r2",
+              "text": "I am siting."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro3:r3",
+              "text": "I am sit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-33:intro3:r1",
+              "text": "I am sitting."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro3:r2",
+              "text": "I am siting."
+            },
+            {
+              "responseId": "en:lesson-09:session-33:intro3:r3",
+              "text": "I am sit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "026ea068b409e4926d7855bb11e427c1ece6735c1e706d19cc18eee82b1d8fe2"
+}

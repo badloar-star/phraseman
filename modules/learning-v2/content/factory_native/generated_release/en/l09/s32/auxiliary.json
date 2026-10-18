@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-32:intro1:r2": {
+          "ru": "Для одного животного здесь нужно a jellyfish.",
+          "uk": "Для однієї тварини тут потрібне a jellyfish."
+        },
+        "en:lesson-09:session-32:intro1:r3": {
+          "ru": "С it употребляем is.",
+          "uk": "З it уживаємо is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-32:intro2:r2": {
+          "ru": "Один морской конёк: is.",
+          "uk": "Один морський коник: is."
+        },
+        "en:lesson-09:session-32:intro2:r3": {
+          "ru": "После is для действия сейчас нужна форма swimming.",
+          "uk": "Після is для дії зараз потрібна форма swimming."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-32:intro3:r2": {
+          "ru": "После don’t нужна форма touch.",
+          "uk": "Після don’t потрібна форма touch."
+        },
+        "en:lesson-09:session-32:intro3:r3": {
+          "ru": "Для отрицательной просьбы нужно don’t.",
+          "uk": "Для заперечного прохання потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f105d990e4ae1f501534cff77868cd12e114548b3c9a658606de042ff0b5d915"
+}

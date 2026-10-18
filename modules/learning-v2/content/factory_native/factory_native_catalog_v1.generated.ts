@@ -3360,4 +3360,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is floating / is not floating; on the surface","uk":"is floating / is not floating; on the surface"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 32,
+    sourceFingerprint: "0a85a85a616ee105993ef9e35cb5cdc38614516edb9b19f4b49e0f811d33a319",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is floating; Is ... swimming?; is not moving; Please don’t touch ...","uk":"is floating; Is ... swimming?; is not moving; Please don’t touch ..."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 33,
+    sourceFingerprint: "28bab6b27c497e17cd81e3877d7da5159edd539ce78e63c5ac53591e7fae12f4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"submit → submitting; make → making; sit → sitting","uk":"submit → submitting; make → making; sit → sitting"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

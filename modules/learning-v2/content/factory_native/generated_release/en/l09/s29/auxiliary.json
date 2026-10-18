@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-29:intro1:r2": {
+          "ru": "Ice здесь вещество: is.",
+          "uk": "Ice тут речовина: is."
+        },
+        "en:lesson-09:session-29:intro1:r3": {
+          "ru": "После is для процесса сейчас нужна форма melting.",
+          "uk": "Після is для процесу зараз потрібна форма melting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-29:intro2:r2": {
+          "ru": "Chocolate здесь вещество: is.",
+          "uk": "Chocolate тут речовина: is."
+        },
+        "en:lesson-09:session-29:intro2:r3": {
+          "ru": "В вопросе о процессе сейчас нужна форма melting.",
+          "uk": "У запитанні про процес зараз потрібна форма melting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-29:intro3:r2": {
+          "ru": "Перед not melting нужно is.",
+          "uk": "Перед not melting потрібне is."
+        },
+        "en:lesson-09:session-29:intro3:r3": {
+          "ru": "После is not нужна форма melting.",
+          "uk": "Після is not потрібна форма melting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "da0db3636357570329c3374f24c734aee1594e84569ebb39421121e77e7e13e4"
+}

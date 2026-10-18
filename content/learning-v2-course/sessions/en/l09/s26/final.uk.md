@@ -53,7 +53,7 @@
 
 **1 · Картка слова — spin**
 <!-- interaction_id: en:lesson-09:session-26:word:spin; family: word_card -->
-> **spin** — обертатися. Для дії зараз: is spinning, з двома n.
+> **spin** — «обертатися». Для дії зараз: is spinning, з двома n.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-09:session-26:i01; family: listen_choose -->
@@ -81,7 +81,7 @@ spin — обертатися · wheel — колесо · now — зараз ·
 
 **7 · Картка слова — propeller**
 <!-- interaction_id: en:lesson-09:session-26:word:propeller; family: word_card -->
-> **propeller** — пропелер. The propeller is spinning. — «Пропелер обертається».
+> **propeller** — «пропелер». The propeller is spinning. — «Пропелер обертається».
 
 **8 · Складіть повідомлення про пропелер іграшки, який обертається**
 <!-- interaction_id: en:lesson-09:session-26:i06; family: phrase_builder -->
@@ -89,7 +89,7 @@ spin — обертатися · wheel — колесо · now — зараз ·
 
 **9 · Картка слова — turntable**
 <!-- interaction_id: en:lesson-09:session-26:word:turntable; family: word_card -->
-> **turntable** — обертовий диск програвача; також програвач вінілу. Тут говоримо саме про диск під платівкою.
+> **turntable** — «обертовий диск програвача»; також програвач вінілу. Тут говоримо саме про диск під платівкою.
 
 **10 · Запитайте, чи обертається диск програвача**
 <!-- interaction_id: en:lesson-09:session-26:i07; family: scripted_repeat_compare -->
@@ -117,7 +117,7 @@ spin — обертатися · propeller — пропелер · turntable —
 
 **15 · Картка слова — pinwheel**
 <!-- interaction_id: en:lesson-09:session-26:word:pinwheel; family: word_card -->
-> **pinwheel** — паперова вертушка. The pinwheel is not spinning. — «Вертушка не обертається».
+> **pinwheel** — «паперова вертушка». The pinwheel is not spinning. — «Вертушка не обертається».
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-09:session-26:i12; family: listen_choose -->

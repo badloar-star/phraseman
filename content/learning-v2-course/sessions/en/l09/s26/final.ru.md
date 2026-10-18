@@ -53,7 +53,7 @@
 
 **1 · Карточка слова — spin**
 <!-- interaction_id: en:lesson-09:session-26:word:spin; family: word_card -->
-> **spin** — вращаться. Для действия сейчас: is spinning, с двумя n.
+> **spin** — «вращаться». Для действия сейчас: is spinning, с двумя n.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-09:session-26:i01; family: listen_choose -->
@@ -81,7 +81,7 @@ spin — вращаться · wheel — колесо · now — сейчас ·
 
 **7 · Карточка слова — propeller**
 <!-- interaction_id: en:lesson-09:session-26:word:propeller; family: word_card -->
-> **propeller** — пропеллер. The propeller is spinning. — «Пропеллер вращается».
+> **propeller** — «пропеллер». The propeller is spinning. — «Пропеллер вращается».
 
 **8 · Соберите сообщение о вращающемся пропеллере игрушки**
 <!-- interaction_id: en:lesson-09:session-26:i06; family: phrase_builder -->
@@ -89,7 +89,7 @@ spin — вращаться · wheel — колесо · now — сейчас ·
 
 **9 · Карточка слова — turntable**
 <!-- interaction_id: en:lesson-09:session-26:word:turntable; family: word_card -->
-> **turntable** — вращающийся диск проигрывателя; также проигрыватель винила. Здесь говорим именно о диске под пластинкой.
+> **turntable** — «вращающийся диск проигрывателя»; также проигрыватель винила. Здесь говорим именно о диске под пластинкой.
 
 **10 · Спросите, вращается ли диск проигрывателя**
 <!-- interaction_id: en:lesson-09:session-26:i07; family: scripted_repeat_compare -->
@@ -117,7 +117,7 @@ spin — вращаться · propeller — пропеллер · turntable —
 
 **15 · Карточка слова — pinwheel**
 <!-- interaction_id: en:lesson-09:session-26:word:pinwheel; family: word_card -->
-> **pinwheel** — бумажная вертушка. The pinwheel is not spinning. — «Вертушка не вращается».
+> **pinwheel** — «бумажная вертушка». The pinwheel is not spinning. — «Вертушка не вращается».
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-09:session-26:i12; family: listen_choose -->

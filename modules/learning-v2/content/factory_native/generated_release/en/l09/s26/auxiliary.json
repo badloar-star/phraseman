@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-26:intro1:r2": {
+          "ru": "Перед spinning нужна форма is, в отрицании — is not.",
+          "uk": "Перед spinning потрібна форма is, у запереченні — is not."
+        },
+        "en:lesson-09:session-26:intro1:r3": {
+          "ru": "После is нужна форма spinning, не spin.",
+          "uk": "Після is потрібна форма spinning, не spin."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-26:intro2:r2": {
+          "ru": "Один диск: is, не are.",
+          "uk": "Один диск: is, не are."
+        },
+        "en:lesson-09:session-26:intro2:r3": {
+          "ru": "После is нужна форма spinning, не spin.",
+          "uk": "Після is потрібна форма spinning, не spin."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-26:intro3:r2": {
+          "ru": "Перед spinning нужна форма is, в отрицании — is not.",
+          "uk": "Перед spinning потрібна форма is, у запереченні — is not."
+        },
+        "en:lesson-09:session-26:intro3:r3": {
+          "ru": "После is нужна форма spinning, не spin.",
+          "uk": "Після is потрібна форма spinning, не spin."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9dc92223fb0b98e8a974f950ccd8d321b717bd0bbc1d2da9829b5b315ad63541"
+}

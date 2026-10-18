@@ -28,8 +28,8 @@
             "responseId": "en:lesson-09:session-26:word:spin:r1",
             "targetText": "spin",
             "meaningByLocale": {
-              "ru": "вращаться. Для действия сейчас: is spinning, с двумя n.",
-              "uk": "обертатися. Для дії зараз: is spinning, з двома n."
+              "ru": "«вращаться». Для действия сейчас: is spinning, с двумя n.",
+              "uk": "«обертатися». Для дії зараз: is spinning, з двома n."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "spin",
           "definitionByLocale": {
-            "ru": "вращаться. Для действия сейчас: is spinning, с двумя n.",
-            "uk": "обертатися. Для дії зараз: is spinning, з двома n."
+            "ru": "«вращаться». Для действия сейчас: is spinning, с двумя n.",
+            "uk": "«обертатися». Для дії зараз: is spinning, з двома n."
           }
         }
       },
@@ -359,8 +359,8 @@
             "responseId": "en:lesson-09:session-26:word:propeller:r1",
             "targetText": "propeller",
             "meaningByLocale": {
-              "ru": "пропеллер. The propeller is spinning. — «Пропеллер вращается».",
-              "uk": "пропелер. The propeller is spinning. — «Пропелер обертається»."
+              "ru": "«пропеллер». The propeller is spinning. — «Пропеллер вращается».",
+              "uk": "«пропелер». The propeller is spinning. — «Пропелер обертається»."
             }
           }
         ],
@@ -370,8 +370,8 @@
         "wordCard": {
           "word": "propeller",
           "definitionByLocale": {
-            "ru": "пропеллер. The propeller is spinning. — «Пропеллер вращается».",
-            "uk": "пропелер. The propeller is spinning. — «Пропелер обертається»."
+            "ru": "«пропеллер». The propeller is spinning. — «Пропеллер вращается».",
+            "uk": "«пропелер». The propeller is spinning. — «Пропелер обертається»."
           }
         }
       },
@@ -435,8 +435,8 @@
             "responseId": "en:lesson-09:session-26:word:turntable:r1",
             "targetText": "turntable",
             "meaningByLocale": {
-              "ru": "вращающийся диск проигрывателя; также проигрыватель винила. Здесь говорим именно о диске под пластинкой.",
-              "uk": "обертовий диск програвача; також програвач вінілу. Тут говоримо саме про диск під платівкою."
+              "ru": "«вращающийся диск проигрывателя»; также проигрыватель винила. Здесь говорим именно о диске под пластинкой.",
+              "uk": "«обертовий диск програвача»; також програвач вінілу. Тут говоримо саме про диск під платівкою."
             }
           }
         ],
@@ -446,8 +446,8 @@
         "wordCard": {
           "word": "turntable",
           "definitionByLocale": {
-            "ru": "вращающийся диск проигрывателя; также проигрыватель винила. Здесь говорим именно о диске под пластинкой.",
-            "uk": "обертовий диск програвача; також програвач вінілу. Тут говоримо саме про диск під платівкою."
+            "ru": "«вращающийся диск проигрывателя»; также проигрыватель винила. Здесь говорим именно о диске под пластинкой.",
+            "uk": "«обертовий диск програвача»; також програвач вінілу. Тут говоримо саме про диск під платівкою."
           }
         }
       },
@@ -766,8 +766,8 @@
             "responseId": "en:lesson-09:session-26:word:pinwheel:r1",
             "targetText": "pinwheel",
             "meaningByLocale": {
-              "ru": "бумажная вертушка. The pinwheel is not spinning. — «Вертушка не вращается».",
-              "uk": "паперова вертушка. The pinwheel is not spinning. — «Вертушка не обертається»."
+              "ru": "«бумажная вертушка». The pinwheel is not spinning. — «Вертушка не вращается».",
+              "uk": "«паперова вертушка». The pinwheel is not spinning. — «Вертушка не обертається»."
             }
           }
         ],
@@ -777,8 +777,8 @@
         "wordCard": {
           "word": "pinwheel",
           "definitionByLocale": {
-            "ru": "бумажная вертушка. The pinwheel is not spinning. — «Вертушка не вращается».",
-            "uk": "паперова вертушка. The pinwheel is not spinning. — «Вертушка не обертається»."
+            "ru": "«бумажная вертушка». The pinwheel is not spinning. — «Вертушка не вращается».",
+            "uk": "«паперова вертушка». The pinwheel is not spinning. — «Вертушка не обертається»."
           }
         }
       },
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "735debe3981121d89e4443bfce8b9c2f512b8d8eb0e7f580ce4ce3f04be4eff4"
+  "learnerFingerprint": "dc437127f45ccb027bfccf5d97ed536db40bfdc934c8594e5e684e988a982bc8"
 }

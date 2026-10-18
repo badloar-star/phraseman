@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-26:word:spin",
+    "correctText": "spin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i01",
+    "correctText": "spin",
+    "correctResponseId": "en:lesson-09:session-26:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i02",
+    "correctText": "The wheel is spinning now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i04",
+    "correctText": "en:lesson-09:session-26:i04:p1=spin\nen:lesson-09:session-26:i04:p2=wheel\nen:lesson-09:session-26:i04:p3=now\nen:lesson-09:session-26:i04:p4=music",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i05",
+    "correctText": "The wheel is spinning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:word:propeller",
+    "correctText": "propeller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i06",
+    "correctText": "The propeller is spinning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:word:turntable",
+    "correctText": "turntable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i07",
+    "correctText": "Is the turntable spinning?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i08",
+    "correctText": "spinning",
+    "correctResponseId": "en:lesson-09:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i09",
+    "correctText": "The propeller is spinning.",
+    "correctResponseId": "en:lesson-09:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i10",
+    "correctText": "en:lesson-09:session-26:i10:p1=spin\nen:lesson-09:session-26:i10:p2=propeller\nen:lesson-09:session-26:i10:p3=turntable\nen:lesson-09:session-26:i10:p4=wheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i11",
+    "correctText": "I often listen to music.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:word:pinwheel",
+    "correctText": "pinwheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i12",
+    "correctText": "The pinwheel is not spinning.",
+    "correctResponseId": "en:lesson-09:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i13",
+    "correctText": "The pinwheel is not spinning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-09:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i15",
+    "correctText": "Don't touch it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i16",
+    "correctText": "en:lesson-09:session-26:i16:p1=spin\nen:lesson-09:session-26:i16:p2=propeller\nen:lesson-09:session-26:i16:p3=turntable\nen:lesson-09:session-26:i16:p4=pinwheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-26:i17",
+    "correctText": "Is the pinwheel spinning?",
+    "correctResponseId": null
+  }
+]

@@ -21,13 +21,17 @@ type IconName = React.ComponentProps<typeof Ionicons>['name'];
 export function VideoGlassSheen({ tint }: { tint: string }) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <BlurView
-        intensity={Platform.OS === 'android' ? 10 : 16}
-        blurReductionFactor={3}
-        experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
-        tint="systemUltraThinMaterialDark"
-        style={StyleSheet.absoluteFill}
-      />
+      {/* зачем: владелец 18.10 — ореол текста от BlurView без blurTarget (на Android dimezis снимает экран вместе с текстом плашки
+          и кладёт размытую копию под него). На Android живой блюр выключен, градиент-блик остаётся; iOS как было. */}
+      {Platform.OS !== 'android' ? (
+        <BlurView
+          intensity={16}
+          blurReductionFactor={3}
+          experimentalBlurMethod="none"
+          tint="systemUltraThinMaterialDark"
+          style={StyleSheet.absoluteFill}
+        />
+      ) : null}
       <LinearGradient colors={[tint, 'transparent']} style={StyleSheet.absoluteFill} />
     </View>
   );

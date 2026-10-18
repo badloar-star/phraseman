@@ -17,7 +17,9 @@ test('Video list and row use current translucent theme material with native diff
   for (const source of [screen, row]) {
     assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
     // зачем: строка набора — плоская (макет video-packs-from-video-mockup.html), блюр только у экрана; кромка — у обоих.
-    if (source === screen) assert.match(source, /dimezisBlurView/);
+    // зачем (владелец 18.10 — ореол текста от BlurView без blurTarget): блюр у экрана только на iOS, на Android живой блюр выключен.
+    if (source === screen) assert.match(source, /Platform\.OS !== 'android' \? \(\s*<BlurView/);
+    if (source === screen) assert.doesNotMatch(source, /dimezisBlurView/);
     // зачем (макет cards-section «Из видео»): строка — KitCard (кромка внутренними тенями), экран — токены 2.0
     if (source === screen) assert.match(source, /useLv2Glass/);
     else assert.match(source, /KitCard/);

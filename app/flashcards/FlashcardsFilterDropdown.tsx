@@ -115,7 +115,9 @@ export default function FlashcardsFilterDropdown({
         }}
       >
         {savedGlass ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, overflow: 'hidden' }]}>
-          <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+          {/* зачем: владелец 18.10 — ореол текста от BlurView без blurTarget (на Android dimezis снимает экран вместе с текстом
+              этого же меню и кладёт размытую копию под строки). На Android живой блюр выключен, тон и градиент остаются; iOS как было. */}
+          {Platform.OS !== 'android' ? <BlurView intensity={16} blurReductionFactor={3} experimentalBlurMethod="none" tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} /> : null}
           <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
         </View> : null}
         <ScrollView decelerationRate="fast" bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>

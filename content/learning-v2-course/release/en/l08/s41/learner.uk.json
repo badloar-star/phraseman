@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-41:i01",
+      "interactionId": "en:lesson-08:session-41:word:negotiate",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — negotiate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:word:negotiate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — negotiate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:word:negotiate:audio",
+          "transcript": "negotiate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:word:negotiate:r1",
+            "targetText": "negotiate",
+            "meaningByLocale": {
+              "ru": "вести переговоры. I can negotiate. — «Я умею вести переговоры». Обсуждать условия, чтобы прийти к соглашению.",
+              "uk": "вести переговори. I can negotiate. — «Я вмію вести переговори». Обговорювати умови, щоб дійти згоди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "negotiate",
+          "definitionByLocale": {
+            "ru": "вести переговоры. I can negotiate. — «Я умею вести переговоры». Обсуждать условия, чтобы прийти к соглашению.",
+            "uk": "вести переговори. I can negotiate. — «Я вмію вести переговори». Обговорювати умови, щоб дійти згоди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте вести переговори",
+      "prompt": "Виберіть форму для фрази про своє вміння вести переговори",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-41:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте вести переговори",
+      "accessibilityLabel": "Виберіть форму для фрази про своє вміння вести переговори",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете вести переговоры",
-          "uk": "Скажіть, що вмієте вести переговори"
+          "ru": "Выберите форму для фразы о своём умении вести переговоры",
+          "uk": "Виберіть форму для фрази про своє вміння вести переговори"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "negotiates"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте вести переговори",
+        "testedDimension": "Виберіть форму для фрази про своє вміння вести переговори",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-41:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте вести переговори",
+            "testedDimension": "Виберіть форму для фрази про своє вміння вести переговори",
             "feedbackByLocale": {
               "ru": "После `can` нужно `negotiate`, без `to`.",
               "uk": "Після `can` потрібне `negotiate`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-41:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте вести переговори",
+            "testedDimension": "Виберіть форму для фрази про своє вміння вести переговори",
             "feedbackByLocale": {
               "ru": "После `can` нужно `negotiate`, без `s`.",
               "uk": "Після `can` потрібне `negotiate`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-41:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-41:word:mediate",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mediate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:word:mediate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mediate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:word:mediate:audio",
+          "transcript": "mediate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:word:mediate:r1",
+            "targetText": "mediate",
+            "meaningByLocale": {
+              "ru": "быть посредником в споре. She can mediate. — «Она умеет помогать сторонам договориться». Посредник помогает другим участникам найти решение.",
+              "uk": "бути посередником у суперечці. She can mediate. — «Вона вміє допомагати сторонам домовитися». Посередник допомагає іншим учасникам знайти рішення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mediate",
+          "definitionByLocale": {
+            "ru": "быть посредником в споре. She can mediate. — «Она умеет помогать сторонам договориться». Посредник помогает другим участникам найти решение.",
+            "uk": "бути посередником у суперечці. She can mediate. — «Вона вміє допомагати сторонам домовитися». Посередник допомагає іншим учасникам знайти рішення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "prompt": "Скажіть «Вона вміє бути посередником у суперечці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "accessibilityLabel": "Скажіть «Вона вміє бути посередником у суперечці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can drive.",
+        "targetPhrase": "She can mediate.",
         "localizedMeaning": {
-          "ru": "Скажите о подруге «Она умеет водить»",
-          "uk": "Скажіть про подругу «Вона вміє водити»"
+          "ru": "Скажите «Она умеет быть посредником в споре»",
+          "uk": "Скажіть «Вона вміє бути посередником у суперечці»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "mediate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-41:word:interpret",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — interpret",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:word:interpret:audio"
+      ],
+      "accessibilityLabel": "Картка слова — interpret",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:word:interpret:audio",
+          "transcript": "interpret"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:word:interpret:r1",
+            "targetText": "interpret",
+            "meaningByLocale": {
+              "ru": "устно переводить. I can interpret. — «Я умею устно переводить». Здесь речь о переводе разговора между языками.",
+              "uk": "усно перекладати. I can interpret. — «Я вмію усно перекладати». Тут ідеться про переклад розмови між мовами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interpret",
+          "definitionByLocale": {
+            "ru": "устно переводить. I can interpret. — «Я умею устно переводить». Здесь речь о переводе разговора между языками.",
+            "uk": "усно перекладати. I can interpret. — «Я вмію усно перекладати». Тут ідеться про переклад розмови між мовами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-41:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я вмію свистіти»",
+      "prompt": "Скажіть «Я вмію усно перекладати»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-41:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "accessibilityLabel": "Скажіть «Я вмію усно перекладати»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-41:i07:audio",
-          "transcript": "I can whistle."
+          "transcript": "I can interpret."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can whistle.",
+        "targetPhrase": "I can interpret.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вона вміє водити",
+      "prompt": "Виберіть форму для фрази про її вміння бути посередником",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-41:i08:r1",
-          "text": "drive"
+          "text": "mediate"
         },
         {
           "responseId": "en:lesson-08:session-41:i08:r2",
-          "text": "drives"
+          "text": "mediates"
         },
         {
           "responseId": "en:lesson-08:session-41:i08:r3",
-          "text": "to drive"
+          "text": "to mediate"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "accessibilityLabel": "Виберіть форму для фрази про її вміння бути посередником",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что она умеет водить",
-          "uk": "Скажіть, що вона вміє водити"
+          "ru": "Выберите форму для фразы о её умении быть посредником",
+          "uk": "Виберіть форму для фрази про її вміння бути посередником"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-41:i08:r1",
-            "text": "drive"
+            "text": "mediate"
           },
           {
             "responseId": "en:lesson-08:session-41:i08:r2",
-            "text": "drives"
+            "text": "mediates"
           },
           {
             "responseId": "en:lesson-08:session-41:i08:r3",
-            "text": "to drive"
+            "text": "to mediate"
           }
         ],
-        "testedDimension": "Скажіть, що вона вміє водити",
+        "testedDimension": "Виберіть форму для фрази про її вміння бути посередником",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-41:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази про її вміння бути посередником",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, даже с `she`.",
-              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+              "ru": "После can нужно mediate, даже с she.",
+              "uk": "Після can потрібне mediate, навіть із she."
             }
           },
           {
             "responseId": "en:lesson-08:session-41:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази про її вміння бути посередником",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, без `to`.",
-              "uk": "Після `can` потрібне `drive`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,14 +643,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-41:i10:p1",
-            "target": "rush",
-            "meaningByLocale": {
-              "ru": "торопиться",
-              "uk": "поспішати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-41:i10:p2",
             "target": "negotiate",
             "meaningByLocale": {
               "ru": "вести переговоры",
@@ -529,33 +650,41 @@
             }
           },
           {
+            "pairId": "en:lesson-08:session-41:i10:p2",
+            "target": "mediate",
+            "meaningByLocale": {
+              "ru": "быть посредником в споре",
+              "uk": "бути посередником у суперечці"
+            }
+          },
+          {
             "pairId": "en:lesson-08:session-41:i10:p3",
+            "target": "interpret",
+            "meaningByLocale": {
+              "ru": "устно переводить",
+              "uk": "усно перекладати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i10:p4",
             "target": "chat",
             "meaningByLocale": {
               "ru": "беседовать",
               "uk": "розмовляти"
             }
-          },
-          {
-            "pairId": "en:lesson-08:session-41:i10:p4",
-            "target": "cashpoint",
-            "meaningByLocale": {
-              "ru": "банкомат",
-              "uk": "банкомат"
-            }
           }
         ],
         "leftColumn": [
-          "rush",
           "negotiate",
-          "chat",
-          "cashpoint"
+          "mediate",
+          "interpret",
+          "chat"
         ],
         "rightColumn": [
-          "поспішати",
           "вести переговори",
-          "розмовляти",
-          "банкомат"
+          "бути посередником у суперечці",
+          "усно перекладати",
+          "розмовляти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,14 +717,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-41:i11:audio",
-          "transcript": "She can drive."
+          "transcript": "She can mediate."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can drive.",
+        "hiddenTargetPhrase": "She can mediate.",
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "mediate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -607,26 +736,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-41:word:persuade",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — persuade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:word:persuade:audio"
+      ],
+      "accessibilityLabel": "Картка слова — persuade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:word:persuade:audio",
+          "transcript": "persuade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:word:persuade:r1",
+            "targetText": "persuade",
+            "meaningByLocale": {
+              "ru": "убеждать. I can persuade him. — «Я могу убедить его». Привести доводы, чтобы человек согласился. Him — «его», если речь о мужчине.",
+              "uk": "переконувати. I can persuade him. — «Я можу переконати його». Навести аргументи, щоб людина погодилася. Him — «його», якщо йдеться про чоловіка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "persuade",
+          "definitionByLocale": {
+            "ru": "убеждать. I can persuade him. — «Я могу убедить его». Привести доводы, чтобы человек согласился. Him — «его», если речь о мужчине.",
+            "uk": "переконувати. I can persuade him. — «Я можу переконати його». Навести аргументи, щоб людина погодилася. Him — «його», якщо йдеться про чоловіка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-41:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг поспішає підписати документ. Скажіть «Не поспішай»",
+      "prompt": "Друг сумнівається, чи брати участь у прибиранні подвір’я. Скажіть «Я можу переконати його»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг поспішає підписати документ. Скажіть «Не поспішай»",
+      "accessibilityLabel": "Друг сумнівається, чи брати участь у прибиранні подвір’я. Скажіть «Я можу переконати його»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t rush.",
+        "targetPhrase": "I can persuade him.",
         "localizedMeaning": {
-          "ru": "Друг спешит подписать документ. Скажите «Не торопись»",
-          "uk": "Друг поспішає підписати документ. Скажіть «Не поспішай»"
+          "ru": "Друг сомневается, участвовать ли в уборке двора. Скажите «Я могу убедить его»",
+          "uk": "Друг сумнівається, чи брати участь у прибиранні подвір’я. Скажіть «Я можу переконати його»"
         },
         "orderedTokens": [
-          "Don’t",
-          "rush"
+          "I",
+          "can",
+          "persuade",
+          "him"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,7 +813,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -672,67 +846,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте свистіти",
+      "prompt": "Виберіть форму для фрази «Я вмію усно перекладати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-41:i14:r1",
-          "text": "whistle"
+          "text": "interpret"
         },
         {
           "responseId": "en:lesson-08:session-41:i14:r2",
-          "text": "whistles"
+          "text": "interprets"
         },
         {
           "responseId": "en:lesson-08:session-41:i14:r3",
-          "text": "to whistle"
+          "text": "to interpret"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "accessibilityLabel": "Виберіть форму для фрази «Я вмію усно перекладати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете свистеть",
-          "uk": "Скажіть, що вмієте свистіти"
+          "ru": "Выберите форму для фразы «Я умею устно переводить»",
+          "uk": "Виберіть форму для фрази «Я вмію усно перекладати»"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-41:i14:r1",
-            "text": "whistle"
+            "text": "interpret"
           },
           {
             "responseId": "en:lesson-08:session-41:i14:r2",
-            "text": "whistles"
+            "text": "interprets"
           },
           {
             "responseId": "en:lesson-08:session-41:i14:r3",
-            "text": "to whistle"
+            "text": "to interpret"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте свистіти",
+        "testedDimension": "Виберіть форму для фрази «Я вмію усно перекладати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-41:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я вмію усно перекладати»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "После can нужно interpret, без s.",
+              "uk": "Після can потрібне interpret, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-41:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я вмію усно перекладати»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -741,7 +915,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,40 +1013,40 @@
           },
           {
             "pairId": "en:lesson-08:session-41:i16:p2",
-            "target": "meditate",
+            "target": "mediate",
             "meaningByLocale": {
-              "ru": "медитировать",
-              "uk": "медитувати"
+              "ru": "быть посредником в споре",
+              "uk": "бути посередником у суперечці"
             }
           },
           {
             "pairId": "en:lesson-08:session-41:i16:p3",
-            "target": "rush",
+            "target": "interpret",
             "meaningByLocale": {
-              "ru": "торопиться",
-              "uk": "поспішати"
+              "ru": "устно переводить",
+              "uk": "усно перекладати"
             }
           },
           {
             "pairId": "en:lesson-08:session-41:i16:p4",
-            "target": "cashpoint",
+            "target": "persuade",
             "meaningByLocale": {
-              "ru": "банкомат",
-              "uk": "банкомат"
+              "ru": "убеждать",
+              "uk": "переконувати"
             }
           }
         ],
         "leftColumn": [
           "negotiate",
-          "meditate",
-          "rush",
-          "cashpoint"
+          "mediate",
+          "interpret",
+          "persuade"
         ],
         "rightColumn": [
           "вести переговори",
-          "медитувати",
-          "поспішати",
-          "банкомат"
+          "бути посередником у суперечці",
+          "усно перекладати",
+          "переконувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-41:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d45897f61bedbcf171eb0f1673454827cee8d71b394219a1765f870532c28e6f"
+  "learnerFingerprint": "ddb27833b49a70159152d8dc46a274b76766d5c493f1c1c563cfd06dc180d264"
 }

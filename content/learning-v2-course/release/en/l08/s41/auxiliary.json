@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-41:intro1:r2": {
-          "ru": "После `can` нужно `negotiate`, без `to`.",
-          "uk": "Після `can` потрібне `negotiate`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-41:intro1:r3": {
-          "ru": "После `can` нужно `negotiate`, без `s`.",
-          "uk": "Після `can` потрібне `negotiate`, без `s`."
+          "ru": "После can нужна форма без s.",
+          "uk": "Після can потрібна форма без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-41:intro2:r2": {
-          "ru": "После `can` нужно `drive`, без `s`.",
-          "uk": "Після `can` потрібне `drive`, без `s`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-41:intro2:r3": {
-          "ru": "После `can` нужно `drive`, без `to`.",
-          "uk": "Після `can` потрібне `drive`, без `to`."
+          "ru": "После can нужна форма без s.",
+          "uk": "Після can потрібна форма без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-41:intro3:r2": {
-          "ru": "После `can` нужно `whistle`, без `to`.",
-          "uk": "Після `can` потрібне `whistle`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-41:intro3:r3": {
-          "ru": "После `can` нужно `whistle`, без `s`.",
-          "uk": "Після `can` потрібне `whistle`, без `s`."
+          "ru": "После can нужна форма без s.",
+          "uk": "Після can потрібна форма без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "872f02d625b9c3a755e67d1025c5f23d38697e97bb8e6cbb5fe01782053f4ba5"
+  "auxiliaryFingerprint": "c7284fe3dfdbed43cf086bf174cb6a0b7ba48c8c7c5e76fc02c11579eb6caac7"
 }

@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 41 — Я умею договариваться
 
-**Ситуация.** Вы предлагаете помощь в переговорах, говорите об умении подруги водить и зовёте собаку свистом.
+**Ситуация.** Обсудить условия для ярмарки, помочь двум соседям договориться и перевести разговор с гостем.
 
 **Что вы освоите:** повторить can для умения и сохранить действие без to и окончаний
-**Новые слова:** negotiate
+**Новые слова:** negotiate, mediate, interpret, persuade
 
 ---
 
 ## Интро 1
 
-### Обсудим условия
+### Место для благотворительной ярмарки
 
-Друг собирается обсуждать условия аренды и просит помочь. `Negotiate` — «вести переговоры». Вы умеете это делать: `I can negotiate` — «Я умею вести переговоры». После `can` нужно `negotiate`, без `to`. Сначала обсудим цену — цвет ручки для подписи подождёт.
+Команда хочет провести благотворительную ярмарку во дворе кафе. Нужно обсудить с владельцем время и условия. Negotiate — «вести переговоры». У вас есть такой опыт: `I can negotiate` — «Я умею вести переговоры». После can действие остаётся без to и окончаний.
 
-**Скажите, что умеете вести переговоры.**
+**Выберите фразу о соответствующем умении.**
 
 - ✅ **I can negotiate.**
-- ❌ I can to negotiate. — *После `can` нужно `negotiate`, без `to`.*
-- ❌ I can negotiates. — *После `can` нужно `negotiate`, без `s`.*
+- ❌ I can to negotiate. — *После can не нужно to.*
+- ❌ I can negotiates. — *После can нужна форма без s.*
 
 ---
 
 ## Интро 2
 
-### Кто поведёт машину
+### Соседи делят место для велосипедов
 
-Вы с подругой собираетесь на вокзал. Вас спрашивают, умеет ли она водить. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.
+Два соседа спорят, чьи велосипеды займут место под навесом. Ваша подруга умеет выслушать обе стороны и помочь им договориться. Mediate — «быть посредником в споре». `She can mediate` — «Она умеет помогать сторонам договориться». Даже после she нужно mediate, без s: перед ним стоит can.
 
-**Скажите, что она умеет водить.**
+**Выберите фразу о соответствующем умении.**
 
-- ✅ **She can drive.**
-- ❌ She can drives. — *После `can` нужно `drive`, без `s`.*
-- ❌ She can to drive. — *После `can` нужно `drive`, без `to`.*
+- ✅ **She can mediate.**
+- ❌ She can to mediate. — *После can не нужно to.*
+- ❌ She can mediates. — *После can нужна форма без s.*
 
 ---
 
 ## Интро 3
 
-### Позовём собаку
+### Вопрос иностранного гостя
 
-Во дворе друг хочет позвать собаку свистом, но у него не получается. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.
+На встрече с художником иностранный гость хочет задать вопрос. Художник не понимает его язык, а вы владеете обоими языками. Interpret здесь — «устно переводить». `I can interpret` — «Я умею устно переводить». Вы можете передать вопрос и ответ во время разговора.
 
-**Скажите, что умеете свистеть.**
+**Выберите фразу о соответствующем умении.**
 
-- ✅ **I can whistle.**
-- ❌ I can to whistle. — *После `can` нужно `whistle`, без `to`.*
-- ❌ I can whistles. — *После `can` нужно `whistle`, без `s`.*
+- ✅ **I can interpret.**
+- ❌ I can to interpret. — *После can не нужно to.*
+- ❌ I can interprets. — *После can нужна форма без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Соберите «Я умею вести переговоры»**
+**1 · Карточка слова — negotiate**
+<!-- interaction_id: en:lesson-08:session-41:word:negotiate; family: word_card -->
+> **negotiate** — вести переговоры. I can negotiate. — «Я умею вести переговоры». Обсуждать условия, чтобы прийти к соглашению.
+
+**2 · Соберите «Я умею вести переговоры»**
 <!-- interaction_id: en:lesson-08:session-41:i01; family: phrase_builder -->
 Плитки: `negotiate` `can` `I` → **I can negotiate.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-41:i02; family: listen_choose -->
 🔊 *negotiate* → **negotiate** · chat · meditate
 - chat — *В записи первое слово — `negotiate`, а в этом варианте — `chat`.*
 - meditate — *В записи первое слово — `negotiate`, а в этом варианте — `meditate`.*
 
-**3 · Скажите, что умеете вести переговоры**
+**4 · Выберите форму для фразы о своём умении вести переговоры**
 <!-- interaction_id: en:lesson-08:session-41:i03; family: context_gap_grammar -->
 I can ___. → **negotiate** · to negotiate · negotiates
 - to negotiate — *После `can` нужно `negotiate`, без `to`.*
 - negotiates — *После `can` нужно `negotiate`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-41:i04; family: speed_match -->
 negotiate — вести переговоры · cashpoint — банкомат · chat — беседовать · meditate — медитировать
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-41:i05; family: listen_build_dictation -->
 🔊 *I can negotiate.* Плитки: `negotiate` `can` `I` → **I can negotiate.**
 
-**6 · Скажите о подруге «Она умеет водить»**
+**7 · Карточка слова — mediate**
+<!-- interaction_id: en:lesson-08:session-41:word:mediate; family: word_card -->
+> **mediate** — быть посредником в споре. She can mediate. — «Она умеет помогать сторонам договориться». Посредник помогает другим участникам найти решение.
+
+**8 · Скажите «Она умеет быть посредником в споре»**
 <!-- interaction_id: en:lesson-08:session-41:i06; family: phrase_builder -->
-Плитки: `drive` `can` `She` → **She can drive.**
+Плитки: `mediate` `can` `She` → **She can mediate.**
 
-**7 · Скажите «Я умею свистеть»**
+**9 · Карточка слова — interpret**
+<!-- interaction_id: en:lesson-08:session-41:word:interpret; family: word_card -->
+> **interpret** — устно переводить. I can interpret. — «Я умею устно переводить». Здесь речь о переводе разговора между языками.
+
+**10 · Скажите «Я умею устно переводить»**
 <!-- interaction_id: en:lesson-08:session-41:i07; family: scripted_repeat_compare -->
-🎙 **I can whistle.**
+🎙 **I can interpret.**
 
-**8 · Скажите, что она умеет водить**
+**11 · Выберите форму для фразы о её умении быть посредником**
 <!-- interaction_id: en:lesson-08:session-41:i08; family: context_gap_grammar -->
-She can ___. → **drive** · drives · to drive
-- drives — *После `can` нужно `drive`, даже с `she`.*
-- to drive — *После `can` нужно `drive`, без `to`.*
+She can ___. → **mediate** · mediates · to mediate
+- mediates — *После can нужно mediate, даже с she.*
+- to mediate — *После can не нужно to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-41:i09; family: listen_choose -->
 🔊 *I can negotiate.* → **I can negotiate.** · I can swim. · I can whistle.
 - I can swim. — *В записи последнее слово — `negotiate`, а в этом варианте — `swim`.*
 - I can whistle. — *В записи последнее слово — `negotiate`, а в этом варианте — `whistle`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-41:i10; family: speed_match -->
-rush — торопиться · negotiate — вести переговоры · chat — беседовать · cashpoint — банкомат
+negotiate — вести переговоры · mediate — быть посредником в споре · interpret — устно переводить · chat — беседовать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-41:i11; family: listen_build_dictation -->
-🔊 *She can drive.* Плитки: `drive` `can` `She` → **She can drive.**
+🔊 *She can mediate.* Плитки: `mediate` `can` `She` → **She can mediate.**
 
-**12 · Друг спешит подписать документ. Скажите «Не торопись»**
+**15 · Карточка слова — persuade**
+<!-- interaction_id: en:lesson-08:session-41:word:persuade; family: word_card -->
+> **persuade** — убеждать. I can persuade him. — «Я могу убедить его». Привести доводы, чтобы человек согласился. Him — «его», если речь о мужчине.
+
+**16 · Друг сомневается, участвовать ли в уборке двора. Скажите «Я могу убедить его»**
 <!-- interaction_id: en:lesson-08:session-41:i12; family: phrase_builder -->
-Плитки: `rush` `Don’t` → **Don’t rush.**
+Плитки: `him` `persuade` `can` `I` → **I can persuade him.**
 
-**13 · Расскажите «Я часто медитирую»**
+**17 · Расскажите «Я часто медитирую»**
 <!-- interaction_id: en:lesson-08:session-41:i13; family: scripted_repeat_compare -->
 🎙 **I often meditate.**
 
-**14 · Скажите, что умеете свистеть**
+**18 · Выберите форму для фразы «Я умею устно переводить»**
 <!-- interaction_id: en:lesson-08:session-41:i14; family: context_gap_grammar -->
-I can ___. → **whistle** · whistles · to whistle
-- whistles — *После `can` нужно `whistle`, без `s`.*
-- to whistle — *После `can` нужно `whistle`, без `to`.*
+I can ___. → **interpret** · interprets · to interpret
+- interprets — *После can нужно interpret, без s.*
+- to interpret — *После can не нужно to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-41:i15; family: listen_choose -->
 🔊 *I can swim.* → **I can swim.** · I can drive. · I can whistle.
 - I can drive. — *В записи последнее слово — `swim`, а в этом варианте — `drive`.*
 - I can whistle. — *В записи последнее слово — `swim`, а в этом варианте — `whistle`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-41:i16; family: speed_match -->
-negotiate — вести переговоры · meditate — медитировать · rush — торопиться · cashpoint — банкомат
+negotiate — вести переговоры · mediate — быть посредником в споре · interpret — устно переводить · persuade — убеждать
 
-**17 · Коллега ищет человека, который умеет обсуждать условия с партнёрами. Скажите «Я умею вести переговоры»**
+**21 · Коллега ищет человека, который умеет обсуждать условия с партнёрами. Скажите «Я умею вести переговоры»**
 <!-- interaction_id: en:lesson-08:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I can negotiate.**
 

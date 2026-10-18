@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обсудим условия",
-        "uk": "Обговоримо умови"
+        "ru": "Место для благотворительной ярмарки",
+        "uk": "Місце для благодійного ярмарку"
       },
       "bodyByLocale": {
-        "ru": "Друг собирается обсуждать условия аренды и просит помочь. `Negotiate` — «вести переговоры». Вы умеете это делать: `I can negotiate` — «Я умею вести переговоры». После `can` нужно `negotiate`, без `to`. Сначала обсудим цену — цвет ручки для подписи подождёт.",
-        "uk": "Друг збирається обговорювати умови оренди й просить допомогти. `Negotiate` — «вести переговори». Ви вмієте це робити: `I can negotiate` — «Я вмію вести переговори». Після `can` потрібне `negotiate`, без `to`. Спочатку обговоримо ціну — колір ручки для підпису зачекає."
+        "ru": "Команда хочет провести благотворительную ярмарку во дворе кафе. Нужно обсудить с владельцем время и условия. Negotiate — «вести переговоры». У вас есть такой опыт: `I can negotiate` — «Я умею вести переговоры». После can действие остаётся без to и окончаний.",
+        "uk": "Команда хоче провести благодійний ярмарок у дворі кафе. Потрібно обговорити з власником час та умови. Negotiate — «вести переговори». Ви маєте такий досвід: `I can negotiate` — «Я вмію вести переговори». Після can дія залишається без to і закінчень."
       },
       "question": {
         "interactionId": "en:lesson-08:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете вести переговоры.",
-          "uk": "Скажіть, що вмієте вести переговори."
+          "ru": "Выберите фразу о соответствующем умении.",
+          "uk": "Виберіть фразу про відповідне вміння."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете вести переговоры.",
-          "uk": "Скажіть, що вмієте вести переговори."
+          "ru": "Выберите фразу о соответствующем умении.",
+          "uk": "Виберіть фразу про відповідне вміння."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто поведёт машину",
-        "uk": "Хто поведе машину"
+        "ru": "Соседи делят место для велосипедов",
+        "uk": "Сусіди ділять місце для велосипедів"
       },
       "bodyByLocale": {
-        "ru": "Вы с подругой собираетесь на вокзал. Вас спрашивают, умеет ли она водить. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
-        "uk": "Ви з подругою збираєтеся на вокзал. Вас запитують, чи вміє вона водити. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+        "ru": "Два соседа спорят, чьи велосипеды займут место под навесом. Ваша подруга умеет выслушать обе стороны и помочь им договориться. Mediate — «быть посредником в споре». `She can mediate` — «Она умеет помогать сторонам договориться». Даже после she нужно mediate, без s: перед ним стоит can.",
+        "uk": "Двоє сусідів сперечаються, чиї велосипеди займуть місце під навісом. Ваша подруга вміє вислухати обидві сторони й допомогти їм домовитися. Mediate — «бути посередником у суперечці». `She can mediate` — «Вона вміє допомагати сторонам домовитися». Навіть після she потрібне mediate, без s: перед ним стоїть can."
       },
       "question": {
         "interactionId": "en:lesson-08:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу о соответствующем умении.",
+          "uk": "Виберіть фразу про відповідне вміння."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-41:intro2:r1",
-              "text": "She can drive."
+              "text": "She can mediate."
             },
             {
               "responseId": "en:lesson-08:session-41:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to mediate."
             },
             {
               "responseId": "en:lesson-08:session-41:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can mediates."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-41:intro2:r1",
-              "text": "She can drive."
+              "text": "She can mediate."
             },
             {
               "responseId": "en:lesson-08:session-41:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to mediate."
             },
             {
               "responseId": "en:lesson-08:session-41:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can mediates."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу о соответствующем умении.",
+          "uk": "Виберіть фразу про відповідне вміння."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Позовём собаку",
-        "uk": "Покличемо собаку"
+        "ru": "Вопрос иностранного гостя",
+        "uk": "Запитання іноземного гостя"
       },
       "bodyByLocale": {
-        "ru": "Во дворе друг хочет позвать собаку свистом, но у него не получается. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
-        "uk": "У дворі друг хоче покликати собаку свистом, але в нього не виходить. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+        "ru": "На встрече с художником иностранный гость хочет задать вопрос. Художник не понимает его язык, а вы владеете обоими языками. Interpret здесь — «устно переводить». `I can interpret` — «Я умею устно переводить». Вы можете передать вопрос и ответ во время разговора.",
+        "uk": "На зустрічі з художником іноземний гість хоче поставити запитання. Художник не розуміє його мови, а ви володієте обома мовами. Interpret тут — «усно перекладати». `I can interpret` — «Я вмію усно перекладати». Ви можете передати запитання й відповідь під час розмови."
       },
       "question": {
         "interactionId": "en:lesson-08:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу о соответствующем умении.",
+          "uk": "Виберіть фразу про відповідне вміння."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-41:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can interpret."
             },
             {
               "responseId": "en:lesson-08:session-41:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to interpret."
             },
             {
               "responseId": "en:lesson-08:session-41:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can interprets."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-41:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can interpret."
             },
             {
               "responseId": "en:lesson-08:session-41:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to interpret."
             },
             {
               "responseId": "en:lesson-08:session-41:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can interprets."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу о соответствующем умении.",
+          "uk": "Виберіть фразу про відповідне вміння."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7f5e4f5d215998e9e7de10dad59716610dda6cc52f32162fbd4b101d212e2a37"
+  "introFingerprint": "3f539d397532d805a112acdaca27673a869cb4455fb099be42dad127da3c9501"
 }

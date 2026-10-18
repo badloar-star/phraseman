@@ -4,30 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-35:i01",
+      "interactionId": "en:lesson-07:session-35:word:commute",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — commute",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:word:commute:audio"
+      ],
+      "accessibilityLabel": "Картка слова — commute",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:word:commute:audio",
+          "transcript": "commute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:word:commute:r1",
+            "targetText": "commute",
+            "meaningByLocale": {
+              "ru": "ездить на работу. I usually commute by bus. — «Я обычно езжу на работу на автобусе». Регулярно добираться из дома на работу или учёбу и обратно; здесь речь о работе.",
+              "uk": "їздити на роботу. I usually commute by bus. — «Я зазвичай їжджу на роботу автобусом». Регулярно діставатися з дому на роботу чи навчання й назад; тут ідеться про роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "commute",
+          "definitionByLocale": {
+            "ru": "ездить на работу. I usually commute by bus. — «Я обычно езжу на работу на автобусе». Регулярно добираться из дома на работу или учёбу и обратно; здесь речь о работе.",
+            "uk": "їздити на роботу. I usually commute by bus. — «Я зазвичай їжджу на роботу автобусом». Регулярно діставатися з дому на роботу чи навчання й назад; тут ідеться про роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-35:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я зазвичай їжджу на роботу»",
+      "prompt": "Колега питає, як ви добираєтеся до офісу. Скажіть: «Я зазвичай їжджу на роботу автобусом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай їжджу на роботу»",
+      "accessibilityLabel": "Колега питає, як ви добираєтеся до офісу. Скажіть: «Я зазвичай їжджу на роботу автобусом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually commute.",
+        "targetPhrase": "I usually commute by bus.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно езжу на работу»",
-          "uk": "Скажіть «Я зазвичай їжджу на роботу»"
+          "ru": "Коллега спрашивает, как вы добираетесь до офиса. Скажите: «Я обычно езжу на работу на автобусе»",
+          "uk": "Колега питає, як ви добираєтеся до офісу. Скажіть: «Я зазвичай їжджу на роботу автобусом»"
         },
         "orderedTokens": [
           "I",
           "usually",
-          "commute"
+          "commute",
+          "by",
+          "bus"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Колега питає, як ви добираєтеся до офісу. Скажіть: «Я зазвичай їжджу на роботу автобусом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually commute by bus.`",
+              "uk": "тут потрібно `usually` — `I usually commute by bus.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,8 +93,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-35:word:hurry",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hurry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:word:hurry:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hurry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:word:hurry:audio",
+          "transcript": "hurry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:word:hurry:r1",
+            "targetText": "hurry",
+            "meaningByLocale": {
+              "ru": "спешить. I often hurry in the morning. — «Я часто спешу по утрам». Делать что-либо быстрее, чтобы успеть; здесь — спешить к поезду.",
+              "uk": "поспішати. I often hurry in the morning. — «Я часто поспішаю вранці». Робити щось швидше, щоб устигнути; тут — поспішати до поїзда."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hurry",
+          "definitionByLocale": {
+            "ru": "спешить. I often hurry in the morning. — «Я часто спешу по утрам». Делать что-либо быстрее, чтобы успеть; здесь — спешить к поезду.",
+            "uk": "поспішати. I often hurry in the morning. — «Я часто поспішаю вранці». Робити щось швидше, щоб устигнути; тут — поспішати до поїзда."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-35:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +145,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-35:i02:r1",
-          "text": "commute"
+          "text": "hurry"
         },
         {
           "responseId": "en:lesson-07:session-35:i02:r2",
-          "text": "sleep"
+          "text": "wait"
         },
         {
           "responseId": "en:lesson-07:session-35:i02:r3",
-          "text": "stay"
+          "text": "stop"
         }
       ],
       "mediaIds": [],
@@ -65,23 +165,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i02:audio",
-          "transcript": "commute"
+          "transcript": "hurry"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-35:i02:r1",
-            "targetText": "commute",
+            "targetText": "hurry",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-35:i02:r2",
-            "targetText": "sleep",
+            "targetText": "wait",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-35:i02:r3",
-            "targetText": "stay",
+            "targetText": "stop",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +192,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `commute`, а в этом варианте — `sleep`.",
-              "uk": "У записі перше слово — `commute`, а в цьому варіанті — `sleep`."
+              "ru": "В записи первое слово — `hurry`, а в этом варианте — `wait`.",
+              "uk": "У записі перше слово — `hurry`, а в цьому варіанті — `wait`."
             }
           },
           {
@@ -101,8 +201,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `commute`, а в этом варианте — `stay`.",
-              "uk": "У записі перше слово — `commute`, а в цьому варіанті — `stay`."
+              "ru": "В записи первое слово — `hurry`, а в этом варианте — `stop`.",
+              "uk": "У записі перше слово — `hurry`, а в цьому варіанті — `stop`."
             }
           }
         ],
@@ -112,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-35:word:change",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — change",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:word:change:audio"
+      ],
+      "accessibilityLabel": "Картка слова — change",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:word:change:audio",
+          "transcript": "change"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:word:change:r1",
+            "targetText": "change",
+            "meaningByLocale": {
+              "ru": "пересаживаться. He usually changes trains. — «Он обычно пересаживается с поезда на поезд». Здесь в сочетании change trains — переходить с одного поезда на другой.",
+              "uk": "пересідати. He usually changes trains. — «Він зазвичай пересідає з поїзда на поїзд». Тут у сполученні change trains — переходити з одного поїзда на інший."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "change",
+          "definitionByLocale": {
+            "ru": "пересаживаться. He usually changes trains. — «Он обычно пересаживается с поезда на поезд». Здесь в сочетании change trains — переходить с одного поезда на другой.",
+            "uk": "пересідати. He usually changes trains. — «Він зазвичай пересідає з поїзда на поїзд». Тут у сполученні change trains — переходити з одного поїзда на інший."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-35:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай їжджу на роботу»",
+      "prompt": "Друг питає, як брат добирається до офісу. Скажіть: «Він зазвичай пересідає з поїзда на поїзд». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-35:i03:r1",
-          "text": "commute"
+          "text": "changes"
         },
         {
           "responseId": "en:lesson-07:session-35:i03:r2",
-          "text": "commutes"
+          "text": "change"
         },
         {
           "responseId": "en:lesson-07:session-35:i03:r3",
-          "text": "commuting"
+          "text": "changing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай їжджу на роботу»",
+      "accessibilityLabel": "Друг питає, як брат добирається до офісу. Скажіть: «Він зазвичай пересідає з поїзда на поїзд». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно езжу на работу»",
-          "uk": "Скажіть «Я зазвичай їжджу на роботу»"
+          "ru": "Друг спрашивает, как брат добирается до офиса. Скажите: «Он обычно пересаживается с поезда на поезд». Выберите слово",
+          "uk": "Друг питає, як брат добирається до офісу. Скажіть: «Він зазвичай пересідає з поїзда на поїзд». Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___.",
+        "gappedTargetPhrase": "He usually ___ trains.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-35:i03:r1",
-            "text": "commute"
+            "text": "changes"
           },
           {
             "responseId": "en:lesson-07:session-35:i03:r2",
-            "text": "commutes"
+            "text": "change"
           },
           {
             "responseId": "en:lesson-07:session-35:i03:r3",
-            "text": "commuting"
+            "text": "changing"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай їжджу на роботу»",
+        "testedDimension": "Друг питає, як брат добирається до офісу. Скажіть: «Він зазвичай пересідає з поїзда на поїзд». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-35:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай їжджу на роботу»",
+            "testedDimension": "Друг питає, як брат добирається до офісу. Скажіть: «Він зазвичай пересідає з поїзда на поїзд». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `commute`.",
-              "uk": "Після `I` потрібне `commute`."
+              "ru": "После `He` нужно `changes`.",
+              "uk": "Після `He` потрібно `changes`."
             }
           },
           {
             "responseId": "en:lesson-07:session-35:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай їжджу на роботу»",
+            "testedDimension": "Друг питає, як брат добирається до офісу. Скажіть: «Він зазвичай пересідає з поїзда на поїзд». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `commute`.",
-              "uk": "Тут потрібна форма `commute`."
+              "ru": "Здесь нужна форма `changes`.",
+              "uk": "Тут потрібна форма `changes`."
             }
           }
         ]
@@ -182,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,46 +341,46 @@
             "pairId": "en:lesson-07:session-35:i04:p1",
             "target": "commute",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "ездить на работу",
+              "uk": "їздити на роботу"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i04:p2",
-            "target": "sleep",
+            "target": "hurry",
             "meaningByLocale": {
-              "ru": "спать",
-              "uk": "спати"
+              "ru": "спешить",
+              "uk": "поспішати"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i04:p3",
-            "target": "photos",
+            "target": "change",
             "meaningByLocale": {
-              "ru": "фотографии",
-              "uk": "фотографії"
+              "ru": "пересаживаться",
+              "uk": "пересідати"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i04:p4",
-            "target": "bracelet",
+            "target": "bus",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "автобус",
+              "uk": "автобус"
             }
           }
         ],
         "leftColumn": [
           "commute",
-          "sleep",
-          "photos",
-          "bracelet"
+          "hurry",
+          "change",
+          "bus"
         ],
         "rightColumn": [
-          "їздити на роботу або навчання",
-          "спати",
-          "фотографії",
-          "браслет"
+          "їздити на роботу",
+          "поспішати",
+          "пересідати",
+          "автобус"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,8 +398,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -270,17 +413,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i05:audio",
-          "transcript": "I usually commute."
+          "transcript": "I often hurry in the morning."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually commute.",
+        "hiddenTargetPhrase": "I often hurry in the morning.",
         "orderedTokens": [
           "I",
-          "usually",
-          "commute"
+          "often",
+          "hurry",
+          "in",
+          "the",
+          "morning"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "hurries"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `hurry` — `I often hurry in the morning.`",
+              "uk": "тут потрібно `hurry` — `I often hurry in the morning.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,30 +447,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-35:word:hire",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hire",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-35:word:hire:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hire",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-35:word:hire:audio",
+          "transcript": "hire"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-35:word:hire:r1",
+            "targetText": "hire",
+            "meaningByLocale": {
+              "ru": "брать напрокат. I usually hire a car. — «Я обычно беру машину напрокат». В британском английском hire a car — взять машину во временное пользование за плату.",
+              "uk": "брати напрокат. I usually hire a car. — «Я зазвичай беру машину напрокат». У британській англійській hire a car — взяти машину в тимчасове користування за плату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hire",
+          "definitionByLocale": {
+            "ru": "брать напрокат. I usually hire a car. — «Я обычно беру машину напрокат». В британском английском hire a car — взять машину во временное пользование за плату.",
+            "uk": "брати напрокат. I usually hire a car. — «Я зазвичай беру машину напрокат». У британській англійській hire a car — взяти машину в тимчасове користування за плату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-35:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»",
+      "prompt": "Колега питає, як ви зазвичай пересуваєтеся у відрядженнях. Скажіть: «Я зазвичай беру машину напрокат»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»",
+      "accessibilityLabel": "Колега питає, як ви зазвичай пересуваєтеся у відрядженнях. Скажіть: «Я зазвичай беру машину напрокат»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually walk.",
+        "targetPhrase": "I usually hire a car.",
         "localizedMeaning": {
-          "ru": "Расскажите о дороге до магазина: «Я обычно хожу пешком»",
-          "uk": "Розкажіть про дорогу до магазину: «Я зазвичай ходжу пішки»"
+          "ru": "Коллега спрашивает, как вы обычно передвигаетесь в командировках. Скажите: «Я обычно беру машину напрокат»",
+          "uk": "Колега питає, як ви зазвичай пересуваєтеся у відрядженнях. Скажіть: «Я зазвичай беру машину напрокат»"
         },
         "orderedTokens": [
           "I",
           "usually",
-          "walk"
+          "hire",
+          "a",
+          "car"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Колега питає, як ви зазвичай пересуваєтеся у відрядженнях. Скажіть: «Я зазвичай беру машину напрокат»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually hire a car.`",
+              "uk": "тут потрібно `usually` — `I usually hire a car.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть про знайому «Вона часто телефонує»",
+      "prompt": "Подруга питає про вашого брата. Скажіть: «Він зазвичай їздить на роботу поїздом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-35:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть про знайому «Вона часто телефонує»",
+      "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Він зазвичай їздить на роботу поїздом»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i07:audio",
-          "transcript": "She often calls."
+          "transcript": "He usually commutes by train."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She often calls.",
+        "targetPhrase": "He usually commutes by train.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона часто телефонує»",
+      "prompt": "Друг питає про вашу сестру у відрядженнях. Скажіть: «Вона часто бере машину напрокат». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-35:i08:r1",
-          "text": "calls"
+          "text": "hires"
         },
         {
           "responseId": "en:lesson-07:session-35:i08:r2",
-          "text": "call"
+          "text": "hire"
         },
         {
           "responseId": "en:lesson-07:session-35:i08:r3",
-          "text": "calling"
+          "text": "hiring"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона часто телефонує»",
+      "accessibilityLabel": "Друг питає про вашу сестру у відрядженнях. Скажіть: «Вона часто бере машину напрокат». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она часто звонит»",
-          "uk": "Скажіть «Вона часто телефонує»"
+          "ru": "Друг спрашивает про вашу сестру в командировках. Скажите: «Она часто берёт машину напрокат». Выберите слово",
+          "uk": "Друг питає про вашу сестру у відрядженнях. Скажіть: «Вона часто бере машину напрокат». Виберіть слово"
         },
-        "gappedTargetPhrase": "She often ___.",
+        "gappedTargetPhrase": "She often ___ a car.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-35:i08:r1",
-            "text": "calls"
+            "text": "hires"
           },
           {
             "responseId": "en:lesson-07:session-35:i08:r2",
-            "text": "call"
+            "text": "hire"
           },
           {
             "responseId": "en:lesson-07:session-35:i08:r3",
-            "text": "calling"
+            "text": "hiring"
           }
         ],
-        "testedDimension": "Скажіть «Вона часто телефонує»",
+        "testedDimension": "Друг питає про вашу сестру у відрядженнях. Скажіть: «Вона часто бере машину напрокат». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-35:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "testedDimension": "Друг питає про вашу сестру у відрядженнях. Скажіть: «Вона часто бере машину напрокат». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` нужно `calls`.",
-              "uk": "Після `she` потрібне `calls`."
+              "ru": "После `She` нужно `hires`.",
+              "uk": "Після `She` потрібно `hires`."
             }
           },
           {
             "responseId": "en:lesson-07:session-35:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "testedDimension": "Друг питає про вашу сестру у відрядженнях. Скажіть: «Вона часто бере машину напрокат». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `calls`.",
-              "uk": "Тут потрібна форма `calls`."
+              "ru": "Здесь нужна форма `hires`.",
+              "uk": "Тут потрібна форма `hires`."
             }
           }
         ]
@@ -424,7 +639,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,15 +647,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-35:i09:r1",
-          "text": "I usually commute."
+          "text": "I usually commute by bus."
         },
         {
           "responseId": "en:lesson-07:session-35:i09:r2",
-          "text": "I usually walk."
+          "text": "I usually commute by train."
         },
         {
           "responseId": "en:lesson-07:session-35:i09:r3",
-          "text": "I usually study."
+          "text": "I usually commute by taxi."
         }
       ],
       "mediaIds": [],
@@ -452,23 +667,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i09:audio",
-          "transcript": "I usually commute."
+          "transcript": "I usually commute by bus."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-35:i09:r1",
-            "targetText": "I usually commute.",
+            "targetText": "I usually commute by bus.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-35:i09:r2",
-            "targetText": "I usually walk.",
+            "targetText": "I usually commute by train.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-35:i09:r3",
-            "targetText": "I usually study.",
+            "targetText": "I usually commute by taxi.",
             "meaningByLocale": null
           }
         ],
@@ -479,8 +694,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `commute`, а в этом варианте — `walk`.",
-              "uk": "У записі останнє слово — `commute`, а в цьому варіанті — `walk`."
+              "ru": "В записи последнее слово — `bus`, а в этом варианте — `train`.",
+              "uk": "У записі останнє слово — `bus`, а в цьому варіанті — `train`."
             }
           },
           {
@@ -488,8 +703,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `commute`, а в этом варианте — `study`.",
-              "uk": "У записі останнє слово — `commute`, а в цьому варіанті — `study`."
+              "ru": "В записи последнее слово — `bus`, а в этом варианте — `taxi`.",
+              "uk": "У записі останнє слово — `bus`, а в цьому варіанті — `taxi`."
             }
           }
         ],
@@ -500,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -514,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-35:i10:p1",
-            "target": "stay",
+            "target": "hire",
             "meaningByLocale": {
-              "ru": "останавливаться на время поездки",
-              "uk": "зупинятися на час поїздки"
+              "ru": "брать напрокат",
+              "uk": "брати напрокат"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i10:p2",
-            "target": "commute",
+            "target": "change",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "пересаживаться",
+              "uk": "пересідати"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i10:p3",
-            "target": "photos",
+            "target": "hurry",
             "meaningByLocale": {
-              "ru": "фотографии",
-              "uk": "фотографії"
+              "ru": "спешить",
+              "uk": "поспішати"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i10:p4",
-            "target": "sleep",
+            "target": "commute",
             "meaningByLocale": {
-              "ru": "спать",
-              "uk": "спати"
+              "ru": "ездить на работу",
+              "uk": "їздити на роботу"
             }
           }
         ],
         "leftColumn": [
-          "stay",
-          "commute",
-          "photos",
-          "sleep"
+          "hire",
+          "change",
+          "hurry",
+          "commute"
         ],
         "rightColumn": [
-          "зупинятися на час поїздки",
-          "їздити на роботу або навчання",
-          "фотографії",
-          "спати"
+          "брати напрокат",
+          "пересідати",
+          "поспішати",
+          "їздити на роботу"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +788,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,17 +803,30 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i11:audio",
-          "transcript": "She often calls."
+          "transcript": "He usually changes trains."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She often calls.",
+        "hiddenTargetPhrase": "He usually changes trains.",
         "orderedTokens": [
-          "She",
-          "often",
-          "calls"
+          "He",
+          "usually",
+          "changes",
+          "trains"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "change"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `changes` — `He usually changes trains.`",
+              "uk": "тут потрібно `changes` — `He usually changes trains.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -608,31 +836,43 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви добираєте прикраси. Запитайте подругу «У тебе є браслет?»",
+      "prompt": "Ви розповідаєте про сестру. Скажіть: «Вона часто поспішає на роботу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви добираєте прикраси. Запитайте подругу «У тебе є браслет?»",
+      "accessibilityLabel": "Ви розповідаєте про сестру. Скажіть: «Вона часто поспішає на роботу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a bracelet?",
+        "targetPhrase": "She often hurries to work.",
         "localizedMeaning": {
-          "ru": "Вы подбираете украшения. Спросите подругу «У тебя есть браслет?»",
-          "uk": "Ви добираєте прикраси. Запитайте подругу «У тебе є браслет?»"
+          "ru": "Вы рассказываете о сестре. Скажите: «Она часто спешит на работу»",
+          "uk": "Ви розповідаєте про сестру. Скажіть: «Вона часто поспішає на роботу»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "bracelet"
+          "She",
+          "often",
+          "hurries",
+          "to",
+          "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "hurry"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-35:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про сестру. Скажіть: «Вона часто поспішає на роботу»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `hurries` — `She often hurries to work.`",
+              "uk": "тут потрібно `hurries` — `She often hurries to work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -642,25 +882,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Дізнайтеся звичне місце ночівлі колеги в поїздках",
+      "prompt": "Знайомий питає, на чому брат пересувається у відрядженнях. Скажіть: «Він часто бере машину напрокат»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-35:i13:audio"
       ],
-      "accessibilityLabel": "Дізнайтеся звичне місце ночівлі колеги в поїздках",
+      "accessibilityLabel": "Знайомий питає, на чому брат пересувається у відрядженнях. Скажіть: «Він часто бере машину напрокат»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i13:audio",
-          "transcript": "Where do you stay?"
+          "transcript": "He often hires a car."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where do you stay?",
+        "targetPhrase": "He often hires a car.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -675,11 +915,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай сплю тут»",
+      "prompt": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу поїздом». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-35:i14:r1",
@@ -696,14 +936,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай сплю тут»",
+      "accessibilityLabel": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу поїздом». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно сплю здесь»",
-          "uk": "Скажіть «Я зазвичай сплю тут»"
+          "ru": "Вы рассказываете о дороге на работу. Скажите: «Я обычно езжу на работу на поезде». Выберите слово",
+          "uk": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу поїздом». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ sleep here.",
+        "gappedTargetPhrase": "I ___ commute by train.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-35:i14:r1",
@@ -718,24 +958,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай сплю тут»",
+        "testedDimension": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу поїздом». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-35:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай сплю тут»",
+            "testedDimension": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу поїздом». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `sleep`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `sleep`."
+              "ru": "Для «обычно» нужно `usually` перед `commute`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `commute`."
             }
           },
           {
             "responseId": "en:lesson-07:session-35:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай сплю тут»",
+            "testedDimension": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу поїздом». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `sleep` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `sleep` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `commute` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `commute` не ставимо."
             }
           }
         ]
@@ -744,51 +984,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть запитання",
+      "prompt": "Послухайте й виберіть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-35:i15:r1",
-          "text": "Do you have photos?"
+          "text": "She often hurries to work."
         },
         {
           "responseId": "en:lesson-07:session-35:i15:r2",
-          "text": "Do you have tickets?"
+          "text": "She often hurries to school."
         },
         {
           "responseId": "en:lesson-07:session-35:i15:r3",
-          "text": "Do you have maps?"
+          "text": "She often hurries to class."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-35:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "accessibilityLabel": "Послухайте й виберіть фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i15:audio",
-          "transcript": "Do you have photos?"
+          "transcript": "She often hurries to work."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-35:i15:r1",
-            "targetText": "Do you have photos?",
+            "targetText": "She often hurries to work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-35:i15:r2",
-            "targetText": "Do you have tickets?",
+            "targetText": "She often hurries to school.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-35:i15:r3",
-            "targetText": "Do you have maps?",
+            "targetText": "She often hurries to class.",
             "meaningByLocale": null
           }
         ],
@@ -797,19 +1037,19 @@
           {
             "responseId": "en:lesson-07:session-35:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `photos`, а в этом варианте — `tickets`.",
-              "uk": "У записі останнє слово — `photos`, а в цьому варіанті — `tickets`."
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `school`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `school`."
             }
           },
           {
             "responseId": "en:lesson-07:session-35:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `photos`, а в этом варианте — `maps`.",
-              "uk": "У записі останнє слово — `photos`, а в цьому варіанті — `maps`."
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `class`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `class`."
             }
           }
         ],
@@ -820,7 +1060,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,46 +1076,46 @@
             "pairId": "en:lesson-07:session-35:i16:p1",
             "target": "commute",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "ездить на работу",
+              "uk": "їздити на роботу"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i16:p2",
-            "target": "bracelet",
+            "target": "hire",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "брать напрокат",
+              "uk": "брати напрокат"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i16:p3",
-            "target": "stay",
+            "target": "change",
             "meaningByLocale": {
-              "ru": "останавливаться на время поездки",
-              "uk": "зупинятися на час поїздки"
+              "ru": "пересаживаться",
+              "uk": "пересідати"
             }
           },
           {
             "pairId": "en:lesson-07:session-35:i16:p4",
-            "target": "photos",
+            "target": "train",
             "meaningByLocale": {
-              "ru": "фотографии",
-              "uk": "фотографії"
+              "ru": "поезд",
+              "uk": "поїзд"
             }
           }
         ],
         "leftColumn": [
           "commute",
-          "bracelet",
-          "stay",
-          "photos"
+          "hire",
+          "change",
+          "train"
         ],
         "rightColumn": [
-          "їздити на роботу або навчання",
-          "браслет",
-          "зупинятися на час поїздки",
-          "фотографії"
+          "їздити на роботу",
+          "брати напрокат",
+          "пересідати",
+          "поїзд"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,25 +1133,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-35:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи працює Том удома, чи їздить на роботу. Скажіть «Том зазвичай їздить на роботу»",
+      "prompt": "Сусід питає, як ваша сестра їздить на роботу. Скажіть: «Вона зазвичай їздить на роботу автобусом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-35:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чи працює Том удома, чи їздить на роботу. Скажіть «Том зазвичай їздить на роботу»",
+      "accessibilityLabel": "Сусід питає, як ваша сестра їздить на роботу. Скажіть: «Вона зазвичай їздить на роботу автобусом»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-35:i17:audio",
-          "transcript": "Tom usually commutes."
+          "transcript": "She usually commutes by bus."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually commutes.",
+        "targetPhrase": "She usually commutes by bus.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -933,11 +1173,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "58e56ded648dd6fa9b13649d670f9d740c4351803e59f56165599ce65d207842"
+  "learnerFingerprint": "d6d58f990b14a847a85001efa77c67f7d8bf3e8e249117d2985be0bfedcc5b93"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-35",
   "learningOutcomeByLocale": {
-    "ru": "ставить usually и often перед действием и сохранять окончание s после he или she",
-    "uk": "ставити usually й often перед дією та зберігати закінчення s після he або she"
+    "ru": "использовать usually и often перед действием в рассказе о дороге",
+    "uk": "використовувати usually і often перед дією в розповіді про дорогу"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Работа вне дома",
-        "uk": "Робота поза домом"
+        "ru": "Дорога в офис",
+        "uk": "Дорога до офісу"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, работаете ли вы дома или ездите на работу. `commute` — «регулярно ездить на работу или учёбу». `I usually commute` — «Я обычно езжу на работу». Здесь речь о работе: вы обычно добираетесь туда из дома. `Usually` стоит перед `commute`. Поездка от кровати до чайника в этот маршрут не входит.",
-        "uk": "Друг запитує, чи працюєте ви вдома, чи їздите на роботу. `commute` — «регулярно їздити на роботу або навчання». `I usually commute` — «Я зазвичай їжджу на роботу». Тут ідеться про роботу: ви зазвичай дістаєтеся туди з дому. `Usually` стоїть перед `commute`. Подорож від ліжка до чайника до цього маршруту не входить."
+        "ru": "Новая коллега интересуется, как вы добираетесь до офиса, потому что живёт недалеко от вас. commute — «ездить на работу». Скажите: I usually commute by bus — «Я обычно езжу на работу на автобусе». В этой фразе usually — «обычно» — стоит перед commute. by bus означает «на автобусе».",
+        "uk": "Нова колега по роботі цікавиться, як ви добираєтеся до офісу, бо живе неподалік від вас. commute — «їздити на роботу». Скажіть: I usually commute by bus — «Я зазвичай їжджу на роботу автобусом». У цій фразі usually — «зазвичай» — стоїть перед commute. by bus означає «автобусом»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-35:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу: «Я обычно езжу на работу».",
-          "uk": "Відповідайте другові: «Я зазвичай їжджу на роботу»."
+          "ru": "Коллега спрашивает, как вы ездите на работу. Ответьте: «Я обычно езжу на работу на автобусе».",
+          "uk": "Колега питає, як ви їздите на роботу. Відповідьте: «Я зазвичай їжджу на роботу автобусом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-35:intro1:r1",
-              "text": "I usually commute."
+              "text": "I usually commute by bus."
             },
             {
               "responseId": "en:lesson-07:session-35:intro1:r2",
-              "text": "I usually commutes."
+              "text": "I usually commutes by bus."
             },
             {
               "responseId": "en:lesson-07:session-35:intro1:r3",
-              "text": "I usually commuting."
+              "text": "I usually commuting by bus."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-35:intro1:r1",
-              "text": "I usually commute."
+              "text": "I usually commute by bus."
             },
             {
               "responseId": "en:lesson-07:session-35:intro1:r2",
-              "text": "I usually commutes."
+              "text": "I usually commutes by bus."
             },
             {
               "responseId": "en:lesson-07:session-35:intro1:r3",
-              "text": "I usually commuting."
+              "text": "I usually commuting by bus."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу: «Я обычно езжу на работу».",
-          "uk": "Відповідайте другові: «Я зазвичай їжджу на роботу»."
+          "ru": "Коллега спрашивает, как вы ездите на работу. Ответьте: «Я обычно езжу на работу на автобусе».",
+          "uk": "Колега питає, як ви їздите на роботу. Відповідьте: «Я зазвичай їжджу на роботу автобусом»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "До магазина пешком",
-        "uk": "До магазину пішки"
+        "ru": "Утренняя платформа",
+        "uk": "Ранкова платформа"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, как вы обычно добираетесь до ближайшего магазина. `I usually walk` — «Я обычно хожу пешком». `Usually` стоит перед действием `walk`. Вы сообщаете о привычном способе передвижения.",
-        "uk": "Сусід запитує, як ви зазвичай дістаєтеся найближчого магазину. `I usually walk` — «Я зазвичай ходжу пішки». `Usually` стоїть перед дією `walk`. Ви повідомляєте про звичний спосіб пересування."
+        "ru": "Утром на платформе толпа, и до отправления поезда остаются считанные минуты. Подруга видит, как вы почти бежите к вагону. hurry — «спешить». Скажите: I often hurry in the morning — «Я часто спешу по утрам». Здесь often — «часто» — стоит перед hurry. Вы рассказываете о привычных утренних сборах.",
+        "uk": "Зранку на платформі натовп, і до відправлення поїзда лишаються лічені хвилини. Подруга бачить, як ви майже біжите до вагона. hurry — «поспішати». Скажіть: I often hurry in the morning — «Я часто поспішаю вранці». Тут often — «часто» — стоїть перед hurry. Ви розповідаєте про звичні ранкові збори."
       },
       "question": {
         "interactionId": "en:lesson-07:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте соседу: «Я обычно хожу пешком».",
-          "uk": "Відповідайте сусідові: «Я зазвичай ходжу пішки»."
+          "ru": "Подруга удивляется, что вы бежите к вагону. Ответьте: «Я часто спешу по утрам».",
+          "uk": "Подруга дивується, що ви біжите до вагона. Відповідьте: «Я часто поспішаю вранці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-35:intro2:r1",
-              "text": "I usually walk."
+              "text": "I often hurry in the morning."
             },
             {
               "responseId": "en:lesson-07:session-35:intro2:r2",
-              "text": "I usually walks."
+              "text": "I often hurries in the morning."
             },
             {
               "responseId": "en:lesson-07:session-35:intro2:r3",
-              "text": "I usually walking."
+              "text": "I often hurrying in the morning."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-35:intro2:r1",
-              "text": "I usually walk."
+              "text": "I often hurry in the morning."
             },
             {
               "responseId": "en:lesson-07:session-35:intro2:r2",
-              "text": "I usually walks."
+              "text": "I often hurries in the morning."
             },
             {
               "responseId": "en:lesson-07:session-35:intro2:r3",
-              "text": "I usually walking."
+              "text": "I often hurrying in the morning."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте соседу: «Я обычно хожу пешком».",
-          "uk": "Відповідайте сусідові: «Я зазвичай ходжу пішки»."
+          "ru": "Подруга удивляется, что вы бежите к вагону. Ответьте: «Я часто спешу по утрам».",
+          "uk": "Подруга дивується, що ви біжите до вагона. Відповідьте: «Я часто поспішаю вранці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Звонки знакомой",
-        "uk": "Дзвінки знайомої"
+        "ru": "Пересадка брата",
+        "uk": "Пересадка брата"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` сохраняется окончание `s`.",
-        "uk": "Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` зберігається закінчення `s`."
+        "ru": "Брат живёт далеко от офиса: сначала едет на одном поезде, а на большом вокзале садится на другой. change значит «менять»; change trains — «пересаживаться с поезда на поезд». Скажите: He usually changes trains — «Он обычно пересаживается с поезда на поезд». После he к change добавляем s, а слово usually остаётся перед changes.",
+        "uk": "Брат живе далеко від офісу: спочатку їде одним поїздом, а на великому вокзалі сідає на інший. change означає «міняти»; change trains — «пересідати з поїзда на поїзд». Скажіть: He usually changes trains — «Він зазвичай пересідає з поїзда на поїзд». Після he до change додаємо s, а слово usually лишається перед changes."
       },
       "question": {
         "interactionId": "en:lesson-07:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Друг спрашивает, как брат добирается до офиса. Ответьте: «Он обычно пересаживается с поезда на поезд».",
+          "uk": "Друг питає, як брат добирається до офісу. Відповідьте: «Він зазвичай пересідає з поїзда на поїзд»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-35:intro3:r1",
-              "text": "She often calls."
+              "text": "He usually changes trains."
             },
             {
               "responseId": "en:lesson-07:session-35:intro3:r2",
-              "text": "She often call."
+              "text": "He usually change trains."
             },
             {
               "responseId": "en:lesson-07:session-35:intro3:r3",
-              "text": "She often calling."
+              "text": "He usually changing trains."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-35:intro3:r1",
-              "text": "She often calls."
+              "text": "He usually changes trains."
             },
             {
               "responseId": "en:lesson-07:session-35:intro3:r2",
-              "text": "She often call."
+              "text": "He usually change trains."
             },
             {
               "responseId": "en:lesson-07:session-35:intro3:r3",
-              "text": "She often calling."
+              "text": "He usually changing trains."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Друг спрашивает, как брат добирается до офиса. Ответьте: «Он обычно пересаживается с поезда на поезд».",
+          "uk": "Друг питає, як брат добирається до офісу. Відповідьте: «Він зазвичай пересідає з поїзда на поїзд»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "75ce2feed184a2553c23aa48954e9f669e5574b5bf5cbb2c921a8e2c30369cef"
+  "introFingerprint": "38df1ea62b12b862681f7b63ce75cb97bde768380d18c67c1eb1f8f788963916"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-35:intro1:r2": {
-          "ru": "После `I` нужно `commute`, без `s`.",
-          "uk": "Після `I` потрібне `commute`, без `s`."
+          "ru": "После I нужно commute, без s.",
+          "uk": "Після I потрібно commute, без s."
         },
         "en:lesson-07:session-35:intro1:r3": {
-          "ru": "Здесь нужна форма `commute`.",
-          "uk": "Тут потрібна форма `commute`."
+          "ru": "Здесь нужна форма commute.",
+          "uk": "Тут потрібна форма commute."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-35:intro2:r2": {
-          "ru": "После `I` нужно `walk`.",
-          "uk": "Після `I` потрібне `walk`."
+          "ru": "После I нужно hurry, без окончания.",
+          "uk": "Після I потрібно hurry, без закінчення."
         },
         "en:lesson-07:session-35:intro2:r3": {
-          "ru": "Здесь нужна форма `walk`.",
-          "uk": "Тут потрібна форма `walk`."
+          "ru": "Здесь нужна форма hurry.",
+          "uk": "Тут потрібна форма hurry."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-35:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После he нужно changes, с s.",
+          "uk": "Після he потрібно changes, з s."
         },
         "en:lesson-07:session-35:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма changes.",
+          "uk": "Тут потрібна форма changes."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a32ec4f9a7001be642d69926c6990196ac82388a5e2386cf0e77f28b9c03a489"
+  "auxiliaryFingerprint": "1f967eccc0ebd5c48cb4ed456a51fa26aa9ab5aa749d69a434e8281ef4fe9b2d"
 }

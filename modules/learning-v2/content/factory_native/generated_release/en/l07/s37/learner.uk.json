@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-37:i01",
+      "interactionId": "en:lesson-07:session-37:word:peel",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — peel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:word:peel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — peel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:word:peel:audio",
+          "transcript": "peel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:word:peel:r1",
+            "targetText": "peel",
+            "meaningByLocale": {
+              "ru": "чистить от кожуры. I usually peel an orange. — «Я обычно чищу апельсин». Снимать кожуру с фрукта или овоща.",
+              "uk": "чистити від шкірки. I usually peel an orange. — «Я зазвичай чищу апельсин». Знімати шкірку з фрукта чи овоча."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peel",
+          "definitionByLocale": {
+            "ru": "чистить от кожуры. I usually peel an orange. — «Я обычно чищу апельсин». Снимать кожуру с фрукта или овоща.",
+            "uk": "чистити від шкірки. I usually peel an orange. — «Я зазвичай чищу апельсин». Знімати шкірку з фрукта чи овоча."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-37:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+      "prompt": "Колега питає, з чого ви зазвичай починаєте перекус. Скажіть: «Я зазвичай чищу апельсин»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+      "accessibilityLabel": "Колега питає, з чого ви зазвичай починаєте перекус. Скажіть: «Я зазвичай чищу апельсин»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually pack early.",
+        "targetPhrase": "I usually peel an orange.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно собираю вещи заранее»",
-          "uk": "Скажіть «Я зазвичай збираю речі заздалегідь»"
+          "ru": "Коллега спрашивает, с чего вы обычно начинаете перекус. Скажите: «Я обычно чищу апельсин»",
+          "uk": "Колега питає, з чого ви зазвичай починаєте перекус. Скажіть: «Я зазвичай чищу апельсин»"
         },
         "orderedTokens": [
           "I",
           "usually",
-          "pack",
-          "early"
+          "peel",
+          "an",
+          "orange"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Колега питає, з чого ви зазвичай починаєте перекус. Скажіть: «Я зазвичай чищу апельсин»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually peel an orange.`",
+              "uk": "тут потрібно `usually` — `I usually peel an orange.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,8 +93,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-37:word:reheat",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reheat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:word:reheat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reheat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:word:reheat:audio",
+          "transcript": "reheat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:word:reheat:r1",
+            "targetText": "reheat",
+            "meaningByLocale": {
+              "ru": "разогревать. I often reheat soup at work. — «Я часто разогреваю суп на работе». Нагревать уже готовую еду.",
+              "uk": "розігрівати. I often reheat soup at work. — «Я часто розігріваю суп на роботі». Нагрівати вже готову їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reheat",
+          "definitionByLocale": {
+            "ru": "разогревать. I often reheat soup at work. — «Я часто разогреваю суп на работе». Нагревать уже готовую еду.",
+            "uk": "розігрівати. I often reheat soup at work. — «Я часто розігріваю суп на роботі». Нагрівати вже готову їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-37:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -46,15 +145,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-37:i02:r1",
-          "text": "pack"
+          "text": "reheat"
         },
         {
           "responseId": "en:lesson-07:session-37:i02:r2",
-          "text": "shop"
+          "text": "roast"
         },
         {
           "responseId": "en:lesson-07:session-37:i02:r3",
-          "text": "play"
+          "text": "boil"
         }
       ],
       "mediaIds": [],
@@ -66,23 +165,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i02:audio",
-          "transcript": "pack"
+          "transcript": "reheat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-37:i02:r1",
-            "targetText": "pack",
+            "targetText": "reheat",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-37:i02:r2",
-            "targetText": "shop",
+            "targetText": "roast",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-37:i02:r3",
-            "targetText": "play",
+            "targetText": "boil",
             "meaningByLocale": null
           }
         ],
@@ -93,8 +192,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pack`, а в этом варианте — `shop`.",
-              "uk": "У записі перше слово — `pack`, а в цьому варіанті — `shop`."
+              "ru": "В записи первое слово — `reheat`, а в этом варианте — `roast`.",
+              "uk": "У записі перше слово — `reheat`, а в цьому варіанті — `roast`."
             }
           },
           {
@@ -102,8 +201,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pack`, а в этом варианте — `play`.",
-              "uk": "У записі перше слово — `pack`, а в цьому варіанті — `play`."
+              "ru": "В записи первое слово — `reheat`, а в этом варианте — `boil`.",
+              "uk": "У записі перше слово — `reheat`, а в цьому варіанті — `boil`."
             }
           }
         ],
@@ -113,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-37:word:dip",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:word:dip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:word:dip:audio",
+          "transcript": "dip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:word:dip:r1",
+            "targetText": "dip",
+            "meaningByLocale": {
+              "ru": "макать. He often dips bread in soup. — «Он часто макает хлеб в суп». Ненадолго погружать что-либо в жидкость; здесь — макать хлеб в суп.",
+              "uk": "вмочати. He often dips bread in soup. — «Він часто вмочає хліб у суп». Ненадовго занурювати щось у рідину; тут — вмочати хліб у суп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dip",
+          "definitionByLocale": {
+            "ru": "макать. He often dips bread in soup. — «Он часто макает хлеб в суп». Ненадолго погружать что-либо в жидкость; здесь — макать хлеб в суп.",
+            "uk": "вмочати. He often dips bread in soup. — «Він часто вмочає хліб у суп». Ненадовго занурювати щось у рідину; тут — вмочати хліб у суп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-37:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Розкажіть про завчасні збори в поїздку",
+      "prompt": "Гість дивується, як їсть ваш брат. Скажіть: «Він часто вмочає хліб у суп». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-37:i03:r1",
-          "text": "pack"
+          "text": "dips"
         },
         {
           "responseId": "en:lesson-07:session-37:i03:r2",
-          "text": "packs"
+          "text": "dip"
         },
         {
           "responseId": "en:lesson-07:session-37:i03:r3",
-          "text": "packing"
+          "text": "dipping"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про завчасні збори в поїздку",
+      "accessibilityLabel": "Гість дивується, як їсть ваш брат. Скажіть: «Він часто вмочає хліб у суп». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Расскажите о заблаговременных сборах в поездку",
-          "uk": "Розкажіть про завчасні збори в поїздку"
+          "ru": "Гость удивляется, как ест ваш брат. Скажите: «Он часто макает хлеб в суп». Выберите слово",
+          "uk": "Гість дивується, як їсть ваш брат. Скажіть: «Він часто вмочає хліб у суп». Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ early.",
+        "gappedTargetPhrase": "He often ___ bread in soup.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-37:i03:r1",
-            "text": "pack"
+            "text": "dips"
           },
           {
             "responseId": "en:lesson-07:session-37:i03:r2",
-            "text": "packs"
+            "text": "dip"
           },
           {
             "responseId": "en:lesson-07:session-37:i03:r3",
-            "text": "packing"
+            "text": "dipping"
           }
         ],
-        "testedDimension": "Розкажіть про завчасні збори в поїздку",
+        "testedDimension": "Гість дивується, як їсть ваш брат. Скажіть: «Він часто вмочає хліб у суп». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Розкажіть про завчасні збори в поїздку",
+            "testedDimension": "Гість дивується, як їсть ваш брат. Скажіть: «Він часто вмочає хліб у суп». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `pack`.",
-              "uk": "Після `I` потрібне `pack`."
+              "ru": "После `He` нужно `dips`.",
+              "uk": "Після `He` потрібно `dips`."
             }
           },
           {
             "responseId": "en:lesson-07:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Розкажіть про завчасні збори в поїздку",
+            "testedDimension": "Гість дивується, як їсть ваш брат. Скажіть: «Він часто вмочає хліб у суп». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `pack`.",
-              "uk": "Тут потрібна форма `pack`."
+              "ru": "Здесь нужна форма `dips`.",
+              "uk": "Тут потрібна форма `dips`."
             }
           }
         ]
@@ -183,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-37:i04:p1",
-            "target": "pack",
+            "target": "peel",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "чистить от кожуры",
+              "uk": "чистити від шкірки"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i04:p2",
-            "target": "shop",
+            "target": "reheat",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "разогревать",
+              "uk": "розігрівати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i04:p3",
-            "target": "car",
+            "target": "dip",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "макать",
+              "uk": "вмочати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i04:p4",
-            "target": "earrings",
+            "target": "orange",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "апельсин",
+              "uk": "апельсин"
             }
           }
         ],
         "leftColumn": [
-          "pack",
-          "shop",
-          "car",
-          "earrings"
+          "peel",
+          "reheat",
+          "dip",
+          "orange"
         ],
         "rightColumn": [
-          "збирати речі",
-          "робити покупки",
-          "машина",
-          "сережки"
+          "чистити від шкірки",
+          "розігрівати",
+          "вмочати",
+          "апельсин"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,8 +398,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -271,18 +413,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i05:audio",
-          "transcript": "I usually pack early."
+          "transcript": "I often reheat soup at work."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually pack early.",
+        "hiddenTargetPhrase": "I often reheat soup at work.",
         "orderedTokens": [
           "I",
-          "usually",
-          "pack",
-          "early"
+          "often",
+          "reheat",
+          "soup",
+          "at",
+          "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "reheats"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `reheat` — `I often reheat soup at work.`",
+              "uk": "тут потрібно `reheat` — `I often reheat soup at work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +447,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-37:word:refill",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — refill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-37:word:refill:audio"
+      ],
+      "accessibilityLabel": "Картка слова — refill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-37:word:refill:audio",
+          "transcript": "refill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-37:word:refill:r1",
+            "targetText": "refill",
+            "meaningByLocale": {
+              "ru": "доливать, наполнять снова. I usually refill my bottle. — «Я обычно снова наполняю свою бутылку». Наполнять ёмкость ещё раз; здесь — снова наливать воду в бутылку.",
+              "uk": "доливати, наповнювати знову. I usually refill my bottle. — «Я зазвичай знову наповнюю свою пляшку». Наповнювати ємність ще раз; тут — знову наливати воду в пляшку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refill",
+          "definitionByLocale": {
+            "ru": "доливать, наполнять снова. I usually refill my bottle. — «Я обычно снова наполняю свою бутылку». Наполнять ёмкость ещё раз; здесь — снова наливать воду в бутылку.",
+            "uk": "доливати, наповнювати знову. I usually refill my bottle. — «Я зазвичай знову наповнюю свою пляшку». Наповнювати ємність ще раз; тут — знову наливати воду в пляшку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-37:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я часто роблю покупки»",
+      "prompt": "Біля офісного кулера колега бачить вашу порожню пляшку. Скажіть: «Я зазвичай знову наповнюю свою пляшку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто роблю покупки»",
+      "accessibilityLabel": "Біля офісного кулера колега бачить вашу порожню пляшку. Скажіть: «Я зазвичай знову наповнюю свою пляшку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often shop.",
+        "targetPhrase": "I usually refill my bottle.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто делаю покупки»",
-          "uk": "Скажіть «Я часто роблю покупки»"
+          "ru": "У офисного кулера коллега видит вашу пустую бутылку. Скажите: «Я обычно снова наполняю свою бутылку»",
+          "uk": "Біля офісного кулера колега бачить вашу порожню пляшку. Скажіть: «Я зазвичай знову наповнюю свою пляшку»"
         },
         "orderedTokens": [
           "I",
-          "often",
-          "shop"
+          "usually",
+          "refill",
+          "my",
+          "bottle"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Біля офісного кулера колега бачить вашу порожню пляшку. Скажіть: «Я зазвичай знову наповнюю свою пляшку»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually refill my bottle.`",
+              "uk": "тут потрібно `usually` — `I usually refill my bottle.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть про знайому «Вона часто телефонує»",
+      "prompt": "Подруга питає про вашого брата за вечерею. Скажіть: «Він часто вмочає хліб у суп»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-37:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть про знайому «Вона часто телефонує»",
+      "accessibilityLabel": "Подруга питає про вашого брата за вечерею. Скажіть: «Він часто вмочає хліб у суп»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i07:audio",
-          "transcript": "She often calls."
+          "transcript": "He often dips bread in soup."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She often calls.",
+        "targetPhrase": "He often dips bread in soup.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона часто телефонує»",
+      "prompt": "Друг питає, що ваша сестра робить біля кулера після обіду. Скажіть: «Вона зазвичай знову наповнює пляшку». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-37:i08:r1",
-          "text": "calls"
+          "text": "refills"
         },
         {
           "responseId": "en:lesson-07:session-37:i08:r2",
-          "text": "call"
+          "text": "refill"
         },
         {
           "responseId": "en:lesson-07:session-37:i08:r3",
-          "text": "calling"
+          "text": "refilling"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона часто телефонує»",
+      "accessibilityLabel": "Друг питає, що ваша сестра робить біля кулера після обіду. Скажіть: «Вона зазвичай знову наповнює пляшку». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она часто звонит»",
-          "uk": "Скажіть «Вона часто телефонує»"
+          "ru": "Друг спрашивает, что ваша сестра делает у кулера после обеда. Скажите: «Она обычно снова наполняет бутылку». Выберите слово",
+          "uk": "Друг питає, що ваша сестра робить біля кулера після обіду. Скажіть: «Вона зазвичай знову наповнює пляшку». Виберіть слово"
         },
-        "gappedTargetPhrase": "She often ___.",
+        "gappedTargetPhrase": "She usually ___ the bottle.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-37:i08:r1",
-            "text": "calls"
+            "text": "refills"
           },
           {
             "responseId": "en:lesson-07:session-37:i08:r2",
-            "text": "call"
+            "text": "refill"
           },
           {
             "responseId": "en:lesson-07:session-37:i08:r3",
-            "text": "calling"
+            "text": "refilling"
           }
         ],
-        "testedDimension": "Скажіть «Вона часто телефонує»",
+        "testedDimension": "Друг питає, що ваша сестра робить біля кулера після обіду. Скажіть: «Вона зазвичай знову наповнює пляшку». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-37:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "testedDimension": "Друг питає, що ваша сестра робить біля кулера після обіду. Скажіть: «Вона зазвичай знову наповнює пляшку». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` нужно `calls`.",
-              "uk": "Після `she` потрібне `calls`."
+              "ru": "После `She` нужно `refills`.",
+              "uk": "Після `She` потрібно `refills`."
             }
           },
           {
             "responseId": "en:lesson-07:session-37:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "testedDimension": "Друг питає, що ваша сестра робить біля кулера після обіду. Скажіть: «Вона зазвичай знову наповнює пляшку». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `calls`.",
-              "uk": "Тут потрібна форма `calls`."
+              "ru": "Здесь нужна форма `refills`.",
+              "uk": "Тут потрібна форма `refills`."
             }
           }
         ]
@@ -426,7 +639,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -434,15 +647,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-37:i09:r1",
-          "text": "I usually pack early."
+          "text": "I often reheat soup at work."
         },
         {
           "responseId": "en:lesson-07:session-37:i09:r2",
-          "text": "I usually pack late."
+          "text": "I often reheat soup at school."
         },
         {
           "responseId": "en:lesson-07:session-37:i09:r3",
-          "text": "I usually pack here."
+          "text": "I often reheat soup at home."
         }
       ],
       "mediaIds": [],
@@ -454,23 +667,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i09:audio",
-          "transcript": "I usually pack early."
+          "transcript": "I often reheat soup at work."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-37:i09:r1",
-            "targetText": "I usually pack early.",
+            "targetText": "I often reheat soup at work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-37:i09:r2",
-            "targetText": "I usually pack late.",
+            "targetText": "I often reheat soup at school.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-37:i09:r3",
-            "targetText": "I usually pack here.",
+            "targetText": "I often reheat soup at home.",
             "meaningByLocale": null
           }
         ],
@@ -481,8 +694,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `late`."
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `school`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `school`."
             }
           },
           {
@@ -490,8 +703,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `early`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `early`, а в цьому варіанті — `here`."
+              "ru": "В записи последнее слово — `work`, а в этом варианте — `home`.",
+              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `home`."
             }
           }
         ],
@@ -502,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-37:i10:p1",
-            "target": "play",
+            "target": "refill",
             "meaningByLocale": {
-              "ru": "играть",
-              "uk": "грати"
+              "ru": "доливать",
+              "uk": "доливати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i10:p2",
-            "target": "pack",
+            "target": "dip",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "макать",
+              "uk": "вмочати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i10:p3",
-            "target": "car",
+            "target": "reheat",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "разогревать",
+              "uk": "розігрівати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i10:p4",
-            "target": "shop",
+            "target": "peel",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "чистить от кожуры",
+              "uk": "чистити від шкірки"
             }
           }
         ],
         "leftColumn": [
-          "play",
-          "pack",
-          "car",
-          "shop"
+          "refill",
+          "dip",
+          "reheat",
+          "peel"
         ],
         "rightColumn": [
-          "грати",
-          "збирати речі",
-          "машина",
-          "робити покупки"
+          "доливати",
+          "вмочати",
+          "розігрівати",
+          "чистити від шкірки"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,8 +788,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -590,17 +803,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i11:audio",
-          "transcript": "I often shop."
+          "transcript": "He often dips bread in soup."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often shop.",
+        "hiddenTargetPhrase": "He often dips bread in soup.",
         "orderedTokens": [
-          "I",
+          "He",
           "often",
-          "shop"
+          "dips",
+          "bread",
+          "in",
+          "soup"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "dip"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `dips` — `He often dips bread in soup.`",
+              "uk": "тут потрібно `dips` — `He often dips bread in soup.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -610,30 +838,44 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви добираєте прикраси. Запитайте подругу «У тебе є сережки?»",
+      "prompt": "Ви розповідаєте про сестру. Скажіть: «Вона часто розігріває суп на роботі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви добираєте прикраси. Запитайте подругу «У тебе є сережки?»",
+      "accessibilityLabel": "Ви розповідаєте про сестру. Скажіть: «Вона часто розігріває суп на роботі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have earrings?",
+        "targetPhrase": "She often reheats soup at work.",
         "localizedMeaning": {
-          "ru": "Вы подбираете украшения. Спросите подругу «У тебя есть серьги?»",
-          "uk": "Ви добираєте прикраси. Запитайте подругу «У тебе є сережки?»"
+          "ru": "Вы рассказываете о сестре. Скажите: «Она часто разогревает суп на работе»",
+          "uk": "Ви розповідаєте про сестру. Скажіть: «Вона часто розігріває суп на роботі»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "earrings"
+          "She",
+          "often",
+          "reheats",
+          "soup",
+          "at",
+          "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "reheat"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-37:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про сестру. Скажіть: «Вона часто розігріває суп на роботі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `reheats` — `She often reheats soup at work.`",
+              "uk": "тут потрібно `reheats` — `She often reheats soup at work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -643,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг розповідає про регулярні настільні ігри. Запитайте «Де ти граєш?»",
+      "prompt": "Друг питає про вашу сестру. Скажіть: «Вона зазвичай знову наповнює свою пляшку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-37:i13:audio"
       ],
-      "accessibilityLabel": "Друг розповідає про регулярні настільні ігри. Запитайте «Де ти граєш?»",
+      "accessibilityLabel": "Друг питає про вашу сестру. Скажіть: «Вона зазвичай знову наповнює свою пляшку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i13:audio",
-          "transcript": "Where do you play?"
+          "transcript": "She usually refills her bottle."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where do you play?",
+        "targetPhrase": "She usually refills her bottle.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -676,15 +918,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто роблю покупки»",
+      "prompt": "Ви розповідаєте про перерву. Скажіть: «Я зазвичай чищу апельсин». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-37:i14:r1",
-          "text": "often"
+          "text": "usually"
         },
         {
           "responseId": "en:lesson-07:session-37:i14:r2",
@@ -697,18 +939,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто роблю покупки»",
+      "accessibilityLabel": "Ви розповідаєте про перерву. Скажіть: «Я зазвичай чищу апельсин». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто делаю покупки»",
-          "uk": "Скажіть «Я часто роблю покупки»"
+          "ru": "Вы рассказываете о перерыве. Скажите: «Я обычно чищу апельсин». Выберите слово",
+          "uk": "Ви розповідаєте про перерву. Скажіть: «Я зазвичай чищу апельсин». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ shop.",
+        "gappedTargetPhrase": "I ___ peel an orange.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-37:i14:r1",
-            "text": "often"
+            "text": "usually"
           },
           {
             "responseId": "en:lesson-07:session-37:i14:r2",
@@ -719,24 +961,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я часто роблю покупки»",
+        "testedDimension": "Ви розповідаєте про перерву. Скажіть: «Я зазвичай чищу апельсин». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-37:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто роблю покупки»",
+            "testedDimension": "Ви розповідаєте про перерву. Скажіть: «Я зазвичай чищу апельсин». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `shop`.",
-              "uk": "Для «часто» потрібне `often` перед `shop`."
+              "ru": "Для «обычно» нужно `usually` перед `peel`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `peel`."
             }
           },
           {
             "responseId": "en:lesson-07:session-37:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто роблю покупки»",
+            "testedDimension": "Ви розповідаєте про перерву. Скажіть: «Я зазвичай чищу апельсин». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `shop` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `shop` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `peel` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `peel` не ставимо."
             }
           }
         ]
@@ -745,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть запитання",
+      "prompt": "Послухайте й виберіть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-37:i15:r1",
-          "text": "Do you have a car?"
+          "text": "She usually refills the bottle."
         },
         {
           "responseId": "en:lesson-07:session-37:i15:r2",
-          "text": "Do you have a phone?"
+          "text": "She usually refills the cup."
         },
         {
           "responseId": "en:lesson-07:session-37:i15:r3",
-          "text": "Do you have a watch?"
+          "text": "She usually refills the glass."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "accessibilityLabel": "Послухайте й виберіть фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i15:audio",
-          "transcript": "Do you have a car?"
+          "transcript": "She usually refills the bottle."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-37:i15:r1",
-            "targetText": "Do you have a car?",
+            "targetText": "She usually refills the bottle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-37:i15:r2",
-            "targetText": "Do you have a phone?",
+            "targetText": "She usually refills the cup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-37:i15:r3",
-            "targetText": "Do you have a watch?",
+            "targetText": "She usually refills the glass.",
             "meaningByLocale": null
           }
         ],
@@ -798,19 +1040,19 @@
           {
             "responseId": "en:lesson-07:session-37:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `car`, а в этом варианте — `phone`.",
-              "uk": "У записі останнє слово — `car`, а в цьому варіанті — `phone`."
+              "ru": "В записи последнее слово — `bottle`, а в этом варианте — `cup`.",
+              "uk": "У записі останнє слово — `bottle`, а в цьому варіанті — `cup`."
             }
           },
           {
             "responseId": "en:lesson-07:session-37:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `car`, а в этом варианте — `watch`.",
-              "uk": "У записі останнє слово — `car`, а в цьому варіанті — `watch`."
+              "ru": "В записи последнее слово — `bottle`, а в этом варианте — `glass`.",
+              "uk": "У записі останнє слово — `bottle`, а в цьому варіанті — `glass`."
             }
           }
         ],
@@ -821,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -835,48 +1077,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-37:i16:p1",
-            "target": "pack",
+            "target": "peel",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "чистить от кожуры",
+              "uk": "чистити від шкірки"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i16:p2",
-            "target": "earrings",
+            "target": "refill",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "доливать",
+              "uk": "доливати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i16:p3",
-            "target": "play",
+            "target": "reheat",
             "meaningByLocale": {
-              "ru": "играть",
-              "uk": "грати"
+              "ru": "разогревать",
+              "uk": "розігрівати"
             }
           },
           {
             "pairId": "en:lesson-07:session-37:i16:p4",
-            "target": "car",
+            "target": "soup",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "суп",
+              "uk": "суп"
             }
           }
         ],
         "leftColumn": [
-          "pack",
-          "earrings",
-          "play",
-          "car"
+          "peel",
+          "refill",
+          "reheat",
+          "soup"
         ],
         "rightColumn": [
-          "збирати речі",
-          "сережки",
-          "грати",
-          "машина"
+          "чистити від шкірки",
+          "доливати",
+          "розігрівати",
+          "суп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -894,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-37:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, коли Том зазвичай збирає речі перед поїздкою. Скажіть «Том зазвичай збирає речі заздалегідь»",
+      "prompt": "Колега питає, що ваш брат робить на перерві. Скажіть: «Він зазвичай чистить апельсин»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-37:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, коли Том зазвичай збирає речі перед поїздкою. Скажіть «Том зазвичай збирає речі заздалегідь»",
+      "accessibilityLabel": "Колега питає, що ваш брат робить на перерві. Скажіть: «Він зазвичай чистить апельсин»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-37:i17:audio",
-          "transcript": "Tom usually packs early."
+          "transcript": "He usually peels an orange."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually packs early.",
+        "targetPhrase": "He usually peels an orange.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -934,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4d36ca472e26bee6b93551fb19b92af83bb3a896b3d953db1b736de22fbd8bf9"
+  "learnerFingerprint": "8314a4448ab2ebfa4710472bdfd8afeea763b18cb64dc6306b9531f4d29b3421"
 }

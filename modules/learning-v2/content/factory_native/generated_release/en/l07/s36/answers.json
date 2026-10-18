@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-36:word:relax",
+    "correctText": "relax",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-36:i01",
-    "correctText": "I often relax.",
+    "correctText": "I usually relax on the sofa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:word:hurt",
+    "correctText": "hurt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i02",
-    "correctText": "relax",
+    "correctText": "hurt",
     "correctResponseId": "en:lesson-07:session-36:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-36:word:sneeze",
+    "correctText": "sneeze",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-36:i03",
-    "correctText": "relax",
+    "correctText": "sneezes",
     "correctResponseId": "en:lesson-07:session-36:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-36:i04",
-    "correctText": "en:lesson-07:session-36:i04:p1=relax\nen:lesson-07:session-36:i04:p2=live\nen:lesson-07:session-36:i04:p3=children\nen:lesson-07:session-36:i04:p4=sunglasses",
+    "correctText": "en:lesson-07:session-36:i04:p1=relax\nen:lesson-07:session-36:i04:p2=hurt\nen:lesson-07:session-36:i04:p3=sneeze\nen:lesson-07:session-36:i04:p4=sofa",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i05",
-    "correctText": "I often relax.",
+    "correctText": "My back often hurts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-36:word:rub",
+    "correctText": "rub",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i06",
-    "correctText": "I usually walk.",
+    "correctText": "I often rub my shoulder.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i07",
-    "correctText": "She often calls.",
+    "correctText": "He usually relaxes on the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i08",
-    "correctText": "calls",
+    "correctText": "rubs",
     "correctResponseId": "en:lesson-07:session-36:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-36:i09",
-    "correctText": "I often relax.",
+    "correctText": "I usually relax on the sofa.",
     "correctResponseId": "en:lesson-07:session-36:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-36:i10",
-    "correctText": "en:lesson-07:session-36:i10:p1=eat\nen:lesson-07:session-36:i10:p2=relax\nen:lesson-07:session-36:i10:p3=children\nen:lesson-07:session-36:i10:p4=live",
+    "correctText": "en:lesson-07:session-36:i10:p1=rub\nen:lesson-07:session-36:i10:p2=sneeze\nen:lesson-07:session-36:i10:p3=hurt\nen:lesson-07:session-36:i10:p4=relax",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i11",
-    "correctText": "She often calls.",
+    "correctText": "She often sneezes in the morning.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i12",
-    "correctText": "Do you have sunglasses?",
+    "correctText": "My shoulder often hurts.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i13",
-    "correctText": "Where do you eat?",
+    "correctText": "She usually relaxes on the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i14",
-    "correctText": "usually",
+    "correctText": "often",
     "correctResponseId": "en:lesson-07:session-36:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-36:i15",
-    "correctText": "The children are here.",
+    "correctText": "My back often hurts.",
     "correctResponseId": "en:lesson-07:session-36:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-36:i16",
-    "correctText": "en:lesson-07:session-36:i16:p1=relax\nen:lesson-07:session-36:i16:p2=sunglasses\nen:lesson-07:session-36:i16:p3=eat\nen:lesson-07:session-36:i16:p4=children",
+    "correctText": "en:lesson-07:session-36:i16:p1=rub\nen:lesson-07:session-36:i16:p2=hurt\nen:lesson-07:session-36:i16:p3=relax\nen:lesson-07:session-36:i16:p4=sofa",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-36:i17",
-    "correctText": "Tom often relaxes.",
+    "correctText": "His back often hurts.",
     "correctResponseId": null
   }
 ]

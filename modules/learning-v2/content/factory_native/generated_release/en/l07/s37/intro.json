@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-37",
   "learningOutcomeByLocale": {
-    "ru": "использовать usually и often перед действием",
-    "uk": "використовувати usually та often перед дією"
+    "ru": "использовать often и usually перед действием в рассказе о еде",
+    "uk": "використовувати often і usually перед дією в розповіді про їжу"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сборы перед поездкой",
-        "uk": "Збори перед поїздкою"
+        "ru": "Перерыв в офисе",
+        "uk": "Перерва в офісі"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы обычно собираете вещи перед поездкой. `pack` — «собирать вещи, упаковывать». `I usually pack early` — «Я обычно собираю вещи заранее». В этом разговоре `early` означает заблаговременно перед отъездом. `Usually` стоит перед `pack`. Чемодан не любит, когда его собирают одновременно с вызовом такси.",
-        "uk": "Друг запитує, коли ви зазвичай збираєте речі перед поїздкою. `pack` — «збирати речі, пакувати». `I usually pack early` — «Я зазвичай збираю речі заздалегідь». У цій розмові `early` означає завчасно перед від’їздом. `Usually` стоїть перед `pack`. Валіза не любить, коли її збирають одночасно з викликом таксі."
+        "ru": "На работе вы берёте короткий перерыв перед обедом. Коллега спрашивает, что вы обычно делаете первым делом, когда достаёте перекус. peel — «чистить от кожуры». Ответьте: I usually peel an orange — «Я обычно чищу апельсин». Здесь usually — «обычно» — ставим перед peel.",
+        "uk": "На роботі ви робите коротку перерву перед обідом. Колега питає, що ви зазвичай робите насамперед, коли дістаєте перекус. peel — «чистити від шкірки». Відповідайте: I usually peel an orange — «Я зазвичай чищу апельсин». Тут usually — «зазвичай» — ставимо перед peel."
       },
       "question": {
         "interactionId": "en:lesson-07:session-37:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу: «Я обычно собираю вещи заранее».",
-          "uk": "Відповідайте другові: «Я зазвичай збираю речі заздалегідь»."
+          "ru": "Коллега спрашивает, с чего вы обычно начинаете перекус. Ответьте: «Я обычно чищу апельсин».",
+          "uk": "Колега питає, з чого ви зазвичай починаєте перекус. Відповідьте: «Я зазвичай чищу апельсин»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-37:intro1:r1",
-              "text": "I usually pack early."
+              "text": "I usually peel an orange."
             },
             {
               "responseId": "en:lesson-07:session-37:intro1:r2",
-              "text": "I usually packs early."
+              "text": "I usually peels an orange."
             },
             {
               "responseId": "en:lesson-07:session-37:intro1:r3",
-              "text": "I usually packing early."
+              "text": "I peel usually an orange."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-37:intro1:r1",
-              "text": "I usually pack early."
+              "text": "I usually peel an orange."
             },
             {
               "responseId": "en:lesson-07:session-37:intro1:r2",
-              "text": "I usually packs early."
+              "text": "I usually peels an orange."
             },
             {
               "responseId": "en:lesson-07:session-37:intro1:r3",
-              "text": "I usually packing early."
+              "text": "I peel usually an orange."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу: «Я обычно собираю вещи заранее».",
-          "uk": "Відповідайте другові: «Я зазвичай збираю речі заздалегідь»."
+          "ru": "Коллега спрашивает, с чего вы обычно начинаете перекус. Ответьте: «Я обычно чищу апельсин».",
+          "uk": "Колега питає, з чого ви зазвичай починаєте перекус. Відповідьте: «Я зазвичай чищу апельсин»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Привычка делать покупки",
-        "uk": "Звичка робити покупки"
+        "ru": "Суп из дома",
+        "uk": "Суп з дому"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы ходите за покупками. `I often shop` — «Я часто делаю покупки». Здесь `shop` — действие. `Often` означает «часто» и стоит перед `shop`.",
-        "uk": "Друг запитує, чи часто ви ходите за покупками. `I often shop` — «Я часто роблю покупки». Тут `shop` — дія. `Often` означає «часто» і стоїть перед `shop`."
+        "ru": "Новая коллега спрашивает, для чего сотрудники используют микроволновку на офисной кухне. Вы рассказываете о своём обеде. reheat — «разогревать». Скажите: I often reheat soup at work — «Я часто разогреваю суп на работе». Здесь often — «часто» — стоит перед reheat.",
+        "uk": "Нова колега питає, для чого працівники використовують мікрохвильовку на офісній кухні. Ви розповідаєте про свій обід. reheat — «розігрівати». Скажіть: I often reheat soup at work — «Я часто розігріваю суп на роботі». Тут often — «часто» — стоїть перед reheat."
       },
       "question": {
         "interactionId": "en:lesson-07:session-37:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте другу: «Я часто делаю покупки».",
-          "uk": "Відповідайте другові: «Я часто роблю покупки»."
+          "ru": "Коллега видит у вас контейнер с супом. Объясните: «Я часто разогреваю суп на работе».",
+          "uk": "Колега бачить у вас контейнер із супом. Поясніть: «Я часто розігріваю суп на роботі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-37:intro2:r1",
-              "text": "I often shop."
+              "text": "I often reheat soup at work."
             },
             {
               "responseId": "en:lesson-07:session-37:intro2:r2",
-              "text": "I often shops."
+              "text": "I often reheats soup at work."
             },
             {
               "responseId": "en:lesson-07:session-37:intro2:r3",
-              "text": "I often shopping."
+              "text": "I often reheating soup at work."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-37:intro2:r1",
-              "text": "I often shop."
+              "text": "I often reheat soup at work."
             },
             {
               "responseId": "en:lesson-07:session-37:intro2:r2",
-              "text": "I often shops."
+              "text": "I often reheats soup at work."
             },
             {
               "responseId": "en:lesson-07:session-37:intro2:r3",
-              "text": "I often shopping."
+              "text": "I often reheating soup at work."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу: «Я часто делаю покупки».",
-          "uk": "Відповідайте другові: «Я часто роблю покупки»."
+          "ru": "Коллега видит у вас контейнер с супом. Объясните: «Я часто разогреваю суп на работе».",
+          "uk": "Колега бачить у вас контейнер із супом. Поясніть: «Я часто розігріваю суп на роботі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Звонки знакомой",
-        "uk": "Дзвінки знайомої"
+        "ru": "Ужин с братом",
+        "uk": "Вечеря з братом"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` у действия сохраняется окончание `s`.",
-        "uk": "Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` у дії зберігається закінчення `s`."
+        "ru": "За ужином брат берёт ломоть хлеба и опускает его прямо в тарелку с супом. Гость удивляется такой привычке. dip — «макать». Скажите: He often dips bread in soup — «Он часто макает хлеб в суп». После he к dip добавляем s, а слово often остаётся перед dips.",
+        "uk": "За вечерею брат бере скибку хліба й опускає її просто в тарілку із супом. Гість дивується такій звичці. dip — «вмочати». Скажіть: He often dips bread in soup — «Він часто вмочає хліб у суп». Після he до dip додаємо s, а слово often лишається перед dips."
       },
       "question": {
         "interactionId": "en:lesson-07:session-37:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Гость удивляется, как ест брат. Объясните: «Он часто макает хлеб в суп».",
+          "uk": "Гість дивується, як їсть брат. Поясніть: «Він часто вмочає хліб у суп»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-37:intro3:r1",
-              "text": "She often calls."
+              "text": "He often dips bread in soup."
             },
             {
               "responseId": "en:lesson-07:session-37:intro3:r2",
-              "text": "She often call."
+              "text": "He often dip bread in soup."
             },
             {
               "responseId": "en:lesson-07:session-37:intro3:r3",
-              "text": "She often calling."
+              "text": "He often dipping bread in soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-37:intro3:r1",
-              "text": "She often calls."
+              "text": "He often dips bread in soup."
             },
             {
               "responseId": "en:lesson-07:session-37:intro3:r2",
-              "text": "She often call."
+              "text": "He often dip bread in soup."
             },
             {
               "responseId": "en:lesson-07:session-37:intro3:r3",
-              "text": "She often calling."
+              "text": "He often dipping bread in soup."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Гость удивляется, как ест брат. Объясните: «Он часто макает хлеб в суп».",
+          "uk": "Гість дивується, як їсть брат. Поясніть: «Він часто вмочає хліб у суп»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "81b07dd7901c6968b29d5b1d5b36be24c92ea8dfd93b0bde015d73d6e146a82b"
+  "introFingerprint": "d5a0843532b8efb4fcfd4d1b75ab5adb94258548174bccdc844a076cbd09a944"
 }

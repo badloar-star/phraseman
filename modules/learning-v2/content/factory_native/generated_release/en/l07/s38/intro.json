@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-38",
   "learningOutcomeByLocale": {
-    "ru": "использовать often и usually перед действием, сохраняя нужную форму глагола",
-    "uk": "використовувати often і usually перед дією, зберігаючи потрібну форму дієслова"
+    "ru": "использовать often и usually перед действием и ставить s после he и she",
+    "uk": "використовувати often і usually перед дією та ставити s після he і she"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одежда без складок",
-        "uk": "Одяг без складок"
+        "ru": "Помощь в библиотеке",
+        "uk": "Допомога в бібліотеці"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы гладите одежду. `iron` здесь — «гладить утюгом». `I often iron` — «Я часто глажу одежду». Из разговора понятно, что речь об одежде. `Often` стоит перед действием `iron`. Рубашка с утра тоже хочет выглядеть собранной.",
-        "uk": "Друг запитує, чи часто ви прасуєте одяг. `iron` тут — «прасувати». `I often iron` — «Я часто прасую одяг». Із розмови зрозуміло, що йдеться про одяг. `Often` стоїть перед дією `iron`. Сорочці теж хочеться почати день без складок."
+        "ru": "Соседка спрашивает, чем вы занимаетесь в свободное время. Вы бесплатно помогаете в городской библиотеке. volunteer — «работать волонтёром». Скажите: I often volunteer at the library — «Я часто работаю волонтёром в библиотеке». Слово often стоит перед volunteer.",
+        "uk": "Сусідка питає, чим ви займаєтеся у вільний час. Ви безкоштовно допомагаєте в міській бібліотеці. volunteer — «працювати волонтером». Скажіть: I often volunteer at the library — «Я часто працюю волонтером у бібліотеці». Слово often стоїть перед volunteer."
       },
       "question": {
         "interactionId": "en:lesson-07:session-38:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу: «Я часто глажу одежду».",
-          "uk": "Відповідайте другові: «Я часто прасую одяг»."
+          "ru": "Соседка спрашивает о свободном времени. Ответьте: «Я часто работаю волонтёром в библиотеке».",
+          "uk": "Сусідка питає про вільний час. Відповідьте: «Я часто працюю волонтером у бібліотеці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-38:intro1:r1",
-              "text": "I often iron."
+              "text": "I often volunteer at the library."
             },
             {
               "responseId": "en:lesson-07:session-38:intro1:r2",
-              "text": "I often irons."
+              "text": "I often volunteers at the library."
             },
             {
               "responseId": "en:lesson-07:session-38:intro1:r3",
-              "text": "I often ironing."
+              "text": "I often volunteering at the library."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-38:intro1:r1",
-              "text": "I often iron."
+              "text": "I often volunteer at the library."
             },
             {
               "responseId": "en:lesson-07:session-38:intro1:r2",
-              "text": "I often irons."
+              "text": "I often volunteers at the library."
             },
             {
               "responseId": "en:lesson-07:session-38:intro1:r3",
-              "text": "I often ironing."
+              "text": "I often volunteering at the library."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу: «Я часто глажу одежду».",
-          "uk": "Відповідайте другові: «Я часто прасую одяг»."
+          "ru": "Соседка спрашивает о свободном времени. Ответьте: «Я часто работаю волонтёром в библиотеке».",
+          "uk": "Сусідка питає про вільний час. Відповідьте: «Я часто працюю волонтером у бібліотеці»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Любимое место отдыха",
-        "uk": "Улюблене місце відпочинку"
+        "ru": "Сообщение без ответа",
+        "uk": "Повідомлення без відповіді"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете гостю кресло, в котором обычно отдыхаете. `I usually rest here` — «Я обычно отдыхаю здесь». `Usually` стоит перед действием `rest`, а `here` указывает на это место.",
-        "uk": "Ви показуєте гостеві крісло, у якому зазвичай відпочиваєте. `I usually rest here` — «Я зазвичай відпочиваю тут». `Usually` стоїть перед дією `rest`, а `here` указує на це місце."
+        "ru": "Друг пишет вашей подруге и переживает, что ответа долго нет. Вы знаете её лучше: она обычно возвращается к сообщениям, когда освобождается. reply — «отвечать». Скажите: She usually replies to messages — «Она обычно отвечает на сообщения». После she у reply меняем y на ies: replies. Отвечать на сообщения — reply to messages; перед messages нужно to.",
+        "uk": "Друг пише вашій подрузі й переживає, що відповіді довго нема. Ви знаєте її краще: вона зазвичай повертається до повідомлень, коли звільняється. reply — «відповідати». Скажіть: She usually replies to messages — «Вона зазвичай відповідає на повідомлення». Після she у reply змінюємо y на ies: replies. Відповідати на повідомлення — reply to messages; перед messages потрібне to."
       },
       "question": {
         "interactionId": "en:lesson-07:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите кресло и скажите: «Я обычно отдыхаю здесь».",
-          "uk": "Покажіть крісло й скажіть: «Я зазвичай відпочиваю тут»."
+          "ru": "Друг переживает, что подруга молчит. Успокойте его: «Она обычно отвечает на сообщения».",
+          "uk": "Друг переживає, що подруга мовчить. Заспокойте його: «Вона зазвичай відповідає на повідомлення»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-38:intro2:r1",
-              "text": "I usually rest here."
+              "text": "She usually replies to messages."
             },
             {
               "responseId": "en:lesson-07:session-38:intro2:r2",
-              "text": "I usually rests here."
+              "text": "She usually reply to messages."
             },
             {
               "responseId": "en:lesson-07:session-38:intro2:r3",
-              "text": "I usually resting here."
+              "text": "She usually replying to messages."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-38:intro2:r1",
-              "text": "I usually rest here."
+              "text": "She usually replies to messages."
             },
             {
               "responseId": "en:lesson-07:session-38:intro2:r2",
-              "text": "I usually rests here."
+              "text": "She usually reply to messages."
             },
             {
               "responseId": "en:lesson-07:session-38:intro2:r3",
-              "text": "I usually resting here."
+              "text": "She usually replying to messages."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите кресло и скажите: «Я обычно отдыхаю здесь».",
-          "uk": "Покажіть крісло й скажіть: «Я зазвичай відпочиваю тут»."
+          "ru": "Друг переживает, что подруга молчит. Успокойте его: «Она обычно отвечает на сообщения».",
+          "uk": "Друг переживає, що подруга мовчить. Заспокойте його: «Вона зазвичай відповідає на повідомлення»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Частые звонки",
-        "uk": "Часті дзвінки"
+        "ru": "Вечерние лекции",
+        "uk": "Вечірні лекції"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` у действия остаётся окончание `s`.",
-        "uk": "Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` у дії залишається закінчення `s`."
+        "ru": "Брат записался на вечерние курсы и после работы каждую неделю спешит на занятия. Знакомый спрашивает, чем он занят вечерами. attend — «посещать». Скажите: He often attends lectures — «Он часто посещает лекции». После he к attend добавляем s, а слово often остаётся перед attends.",
+        "uk": "Брат записався на вечірні курси й після роботи щотижня поспішає на заняття. Знайомий питає, чим він зайнятий увечері. attend — «відвідувати». Скажіть: He often attends lectures — «Він часто відвідує лекції». Після he до attend додаємо s, а слово often лишається перед attends."
       },
       "question": {
         "interactionId": "en:lesson-07:session-38:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Знакомый спрашивает про вечера брата. Ответьте: «Он часто посещает лекции».",
+          "uk": "Знайомий питає про вечори брата. Відповідьте: «Він часто відвідує лекції»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-38:intro3:r1",
-              "text": "She often calls."
+              "text": "He often attends lectures."
             },
             {
               "responseId": "en:lesson-07:session-38:intro3:r2",
-              "text": "She often call."
+              "text": "He often attend lectures."
             },
             {
               "responseId": "en:lesson-07:session-38:intro3:r3",
-              "text": "She often calling."
+              "text": "He often attending lectures."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-38:intro3:r1",
-              "text": "She often calls."
+              "text": "He often attends lectures."
             },
             {
               "responseId": "en:lesson-07:session-38:intro3:r2",
-              "text": "She often call."
+              "text": "He often attend lectures."
             },
             {
               "responseId": "en:lesson-07:session-38:intro3:r3",
-              "text": "She often calling."
+              "text": "He often attending lectures."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Знакомый спрашивает про вечера брата. Ответьте: «Он часто посещает лекции».",
+          "uk": "Знайомий питає про вечори брата. Відповідьте: «Він часто відвідує лекції»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3f87ce27819271c1e612547431c5bd66709701dca552d386a34f00a900bd2443"
+  "introFingerprint": "70273a8450aea56ba6fff31557282e0a6544947042b28f39963cce0c6d507a03"
 }

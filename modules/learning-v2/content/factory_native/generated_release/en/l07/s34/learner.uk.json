@@ -4,30 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-34:i01",
+      "interactionId": "en:lesson-07:session-34:word:choose",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — choose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-34:word:choose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — choose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-34:word:choose:audio",
+          "transcript": "choose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-34:word:choose:r1",
+            "targetText": "choose",
+            "meaningByLocale": {
+              "ru": "выбирать. I usually choose apples. — «Я обычно выбираю яблоки». Решать, какой из вариантов вам нужен.",
+              "uk": "вибирати. I usually choose apples. — «Я зазвичай вибираю яблука». Вирішувати, який із варіантів вам потрібен."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "choose",
+          "definitionByLocale": {
+            "ru": "выбирать. I usually choose apples. — «Я обычно выбираю яблоки». Решать, какой из вариантов вам нужен.",
+            "uk": "вибирати. I usually choose apples. — «Я зазвичай вибираю яблука». Вирішувати, який із варіантів вам потрібен."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-34:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я часто допомагаю як волонтер»",
+      "prompt": "Продавець питає, які фрукти ви зазвичай вибираєте. Скажіть: «Я зазвичай вибираю яблука»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто допомагаю як волонтер»",
+      "accessibilityLabel": "Продавець питає, які фрукти ви зазвичай вибираєте. Скажіть: «Я зазвичай вибираю яблука»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often volunteer.",
+        "targetPhrase": "I usually choose apples.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто помогаю как волонтёр»",
-          "uk": "Скажіть «Я часто допомагаю як волонтер»"
+          "ru": "Продавец спрашивает, какие фрукты вы обычно выбираете. Скажите: «Я обычно выбираю яблоки»",
+          "uk": "Продавець питає, які фрукти ви зазвичай вибираєте. Скажіть: «Я зазвичай вибираю яблука»"
         },
         "orderedTokens": [
           "I",
-          "often",
-          "volunteer"
+          "usually",
+          "choose",
+          "apples"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-34:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Продавець питає, які фрукти ви зазвичай вибираєте. Скажіть: «Я зазвичай вибираю яблука»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually choose apples.`",
+              "uk": "тут потрібно `usually` — `I usually choose apples.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,8 +92,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-34:word:compare",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — compare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-34:word:compare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — compare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-34:word:compare:audio",
+          "transcript": "compare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-34:word:compare:r1",
+            "targetText": "compare",
+            "meaningByLocale": {
+              "ru": "сравнивать. I often compare phones. — «Я часто сравниваю телефоны». Рассматривать сходства и различия двух или нескольких вещей.",
+              "uk": "порівнювати. I often compare phones. — «Я часто порівнюю телефони». Розглядати подібності та відмінності двох або кількох речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compare",
+          "definitionByLocale": {
+            "ru": "сравнивать. I often compare phones. — «Я часто сравниваю телефоны». Рассматривать сходства и различия двух или нескольких вещей.",
+            "uk": "порівнювати. I often compare phones. — «Я часто порівнюю телефони». Розглядати подібності та відмінності двох або кількох речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-34:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +144,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-34:i02:r1",
-          "text": "volunteer"
+          "text": "compare"
         },
         {
           "responseId": "en:lesson-07:session-34:i02:r2",
-          "text": "drink"
+          "text": "count"
         },
         {
           "responseId": "en:lesson-07:session-34:i02:r3",
-          "text": "park"
+          "text": "check"
         }
       ],
       "mediaIds": [],
@@ -65,23 +164,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i02:audio",
-          "transcript": "volunteer"
+          "transcript": "compare"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-34:i02:r1",
-            "targetText": "volunteer",
+            "targetText": "compare",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-34:i02:r2",
-            "targetText": "drink",
+            "targetText": "count",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-34:i02:r3",
-            "targetText": "park",
+            "targetText": "check",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `volunteer`, а в этом варианте — `drink`.",
-              "uk": "У записі перше слово — `volunteer`, а в цьому варіанті — `drink`."
+              "ru": "В записи первое слово — `compare`, а в этом варианте — `count`.",
+              "uk": "У записі перше слово — `compare`, а в цьому варіанті — `count`."
             }
           },
           {
@@ -101,8 +200,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `volunteer`, а в этом варианте — `park`.",
-              "uk": "У записі перше слово — `volunteer`, а в цьому варіанті — `park`."
+              "ru": "В записи первое слово — `compare`, а в этом варианте — `check`.",
+              "uk": "У записі перше слово — `compare`, а в цьому варіанті — `check`."
             }
           }
         ],
@@ -112,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-34:word:bring",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-34:word:bring:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-34:word:bring:audio",
+          "transcript": "bring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-34:word:bring:r1",
+            "targetText": "bring",
+            "meaningByLocale": {
+              "ru": "приносить. She often brings a cake. — «Она часто приносит торт». Доставлять что-либо туда, где находится или будет находиться говорящий либо собеседник; здесь — приносить торт в гости.",
+              "uk": "приносити. She often brings a cake. — «Вона часто приносить торт». Доставляти щось туди, де перебуває чи перебуватиме мовець або співрозмовник; тут — приносити торт у гості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bring",
+          "definitionByLocale": {
+            "ru": "приносить. She often brings a cake. — «Она часто приносит торт». Доставлять что-либо туда, где находится или будет находиться говорящий либо собеседник; здесь — приносить торт в гости.",
+            "uk": "приносити. She often brings a cake. — «Вона часто приносить торт». Доставляти щось туди, де перебуває чи перебуватиме мовець або співрозмовник; тут — приносити торт у гості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-34:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто допомагаю як волонтер»",
+      "prompt": "Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-34:i03:r1",
-          "text": "volunteer"
+          "text": "brings"
         },
         {
           "responseId": "en:lesson-07:session-34:i03:r2",
-          "text": "volunteers"
+          "text": "bring"
         },
         {
           "responseId": "en:lesson-07:session-34:i03:r3",
-          "text": "volunteering"
+          "text": "bringing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто допомагаю як волонтер»",
+      "accessibilityLabel": "Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто помогаю как волонтёр»",
-          "uk": "Скажіть «Я часто допомагаю як волонтер»"
+          "ru": "Брат спрашивает, что подруга обычно приносит к чаю. Скажите: «Она часто приносит торт». Выберите слово",
+          "uk": "Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___.",
+        "gappedTargetPhrase": "She often ___ a cake.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-34:i03:r1",
-            "text": "volunteer"
+            "text": "brings"
           },
           {
             "responseId": "en:lesson-07:session-34:i03:r2",
-            "text": "volunteers"
+            "text": "bring"
           },
           {
             "responseId": "en:lesson-07:session-34:i03:r3",
-            "text": "volunteering"
+            "text": "bringing"
           }
         ],
-        "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+        "testedDimension": "Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-34:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+            "testedDimension": "Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `volunteer`.",
-              "uk": "Після `I` потрібне `volunteer`."
+              "ru": "После `She` нужно `brings`.",
+              "uk": "Після `She` потрібно `brings`."
             }
           },
           {
             "responseId": "en:lesson-07:session-34:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+            "testedDimension": "Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `volunteer`.",
-              "uk": "Тут потрібна форма `volunteer`."
+              "ru": "Здесь нужна форма `brings`.",
+              "uk": "Тут потрібна форма `brings`."
             }
           }
         ]
@@ -182,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-34:i04:p1",
-            "target": "volunteer",
+            "target": "choose",
             "meaningByLocale": {
-              "ru": "быть волонтёром",
-              "uk": "бути волонтером"
+              "ru": "выбирать",
+              "uk": "вибирати"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i04:p2",
-            "target": "drink",
+            "target": "compare",
             "meaningByLocale": {
-              "ru": "пить",
-              "uk": "пити"
+              "ru": "сравнивать",
+              "uk": "порівнювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i04:p3",
-            "target": "wallet",
+            "target": "bring",
             "meaningByLocale": {
-              "ru": "кошелёк",
-              "uk": "гаманець"
+              "ru": "приносить",
+              "uk": "приносити"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i04:p4",
-            "target": "ring",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "кольцо",
-              "uk": "каблучка"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           }
         ],
         "leftColumn": [
-          "volunteer",
-          "drink",
-          "wallet",
-          "ring"
+          "choose",
+          "compare",
+          "bring",
+          "apple"
         ],
         "rightColumn": [
-          "бути волонтером",
-          "пити",
-          "гаманець",
-          "каблучка"
+          "вибирати",
+          "порівнювати",
+          "приносити",
+          "яблуко"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,8 +397,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -270,17 +412,30 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i05:audio",
-          "transcript": "I often volunteer."
+          "transcript": "I often compare phones."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often volunteer.",
+        "hiddenTargetPhrase": "I often compare phones.",
         "orderedTokens": [
           "I",
           "often",
-          "volunteer"
+          "compare",
+          "phones"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "compares"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-34:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `compare` — `I often compare phones.`",
+              "uk": "тут потрібно `compare` — `I often compare phones.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,30 +444,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-34:word:wrap",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wrap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-34:word:wrap:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wrap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-34:word:wrap:audio",
+          "transcript": "wrap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-34:word:wrap:r1",
+            "targetText": "wrap",
+            "meaningByLocale": {
+              "ru": "упаковывать. I usually wrap gifts. — «Я обычно упаковываю подарки». Заворачивать во что-либо; здесь — в подарочную бумагу.",
+              "uk": "пакувати. I usually wrap gifts. — «Я зазвичай пакую подарунки». Загортати в щось; тут — у подарунковий папір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrap",
+          "definitionByLocale": {
+            "ru": "упаковывать. I usually wrap gifts. — «Я обычно упаковываю подарки». Заворачивать во что-либо; здесь — в подарочную бумагу.",
+            "uk": "пакувати. I usually wrap gifts. — «Я зазвичай пакую подарунки». Загортати в щось; тут — у подарунковий папір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-34:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Розкажіть про дорогу на роботу: «Я зазвичай ходжу пішки»",
+      "prompt": "Перед святом ви готуєте подарунки. Скажіть: «Я зазвичай пакую подарунки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про дорогу на роботу: «Я зазвичай ходжу пішки»",
+      "accessibilityLabel": "Перед святом ви готуєте подарунки. Скажіть: «Я зазвичай пакую подарунки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually walk.",
+        "targetPhrase": "I usually wrap gifts.",
         "localizedMeaning": {
-          "ru": "Расскажите о дороге на работу: «Я обычно хожу пешком»",
-          "uk": "Розкажіть про дорогу на роботу: «Я зазвичай ходжу пішки»"
+          "ru": "Перед праздником вы готовите подарки. Скажите: «Я обычно упаковываю подарки»",
+          "uk": "Перед святом ви готуєте подарунки. Скажіть: «Я зазвичай пакую подарунки»"
         },
         "orderedTokens": [
           "I",
           "usually",
-          "walk"
+          "wrap",
+          "gifts"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-34:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Перед святом ви готуєте подарунки. Скажіть: «Я зазвичай пакую подарунки»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually wrap gifts.`",
+              "uk": "тут потрібно `usually` — `I usually wrap gifts.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть про знайому «Вона часто телефонує»",
+      "prompt": "Подруга питає про вашого брата. Скажіть: «Він часто порівнює телефони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-34:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть про знайому «Вона часто телефонує»",
+      "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Він часто порівнює телефони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i07:audio",
-          "transcript": "She often calls."
+          "transcript": "He often compares phones."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She often calls.",
+        "targetPhrase": "He often compares phones.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +566,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона часто телефонує»",
+      "prompt": "Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-34:i08:r1",
-          "text": "calls"
+          "text": "wraps"
         },
         {
           "responseId": "en:lesson-07:session-34:i08:r2",
-          "text": "call"
+          "text": "wrap"
         },
         {
           "responseId": "en:lesson-07:session-34:i08:r3",
-          "text": "calling"
+          "text": "wrapping"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона часто телефонує»",
+      "accessibilityLabel": "Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она часто звонит»",
-          "uk": "Скажіть «Вона часто телефонує»"
+          "ru": "Подруга спрашивает про вашу сестру. Скажите: «Она обычно упаковывает подарки». Выберите слово",
+          "uk": "Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово"
         },
-        "gappedTargetPhrase": "She often ___.",
+        "gappedTargetPhrase": "She usually ___ gifts.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-34:i08:r1",
-            "text": "calls"
+            "text": "wraps"
           },
           {
             "responseId": "en:lesson-07:session-34:i08:r2",
-            "text": "call"
+            "text": "wrap"
           },
           {
             "responseId": "en:lesson-07:session-34:i08:r3",
-            "text": "calling"
+            "text": "wrapping"
           }
         ],
-        "testedDimension": "Скажіть «Вона часто телефонує»",
+        "testedDimension": "Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-34:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "testedDimension": "Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` нужно `calls`.",
-              "uk": "Після `she` потрібне `calls`."
+              "ru": "После `She` нужно `wraps`.",
+              "uk": "Після `She` потрібно `wraps`."
             }
           },
           {
             "responseId": "en:lesson-07:session-34:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона часто телефонує»",
+            "testedDimension": "Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `calls`.",
-              "uk": "Тут потрібна форма `calls`."
+              "ru": "Здесь нужна форма `wraps`.",
+              "uk": "Тут потрібна форма `wraps`."
             }
           }
         ]
@@ -424,7 +635,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,15 +643,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-34:i09:r1",
-          "text": "I often volunteer."
+          "text": "I usually choose apples."
         },
         {
           "responseId": "en:lesson-07:session-34:i09:r2",
-          "text": "I often walk."
+          "text": "I usually choose bread."
         },
         {
           "responseId": "en:lesson-07:session-34:i09:r3",
-          "text": "I often call."
+          "text": "I usually choose cake."
         }
       ],
       "mediaIds": [],
@@ -452,23 +663,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i09:audio",
-          "transcript": "I often volunteer."
+          "transcript": "I usually choose apples."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-34:i09:r1",
-            "targetText": "I often volunteer.",
+            "targetText": "I usually choose apples.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-34:i09:r2",
-            "targetText": "I often walk.",
+            "targetText": "I usually choose bread.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-34:i09:r3",
-            "targetText": "I often call.",
+            "targetText": "I usually choose cake.",
             "meaningByLocale": null
           }
         ],
@@ -479,8 +690,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `volunteer`, а в этом варианте — `walk`.",
-              "uk": "У записі останнє слово — `volunteer`, а в цьому варіанті — `walk`."
+              "ru": "В записи последнее слово — `apples`, а в этом варианте — `bread`.",
+              "uk": "У записі останнє слово — `apples`, а в цьому варіанті — `bread`."
             }
           },
           {
@@ -488,8 +699,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `volunteer`, а в этом варианте — `call`.",
-              "uk": "У записі останнє слово — `volunteer`, а в цьому варіанті — `call`."
+              "ru": "В записи последнее слово — `apples`, а в этом варианте — `cake`.",
+              "uk": "У записі останнє слово — `apples`, а в цьому варіанті — `cake`."
             }
           }
         ],
@@ -500,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -514,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-34:i10:p1",
-            "target": "park",
+            "target": "wrap",
             "meaningByLocale": {
-              "ru": "парковаться",
-              "uk": "паркуватися"
+              "ru": "упаковывать",
+              "uk": "пакувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i10:p2",
-            "target": "volunteer",
+            "target": "bring",
             "meaningByLocale": {
-              "ru": "быть волонтёром",
-              "uk": "бути волонтером"
+              "ru": "приносить",
+              "uk": "приносити"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i10:p3",
-            "target": "wallet",
+            "target": "compare",
             "meaningByLocale": {
-              "ru": "кошелёк",
-              "uk": "гаманець"
+              "ru": "сравнивать",
+              "uk": "порівнювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i10:p4",
-            "target": "drink",
+            "target": "choose",
             "meaningByLocale": {
-              "ru": "пить",
-              "uk": "пити"
+              "ru": "выбирать",
+              "uk": "вибирати"
             }
           }
         ],
         "leftColumn": [
-          "park",
-          "volunteer",
-          "wallet",
-          "drink"
+          "wrap",
+          "bring",
+          "compare",
+          "choose"
         ],
         "rightColumn": [
-          "паркуватися",
-          "бути волонтером",
-          "гаманець",
-          "пити"
+          "пакувати",
+          "приносити",
+          "порівнювати",
+          "вибирати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +784,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,17 +799,31 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i11:audio",
-          "transcript": "She often calls."
+          "transcript": "She often brings a cake."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She often calls.",
+        "hiddenTargetPhrase": "She often brings a cake.",
         "orderedTokens": [
           "She",
           "often",
-          "calls"
+          "brings",
+          "a",
+          "cake"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "bring"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-34:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `brings` — `She often brings a cake.`",
+              "uk": "тут потрібно `brings` — `She often brings a cake.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -608,31 +833,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви добираєте прикраси. Запитайте подругу «У тебе є каблучка?»",
+      "prompt": "Ви розповідаєте про брата в булочній. Скажіть: «Він зазвичай вибирає хліб»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви добираєте прикраси. Запитайте подругу «У тебе є каблучка?»",
+      "accessibilityLabel": "Ви розповідаєте про брата в булочній. Скажіть: «Він зазвичай вибирає хліб»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a ring?",
+        "targetPhrase": "He usually chooses bread.",
         "localizedMeaning": {
-          "ru": "Вы подбираете украшения. Спросите подругу «У тебя есть кольцо?»",
-          "uk": "Ви добираєте прикраси. Запитайте подругу «У тебе є каблучка?»"
+          "ru": "Вы рассказываете о брате в булочной. Скажите: «Он обычно выбирает хлеб»",
+          "uk": "Ви розповідаєте про брата в булочній. Скажіть: «Він зазвичай вибирає хліб»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "ring"
+          "He",
+          "usually",
+          "chooses",
+          "bread"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "choose"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-34:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про брата в булочній. Скажіть: «Він зазвичай вибирає хліб»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `chooses` — `He usually chooses bread.`",
+              "uk": "тут потрібно `chooses` — `He usually chooses bread.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -642,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Дізнайтеся звичне місце паркування колеги",
+      "prompt": "Гість питає, що приносить ваша сестра. Скажіть: «Вона часто приносить подарунок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-34:i13:audio"
       ],
-      "accessibilityLabel": "Дізнайтеся звичне місце паркування колеги",
+      "accessibilityLabel": "Гість питає, що приносить ваша сестра. Скажіть: «Вона часто приносить подарунок»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i13:audio",
-          "transcript": "Where do you park?"
+          "transcript": "She often brings a gift."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where do you park?",
+        "targetPhrase": "She often brings a gift.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -675,15 +911,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай п’ю воду»",
+      "prompt": "Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-34:i14:r1",
-          "text": "usually"
+          "text": "often"
         },
         {
           "responseId": "en:lesson-07:session-34:i14:r2",
@@ -696,18 +932,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай п’ю воду»",
+      "accessibilityLabel": "Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно пью воду»",
-          "uk": "Скажіть «Я зазвичай п’ю воду»"
+          "ru": "Вы рассказываете, как выбираете покупки. Скажите: «Я часто сравниваю телефоны». Выберите слово",
+          "uk": "Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ drink water.",
+        "gappedTargetPhrase": "I ___ compare phones.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-34:i14:r1",
-            "text": "usually"
+            "text": "often"
           },
           {
             "responseId": "en:lesson-07:session-34:i14:r2",
@@ -718,24 +954,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай п’ю воду»",
+        "testedDimension": "Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-34:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай п’ю воду»",
+            "testedDimension": "Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `drink`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `drink`."
+              "ru": "Для «часто» нужно `often` перед `compare`.",
+              "uk": "Для «часто» потрібно `often` перед `compare`."
             }
           },
           {
             "responseId": "en:lesson-07:session-34:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай п’ю воду»",
+            "testedDimension": "Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `drink` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `drink` не ставимо."
+              "ru": "Для «часто» нужно `often`; `am` перед `compare` не ставим.",
+              "uk": "Для «часто» потрібно `often`; `am` перед `compare` не ставимо."
             }
           }
         ]
@@ -744,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть запитання",
+      "prompt": "Послухайте й виберіть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-34:i15:r1",
-          "text": "Do you have a wallet?"
+          "text": "She often brings a cake."
         },
         {
           "responseId": "en:lesson-07:session-34:i15:r2",
-          "text": "Do you have a ring?"
+          "text": "She often brings a gift."
         },
         {
           "responseId": "en:lesson-07:session-34:i15:r3",
-          "text": "Do you have a phone?"
+          "text": "She often brings a bag."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-34:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "accessibilityLabel": "Послухайте й виберіть фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i15:audio",
-          "transcript": "Do you have a wallet?"
+          "transcript": "She often brings a cake."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-34:i15:r1",
-            "targetText": "Do you have a wallet?",
+            "targetText": "She often brings a cake.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-34:i15:r2",
-            "targetText": "Do you have a ring?",
+            "targetText": "She often brings a gift.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-34:i15:r3",
-            "targetText": "Do you have a phone?",
+            "targetText": "She often brings a bag.",
             "meaningByLocale": null
           }
         ],
@@ -797,19 +1033,19 @@
           {
             "responseId": "en:lesson-07:session-34:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wallet`, а в этом варианте — `ring`.",
-              "uk": "У записі останнє слово — `wallet`, а в цьому варіанті — `ring`."
+              "ru": "В записи последнее слово — `cake`, а в этом варианте — `gift`.",
+              "uk": "У записі останнє слово — `cake`, а в цьому варіанті — `gift`."
             }
           },
           {
             "responseId": "en:lesson-07:session-34:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wallet`, а в этом варианте — `phone`.",
-              "uk": "У записі останнє слово — `wallet`, а в цьому варіанті — `phone`."
+              "ru": "В записи последнее слово — `cake`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `cake`, а в цьому варіанті — `bag`."
             }
           }
         ],
@@ -820,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -834,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-34:i16:p1",
-            "target": "volunteer",
+            "target": "bring",
             "meaningByLocale": {
-              "ru": "быть волонтёром",
-              "uk": "бути волонтером"
+              "ru": "приносить",
+              "uk": "приносити"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i16:p2",
-            "target": "ring",
+            "target": "wrap",
             "meaningByLocale": {
-              "ru": "кольцо",
-              "uk": "каблучка"
+              "ru": "упаковывать",
+              "uk": "пакувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i16:p3",
-            "target": "park",
+            "target": "gift",
             "meaningByLocale": {
-              "ru": "парковаться",
-              "uk": "паркуватися"
+              "ru": "подарок",
+              "uk": "подарунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-34:i16:p4",
-            "target": "wallet",
+            "target": "cake",
             "meaningByLocale": {
-              "ru": "кошелёк",
-              "uk": "гаманець"
+              "ru": "торт",
+              "uk": "торт"
             }
           }
         ],
         "leftColumn": [
-          "volunteer",
-          "ring",
-          "park",
-          "wallet"
+          "bring",
+          "wrap",
+          "gift",
+          "cake"
         ],
         "rightColumn": [
-          "бути волонтером",
-          "каблучка",
-          "паркуватися",
-          "гаманець"
+          "приносити",
+          "пакувати",
+          "подарунок",
+          "торт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-34:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про допомогу Тома місцевій організації. Скажіть «Том часто допомагає як волонтер»",
+      "prompt": "Покупець питає, хто у вашій родині вибирає яблука. Скажіть: «Моя сестра зазвичай вибирає яблука»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-34:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує про допомогу Тома місцевій організації. Скажіть «Том часто допомагає як волонтер»",
+      "accessibilityLabel": "Покупець питає, хто у вашій родині вибирає яблука. Скажіть: «Моя сестра зазвичай вибирає яблука»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-34:i17:audio",
-          "transcript": "Tom often volunteers."
+          "transcript": "My sister usually chooses apples."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often volunteers.",
+        "targetPhrase": "My sister usually chooses apples.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -933,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b5fad03e8de2f37bd6491040c5572a001430186601a6ccdb4688bf9e3c641a8e"
+  "learnerFingerprint": "69e65f5954998aeecf2ac98accc80a152ba82d5544f34a5de6a97e10f2b53d4f"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-38:intro1:r2": {
-          "ru": "После `I` нужно `iron`, без `s`.",
-          "uk": "Після `I` потрібне `iron`, без `s`."
+          "ru": "После I нужно volunteer, без s.",
+          "uk": "Після I потрібно volunteer, без s."
         },
         "en:lesson-07:session-38:intro1:r3": {
-          "ru": "Здесь нужна форма `iron`.",
-          "uk": "Тут потрібна форма `iron`."
+          "ru": "Для привычного действия здесь нужна форма volunteer, без -ing.",
+          "uk": "Для звичної дії тут потрібна форма volunteer, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-38:intro2:r2": {
-          "ru": "После `I` нужно `rest`.",
-          "uk": "Після `I` потрібне `rest`."
+          "ru": "После she нужно replies.",
+          "uk": "Після she потрібно replies."
         },
         "en:lesson-07:session-38:intro2:r3": {
-          "ru": "Здесь нужна форма `rest`.",
-          "uk": "Тут потрібна форма `rest`."
+          "ru": "Здесь нужна форма replies.",
+          "uk": "Тут потрібна форма replies."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-38:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После he нужно attends, с s.",
+          "uk": "Після he потрібно attends, з s."
         },
         "en:lesson-07:session-38:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма attends.",
+          "uk": "Тут потрібна форма attends."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "51a1c7ac014097dd63bc630883f7ae06792bb1ae7d35ad6518d841f93e16e140"
+  "auxiliaryFingerprint": "e0953ebd02733665fce74edd73ad9475300a75980ef45bca3f89b097b33e043e"
 }

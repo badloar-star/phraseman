@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-33:intro1:r2": {
-          "ru": "После `I` нужно `recycle`, без `s`.",
-          "uk": "Після `I` потрібне `recycle`, без `s`."
+          "ru": "После I нужно recycle, без s.",
+          "uk": "Після I потрібно recycle, без s."
         },
         "en:lesson-07:session-33:intro1:r3": {
-          "ru": "Здесь нужна форма `recycle`.",
-          "uk": "Тут потрібна форма `recycle`."
+          "ru": "Для привычного действия после I нужна форма recycle, без -ing.",
+          "uk": "Для звичної дії після I потрібна форма recycle, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-33:intro2:r2": {
-          "ru": "После `I` нужно `walk`, без `s`.",
-          "uk": "Після `I` потрібне `walk`, без `s`."
+          "ru": "Слово often стоит перед iron.",
+          "uk": "Слово often стоїть перед iron."
         },
         "en:lesson-07:session-33:intro2:r3": {
-          "ru": "Здесь нужна форма `walk`.",
-          "uk": "Тут потрібна форма `walk`."
+          "ru": "После I нужно iron, без s.",
+          "uk": "Після I потрібно iron, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-33:intro3:r2": {
-          "ru": "После `she` нужно `calls`, с `s`.",
-          "uk": "Після `she` потрібне `calls`, із `s`."
+          "ru": "После she нужно dusts, с s.",
+          "uk": "Після she потрібно dusts, з s."
         },
         "en:lesson-07:session-33:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма dusts.",
+          "uk": "Тут потрібна форма dusts."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e947bca531cc06f28e1d30047ea92ca51c2422e12bb70b6f9a48460294fc69ed"
+  "auxiliaryFingerprint": "7177e6e53dac12ef1156bf8afdcb4dcdc27f641488203a5eb77bec20e7950a78"
 }

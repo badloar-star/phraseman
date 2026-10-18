@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-35:word:commute",
+    "correctText": "commute",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-35:i01",
-    "correctText": "I usually commute.",
+    "correctText": "I usually commute by bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:word:hurry",
+    "correctText": "hurry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i02",
-    "correctText": "commute",
+    "correctText": "hurry",
     "correctResponseId": "en:lesson-07:session-35:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-35:word:change",
+    "correctText": "change",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-35:i03",
-    "correctText": "commute",
+    "correctText": "changes",
     "correctResponseId": "en:lesson-07:session-35:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-35:i04",
-    "correctText": "en:lesson-07:session-35:i04:p1=commute\nen:lesson-07:session-35:i04:p2=sleep\nen:lesson-07:session-35:i04:p3=photos\nen:lesson-07:session-35:i04:p4=bracelet",
+    "correctText": "en:lesson-07:session-35:i04:p1=commute\nen:lesson-07:session-35:i04:p2=hurry\nen:lesson-07:session-35:i04:p3=change\nen:lesson-07:session-35:i04:p4=bus",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i05",
-    "correctText": "I usually commute.",
+    "correctText": "I often hurry in the morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-35:word:hire",
+    "correctText": "hire",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i06",
-    "correctText": "I usually walk.",
+    "correctText": "I usually hire a car.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i07",
-    "correctText": "She often calls.",
+    "correctText": "He usually commutes by train.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i08",
-    "correctText": "calls",
+    "correctText": "hires",
     "correctResponseId": "en:lesson-07:session-35:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-35:i09",
-    "correctText": "I usually commute.",
+    "correctText": "I usually commute by bus.",
     "correctResponseId": "en:lesson-07:session-35:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-35:i10",
-    "correctText": "en:lesson-07:session-35:i10:p1=stay\nen:lesson-07:session-35:i10:p2=commute\nen:lesson-07:session-35:i10:p3=photos\nen:lesson-07:session-35:i10:p4=sleep",
+    "correctText": "en:lesson-07:session-35:i10:p1=hire\nen:lesson-07:session-35:i10:p2=change\nen:lesson-07:session-35:i10:p3=hurry\nen:lesson-07:session-35:i10:p4=commute",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i11",
-    "correctText": "She often calls.",
+    "correctText": "He usually changes trains.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i12",
-    "correctText": "Do you have a bracelet?",
+    "correctText": "She often hurries to work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i13",
-    "correctText": "Where do you stay?",
+    "correctText": "He often hires a car.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-35:i15",
-    "correctText": "Do you have photos?",
+    "correctText": "She often hurries to work.",
     "correctResponseId": "en:lesson-07:session-35:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-35:i16",
-    "correctText": "en:lesson-07:session-35:i16:p1=commute\nen:lesson-07:session-35:i16:p2=bracelet\nen:lesson-07:session-35:i16:p3=stay\nen:lesson-07:session-35:i16:p4=photos",
+    "correctText": "en:lesson-07:session-35:i16:p1=commute\nen:lesson-07:session-35:i16:p2=hire\nen:lesson-07:session-35:i16:p3=change\nen:lesson-07:session-35:i16:p4=train",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-35:i17",
-    "correctText": "Tom usually commutes.",
+    "correctText": "She usually commutes by bus.",
     "correctResponseId": null
   }
 ]

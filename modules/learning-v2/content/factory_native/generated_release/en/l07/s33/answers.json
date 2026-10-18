@@ -1,42 +1,62 @@
 [
   {
+    "interactionId": "en:lesson-07:session-33:word:recycle",
+    "correctText": "recycle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-33:i01",
     "correctText": "I usually recycle.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-07:session-33:word:iron",
+    "correctText": "iron",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-33:i02",
-    "correctText": "recycle",
+    "correctText": "iron",
     "correctResponseId": "en:lesson-07:session-33:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-33:word:dust",
+    "correctText": "dust",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-33:i03",
-    "correctText": "recycle",
+    "correctText": "dusts",
     "correctResponseId": "en:lesson-07:session-33:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-33:i04",
-    "correctText": "en:lesson-07:session-33:i04:p1=recycle\nen:lesson-07:session-33:i04:p2=study\nen:lesson-07:session-33:i04:p3=phone\nen:lesson-07:session-33:i04:p4=watch",
+    "correctText": "en:lesson-07:session-33:i04:p1=recycle\nen:lesson-07:session-33:i04:p2=iron\nen:lesson-07:session-33:i04:p3=dust\nen:lesson-07:session-33:i04:p4=shirt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i05",
-    "correctText": "I usually recycle.",
+    "correctText": "I often iron shirts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-33:word:unload",
+    "correctText": "unload",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i06",
-    "correctText": "I usually walk.",
+    "correctText": "I usually unload the dishwasher.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i07",
-    "correctText": "She often calls.",
+    "correctText": "He often irons shirts.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i08",
-    "correctText": "calls",
+    "correctText": "unloads",
     "correctResponseId": "en:lesson-07:session-33:i08:r1"
   },
   {
@@ -46,22 +66,22 @@
   },
   {
     "interactionId": "en:lesson-07:session-33:i10",
-    "correctText": "en:lesson-07:session-33:i10:p1=meet\nen:lesson-07:session-33:i10:p2=recycle\nen:lesson-07:session-33:i10:p3=phone\nen:lesson-07:session-33:i10:p4=study",
+    "correctText": "en:lesson-07:session-33:i10:p1=unload\nen:lesson-07:session-33:i10:p2=dust\nen:lesson-07:session-33:i10:p3=recycle\nen:lesson-07:session-33:i10:p4=iron",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i11",
-    "correctText": "She often calls.",
+    "correctText": "She often dusts the shelves.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i12",
-    "correctText": "Do you have a watch?",
+    "correctText": "He usually recycles bottles.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i13",
-    "correctText": "Where do you meet?",
+    "correctText": "She usually unloads the dishwasher.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-33:i15",
-    "correctText": "Do you have a phone?",
+    "correctText": "He often irons shirts.",
     "correctResponseId": "en:lesson-07:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-33:i16",
-    "correctText": "en:lesson-07:session-33:i16:p1=recycle\nen:lesson-07:session-33:i16:p2=watch\nen:lesson-07:session-33:i16:p3=meet\nen:lesson-07:session-33:i16:p4=phone",
+    "correctText": "en:lesson-07:session-33:i16:p1=dust\nen:lesson-07:session-33:i16:p2=unload\nen:lesson-07:session-33:i16:p3=shirt\nen:lesson-07:session-33:i16:p4=bottle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-33:i17",
-    "correctText": "Tom often calls.",
+    "correctText": "He usually recycles.",
     "correctResponseId": null
   }
 ]

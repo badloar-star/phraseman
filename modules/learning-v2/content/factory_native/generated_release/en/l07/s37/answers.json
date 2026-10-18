@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-37:word:peel",
+    "correctText": "peel",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-37:i01",
-    "correctText": "I usually pack early.",
+    "correctText": "I usually peel an orange.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:word:reheat",
+    "correctText": "reheat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i02",
-    "correctText": "pack",
+    "correctText": "reheat",
     "correctResponseId": "en:lesson-07:session-37:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-37:word:dip",
+    "correctText": "dip",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-37:i03",
-    "correctText": "pack",
+    "correctText": "dips",
     "correctResponseId": "en:lesson-07:session-37:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-37:i04",
-    "correctText": "en:lesson-07:session-37:i04:p1=pack\nen:lesson-07:session-37:i04:p2=shop\nen:lesson-07:session-37:i04:p3=car\nen:lesson-07:session-37:i04:p4=earrings",
+    "correctText": "en:lesson-07:session-37:i04:p1=peel\nen:lesson-07:session-37:i04:p2=reheat\nen:lesson-07:session-37:i04:p3=dip\nen:lesson-07:session-37:i04:p4=orange",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i05",
-    "correctText": "I usually pack early.",
+    "correctText": "I often reheat soup at work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-37:word:refill",
+    "correctText": "refill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i06",
-    "correctText": "I often shop.",
+    "correctText": "I usually refill my bottle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i07",
-    "correctText": "She often calls.",
+    "correctText": "He often dips bread in soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i08",
-    "correctText": "calls",
+    "correctText": "refills",
     "correctResponseId": "en:lesson-07:session-37:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-37:i09",
-    "correctText": "I usually pack early.",
+    "correctText": "I often reheat soup at work.",
     "correctResponseId": "en:lesson-07:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-37:i10",
-    "correctText": "en:lesson-07:session-37:i10:p1=play\nen:lesson-07:session-37:i10:p2=pack\nen:lesson-07:session-37:i10:p3=car\nen:lesson-07:session-37:i10:p4=shop",
+    "correctText": "en:lesson-07:session-37:i10:p1=refill\nen:lesson-07:session-37:i10:p2=dip\nen:lesson-07:session-37:i10:p3=reheat\nen:lesson-07:session-37:i10:p4=peel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i11",
-    "correctText": "I often shop.",
+    "correctText": "He often dips bread in soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i12",
-    "correctText": "Do you have earrings?",
+    "correctText": "She often reheats soup at work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i13",
-    "correctText": "Where do you play?",
+    "correctText": "She usually refills her bottle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i14",
-    "correctText": "often",
+    "correctText": "usually",
     "correctResponseId": "en:lesson-07:session-37:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-37:i15",
-    "correctText": "Do you have a car?",
+    "correctText": "She usually refills the bottle.",
     "correctResponseId": "en:lesson-07:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-37:i16",
-    "correctText": "en:lesson-07:session-37:i16:p1=pack\nen:lesson-07:session-37:i16:p2=earrings\nen:lesson-07:session-37:i16:p3=play\nen:lesson-07:session-37:i16:p4=car",
+    "correctText": "en:lesson-07:session-37:i16:p1=peel\nen:lesson-07:session-37:i16:p2=refill\nen:lesson-07:session-37:i16:p3=reheat\nen:lesson-07:session-37:i16:p4=soup",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-37:i17",
-    "correctText": "Tom usually packs early.",
+    "correctText": "He usually peels an orange.",
     "correctResponseId": null
   }
 ]

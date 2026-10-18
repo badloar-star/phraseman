@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-38:word:volunteer",
+    "correctText": "volunteer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-38:i01",
-    "correctText": "I often iron.",
+    "correctText": "I often volunteer at the library.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:word:attend",
+    "correctText": "attend",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i02",
-    "correctText": "iron",
+    "correctText": "attend",
     "correctResponseId": "en:lesson-07:session-38:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-38:word:reply",
+    "correctText": "reply",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-38:i03",
-    "correctText": "iron",
+    "correctText": "replies",
     "correctResponseId": "en:lesson-07:session-38:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-38:i04",
-    "correctText": "en:lesson-07:session-38:i04:p1=iron\nen:lesson-07:session-38:i04:p2=rest\nen:lesson-07:session-38:i04:p3=ticket\nen:lesson-07:session-38:i04:p4=laptop",
+    "correctText": "en:lesson-07:session-38:i04:p1=volunteer\nen:lesson-07:session-38:i04:p2=attend\nen:lesson-07:session-38:i04:p3=reply\nen:lesson-07:session-38:i04:p4=message",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i05",
-    "correctText": "I often iron.",
+    "correctText": "I often volunteer at the library.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-38:word:text",
+    "correctText": "text",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i06",
-    "correctText": "I usually rest here.",
+    "correctText": "I usually text my sister.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i07",
-    "correctText": "She often calls.",
+    "correctText": "He often attends lectures.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i08",
-    "correctText": "calls",
+    "correctText": "texts",
     "correctResponseId": "en:lesson-07:session-38:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-38:i09",
-    "correctText": "I often iron.",
+    "correctText": "I often volunteer at the library.",
     "correctResponseId": "en:lesson-07:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-38:i10",
-    "correctText": "en:lesson-07:session-38:i10:p1=travel\nen:lesson-07:session-38:i10:p2=iron\nen:lesson-07:session-38:i10:p3=ticket\nen:lesson-07:session-38:i10:p4=rest",
+    "correctText": "en:lesson-07:session-38:i10:p1=text\nen:lesson-07:session-38:i10:p2=reply\nen:lesson-07:session-38:i10:p3=attend\nen:lesson-07:session-38:i10:p4=volunteer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i11",
-    "correctText": "She often calls.",
+    "correctText": "She usually replies to messages.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i12",
-    "correctText": "Do you have a laptop?",
+    "correctText": "He often volunteers at the library.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i13",
-    "correctText": "Where do you travel?",
+    "correctText": "She often texts her sister.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i14",
-    "correctText": "usually",
+    "correctText": "often",
     "correctResponseId": "en:lesson-07:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-38:i15",
-    "correctText": "Do you have a ticket?",
+    "correctText": "He often attends lectures.",
     "correctResponseId": "en:lesson-07:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-38:i16",
-    "correctText": "en:lesson-07:session-38:i16:p1=iron\nen:lesson-07:session-38:i16:p2=laptop\nen:lesson-07:session-38:i16:p3=travel\nen:lesson-07:session-38:i16:p4=ticket",
+    "correctText": "en:lesson-07:session-38:i16:p1=attend\nen:lesson-07:session-38:i16:p2=text\nen:lesson-07:session-38:i16:p3=volunteer\nen:lesson-07:session-38:i16:p4=library",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-38:i17",
-    "correctText": "Tom often irons.",
+    "correctText": "She usually replies in the evening.",
     "correctResponseId": null
   }
 ]

@@ -22,8 +22,10 @@ describe('Gustav French lesson runtime source gate', () => {
     expect(source).toContain("const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows");
     expect(source).toContain('const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed');
     expect(source).toContain('if (frenchLessonRemotePending)');
-    expect(source).toContain('if (frenchLessonRemoteFailed)');
-    expect(source).toContain('if (frenchLessonSourceGateBlocked)');
+    // зачем (владелец 18.10: «экранов-ошибок нигде»): оба отказа — тихий уход к урокам, без экрана ошибки.
+    expect(source).toContain('const frenchLessonSilentLeave = frenchLessonRemoteFailed || frenchLessonSourceGateBlocked;');
+    expect(source).toContain('if (frenchLessonSilentLeave) {');
+    expect(source).not.toContain('testID="lesson1-remote-failed"');
   });
 
   it('clears hydrated lesson state instead of reusing English phrase order when no rows are playable', () => {

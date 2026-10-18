@@ -92,6 +92,7 @@ import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
 import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
 import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Теории» открывал два экрана теории
+import { useSilentLeave } from '../hooks/use_silent_leave';
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Enabled by default with the same emergency build-time rollback as the shared
@@ -4073,6 +4074,16 @@ function LessonScreen() {
   const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
   const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
+  // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»; координатор 08:11): французский урок не загрузился или пакет
+  // закрыт — тихо назад к урокам вместо «Не удалось загрузить» / «Французский пакет не загружен». Повторная загрузка —
+  // при следующем открытии урока.
+  const frenchLessonSilentLeave = frenchLessonRemoteFailed || frenchLessonSourceGateBlocked;
+  useSilentLeave(
+    frenchLessonSilentLeave,
+    'lesson1',
+    `${frenchLessonRemoteFailed ? 'french_remote_failed' : 'french_pack_blocked'} lesson=${lessonId}`,
+    () => safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any),
+  );
   // зачем: тот же полноэкранный ActivityIndicator дёргал геометрию при загрузке
   // французского урока с сервера — переиспользуем один скелетон-компонент вместо
   // третьего отдельного спиннерного состояния (было 3 разных состояния подряд).
@@ -4088,79 +4099,12 @@ function LessonScreen() {
     );
   }
 
-  if (frenchLessonRemoteFailed) {
+  if (frenchLessonSilentLeave) {
+    // зачем: экраны-ошибки французского урока убраны (владелец 18.10) — уход к урокам делает useSilentLeave выше.
     return (
-      <TouchableWithoutFeedback onPress={undefined}>
-        <ScreenGradient>
-          <LessonArtBackdrop variant="practice" />
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-            <PracticeStatePanel
-              glass={glass}
-              icon="cloud-offline-outline"
-              testID="lesson1-remote-failed"
-              message={triLang(lang, {
-                ru: 'Не удалось загрузить французский урок',
-                uk: 'Не вдалося завантажити французький урок',
-                en: 'Couldn’t load the French lesson',
-                es: 'No se pudo cargar la lección de francés',
-                'pt-BR': 'Não foi possível carregar a aula de francês',
-                vi: 'Không tải được bài học tiếng Pháp',
-                id: 'Pelajaran bahasa Prancis gagal dimuat',
-                tr: 'Fransızca ders yüklenemedi',
-                pl: 'Nie udało się załadować lekcji francuskiego',
-              })}
-              action={{
-                label: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
-                icon: 'refresh',
-                onPress: () => setRemoteFrenchLessonReloadNonce((value) => value + 1),
-              }}
-            />
-          </SafeAreaView>
-        </ScreenGradient>
-      </TouchableWithoutFeedback>
-    );
-  }
-
-  if (frenchLessonSourceGateBlocked) {
-    return (
-      <TouchableWithoutFeedback onPress={undefined}>
-        <ScreenGradient>
-          <LessonArtBackdrop variant="practice" />
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-            <PracticeStatePanel
-              glass={glass}
-              icon="cloud-offline-outline"
-              testID="lesson1-french-pack-blocked"
-              title={triLang(lang, {
-                ru: 'Французский пакет не загружен',
-                uk: 'Французький пакет не завантажено',
-                en: 'French pack not loaded',
-                es: 'El paquete de francés no está cargado',
-                'pt-BR': 'O pacote de francês não foi carregado',
-                vi: 'Gói tiếng Pháp chưa được tải',
-                id: 'Paket bahasa Prancis belum dimuat',
-                tr: 'Fransızca paketi yüklenmedi',
-                pl: 'Pakiet francuski nie został załadowany',
-              })}
-              message={triLang(lang, {
-                ru: 'Сейчас недоступно. Попробуй загрузить ещё раз.',
-                uk: 'Зараз недоступно. Спробуй завантажити ще раз.',
-                en: 'Unavailable right now. Try loading again.',
-                es: 'No disponible ahora. Prueba a cargar de nuevo.',
-                'pt-BR': 'Indisponível agora. Tente carregar de novo.',
-                vi: 'Hiện không khả dụng. Hãy tải lại.',
-                id: 'Belum tersedia. Coba muat lagi.',
-                tr: 'Şu an kullanılamıyor. Yeniden yüklemeyi dene.',
-                pl: 'Teraz niedostępne. Spróbuj wczytać ponownie.',
-              })}
-              action={{
-                label: triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' }),
-                onPress: () => { markNextNavigationAsReplace(); router.replace('/lessons_list' as any); },
-              }}
-            />
-          </SafeAreaView>
-        </ScreenGradient>
-      </TouchableWithoutFeedback>
+      <ScreenGradient>
+        <LessonArtBackdrop variant="practice" />
+      </ScreenGradient>
     );
   }
 

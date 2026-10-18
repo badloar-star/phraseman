@@ -5,7 +5,7 @@ import { KIT_MOTION } from '../constants/motionHybrid';
 import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { View, Text, ScrollView, Pressable, TouchableOpacity, Share, StyleSheet, } from 'react-native';
+import { AppState, View, Text, ScrollView, Pressable, TouchableOpacity, Share, StyleSheet, } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
@@ -79,6 +79,7 @@ import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
 import BackGlyph from '../components/v2/BackGlyph';
+import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -2143,12 +2144,40 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         }, LOAD_GATE_TOTAL_MS);
         return () => clearTimeout(timer);
     }, [statsReady, statsUnavailable, statsRuntimeActive, studyTarget]);
-    const retryStatsLoad = React.useCallback(() => {
-        console.warn('[STATS-GATE] retry:tap');
-        hapticTap();
-        setStatsUnavailable(false);
-        void loadAll();
-    }, [loadAll]);
+    // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»; правило п.2): статистики нет ни в кэше, ни из сети — вместо
+    // «Сейчас недоступно / Попробовать снова» спокойное «Пока пусто · Обновим, как появится связь», а загрузка тихо
+    // повторяется: 3 попытки с паузами 2/5/10 с, затем — при возврате в приложение. Кэш при этом не трогается.
+    const statsSilentRetryRef = useRef(0);
+    useEffect(() => {
+        if (!statsUnavailable || statsReady || !statsRuntimeActive) {
+            if (statsReady) statsSilentRetryRef.current = 0;
+            return undefined;
+        }
+        const attempt = statsSilentRetryRef.current;
+        const delays = [2000, 5000, 10000];
+        let timer: ReturnType<typeof setTimeout> | null = null;
+        if (attempt < delays.length) {
+            console.warn(`[NO-ERROR-SCREEN] screen=streak_stats reason=no_snapshot shown=calm_empty retry=${attempt + 1}/${delays.length} in=${delays[attempt]}ms`); // guard-ok: тихий повтор называет причину
+            timer = setTimeout(() => {
+                statsSilentRetryRef.current = attempt + 1;
+                setStatsUnavailable(false);
+                void loadAll();
+            }, delays[attempt]);
+        }
+        else {
+            console.warn('[NO-ERROR-SCREEN] screen=streak_stats reason=no_snapshot shown=calm_empty retry=on_foreground'); // guard-ok: повторы исчерпаны, ждём возврата в приложение
+        }
+        const sub = AppState.addEventListener('change', (state) => {
+            if (state !== 'active') return;
+            statsSilentRetryRef.current = 0;
+            setStatsUnavailable(false);
+            void loadAll();
+        });
+        return () => {
+            if (timer) clearTimeout(timer);
+            sub.remove();
+        };
+    }, [loadAll, statsReady, statsRuntimeActive, statsUnavailable]);
     const randomizeLifetimeChartsForDev = React.useCallback(async () => {
         if (!ENABLE_DEV_TOOLS)
             return;
@@ -2381,15 +2410,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   график, ряд достижений), как в рабочем состоянии экрана. */}
               {/* зачем (D158, кадр 04.10): панель лежала поверх заготовки без своего фона — «Сейчас недоступно» накладывалось на мерцающие блоки. Непрозрачный фон экрана делает её чистым блоком по центру. */}
               {!statsReady && statsUnavailable ? (
-                <View testID="stats-unavailable" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 24, alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 1, backgroundColor: statsGlass.bg }}>
-                  <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
-                    {triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', es: 'No disponible ahora', en: 'Not available right now', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' })}
-                  </Text>
-                  <Pressable testID="stats-try-again" accessibilityRole="button" onPress={retryStatsLoad} style={({ pressed }) => [{ minHeight: 48, paddingHorizontal: 22, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.85 }]}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                      {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', es: 'Intentar de nuevo', en: 'Try again', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-                    </Text>
-                  </Pressable>
+                <View testID="stats-calm-empty" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 24, alignItems: 'center', justifyContent: 'center', gap: 8, zIndex: 1, backgroundColor: statsGlass.bg }}>
+                  <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>{quietEmptyTitle(lang)}</Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>{quietEmptyDetail(lang)}</Text>
                 </View>
               ) : !statsReady ? (
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 16, gap: 12 }}>

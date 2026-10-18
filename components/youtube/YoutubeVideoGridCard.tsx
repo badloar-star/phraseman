@@ -9,6 +9,7 @@ import { formatViewCount } from '../video/formatViewCount';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
+import { cleanYoutubeTitle } from '../../app/youtube_title_display';
 import { pluralWord } from '../../constants/plural';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
@@ -61,7 +62,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
     <View testID="lingman-video-card" style={styles.card}>
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel={`${watch}: ${video.title}${stateLabel ? `. ${stateLabel}` : ''}`}
+        accessibilityLabel={`${watch}: ${cleanYoutubeTitle(video.title)}${stateLabel ? `. ${stateLabel}` : ''}`}
         onPress={onWatch}
         activeOpacity={0.86}
       >
@@ -73,7 +74,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
         </View>
         {/* зачем (владелец 11.10: «названия слишком крупные — в половину меньше, компактно и красиво»): 13/17 вес 600, максимум 2 строки;
             место под две строки резервируется всегда — карточки в ряду одной высоты. Мета — 11 приглушённым акцентным тоном темы. */}
-        <Text numberOfLines={2} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.title, { color: g.text }]}>{video.title}</Text>
+        <Text numberOfLines={2} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.title, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
         {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentText }]}>{metaParts.join(' · ')}</Text> : null}
       </TouchableOpacity>
       {onToggleSave ? (

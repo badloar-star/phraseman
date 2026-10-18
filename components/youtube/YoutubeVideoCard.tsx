@@ -10,6 +10,7 @@ import { formatVideoDuration } from '../video/formatVideoDuration';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
+import { cleanYoutubeTitle } from '../../app/youtube_title_display';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
@@ -84,7 +85,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
         {!!stateLabel && <View style={[styles.state, { backgroundColor: g.selected }]}><Ionicons name={video.state === 'live' ? 'radio' : 'time-outline'} size={13} color={g.text} /><Text style={[styles.stateText, { color: g.text }]}>{stateLabel}</Text></View>}
         <View style={styles.titleRow}>
           <View style={styles.titleCopy}>
-            <Text numberOfLines={compactLayout ? 2 : undefined} style={[styles.title, compactLayout && styles.titleCompact, { color: g.text }]}>{video.title}</Text>
+            <Text numberOfLines={compactLayout ? 2 : undefined} style={[styles.title, compactLayout && styles.titleCompact, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
             {metaParts.length > 0 && <Text style={[styles.meta, compactLayout && styles.metaCompact, { color: compactLayout ? g.accentText : g.secondary }]}>{metaParts.join(' · ')}</Text>}
           </View>
           {onToggleSave ? (
@@ -114,7 +115,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
     <TouchableOpacity
       testID="lingman-video-card"
       accessibilityRole="button"
-      accessibilityLabel={`${watch}: ${video.title}${stateLabel ? `. ${stateLabel}` : ''}`}
+      accessibilityLabel={`${watch}: ${cleanYoutubeTitle(video.title)}${stateLabel ? `. ${stateLabel}` : ''}`}
       onPress={onWatch}
       activeOpacity={0.86}
       /* зачем не функция: TouchableOpacity не передаёт `pressed` — ветка

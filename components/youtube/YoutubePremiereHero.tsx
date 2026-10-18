@@ -18,6 +18,7 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
+import { cleanYoutubeTitle, premiereCountdownText } from '../../app/youtube_title_display';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
@@ -72,10 +73,6 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
     remind: triLang(lang, { ru: 'Напомнить', uk: 'Нагадати', en: 'Remind me', es: 'Avísame', 'pt-BR': 'Lembrar-me', vi: 'Nhắc tôi', id: 'Ingatkan saya', tr: 'Hatırlat', pl: 'Przypomnij' }),
     checking: triLang(lang, { ru: 'Проверяем начало…', uk: 'Перевіряємо початок…', en: 'Checking the start…', es: 'Comprobando el inicio…', 'pt-BR': 'Verificando o início…', vi: 'Đang kiểm tra…', id: 'Memeriksa waktu mulai…', tr: 'Başlangıç kontrol ediliyor…', pl: 'Sprawdzamy start…' }),
     reminded: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
-    days: triLang(lang, { ru: 'д', uk: 'д', en: 'd', es: 'd', 'pt-BR': 'd', vi: 'ng', id: 'h', tr: 'g', pl: 'd' }),
-    hours: triLang(lang, { ru: 'ч', uk: 'г', en: 'h', es: 'h', 'pt-BR': 'h', vi: 'g', id: 'j', tr: 'sa', pl: 'g' }),
-    minutes: triLang(lang, { ru: 'мин', uk: 'хв', en: 'min', es: 'min', 'pt-BR': 'min', vi: 'ph', id: 'm', tr: 'dk', pl: 'min' }),
-    seconds: triLang(lang, { ru: 'сек', uk: 'с', en: 's', es: 's', 'pt-BR': 's', vi: 'gi', id: 'd', tr: 'sn', pl: 's' }),
   }), [lang]);
 
   useEffect(() => {
@@ -119,7 +116,8 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
   if (!live && video.state !== 'upcoming') return null;
   const isCountdown = presentation.kind === 'countdown';
   const countdown = isCountdown
-    ? `${presentation.days}${copy.days}  ${presentation.hours}${copy.hours}  ${presentation.minutes}${copy.minutes}${presentation.seconds == null ? '' : `  ${presentation.seconds}${copy.seconds}`}`
+    // зачем (координатор 18.10): было «0д  7ч  52мин» (читалось «Од») — теперь «Через 7 ч 52 мин», ноль дней не печатаем
+    ? premiereCountdownText(lang, presentation.days, presentation.hours, presentation.minutes, presentation.seconds)
     : copy.checking;
   const countdownAccessibilityLabel = live ? copy.liveNow : `${copy.upcoming}. ${countdown}`;
   const content = (
@@ -140,7 +138,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
       <TouchableOpacity
         testID="youtube-premiere-thumbnail"
         accessibilityRole="button"
-        accessibilityLabel={live ? copy.join : video.title}
+        accessibilityLabel={live ? copy.join : cleanYoutubeTitle(video.title)}
         onPress={onWatch}
         activeOpacity={0.86}
         style={styles.thumbnail}
@@ -155,7 +153,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         <VideoPlayBadge />
       </TouchableOpacity>
       <View testID="youtube-premiere-details" style={styles.details}>
-        <Text style={[styles.title, { color: g.text }]}>{video.title}</Text>
+        <Text style={[styles.title, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
         {!live && isCountdown && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={[styles.countdown, { color: g.secondary }]}>{countdown}</Text>}
         {live ? (
           <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.cta, boxShadow: actionBoxShadow(g) }]}>

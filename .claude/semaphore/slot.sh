@@ -29,6 +29,10 @@ ME="${PM_SESSION_ID:-${CLAUDE_SESSION_ID:-${CLAUDE_CODE_SESSION_ID:-ppid-$PPID}}
 ME="$(printf %s "$ME" | tr -c "A-Za-z0-9_-" "_")"
 
 now(){ date +%s; }
+# зачем (Ревизор 3.86): "now > born" сначала обрезает файл, ~47 мс он пуст — чужой reap читал пустой born и снимал живой слот.
+# Пишем во временный файл и переименовываем: читатель видит либо старое, либо новое значение, но не пустоту.
+# Код 1 — каталога уже нет (слот сняли), вызывающий понимает, что слот потерян.
+stamp(){ local f="$1" t="$1.tmp.${BASHPID:-$$}"; now 2>/dev/null > "$t" && mv -f "$t" "$f" 2>/dev/null || { rm -f "$t" 2>/dev/null; return 1; }; }
 # зачем (координатор 18.10 01:52): Моменты получили «GO слот 2/1», пока слот держала репетиция Ядра — причину не видно.
 # Сначала журнал: кто взял/отдал/у кого сняли по TTL и сколько слотов было — потом правка по факту.
 EVLOG="$DIR/slot_events.log"
@@ -60,7 +64,7 @@ try_acquire(){
   reap >/dev/null
   # Уже держим слот? Не берём второй, но продлеваем TTL.
   if [ -d "$DIR/slot.$ME.d" ]; then
-    now > "$DIR/slot.$ME.d/born"
+    stamp "$DIR/slot.$ME.d/born"
     echo "GO (слот уже был у этой сессии)"; return 0
   fi
   if [ "$(held)" -ge "$SLOTS" ]; then return 1; fi
@@ -72,7 +76,7 @@ try_acquire(){
       rm -rf "$DIR/slot.$ME.d"
       return 1
     fi
-    if ! now > "$DIR/slot.$ME.d/born" 2>/dev/null; then
+    if ! stamp "$DIR/slot.$ME.d/born"; then
       # зачем: слот сняли между mkdir и записью — не печатаем ложный GO, ждём дальше
       ev "lost_race slot removed before born write"
       return 1
@@ -111,7 +115,7 @@ acquire(){
 
 renew(){
   if [ -d "$DIR/slot.$ME.d" ]; then
-    now > "$DIR/slot.$ME.d/born"
+    stamp "$DIR/slot.$ME.d/born"
     echo "OK  слот продлён · ещё ${TTL} с"
     return 0
   fi
@@ -168,14 +172,14 @@ run(){
     fi
     sleep 3
   done
-  now > "$run_lock/born"
+  stamp "$run_lock/born"
   local out; out="$(acquire "$wopt" "${why:-работа}")" || { rm -rf "$run_lock"; echo "$out"; echo "run: слот не получен — команда НЕ запущена"; return 1; }
   echo "$out"
   local had_slot=0
   # слот был у сессии до run — после команды его не отдаём (его держит вызвавший)
   case "$out" in "GO (слот уже был"*) had_slot=1 ;; esac
   # продление в фоне: слот живёт ровно пока жива команда
-  ( while sleep "$RENEW_EVERY"; do now > "$DIR/slot.$ME.d/born" 2>/dev/null || exit 0; now > "$run_lock/born" 2>/dev/null; done ) &
+  ( while sleep "$RENEW_EVERY"; do stamp "$DIR/slot.$ME.d/born" || exit 0; stamp "$run_lock/born"; done ) &
   local renewer=$!
   "$@"
   local rc=$?

@@ -1008,3 +1008,19 @@ Pixel_8 (эмулятор), dev-бандл (HEAD ≥ 9c431eea6, usePerfR1Probe �
 2. **adc27e26e + 43fba2781 (Моменты, длинные языки, шрифт 1,3, m08):** font_scale 1,3; языки pt-BR, vi, id, tr, pl; тост рубежа и m08 (`dev_state?...&moments=v3&m08hold=3&shortLesson=10&next=/lesson1?id=1%26from=lesson_menu`); число не отрывается от слова.
 3. **f990ec9bd / cb80e2d57 (монеты Пика):** пройти 2–3 ступени Шпиля, дождаться отправки очереди; баланс Главной растёт; журнал `[MOMENT-REWARD] spire:flush merged=true`.
 Перед всем: холодный старт, ждать 30 с «тишины» в журнале (после старта возможны ANR — на 06:40–06:48 приложение дважды зависало, «Close app», перезапуск).
+
+## 18.10 08:10 — сценарии «нет объекта / нет сети» по описи полноэкранных ошибок (СВЕРКА)
+Опись: docs/work/tasks/fullscreen-error-states-2026-10-18.md. Ожидание после коммита каждой сессии: кэш, пустое состояние или тихий уход назад — НЕ экран ошибки. Снимаю по хешу, на HEAD с холодным стартом, 1,0 (+1,3 для диалогов/карточек).
+| группа | сценарий (dev_state / ссылка) | что должно быть |
+|---|---|---|
+| Диалоги | next=/dialogue_v2_briefing?scenarioId=zzz_bad ; next=/dialogue_v2_session?scenarioId=zzz_bad ; закрытый рангом диалог | тихий уход в хаб Диалогов (и «паузa»/«закрыт рангом» тоже) |
+| Карточки: сохранённые | cards=empty&fail=saved_load&next=/flashcards_collection?cat=saved | кэш/пустое, не «Сейчас недоступно» |
+| Карточки: набор не открылся | cards=demo&fail=pack_open (если есть) / несуществующий packId в /pack_opening | пустое/назад, не «Набор не найден» |
+| Карточки: тренировка | /flashcards_training_setup без сети; /flashcards_blitz_session quota=fail | кэш/назад |
+| Мои наборы | cards=empty&fail=my_packs_load | пусто, не «Сейчас недоступно» |
+| Видео | /lingman_videos без каталога (fail=video_list) ; пустой плейлист | кэш/пусто |
+| Пик | язык не ru/uk; конфиг не читается | скрыт/кэш |
+| Уроки | /learning-v2/session/zzz ; /level_exam без личности ; /diagnostic_test с questionsUnavailable ; /mistake_detail?id=zzz | назад/пусто |
+| Серия | /streak_stats без данных | кэш/пусто |
+| Друзья | friends без сети при пустом списке | пусто с кэшем |
+Состояние сети: через dev-флаги fail=…, без svc wifi/data (нужно ваше слово). Каждый кадр + журнал, README в evidence/modals_1018/<группа>_noerror/.

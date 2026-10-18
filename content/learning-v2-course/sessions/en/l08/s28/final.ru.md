@@ -1,133 +1,150 @@
-# Английский · Урок 8 · Занятие 28 — Сложи полотенце
+# Английский · Урок 8 · Занятие 28 — Сгибы и края
 
-**Ситуация.** Вы собираете сумку, подсказываете поворот в переулок и просите подержать пакет.
+**Ситуация.** Отогнуть манжету перед покраской, сложить открытку по сгибу и проверить подгибку платья.
 
 **Что вы освоите:** закрепить короткие указания со словом fold
-**Новые слова:** fold
+**Новые слова:** cuff, crease, hem, pleat
+**Возвращается:** fold — уже введено в уроке 6.
 
 ---
 
 ## Интро 1
 
-### Полотенце в сумку
+### Манжета перед покраской
 
-Друг пытается убрать расправленное полотенце в небольшую сумку. `Fold` — «сложить», например полотенце или лист бумаги. `Fold it` — «Сложи его». Здесь `it` — полотенце. Начните сразу с `Fold`, без `to`. Полотенце уже собралось занять всю сумку — придётся немного уменьшить его планы.
+Друг собирается красить небольшую полку, но край рукава мешает. Cuff — «манжета», часть рукава у запястья. `Fold the cuff` — «Отогни манжету». Fold уже знакомо: сложить или согнуть материал. Здесь вы просите отогнуть манжету, чтобы она не касалась краски.
 
-**Скажите другу сложить полотенце.**
+**Скажите другу отогнуть манжету.**
 
-- ✅ **Fold it.**
-- ❌ To fold it. — *Для указания начните с `Fold`, без `to`.*
-- ❌ Folds it. — *Здесь нужно `Fold`, без `s`.*
+- ✅ **Fold the cuff.**
+- ❌ Folds the cuff. — *Для указания нужно Fold, без s.*
+- ❌ To fold the cuff. — *Начните с Fold, без to.*
 
 ---
 
 ## Интро 2
 
-### Переулок слева
+### Открытка с готовым сгибом
 
-Вы идёте с другом по знакомой улице. Нужный переулок находится слева. `Turn left` — «Поверни налево». Начните с `Turn`, затем направление `left`.
+Вы делаете открытку. На заготовке уже есть линия сгиба, и другу нужно сложить бумагу точно по ней. Crease — «сгиб, линия сгиба». `Fold along the crease` — «Сложи по линии сгиба». Along здесь указывает направление по готовой линии.
 
-**Подскажите другу «Поверни налево».**
+**Скажите другу сложить бумагу по линии сгиба.**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для указания нужно `Turn`, без `s`.*
-- ❌ To turn left. — *Начните с `Turn`, без `to`.*
+- ✅ **Fold along the crease.**
+- ❌ Folds along the crease. — *Для указания нужно Fold, без s.*
+- ❌ To fold along the crease. — *Начните с Fold, без to.*
 
 ---
 
 ## Интро 3
 
-### Освободить руки
+### Длина платья после подшивки
 
-Вы держите пакет и хотите застегнуть куртку. Друг рядом. Покажите ему пакет: `Can you hold this?` — «Можешь это подержать?» Для этой просьбы начните с `Can you`, затем `hold this`.
+Подруга подшила платье и примеряет его. Вы просите посмотреть, ровный ли нижний край. Hem — «подгибка», край ткани, подвёрнутый и закреплённый швом. `Check the hem` — «Проверь подгибку». Речь о нижнем крае платья, а не о складках на ткани.
 
-**Попросите друга подержать пакет.**
+**Скажите подруге проверить подгибку.**
 
-- ✅ **Can you hold this?**
-- ❌ Can you holds this? — *После `can` нужно `hold`, без `s`.*
-- ❌ Can you to hold this? — *После `can` нужно `hold`, без `to`.*
+- ✅ **Check the hem.**
+- ❌ Checks the hem. — *Для указания нужно Check, без s.*
+- ❌ To check the hem. — *Начните с Check, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дайте указание «Сложи его»**
+**1 · Карточка слова — cuff**
+<!-- interaction_id: en:lesson-08:session-28:word:cuff; family: word_card -->
+> **cuff** — манжета. Fold the cuff. — «Отогни манжету». Часть рукава у запястья; fold здесь — отогнуть или сложить ткань.
+
+**2 · Дайте указание «Отогни манжету»**
 <!-- interaction_id: en:lesson-08:session-28:i01; family: phrase_builder -->
-Плитки: `it` `Fold` → **Fold it.**
+Плитки: `cuff` `the` `Fold` → **Fold the cuff.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-28:i02; family: listen_choose -->
 🔊 *fold* → **fold** · hold · stretch
 - hold — *В записи первое слово — `fold`, а в этом варианте — `hold`.*
 - stretch — *В записи первое слово — `fold`, а в этом варианте — `stretch`.*
 
-**3 · Дайте короткое указание сложить полотенце**
+**4 · Выберите форму для указания сложить полотенце**
 <!-- interaction_id: en:lesson-08:session-28:i03; family: context_gap_grammar -->
 ___ it. → **Fold** · Folds · To fold
-- Folds — *Для указания нужно `Fold`, без `s`.*
-- To fold — *Начните с `Fold`, без `to`.*
+- Folds — *Для указания нужно Fold, без s.*
+- To fold — *Начните с Fold, без to.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-28:i04; family: speed_match -->
-fold — сложить · alley — переулок · eat — есть · stretch — делать растяжку
+cuff — манжета · fold — сложить · shirt — рубашка · towel — полотенце
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-28:i05; family: listen_build_dictation -->
 🔊 *Fold it.* Плитки: `it` `Fold` → **Fold it.**
 
-**6 · Дайте короткое указание «Открой окно»**
+**7 · Карточка слова — crease**
+<!-- interaction_id: en:lesson-08:session-28:word:crease; family: word_card -->
+> **crease** — линия сгиба. Fold along the crease. — «Сложи по линии сгиба». Линия, оставшаяся на согнутой бумаге; along the crease — по этой линии.
+
+**8 · Дайте указание «Сложи по линии сгиба»**
 <!-- interaction_id: en:lesson-08:session-28:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `crease` `the` `along` `Fold` → **Fold along the crease.**
 
-**7 · На прогулке подскажите другу «Поверни налево»**
+**9 · Карточка слова — hem**
+<!-- interaction_id: en:lesson-08:session-28:word:hem; family: word_card -->
+> **hem** — подгибка края ткани. Check the hem. — «Проверь подгибку». Подвёрнутый и подшитый край платья или другой одежды.
+
+**10 · Подруга примеряет подшитое платье. Скажите «Проверь подгибку»**
 <!-- interaction_id: en:lesson-08:session-28:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Check the hem.**
 
-**8 · Дайте короткое указание открыть окно**
+**11 · Выберите форму для указания проверить подгибку**
 <!-- interaction_id: en:lesson-08:session-28:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для указания нужно `Open`, без `s`.*
-- To open — *Начните с `Open`, без `to`.*
+___ the hem. → **Check** · Checks · To check
+- Checks — *Для указания нужно Check, без s.*
+- To check — *Начните с Check, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-28:i09; family: listen_choose -->
 🔊 *Fold it.* → **Fold it.** · Fold this. · Fold that.
 - Fold this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Fold that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-28:i10; family: speed_match -->
-hold — держать · fold — сложить · alley — переулок · eat — есть
+cuff — манжета · crease — линия сгиба · hem — подгибка края ткани · fold — сложить
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-28:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Fold along the crease.* Плитки: `crease` `the` `along` `Fold` → **Fold along the crease.**
 
-**12 · Попросите «Можешь это подержать?»**
+**15 · Карточка слова — pleat**
+<!-- interaction_id: en:lesson-08:session-28:word:pleat; family: word_card -->
+> **pleat** — заложенная складка ткани. Hold the pleat. — «Подержи складку». Аккуратная складка, специально сделанная на одежде, например на юбке.
+
+**16 · Вы закрепляете складку юбки булавкой. Скажите помощнику «Подержи складку»**
 <!-- interaction_id: en:lesson-08:session-28:i12; family: phrase_builder -->
-Плитки: `this` `hold` `you` `Can` → **Can you hold this?**
+Плитки: `pleat` `the` `Hold` → **Hold the pleat.**
 
-**13 · Друг спрашивает о ваших тренировках. Используйте stretch: «Я часто делаю растяжку»**
+**17 · Помощник держит складку. Скажите «Я могу проверить подгибку»**
 <!-- interaction_id: en:lesson-08:session-28:i13; family: scripted_repeat_compare -->
-🎙 **I often stretch.**
+🎙 **I can check the hem.**
 
-**14 · Дайте указание повернуть налево**
+**18 · Выберите форму для указания подержать складку юбки**
 <!-- interaction_id: en:lesson-08:session-28:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для указания нужно `Turn`, без `s`.*
-- To turn — *Начните с `Turn`, без `to`.*
+___ the pleat. → **Hold** · Holds · To hold
+- Holds — *Для указания нужно Hold, без s.*
+- To hold — *Начните с Hold, без to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-28:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *В записи последнее слово — `window`, а в этом варианте — `door`.*
-- Open the box. — *В записи последнее слово — `window`, а в этом варианте — `box`.*
+🔊 *Check the hem.* → **Check the hem.** · Check the cuff. · Check the pleat.
+- Check the cuff. — *В записи hem — «подгибка», а не cuff — «манжета».*
+- Check the pleat. — *В записи hem, а не pleat — «складка ткани».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-28:i16; family: speed_match -->
-fold — сложить · stretch — делать растяжку · hold — держать · alley — переулок
+cuff — манжета · crease — линия сгиба · hem — подгибка края ткани · pleat — заложенная складка ткани
 
-**17 · Друг убирает чистый шарф в ящик. Дайте короткое указание «Сложи его»**
+**21 · Друг убирает чистый шарф в ящик. Дайте короткое указание «Сложи его»**
 <!-- interaction_id: en:lesson-08:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Fold it.**
 

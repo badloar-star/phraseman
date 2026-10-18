@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-28:intro1:r2": {
-          "ru": "Для указания начните с `Fold`, без `to`.",
-          "uk": "Для вказівки почніть із `Fold`, без `to`."
+          "ru": "Для указания нужно Fold, без s.",
+          "uk": "Для вказівки потрібне Fold, без s."
         },
         "en:lesson-08:session-28:intro1:r3": {
-          "ru": "Здесь нужно `Fold`, без `s`.",
-          "uk": "Тут потрібне `Fold`, без `s`."
+          "ru": "Начните с Fold, без to.",
+          "uk": "Почніть із Fold, без to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-28:intro2:r2": {
-          "ru": "Для указания нужно `Turn`, без `s`.",
-          "uk": "Для вказівки потрібне `Turn`, без `s`."
+          "ru": "Для указания нужно Fold, без s.",
+          "uk": "Для вказівки потрібне Fold, без s."
         },
         "en:lesson-08:session-28:intro2:r3": {
-          "ru": "Начните с `Turn`, без `to`.",
-          "uk": "Почніть із `Turn`, без `to`."
+          "ru": "Начните с Fold, без to.",
+          "uk": "Почніть із Fold, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-28:intro3:r2": {
-          "ru": "После `can` нужно `hold`, без `s`.",
-          "uk": "Після `can` потрібне `hold`, без `s`."
+          "ru": "Для указания нужно Check, без s.",
+          "uk": "Для вказівки потрібне Check, без s."
         },
         "en:lesson-08:session-28:intro3:r3": {
-          "ru": "После `can` нужно `hold`, без `to`.",
-          "uk": "Після `can` потрібне `hold`, без `to`."
+          "ru": "Начните с Check, без to.",
+          "uk": "Почніть із Check, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "79c06eab37983bb24c36330e15d951e66c69fe08777dc1fc2607a21bfac8421c"
+  "auxiliaryFingerprint": "f10200c2423d8a9bed93124144efc50fc2395b7e98a1fa60948cf57221e03ed8"
 }

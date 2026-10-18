@@ -688,7 +688,9 @@ const ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS = 1_500;
 // ошибку. Передача ждёт замок и тишину до 8 с: на экране «Входим…», ничего ещё не тронуто.
 const PROVIDER_HANDOFF_LOCK_WAIT_MS = 8_000;
 /** Повторная проверка затишья уже ПОД замком (основное ожидание — до замка, см. pre_quiesce). */
-const PROVIDER_HANDOFF_LOCKED_RECHECK_MS = 3_000;
+// зачем (Сверка d128e414a, №3→№2: 3 с ожидания → отказ входа): кто ждёт наш замок, под ним не закончит никогда, поэтому
+// долгий срок здесь — чистая потеря; короткий ловит только работу, которой замок не нужен.
+const PROVIDER_HANDOFF_LOCKED_RECHECK_MS = 800;
 
 /**
  * Best-effort долив аварийной копии «Сменить аккаунт» после restoreFromCloud.
@@ -3094,8 +3096,12 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             quiesceCloudSyncForAccountTransition(PROVIDER_HANDOFF_LOCKED_RECHECK_MS),
           ]);
           if (!restoreIdle || !cloudIdle) {
-            console.warn(`[AUTH-HANDOFF] quiesce_failed restoreIdle=${restoreIdle} cloudIdle=${cloudIdle} limitMs=${PROVIDER_HANDOFF_LOCKED_RECHECK_MS} preRestoreIdle=${preRestoreIdle} preCloudIdle=${preCloudIdle}`); // guard-ok: ранний отказ пишет причину
-            throw new Error('provider_handoff_quiesce_failed');
+            // зачем (координатор 18.10, Сверка d128e414a: «quiesce не валит вход»): журнал показал взаимное ожидание —
+            // восстановление нового гостя стояло в очереди за НАШИМ замком (wait_exceeded 3,9/3,3 с ровно в момент отказа).
+            // Продолжать безопасно: писатели под замком перепроверяют поколение (withLocalAccountLock), а фаза уже
+            // transitioning — поздняя запись гостя падает *_generation_stale и в B не попадает. Чистота гостя перепроверяется
+            // ниже; «не чист» → шторка правила 2, как раньше.
+            console.warn(`[AUTH-HANDOFF] quiesce_timeout continue restoreIdle=${restoreIdle} cloudIdle=${cloudIdle} limitMs=${PROVIDER_HANDOFF_LOCKED_RECHECK_MS} preRestoreIdle=${preRestoreIdle} preCloudIdle=${preCloudIdle} reason=writers_fenced_by_generation`); // guard-ok: ветка и значения
           }
           // зачем (ревью Opus 15.10, R15): первая проверка чистоты шла ДО замка и тишины синхронизации — запись в этом окне
           // (начисление, урок) стёрлась бы без копии. Раньше ответ почти всегда был «не чист»; теперь свежий гость «чист»,

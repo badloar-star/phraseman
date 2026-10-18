@@ -27,9 +27,10 @@ describe('account details linked identity action', () => {
 
   // зачем (правила владельца 3–4, координатор 18.10): строка «Выйти и войти под другим аккаунтом» ведёт СРАЗУ к выбору Google/Apple.
   // Прямой маршрут спрятан за переключателем, пока auth_provider не умеет входить из A в B без отказа account_switch_required — иначе человек получил бы отказ.
-  it('routes the logout row straight to the sign-in sheet behind the direct-switch flag (off by default)', () => {
+  // зачем (Авторизация 18.10): auth_provider входит из A в B сам (правило 3) — переключатель включён.
+  it('routes the logout row straight to the sign-in sheet behind the direct-switch flag (on since rule 3)', () => {
     const flagSource = fs.readFileSync(path.join(process.cwd(), 'app', 'account_direct_switch.ts'), 'utf8');
-    expect(flagSource).toMatch(/export const ACCOUNT_DIRECT_SWITCH_ENABLED = false;/);
+    expect(flagSource).toMatch(/export const ACCOUNT_DIRECT_SWITCH_ENABLED = true;/);
     expect(source).toContain("import { ACCOUNT_DIRECT_SWITCH_ENABLED } from './account_direct_switch';");
     // оба маршрута на месте и пишут журнал [ACC-SWITCH]
     expect(source).toContain('if (ACCOUNT_DIRECT_SWITCH_ENABLED) {');

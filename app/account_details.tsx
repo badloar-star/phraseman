@@ -51,6 +51,7 @@ import {
   getLinkedAuthInfo,
   peekAccountCreatedAtMs,
   peekLinkedAuthFromCurrentUser,
+  subscribeFirebaseAuthUid,
   type LinkedAuth,
 } from './auth_provider';
 import { useAppSnapshotSelector } from './app_snapshot_store';
@@ -168,7 +169,27 @@ export default function AccountDetailsScreen() {
   useEffect(() => {
     void refreshLinkedAuth();
     const sub = DeviceEventEmitter.addListener('auth_provider_linked', () => { void refreshLinkedAuth(); });
-    return () => sub.remove();
+    // зачем (Сверка d128e414a, полусостояние): смена A→B сорвалась, человек уже гость, а экран держал почту и «Google» №3 —
+    // привязка обновлялась только по auth_provider_linked. Сменился пользователь Firebase → сразу peek (без сети), затем уточнение.
+    let lastAuthUid: string | null | undefined;
+    const unsubscribeAuth = subscribeFirebaseAuthUid((authUid) => {
+      if (lastAuthUid === undefined || authUid === lastAuthUid) {
+        lastAuthUid = authUid;
+        return;
+      }
+      lastAuthUid = authUid;
+      const peeked = peekLinkedAuthFromCurrentUser();
+      console.log(`[ACC-AUTH-VIEW] auth_changed signedIn=${authUid ? 'yes' : 'no'} provider=${peeked?.provider ?? 'none'}`); // guard-ok: без почты и uid
+      if (!!linkedAuthRef.current !== !!peeked) animateNextLayoutTransition();
+      linkedAuthRef.current = peeked;
+      setLinkedAuth(peeked);
+      setMemberSinceMs(peekAccountCreatedAtMs());
+      void refreshLinkedAuth();
+    });
+    return () => {
+      sub.remove();
+      unsubscribeAuth();
+    };
   }, [refreshLinkedAuth]);
 
   // ── Локальные UI-состояния ─────────────────────────────────────────────────

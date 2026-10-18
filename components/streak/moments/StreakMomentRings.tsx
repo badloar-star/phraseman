@@ -5,12 +5,13 @@
 // зачем (координатор 14.10: «у каждого рубежа своя сцена, не перекраска»): 12 дуг на год (внешнее кольцо — первый год), каждая зажигается 260 мс со своей задержкой;
 // кольцо 500 заполняется до половины за 1,6 с; календарь — 35 клеток, 30 горят, появляются по 26 мс. Всё на UI-треде (animatedProps/entering); reduceMotion — сразу в конечном виде.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, ZoomIn, useAnimatedProps, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useStreakColors } from './use_streak_colors';
+import { STREAK_PROBE, traceCalendarPaint, type CalendarPaintRefs } from './streak_calendar_probe';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -90,16 +91,38 @@ export const HalfRing = memo(function HalfRing({ size, run, children }: HalfRing
 });
 
 /** Календарь месяца: 35 клеток, горят первые `lit`; клетки появляются по 26 мс. */
-export const MonthCalendar = memo(function MonthCalendar({ lit = 30 }: Readonly<{ lit?: number }>) {
+const CAL_CELLS = 35;
+const CELL_DELAY_MS = 26;
+const CELL_DUR_MS = 300;
+
+/** probeRefs — только отладка (STREAK_PROBE): столбец текста и родитель для [STREAK-MILESTONE] calendar:paint. */
+export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }: Readonly<{ lit?: number; probeRefs?: () => Pick<CalendarPaintRefs, 'column' | 'parent'> }>) {
   const p = useSpirePalette();
   const colors = useStreakColors();
   const reduceMotion = useReducedMotion();
+  // зачем (Сверка d30c: смонтирован, но не нарисован) — пробы клеток живут только в отладке; в сторе ни onLayout на клетках, ни таймеров
+  const probe = STREAK_PROBE && !!probeRefs;
+  const rootRef = useRef<View>(null);
+  const firstRef = useRef<View>(null);
+  const thirtiethRef = useRef<View>(null);
+  const laidOutRef = useRef(0);
+  const tracedRef = useRef(false);
+  const onCellLayout = () => {
+    laidOutRef.current += 1;
+    if (tracedRef.current || laidOutRef.current < CAL_CELLS || !probeRefs) return;
+    tracedRef.current = true;
+    traceCalendarPaint(() => ({ root: rootRef.current, first: firstRef.current, thirtieth: thirtiethRef.current, ...probeRefs() }), {
+      laidOut: () => laidOutRef.current, total: CAL_CELLS, lit, cellOn: colors.accentGraphic, cellOff: p.control, reduceMotion, cellDelayMs: CELL_DELAY_MS, cellDurMs: CELL_DUR_MS,
+    });
+  };
   return (
-    <View accessible={false} style={s.cal}>
-      {Array.from({ length: 35 }, (_, i) => (
+    <View ref={rootRef} accessible={false} style={s.cal}>
+      {Array.from({ length: CAL_CELLS }, (_, i) => (
         <Animated.View
           key={i} // guard-ok: 35 одинаковых клеток фиксированного календаря, порядок не меняется
-          entering={reduceMotion ? undefined : ZoomIn.delay(i * 26).duration(300)}
+          ref={i === 0 ? firstRef : i === 29 ? thirtiethRef : undefined}
+          entering={reduceMotion ? undefined : ZoomIn.delay(i * CELL_DELAY_MS).duration(CELL_DUR_MS)}
+          onLayout={probe ? onCellLayout : undefined}
           style={[s.cell, { backgroundColor: i < lit ? colors.accentGraphic : p.control }]}
         />
       ))}

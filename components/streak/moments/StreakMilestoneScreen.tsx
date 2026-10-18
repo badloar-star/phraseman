@@ -24,6 +24,7 @@ import { MomentFullScreen } from '../../spire/moments/moments_layout';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import StreakConfetti from './StreakConfetti';
 import StreakMomentFlame from './StreakMomentFlame';
+import { STREAK_PROBE, STREAK_PROBE_DELAYS_MS } from './streak_calendar_probe';
 import { STREAK_FLAME_FULL_DAYS } from '../StreakFlameFill';
 
 // зачем (Сверка моментов v3 15.10, эталон engagement-moments-v3-all m19): на окне рубежа огонь залит целиком — стадию несут цвет и число.
@@ -79,6 +80,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   // зачем (Сверка d30b fd2e677da: календарь смонтирован 347×235, но на кадре t14 его нет) — сперва логи [STREAK-MILESTONE] calendar:visual:
   // где календарь на экране (measureInWindow) против высоты окна и прокрутки, в момент раскладки и через 0,5/1/2 с; такты; цвета клеток.
   const calendarRef = useRef<View>(null);
+  const columnRef = useRef<View>(null);
   const scrollYRef = useRef(0);
   const visualTracedRef = useRef(false);
   const doneRef = useRef(done);
@@ -88,7 +90,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     if (visualTracedRef.current && trigger === 'layout') return;
     if (trigger === 'layout') {
       visualTracedRef.current = true;
-      [500, 1000, 2000].forEach((ms) => setTimeout(() => traceCalendarVisual(`+${ms}ms`), ms));
+      // зачем (Ревизор 3.34): повторные замеры — довесок пробы, в сторовую сборку не уезжают
+      if (STREAK_PROBE) STREAK_PROBE_DELAYS_MS.forEach((ms) => setTimeout(() => traceCalendarVisual(`+${ms}ms`), ms));
     }
     calendarRef.current?.measureInWindow((x, y, w, h) => {
       console.log(`[STREAK-MILESTONE] calendar:visual ${JSON.stringify({
@@ -183,7 +186,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
           <View style={s.coinBeside}><MomentCoin rank={coinRank} size={60} mood={morphed ? 'cheer' : 'idle'} shadow={false} emote={morphed ? 'star' : null} emoteKey={morphKey} emoteCount={3} /></View>
         </View>
         {has('text') ? (
-          <Beat i={0}><View style={s.col}>
+          <Beat i={0}><View ref={columnRef} style={s.col}>
             {T(overline, 'ov')}{T(title, 'xl')}{T(sub, 'p')}
             {milestone === 7 && ach ? (
               <View style={s.achRow}>
@@ -201,7 +204,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
                   const { width, height } = e.nativeEvent.layout;
                   console.log(`[STREAK-MILESTONE] calendar:layout ${JSON.stringify({ milestone, w: Math.round(width), h: Math.round(height), zero: Math.round(width) === 0 || Math.round(height) === 0 })}`); // guard-ok: строка на раскладку календаря
                 }}
-              ><MonthCalendar lit={30} /></View>
+              ><MonthCalendar lit={30} probeRefs={() => ({ column: columnRef.current, parent: calendarRef.current })} /></View>
             ) : null}
           </View></Beat>
         ) : null}
@@ -283,8 +286,9 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
           showsVerticalScrollIndicator={false}
           bounces={false}
           onLayout={(e) => { viewportHRef.current = Math.round(e.nativeEvent.layout.height); }}
-          onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}
-          scrollEventThrottle={64}
+          // зачем (Ревизор 3.34): JS-обработчик прокрутки нужен только пробе calendar:visual — в сторе его нет
+          onScroll={STREAK_PROBE ? (e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; } : undefined}
+          scrollEventThrottle={STREAK_PROBE ? 64 : undefined}
           onContentSizeChange={(_w, h) => {
             // зачем (Сверка r8, d30 «огонь у верхнего края»): содержимое выше окна прокрутки → сцена прижата к верху; строка на каждую смену высоты
             const line = `${kind}:${Math.round(h)}/${viewportHRef.current}:${[...done].join(',')}`;

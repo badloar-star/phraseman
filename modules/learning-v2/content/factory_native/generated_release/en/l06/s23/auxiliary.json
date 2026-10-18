@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-23:intro1:r2": {
-          "ru": "После `I` — `teach`, без окончания.",
-          "uk": "Після `I` — `teach`, без закінчення."
+          "ru": "После she нужно teaches, с es.",
+          "uk": "Після she потрібно teaches, з es."
         },
         "en:lesson-06:session-23:intro1:r3": {
-          "ru": "Говорим `I teach`, без `am`.",
-          "uk": "Кажемо `I teach`, без `am`."
+          "ru": "После ch нужно es: teaches.",
+          "uk": "Після ch потрібно es: teaches."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-23:intro2:r2": {
-          "ru": "После `she` нужно `teaches`.",
-          "uk": "Після `she` потрібно `teaches`."
+          "ru": "После she нужно catches, с es.",
+          "uk": "Після she потрібно catches, з es."
         },
         "en:lesson-06:session-23:intro2:r3": {
-          "ru": "Говорим `She teaches`, без `is`.",
-          "uk": "Кажемо `She teaches`, без `is`."
+          "ru": "После ch нужно es: catches.",
+          "uk": "Після ch потрібно es: catches."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-23:intro3:r2": {
-          "ru": "Один билет: `is`.",
-          "uk": "Один квиток: `is`."
+          "ru": "Без is предложение не получается: нужно exam is.",
+          "uk": "Без is речення не виходить: потрібно exam is."
         },
         "en:lesson-06:session-23:intro3:r3": {
-          "ru": "`expensive` — дорогой; действителен — `valid`.",
-          "uk": "`expensive` — дорогий; дійсний — `valid`."
+          "ru": "Экзамен один, поэтому is, а не are.",
+          "uk": "Іспит один, тому is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d1e4496c9436ce74f385b3c81162098da178dacc895983231e2fa3ebfa48b5dc"
+  "auxiliaryFingerprint": "1bcd9bd9d86144a445f3d3a9257b31378e6e392415eac113d3bc12ae69432527"
 }

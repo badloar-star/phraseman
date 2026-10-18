@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-36:intro1:r2": {
-          "ru": "Говорим `I live`, без `am`.",
-          "uk": "Кажемо `I live`, без `am`."
+          "ru": "После I слово остаётся live, без s.",
+          "uk": "Після I слово лишається live, без s."
         },
         "en:lesson-06:session-36:intro1:r3": {
-          "ru": "После `I` — `live`, без `s`.",
-          "uk": "Після `I` — `live`, без `s`."
+          "ru": "Здесь действие: I live, без am.",
+          "uk": "Тут дія: I live, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-36:intro2:r2": {
-          "ru": "После `he` нужно `lives`.",
-          "uk": "Після `he` потрібно `lives`."
+          "ru": "После she нужно lives, с s.",
+          "uk": "Після she потрібно lives, з s."
         },
         "en:lesson-06:session-36:intro2:r3": {
-          "ru": "Нужно `He lives`, без `is`.",
-          "uk": "Потрібно `He lives`, без `is`."
+          "ru": "Здесь действие: She lives, без is.",
+          "uk": "Тут дія: She lives, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-36:intro3:r2": {
-          "ru": "С `sunglasses` — `are these`.",
-          "uk": "З `sunglasses` — `are these`."
+          "ru": "О владельце спрашиваем Whose — «чей».",
+          "uk": "Про власника питаємо Whose — «чия»."
         },
         "en:lesson-06:session-36:intro3:r3": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "Домик один: нужно is this.",
+          "uk": "Хатинка одна: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6677ca19f8ad9b83259c55c2b530aafab31579a92db428a2d8b81fb369f91ce4"
+  "auxiliaryFingerprint": "ff50f867834a25b9a0283c05d865a5af9fa6a473c46a52a9bbe1956920abc2d1"
 }

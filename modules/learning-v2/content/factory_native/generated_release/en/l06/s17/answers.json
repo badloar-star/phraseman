@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-06:session-17:word:drive",
+    "correctText": "drive",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-17:i01",
-    "correctText": "I drive to work.",
+    "correctText": "She drives to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-17:word:wait",
+    "correctText": "wait",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i02",
-    "correctText": "drive",
+    "correctText": "She waits here.",
     "correctResponseId": "en:lesson-06:session-17:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-17:word:mechanic",
+    "correctText": "mechanic",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-17:i03",
-    "correctText": "drives",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-17:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-17:i04",
-    "correctText": "en:lesson-06:session-17:i04:p1=drive\nen:lesson-06:session-17:i04:p2=well\nen:lesson-06:session-17:i04:p3=jacket\nen:lesson-06:session-17:i04:p4=berry",
+    "correctText": "en:lesson-06:session-17:i04:p1=drive\nen:lesson-06:session-17:i04:p2=wait\nen:lesson-06:session-17:i04:p3=mechanic\nen:lesson-06:session-17:i04:p4=engine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-17:word:engine",
+    "correctText": "engine",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i05",
-    "correctText": "Anna drives to work.",
+    "correctText": "The engine is loud.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i06",
-    "correctText": "He starts at nine.",
+    "correctText": "She starts at four.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i07",
-    "correctText": "She is well.",
+    "correctText": "He is a mechanic.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-06:session-17:i09",
-    "correctText": "She starts at eight.",
+    "correctText": "He drives here.",
     "correctResponseId": "en:lesson-06:session-17:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-17:i10",
-    "correctText": "en:lesson-06:session-17:i10:p1=drive\nen:lesson-06:session-17:i10:p2=start\nen:lesson-06:session-17:i10:p3=berry\nen:lesson-06:session-17:i10:p4=jacket",
+    "correctText": "en:lesson-06:session-17:i10:p1=mechanic\nen:lesson-06:session-17:i10:p2=engine\nen:lesson-06:session-17:i10:p3=drive\nen:lesson-06:session-17:i10:p4=start",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i11",
-    "correctText": "The berry is red.",
+    "correctText": "My brother drives to work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i12",
-    "correctText": "They drive to work.",
+    "correctText": "Whose engine is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i13",
-    "correctText": "I am well.",
+    "correctText": "He drives to work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i14",
-    "correctText": "works",
+    "correctText": "waits",
     "correctResponseId": "en:lesson-06:session-17:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-17:i15",
-    "correctText": "My jacket is here.",
+    "correctText": "My uncle is a mechanic.",
     "correctResponseId": "en:lesson-06:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-17:i16",
-    "correctText": "en:lesson-06:session-17:i16:p1=drive\nen:lesson-06:session-17:i16:p2=well\nen:lesson-06:session-17:i16:p3=start\nen:lesson-06:session-17:i16:p4=berry",
+    "correctText": "en:lesson-06:session-17:i16:p1=wait\nen:lesson-06:session-17:i16:p2=drive\nen:lesson-06:session-17:i16:p3=engine\nen:lesson-06:session-17:i16:p4=mechanic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-17:i17",
-    "correctText": "She drives to work.",
+    "correctText": "She waits at the bus stop.",
     "correctResponseId": null
   }
 ]

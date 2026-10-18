@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-10:intro1:r2": {
-          "ru": "Перед `practice` здесь не нужно `am`.",
-          "uk": "Перед `practice` тут не потрібно `am`."
+          "ru": "Здесь действие, поэтому перед practice не нужно am.",
+          "uk": "Тут дія, тому перед practice не потрібно am."
         },
         "en:lesson-06:session-10:intro1:r3": {
-          "ru": "После `I` — `practice`, без `s`.",
-          "uk": "Після `I` — `practice`, без `s`."
+          "ru": "После I слово остаётся practice, без s.",
+          "uk": "Після I слово лишається practice, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-10:intro2:r2": {
-          "ru": "После `we` — `practice`, без `s`.",
-          "uk": "Після `we` — `practice`, без `s`."
+          "ru": "После we слово остаётся practice, без s.",
+          "uk": "Після we слово лишається practice, без s."
         },
         "en:lesson-06:session-10:intro2:r3": {
-          "ru": "Говорим `We practice`, без `are`.",
-          "uk": "Кажемо `We practice`, без `are`."
+          "ru": "Здесь действие: We practice, без are.",
+          "uk": "Тут дія: We practice, без are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-10:intro3:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Это вопрос «где?», а нужен вопрос «чья?»: Whose.",
+          "uk": "Це питання «де?», а потрібне питання «чия?»: Whose."
         },
         "en:lesson-06:session-10:intro3:r3": {
-          "ru": "Одна папка: `is this`.",
-          "uk": "Одна папка: `is this`."
+          "ru": "Бронь одна, поэтому нужно is this.",
+          "uk": "Бронь одна, тому потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6d465304a67ff2f6150c1cb5aa2d1e7f3e203934dcd7a37503bcdd68a5a89e27"
+  "auxiliaryFingerprint": "9f721f6c6aa6d2a0ac9df3b336c7ac8b3ae8db3f59e9d558018554620fb27d15"
 }

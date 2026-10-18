@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-06:session-36",
   "learningOutcomeByLocale": {
     "ru": "сказать, где вы живёте, и рассказать о месте жительства другого человека",
-    "uk": "сказати, де ви живете, й розповісти про місце проживання іншої людини"
+    "uk": "сказати, де ви живете, і розповісти про місце проживання іншої людини"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Я здесь живу",
-        "uk": "Я тут живу"
+        "ru": "Соседка на лестнице",
+        "uk": "Сусідка на сходах"
       },
       "bodyByLocale": {
-        "ru": "Новый сосед принимает вас за гостя. `live` — «жить». Скажите `I live here` — «Я живу здесь». Перед `live` не нужно `am`: слово уже называет действие. Даже если вы часто заходите к соседу на чай, это ещё не значит, что вы у него живёте.",
-        "uk": "Новий сусід приймає вас за гостя. `live` — «жити». Скажіть `I live here` — «Я живу тут». Перед `live` не потрібне `am`: слово вже називає дію. Навіть якщо ви часто заходите до сусіда на чай, це ще не означає, що ви в нього живете."
+        "ru": "На лестнице вы встречаете новую соседку. Она видит у вас в руках ключи и пакет с продуктами и думает, что вы пришли в гости: она новенькая в доме и ещё не знает, кто где живёт. live — «жить». I live here — «Я живу здесь». После I слово остаётся live, без s.",
+        "uk": "На сходах ви зустрічаєте нову сусідку. Вона бачить у вас у руках ключі й пакет із продуктами та думає, що ви прийшли в гості: вона нова в будинку й ще не знає, хто де живе. live — «жити». I live here — «Я живу тут». Після I слово лишається live, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Объясните соседу «Я живу здесь».",
-          "uk": "Поясніть сусідові «Я живу тут»."
+          "ru": "Новая соседка спрашивает, не пришли ли вы в гости. Скажите: «Я живу здесь».",
+          "uk": "Нова сусідка питає, чи ви не прийшли в гості. Скажіть: «Я живу тут»."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-06:session-36:intro1:r2",
-              "text": "I am live here."
+              "text": "I lives here."
             },
             {
               "responseId": "en:lesson-06:session-36:intro1:r3",
-              "text": "I lives here."
+              "text": "I am live here."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-06:session-36:intro1:r2",
-              "text": "I am live here."
+              "text": "I lives here."
             },
             {
               "responseId": "en:lesson-06:session-36:intro1:r3",
-              "text": "I lives here."
+              "text": "I am live here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните соседу «Я живу здесь».",
-          "uk": "Поясніть сусідові «Я живу тут»."
+          "ru": "Новая соседка спрашивает, не пришли ли вы в гости. Скажите: «Я живу здесь».",
+          "uk": "Нова сусідка питає, чи ви не прийшли в гості. Скажіть: «Я живу тут»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где живёт Том",
-        "uk": "Де живе Том"
+        "ru": "Сестра переехала",
+        "uk": "Сестра переїхала"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает о Томе. Покажите на соседний дом: `He lives there` — «Он живёт там». После `he` добавляем `s`: `live → lives`. Можно назвать друга по имени: `Tom lives there`. Это его место жительства; Том не обязан находиться дома в эту секунду.",
-        "uk": "Сусід запитує про Тома. Покажіть на сусідній будинок: `He lives there` — «Він живе там». Після `he` додаємо `s`: `live → lives`. Можна назвати друга на ім’я: `Tom lives there`. Це його місце проживання; Том не зобов’язаний бути вдома цієї секунди."
+        "ru": "Сестра недавно переехала в маленькую светлую квартиру рядом с парком и очень ей рада: там всегда тихо и много солнца. Соседка спрашивает у вас, где она теперь поселилась. flat — «квартира». Про сестру после she к live добавляем s: She lives in a flat.",
+        "uk": "Сестра нещодавно переїхала в маленьку світлу квартиру поруч із парком і дуже їй рада: там завжди тихо й багато сонця. Сусідка питає у вас, де вона тепер оселилася. flat — «квартира». Про сестру після she до live додаємо s: She lives in a flat."
       },
       "question": {
         "interactionId": "en:lesson-06:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите на дом Тома и скажите «Он живёт там».",
-          "uk": "Покажіть на будинок Тома й скажіть «Він живе там»."
+          "ru": "Соседка спрашивает, где живёт ваша сестра. Скажите: «Она живёт в квартире».",
+          "uk": "Сусідка питає, де живе ваша сестра. Скажіть: «Вона живе в квартирі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-36:intro2:r1",
-              "text": "He lives there."
+              "text": "She lives in a flat."
             },
             {
               "responseId": "en:lesson-06:session-36:intro2:r2",
-              "text": "He live there."
+              "text": "She live in a flat."
             },
             {
               "responseId": "en:lesson-06:session-36:intro2:r3",
-              "text": "He is lives there."
+              "text": "She is lives in a flat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-36:intro2:r1",
-              "text": "He lives there."
+              "text": "She lives in a flat."
             },
             {
               "responseId": "en:lesson-06:session-36:intro2:r2",
-              "text": "He live there."
+              "text": "She live in a flat."
             },
             {
               "responseId": "en:lesson-06:session-36:intro2:r3",
-              "text": "He is lives there."
+              "text": "She is lives in a flat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на дом Тома и скажите «Он живёт там».",
-          "uk": "Покажіть на будинок Тома й скажіть «Він живе там»."
+          "ru": "Соседка спрашивает, где живёт ваша сестра. Скажите: «Она живёт в квартире».",
+          "uk": "Сусідка питає, де живе ваша сестра. Скажіть: «Вона живе в квартирі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Очки у входа",
-        "uk": "Окуляри біля входу"
+        "ru": "Домик за городом",
+        "uk": "Хатинка за містом"
       },
       "bodyByLocale": {
-        "ru": "У входа забыли солнцезащитные очки. `sunglasses` — «солнцезащитные очки». Спросите соседей: `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» С `sunglasses` используем `are these`, даже когда перед нами одна пара.",
-        "uk": "Біля входу забули сонцезахисні окуляри. `sunglasses` — «сонцезахисні окуляри». Запитайте сусідів: `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» З `sunglasses` використовуємо `are these`, навіть коли перед нами одна пара."
+        "ru": "В выходной вы с подругой гуляете за городом и выходите к маленькому домику с красной крышей и садом. Из трубы идёт дым, но рядом никого нет. cottage — «домик за городом». Чтобы спросить о владельце, говорим Whose: Whose cottage is this? — «Чей это домик?»",
+        "uk": "У вихідний ви з подругою гуляєте за містом і виходите до маленької хатинки з червоним дахом і садом. З труби йде дим, але поруч нікого немає. cottage — «хатинка за містом». Щоб спитати про власника, кажемо Whose: Whose cottage is this? — «Чия це хатинка?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "Найдите владельца: спросите «Чьи это солнцезащитные очки?»",
-          "uk": "Знайдіть власника: запитайте «Чиї це сонцезахисні окуляри?»"
+          "ru": "Вы показываете подруге на домик. Спросите: «Чей это домик?»",
+          "uk": "Ви показуєте подрузі на хатинку. Спитайте: «Чия це хатинка?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-36:intro3:r1",
-              "text": "Whose sunglasses are these?"
+              "text": "Whose cottage is this?"
             },
             {
               "responseId": "en:lesson-06:session-36:intro3:r2",
-              "text": "Whose sunglasses is this?"
+              "text": "Who cottage is this?"
             },
             {
               "responseId": "en:lesson-06:session-36:intro3:r3",
-              "text": "Who sunglasses are these?"
+              "text": "Whose cottage are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-36:intro3:r1",
-              "text": "Whose sunglasses are these?"
+              "text": "Whose cottage is this?"
             },
             {
               "responseId": "en:lesson-06:session-36:intro3:r2",
-              "text": "Whose sunglasses is this?"
+              "text": "Who cottage is this?"
             },
             {
               "responseId": "en:lesson-06:session-36:intro3:r3",
-              "text": "Who sunglasses are these?"
+              "text": "Whose cottage are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Найдите владельца: спросите «Чьи это солнцезащитные очки?»",
-          "uk": "Знайдіть власника: запитайте «Чиї це сонцезахисні окуляри?»"
+          "ru": "Вы показываете подруге на домик. Спросите: «Чей это домик?»",
+          "uk": "Ви показуєте подрузі на хатинку. Спитайте: «Чия це хатинка?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1f186f977b5fa6c379398fc84769fce4732dabf7a53d2c0ba6afd88f65671732"
+  "introFingerprint": "1d1b9c4c8b0fbe130355f00a6887a4b492ef417cff374df5abf17cc33150dfff"
 }

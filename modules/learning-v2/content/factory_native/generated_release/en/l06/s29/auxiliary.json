@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-29:intro1:r2": {
-          "ru": "Для телефонного звонка: `call my mother`, без `to`.",
-          "uk": "Для телефонного дзвінка: `call my mother`, без `to`."
+          "ru": "Для звонка: call my brother, без to.",
+          "uk": "Для дзвінка: call my brother, без to."
         },
         "en:lesson-06:session-29:intro1:r3": {
-          "ru": "После `I` — `call`, без `s`.",
-          "uk": "Після `I` — `call`, без `s`."
+          "ru": "После I слово остаётся call, без s.",
+          "uk": "Після I слово лишається call, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-29:intro2:r2": {
-          "ru": "О маме: `is`, не `are`.",
-          "uk": "Про маму: `is`, не `are`."
+          "ru": "О владельце спрашиваем Whose — «чей».",
+          "uk": "Про власника питаємо Whose — «чий»."
         },
         "en:lesson-06:session-29:intro2:r3": {
-          "ru": "Нужно `My mother is away`.",
-          "uk": "Потрібно `My mother is away`."
+          "ru": "Номер один: нужно is this.",
+          "uk": "Номер один: потрібно is this."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-29:intro3:r2": {
-          "ru": "С `we` — `are`.",
-          "uk": "З `we` — `are`."
+          "ru": "После she нужно calls, с s.",
+          "uk": "Після she потрібно calls, з s."
         },
         "en:lesson-06:session-29:intro3:r3": {
-          "ru": "Нужно `We are at the bus stop`.",
-          "uk": "Потрібно `We are at the bus stop`."
+          "ru": "Для звонка: calls her grandmother, без to.",
+          "uk": "Для дзвінка: calls her grandmother, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "39ff97fe22a9d49842942eb772c7a5bd4802cab1b5595c0219cc9550b4bfd143"
+  "auxiliaryFingerprint": "4fd3e47565aa039c88924c3b94938cf6acc367b960efebe42c1afde852f91e04"
 }

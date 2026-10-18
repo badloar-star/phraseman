@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-07",
   "learningOutcomeByLocale": {
-    "ru": "назвать календарь, спросить о владельце и объяснить, что необходимо",
-    "uk": "назвати календар, запитати про власника й пояснити, що необхідне"
+    "ru": "рассказать о двух действиях подряд: I chop onions and I stir the soup",
+    "uk": "розповісти про дві дії поспіль: I chop onions and I stir the soup"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Дни перед глазами",
-        "uk": "Дні перед очима"
+        "ru": "Лук для супа",
+        "uk": "Цибуля для супу"
       },
       "bodyByLocale": {
-        "ru": "`calendar` — «календарь». `This is my calendar` — «Это мой календарь». `Whose calendar is this?` — «Чей это календарь?» Календарь помогает не забыть день рождения. Подарок, к сожалению, сам не покупает.",
-        "uk": "`calendar` — «календар». `This is my calendar` — «Це мій календар». `Whose calendar is this?` — «Чий це календар?» Календар допомагає не забути день народження. Подарунок, на жаль, сам не купує."
+        "ru": "Утром в кафе нужно приготовить большой суп на весь день. Повар кладёт перед вами доску, нож и гору лука и просит помочь до открытия. chop — «нарезать, рубить» на мелкие кусочки. О себе говорим I: I chop onions — «Я режу лук». Лука много — onions.",
+        "uk": "Вранці в кафе треба приготувати великий суп на весь день. Кухар кладе перед вами дошку, ніж і гору цибулі й просить допомогти до відкриття. chop — «нарізати, рубати» на дрібні шматочки. Про себе кажемо I: I chop onions — «Я ріжу цибулю». Цибулин багато — onions."
       },
       "question": {
         "interactionId": "en:lesson-06:session-07:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите «Чей это календарь?»",
-          "uk": "Запитайте «Чий це календар?»"
+          "ru": "Повар спрашивает, что вы делаете у доски. Скажите ему: «Я режу лук».",
+          "uk": "Кухар питає, що ви робите біля дошки. Скажіть йому: «Я ріжу цибулю»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-07:intro1:r1",
-              "text": "Whose calendar is this?"
+              "text": "I chop onions."
             },
             {
               "responseId": "en:lesson-06:session-07:intro1:r2",
-              "text": "Where is the calendar?"
+              "text": "I am chop onions."
             },
             {
               "responseId": "en:lesson-06:session-07:intro1:r3",
-              "text": "Whose calendar are these?"
+              "text": "I chop onion."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-07:intro1:r1",
-              "text": "Whose calendar is this?"
+              "text": "I chop onions."
             },
             {
               "responseId": "en:lesson-06:session-07:intro1:r2",
-              "text": "Where is the calendar?"
+              "text": "I am chop onions."
             },
             {
               "responseId": "en:lesson-06:session-07:intro1:r3",
-              "text": "Whose calendar are these?"
+              "text": "I chop onion."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чей это календарь?»",
-          "uk": "Запитайте «Чий це календар?»"
+          "ru": "Повар спрашивает, что вы делаете у доски. Скажите ему: «Я режу лук».",
+          "uk": "Кухар питає, що ви робите біля дошки. Скажіть йому: «Я ріжу цибулю»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нужно, а не просто красиво",
-        "uk": "Потрібно, а не просто красиво"
+        "ru": "Кастрюля на плите",
+        "uk": "Каструля на плиті"
       },
       "bodyByLocale": {
-        "ru": "`necessary` — «необходимый». `The calendar is necessary` — «Календарь необходим»: например, в нём отмечены рабочие дни. `remote` — «пульт». `That remote is yours` — «Тот пульт твой»: `that` указывает на предмет дальше от говорящего.",
-        "uk": "`necessary` — «необхідний». `The calendar is necessary` — «Календар необхідний»: наприклад, у ньому позначені робочі дні. `remote` — «пульт». `That remote is yours` — «Той пульт твій»: `that` указує на предмет далі від мовця."
+        "ru": "Лук уже в большой кастрюле, и суп начинает тихо кипеть. Двое поваров в белых фартуках стоят у плиты и водят по кругу длинными ложками, чтобы ничего не пригорело. stir — «помешивать». О поварах говорим They: They stir the soup — «Они помешивают суп».",
+        "uk": "Цибуля вже у великій каструлі, і суп починає тихо кипіти. Двоє кухарів у білих фартухах стоять біля плити й водять по колу довгими ложками, щоб нічого не пригоріло. stir — «помішувати». Про кухарів кажемо They: They stir the soup — «Вони помішують суп»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-07:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Календарь необходим».",
-          "uk": "Скажіть «Календар необхідний»."
+          "ru": "Помощница спрашивает, что делают повара у плиты. Скажите: «Они помешивают суп».",
+          "uk": "Помічниця питає, що роблять кухарі біля плити. Скажіть: «Вони помішують суп»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-07:intro2:r1",
-              "text": "The calendar is necessary."
+              "text": "They stir the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro2:r2",
-              "text": "The calendar are necessary."
+              "text": "They are stir the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro2:r3",
-              "text": "The calendar is fake."
+              "text": "They stir the salad."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-07:intro2:r1",
-              "text": "The calendar is necessary."
+              "text": "They stir the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro2:r2",
-              "text": "The calendar are necessary."
+              "text": "They are stir the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro2:r3",
-              "text": "The calendar is fake."
+              "text": "They stir the salad."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Календарь необходим».",
-          "uk": "Скажіть «Календар необхідний»."
+          "ru": "Помощница спрашивает, что делают повара у плиты. Скажите: «Они помешивают суп».",
+          "uk": "Помічниця питає, що роблять кухарі біля плити. Скажіть: «Вони помішують суп»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рядом с площадкой",
-        "uk": "Поряд із майданчиком"
+        "ru": "Суп гостям",
+        "uk": "Суп гостям"
       },
       "bodyByLocale": {
-        "ru": "`playground` — «детская площадка», `mural` — «настенная роспись». `I work near the playground` — «Я работаю возле детской площадки». Перед `work` не нужно `am`. `The mural is on the wall` — «Настенная роспись на стене».",
-        "uk": "`playground` — «дитячий майданчик», `mural` — «настінний розпис». `I work near the playground` — «Я працюю біля дитячого майданчика». Перед `work` не потрібно `am`. `The mural is on the wall` — «Настінний розпис на стіні»."
+        "ru": "Суп готов, и в зал входят первые гости. Новый официант стоит у кухонного окна с чистым полотенцем на плече и ждёт ваших слов. serve — «подавать на стол». Вы говорите ему: You serve the soup — «Ты подаёшь суп». К собеседнику обращаемся словом You.",
+        "uk": "Суп готовий, і в зал заходять перші гості. Новий офіціант стоїть біля кухонного вікна з рушником на плечі й чекає ваших слів. serve — «подавати на стіл». Ви кажете йому: You serve the soup — «Ти подаєш суп». До співрозмовника звертаємося словом You."
       },
       "question": {
         "interactionId": "en:lesson-06:session-07:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю возле детской площадки».",
-          "uk": "Скажіть «Я працюю біля дитячого майданчика»."
+          "ru": "Новый официант спрашивает, что ему делать с готовым супом. Скажите ему: «Ты подаёшь суп».",
+          "uk": "Новий офіціант питає, що йому робити з готовим супом. Скажіть йому: «Ти подаєш суп»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-07:intro3:r1",
-              "text": "I work near the playground."
+              "text": "You serve the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro3:r2",
-              "text": "I am work near the playground."
+              "text": "You are serve the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro3:r3",
-              "text": "I work near the bank."
+              "text": "I serve the soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-07:intro3:r1",
-              "text": "I work near the playground."
+              "text": "You serve the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro3:r2",
-              "text": "I am work near the playground."
+              "text": "You are serve the soup."
             },
             {
               "responseId": "en:lesson-06:session-07:intro3:r3",
-              "text": "I work near the bank."
+              "text": "I serve the soup."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю возле детской площадки».",
-          "uk": "Скажіть «Я працюю біля дитячого майданчика»."
+          "ru": "Новый официант спрашивает, что ему делать с готовым супом. Скажите ему: «Ты подаёшь суп».",
+          "uk": "Новий офіціант питає, що йому робити з готовим супом. Скажіть йому: «Ти подаєш суп»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d2f06cba85405c33866c953ab2c6fd07e69bf6d8d16dc47838359f94982b11ad"
+  "introFingerprint": "489c9060b497c20b7b3f66e077f368543be5f4d161fc1364ae9f34154968fb90"
 }

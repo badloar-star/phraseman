@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-24:i01",
+      "interactionId": "en:lesson-06:session-24:word:pour",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:word:pour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:word:pour:audio",
+          "transcript": "pour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:word:pour:r1",
+            "targetText": "pour",
+            "meaningByLocale": {
+              "ru": "наливать. He pours the tea. — «Он наливает чай». Когда жидкость льют из чайника, кофейника или кувшина.",
+              "uk": "наливати. He pours the tea. — «Він наливає чай». Коли рідину ллють із чайника, кавника чи глечика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pour",
+          "definitionByLocale": {
+            "ru": "наливать. He pours the tea. — «Он наливает чай». Когда жидкость льют из чайника, кофейника или кувшина.",
+            "uk": "наливати. He pours the tea. — «Він наливає чай». Коли рідину ллють із чайника, кавника чи глечика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вона їздить на роботу за кермом»",
+      "prompt": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона їздить на роботу за кермом»",
+      "accessibilityLabel": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She drives to work.",
+        "targetPhrase": "She pours the milk.",
         "localizedMeaning": {
-          "ru": "Скажите «Она ездит на работу за рулём»",
-          "uk": "Скажіть «Вона їздить на роботу за кермом»"
+          "ru": "Коллега спрашивает, что делает ваша сестра. Скажите: «Она наливает молоко»",
+          "uk": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»"
         },
         "orderedTokens": [
           "She",
-          "drives",
-          "to",
-          "work"
+          "pours",
+          "the",
+          "milk"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "pour"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `pours` — `She pours the milk.`",
+              "uk": "тут потрібно `pours` — `She pours the milk.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-24:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-24:word:toast",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — toast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:word:toast:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:word:toast:audio",
+          "transcript": "toast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:word:toast:r1",
+            "targetText": "toast",
+            "meaningByLocale": {
+              "ru": "тост (подрумяненный хлеб). The toast is on the plate. — «Тост на тарелке». О ломтике хлеба, который поджарили.",
+              "uk": "тост (підсмажений хліб). The toast is on the plate. — «Тост на тарілці». Про скибку хліба, яку підсмажили."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toast",
+          "definitionByLocale": {
+            "ru": "тост (подрумяненный хлеб). The toast is on the plate. — «Тост на тарелке». О ломтике хлеба, который поджарили.",
+            "uk": "тост (підсмажений хліб). The toast is on the plate. — «Тост на тарілці». Про скибку хліба, яку підсмажили."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте колегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i02:r1",
-          "text": "write"
+          "text": "The toast is warm."
         },
         {
           "responseId": "en:lesson-06:session-24:i02:r2",
-          "text": "read"
+          "text": "The toast is cold."
         },
         {
           "responseId": "en:lesson-06:session-24:i02:r3",
-          "text": "draw"
+          "text": "The bread is warm."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-24:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте колегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-24:i02:audio",
-          "transcript": "write"
+          "transcript": "The toast is warm."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-24:i02:r1",
-            "targetText": "write",
+            "targetText": "The toast is warm.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-24:i02:r2",
-            "targetText": "read",
+            "targetText": "The toast is cold.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-24:i02:r3",
-            "targetText": "draw",
+            "targetText": "The bread is warm.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-24:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `write`, а в этом варианте — `read`.",
-              "uk": "У записі перше слово — `write`, а в цьому варіанті — `read`."
+              "ru": "В записи последнее слово — `warm`, тёплый, а в этом варианте — `cold`, холодный.",
+              "uk": "У записі останнє слово — `warm`, теплий, а в цьому варіанті — `cold`, холодний."
             }
           },
           {
             "responseId": "en:lesson-06:session-24:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `write`, а в этом варианте — `draw`.",
-              "uk": "У записі перше слово — `write`, а в цьому варіанті — `draw`."
+              "ru": "В записи второе слово — `toast`, тост, а в этом варианте — `bread`, хлеб.",
+              "uk": "У записі друге слово — `toast`, тост, а в цьому варіанті — `bread`, хліб."
             }
           }
         ],
@@ -113,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-24:word:slice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:word:slice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:word:slice:audio",
+          "transcript": "slice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:word:slice:r1",
+            "targetText": "slice",
+            "meaningByLocale": {
+              "ru": "нарезать ломтиками. He slices the cheese. — «Он нарезает сыр». Когда еду режут на ровные куски.",
+              "uk": "нарізати скибочками. He slices the cheese. — «Він нарізає сир». Коли їжу ріжуть на рівні шматки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slice",
+          "definitionByLocale": {
+            "ru": "нарезать ломтиками. He slices the cheese. — «Он нарезает сыр». Когда еду режут на ровные куски.",
+            "uk": "нарізати скибочками. He slices the cheese. — «Він нарізає сир». Коли їжу ріжуть на рівні шматки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-24:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Анна часто усміхається»",
+      "prompt": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i03:r1",
-          "text": "smiles"
+          "text": "slices"
         },
         {
           "responseId": "en:lesson-06:session-24:i03:r2",
-          "text": "smile"
+          "text": "slice"
         },
         {
           "responseId": "en:lesson-06:session-24:i03:r3",
-          "text": "is smiles"
+          "text": "is slices"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Анна часто усміхається»",
+      "accessibilityLabel": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Анна часто улыбается»",
-          "uk": "Скажіть «Анна часто усміхається»"
+          "ru": "Скажите о сестре: «Она нарезает хлеб». Выберите слово",
+          "uk": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово"
         },
-        "gappedTargetPhrase": "Anna ___ a lot.",
+        "gappedTargetPhrase": "She ___ the bread.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-24:i03:r1",
-            "text": "smiles"
+            "text": "slices"
           },
           {
             "responseId": "en:lesson-06:session-24:i03:r2",
-            "text": "smile"
+            "text": "slice"
           },
           {
             "responseId": "en:lesson-06:session-24:i03:r3",
-            "text": "is smiles"
+            "text": "is slices"
           }
         ],
-        "testedDimension": "Скажіть «Анна часто усміхається»",
+        "testedDimension": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-24:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Анна часто усміхається»",
+            "testedDimension": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Анна — она: `Anna smiles`, с `s`.",
-              "uk": "Анна — вона: `Anna smiles`, з `s`."
+              "ru": "После `she` — `slices`, с `s`.",
+              "uk": "Після `she` — `slices`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-24:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Анна часто усміхається»",
+            "testedDimension": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Anna smiles`, без `is`.",
-              "uk": "Кажемо `Anna smiles`, без `is`."
+              "ru": "Говорим `She slices`, без `is`.",
+              "uk": "Кажемо `She slices`, без `is`."
             }
           }
         ]
@@ -183,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-24:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-24:i04:p1",
-            "target": "drive",
+            "target": "pour",
             "meaningByLocale": {
-              "ru": "водить машину",
-              "uk": "водити машину"
+              "ru": "наливать",
+              "uk": "наливати"
             }
           },
           {
             "pairId": "en:lesson-06:session-24:i04:p2",
-            "target": "smile",
+            "target": "toast",
             "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
+              "ru": "тост (подрумяненный хлеб)",
+              "uk": "тост (підсмажений хліб)"
             }
           },
           {
             "pairId": "en:lesson-06:session-24:i04:p3",
-            "target": "draw",
+            "target": "slice",
             "meaningByLocale": {
-              "ru": "рисовать",
-              "uk": "малювати"
+              "ru": "нарезать ломтиками",
+              "uk": "нарізати скибочками"
             }
           },
           {
             "pairId": "en:lesson-06:session-24:i04:p4",
-            "target": "cook",
+            "target": "knife",
             "meaningByLocale": {
-              "ru": "готовить еду",
-              "uk": "готувати їжу"
+              "ru": "нож",
+              "uk": "ніж"
             }
           }
         ],
         "leftColumn": [
-          "drive",
-          "smile",
-          "draw",
-          "cook"
+          "pour",
+          "toast",
+          "slice",
+          "knife"
         ],
         "rightColumn": [
-          "водити машину",
-          "усміхатися",
-          "малювати",
-          "готувати їжу"
+          "наливати",
+          "тост (підсмажений хліб)",
+          "нарізати скибочками",
+          "ніж"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +396,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-24:word:knife",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — knife",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:word:knife:audio"
+      ],
+      "accessibilityLabel": "Картка слова — knife",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:word:knife:audio",
+          "transcript": "knife"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:word:knife:r1",
+            "targetText": "knife",
+            "meaningByLocale": {
+              "ru": "нож. The knife is on the table. — «Нож на столе». О предмете, которым режут.",
+              "uk": "ніж. The knife is on the table. — «Ніж на столі». Про предмет, яким ріжуть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knife",
+          "definitionByLocale": {
+            "ru": "нож. The knife is on the table. — «Нож на столе». О предмете, которым режут.",
+            "uk": "ніж. The knife is on the table. — «Ніж на столі». Про предмет, яким ріжуть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-24:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте колегу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-24:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте колегу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-24:i05:audio",
-          "transcript": "He reads at home."
+          "transcript": "The knife is sharp."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "He reads at home.",
+        "hiddenTargetPhrase": "The knife is sharp.",
         "orderedTokens": [
-          "He",
-          "reads",
-          "at",
-          "home"
+          "The",
+          "knife",
+          "is",
+          "sharp"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте колегу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The knife is sharp.`",
+              "uk": "тут потрібно `is` — `The knife is sharp.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,29 +488,41 @@
     },
     {
       "interactionId": "en:lesson-06:session-24:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вона пише тут»",
+      "prompt": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона пише тут»",
+      "accessibilityLabel": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She writes here.",
+        "targetPhrase": "He teaches English.",
         "localizedMeaning": {
-          "ru": "Скажите «Она пишет здесь»",
-          "uk": "Скажіть «Вона пише тут»"
+          "ru": "Коллега спрашивает, кем работает ваш брат. Скажите: «Он преподаёт английский»",
+          "uk": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»"
         },
         "orderedTokens": [
-          "She",
-          "writes",
-          "here"
+          "He",
+          "teaches",
+          "English"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "teach"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `teaches` — `He teaches English.`",
+              "uk": "тут потрібно `teaches` — `He teaches English.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +532,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-24:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Він готує вдома»",
+      "prompt": "Колега питає, чи холодний тост. Скажіть: «Тост теплий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-24:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Він готує вдома»",
+      "accessibilityLabel": "Колега питає, чи холодний тост. Скажіть: «Тост теплий»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-24:i07:audio",
-          "transcript": "He cooks at home."
+          "transcript": "The toast is warm."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He cooks at home.",
+        "targetPhrase": "The toast is warm.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +565,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-24:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони малюють тут»",
+      "prompt": "Скажіть про брата: «Він малює за столом». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i08:r1",
-          "text": "draw"
-        },
-        {
-          "responseId": "en:lesson-06:session-24:i08:r2",
           "text": "draws"
         },
         {
+          "responseId": "en:lesson-06:session-24:i08:r2",
+          "text": "draw"
+        },
+        {
           "responseId": "en:lesson-06:session-24:i08:r3",
-          "text": "are draw"
+          "text": "is draws"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони малюють тут»",
+      "accessibilityLabel": "Скажіть про брата: «Він малює за столом». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они рисуют здесь»",
-          "uk": "Скажіть «Вони малюють тут»"
+          "ru": "Скажите о брате: «Он рисует за столом». Выберите слово",
+          "uk": "Скажіть про брата: «Він малює за столом». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "He ___ at the table.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-24:i08:r1",
-            "text": "draw"
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i08:r2",
             "text": "draws"
           },
           {
+            "responseId": "en:lesson-06:session-24:i08:r2",
+            "text": "draw"
+          },
+          {
             "responseId": "en:lesson-06:session-24:i08:r3",
-            "text": "are draw"
+            "text": "is draws"
           }
         ],
-        "testedDimension": "Скажіть «Вони малюють тут»",
+        "testedDimension": "Скажіть про брата: «Він малює за столом». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-24:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони малюють тут»",
+            "testedDimension": "Скажіть про брата: «Він малює за столом». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `draw`, без `s`.",
-              "uk": "Після `they` — `draw`, без `s`."
+              "ru": "После `he` — `draws`, с `s`.",
+              "uk": "Після `he` — `draws`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-24:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони малюють тут»",
+            "testedDimension": "Скажіть про брата: «Він малює за столом». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They draw`, без `are`.",
-              "uk": "Кажемо `They draw`, без `are`."
+              "ru": "Говорим `He draws`, без `is`.",
+              "uk": "Кажемо `He draws`, без `is`."
             }
           }
         ]
@@ -426,51 +634,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-24:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що Том каже про йогурт",
+      "prompt": "Послухайте колегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i09:r1",
-          "text": "The yoghurt is cold."
+          "text": "He writes at the table."
         },
         {
           "responseId": "en:lesson-06:session-24:i09:r2",
-          "text": "The yoghurt is warm."
+          "text": "He draws at the table."
         },
         {
           "responseId": "en:lesson-06:session-24:i09:r3",
-          "text": "The yoghurt is fresh."
+          "text": "She writes at the table."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-24:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що Том каже про йогурт",
+      "accessibilityLabel": "Послухайте колегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-24:i09:audio",
-          "transcript": "The yoghurt is cold."
+          "transcript": "He writes at the table."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-24:i09:r1",
-            "targetText": "The yoghurt is cold.",
+            "targetText": "He writes at the table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-24:i09:r2",
-            "targetText": "The yoghurt is warm.",
+            "targetText": "He draws at the table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-24:i09:r3",
-            "targetText": "The yoghurt is fresh.",
+            "targetText": "She writes at the table.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +687,19 @@
           {
             "responseId": "en:lesson-06:session-24:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що Том каже про йогурт",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cold`, а в этом варианте — `warm`.",
-              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `warm`."
+              "ru": "В записи действие — `writes`, пишет, а в этом варианте — `draws`, рисует.",
+              "uk": "У записі дія — `writes`, пише, а в цьому варіанті — `draws`, малює."
             }
           },
           {
             "responseId": "en:lesson-06:session-24:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що Том каже про йогурт",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cold`, а в этом варианте — `fresh`.",
-              "uk": "У записі останнє слово — `cold`, а в цьому варіанті — `fresh`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -502,8 +710,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-24:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,364 +724,30 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-24:i10:p1",
-            "target": "write",
+            "target": "knife",
             "meaningByLocale": {
-              "ru": "писать",
-              "uk": "писати"
+              "ru": "нож",
+              "uk": "ніж"
             }
           },
           {
             "pairId": "en:lesson-06:session-24:i10:p2",
-            "target": "read",
+            "target": "pour",
             "meaningByLocale": {
-              "ru": "читать",
-              "uk": "читати"
+              "ru": "наливать",
+              "uk": "наливати"
             }
           },
           {
             "pairId": "en:lesson-06:session-24:i10:p3",
-            "target": "teach",
+            "target": "drive",
             "meaningByLocale": {
-              "ru": "преподавать",
-              "uk": "викладати"
+              "ru": "водить машину",
+              "uk": "водити машину"
             }
           },
           {
             "pairId": "en:lesson-06:session-24:i10:p4",
-            "target": "yoghurt",
-            "meaningByLocale": {
-              "ru": "йогурт",
-              "uk": "йогурт"
-            }
-          }
-        ],
-        "leftColumn": [
-          "write",
-          "read",
-          "teach",
-          "yoghurt"
-        ],
-        "rightColumn": [
-          "писати",
-          "читати",
-          "викладати",
-          "йогурт"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-24:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-06:session-24:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-06:session-24:i11:audio",
-          "transcript": "The yoghurt is in the fridge."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The yoghurt is in the fridge.",
-        "orderedTokens": [
-          "The",
-          "yoghurt",
-          "is",
-          "in",
-          "the",
-          "fridge"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-06:session-24:i11:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The yoghurt is in the fridge.`",
-              "uk": "тут потрібно `is` — `The yoghurt is in the fridge.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-24:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "На столі лежить зошит. Запитайте «Чий це зошит?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "На столі лежить зошит. Запитайте «Чий це зошит?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Whose notebook is this?",
-        "localizedMeaning": {
-          "ru": "На столе лежит тетрадь. Спросите «Чья это тетрадь?»",
-          "uk": "На столі лежить зошит. Запитайте «Чий це зошит?»"
-        },
-        "orderedTokens": [
-          "Whose",
-          "notebook",
-          "is",
-          "this"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-24:i13",
-      "ordinal": 16,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я їжджу на роботу за кермом»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-06:session-24:i13:audio"
-      ],
-      "accessibilityLabel": "Скажіть «Я їжджу на роботу за кермом»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-06:session-24:i13:audio",
-          "transcript": "I drive to work."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I drive to work.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-24:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона викладає англійську»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-06:session-24:i14:r1",
-          "text": "teaches"
-        },
-        {
-          "responseId": "en:lesson-06:session-24:i14:r2",
-          "text": "teach"
-        },
-        {
-          "responseId": "en:lesson-06:session-24:i14:r3",
-          "text": "is teaches"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона викладає англійську»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Скажите «Она преподаёт английский»",
-          "uk": "Скажіть «Вона викладає англійську»"
-        },
-        "gappedTargetPhrase": "She ___ English.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-06:session-24:i14:r1",
-            "text": "teaches"
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i14:r2",
-            "text": "teach"
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i14:r3",
-            "text": "is teaches"
-          }
-        ],
-        "testedDimension": "Скажіть «Вона викладає англійську»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-06:session-24:i14:r2",
-            "correct": false,
-            "testedDimension": "Скажіть «Вона викладає англійську»",
-            "feedbackByLocale": {
-              "ru": "После `she` — `teaches`, с `es`.",
-              "uk": "Після `she` — `teaches`, з `es`."
-            }
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i14:r3",
-            "correct": false,
-            "testedDimension": "Скажіть «Вона викладає англійську»",
-            "feedbackByLocale": {
-              "ru": "Говорим `She teaches`, без `is`.",
-              "uk": "Кажемо `She teaches`, без `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-24:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, хто готує вдома",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-06:session-24:i15:r1",
-          "text": "They cook at home."
-        },
-        {
-          "responseId": "en:lesson-06:session-24:i15:r2",
-          "text": "We cook at home."
-        },
-        {
-          "responseId": "en:lesson-06:session-24:i15:r3",
-          "text": "You cook at home."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-06:session-24:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, хто готує вдома",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-06:session-24:i15:audio",
-          "transcript": "They cook at home."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-06:session-24:i15:r1",
-            "targetText": "They cook at home.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i15:r2",
-            "targetText": "We cook at home.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i15:r3",
-            "targetText": "You cook at home.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-06:session-24:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, хто готує вдома",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
-              "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
-            }
-          },
-          {
-            "responseId": "en:lesson-06:session-24:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, хто готує вдома",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
-              "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-24:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-06:session-24:i16:p1",
-            "target": "smile",
-            "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-24:i16:p2",
-            "target": "draw",
-            "meaningByLocale": {
-              "ru": "рисовать",
-              "uk": "малювати"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-24:i16:p3",
-            "target": "write",
-            "meaningByLocale": {
-              "ru": "писать",
-              "uk": "писати"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-24:i16:p4",
             "target": "teach",
             "meaningByLocale": {
               "ru": "преподавать",
@@ -882,15 +756,15 @@
           }
         ],
         "leftColumn": [
-          "smile",
-          "draw",
-          "write",
+          "knife",
+          "pour",
+          "drive",
           "teach"
         ],
         "rightColumn": [
-          "усміхатися",
-          "малювати",
-          "писати",
+          "ніж",
+          "наливати",
+          "водити машину",
           "викладати"
         ],
         "pairingKey": "pair_id",
@@ -908,26 +782,371 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-24:i17",
+      "interactionId": "en:lesson-06:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте колегу й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте колегу й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i11:audio",
+          "transcript": "My sister catches the bus."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My sister catches the bus.",
+        "orderedTokens": [
+          "My",
+          "sister",
+          "catches",
+          "the",
+          "bus"
+        ],
+        "authoredDistractorTokens": [
+          "catch"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте колегу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `catches` — `My sister catches the bus.`",
+              "uk": "тут потрібно `catches` — `My sister catches the bus.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте ніж. Спитайте брата: «Де ніж?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте ніж. Спитайте брата: «Де ніж?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the knife?",
+        "localizedMeaning": {
+          "ru": "Вы ищете нож. Спросите брата: «Где нож?»",
+          "uk": "Ви шукаєте ніж. Спитайте брата: «Де ніж?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "knife"
+        ],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте ніж. Спитайте брата: «Де ніж?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the knife?`",
+              "uk": "тут потрібно `Where` — `Where is the knife?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i13",
       "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега питає, що робить ваш брат біля столу. Скажіть: «Він наливає каву»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Колега питає, що робить ваш брат біля столу. Скажіть: «Він наливає каву»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i13:audio",
+          "transcript": "He pours the coffee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He pours the coffee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i14:r1",
+          "text": "teaches"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i14:r2",
+          "text": "teach"
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i14:r3",
+          "text": "teachs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите о сестре: «Она преподаёт английский». Выберите слово",
+          "uk": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово"
+        },
+        "gappedTargetPhrase": "She ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-24:i14:r1",
+            "text": "teaches"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i14:r2",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i14:r3",
+            "text": "teachs"
+          }
+        ],
+        "testedDimension": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "После `she` — `teaches`, с `es`.",
+              "uk": "Після `she` — `teaches`, з `es`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "После `ch` нужно `es`: `teaches`.",
+              "uk": "Після `ch` потрібно `es`: `teaches`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте колегу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-24:i15:r1",
+          "text": "The knife is sharp."
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i15:r2",
+          "text": "The knife is blunt."
+        },
+        {
+          "responseId": "en:lesson-06:session-24:i15:r3",
+          "text": "The fork is sharp."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте колегу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-24:i15:audio",
+          "transcript": "The knife is sharp."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-24:i15:r1",
+            "targetText": "The knife is sharp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i15:r2",
+            "targetText": "The knife is blunt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i15:r3",
+            "targetText": "The fork is sharp.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте колегу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `sharp`, острый, а в этом варианте — `blunt`, тупой.",
+              "uk": "У записі останнє слово — `sharp`, гострий, а в цьому варіанті — `blunt`, тупий."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте колегу",
+            "feedbackByLocale": {
+              "ru": "В записи второе слово — `knife`, нож, а в этом варианте — `fork`, вилка.",
+              "uk": "У записі друге слово — `knife`, ніж, а в цьому варіанті — `fork`, виделка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-24:i16:p1",
+            "target": "toast",
+            "meaningByLocale": {
+              "ru": "тост (подрумяненный хлеб)",
+              "uk": "тост (підсмажений хліб)"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i16:p2",
+            "target": "slice",
+            "meaningByLocale": {
+              "ru": "нарезать ломтиками",
+              "uk": "нарізати скибочками"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i16:p3",
+            "target": "knife",
+            "meaningByLocale": {
+              "ru": "нож",
+              "uk": "ніж"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-24:i16:p4",
+            "target": "pour",
+            "meaningByLocale": {
+              "ru": "наливать",
+              "uk": "наливати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "toast",
+          "slice",
+          "knife",
+          "pour"
+        ],
+        "rightColumn": [
+          "тост (підсмажений хліб)",
+          "нарізати скибочками",
+          "ніж",
+          "наливати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-24:i17",
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Новий колега запитує, що викладає Анна. Скажіть «Вона викладає англійську»",
+      "prompt": "Колега питає, що робить ваша сестра з хлібом. Скажіть: «Вона нарізає хліб»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-24:i17:audio"
       ],
-      "accessibilityLabel": "Новий колега запитує, що викладає Анна. Скажіть «Вона викладає англійську»",
+      "accessibilityLabel": "Колега питає, що робить ваша сестра з хлібом. Скажіть: «Вона нарізає хліб»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-24:i17:audio",
-          "transcript": "She teaches English."
+          "transcript": "She slices the bread."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She teaches English.",
+        "targetPhrase": "She slices the bread.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -949,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "72c660e6762685ee66f06873c2c9e31f939abac19901a78e85c1b5c10dadb10e"
+  "learnerFingerprint": "5a7707b366d0f5782418b561c83a2fc93f5f406afdcd4bad28024a3286d464d3"
 }

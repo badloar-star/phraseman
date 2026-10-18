@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-21:intro1:r2": {
-          "ru": "После `she` — `writes`, с `s`.",
-          "uk": "Після `she` — `writes`, з `s`."
+          "ru": "После she нужно writes, с s.",
+          "uk": "Після she потрібно writes, з s."
         },
         "en:lesson-06:session-21:intro1:r3": {
-          "ru": "Говорим `She writes`, без `is`.",
-          "uk": "Кажемо `She writes`, без `is`."
+          "ru": "Здесь действие: She writes, без is.",
+          "uk": "Тут дія: She writes, без is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-21:intro2:r2": {
-          "ru": "После `he` — `swims`, с `s`.",
-          "uk": "Після `he` — `swims`, з `s`."
+          "ru": "После he нужно jumps, с s.",
+          "uk": "Після he потрібно jumps, з s."
         },
         "en:lesson-06:session-21:intro2:r3": {
-          "ru": "Говорим `He swims`, без `is`.",
-          "uk": "Кажемо `He swims`, без `is`."
+          "ru": "Здесь действие: He jumps, без is.",
+          "uk": "Тут дія: He jumps, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-21:intro3:r2": {
-          "ru": "Одно ожерелье: `is`.",
-          "uk": "Одне намисто: `is`."
+          "ru": "Без is предложение не получается: нужно clasp is.",
+          "uk": "Без is речення не виходить: потрібно clasp is."
         },
         "en:lesson-06:session-21:intro3:r3": {
-          "ru": "`new` — новое; сломано — `broken`.",
-          "uk": "`new` — нове; зламане — `broken`."
+          "ru": "Застёжка одна, поэтому is, а не are.",
+          "uk": "Застібка одна, тому is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0d844cf71902a9ee113d5467b52430a44626ca98eb441b0f5b6c72d834bf1c85"
+  "auxiliaryFingerprint": "3ef794db46278e0b281f674895efbfde215f102247d791814a429fc70cc63c04"
 }

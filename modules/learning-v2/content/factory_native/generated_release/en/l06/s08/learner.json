@@ -4,32 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-08:i01",
+      "interactionId": "en:lesson-06:session-08:word:fold",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fold",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-08:word:fold:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-08:word:fold:audio",
+          "transcript": "fold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-08:word:fold:r1",
+            "targetText": "fold",
+            "meaningByLocale": {
+              "ru": "складывать. We fold the towels. — «Мы складываем полотенца». О том, как вещь делают плоской и аккуратной стопкой.",
+              "uk": "складати. We fold the towels. — «Ми складаємо рушники». Про те, як річ роблять пласкою й охайною стосом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fold",
+          "definitionByLocale": {
+            "ru": "складывать. We fold the towels. — «Мы складываем полотенца». О том, как вещь делают плоской и аккуратной стопкой.",
+            "uk": "складати. We fold the towels. — «Ми складаємо рушники». Про те, як річ роблять пласкою й охайною стосом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-08:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я работаю в этом районе»",
+      "prompt": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я работаю в этом районе»",
+      "accessibilityLabel": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I work in this neighbourhood.",
+        "targetPhrase": "We fold the towels.",
         "localizedMeaning": {
-          "ru": "Скажите «Я работаю в этом районе»",
-          "uk": "Скажіть «Я працюю в цьому районі»"
+          "ru": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
+          "uk": "Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»"
         },
         "orderedTokens": [
-          "I",
-          "work",
-          "in",
-          "this",
-          "neighbourhood"
+          "We",
+          "fold",
+          "the",
+          "towels"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-08:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `fold` — `We fold the towels.`",
+              "uk": "тут потрібно `fold` — `We fold the towels.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-08:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-08:word:hang",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — hang",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-08:word:hang:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hang",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-08:word:hang:audio",
+          "transcript": "hang"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-08:word:hang:r1",
+            "targetText": "hang",
+            "meaningByLocale": {
+              "ru": "вешать. I hang the shirts on the line. — «Я вешаю рубашки на верёвку». О том, как вещь подвешивают, чтобы она висела.",
+              "uk": "вішати. I hang the shirts on the line. — «Я вішаю сорочки на мотузку». Про те, як річ підвішують, щоб вона висіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hang",
+          "definitionByLocale": {
+            "ru": "вешать. I hang the shirts on the line. — «Я вешаю рубашки на верёвку». О том, как вещь подвешивают, чтобы она висела.",
+            "uk": "вішати. I hang the shirts on the line. — «Я вішаю сорочки на мотузку». Про те, як річ підвішують, щоб вона висіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-08:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-08:i02:r1",
-          "text": "receipt"
+          "text": "I hang the shirts on the line."
         },
         {
           "responseId": "en:lesson-06:session-08:i02:r2",
-          "text": "parcel"
+          "text": "I hang the socks on the line."
         },
         {
           "responseId": "en:lesson-06:session-08:i02:r3",
-          "text": "folder"
+          "text": "I have the shirts on the line."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i02:audio",
-          "transcript": "receipt"
+          "transcript": "I hang the shirts on the line."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-08:i02:r1",
-            "targetText": "receipt",
+            "targetText": "I hang the shirts on the line.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-08:i02:r2",
-            "targetText": "parcel",
+            "targetText": "I hang the socks on the line.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-08:i02:r3",
-            "targetText": "folder",
+            "targetText": "I have the shirts on the line.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-08:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `receipt`, а в этом варианте — `parcel`.",
-              "uk": "У записі перше слово — `receipt`, а в цьому варіанті — `parcel`."
+              "ru": "В записи вещь — `shirts`, рубашки, а в этом варианте — `socks`, носки.",
+              "uk": "У записі річ — `shirts`, сорочки, а в цьому варіанті — `socks`, шкарпетки."
             }
           },
           {
             "responseId": "en:lesson-06:session-08:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `receipt`, а в этом варианте — `folder`.",
-              "uk": "У записі перше слово — `receipt`, а в цьому варіанті — `folder`."
+              "ru": "В записи `hang` — вешать, а в этом варианте `have` — иметь.",
+              "uk": "У записі `hang` — вішати, а в цьому варіанті `have` — мати."
             }
           }
         ],
@@ -114,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-08:word:sort",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sort",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-08:word:sort:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sort",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-08:word:sort:audio",
+          "transcript": "sort"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-08:word:sort:r1",
+            "targetText": "sort",
+            "meaningByLocale": {
+              "ru": "сортировать. They sort the socks. — «Они сортируют носки». О том, как раскладывают вещи по парам или по группам.",
+              "uk": "сортувати. They sort the socks. — «Вони сортують шкарпетки». Про те, як розкладають речі за парами чи групами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sort",
+          "definitionByLocale": {
+            "ru": "сортировать. They sort the socks. — «Они сортируют носки». О том, как раскладывают вещи по парам или по группам.",
+            "uk": "сортувати. They sort the socks. — «Вони сортують шкарпетки». Про те, як розкладають речі за парами чи групами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-08:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Та посылка твоя»",
+      "prompt": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-08:i03:r1",
-          "text": "yours"
+          "text": "sort"
         },
         {
           "responseId": "en:lesson-06:session-08:i03:r2",
-          "text": "your"
+          "text": "are sort"
         },
         {
           "responseId": "en:lesson-06:session-08:i03:r3",
-          "text": "you"
+          "text": "is sort"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Та посылка твоя»",
+      "accessibilityLabel": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Та посылка твоя»",
-          "uk": "Скажіть «Та посилка твоя»"
+          "ru": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
+          "uk": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово"
         },
-        "gappedTargetPhrase": "That parcel is ___.",
+        "gappedTargetPhrase": "They ___ the socks.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-08:i03:r1",
-            "text": "yours"
+            "text": "sort"
           },
           {
             "responseId": "en:lesson-06:session-08:i03:r2",
-            "text": "your"
+            "text": "are sort"
           },
           {
             "responseId": "en:lesson-06:session-08:i03:r3",
-            "text": "you"
+            "text": "is sort"
           }
         ],
-        "testedDimension": "Скажите «Та посылка твоя»",
+        "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-08:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Та посылка твоя»",
+            "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи после слова «твой» нужно `yours`.",
-              "uk": "Без назви речі після слова «твій» потрібно `yours`."
+              "ru": "После `They` сразу ставим `sort`, без `are`.",
+              "uk": "Після `They` одразу ставимо `sort`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-08:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Та посылка твоя»",
+            "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`you` — ты или вы; «твоя» здесь — `yours`.",
-              "uk": "`you` — ти або ви; «твоя» тут — `yours`."
+              "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They sort`.",
+              "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They sort`."
             }
           }
         ]
@@ -184,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-08:i04:p1",
-            "target": "folder",
+            "target": "fold",
             "meaningByLocale": {
-              "ru": "папка",
-              "uk": "папка"
+              "ru": "складывать",
+              "uk": "складати"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i04:p2",
-            "target": "parcel",
+            "target": "hang",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "вешать",
+              "uk": "вішати"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i04:p3",
-            "target": "receipt",
+            "target": "sort",
             "meaningByLocale": {
-              "ru": "чек",
-              "uk": "чек"
+              "ru": "сортировать",
+              "uk": "сортувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i04:p4",
-            "target": "keychain",
+            "target": "peg",
             "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
+              "ru": "прищепка",
+              "uk": "прищіпка"
             }
           }
         ],
         "leftColumn": [
-          "folder",
-          "parcel",
-          "receipt",
-          "keychain"
+          "fold",
+          "hang",
+          "sort",
+          "peg"
         ],
         "rightColumn": [
-          "папка",
-          "посылка",
-          "чек",
-          "брелок"
+          "складывать",
+          "вешать",
+          "сортировать",
+          "прищепка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,31 +396,76 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-08:word:peg",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — peg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-08:word:peg:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — peg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-08:word:peg:audio",
+          "transcript": "peg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-08:word:peg:r1",
+            "targetText": "peg",
+            "meaningByLocale": {
+              "ru": "прищепка. The peg is on the line. — «Прищепка на верёвке». Маленькая зажимка: ею держат бельё на верёвке.",
+              "uk": "прищіпка. The peg is on the line. — «Прищіпка на мотузці». Маленький затискач: ним тримають білизну на мотузці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peg",
+          "definitionByLocale": {
+            "ru": "прищепка. The peg is on the line. — «Прищепка на верёвке». Маленькая зажимка: ею держат бельё на верёвке.",
+            "uk": "прищіпка. The peg is on the line. — «Прищіпка на мотузці». Маленький затискач: ним тримають білизну на мотузці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-08:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i05:audio",
-          "transcript": "This is my folder."
+          "transcript": "The peg is on the line."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is my folder.",
+        "hiddenTargetPhrase": "The peg is on the line.",
         "orderedTokens": [
-          "This",
+          "The",
+          "peg",
           "is",
-          "my",
-          "folder"
+          "on",
+          "the",
+          "line"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -289,10 +474,10 @@
           {
             "responseId": "en:lesson-06:session-08:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте соседа и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is my folder.`",
-              "uk": "тут потрібно `is` — `This is my folder.`"
+              "ru": "здесь нужно `is` — `The peg is on the line.`",
+              "uk": "тут потрібно `is` — `The peg is on the line.`"
             }
           }
         ],
@@ -305,30 +490,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это чек?»",
+      "prompt": "Вы нашли на верёвке прищепку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это прищепка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это чек?»",
+      "accessibilityLabel": "Вы нашли на верёвке прищепку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это прищепка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose receipt is this?",
+        "targetPhrase": "Whose peg is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это чек?»",
-          "uk": "Запитайте «Чий це чек?»"
+          "ru": "Вы нашли на верёвке прищепку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это прищепка?»",
+          "uk": "Ви знайшли на мотузці прищіпку й питаєте сусіда, чия вона. Поставте питання: «Чия це прищіпка?»"
         },
         "orderedTokens": [
           "Whose",
-          "receipt",
+          "peg",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-08:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы нашли на верёвке прищепку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это прищепка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose peg is this?`",
+              "uk": "тут потрібно `Whose` — `Whose peg is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -338,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Закладка в книге»",
+      "prompt": "Сестра спрашивает, что вы делаете с полотенцами. Скажите: «Мы складываем полотенца»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Закладка в книге»",
+      "accessibilityLabel": "Сестра спрашивает, что вы делаете с полотенцами. Скажите: «Мы складываем полотенца»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i07:audio",
-          "transcript": "The bookmark is in the book."
+          "transcript": "We fold the towels."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bookmark is in the book.",
+        "targetPhrase": "We fold the towels.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -371,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Брелок внутри ящика. Выберите предлог",
+      "prompt": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-08:i08:r1",
-          "text": "in"
+          "text": "hang"
         },
         {
           "responseId": "en:lesson-06:session-08:i08:r2",
-          "text": "under"
+          "text": "am hang"
         },
         {
           "responseId": "en:lesson-06:session-08:i08:r3",
-          "text": "behind"
+          "text": "are hang"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Брелок внутри ящика. Выберите предлог",
+      "accessibilityLabel": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Брелок внутри ящика. Выберите предлог",
-          "uk": "Брелок усередині шухляди. Виберіть прийменник"
+          "ru": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+          "uk": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово"
         },
-        "gappedTargetPhrase": "The keychain is ___ the drawer.",
+        "gappedTargetPhrase": "I ___ the shirts on the line.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-08:i08:r1",
-            "text": "in"
+            "text": "hang"
           },
           {
             "responseId": "en:lesson-06:session-08:i08:r2",
-            "text": "under"
+            "text": "am hang"
           },
           {
             "responseId": "en:lesson-06:session-08:i08:r3",
-            "text": "behind"
+            "text": "are hang"
           }
         ],
-        "testedDimension": "Брелок внутри ящика. Выберите предлог",
+        "testedDimension": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-08:i08:r2",
             "correct": false,
-            "testedDimension": "Брелок внутри ящика. Выберите предлог",
+            "testedDimension": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Внутри — `in`; `under` — под ящиком.",
-              "uk": "Усередині — `in`; `under` — під шухлядою."
+              "ru": "После `I` сразу ставим `hang`, без `am`.",
+              "uk": "Після `I` одразу ставимо `hang`, без `am`."
             }
           },
           {
             "responseId": "en:lesson-06:session-08:i08:r3",
             "correct": false,
-            "testedDimension": "Брелок внутри ящика. Выберите предлог",
+            "testedDimension": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Внутри — `in`; `behind` — за ящиком.",
-              "uk": "Усередині — `in`; `behind` — за шухлядою."
+              "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I hang`.",
+              "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I hang`."
             }
           }
         ]
@@ -440,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей календарь здесь",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-08:i09:r1",
-          "text": "My calendar is here."
+          "text": "They sort the socks."
         },
         {
           "responseId": "en:lesson-06:session-08:i09:r2",
-          "text": "Your calendar is here."
+          "text": "They sort the shirts."
         },
         {
           "responseId": "en:lesson-06:session-08:i09:r3",
-          "text": "His calendar is here."
+          "text": "They wash the socks."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей календарь здесь",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i09:audio",
-          "transcript": "My calendar is here."
+          "transcript": "They sort the socks."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-08:i09:r1",
-            "targetText": "My calendar is here.",
+            "targetText": "They sort the socks.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-08:i09:r2",
-            "targetText": "Your calendar is here.",
+            "targetText": "They sort the shirts.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-08:i09:r3",
-            "targetText": "His calendar is here.",
+            "targetText": "They wash the socks.",
             "meaningByLocale": null
           }
         ],
@@ -493,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-08:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей календарь здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи вещь — `socks`, носки, а в этом варианте — `shirts`, рубашки.",
+              "uk": "У записі річ — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки."
             }
           },
           {
             "responseId": "en:lesson-06:session-08:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей календарь здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи `sort` — сортировать, а в этом варианте `wash` — мыть.",
+              "uk": "У записі `sort` — сортувати, а в цьому варіанті `wash` — мити."
             }
           }
         ],
@@ -516,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -530,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-08:i10:p1",
-            "target": "bookmark",
+            "target": "sort",
             "meaningByLocale": {
-              "ru": "закладка",
-              "uk": "закладка"
+              "ru": "сортировать",
+              "uk": "сортувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i10:p2",
-            "target": "calendar",
+            "target": "sock",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "носок",
+              "uk": "шкарпетка"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i10:p3",
-            "target": "neighbourhood",
+            "target": "towel",
             "meaningByLocale": {
-              "ru": "район",
-              "uk": "район"
+              "ru": "полотенце",
+              "uk": "рушник"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i10:p4",
-            "target": "work",
+            "target": "peg",
             "meaningByLocale": {
-              "ru": "работать",
-              "uk": "працювати"
+              "ru": "прищепка",
+              "uk": "прищіпка"
             }
           }
         ],
         "leftColumn": [
-          "bookmark",
-          "calendar",
-          "neighbourhood",
-          "work"
+          "sort",
+          "sock",
+          "towel",
+          "peg"
         ],
         "rightColumn": [
-          "закладка",
-          "календарь",
-          "район",
-          "работать"
+          "сортировать",
+          "носок",
+          "полотенце",
+          "прищепка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -589,32 +786,34 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте сестру и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте сестру и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i11:audio",
-          "transcript": "The parcel is on the desk."
+          "transcript": "We bake bread and we wash the plates."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The parcel is on the desk.",
+        "hiddenTargetPhrase": "We bake bread and we wash the plates.",
         "orderedTokens": [
-          "The",
-          "parcel",
-          "is",
-          "on",
+          "We",
+          "bake",
+          "bread",
+          "and",
+          "we",
+          "wash",
           "the",
-          "desk"
+          "plates"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -623,10 +822,10 @@
           {
             "responseId": "en:lesson-06:session-08:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте сестру и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The parcel is on the desk.`",
-              "uk": "тут потрібно `is` — `The parcel is on the desk.`"
+              "ru": "здесь нужно `bake` — `We bake bread and we wash the plates.`",
+              "uk": "тут потрібно `bake` — `We bake bread and we wash the plates.`"
             }
           }
         ],
@@ -639,27 +838,32 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Та папка моя»",
+      "prompt": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Та папка моя»",
+      "accessibilityLabel": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "That folder is mine.",
+        "targetPhrase": "They carry the towels and they fold the sheets.",
         "localizedMeaning": {
-          "ru": "Скажите «Та папка моя»",
-          "uk": "Скажіть «Та папка моя»"
+          "ru": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
+          "uk": "Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»"
         },
         "orderedTokens": [
-          "That",
-          "folder",
-          "is",
-          "mine"
+          "They",
+          "carry",
+          "the",
+          "towels",
+          "and",
+          "they",
+          "fold",
+          "the",
+          "sheets"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -668,10 +872,10 @@
           {
             "responseId": "en:lesson-06:session-08:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Та папка моя»",
+            "testedDimension": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That folder is mine.`",
-              "uk": "тут потрібно `is` — `That folder is mine.`"
+              "ru": "здесь нужно `carry` — `They carry the towels and they fold the sheets.`",
+              "uk": "тут потрібно `carry` — `They carry the towels and they fold the sheets.`"
             }
           }
         ],
@@ -684,25 +888,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «У меня есть закладка»",
+      "prompt": "Сосед спрашивает, что вы делаете во дворе. Скажите: «Я вешаю рубашки на верёвку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «У меня есть закладка»",
+      "accessibilityLabel": "Сосед спрашивает, что вы делаете во дворе. Скажите: «Я вешаю рубашки на верёвку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i13:audio",
-          "transcript": "I have a bookmark."
+          "transcript": "I hang the shirts on the line."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have a bookmark.",
+        "targetPhrase": "I hang the shirts on the line.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -717,67 +921,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я работаю здесь»",
+      "prompt": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-08:i14:r1",
-          "text": "work"
+          "text": "fold"
         },
         {
           "responseId": "en:lesson-06:session-08:i14:r2",
-          "text": "am work"
+          "text": "are fold"
         },
         {
           "responseId": "en:lesson-06:session-08:i14:r3",
-          "text": "is work"
+          "text": "am fold"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я работаю здесь»",
+      "accessibilityLabel": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я работаю здесь»",
-          "uk": "Скажіть «Я працюю тут»"
+          "ru": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
+          "uk": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ here.",
+        "gappedTargetPhrase": "We ___ the towels.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-08:i14:r1",
-            "text": "work"
+            "text": "fold"
           },
           {
             "responseId": "en:lesson-06:session-08:i14:r2",
-            "text": "am work"
+            "text": "are fold"
           },
           {
             "responseId": "en:lesson-06:session-08:i14:r3",
-            "text": "is work"
+            "text": "am fold"
           }
         ],
-        "testedDimension": "Скажите «Я работаю здесь»",
+        "testedDimension": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-08:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я работаю здесь»",
+            "testedDimension": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `I work`, без `am`.",
-              "uk": "Кажемо `I work`, без `am`."
+              "ru": "После `We` сразу ставим `fold`, без `are`.",
+              "uk": "Після `We` одразу ставимо `fold`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-08:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я работаю здесь»",
+            "testedDimension": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `I work`, без `is`.",
-              "uk": "Кажемо `I work`, без `is`."
+              "ru": "`am` ставится только после `I`; здесь нужно `We fold`.",
+              "uk": "`am` ставиться тільки після `I`; тут потрібно `We fold`."
             }
           }
         ]
@@ -786,51 +990,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где чек",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-08:i15:r1",
-          "text": "The receipt is here."
+          "text": "Whose peg is this?"
         },
         {
           "responseId": "en:lesson-06:session-08:i15:r2",
-          "text": "The receipt is there."
+          "text": "Whose pegs are these?"
         },
         {
           "responseId": "en:lesson-06:session-08:i15:r3",
-          "text": "The receipt is upstairs."
+          "text": "Whose sock is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где чек",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i15:audio",
-          "transcript": "The receipt is here."
+          "transcript": "Whose peg is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-08:i15:r1",
-            "targetText": "The receipt is here.",
+            "targetText": "Whose peg is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-08:i15:r2",
-            "targetText": "The receipt is there.",
+            "targetText": "Whose pegs are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-08:i15:r3",
-            "targetText": "The receipt is upstairs.",
+            "targetText": "Whose sock is this?",
             "meaningByLocale": null
           }
         ],
@@ -839,19 +1043,19 @@
           {
             "responseId": "en:lesson-06:session-08:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где чек",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи прищепка одна — `peg is this`, а в этом варианте несколько — `pegs are these`.",
+              "uk": "У записі прищіпка одна — `peg is this`, а в цьому варіанті кілька — `pegs are these`."
             }
           },
           {
             "responseId": "en:lesson-06:session-08:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где чек",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи вещь — `peg`, прищепка, а в этом варианте — `sock`, носок.",
+              "uk": "У записі річ — `peg`, прищіпка, а в цьому варіанті — `sock`, шкарпетка."
             }
           }
         ],
@@ -862,7 +1066,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -876,48 +1080,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-08:i16:p1",
-            "target": "keychain",
+            "target": "peg",
             "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
+              "ru": "прищепка",
+              "uk": "прищіпка"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i16:p2",
-            "target": "calendar",
+            "target": "fold",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "складывать",
+              "uk": "складати"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i16:p3",
-            "target": "neighbourhood",
+            "target": "hang",
             "meaningByLocale": {
-              "ru": "район",
-              "uk": "район"
+              "ru": "вешать",
+              "uk": "вішати"
             }
           },
           {
             "pairId": "en:lesson-06:session-08:i16:p4",
-            "target": "work",
+            "target": "line",
             "meaningByLocale": {
-              "ru": "работать",
-              "uk": "працювати"
+              "ru": "верёвка для белья",
+              "uk": "мотузка для білизни"
             }
           }
         ],
         "leftColumn": [
-          "keychain",
-          "calendar",
-          "neighbourhood",
-          "work"
+          "peg",
+          "fold",
+          "hang",
+          "line"
         ],
         "rightColumn": [
-          "брелок",
-          "календарь",
-          "район",
-          "работать"
+          "прищепка",
+          "складывать",
+          "вешать",
+          "верёвка для белья"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -935,25 +1139,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На столе остался календарь. Спросите Тома «Чей это календарь?»",
+      "prompt": "Подруга спрашивает, чем вы с сестрой заняты. Расскажите о двух делах: «Мы складываем полотенца и мы вешаем рубашки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-08:i17:audio"
       ],
-      "accessibilityLabel": "На столе остался календарь. Спросите Тома «Чей это календарь?»",
+      "accessibilityLabel": "Подруга спрашивает, чем вы с сестрой заняты. Расскажите о двух делах: «Мы складываем полотенца и мы вешаем рубашки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-08:i17:audio",
-          "transcript": "Whose calendar is this?"
+          "transcript": "We fold the towels and we hang the shirts."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose calendar is this?",
+        "targetPhrase": "We fold the towels and we hang the shirts.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -975,11 +1179,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8375bb90697b4b3d941ea8cfad1efddc847bdb1d6ee99bc4375354290aed4126"
+  "learnerFingerprint": "09c9c36cd728bfb79c36945b900e72695ca889d5b0df2d346bb00695aca9af5d"
 }

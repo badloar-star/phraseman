@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-19:word:draw",
+    "correctText": "draw",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-19:i01",
-    "correctText": "I draw on my tablet.",
+    "correctText": "She draws at the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-19:word:listen",
+    "correctText": "listen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i02",
-    "correctText": "draw",
+    "correctText": "He listens to the teacher.",
     "correctResponseId": "en:lesson-06:session-19:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-19:word:lesson",
+    "correctText": "lesson",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-19:i03",
-    "correctText": "draws",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-19:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-19:i04",
-    "correctText": "en:lesson-06:session-19:i04:p1=draw\nen:lesson-06:session-19:i04:p2=guilty\nen:lesson-06:session-19:i04:p3=soup\nen:lesson-06:session-19:i04:p4=tablet",
+    "correctText": "en:lesson-06:session-19:i04:p1=draw\nen:lesson-06:session-19:i04:p2=listen\nen:lesson-06:session-19:i04:p3=lesson\nen:lesson-06:session-19:i04:p4=ask",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-19:word:ask",
+    "correctText": "ask",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i05",
-    "correctText": "Anna draws at home.",
+    "correctText": "He asks the teacher.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i06",
-    "correctText": "He learns English.",
+    "correctText": "She learns English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i07",
-    "correctText": "I am guilty.",
+    "correctText": "The lesson is difficult.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i08",
-    "correctText": "draw",
+    "correctText": "draws",
     "correctResponseId": "en:lesson-06:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-19:i09",
-    "correctText": "She learns English.",
+    "correctText": "She draws at home.",
     "correctResponseId": "en:lesson-06:session-19:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-19:i10",
-    "correctText": "en:lesson-06:session-19:i10:p1=draw\nen:lesson-06:session-19:i10:p2=learn\nen:lesson-06:session-19:i10:p3=tablet\nen:lesson-06:session-19:i10:p4=guilty",
+    "correctText": "en:lesson-06:session-19:i10:p1=lesson\nen:lesson-06:session-19:i10:p2=ask\nen:lesson-06:session-19:i10:p3=draw\nen:lesson-06:session-19:i10:p4=learn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i11",
-    "correctText": "The soup is hot.",
+    "correctText": "My son draws at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i12",
-    "correctText": "Whose tablet is this?",
+    "correctText": "Whose pencil is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i13",
-    "correctText": "They learn English.",
+    "correctText": "She listens to the teacher.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i14",
-    "correctText": "learns",
+    "correctText": "asks",
     "correctResponseId": "en:lesson-06:session-19:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-19:i15",
-    "correctText": "My tablet is here.",
+    "correctText": "The lesson is difficult.",
     "correctResponseId": "en:lesson-06:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-19:i16",
-    "correctText": "en:lesson-06:session-19:i16:p1=draw\nen:lesson-06:session-19:i16:p2=guilty\nen:lesson-06:session-19:i16:p3=soup\nen:lesson-06:session-19:i16:p4=learn",
+    "correctText": "en:lesson-06:session-19:i16:p1=listen\nen:lesson-06:session-19:i16:p2=lesson\nen:lesson-06:session-19:i16:p3=ask\nen:lesson-06:session-19:i16:p4=draw",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-19:i17",
-    "correctText": "She draws at home.",
+    "correctText": "He draws at the table.",
     "correctResponseId": null
   }
 ]

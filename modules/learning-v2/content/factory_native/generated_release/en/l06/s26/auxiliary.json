@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-26:intro1:r2": {
-          "ru": "После `she` — `jogs`, с `s`.",
-          "uk": "Після `she` — `jogs`, з `s`."
+          "ru": "После we слово остаётся jog, без s.",
+          "uk": "Після we слово лишається jog, без s."
         },
         "en:lesson-06:session-26:intro1:r3": {
-          "ru": "Говорим `She jogs`, без `is`.",
-          "uk": "Кажемо `She jogs`, без `is`."
+          "ru": "Здесь действие: We jog, без are.",
+          "uk": "Тут дія: We jog, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-26:intro2:r2": {
-          "ru": "После `he` — `smiles`, с `s`.",
-          "uk": "Після `he` — `smiles`, з `s`."
+          "ru": "После he нужно jogs, с s.",
+          "uk": "Після he потрібно jogs, з s."
         },
         "en:lesson-06:session-26:intro2:r3": {
-          "ru": "Говорим `He smiles`, без `is`.",
-          "uk": "Кажемо `He smiles`, без `is`."
+          "ru": "Здесь действие: He jogs, без is.",
+          "uk": "Тут дія: He jogs, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-26:intro3:r2": {
-          "ru": "Здесь нужно `He is careless`.",
-          "uk": "Тут потрібно `He is careless`."
+          "ru": "Без is предложение не получается: нужно The lap is.",
+          "uk": "Без is речення не виходить: потрібно The lap is."
         },
         "en:lesson-06:session-26:intro3:r3": {
-          "ru": "С `he` — `is`, не `are`.",
-          "uk": "З `he` — `is`, не `are`."
+          "ru": "Круг один, поэтому нужно is, а не are.",
+          "uk": "Коло одне, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c23d53e9f05c35cf0f28c981fc98b989aa514758a5e2bbc1bfc701b39c719acc"
+  "auxiliaryFingerprint": "c81d398e30a9257962b04619c74b03c343a58550e77f2b843a937ec0dba8045f"
 }

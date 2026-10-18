@@ -1,82 +1,102 @@
 [
   {
+    "interactionId": "en:lesson-06:session-23:word:teach",
+    "correctText": "teach",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-23:i01",
-    "correctText": "I teach English.",
+    "correctText": "He teaches English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:word:catch",
+    "correctText": "catch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i02",
-    "correctText": "teach",
+    "correctText": "She catches the bus.",
     "correctResponseId": "en:lesson-06:session-23:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-23:word:exam",
+    "correctText": "exam",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-23:i03",
-    "correctText": "teaches",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-23:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-23:i04",
-    "correctText": "en:lesson-06:session-23:i04:p1=teach\nen:lesson-06:session-23:i04:p2=valid\nen:lesson-06:session-23:i04:p3=cheese\nen:lesson-06:session-23:i04:p4=camera",
+    "correctText": "en:lesson-06:session-23:i04:p1=teach\nen:lesson-06:session-23:i04:p2=catch\nen:lesson-06:session-23:i04:p3=exam\nen:lesson-06:session-23:i04:p4=answer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-23:word:answer",
+    "correctText": "answer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i05",
-    "correctText": "Anna teaches here.",
+    "correctText": "He answers the teacher.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i06",
-    "correctText": "He sings here.",
+    "correctText": "He learns English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i07",
-    "correctText": "The ticket is valid.",
+    "correctText": "The exam is difficult.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i08",
-    "correctText": "teach",
+    "correctText": "catches",
     "correctResponseId": "en:lesson-06:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-23:i09",
-    "correctText": "My camera is here.",
+    "correctText": "She teaches English.",
     "correctResponseId": "en:lesson-06:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-23:i10",
-    "correctText": "en:lesson-06:session-23:i10:p1=teach\nen:lesson-06:session-23:i10:p2=sing\nen:lesson-06:session-23:i10:p3=camera\nen:lesson-06:session-23:i10:p4=valid",
+    "correctText": "en:lesson-06:session-23:i10:p1=exam\nen:lesson-06:session-23:i10:p2=answer\nen:lesson-06:session-23:i10:p3=teach\nen:lesson-06:session-23:i10:p4=learn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i11",
-    "correctText": "The cheese is in the fridge.",
+    "correctText": "My sister teaches English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i12",
-    "correctText": "Whose camera is this?",
+    "correctText": "Where is the centre?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i13",
-    "correctText": "They sing here.",
+    "correctText": "She catches the bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-23:i14",
-    "correctText": "sings",
+    "correctText": "answers",
     "correctResponseId": "en:lesson-06:session-23:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-23:i15",
-    "correctText": "The cheese is fresh.",
+    "correctText": "The exam is difficult.",
     "correctResponseId": "en:lesson-06:session-23:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-23:i16",
-    "correctText": "en:lesson-06:session-23:i16:p1=teach\nen:lesson-06:session-23:i16:p2=cheese\nen:lesson-06:session-23:i16:p3=valid\nen:lesson-06:session-23:i16:p4=sing",
+    "correctText": "en:lesson-06:session-23:i16:p1=catch\nen:lesson-06:session-23:i16:p2=teach\nen:lesson-06:session-23:i16:p3=answer\nen:lesson-06:session-23:i16:p4=exam",
     "correctResponseId": null
   },
   {

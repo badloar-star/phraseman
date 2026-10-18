@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-09",
   "learningOutcomeByLocale": {
-    "ru": "сказать, когда начинается работа, от своего лица и от лица группы",
-    "uk": "сказати, коли починається робота, від свого імені й від імені групи"
+    "ru": "сказать, во сколько вы начинаете, от своего лица и от лица группы",
+    "uk": "сказати, о котрій ви починаєте, від свого імені й від імені групи"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Во сколько начинаем",
-        "uk": "О котрій починаємо"
+        "ru": "Первый день в клинике",
+        "uk": "Перший день у клініці"
       },
       "bodyByLocale": {
-        "ru": "`start` — «начинать». `I start at nine` — «Я начинаю в девять». Перед часом ставим `at`: `at nine` — «в девять». Речь здесь о начале рабочего дня. Кофе в восемь — ещё не начало работы, хотя иногда самая важная подготовка.",
-        "uk": "`start` — «починати». `I start at nine` — «Я починаю о дев’ятій». Перед годиною ставимо `at`: `at nine` — «о дев’ятій». Тут ідеться про початок робочого дня. Кава о восьмій — ще не початок роботи, хоча іноді найважливіша підготовка."
+        "ru": "В первый рабочий день администратор клиники спрашивает, во сколько вы приходите. Вы работаете во вторую половину дня и приходите к двум. start — «начинать»: I start at two — «Я начинаю в два». Перед временем ставим at: at two — «в два», at three — «в три».",
+        "uk": "У перший робочий день адміністратор клініки питає, о котрій ви приходите. Ви працюєте в другій половині дня й приходите на другу. start — «починати»: I start at two — «Я починаю о другій». Перед часом ставимо at: at two — «о другій», at three — «о третій»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-09:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я начинаю в девять».",
-          "uk": "Скажіть «Я починаю о дев’ятій»."
+          "ru": "Администратор клиники спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в два».",
+          "uk": "Адміністратор клініки питає, о котрій ви починаєте. Скажіть: «Я починаю о другій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-09:intro1:r1",
-              "text": "I start at nine."
+              "text": "I start at two."
             },
             {
               "responseId": "en:lesson-06:session-09:intro1:r2",
-              "text": "I am start at nine."
+              "text": "I am start at two."
             },
             {
               "responseId": "en:lesson-06:session-09:intro1:r3",
-              "text": "I start at ten."
+              "text": "I starts at two."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-09:intro1:r1",
-              "text": "I start at nine."
+              "text": "I start at two."
             },
             {
               "responseId": "en:lesson-06:session-09:intro1:r2",
-              "text": "I am start at nine."
+              "text": "I am start at two."
             },
             {
               "responseId": "en:lesson-06:session-09:intro1:r3",
-              "text": "I start at ten."
+              "text": "I starts at two."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я начинаю в девять».",
-          "uk": "Скажіть «Я починаю о дев’ятій»."
+          "ru": "Администратор клиники спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в два».",
+          "uk": "Адміністратор клініки питає, о котрій ви починаєте. Скажіть: «Я починаю о другій»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Я, ты, мы, они",
-        "uk": "Я, ти, ми, вони"
+        "ru": "Расписание на стене",
+        "uk": "Розклад на стіні"
       },
       "bodyByLocale": {
-        "ru": "После `I`, `you`, `we`, `they` слово действия остаётся таким: `start`, `work`. `We start at nine` — «Мы начинаем в девять». `They work here` — «Они работают здесь». Не добавляйте `s` и не вставляйте `am`, `is`, `are` перед этими действиями.",
-        "uk": "Після `I`, `you`, `we`, `they` слово дії залишається таким: `start`, `work`. `We start at nine` — «Ми починаємо о дев’ятій». `They work here` — «Вони працюють тут». Не додавайте `s` і не вставляйте `am`, `is`, `are` перед цими діями."
+        "ru": "Медсестра показывает расписание на стене клиники. Она и стоматолог работают во вторую смену, а вы смотрите, во сколько она начинается. shift — «смена», рабочие часы. They start the shift at three — «Они начинают смену в три». После they слово start остаётся без s.",
+        "uk": "Медсестра показує розклад на стіні клініки. Вона й стоматолог працюють у другу зміну, а ви дивитеся, о котрій вона починається. shift — «зміна», робочі години. They start the shift at three — «Вони починають зміну о третій». Після they слово start лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-09:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Они работают здесь».",
-          "uk": "Скажіть «Вони працюють тут»."
+          "ru": "Вы читаете расписание. Скажите: «Они начинают смену в три».",
+          "uk": "Ви читаєте розклад. Скажіть: «Вони починають зміну о третій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-09:intro2:r1",
-              "text": "They work here."
+              "text": "They start the shift at three."
             },
             {
               "responseId": "en:lesson-06:session-09:intro2:r2",
-              "text": "They works here."
+              "text": "They starts the shift at three."
             },
             {
               "responseId": "en:lesson-06:session-09:intro2:r3",
-              "text": "They are work here."
+              "text": "They are start the shift at three."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-09:intro2:r1",
-              "text": "They work here."
+              "text": "They start the shift at three."
             },
             {
               "responseId": "en:lesson-06:session-09:intro2:r2",
-              "text": "They works here."
+              "text": "They starts the shift at three."
             },
             {
               "responseId": "en:lesson-06:session-09:intro2:r3",
-              "text": "They are work here."
+              "text": "They are start the shift at three."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Они работают здесь».",
-          "uk": "Скажіть «Вони працюють тут»."
+          "ru": "Вы читаете расписание. Скажите: «Они начинают смену в три».",
+          "uk": "Ви читаєте розклад. Скажіть: «Вони починають зміну о третій»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Работа и вещи",
-        "uk": "Робота й речі"
+        "ru": "Запись у стоматолога",
+        "uk": "Запис до стоматолога"
       },
       "bodyByLocale": {
-        "ru": "`dentist` — «стоматолог», `charger` — «зарядное устройство», `possible` — «возможный». `I am a dentist` — «Я стоматолог»: здесь называем профессию, поэтому нужно `am`. `We have a charger` — «У нас есть зарядное устройство». `It is possible` — «Это возможно».",
-        "uk": "`dentist` — «стоматолог», `charger` — «зарядний пристрій», `possible` — «можливий». `I am a dentist` — «Я стоматолог»: тут називаємо професію, тому потрібно `am`. `We have a charger` — «У нас є зарядний пристрій». `It is possible` — «Це можливо»."
+        "ru": "Вы пришли в клинику на приём к стоматологу. У стойки администратор спрашивает вас, на какое время вы записаны. appointment — «приём, запись к врачу»: I have an appointment at four — «У меня приём в четыре». Перед appointment ставим an, а не a.",
+        "uk": "Ви прийшли до клініки на прийом до стоматолога. Біля стійки адміністратор питає вас, на котру годину ви записані. appointment — «прийом, запис до лікаря»: I have an appointment at four — «У мене прийом о четвертій». Перед appointment ставимо an, а не a."
       },
       "question": {
         "interactionId": "en:lesson-06:session-09:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я стоматолог».",
-          "uk": "Скажіть «Я стоматолог»."
+          "ru": "Администратор спрашивает, на какое время вы записаны. Скажите: «У меня приём в четыре».",
+          "uk": "Адміністратор питає, на яку годину ви записані. Скажіть: «У мене прийом о четвертій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-09:intro3:r1",
-              "text": "I am a dentist."
+              "text": "I have an appointment at four."
             },
             {
               "responseId": "en:lesson-06:session-09:intro3:r2",
-              "text": "I a dentist."
+              "text": "I has an appointment at four."
             },
             {
               "responseId": "en:lesson-06:session-09:intro3:r3",
-              "text": "I work a dentist."
+              "text": "I have a appointment at four."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-09:intro3:r1",
-              "text": "I am a dentist."
+              "text": "I have an appointment at four."
             },
             {
               "responseId": "en:lesson-06:session-09:intro3:r2",
-              "text": "I a dentist."
+              "text": "I has an appointment at four."
             },
             {
               "responseId": "en:lesson-06:session-09:intro3:r3",
-              "text": "I work a dentist."
+              "text": "I have a appointment at four."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я стоматолог».",
-          "uk": "Скажіть «Я стоматолог»."
+          "ru": "Администратор спрашивает, на какое время вы записаны. Скажите: «У меня приём в четыре».",
+          "uk": "Адміністратор питає, на яку годину ви записані. Скажіть: «У мене прийом о четвертій»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "70d84f08426bdb37b11191cbdb1590e97efc3d6c4315a36b5ab450517843e2f7"
+  "introFingerprint": "fa26019fa482d914e70f4d19e46f349407dba2f126e714dce96b01c29a8fc290"
 }

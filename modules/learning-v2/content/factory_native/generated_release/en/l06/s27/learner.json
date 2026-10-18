@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-27:i01",
+      "interactionId": "en:lesson-06:session-27:word:exercise",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exercise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-27:word:exercise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exercise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-27:word:exercise:audio",
+          "transcript": "exercise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-27:word:exercise:r1",
+            "targetText": "exercise",
+            "meaningByLocale": {
+              "ru": "тренироваться, делать упражнения. We exercise on the mat. — «Мы тренируемся на коврике». О привычных занятиях для тела.",
+              "uk": "тренуватися, робити вправи. We exercise on the mat. — «Ми тренуємося на килимку». Про звичні заняття для тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exercise",
+          "definitionByLocale": {
+            "ru": "тренироваться, делать упражнения. We exercise on the mat. — «Мы тренируемся на коврике». О привычных занятиях для тела.",
+            "uk": "тренуватися, робити вправи. We exercise on the mat. — «Ми тренуємося на килимку». Про звичні заняття для тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-27:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Расскажите о привычке: «Я тренируюсь дома»",
+      "prompt": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите о привычке: «Я тренируюсь дома»",
+      "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I exercise at home.",
+        "targetPhrase": "We exercise at home.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычке: «Я тренируюсь дома»",
-          "uk": "Розкажіть про звичку: «Я тренуюся вдома»"
+          "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
+          "uk": "Подруга питає про вас із братом. Скажіть: «Ми тренуємося вдома»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "exercise",
           "at",
           "home"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "exercises"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-27:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `exercise` — `We exercise at home.`",
+              "uk": "тут потрібно `exercise` — `We exercise at home.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i02:r1",
-          "text": "exercise"
+          "text": "She exercises at home."
         },
         {
           "responseId": "en:lesson-06:session-27:i02:r2",
-          "text": "read"
+          "text": "She exercises at work."
         },
         {
           "responseId": "en:lesson-06:session-27:i02:r3",
-          "text": "teach"
+          "text": "He exercises at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i02:audio",
-          "transcript": "exercise"
+          "transcript": "She exercises at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-27:i02:r1",
-            "targetText": "exercise",
+            "targetText": "She exercises at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-27:i02:r2",
-            "targetText": "read",
+            "targetText": "She exercises at work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-27:i02:r3",
-            "targetText": "teach",
+            "targetText": "He exercises at home.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +146,19 @@
           {
             "responseId": "en:lesson-06:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `exercise`, а в этом варианте — `read`.",
-              "uk": "У записі перше слово — `exercise`, а в цьому варіанті — `read`."
+              "ru": "В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.",
+              "uk": "У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі."
             }
           },
           {
             "responseId": "en:lesson-06:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `exercise`, а в этом варианте — `teach`.",
-              "uk": "У записі перше слово — `exercise`, а в цьому варіанті — `teach`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -114,11 +169,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она тренируется дома»",
+      "prompt": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i03:r1",
@@ -135,14 +190,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она тренируется дома»",
+      "accessibilityLabel": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она тренируется дома»",
-          "uk": "Скажіть «Вона тренується вдома»"
+          "ru": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
+          "uk": "Скажіть про брата: «Він тренується на килимку». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at home.",
+        "gappedTargetPhrase": "He ___ on the mat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-27:i03:r1",
@@ -157,24 +212,24 @@
             "text": "is exercises"
           }
         ],
-        "testedDimension": "Скажите «Она тренируется дома»",
+        "testedDimension": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она тренируется дома»",
+            "testedDimension": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `exercises`.",
-              "uk": "Після `she` — `exercises`."
+              "ru": "После `he` нужно `exercises`, с `s`.",
+              "uk": "Після `he` потрібно `exercises`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она тренируется дома»",
+            "testedDimension": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She exercises`, без `is`.",
-              "uk": "Кажемо `She exercises`, без `is`."
+              "ru": "Говорим `He exercises`, без `is`.",
+              "uk": "Кажемо `He exercises`, без `is`."
             }
           }
         ]
@@ -183,7 +238,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +260,40 @@
           },
           {
             "pairId": "en:lesson-06:session-27:i04:p2",
-            "target": "generous",
+            "target": "yoga",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "йога",
+              "uk": "йога"
             }
           },
           {
             "pairId": "en:lesson-06:session-27:i04:p3",
-            "target": "awning",
+            "target": "rope",
             "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
+              "ru": "скакалка, верёвка",
+              "uk": "скакалка, мотузка"
             }
           },
           {
             "pairId": "en:lesson-06:session-27:i04:p4",
-            "target": "passport",
+            "target": "beginner",
             "meaningByLocale": {
-              "ru": "паспорт",
-              "uk": "паспорт"
+              "ru": "новичок",
+              "uk": "новачок"
             }
           }
         ],
         "leftColumn": [
           "exercise",
-          "generous",
-          "awning",
-          "passport"
+          "yoga",
+          "rope",
+          "beginner"
         ],
         "rightColumn": [
           "тренироваться",
-          "щедрый",
-          "навес",
-          "паспорт"
+          "йога",
+          "скакалка, верёвка",
+          "новичок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,33 +310,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-27:word:beginner",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — beginner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-27:word:beginner:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — beginner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-27:word:beginner:audio",
+          "transcript": "beginner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-27:word:beginner:r1",
+            "targetText": "beginner",
+            "meaningByLocale": {
+              "ru": "новичок. He is a beginner. — «Он новичок». О человеке, который только начинает.",
+              "uk": "новачок. He is a beginner. — «Він новачок». Про людину, яка тільки починає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beginner",
+          "definitionByLocale": {
+            "ru": "новичок. He is a beginner. — «Он новичок». О человеке, который только начинает.",
+            "uk": "новачок. He is a beginner. — «Він новачок». Про людину, яка тільки починає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-27:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте тренера и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте тренера и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i05:audio",
-          "transcript": "Anna exercises here."
+          "transcript": "You are a beginner."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna exercises here.",
+        "hiddenTargetPhrase": "You are a beginner.",
         "orderedTokens": [
-          "Anna",
-          "exercises",
-          "here"
+          "You",
+          "are",
+          "a",
+          "beginner"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте тренера и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `You are a beginner.`",
+              "uk": "тут потрібно `are` — `You are a beginner.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -290,30 +401,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-27:word:rope",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rope",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-27:word:rope:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rope",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-27:word:rope:audio",
+          "transcript": "rope"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-27:word:rope:r1",
+            "targetText": "rope",
+            "meaningByLocale": {
+              "ru": "скакалка, верёвка. The rope is on the chair. — «Скакалка на стуле». О верёвке, а в зале — о скакалке.",
+              "uk": "скакалка, мотузка. The rope is on the chair. — «Скакалка на стільці». Про мотузку, а в залі — про скакалку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rope",
+          "definitionByLocale": {
+            "ru": "скакалка, верёвка. The rope is on the chair. — «Скакалка на стуле». О верёвке, а в зале — о скакалке.",
+            "uk": "скакалка, мотузка. The rope is on the chair. — «Скакалка на стільці». Про мотузку, а в залі — про скакалку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-27:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Он рисует здесь»",
+      "prompt": "Тренер показывает на скакалку на полу. Спросите: «Чья это скакалка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он рисует здесь»",
+      "accessibilityLabel": "Тренер показывает на скакалку на полу. Спросите: «Чья это скакалка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He draws here.",
+        "targetPhrase": "Whose rope is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Он рисует здесь»",
-          "uk": "Скажіть «Він малює тут»"
+          "ru": "Тренер показывает на скакалку на полу. Спросите: «Чья это скакалка?»",
+          "uk": "Тренер показує на скакалку на підлозі. Спитайте: «Чия це скакалка?»"
         },
         "orderedTokens": [
-          "He",
-          "draws",
-          "here"
+          "Whose",
+          "rope",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Тренер показывает на скакалку на полу. Спросите: «Чья это скакалка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose rope is this?`",
+              "uk": "тут потрібно `Whose` — `Whose rope is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +490,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Том охотно делится с друзьями. Скажите «Он щедрый»",
+      "prompt": "Тренер спрашивает, где вы с подругой занимаетесь. Скажите: «Мы тренируемся на коврике»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i07:audio"
       ],
-      "accessibilityLabel": "Том охотно делится с друзьями. Скажите «Он щедрый»",
+      "accessibilityLabel": "Тренер спрашивает, где вы с подругой занимаетесь. Скажите: «Мы тренируемся на коврике»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i07:audio",
-          "transcript": "He is generous."
+          "transcript": "We exercise on the mat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is generous.",
+        "targetPhrase": "We exercise on the mat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,68 +522,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-27:word:yoga",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — yoga",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-27:word:yoga:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — yoga",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-27:word:yoga:audio",
+          "transcript": "yoga"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-27:word:yoga:r1",
+            "targetText": "yoga",
+            "meaningByLocale": {
+              "ru": "йога. Yoga is my hobby. — «Йога — моё увлечение». О плавных упражнениях для тела и дыхания.",
+              "uk": "йога. Yoga is my hobby. — «Йога — моє захоплення». Про плавні вправи для тіла й дихання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yoga",
+          "definitionByLocale": {
+            "ru": "йога. Yoga is my hobby. — «Йога — моё увлечение». О плавных упражнениях для тела и дыхания.",
+            "uk": "йога. Yoga is my hobby. — «Йога — моє захоплення». Про плавні вправи для тіла й дихання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-27:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они тренируются здесь»",
+      "prompt": "Скажите о своём занятии: «Йога — это просто». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i08:r1",
-          "text": "exercise"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-27:i08:r2",
-          "text": "exercises"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-27:i08:r3",
-          "text": "are exercise"
+          "text": "exercises"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они тренируются здесь»",
+      "accessibilityLabel": "Скажите о своём занятии: «Йога — это просто». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они тренируются здесь»",
-          "uk": "Скажіть «Вони тренуються тут»"
+          "ru": "Скажите о своём занятии: «Йога — это просто». Выберите слово",
+          "uk": "Скажіть про своє заняття: «Йога — це просто». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "Yoga ___ easy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-27:i08:r1",
-            "text": "exercise"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-27:i08:r2",
-            "text": "exercises"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-27:i08:r3",
-            "text": "are exercise"
+            "text": "exercises"
           }
         ],
-        "testedDimension": "Скажите «Они тренируются здесь»",
+        "testedDimension": "Скажите о своём занятии: «Йога — это просто». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-27:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они тренируются здесь»",
+            "testedDimension": "Скажите о своём занятии: «Йога — это просто». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `exercise`, без `s`.",
-              "uk": "Після `they` — `exercise`, без `s`."
+              "ru": "Йога одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Йога одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-27:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они тренируются здесь»",
+            "testedDimension": "Скажите о своём занятии: «Йога — это просто». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They exercise`, без `are`.",
-              "uk": "Кажемо `They exercise`, без `are`."
+              "ru": "`exercises` значит «тренируется», а здесь нужно сказать, какая йога: `is easy`.",
+              "uk": "`exercises` означає «тренується», а тут треба сказати, яка йога: `is easy`."
             }
           }
         ]
@@ -425,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей паспорт здесь",
+      "prompt": "Послушайте тренера",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i09:r1",
-          "text": "My passport is here."
+          "text": "She is a beginner."
         },
         {
           "responseId": "en:lesson-06:session-27:i09:r2",
-          "text": "Your passport is here."
+          "text": "She is a member."
         },
         {
           "responseId": "en:lesson-06:session-27:i09:r3",
-          "text": "His passport is here."
+          "text": "He is a beginner."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей паспорт здесь",
+      "accessibilityLabel": "Послушайте тренера",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i09:audio",
-          "transcript": "My passport is here."
+          "transcript": "She is a beginner."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-27:i09:r1",
-            "targetText": "My passport is here.",
+            "targetText": "She is a beginner.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-27:i09:r2",
-            "targetText": "Your passport is here.",
+            "targetText": "She is a member.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-27:i09:r3",
-            "targetText": "His passport is here.",
+            "targetText": "He is a beginner.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +688,19 @@
           {
             "responseId": "en:lesson-06:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей паспорт здесь",
+            "testedDimension": "Послушайте тренера",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `beginner`, новичок, а в этом варианте — `member`, участник.",
+              "uk": "У записі останнє слово — `beginner`, новачок, а в цьому варіанті — `member`, учасник."
             }
           },
           {
             "responseId": "en:lesson-06:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей паспорт здесь",
+            "testedDimension": "Послушайте тренера",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -501,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -515,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-27:i10:p1",
+            "target": "rope",
+            "meaningByLocale": {
+              "ru": "скакалка, верёвка",
+              "uk": "скакалка, мотузка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-27:i10:p2",
+            "target": "beginner",
+            "meaningByLocale": {
+              "ru": "новичок",
+              "uk": "новачок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-27:i10:p3",
+            "target": "yoga",
+            "meaningByLocale": {
+              "ru": "йога",
+              "uk": "йога"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-27:i10:p4",
             "target": "exercise",
             "meaningByLocale": {
               "ru": "тренироваться",
               "uk": "тренуватися"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-27:i10:p2",
-            "target": "draw",
-            "meaningByLocale": {
-              "ru": "рисовать",
-              "uk": "малювати"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-27:i10:p3",
-            "target": "passport",
-            "meaningByLocale": {
-              "ru": "паспорт",
-              "uk": "паспорт"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-27:i10:p4",
-            "target": "generous",
-            "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
-            }
           }
         ],
         "leftColumn": [
-          "exercise",
-          "draw",
-          "passport",
-          "generous"
+          "rope",
+          "beginner",
+          "yoga",
+          "exercise"
         ],
         "rightColumn": [
-          "тренироваться",
-          "рисовать",
-          "паспорт",
-          "щедрый"
+          "скакалка, верёвка",
+          "новичок",
+          "йога",
+          "тренироваться"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,43 +784,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i11:audio",
-          "transcript": "We are under the awning."
+          "transcript": "They exercise on the mat."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are under the awning.",
+        "hiddenTargetPhrase": "They exercise on the mat.",
         "orderedTokens": [
-          "We",
-          "are",
-          "under",
+          "They",
+          "exercise",
+          "on",
           "the",
-          "awning"
+          "mat"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "exercises"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-27:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `We are under the awning.`",
-              "uk": "тут потрібно `are` — `We are under the awning.`"
+              "ru": "здесь нужно `exercise` — `They exercise on the mat.`",
+              "uk": "тут потрібно `exercise` — `They exercise on the mat.`"
             }
           }
         ],
@@ -623,30 +833,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это паспорт?»",
+      "prompt": "Подруга спрашивает, что для вас йога. Скажите: «Йога — моё увлечение»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это паспорт?»",
+      "accessibilityLabel": "Подруга спрашивает, что для вас йога. Скажите: «Йога — моё увлечение»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose passport is this?",
+        "targetPhrase": "Yoga is my hobby.",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это паспорт?»",
-          "uk": "Запитайте «Чий це паспорт?»"
+          "ru": "Подруга спрашивает, что для вас йога. Скажите: «Йога — моё увлечение»",
+          "uk": "Подруга питає, що для вас йога. Скажіть: «Йога — моє захоплення»"
         },
         "orderedTokens": [
-          "Whose",
-          "passport",
+          "Yoga",
           "is",
-          "this"
+          "my",
+          "hobby"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает, что для вас йога. Скажите: «Йога — моё увлечение»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Yoga is my hobby.`",
+              "uk": "тут потрібно `is` — `Yoga is my hobby.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они рисуют здесь»",
+      "prompt": "Тренер спрашивает, давно ли вы занимаетесь. Скажите: «Я новичок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они рисуют здесь»",
+      "accessibilityLabel": "Тренер спрашивает, давно ли вы занимаетесь. Скажите: «Я новичок»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i13:audio",
-          "transcript": "They draw here."
+          "transcript": "I am a beginner."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They draw here.",
+        "targetPhrase": "I am a beginner.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -689,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том рисует дома»",
+      "prompt": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i14:r1",
-          "text": "draws"
+          "text": "exercise"
         },
         {
           "responseId": "en:lesson-06:session-27:i14:r2",
-          "text": "draw"
+          "text": "exercises"
         },
         {
           "responseId": "en:lesson-06:session-27:i14:r3",
-          "text": "is draws"
+          "text": "am exercise"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том рисует дома»",
+      "accessibilityLabel": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том рисует дома»",
-          "uk": "Скажіть «Том малює вдома»"
+          "ru": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
+          "uk": "Скажіть про себе: «Я тренуюся вдома». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ at home.",
+        "gappedTargetPhrase": "I ___ at home.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-27:i14:r1",
-            "text": "draws"
+            "text": "exercise"
           },
           {
             "responseId": "en:lesson-06:session-27:i14:r2",
-            "text": "draw"
+            "text": "exercises"
           },
           {
             "responseId": "en:lesson-06:session-27:i14:r3",
-            "text": "is draws"
+            "text": "am exercise"
           }
         ],
-        "testedDimension": "Скажите «Том рисует дома»",
+        "testedDimension": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-27:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том рисует дома»",
+            "testedDimension": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom draws`, с `s`.",
-              "uk": "Том — він: `Tom draws`, з `s`."
+              "ru": "После `I` нужно `exercise`, без `s`.",
+              "uk": "Після `I` потрібно `exercise`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-27:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том рисует дома»",
+            "testedDimension": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Tom draws`, без `is`.",
-              "uk": "Кажемо `Tom draws`, без `is`."
+              "ru": "Говорим `I exercise`, без `am`.",
+              "uk": "Кажемо `I exercise`, без `am`."
             }
           }
         ]
@@ -758,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какого цвета навес",
+      "prompt": "Послушайте тренера",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i15:r1",
-          "text": "The awning is blue."
+          "text": "The rope is on the mat."
         },
         {
           "responseId": "en:lesson-06:session-27:i15:r2",
-          "text": "The awning is green."
+          "text": "The rope is on the chair."
         },
         {
           "responseId": "en:lesson-06:session-27:i15:r3",
-          "text": "The awning is white."
+          "text": "The rope is under the mat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, какого цвета навес",
+      "accessibilityLabel": "Послушайте тренера",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-27:i15:audio",
-          "transcript": "The awning is blue."
+          "transcript": "The rope is on the mat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-27:i15:r1",
-            "targetText": "The awning is blue.",
+            "targetText": "The rope is on the mat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-27:i15:r2",
-            "targetText": "The awning is green.",
+            "targetText": "The rope is on the chair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-27:i15:r3",
-            "targetText": "The awning is white.",
+            "targetText": "The rope is under the mat.",
             "meaningByLocale": null
           }
         ],
@@ -811,19 +1033,19 @@
           {
             "responseId": "en:lesson-06:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какого цвета навес",
+            "testedDimension": "Послушайте тренера",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `blue`, а в этом варианте — `green`.",
-              "uk": "У записі останнє слово — `blue`, а в цьому варіанті — `green`."
+              "ru": "В записи последнее слово — `mat`, коврик, а в этом варианте — `chair`, стул.",
+              "uk": "У записі останнє слово — `mat`, килимок, а в цьому варіанті — `chair`, стілець."
             }
           },
           {
             "responseId": "en:lesson-06:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какого цвета навес",
+            "testedDimension": "Послушайте тренера",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `blue`, а в этом варианте — `white`.",
-              "uk": "У записі останнє слово — `blue`, а в цьому варіанті — `white`."
+              "ru": "В записи слово — `on`, на, а в этом варианте — `under`, под.",
+              "uk": "У записі слово — `on`, на, а в цьому варіанті — `under`, під."
             }
           }
         ],
@@ -834,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,6 +1070,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-27:i16:p1",
+            "target": "beginner",
+            "meaningByLocale": {
+              "ru": "новичок",
+              "uk": "новачок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-27:i16:p2",
             "target": "exercise",
             "meaningByLocale": {
               "ru": "тренироваться",
@@ -855,41 +1085,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-27:i16:p2",
-            "target": "awning",
-            "meaningByLocale": {
-              "ru": "навес",
-              "uk": "навіс"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-27:i16:p3",
-            "target": "generous",
+            "target": "rope",
             "meaningByLocale": {
-              "ru": "щедрый",
-              "uk": "щедрий"
+              "ru": "скакалка, верёвка",
+              "uk": "скакалка, мотузка"
             }
           },
           {
             "pairId": "en:lesson-06:session-27:i16:p4",
-            "target": "draw",
+            "target": "yoga",
             "meaningByLocale": {
-              "ru": "рисовать",
-              "uk": "малювати"
+              "ru": "йога",
+              "uk": "йога"
             }
           }
         ],
         "leftColumn": [
+          "beginner",
           "exercise",
-          "awning",
-          "generous",
-          "draw"
+          "rope",
+          "yoga"
         ],
         "rightColumn": [
+          "новичок",
           "тренироваться",
-          "навес",
-          "щедрый",
-          "рисовать"
+          "скакалка, верёвка",
+          "йога"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,17 +1129,17 @@
     },
     {
       "interactionId": "en:lesson-06:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "За завтраком расскажите другу о привычке Анны: «Она тренируется дома»",
+      "prompt": "Подруга спрашивает о соседке. Скажите: «Она тренируется дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-27:i17:audio"
       ],
-      "accessibilityLabel": "За завтраком расскажите другу о привычке Анны: «Она тренируется дома»",
+      "accessibilityLabel": "Подруга спрашивает о соседке. Скажите: «Она тренируется дома»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -947,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cf792c18c98658bd2d7cf0b1a63618e64af80b6a46d91d94f069c76f3e1e5e0e"
+  "learnerFingerprint": "179dcecb067e5b3eda4ef81c3fb36edbfdc7e05d91811f870a5f00cb02add9dd"
 }

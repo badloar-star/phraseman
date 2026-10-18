@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-18:word:smile",
+    "correctText": "smile",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-18:i01",
-    "correctText": "I smile a lot.",
+    "correctText": "He smiles at the baby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-18:word:cough",
+    "correctText": "cough",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i02",
-    "correctText": "smile",
+    "correctText": "He coughs at home.",
     "correctResponseId": "en:lesson-06:session-18:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-18:word:throat",
+    "correctText": "throat",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-18:i03",
-    "correctText": "smiles",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-18:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-18:i04",
-    "correctText": "en:lesson-06:session-18:i04:p1=smile\nen:lesson-06:session-18:i04:p2=unwell\nen:lesson-06:session-18:i04:p3=milk\nen:lesson-06:session-18:i04:p4=gloves",
+    "correctText": "en:lesson-06:session-18:i04:p1=smile\nen:lesson-06:session-18:i04:p2=cough\nen:lesson-06:session-18:i04:p3=throat\nen:lesson-06:session-18:i04:p4=syrup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-18:word:syrup",
+    "correctText": "syrup",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i05",
-    "correctText": "Anna smiles a lot.",
+    "correctText": "The syrup is sweet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i06",
-    "correctText": "He practices English.",
+    "correctText": "She practices English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i07",
-    "correctText": "He is unwell.",
+    "correctText": "His throat is sore.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i08",
-    "correctText": "are",
+    "correctText": "smiles",
     "correctResponseId": "en:lesson-06:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-18:i09",
-    "correctText": "They smile a lot.",
+    "correctText": "She smiles at the baby.",
     "correctResponseId": "en:lesson-06:session-18:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-18:i10",
-    "correctText": "en:lesson-06:session-18:i10:p1=smile\nen:lesson-06:session-18:i10:p2=practice\nen:lesson-06:session-18:i10:p3=gloves\nen:lesson-06:session-18:i10:p4=unwell",
+    "correctText": "en:lesson-06:session-18:i10:p1=smile\nen:lesson-06:session-18:i10:p2=cough\nen:lesson-06:session-18:i10:p3=syrup\nen:lesson-06:session-18:i10:p4=unwell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i11",
-    "correctText": "The milk is on the table.",
+    "correctText": "He practices English at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i12",
-    "correctText": "Whose gloves are these?",
+    "correctText": "Whose syrup is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i13",
-    "correctText": "We practice English.",
+    "correctText": "He coughs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i14",
-    "correctText": "practices",
+    "correctText": "coughs",
     "correctResponseId": "en:lesson-06:session-18:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-18:i15",
-    "correctText": "The milk is cold.",
+    "correctText": "He is unwell.",
     "correctResponseId": "en:lesson-06:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-18:i16",
-    "correctText": "en:lesson-06:session-18:i16:p1=smile\nen:lesson-06:session-18:i16:p2=unwell\nen:lesson-06:session-18:i16:p3=milk\nen:lesson-06:session-18:i16:p4=practice",
+    "correctText": "en:lesson-06:session-18:i16:p1=cough\nen:lesson-06:session-18:i16:p2=smile\nen:lesson-06:session-18:i16:p3=throat\nen:lesson-06:session-18:i16:p4=syrup",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-18:i17",
-    "correctText": "She smiles a lot.",
+    "correctText": "He coughs at home.",
     "correctResponseId": null
   }
 ]

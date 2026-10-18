@@ -4,32 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-26:i01",
+      "interactionId": "en:lesson-06:session-26:word:jog",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — jog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-26:word:jog:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — jog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-26:word:jog:audio",
+          "transcript": "jog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-26:word:jog:r1",
+            "targetText": "jog",
+            "meaningByLocale": {
+              "ru": "бегать трусцой. They jog in the park. — «Они бегают трусцой в парке». О спокойном беге в своём темпе.",
+              "uk": "бігати підтюпцем. They jog in the park. — «Вони бігають підтюпцем у парку». Про спокійний біг у своєму темпі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jog",
+          "definitionByLocale": {
+            "ru": "бегать трусцой. They jog in the park. — «Они бегают трусцой в парке». О спокойном беге в своём темпе.",
+            "uk": "бігати підтюпцем. They jog in the park. — «Вони бігають підтюпцем у парку». Про спокійний біг у своєму темпі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-26:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Расскажите о привычке: «Я бегаю трусцой в парке»",
+      "prompt": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите о привычке: «Я бегаю трусцой в парке»",
+      "accessibilityLabel": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I jog in the park.",
+        "targetPhrase": "They jog in the park.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычке: «Я бегаю трусцой в парке»",
-          "uk": "Розкажіть про звичку: «Я бігаю підтюпцем у парку»"
+          "ru": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
+          "uk": "Подруга питає про сусідів. Скажіть: «Вони бігають підтюпцем у парку»"
         },
         "orderedTokens": [
-          "I",
+          "They",
           "jog",
           "in",
           "the",
           "park"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "jogs"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-26:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `jog` — `They jog in the park.`",
+              "uk": "тут потрібно `jog` — `They jog in the park.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-26:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-26:word:track",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — track",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-26:word:track:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — track",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-26:word:track:audio",
+          "transcript": "track"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-26:word:track:r1",
+            "targetText": "track",
+            "meaningByLocale": {
+              "ru": "беговая дорожка. The track is near the hall. — «Беговая дорожка возле зала». О ровной дорожке, где бегают.",
+              "uk": "бігова доріжка. The track is near the hall. — «Бігова доріжка біля залу». Про рівну доріжку, де бігають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "track",
+          "definitionByLocale": {
+            "ru": "беговая дорожка. The track is near the hall. — «Беговая дорожка возле зала». О ровной дорожке, где бегают.",
+            "uk": "бігова доріжка. The track is near the hall. — «Бігова доріжка біля залу». Про рівну доріжку, де бігають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-26:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте тренера",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i02:r1",
-          "text": "jog"
+          "text": "He jogs on the track."
         },
         {
           "responseId": "en:lesson-06:session-26:i02:r2",
-          "text": "walk"
+          "text": "He walks on the track."
         },
         {
           "responseId": "en:lesson-06:session-26:i02:r3",
-          "text": "read"
+          "text": "She jogs on the track."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте тренера",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i02:audio",
-          "transcript": "jog"
+          "transcript": "He jogs on the track."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-26:i02:r1",
-            "targetText": "jog",
+            "targetText": "He jogs on the track.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-26:i02:r2",
-            "targetText": "walk",
+            "targetText": "He walks on the track.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-26:i02:r3",
-            "targetText": "read",
+            "targetText": "She jogs on the track.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +190,19 @@
           {
             "responseId": "en:lesson-06:session-26:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте тренера",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `jog`, а в этом варианте — `walk`.",
-              "uk": "У записі перше слово — `jog`, а в цьому варіанті — `walk`."
+              "ru": "В записи действие — `jogs`, бегает трусцой, а в этом варианте — `walks`, ходит пешком.",
+              "uk": "У записі дія — `jogs`, бігає підтюпцем, а в цьому варіанті — `walks`, ходить пішки."
             }
           },
           {
             "responseId": "en:lesson-06:session-26:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте тренера",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `jog`, а в этом варианте — `read`.",
-              "uk": "У записі перше слово — `jog`, а в цьому варіанті — `read`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -115,11 +213,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она бегает трусцой в парке»",
+      "prompt": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i03:r1",
@@ -136,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она бегает трусцой в парке»",
+      "accessibilityLabel": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она бегает трусцой в парке»",
-          "uk": "Скажіть «Вона бігає підтюпцем у парку»"
+          "ru": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
+          "uk": "Скажіть про сестру: «Моя сестра бігає підтюпцем на доріжці». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ in the park.",
+        "gappedTargetPhrase": "My sister ___ on the track.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-26:i03:r1",
@@ -158,24 +256,24 @@
             "text": "is jogs"
           }
         ],
-        "testedDimension": "Скажите «Она бегает трусцой в парке»",
+        "testedDimension": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она бегает трусцой в парке»",
+            "testedDimension": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `jogs`, с `s`.",
-              "uk": "Після `she` — `jogs`, з `s`."
+              "ru": "Сестра — это `she`, поэтому нужно `jogs`, с `s`.",
+              "uk": "Сестра — це `she`, тому потрібно `jogs`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она бегает трусцой в парке»",
+            "testedDimension": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She jogs`, без `is`.",
-              "uk": "Кажемо `She jogs`, без `is`."
+              "ru": "Говорим `My sister jogs`, без `is`.",
+              "uk": "Кажемо `My sister jogs`, без `is`."
             }
           }
         ]
@@ -184,7 +282,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,40 +304,40 @@
           },
           {
             "pairId": "en:lesson-06:session-26:i04:p2",
-            "target": "careless",
+            "target": "track",
             "meaningByLocale": {
-              "ru": "неосторожный",
-              "uk": "необережний"
+              "ru": "беговая дорожка",
+              "uk": "бігова доріжка"
             }
           },
           {
             "pairId": "en:lesson-06:session-26:i04:p3",
-            "target": "worktop",
+            "target": "lap",
             "meaningByLocale": {
-              "ru": "кухонная столешница",
-              "uk": "кухонна стільниця"
+              "ru": "круг (на дорожке)",
+              "uk": "коло (на доріжці)"
             }
           },
           {
             "pairId": "en:lesson-06:session-26:i04:p4",
-            "target": "badge",
+            "target": "marathon",
             "meaningByLocale": {
-              "ru": "значок",
-              "uk": "значок"
+              "ru": "марафон",
+              "uk": "марафон"
             }
           }
         ],
         "leftColumn": [
           "jog",
-          "careless",
-          "worktop",
-          "badge"
+          "track",
+          "lap",
+          "marathon"
         ],
         "rightColumn": [
           "бегать трусцой",
-          "неосторожный",
-          "кухонная столешница",
-          "значок"
+          "беговая дорожка",
+          "круг (на дорожке)",
+          "марафон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -257,32 +355,47 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте тренера и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте тренера и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i05:audio",
-          "transcript": "Anna jogs here."
+          "transcript": "The track is near the park."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna jogs here.",
+        "hiddenTargetPhrase": "The track is near the park.",
         "orderedTokens": [
-          "Anna",
-          "jogs",
-          "here"
+          "The",
+          "track",
+          "is",
+          "near",
+          "the",
+          "park"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-26:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте тренера и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The track is near the park.`",
+              "uk": "тут потрібно `is` — `The track is near the park.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,31 +404,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-26:word:lap",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-26:word:lap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-26:word:lap:audio",
+          "transcript": "lap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-26:word:lap:r1",
+            "targetText": "lap",
+            "meaningByLocale": {
+              "ru": "круг (на дорожке). My lap is short. — «Мой круг короткий». О полном круге по дорожке стадиона.",
+              "uk": "коло (на доріжці). My lap is short. — «Моє коло коротке». Про повне коло доріжкою стадіону."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lap",
+          "definitionByLocale": {
+            "ru": "круг (на дорожке). My lap is short. — «Мой круг короткий». О полном круге по дорожке стадиона.",
+            "uk": "коло (на доріжці). My lap is short. — «Моє коло коротке». Про повне коло доріжкою стадіону."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-26:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Он часто улыбается»",
+      "prompt": "Сестра говорит о дорожке. Скажите: «Круг длинный»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он часто улыбается»",
+      "accessibilityLabel": "Сестра говорит о дорожке. Скажите: «Круг длинный»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He smiles a lot.",
+        "targetPhrase": "The lap is long.",
         "localizedMeaning": {
-          "ru": "Скажите «Он часто улыбается»",
-          "uk": "Скажіть «Він часто усміхається»"
+          "ru": "Сестра говорит о дорожке. Скажите: «Круг длинный»",
+          "uk": "Сестра говорить про доріжку. Скажіть: «Коло довге»"
         },
         "orderedTokens": [
-          "He",
-          "smiles",
-          "a",
-          "lot"
+          "The",
+          "lap",
+          "is",
+          "long"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-26:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сестра говорит о дорожке. Скажите: «Круг длинный»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The lap is long.`",
+              "uk": "тут потрібно `is` — `The lap is long.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +493,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Том постоянно оставляет важные вещи на краю стола. Скажите «Он неосторожен»",
+      "prompt": "Тренер спрашивает, где вы с подругой бегаете. Скажите: «Мы бегаем трусцой на дорожке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i07:audio"
       ],
-      "accessibilityLabel": "Том постоянно оставляет важные вещи на краю стола. Скажите «Он неосторожен»",
+      "accessibilityLabel": "Тренер спрашивает, где вы с подругой бегаете. Скажите: «Мы бегаем трусцой на дорожке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i07:audio",
-          "transcript": "He is careless."
+          "transcript": "We jog on the track."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is careless.",
+        "targetPhrase": "We jog on the track.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,11 +526,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они бегают трусцой здесь»",
+      "prompt": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i08:r1",
@@ -374,19 +542,19 @@
         },
         {
           "responseId": "en:lesson-06:session-26:i08:r3",
-          "text": "are jog"
+          "text": "am jog"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они бегают трусцой здесь»",
+      "accessibilityLabel": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они бегают трусцой здесь»",
-          "uk": "Скажіть «Вони бігають підтюпцем тут»"
+          "ru": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
+          "uk": "Скажіть про себе: «Я бігаю підтюпцем у парку». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "I ___ in the park.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-26:i08:r1",
@@ -398,27 +566,27 @@
           },
           {
             "responseId": "en:lesson-06:session-26:i08:r3",
-            "text": "are jog"
+            "text": "am jog"
           }
         ],
-        "testedDimension": "Скажите «Они бегают трусцой здесь»",
+        "testedDimension": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-26:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они бегают трусцой здесь»",
+            "testedDimension": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `jog`, без `s`.",
-              "uk": "Після `they` — `jog`, без `s`."
+              "ru": "После `I` нужно `jog`, без `s`.",
+              "uk": "Після `I` потрібно `jog`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-26:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они бегают трусцой здесь»",
+            "testedDimension": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They jog`, без `are`.",
-              "uk": "Кажемо `They jog`, без `are`."
+              "ru": "Говорим `I jog`, без `am`.",
+              "uk": "Кажемо `I jog`, без `am`."
             }
           }
         ]
@@ -426,52 +594,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-26:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-26:word:marathon",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей значок здесь",
+      "prompt": "Карточка слова — marathon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-26:word:marathon:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marathon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-26:word:marathon:audio",
+          "transcript": "marathon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-26:word:marathon:r1",
+            "targetText": "marathon",
+            "meaningByLocale": {
+              "ru": "марафон. The marathon is in the park. — «Марафон проходит в парке». О длинном забеге, который организуют для многих людей.",
+              "uk": "марафон. The marathon is in the park. — «Марафон проходить у парку». Про довгий забіг, який організовують для багатьох людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marathon",
+          "definitionByLocale": {
+            "ru": "марафон. The marathon is in the park. — «Марафон проходит в парке». О длинном забеге, который организуют для многих людей.",
+            "uk": "марафон. The marathon is in the park. — «Марафон проходить у парку». Про довгий забіг, який організовують для багатьох людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-26:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i09:r1",
-          "text": "My badge is here."
+          "text": "The marathon is in the park."
         },
         {
           "responseId": "en:lesson-06:session-26:i09:r2",
-          "text": "Your badge is here."
+          "text": "The marathon is in the hall."
         },
         {
           "responseId": "en:lesson-06:session-26:i09:r3",
-          "text": "His badge is here."
+          "text": "The track is in the park."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей значок здесь",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i09:audio",
-          "transcript": "My badge is here."
+          "transcript": "The marathon is in the park."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-26:i09:r1",
-            "targetText": "My badge is here.",
+            "targetText": "The marathon is in the park.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-26:i09:r2",
-            "targetText": "Your badge is here.",
+            "targetText": "The marathon is in the hall.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-26:i09:r3",
-            "targetText": "His badge is here.",
+            "targetText": "The track is in the park.",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +691,19 @@
           {
             "responseId": "en:lesson-06:session-26:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей значок здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `park`, парк, а в этом варианте — `hall`, зал.",
+              "uk": "У записі останнє слово — `park`, парк, а в цьому варіанті — `hall`, зал."
             }
           },
           {
             "responseId": "en:lesson-06:session-26:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей значок здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи речь о `marathon`, марафоне, а в этом варианте — о `track`, дорожке.",
+              "uk": "У записі йдеться про `marathon`, марафон, а в цьому варіанті — про `track`, доріжку."
             }
           }
         ],
@@ -503,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,6 +728,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-26:i10:p1",
+            "target": "lap",
+            "meaningByLocale": {
+              "ru": "круг (на дорожке)",
+              "uk": "коло (на доріжці)"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-26:i10:p2",
+            "target": "marathon",
+            "meaningByLocale": {
+              "ru": "марафон",
+              "uk": "марафон"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-26:i10:p3",
             "target": "jog",
             "meaningByLocale": {
               "ru": "бегать трусцой",
@@ -524,41 +751,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-26:i10:p2",
-            "target": "smile",
-            "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-26:i10:p3",
-            "target": "badge",
-            "meaningByLocale": {
-              "ru": "значок",
-              "uk": "значок"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-26:i10:p4",
-            "target": "careless",
+            "target": "track",
             "meaningByLocale": {
-              "ru": "неосторожный",
-              "uk": "необережний"
+              "ru": "беговая дорожка",
+              "uk": "бігова доріжка"
             }
           }
         ],
         "leftColumn": [
+          "lap",
+          "marathon",
           "jog",
-          "smile",
-          "badge",
-          "careless"
+          "track"
         ],
         "rightColumn": [
+          "круг (на дорожке)",
+          "марафон",
           "бегать трусцой",
-          "улыбаться",
-          "значок",
-          "неосторожный"
+          "беговая дорожка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,44 +787,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте тренера и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте тренера и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i11:audio",
-          "transcript": "The badge is on the worktop."
+          "transcript": "She jogs on the track."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The badge is on the worktop.",
+        "hiddenTargetPhrase": "She jogs on the track.",
         "orderedTokens": [
-          "The",
-          "badge",
-          "is",
+          "She",
+          "jogs",
           "on",
           "the",
-          "worktop"
+          "track"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "jog"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-26:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте тренера и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The badge is on the worktop.`",
-              "uk": "тут потрібно `is` — `The badge is on the worktop.`"
+              "ru": "здесь нужно `jogs` — `She jogs on the track.`",
+              "uk": "тут потрібно `jogs` — `She jogs on the track.`"
             }
           }
         ],
@@ -626,30 +836,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это значок?»",
+      "prompt": "Тренер показывает на секундомер на скамейке. Спросите: «Чей это секундомер?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это значок?»",
+      "accessibilityLabel": "Тренер показывает на секундомер на скамейке. Спросите: «Чей это секундомер?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose badge is this?",
+        "targetPhrase": "Whose stopwatch is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это значок?»",
-          "uk": "Запитайте «Чий це значок?»"
+          "ru": "Тренер показывает на секундомер на скамейке. Спросите: «Чей это секундомер?»",
+          "uk": "Тренер показує на секундомір на лавці. Спитайте: «Чий це секундомір?»"
         },
         "orderedTokens": [
           "Whose",
-          "badge",
+          "stopwatch",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-26:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Тренер показывает на секундомер на скамейке. Спросите: «Чей это секундомер?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose stopwatch is this?`",
+              "uk": "тут потрібно `Whose` — `Whose stopwatch is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -659,25 +881,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они часто улыбаются»",
+      "prompt": "Подруга спрашивает о забеге. Скажите: «Марафон длинный»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они часто улыбаются»",
+      "accessibilityLabel": "Подруга спрашивает о забеге. Скажите: «Марафон длинный»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i13:audio",
-          "transcript": "They smile a lot."
+          "transcript": "The marathon is long."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They smile a lot.",
+        "targetPhrase": "The marathon is long.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -692,67 +914,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том часто улыбается»",
+      "prompt": "Скажите о забеге: «Марафон возле парка». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i14:r1",
-          "text": "smiles"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-26:i14:r2",
-          "text": "smile"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-26:i14:r3",
-          "text": "is smiles"
+          "text": "jogs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том часто улыбается»",
+      "accessibilityLabel": "Скажите о забеге: «Марафон возле парка». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том часто улыбается»",
-          "uk": "Скажіть «Том часто усміхається»"
+          "ru": "Скажите о забеге: «Марафон возле парка». Выберите слово",
+          "uk": "Скажіть про забіг: «Марафон біля парку». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ a lot.",
+        "gappedTargetPhrase": "The marathon ___ near the park.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-26:i14:r1",
-            "text": "smiles"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-26:i14:r2",
-            "text": "smile"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-26:i14:r3",
-            "text": "is smiles"
+            "text": "jogs"
           }
         ],
-        "testedDimension": "Скажите «Том часто улыбается»",
+        "testedDimension": "Скажите о забеге: «Марафон возле парка». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-26:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том часто улыбается»",
+            "testedDimension": "Скажите о забеге: «Марафон возле парка». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom smiles`, с `s`.",
-              "uk": "Том — він: `Tom smiles`, з `s`."
+              "ru": "Марафон один, поэтому нужно `is`, а не `are`.",
+              "uk": "Марафон один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-26:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том часто улыбается»",
+            "testedDimension": "Скажите о забеге: «Марафон возле парка». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `Tom smiles`, без `is`.",
-              "uk": "Кажемо `Tom smiles`, без `is`."
+              "ru": "`jogs` значит «бегает», а здесь нужно сказать, где марафон: `is near`.",
+              "uk": "`jogs` означає «бігає», а тут треба сказати, де марафон: `is near`."
             }
           }
         ]
@@ -761,51 +983,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что Анна говорит о столешнице",
+      "prompt": "Послушайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i15:r1",
-          "text": "The worktop is clean."
+          "text": "I jog on the track."
         },
         {
           "responseId": "en:lesson-06:session-26:i15:r2",
-          "text": "The worktop is dirty."
+          "text": "I walk on the track."
         },
         {
           "responseId": "en:lesson-06:session-26:i15:r3",
-          "text": "The worktop is wet."
+          "text": "We jog on the track."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что Анна говорит о столешнице",
+      "accessibilityLabel": "Послушайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-26:i15:audio",
-          "transcript": "The worktop is clean."
+          "transcript": "I jog on the track."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-26:i15:r1",
-            "targetText": "The worktop is clean.",
+            "targetText": "I jog on the track.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-26:i15:r2",
-            "targetText": "The worktop is dirty.",
+            "targetText": "I walk on the track.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-26:i15:r3",
-            "targetText": "The worktop is wet.",
+            "targetText": "We jog on the track.",
             "meaningByLocale": null
           }
         ],
@@ -814,19 +1036,19 @@
           {
             "responseId": "en:lesson-06:session-26:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о столешнице",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clean`, а в этом варианте — `dirty`.",
-              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `dirty`."
+              "ru": "В записи действие — `jog`, бегать трусцой, а в этом варианте — `walk`, ходить пешком.",
+              "uk": "У записі дія — `jog`, бігати підтюпцем, а в цьому варіанті — `walk`, ходити пішки."
             }
           },
           {
             "responseId": "en:lesson-06:session-26:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что Анна говорит о столешнице",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clean`, а в этом варианте — `wet`.",
-              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `wet`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -837,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -851,48 +1073,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-26:i16:p1",
+            "target": "marathon",
+            "meaningByLocale": {
+              "ru": "марафон",
+              "uk": "марафон"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-26:i16:p2",
+            "target": "lap",
+            "meaningByLocale": {
+              "ru": "круг (на дорожке)",
+              "uk": "коло (на доріжці)"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-26:i16:p3",
+            "target": "track",
+            "meaningByLocale": {
+              "ru": "беговая дорожка",
+              "uk": "бігова доріжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-26:i16:p4",
             "target": "jog",
             "meaningByLocale": {
               "ru": "бегать трусцой",
               "uk": "бігати підтюпцем"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-26:i16:p2",
-            "target": "worktop",
-            "meaningByLocale": {
-              "ru": "кухонная столешница",
-              "uk": "кухонна стільниця"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-26:i16:p3",
-            "target": "careless",
-            "meaningByLocale": {
-              "ru": "неосторожный",
-              "uk": "необережний"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-26:i16:p4",
-            "target": "smile",
-            "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
-            }
           }
         ],
         "leftColumn": [
-          "jog",
-          "worktop",
-          "careless",
-          "smile"
+          "marathon",
+          "lap",
+          "track",
+          "jog"
         ],
         "rightColumn": [
-          "бегать трусцой",
-          "кухонная столешница",
-          "неосторожный",
-          "улыбаться"
+          "марафон",
+          "круг (на дорожке)",
+          "беговая дорожка",
+          "бегать трусцой"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -910,17 +1132,17 @@
     },
     {
       "interactionId": "en:lesson-06:session-26:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "За завтраком расскажите другу о привычке Анны: «Она бегает трусцой в парке»",
+      "prompt": "Тренер спрашивает о вашей сестре. Скажите: «Она бегает трусцой в парке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-26:i17:audio"
       ],
-      "accessibilityLabel": "За завтраком расскажите другу о привычке Анны: «Она бегает трусцой в парке»",
+      "accessibilityLabel": "Тренер спрашивает о вашей сестре. Скажите: «Она бегает трусцой в парке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -950,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "10856f6b6b5e8d6458fe484ca7fe44fa826f5d88db480f3241303dd7c296aebd"
+  "learnerFingerprint": "546d083f1086102aa36e61e609657f612937c1a6fa829b1e36dae1def755c582"
 }

@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-06:session-24:word:pour",
+    "correctText": "pour",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-24:i01",
-    "correctText": "She drives to work.",
+    "correctText": "She pours the milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-24:word:toast",
+    "correctText": "toast",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i02",
-    "correctText": "write",
+    "correctText": "The toast is warm.",
     "correctResponseId": "en:lesson-06:session-24:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-24:word:slice",
+    "correctText": "slice",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-24:i03",
-    "correctText": "smiles",
+    "correctText": "slices",
     "correctResponseId": "en:lesson-06:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-24:i04",
-    "correctText": "en:lesson-06:session-24:i04:p1=drive\nen:lesson-06:session-24:i04:p2=smile\nen:lesson-06:session-24:i04:p3=draw\nen:lesson-06:session-24:i04:p4=cook",
+    "correctText": "en:lesson-06:session-24:i04:p1=pour\nen:lesson-06:session-24:i04:p2=toast\nen:lesson-06:session-24:i04:p3=slice\nen:lesson-06:session-24:i04:p4=knife",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-24:word:knife",
+    "correctText": "knife",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i05",
-    "correctText": "He reads at home.",
+    "correctText": "The knife is sharp.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i06",
-    "correctText": "She writes here.",
+    "correctText": "He teaches English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i07",
-    "correctText": "He cooks at home.",
+    "correctText": "The toast is warm.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i08",
-    "correctText": "draw",
+    "correctText": "draws",
     "correctResponseId": "en:lesson-06:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-24:i09",
-    "correctText": "The yoghurt is cold.",
+    "correctText": "He writes at the table.",
     "correctResponseId": "en:lesson-06:session-24:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-24:i10",
-    "correctText": "en:lesson-06:session-24:i10:p1=write\nen:lesson-06:session-24:i10:p2=read\nen:lesson-06:session-24:i10:p3=teach\nen:lesson-06:session-24:i10:p4=yoghurt",
+    "correctText": "en:lesson-06:session-24:i10:p1=knife\nen:lesson-06:session-24:i10:p2=pour\nen:lesson-06:session-24:i10:p3=drive\nen:lesson-06:session-24:i10:p4=teach",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i11",
-    "correctText": "The yoghurt is in the fridge.",
+    "correctText": "My sister catches the bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i12",
-    "correctText": "Whose notebook is this?",
+    "correctText": "Where is the knife?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i13",
-    "correctText": "I drive to work.",
+    "correctText": "He pours the coffee.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-24:i15",
-    "correctText": "They cook at home.",
+    "correctText": "The knife is sharp.",
     "correctResponseId": "en:lesson-06:session-24:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-24:i16",
-    "correctText": "en:lesson-06:session-24:i16:p1=smile\nen:lesson-06:session-24:i16:p2=draw\nen:lesson-06:session-24:i16:p3=write\nen:lesson-06:session-24:i16:p4=teach",
+    "correctText": "en:lesson-06:session-24:i16:p1=toast\nen:lesson-06:session-24:i16:p2=slice\nen:lesson-06:session-24:i16:p3=knife\nen:lesson-06:session-24:i16:p4=pour",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-24:i17",
-    "correctText": "She teaches English.",
+    "correctText": "She slices the bread.",
     "correctResponseId": null
   }
 ]

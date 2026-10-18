@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-09:i01",
+      "interactionId": "en:lesson-06:session-09:word:start",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — start",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-09:word:start:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — start",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-09:word:start:audio",
+          "transcript": "start"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-09:word:start:r1",
+            "targetText": "start",
+            "meaningByLocale": {
+              "ru": "начинать. We start at two. — «Мы начинаем в два». О начале работы, занятия или смены. После I, you, we, they — без s.",
+              "uk": "починати. We start at two. — «Ми починаємо о другій». Про початок роботи, заняття чи зміни. Після I, you, we, they — без s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "start",
+          "definitionByLocale": {
+            "ru": "начинать. We start at two. — «Мы начинаем в два». О начале работы, занятия или смены. После I, you, we, they — без s.",
+            "uk": "починати. We start at two. — «Ми починаємо о другій». Про початок роботи, заняття чи зміни. Після I, you, we, they — без s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-09:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о начале рабочего дня: «Я начинаю в девять»",
+      "prompt": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о начале рабочего дня: «Я начинаю в девять»",
+      "accessibilityLabel": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I start at nine.",
+        "targetPhrase": "I start at four.",
         "localizedMeaning": {
-          "ru": "Скажите о начале рабочего дня: «Я начинаю в девять»",
-          "uk": "Скажіть про початок робочого дня: «Я починаю о дев’ятій»"
+          "ru": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
+          "uk": "Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»"
         },
         "orderedTokens": [
           "I",
           "start",
           "at",
-          "nine"
+          "four"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-09:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `start` — `I start at four.`",
+              "uk": "тут потрібно `start` — `I start at four.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте администратора",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-09:i02:r1",
-          "text": "start"
+          "text": "We start at three."
         },
         {
           "responseId": "en:lesson-06:session-09:i02:r2",
-          "text": "work"
+          "text": "We start at five."
         },
         {
           "responseId": "en:lesson-06:session-09:i02:r3",
-          "text": "have"
+          "text": "They start at three."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте администратора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i02:audio",
-          "transcript": "start"
+          "transcript": "We start at three."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-09:i02:r1",
-            "targetText": "start",
+            "targetText": "We start at three.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-09:i02:r2",
-            "targetText": "work",
+            "targetText": "We start at five.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-09:i02:r3",
-            "targetText": "have",
+            "targetText": "They start at three.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +146,19 @@
           {
             "responseId": "en:lesson-06:session-09:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте администратора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `start`, а в этом варианте — `work`.",
-              "uk": "У записі перше слово — `start`, а в цьому варіанті — `work`."
+              "ru": "В записи последнее слово — `three`, а в этом варианте — `five`.",
+              "uk": "У записі останнє слово — `three`, а в цьому варіанті — `five`."
             }
           },
           {
             "responseId": "en:lesson-06:session-09:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте администратора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `start`, а в этом варианте — `have`.",
-              "uk": "У записі перше слово — `start`, а в цьому варіанті — `have`."
+              "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
             }
           }
         ],
@@ -113,12 +168,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-09:word:shift",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-09:word:shift:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-09:word:shift:audio",
+          "transcript": "shift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-09:word:shift:r1",
+            "targetText": "shift",
+            "meaningByLocale": {
+              "ru": "смена. You start the shift at four. — «Ты начинаешь смену в четыре». О рабочих часах: бывает первая и вторая смена.",
+              "uk": "зміна. You start the shift at four. — «Ти починаєш зміну о четвертій». Про робочі години: буває перша й друга зміна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shift",
+          "definitionByLocale": {
+            "ru": "смена. You start the shift at four. — «Ты начинаешь смену в четыре». О рабочих часах: бывает первая и вторая смена.",
+            "uk": "зміна. You start the shift at four. — «Ти починаєш зміну о четвертій». Про робочі години: буває перша й друга зміна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-09:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Мы начинаем в девять»",
+      "prompt": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-09:i03:r1",
@@ -135,14 +233,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Мы начинаем в девять»",
+      "accessibilityLabel": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы начинаем в девять»",
-          "uk": "Скажіть «Ми починаємо о дев’ятій»"
+          "ru": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
+          "uk": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ at nine.",
+        "gappedTargetPhrase": "We ___ the shift at two.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-09:i03:r1",
@@ -157,12 +255,12 @@
             "text": "are start"
           }
         ],
-        "testedDimension": "Скажите «Мы начинаем в девять»",
+        "testedDimension": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Мы начинаем в девять»",
+            "testedDimension": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `we` — `start`, без `s`.",
               "uk": "Після `we` — `start`, без `s`."
@@ -171,7 +269,7 @@
           {
             "responseId": "en:lesson-06:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Мы начинаем в девять»",
+            "testedDimension": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `We start`, без `are`.",
               "uk": "Кажемо `We start`, без `are`."
@@ -183,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +303,40 @@
           },
           {
             "pairId": "en:lesson-06:session-09:i04:p2",
-            "target": "work",
+            "target": "shift",
             "meaningByLocale": {
-              "ru": "работать",
-              "uk": "працювати"
+              "ru": "смена",
+              "uk": "зміна"
             }
           },
           {
             "pairId": "en:lesson-06:session-09:i04:p3",
-            "target": "dentist",
+            "target": "appointment",
             "meaningByLocale": {
-              "ru": "стоматолог",
-              "uk": "стоматолог"
+              "ru": "приём (запись к врачу)",
+              "uk": "прийом (запис до лікаря)"
             }
           },
           {
             "pairId": "en:lesson-06:session-09:i04:p4",
-            "target": "charger",
+            "target": "break",
             "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
+              "ru": "перерыв",
+              "uk": "перерва"
             }
           }
         ],
         "leftColumn": [
           "start",
-          "work",
-          "dentist",
-          "charger"
+          "shift",
+          "appointment",
+          "break"
         ],
         "rightColumn": [
           "начинать",
-          "работать",
-          "стоматолог",
-          "зарядное устройство"
+          "смена",
+          "приём (запись к врачу)",
+          "перерыв"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,33 +354,47 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте медсестру и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте медсестру и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i05:audio",
-          "transcript": "You start at ten."
+          "transcript": "You start the shift at four."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "You start at ten.",
+        "hiddenTargetPhrase": "You start the shift at four.",
         "orderedTokens": [
           "You",
           "start",
+          "the",
+          "shift",
           "at",
-          "ten"
+          "four"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-09:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте медсестру и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `start` — `You start the shift at four.`",
+              "uk": "тут потрібно `start` — `You start the shift at four.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +403,88 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-09:word:appointment",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — appointment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-09:word:appointment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — appointment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-09:word:appointment:audio",
+          "transcript": "appointment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-09:word:appointment:r1",
+            "targetText": "appointment",
+            "meaningByLocale": {
+              "ru": "приём (запись к врачу). You have an appointment at five. — «У тебя приём в пять». О времени, на которое человек записан к врачу.",
+              "uk": "прийом (запис до лікаря). You have an appointment at five. — «У тебе прийом о п’ятій». Про час, на який людина записана до лікаря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appointment",
+          "definitionByLocale": {
+            "ru": "приём (запись к врачу). You have an appointment at five. — «У тебя приём в пять». О времени, на которое человек записан к врачу.",
+            "uk": "прийом (запис до лікаря). You have an appointment at five. — «У тебе прийом о п’ятій». Про час, на який людина записана до лікаря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-09:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Они работают здесь»",
+      "prompt": "Вас с коллегой записали к стоматологу. Скажите администратору: «У нас приём в пять»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они работают здесь»",
+      "accessibilityLabel": "Вас с коллегой записали к стоматологу. Скажите администратору: «У нас приём в пять»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They work here.",
+        "targetPhrase": "We have an appointment at five.",
         "localizedMeaning": {
-          "ru": "Скажите «Они работают здесь»",
-          "uk": "Скажіть «Вони працюють тут»"
+          "ru": "Вас с коллегой записали к стоматологу. Скажите администратору: «У нас приём в пять»",
+          "uk": "Вас із колегою записали до стоматолога. Скажіть адміністратору: «У нас прийом о п’ятій»"
         },
         "orderedTokens": [
-          "They",
-          "work",
-          "here"
+          "We",
+          "have",
+          "an",
+          "appointment",
+          "at",
+          "five"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-09:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вас с коллегой записали к стоматологу. Скажите администратору: «У нас приём в пять»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `We have an appointment at five.`",
+              "uk": "тут потрібно `have` — `We have an appointment at five.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +494,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Назовите свою профессию: «Я стоматолог»",
+      "prompt": "Коллега спрашивает, во сколько вы с ним начинаете. Скажите: «Мы начинаем смену в три»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i07:audio"
       ],
-      "accessibilityLabel": "Назовите свою профессию: «Я стоматолог»",
+      "accessibilityLabel": "Коллега спрашивает, во сколько вы с ним начинаете. Скажите: «Мы начинаем смену в три»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i07:audio",
-          "transcript": "I am a dentist."
+          "transcript": "We start the shift at three."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am a dentist.",
+        "targetPhrase": "We start the shift at three.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,68 +526,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-09:word:break",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — break",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-09:word:break:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — break",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-09:word:break:audio",
+          "transcript": "break"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-09:word:break:r1",
+            "targetText": "break",
+            "meaningByLocale": {
+              "ru": "перерыв. We have a break at three. — «У нас перерыв в три». О коротком отдыхе посреди работы.",
+              "uk": "перерва. We have a break at three. — «У нас перерва о третій». Про короткий відпочинок посеред роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "break",
+          "definitionByLocale": {
+            "ru": "перерыв. We have a break at three. — «У нас перерыв в три». О коротком отдыхе посреди работы.",
+            "uk": "перерва. We have a break at three. — «У нас перерва о третій». Про короткий відпочинок посеред роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-09:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите коллеге «Ты работаешь в клинике»",
+      "prompt": "Скажите о коллегах: «У них перерыв в три». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-09:i08:r1",
-          "text": "work"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-06:session-09:i08:r2",
-          "text": "works"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-06:session-09:i08:r3",
-          "text": "are work"
+          "text": "are have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите коллеге «Ты работаешь в клинике»",
+      "accessibilityLabel": "Скажите о коллегах: «У них перерыв в три». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите коллеге «Ты работаешь в клинике»",
-          "uk": "Скажіть колезі «Ти працюєш у клініці»"
+          "ru": "Скажите о коллегах: «У них перерыв в три». Выберите слово",
+          "uk": "Скажіть про колег: «У них перерва о третій». Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ in a clinic.",
+        "gappedTargetPhrase": "They ___ a break at three.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-09:i08:r1",
-            "text": "work"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-06:session-09:i08:r2",
-            "text": "works"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-06:session-09:i08:r3",
-            "text": "are work"
+            "text": "are have"
           }
         ],
-        "testedDimension": "Скажите коллеге «Ты работаешь в клинике»",
+        "testedDimension": "Скажите о коллегах: «У них перерыв в три». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-09:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите коллеге «Ты работаешь в клинике»",
+            "testedDimension": "Скажите о коллегах: «У них перерыв в три». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `you` — `work`, без `s`.",
-              "uk": "Після `you` — `work`, без `s`."
+              "ru": "После `they` нужно `have`, а не `has`.",
+              "uk": "Після `they` потрібно `have`, а не `has`."
             }
           },
           {
             "responseId": "en:lesson-06:session-09:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите коллеге «Ты работаешь в клинике»",
+            "testedDimension": "Скажите о коллегах: «У них перерыв в три». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Говорим `You work`, без `are`.",
-              "uk": "Кажемо `You work`, без `are`."
+              "ru": "Говорим `They have`, без `are`.",
+              "uk": "Кажемо `They have`, без `are`."
             }
           }
         ]
@@ -426,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, во сколько они начинают",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-09:i09:r1",
-          "text": "They start at eight."
+          "text": "I have a break at four."
         },
         {
           "responseId": "en:lesson-06:session-09:i09:r2",
-          "text": "They start at nine."
+          "text": "I have a break at five."
         },
         {
           "responseId": "en:lesson-06:session-09:i09:r3",
-          "text": "They start at ten."
+          "text": "I have an appointment at four."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, во сколько они начинают",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i09:audio",
-          "transcript": "They start at eight."
+          "transcript": "I have a break at four."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-09:i09:r1",
-            "targetText": "They start at eight.",
+            "targetText": "I have a break at four.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-09:i09:r2",
-            "targetText": "They start at nine.",
+            "targetText": "I have a break at five.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-09:i09:r3",
-            "targetText": "They start at ten.",
+            "targetText": "I have an appointment at four.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +692,19 @@
           {
             "responseId": "en:lesson-06:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, во сколько они начинают",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `eight`, а в этом варианте — `nine`.",
-              "uk": "У записі останнє слово — `eight`, а в цьому варіанті — `nine`."
+              "ru": "В записи последнее слово — `four`, а в этом варианте — `five`.",
+              "uk": "У записі останнє слово — `four`, а в цьому варіанті — `five`."
             }
           },
           {
             "responseId": "en:lesson-06:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, во сколько они начинают",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `eight`, а в этом варианте — `ten`.",
-              "uk": "У записі останнє слово — `eight`, а в цьому варіанті — `ten`."
+              "ru": "В записи у коллеги `break`, перерыв, а в этом варианте — `appointment`, приём у врача.",
+              "uk": "У записі в колеги `break`, перерва, а в цьому варіанті — `appointment`, прийом у лікаря."
             }
           }
         ],
@@ -502,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-09:i10:p1",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "смена",
+              "uk": "зміна"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-09:i10:p2",
+            "target": "break",
+            "meaningByLocale": {
+              "ru": "перерыв",
+              "uk": "перерва"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-09:i10:p3",
+            "target": "appointment",
+            "meaningByLocale": {
+              "ru": "приём (запись к врачу)",
+              "uk": "прийом (запис до лікаря)"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-09:i10:p4",
             "target": "start",
             "meaningByLocale": {
               "ru": "начинать",
               "uk": "починати"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-09:i10:p2",
-            "target": "possible",
-            "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-09:i10:p3",
-            "target": "charger",
-            "meaningByLocale": {
-              "ru": "зарядное устройство",
-              "uk": "зарядний пристрій"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-09:i10:p4",
-            "target": "work",
-            "meaningByLocale": {
-              "ru": "работать",
-              "uk": "працювати"
-            }
           }
         ],
         "leftColumn": [
-          "start",
-          "possible",
-          "charger",
-          "work"
+          "shift",
+          "break",
+          "appointment",
+          "start"
         ],
         "rightColumn": [
-          "начинать",
-          "возможный",
-          "зарядное устройство",
-          "работать"
+          "смена",
+          "перерыв",
+          "приём (запись к врачу)",
+          "начинать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,33 +788,47 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте администратора и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте администратора и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i11:audio",
-          "transcript": "We have a charger."
+          "transcript": "They have a break at three."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We have a charger.",
+        "hiddenTargetPhrase": "They have a break at three.",
         "orderedTokens": [
-          "We",
+          "They",
           "have",
           "a",
-          "charger"
+          "break",
+          "at",
+          "three"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-09:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте администратора и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `They have a break at three.`",
+              "uk": "тут потрібно `have` — `They have a break at three.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -611,26 +838,29 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега уточняет, можно ли начать в десять. Скажите «Это возможно»",
+      "prompt": "Коллега спрашивает, во сколько у вас перерыв. Скажите: «У меня перерыв в два»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега уточняет, можно ли начать в десять. Скажите «Это возможно»",
+      "accessibilityLabel": "Коллега спрашивает, во сколько у вас перерыв. Скажите: «У меня перерыв в два»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is possible.",
+        "targetPhrase": "I have a break at two.",
         "localizedMeaning": {
-          "ru": "Коллега уточняет, можно ли начать в десять. Скажите «Это возможно»",
-          "uk": "Колега уточнює, чи можна почати о десятій. Скажіть «Це можливо»"
+          "ru": "Коллега спрашивает, во сколько у вас перерыв. Скажите: «У меня перерыв в два»",
+          "uk": "Колега питає, о котрій у вас перерва. Скажіть: «У мене перерва о другій»"
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "possible"
+          "I",
+          "have",
+          "a",
+          "break",
+          "at",
+          "two"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -639,10 +869,10 @@
           {
             "responseId": "en:lesson-06:session-09:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Коллега уточняет, можно ли начать в десять. Скажите «Это возможно»",
+            "testedDimension": "Коллега спрашивает, во сколько у вас перерыв. Скажите: «У меня перерыв в два»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is possible.`",
-              "uk": "тут потрібно `is` — `It is possible.`"
+              "ru": "здесь нужно `have` — `I have a break at two.`",
+              "uk": "тут потрібно `have` — `I have a break at two.`"
             }
           }
         ],
@@ -655,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите о себе и коллеге «Мы работаем в этом районе»",
+      "prompt": "Администратор спрашивает, где вы работаете. Скажите: «Я работаю в клинике»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i13:audio"
       ],
-      "accessibilityLabel": "Скажите о себе и коллеге «Мы работаем в этом районе»",
+      "accessibilityLabel": "Администратор спрашивает, где вы работаете. Скажите: «Я работаю в клинике»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i13:audio",
-          "transcript": "We work in this neighbourhood."
+          "transcript": "I work in a clinic."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We work in this neighbourhood.",
+        "targetPhrase": "I work in a clinic.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -688,11 +918,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я начинаю в восемь»",
+      "prompt": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-09:i14:r1",
@@ -709,14 +939,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я начинаю в восемь»",
+      "accessibilityLabel": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я начинаю в восемь»",
-          "uk": "Скажіть «Я починаю о восьмій»"
+          "ru": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
+          "uk": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ at eight.",
+        "gappedTargetPhrase": "I ___ the shift at four.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-09:i14:r1",
@@ -731,12 +961,12 @@
             "text": "am start"
           }
         ],
-        "testedDimension": "Скажите «Я начинаю в восемь»",
+        "testedDimension": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-09:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я начинаю в восемь»",
+            "testedDimension": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` — `start`, без `s`.",
               "uk": "Після `I` — `start`, без `s`."
@@ -745,7 +975,7 @@
           {
             "responseId": "en:lesson-06:session-09:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я начинаю в восемь»",
+            "testedDimension": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I start`, без `am`.",
               "uk": "Кажемо `I start`, без `am`."
@@ -757,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чьё зарядное устройство здесь",
+      "prompt": "Послушайте медсестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-09:i15:r1",
-          "text": "My charger is here."
+          "text": "They start the shift at two."
         },
         {
           "responseId": "en:lesson-06:session-09:i15:r2",
-          "text": "Your charger is here."
+          "text": "They start the shift at four."
         },
         {
           "responseId": "en:lesson-06:session-09:i15:r3",
-          "text": "His charger is here."
+          "text": "They start the break at two."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чьё зарядное устройство здесь",
+      "accessibilityLabel": "Послушайте медсестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i15:audio",
-          "transcript": "My charger is here."
+          "transcript": "They start the shift at two."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-09:i15:r1",
-            "targetText": "My charger is here.",
+            "targetText": "They start the shift at two.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-09:i15:r2",
-            "targetText": "Your charger is here.",
+            "targetText": "They start the shift at four.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-09:i15:r3",
-            "targetText": "His charger is here.",
+            "targetText": "They start the break at two.",
             "meaningByLocale": null
           }
         ],
@@ -810,19 +1040,19 @@
           {
             "responseId": "en:lesson-06:session-09:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чьё зарядное устройство здесь",
+            "testedDimension": "Послушайте медсестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `two`, а в этом варианте — `four`.",
+              "uk": "У записі останнє слово — `two`, а в цьому варіанті — `four`."
             }
           },
           {
             "responseId": "en:lesson-06:session-09:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чьё зарядное устройство здесь",
+            "testedDimension": "Послушайте медсестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи начинается `shift`, смена, а в этом варианте — `break`, перерыв.",
+              "uk": "У записі починається `shift`, зміна, а в цьому варіанті — `break`, перерва."
             }
           }
         ],
@@ -833,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -847,22 +1077,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-09:i16:p1",
-            "target": "dentist",
-            "meaningByLocale": {
-              "ru": "стоматолог",
-              "uk": "стоматолог"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-09:i16:p2",
-            "target": "possible",
-            "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-09:i16:p3",
             "target": "start",
             "meaningByLocale": {
               "ru": "начинать",
@@ -870,25 +1084,41 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-09:i16:p4",
-            "target": "work",
+            "pairId": "en:lesson-06:session-09:i16:p2",
+            "target": "shift",
             "meaningByLocale": {
-              "ru": "работать",
-              "uk": "працювати"
+              "ru": "смена",
+              "uk": "зміна"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-09:i16:p3",
+            "target": "appointment",
+            "meaningByLocale": {
+              "ru": "приём (запись к врачу)",
+              "uk": "прийом (запис до лікаря)"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-09:i16:p4",
+            "target": "break",
+            "meaningByLocale": {
+              "ru": "перерыв",
+              "uk": "перерва"
             }
           }
         ],
         "leftColumn": [
-          "dentist",
-          "possible",
           "start",
-          "work"
+          "shift",
+          "appointment",
+          "break"
         ],
         "rightColumn": [
-          "стоматолог",
-          "возможный",
           "начинать",
-          "работать"
+          "смена",
+          "приём (запись к врачу)",
+          "перерыв"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -906,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Новый сотрудник спрашивает о начале вашего рабочего дня. Скажите за всю команду «Мы начинаем в девять»",
+      "prompt": "Новый коллега спрашивает, во сколько вы с командой начинаете. Скажите: «Мы начинаем в два»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-09:i17:audio"
       ],
-      "accessibilityLabel": "Новый сотрудник спрашивает о начале вашего рабочего дня. Скажите за всю команду «Мы начинаем в девять»",
+      "accessibilityLabel": "Новый коллега спрашивает, во сколько вы с командой начинаете. Скажите: «Мы начинаем в два»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-09:i17:audio",
-          "transcript": "We start at nine."
+          "transcript": "We start at two."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We start at nine.",
+        "targetPhrase": "We start at two.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -946,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0f04d355549175087254a957137fd3bd45b6a3ef9a319b045972edc923aed5d8"
+  "learnerFingerprint": "55ffd1a0139040c8c1028823a9c3a3bd25211b007f0e770fd48e3e092bbbd053"
 }

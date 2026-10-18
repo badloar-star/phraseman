@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-30",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто обычно убирает, и уточнить, где лежат вещи",
-    "uk": "розповісти, хто зазвичай прибирає, й уточнити, де лежать речі"
+    "ru": "рассказать, кто что убирает, и сказать, где лежат вещи для уборки",
+    "uk": "розповісти, хто що прибирає, і сказати, де лежать речі для прибирання"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто убирает",
-        "uk": "Хто прибирає"
+        "ru": "Пятна на полу",
+        "uk": "Плями на підлозі"
       },
       "bodyByLocale": {
-        "ru": "`clean` — «убирать», наводить чистоту. `I clean my room` — «Я убираю свою комнату». `She cleans her room` — «Она убирает свою комнату»: после `she` добавляем `s`. Если просто убрать всё под кровать, комната выглядит чище, но это ещё не совсем `clean`.",
-        "uk": "`clean` — «прибирати», наводити чистоту. `I clean my room` — «Я прибираю свою кімнату». `She cleans her room` — «Вона прибирає свою кімнату»: після `she` додаємо `s`. Якщо просто сховати все під ліжко, кімната має чистіший вигляд, але це ще не зовсім `clean`."
+        "ru": "В субботу вы убираетесь дома, а пол на кухне в пятнах. Сосед заглядывает и спрашивает, чем вы заняты. Вы надеваете перчатки и берёте щётку. scrub — «тереть щёткой», чтобы отчистить пятна. Про себя говорим I scrub the floor — «Я тру пол». После I слово остаётся scrub, без s.",
+        "uk": "У суботу ви прибираєте вдома, а підлога на кухні в плямах. Сусід заглядає й питає, чим ви зайняті. Ви вдягаєте рукавички й беретеся за щітку. scrub — «терти щіткою», щоб відчистити плями. Про себе кажемо I scrub the floor — «Я тру підлогу». Після I слово лишається scrub, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-30:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она убирает свою комнату».",
-          "uk": "Скажіть «Вона прибирає свою кімнату»."
+          "ru": "Сосед спрашивает, чем вы заняты. Скажите: «Я тру пол».",
+          "uk": "Сусід питає, чим ви зайняті. Скажіть: «Я тру підлогу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-30:intro1:r1",
-              "text": "She cleans her room."
+              "text": "I scrub the floor."
             },
             {
               "responseId": "en:lesson-06:session-30:intro1:r2",
-              "text": "She clean her room."
+              "text": "I scrubs the floor."
             },
             {
               "responseId": "en:lesson-06:session-30:intro1:r3",
-              "text": "She is cleans her room."
+              "text": "I am scrub the floor."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-30:intro1:r1",
-              "text": "She cleans her room."
+              "text": "I scrub the floor."
             },
             {
               "responseId": "en:lesson-06:session-30:intro1:r2",
-              "text": "She clean her room."
+              "text": "I scrubs the floor."
             },
             {
               "responseId": "en:lesson-06:session-30:intro1:r3",
-              "text": "She is cleans her room."
+              "text": "I am scrub the floor."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она убирает свою комнату».",
-          "uk": "Скажіть «Вона прибирає свою кімнату»."
+          "ru": "Сосед спрашивает, чем вы заняты. Скажите: «Я тру пол».",
+          "uk": "Сусід питає, чим ви зайняті. Скажіть: «Я тру підлогу»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "В другом месте",
-        "uk": "В іншому місці"
+        "ru": "Пакет у двери",
+        "uk": "Пакет біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`elsewhere` — «в другом месте». `My headphones are elsewhere` — «Мои наушники в другом месте». `headphones` — «наушники»: с этим словом используем `are`. Само `elsewhere` уже означает место, поэтому перед ним не нужны `in` или `at`.",
-        "uk": "`elsewhere` — «в іншому місці». `My headphones are elsewhere` — «Мої навушники в іншому місці». `headphones` — «навушники»: із цим словом використовуємо `are`. Саме `elsewhere` уже означає місце, тому перед ним не потрібні `in` або `at`."
+        "ru": "У двери стоит пакет с мусором, и сосед не знает, куда его деть. Пакет тяжёлый, и он просит подсказать. Вы показываете на мусорный бак во дворе. rubbish — «мусор»: это одно целое, поэтому нужно is. The rubbish is in the bin — «Мусор в мусорном баке».",
+        "uk": "Біля дверей стоїть пакет зі сміттям, і сусід не знає, куди його подіти. Пакет важкий, і він просить підказати. Ви показуєте на смітник у дворі. rubbish — «сміття»: це одне ціле, тому потрібно is. The rubbish is in the bin — «Сміття в смітнику»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-30:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Мои наушники в другом месте».",
-          "uk": "Скажіть «Мої навушники в іншому місці»."
+          "ru": "Сосед спрашивает, где мусор. Скажите: «Мусор в мусорном баке».",
+          "uk": "Сусід питає, де сміття. Скажіть: «Сміття в смітнику»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-30:intro2:r1",
-              "text": "My headphones are elsewhere."
+              "text": "The rubbish is in the bin."
             },
             {
               "responseId": "en:lesson-06:session-30:intro2:r2",
-              "text": "My headphones is elsewhere."
+              "text": "The rubbish are in the bin."
             },
             {
               "responseId": "en:lesson-06:session-30:intro2:r3",
-              "text": "My headphones are in elsewhere."
+              "text": "The rubbish in the bin."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-30:intro2:r1",
-              "text": "My headphones are elsewhere."
+              "text": "The rubbish is in the bin."
             },
             {
               "responseId": "en:lesson-06:session-30:intro2:r2",
-              "text": "My headphones is elsewhere."
+              "text": "The rubbish are in the bin."
             },
             {
               "responseId": "en:lesson-06:session-30:intro2:r3",
-              "text": "My headphones are in elsewhere."
+              "text": "The rubbish in the bin."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мои наушники в другом месте».",
-          "uk": "Скажіть «Мої навушники в іншому місці»."
+          "ru": "Сосед спрашивает, где мусор. Скажите: «Мусор в мусорном баке».",
+          "uk": "Сусід питає, де сміття. Скажіть: «Сміття в смітнику»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Указатель у двери",
-        "uk": "Вказівник біля дверей"
+        "ru": "Соседка помогает",
+        "uk": "Сусідка допомагає"
       },
       "bodyByLocale": {
-        "ru": "`signpost` — «указатель», обычно на столбе. `This signpost is new` — «Этот указатель новый». `read` — «читать»: `He reads here` — «Он читает здесь». Это может быть его привычное место для чтения; фраза не обязательно описывает эту секунду. `Whose headphones are these?` — «Чьи это наушники?»",
-        "uk": "`signpost` — «вказівник», зазвичай на стовпі. `This signpost is new` — «Цей вказівник новий». `read` — «читати»: `He reads here` — «Він читає тут». Це може бути його звичне місце для читання; фраза не обов’язково описує цю секунду. `Whose headphones are these?` — «Чиї це навушники?»"
+        "ru": "Соседка пришла помочь с уборкой: в одной руке у неё флакон-спрей, в другой щётка. Она улыбается и сразу берётся за дело. Вы благодарите её. spray — «спрей», флакон с распылителем. Про неё после she к scrub добавляем s: She scrubs the table — «Она трёт стол».",
+        "uk": "Сусідка прийшла допомогти з прибиранням: в одній руці в неї флакон зі спреєм, в другій щітка. Вона усміхається й одразу береться до справи. Ви дякуєте їй. spray — «спрей», флакон із розпилювачем. Про неї після she до scrub додаємо s: She scrubs the table — «Вона тре стіл»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-30:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чьи это наушники?»",
-          "uk": "Запитайте «Чиї це навушники?»"
+          "ru": "Сосед спрашивает, что делает соседка. Скажите: «Она трёт стол».",
+          "uk": "Сусід питає, що робить сусідка. Скажіть: «Вона тре стіл»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-30:intro3:r1",
-              "text": "Whose headphones are these?"
+              "text": "She scrubs the table."
             },
             {
               "responseId": "en:lesson-06:session-30:intro3:r2",
-              "text": "Whose headphones is this?"
+              "text": "She scrub the table."
             },
             {
               "responseId": "en:lesson-06:session-30:intro3:r3",
-              "text": "Who headphones are these?"
+              "text": "She is scrubs the table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-30:intro3:r1",
-              "text": "Whose headphones are these?"
+              "text": "She scrubs the table."
             },
             {
               "responseId": "en:lesson-06:session-30:intro3:r2",
-              "text": "Whose headphones is this?"
+              "text": "She scrub the table."
             },
             {
               "responseId": "en:lesson-06:session-30:intro3:r3",
-              "text": "Who headphones are these?"
+              "text": "She is scrubs the table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чьи это наушники?»",
-          "uk": "Запитайте «Чиї це навушники?»"
+          "ru": "Сосед спрашивает, что делает соседка. Скажите: «Она трёт стол».",
+          "uk": "Сусід питає, що робить сусідка. Скажіть: «Вона тре стіл»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1d2b41fe8ed31660148fc80f43441a87c19410834fa571688bffe860b4fb4c16"
+  "introFingerprint": "3e1aacb40fca4be0c7f6a51ce5e8e4e7c7425ab74ec7e159538e21dd13cab387"
 }

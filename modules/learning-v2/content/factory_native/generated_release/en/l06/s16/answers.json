@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-16:word:class",
+    "correctText": "class",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-16:i01",
-    "correctText": "We learn English.",
+    "correctText": "They learn English in class.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-16:word:club",
+    "correctText": "club",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i02",
-    "correctText": "practice",
+    "correctText": "I paint at the club.",
     "correctResponseId": "en:lesson-06:session-16:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-16:i03",
-    "correctText": "laugh",
+    "correctText": "swim",
     "correctResponseId": "en:lesson-06:session-16:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-16:i04",
-    "correctText": "en:lesson-06:session-16:i04:p1=practice\nen:lesson-06:session-16:i04:p2=learn\nen:lesson-06:session-16:i04:p3=paint\nen:lesson-06:session-16:i04:p4=swim",
+    "correctText": "en:lesson-06:session-16:i04:p1=hobby\nen:lesson-06:session-16:i04:p2=class\nen:lesson-06:session-16:i04:p3=member\nen:lesson-06:session-16:i04:p4=club",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-16:word:member",
+    "correctText": "member",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i05",
-    "correctText": "We start at nine.",
+    "correctText": "You are a member of the club.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-16:word:hobby",
+    "correctText": "hobby",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i06",
-    "correctText": "I paint at home.",
+    "correctText": "This is my hobby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i07",
-    "correctText": "We swim in this swimming pool.",
+    "correctText": "We are in class.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i08",
-    "correctText": "sing",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-16:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-16:i09",
-    "correctText": "They start at ten.",
+    "correctText": "I am a member of the club.",
     "correctResponseId": "en:lesson-06:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-16:i10",
-    "correctText": "en:lesson-06:session-16:i10:p1=laugh\nen:lesson-06:session-16:i10:p2=sing\nen:lesson-06:session-16:i10:p3=start\nen:lesson-06:session-16:i10:p4=swimming pool",
+    "correctText": "en:lesson-06:session-16:i10:p1=member\nen:lesson-06:session-16:i10:p2=club\nen:lesson-06:session-16:i10:p3=hobby\nen:lesson-06:session-16:i10:p4=class",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i11",
-    "correctText": "We practice here.",
+    "correctText": "They practice English in class.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i12",
-    "correctText": "Whose helmet is this?",
+    "correctText": "Whose badge is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i13",
-    "correctText": "I laugh a lot.",
+    "correctText": "We paint in the club.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i14",
-    "correctText": "learn",
+    "correctText": "start",
     "correctResponseId": "en:lesson-06:session-16:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-16:i15",
-    "correctText": "We sing at home.",
+    "correctText": "They sing in the choir.",
     "correctResponseId": "en:lesson-06:session-16:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-16:i16",
-    "correctText": "en:lesson-06:session-16:i16:p1=swimming pool\nen:lesson-06:session-16:i16:p2=paint\nen:lesson-06:session-16:i16:p3=swim\nen:lesson-06:session-16:i16:p4=sing",
+    "correctText": "en:lesson-06:session-16:i16:p1=club\nen:lesson-06:session-16:i16:p2=hobby\nen:lesson-06:session-16:i16:p3=class\nen:lesson-06:session-16:i16:p4=member",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-16:i17",
-    "correctText": "We start at nine.",
+    "correctText": "We paint and we swim.",
     "correctResponseId": null
   }
 ]

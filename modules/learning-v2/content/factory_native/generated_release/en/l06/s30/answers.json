@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-30:word:scrub",
+    "correctText": "scrub",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-30:i01",
-    "correctText": "I clean my room.",
+    "correctText": "We scrub the floor.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i02",
-    "correctText": "clean",
+    "correctText": "She scrubs the table.",
     "correctResponseId": "en:lesson-06:session-30:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-30:i03",
-    "correctText": "cleans",
+    "correctText": "scrubs",
     "correctResponseId": "en:lesson-06:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-30:i04",
-    "correctText": "en:lesson-06:session-30:i04:p1=clean\nen:lesson-06:session-30:i04:p2=elsewhere\nen:lesson-06:session-30:i04:p3=signpost\nen:lesson-06:session-30:i04:p4=headphones",
+    "correctText": "en:lesson-06:session-30:i04:p1=scrub\nen:lesson-06:session-30:i04:p2=rubbish\nen:lesson-06:session-30:i04:p3=spray\nen:lesson-06:session-30:i04:p4=cloth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-30:word:rubbish",
+    "correctText": "rubbish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i05",
-    "correctText": "Tom cleans his room.",
+    "correctText": "The rubbish is in the bin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-30:word:spray",
+    "correctText": "spray",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i06",
-    "correctText": "He reads here.",
+    "correctText": "Whose spray is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i07",
-    "correctText": "My headphones are elsewhere.",
+    "correctText": "We scrub the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i08",
-    "correctText": "clean",
+    "correctText": "scrub",
     "correctResponseId": "en:lesson-06:session-30:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-30:word:cloth",
+    "correctText": "cloth",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-30:i09",
-    "correctText": "This signpost is new.",
+    "correctText": "The cloth is on the table.",
     "correctResponseId": "en:lesson-06:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-30:i10",
-    "correctText": "en:lesson-06:session-30:i10:p1=clean\nen:lesson-06:session-30:i10:p2=read\nen:lesson-06:session-30:i10:p3=headphones\nen:lesson-06:session-30:i10:p4=elsewhere",
+    "correctText": "en:lesson-06:session-30:i10:p1=cloth\nen:lesson-06:session-30:i10:p2=spray\nen:lesson-06:session-30:i10:p3=rubbish\nen:lesson-06:session-30:i10:p4=scrub",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i11",
-    "correctText": "These headphones are mine.",
+    "correctText": "They scrub the floor.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i12",
-    "correctText": "Whose headphones are these?",
+    "correctText": "The gloves are on the floor.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i13",
-    "correctText": "They read elsewhere.",
+    "correctText": "The cloth is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i14",
-    "correctText": "reads",
+    "correctText": "are",
     "correctResponseId": "en:lesson-06:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-30:i15",
-    "correctText": "Your headphones are here.",
+    "correctText": "I scrub the floor.",
     "correctResponseId": "en:lesson-06:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-30:i16",
-    "correctText": "en:lesson-06:session-30:i16:p1=clean\nen:lesson-06:session-30:i16:p2=signpost\nen:lesson-06:session-30:i16:p3=elsewhere\nen:lesson-06:session-30:i16:p4=read",
+    "correctText": "en:lesson-06:session-30:i16:p1=spray\nen:lesson-06:session-30:i16:p2=scrub\nen:lesson-06:session-30:i16:p3=cloth\nen:lesson-06:session-30:i16:p4=rubbish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-30:i17",
-    "correctText": "She cleans her room.",
+    "correctText": "She scrubs the floor.",
     "correctResponseId": null
   }
 ]

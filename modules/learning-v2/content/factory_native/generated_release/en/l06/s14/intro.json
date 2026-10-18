@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-14",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о смехе и уточнить место и владельца знакомых вещей",
-    "uk": "розповісти про сміх і уточнити місце та власника знайомих речей"
+    "ru": "рассказать, над чем вы смеётесь, и сказать, где лежат вещи",
+    "uk": "розповісти, з чого ви сміятеся, і сказати, де лежать речі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Смеяться",
-        "uk": "Сміятися"
+        "ru": "Смех у барабанов",
+        "uk": "Сміх біля барабанів"
       },
       "bodyByLocale": {
-        "ru": "`laugh` — «смеяться». `We laugh a lot` — «Мы много смеёмся»: говорим о том, что бывает часто. В слове `laugh` буквы `gh` звучат как /f/. Это слово уже устроило маленькую шутку: написало две буквы, а произнесло один звук.",
-        "uk": "`laugh` — «сміятися». `We laugh a lot` — «Ми багато сміємося»: говоримо про те, що буває часто. У слові `laugh` літери `gh` звучать як /f/. Це слово вже влаштувало маленький жарт: написало дві літери, а вимовило один звук."
+        "ru": "Вы с соседкой сидите у стиральных машин в прачечной и ждёте. Соседка рассказывает смешную историю, и вы оба хохочете на всё помещение. Другие посетители оборачиваются. laugh — «смеяться»: We laugh together — «Мы смеёмся вместе». После we слово laugh остаётся без s.",
+        "uk": "Ви із сусідкою сидите біля пральних машин у пральні й чекаєте. Сусідка розповідає смішну історію, і ви обидві регочете на все приміщення. Інші відвідувачі озираються. laugh — «сміятися»: We laugh together — «Ми сміємося разом». Після we слово laugh лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-14:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы много смеёмся».",
-          "uk": "Скажіть «Ми багато сміємося»."
+          "ru": "Посетительница спрашивает, почему у вас так шумно. Скажите: «Мы смеёмся вместе».",
+          "uk": "Відвідувачка питає, чому в вас так шумно. Скажіть: «Ми сміємося разом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-14:intro1:r1",
-              "text": "We laugh a lot."
+              "text": "We laugh together."
             },
             {
               "responseId": "en:lesson-06:session-14:intro1:r2",
-              "text": "We laughs a lot."
+              "text": "We laughs together."
             },
             {
               "responseId": "en:lesson-06:session-14:intro1:r3",
-              "text": "We are laugh a lot."
+              "text": "We are laugh together."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-14:intro1:r1",
-              "text": "We laugh a lot."
+              "text": "We laugh together."
             },
             {
               "responseId": "en:lesson-06:session-14:intro1:r2",
-              "text": "We laughs a lot."
+              "text": "We laughs together."
             },
             {
               "responseId": "en:lesson-06:session-14:intro1:r3",
-              "text": "We are laugh a lot."
+              "text": "We are laugh together."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы много смеёмся».",
-          "uk": "Скажіть «Ми багато сміємося»."
+          "ru": "Посетительница спрашивает, почему у вас так шумно. Скажите: «Мы смеёмся вместе».",
+          "uk": "Відвідувачка питає, чому в вас так шумно. Скажіть: «Ми сміємося разом»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пока стирается одежда",
-        "uk": "Поки переться одяг"
+        "ru": "Шутка про носки",
+        "uk": "Жарт про шкарпетки"
       },
       "bodyByLocale": {
-        "ru": "`laundrette` — «прачечная самообслуживания»: посетители сами пользуются стиральными машинами. `We are in the laundrette` — «Мы в прачечной самообслуживания»: место, поэтому нужно `are`. `I laugh a lot` — «Я много смеюсь»: действие, без `am`. `It is obvious` — «Это очевидно», ясно без долгих объяснений.",
-        "uk": "`laundrette` — «пральня самообслуговування»: відвідувачі самі користуються пральними машинами. `We are in the laundrette` — «Ми в пральні самообслуговування»: місце, тому потрібно `are`. `I laugh a lot` — «Я багато сміюся»: дія, без `am`. `It is obvious` — «Це очевидно», зрозуміло без довгих пояснень."
+        "ru": "Соседка вспоминает случай с потерянным носком и рассказывает его как короткую шутку. Вы дослушали, все вокруг улыбаются, и даже посетитель у окна. Хочется сказать, что шутка удалась. joke — «шутка, анекдот». Описываем её через is: It is a funny joke — «Это смешная шутка».",
+        "uk": "Сусідка згадує випадок із загубленою шкарпеткою й розповідає його як короткий жарт. Ви дослухали, усі навколо усміхаються, навіть відвідувач біля вікна. Хочеться сказати, що жарт вдався. joke — «жарт, анекдот». Описуємо його через is: It is a funny joke — «Це смішний жарт»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-14:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Это очевидно».",
-          "uk": "Скажіть «Це очевидно»."
+          "ru": "Вы дослушали историю. Скажите соседке: «Это смешная шутка».",
+          "uk": "Ви дослухали історію. Скажіть сусідці: «Це смішний жарт»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-14:intro2:r1",
-              "text": "It is obvious."
+              "text": "It is a funny joke."
             },
             {
               "responseId": "en:lesson-06:session-14:intro2:r2",
-              "text": "It are obvious."
+              "text": "It are a funny joke."
             },
             {
               "responseId": "en:lesson-06:session-14:intro2:r3",
-              "text": "It is impossible."
+              "text": "It is an funny joke."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-14:intro2:r1",
-              "text": "It is obvious."
+              "text": "It is a funny joke."
             },
             {
               "responseId": "en:lesson-06:session-14:intro2:r2",
-              "text": "It are obvious."
+              "text": "It are a funny joke."
             },
             {
               "responseId": "en:lesson-06:session-14:intro2:r3",
-              "text": "It is impossible."
+              "text": "It is an funny joke."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это очевидно».",
-          "uk": "Скажіть «Це очевидно»."
+          "ru": "Вы дослушали историю. Скажите соседке: «Это смешная шутка».",
+          "uk": "Ви дослухали історію. Скажіть сусідці: «Це смішний жарт»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чемодан и книга",
-        "uk": "Валіза й книжка"
+        "ru": "Вещи в сушилке",
+        "uk": "Речі в сушарці"
       },
       "bodyByLocale": {
-        "ru": "`suitcase` — «чемодан», `bookmark` — «закладка». `Whose suitcase is this?` — «Чей это чемодан?» `The bookmark is in the book` — «Закладка в книге». `That suitcase is yours` — «Тот чемодан твой»: после `yours` название вещи не нужно.",
-        "uk": "`suitcase` — «валіза», `bookmark` — «закладка». `Whose suitcase is this?` — «Чия це валіза?» `The bookmark is in the book` — «Закладка в книжці». `That suitcase is yours` — «Та валіза твоя»: після `yours` назва речі не потрібна."
+        "ru": "Стирка закончилась, и вы переложили мокрые вещи в сушилку. Она уже гудит, а корзина стоит рядом. Соседка уходит за кофе и спрашивает, где ваши вещи. laundry — «бельё и одежда для стирки». Слово не меняется: Our laundry is in the dryer — «Наше бельё в сушилке».",
+        "uk": "Прання закінчилося, і ви переклали мокрі речі в сушарку. Вона вже гуде, а кошик стоїть поруч. Сусідка йде по каву й питає, де ваші речі. laundry — «білизна й одяг для прання». Слово не змінюється: Our laundry is in the dryer — «Наша білизна в сушарці»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-14:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чей это чемодан?»",
-          "uk": "Запитайте «Чия це валіза?»"
+          "ru": "Соседка спрашивает, где ваши вещи. Скажите: «Наше бельё в сушилке».",
+          "uk": "Сусідка питає, де ваші речі. Скажіть: «Наша білизна в сушарці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-14:intro3:r1",
-              "text": "Whose suitcase is this?"
+              "text": "Our laundry is in the dryer."
             },
             {
               "responseId": "en:lesson-06:session-14:intro3:r2",
-              "text": "Where is the suitcase?"
+              "text": "Our laundry are in the dryer."
             },
             {
               "responseId": "en:lesson-06:session-14:intro3:r3",
-              "text": "Whose suitcase are these?"
+              "text": "Our laundry is on the dryer."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-14:intro3:r1",
-              "text": "Whose suitcase is this?"
+              "text": "Our laundry is in the dryer."
             },
             {
               "responseId": "en:lesson-06:session-14:intro3:r2",
-              "text": "Where is the suitcase?"
+              "text": "Our laundry are in the dryer."
             },
             {
               "responseId": "en:lesson-06:session-14:intro3:r3",
-              "text": "Whose suitcase are these?"
+              "text": "Our laundry is on the dryer."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чей это чемодан?»",
-          "uk": "Запитайте «Чия це валіза?»"
+          "ru": "Соседка спрашивает, где ваши вещи. Скажите: «Наше бельё в сушилке».",
+          "uk": "Сусідка питає, де ваші речі. Скажіть: «Наша білизна в сушарці»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d9bf2566dd7a486b80b26aa438f3042531227e200377f377232ad1e01161535b"
+  "introFingerprint": "5ccf1cb552d4a15917c78a8bea7f3e8678d25fafae2a1b619000f21e5643dba5"
 }

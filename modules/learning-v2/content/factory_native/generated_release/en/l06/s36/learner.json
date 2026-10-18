@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-36:i01",
+      "interactionId": "en:lesson-06:session-36:word:live",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — live",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-36:word:live:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — live",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-36:word:live:audio",
+          "transcript": "live"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-36:word:live:r1",
+            "targetText": "live",
+            "meaningByLocale": {
+              "ru": "жить. We live in a flat. — «Мы живём в квартире». О месте, где человек дома.",
+              "uk": "жити. We live in a flat. — «Ми живемо в квартирі». Про місце, де людина вдома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "live",
+          "definitionByLocale": {
+            "ru": "жить. We live in a flat. — «Мы живём в квартире». О месте, где человек дома.",
+            "uk": "жити. We live in a flat. — «Ми живемо в квартирі». Про місце, де людина вдома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-36:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Объясните соседу «Я живу здесь»",
+      "prompt": "Новая соседка спрашивает о вас с братом. Скажите: «Мы живём здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Объясните соседу «Я живу здесь»",
+      "accessibilityLabel": "Новая соседка спрашивает о вас с братом. Скажите: «Мы живём здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I live here.",
+        "targetPhrase": "We live here.",
         "localizedMeaning": {
-          "ru": "Объясните соседу «Я живу здесь»",
-          "uk": "Поясніть сусідові «Я живу тут»"
+          "ru": "Новая соседка спрашивает о вас с братом. Скажите: «Мы живём здесь»",
+          "uk": "Нова сусідка питає про вас із братом. Скажіть: «Ми живемо тут»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "live",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "lives"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-36:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Новая соседка спрашивает о вас с братом. Скажите: «Мы живём здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `live` — `We live here.`",
+              "uk": "тут потрібно `live` — `We live here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-36:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-36:word:flat",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — flat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-36:word:flat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-36:word:flat:audio",
+          "transcript": "flat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-36:word:flat:r1",
+            "targetText": "flat",
+            "meaningByLocale": {
+              "ru": "квартира. The flat is small. — «Квартира маленькая». О жилье в большом многоэтажном доме.",
+              "uk": "квартира. The flat is small. — «Квартира маленька». Про житло у великому багатоповерховому будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flat",
+          "definitionByLocale": {
+            "ru": "квартира. The flat is small. — «Квартира маленькая». О жилье в большом многоэтажном доме.",
+            "uk": "квартира. The flat is small. — «Квартира маленька». Про житло у великому багатоповерховому будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-36:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-36:i02:r1",
-          "text": "live"
+          "text": "She lives in a flat."
         },
         {
           "responseId": "en:lesson-06:session-36:i02:r2",
-          "text": "sleep"
+          "text": "She lives in a cottage."
         },
         {
           "responseId": "en:lesson-06:session-36:i02:r3",
-          "text": "stretch"
+          "text": "He lives in a flat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i02:audio",
-          "transcript": "live"
+          "transcript": "She lives in a flat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-36:i02:r1",
-            "targetText": "live",
+            "targetText": "She lives in a flat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-36:i02:r2",
-            "targetText": "sleep",
+            "targetText": "She lives in a cottage.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-36:i02:r3",
-            "targetText": "stretch",
+            "targetText": "He lives in a flat.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +188,19 @@
           {
             "responseId": "en:lesson-06:session-36:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `live`, а в этом варианте — `sleep`.",
-              "uk": "У записі перше слово — `live`, а в цьому варіанті — `sleep`."
+              "ru": "В записи последнее слово — `flat`, квартира, а в этом варианте — `cottage`, домик.",
+              "uk": "У записі останнє слово — `flat`, квартира, а в цьому варіанті — `cottage`, хатинка."
             }
           },
           {
             "responseId": "en:lesson-06:session-36:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `live`, а в этом варианте — `stretch`.",
-              "uk": "У записі перше слово — `live`, а в цьому варіанті — `stretch`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -113,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Он живёт там»",
+      "prompt": "Скажите о брате: «Мой брат живёт возле парка». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-36:i03:r1",
@@ -134,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он живёт там»",
+      "accessibilityLabel": "Скажите о брате: «Мой брат живёт возле парка». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он живёт там»",
-          "uk": "Скажіть «Він живе там»"
+          "ru": "Скажите о брате: «Мой брат живёт возле парка». Выберите слово",
+          "uk": "Скажіть про брата: «Мій брат живе біля парку». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ there.",
+        "gappedTargetPhrase": "My brother ___ near the park.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-36:i03:r1",
@@ -156,24 +254,24 @@
             "text": "is lives"
           }
         ],
-        "testedDimension": "Скажите «Он живёт там»",
+        "testedDimension": "Скажите о брате: «Мой брат живёт возле парка». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-36:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Он живёт там»",
+            "testedDimension": "Скажите о брате: «Мой брат живёт возле парка». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `he` — `lives`.",
-              "uk": "Після `he` — `lives`."
+              "ru": "Брат — это `he`, поэтому нужно `lives`, с `s`.",
+              "uk": "Брат — це `he`, тому потрібно `lives`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-36:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Он живёт там»",
+            "testedDimension": "Скажите о брате: «Мой брат живёт возле парка». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `He lives`, без `is`.",
-              "uk": "Потрібно `He lives`, без `is`."
+              "ru": "Говорим `lives`, без `is`.",
+              "uk": "Кажемо `lives`, без `is`."
             }
           }
         ]
@@ -182,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,40 +302,40 @@
           },
           {
             "pairId": "en:lesson-06:session-36:i04:p2",
-            "target": "informal",
+            "target": "flat",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "квартира",
+              "uk": "квартира"
             }
           },
           {
             "pairId": "en:lesson-06:session-36:i04:p3",
-            "target": "smoke alarm",
+            "target": "cottage",
             "meaningByLocale": {
-              "ru": "датчик дыма",
-              "uk": "датчик диму"
+              "ru": "домик",
+              "uk": "будиночок"
             }
           },
           {
             "pairId": "en:lesson-06:session-36:i04:p4",
-            "target": "sunglasses",
+            "target": "landlord",
             "meaningByLocale": {
-              "ru": "солнцезащитные очки",
-              "uk": "сонцезахисні окуляри"
+              "ru": "хозяин квартиры",
+              "uk": "господар квартири"
             }
           }
         ],
         "leftColumn": [
           "live",
-          "informal",
-          "smoke alarm",
-          "sunglasses"
+          "flat",
+          "cottage",
+          "landlord"
         ],
         "rightColumn": [
           "жить",
-          "неформальный",
-          "датчик дыма",
-          "солнцезащитные очки"
+          "квартира",
+          "домик",
+          "хозяин квартиры"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,33 +352,91 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-36:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-06:session-36:word:landlord",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — landlord",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-36:word:landlord:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — landlord",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-36:word:landlord:audio",
+          "transcript": "landlord"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-36:word:landlord:r1",
+            "targetText": "landlord",
+            "meaningByLocale": {
+              "ru": "хозяин квартиры. The landlord is kind. — «Хозяин квартиры добрый». О человеке, который сдаёт жильё.",
+              "uk": "господар квартири. The landlord is kind. — «Господар квартири добрий». Про людину, яка здає житло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "landlord",
+          "definitionByLocale": {
+            "ru": "хозяин квартиры. The landlord is kind. — «Хозяин квартиры добрый». О человеке, который сдаёт жильё.",
+            "uk": "господар квартири. The landlord is kind. — «Господар квартири добрий». Про людину, яка здає житло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-36:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i05:audio",
-          "transcript": "Tom lives there."
+          "transcript": "The landlord is on the stairs."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Tom lives there.",
+        "hiddenTargetPhrase": "The landlord is on the stairs.",
         "orderedTokens": [
-          "Tom",
-          "lives",
-          "there"
+          "The",
+          "landlord",
+          "is",
+          "on",
+          "the",
+          "stairs"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-36:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседа и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The landlord is on the stairs.`",
+              "uk": "тут потрібно `is` — `The landlord is on the stairs.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,30 +445,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-36:word:cottage",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cottage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-36:word:cottage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cottage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-36:word:cottage:audio",
+          "transcript": "cottage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-36:word:cottage:r1",
+            "targetText": "cottage",
+            "meaningByLocale": {
+              "ru": "домик. The cottage is small. — «Домик маленький». О небольшом доме, часто за городом.",
+              "uk": "хатинка. The cottage is small. — «Хатинка маленька». Про невеликий будинок, часто за містом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cottage",
+          "definitionByLocale": {
+            "ru": "домик. The cottage is small. — «Домик маленький». О небольшом доме, часто за городом.",
+            "uk": "хатинка. The cottage is small. — «Хатинка маленька». Про невеликий будинок, часто за містом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-36:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Она делает здесь растяжку»",
+      "prompt": "Вы рассказываете подруге о домике за городом. Скажите: «Домик старый»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она делает здесь растяжку»",
+      "accessibilityLabel": "Вы рассказываете подруге о домике за городом. Скажите: «Домик старый»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She stretches here.",
+        "targetPhrase": "The cottage is old.",
         "localizedMeaning": {
-          "ru": "Скажите «Она делает здесь растяжку»",
-          "uk": "Скажіть «Вона робить тут розтяжку»"
+          "ru": "Вы рассказываете подруге о домике за городом. Скажите: «Домик старый»",
+          "uk": "Ви розповідаєте подрузі про хатинку за містом. Скажіть: «Хатинка стара»"
         },
         "orderedTokens": [
-          "She",
-          "stretches",
-          "here"
+          "The",
+          "cottage",
+          "is",
+          "old"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-36:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы рассказываете подруге о домике за городом. Скажите: «Домик старый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The cottage is old.`",
+              "uk": "тут потрібно `is` — `The cottage is old.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,25 +534,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В доме заменили датчик. Скажите «Этот датчик дыма новый»",
+      "prompt": "Соседка спрашивает, где живёт ваш брат. Скажите: «Он живёт здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i07:audio"
       ],
-      "accessibilityLabel": "В доме заменили датчик. Скажите «Этот датчик дыма новый»",
+      "accessibilityLabel": "Соседка спрашивает, где живёт ваш брат. Скажите: «Он живёт здесь»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i07:audio",
-          "transcript": "This smoke alarm is new."
+          "transcript": "He lives here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This smoke alarm is new.",
+        "targetPhrase": "He lives here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,11 +567,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Мы живём здесь»",
+      "prompt": "Скажите о себе: «Я живу возле парка». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-36:i08:r1",
@@ -371,19 +583,19 @@
         },
         {
           "responseId": "en:lesson-06:session-36:i08:r3",
-          "text": "are live"
+          "text": "am live"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Мы живём здесь»",
+      "accessibilityLabel": "Скажите о себе: «Я живу возле парка». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы живём здесь»",
-          "uk": "Скажіть «Ми живемо тут»"
+          "ru": "Скажите о себе: «Я живу возле парка». Выберите слово",
+          "uk": "Скажіть про себе: «Я живу біля парку». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ here.",
+        "gappedTargetPhrase": "I ___ near the park.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-36:i08:r1",
@@ -395,27 +607,27 @@
           },
           {
             "responseId": "en:lesson-06:session-36:i08:r3",
-            "text": "are live"
+            "text": "am live"
           }
         ],
-        "testedDimension": "Скажите «Мы живём здесь»",
+        "testedDimension": "Скажите о себе: «Я живу возле парка». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-36:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Мы живём здесь»",
+            "testedDimension": "Скажите о себе: «Я живу возле парка». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `we` — `live`, без `s`.",
-              "uk": "Після `we` — `live`, без `s`."
+              "ru": "После `I` нужно `live`, без `s`.",
+              "uk": "Після `I` потрібно `live`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-36:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Мы живём здесь»",
+            "testedDimension": "Скажите о себе: «Я живу возле парка». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «живём» нужно `We live`, без `are`.",
-              "uk": "Для «живемо» потрібно `We live`, без `are`."
+              "ru": "Говорим `I live`, без `am`.",
+              "uk": "Кажемо `I live`, без `am`."
             }
           }
         ]
@@ -424,51 +636,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежат очки",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-36:i09:r1",
-          "text": "These sunglasses are mine."
+          "text": "The flat is small."
         },
         {
           "responseId": "en:lesson-06:session-36:i09:r2",
-          "text": "These sunglasses are yours."
+          "text": "The flat is big."
         },
         {
           "responseId": "en:lesson-06:session-36:i09:r3",
-          "text": "These sunglasses are hers."
+          "text": "The cottage is small."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежат очки",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i09:audio",
-          "transcript": "These sunglasses are mine."
+          "transcript": "The flat is small."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-36:i09:r1",
-            "targetText": "These sunglasses are mine.",
+            "targetText": "The flat is small.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-36:i09:r2",
-            "targetText": "These sunglasses are yours.",
+            "targetText": "The flat is big.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-36:i09:r3",
-            "targetText": "These sunglasses are hers.",
+            "targetText": "The cottage is small.",
             "meaningByLocale": null
           }
         ],
@@ -477,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-36:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат очки",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `small`, маленькая, а в этом варианте — `big`, большая.",
+              "uk": "У записі останнє слово — `small`, маленька, а в цьому варіанті — `big`, велика."
             }
           },
           {
             "responseId": "en:lesson-06:session-36:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат очки",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи речь о `flat`, квартире, а в этом варианте — о `cottage`, домике.",
+              "uk": "У записі йдеться про `flat`, квартиру, а в цьому варіанті — про `cottage`, хатинку."
             }
           }
         ],
@@ -500,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -514,6 +726,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-36:i10:p1",
+            "target": "landlord",
+            "meaningByLocale": {
+              "ru": "хозяин квартиры",
+              "uk": "господар квартири"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-36:i10:p2",
             "target": "live",
             "meaningByLocale": {
               "ru": "жить",
@@ -521,41 +741,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-36:i10:p2",
-            "target": "stretch",
-            "meaningByLocale": {
-              "ru": "делать растяжку",
-              "uk": "робити розтяжку"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-36:i10:p3",
-            "target": "sunglasses",
+            "target": "flat",
             "meaningByLocale": {
-              "ru": "солнцезащитные очки",
-              "uk": "сонцезахисні окуляри"
+              "ru": "квартира",
+              "uk": "квартира"
             }
           },
           {
             "pairId": "en:lesson-06:session-36:i10:p4",
-            "target": "informal",
+            "target": "cottage",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "домик",
+              "uk": "будиночок"
             }
           }
         ],
         "leftColumn": [
+          "landlord",
           "live",
-          "stretch",
-          "sunglasses",
-          "informal"
+          "flat",
+          "cottage"
         ],
         "rightColumn": [
+          "хозяин квартиры",
           "жить",
-          "делать растяжку",
-          "солнцезащитные очки",
-          "неформальный"
+          "квартира",
+          "домик"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,43 +785,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте сестру и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте сестру и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i11:audio",
-          "transcript": "The smoke alarm is here."
+          "transcript": "He lives in a cottage."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The smoke alarm is here.",
+        "hiddenTargetPhrase": "He lives in a cottage.",
         "orderedTokens": [
-          "The",
-          "smoke",
-          "alarm",
-          "is",
-          "here"
+          "He",
+          "lives",
+          "in",
+          "a",
+          "cottage"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "live"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-36:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте сестру и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The smoke alarm is here.`",
-              "uk": "тут потрібно `is` — `The smoke alarm is here.`"
+              "ru": "здесь нужно `lives` — `He lives in a cottage.`",
+              "uk": "тут потрібно `lives` — `He lives in a cottage.`"
             }
           }
         ],
@@ -622,30 +834,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы нашли очки. Спросите «Чьи это солнцезащитные очки?»",
+      "prompt": "Соседка показывает на ключи у двери. Спросите: «Чьи это ключи?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы нашли очки. Спросите «Чьи это солнцезащитные очки?»",
+      "accessibilityLabel": "Соседка показывает на ключи у двери. Спросите: «Чьи это ключи?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose sunglasses are these?",
+        "targetPhrase": "Whose keys are these?",
         "localizedMeaning": {
-          "ru": "Вы нашли очки. Спросите «Чьи это солнцезащитные очки?»",
-          "uk": "Ви знайшли окуляри. Запитайте «Чиї це сонцезахисні окуляри?»"
+          "ru": "Соседка показывает на ключи у двери. Спросите: «Чьи это ключи?»",
+          "uk": "Сусідка показує на ключі біля дверей. Спитайте: «Чиї це ключі?»"
         },
         "orderedTokens": [
           "Whose",
-          "sunglasses",
+          "keys",
           "are",
           "these"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-36:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соседка показывает на ключи у двери. Спросите: «Чьи это ключи?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose keys are these?`",
+              "uk": "тут потрібно `Whose` — `Whose keys are these?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -655,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они делают здесь растяжку»",
+      "prompt": "Соседка спрашивает, где живёте вы с сестрой. Скажите: «Мы живём в квартире»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они делают здесь растяжку»",
+      "accessibilityLabel": "Соседка спрашивает, где живёте вы с сестрой. Скажите: «Мы живём в квартире»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i13:audio",
-          "transcript": "They stretch here."
+          "transcript": "We live in a flat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They stretch here.",
+        "targetPhrase": "We live in a flat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -688,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Анна живёт здесь»",
+      "prompt": "Скажите о хозяине квартиры: «Хозяин квартиры добрый». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-36:i14:r1",
-          "text": "lives"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-36:i14:r2",
-          "text": "live"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-36:i14:r3",
-          "text": "is lives"
+          "text": "lives"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Анна живёт здесь»",
+      "accessibilityLabel": "Скажите о хозяине квартиры: «Хозяин квартиры добрый». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Анна живёт здесь»",
-          "uk": "Скажіть «Анна живе тут»"
+          "ru": "Скажите о хозяине квартиры: «Хозяин квартиры добрый». Выберите слово",
+          "uk": "Скажіть про господаря квартири: «Господар квартири добрий». Виберіть слово"
         },
-        "gappedTargetPhrase": "Anna ___ here.",
+        "gappedTargetPhrase": "The landlord ___ kind.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-36:i14:r1",
-            "text": "lives"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-36:i14:r2",
-            "text": "live"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-36:i14:r3",
-            "text": "is lives"
+            "text": "lives"
           }
         ],
-        "testedDimension": "Скажите «Анна живёт здесь»",
+        "testedDimension": "Скажите о хозяине квартиры: «Хозяин квартиры добрый». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-36:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Анна живёт здесь»",
+            "testedDimension": "Скажите о хозяине квартиры: «Хозяин квартиры добрый». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Анна — она: `Anna lives`.",
-              "uk": "Анна — вона: `Anna lives`."
+              "ru": "Хозяин один, поэтому нужно `is`, а не `are`.",
+              "uk": "Господар один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-36:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Анна живёт здесь»",
+            "testedDimension": "Скажите о хозяине квартиры: «Хозяин квартиры добрый». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Anna lives`, без `is`.",
-              "uk": "Потрібно `Anna lives`, без `is`."
+              "ru": "`lives` значит «живёт», а здесь нужно сказать, какой хозяин: `is kind`.",
+              "uk": "`lives` означає «живе», а тут треба сказати, який господар: `is kind`."
             }
           }
         ]
@@ -757,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где живут соседи",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-36:i15:r1",
-          "text": "They live here."
+          "text": "I live in a flat."
         },
         {
           "responseId": "en:lesson-06:session-36:i15:r2",
-          "text": "They live there."
+          "text": "I live in a cottage."
         },
         {
           "responseId": "en:lesson-06:session-36:i15:r3",
-          "text": "They live nearby."
+          "text": "We live in a flat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где живут соседи",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i15:audio",
-          "transcript": "They live here."
+          "transcript": "I live in a flat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-36:i15:r1",
-            "targetText": "They live here.",
+            "targetText": "I live in a flat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-36:i15:r2",
-            "targetText": "They live there.",
+            "targetText": "I live in a cottage.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-36:i15:r3",
-            "targetText": "They live nearby.",
+            "targetText": "We live in a flat.",
             "meaningByLocale": null
           }
         ],
@@ -810,19 +1034,19 @@
           {
             "responseId": "en:lesson-06:session-36:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где живут соседи",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `flat`, квартира, а в этом варианте — `cottage`, домик.",
+              "uk": "У записі останнє слово — `flat`, квартира, а в цьому варіанті — `cottage`, хатинка."
             }
           },
           {
             "responseId": "en:lesson-06:session-36:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где живут соседи",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -833,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -847,6 +1071,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-36:i16:p1",
+            "target": "cottage",
+            "meaningByLocale": {
+              "ru": "домик",
+              "uk": "будиночок"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-36:i16:p2",
+            "target": "landlord",
+            "meaningByLocale": {
+              "ru": "хозяин квартиры",
+              "uk": "господар квартири"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-36:i16:p3",
             "target": "live",
             "meaningByLocale": {
               "ru": "жить",
@@ -854,41 +1094,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-36:i16:p2",
-            "target": "smoke alarm",
-            "meaningByLocale": {
-              "ru": "датчик дыма",
-              "uk": "датчик диму"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-36:i16:p3",
-            "target": "informal",
-            "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-36:i16:p4",
-            "target": "stretch",
+            "target": "flat",
             "meaningByLocale": {
-              "ru": "делать растяжку",
-              "uk": "робити розтяжку"
+              "ru": "квартира",
+              "uk": "квартира"
             }
           }
         ],
         "leftColumn": [
+          "cottage",
+          "landlord",
           "live",
-          "smoke alarm",
-          "informal",
-          "stretch"
+          "flat"
         ],
         "rightColumn": [
+          "домик",
+          "хозяин квартиры",
           "жить",
-          "датчик дыма",
-          "неформальный",
-          "делать растяжку"
+          "квартира"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -906,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-36:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сосед спрашивает о Томе. Покажите на его дом: «Он живёт там»",
+      "prompt": "Соседка спрашивает, где живёт ваша сестра. Скажите: «Она живёт возле парка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-36:i17:audio"
       ],
-      "accessibilityLabel": "Сосед спрашивает о Томе. Покажите на его дом: «Он живёт там»",
+      "accessibilityLabel": "Соседка спрашивает, где живёт ваша сестра. Скажите: «Она живёт возле парка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-36:i17:audio",
-          "transcript": "He lives there."
+          "transcript": "She lives near the park."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He lives there.",
+        "targetPhrase": "She lives near the park.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -946,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d159641b15cff8bd56312e0bcda08454577b20728ab606b44e2f9e23b8f60d5"
+  "learnerFingerprint": "f1ef5a96fa20bc1a69087b3f6ff48df9ca777d6cecfcee1ddc8d28e091db4e99"
 }

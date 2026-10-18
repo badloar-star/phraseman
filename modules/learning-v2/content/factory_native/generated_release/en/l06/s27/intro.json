@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-27",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычке тренироваться и занятиях другого человека",
-    "uk": "розповісти про звичку тренуватися й заняття іншої людини"
+    "ru": "рассказать, кто и где тренируется, и сказать, что вы новичок",
+    "uk": "розповісти, хто і де тренується, і сказати, що ви новачок"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Тренироваться",
-        "uk": "Тренуватися"
+        "ru": "Упражнения дома",
+        "uk": "Вправи вдома"
       },
       "bodyByLocale": {
-        "ru": "`exercise` — «тренироваться», выполнять физические упражнения. `I exercise at home` — «Я тренируюсь дома». Здесь речь о привычке: можно сказать это, сидя за завтраком. Для `exercise` не нужен дорогой зал. Но просто носить спортивную сумку на работу — ещё не полноценная тренировка.",
-        "uk": "`exercise` — «тренуватися», виконувати фізичні вправи. `I exercise at home` — «Я тренуюся вдома». Тут ідеться про звичку: можна сказати це, сидячи за сніданком. Для `exercise` не потрібен дорогий зал. Але просто носити спортивну сумку на роботу — ще не повноцінне тренування."
+        "ru": "Подруга замечает, что вы целый день сидите за столом, и зовёт вас делать упражнения дома по вечерам. Вы соглашаетесь. exercise — «тренироваться, делать упражнения». Про себя говорим I exercise at home — «Я тренируюсь дома». После I слово остаётся exercise, без s.",
+        "uk": "Подруга помічає, що ви цілий день сидите за столом, і кличе вас робити вправи вдома ввечері. Ви погоджуєтеся. exercise — «тренуватися, робити вправи». Про себе кажемо I exercise at home — «Я тренуюся вдома». Після I слово лишається exercise, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-27:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я тренируюсь дома».",
-          "uk": "Скажіть «Я тренуюся вдома»."
+          "ru": "Подруга спрашивает, где вы будете тренироваться. Скажите: «Я тренируюсь дома».",
+          "uk": "Подруга питає, де ви будете тренуватися. Скажіть: «Я тренуюся вдома»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я тренируюсь дома».",
-          "uk": "Скажіть «Я тренуюся вдома»."
+          "ru": "Подруга спрашивает, где вы будете тренироваться. Скажите: «Я тренируюсь дома».",
+          "uk": "Подруга питає, де ви будете тренуватися. Скажіть: «Я тренуюся вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она тренируется, он рисует",
-        "uk": "Вона тренується, він малює"
+        "ru": "Соседка на балконе",
+        "uk": "Сусідка на балконі"
       },
       "bodyByLocale": {
-        "ru": "`She exercises at home` — «Она тренируется дома». К `exercise` добавляем `s`: `exercises`. `draw` — «рисовать». `He draws here` — «Он рисует здесь». `They draw here` — «Они рисуют здесь»: после `they` окончания `s` нет.",
-        "uk": "`She exercises at home` — «Вона тренується вдома». До `exercise` додаємо `s`: `exercises`. `draw` — «малювати». `He draws here` — «Він малює тут». `They draw here` — «Вони малюють тут»: після `they` закінчення `s` немає."
+        "ru": "Соседка каждое утро занимается на балконе, на свежем воздухе: yoga — «йога», плавные упражнения для тела и дыхания. Она раскладывает коврик и никуда не торопится. Подруга спрашивает, как она занимается. Про соседку говорим She exercises: к exercise добавляем s.",
+        "uk": "Сусідка щоранку займається на балконі, на свіжому повітрі: yoga — «йога», плавні вправи для тіла й дихання. Вона розкладає килимок і нікуди не поспішає. Подруга питає, як вона займається. Про сусідку кажемо She exercises: до exercise додаємо s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она тренируется дома».",
-          "uk": "Скажіть «Вона тренується вдома»."
+          "ru": "Подруга спрашивает, как занимается соседка. Скажите: «Она тренируется на коврике».",
+          "uk": "Подруга питає, як займається сусідка. Скажіть: «Вона тренується на килимку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-27:intro2:r1",
-              "text": "She exercises at home."
+              "text": "She exercises on the mat."
             },
             {
               "responseId": "en:lesson-06:session-27:intro2:r2",
-              "text": "She exercise at home."
+              "text": "She exercise on the mat."
             },
             {
               "responseId": "en:lesson-06:session-27:intro2:r3",
-              "text": "She is exercises at home."
+              "text": "She is exercises on the mat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-27:intro2:r1",
-              "text": "She exercises at home."
+              "text": "She exercises on the mat."
             },
             {
               "responseId": "en:lesson-06:session-27:intro2:r2",
-              "text": "She exercise at home."
+              "text": "She exercise on the mat."
             },
             {
               "responseId": "en:lesson-06:session-27:intro2:r3",
-              "text": "She is exercises at home."
+              "text": "She is exercises on the mat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она тренируется дома».",
-          "uk": "Скажіть «Вона тренується вдома»."
+          "ru": "Подруга спрашивает, как занимается соседка. Скажите: «Она тренируется на коврике».",
+          "uk": "Подруга питає, як займається сусідка. Скажіть: «Вона тренується на килимку»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Под навесом",
-        "uk": "Під навісом"
+        "ru": "Первый раз в зале",
+        "uk": "Перший раз у залі"
       },
       "bodyByLocale": {
-        "ru": "`awning` — «навес», например тканевый над террасой. `We are under the awning` — «Мы под навесом». `passport` — «паспорт»: `Whose passport is this?` — «Чей это паспорт?» `generous` — «щедрый», охотно делящийся с другими. `He is generous` — «Он щедрый»: качество, поэтому нужно `is`.",
-        "uk": "`awning` — «навіс», наприклад тканинний над терасою. `We are under the awning` — «Ми під навісом». `passport` — «паспорт»: `Whose passport is this?` — «Чий це паспорт?» `generous` — «щедрий», той, хто охоче ділиться з іншими. `He is generous` — «Він щедрий»: риса, тому потрібно `is`."
+        "ru": "В спортивном зале к вам подходит тренер и спрашивает, давно ли вы занимаетесь. Вы пришли сюда в первый раз и ничего здесь не знаете и немного волнуетесь. beginner — «новичок», человек, который только начинает заниматься. Про себя после I нужно am: I am a beginner.",
+        "uk": "У спортивному залі до вас підходить тренер і питає, чи давно ви займаєтеся. Ви прийшли сюди вперше й нічого тут не знаєте й трохи хвилюєтеся. beginner — «новачок», людина, яка тільки починає займатися. Про себе після I потрібно am: I am a beginner."
       },
       "question": {
         "interactionId": "en:lesson-06:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Он щедрый».",
-          "uk": "Скажіть «Він щедрий»."
+          "ru": "Тренер спрашивает, давно ли вы занимаетесь. Скажите: «Я новичок».",
+          "uk": "Тренер питає, чи давно ви займаєтеся. Скажіть: «Я новачок»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-27:intro3:r1",
-              "text": "He is generous."
+              "text": "I am a beginner."
             },
             {
               "responseId": "en:lesson-06:session-27:intro3:r2",
-              "text": "He generous."
+              "text": "I a beginner."
             },
             {
               "responseId": "en:lesson-06:session-27:intro3:r3",
-              "text": "He are generous."
+              "text": "I are a beginner."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-27:intro3:r1",
-              "text": "He is generous."
+              "text": "I am a beginner."
             },
             {
               "responseId": "en:lesson-06:session-27:intro3:r2",
-              "text": "He generous."
+              "text": "I a beginner."
             },
             {
               "responseId": "en:lesson-06:session-27:intro3:r3",
-              "text": "He are generous."
+              "text": "I are a beginner."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он щедрый».",
-          "uk": "Скажіть «Він щедрий»."
+          "ru": "Тренер спрашивает, давно ли вы занимаетесь. Скажите: «Я новичок».",
+          "uk": "Тренер питає, чи давно ви займаєтеся. Скажіть: «Я новачок»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b491d34ea875e67415cffbffbfb5c1d0ee1748b5af5df334cae06b3c9582060c"
+  "introFingerprint": "004a601105f13031991f5fcf6072a8ca48d210ee76336e452852745a25605ccf"
 }

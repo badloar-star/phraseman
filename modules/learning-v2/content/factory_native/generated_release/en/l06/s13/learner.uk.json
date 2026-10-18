@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-13:i01",
+      "interactionId": "en:lesson-06:session-13:word:swim",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:word:swim:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:word:swim:audio",
+          "transcript": "swim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:word:swim:r1",
+            "targetText": "swim",
+            "meaningByLocale": {
+              "ru": "плавать. They swim in the pool. — «Они плавают в бассейне». О движении в воде своими силами. После I, you, we, they — без s.",
+              "uk": "плавати. They swim in the pool. — «Вони плавають у басейні». Про рух у воді власними силами. Після I, you, we, they — без s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swim",
+          "definitionByLocale": {
+            "ru": "плавать. They swim in the pool. — «Они плавают в бассейне». О движении в воде своими силами. После I, you, we, they — без s.",
+            "uk": "плавати. They swim in the pool. — «Вони плавають у басейні». Про рух у воді власними силами. Після I, you, we, they — без s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-13:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я плаваю в цьому басейні»",
+      "prompt": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я плаваю в цьому басейні»",
+      "accessibilityLabel": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I swim in this pool.",
         "localizedMeaning": {
-          "ru": "Скажите «Я плаваю в этом бассейне»",
-          "uk": "Скажіть «Я плаваю в цьому басейні»"
+          "ru": "Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»",
+          "uk": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»"
         },
         "orderedTokens": [
           "I",
@@ -28,8 +71,20 @@
           "this",
           "pool"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `swim` — `I swim in this pool.`",
+              "uk": "тут потрібно `swim` — `I swim in this pool.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -39,51 +94,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-13:i02:r1",
-          "text": "swim"
+          "text": "I swim in the pool."
         },
         {
           "responseId": "en:lesson-06:session-13:i02:r2",
-          "text": "paint"
+          "text": "They swim in the pool."
         },
         {
           "responseId": "en:lesson-06:session-13:i02:r3",
-          "text": "work"
+          "text": "I swim at the pool."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i02:audio",
-          "transcript": "swim"
+          "transcript": "I swim in the pool."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-13:i02:r1",
-            "targetText": "swim",
+            "targetText": "I swim in the pool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-13:i02:r2",
-            "targetText": "paint",
+            "targetText": "They swim in the pool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-13:i02:r3",
-            "targetText": "work",
+            "targetText": "I swim at the pool.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +147,19 @@
           {
             "responseId": "en:lesson-06:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `swim`, а в этом варианте — `paint`.",
-              "uk": "У записі перше слово — `swim`, а в цьому варіанті — `paint`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `They`, вони."
             }
           },
           {
             "responseId": "en:lesson-06:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `swim`, а в этом варианте — `work`.",
-              "uk": "У записі перше слово — `swim`, а в цьому варіанті — `work`."
+              "ru": "В записи плавают `in`, в бассейне, а в этом варианте — `at`, у бассейна.",
+              "uk": "У записі плавають `in`, у басейні, а в цьому варіанті — `at`, біля басейну."
             }
           }
         ],
@@ -115,11 +170,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Ми плаваємо тут»",
+      "prompt": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-13:i03:r1",
@@ -136,14 +191,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Ми плаваємо тут»",
+      "accessibilityLabel": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы плаваем здесь»",
-          "uk": "Скажіть «Ми плаваємо тут»"
+          "ru": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
+          "uk": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ here.",
+        "gappedTargetPhrase": "They ___ in the pool.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-13:i03:r1",
@@ -158,24 +213,24 @@
             "text": "are swim"
           }
         ],
-        "testedDimension": "Скажіть «Ми плаваємо тут»",
+        "testedDimension": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-13:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Ми плаваємо тут»",
+            "testedDimension": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `we` — `swim`, без `s`.",
-              "uk": "Після `we` — `swim`, без `s`."
+              "ru": "После `they` — `swim`, без `s`.",
+              "uk": "Після `they` — `swim`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-13:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Ми плаваємо тут»",
+            "testedDimension": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `We swim`, без `are`.",
-              "uk": "Кажемо `We swim`, без `are`."
+              "ru": "Говорим `They swim`, без `are`.",
+              "uk": "Кажемо `They swim`, без `are`."
             }
           }
         ]
@@ -184,7 +239,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,40 +261,40 @@
           },
           {
             "pairId": "en:lesson-06:session-13:i04:p2",
-            "target": "public",
+            "target": "lane",
             "meaningByLocale": {
-              "ru": "общественный",
-              "uk": "громадський"
+              "ru": "дорожка (в бассейне)",
+              "uk": "доріжка (в басейні)"
             }
           },
           {
             "pairId": "en:lesson-06:session-13:i04:p3",
-            "target": "taxi",
+            "target": "float",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "доска для плавания",
+              "uk": "дошка для плавання"
             }
           },
           {
             "pairId": "en:lesson-06:session-13:i04:p4",
-            "target": "umbrella",
+            "target": "trunks",
             "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
+              "ru": "плавки",
+              "uk": "плавки"
             }
           }
         ],
         "leftColumn": [
           "swim",
-          "public",
-          "taxi",
-          "umbrella"
+          "lane",
+          "float",
+          "trunks"
         ],
         "rightColumn": [
           "плавати",
-          "громадський",
-          "таксі",
-          "парасоля"
+          "доріжка (в басейні)",
+          "дошка для плавання",
+          "плавки"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,33 +311,90 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-13:word:lane",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lane",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:word:lane:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lane",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:word:lane:audio",
+          "transcript": "lane"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:word:lane:r1",
+            "targetText": "lane",
+            "meaningByLocale": {
+              "ru": "дорожка в бассейне. Lane two is free. — «Вторая дорожка свободна». О полосе воды, по которой плывёт один пловец.",
+              "uk": "доріжка в басейні. Lane two is free. — «Друга доріжка вільна». Про смугу води, якою пливе один плавець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lane",
+          "definitionByLocale": {
+            "ru": "дорожка в бассейне. Lane two is free. — «Вторая дорожка свободна». О полосе воды, по которой плывёт один пловец.",
+            "uk": "доріжка в басейні. Lane two is free. — «Друга доріжка вільна». Про смугу води, якою пливе один плавець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-13:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте інструктора й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте інструктора й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i05:audio",
-          "transcript": "They swim here."
+          "transcript": "You swim in lane one."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They swim here.",
+        "hiddenTargetPhrase": "You swim in lane one.",
         "orderedTokens": [
-          "They",
+          "You",
           "swim",
-          "here"
+          "in",
+          "lane",
+          "one"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте інструктора й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `swim` — `You swim in lane one.`",
+              "uk": "тут потрібно `swim` — `You swim in lane one.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,41 +403,83 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-13:word:trunks",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trunks",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:word:trunks:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trunks",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:word:trunks:audio",
+          "transcript": "trunks"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:word:trunks:r1",
+            "targetText": "trunks",
+            "meaningByLocale": {
+              "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда во множественном числе.",
+              "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trunks",
+          "definitionByLocale": {
+            "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда во множественном числе.",
+            "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-13:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Це громадський басейн»",
+      "prompt": "Брат показує на плавки в сумці. Скажіть: «Ці плавки твої»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Це громадський басейн»",
+      "accessibilityLabel": "Брат показує на плавки в сумці. Скажіть: «Ці плавки твої»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a public pool.",
+        "targetPhrase": "These trunks are yours.",
         "localizedMeaning": {
-          "ru": "Скажите «Это общественный бассейн»",
-          "uk": "Скажіть «Це громадський басейн»"
+          "ru": "Брат показывает на плавки в сумке. Скажите: «Эти плавки твои»",
+          "uk": "Брат показує на плавки в сумці. Скажіть: «Ці плавки твої»"
         },
         "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "public",
-          "pool"
+          "These",
+          "trunks",
+          "are",
+          "yours"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-13:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Це громадський басейн»",
+            "testedDimension": "Брат показує на плавки в сумці. Скажіть: «Ці плавки твої»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a public pool.`",
-              "uk": "тут потрібно `is` — `This is a public pool.`"
+              "ru": "здесь нужно `are` — `These trunks are yours.`",
+              "uk": "тут потрібно `are` — `These trunks are yours.`"
             }
           }
         ],
@@ -338,25 +492,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Парасоля мокра»",
+      "prompt": "Інструктор питає, чи вільна ваша доріжка. Скажіть: «Моя доріжка вільна»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Парасоля мокра»",
+      "accessibilityLabel": "Інструктор питає, чи вільна ваша доріжка. Скажіть: «Моя доріжка вільна»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i07:audio",
-          "transcript": "The umbrella is wet."
+          "transcript": "My lane is free."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The umbrella is wet.",
+        "targetPhrase": "My lane is free.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -370,68 +524,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-13:word:float",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — float",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-13:word:float:audio"
+      ],
+      "accessibilityLabel": "Картка слова — float",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-13:word:float:audio",
+          "transcript": "float"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-13:word:float:r1",
+            "targetText": "float",
+            "meaningByLocale": {
+              "ru": "доска для плавания. The float is blue. — «Доска для плавания синяя». О лёгкой доске, на которую опираются, когда учатся плавать.",
+              "uk": "дошка для плавання. The float is blue. — «Дошка для плавання синя». Про легку дошку, на яку спираються, коли вчаться плавати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "float",
+          "definitionByLocale": {
+            "ru": "доска для плавания. The float is blue. — «Доска для плавания синяя». О лёгкой доске, на которую опираются, когда учатся плавать.",
+            "uk": "дошка для плавання. The float is blue. — «Дошка для плавання синя». Про легку дошку, на яку спираються, коли вчаться плавати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-13:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Та парасоля твоя»",
+      "prompt": "Скажіть про дошку для плавання: «Дошка синя». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-13:i08:r1",
-          "text": "yours"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-13:i08:r2",
-          "text": "your"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-13:i08:r3",
-          "text": "you"
+          "text": "have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Та парасоля твоя»",
+      "accessibilityLabel": "Скажіть про дошку для плавання: «Дошка синя». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Тот зонт твой»",
-          "uk": "Скажіть «Та парасоля твоя»"
+          "ru": "Скажите о доске для плавания: «Доска синяя». Выберите слово",
+          "uk": "Скажіть про дошку для плавання: «Дошка синя». Виберіть слово"
         },
-        "gappedTargetPhrase": "That umbrella is ___.",
+        "gappedTargetPhrase": "The float ___ blue.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-13:i08:r1",
-            "text": "yours"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-13:i08:r2",
-            "text": "your"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-13:i08:r3",
-            "text": "you"
+            "text": "have"
           }
         ],
-        "testedDimension": "Скажіть «Та парасоля твоя»",
+        "testedDimension": "Скажіть про дошку для плавання: «Дошка синя». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-13:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Та парасоля твоя»",
+            "testedDimension": "Скажіть про дошку для плавання: «Дошка синя». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи после «твой» нужно `yours`.",
-              "uk": "Без назви речі після «твоя» потрібно `yours`."
+              "ru": "Доска одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Дошка одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-13:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Та парасоля твоя»",
+            "testedDimension": "Скажіть про дошку для плавання: «Дошка синя». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`you` — ты или вы; здесь «твой» — `yours`.",
-              "uk": "`you` — ти або ви; тут «твоя» — `yours`."
+              "ru": "`have` значит «имеем», а здесь нужно сказать, какая доска: `is blue`.",
+              "uk": "`have` означає «маємо», а тут треба сказати, яка дошка: `is blue`."
             }
           }
         ]
@@ -440,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чий брелок тут",
+      "prompt": "Послухайте інструктора",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-13:i09:r1",
-          "text": "My keychain is here."
+          "text": "The float is in the locker."
         },
         {
           "responseId": "en:lesson-06:session-13:i09:r2",
-          "text": "Your keychain is here."
+          "text": "The float is in the bag."
         },
         {
           "responseId": "en:lesson-06:session-13:i09:r3",
-          "text": "His keychain is here."
+          "text": "The towel is in the locker."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, чий брелок тут",
+      "accessibilityLabel": "Послухайте інструктора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i09:audio",
-          "transcript": "My keychain is here."
+          "transcript": "The float is in the locker."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-13:i09:r1",
-            "targetText": "My keychain is here.",
+            "targetText": "The float is in the locker.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-13:i09:r2",
-            "targetText": "Your keychain is here.",
+            "targetText": "The float is in the bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-13:i09:r3",
-            "targetText": "His keychain is here.",
+            "targetText": "The towel is in the locker.",
             "meaningByLocale": null
           }
         ],
@@ -493,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чий брелок тут",
+            "testedDimension": "Послухайте інструктора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи доска лежит `in the locker`, в шкафчике, а в этом варианте — `in the bag`, в сумке.",
+              "uk": "У записі дошка лежить `in the locker`, у шафці, а в цьому варіанті — `in the bag`, у сумці."
             }
           },
           {
             "responseId": "en:lesson-06:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чий брелок тут",
+            "testedDimension": "Послухайте інструктора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `float`, доска, а в этом варианте — `towel`, полотенце.",
+              "uk": "У записі річ — `float`, доска, а в цьому варіанті — `towel`, рушник."
             }
           }
         ],
@@ -516,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -530,6 +727,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-13:i10:p1",
+            "target": "float",
+            "meaningByLocale": {
+              "ru": "доска для плавания",
+              "uk": "дошка для плавання"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i10:p2",
+            "target": "trunks",
+            "meaningByLocale": {
+              "ru": "плавки",
+              "uk": "плавки"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i10:p3",
             "target": "swim",
             "meaningByLocale": {
               "ru": "плавать",
@@ -537,41 +750,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-13:i10:p2",
-            "target": "keychain",
-            "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-13:i10:p3",
-            "target": "umbrella",
-            "meaningByLocale": {
-              "ru": "зонт",
-              "uk": "парасоля"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-13:i10:p4",
-            "target": "public",
+            "target": "lane",
             "meaningByLocale": {
-              "ru": "общественный",
-              "uk": "громадський"
+              "ru": "дорожка (в бассейне)",
+              "uk": "доріжка (в басейні)"
             }
           }
         ],
         "leftColumn": [
+          "float",
+          "trunks",
           "swim",
-          "keychain",
-          "umbrella",
-          "public"
+          "lane"
         ],
         "rightColumn": [
+          "дошка для плавання",
+          "плавки",
           "плавати",
-          "брелок",
-          "парасоля",
-          "громадський"
+          "доріжка (в басейні)"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -589,43 +786,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i11:audio",
-          "transcript": "They are in the taxi."
+          "transcript": "I swim in lane two."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are in the taxi.",
+        "hiddenTargetPhrase": "I swim in lane two.",
         "orderedTokens": [
-          "They",
-          "are",
+          "I",
+          "swim",
           "in",
-          "the",
-          "taxi"
+          "lane",
+          "two"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "am"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-13:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are in the taxi.`",
-              "uk": "тут потрібно `are` — `They are in the taxi.`"
+              "ru": "здесь нужно `swim` — `I swim in lane two.`",
+              "uk": "тут потрібно `swim` — `I swim in lane two.`"
             }
           }
         ],
@@ -638,30 +835,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Чий це брелок?»",
+      "prompt": "Інструктор знайшов на лавці дошку для плавання. Спитайте, чия вона: «Чия це дошка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чий це брелок?»",
+      "accessibilityLabel": "Інструктор знайшов на лавці дошку для плавання. Спитайте, чия вона: «Чия це дошка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose keychain is this?",
+        "targetPhrase": "Whose float is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это брелок?»",
-          "uk": "Запитайте «Чий це брелок?»"
+          "ru": "Инструктор нашёл на скамейке доску для плавания. Спросите, чья она: «Чья это доска?»",
+          "uk": "Інструктор знайшов на лавці дошку для плавання. Спитайте, чия вона: «Чия це дошка?»"
         },
         "orderedTokens": [
           "Whose",
-          "keychain",
+          "float",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-13:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Інструктор знайшов на лавці дошку для плавання. Спитайте, чия вона: «Чия це дошка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose float is this?`",
+              "uk": "тут потрібно `Whose` — `Whose float is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -671,25 +880,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть другові «Ти плаваєш у цьому басейні»",
+      "prompt": "Інструктор питає, де плавають ваші друзі. Скажіть: «Вони плавають на другій доріжці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть другові «Ти плаваєш у цьому басейні»",
+      "accessibilityLabel": "Інструктор питає, де плавають ваші друзі. Скажіть: «Вони плавають на другій доріжці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i13:audio",
-          "transcript": "You swim in this pool."
+          "transcript": "They swim in lane two."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You swim in this pool.",
+        "targetPhrase": "They swim in lane two.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -704,11 +913,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я плаваю тут»",
+      "prompt": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-13:i14:r1",
@@ -720,19 +929,19 @@
         },
         {
           "responseId": "en:lesson-06:session-13:i14:r3",
-          "text": "am swim"
+          "text": "are swim"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я плаваю тут»",
+      "accessibilityLabel": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я плаваю здесь»",
-          "uk": "Скажіть «Я плаваю тут»"
+          "ru": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
+          "uk": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ here.",
+        "gappedTargetPhrase": "We ___ in this pool.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-13:i14:r1",
@@ -744,27 +953,27 @@
           },
           {
             "responseId": "en:lesson-06:session-13:i14:r3",
-            "text": "am swim"
+            "text": "are swim"
           }
         ],
-        "testedDimension": "Скажіть «Я плаваю тут»",
+        "testedDimension": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-13:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я плаваю тут»",
+            "testedDimension": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` — `swim`, без `s`.",
-              "uk": "Після `I` — `swim`, без `s`."
+              "ru": "После `we` — `swim`, без `s`.",
+              "uk": "Після `we` — `swim`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-13:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я плаваю тут»",
+            "testedDimension": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `I swim`, без `am`.",
-              "uk": "Кажемо `I swim`, без `am`."
+              "ru": "Говорим `We swim`, без `are`.",
+              "uk": "Кажемо `We swim`, без `are`."
             }
           }
         ]
@@ -773,51 +982,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що Том каже про таксі",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-13:i15:r1",
-          "text": "The taxi is here."
+          "text": "These trunks are mine."
         },
         {
           "responseId": "en:lesson-06:session-13:i15:r2",
-          "text": "The taxi is there."
+          "text": "These trunks are yours."
         },
         {
           "responseId": "en:lesson-06:session-13:i15:r3",
-          "text": "The taxi is late."
+          "text": "This lane is mine."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що Том каже про таксі",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i15:audio",
-          "transcript": "The taxi is here."
+          "transcript": "These trunks are mine."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-13:i15:r1",
-            "targetText": "The taxi is here.",
+            "targetText": "These trunks are mine.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-13:i15:r2",
-            "targetText": "The taxi is there.",
+            "targetText": "These trunks are yours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-13:i15:r3",
-            "targetText": "The taxi is late.",
+            "targetText": "This lane is mine.",
             "meaningByLocale": null
           }
         ],
@@ -826,19 +1035,19 @@
           {
             "responseId": "en:lesson-06:session-13:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що Том каже про таксі",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `mine`, мои, а в этом варианте — `yours`, твои.",
+              "uk": "У записі останнє слово — `mine`, мої, а в цьому варіанті — `yours`, твої."
             }
           },
           {
             "responseId": "en:lesson-06:session-13:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що Том каже про таксі",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `late`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `late`."
+              "ru": "В записи вещь — `trunks`, плавки, а в этом варианте — `lane`, дорожка.",
+              "uk": "У записі річ — `trunks`, плавки, а в цьому варіанті — `lane`, доріжка."
             }
           }
         ],
@@ -849,7 +1058,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -863,6 +1072,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-13:i16:p1",
+            "target": "lane",
+            "meaningByLocale": {
+              "ru": "дорожка (в бассейне)",
+              "uk": "доріжка (в басейні)"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-13:i16:p2",
             "target": "swim",
             "meaningByLocale": {
               "ru": "плавать",
@@ -870,41 +1087,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-13:i16:p2",
-            "target": "public",
-            "meaningByLocale": {
-              "ru": "общественный",
-              "uk": "громадський"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-13:i16:p3",
-            "target": "taxi",
+            "target": "trunks",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "плавки",
+              "uk": "плавки"
             }
           },
           {
             "pairId": "en:lesson-06:session-13:i16:p4",
-            "target": "keychain",
+            "target": "float",
             "meaningByLocale": {
-              "ru": "брелок",
-              "uk": "брелок"
+              "ru": "доска для плавания",
+              "uk": "дошка для плавання"
             }
           }
         ],
         "leftColumn": [
+          "lane",
           "swim",
-          "public",
-          "taxi",
-          "keychain"
+          "trunks",
+          "float"
         ],
         "rightColumn": [
+          "доріжка (в басейні)",
           "плавати",
-          "громадський",
-          "таксі",
-          "брелок"
+          "плавки",
+          "дошка для плавання"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -922,25 +1131,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажіть другові басейн, до якого ходите з Анною. Скажіть «Ми плаваємо тут»",
+      "prompt": "Новий інструктор питає, що ви з братом робите в басейні. Скажіть: «Ми плаваємо в басейні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-13:i17:audio"
       ],
-      "accessibilityLabel": "Покажіть другові басейн, до якого ходите з Анною. Скажіть «Ми плаваємо тут»",
+      "accessibilityLabel": "Новий інструктор питає, що ви з братом робите в басейні. Скажіть: «Ми плаваємо в басейні»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-13:i17:audio",
-          "transcript": "We swim here."
+          "transcript": "We swim in the pool."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We swim here.",
+        "targetPhrase": "We swim in the pool.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -962,11 +1171,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9e8f15dc4f70f2c99a9e3968df2fa8ef90b457f1191c13bf9246e1c9dda1c127"
+  "learnerFingerprint": "f5b508424da5a7d109118b107295a23646e6732faf4e1a6ea9d713d7deb0d473"
 }

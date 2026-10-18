@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-25:intro1:r2": {
-          "ru": "Говорим `I walk`, без `am`.",
-          "uk": "Кажемо `I walk`, без `am`."
+          "ru": "После I слово остаётся walk, без s.",
+          "uk": "Після I слово лишається walk, без s."
         },
         "en:lesson-06:session-25:intro1:r3": {
-          "ru": "После `I` — `walk`, без `s`.",
-          "uk": "Після `I` — `walk`, без `s`."
+          "ru": "Здесь действие: I walk, без am.",
+          "uk": "Тут дія: I walk, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-25:intro2:r2": {
-          "ru": "После `she` — `walks`, с `s`.",
-          "uk": "Після `she` — `walks`, з `s`."
+          "ru": "После she нужно walks, с s.",
+          "uk": "Після she потрібно walks, з s."
         },
         "en:lesson-06:session-25:intro2:r3": {
-          "ru": "Говорим `She walks`, без `is`.",
-          "uk": "Кажемо `She walks`, без `is`."
+          "ru": "Здесь действие: She walks, без is.",
+          "uk": "Тут дія: She walks, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-25:intro3:r2": {
-          "ru": "Здесь нужно `He is absent`.",
-          "uk": "Тут потрібно `He is absent`."
+          "ru": "Без is предложение не получается: нужно The hill is.",
+          "uk": "Без is речення не виходить: потрібно The hill is."
         },
         "en:lesson-06:session-25:intro3:r3": {
-          "ru": "С `he` — `is`, не `are`.",
-          "uk": "З `he` — `is`, не `are`."
+          "ru": "Холм один, поэтому нужно is, а не are.",
+          "uk": "Пагорб один, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9d5b03990542bf2f993631c8e832917d6e1043d7addd908f6711ef6f6004eb7a"
+  "auxiliaryFingerprint": "4a3001b582a99823eaa90ccf40ea9f32c03e9d4bba68e950cbf702190ad352e3"
 }

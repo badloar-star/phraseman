@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-23",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о преподавании и использовать teaches",
-    "uk": "розповісти про викладання й використати teaches"
+    "ru": "рассказать, что делает один человек (She teaches, She catches), и помнить окончание es после ch",
+    "uk": "розповісти, що робить одна людина (She teaches, She catches), і пам’ятати закінчення es після ch"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Учиться и учить других",
-        "uk": "Вчитися й навчати інших"
+        "ru": "Сестра у доски",
+        "uk": "Сестра біля дошки"
       },
       "bodyByLocale": {
-        "ru": "`teach` — «преподавать», «обучать других». `I teach English` — «Я преподаю английский». Знакомое `learn` — учиться самому, получать знания. Можно учиться и преподавать, но купить учебник ещё не значит `teach`: ученики сами из пакета не появятся.",
-        "uk": "`teach` — «викладати», «навчати інших». `I teach English` — «Я викладаю англійську». Знайоме `learn` — вчитися самому, здобувати знання. Можна вчитися й викладати, але купити підручник ще не означає `teach`: учні самі з пакета не з’являться."
+        "ru": "Ваша сестра работает в учебном центре. Она стоит у доски и объясняет английский группе взрослых. Охранник на входе спрашивает, что она там делает. teach — «преподавать». После ch добавляем es, а не s: She teaches English — «Она преподаёт английский».",
+        "uk": "Ваша сестра працює в навчальному центрі. Вона стоїть біля дошки й пояснює англійську групі дорослих. Охоронець на вході питає, що вона там робить. teach — «викладати». Після ch додаємо es, а не s: She teaches English — «Вона викладає англійську»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я преподаю английский».",
-          "uk": "Скажіть «Я викладаю англійську»."
+          "ru": "Охранник спрашивает, что делает ваша сестра в центре. Скажите: «Она преподаёт английский».",
+          "uk": "Охоронець питає, що робить ваша сестра в центрі. Скажіть: «Вона викладає англійську»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-23:intro1:r1",
-              "text": "I teach English."
+              "text": "She teaches English."
             },
             {
               "responseId": "en:lesson-06:session-23:intro1:r2",
-              "text": "I teaches English."
+              "text": "She teach English."
             },
             {
               "responseId": "en:lesson-06:session-23:intro1:r3",
-              "text": "I am teach English."
+              "text": "She teachs English."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-23:intro1:r1",
-              "text": "I teach English."
+              "text": "She teaches English."
             },
             {
               "responseId": "en:lesson-06:session-23:intro1:r2",
-              "text": "I teaches English."
+              "text": "She teach English."
             },
             {
               "responseId": "en:lesson-06:session-23:intro1:r3",
-              "text": "I am teach English."
+              "text": "She teachs English."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я преподаю английский».",
-          "uk": "Скажіть «Я викладаю англійську»."
+          "ru": "Охранник спрашивает, что делает ваша сестра в центре. Скажите: «Она преподаёт английский».",
+          "uk": "Охоронець питає, що робить ваша сестра в центрі. Скажіть: «Вона викладає англійську»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она преподаёт",
-        "uk": "Вона викладає"
+        "ru": "Бег за автобусом",
+        "uk": "Біг за автобусом"
       },
       "bodyByLocale": {
-        "ru": "`She teaches English` — «Она преподаёт английский». Здесь после `she` добавляем `es`: `teach → teaches`, потому что слово заканчивается на `ch`. В `teaches` появляется дополнительный слог. `Anna teaches here` — «Анна преподаёт здесь». `He sings here` — «Он поёт здесь»: у `sing` обычное `s`.",
-        "uk": "`She teaches English` — «Вона викладає англійську». Тут після `she` додаємо `es`: `teach → teaches`, бо слово закінчується на `ch`. У `teaches` з’являється додатковий склад. `Anna teaches here` — «Анна викладає тут». `He sings here` — «Він співає тут»: у `sing` звичайне `s`."
+        "ru": "Сестра опаздывает: она бежит по тротуару к остановке, а автобус уже закрывает двери. Соседка, которая стоит рядом с вами, спрашивает, что делает сестра. catch — «успеть на автобус». Тоже ch, поэтому es: She catches the bus — «Она успевает на автобус».",
+        "uk": "Сестра запізнюється: вона біжить тротуаром до зупинки, а автобус уже зачиняє двері. Сусідка, яка стоїть поруч із вами, питає, що робить сестра. catch — «встигнути на автобус». Теж ch, тому es: She catches the bus — «Вона встигає на автобус»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она преподаёт английский».",
-          "uk": "Скажіть «Вона викладає англійську»."
+          "ru": "Соседка спрашивает, что делает ваша сестра. Скажите: «Она успевает на автобус».",
+          "uk": "Сусідка питає, що робить ваша сестра. Скажіть: «Вона встигає на автобус»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-23:intro2:r1",
-              "text": "She teaches English."
+              "text": "She catches the bus."
             },
             {
               "responseId": "en:lesson-06:session-23:intro2:r2",
-              "text": "She teach English."
+              "text": "She catch the bus."
             },
             {
               "responseId": "en:lesson-06:session-23:intro2:r3",
-              "text": "She is teaches English."
+              "text": "She catchs the bus."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-23:intro2:r1",
-              "text": "She teaches English."
+              "text": "She catches the bus."
             },
             {
               "responseId": "en:lesson-06:session-23:intro2:r2",
-              "text": "She teach English."
+              "text": "She catch the bus."
             },
             {
               "responseId": "en:lesson-06:session-23:intro2:r3",
-              "text": "She is teaches English."
+              "text": "She catchs the bus."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она преподаёт английский».",
-          "uk": "Скажіть «Вона викладає англійську»."
+          "ru": "Соседка спрашивает, что делает ваша сестра. Скажите: «Она успевает на автобус».",
+          "uk": "Сусідка питає, що робить ваша сестра. Скажіть: «Вона встигає на автобус»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Билет ещё действует",
-        "uk": "Квиток ще діє"
+        "ru": "Перед экзаменом",
+        "uk": "Перед іспитом"
       },
       "bodyByLocale": {
-        "ru": "`valid` — «действительный», имеющий силу. `The ticket is valid` — «Билет действителен»: им ещё можно воспользоваться по его условиям. `camera` — «камера», `cheese` — «сыр». `Whose camera is this?` — «Чья это камера?» `The cheese is in the fridge` — «Сыр в холодильнике».",
-        "uk": "`valid` — «дійсний», чинний. `The ticket is valid` — «Квиток дійсний»: ним ще можна скористатися за його умовами. `camera` — «камера», `cheese` — «сир». `Whose camera is this?` — «Чия це камера?» `The cheese is in the fridge` — «Сир у холодильнику»."
+        "ru": "Ваш брат готовится к экзамену: вечером листает тетради, утром ходит по комнате и повторяет слова. Подруга спрашивает, как у него дела с экзаменом. Он трудный. exam — «экзамен». Когда говорим, какой он, нужен is: The exam is difficult — «Экзамен трудный».",
+        "uk": "Ваш брат готується до іспиту: ввечері гортає зошити, зранку ходить по кімнаті й повторює слова. Подруга питає, як у нього справи з іспитом. Він важкий. exam — «іспит». Коли кажемо, який він, потрібен is: The exam is difficult — «Іспит важкий»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Билет действителен».",
-          "uk": "Скажіть «Квиток дійсний»."
+          "ru": "Подруга спрашивает про экзамен брата. Скажите: «Экзамен трудный».",
+          "uk": "Подруга питає про іспит брата. Скажіть: «Іспит важкий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-23:intro3:r1",
-              "text": "The ticket is valid."
+              "text": "The exam is difficult."
             },
             {
               "responseId": "en:lesson-06:session-23:intro3:r2",
-              "text": "The ticket are valid."
+              "text": "The exam difficult."
             },
             {
               "responseId": "en:lesson-06:session-23:intro3:r3",
-              "text": "The ticket is expensive."
+              "text": "The exam are difficult."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-23:intro3:r1",
-              "text": "The ticket is valid."
+              "text": "The exam is difficult."
             },
             {
               "responseId": "en:lesson-06:session-23:intro3:r2",
-              "text": "The ticket are valid."
+              "text": "The exam difficult."
             },
             {
               "responseId": "en:lesson-06:session-23:intro3:r3",
-              "text": "The ticket is expensive."
+              "text": "The exam are difficult."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Билет действителен».",
-          "uk": "Скажіть «Квиток дійсний»."
+          "ru": "Подруга спрашивает про экзамен брата. Скажите: «Экзамен трудный».",
+          "uk": "Подруга питає про іспит брата. Скажіть: «Іспит важкий»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b21473914e0724081c831cb3943ef58bc7132f2a36e590f602139d46bad1705a"
+  "introFingerprint": "9f7c28f628084bd1b6395dcb9b5dd0fbababfe0f2c1fd451d6fc41b3012a9f98"
 }

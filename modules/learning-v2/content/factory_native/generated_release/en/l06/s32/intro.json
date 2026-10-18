@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-32",
   "learningOutcomeByLocale": {
-    "ru": "повторить рассказ о привычках со всеми словами главы",
-    "uk": "повторити розповідь про звички з усіма словами глави"
+    "ru": "самому выбрать между «без s» и «с s» и рассказать о привычках утра",
+    "uk": "самому вибрати між «без s» і «з s» та розповісти про звички ранку"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "У каждого своё утро",
-        "uk": "У кожного свій ранок"
+        "ru": "Пробежка на рассвете",
+        "uk": "Пробіжка на світанку"
       },
       "bodyByLocale": {
-        "ru": "Повторим знакомые действия: `jog` — «бегать трусцой», `exercise` — «тренироваться», `stretch` — «делать растяжку». `I jog here` — «Я бегаю трусцой здесь». `She jogs here` — «Она бегает трусцой здесь»: после `she` добавляем `s`. Фраза рассказывает о привычке; Анна вполне может сейчас сидеть и отдыхать.",
-        "uk": "Повторимо знайомі дії: `jog` — «бігати підтюпцем», `exercise` — «тренуватися», `stretch` — «робити розтяжку». `I jog here` — «Я бігаю підтюпцем тут». `She jogs here` — «Вона бігає підтюпцем тут»: після `she` додаємо `s`. Фраза розповідає про звичку; Анна цілком може зараз сидіти й відпочивати."
+        "ru": "Подруга зовёт вас в парк на рассвете, пока улицы пусты и воздух свежий. sunrise — «рассвет», время, когда встаёт солнце. Бегать трусцой вы любите и берёте с собой подругу: We jog at sunrise — «Мы бегаем трусцой на рассвете». После we слово остаётся jog.",
+        "uk": "Подруга кличе вас до парку на світанку, поки вулиці порожні й повітря свіже. sunrise — «світанок», час, коли сходить сонце. Бігати підтюпцем ви любите й берете з собою подругу: We jog at sunrise — «Ми бігаємо підтюпцем на світанку». Після we слово лишається jog."
       },
       "question": {
         "interactionId": "en:lesson-06:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она бегает трусцой здесь».",
-          "uk": "Скажіть «Вона бігає підтюпцем тут»."
+          "ru": "Подруга зовёт вас на пробежку. Скажите за себя и подругу: «Мы бегаем трусцой на рассвете».",
+          "uk": "Подруга кличе вас на пробіжку. Скажіть за себе й подругу: «Ми бігаємо підтюпцем на світанку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-32:intro1:r1",
-              "text": "She jogs here."
+              "text": "We jog at sunrise."
             },
             {
               "responseId": "en:lesson-06:session-32:intro1:r2",
-              "text": "She jog here."
+              "text": "We jogs at sunrise."
             },
             {
               "responseId": "en:lesson-06:session-32:intro1:r3",
-              "text": "She is jogs here."
+              "text": "We are jog at sunrise."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-32:intro1:r1",
-              "text": "She jogs here."
+              "text": "We jog at sunrise."
             },
             {
               "responseId": "en:lesson-06:session-32:intro1:r2",
-              "text": "She jog here."
+              "text": "We jogs at sunrise."
             },
             {
               "responseId": "en:lesson-06:session-32:intro1:r3",
-              "text": "She is jogs here."
+              "text": "We are jog at sunrise."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она бегает трусцой здесь».",
-          "uk": "Скажіть «Вона бігає підтюпцем тут»."
+          "ru": "Подруга зовёт вас на пробежку. Скажите за себя и подругу: «Мы бегаем трусцой на рассвете».",
+          "uk": "Подруга кличе вас на пробіжку. Скажіть за себе й подругу: «Ми бігаємо підтюпцем на світанку»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После пробежки",
-        "uk": "Після пробіжки"
+        "ru": "Чей это стакан",
+        "uk": "Чий це стакан"
       },
       "bodyByLocale": {
-        "ru": "`shower` — «принимать душ», `clean` — «убирать», `call` — «звонить по телефону». `He showers at home` — «Он принимает душ дома». `We clean our room` — «Мы убираем свою комнату»: после `we` нет `s`. `She calls her mother` — «Она звонит своей маме», без `to` перед `her mother`.",
-        "uk": "`shower` — «приймати душ», `clean` — «прибирати», `call` — «телефонувати». `He showers at home` — «Він приймає душ удома». `We clean our room` — «Ми прибираємо свою кімнату»: після `we` немає `s`. `She calls her mother` — «Вона телефонує своїй мамі», без `to` перед `her mother`."
+        "ru": "После пробежки вы садитесь за столик, немного устав. На нём стоит стакан с густым напитком из фруктов, но подруга не помнит, чей он. Напиток ещё холодный. smoothie — «смузи». Чтобы спросить о владельце, говорим Whose: Whose smoothie is this? — «Чей это смузи?»",
+        "uk": "Після пробіжки ви сідаєте за столик, трохи втомившись. На ньому стоїть склянка з густим напоєм із фруктів, але подруга не пам’ятає, чия вона. Напій ще холодний. smoothie — «смузі». Щоб спитати про власника, кажемо Whose: Whose smoothie is this? — «Чий це смузі?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы убираем свою комнату».",
-          "uk": "Скажіть «Ми прибираємо свою кімнату»."
+          "ru": "Вы показываете подруге на стакан. Спросите: «Чей это смузи?»",
+          "uk": "Ви показуєте подрузі на склянку. Спитайте: «Чий це смузі?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-32:intro2:r1",
-              "text": "We clean our room."
+              "text": "Whose smoothie is this?"
             },
             {
               "responseId": "en:lesson-06:session-32:intro2:r2",
-              "text": "We cleans our room."
+              "text": "Who smoothie is this?"
             },
             {
               "responseId": "en:lesson-06:session-32:intro2:r3",
-              "text": "We are clean our room."
+              "text": "Whose smoothie are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-32:intro2:r1",
-              "text": "We clean our room."
+              "text": "Whose smoothie is this?"
             },
             {
               "responseId": "en:lesson-06:session-32:intro2:r2",
-              "text": "We cleans our room."
+              "text": "Who smoothie is this?"
             },
             {
               "responseId": "en:lesson-06:session-32:intro2:r3",
-              "text": "We are clean our room."
+              "text": "Whose smoothie are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы убираем свою комнату».",
-          "uk": "Скажіть «Ми прибираємо свою кімнату»."
+          "ru": "Вы показываете подруге на стакан. Спросите: «Чей это смузи?»",
+          "uk": "Ви показуєте подрузі на склянку. Спитайте: «Чий це смузі?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Встретимся у фонтана",
-        "uk": "Зустрінемося біля фонтана"
+        "ru": "Музыка для бега",
+        "uk": "Музика для бігу"
       },
       "bodyByLocale": {
-        "ru": "`fountain` — «фонтан», `walk` — «ходить пешком». `This fountain is beautiful` — «Этот фонтан красивый». `He walks here` — «Он ходит здесь пешком». `She stretches here` — «Она делает здесь растяжку»: у `stretch` после `she` добавляется `es`. Можно растягиваться у фонтана, но душ лучше принять дома.",
-        "uk": "`fountain` — «фонтан», `walk` — «ходити пішки». `This fountain is beautiful` — «Цей фонтан гарний». `He walks here` — «Він ходить тут пішки». `She stretches here` — «Вона робить тут розтяжку»: у `stretch` після `she` додається `es`. Можна робити розтяжку біля фонтана, але душ краще прийняти вдома."
+        "ru": "Сестра всегда бегает под музыку на телефоне и не расстаётся с ней: включает её ещё у двери. Подруга удивляется, как она так бегает. playlist — «плейлист», подборка песен в нужном порядке. Про сестру после she к jog добавляем s: She jogs with a playlist.",
+        "uk": "Сестра завжди бігає під музику в телефоні й не розлучається з нею: вмикає її ще біля дверей. Подруга дивується, як вона так бігає. playlist — «плейлист», добірка пісень у потрібному порядку. Про сестру після she до jog додаємо s: She jogs with a playlist."
       },
       "question": {
         "interactionId": "en:lesson-06:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Она делает здесь растяжку».",
-          "uk": "Скажіть «Вона робить тут розтяжку»."
+          "ru": "Подруга спрашивает, как бегает ваша сестра. Скажите: «Она бегает трусцой с плейлистом».",
+          "uk": "Подруга питає, як бігає ваша сестра. Скажіть: «Вона бігає підтюпцем із плейлистом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-32:intro3:r1",
-              "text": "She stretches here."
+              "text": "She jogs with a playlist."
             },
             {
               "responseId": "en:lesson-06:session-32:intro3:r2",
-              "text": "She stretch here."
+              "text": "She jog with a playlist."
             },
             {
               "responseId": "en:lesson-06:session-32:intro3:r3",
-              "text": "She stretchs here."
+              "text": "She is jogs with a playlist."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-32:intro3:r1",
-              "text": "She stretches here."
+              "text": "She jogs with a playlist."
             },
             {
               "responseId": "en:lesson-06:session-32:intro3:r2",
-              "text": "She stretch here."
+              "text": "She jog with a playlist."
             },
             {
               "responseId": "en:lesson-06:session-32:intro3:r3",
-              "text": "She stretchs here."
+              "text": "She is jogs with a playlist."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она делает здесь растяжку».",
-          "uk": "Скажіть «Вона робить тут розтяжку»."
+          "ru": "Подруга спрашивает, как бегает ваша сестра. Скажите: «Она бегает трусцой с плейлистом».",
+          "uk": "Подруга питає, як бігає ваша сестра. Скажіть: «Вона бігає підтюпцем із плейлистом»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4436fda736c0e8c53e0f0a2cac9d2892bfeaadd483ce564a99ca51dba97d81f7"
+  "introFingerprint": "710ae649089bd9057934cbb627112c575e7bc39fe853d124ba6d1183d9d8f4fa"
 }

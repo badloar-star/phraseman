@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-30:intro1:r2": {
-          "ru": "После `she` нужно `cleans`.",
-          "uk": "Після `she` потрібно `cleans`."
+          "ru": "После I слово остаётся scrub, без s.",
+          "uk": "Після I слово лишається scrub, без s."
         },
         "en:lesson-06:session-30:intro1:r3": {
-          "ru": "Говорим `She cleans`, без `is`.",
-          "uk": "Кажемо `She cleans`, без `is`."
+          "ru": "Здесь действие: I scrub, без am.",
+          "uk": "Тут дія: I scrub, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-30:intro2:r2": {
-          "ru": "С `headphones` используем `are`.",
-          "uk": "З `headphones` використовуємо `are`."
+          "ru": "Мусор — одно целое: нужно is, а не are.",
+          "uk": "Сміття — одне ціле: потрібно is, а не are."
         },
         "en:lesson-06:session-30:intro2:r3": {
-          "ru": "Говорим просто `elsewhere`, без `in`.",
-          "uk": "Кажемо просто `elsewhere`, без `in`."
+          "ru": "Без is предложение не получается: нужно The rubbish is.",
+          "uk": "Без is речення не виходить: потрібно The rubbish is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-30:intro3:r2": {
-          "ru": "Наушники: `are these`, не `is this`.",
-          "uk": "Навушники: `are these`, не `is this`."
+          "ru": "После she нужно scrubs, с s.",
+          "uk": "Після she потрібно scrubs, з s."
         },
         "en:lesson-06:session-30:intro3:r3": {
-          "ru": "О владельце спрашиваем `Whose` — «чьи».",
-          "uk": "Про власника запитуємо `Whose` — «чиї»."
+          "ru": "Здесь действие: She scrubs, без is.",
+          "uk": "Тут дія: She scrubs, без is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "994096eb1f65c7a3e54886b159314d1f7a69888bf694cf7914c657483d299fdf"
+  "auxiliaryFingerprint": "2e6931aa79a189b24f69ca39a55a385d41253ca6d7cac5860495af0e6cbc6b53"
 }

@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-15:word:sing",
+    "correctText": "sing",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-15:i01",
-    "correctText": "I sing at home.",
+    "correctText": "They sing here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i02",
-    "correctText": "sing",
+    "correctText": "I sing at home.",
     "correctResponseId": "en:lesson-06:session-15:i02:r1"
   },
   {
@@ -16,52 +21,67 @@
   },
   {
     "interactionId": "en:lesson-06:session-15:i04",
-    "correctText": "en:lesson-06:session-15:i04:p1=sing\nen:lesson-06:session-15:i04:p2=silent\nen:lesson-06:session-15:i04:p3=gym\nen:lesson-06:session-15:i04:p4=helmet",
+    "correctText": "en:lesson-06:session-15:i04:p1=sing\nen:lesson-06:session-15:i04:p2=song\nen:lesson-06:session-15:i04:p3=choir\nen:lesson-06:session-15:i04:p4=lyrics",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:word:song",
+    "correctText": "song",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i05",
-    "correctText": "They sing at home.",
+    "correctText": "You sing a song here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:word:choir",
+    "correctText": "choir",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i06",
-    "correctText": "They are silent.",
+    "correctText": "They are in the choir.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i07",
-    "correctText": "We are at the gym.",
+    "correctText": "This is my song.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-15:word:lyrics",
+    "correctText": "lyrics",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i08",
-    "correctText": "yours",
+    "correctText": "are",
     "correctResponseId": "en:lesson-06:session-15:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-15:i09",
-    "correctText": "My calendar is here.",
+    "correctText": "This song is old.",
     "correctResponseId": "en:lesson-06:session-15:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-15:i10",
-    "correctText": "en:lesson-06:session-15:i10:p1=sing\nen:lesson-06:session-15:i10:p2=silent\nen:lesson-06:session-15:i10:p3=helmet\nen:lesson-06:session-15:i10:p4=calendar",
+    "correctText": "en:lesson-06:session-15:i10:p1=choir\nen:lesson-06:session-15:i10:p2=lyrics\nen:lesson-06:session-15:i10:p3=sing\nen:lesson-06:session-15:i10:p4=song",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i11",
-    "correctText": "The calendar is on the wall.",
+    "correctText": "We have a new song.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i12",
-    "correctText": "Whose helmet is this?",
+    "correctText": "Whose lyrics are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i13",
-    "correctText": "You sing here.",
+    "correctText": "We sing at home.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-15:i15",
-    "correctText": "The gym is open.",
+    "correctText": "The lyrics are on the wall.",
     "correctResponseId": "en:lesson-06:session-15:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-15:i16",
-    "correctText": "en:lesson-06:session-15:i16:p1=sing\nen:lesson-06:session-15:i16:p2=silent\nen:lesson-06:session-15:i16:p3=gym\nen:lesson-06:session-15:i16:p4=calendar",
+    "correctText": "en:lesson-06:session-15:i16:p1=song\nen:lesson-06:session-15:i16:p2=sing\nen:lesson-06:session-15:i16:p3=lyrics\nen:lesson-06:session-15:i16:p4=choir",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-15:i17",
-    "correctText": "We sing here.",
+    "correctText": "We sing in the choir.",
     "correctResponseId": null
   }
 ]

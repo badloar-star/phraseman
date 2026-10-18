@@ -4,32 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-07:i01",
+      "interactionId": "en:lesson-06:session-07:word:chop",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:word:chop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:word:chop:audio",
+          "transcript": "chop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:word:chop:r1",
+            "targetText": "chop",
+            "meaningByLocale": {
+              "ru": "нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.",
+              "uk": "нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chop",
+          "definitionByLocale": {
+            "ru": "нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.",
+            "uk": "нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я работаю возле детской площадки»",
+      "prompt": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я работаю возле детской площадки»",
+      "accessibilityLabel": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I work near the playground.",
+        "targetPhrase": "I chop onions.",
         "localizedMeaning": {
-          "ru": "Скажите «Я работаю возле детской площадки»",
-          "uk": "Скажіть «Я працюю біля дитячого майданчика»"
+          "ru": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+          "uk": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»"
         },
         "orderedTokens": [
           "I",
-          "work",
-          "near",
-          "the",
-          "playground"
+          "chop",
+          "onions"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `chop` — `I chop onions.`",
+              "uk": "тут потрібно `chop` — `I chop onions.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-07:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-07:word:stir",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — stir",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:word:stir:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stir",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:word:stir:audio",
+          "transcript": "stir"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:word:stir:r1",
+            "targetText": "stir",
+            "meaningByLocale": {
+              "ru": "помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.",
+              "uk": "помішувати. They stir the soup. — «Вони помішують суп». Про те, як ложкою водять по колу в каструлі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stir",
+          "definitionByLocale": {
+            "ru": "помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.",
+            "uk": "помішувати. They stir the soup. — «Вони помішують суп». Про те, як ложкою водять по колу в каструлі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте помощницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i02:r1",
-          "text": "calendar"
+          "text": "They stir the soup."
         },
         {
           "responseId": "en:lesson-06:session-07:i02:r2",
-          "text": "bookmark"
+          "text": "They stir the salad."
         },
         {
           "responseId": "en:lesson-06:session-07:i02:r3",
-          "text": "folder"
+          "text": "They have the soup."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте помощницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i02:audio",
-          "transcript": "calendar"
+          "transcript": "They stir the soup."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-07:i02:r1",
-            "targetText": "calendar",
+            "targetText": "They stir the soup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-07:i02:r2",
-            "targetText": "bookmark",
+            "targetText": "They stir the salad.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-07:i02:r3",
-            "targetText": "folder",
+            "targetText": "They have the soup.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +188,19 @@
           {
             "responseId": "en:lesson-06:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте помощницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `calendar`, а в этом варианте — `bookmark`.",
-              "uk": "У записі перше слово — `calendar`, а в цьому варіанті — `bookmark`."
+              "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+              "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
             }
           },
           {
             "responseId": "en:lesson-06:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте помощницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `calendar`, а в этом варианте — `folder`.",
-              "uk": "У записі перше слово — `calendar`, а в цьому варіанті — `folder`."
+              "ru": "В записи `stir` — помешивать, а в этом варианте `have` — иметь.",
+              "uk": "У записі `stir` — помішувати, а в цьому варіанті `have` — мати."
             }
           }
         ],
@@ -114,68 +210,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-07:word:serve",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — serve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:word:serve:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — serve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:word:serve:audio",
+          "transcript": "serve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:word:serve:r1",
+            "targetText": "serve",
+            "meaningByLocale": {
+              "ru": "подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.",
+              "uk": "подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "serve",
+          "definitionByLocale": {
+            "ru": "подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.",
+            "uk": "подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-07:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите календарь",
+      "prompt": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i03:r1",
-          "text": "calendar"
+          "text": "serve"
         },
         {
           "responseId": "en:lesson-06:session-07:i03:r2",
-          "text": "bookmark"
+          "text": "are serve"
         },
         {
           "responseId": "en:lesson-06:session-07:i03:r3",
-          "text": "folder"
+          "text": "is serve"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите календарь",
+      "accessibilityLabel": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите календарь",
-          "uk": "Назвіть календар"
+          "ru": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+          "uk": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "You ___ the soup.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-07:i03:r1",
-            "text": "calendar"
+            "text": "serve"
           },
           {
             "responseId": "en:lesson-06:session-07:i03:r2",
-            "text": "bookmark"
+            "text": "are serve"
           },
           {
             "responseId": "en:lesson-06:session-07:i03:r3",
-            "text": "folder"
+            "text": "is serve"
           }
         ],
-        "testedDimension": "Назовите календарь",
+        "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите календарь",
+            "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`bookmark` — закладка; календарь — `calendar`.",
-              "uk": "`bookmark` — закладка; календар — `calendar`."
+              "ru": "После `You` сразу ставим `serve`, без `are`.",
+              "uk": "Після `You` одразу ставимо `serve`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите календарь",
+            "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`folder` — папка; календарь — `calendar`.",
-              "uk": "`folder` — папка; календар — `calendar`."
+              "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `You serve`.",
+              "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `You serve`."
             }
           }
         ]
@@ -184,7 +323,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +337,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-07:i04:p1",
-            "target": "calendar",
+            "target": "chop",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "рубить, шинковать",
+              "uk": "рубати, шаткувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i04:p2",
-            "target": "necessary",
+            "target": "stir",
             "meaningByLocale": {
-              "ru": "необходимый",
-              "uk": "необхідний"
+              "ru": "помешивать",
+              "uk": "помішувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i04:p3",
-            "target": "remote",
+            "target": "serve",
             "meaningByLocale": {
-              "ru": "пульт",
-              "uk": "пульт"
+              "ru": "подавать на стол",
+              "uk": "подавати на стіл"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i04:p4",
-            "target": "playground",
+            "target": "spatula",
             "meaningByLocale": {
-              "ru": "детская площадка",
-              "uk": "дитячий майданчик"
+              "ru": "лопатка",
+              "uk": "лопатка"
             }
           }
         ],
         "leftColumn": [
-          "calendar",
-          "necessary",
-          "remote",
-          "playground"
+          "chop",
+          "stir",
+          "serve",
+          "spatula"
         ],
         "rightColumn": [
-          "календарь",
-          "необходимый",
-          "пульт",
-          "детская площадка"
+          "рубить, шинковать",
+          "помешивать",
+          "подавать на стол",
+          "лопатка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,31 +395,76 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-07:word:spatula",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spatula",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-07:word:spatula:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spatula",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-07:word:spatula:audio",
+          "transcript": "spatula"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-07:word:spatula:r1",
+            "targetText": "spatula",
+            "meaningByLocale": {
+              "ru": "лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.",
+              "uk": "лопатка. The spatula is in the drawer. — «Лопатка в шухляді». Пласка кухонна лопатка: нею перевертають їжу на пательні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spatula",
+          "definitionByLocale": {
+            "ru": "лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.",
+            "uk": "лопатка. The spatula is in the drawer. — «Лопатка в шухляді». Пласка кухонна лопатка: нею перевертають їжу на пательні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-07:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте повара и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте повара и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i05:audio",
-          "transcript": "This is my calendar."
+          "transcript": "The spatula is in the drawer."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is my calendar.",
+        "hiddenTargetPhrase": "The spatula is in the drawer.",
         "orderedTokens": [
-          "This",
+          "The",
+          "spatula",
           "is",
-          "my",
-          "calendar"
+          "in",
+          "the",
+          "drawer"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -289,10 +473,10 @@
           {
             "responseId": "en:lesson-06:session-07:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте повара и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is my calendar.`",
-              "uk": "тут потрібно `is` — `This is my calendar.`"
+              "ru": "здесь нужно `is` — `The spatula is in the drawer.`",
+              "uk": "тут потрібно `is` — `The spatula is in the drawer.`"
             }
           }
         ],
@@ -305,30 +489,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чей это календарь?»",
+      "prompt": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это календарь?»",
+      "accessibilityLabel": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose calendar is this?",
+        "targetPhrase": "Whose spatula is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чей это календарь?»",
-          "uk": "Запитайте «Чий це календар?»"
+          "ru": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+          "uk": "Ви знайшли на плиті лопатку й питаєте кухаря, чия вона. Поставте питання: «Чия це лопатка?»"
         },
         "orderedTokens": [
           "Whose",
-          "calendar",
+          "spatula",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-07:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose spatula is this?`",
+              "uk": "тут потрібно `Whose` — `Whose spatula is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -338,25 +534,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В календаре отмечены рабочие дни. Скажите «Календарь необходим»",
+      "prompt": "Повар спрашивает, что вы делаете у доски. Скажите: «Я режу лук»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i07:audio"
       ],
-      "accessibilityLabel": "В календаре отмечены рабочие дни. Скажите «Календарь необходим»",
+      "accessibilityLabel": "Повар спрашивает, что вы делаете у доски. Скажите: «Я режу лук»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i07:audio",
-          "transcript": "The calendar is necessary."
+          "transcript": "I chop onions."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The calendar is necessary.",
+        "targetPhrase": "I chop onions.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -371,67 +567,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Тот пульт твой»",
+      "prompt": "Двое поваров стоят у большой кастрюли. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i08:r1",
-          "text": "yours"
+          "text": "stir"
         },
         {
           "responseId": "en:lesson-06:session-07:i08:r2",
-          "text": "your"
+          "text": "are stir"
         },
         {
           "responseId": "en:lesson-06:session-07:i08:r3",
-          "text": "you"
+          "text": "is stir"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Тот пульт твой»",
+      "accessibilityLabel": "Двое поваров стоят у большой кастрюли. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Тот пульт твой»",
-          "uk": "Скажіть «Той пульт твій»"
+          "ru": "Двое поваров стоят у большой кастрюли. Выберите слово",
+          "uk": "Двоє кухарів стоять біля великої каструлі. Виберіть слово"
         },
-        "gappedTargetPhrase": "That remote is ___.",
+        "gappedTargetPhrase": "They ___ the soup.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-07:i08:r1",
-            "text": "yours"
+            "text": "stir"
           },
           {
             "responseId": "en:lesson-06:session-07:i08:r2",
-            "text": "your"
+            "text": "are stir"
           },
           {
             "responseId": "en:lesson-06:session-07:i08:r3",
-            "text": "you"
+            "text": "is stir"
           }
         ],
-        "testedDimension": "Скажите «Тот пульт твой»",
+        "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Тот пульт твой»",
+            "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `your` нужно название вещи; здесь оно уже названо, поэтому `yours`.",
-              "uk": "Після `your` потрібна назва речі; тут її вже названо, тому `yours`."
+              "ru": "После `They` сразу ставим `stir`, без `are`.",
+              "uk": "Після `They` одразу ставимо `stir`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Тот пульт твой»",
+            "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`you` — ты или вы; здесь «твой» без названия вещи — `yours`.",
-              "uk": "`you` — ти або ви; тут «твій» без назви речі — `yours`."
+              "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They stir`.",
+              "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They stir`."
             }
           }
         ]
@@ -440,51 +636,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где календарь",
+      "prompt": "Послушайте повара",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i09:r1",
-          "text": "The calendar is here."
+          "text": "You serve the soup."
         },
         {
           "responseId": "en:lesson-06:session-07:i09:r2",
-          "text": "The calendar is there."
+          "text": "You serve the salad."
         },
         {
           "responseId": "en:lesson-06:session-07:i09:r3",
-          "text": "The calendar is upstairs."
+          "text": "You have the soup."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, где календарь",
+      "accessibilityLabel": "Послушайте повара",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i09:audio",
-          "transcript": "The calendar is here."
+          "transcript": "You serve the soup."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-07:i09:r1",
-            "targetText": "The calendar is here.",
+            "targetText": "You serve the soup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-07:i09:r2",
-            "targetText": "The calendar is there.",
+            "targetText": "You serve the salad.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-07:i09:r3",
-            "targetText": "The calendar is upstairs.",
+            "targetText": "You have the soup.",
             "meaningByLocale": null
           }
         ],
@@ -493,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-07:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где календарь",
+            "testedDimension": "Послушайте повара",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+              "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
             }
           },
           {
             "responseId": "en:lesson-06:session-07:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где календарь",
+            "testedDimension": "Послушайте повара",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи `serve` — подавать на стол, а в этом варианте `have` — иметь.",
+              "uk": "У записі `serve` — подавати на стіл, а в цьому варіанті `have` — мати."
             }
           }
         ],
@@ -516,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -530,48 +726,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-07:i10:p1",
-            "target": "calendar",
+            "target": "stir",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "помешивать",
+              "uk": "помішувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i10:p2",
-            "target": "mural",
+            "target": "onion",
             "meaningByLocale": {
-              "ru": "настенная роспись",
-              "uk": "настінний розпис"
+              "ru": "лук (луковица)",
+              "uk": "цибуля (цибулина)"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i10:p3",
-            "target": "remote",
+            "target": "soup",
             "meaningByLocale": {
-              "ru": "пульт",
-              "uk": "пульт"
+              "ru": "суп",
+              "uk": "суп"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i10:p4",
-            "target": "necessary",
+            "target": "spatula",
             "meaningByLocale": {
-              "ru": "необходимый",
-              "uk": "необхідний"
+              "ru": "лопатка",
+              "uk": "лопатка"
             }
           }
         ],
         "leftColumn": [
-          "calendar",
-          "mural",
-          "remote",
-          "necessary"
+          "stir",
+          "onion",
+          "soup",
+          "spatula"
         ],
         "rightColumn": [
-          "календарь",
-          "настенная роспись",
-          "пульт",
-          "необходимый"
+          "помешивать",
+          "лук (луковица)",
+          "суп",
+          "лопатка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -589,44 +785,46 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте повара и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте повара и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i11:audio",
-          "transcript": "The mural is on the wall."
+          "transcript": "I chop onions and I stir the soup."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The mural is on the wall.",
+        "hiddenTargetPhrase": "I chop onions and I stir the soup.",
         "orderedTokens": [
-          "The",
-          "mural",
-          "is",
-          "on",
+          "I",
+          "chop",
+          "onions",
+          "and",
+          "I",
+          "stir",
           "the",
-          "wall"
+          "soup"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "am"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте повара и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The mural is on the wall.`",
-              "uk": "тут потрібно `is` — `The mural is on the wall.`"
+              "ru": "здесь нужно `chop` — `I chop onions and I stir the soup.`",
+              "uk": "тут потрібно `chop` — `I chop onions and I stir the soup.`"
             }
           }
         ],
@@ -639,29 +837,31 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Календарь на письменном столе»",
+      "prompt": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Календарь на письменном столе»",
+      "accessibilityLabel": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The calendar is on the desk.",
+        "targetPhrase": "They chop onions and they stir the soup.",
         "localizedMeaning": {
-          "ru": "Скажите «Календарь на письменном столе»",
-          "uk": "Скажіть «Календар на письмовому столі»"
+          "ru": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+          "uk": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»"
         },
         "orderedTokens": [
-          "The",
-          "calendar",
-          "is",
-          "on",
+          "They",
+          "chop",
+          "onions",
+          "and",
+          "they",
+          "stir",
           "the",
-          "desk"
+          "soup"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -670,10 +870,10 @@
           {
             "responseId": "en:lesson-06:session-07:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Календарь на письменном столе»",
+            "testedDimension": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The calendar is on the desk.`",
-              "uk": "тут потрібно `is` — `The calendar is on the desk.`"
+              "ru": "здесь нужно `chop` — `They chop onions and they stir the soup.`",
+              "uk": "тут потрібно `chop` — `They chop onions and they stir the soup.`"
             }
           }
         ],
@@ -686,25 +886,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «У меня есть календарь»",
+      "prompt": "Новый официант спрашивает, что ему делать с супом. Скажите: «Ты подаёшь суп»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «У меня есть календарь»",
+      "accessibilityLabel": "Новый официант спрашивает, что ему делать с супом. Скажите: «Ты подаёшь суп»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i13:audio",
-          "transcript": "I have a calendar."
+          "transcript": "You serve the soup."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have a calendar.",
+        "targetPhrase": "You serve the soup.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -719,67 +919,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я работаю здесь»",
+      "prompt": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i14:r1",
-          "text": "work"
+          "text": "chop"
         },
         {
           "responseId": "en:lesson-06:session-07:i14:r2",
-          "text": "am work"
+          "text": "am chop"
         },
         {
           "responseId": "en:lesson-06:session-07:i14:r3",
-          "text": "is work"
+          "text": "are chop"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я работаю здесь»",
+      "accessibilityLabel": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я работаю здесь»",
-          "uk": "Скажіть «Я працюю тут»"
+          "ru": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+          "uk": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ here.",
+        "gappedTargetPhrase": "I ___ onions.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-07:i14:r1",
-            "text": "work"
+            "text": "chop"
           },
           {
             "responseId": "en:lesson-06:session-07:i14:r2",
-            "text": "am work"
+            "text": "am chop"
           },
           {
             "responseId": "en:lesson-06:session-07:i14:r3",
-            "text": "is work"
+            "text": "are chop"
           }
         ],
-        "testedDimension": "Скажите «Я работаю здесь»",
+        "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я работаю здесь»",
+            "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Действие: `I work`, без `am`.",
-              "uk": "Дія: `I work`, без `am`."
+              "ru": "После `I` сразу ставим `chop`, без `am`.",
+              "uk": "Після `I` одразу ставимо `chop`, без `am`."
             }
           },
           {
             "responseId": "en:lesson-06:session-07:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я работаю здесь»",
+            "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `I work`, без `is`.",
-              "uk": "Тут потрібно `I work`, без `is`."
+              "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I chop`.",
+              "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I chop`."
             }
           }
         ]
@@ -788,51 +988,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей календарь синий",
+      "prompt": "Послушайте помощницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i15:r1",
-          "text": "My calendar is blue."
+          "text": "The spatula is in the drawer."
         },
         {
           "responseId": "en:lesson-06:session-07:i15:r2",
-          "text": "Your calendar is blue."
+          "text": "The spatula is in the bowl."
         },
         {
           "responseId": "en:lesson-06:session-07:i15:r3",
-          "text": "His calendar is blue."
+          "text": "The ladle is in the drawer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей календарь синий",
+      "accessibilityLabel": "Послушайте помощницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i15:audio",
-          "transcript": "My calendar is blue."
+          "transcript": "The spatula is in the drawer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-07:i15:r1",
-            "targetText": "My calendar is blue.",
+            "targetText": "The spatula is in the drawer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-07:i15:r2",
-            "targetText": "Your calendar is blue.",
+            "targetText": "The spatula is in the bowl.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-07:i15:r3",
-            "targetText": "His calendar is blue.",
+            "targetText": "The ladle is in the drawer.",
             "meaningByLocale": null
           }
         ],
@@ -841,19 +1041,19 @@
           {
             "responseId": "en:lesson-06:session-07:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей календарь синий",
+            "testedDimension": "Послушайте помощницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи место — `drawer`, ящик, а в этом варианте — `bowl`, миска.",
+              "uk": "У записі місце — `drawer`, шухляда, а в цьому варіанті — `bowl`, миска."
             }
           },
           {
             "responseId": "en:lesson-06:session-07:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей календарь синий",
+            "testedDimension": "Послушайте помощницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `spatula`, лопатка, а в этом варианте — `ladle`, половник.",
+              "uk": "У записі річ — `spatula`, лопатка, а в цьому варіанті — `ladle`, черпак."
             }
           }
         ],
@@ -864,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -878,48 +1078,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-07:i16:p1",
-            "target": "calendar",
+            "target": "spatula",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "лопатка",
+              "uk": "лопатка"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i16:p2",
-            "target": "playground",
+            "target": "serve",
             "meaningByLocale": {
-              "ru": "детская площадка",
-              "uk": "дитячий майданчик"
+              "ru": "подавать на стол",
+              "uk": "подавати на стіл"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i16:p3",
-            "target": "mural",
+            "target": "bowl",
             "meaningByLocale": {
-              "ru": "настенная роспись",
-              "uk": "настінний розпис"
+              "ru": "миска",
+              "uk": "миска"
             }
           },
           {
             "pairId": "en:lesson-06:session-07:i16:p4",
-            "target": "necessary",
+            "target": "drawer",
             "meaningByLocale": {
-              "ru": "необходимый",
-              "uk": "необхідний"
+              "ru": "выдвижной ящик",
+              "uk": "висувна шухляда"
             }
           }
         ],
         "leftColumn": [
-          "calendar",
-          "playground",
-          "mural",
-          "necessary"
+          "spatula",
+          "serve",
+          "bowl",
+          "drawer"
         ],
         "rightColumn": [
-          "календарь",
-          "детская площадка",
-          "настенная роспись",
-          "необходимый"
+          "лопатка",
+          "подавать на стол",
+          "миска",
+          "выдвижной ящик"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -937,25 +1137,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-07:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна находит календарь на столе. Спросите от её лица «Чей это календарь?»",
+      "prompt": "Вы работаете на кухне кафе. Расскажите повару о своих делах: «Я режу лук и я помешиваю суп»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-07:i17:audio"
       ],
-      "accessibilityLabel": "Анна находит календарь на столе. Спросите от её лица «Чей это календарь?»",
+      "accessibilityLabel": "Вы работаете на кухне кафе. Расскажите повару о своих делах: «Я режу лук и я помешиваю суп»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-07:i17:audio",
-          "transcript": "Whose calendar is this?"
+          "transcript": "I chop onions and I stir the soup."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose calendar is this?",
+        "targetPhrase": "I chop onions and I stir the soup.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -977,11 +1177,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d80c8b124483b95998d6a582eb929f5e7223d0d3ef7fd6d40d1e999ee6e3a055"
+  "learnerFingerprint": "80b303704ee523163f81ed14e4f43924ca7802eb1457dcc4baf2b4fb356351e7"
 }

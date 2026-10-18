@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-28:intro1:r2": {
-          "ru": "После `I` — `stretch`, без окончания.",
-          "uk": "Після `I` — `stretch`, без закінчення."
+          "ru": "После I слово остаётся stretch, без окончания.",
+          "uk": "Після I слово лишається stretch, без закінчення."
         },
         "en:lesson-06:session-28:intro1:r3": {
-          "ru": "Говорим `I stretch`, без `am`.",
-          "uk": "Кажемо `I stretch`, без `am`."
+          "ru": "Здесь действие: I stretch, без am.",
+          "uk": "Тут дія: I stretch, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-28:intro2:r2": {
-          "ru": "После `she` — `stretches`, с `es`.",
-          "uk": "Після `she` — `stretches`, з `es`."
+          "ru": "Без is предложение не получается: нужно My muscle is.",
+          "uk": "Без is речення не виходить: потрібно My muscle is."
         },
         "en:lesson-06:session-28:intro2:r3": {
-          "ru": "Говорим `She stretches`, без `is`.",
-          "uk": "Кажемо `She stretches`, без `is`."
+          "ru": "Мышца одна, поэтому нужно is, а не are.",
+          "uk": "М’яз один, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-28:intro3:r2": {
-          "ru": "После `he` — `cooks`, с `s`.",
-          "uk": "Після `he` — `cooks`, з `s`."
+          "ru": "После she нужно stretches, с es.",
+          "uk": "Після she потрібно stretches, з es."
         },
         "en:lesson-06:session-28:intro3:r3": {
-          "ru": "Говорим `He cooks`, без `is`.",
-          "uk": "Кажемо `He cooks`, без `is`."
+          "ru": "Пишем stretches, с es.",
+          "uk": "Пишемо stretches, з es."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a45471ea3604b3d55b9ff8a962a4042e45d4d3722c5ac4e711de2910d9325d0e"
+  "auxiliaryFingerprint": "2d498e1f0b79a181fabcf28462be835d26329dfdffb44c5c828df672f6f3fe35"
 }

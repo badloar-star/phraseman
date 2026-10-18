@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-09:intro1:r2": {
-          "ru": "Перед `start` здесь не нужно `am`.",
-          "uk": "Перед `start` тут не потрібно `am`."
+          "ru": "Здесь действие, поэтому перед start не нужно am.",
+          "uk": "Тут дія, тому перед start не потрібно am."
         },
         "en:lesson-06:session-09:intro1:r3": {
-          "ru": "`ten` — десять; девять — `nine`.",
-          "uk": "`ten` — десять; дев’ять — `nine`."
+          "ru": "После I слово остаётся start, без s.",
+          "uk": "Після I слово лишається start, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-09:intro2:r2": {
-          "ru": "После `they` — `work`, без `s`.",
-          "uk": "Після `they` — `work`, без `s`."
+          "ru": "После they слово остаётся start, без s.",
+          "uk": "Після they слово лишається start, без s."
         },
         "en:lesson-06:session-09:intro2:r3": {
-          "ru": "Здесь действие: `They work`, без `are`.",
-          "uk": "Тут дія: `They work`, без `are`."
+          "ru": "Здесь действие: They start, без are.",
+          "uk": "Тут дія: They start, без are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-09:intro3:r2": {
-          "ru": "Когда называем профессию, после `I` нужно `am`.",
-          "uk": "Коли називаємо професію, після `I` потрібно `am`."
+          "ru": "После I нужно have, а не has.",
+          "uk": "Після I потрібно have, а не has."
         },
         "en:lesson-06:session-09:intro3:r3": {
-          "ru": "Здесь называем профессию: `I am a dentist`.",
-          "uk": "Тут називаємо професію: `I am a dentist`."
+          "ru": "appointment начинается с гласного звука, поэтому перед ним an.",
+          "uk": "appointment починається з голосного звуку, тому перед ним an."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "896d55521db5b9228e98526294f4e9c07a2dfeb58e2b117f12aac9149b77aacd"
+  "auxiliaryFingerprint": "33b6e2b3827d38d531002c748542149a08eba205d39606abcad471f604e7d7bc"
 }

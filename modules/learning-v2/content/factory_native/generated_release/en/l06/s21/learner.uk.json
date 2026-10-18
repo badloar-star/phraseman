@@ -4,32 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-21:i01",
+      "interactionId": "en:lesson-06:session-21:word:write",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — write",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:word:write:audio"
+      ],
+      "accessibilityLabel": "Картка слова — write",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:word:write:audio",
+          "transcript": "write"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-21:word:write:r1",
+            "targetText": "write",
+            "meaningByLocale": {
+              "ru": "писать. My sister writes at the table. — «Моя сестра пишет за столом». Когда человек пишет ручкой.",
+              "uk": "писати. My sister writes at the table. — «Моя сестра пише за столом». Коли людина пише ручкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "write",
+          "definitionByLocale": {
+            "ru": "писать. My sister writes at the table. — «Моя сестра пишет за столом». Когда человек пишет ручкой.",
+            "uk": "писати. My sister writes at the table. — «Моя сестра пише за столом». Коли людина пише ручкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я пишу у своєму зошиті»",
+      "prompt": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я пишу у своєму зошиті»",
+      "accessibilityLabel": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I write in my notebook.",
+        "targetPhrase": "He writes at the table.",
         "localizedMeaning": {
-          "ru": "Скажите «Я пишу в своей тетради»",
-          "uk": "Скажіть «Я пишу у своєму зошиті»"
+          "ru": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»",
+          "uk": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»"
         },
         "orderedTokens": [
-          "I",
-          "write",
-          "in",
-          "my",
-          "notebook"
+          "He",
+          "writes",
+          "at",
+          "the",
+          "table"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "write"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `writes` — `He writes at the table.`",
+              "uk": "тут потрібно `writes` — `He writes at the table.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-21:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-21:word:jump",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — jump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:word:jump:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:word:jump:audio",
+          "transcript": "jump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-21:word:jump:r1",
+            "targetText": "jump",
+            "meaningByLocale": {
+              "ru": "прыгать. My brother jumps here. — «Мой брат прыгает здесь». Когда человек отрывается от земли или от бортика.",
+              "uk": "стрибати. My brother jumps here. — «Мій брат стрибає тут». Коли людина відривається від землі чи від бортика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jump",
+          "definitionByLocale": {
+            "ru": "прыгать. My brother jumps here. — «Мой брат прыгает здесь». Когда человек отрывается от земли или от бортика.",
+            "uk": "стрибати. My brother jumps here. — «Мій брат стрибає тут». Коли людина відривається від землі чи від бортика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте рятувальника",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-21:i02:r1",
-          "text": "write"
+          "text": "He jumps in the pool."
         },
         {
           "responseId": "en:lesson-06:session-21:i02:r2",
-          "text": "draw"
+          "text": "He swims in the pool."
         },
         {
           "responseId": "en:lesson-06:session-21:i02:r3",
-          "text": "sing"
+          "text": "They jump in the pool."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-21:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте рятувальника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-21:i02:audio",
-          "transcript": "write"
+          "transcript": "He jumps in the pool."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-21:i02:r1",
-            "targetText": "write",
+            "targetText": "He jumps in the pool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-21:i02:r2",
-            "targetText": "draw",
+            "targetText": "He swims in the pool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-21:i02:r3",
-            "targetText": "sing",
+            "targetText": "They jump in the pool.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +190,19 @@
           {
             "responseId": "en:lesson-06:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте рятувальника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `write`, а в этом варианте — `draw`.",
-              "uk": "У записі перше слово — `write`, а в цьому варіанті — `draw`."
+              "ru": "В записи действие — `jumps`, прыгает, а в этом варианте — `swims`, плавает.",
+              "uk": "У записі дія — `jumps`, стрибає, а в цьому варіанті — `swims`, плаває."
             }
           },
           {
             "responseId": "en:lesson-06:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте рятувальника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `write`, а в этом варианте — `sing`.",
-              "uk": "У записі перше слово — `write`, а в цьому варіанті — `sing`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `They`, они (и слово там без `s`: `jump`).",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `They`, вони (і слово там без `s`: `jump`)."
             }
           }
         ],
@@ -114,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-21:word:clasp",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clasp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:word:clasp:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clasp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:word:clasp:audio",
+          "transcript": "clasp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-21:word:clasp:r1",
+            "targetText": "clasp",
+            "meaningByLocale": {
+              "ru": "застёжка. The clasp is on the necklace. — «Застёжка на ожерелье». О маленьком замочке на украшении или сумке.",
+              "uk": "застібка. The clasp is on the necklace. — «Застібка на намисті». Про маленький замочок на прикрасі чи сумці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clasp",
+          "definitionByLocale": {
+            "ru": "застёжка. The clasp is on the necklace. — «Застёжка на ожерелье». О маленьком замочке на украшении или сумке.",
+            "uk": "застібка. The clasp is on the necklace. — «Застібка на намисті». Про маленький замочок на прикрасі чи сумці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-21:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона пише вдома»",
+      "prompt": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-21:i03:r1",
-          "text": "writes"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-21:i03:r2",
-          "text": "write"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-21:i03:r3",
-          "text": "is writes"
+          "text": "writes"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона пише вдома»",
+      "accessibilityLabel": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она пишет дома»",
-          "uk": "Скажіть «Вона пише вдома»"
+          "ru": "Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана». Выберите слово",
+          "uk": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at home.",
+        "gappedTargetPhrase": "The clasp ___ broken.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-21:i03:r1",
-            "text": "writes"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-21:i03:r2",
-            "text": "write"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-21:i03:r3",
-            "text": "is writes"
+            "text": "writes"
           }
         ],
-        "testedDimension": "Скажіть «Вона пише вдома»",
+        "testedDimension": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-21:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона пише вдома»",
+            "testedDimension": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `writes`, с `s`.",
-              "uk": "Після `she` — `writes`, з `s`."
+              "ru": "Застёжка одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Застібка одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-21:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона пише вдома»",
+            "testedDimension": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `She writes`, без `is`.",
-              "uk": "Кажемо `She writes`, без `is`."
+              "ru": "`writes` значит «пишет», а здесь нужно сказать, что с застёжкой: `is broken`.",
+              "uk": "`writes` означає «пише», а тут треба сказати, що із застібкою: `is broken`."
             }
           }
         ]
@@ -184,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,40 +347,40 @@
           },
           {
             "pairId": "en:lesson-06:session-21:i04:p2",
-            "target": "broken",
+            "target": "jump",
             "meaningByLocale": {
-              "ru": "сломанный",
-              "uk": "зламаний"
+              "ru": "прыгать",
+              "uk": "стрибати"
             }
           },
           {
             "pairId": "en:lesson-06:session-21:i04:p3",
-            "target": "juice",
+            "target": "clasp",
             "meaningByLocale": {
-              "ru": "сок",
-              "uk": "сік"
+              "ru": "застёжка",
+              "uk": "застібка"
             }
           },
           {
             "pairId": "en:lesson-06:session-21:i04:p4",
-            "target": "necklace",
+            "target": "page",
             "meaningByLocale": {
-              "ru": "ожерелье",
-              "uk": "намисто"
+              "ru": "страница",
+              "uk": "сторінка"
             }
           }
         ],
         "leftColumn": [
           "write",
-          "broken",
-          "juice",
-          "necklace"
+          "jump",
+          "clasp",
+          "page"
         ],
         "rightColumn": [
           "писати",
-          "зламаний",
-          "сік",
-          "намисто"
+          "стрибати",
+          "застібка",
+          "сторінка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,33 +397,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-21:word:page",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — page",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:word:page:audio"
+      ],
+      "accessibilityLabel": "Картка слова — page",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:word:page:audio",
+          "transcript": "page"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-21:word:page:r1",
+            "targetText": "page",
+            "meaningByLocale": {
+              "ru": "страница. The page is in the notebook. — «Страница в тетради». Об одном листе в тетради или книге.",
+              "uk": "сторінка. The page is in the notebook. — «Сторінка в зошиті». Про один аркуш у зошиті чи книзі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "page",
+          "definitionByLocale": {
+            "ru": "страница. The page is in the notebook. — «Страница в тетради». Об одном листе в тетради или книге.",
+            "uk": "сторінка. The page is in the notebook. — «Сторінка в зошиті». Про один аркуш у зошиті чи книзі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-21:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-21:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-21:i05:audio",
-          "transcript": "Anna writes here."
+          "transcript": "The page is blank."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna writes here.",
+        "hiddenTargetPhrase": "The page is blank.",
         "orderedTokens": [
-          "Anna",
-          "writes",
-          "here"
+          "The",
+          "page",
+          "is",
+          "blank"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The page is blank.`",
+              "uk": "тут потрібно `is` — `The page is blank.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,29 +489,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він плаває тут»",
+      "prompt": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він плаває тут»",
+      "accessibilityLabel": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He swims here.",
+        "targetPhrase": "She swims in the pool.",
         "localizedMeaning": {
-          "ru": "Скажите «Он плавает здесь»",
-          "uk": "Скажіть «Він плаває тут»"
+          "ru": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»",
+          "uk": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»"
         },
         "orderedTokens": [
-          "He",
+          "She",
           "swims",
-          "here"
+          "in",
+          "the",
+          "pool"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "swim"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `swims` — `She swims in the pool.`",
+              "uk": "тут потрібно `swims` — `She swims in the pool.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Застібка намиста не працює. Скажіть «Моє намисто зламане»",
+      "prompt": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-21:i07:audio"
       ],
-      "accessibilityLabel": "Застібка намиста не працює. Скажіть «Моє намисто зламане»",
+      "accessibilityLabel": "Подруга питає, що не так з намистом. Скажіть: «Застібка зламана»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-21:i07:audio",
-          "transcript": "My necklace is broken."
+          "transcript": "The clasp is broken."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "My necklace is broken.",
+        "targetPhrase": "The clasp is broken.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони пишуть тут»",
+      "prompt": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-21:i08:r1",
-          "text": "write"
-        },
-        {
-          "responseId": "en:lesson-06:session-21:i08:r2",
           "text": "writes"
         },
         {
+          "responseId": "en:lesson-06:session-21:i08:r2",
+          "text": "write"
+        },
+        {
           "responseId": "en:lesson-06:session-21:i08:r3",
-          "text": "are write"
+          "text": "is writes"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони пишуть тут»",
+      "accessibilityLabel": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они пишут здесь»",
-          "uk": "Скажіть «Вони пишуть тут»"
+          "ru": "Скажите о сестре: «Она пишет здесь». Выберите слово",
+          "uk": "Скажіть про сестру: «Вона пише тут». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "She ___ here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-21:i08:r1",
-            "text": "write"
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i08:r2",
             "text": "writes"
           },
           {
+            "responseId": "en:lesson-06:session-21:i08:r2",
+            "text": "write"
+          },
+          {
             "responseId": "en:lesson-06:session-21:i08:r3",
-            "text": "are write"
+            "text": "is writes"
           }
         ],
-        "testedDimension": "Скажіть «Вони пишуть тут»",
+        "testedDimension": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-21:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони пишуть тут»",
+            "testedDimension": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `write`, без `s`.",
-              "uk": "Після `they` — `write`, без `s`."
+              "ru": "После `she` — `writes`, с `s`.",
+              "uk": "Після `she` — `writes`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-21:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони пишуть тут»",
+            "testedDimension": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Говорим `They write`, без `are`.",
-              "uk": "Кажемо `They write`, без `are`."
+              "ru": "Говорим `She writes`, без `is`.",
+              "uk": "Кажемо `She writes`, без `is`."
             }
           }
         ]
@@ -426,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте відповідь Тома",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-21:i09:r1",
-          "text": "No."
+          "text": "She writes at home."
         },
         {
           "responseId": "en:lesson-06:session-21:i09:r2",
-          "text": "Yes."
+          "text": "She cooks at home."
         },
         {
           "responseId": "en:lesson-06:session-21:i09:r3",
-          "text": "Hello."
+          "text": "He writes at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-21:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте відповідь Тома",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-21:i09:audio",
-          "transcript": "No."
+          "transcript": "She writes at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-21:i09:r1",
-            "targetText": "No.",
+            "targetText": "She writes at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-21:i09:r2",
-            "targetText": "Yes.",
+            "targetText": "She cooks at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-21:i09:r3",
-            "targetText": "Hello.",
+            "targetText": "He writes at home.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-21:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте відповідь Тома",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `No`, а в этом варианте — `Yes`.",
-              "uk": "У записі перше слово — `No`, а в цьому варіанті — `Yes`."
+              "ru": "В записи действие — `writes`, пишет, а в этом варианте — `cooks`, готовит еду.",
+              "uk": "У записі дія — `writes`, пише, а в цьому варіанті — `cooks`, готує їжу."
             }
           },
           {
             "responseId": "en:lesson-06:session-21:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте відповідь Тома",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `No`, а в этом варианте — `Hello`.",
-              "uk": "У записі перше слово — `No`, а в цьому варіанті — `Hello`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -502,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,338 +727,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-21:i10:p1",
-            "target": "write",
+            "target": "page",
             "meaningByLocale": {
-              "ru": "писать",
-              "uk": "писати"
+              "ru": "страница",
+              "uk": "сторінка"
             }
           },
           {
             "pairId": "en:lesson-06:session-21:i10:p2",
-            "target": "swim",
+            "target": "jump",
             "meaningByLocale": {
-              "ru": "плавать",
-              "uk": "плавати"
+              "ru": "прыгать",
+              "uk": "стрибати"
             }
           },
           {
             "pairId": "en:lesson-06:session-21:i10:p3",
-            "target": "no",
-            "meaningByLocale": {
-              "ru": "нет",
-              "uk": "ні"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-21:i10:p4",
-            "target": "broken",
-            "meaningByLocale": {
-              "ru": "сломанный",
-              "uk": "зламаний"
-            }
-          }
-        ],
-        "leftColumn": [
-          "write",
-          "swim",
-          "no",
-          "broken"
-        ],
-        "rightColumn": [
-          "писати",
-          "плавати",
-          "ні",
-          "зламаний"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-21:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-06:session-21:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-06:session-21:i11:audio",
-          "transcript": "The juice is cold."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The juice is cold.",
-        "orderedTokens": [
-          "The",
-          "juice",
-          "is",
-          "cold"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-06:session-21:i11:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The juice is cold.`",
-              "uk": "тут потрібно `is` — `The juice is cold.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-21:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Чиє це намисто?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чиє це намисто?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Whose necklace is this?",
-        "localizedMeaning": {
-          "ru": "Спросите «Чьё это ожерелье?»",
-          "uk": "Запитайте «Чиє це намисто?»"
-        },
-        "orderedTokens": [
-          "Whose",
-          "necklace",
-          "is",
-          "this"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-21:i13",
-      "ordinal": 16,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Вони плавають тут»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-06:session-21:i13:audio"
-      ],
-      "accessibilityLabel": "Скажіть «Вони плавають тут»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-06:session-21:i13:audio",
-          "transcript": "They swim here."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "They swim here.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-21:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Скажіть «Том плаває тут»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-06:session-21:i14:r1",
-          "text": "swims"
-        },
-        {
-          "responseId": "en:lesson-06:session-21:i14:r2",
-          "text": "swim"
-        },
-        {
-          "responseId": "en:lesson-06:session-21:i14:r3",
-          "text": "is swims"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Том плаває тут»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Скажите «Том плавает здесь»",
-          "uk": "Скажіть «Том плаває тут»"
-        },
-        "gappedTargetPhrase": "Tom ___ here.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-06:session-21:i14:r1",
-            "text": "swims"
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i14:r2",
-            "text": "swim"
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i14:r3",
-            "text": "is swims"
-          }
-        ],
-        "testedDimension": "Скажіть «Том плаває тут»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-06:session-21:i14:r2",
-            "correct": false,
-            "testedDimension": "Скажіть «Том плаває тут»",
-            "feedbackByLocale": {
-              "ru": "Том — он: `Tom swims`, с `s`.",
-              "uk": "Том — він: `Tom swims`, з `s`."
-            }
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i14:r3",
-            "correct": false,
-            "testedDimension": "Скажіть «Том плаває тут»",
-            "feedbackByLocale": {
-              "ru": "Говорим `Tom swims`, без `is`.",
-              "uk": "Кажемо `Tom swims`, без `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-21:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, чиє намисто тут",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-06:session-21:i15:r1",
-          "text": "My necklace is here."
-        },
-        {
-          "responseId": "en:lesson-06:session-21:i15:r2",
-          "text": "Your necklace is here."
-        },
-        {
-          "responseId": "en:lesson-06:session-21:i15:r3",
-          "text": "His necklace is here."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-06:session-21:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, чиє намисто тут",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-06:session-21:i15:audio",
-          "transcript": "My necklace is here."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-06:session-21:i15:r1",
-            "targetText": "My necklace is here.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i15:r2",
-            "targetText": "Your necklace is here.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i15:r3",
-            "targetText": "His necklace is here.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-06:session-21:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, чиє намисто тут",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
-            }
-          },
-          {
-            "responseId": "en:lesson-06:session-21:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, чиє намисто тут",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-06:session-21:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-06:session-21:i16:p1",
             "target": "write",
             "meaningByLocale": {
               "ru": "писать",
@@ -855,23 +750,7 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-21:i16:p2",
-            "target": "juice",
-            "meaningByLocale": {
-              "ru": "сок",
-              "uk": "сік"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-21:i16:p3",
-            "target": "necklace",
-            "meaningByLocale": {
-              "ru": "ожерелье",
-              "uk": "намисто"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-21:i16:p4",
+            "pairId": "en:lesson-06:session-21:i10:p4",
             "target": "swim",
             "meaningByLocale": {
               "ru": "плавать",
@@ -880,15 +759,15 @@
           }
         ],
         "leftColumn": [
+          "page",
+          "jump",
           "write",
-          "juice",
-          "necklace",
           "swim"
         ],
         "rightColumn": [
+          "сторінка",
+          "стрибати",
           "писати",
-          "сік",
-          "намисто",
           "плавати"
         ],
         "pairingKey": "pair_id",
@@ -906,26 +785,372 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-21:i17",
+      "interactionId": "en:lesson-06:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:i11:audio",
+          "transcript": "My sister writes at the table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My sister writes at the table.",
+        "orderedTokens": [
+          "My",
+          "sister",
+          "writes",
+          "at",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "write"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `writes` — `My sister writes at the table.`",
+              "uk": "тут потрібно `writes` — `My sister writes at the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли зошит на столі біля басейну. Спитайте подругу: «Чий це зошит?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли зошит на столі біля басейну. Спитайте подругу: «Чий це зошит?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose notebook is this?",
+        "localizedMeaning": {
+          "ru": "Вы нашли тетрадь на столе у бассейна. Спросите подругу: «Чья это тетрадь?»",
+          "uk": "Ви знайшли зошит на столі біля басейну. Спитайте подругу: «Чий це зошит?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "notebook",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли зошит на столі біля басейну. Спитайте подругу: «Чий це зошит?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose notebook is this?`",
+              "uk": "тут потрібно `Whose` — `Whose notebook is this?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i13",
       "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Рятувальник питає, що робить ваш брат. Скажіть: «Він стрибає в басейн»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Рятувальник питає, що робить ваш брат. Скажіть: «Він стрибає в басейн»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:i13:audio",
+          "transcript": "He jumps in the pool."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He jumps in the pool.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-21:i14:r1",
+          "text": "jumps"
+        },
+        {
+          "responseId": "en:lesson-06:session-21:i14:r2",
+          "text": "jump"
+        },
+        {
+          "responseId": "en:lesson-06:session-21:i14:r3",
+          "text": "is jumps"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
+          "uk": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово"
+        },
+        "gappedTargetPhrase": "He ___ in the pool.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-21:i14:r1",
+            "text": "jumps"
+          },
+          {
+            "responseId": "en:lesson-06:session-21:i14:r2",
+            "text": "jump"
+          },
+          {
+            "responseId": "en:lesson-06:session-21:i14:r3",
+            "text": "is jumps"
+          }
+        ],
+        "testedDimension": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "После `he` — `jumps`, с `s`.",
+              "uk": "Після `he` — `jumps`, з `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-21:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Говорим `He jumps`, без `is`.",
+              "uk": "Кажемо `He jumps`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-21:i15:r1",
+          "text": "The page is blank."
+        },
+        {
+          "responseId": "en:lesson-06:session-21:i15:r2",
+          "text": "The page is full."
+        },
+        {
+          "responseId": "en:lesson-06:session-21:i15:r3",
+          "text": "The page is torn."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-21:i15:audio",
+          "transcript": "The page is blank."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-21:i15:r1",
+            "targetText": "The page is blank.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-21:i15:r2",
+            "targetText": "The page is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-21:i15:r3",
+            "targetText": "The page is torn.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-21:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте подругу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `blank`, пустая, а в этом варианте — `full`, полная.",
+              "uk": "У записі останнє слово — `blank`, порожня, а в цьому варіанті — `full`, повна."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-21:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте подругу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `blank`, пустая, а в этом варианте — `torn`, порванная.",
+              "uk": "У записі останнє слово — `blank`, порожня, а в цьому варіанті — `torn`, порвана."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-21:i16:p1",
+            "target": "clasp",
+            "meaningByLocale": {
+              "ru": "застёжка",
+              "uk": "застібка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-21:i16:p2",
+            "target": "page",
+            "meaningByLocale": {
+              "ru": "страница",
+              "uk": "сторінка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-21:i16:p3",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-21:i16:p4",
+            "target": "jump",
+            "meaningByLocale": {
+              "ru": "прыгать",
+              "uk": "стрибати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clasp",
+          "page",
+          "write",
+          "jump"
+        ],
+        "rightColumn": [
+          "застібка",
+          "сторінка",
+          "писати",
+          "стрибати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-21:i17",
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Розкажіть другові про Анну: «Вона пише вдома»",
+      "prompt": "Подруга питає, що робить ваша сестра із зошитом. Скажіть: «Вона пише у своєму зошиті»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-21:i17:audio"
       ],
-      "accessibilityLabel": "Розкажіть другові про Анну: «Вона пише вдома»",
+      "accessibilityLabel": "Подруга питає, що робить ваша сестра із зошитом. Скажіть: «Вона пише у своєму зошиті»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-21:i17:audio",
-          "transcript": "She writes at home."
+          "transcript": "She writes in her notebook."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She writes at home.",
+        "targetPhrase": "She writes in her notebook.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f78d74fcfe45df326598b8eeb4d27ceb7f7d2767ad8f225458cf98cfa4b43058"
+  "learnerFingerprint": "e0565f41645b64a2eef5b243d572db82e153f156e9ea8b4b3c06b86682066b38"
 }

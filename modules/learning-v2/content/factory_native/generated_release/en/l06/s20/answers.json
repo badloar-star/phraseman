@@ -1,27 +1,47 @@
 [
   {
+    "interactionId": "en:lesson-06:session-20:word:cook",
+    "correctText": "cook",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-20:i01",
-    "correctText": "I cook at home.",
+    "correctText": "She cooks soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-20:word:taste",
+    "correctText": "taste",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i02",
-    "correctText": "cook",
+    "correctText": "He tastes the soup.",
     "correctResponseId": "en:lesson-06:session-20:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-20:word:recipe",
+    "correctText": "recipe",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-20:i03",
-    "correctText": "cooks",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-20:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-20:i04",
-    "correctText": "en:lesson-06:session-20:i04:p1=cook\nen:lesson-06:session-20:i04:p2=innocent\nen:lesson-06:session-20:i04:p3=mushroom\nen:lesson-06:session-20:i04:p4=scarf",
+    "correctText": "en:lesson-06:session-20:i04:p1=cook\nen:lesson-06:session-20:i04:p2=taste\nen:lesson-06:session-20:i04:p3=recipe\nen:lesson-06:session-20:i04:p4=boil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-20:word:boil",
+    "correctText": "boil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i05",
-    "correctText": "Anna cooks at home.",
+    "correctText": "She boils the eggs.",
     "correctResponseId": null
   },
   {
@@ -31,52 +51,52 @@
   },
   {
     "interactionId": "en:lesson-06:session-20:i07",
-    "correctText": "He is innocent.",
+    "correctText": "The recipe is simple.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i08",
-    "correctText": "cook",
+    "correctText": "tastes",
     "correctResponseId": "en:lesson-06:session-20:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-20:i09",
-    "correctText": "Yes.",
+    "correctText": "She cooks at home.",
     "correctResponseId": "en:lesson-06:session-20:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-20:i10",
-    "correctText": "en:lesson-06:session-20:i10:p1=cook\nen:lesson-06:session-20:i10:p2=paint\nen:lesson-06:session-20:i10:p3=yes\nen:lesson-06:session-20:i10:p4=innocent",
+    "correctText": "en:lesson-06:session-20:i10:p1=recipe\nen:lesson-06:session-20:i10:p2=boil\nen:lesson-06:session-20:i10:p3=cook\nen:lesson-06:session-20:i10:p4=paint",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i11",
-    "correctText": "The mushroom is in the soup.",
+    "correctText": "My grandmother cooks at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i12",
-    "correctText": "Whose scarf is this?",
+    "correctText": "Where is the recipe?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i13",
-    "correctText": "They paint here.",
+    "correctText": "He tastes the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-20:i14",
-    "correctText": "paints",
+    "correctText": "boils",
     "correctResponseId": "en:lesson-06:session-20:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-20:i15",
-    "correctText": "My scarf is here.",
+    "correctText": "The soup is hot.",
     "correctResponseId": "en:lesson-06:session-20:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-20:i16",
-    "correctText": "en:lesson-06:session-20:i16:p1=cook\nen:lesson-06:session-20:i16:p2=mushroom\nen:lesson-06:session-20:i16:p3=scarf\nen:lesson-06:session-20:i16:p4=paint",
+    "correctText": "en:lesson-06:session-20:i16:p1=taste\nen:lesson-06:session-20:i16:p2=recipe\nen:lesson-06:session-20:i16:p3=boil\nen:lesson-06:session-20:i16:p4=cook",
     "correctResponseId": null
   },
   {

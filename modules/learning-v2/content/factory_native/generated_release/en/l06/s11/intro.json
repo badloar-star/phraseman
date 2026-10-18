@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-11",
   "learningOutcomeByLocale": {
-    "ru": "сказать, какой язык вы изучаете, уточнить владельца вещи и срочность дела",
-    "uk": "сказати, яку мову ви вивчаєте, уточнити власника речі й терміновість справи"
+    "ru": "сказать, что вы изучаете, назвать себя пассажиром и спросить, чьё задание",
+    "uk": "сказати, що ви вивчаєте, назвати себе пасажиром і спитати, чиє це завдання"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Учиться и узнавать",
-        "uk": "Вчитися й дізнаватися"
+        "ru": "Едем на курсы",
+        "uk": "Їдемо на курси"
       },
       "bodyByLocale": {
-        "ru": "`learn` — «учиться», «изучать», получать новые знания или навыки. `I learn English` — «Я изучаю английский». Знакомое `practice` — практиковаться, упражняться: эти действия могут идти вместе. Узнали новое слово — уже чему-то научились. Вспомнили его без подсказки — есть повод гордиться, даже если это всего лишь «рюкзак».",
-        "uk": "`learn` — «вчитися», «вивчати», здобувати нові знання чи навички. `I learn English` — «Я вивчаю англійську». Знайоме `practice` — практикуватися, вправлятися: ці дії можуть відбуватися разом. Дізналися нове слово — вже чогось навчилися. Згадали його без підказки — є привід пишатися, навіть якщо це лише «рюкзак»."
+        "ru": "Вы едете на трамвае на вечерние курсы английского. Подруга впервые едет с вами и спрашивает, чем вы там занимаетесь. Вы ездите туда каждый вечер после работы. learn — «учить, изучать»: I learn English — «Я изучаю английский». После I слово learn остаётся без s.",
+        "uk": "Ви їдете трамваєм на вечірні курси англійської. Подруга вперше їде з вами й питає, чим ви там займаєтеся. Ви їздите туди щовечора після роботи. learn — «вчити, вивчати»: I learn English — «Я вивчаю англійську». Після I слово learn лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я изучаю английский».",
-          "uk": "Скажіть «Я вивчаю англійську»."
+          "ru": "Подруга спрашивает, чем вы занимаетесь на курсах. Скажите: «Я изучаю английский».",
+          "uk": "Подруга питає, чим ви займаєтеся на курсах. Скажіть: «Я вивчаю англійську»."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-06:session-11:intro1:r2",
-              "text": "I am learn English."
+              "text": "I learns English."
             },
             {
               "responseId": "en:lesson-06:session-11:intro1:r3",
-              "text": "I learns English."
+              "text": "I am learn English."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-06:session-11:intro1:r2",
-              "text": "I am learn English."
+              "text": "I learns English."
             },
             {
               "responseId": "en:lesson-06:session-11:intro1:r3",
-              "text": "I learns English."
+              "text": "I am learn English."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я изучаю английский».",
-          "uk": "Скажіть «Я вивчаю англійську»."
+          "ru": "Подруга спрашивает, чем вы занимаетесь на курсах. Скажите: «Я изучаю английский».",
+          "uk": "Подруга питає, чим ви займаєтеся на курсах. Скажіть: «Я вивчаю англійську»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мы и они",
-        "uk": "Ми й вони"
+        "ru": "Полный трамвай",
+        "uk": "Повний трамвай"
       },
       "bodyByLocale": {
-        "ru": "`We learn English` — «Мы изучаем английский». После `I`, `you`, `we`, `they` используем `learn`, без `s`. `tram` — «трамвай», `backpack` — «рюкзак». `We are on the tram` — «Мы в трамвае»: так говорим, когда едем в нём. Здесь место, а не действие `learn`, поэтому нужно `are`.",
-        "uk": "`We learn English` — «Ми вивчаємо англійську». Після `I`, `you`, `we`, `they` використовуємо `learn`, без `s`. `tram` — «трамвай», `backpack` — «рюкзак». `We are on the tram` — «Ми в трамваї»: так кажемо, коли їдемо в ньому. Тут місце, а не дія `learn`, тому потрібно `are`."
+        "ru": "Трамвай полон, и контролёр просит пассажиров пройти вперёд. Подруга спрашивает, кто вы в этом трамвае: вы просто едете, а не работаете. passenger — «пассажир». Когда говорим, кто мы, нужен are: We are passengers — «Мы пассажиры». Действие — другое: We learn.",
+        "uk": "Трамвай повний, і контролер просить пасажирів пройти вперед. Подруга питає, хто ви в цьому трамваї: ви просто їдете, а не працюєте. passenger — «пасажир». Коли кажемо, хто ми, потрібен are: We are passengers — «Ми пасажири». Дія — інше: We learn."
       },
       "question": {
         "interactionId": "en:lesson-06:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Мы в трамвае».",
-          "uk": "Скажіть «Ми в трамваї»."
+          "ru": "Подруга спрашивает, кто вы в трамвае. Скажите: «Мы пассажиры».",
+          "uk": "Подруга питає, хто ви в трамваї. Скажіть: «Ми пасажири»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-11:intro2:r1",
-              "text": "We are on the tram."
+              "text": "We are passengers."
             },
             {
               "responseId": "en:lesson-06:session-11:intro2:r2",
-              "text": "We on the tram."
+              "text": "We passengers."
             },
             {
               "responseId": "en:lesson-06:session-11:intro2:r3",
-              "text": "We is on the tram."
+              "text": "We learn passengers."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-11:intro2:r1",
-              "text": "We are on the tram."
+              "text": "We are passengers."
             },
             {
               "responseId": "en:lesson-06:session-11:intro2:r2",
-              "text": "We on the tram."
+              "text": "We passengers."
             },
             {
               "responseId": "en:lesson-06:session-11:intro2:r3",
-              "text": "We is on the tram."
+              "text": "We learn passengers."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мы в трамвае».",
-          "uk": "Скажіть «Ми в трамваї»."
+          "ru": "Подруга спрашивает, кто вы в трамвае. Скажите: «Мы пассажиры».",
+          "uk": "Подруга питає, хто ви в трамваї. Скажіть: «Ми пасажири»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Срочное дело",
-        "uk": "Термінова справа"
+        "ru": "Задание на завтра",
+        "uk": "Завдання на завтра"
       },
       "bodyByLocale": {
-        "ru": "`parcel` — «посылка», `urgent` — «срочный», требующий быстрого действия. `It is urgent` — «Это срочно». `Whose backpack is this?` — «Чей это рюкзак?» `That parcel is yours` — «Та посылка твоя».",
-        "uk": "`parcel` — «посилка», `urgent` — «терміновий», що потребує швидкої дії. `It is urgent` — «Це терміново». `Whose backpack is this?` — «Чий це рюкзак?» `That parcel is yours` — «Та посилка твоя»."
+        "ru": "На остановке подруга достаёт из рюкзака тетрадь: завтра работу нужно сдать, а она не готова. homework — «домашнее задание». Говорим о нём в единственном числе: My homework is urgent — «Моё домашнее задание срочное». Слово homework не меняется: s не нужно.",
+        "uk": "На зупинці подруга дістає з наплічника зошит: завтра роботу треба здати, а вона не готова. homework — «домашнє завдання». Говоримо про нього в однині: My homework is urgent — «Моє домашнє завдання термінове». Слово homework не змінюється: s не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-06:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Это срочно».",
-          "uk": "Скажіть «Це терміново»."
+          "ru": "Подруга спрашивает, как у вас со сроками. Скажите: «Моё домашнее задание срочное».",
+          "uk": "Подруга питає, як у вас зі строками. Скажіть: «Моє домашнє завдання термінове»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-11:intro3:r1",
-              "text": "It is urgent."
+              "text": "My homework is urgent."
             },
             {
               "responseId": "en:lesson-06:session-11:intro3:r2",
-              "text": "It are urgent."
+              "text": "My homework are urgent."
             },
             {
               "responseId": "en:lesson-06:session-11:intro3:r3",
-              "text": "It is impossible."
+              "text": "My homework has urgent."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-11:intro3:r1",
-              "text": "It is urgent."
+              "text": "My homework is urgent."
             },
             {
               "responseId": "en:lesson-06:session-11:intro3:r2",
-              "text": "It are urgent."
+              "text": "My homework are urgent."
             },
             {
               "responseId": "en:lesson-06:session-11:intro3:r3",
-              "text": "It is impossible."
+              "text": "My homework has urgent."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это срочно».",
-          "uk": "Скажіть «Це терміново»."
+          "ru": "Подруга спрашивает, как у вас со сроками. Скажите: «Моё домашнее задание срочное».",
+          "uk": "Подруга питає, як у вас зі строками. Скажіть: «Моє домашнє завдання термінове»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "94aeae762781028e08c8ec6aa3a2fc7dddd2f76f53f8fe8fd02dce46d41b9cf8"
+  "introFingerprint": "b03e828fc3d912fcc3db1101449a325642cfb9088b5fb9d349e99da238da02fc"
 }

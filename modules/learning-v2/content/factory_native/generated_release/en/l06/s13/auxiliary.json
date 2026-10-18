@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-13:intro1:r2": {
-          "ru": "После `we` — `swim`, без `s`.",
-          "uk": "Після `we` — `swim`, без `s`."
+          "ru": "После we слово остаётся swim, без s.",
+          "uk": "Після we слово лишається swim, без s."
         },
         "en:lesson-06:session-13:intro1:r3": {
-          "ru": "Говорим `We swim`, без `are`.",
-          "uk": "Кажемо `We swim`, без `are`."
+          "ru": "Здесь действие: We swim, без are.",
+          "uk": "Тут дія: We swim, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-13:intro2:r2": {
-          "ru": "Один бассейн: `This is`.",
-          "uk": "Один басейн: `This is`."
+          "ru": "Без is предложение не получается: нужно This lane is.",
+          "uk": "Без is речення не виходить: потрібно This lane is."
         },
         "en:lesson-06:session-13:intro2:r3": {
-          "ru": "`private` — частный; общественный — `public`.",
-          "uk": "`private` — приватний; громадський — `public`."
+          "ru": "Дорожка одна, поэтому нужно is, а не are.",
+          "uk": "Доріжка одна, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-13:intro3:r2": {
-          "ru": "Это вопрос о месте; о владельце — `Whose`.",
-          "uk": "Це запитання про місце; про власника — `Whose`."
+          "ru": "trunks — всегда несколько, поэтому нужно These и are.",
+          "uk": "trunks — завжди кілька, тому потрібно These і are."
         },
         "en:lesson-06:session-13:intro3:r3": {
-          "ru": "Один брелок: `is this`.",
-          "uk": "Один брелок: `is this`."
+          "ru": "После These нужно are, а не is.",
+          "uk": "Після These потрібно are, а не is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b1412a4f733797ddd629cd194f1f85bf1177ec046bcdcfc593801f8fb2ecce2b"
+  "auxiliaryFingerprint": "e67b5d6af0bd152edbcc7a379c5d6585ebf6cfbf3acb362811045d472c227d99"
 }

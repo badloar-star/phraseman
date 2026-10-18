@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-17",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычном действии другого человека",
-    "uk": "розповісти про звичну дію іншої людини"
+    "ru": "рассказать, что делает один человек: He drives, She waits — и назвать его работу через is",
+    "uk": "розповісти, що робить одна людина: He drives, She waits — і назвати її роботу через is"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Водить машину",
-        "uk": "Водити машину"
+        "ru": "Брат едет на работу",
+        "uk": "Брат їде на роботу"
       },
       "bodyByLocale": {
-        "ru": "`drive` — «водить машину». `I drive to work` — «Я езжу на работу за рулём». Это не просто ехать пассажиром: `drive` говорит, что вы управляете машиной. Можно всю дорогу советовать водителю, куда повернуть, но от этого пассажир водителем не становится.",
-        "uk": "`drive` — «водити машину». `I drive to work` — «Я їжджу на роботу за кермом». Це не просто їхати пасажиром: `drive` означає, що ви керуєте машиною. Можна всю дорогу радити водієві, куди повернути, але від цього пасажир водієм не стає."
+        "ru": "Соседка спрашивает, как ваш брат добирается до работы. Каждое утро он садится в свою машину и сам ведёт её по знакомой дороге. drive — «водить машину». Про одного человека (he, she) к слову действия добавляем s: He drives to work — «Он ездит на работу за рулём».",
+        "uk": "Сусідка питає, як ваш брат добирається до роботи. Щоранку він сідає у свою машину й сам веде її знайомою дорогою. drive — «водити машину». Про одну людину (he, she) до слова дії додаємо s: He drives to work — «Він їздить на роботу за кермом»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я езжу на работу за рулём».",
-          "uk": "Скажіть «Я їжджу на роботу за кермом»."
+          "ru": "Соседка спрашивает, как ваш брат ездит на работу. Скажите: «Он ездит на работу за рулём».",
+          "uk": "Сусідка питає, як ваш брат їздить на роботу. Скажіть: «Він їздить на роботу за кермом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-17:intro1:r1",
-              "text": "I drive to work."
+              "text": "He drives to work."
             },
             {
               "responseId": "en:lesson-06:session-17:intro1:r2",
-              "text": "I am drive to work."
+              "text": "He drive to work."
             },
             {
               "responseId": "en:lesson-06:session-17:intro1:r3",
-              "text": "I drives to work."
+              "text": "He is drives to work."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-17:intro1:r1",
-              "text": "I drive to work."
+              "text": "He drives to work."
             },
             {
               "responseId": "en:lesson-06:session-17:intro1:r2",
-              "text": "I am drive to work."
+              "text": "He drive to work."
             },
             {
               "responseId": "en:lesson-06:session-17:intro1:r3",
-              "text": "I drives to work."
+              "text": "He is drives to work."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я езжу на работу за рулём».",
-          "uk": "Скажіть «Я їжджу на роботу за кермом»."
+          "ru": "Соседка спрашивает, как ваш брат ездит на работу. Скажите: «Он ездит на работу за рулём».",
+          "uk": "Сусідка питає, як ваш брат їздить на роботу. Скажіть: «Він їздить на роботу за кермом»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она водит, он работает",
-        "uk": "Вона водить, він працює"
+        "ru": "Сестра на остановке",
+        "uk": "Сестра на зупинці"
       },
       "bodyByLocale": {
-        "ru": "После `he`, `she`, `it` у обычных действий в таких фразах появляется окончание. В наших примерах добавляем `s`: `drive → drives`, `work → works`, `start → starts`. `She drives to work` — «Она ездит на работу за рулём». `He starts at nine` — «Он начинает в девять». Имя тоже подходит: `Anna drives to work`. Перед этими действиями не нужно `is`.",
-        "uk": "Після `he`, `she`, `it` у звичайних діях у таких фразах з’являється закінчення. У наших прикладах додаємо `s`: `drive → drives`, `work → works`, `start → starts`. `She drives to work` — «Вона їздить на роботу за кермом». `He starts at nine` — «Він починає о дев’ятій». Ім’я теж підходить: `Anna drives to work`. Перед цими діями не потрібно `is`."
+        "ru": "Ваша сестра каждый день стоит под навесом на остановке и ждёт автобус. Продавец из киоска напротив давно её заметил и спрашивает, что она там делает. wait — «ждать». Про сестру говорим she и тоже добавляем s: She waits at the bus stop — «Она ждёт на остановке».",
+        "uk": "Ваша сестра щодня стоїть під навісом на зупинці й чекає автобус. Продавець із кіоска навпроти давно її помітив і питає, що вона там робить. wait — «чекати». Про сестру кажемо she і теж додаємо s: She waits at the bus stop — «Вона чекає на зупинці»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она ездит на работу за рулём».",
-          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+          "ru": "Продавец спрашивает, что делает ваша сестра на остановке. Скажите: «Она ждёт на остановке».",
+          "uk": "Продавець питає, що робить ваша сестра на зупинці. Скажіть: «Вона чекає на зупинці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-17:intro2:r1",
-              "text": "She drives to work."
+              "text": "She waits at the bus stop."
             },
             {
               "responseId": "en:lesson-06:session-17:intro2:r2",
-              "text": "She drive to work."
+              "text": "She wait at the bus stop."
             },
             {
               "responseId": "en:lesson-06:session-17:intro2:r3",
-              "text": "She is drives to work."
+              "text": "She is waits at the bus stop."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-17:intro2:r1",
-              "text": "She drives to work."
+              "text": "She waits at the bus stop."
             },
             {
               "responseId": "en:lesson-06:session-17:intro2:r2",
-              "text": "She drive to work."
+              "text": "She wait at the bus stop."
             },
             {
               "responseId": "en:lesson-06:session-17:intro2:r3",
-              "text": "She is drives to work."
+              "text": "She is waits at the bus stop."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она ездит на работу за рулём».",
-          "uk": "Скажіть «Вона їздить на роботу за кермом»."
+          "ru": "Продавец спрашивает, что делает ваша сестра на остановке. Скажите: «Она ждёт на остановке».",
+          "uk": "Продавець питає, що робить ваша сестра на зупинці. Скажіть: «Вона чекає на зупинці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Как себя чувствует Анна",
-        "uk": "Як почувається Анна"
+        "ru": "Шум в моторе",
+        "uk": "Шум у моторі"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, как себя чувствует Анна. `She is well` — «Она хорошо себя чувствует». Здесь `well` описывает самочувствие, а не действие: поэтому после `she` нужно `is`. Если спрашивают о вас, ответьте `I am well` — «Я хорошо себя чувствую»: с `I` используем `am`.",
-        "uk": "Колега запитує, як почувається Анна. `She is well` — «Вона добре почувається». Тут `well` описує самопочуття, а не дію: тому після `she` потрібно `is`. Якщо запитують про вас, дайте відповідь `I am well` — «Я добре почуваюся»: з `I` використовуємо `am`."
+        "ru": "Машина соседки громко шумит, и она ищет, кто поможет. Ваш дядя работает в мастерской недалеко от дома и знает машины лучше всех. mechanic — «автомеханик». Когда называем, кто человек по работе, нужен is: He is a mechanic — «Он автомеханик».",
+        "uk": "Машина сусідки голосно шумить, і вона шукає, хто допоможе. Ваш дядько працює в майстерні недалеко від дому й знає машини краще за всіх. mechanic — «автомеханік». Коли називаємо, ким людина працює, потрібен is: He is a mechanic — «Він автомеханік»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "Коллега спрашивает о самочувствии Анны. Скажите «Она хорошо себя чувствует».",
-          "uk": "Колега запитує про самопочуття Анни. Скажіть «Вона добре почувається»."
+          "ru": "Соседка спрашивает, кто ваш дядя. Скажите: «Он автомеханик».",
+          "uk": "Сусідка питає, ким працює ваш дядько. Скажіть: «Він автомеханік»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-17:intro3:r1",
-              "text": "She is well."
+              "text": "He is a mechanic."
             },
             {
               "responseId": "en:lesson-06:session-17:intro3:r2",
-              "text": "She well."
+              "text": "He a mechanic."
             },
             {
               "responseId": "en:lesson-06:session-17:intro3:r3",
-              "text": "She are well."
+              "text": "He are a mechanic."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-17:intro3:r1",
-              "text": "She is well."
+              "text": "He is a mechanic."
             },
             {
               "responseId": "en:lesson-06:session-17:intro3:r2",
-              "text": "She well."
+              "text": "He a mechanic."
             },
             {
               "responseId": "en:lesson-06:session-17:intro3:r3",
-              "text": "She are well."
+              "text": "He are a mechanic."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега спрашивает о самочувствии Анны. Скажите «Она хорошо себя чувствует».",
-          "uk": "Колега запитує про самопочуття Анни. Скажіть «Вона добре почувається»."
+          "ru": "Соседка спрашивает, кто ваш дядя. Скажите: «Он автомеханик».",
+          "uk": "Сусідка питає, ким працює ваш дядько. Скажіть: «Він автомеханік»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "72b5814f805aede1c5ed748b15622666446a6887461d2765e238423fa41cd64f"
+  "introFingerprint": "67a50778742ccd6d48135ab68d02b6c8f7fa7797d136c782b59a9f0f572e1b09"
 }

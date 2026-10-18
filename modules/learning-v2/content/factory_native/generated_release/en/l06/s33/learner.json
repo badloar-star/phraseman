@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-33:i01",
+      "interactionId": "en:lesson-06:session-33:word:study",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — study",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:word:study:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — study",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:word:study:audio",
+          "transcript": "study"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:word:study:r1",
+            "targetText": "study",
+            "meaningByLocale": {
+              "ru": "заниматься, учиться. We study in the library. — «Мы занимаемся в библиотеке». О том, что делают с учебником и тетрадью.",
+              "uk": "займатися, вчитися. We study in the library. — «Ми займаємося в бібліотеці». Про те, що роблять з підручником і зошитом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "study",
+          "definitionByLocale": {
+            "ru": "заниматься, учиться. We study in the library. — «Мы занимаемся в библиотеке». О том, что делают с учебником и тетрадью.",
+            "uk": "займатися, вчитися. We study in the library. — «Ми займаємося в бібліотеці». Про те, що роблять з підручником і зошитом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я занимаюсь дома»",
+      "prompt": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я занимаюсь дома»",
+      "accessibilityLabel": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I study at home.",
+        "targetPhrase": "We study at home.",
         "localizedMeaning": {
-          "ru": "Скажите «Я занимаюсь дома»",
-          "uk": "Скажіть «Я займаюся вдома»"
+          "ru": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
+          "uk": "Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "study",
           "at",
           "home"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "studies"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `study` — `We study at home.`",
+              "uk": "тут потрібно `study` — `We study at home.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-33:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-33:word:tutor",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — tutor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:word:tutor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tutor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:word:tutor:audio",
+          "transcript": "tutor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:word:tutor:r1",
+            "targetText": "tutor",
+            "meaningByLocale": {
+              "ru": "репетитор. My tutor is kind. — «Мой репетитор добрый». О человеке, который занимается с учеником отдельно.",
+              "uk": "репетитор. My tutor is kind. — «Мій репетитор добрий». Про людину, яка займається з учнем окремо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tutor",
+          "definitionByLocale": {
+            "ru": "репетитор. My tutor is kind. — «Мой репетитор добрый». О человеке, который занимается с учеником отдельно.",
+            "uk": "репетитор. My tutor is kind. — «Мій репетитор добрий». Про людину, яка займається з учнем окремо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-33:i02:r1",
-          "text": "study"
+          "text": "She studies with a tutor."
         },
         {
           "responseId": "en:lesson-06:session-33:i02:r2",
-          "text": "shower"
+          "text": "She studies with a friend."
         },
         {
           "responseId": "en:lesson-06:session-33:i02:r3",
-          "text": "walk"
+          "text": "He studies with a tutor."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i02:audio",
-          "transcript": "study"
+          "transcript": "She studies with a tutor."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-33:i02:r1",
-            "targetText": "study",
+            "targetText": "She studies with a tutor.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-33:i02:r2",
-            "targetText": "shower",
+            "targetText": "She studies with a friend.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-33:i02:r3",
-            "targetText": "walk",
+            "targetText": "He studies with a tutor.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-33:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `study`, а в этом варианте — `shower`.",
-              "uk": "У записі перше слово — `study`, а в цьому варіанті — `shower`."
+              "ru": "В записи последнее слово — `tutor`, репетитор, а в этом варианте — `friend`, друг.",
+              "uk": "У записі останнє слово — `tutor`, репетитор, а в цьому варіанті — `friend`, друг."
             }
           },
           {
             "responseId": "en:lesson-06:session-33:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `study`, а в этом варианте — `walk`.",
-              "uk": "У записі перше слово — `study`, а в цьому варіанті — `walk`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -114,11 +212,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она занимается дома»",
+      "prompt": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-33:i03:r1",
@@ -135,14 +233,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она занимается дома»",
+      "accessibilityLabel": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она занимается дома»",
-          "uk": "Скажіть «Вона займається вдома»"
+          "ru": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
+          "uk": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at home.",
+        "gappedTargetPhrase": "My brother ___ in the library.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-33:i03:r1",
@@ -157,21 +255,21 @@
             "text": "studys"
           }
         ],
-        "testedDimension": "Скажите «Она занимается дома»",
+        "testedDimension": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-33:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она занимается дома»",
+            "testedDimension": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` нужно `studies`.",
-              "uk": "Після `she` потрібно `studies`."
+              "ru": "Брат — это `he`, поэтому нужно `studies`, с `ies`.",
+              "uk": "Брат — це `he`, тому потрібно `studies`, з `ies`."
             }
           },
           {
             "responseId": "en:lesson-06:session-33:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она занимается дома»",
+            "testedDimension": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
             "feedbackByLocale": {
               "ru": "В `study` меняем `y` на `ies`: `studies`.",
               "uk": "У `study` змінюємо `y` на `ies`: `studies`."
@@ -183,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -199,46 +297,46 @@
             "pairId": "en:lesson-06:session-33:i04:p1",
             "target": "study",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "учитися"
+              "ru": "учиться, заниматься",
+              "uk": "вчитися, займатися"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i04:p2",
-            "target": "active",
+            "target": "tutor",
             "meaningByLocale": {
-              "ru": "активный",
-              "uk": "активний"
+              "ru": "репетитор",
+              "uk": "репетитор"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i04:p3",
-            "target": "doorbell",
+            "target": "essay",
             "meaningByLocale": {
-              "ru": "дверной звонок",
-              "uk": "дверний дзвінок"
+              "ru": "сочинение",
+              "uk": "твір"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i04:p4",
-            "target": "watch",
+            "target": "lecture",
             "meaningByLocale": {
-              "ru": "наручные часы",
-              "uk": "наручний годинник"
+              "ru": "лекция",
+              "uk": "лекція"
             }
           }
         ],
         "leftColumn": [
           "study",
-          "active",
-          "doorbell",
-          "watch"
+          "tutor",
+          "essay",
+          "lecture"
         ],
         "rightColumn": [
-          "учиться",
-          "активный",
-          "дверной звонок",
-          "наручные часы"
+          "учиться, заниматься",
+          "репетитор",
+          "сочинение",
+          "лекция"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +353,91 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-33:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-06:session-33:word:essay",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — essay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:word:essay:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — essay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:word:essay:audio",
+          "transcript": "essay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:word:essay:r1",
+            "targetText": "essay",
+            "meaningByLocale": {
+              "ru": "сочинение. The essay is long. — «Сочинение длинное». О тексте, который пишут в школе.",
+              "uk": "твір. The essay is long. — «Твір довгий». Про текст, який пишуть у школі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "essay",
+          "definitionByLocale": {
+            "ru": "сочинение. The essay is long. — «Сочинение длинное». О тексте, который пишут в школе.",
+            "uk": "твір. The essay is long. — «Твір довгий». Про текст, який пишуть у школі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i05:audio",
-          "transcript": "Anna studies at home."
+          "transcript": "My essay is on the table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna studies at home.",
+        "hiddenTargetPhrase": "My essay is on the table.",
         "orderedTokens": [
-          "Anna",
-          "studies",
-          "at",
-          "home"
+          "My",
+          "essay",
+          "is",
+          "on",
+          "the",
+          "table"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседа и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My essay is on the table.`",
+              "uk": "тут потрібно `is` — `My essay is on the table.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,29 +447,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Он ходит здесь пешком»",
+      "prompt": "Сестра хвалит репетитора. Скажите: «Мой репетитор добрый»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он ходит здесь пешком»",
+      "accessibilityLabel": "Сестра хвалит репетитора. Скажите: «Мой репетитор добрый»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He walks here.",
+        "targetPhrase": "My tutor is kind.",
         "localizedMeaning": {
-          "ru": "Скажите «Он ходит здесь пешком»",
-          "uk": "Скажіть «Він ходить тут пішки»"
+          "ru": "Сестра хвалит репетитора. Скажите: «Мой репетитор добрый»",
+          "uk": "Сестра хвалить репетитора. Скажіть: «Мій репетитор добрий»"
         },
         "orderedTokens": [
-          "He",
-          "walks",
-          "here"
+          "My",
+          "tutor",
+          "is",
+          "kind"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сестра хвалит репетитора. Скажите: «Мой репетитор добрый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My tutor is kind.`",
+              "uk": "тут потрібно `is` — `My tutor is kind.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +492,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Этот дверной звонок новый»",
+      "prompt": "Брат спрашивает, где вы с сестрой занимаетесь. Скажите: «Мы занимаемся в библиотеке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Этот дверной звонок новый»",
+      "accessibilityLabel": "Брат спрашивает, где вы с сестрой занимаетесь. Скажите: «Мы занимаемся в библиотеке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i07:audio",
-          "transcript": "This doorbell is new."
+          "transcript": "We study in the library."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This doorbell is new.",
+        "targetPhrase": "We study in the library.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +525,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они занимаются здесь»",
+      "prompt": "Скажите о себе: «Я читаю сочинение». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-33:i08:r1",
-          "text": "study"
+          "text": "read"
         },
         {
           "responseId": "en:lesson-06:session-33:i08:r2",
-          "text": "studies"
+          "text": "reads"
         },
         {
           "responseId": "en:lesson-06:session-33:i08:r3",
-          "text": "are study"
+          "text": "am read"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они занимаются здесь»",
+      "accessibilityLabel": "Скажите о себе: «Я читаю сочинение». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они занимаются здесь»",
-          "uk": "Скажіть «Вони займаються тут»"
+          "ru": "Скажите о себе: «Я читаю сочинение». Выберите слово",
+          "uk": "Скажіть про себе: «Я читаю твір». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "I ___ the essay.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-33:i08:r1",
-            "text": "study"
+            "text": "read"
           },
           {
             "responseId": "en:lesson-06:session-33:i08:r2",
-            "text": "studies"
+            "text": "reads"
           },
           {
             "responseId": "en:lesson-06:session-33:i08:r3",
-            "text": "are study"
+            "text": "am read"
           }
         ],
-        "testedDimension": "Скажите «Они занимаются здесь»",
+        "testedDimension": "Скажите о себе: «Я читаю сочинение». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-33:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они занимаются здесь»",
+            "testedDimension": "Скажите о себе: «Я читаю сочинение». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `study`.",
-              "uk": "Після `they` — `study`."
+              "ru": "После `I` нужно `read`, без `s`.",
+              "uk": "Після `I` потрібно `read`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-33:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они занимаются здесь»",
+            "testedDimension": "Скажите о себе: «Я читаю сочинение». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They study`, без `are`.",
-              "uk": "Потрібно `They study`, без `are`."
+              "ru": "Говорим `I read`, без `am`.",
+              "uk": "Кажемо `I read`, без `am`."
             }
           }
         ]
@@ -425,52 +593,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-33:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-33:word:lecture",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чьи часы здесь",
+      "prompt": "Карточка слова — lecture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-33:word:lecture:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lecture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-33:word:lecture:audio",
+          "transcript": "lecture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-33:word:lecture:r1",
+            "targetText": "lecture",
+            "meaningByLocale": {
+              "ru": "лекция. The lecture is early. — «Лекция ранняя». О занятии, на котором один человек рассказывает многим.",
+              "uk": "лекція. The lecture is early. — «Лекція рання». Про заняття, на якому одна людина розповідає багатьом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lecture",
+          "definitionByLocale": {
+            "ru": "лекция. The lecture is early. — «Лекция ранняя». О занятии, на котором один человек рассказывает многим.",
+            "uk": "лекція. The lecture is early. — «Лекція рання». Про заняття, на якому одна людина розповідає багатьом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-33:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-33:i09:r1",
-          "text": "My watch is here."
+          "text": "The lecture is long."
         },
         {
           "responseId": "en:lesson-06:session-33:i09:r2",
-          "text": "Your watch is here."
+          "text": "The lecture is early."
         },
         {
           "responseId": "en:lesson-06:session-33:i09:r3",
-          "text": "His watch is here."
+          "text": "The essay is long."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, чьи часы здесь",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i09:audio",
-          "transcript": "My watch is here."
+          "transcript": "The lecture is long."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-33:i09:r1",
-            "targetText": "My watch is here.",
+            "targetText": "The lecture is long.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-33:i09:r2",
-            "targetText": "Your watch is here.",
+            "targetText": "The lecture is early.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-33:i09:r3",
-            "targetText": "His watch is here.",
+            "targetText": "The essay is long.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-33:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чьи часы здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи последнее слово — `long`, длинная, а в этом варианте — `early`, ранняя.",
+              "uk": "У записі останнє слово — `long`, довга, а в цьому варіанті — `early`, рання."
             }
           },
           {
             "responseId": "en:lesson-06:session-33:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чьи часы здесь",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи речь о `lecture`, лекции, а в этом варианте — об `essay`, сочинении.",
+              "uk": "У записі йдеться про `lecture`, лекцію, а в цьому варіанті — про `essay`, твір."
             }
           }
         ],
@@ -502,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-33:i10:p1",
-            "target": "study",
+            "target": "lecture",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "учитися"
+              "ru": "лекция",
+              "uk": "лекція"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i10:p2",
-            "target": "walk",
+            "target": "study",
             "meaningByLocale": {
-              "ru": "ходить пешком",
-              "uk": "ходити пішки"
+              "ru": "учиться, заниматься",
+              "uk": "вчитися, займатися"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i10:p3",
-            "target": "watch",
+            "target": "tutor",
             "meaningByLocale": {
-              "ru": "наручные часы",
-              "uk": "наручний годинник"
+              "ru": "репетитор",
+              "uk": "репетитор"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i10:p4",
-            "target": "active",
+            "target": "essay",
             "meaningByLocale": {
-              "ru": "активный",
-              "uk": "активний"
+              "ru": "сочинение",
+              "uk": "твір"
             }
           }
         ],
         "leftColumn": [
+          "lecture",
           "study",
-          "walk",
-          "watch",
-          "active"
+          "tutor",
+          "essay"
         ],
         "rightColumn": [
-          "учиться",
-          "ходить пешком",
-          "наручные часы",
-          "активный"
+          "лекция",
+          "учиться, заниматься",
+          "репетитор",
+          "сочинение"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,41 +786,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте сестру и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте сестру и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i11:audio",
-          "transcript": "She is active."
+          "transcript": "She studies at home."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She is active.",
+        "hiddenTargetPhrase": "She studies at home.",
         "orderedTokens": [
           "She",
-          "is",
-          "active"
+          "studies",
+          "at",
+          "home"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "study"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-33:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте сестру и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is active.`",
-              "uk": "тут потрібно `is` — `She is active.`"
+              "ru": "здесь нужно `studies` — `She studies at home.`",
+              "uk": "тут потрібно `studies` — `She studies at home.`"
             }
           }
         ],
@@ -622,30 +834,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Чьи это наручные часы?»",
+      "prompt": "Сосед показывает на ручку на столе. Спросите: «Чья это ручка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чьи это наручные часы?»",
+      "accessibilityLabel": "Сосед показывает на ручку на столе. Спросите: «Чья это ручка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose watch is this?",
+        "targetPhrase": "Whose pen is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чьи это наручные часы?»",
-          "uk": "Запитайте «Чий це наручний годинник?»"
+          "ru": "Сосед показывает на ручку на столе. Спросите: «Чья это ручка?»",
+          "uk": "Сусід показує на ручку на столі. Спитайте: «Чия це ручка?»"
         },
         "orderedTokens": [
           "Whose",
-          "watch",
+          "pen",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-33:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед показывает на ручку на столе. Спросите: «Чья это ручка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose pen is this?`",
+              "uk": "тут потрібно `Whose` — `Whose pen is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -655,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Мы занимаемся здесь»",
+      "prompt": "Подруга спрашивает о вашем брате. Скажите: «Он занимается дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Мы занимаемся здесь»",
+      "accessibilityLabel": "Подруга спрашивает о вашем брате. Скажите: «Он занимается дома»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i13:audio",
-          "transcript": "We study here."
+          "transcript": "He studies at home."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We study here.",
+        "targetPhrase": "He studies at home.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -688,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том занимается дома»",
+      "prompt": "Скажите о лекции: «Лекция длинная». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-33:i14:r1",
-          "text": "studies"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-33:i14:r2",
-          "text": "study"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-33:i14:r3",
-          "text": "is studies"
+          "text": "studies"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том занимается дома»",
+      "accessibilityLabel": "Скажите о лекции: «Лекция длинная». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том занимается дома»",
-          "uk": "Скажіть «Том займається вдома»"
+          "ru": "Скажите о лекции: «Лекция длинная». Выберите слово",
+          "uk": "Скажіть про лекцію: «Лекція довга». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ at home.",
+        "gappedTargetPhrase": "The lecture ___ long.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-33:i14:r1",
-            "text": "studies"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-33:i14:r2",
-            "text": "study"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-33:i14:r3",
-            "text": "is studies"
+            "text": "studies"
           }
         ],
-        "testedDimension": "Скажите «Том занимается дома»",
+        "testedDimension": "Скажите о лекции: «Лекция длинная». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-33:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том занимается дома»",
+            "testedDimension": "Скажите о лекции: «Лекция длинная». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom studies`.",
-              "uk": "Том — він: `Tom studies`."
+              "ru": "Лекция одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Лекція одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-33:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том занимается дома»",
+            "testedDimension": "Скажите о лекции: «Лекция длинная». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom studies`, без `is`.",
-              "uk": "Потрібно `Tom studies`, без `is`."
+              "ru": "`studies` значит «занимается», а здесь нужно сказать, какая лекция: `is long`.",
+              "uk": "`studies` означає «займається», а тут треба сказати, яка лекція: `is long`."
             }
           }
         ]
@@ -757,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какой дверной звонок",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-33:i15:r1",
-          "text": "This doorbell is new."
+          "text": "I study with a tutor."
         },
         {
           "responseId": "en:lesson-06:session-33:i15:r2",
-          "text": "This doorbell is old."
+          "text": "I study with a friend."
         },
         {
           "responseId": "en:lesson-06:session-33:i15:r3",
-          "text": "This doorbell is small."
+          "text": "We study with a tutor."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, какой дверной звонок",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i15:audio",
-          "transcript": "This doorbell is new."
+          "transcript": "I study with a tutor."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-33:i15:r1",
-            "targetText": "This doorbell is new.",
+            "targetText": "I study with a tutor.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-33:i15:r2",
-            "targetText": "This doorbell is old.",
+            "targetText": "I study with a friend.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-33:i15:r3",
-            "targetText": "This doorbell is small.",
+            "targetText": "We study with a tutor.",
             "meaningByLocale": null
           }
         ],
@@ -810,19 +1034,19 @@
           {
             "responseId": "en:lesson-06:session-33:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какой дверной звонок",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              "ru": "В записи последнее слово — `tutor`, репетитор, а в этом варианте — `friend`, друг.",
+              "uk": "У записі останнє слово — `tutor`, репетитор, а в цьому варіанті — `friend`, друг."
             }
           },
           {
             "responseId": "en:lesson-06:session-33:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какой дверной звонок",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -833,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -847,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-33:i16:p1",
-            "target": "study",
+            "target": "essay",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "учитися"
+              "ru": "сочинение",
+              "uk": "твір"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i16:p2",
-            "target": "doorbell",
+            "target": "lecture",
             "meaningByLocale": {
-              "ru": "дверной звонок",
-              "uk": "дверний дзвінок"
+              "ru": "лекция",
+              "uk": "лекція"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i16:p3",
-            "target": "active",
+            "target": "study",
             "meaningByLocale": {
-              "ru": "активный",
-              "uk": "активний"
+              "ru": "учиться, заниматься",
+              "uk": "вчитися, займатися"
             }
           },
           {
             "pairId": "en:lesson-06:session-33:i16:p4",
-            "target": "walk",
+            "target": "tutor",
             "meaningByLocale": {
-              "ru": "ходить пешком",
-              "uk": "ходити пішки"
+              "ru": "репетитор",
+              "uk": "репетитор"
             }
           }
         ],
         "leftColumn": [
+          "essay",
+          "lecture",
           "study",
-          "doorbell",
-          "active",
-          "walk"
+          "tutor"
         ],
         "rightColumn": [
-          "учиться",
-          "дверной звонок",
-          "активный",
-          "ходить пешком"
+          "сочинение",
+          "лекция",
+          "учиться, заниматься",
+          "репетитор"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -906,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Расскажите, где обычно занимается Анна: «Она занимается дома»",
+      "prompt": "Сосед спрашивает, где занимается ваша сестра. Скажите: «Она занимается в библиотеке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-33:i17:audio"
       ],
-      "accessibilityLabel": "Расскажите, где обычно занимается Анна: «Она занимается дома»",
+      "accessibilityLabel": "Сосед спрашивает, где занимается ваша сестра. Скажите: «Она занимается в библиотеке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-33:i17:audio",
-          "transcript": "She studies at home."
+          "transcript": "She studies in the library."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She studies at home.",
+        "targetPhrase": "She studies in the library.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -946,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "89af5bf97bb8bb1b2c21efde6f82fa0fd5f1ef741babd5848ff765ac8656f654"
+  "learnerFingerprint": "ecaf5fbd0cb0f0bab2f0d1afe957b8584871da1506b598cd9834698c6e835dfa"
 }

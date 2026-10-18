@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-19",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о рисовании и учёбе другого человека",
-    "uk": "розповісти про малювання й навчання іншої людини"
+    "ru": "рассказать, что делает один человек (He draws, She listens), и описать урок через is",
+    "uk": "розповісти, що робить одна людина (He draws, She listens), і описати урок через is"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Рисовать линии",
-        "uk": "Малювати лінії"
+        "ru": "Рисунок за столом",
+        "uk": "Малюнок за столом"
       },
       "bodyByLocale": {
-        "ru": "`draw` — «рисовать», например карандашом, ручкой или на планшете. `I draw on my tablet` — «Я рисую на своём планшете». Знакомое `paint` обычно связано с красками; `draw` — с линиями и рисунком. Планшет удобен: неудачную линию можно убрать, а ластик под столом искать не надо.",
-        "uk": "`draw` — «малювати», наприклад олівцем, ручкою або на планшеті. `I draw on my tablet` — «Я малюю на своєму планшеті». Знайоме `paint` зазвичай пов’язане з фарбами; `draw` — з лініями й малюнком. Планшет зручний: невдалу лінію можна прибрати, а гумку під столом шукати не треба."
+        "ru": "Ваш сын сидит за столом над белым листом с простым карандашом. Он проводит линии одну за другой, и на бумаге появляется рисунок. Подруга спрашивает, что он делает. draw — «рисовать». Про сына говорим he и добавляем s: He draws at the table — «Он рисует за столом».",
+        "uk": "Ваш син сидить за столом над білим аркушем із простим олівцем. Він проводить лінії одну за одною, і на папері з’являється малюнок. Подруга питає, що він робить. draw — «малювати». Про сина кажемо he і додаємо s: He draws at the table — «Він малює за столом»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-19:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я рисую на своём планшете».",
-          "uk": "Скажіть «Я малюю на своєму планшеті»."
+          "ru": "Подруга спрашивает, что делает ваш сын за столом. Скажите: «Он рисует за столом».",
+          "uk": "Подруга питає, що робить ваш син за столом. Скажіть: «Він малює за столом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-19:intro1:r1",
-              "text": "I draw on my tablet."
+              "text": "He draws at the table."
             },
             {
               "responseId": "en:lesson-06:session-19:intro1:r2",
-              "text": "I draws on my tablet."
+              "text": "He draw at the table."
             },
             {
               "responseId": "en:lesson-06:session-19:intro1:r3",
-              "text": "I am draw on my tablet."
+              "text": "He is draws at the table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-19:intro1:r1",
-              "text": "I draw on my tablet."
+              "text": "He draws at the table."
             },
             {
               "responseId": "en:lesson-06:session-19:intro1:r2",
-              "text": "I draws on my tablet."
+              "text": "He draw at the table."
             },
             {
               "responseId": "en:lesson-06:session-19:intro1:r3",
-              "text": "I am draw on my tablet."
+              "text": "He is draws at the table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я рисую на своём планшете».",
-          "uk": "Скажіть «Я малюю на своєму планшеті»."
+          "ru": "Подруга спрашивает, что делает ваш сын за столом. Скажите: «Он рисует за столом».",
+          "uk": "Подруга питає, що робить ваш син за столом. Скажіть: «Він малює за столом»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она рисует и учится",
-        "uk": "Вона малює й навчається"
+        "ru": "Урок английского",
+        "uk": "Урок англійської"
       },
       "bodyByLocale": {
-        "ru": "`She draws at home` — «Она рисует дома». После `she` добавляем `s`: `draw → draws`. `learn` — «учиться», «изучать». `He learns English` — «Он изучает английский». После `he` — `learns`, а после `they` — `learn`: `They learn English`.",
-        "uk": "`She draws at home` — «Вона малює вдома». Після `she` додаємо `s`: `draw → draws`. `learn` — «вчитися», «вивчати». `He learns English` — «Він вивчає англійську». Після `he` — `learns`, а після `they` — `learn`: `They learn English`."
+        "ru": "Вы заглядываете в класс, где идёт урок английского. Ваша дочь сидит у самой доски и не сводит глаз с учительницы. Подруга шёпотом спрашивает, что она делает. listen — «слушать»; дальше говорим to: She listens to the teacher — «Она слушает учительницу».",
+        "uk": "Ви зазираєте в клас, де йде урок англійської. Ваша донька сидить біля самої дошки й не зводить очей із вчительки. Подруга пошепки питає, що вона робить. listen — «слухати»; далі кажемо to: She listens to the teacher — «Вона слухає вчительку»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-19:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Он изучает английский».",
-          "uk": "Скажіть «Він вивчає англійську»."
+          "ru": "Подруга шёпотом спрашивает, что делает ваша дочь. Скажите: «Она слушает учительницу».",
+          "uk": "Подруга пошепки питає, що робить ваша донька. Скажіть: «Вона слухає вчительку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-19:intro2:r1",
-              "text": "He learns English."
+              "text": "She listens to the teacher."
             },
             {
               "responseId": "en:lesson-06:session-19:intro2:r2",
-              "text": "He learn English."
+              "text": "She listen to the teacher."
             },
             {
               "responseId": "en:lesson-06:session-19:intro2:r3",
-              "text": "He is learns English."
+              "text": "She is listens to the teacher."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-19:intro2:r1",
-              "text": "He learns English."
+              "text": "She listens to the teacher."
             },
             {
               "responseId": "en:lesson-06:session-19:intro2:r2",
-              "text": "He learn English."
+              "text": "She listen to the teacher."
             },
             {
               "responseId": "en:lesson-06:session-19:intro2:r3",
-              "text": "He is learns English."
+              "text": "She is listens to the teacher."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он изучает английский».",
-          "uk": "Скажіть «Він вивчає англійську»."
+          "ru": "Подруга шёпотом спрашивает, что делает ваша дочь. Скажите: «Она слушает учительницу».",
+          "uk": "Подруга пошепки питає, що робить ваша донька. Скажіть: «Вона слухає вчительку»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Суп на столе",
-        "uk": "Суп на столі"
+        "ru": "Дорога домой",
+        "uk": "Дорога додому"
       },
       "bodyByLocale": {
-        "ru": "`tablet` — «планшет», `soup` — «суп». `The soup is hot` — «Суп горячий». `guilty` — «виноватый», ответственный за проступок. `I am guilty` — «Я виноват»: Том признаёт, что именно он пролил суп. Это не обычное «извините». `He is guilty` — «Он виноват»: здесь состояние, поэтому нужно `is`.",
-        "uk": "`tablet` — «планшет», `soup` — «суп». `The soup is hot` — «Суп гарячий». `guilty` — «винний», відповідальний за проступок. `I am guilty` — «Я винний»: Том визнає, що саме він пролив суп. Це не звичайне «вибачте». `He is guilty` — «Він винний»: тут стан, тому потрібно `is`."
+        "ru": "По дороге домой подруга, которая ждала вас у входа в школу, спрашивает, как прошёл урок рисования. Было нелегко: пришлось рисовать по памяти, и рука устала. lesson — «урок». Когда говорим, какой он, нужен is: The lesson is difficult — «Урок трудный».",
+        "uk": "Дорогою додому подруга, яка чекала на вас біля входу до школи, питає, як минув урок малювання. Було нелегко: довелося малювати по пам’яті, і рука втомилася. lesson — «урок». Коли кажемо, який він, потрібен is: The lesson is difficult — «Урок важкий»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-19:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я виноват».",
-          "uk": "Скажіть «Я винний»."
+          "ru": "Подруга спрашивает про урок рисования. Скажите: «Урок трудный».",
+          "uk": "Подруга питає про урок малювання. Скажіть: «Урок важкий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-19:intro3:r1",
-              "text": "I am guilty."
+              "text": "The lesson is difficult."
             },
             {
               "responseId": "en:lesson-06:session-19:intro3:r2",
-              "text": "I guilty."
+              "text": "The lesson difficult."
             },
             {
               "responseId": "en:lesson-06:session-19:intro3:r3",
-              "text": "I is guilty."
+              "text": "The lesson are difficult."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-19:intro3:r1",
-              "text": "I am guilty."
+              "text": "The lesson is difficult."
             },
             {
               "responseId": "en:lesson-06:session-19:intro3:r2",
-              "text": "I guilty."
+              "text": "The lesson difficult."
             },
             {
               "responseId": "en:lesson-06:session-19:intro3:r3",
-              "text": "I is guilty."
+              "text": "The lesson are difficult."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я виноват».",
-          "uk": "Скажіть «Я винний»."
+          "ru": "Подруга спрашивает про урок рисования. Скажите: «Урок трудный».",
+          "uk": "Подруга питає про урок малювання. Скажіть: «Урок важкий»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d2e04b14acbdcc963817b1d03a530e05ff3f7279bf9dd2bedb6dca7973b9a078"
+  "introFingerprint": "e41867c111ca627c216a187341ecdc7d983ef5e658bd31cceb386098c64e7782"
 }

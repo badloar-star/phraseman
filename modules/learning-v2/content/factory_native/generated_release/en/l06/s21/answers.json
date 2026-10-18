@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-21:word:write",
+    "correctText": "write",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-21:i01",
-    "correctText": "I write in my notebook.",
+    "correctText": "He writes at the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-21:word:jump",
+    "correctText": "jump",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i02",
-    "correctText": "write",
+    "correctText": "He jumps in the pool.",
     "correctResponseId": "en:lesson-06:session-21:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-21:word:clasp",
+    "correctText": "clasp",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-21:i03",
-    "correctText": "writes",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-21:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-21:i04",
-    "correctText": "en:lesson-06:session-21:i04:p1=write\nen:lesson-06:session-21:i04:p2=broken\nen:lesson-06:session-21:i04:p3=juice\nen:lesson-06:session-21:i04:p4=necklace",
+    "correctText": "en:lesson-06:session-21:i04:p1=write\nen:lesson-06:session-21:i04:p2=jump\nen:lesson-06:session-21:i04:p3=clasp\nen:lesson-06:session-21:i04:p4=page",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-21:word:page",
+    "correctText": "page",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i05",
-    "correctText": "Anna writes here.",
+    "correctText": "The page is blank.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i06",
-    "correctText": "He swims here.",
+    "correctText": "She swims in the pool.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i07",
-    "correctText": "My necklace is broken.",
+    "correctText": "The clasp is broken.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i08",
-    "correctText": "write",
+    "correctText": "writes",
     "correctResponseId": "en:lesson-06:session-21:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-21:i09",
-    "correctText": "No.",
+    "correctText": "She writes at home.",
     "correctResponseId": "en:lesson-06:session-21:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-21:i10",
-    "correctText": "en:lesson-06:session-21:i10:p1=write\nen:lesson-06:session-21:i10:p2=swim\nen:lesson-06:session-21:i10:p3=no\nen:lesson-06:session-21:i10:p4=broken",
+    "correctText": "en:lesson-06:session-21:i10:p1=page\nen:lesson-06:session-21:i10:p2=jump\nen:lesson-06:session-21:i10:p3=write\nen:lesson-06:session-21:i10:p4=swim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i11",
-    "correctText": "The juice is cold.",
+    "correctText": "My sister writes at the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i12",
-    "correctText": "Whose necklace is this?",
+    "correctText": "Whose notebook is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i13",
-    "correctText": "They swim here.",
+    "correctText": "He jumps in the pool.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i14",
-    "correctText": "swims",
+    "correctText": "jumps",
     "correctResponseId": "en:lesson-06:session-21:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-21:i15",
-    "correctText": "My necklace is here.",
+    "correctText": "The page is blank.",
     "correctResponseId": "en:lesson-06:session-21:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-21:i16",
-    "correctText": "en:lesson-06:session-21:i16:p1=write\nen:lesson-06:session-21:i16:p2=juice\nen:lesson-06:session-21:i16:p3=necklace\nen:lesson-06:session-21:i16:p4=swim",
+    "correctText": "en:lesson-06:session-21:i16:p1=clasp\nen:lesson-06:session-21:i16:p2=page\nen:lesson-06:session-21:i16:p3=write\nen:lesson-06:session-21:i16:p4=jump",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-21:i17",
-    "correctText": "She writes at home.",
+    "correctText": "She writes in her notebook.",
     "correctResponseId": null
   }
 ]

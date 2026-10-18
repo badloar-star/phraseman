@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-08:word:fold",
+    "correctText": "fold",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-08:i01",
-    "correctText": "I work in this neighbourhood.",
+    "correctText": "We fold the towels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:word:hang",
+    "correctText": "hang",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i02",
-    "correctText": "receipt",
+    "correctText": "I hang the shirts on the line.",
     "correctResponseId": "en:lesson-06:session-08:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-08:word:sort",
+    "correctText": "sort",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-08:i03",
-    "correctText": "yours",
+    "correctText": "sort",
     "correctResponseId": "en:lesson-06:session-08:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-08:i04",
-    "correctText": "en:lesson-06:session-08:i04:p1=folder\nen:lesson-06:session-08:i04:p2=parcel\nen:lesson-06:session-08:i04:p3=receipt\nen:lesson-06:session-08:i04:p4=keychain",
+    "correctText": "en:lesson-06:session-08:i04:p1=fold\nen:lesson-06:session-08:i04:p2=hang\nen:lesson-06:session-08:i04:p3=sort\nen:lesson-06:session-08:i04:p4=peg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-08:word:peg",
+    "correctText": "peg",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i05",
-    "correctText": "This is my folder.",
+    "correctText": "The peg is on the line.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i06",
-    "correctText": "Whose receipt is this?",
+    "correctText": "Whose peg is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i07",
-    "correctText": "The bookmark is in the book.",
+    "correctText": "We fold the towels.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i08",
-    "correctText": "in",
+    "correctText": "hang",
     "correctResponseId": "en:lesson-06:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-08:i09",
-    "correctText": "My calendar is here.",
+    "correctText": "They sort the socks.",
     "correctResponseId": "en:lesson-06:session-08:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-08:i10",
-    "correctText": "en:lesson-06:session-08:i10:p1=bookmark\nen:lesson-06:session-08:i10:p2=calendar\nen:lesson-06:session-08:i10:p3=neighbourhood\nen:lesson-06:session-08:i10:p4=work",
+    "correctText": "en:lesson-06:session-08:i10:p1=sort\nen:lesson-06:session-08:i10:p2=sock\nen:lesson-06:session-08:i10:p3=towel\nen:lesson-06:session-08:i10:p4=peg",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i11",
-    "correctText": "The parcel is on the desk.",
+    "correctText": "We bake bread and we wash the plates.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i12",
-    "correctText": "That folder is mine.",
+    "correctText": "They carry the towels and they fold the sheets.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i13",
-    "correctText": "I have a bookmark.",
+    "correctText": "I hang the shirts on the line.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i14",
-    "correctText": "work",
+    "correctText": "fold",
     "correctResponseId": "en:lesson-06:session-08:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-08:i15",
-    "correctText": "The receipt is here.",
+    "correctText": "Whose peg is this?",
     "correctResponseId": "en:lesson-06:session-08:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-08:i16",
-    "correctText": "en:lesson-06:session-08:i16:p1=keychain\nen:lesson-06:session-08:i16:p2=calendar\nen:lesson-06:session-08:i16:p3=neighbourhood\nen:lesson-06:session-08:i16:p4=work",
+    "correctText": "en:lesson-06:session-08:i16:p1=peg\nen:lesson-06:session-08:i16:p2=fold\nen:lesson-06:session-08:i16:p3=hang\nen:lesson-06:session-08:i16:p4=line",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-08:i17",
-    "correctText": "Whose calendar is this?",
+    "correctText": "We fold the towels and we hang the shirts.",
     "correctResponseId": null
   }
 ]

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-22:intro1:r2": {
-          "ru": "После `she` — `reads`, с `s`.",
-          "uk": "Після `she` — `reads`, з `s`."
+          "ru": "После she нужно reads, с s.",
+          "uk": "Після she потрібно reads, з s."
         },
         "en:lesson-06:session-22:intro1:r3": {
-          "ru": "Говорим `She reads`, без `is`.",
-          "uk": "Кажемо `She reads`, без `is`."
+          "ru": "Здесь действие: She reads, без is.",
+          "uk": "Тут дія: She reads, без is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-22:intro2:r2": {
-          "ru": "После `he` — `laughs`, с `s`.",
-          "uk": "Після `he` — `laughs`, з `s`."
+          "ru": "После he нужно yawns, с s.",
+          "uk": "Після he потрібно yawns, з s."
         },
         "en:lesson-06:session-22:intro2:r3": {
-          "ru": "Говорим `He laughs`, без `is`.",
-          "uk": "Кажемо `He laughs`, без `is`."
+          "ru": "Здесь действие: He yawns, без is.",
+          "uk": "Тут дія: He yawns, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-22:intro3:r2": {
-          "ru": "Один список: `is`.",
-          "uk": "Один список: `is`."
+          "ru": "Без is предложение не получается: нужно chapter is.",
+          "uk": "Без is речення не виходить: потрібно chapter is."
         },
         "en:lesson-06:session-22:intro3:r3": {
-          "ru": "`empty` — пустой; полный, без пропусков — `complete`.",
-          "uk": "`empty` — порожній; повний, без пропусків — `complete`."
+          "ru": "Глава одна, поэтому is, а не are.",
+          "uk": "Розділ один, тому is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c427158da1a1fae6e2b726de6b8a1cf51c32ff23d2123b15b5dd890865cd2d65"
+  "auxiliaryFingerprint": "fd7503e75fe4b5eb3d51128e41cba8b1a4ac1c866ec7da64289c02a3d3ce0b9e"
 }

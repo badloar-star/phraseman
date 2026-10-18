@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-18",
   "learningOutcomeByLocale": {
-    "ru": "рассказать об улыбке, привычном занятии и самочувствии",
-    "uk": "розповісти про усмішку, звичне заняття й самопочуття"
+    "ru": "рассказать, что делает один человек (He smiles, He coughs), и назвать его состояние через is",
+    "uk": "розповісти, що робить одна людина (He smiles, He coughs), і назвати її стан через is"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Улыбаться",
-        "uk": "Усміхатися"
+        "ru": "Встреча в парке",
+        "uk": "Зустріч у парку"
       },
       "bodyByLocale": {
-        "ru": "`smile` — «улыбаться». `I smile a lot` — «Я часто улыбаюсь». `She smiles a lot` — «Она часто улыбается». Улыбаться можно молча; `laugh` — смеяться, обычно со звуком. Для `smile` не нужен смех на всю комнату: соседи даже не узнают, что шутка удалась.",
-        "uk": "`smile` — «усміхатися». `I smile a lot` — «Я часто усміхаюся». `She smiles a lot` — «Вона часто усміхається». Усміхатися можна мовчки; `laugh` — сміятися, зазвичай зі звуком. Для `smile` не потрібен сміх на всю кімнату: сусіди навіть не дізнаються, що жарт удався."
+        "ru": "Вы гуляете в парке с подругой. Навстречу идёт ваша сестра с малышом, и малыш ей улыбается. Подруга спрашивает, что делает сестра. smile — «улыбаться». К слову действия про одного человека добавляем s: She smiles at the baby — «Она улыбается малышу».",
+        "uk": "Ви гуляєте в парку з подругою. Назустріч іде ваша сестра з малюком, і малюк їй усміхається. Подруга питає, що робить сестра. smile — «усміхатися». До слова дії про одну людину додаємо s: She smiles at the baby — «Вона усміхається малюкові»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-18:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Она часто улыбается».",
-          "uk": "Скажіть «Вона часто усміхається»."
+          "ru": "Подруга спрашивает, что делает ваша сестра. Скажите: «Она улыбается малышу».",
+          "uk": "Подруга питає, що робить ваша сестра. Скажіть: «Вона усміхається малюкові»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-18:intro1:r1",
-              "text": "She smiles a lot."
+              "text": "She smiles at the baby."
             },
             {
               "responseId": "en:lesson-06:session-18:intro1:r2",
-              "text": "She smile a lot."
+              "text": "She smile at the baby."
             },
             {
               "responseId": "en:lesson-06:session-18:intro1:r3",
-              "text": "She is smiles a lot."
+              "text": "She is smiles at the baby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-18:intro1:r1",
-              "text": "She smiles a lot."
+              "text": "She smiles at the baby."
             },
             {
               "responseId": "en:lesson-06:session-18:intro1:r2",
-              "text": "She smile a lot."
+              "text": "She smile at the baby."
             },
             {
               "responseId": "en:lesson-06:session-18:intro1:r3",
-              "text": "She is smiles a lot."
+              "text": "She is smiles at the baby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она часто улыбается».",
-          "uk": "Скажіть «Вона часто усміхається»."
+          "ru": "Подруга спрашивает, что делает ваша сестра. Скажите: «Она улыбается малышу».",
+          "uk": "Подруга питає, що робить ваша сестра. Скажіть: «Вона усміхається малюкові»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она практикуется",
-        "uk": "Вона практикується"
+        "ru": "В приёмной врача",
+        "uk": "У приймальні лікаря"
       },
       "bodyByLocale": {
-        "ru": "`practice` — «практиковаться». `We practice English` — «Мы практикуем английский». `He practices English` — «Он практикует английский». В принятом здесь американском написании к `practice` добавляем `s`: `practices`. `Anna smiles` — «Анна улыбается»: здесь `Anna` соответствует `she`.",
-        "uk": "`practice` — «практикуватися». `We practice English` — «Ми практикуємо англійську». `He practices English` — «Він практикує англійську». У прийнятому тут американському написанні до `practice` додаємо `s`: `practices`. `Anna smiles` — «Анна усміхається»: тут `Anna` відповідає `she`."
+        "ru": "Вы с братом сидите в приёмной у врача и ждёте очереди. Брат простыл: он прикрывает рот рукой и тихо кашляет. Сотрудница регистратуры спрашивает, что он делает. cough — «кашлять». Как и в smiles, к слову добавляем s: He coughs — «Он кашляет».",
+        "uk": "Ви з братом сидите в приймальні в лікаря й чекаєте на чергу. Брат застудився: він прикриває рот рукою й тихо кашляє. Працівниця реєстратури питає, що він робить. cough — «кашляти». Як і в smiles, до слова додаємо s: He coughs — «Він кашляє»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-18:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Он практикует английский».",
-          "uk": "Скажіть «Він практикує англійську»."
+          "ru": "Сотрудница регистратуры спрашивает, что делает ваш брат. Скажите: «Он кашляет».",
+          "uk": "Працівниця реєстратури питає, що робить ваш брат. Скажіть: «Він кашляє»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-18:intro2:r1",
-              "text": "He practices English."
+              "text": "He coughs."
             },
             {
               "responseId": "en:lesson-06:session-18:intro2:r2",
-              "text": "He practice English."
+              "text": "He cough."
             },
             {
               "responseId": "en:lesson-06:session-18:intro2:r3",
-              "text": "He is practices English."
+              "text": "He is coughs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-18:intro2:r1",
-              "text": "He practices English."
+              "text": "He coughs."
             },
             {
               "responseId": "en:lesson-06:session-18:intro2:r2",
-              "text": "He practice English."
+              "text": "He cough."
             },
             {
               "responseId": "en:lesson-06:session-18:intro2:r3",
-              "text": "He is practices English."
+              "text": "He is coughs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он практикует английский».",
-          "uk": "Скажіть «Він практикує англійську»."
+          "ru": "Сотрудница регистратуры спрашивает, что делает ваш брат. Скажите: «Он кашляет».",
+          "uk": "Працівниця реєстратури питає, що робить ваш брат. Скажіть: «Він кашляє»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Как Том себя чувствует",
-        "uk": "Як Том почувається"
+        "ru": "Чай с мёдом",
+        "uk": "Чай з медом"
       },
       "bodyByLocale": {
-        "ru": "`unwell` — «плохо себя чувствующий», нездоровый. `He is unwell` — «Он плохо себя чувствует». Здесь состояние, поэтому нужно `is`. Улыбка не доказывает, что человек здоров. `milk` — «молоко», `gloves` — «перчатки». `The milk is on the table` — «Молоко на столе». `These gloves are mine` — «Эти перчатки мои».",
-        "uk": "`unwell` — «той, хто погано почувається», нездоровий. `He is unwell` — «Він погано почувається». Тут стан, тому потрібно `is`. Усмішка не доводить, що людина здорова. `milk` — «молоко», `gloves` — «рукавички». `The milk is on the table` — «Молоко на столі». `These gloves are mine` — «Ці рукавички мої»."
+        "ru": "Дома вы завариваете брату горячий чай с мёдом. Он держится за шею и морщится: глотать больно даже воду. Сестра спрашивает, что именно у него болит. throat — «горло». Когда говорим, какое оно, нужен is: His throat is sore — «У него болит горло».",
+        "uk": "Вдома ви заварюєте братові гарячий чай з медом. Він тримається за шию й кривиться: ковтати боляче навіть воду. Сестра питає, що в нього болить. throat — «горло». Коли кажемо, яке воно, потрібен is: His throat is sore — «У нього болить горло»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-18:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Он плохо себя чувствует».",
-          "uk": "Скажіть «Він погано почувається»."
+          "ru": "Сестра спрашивает, что болит у брата. Скажите: «У него болит горло».",
+          "uk": "Сестра питає, що болить у брата. Скажіть: «У нього болить горло»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-18:intro3:r1",
-              "text": "He is unwell."
+              "text": "His throat is sore."
             },
             {
               "responseId": "en:lesson-06:session-18:intro3:r2",
-              "text": "He unwell."
+              "text": "His throat sore."
             },
             {
               "responseId": "en:lesson-06:session-18:intro3:r3",
-              "text": "He are unwell."
+              "text": "His throat are sore."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-18:intro3:r1",
-              "text": "He is unwell."
+              "text": "His throat is sore."
             },
             {
               "responseId": "en:lesson-06:session-18:intro3:r2",
-              "text": "He unwell."
+              "text": "His throat sore."
             },
             {
               "responseId": "en:lesson-06:session-18:intro3:r3",
-              "text": "He are unwell."
+              "text": "His throat are sore."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он плохо себя чувствует».",
-          "uk": "Скажіть «Він погано почувається»."
+          "ru": "Сестра спрашивает, что болит у брата. Скажите: «У него болит горло».",
+          "uk": "Сестра питає, що болить у брата. Скажіть: «У нього болить горло»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7673585cf28ef8c2e7ff0c479b1a2b1ee3553c66a60ca63171286e3c11b59213"
+  "introFingerprint": "3e7add887b9514b9ecb38902302173934b4efb6543b154b12e5a7670f97f772f"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-28",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычке делать растяжку и описать гибкость",
-    "uk": "розповісти про звичку робити розтяжку й описати гнучкість"
+    "ru": "рассказать, кто делает растяжку, и сказать, что болит",
+    "uk": "розповісти, хто робить розтяжку, і сказати, що болить"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Потянуть мышцы",
-        "uk": "Потягнути м’язи"
+        "ru": "Затекла спина",
+        "uk": "Затекла спина"
       },
       "bodyByLocale": {
-        "ru": "`stretch` — «растягиваться», делать растяжку. Это может быть частью разминки, но не означает любую разминку. `I stretch at home` — «Я делаю растяжку дома». Потянуться к последнему печенью — ещё не целая тренировка, хотя рука старалась.",
-        "uk": "`stretch` — «розтягуватися», робити розтяжку. Це може бути частиною розминки, але не означає будь-яку розминку. `I stretch at home` — «Я роблю розтяжку вдома». Потягнутися до останнього печива — ще не ціле тренування, хоча рука старалася."
+        "ru": "Подруга жалуется, что к вечеру у неё затекла спина от долгого сидения за столом. Вы показываете, что делаете дома по вечерам. stretch — «делать растяжку», вытягивать тело. Про себя говорим I stretch at home — «Я делаю растяжку дома». После I слово остаётся stretch, без s.",
+        "uk": "Подруга скаржиться, що надвечір у неї затекла спина від довгого сидіння за столом. Ви показуєте, що робите вдома ввечері. stretch — «робити розтяжку», витягувати тіло. Про себе кажемо I stretch at home — «Я роблю розтяжку вдома». Після I слово лишається stretch, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я делаю растяжку дома».",
-          "uk": "Скажіть «Я роблю розтяжку вдома»."
+          "ru": "Подруга спрашивает, что вы делаете, когда устала спина. Скажите: «Я делаю растяжку дома».",
+          "uk": "Подруга питає, що ви робите, коли втомилася спина. Скажіть: «Я роблю розтяжку вдома»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я делаю растяжку дома».",
-          "uk": "Скажіть «Я роблю розтяжку вдома»."
+          "ru": "Подруга спрашивает, что вы делаете, когда устала спина. Скажите: «Я делаю растяжку дома».",
+          "uk": "Подруга питає, що ви робите, коли втомилася спина. Скажіть: «Я роблю розтяжку вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она делает растяжку",
-        "uk": "Вона робить розтяжку"
+        "ru": "У врача",
+        "uk": "У лікаря"
       },
       "bodyByLocale": {
-        "ru": "`She stretches at home` — «Она делает растяжку дома». После `she` к `stretch` добавляем `es`: `stretches`, как в знакомом `teach → teaches`. Это привычка: фразу можно сказать за завтраком. `flexible` — «гибкий». `She is flexible` — «Она гибкая»: здесь качество, поэтому нужно `is`.",
-        "uk": "`She stretches at home` — «Вона робить розтяжку вдома». Після `she` до `stretch` додаємо `es`: `stretches`, як у знайомому `teach → teaches`. Це звичка: фразу можна сказати за сніданком. `flexible` — «гнучкий». `She is flexible` — «Вона гнучка»: тут риса, тому потрібно `is`."
+        "ru": "После вечерней пробежки у вас заболела нога, и вы идёте к врачу. Он внимательно осматривает её и спрашивает, что именно болит. muscle — «мышца». Про один предмет говорим is: My muscle is sore — «Моя мышца болит», слово sore значит «болит после нагрузки».",
+        "uk": "Після вечірньої пробіжки у вас заболіла нога, і ви йдете до лікаря. Він уважно оглядає її й питає, що саме болить. muscle — «м’яз». Про один предмет кажемо is: My muscle is sore — «Мій м’яз болить», слово sore означає «болить після навантаження»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она делает растяжку дома».",
-          "uk": "Скажіть «Вона робить розтяжку вдома»."
+          "ru": "Врач спрашивает, что у вас болит. Скажите: «Моя мышца болит».",
+          "uk": "Лікар питає, що у вас болить. Скажіть: «Мій м’яз болить»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-28:intro2:r1",
-              "text": "She stretches at home."
+              "text": "My muscle is sore."
             },
             {
               "responseId": "en:lesson-06:session-28:intro2:r2",
-              "text": "She stretch at home."
+              "text": "My muscle sore."
             },
             {
               "responseId": "en:lesson-06:session-28:intro2:r3",
-              "text": "She is stretches at home."
+              "text": "My muscle are sore."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-28:intro2:r1",
-              "text": "She stretches at home."
+              "text": "My muscle is sore."
             },
             {
               "responseId": "en:lesson-06:session-28:intro2:r2",
-              "text": "She stretch at home."
+              "text": "My muscle sore."
             },
             {
               "responseId": "en:lesson-06:session-28:intro2:r3",
-              "text": "She is stretches at home."
+              "text": "My muscle are sore."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она делает растяжку дома».",
-          "uk": "Скажіть «Вона робить розтяжку вдома»."
+          "ru": "Врач спрашивает, что у вас болит. Скажите: «Моя мышца болит».",
+          "uk": "Лікар питає, що у вас болить. Скажіть: «Мій м’яз болить»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ключ-карта и переулок",
-        "uk": "Ключ-картка й провулок"
+        "ru": "Сестра за компьютером",
+        "uk": "Сестра за комп’ютером"
       },
       "bodyByLocale": {
-        "ru": "`keycard` — «ключ-карта», карточка для открытия двери. `alley` — «переулок», обычно узкий проход между зданиями. `The alley is quiet` — «В переулке тихо». `Whose keycard is this?` — «Чья это ключ-карта?» `cook` — «готовить еду»: `He cooks at home` — «Он готовит дома».",
-        "uk": "`keycard` — «ключ-картка», картка для відчинення дверей. `alley` — «провулок», зазвичай вузький прохід між будинками. `The alley is quiet` — «У провулку тихо». `Whose keycard is this?` — «Чия це ключ-картка?» `cook` — «готувати їжу»: `He cooks at home` — «Він готує вдома»."
+        "ru": "Сестра весь день сидит за компьютером, и к вечеру у неё затекло плечо. shoulder — «плечо». Каждый вечер она растягивает его дома, пока готовится ужин. Про неё после she к stretch добавляем es: She stretches her shoulder — «Она растягивает плечо».",
+        "uk": "Сестра цілий день сидить за комп’ютером, і надвечір у неї затекло плече. shoulder — «плече». Щовечора вона розтягує його вдома, поки готується вечеря. Про неї після she до stretch додаємо es: She stretches her shoulder — «Вона розтягує плече»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Он готовит дома».",
-          "uk": "Скажіть «Він готує вдома»."
+          "ru": "Подруга спрашивает, что делает ваша сестра вечером. Скажите: «Она растягивает плечо».",
+          "uk": "Подруга питає, що робить ваша сестра ввечері. Скажіть: «Вона розтягує плече»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-28:intro3:r1",
-              "text": "He cooks at home."
+              "text": "She stretches her shoulder."
             },
             {
               "responseId": "en:lesson-06:session-28:intro3:r2",
-              "text": "He cook at home."
+              "text": "She stretch her shoulder."
             },
             {
               "responseId": "en:lesson-06:session-28:intro3:r3",
-              "text": "He is cooks at home."
+              "text": "She stretchs her shoulder."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-28:intro3:r1",
-              "text": "He cooks at home."
+              "text": "She stretches her shoulder."
             },
             {
               "responseId": "en:lesson-06:session-28:intro3:r2",
-              "text": "He cook at home."
+              "text": "She stretch her shoulder."
             },
             {
               "responseId": "en:lesson-06:session-28:intro3:r3",
-              "text": "He is cooks at home."
+              "text": "She stretchs her shoulder."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Он готовит дома».",
-          "uk": "Скажіть «Він готує вдома»."
+          "ru": "Подруга спрашивает, что делает ваша сестра вечером. Скажите: «Она растягивает плечо».",
+          "uk": "Подруга питає, що робить ваша сестра ввечері. Скажіть: «Вона розтягує плече»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0900e8d874b9d056950e7413bdc5f846755fa4c7b18d1826a2095a30b45aa8fe"
+  "introFingerprint": "f149880ed6d08377d2775f248c21e69f079cd70951cfd69dc90138b23f61d19c"
 }

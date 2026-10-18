@@ -176,7 +176,6 @@ import {
   type LessonsTabSnapshot,
 } from "../lessons_tab_state";
 import { useStableSafeAreaInsets } from "../stable_safe_area_metrics";
-import { alphaHex } from "../../constants/v2Style";
 import {
   animateNextLayoutShiftWithoutEntryFade,
   animateNextLayoutTransition,
@@ -5182,21 +5181,14 @@ export default function LessonsTab({
     <>
       {/* зачем (R69, Сверка 15.10): под страницей лежит плотный слой, поэтому своё полотно страницы нужно (без него — плоская ступень в Авроре), но оно обязано совпасть с полотном оболочки: bleedTop поднимает его над верхом страницы на inset вкладки — та же геометрия от верха экрана, шва нет. Отдельным маршрутом bleedTop = 0. */}
       <ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>
-        {page === "lessons" ? (
-          <LinearGradient
-            pointerEvents="none"
-            // зачем (R69 «шов под статус-баром», Сверка 15.10): градиент страницы начинается ПРОЗРАЧНЫМ — полотно страницы продолжается без перепада на границе верхнего отступа —
-            // и плавно переходит в прежние тона темы к 10 % высоты; дальше вид прежний (bgTop → bg → bgBottom).
-            colors={[alphaHex(learnGlass.bgTop, 0), learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}
-            locations={[0, 0.1, 0.55, 1]}
-            style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
-          />
-        ) : null}
+        {/* зачем (владелец 18.10 «верхняя зона ТОЧНО как на Главной, особо — Уроки»): свой слой bgTop → bg → bgBottom поверх полотна убран —
+            под Уроками ровно то же полотно (V2Backdrop), что под Главной, один источник фона на все вкладки. */}
         <View
           style={{
             flex: 1,
             backgroundColor:
-              page === "lessons" || page === "dialogs"
+              // зачем (владелец 18.10 «верх Уроков ТОЧНО как на Главной»): карта V2 (page "v2") тоже прозрачна — ровный bgPrimary давал ступеньку под часами
+              page === "lessons" || page === "dialogs" || page === "v2"
                 ? "transparent"
                 : t.bgPrimary,
           }}

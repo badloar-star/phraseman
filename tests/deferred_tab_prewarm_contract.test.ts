@@ -65,6 +65,9 @@ describe('background tab pre-mount contract', () => {
     expect(source).toContain('<TabShellSkeleton title={SETTINGS_TAB_TITLE} />');
     expect(source).toContain('loadScreen={loadSettingsScreen} shellUnderlay');
     expect(source).toContain('testID="tab-shell-skeleton"');
+    // владелец 18.10 «убрать фон-декор в Настройках»: каркас только ДО загрузки экрана (экран внутри оболочки прозрачен и не закрывает его) и без своей заливки
+    expect(source).toContain('{show(4) && shouldLoad(4) ? null : <View style={StyleSheet.absoluteFill}');
+    expect(source).toContain('<View testID="tab-shell-skeleton" style={[s.deferredTabPlaceholder, { paddingHorizontal: 20 }]}');
     // обёртка отмечает касания, но их НЕ перехватывает (всегда false) и вида не меняет (flex: 1)
     expect(source).toContain('onStartShouldSetResponderCapture={markTouchForPremount}');
     const markAt = source.indexOf('const markTouchForPremount = useCallback(() => {');

@@ -303,7 +303,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
 
   if (allLessonsOpen) {
     // зачем (эталон 1.6): в шапке только «назад» и «Все уроки» (34/40), без значков монет и энергии; плашка «Классический курс» живёт в ряду чипов списка
-    return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
+    return <View testID="learning-v2-chapters-course" onLayout={logChaptersLayout} style={[styles.root, { backgroundColor: "transparent" /* зачем (владелец 18.10 «верх как на Главной»): своя заливка g.bg давала ступеньку под часами — под картой то же полотно, что под Главной */, paddingTop: props.topPadding ?? 0 }]}>
       <View style={styles.allLessonsHeader}>
         <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => { noteBackTap('v2_all_lessons', 'header_back_button'); noteBackDecision('all_lessons → map'); setAllLessonsOpen(false); }} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
           <BackGlyph size={24} color={g.text} />
@@ -326,7 +326,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
 
   // зачем: владелец 18.10 — без текстур, иконки как в Диалогах, но свои: у урока и каждой главы свой значок Ionicons на плитке тоном текста
   const tileTone = glassTone(g.text, 0.09);
-  return <View testID="learning-v2-chapters-course" onLayout={(e) => { logChaptersLayout(e); logLayout("root")(e); }} style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
+  return <View testID="learning-v2-chapters-course" onLayout={(e) => { logChaptersLayout(e); logLayout("root")(e); }} style={[styles.root, { backgroundColor: "transparent" /* зачем (владелец 18.10 «верх как на Главной»): своя заливка g.bg давала ступеньку под часами — под картой то же полотно, что под Главной */, paddingTop: props.topPadding ?? 0 }]}>
     {/* зачем (владелец 04.10, раунд 2 → вариант A «Два этажа»): строка 1 — «назад» + HUD (словарь, монеты, энергия);
         строка 2 — «Урок N» и тема 22px на всю ширину: длинная тема помещается в две строки и ничего не пересекает. */}
     <View style={styles.header} onLayout={logLayout("header")}>

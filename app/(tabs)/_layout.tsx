@@ -222,7 +222,7 @@ function TabRenderProbe({ id, children }: { id: string; children: React.ReactNod
  * Правило «каждый раздел без пустых экранов»: сразу каркас, настоящий экран подменяет его без сдвига заголовка.
  */
 function TabShellSkeleton({ title }: { title: Readonly<Record<string, string>> }) {
-  const { theme: t, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
   const g = liquidGlassTokens(liquidGlassThemeId);
   // зачем (Макеты 18.10, 97258cc1e: «три одинаковые крупные плашки — при подмене всё прыгает»): геометрия как у настоящего экрана —
@@ -232,7 +232,8 @@ function TabShellSkeleton({ title }: { title: Readonly<Record<string, string>> }
   const group = { backgroundColor: g.plateFillFrom, borderRadius: 14 } as const;
   const eyebrow = { marginTop: 26, marginBottom: 10, marginHorizontal: 4, width: 84, height: 16, borderRadius: 8, backgroundColor: g.plateFillFrom } as const;
   return (
-    <View testID="tab-shell-skeleton" style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary, paddingHorizontal: 20 }]} collapsable={false}>
+    // зачем (владелец 18.10 «верх как на Главной»): без своей заливки — под каркасом то же полотно оболочки, что под Главной; ровный bgPrimary давал ступеньку под часами
+    <View testID="tab-shell-skeleton" style={[s.deferredTabPlaceholder, { paddingHorizontal: 20 }]} collapsable={false}>
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ marginTop: 10, color: g.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
         {title[lang] ?? title.en}
       </Text>
@@ -1421,7 +1422,9 @@ function ReleasedTabLayout() {
       // смонтирован заранее), панель с экраном — поверх: лента сдвигается на UI-потоке и сразу показывает каркас; экран (ScreenGradient) его закрывает.
       <View key="slot-settings" style={{ width: tabPaneWidth, flex: 1 }} collapsable={false}>
         {/* зачем (Ревизор 18.10, доступность): каркас декоративный и остаётся под открытым экраном — скрыт от TalkBack/VoiceOver, иначе заголовок читался бы дважды, а фокус попадал на невидимые плашки */}
-        <View style={StyleSheet.absoluteFill} pointerEvents="none" importantForAccessibility="no-hide-descendants" accessibilityElementsHidden><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>
+        {/* зачем (владелец 18.10 «убрать фон-декор в Настройках»): экран Настроек внутри оболочки прозрачен (вложенный ScreenGradient), каркас под ним
+            просвечивал плашками. Каркас нужен только ДО загрузки экрана: в том же коммите, где монтируется экран, каркас снимается. */}
+        {show(4) && shouldLoad(4) ? null : <View style={StyleSheet.absoluteFill} pointerEvents="none" importantForAccessibility="no-hide-descendants" accessibilityElementsHidden><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>}
         {show(4) ? <TabPane freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellUnderlay /></TabRenderProbe></TabPane> : null}
       </View>,
     ];

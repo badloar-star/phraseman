@@ -127,7 +127,7 @@ export type LearningV2CourseReleasedSessionMaterialV3 = Readonly<{
   evaluatorCapsuleChild: LearningV2CourseSessionEvaluatorCapsuleChildV1;
   auxiliaryChild: LearningV2CourseSessionAuxiliaryChildV1;
   audioChild: LearningV2CourseSessionAudioChildV1 | null;
-  audioDelivery: "published_mp3";
+  audioDelivery: "published_mp3" | "device_speech_preview";
   factorySourceFingerprint: string | null;
   factoryWordEncounterQueues: Readonly<Record<string, readonly LearningV2FactoryNativeNewWordEncounterV1[]>> | null;
   factoryPracticeSemantics: Readonly<Record<string, LearningV2FactoryNativePracticeSemanticV1>> | null;
@@ -861,6 +861,21 @@ function bundledShardFor(
 export function bundledLearningV2CourseSessionMaterialV3(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
+  return bundledSessionMaterial(locatorInput, false);
+}
+
+/** Local authoring only: retain every task before recorded audio is published. */
+export function previewLearningV2CourseSessionMaterialV3(
+  locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+): LearningV2CourseReleasedSessionMaterialV3 | null {
+  if (!__DEV__) return null;
+  return bundledSessionMaterial(locatorInput, true);
+}
+
+function bundledSessionMaterial(
+  locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+  deviceSpeechPreview: boolean,
+): LearningV2CourseReleasedSessionMaterialV3 | null {
   const locator = exactCurrentLocator(locatorInput);
   if (locator.targetLanguage === "en") {
     const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
@@ -880,7 +895,7 @@ export function bundledLearningV2CourseSessionMaterialV3(
     const missingAudioInteractionIds = learningV2FactoryMissingAudioInteractionIdsV1(
       factory.learnerChild,
     );
-    if (missingAudioInteractionIds.length > 0) {
+    if (!deviceSpeechPreview && missingAudioInteractionIds.length > 0) {
       const session = `en/l${String(locator.lessonOrdinal).padStart(2, "0")}/s${String(locator.sessionOrdinal).padStart(2, "0")}`;
       const disabledInteractionIds = resolveLearningV2FactoryRuntimeAudioOmissionsV1({
         session,
@@ -922,14 +937,16 @@ export function bundledLearningV2CourseSessionMaterialV3(
     const activeBaseRootFingerprint = courseIdentity.activeRootFingerprint;
     const activeHeadFingerprint = courseIdentity.activeHeadFingerprint;
     const activeRootFingerprint = courseIdentity.activeRootFingerprint;
-    const audioChild = buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
+    const audioChild = deviceSpeechPreview ? null : buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
     // A released session without a complete four-voice audio child is not a
     // valid release. Never silently replace published speech with OS TTS.
-    if (!audioChild) {
+    if (!audioChild && !deviceSpeechPreview) {
       console.warn(`[V2-BUNDLED] null step=audio_child lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} interactions=${factory.learnerChild.interactions.length} audioInteractions=${factory.learnerChild.interactions.filter((interaction) => interaction.audioTargetIds.length > 0).length}`);
       return null;
     }
-    const audioFingerprint = audioChild.audioFingerprint;
+    const audioFingerprint = audioChild?.audioFingerprint ?? hashCanonicalBody({
+      delivery: "device_speech_preview", source: factory.sourceFingerprint,
+    });
     return Object.freeze({
       releaseId, activeRootFingerprint, activeBaseRootFingerprint, activeHeadFingerprint,
       topologyFingerprint: hashCanonicalBody({ lessonId, courseSessionId }),
@@ -944,7 +961,7 @@ export function bundledLearningV2CourseSessionMaterialV3(
       evaluatorCapsuleChild: factory.evaluatorCapsuleChild,
       auxiliaryChild: factory.auxiliaryChild,
       audioChild,
-      audioDelivery: "published_mp3" as const,
+      audioDelivery: deviceSpeechPreview ? "device_speech_preview" as const : "published_mp3" as const,
       factorySourceFingerprint: factory.sourceFingerprint,
       factoryWordEncounterQueues: factory.wordEncounterQueuesByInteractionId,
       factoryPracticeSemantics: factory.practiceSemanticsByInteractionId,

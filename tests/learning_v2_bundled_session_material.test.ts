@@ -32,7 +32,10 @@ jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
 }));
 
 /* eslint-disable import/first -- native/transport seams are mocked first */
-import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
+import {
+  bundledLearningV2CourseSessionMaterialV3,
+  previewLearningV2CourseSessionMaterialV3,
+} from "../app/learning_v2_course_released_session_client_v3";
 import {
   createLearningV2CourseSessionDeviceRunV1,
   getLearningV2CourseSessionDeviceRunSummaryV1,
@@ -55,6 +58,31 @@ const LOCATOR = Object.freeze({
 });
 
 describe("bundled Learning V2 session material (no network)", () => {
+  test("keeps device-speech preview dev-only without weakening released audio", () => {
+    const locator = {
+      ...LOCATOR,
+      sessionOrdinal: 1,
+    };
+    const previousDev = Object.getOwnPropertyDescriptor(globalThis, "__DEV__");
+
+    try {
+      Object.defineProperty(globalThis, "__DEV__", { configurable: true, value: true });
+      expect(previewLearningV2CourseSessionMaterialV3(locator)).toMatchObject({
+        audioChild: null,
+        audioDelivery: "device_speech_preview",
+      });
+      expect(bundledLearningV2CourseSessionMaterialV3(locator)).toMatchObject({
+        audioDelivery: "published_mp3",
+      });
+
+      Object.defineProperty(globalThis, "__DEV__", { configurable: true, value: false });
+      expect(previewLearningV2CourseSessionMaterialV3(locator)).toBeNull();
+    } finally {
+      if (previousDev) Object.defineProperty(globalThis, "__DEV__", previousDev);
+      else Reflect.deleteProperty(globalThis, "__DEV__");
+    }
+  });
+
   // зачем: в 2.0 встроены уроки 1–3 (фабричный контент); «нет локального
   // контента» проверяем на последнем уроке курса, которого в бандле нет.
   test("returns null for a lesson that has no local content", () => {

@@ -1,133 +1,154 @@
 # Английский · Урок 7 · Занятие 24 — Говорим о привычках
 
-**Ситуация.** Вы отказываетесь от сигареты, рассказываете о поведении друга в споре и обсуждаете честную игру.
+**Ситуация.** Вы в пробке не ругаетесь, объясняете другу, что брат не дуется после проигрыша, и спрашиваете, лает ли собака у знакомых. Здесь сами выбираете между Do, Does, don't и doesn't.
 
-**Что вы освоите:** самостоятельно выбирать do, does, don’t и doesn’t в знакомых ситуациях
-**Новые слова:** —
+**Что вы освоите:** самостоятельно выбирать do, does, don't и doesn't в знакомых ситуациях
+**Новые слова:** swear, sulk, bark, mumble
+**Возвращаются:** argue, cheat, gossip, shout, dog
 
 ---
 
 ## Интро 1
 
-### Сигарета на перерыве
+### Пробка на дороге
 
-Коллега предлагает вам сигарету. `I don’t smoke` — «Я не курю». Вы сообщаете о своей привычке: после `I` ставим `don’t`, затем `smoke`. Простого `not` перед действием недостаточно.
+Вы везёте друга на вокзал и стоите в плотной пробке. Сзади непрерывно сигналят, друг ждёт, что вы наконец выругаетесь. Он спрашивает, как вы обычно реагируете на такое. swear — «ругаться, браниться». Объясните: I don't swear — «Я не ругаюсь». После I ставим don't, затем swear. Даже очень грубое слово не сделает пробку короче.
 
-**Откажитесь, объяснив: «Я не курю».**
+**Друг удивляется вашему спокойствию в пробке. Объясните: «Я не ругаюсь».**
 
-- ✅ **I don’t smoke.**
-- ❌ I not smoke. — *Для отрицания действия нужно `don’t`.*
-- ❌ I doesn’t smoke. — *После `I` нужно `don’t`.*
+- ✅ **I don't swear.**
+- ❌ I doesn't swear. — *После I нужно don't.*
+- ❌ I not swear. — *Перед действием нужно don't, а не просто not.*
 
 ---
 
 ## Интро 2
 
-### Спокойный собеседник
+### После проигрыша
 
-Друг спрашивает, кричит ли Том во время споров. `Tom doesn’t shout` — «Том не кричит». Том — один человек: используем `doesn’t`, затем `shout`, без `s`. Его аргументы слышны и без режима громкоговорителя.
+Перед настольной игрой друг спрашивает, как ваш брат обычно переносит проигрыш: не сидит ли потом весь вечер с обиженным видом. Вы знаете, что брат спокойно относится к проигрышам. sulk — «дуться». He doesn't sulk — «Он не дуется». После he ставим doesn't, а sulk без s.
 
-**Скажите другу: «Том не кричит».**
+**Друг думает, что брат обычно дуется после проигрыша. Возразите: «Он не дуется».**
 
-- ✅ **Tom doesn’t shout.**
-- ❌ Tom don’t shout. — *Для Тома нужно `doesn’t`.*
-- ❌ Tom doesn’t shouts. — *После `doesn’t` нужно `shout`, без `s`.*
+- ✅ **He doesn't sulk.**
+- ❌ He don't sulk. — *После he нужно doesn't.*
+- ❌ He doesn't sulks. — *После doesn't слово sulk остаётся без s.*
 
 ---
 
 ## Интро 3
 
-### Честная игра
+### Собака у знакомых
 
-Перед игрой вы обсуждаете с другом правила и прямо спрашиваете, не жульничает ли он обычно. `Do you cheat?` — «Ты жульничаешь?» Вопрос с `you` начинается с `do`; действие — `cheat`, без окончания. Это прямой вопрос, поэтому важно говорить без обвинительного тона.
+Вы собираетесь в гости к знакомым, у которых большая собака. С вами будет маленький ребёнок, который боится громких звуков. Вы спрашиваете хозяйку, бывает ли от собаки много шума. bark — «лаять». Does the dog bark? — «Собака лает?» The dog можно заменить на it: вопрос с bark начинаем с Does, а bark пишем без s.
 
-**Спросите друга: «Ты жульничаешь?»**
+**Вы собираетесь в гости. Спросите хозяйку: «Собака лает?»**
 
-- ✅ **Do you cheat?**
-- ❌ Does you cheat? — *С `you` нужно `do`.*
-- ❌ Do you cheats? — *В этом вопросе нужно `cheat`, без `s`.*
+- ✅ **Does the dog bark?**
+- ❌ Do the dog bark? — *Собака одна: нужно Does.*
+- ❌ Does the dog barks? — *После Does слово bark остаётся без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Объясните коллеге «Я не курю»**
+**1 · Карточка слова — swear**
+<!-- interaction_id: en:lesson-07:session-24:word:swear; family: word_card -->
+> **swear** — ругаться, браниться. We don't swear. — «Мы не ругаемся». Произносить бранные слова. Здесь речь не о споре.
+
+**2 · Друг ждёт, что вы выругаетесь в пробке. Скажите: «Я не ругаюсь»**
 <!-- interaction_id: en:lesson-07:session-24:i01; family: phrase_builder -->
-Плитки: `smoke` `don’t` `I` → **I don’t smoke.**
+Плитки: `swear` `don't` `I` `doesn't` → **I don't swear.**
+*(плитка `doesn't` лишняя: здесь нужно `don't` — `I don't swear.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — sulk**
+<!-- interaction_id: en:lesson-07:session-24:word:sulk; family: word_card -->
+> **sulk** — дуться. They don't sulk. — «Они не дуются». О том, как человек молча показывает обиду.
+
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-24:i02; family: listen_choose -->
-🔊 *complain* → **complain** · argue · cheat
-- argue — *В записи первое слово — `complain`, а в этом варианте — `argue`.*
-- cheat — *В записи первое слово — `complain`, а в этом варианте — `cheat`.*
+🔊 *sulk* → **sulk** · shout · cheat
+- shout — *В записи первое слово — `sulk`, а в этом варианте — `shout`.*
+- cheat — *В записи первое слово — `sulk`, а в этом варианте — `cheat`.*
 
-**3 · Скажите «Я не играю в азартные игры»**
+**5 · Возразите другу: «Он не дуется». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-24:i03; family: context_gap_grammar -->
-I ___ gamble. → **don’t** · doesn’t · not
-- doesn’t — *После `I` нужно `don’t`.*
-- not — *Для отрицания действия нужно `don’t`.*
+He ___ sulk. → **doesn't** · don't · not
+- don't — *После `He` нужно `doesn't`.*
+- not — *Для отрицания действия нужно `doesn't`, а не просто `not`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-24:i04; family: speed_match -->
-smoke — курить · gamble — играть в азартные игры · complain — жаловаться · shout — кричать
+swear — ругаться · sulk — дуться · shout — кричать · cheat — жульничать
 
-**5 · Послушайте и соберите фразу**
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-24:i05; family: listen_build_dictation -->
-🔊 *I don’t lie.* Плитки: `lie` `don’t` `I` → **I don’t lie.**
+🔊 *He doesn't sulk.* Плитки: `sulk` `doesn't` `He` `don't` → **He doesn't sulk.**
+*(плитка `don't` лишняя: здесь нужно `doesn't` — `He doesn't sulk.`)*
 
-**6 · Опишите привычное поведение Тома: «Том не спорит»**
+**8 · Карточка слова — bark**
+<!-- interaction_id: en:lesson-07:session-24:word:bark; family: word_card -->
+> **bark** — лаять. The dog barks. — «Собака лает». Громкие короткие звуки, которые издаёт собака.
+
+**9 · Вы собираетесь в гости. Спросите хозяйку: «Собака лает?»**
 <!-- interaction_id: en:lesson-07:session-24:i06; family: phrase_builder -->
-Плитки: `argue` `doesn’t` `Tom` → **Tom doesn’t argue.**
+Плитки: `bark` `dog` `the` `Does` `Do` → **Does the dog bark?**
+*(плитка `Do` лишняя: здесь нужно `Does` — `Does the dog bark?`)*
 
-**7 · Спросите «Ты жульничаешь?»**
+**10 · Карточка слова — mumble**
+<!-- interaction_id: en:lesson-07:session-24:word:mumble; family: word_card -->
+> **mumble** — бормотать. I don't mumble. — «Я не бормочу». О том, как человек говорит тихо и невнятно себе под нос.
+
+**11 · Вы обсуждаете свою обычную манеру говорить. Скажите: «Я не бормочу»**
 <!-- interaction_id: en:lesson-07:session-24:i07; family: scripted_repeat_compare -->
+🎙 **I don't mumble.**
+
+**12 · Спросите хозяйку о собаке. Выберите слово**
+<!-- interaction_id: en:lesson-07:session-24:i08; family: context_gap_grammar -->
+___ the dog bark? → **Does** · Do · Is
+- Do — *Собака одна: нужно `Does`.*
+- Is — *С действием `bark` нужно `Does`, а не `Is`.*
+
+**13 · Послушайте, чего не делает собеседник**
+<!-- interaction_id: en:lesson-07:session-24:i09; family: listen_choose -->
+🔊 *I don't swear.* → **I don't swear.** · I don't shout. · I don't gossip.
+- I don't shout. — *В записи последнее слово — `swear`, а в этом варианте — `shout`.*
+- I don't gossip. — *В записи последнее слово — `swear`, а в этом варианте — `gossip`.*
+
+**14 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-07:session-24:i10; family: speed_match -->
+mumble — бормотать · bark — лаять · sulk — дуться · swear — ругаться
+
+**15 · Послушайте и соберите вопрос**
+<!-- interaction_id: en:lesson-07:session-24:i11; family: listen_build_dictation -->
+🔊 *Does the dog bark?* Плитки: `bark` `dog` `the` `Does` `Do` → **Does the dog bark?**
+*(плитка `Do` лишняя: здесь нужно `Does` — `Does the dog bark?`)*
+
+**16 · Вы обсуждаете, как обычно ведёте себя при разногласиях. Спросите друга: «Ты споришь?»**
+<!-- interaction_id: en:lesson-07:session-24:i12; family: phrase_builder -->
+Плитки: `argue` `you` `Do` `Does` → **Do you argue?**
+*(плитка `Does` лишняя: здесь нужно `Do` — `Do you argue?`)*
+
+**17 · Перед игрой спросите друга: «Ты жульничаешь?»**
+<!-- interaction_id: en:lesson-07:session-24:i13; family: scripted_repeat_compare -->
 🎙 **Do you cheat?**
 
-**8 · Спросите «Том курит?»**
-<!-- interaction_id: en:lesson-07:session-24:i08; family: context_gap_grammar -->
-Does Tom ___? → **smoke** · smokes · is smoke
-- smokes — *После `does` нужно `smoke`.*
-- is smoke — *В этом вопросе нужно `smoke`, без `is`.*
-
-**9 · Послушайте, чего не делает собеседник**
-<!-- interaction_id: en:lesson-07:session-24:i09; family: listen_choose -->
-🔊 *I don’t complain.* → **I don’t complain.** · I don’t shout. · I don’t lie.
-- I don’t shout. — *В записи последнее слово — `complain`, а в этом варианте — `shout`.*
-- I don’t lie. — *В записи последнее слово — `complain`, а в этом варианте — `lie`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-07:session-24:i10; family: speed_match -->
-lie — лгать · argue — спорить · cheat — жульничать · gamble — играть в азартные игры
-
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-07:session-24:i11; family: listen_build_dictation -->
-🔊 *Tom doesn’t shout.* Плитки: `shout` `doesn’t` `Tom` → **Tom doesn’t shout.**
-
-**12 · Спросите друга о привычках: «Ты играешь в азартные игры?»**
-<!-- interaction_id: en:lesson-07:session-24:i12; family: phrase_builder -->
-Плитки: `gamble` `you` `Do` → **Do you gamble?**
-
-**13 · Вы проверили конверт. Сообщите «Здесь нет билетов»**
-<!-- interaction_id: en:lesson-07:session-24:i13; family: scripted_repeat_compare -->
-🎙 **There are no tickets here.**
-
-**14 · Скажите «Том не жульничает»**
+**18 · Скажите про подругу: «Она не хвастается». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-24:i14; family: context_gap_grammar -->
-Tom ___ cheat. → **doesn’t** · don’t · not
-- don’t — *Для Тома нужно `doesn’t`.*
-- not — *Для отрицания действия здесь нужно `doesn’t`.*
+She ___ brag. → **doesn't** · don't · not
+- don't — *После `She` нужно `doesn't`.*
+- not — *Для отрицания действия нужно `doesn't`, а не просто `not`.*
 
-**15 · Послушайте, чего не делает собеседник**
+**19 · Послушайте, чего не делает собеседник**
 <!-- interaction_id: en:lesson-07:session-24:i15; family: listen_choose -->
-🔊 *I don’t argue.* → **I don’t argue.** · I don’t cheat. · I don’t smoke.
-- I don’t cheat. — *В записи последнее слово — `argue`, а в этом варианте — `cheat`.*
-- I don’t smoke. — *В записи последнее слово — `argue`, а в этом варианте — `smoke`.*
+🔊 *I don't mumble.* → **I don't mumble.** · I don't gossip. · I don't complain.
+- I don't gossip. — *В записи последнее слово — `mumble`, а в этом варианте — `gossip`.*
+- I don't complain. — *В записи последнее слово — `mumble`, а в этом варианте — `complain`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-24:i16; family: speed_match -->
-complain — жаловаться · shout — кричать · lie — лгать · cheat — жульничать
+sulk — дуться · swear — ругаться · mumble — бормотать · bark — лаять
 
-**17 · Друг предлагает пригласить Тома сыграть на деньги. Уточните «Том играет в азартные игры?»**
+**21 · Друг хочет пригласить брата на игру, но не любит споров. Уточните про брата: «Он спорит?»**
 <!-- interaction_id: en:lesson-07:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Does Tom gamble?**
-
+🎙 **Does he argue?**

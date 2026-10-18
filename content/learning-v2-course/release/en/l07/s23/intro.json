@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-23",
   "learningOutcomeByLocale": {
-    "ru": "отрицать действия с don’t и doesn’t и задавать вопрос о работе человека",
-    "uk": "заперечувати дії з don’t і doesn’t та ставити запитання про роботу людини"
+    "ru": "сказать, что вы не жульничаете, спросить, делает ли это человек, и что вещь не работает",
+    "uk": "сказати, що ви не жульничаєте, спитати, чи робить це людина, і що річ не працює"
   },
   "pages": [
     {
@@ -11,28 +11,28 @@
       "pageId": "en:lesson-07:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "По правилам",
-        "uk": "За правилами"
+        "ru": "Игра по правилам",
+        "uk": "Гра за правилами"
       },
       "bodyByLocale": {
-        "ru": "Перед настольной игрой друг спрашивает, не жульничаете ли вы. `cheat` — «жульничать». `I don’t cheat` — «Я не жульничаю». После `I` используем `don’t`, затем `cheat`. Лишний туз в рукаве — это уже не удача, а нарушение правил.",
-        "uk": "Перед настільною грою друг запитує, чи не шахруєте ви. `cheat` — «шахрувати». `I don’t cheat` — «Я не шахрую». Після `I` використовуємо `don’t`, потім `cheat`. Зайвий туз у рукаві — це вже не удача, а порушення правил."
+        "ru": "Перед настольной игрой друг шутя спрашивает вас, не подсматриваете ли вы в чужие карты. Выигрывать любой ценой вам совсем неинтересно. cheat — «жульничать». Ответьте: I don't cheat — «Я не жульничаю». После I ставим don't, затем cheat. Подсмотреть чужие карты — ещё не значит научиться играть.",
+        "uk": "Перед настільною грою друг жартома питає вас, чи не підглядаєте ви в чужі карти. Вигравати за будь-яку ціну вам зовсім нецікаво. cheat — «жульничати». Дайте відповідь: I don't cheat — «Я не жульничаю». Після I ставимо don't, потім cheat. Підглянути чужі карти — ще не означає навчитися грати."
       },
       "question": {
         "interactionId": "en:lesson-07:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу: «Я не жульничаю».",
-          "uk": "Скажіть другові: «Я не шахрую»."
+          "ru": "Друг спрашивает, не жульничаете ли вы. Ответьте: «Я не жульничаю».",
+          "uk": "Друг питає, чи не жульничаєте ви. Дайте відповідь: «Я не жульничаю»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-23:intro1:r1",
-              "text": "I don’t cheat."
+              "text": "I don't cheat."
             },
             {
               "responseId": "en:lesson-07:session-23:intro1:r2",
-              "text": "I doesn’t cheat."
+              "text": "I doesn't cheat."
             },
             {
               "responseId": "en:lesson-07:session-23:intro1:r3",
@@ -42,11 +42,11 @@
           "uk": [
             {
               "responseId": "en:lesson-07:session-23:intro1:r1",
-              "text": "I don’t cheat."
+              "text": "I don't cheat."
             },
             {
               "responseId": "en:lesson-07:session-23:intro1:r2",
-              "text": "I doesn’t cheat."
+              "text": "I doesn't cheat."
             },
             {
               "responseId": "en:lesson-07:session-23:intro1:r3",
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу: «Я не жульничаю».",
-          "uk": "Скажіть другові: «Я не шахрую»."
+          "ru": "Друг спрашивает, не жульничаете ли вы. Ответьте: «Я не жульничаю».",
+          "uk": "Друг питає, чи не жульничаєте ви. Дайте відповідь: «Я не жульничаю»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Том преподаёт?",
-        "uk": "Том викладає?"
+        "ru": "Судья из спортивного центра",
+        "uk": "Суддя зі спортивного центру"
       },
       "bodyByLocale": {
-        "ru": "Знакомый упоминает, что Том работает в школе. Вы уточняете, преподаёт ли он там. `Does Tom teach here?` — «Том преподаёт здесь?» Для вопроса о Томе ставим `does` в начало, затем `Tom teach here`. После `does` у `teach` нет окончания `es`.",
-        "uk": "Знайомий згадує, що Том працює в школі. Ви уточнюєте, чи викладає він там. `Does Tom teach here?` — «Том викладає тут?» Для запитання про Тома ставимо `does` на початок, потім `Tom teach here`. Після `does` у `teach` немає закінчення `es`."
+        "ru": "На турнире вам понравилось, как судья объясняет спорные моменты. Вы хотите записаться к нему на занятия и спрашиваете администратора спортивного центра, работает ли этот судья в их центре. referee — «судья». Does the referee work here? — «Судья работает здесь?» The referee можно заменить на he или she: вопрос с work начинаем с Does. После Does нужно work, без s.",
+        "uk": "На турнірі вам сподобалося, як суддя пояснює спірні моменти. Ви хочете записатися до нього на заняття й питаєте адміністратора спортивного центру, чи працює цей суддя в їхньому центрі. referee — «суддя». Does the referee work here? — «Суддя працює тут?» The referee можна замінити на he або she: питання з work починаємо з Does. Після Does потрібно work, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Вы находитесь в этой школе. Спросите: «Том преподаёт здесь?»",
-          "uk": "Ви перебуваєте в цій школі. Запитайте: «Том викладає тут?»"
+          "ru": "Вы хотите записаться к судье на занятия. Спросите администратора: «Судья работает здесь?»",
+          "uk": "Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-23:intro2:r1",
-              "text": "Does Tom teach here?"
+              "text": "Does the referee work here?"
             },
             {
               "responseId": "en:lesson-07:session-23:intro2:r2",
-              "text": "Do Tom teach here?"
+              "text": "Do the referee work here?"
             },
             {
               "responseId": "en:lesson-07:session-23:intro2:r3",
-              "text": "Does Tom teaches here?"
+              "text": "Does the referee works here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-23:intro2:r1",
-              "text": "Does Tom teach here?"
+              "text": "Does the referee work here?"
             },
             {
               "responseId": "en:lesson-07:session-23:intro2:r2",
-              "text": "Do Tom teach here?"
+              "text": "Do the referee work here?"
             },
             {
               "responseId": "en:lesson-07:session-23:intro2:r3",
-              "text": "Does Tom teaches here?"
+              "text": "Does the referee works here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы находитесь в этой школе. Спросите: «Том преподаёт здесь?»",
-          "uk": "Ви перебуваєте в цій школі. Запитайте: «Том викладає тут?»"
+          "ru": "Вы хотите записаться к судье на занятия. Спросите администратора: «Судья работает здесь?»",
+          "uk": "Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сайт недоступен",
-        "uk": "Сайт недоступний"
+        "ru": "Тёмная площадка",
+        "uk": "Темний майданчик"
       },
       "bodyByLocale": {
-        "ru": "Вы пытаетесь купить билеты, но сайт не работает. `The website doesn’t work` — «Сайт не работает». Один сайт — `doesn’t`, затем `work`, без `s`.",
-        "uk": "Ви намагаєтеся купити квитки, але сайт не працює. `The website doesn’t work` — «Сайт не працює». Один сайт — `doesn’t`, потім `work`, без `s`."
+        "ru": "Вечером на спортивной площадке стемнело, а игра ещё не закончилась. Тренер просит включить свет, вы нажали выключатель, но прожектор над полем не загорелся. floodlight — «прожектор». The floodlight doesn't work — «Прожектор не работает». Прожектор один, поэтому doesn't, а work без s.",
+        "uk": "Увечері на спортивному майданчику стемніло, а гра ще не закінчилася. Тренер просить увімкнути світло, ви натиснули вимикач, але прожектор над полем не засвітився. floodlight — «прожектор». The floodlight doesn't work — «Прожектор не працює». Прожектор один, тому doesn't, а work без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Объясните другу: «Сайт не работает».",
-          "uk": "Поясніть другові: «Сайт не працює»."
+          "ru": "Над полем темно. Скажите тренеру: «Прожектор не работает».",
+          "uk": "Над полем темно. Скажіть тренерові: «Прожектор не працює»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-23:intro3:r1",
-              "text": "The website doesn’t work."
+              "text": "The floodlight doesn't work."
             },
             {
               "responseId": "en:lesson-07:session-23:intro3:r2",
-              "text": "The website don’t work."
+              "text": "The floodlight don't work."
             },
             {
               "responseId": "en:lesson-07:session-23:intro3:r3",
-              "text": "The website doesn’t works."
+              "text": "The floodlight doesn't works."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-23:intro3:r1",
-              "text": "The website doesn’t work."
+              "text": "The floodlight doesn't work."
             },
             {
               "responseId": "en:lesson-07:session-23:intro3:r2",
-              "text": "The website don’t work."
+              "text": "The floodlight don't work."
             },
             {
               "responseId": "en:lesson-07:session-23:intro3:r3",
-              "text": "The website doesn’t works."
+              "text": "The floodlight doesn't works."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните другу: «Сайт не работает».",
-          "uk": "Поясніть другові: «Сайт не працює»."
+          "ru": "Над полем темно. Скажите тренеру: «Прожектор не работает».",
+          "uk": "Над полем темно. Скажіть тренерові: «Прожектор не працює»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9e84d85994ce2a31e0d7657eef46ec5edf6c25e6a96acefd179d1fc26a82a22e"
+  "introFingerprint": "ccc3866e3c24221dc07f69ed6b5a3005b3f2551bd681d6505366ec01e6ac95b8"
 }

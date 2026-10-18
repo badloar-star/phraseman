@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-23:i01",
+      "interactionId": "en:lesson-07:session-23:word:cheat",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cheat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-23:word:cheat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cheat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-23:word:cheat:audio",
+          "transcript": "cheat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-23:word:cheat:r1",
+            "targetText": "cheat",
+            "meaningByLocale": {
+              "ru": "жульничать. We don't cheat. — «Мы не жульничаем». О том, как человек нарушает правила, чтобы выиграть.",
+              "uk": "жульничати. We don't cheat. — «Ми не жульничаємо». Про те, як людина порушує правила, щоб виграти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheat",
+          "definitionByLocale": {
+            "ru": "жульничать. We don't cheat. — «Мы не жульничаем». О том, как человек нарушает правила, чтобы выиграть.",
+            "uk": "жульничати. We don't cheat. — «Ми не жульничаємо». Про те, як людина порушує правила, щоб виграти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-23:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я не шахрую»",
+      "prompt": "Друг питає, чи не жульничаєте ви. Скажіть: «Я не жульничаю»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не шахрую»",
+      "accessibilityLabel": "Друг питає, чи не жульничаєте ви. Скажіть: «Я не жульничаю»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I don’t cheat.",
+        "targetPhrase": "I don't cheat.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не жульничаю»",
-          "uk": "Скажіть «Я не шахрую»"
+          "ru": "Друг спрашивает, не жульничаете ли вы. Скажите: «Я не жульничаю»",
+          "uk": "Друг питає, чи не жульничаєте ви. Скажіть: «Я не жульничаю»"
         },
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "cheat"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-23:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає, чи не жульничаєте ви. Скажіть: «Я не жульничаю»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't cheat.`",
+              "uk": "тут потрібно `don't` — `I don't cheat.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,19 +168,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не шахрую»",
+      "prompt": "Скажіть «Я не жульничаю». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-23:i03:r1",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-23:i03:r2",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-23:i03:r3",
@@ -134,46 +189,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не шахрую»",
+      "accessibilityLabel": "Скажіть «Я не жульничаю». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не жульничаю»",
-          "uk": "Скажіть «Я не шахрую»"
+          "ru": "Скажите «Я не жульничаю». Выберите слово",
+          "uk": "Скажіть «Я не жульничаю». Виберіть слово"
         },
         "gappedTargetPhrase": "I ___ cheat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-23:i03:r1",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-23:i03:r2",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-23:i03:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажіть «Я не шахрую»",
+        "testedDimension": "Скажіть «Я не жульничаю». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-23:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не шахрую»",
+            "testedDimension": "Скажіть «Я не жульничаю». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `don’t`.",
-              "uk": "Після `I` потрібне `don’t`."
+              "ru": "После `I` нужно `don't`.",
+              "uk": "Після `I` потрібно `don't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-23:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не шахрую»",
+            "testedDimension": "Скажіть «Я не жульничаю». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия нужно `don’t`.",
-              "uk": "Для заперечення дії потрібне `don’t`."
+              "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+              "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
             }
           }
         ]
@@ -182,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -199,15 +254,15 @@
             "target": "cheat",
             "meaningByLocale": {
               "ru": "жульничать",
-              "uk": "шахрувати"
+              "uk": "жульничати"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i04:p2",
-            "target": "teach",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "преподавать",
-              "uk": "викладати"
+              "ru": "работать",
+              "uk": "працювати"
             }
           },
           {
@@ -220,24 +275,24 @@
           },
           {
             "pairId": "en:lesson-07:session-23:i04:p4",
-            "target": "tickets",
+            "target": "lie",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "лгать",
+              "uk": "брехати"
             }
           }
         ],
         "leftColumn": [
           "cheat",
-          "teach",
+          "work",
           "camera",
-          "tickets"
+          "lie"
         ],
         "rightColumn": [
-          "шахрувати",
-          "викладати",
+          "жульничати",
+          "працювати",
           "камера",
-          "квитки"
+          "брехати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +310,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,50 +325,118 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i05:audio",
-          "transcript": "I don’t cheat."
+          "transcript": "I don't cheat."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I don’t cheat.",
+        "hiddenTargetPhrase": "I don't cheat.",
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "cheat"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't cheat.`",
+              "uk": "тут потрібно `don't` — `I don't cheat.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-23:word:referee",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — referee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-23:word:referee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — referee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-23:word:referee:audio",
+          "transcript": "referee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-23:word:referee:r1",
+            "targetText": "referee",
+            "meaningByLocale": {
+              "ru": "судья. The referee is here. — «Судья здесь». Человек, который следит за правилами в игре и решает спорные моменты.",
+              "uk": "суддя. The referee is here. — «Суддя тут». Людина, яка стежить за правилами в грі й вирішує спірні моменти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "referee",
+          "definitionByLocale": {
+            "ru": "судья. The referee is here. — «Судья здесь». Человек, который следит за правилами в игре и решает спорные моменты.",
+            "uk": "суддя. The referee is here. — «Суддя тут». Людина, яка стежить за правилами в грі й вирішує спірні моменти."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-23:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Том викладає тут?»",
+      "prompt": "Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Том викладає тут?»",
+      "accessibilityLabel": "Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does Tom teach here?",
+        "targetPhrase": "Does the referee work here?",
         "localizedMeaning": {
-          "ru": "Спросите «Том преподаёт здесь?»",
-          "uk": "Запитайте «Том викладає тут?»"
+          "ru": "Вы хотите записаться к судье на занятия. Спросите администратора: «Судья работает здесь?»",
+          "uk": "Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»"
         },
         "orderedTokens": [
           "Does",
-          "Tom",
-          "teach",
+          "the",
+          "referee",
+          "work",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-23:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does the referee work here?`",
+              "uk": "тут потрібно `Does` — `Does the referee work here?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,26 +445,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-23:word:floodlight",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — floodlight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-23:word:floodlight:audio"
+      ],
+      "accessibilityLabel": "Картка слова — floodlight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-23:word:floodlight:audio",
+          "transcript": "floodlight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-23:word:floodlight:r1",
+            "targetText": "floodlight",
+            "meaningByLocale": {
+              "ru": "прожектор. The floodlight is big. — «Прожектор большой». Мощная лампа для освещения большой площадки.",
+              "uk": "прожектор. The floodlight is big. — «Прожектор великий». Потужна лампа для освітлення великого майданчика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floodlight",
+          "definitionByLocale": {
+            "ru": "прожектор. The floodlight is big. — «Прожектор большой». Мощная лампа для освещения большой площадки.",
+            "uk": "прожектор. The floodlight is big. — «Прожектор великий». Потужна лампа для освітлення великого майданчика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-23:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повідомте «Сайт не працює»",
+      "prompt": "Над полем темно. Скажіть тренерові: «Прожектор не працює»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-23:i07:audio"
       ],
-      "accessibilityLabel": "Повідомте «Сайт не працює»",
+      "accessibilityLabel": "Над полем темно. Скажіть тренерові: «Прожектор не працює»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i07:audio",
-          "transcript": "The website doesn’t work."
+          "transcript": "The floodlight doesn't work."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The website doesn’t work.",
+        "targetPhrase": "The floodlight doesn't work.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,67 +522,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Том викладає тут?»",
+      "prompt": "Спитайте працівника про суддю. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-23:i08:r1",
-          "text": "teach"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-07:session-23:i08:r2",
-          "text": "teaches"
+          "text": "works"
         },
         {
           "responseId": "en:lesson-07:session-23:i08:r3",
-          "text": "is teach"
+          "text": "is work"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Том викладає тут?»",
+      "accessibilityLabel": "Спитайте працівника про суддю. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Том преподаёт здесь?»",
-          "uk": "Запитайте «Том викладає тут?»"
+          "ru": "Спросите сотрудника о судье. Выберите слово",
+          "uk": "Спитайте працівника про суддю. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does Tom ___ here?",
+        "gappedTargetPhrase": "Does the referee ___ here?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-23:i08:r1",
-            "text": "teach"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-07:session-23:i08:r2",
-            "text": "teaches"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-07:session-23:i08:r3",
-            "text": "is teach"
+            "text": "is work"
           }
         ],
-        "testedDimension": "Запитайте «Том викладає тут?»",
+        "testedDimension": "Спитайте працівника про суддю. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-23:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Том викладає тут?»",
+            "testedDimension": "Спитайте працівника про суддю. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `teach`.",
-              "uk": "Після `does` потрібне `teach`."
+              "ru": "После `Does` нужно `work`, без `s`.",
+              "uk": "Після `Does` потрібно `work`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-23:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Том викладає тут?»",
+            "testedDimension": "Спитайте працівника про суддю. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `teach`, без `is`.",
-              "uk": "Тут потрібне `teach`, без `is`."
+              "ru": "В этом вопросе нужно `work`, без `is`.",
+              "uk": "У цьому питанні потрібно `work`, без `is`."
             }
           }
         ]
@@ -425,7 +591,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -433,15 +599,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-23:i09:r1",
-          "text": "I don’t cheat."
+          "text": "I don't cheat."
         },
         {
           "responseId": "en:lesson-07:session-23:i09:r2",
-          "text": "I don’t argue."
+          "text": "I don't argue."
         },
         {
           "responseId": "en:lesson-07:session-23:i09:r3",
-          "text": "I don’t lie."
+          "text": "I don't lie."
         }
       ],
       "mediaIds": [],
@@ -453,23 +619,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i09:audio",
-          "transcript": "I don’t cheat."
+          "transcript": "I don't cheat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-23:i09:r1",
-            "targetText": "I don’t cheat.",
+            "targetText": "I don't cheat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-23:i09:r2",
-            "targetText": "I don’t argue.",
+            "targetText": "I don't argue.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-23:i09:r3",
-            "targetText": "I don’t lie.",
+            "targetText": "I don't lie.",
             "meaningByLocale": null
           }
         ],
@@ -501,7 +667,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -515,48 +681,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-23:i10:p1",
-            "target": "website",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "веб-сайт",
-              "uk": "вебсайт"
+              "ru": "работать",
+              "uk": "працювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i10:p2",
-            "target": "cheat",
+            "target": "floodlight",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "прожектор",
+              "uk": "прожектор"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i10:p3",
-            "target": "teach",
+            "target": "cheat",
             "meaningByLocale": {
-              "ru": "преподавать",
-              "uk": "викладати"
+              "ru": "жульничать",
+              "uk": "жульничати"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i10:p4",
-            "target": "camera",
+            "target": "referee",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "судья",
+              "uk": "суддя"
             }
           }
         ],
         "leftColumn": [
-          "website",
+          "work",
+          "floodlight",
           "cheat",
-          "teach",
-          "camera"
+          "referee"
         ],
         "rightColumn": [
-          "вебсайт",
-          "шахрувати",
-          "викладати",
-          "камера"
+          "працювати",
+          "прожектор",
+          "жульничати",
+          "суддя"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,8 +740,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -589,18 +755,30 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i11:audio",
-          "transcript": "The website doesn’t work."
+          "transcript": "The floodlight doesn't work."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The website doesn’t work.",
+        "hiddenTargetPhrase": "The floodlight doesn't work.",
         "orderedTokens": [
           "The",
-          "website",
-          "doesn’t",
+          "floodlight",
+          "doesn't",
           "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "don't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-23:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `doesn't` — `The floodlight doesn't work.`",
+              "uk": "тут потрібно `doesn't` — `The floodlight doesn't work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -609,32 +787,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-23:word:prize",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — prize",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-23:word:prize:audio"
+      ],
+      "accessibilityLabel": "Картка слова — prize",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-23:word:prize:audio",
+          "transcript": "prize"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-23:word:prize:r1",
+            "targetText": "prize",
+            "meaningByLocale": {
+              "ru": "приз. I have a prize. — «У меня есть приз». То, что получает победитель.",
+              "uk": "приз. I have a prize. — «У мене є приз». Те, що отримує переможець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prize",
+          "definitionByLocale": {
+            "ru": "приз. I have a prize. — «У меня есть приз». То, что получает победитель.",
+            "uk": "приз. I have a prize. — «У мене є приз». Те, що отримує переможець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-23:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед зйомкою запитайте друга «У тебе є камера?»",
+      "prompt": "Друг виграв у змаганні. Спитайте його: «У тебе є приз?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед зйомкою запитайте друга «У тебе є камера?»",
+      "accessibilityLabel": "Друг виграв у змаганні. Спитайте його: «У тебе є приз?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a camera?",
+        "targetPhrase": "Do you have a prize?",
         "localizedMeaning": {
-          "ru": "Перед съёмкой спросите друга «У тебя есть камера?»",
-          "uk": "Перед зйомкою запитайте друга «У тебе є камера?»"
+          "ru": "Друг выиграл в соревновании. Спросите его: «У тебя есть приз?»",
+          "uk": "Друг виграв у змаганні. Спитайте його: «У тебе є приз?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "have",
           "a",
-          "camera"
+          "prize"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-23:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг виграв у змаганні. Спитайте його: «У тебе є приз?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a prize?`",
+              "uk": "тут потрібно `Do` — `Do you have a prize?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -644,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви перевірили конверт. Повідомте «Тут немає квитків»",
+      "prompt": "Ви принесли нагороду для переможця. Скажіть організатору: «Приз тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-23:i13:audio"
       ],
-      "accessibilityLabel": "Ви перевірили конверт. Повідомте «Тут немає квитків»",
+      "accessibilityLabel": "Ви принесли нагороду для переможця. Скажіть організатору: «Приз тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i13:audio",
-          "transcript": "There are no tickets here."
+          "transcript": "The prize is here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are no tickets here.",
+        "targetPhrase": "The prize is here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,19 +910,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Сайт не працює»",
+      "prompt": "Скажіть тренерові, що прожектор не працює. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-23:i14:r1",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-23:i14:r2",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-23:i14:r3",
@@ -698,46 +931,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Сайт не працює»",
+      "accessibilityLabel": "Скажіть тренерові, що прожектор не працює. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Сайт не работает»",
-          "uk": "Повідомте «Сайт не працює»"
+          "ru": "Скажите тренеру, что прожектор не работает. Выберите слово",
+          "uk": "Скажіть тренерові, що прожектор не працює. Виберіть слово"
         },
-        "gappedTargetPhrase": "The website ___ work.",
+        "gappedTargetPhrase": "The floodlight ___ work.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-23:i14:r1",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-23:i14:r2",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-23:i14:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Повідомте «Сайт не працює»",
+        "testedDimension": "Скажіть тренерові, що прожектор не працює. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-23:i14:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Сайт не працює»",
+            "testedDimension": "Скажіть тренерові, що прожектор не працює. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для одного сайта нужно `doesn’t`.",
-              "uk": "Для одного сайту потрібне `doesn’t`."
+              "ru": "Прожектор один: нужно `doesn't`.",
+              "uk": "Прожектор один: потрібно `doesn't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-23:i14:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Сайт не працює»",
+            "testedDimension": "Скажіть тренерові, що прожектор не працює. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия здесь нужно `doesn’t`.",
-              "uk": "Для заперечення дії тут потрібне `doesn’t`."
+              "ru": "Перед `work` нужно `doesn't`, а не просто `not`.",
+              "uk": "Перед `work` потрібно `doesn't`, а не просто `not`."
             }
           }
         ]
@@ -746,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де квитки",
+      "prompt": "Послухайте питання",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-23:i15:r1",
-          "text": "The tickets are here."
+          "text": "Does the referee work here?"
         },
         {
           "responseId": "en:lesson-07:session-23:i15:r2",
-          "text": "The tickets are there."
+          "text": "Do you work here?"
         },
         {
           "responseId": "en:lesson-07:session-23:i15:r3",
-          "text": "The tickets are upstairs."
+          "text": "Does the teacher work here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-23:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де квитки",
+      "accessibilityLabel": "Послухайте питання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i15:audio",
-          "transcript": "The tickets are here."
+          "transcript": "Does the referee work here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-23:i15:r1",
-            "targetText": "The tickets are here.",
+            "targetText": "Does the referee work here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-23:i15:r2",
-            "targetText": "The tickets are there.",
+            "targetText": "Do you work here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-23:i15:r3",
-            "targetText": "The tickets are upstairs.",
+            "targetText": "Does the teacher work here?",
             "meaningByLocale": null
           }
         ],
@@ -799,19 +1032,19 @@
           {
             "responseId": "en:lesson-07:session-23:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де квитки",
+            "testedDimension": "Послухайте питання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи первое слово — `Does`, а в этом варианте — `Do`.",
+              "uk": "У записі перше слово — `Does`, а в цьому варіанті — `Do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-23:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де квитки",
+            "testedDimension": "Послухайте питання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи слово `referee`, судья, а в этом варианте — `teacher`, учитель.",
+              "uk": "У записі слово `referee`, суддя, а в цьому варіанті — `teacher`, учитель."
             }
           }
         ],
@@ -822,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-23:i16:p1",
-            "target": "tickets",
+            "target": "floodlight",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "прожектор",
+              "uk": "прожектор"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i16:p2",
-            "target": "website",
+            "target": "prize",
             "meaningByLocale": {
-              "ru": "веб-сайт",
-              "uk": "вебсайт"
+              "ru": "приз",
+              "uk": "приз"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i16:p3",
-            "target": "cheat",
+            "target": "referee",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "судья",
+              "uk": "суддя"
             }
           },
           {
             "pairId": "en:lesson-07:session-23:i16:p4",
-            "target": "teach",
+            "target": "cheat",
             "meaningByLocale": {
-              "ru": "преподавать",
-              "uk": "викладати"
+              "ru": "жульничать",
+              "uk": "жульничати"
             }
           }
         ],
         "leftColumn": [
-          "tickets",
-          "website",
-          "cheat",
-          "teach"
+          "floodlight",
+          "prize",
+          "referee",
+          "cheat"
         ],
         "rightColumn": [
-          "квитки",
-          "вебсайт",
-          "шахрувати",
-          "викладати"
+          "прожектор",
+          "приз",
+          "суддя",
+          "жульничати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-23:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи чесно Том зазвичай грає. Скажіть «Том не шахрує»",
+      "prompt": "Друг питає, чи жульничає ваш брат у іграх. Скажіть: «Він не жульничає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-23:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чи чесно Том зазвичай грає. Скажіть «Том не шахрує»",
+      "accessibilityLabel": "Друг питає, чи жульничає ваш брат у іграх. Скажіть: «Він не жульничає»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-23:i17:audio",
-          "transcript": "Tom doesn’t cheat."
+          "transcript": "He doesn't cheat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom doesn’t cheat.",
+        "targetPhrase": "He doesn't cheat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8fc52803801989b870b47b9605505f0ed28886feacb4d576baf2410cdf408bf5"
+  "learnerFingerprint": "55e8ee0f4f3e9b5428e659ffa523ebdb163cb0c4694c858dc94deefb255bd8dc"
 }

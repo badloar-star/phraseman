@@ -1,133 +1,154 @@
 # Англійська · Урок 7 · Заняття 23 — Граю чесно
 
-**Ситуація.** Ви пояснюєте, що граєте чесно, дізнаєтеся про роботу знайомого й перевіряєте сайт для купівлі квитків.
+**Ситуація.** Ви граєте чесно, на турнірі питаєте про суддю й повідомляєте тренерові, що над полем не світить прожектор. У питанні про роботу судді використовуємо Does.
 
-**Що ви опануєте:** заперечувати дії з don’t і doesn’t та ставити запитання про роботу людини
-**Нові слова:** cheat
+**Що ви опануєте:** сказати, що ви не жульничаєте, спитати, чи робить це людина, і що річ не працює
+**Нові слова:** cheat, referee, floodlight, prize
+**Повертаються:** work, have, here, teach, camera, lie
 
 ---
 
 ## Інтро 1
 
-### За правилами
+### Гра за правилами
 
-Перед настільною грою друг запитує, чи не шахруєте ви. `cheat` — «шахрувати». `I don’t cheat` — «Я не шахрую». Після `I` використовуємо `don’t`, потім `cheat`. Зайвий туз у рукаві — це вже не удача, а порушення правил.
+Перед настільною грою друг жартома питає вас, чи не підглядаєте ви в чужі карти. Вигравати за будь-яку ціну вам зовсім нецікаво. cheat — «жульничати». Дайте відповідь: I don't cheat — «Я не жульничаю». Після I ставимо don't, потім cheat. Підглянути чужі карти — ще не означає навчитися грати.
 
-**Скажіть другові: «Я не шахрую».**
+**Друг питає, чи не жульничаєте ви. Дайте відповідь: «Я не жульничаю».**
 
-- ✅ **I don’t cheat.**
-- ❌ I doesn’t cheat. — *Після `I` потрібне `don’t`.*
-- ❌ I not cheat. — *Для заперечення дії потрібне `don’t`.*
+- ✅ **I don't cheat.**
+- ❌ I doesn't cheat. — *Після I потрібно don't.*
+- ❌ I not cheat. — *Перед дією потрібно don't, а не просто not.*
 
 ---
 
 ## Інтро 2
 
-### Том викладає?
+### Суддя зі спортивного центру
 
-Знайомий згадує, що Том працює в школі. Ви уточнюєте, чи викладає він там. `Does Tom teach here?` — «Том викладає тут?» Для запитання про Тома ставимо `does` на початок, потім `Tom teach here`. Після `does` у `teach` немає закінчення `es`.
+На турнірі вам сподобалося, як суддя пояснює спірні моменти. Ви хочете записатися до нього на заняття й питаєте адміністратора спортивного центру, чи працює цей суддя в їхньому центрі. referee — «суддя». Does the referee work here? — «Суддя працює тут?» The referee можна замінити на he або she: питання з work починаємо з Does. Після Does потрібно work, без s.
 
-**Ви перебуваєте в цій школі. Запитайте: «Том викладає тут?»**
+**Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»**
 
-- ✅ **Does Tom teach here?**
-- ❌ Do Tom teach here? — *Для запитання про Тома потрібне `does`.*
-- ❌ Does Tom teaches here? — *Після `does` потрібне `teach`, без `es`.*
+- ✅ **Does the referee work here?**
+- ❌ Do the referee work here? — *З the referee в цьому питанні потрібно Does.*
+- ❌ Does the referee works here? — *Після Does слово work лишається без s.*
 
 ---
 
 ## Інтро 3
 
-### Сайт недоступний
+### Темний майданчик
 
-Ви намагаєтеся купити квитки, але сайт не працює. `The website doesn’t work` — «Сайт не працює». Один сайт — `doesn’t`, потім `work`, без `s`.
+Увечері на спортивному майданчику стемніло, а гра ще не закінчилася. Тренер просить увімкнути світло, ви натиснули вимикач, але прожектор над полем не засвітився. floodlight — «прожектор». The floodlight doesn't work — «Прожектор не працює». Прожектор один, тому doesn't, а work без s.
 
-**Поясніть другові: «Сайт не працює».**
+**Над полем темно. Скажіть тренерові: «Прожектор не працює».**
 
-- ✅ **The website doesn’t work.**
-- ❌ The website don’t work. — *Для одного сайту потрібне `doesn’t`.*
-- ❌ The website doesn’t works. — *Після `doesn’t` потрібне `work`, без `s`.*
+- ✅ **The floodlight doesn't work.**
+- ❌ The floodlight don't work. — *Прожектор один: потрібно doesn't.*
+- ❌ The floodlight doesn't works. — *Після doesn't потрібно work, без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не шахрую»**
+**1 · Картка слова — cheat**
+<!-- interaction_id: en:lesson-07:session-23:word:cheat; family: word_card -->
+> **cheat** — жульничати. We don't cheat. — «Ми не жульничаємо». Про те, як людина порушує правила, щоб виграти.
+
+**2 · Друг питає, чи не жульничаєте ви. Скажіть: «Я не жульничаю»**
 <!-- interaction_id: en:lesson-07:session-23:i01; family: phrase_builder -->
-Плитки: `cheat` `don’t` `I` → **I don’t cheat.**
+Плитки: `cheat` `don't` `I` `doesn't` → **I don't cheat.**
+*(плитка `doesn't` зайва: тут потрібно `don't` — `I don't cheat.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-23:i02; family: listen_choose -->
 🔊 *cheat* → **cheat** · teach · camera
 - teach — *У записі перше слово — `cheat`, а в цьому варіанті — `teach`.*
 - camera — *У записі перше слово — `cheat`, а в цьому варіанті — `camera`.*
 
-**3 · Скажіть «Я не шахрую»**
+**4 · Скажіть «Я не жульничаю». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-23:i03; family: context_gap_grammar -->
-I ___ cheat. → **don’t** · doesn’t · not
-- doesn’t — *Після `I` потрібне `don’t`.*
-- not — *Для заперечення дії потрібне `don’t`.*
+I ___ cheat. → **don't** · doesn't · not
+- doesn't — *Після `I` потрібно `don't`.*
+- not — *Для заперечення дії потрібно `don't`, а не просто `not`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-23:i04; family: speed_match -->
-cheat — шахрувати · teach — викладати · camera — камера · tickets — квитки
+cheat — жульничати · work — працювати · camera — камера · lie — брехати
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-23:i05; family: listen_build_dictation -->
-🔊 *I don’t cheat.* Плитки: `cheat` `don’t` `I` → **I don’t cheat.**
+🔊 *I don't cheat.* Плитки: `cheat` `don't` `I` `doesn't` → **I don't cheat.**
+*(плитка `doesn't` зайва: тут потрібно `don't` — `I don't cheat.`)*
 
-**6 · Запитайте «Том викладає тут?»**
+**7 · Картка слова — referee**
+<!-- interaction_id: en:lesson-07:session-23:word:referee; family: word_card -->
+> **referee** — суддя. The referee is here. — «Суддя тут». Людина, яка стежить за правилами в грі й вирішує спірні моменти.
+
+**8 · Ви хочете записатися до судді на заняття. Спитайте адміністратора: «Суддя працює тут?»**
 <!-- interaction_id: en:lesson-07:session-23:i06; family: phrase_builder -->
-Плитки: `here` `teach` `Tom` `Does` → **Does Tom teach here?**
+Плитки: `work` `here` `referee` `the` `Does` `Do` → **Does the referee work here?**
+*(плитка `Do` зайва: тут потрібно `Does` — `Does the referee work here?`)*
 
-**7 · Повідомте «Сайт не працює»**
+**9 · Картка слова — floodlight**
+<!-- interaction_id: en:lesson-07:session-23:word:floodlight; family: word_card -->
+> **floodlight** — прожектор. The floodlight is big. — «Прожектор великий». Потужна лампа для освітлення великого майданчика.
+
+**10 · Над полем темно. Скажіть тренерові: «Прожектор не працює»**
 <!-- interaction_id: en:lesson-07:session-23:i07; family: scripted_repeat_compare -->
-🎙 **The website doesn’t work.**
+🎙 **The floodlight doesn't work.**
 
-**8 · Запитайте «Том викладає тут?»**
+**11 · Спитайте працівника про суддю. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-23:i08; family: context_gap_grammar -->
-Does Tom ___ here? → **teach** · teaches · is teach
-- teaches — *Після `does` потрібне `teach`.*
-- is teach — *Тут потрібне `teach`, без `is`.*
+Does the referee ___ here? → **work** · works · is work
+- works — *Після `Does` потрібно `work`, без `s`.*
+- is work — *У цьому питанні потрібно `work`, без `is`.*
 
-**9 · Послухайте, чого не робить співрозмовник**
+**12 · Послухайте, чого не робить співрозмовник**
 <!-- interaction_id: en:lesson-07:session-23:i09; family: listen_choose -->
-🔊 *I don’t cheat.* → **I don’t cheat.** · I don’t argue. · I don’t lie.
-- I don’t argue. — *У записі останнє слово — `cheat`, а в цьому варіанті — `argue`.*
-- I don’t lie. — *У записі останнє слово — `cheat`, а в цьому варіанті — `lie`.*
+🔊 *I don't cheat.* → **I don't cheat.** · I don't argue. · I don't lie.
+- I don't argue. — *У записі останнє слово — `cheat`, а в цьому варіанті — `argue`.*
+- I don't lie. — *У записі останнє слово — `cheat`, а в цьому варіанті — `lie`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-23:i10; family: speed_match -->
-website — вебсайт · cheat — шахрувати · teach — викладати · camera — камера
+work — працювати · floodlight — прожектор · cheat — жульничати · referee — суддя
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-23:i11; family: listen_build_dictation -->
-🔊 *The website doesn’t work.* Плитки: `work` `doesn’t` `website` `The` → **The website doesn’t work.**
+🔊 *The floodlight doesn't work.* Плитки: `work` `doesn't` `floodlight` `The` `don't` → **The floodlight doesn't work.**
+*(плитка `don't` зайва: тут потрібно `doesn't` — `The floodlight doesn't work.`)*
 
-**12 · Перед зйомкою запитайте друга «У тебе є камера?»**
+**15 · Картка слова — prize**
+<!-- interaction_id: en:lesson-07:session-23:word:prize; family: word_card -->
+> **prize** — приз. I have a prize. — «У мене є приз». Те, що отримує переможець.
+
+**16 · Друг виграв у змаганні. Спитайте його: «У тебе є приз?»**
 <!-- interaction_id: en:lesson-07:session-23:i12; family: phrase_builder -->
-Плитки: `camera` `a` `have` `you` `Do` → **Do you have a camera?**
+Плитки: `prize` `a` `have` `you` `Do` `Are` → **Do you have a prize?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you have a prize?`)*
 
-**13 · Ви перевірили конверт. Повідомте «Тут немає квитків»**
+**17 · Ви принесли нагороду для переможця. Скажіть організатору: «Приз тут»**
 <!-- interaction_id: en:lesson-07:session-23:i13; family: scripted_repeat_compare -->
-🎙 **There are no tickets here.**
+🎙 **The prize is here.**
 
-**14 · Повідомте «Сайт не працює»**
+**18 · Скажіть тренерові, що прожектор не працює. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-23:i14; family: context_gap_grammar -->
-The website ___ work. → **doesn’t** · don’t · not
-- don’t — *Для одного сайту потрібне `doesn’t`.*
-- not — *Для заперечення дії тут потрібне `doesn’t`.*
+The floodlight ___ work. → **doesn't** · don't · not
+- don't — *Прожектор один: потрібно `doesn't`.*
+- not — *Перед `work` потрібно `doesn't`, а не просто `not`.*
 
-**15 · Послухайте, де квитки**
+**19 · Послухайте питання**
 <!-- interaction_id: en:lesson-07:session-23:i15; family: listen_choose -->
-🔊 *The tickets are here.* → **The tickets are here.** · The tickets are there. · The tickets are upstairs.
-- The tickets are there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The tickets are upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Does the referee work here?* → **Does the referee work here?** · Do you work here? · Does the teacher work here?
+- Do you work here? — *У записі перше слово — `Does`, а в цьому варіанті — `Do`.*
+- Does the teacher work here? — *У записі слово `referee`, суддя, а в цьому варіанті — `teacher`, учитель.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-23:i16; family: speed_match -->
-tickets — квитки · website — вебсайт · cheat — шахрувати · teach — викладати
+floodlight — прожектор · prize — приз · referee — суддя · cheat — жульничати
 
-**17 · Друг запитує, чи чесно Том зазвичай грає. Скажіть «Том не шахрує»**
+**21 · Друг питає, чи жульничає ваш брат у іграх. Скажіть: «Він не жульничає»**
 <!-- interaction_id: en:lesson-07:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t cheat.**
-
+🎙 **He doesn't cheat.**

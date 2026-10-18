@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-24",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно выбирать do, does, don’t и doesn’t в знакомых ситуациях",
-    "uk": "самостійно вибирати do, does, don’t і doesn’t у знайомих ситуаціях"
+    "ru": "самостоятельно выбирать do, does, don't и doesn't в знакомых ситуациях",
+    "uk": "самостійно обирати do, does, don't і doesn't у знайомих ситуаціях"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сигарета на перерыве",
-        "uk": "Сигарета на перерві"
+        "ru": "Пробка на дороге",
+        "uk": "Затор на дорозі"
       },
       "bodyByLocale": {
-        "ru": "Коллега предлагает вам сигарету. `I don’t smoke` — «Я не курю». Вы сообщаете о своей привычке: после `I` ставим `don’t`, затем `smoke`. Простого `not` перед действием недостаточно.",
-        "uk": "Колега пропонує вам сигарету. `I don’t smoke` — «Я не курю». Ви повідомляєте про свою звичку: після `I` ставимо `don’t`, потім `smoke`. Самого `not` перед дією недостатньо."
+        "ru": "Вы везёте друга на вокзал и стоите в плотной пробке. Сзади непрерывно сигналят, друг ждёт, что вы наконец выругаетесь. Он спрашивает, как вы обычно реагируете на такое. swear — «ругаться, браниться». Объясните: I don't swear — «Я не ругаюсь». После I ставим don't, затем swear. Даже очень грубое слово не сделает пробку короче.",
+        "uk": "Ви везете друга на вокзал і стоїте в щільному заторі. Ззаду безперервно сигналять, друг чекає, що ви нарешті вилаєтеся. Він питає, як ви зазвичай реагуєте на таке. swear — «лаятися». Поясніть: I don't swear — «Я не лаюся». Після I ставимо don't, потім swear. Навіть дуже грубе слово не зробить затор коротшим."
       },
       "question": {
         "interactionId": "en:lesson-07:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Откажитесь, объяснив: «Я не курю».",
-          "uk": "Відмовтеся, пояснивши: «Я не курю»."
+          "ru": "Друг удивляется вашему спокойствию в пробке. Объясните: «Я не ругаюсь».",
+          "uk": "Друг дивується вашому спокою в заторі. Поясніть: «Я не лаюся»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-24:intro1:r1",
-              "text": "I don’t smoke."
+              "text": "I don't swear."
             },
             {
               "responseId": "en:lesson-07:session-24:intro1:r2",
-              "text": "I not smoke."
+              "text": "I doesn't swear."
             },
             {
               "responseId": "en:lesson-07:session-24:intro1:r3",
-              "text": "I doesn’t smoke."
+              "text": "I not swear."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-24:intro1:r1",
-              "text": "I don’t smoke."
+              "text": "I don't swear."
             },
             {
               "responseId": "en:lesson-07:session-24:intro1:r2",
-              "text": "I not smoke."
+              "text": "I doesn't swear."
             },
             {
               "responseId": "en:lesson-07:session-24:intro1:r3",
-              "text": "I doesn’t smoke."
+              "text": "I not swear."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Откажитесь, объяснив: «Я не курю».",
-          "uk": "Відмовтеся, пояснивши: «Я не курю»."
+          "ru": "Друг удивляется вашему спокойствию в пробке. Объясните: «Я не ругаюсь».",
+          "uk": "Друг дивується вашому спокою в заторі. Поясніть: «Я не лаюся»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спокойный собеседник",
-        "uk": "Спокійний співрозмовник"
+        "ru": "После проигрыша",
+        "uk": "Після програшу"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, кричит ли Том во время споров. `Tom doesn’t shout` — «Том не кричит». Том — один человек: используем `doesn’t`, затем `shout`, без `s`. Его аргументы слышны и без режима громкоговорителя.",
-        "uk": "Друг запитує, чи кричить Том під час суперечок. `Tom doesn’t shout` — «Том не кричить». Том — одна людина: використовуємо `doesn’t`, потім `shout`, без `s`. Його аргументи чути й без режиму гучномовця."
+        "ru": "Перед настольной игрой друг спрашивает, как ваш брат обычно переносит проигрыш: не сидит ли потом весь вечер с обиженным видом. Вы знаете, что брат спокойно относится к проигрышам. sulk — «дуться». He doesn't sulk — «Он не дуется». После he ставим doesn't, а sulk без s.",
+        "uk": "Перед настільною грою друг питає, як ваш брат зазвичай переносить програш: чи не сидить потім увесь вечір з ображеним виглядом. Ви знаєте, що брат спокійно ставиться до програшів. sulk — «дутися». He doesn't sulk — «Він не дується». Після he ставимо doesn't, а sulk без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите другу: «Том не кричит».",
-          "uk": "Скажіть другові: «Том не кричить»."
+          "ru": "Друг думает, что брат обычно дуется после проигрыша. Возразите: «Он не дуется».",
+          "uk": "Друг думає, що брат зазвичай дується після програшу. Заперечте: «Він не дується»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-24:intro2:r1",
-              "text": "Tom doesn’t shout."
+              "text": "He doesn't sulk."
             },
             {
               "responseId": "en:lesson-07:session-24:intro2:r2",
-              "text": "Tom don’t shout."
+              "text": "He don't sulk."
             },
             {
               "responseId": "en:lesson-07:session-24:intro2:r3",
-              "text": "Tom doesn’t shouts."
+              "text": "He doesn't sulks."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-24:intro2:r1",
-              "text": "Tom doesn’t shout."
+              "text": "He doesn't sulk."
             },
             {
               "responseId": "en:lesson-07:session-24:intro2:r2",
-              "text": "Tom don’t shout."
+              "text": "He don't sulk."
             },
             {
               "responseId": "en:lesson-07:session-24:intro2:r3",
-              "text": "Tom doesn’t shouts."
+              "text": "He doesn't sulks."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу: «Том не кричит».",
-          "uk": "Скажіть другові: «Том не кричить»."
+          "ru": "Друг думает, что брат обычно дуется после проигрыша. Возразите: «Он не дуется».",
+          "uk": "Друг думає, що брат зазвичай дується після програшу. Заперечте: «Він не дується»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Честная игра",
-        "uk": "Чесна гра"
+        "ru": "Собака у знакомых",
+        "uk": "Собака в знайомих"
       },
       "bodyByLocale": {
-        "ru": "Перед игрой вы обсуждаете с другом правила и прямо спрашиваете, не жульничает ли он обычно. `Do you cheat?` — «Ты жульничаешь?» Вопрос с `you` начинается с `do`; действие — `cheat`, без окончания. Это прямой вопрос, поэтому важно говорить без обвинительного тона.",
-        "uk": "Перед грою ви обговорюєте з другом правила й прямо запитуєте, чи не шахрує він зазвичай. `Do you cheat?` — «Ти шахруєш?» Запитання з `you` починається з `do`; дія — `cheat`, без закінчення. Це пряме запитання, тому важливо говорити без звинувачувального тону."
+        "ru": "Вы собираетесь в гости к знакомым, у которых большая собака. С вами будет маленький ребёнок, который боится громких звуков. Вы спрашиваете хозяйку, бывает ли от собаки много шума. bark — «лаять». Does the dog bark? — «Собака лает?» The dog можно заменить на it: вопрос с bark начинаем с Does, а bark пишем без s.",
+        "uk": "Ви збираєтеся в гості до знайомих, у яких велика собака. З вами буде маленька дитина, яка боїться гучних звуків. Ви питаєте господиню, чи буває від собаки багато шуму. bark — «гавкати». Does the dog bark? — «Собака гавкає?» The dog можна замінити на it: питання з bark починаємо з Does, а bark пишемо без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите друга: «Ты жульничаешь?»",
-          "uk": "Запитайте друга: «Ти шахруєш?»"
+          "ru": "Вы собираетесь в гости. Спросите хозяйку: «Собака лает?»",
+          "uk": "Ви збираєтеся в гості. Спитайте господиню: «Собака гавкає?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-24:intro3:r1",
-              "text": "Do you cheat?"
+              "text": "Does the dog bark?"
             },
             {
               "responseId": "en:lesson-07:session-24:intro3:r2",
-              "text": "Does you cheat?"
+              "text": "Do the dog bark?"
             },
             {
               "responseId": "en:lesson-07:session-24:intro3:r3",
-              "text": "Do you cheats?"
+              "text": "Does the dog barks?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-24:intro3:r1",
-              "text": "Do you cheat?"
+              "text": "Does the dog bark?"
             },
             {
               "responseId": "en:lesson-07:session-24:intro3:r2",
-              "text": "Does you cheat?"
+              "text": "Do the dog bark?"
             },
             {
               "responseId": "en:lesson-07:session-24:intro3:r3",
-              "text": "Do you cheats?"
+              "text": "Does the dog barks?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга: «Ты жульничаешь?»",
-          "uk": "Запитайте друга: «Ти шахруєш?»"
+          "ru": "Вы собираетесь в гости. Спросите хозяйку: «Собака лает?»",
+          "uk": "Ви збираєтеся в гості. Спитайте господиню: «Собака гавкає?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "77fd5c50f0b92a7e5b033062bf1f9761ddb01970f39c6fa7f2a0f022f12c8366"
+  "introFingerprint": "7295aa7e6e720e58ddbd1570ad54f51232f76d9aa3a4f6c32ab812e472e81ae2"
 }

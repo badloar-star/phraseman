@@ -1,0 +1,13 @@
+10-18 06:09:25.942 I/ReactNativeJS( 4427): [MOMENT-GLOW] {"scene":"streak-milestone-screen","top":"30%","color":"#7EF0C84D","own":0.30196078431372547,"isLight":true,"opacity":0.775,"size":320,"fadePx":147}
+10-18 06:09:27.263 I/ReactNativeJS( 4427): [MOMENT-GLOW] {"scene":"streak-milestone-screen","top":"30%","color":"#7EF0C84D","own":0.30196078431372547,"isLight":true,"opacity":0.775,"size":320,"fadePx":147}
+10-18 06:09:29.099 I/ReactNativeJS( 4427): [D30-CAL] row:layout {"sinceMountMs":76,"w":306,"h":0,"cell":38,"reduceMotion":false}
+10-18 06:09:29.275 I/ReactNativeJS( 4427): [D30-CAL] row:layout {"sinceMountMs":251,"w":346,"h":214,"cell":44,"reduceMotion":false}
+10-18 06:09:29.276 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":252,"i":0,"w":38,"h":38,"heightZero":false,"plannedEnterStartMs":0,"durMs":300,"style":{"size":38}}
+10-18 06:09:29.277 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":254,"i":29,"w":38,"h":38,"heightZero":false,"plannedEnterStartMs":754,"durMs":300,"style":{"size":38}}
+10-18 06:09:29.336 I/ReactNativeJS( 4427): [D30-CAL] row:layout {"sinceMountMs":313,"w":344,"h":244,"cell":44,"reduceMotion":false}
+10-18 06:09:29.336 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":313,"i":0,"w":44,"h":44,"heightZero":false,"plannedEnterStartMs":0,"durMs":300,"style":{"size":44}}
+10-18 06:09:29.337 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":314,"i":29,"w":44,"h":44,"heightZero":false,"plannedEnterStartMs":754,"durMs":300,"style":{"size":44}}
+10-18 06:09:29.665 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":640,"i":0,"plannedEndMs":350,"box":{"x":34,"y":433,"w":44,"h":44},"scaleZero":false}
+10-18 06:09:29.720 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":697,"i":0,"plannedEndMs":350,"box":{"x":34,"y":433,"w":44,"h":44},"scaleZero":false}
+10-18 06:09:30.400 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":1374,"i":29,"plannedEndMs":1104,"box":{"x":84,"y":633,"w":44,"h":44},"scaleZero":false}
+10-18 06:09:30.478 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":1454,"i":29,"plannedEndMs":1104,"box":{"x":84,"y":633,"w":44,"h":44},"scaleZero":false}

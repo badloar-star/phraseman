@@ -1,0 +1,12 @@
+10-18 06:09:18.143 I/ReactNativeJS( 4427): [MOMENT-GLOW] {"scene":"streak-milestone-screen","top":"30%","color":"#7EF0C83D","own":0.23921568627450981,"isLight":false,"opacity":0.783,"size":320,"fadePx":147}
+10-18 06:09:20.012 I/ReactNativeJS( 4427): [D30-CAL] row:layout {"sinceMountMs":94,"w":306,"h":0,"cell":38,"reduceMotion":false}
+10-18 06:09:20.263 I/ReactNativeJS( 4427): [D30-CAL] row:layout {"sinceMountMs":342,"w":346,"h":214,"cell":44,"reduceMotion":false}
+10-18 06:09:20.269 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":351,"i":0,"w":38,"h":38,"heightZero":false,"plannedEnterStartMs":0,"durMs":300,"style":{"size":38}}
+10-18 06:09:20.271 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":352,"i":29,"w":38,"h":38,"heightZero":false,"plannedEnterStartMs":754,"durMs":300,"style":{"size":38}}
+10-18 06:09:20.373 I/ReactNativeJS( 4427): [D30-CAL] row:layout {"sinceMountMs":455,"w":344,"h":244,"cell":44,"reduceMotion":false}
+10-18 06:09:20.374 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":455,"i":0,"w":44,"h":44,"heightZero":false,"plannedEnterStartMs":0,"durMs":300,"style":{"size":44}}
+10-18 06:09:20.375 I/ReactNativeJS( 4427): [D30-CAL] cell:layout {"sinceMountMs":457,"i":29,"w":44,"h":44,"heightZero":false,"plannedEnterStartMs":754,"durMs":300,"style":{"size":44}}
+10-18 06:09:20.659 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":740,"i":0,"plannedEndMs":350,"box":{"x":32,"y":431,"w":47,"h":47},"scaleZero":false}
+10-18 06:09:20.760 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":842,"i":0,"plannedEndMs":350,"box":{"x":34,"y":433,"w":44,"h":44},"scaleZero":false}
+10-18 06:09:21.416 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":1497,"i":29,"plannedEndMs":1104,"box":{"x":81,"y":630,"w":49,"h":49},"scaleZero":false}
+10-18 06:09:21.523 I/ReactNativeJS( 4427): [D30-CAL] enter:end {"sinceMountMs":1603,"i":29,"plannedEndMs":1104,"box":{"x":84,"y":633,"w":44,"h":44},"scaleZero":false}

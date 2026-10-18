@@ -1,133 +1,150 @@
-# Английский · Урок 8 · Занятие 7 — Умею лазать
+# Английский · Урок 8 · Занятие 7 — Полоса препятствий и лодки
 
-**Ситуация.** Вы рассказываете об умении лазать и держать равновесие, затем находите чужой календарь.
+**Ситуация.** Вы проходите низкий тоннель на полосе препятствий, выбираете напарницу для каяка и разбираете страховочное снаряжение.
 
 **Что вы освоите:** закрепить can для умений и повторить вопрос «чей?»
-**Новые слова:** climb
+**Новые слова:** crawl, paddle, harness, kneel
+**Возвращаются:** climb, ball, coat, door, whisper
 
 ---
 
 ## Интро 1
 
-### На скалодроме
+### Низкий тоннель
 
-Вы пришли с другом на скалодром. Он спрашивает, умеете ли вы лазать. `Climb` — «лазать, взбираться». `I can climb` — «Я умею лазать». После `can` нужно `climb`, без `to` и окончания `s`. Лифта на этой стене нет — тут поднимаются сами.
+На полосе препятствий есть мягкий тоннель, в котором нельзя встать в полный рост. Друг спрашивает, справитесь ли вы. `Crawl` — «ползать», передвигаться на руках и коленях. `I can crawl` — «Я умею ползать». После `can` нужно `crawl`, без `to` и окончания `s`. Здесь вы описываете своё умение, поэтому используете can.
 
 **Скажите другу о своём умении.**
 
-- ✅ **I can climb.**
-- ❌ I can to climb. — *После `can` нужно `climb`, без `to`.*
-- ❌ I can climbs. — *После `can` нужно `climb`, без `s`.*
+- ✅ **I can crawl.**
+- ❌ I can to crawl. — *После `can` нужно `crawl`, без `to`.*
+- ❌ I can crawls. — *После `can` нужно `crawl`, без `s`.*
 
 ---
 
 ## Интро 2
 
-### Она держит равновесие
+### Напарница для каяка
 
-Знакомая стоит на одной ноге, не держась за стул. Друг спрашивает о её умении. `She can balance` — «Она умеет держать равновесие». `Can` не меняется после `she`; после него нужно `balance`, без окончания `s`.
+На берегу вы выбираете напарницу для двухместного каяка. Знакомая уже занималась этим спортом. Paddle — «грести веслом», как в каяке или каноэ. `She can paddle` — «Она умеет грести веслом». `Can` не меняется после `she`; после него нужно `paddle`, без окончания `s`.
 
 **Расскажите об умении знакомой.**
 
-- ✅ **She can balance.**
-- ❌ She cans balance. — *После `she` нужно `can`, без `s`.*
-- ❌ She can balances. — *После `can` нужно `balance`, без `s`.*
+- ✅ **She can paddle.**
+- ❌ She cans paddle. — *После `she` нужно `can`, без `s`.*
+- ❌ She can paddles. — *После `can` нужно `paddle`, без `s`.*
 
 ---
 
 ## Интро 3
 
-### Чей календарь
+### Чья страховочная система
 
-После переезда офиса остался настольный календарь. Вы ищете его владельца. `Whose calendar is this?` — «Чей это календарь?» Сначала `whose calendar` — «чей календарь», затем `is this`.
+В верёвочном парке инструктор разложил снаряжение. Одна страховочная система осталась без владельца. Harness — «страховочная система»: ремни, которые надевают на тело для страховки. `Whose harness is this?` — «Чья это страховочная система?» Сначала `whose harness` — «чья страховочная система», затем `is this`.
 
-**Спросите коллег, чей это календарь.**
+**Спросите участников, чья это страховочная система.**
 
-- ✅ **Whose calendar is this?**
-- ❌ Who calendar is this? — *Для «чей» нужно `whose`, а не `who`.*
-- ❌ Whose calendar are this? — *Календарь один: нужно `is this`.*
+- ✅ **Whose harness is this?**
+- ❌ Who harness is this? — *Для «чья» нужно `whose`, а не `who`.*
+- ❌ Whose harness are this? — *Система одна: нужно `is this`.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я умею лазать»**
+**1 · Карточка слова — crawl**
+<!-- interaction_id: en:lesson-08:session-07:word:crawl; family: word_card -->
+> **crawl** — ползать. I can crawl. — «Я умею ползать». Передвигаться на руках и коленях.
+
+**2 · Скажите «Я умею ползать»**
 <!-- interaction_id: en:lesson-08:session-07:i01; family: phrase_builder -->
-Плитки: `climb` `can` `I` → **I can climb.**
+Плитки: `crawl` `can` `I` → **I can crawl.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-07:i02; family: listen_choose -->
-🔊 *climb* → **climb** · balance · whisper
-- balance — *В записи первое слово — `climb`, а в этом варианте — `balance`.*
-- whisper — *В записи первое слово — `climb`, а в этом варианте — `whisper`.*
+🔊 *crawl* → **crawl** · climb · whisper
+- climb — *В записи crawl — «ползать», а не climb — «лазать».*
+- whisper — *В записи crawl, а не whisper — «шептать».*
 
-**3 · Скажите «Я умею лазать»**
+**4 · Выберите слово: «Я умею ползать»**
 <!-- interaction_id: en:lesson-08:session-07:i03; family: context_gap_grammar -->
-I can ___. → **climb** · to climb · climbs
-- to climb — *После `can` нужно `climb`, без `to`.*
-- climbs — *После `can` нужно `climb`, без `s`.*
+I can ___. → **crawl** · to crawl · crawls
+- to crawl — *После `can` нужно `crawl`, без `to`.*
+- crawls — *После `can` нужно `crawl`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-07:i04; family: speed_match -->
-climb — лазать · playground — детская площадка · calendar — календарь · schedule — расписание
+crawl — ползать · ball — мяч · coat — пальто · door — дверь
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-07:i05; family: listen_build_dictation -->
-🔊 *I can climb.* Плитки: `climb` `can` `I` → **I can climb.**
+🔊 *I can crawl.* Плитки: `crawl` `can` `I` → **I can crawl.**
 
-**6 · Скажите о знакомой «Она умеет держать равновесие»**
+**7 · Карточка слова — paddle**
+<!-- interaction_id: en:lesson-08:session-07:word:paddle; family: word_card -->
+> **paddle** — грести веслом. She can paddle. — «Она умеет грести веслом». Так двигаются на каяке или каноэ.
+
+**8 · Скажите о знакомой «Она умеет грести веслом»**
 <!-- interaction_id: en:lesson-08:session-07:i06; family: phrase_builder -->
-Плитки: `balance` `can` `She` → **She can balance.**
+Плитки: `paddle` `can` `She` → **She can paddle.**
 
-**7 · Спросите коллег «Чей это календарь?»**
+**9 · Карточка слова — harness**
+<!-- interaction_id: en:lesson-08:session-07:word:harness; family: word_card -->
+> **harness** — страховочная система. Whose harness is this? — «Чья это страховочная система?» Ремни для страховки на теле.
+
+**10 · Спросите участников «Чья это страховочная система?»**
 <!-- interaction_id: en:lesson-08:session-07:i07; family: scripted_repeat_compare -->
-🎙 **Whose calendar is this?**
+🎙 **Whose harness is this?**
 
-**8 · Скажите «Она умеет держать равновесие»**
+**11 · Выберите слово: «Она умеет грести веслом»**
 <!-- interaction_id: en:lesson-08:session-07:i08; family: context_gap_grammar -->
-She can ___. → **balance** · balances · to balance
-- balances — *После `can` нужно `balance`, без `s`.*
-- to balance — *После `can` нужно `balance`, без `to`.*
+She can ___. → **paddle** · paddles · to paddle
+- paddles — *После `can` нужно `paddle`, без `s`.*
+- to paddle — *После `can` нужно `paddle`, без `to`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-07:i09; family: listen_choose -->
-🔊 *I can climb.* → **I can climb.** · I can balance. · I can whisper.
-- I can balance. — *В записи последнее слово — `climb`, а в этом варианте — `balance`.*
-- I can whisper. — *В записи последнее слово — `climb`, а в этом варианте — `whisper`.*
+🔊 *I can crawl.* → **I can crawl.** · I can paddle. · I can whisper.
+- I can paddle. — *В записи последнее слово — `crawl`, а в этом варианте — `paddle`.*
+- I can whisper. — *В записи последнее слово — `crawl`, а в этом варианте — `whisper`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-07:i10; family: speed_match -->
-stream — смотреть онлайн · climb — лазать · playground — детская площадка · schedule — расписание
+paddle — грести веслом · crawl — ползать · harness — страховочная система · climb — лазать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-07:i11; family: listen_build_dictation -->
-🔊 *Whose calendar is this?* Плитки: `this` `is` `calendar` `Whose` → **Whose calendar is this?**
+🔊 *Whose harness is this?* Плитки: `this` `is` `harness` `Whose` → **Whose harness is this?**
 
-**12 · Вы нашли распечатку личного расписания. Спросите коллег «Чьё это расписание?»**
+**15 · Карточка слова — kneel**
+<!-- interaction_id: en:lesson-08:session-07:word:kneel; family: word_card -->
+> **kneel** — вставать на колени. I can kneel. — «Я могу встать на колени». Здесь can обозначает физическую возможность выполнить движение.
+
+**16 · Для упражнения на коврике нужно опуститься на колени. Скажите: «Я могу встать на колени».**
 <!-- interaction_id: en:lesson-08:session-07:i12; family: phrase_builder -->
-Плитки: `this` `is` `schedule` `Whose` → **Whose schedule is this?**
+Плитки: `kneel` `can` `I` → **I can kneel.**
 
-**13 · Друг спрашивает, как вы смотрите фильмы. Скажите «Я часто смотрю фильмы онлайн»**
+**17 · Инструктор спрашивает о сестре перед тем же упражнением. Скажите: «Она может встать на колени».**
 <!-- interaction_id: en:lesson-08:session-07:i13; family: scripted_repeat_compare -->
-🎙 **I often stream films.**
+🎙 **She can kneel.**
 
-**14 · Скажите «Она умеет лазать»**
+**18 · Выберите форму: «Она может встать на колени»**
 <!-- interaction_id: en:lesson-08:session-07:i14; family: context_gap_grammar -->
-She ___ climb. → **can** · cans · is can
-- cans — *`Can` не меняется после `she`: окончание `s` не нужно.*
-- is can — *Достаточно `she can`; `is` не нужно.*
+She ___ kneel. → **can** · cans · is can
+- cans — *После she нужно can, без s.*
+- is can — *Перед can не нужно is.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-07:i15; family: listen_choose -->
-🔊 *Where is the playground?* → **Where is the playground?** · Where is the garden? · Where is the library?
-- Where is the garden? — *В записи последнее слово — `playground`, а в этом варианте — `garden`.*
-- Where is the library? — *В записи последнее слово — `playground`, а в этом варианте — `library`.*
+🔊 *She can kneel.* → **She can kneel.** · She can paddle. · He can kneel.
+- She can paddle. — *В записи kneel — «встать на колени», а не paddle.*
+- He can kneel. — *В записи She — «она», а не He.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-07:i16; family: speed_match -->
-climb — лазать · calendar — календарь · schedule — расписание · stream — смотреть онлайн
+crawl — ползать · paddle — грести веслом · harness — страховочная система · kneel — вставать на колени
 
-**17 · На скалодроме друг спрашивает об умении Тома. Скажите «Том умеет лазать»**
+**21 · Перед низким тоннелем друг спрашивает об умении Тома. Скажите «Том умеет ползать»**
 <!-- interaction_id: en:lesson-08:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can climb.**
+🎙 **Tom can crawl.**
 

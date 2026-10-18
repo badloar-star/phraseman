@@ -25,7 +25,7 @@ import { spireClock, spireGameText } from '../spire_game_strings';
 import CountText from './CountText';
 import { SPIRE_FLOOR_COUNT, spireStepsIn } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
-import { MomentFullScreen } from './moments_layout';
+import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { stepMomentText } from './step_moment_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
@@ -170,9 +170,10 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
 function SpireStepResultMoment(props: SpireStepResultMomentProps) {
   const testID = props.testID ?? 'step-moment';
   const passed = props.outcome.kind !== 'failed';
+  const footPad = useMomentFootPad();
   return (
     <MomentFullScreen testID={testID} glowTop={passed ? '38%' : undefined}>
-      <View style={s.full}>
+      <View style={[s.full, { paddingBottom: footPad }]}>
         {passed ? <PassView {...props} testID={testID} /> : <FailView {...props} testID={testID} />}
       </View>
     </MomentFullScreen>

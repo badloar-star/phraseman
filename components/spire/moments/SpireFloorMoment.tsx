@@ -32,7 +32,7 @@ import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, spireFloorCoinsOf, spireIsGuard, s
 import { useSpirePalette } from '../useSpirePalette';
 import { useSpireScene } from '../useSpireScene';
 import MomentFirework, { useMomentRumble } from './moments_effects';
-import { MomentFullScreen } from './moments_layout';
+import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { stepMomentText } from './step_moment_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
@@ -167,9 +167,10 @@ const noopSelect = (): void => undefined;
 
 function SpireFloorMoment(props: SpireFloorMomentProps) {
   const testID = props.testID ?? 'floor-moment';
+  const footPad = useMomentFootPad();
   return (
     <MomentFullScreen testID={testID} glowTop={props.outcome.kind === 'summit' ? '30%' : undefined}>
-      <View style={s.full}>
+      <View style={[s.full, { paddingBottom: footPad }]}>
         {props.outcome.kind === 'summit' ? <SummitView {...props} testID={testID} /> : <FloorView {...props} testID={testID} />}
       </View>
     </MomentFullScreen>

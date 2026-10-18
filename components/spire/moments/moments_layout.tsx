@@ -13,6 +13,7 @@ import { LinearGradient } from '../../SafeLinearGradient';
 import { useSpirePalette } from '../useSpirePalette';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import { MomentGlowSpot } from './moment_glow';
+import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 
 /** Затемнение окна момента: чёрное 0,62 в любой теме (как `.or-dim` и `--dim` образца). */
 export const MOMENT_DIM_COLOR = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение окна — тёмный скрим в любой теме (как GlassAlertDialog)
@@ -30,6 +31,16 @@ type FullProps = Readonly<{
    */
   glowTop?: `${number}%`;
 }>;
+
+/**
+ * Нижнее поле кнопок полноэкранного момента: эталонные 36 на телефоне без системной панели, но не меньше её высоты + 24.
+ * зачем (координатор 18.10, проверка выпуска): фиксированные 36 у окон Пика/урока/диалога не учитывали трёхкнопочную панель Android (~48) —
+ * нижняя кнопка уходила под неё. Та же формула, что уже стоит в MomentDown и MomentPromotionShort.
+ */
+export function useMomentFootPad(): number {
+  const insets = useStableSafeAreaInsets();
+  return Math.max(insets.bottom, 12) + 24;
+}
 
 /** Полноэкранный момент: отдельный экран темы поверх приложения. */
 export const MomentFullScreen = memo(function MomentFullScreen({ children, testID, glowTop }: FullProps) {

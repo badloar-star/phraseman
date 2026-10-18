@@ -14,7 +14,7 @@ import { studyLanguageWord } from '../../constants/study_language_words';
 import { hapticLightImpact, hapticSuccess } from '../../hooks/use-haptics';
 import MomentCoin from '../moments/MomentCoin';
 import { useFireOnce } from '../moments/use_fire_once';
-import { MomentFullScreen } from '../spire/moments/moments_layout';
+import { MomentFullScreen, useMomentFootPad } from '../spire/moments/moments_layout';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import StreakConfetti from '../streak/moments/StreakConfetti';
 import { V2_TYPE } from '../../constants/v2Style';
@@ -41,6 +41,7 @@ export type FirstDialogMomentProps = Readonly<{
 
 function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goalsTotal, onNext, testID = 'first-dialog' }: FirstDialogMomentProps) {
   const p = useSpirePalette();
+  const footPad = useMomentFootPad(); // зачем: нижняя кнопка над системной панелью (moments_layout)
   const reduceMotion = useReducedMotion();
   const [cheer, setCheer] = useState(reduceMotion);
   const [confetti, setConfetti] = useState(false);
@@ -64,7 +65,7 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
   return (
     <MomentFullScreen testID={testID} glowTop="38%">
       <StreakConfetti fire={confetti} n={90} />
-      <View style={s.full}>
+      <View style={[s.full, { paddingBottom: footPad }]}>
         <View style={s.body}>
           <MomentCoin rank={coinRank} size={110} mood={cheer ? 'cheer' : 'idle'} say={cheer ? firstDialogText(lang, 'say') : undefined} emote={cheer ? 'heart' : null} emoteCount={4} glints testID={`${testID}-coin`} />
           <Animated.Text entering={beat(0)} style={[s.ov, { color: p.textSecondary }]}>{firstDialogText(lang, 'overline').toUpperCase()}</Animated.Text>

@@ -13,7 +13,7 @@ import type { Lang } from '../../constants/i18n';
 import { hapticHeavyImpact, hapticTap } from '../../hooks/use-haptics';
 import MomentCoin from '../moments/MomentCoin';
 import { useFireOnce } from '../moments/use_fire_once';
-import { MomentFullScreen } from '../spire/moments/moments_layout';
+import { MomentFullScreen, useMomentFootPad } from '../spire/moments/moments_layout';
 import { useMomentRumble } from '../spire/moments/moments_effects';
 import { stepMomentText } from '../spire/moments/step_moment_strings';
 import StreakConfetti from '../streak/moments/StreakConfetti';
@@ -45,6 +45,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
   // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
   const fire = useFireOnce('LESSON-PERFECT');
   const p = useSpirePalette();
+  const footPad = useMomentFootPad(); // зачем: нижняя кнопка над системной панелью (moments_layout)
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
   const rumble = useMomentRumble();
@@ -78,7 +79,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
   return (
     <MomentFullScreen testID={testID} glowTop="36%">
       <StreakConfetti fire={confetti} n={80} />
-      <Animated.View style={[s.full, rumble.style]}>
+      <Animated.View style={[s.full, { paddingBottom: footPad }, rumble.style]}>
         <View style={s.body}>
           <View style={s.coinBox}>
             <MomentCoin rank={coinRank} size={128} mood="wow" glints testID={`${testID}-coin`} />

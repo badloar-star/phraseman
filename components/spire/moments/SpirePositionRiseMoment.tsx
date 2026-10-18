@@ -18,7 +18,7 @@ import { V2Button } from '../../v2/V2Kit';
 import { spireGameText } from '../spire_game_strings';
 import { useSpirePalette } from '../useSpirePalette';
 import { LadderRow, type MomentRoomRow } from './MomentPromotion';
-import { MomentFullScreen } from './moments_layout';
+import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { momentText } from './moments_strings';
 import { positionMomentText } from './position_moment_strings';
 import { stepMomentText } from './step_moment_strings';
@@ -59,6 +59,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
   // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
   const fire = useFireOnce('POSITION-RISE');
   const p = useSpirePalette();
+  const footPad = useMomentFootPad(); // зачем: нижняя кнопка над системной панелью (moments_layout)
   const reduceMotion = useReducedMotion();
   const [rowH, setRowH] = useState(FALLBACK_ROW_H);
   const [zone, setZone] = useState(reduceMotion);
@@ -104,7 +105,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
 
   return (
     <MomentFullScreen testID={testID}>
-      <View style={s.full}>
+      <View style={[s.full, { paddingBottom: footPad }]}>
         <View style={s.body}>
           <Text style={[s.ov, { color: p.textSecondary }]}>{`${spireGameText(lang, 'stepPassed').toUpperCase()} · +${coinsGained} ${spireGameText(lang, 'coins').toUpperCase()}`}</Text>
           <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hMd, { color: p.text }]} testID={`${testID}-heading`}>{heading}</Text>

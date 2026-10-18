@@ -24,6 +24,8 @@ export type OnboardingPalette = Readonly<{
   soft: string;
   /** Дорожка/пустой кружок/скелет. */
   track: string;
+  /** Тело тиснёного знака welcome: тон track, сдвинутый к тексту до 3:1 к фону (bg/bgTop/bgBottom). */
+  markBody: string;
   sheet: string;
   text: string;
   secondary: string;
@@ -81,6 +83,13 @@ const ensure = (fg: string, on: string, toward: string, min: number): string => 
   for (let k = 0; k <= 1.0001 && onboardingContrast(out, on) < min; k += 0.1) out = mix(fg, toward, k);
   return out;
 };
+/** Как ensure, но держит `min` сразу к нескольким фонам (градиент welcome: верх, середина, низ). */
+const ensureOnAll = (fg: string, ons: readonly string[], toward: string, min: number): string => {
+  let out = hex6(fg);
+  const worst = (c: string): number => Math.min(...ons.map((on) => onboardingContrast(c, on)));
+  for (let k = 0; k <= 1.0001 && worst(out) < min; k += 0.05) out = mix(fg, toward, k);
+  return out;
+};
 
 export function buildOnboardingPalette(g: GlassTokens, key: string): OnboardingPalette {
   const card = hex6(g.opaqueCard);
@@ -94,6 +103,9 @@ export function buildOnboardingPalette(g: GlassTokens, key: string): OnboardingP
     card,
     soft: hex6(g.opaqueControl),
     track: hex6(g.opaqueControl),
+    // зачем (Сверка С1 18.10, walk/01_onboarding.png): знак welcome «тон-в-тон» (тело = track) на светлом голубом фоне почти невидим —
+    // тот же тон, но сдвинутый к тексту ровно до 3:1 (графика) к фону; где track уже держит 3:1 — без изменений. Раскладка не трогается.
+    markBody: ensureOnAll(g.opaqueControl, [g.bg, g.bgTop, g.bgBottom], g.text, 3),
     sheet: hex6(g.opaqueSheet),
     text,
     secondary: hex6(g.secondary),

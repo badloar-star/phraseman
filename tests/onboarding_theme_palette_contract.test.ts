@@ -36,6 +36,25 @@ describe.each(PAIRS)('онбординг в цветах темы — $name', ({
   });
 });
 
+// зачем (Сверка С1 18.10, walk/01_onboarding.png): тиснёный знак welcome «тон-в-тон» был почти невидим на светлом фоне — тело знака ≥ 3:1 к фону
+// во ВСЕХ темах × оформление × насыщенность (новичок может прийти в онбординг и с выбранной темой, напр. после повторного согласия).
+describe('онбординг — знак welcome различим', () => {
+  it('markBody ≥ 3:1 к bg/bgTop/bgBottom во всех темах', () => {
+    const { LIQUID_GLASS_THEME_IDS } = jest.requireActual('../constants/liquidGlassThemePalette') as { LIQUID_GLASS_THEME_IDS: readonly string[] };
+    const bad: string[] = [];
+    for (const appearance of ['light', 'dark'] as const) for (const id of LIQUID_GLASS_THEME_IDS) for (const intensity of [0, 0.5, 1]) {
+      const p = buildOnboardingPalette(liquidGlassTokens(id as never, { appearance, intensity } as never), `${id}|${appearance}|${intensity}`);
+      const worst = Math.min(onboardingContrast(p.markBody, p.bg), onboardingContrast(p.markBody, p.bgTop), onboardingContrast(p.markBody, p.bgBottom));
+      if (worst < 3) bad.push(`${id}@${intensity} ${appearance}: ${worst.toFixed(2)}`);
+    }
+    expect(bad).toEqual([]);
+  });
+  it('тело знака красится markBody, не track', () => {
+    const src = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components/CleanOnboarding.tsx'), 'utf8'));
+    expect(src).toMatch(/embossBody: \{[\s\S]{0,200}tintColor: P\.markBody/);
+  });
+});
+
 describe('онбординг — исходник', () => {
   const src = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components/CleanOnboarding.tsx'), 'utf8'));
   it('стили строятся из палитры темы, статической таблицы нет', () => {

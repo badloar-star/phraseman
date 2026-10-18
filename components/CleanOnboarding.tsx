@@ -4835,7 +4835,8 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
     transform: [{ translateY: -1.5 }],
   },
   embossBody: {
-    tintColor: P.track,
+    // зачем (Сверка С1 18.10): тон track давал знак почти невидимым на светлом фоне — markBody держит 3:1 к фону
+    tintColor: P.markBody,
   },
   welcomeTitleWrap: {
     alignSelf: 'stretch',

@@ -1121,7 +1121,26 @@ const LessonCard = React.memo(function LessonCard({
             />
           )}
           {/* Progress fill */}
+          {/* зачем (Макеты 18.10, design/c2_all_lessons): градиент был растянут на ширину прогресса — при 7 % весь переход
+              «тон карточки → яркий» сжимался в узкую полосу, и её яркий край ложился прямо под «УРОК 1» / название (полоса
+              «поверх» текста). Теперь градиент рисуется на ВСЮ ширину карточки, а показывается только доля прогресса (клип):
+              на малом проценте видно тёмное начало, на большом — прежний вид. */}
           {showLessonProgressFill && (
+            <View
+              pointerEvents="none"
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: `${progPct}%`,
+                overflow: "hidden",
+                borderTopLeftRadius: cardRadius,
+                borderBottomLeftRadius: cardRadius,
+                borderTopRightRadius: cardRadius,
+                borderBottomRightRadius: cardRadius,
+              }}
+            >
             <LinearGradient
               colors={
                 isGoldTheme
@@ -1142,7 +1161,8 @@ const LessonCard = React.memo(function LessonCard({
                 left: 0,
                 top: 0,
                 bottom: 0,
-                width: `${progPct}%`,
+                // ширина всей карточки внутри клипа шириной progPct %
+                width: `${(100 / Math.max(progPct, 1)) * 100}%`,
                 opacity: isGoldTheme
                   ? levelLockedByExam
                     ? 0.16
@@ -1150,12 +1170,9 @@ const LessonCard = React.memo(function LessonCard({
                   : levelLockedByExam
                     ? 0.28
                     : 1,
-                borderTopLeftRadius: cardRadius,
-                borderBottomLeftRadius: cardRadius,
-                borderTopRightRadius: cardRadius,
-                borderBottomRightRadius: cardRadius,
               }}
             />
+            </View>
           )}
           {/* Subtle inner highlight on filled part top edge */}
           {showLessonProgressFill && (

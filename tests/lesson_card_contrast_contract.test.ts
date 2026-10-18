@@ -42,4 +42,12 @@ describe('lesson card contrast contract', () => {
     expect(source).not.toContain('LESSON_CARD_ACCENT_EDGE_SHADOW');
   });
 
+  // 18.10 (Макеты, design/c2_all_lessons): на малом прогрессе градиент заливки сжимался в яркую полосу под «УРОК 1».
+  // Градиент — на всю ширину карточки, показывается клипом шириной прогресса.
+  it('draws the progress gradient over the full card width and clips it to the progress share', () => {
+    const source = compact(read('app/(tabs)/lessons.tsx'));
+    expect(source).toContain(compact('width: `${progPct}%`, overflow: "hidden",'));
+    expect(source).toContain(compact('width: `${(100 / Math.max(progPct, 1)) * 100}%`,'));
+  });
+
 });

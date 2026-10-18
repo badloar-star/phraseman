@@ -123,3 +123,9 @@ Security and privacy: без данных пользователей.
 Technical debt: нет.
 Verification: 390 px; KPI «для сведения» совпадает с числом карточек.
 Rollback: git revert.
+
+## «Размер»: сколько займёт после «ок» и до какого часа выбрать
+Governance-ID: TG-D862F656FFDF
+Outcome: две строки простыми словами в карточке «Размер»: после выбора владельца звук готовится ≈45–60 мин, в это время остальные не трогают звук курса (план Ядра 18.10 02:30, пробный прогон 041272113); выбрать до 06:45 — звук успеет до заморозки в 08:00, позже — доедет примерно через час после выбора.
+Scope: docs/design/v2-app/morning-report-2026-10-18.html. Security and privacy: без данных пользователей. Technical debt: нет. Verification: 390 px. Rollback: git revert.
+Architecture: правка скриптом report_upd22.cjs.

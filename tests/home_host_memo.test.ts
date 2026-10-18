@@ -20,4 +20,14 @@ describe('хост Главной не перерисовывается вмес
     expect(layout).toContain('if (!TAP_LATENCY_TRACE_ENABLED) { noteTabsCause(values, inst); return; }');
     expect(layout).toMatch(/function noteTabsCause[\s\S]{0,120}if \(!DIAG_ENABLED\) return;/);
   });
+
+  // зачем (R137, замер Сверки 22dffd841): memo сработал (home_host_render молчит), рендер №1 остался от контекста внутри Главной — шаг home_ctx называет сменившийся контекст (позиция, displayName, имена полей), а недоступность внутренностей React пишет причиной.
+  it('журнал Главной: шаг home_ctx читает контексты текущего волокна и пишет причину недоступности', () => {
+    const probe = read('app/render_cause_probe.ts');
+    expect(probe).toContain('function readCurrentFiberContexts()');
+    expect(probe).toContain("noteBackStep('home_ctx', { unavailable: reading.reason });");
+    expect(probe).toContain("noteBackStep('home_ctx', { total: reading.deps.length, changed: ctxChanged });");
+    expect(probe).toContain("if (tag === 'home') noteHomeContexts(previousContextsRef);");
+    expect(probe).toContain('keys: valueKeys(entry.dep.value)');
+  });
 });

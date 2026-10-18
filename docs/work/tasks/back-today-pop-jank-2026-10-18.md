@@ -6,6 +6,7 @@ Governance-ID: TG-38A35470906C
 Governance-ID: TG-CC7B0FF72D0A
 Governance-ID: TG-9AC3F61FAE01
 Governance-ID: TG-CE0B67AD86ED
+Governance-ID: TG-B73E8BB6D02E
 Status: In progress (этап 2 — правка по журналу Сверки back_after3)
 Owner: сессия «2 · ДИЗАЙН» (поручение координатора 18.10 03:06, приоритет №1 после полного прогона тестов)
 Related epic/enabler: [BACK-BTN], цель «тап → первый кадр < 100 мс, кадры ≤ 32 мс», детектор d17ebff18, замер Сверки 0efb86276

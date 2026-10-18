@@ -132,7 +132,7 @@ import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Appearance, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -160,6 +160,8 @@ import { getStableId } from './stable_id';
 import type { Props as OnboardingProps } from '../components/onboarding';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { startupSplashPalette, STARTUP_SPLASH_DARK_BG } from '../constants/startup_splash_palette';
 import UpdateModal from '../components/UpdateModal';
 import AppMessageAnnouncementModal from '../components/AppMessageAnnouncementModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
@@ -543,7 +545,8 @@ DefaultText.defaultProps = {
   style: [{ fontFamily: APP_FONT_FAMILY }, DefaultText.defaultProps?.style],
 };
 
-const STARTUP_SPLASH_BG = '#101214';
+// зачем (координатор 18.10, theme_boot): тёмный фон остаётся только запасным для тёмной системы; заставка красится startupSplashPalette
+const STARTUP_SPLASH_BG = STARTUP_SPLASH_DARK_BG;
 /** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно.
  * зачем (владелец, 2026-08-25): срезано 2500→1000 — гейт живёт ТОЛЬКО в дев-сборках
  * (runtimeFontsExpected=false в проде, шрифты вшиты нативно), а при перегруженном
@@ -677,6 +680,17 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   const wordIn = useRef(new Animated.Value(0)).current;    // проявление ворд-марка
   const subIn = useRef(new Animated.Value(0)).current;     // проявление подзаголовка
   const shine = useRef(new Animated.Value(0)).current;     // проезд блика: 0→1
+  // зачем (координатор 18.10, theme_boot): при светлой системе заставка была тёмной ~4 с, потом вспышка светлой Главной.
+  // Фон и надпись — по сохранённой теме, пока её нет — по системной схеме (Appearance читается синхронно).
+  const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassChoiceReady } = useTheme();
+  const splashPalette = useMemo(
+    () => startupSplashPalette(Appearance.getColorScheme(), liquidGlassChoiceReady ? liquidGlassTokens(liquidGlassThemeId) : null),
+    // liquidGlassAppearance — смена оформления меняет токены той же темы
+    [liquidGlassChoiceReady, liquidGlassThemeId, liquidGlassAppearance],
+  );
+  useEffect(() => {
+    bootMark('[THEME-BOOT] splash-hold', { visible, canHideNativeSplash, bg: splashPalette.bg, light: splashPalette.light, source: splashPalette.source, systemScheme: Appearance.getColorScheme() ?? null, choiceReady: liquidGlassChoiceReady, theme: liquidGlassThemeId });
+  }, [visible, canHideNativeSplash, splashPalette, liquidGlassChoiceReady, liquidGlassThemeId]);
 
   // Как только анимированный оверлей смонтирован и отрисован — прячем нативный сплэш,
   // чтобы застывшая нативная картинка сразу уступила место анимации (фон тот же #101214,
@@ -684,8 +698,11 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   // Пока рантайм-шрифты не встали, нативная картинка остаётся сверху: иначе первым
   // кадром JS покажет текст системным начертанием и потом подменит его на Inter.
   useEffect(() => {
-    if (!visible || !canHideNativeSplash) return;
-    const id = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:useEffect.hideAsync')); });
+    if (!visible || !canHideNativeSplash) { bootMark('[THEME-BOOT] splash-hold: нативную заставку не снимаем', { visible, canHideNativeSplash }); return; }
+    const id = requestAnimationFrame(() => {
+      bootMark('[THEME-BOOT] SplashScreen.hideAsync() — из заставки-удержания (rAF после монтажа)');
+      void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:useEffect.hideAsync'));
+    });
     return () => cancelAnimationFrame(id);
   }, [visible, canHideNativeSplash]);
 
@@ -742,7 +759,11 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   });
 
   return (
-    <Animated.View pointerEvents="none" style={[styles.startupSplashAnimatedRoot, { opacity: startupHoldEarlyDismissOpacity }]}>
+    <Animated.View
+      pointerEvents="none"
+      onLayout={() => bootMark('[THEME-BOOT] splash-hold: первый кадр', { bg: splashPalette.bg })}
+      style={[styles.startupSplashAnimatedRoot, { backgroundColor: splashPalette.bg, opacity: startupHoldEarlyDismissOpacity }]}
+    >
       <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphEnterScale }] }}>
         <Animated.View style={[styles.startupSplashGlyphPulse, { transform: [{ scale: glyphPulseScale }] }]}>
           <Image
@@ -765,6 +786,7 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
         <Image
           source={require('../assets/images/splash-wordmark.webp')}
           contentFit="contain"
+          tintColor={splashPalette.wordmarkTint ?? undefined}
           style={{ width: '100%', height: '100%' }}
         />
         {/* Блик: светлый диагональный градиент, ограниченный формой ворд-марка через маску. */}
@@ -792,7 +814,7 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
       <Animated.Text
         style={[
           styles.startupSplashSubtitle,
-          { opacity: subIn, transform: [{ translateY: subTranslateY }] },
+          { color: splashPalette.subtitle, opacity: subIn, transform: [{ translateY: subTranslateY }] },
         ]}
       >
         by Professor Lingman
@@ -4069,7 +4091,8 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView
-      style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}
+      // зачем (theme_boot): до ThemeProvider тема ещё не прочитана — фон корня по системной схеме, как у нативной заставки
+      style={{ flex: 1, backgroundColor: startupSplashPalette(Appearance.getColorScheme(), null).bg }}
       onStartShouldSetResponderCapture={tapLatencyCaptureHandler}
       onTouchEnd={tapLatencyTouchEndHandler}
     >

@@ -216,6 +216,9 @@ function packBuyFailedToast() {
   });
 }
 
+/** Защёлка от двойного тапа «Тренировать» в шапке набора (навигация не сообщает о завершении — держим по времени). */
+const TRAIN_THIS_PACK_LATCH_MS = 1500;
+
 export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -1369,7 +1372,16 @@ export default function FlashcardsScreen() {
     router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
   }, [router]);
   // зачем (владелец 04.10): «Тренировать» внутри набора — сразу этот набор: хаб откроет окно режимов и после выбора запустит сессию с ним
+  // зачем (координатор 18.10): двойной тап «Тренировать» в шапке набора давал два router.navigate. Защёлка на 1500 мс — как navOnce у соседней
+  // шторки тренировки (use_deck_train_sheet); отброшенный тап пишет причину в журнал.
+  const trainThisPackAtRef = useRef(0);
   const onTrainThisPack = useCallback(() => {
+    const sinceLastMs = Date.now() - trainThisPackAtRef.current;
+    if (sinceLastMs < TRAIN_THIS_PACK_LATCH_MS) {
+      console.log(`[CARDS-OPTIMISTIC] train_tap dropped reason=inflight sinceLastMs=${sinceLastMs}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    trainThisPackAtRef.current = Date.now();
     // зачем (координатор 18.10, Optimistic UI): «Тренировать» в наборе → хаб с окном режимов (дальше — шаги train_tap хаба).
     markCardsOptimisticTap('train_tap', packDeeplink ? `pack:${packDeeplink}` : 'gallery', { from: 'pack_header', cards: listCards.length });
     logCardsOptimisticStep('train_tap', 'navigate', { pathname: '/flashcards', withDeck: !!packDeeplink });

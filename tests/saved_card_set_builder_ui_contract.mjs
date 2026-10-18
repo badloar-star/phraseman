@@ -18,7 +18,9 @@ assert.match(hub, /applyCommunityPacksFilter\(catalogCommunityPacks, communityQu
 assert.match(hub, /PACK_LANGUAGE_META/);
 
 assert.match(myPacks, /PackLanguagePicker/);
-assert.match(myPacks, /filterPacksByLanguage/);
+// перепин 18.10 (Сайт, координатор): filterPacksByLanguage убран НАМЕРЕННО в 7d3ff1c50 (15.10, R06/R27/R29/R30) — «Мои наборы» грузят все
+// наборы, язык фильтруется на клиенте через applyMyPacksLanguageView (my_packs_language_view.ts; пустой по языку — показываем все + «Скрыто N»).
+assert.match(myPacks, /applyMyPacksLanguageView/);
 
 assert.match(editor, /stage\?: string/);
 assert.match(editor, /consumeSavedCardSetStage/);

@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-33",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-33:word:recycle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recycle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:recycle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recycle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:recycle:audio",
+            "transcript": "recycle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:recycle:r1",
+              "targetText": "recycle",
+              "meaningByLocale": {
+                "ru": "сдавать на переработку. I usually recycle. — «Я обычно сдаю на переработку». Сдавать материалы, чтобы из них сделали новые изделия.",
+                "uk": "здавати на переробку. I usually recycle. — «Я зазвичай здаю на переробку». Здавати матеріали, щоб із них виготовили нові вироби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recycle",
+            "definitionByLocale": {
+              "ru": "сдавать на переработку. I usually recycle. — «Я обычно сдаю на переработку». Сдавать материалы, чтобы из них сделали новые изделия.",
+              "uk": "здавати на переробку. I usually recycle. — «Я зазвичай здаю на переробку». Здавати матеріали, щоб із них виготовили нові вироби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед у баков спрашивает про бутылки. Скажите: «Я обычно сдаю на переработку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед у баков спрашивает про бутылки. Скажите: «Я обычно сдаю на переработку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually recycle.",
+          "localizedMeaning": {
+            "ru": "Сосед у баков спрашивает про бутылки. Скажите: «Я обычно сдаю на переработку»",
+            "uk": "Сусід біля баків питає про пляшки. Скажіть: «Я зазвичай здаю на переробку»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "recycle"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед у баков спрашивает про бутылки. Скажите: «Я обычно сдаю на переработку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually recycle.`",
+                "uk": "тут потрібно `usually` — `I usually recycle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:word:iron",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — iron",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:iron:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — iron",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:iron:audio",
+            "transcript": "iron"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:iron:r1",
+              "targetText": "iron",
+              "meaningByLocale": {
+                "ru": "гладить. I often iron shirts. — «Я часто глажу рубашки». Разглаживать одежду горячим утюгом.",
+                "uk": "прасувати. I often iron shirts. — «Я часто прасую сорочки». Розгладжувати одяг гарячою праскою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "iron",
+            "definitionByLocale": {
+              "ru": "гладить. I often iron shirts. — «Я часто глажу рубашки». Разглаживать одежду горячим утюгом.",
+              "uk": "прасувати. I often iron shirts. — «Я часто прасую сорочки». Розгладжувати одяг гарячою праскою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i02:r1",
+            "text": "iron"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i02:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i02:r3",
+            "text": "fold"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i02:audio",
+            "transcript": "iron"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:i02:r1",
+              "targetText": "iron",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i02:r2",
+              "targetText": "wash",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i02:r3",
+              "targetText": "fold",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `iron`, а в этом варианте — `wash`.",
+                "uk": "У записі перше слово — `iron`, а в цьому варіанті — `wash`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `iron`, а в этом варианте — `fold`.",
+                "uk": "У записі перше слово — `iron`, а в цьому варіанті — `fold`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:word:dust",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dust",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:dust:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dust",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:dust:audio",
+            "transcript": "dust"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:dust:r1",
+              "targetText": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль. She often dusts the shelves. — «Она часто вытирает пыль с полок». Убирать пыль мягкой тряпкой.",
+                "uk": "витирати пил. She often dusts the shelves. — «Вона часто витирає пил з полиць». Прибирати пил м’якою ганчіркою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dust",
+            "definitionByLocale": {
+              "ru": "вытирать пыль. She often dusts the shelves. — «Она часто вытирает пыль с полок». Убирать пыль мягкой тряпкой.",
+              "uk": "витирати пил. She often dusts the shelves. — «Вона часто витирає пил з полиць». Прибирати пил м’якою ганчіркою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i03:r1",
+            "text": "dusts"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i03:r2",
+            "text": "dust"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i03:r3",
+            "text": "dusting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+            "uk": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ the shelves.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-33:i03:r1",
+              "text": "dusts"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i03:r2",
+              "text": "dust"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i03:r3",
+              "text": "dusting"
+            }
+          ],
+          "testedDimension": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `dusts`.",
+                "uk": "Після `She` потрібно `dusts`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `dusts`.",
+                "uk": "Тут потрібна форма `dusts`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-33:i04:p1",
+              "target": "recycle",
+              "meaningByLocale": {
+                "ru": "сдавать на переработку",
+                "uk": "здавати на переробку"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i04:p2",
+              "target": "iron",
+              "meaningByLocale": {
+                "ru": "гладить",
+                "uk": "прасувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i04:p3",
+              "target": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль",
+                "uk": "витирати пил"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i04:p4",
+              "target": "shirt",
+              "meaningByLocale": {
+                "ru": "рубашка",
+                "uk": "сорочка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recycle",
+            "iron",
+            "dust",
+            "shirt"
+          ],
+          "rightColumn": [
+            "сдавать на переработку",
+            "гладить",
+            "вытирать пыль",
+            "рубашка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i05:audio",
+            "transcript": "I often iron shirts."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often iron shirts.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "iron",
+            "shirts"
+          ],
+          "authoredDistractorTokens": [
+            "irons"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `iron` — `I often iron shirts.`",
+                "uk": "тут потрібно `iron` — `I often iron shirts.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:word:unload",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unload",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:unload:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unload",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:unload:audio",
+            "transcript": "unload"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:unload:r1",
+              "targetText": "unload",
+              "meaningByLocale": {
+                "ru": "разгружать. I usually unload the dishwasher. — «Я обычно разгружаю посудомоечную машину». Здесь — доставать чистую посуду из машины. Также можно разгружать машину с грузом.",
+                "uk": "розвантажувати. I usually unload the dishwasher. — «Я зазвичай розвантажую посудомийну машину». Тут — діставати чистий посуд із машини. Також можна розвантажувати машину з вантажем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unload",
+            "definitionByLocale": {
+              "ru": "разгружать. I usually unload the dishwasher. — «Я обычно разгружаю посудомоечную машину». Здесь — доставать чистую посуду из машины. Также можно разгружать машину с грузом.",
+              "uk": "розвантажувати. I usually unload the dishwasher. — «Я зазвичай розвантажую посудомийну машину». Тут — діставати чистий посуд із машини. Також можна розвантажувати машину з вантажем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы убираете посуду после ужина. Скажите: «Я обычно разгружаю посудомоечную машину»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы убираете посуду после ужина. Скажите: «Я обычно разгружаю посудомоечную машину»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually unload the dishwasher.",
+          "localizedMeaning": {
+            "ru": "Вы убираете посуду после ужина. Скажите: «Я обычно разгружаю посудомоечную машину»",
+            "uk": "Ви прибираєте посуд після вечері. Скажіть: «Я зазвичай розвантажую посудомийну машину»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "unload",
+            "the",
+            "dishwasher"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы убираете посуду после ужина. Скажите: «Я обычно разгружаю посудомоечную машину»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually unload the dishwasher.`",
+                "uk": "тут потрібно `usually` — `I usually unload the dishwasher.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про вашего брата. Скажите: «Он часто гладит рубашки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про вашего брата. Скажите: «Он часто гладит рубашки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i07:audio",
+            "transcript": "He often irons shirts."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He often irons shirts.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i08:r1",
+            "text": "unloads"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i08:r2",
+            "text": "unload"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i08:r3",
+            "text": "unloading"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+            "uk": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She usually ___ the dishwasher.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-33:i08:r1",
+              "text": "unloads"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i08:r2",
+              "text": "unload"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i08:r3",
+              "text": "unloading"
+            }
+          ],
+          "testedDimension": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `unloads`.",
+                "uk": "Після `She` потрібно `unloads`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `unloads`.",
+                "uk": "Тут потрібна форма `unloads`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i09:r1",
+            "text": "I usually recycle."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i09:r2",
+            "text": "I usually wash."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i09:r3",
+            "text": "I usually fold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i09:audio",
+            "transcript": "I usually recycle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:i09:r1",
+              "targetText": "I usually recycle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i09:r2",
+              "targetText": "I usually wash.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i09:r3",
+              "targetText": "I usually fold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `recycle`, а в этом варианте — `wash`.",
+                "uk": "У записі останнє слово — `recycle`, а в цьому варіанті — `wash`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `recycle`, а в этом варианте — `fold`.",
+                "uk": "У записі останнє слово — `recycle`, а в цьому варіанті — `fold`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-33:i10:p1",
+              "target": "unload",
+              "meaningByLocale": {
+                "ru": "разгружать",
+                "uk": "розвантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i10:p2",
+              "target": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль",
+                "uk": "витирати пил"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i10:p3",
+              "target": "recycle",
+              "meaningByLocale": {
+                "ru": "сдавать на переработку",
+                "uk": "здавати на переробку"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i10:p4",
+              "target": "iron",
+              "meaningByLocale": {
+                "ru": "гладить",
+                "uk": "прасувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unload",
+            "dust",
+            "recycle",
+            "iron"
+          ],
+          "rightColumn": [
+            "разгружать",
+            "вытирать пыль",
+            "сдавать на переработку",
+            "гладить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i11:audio",
+            "transcript": "She often dusts the shelves."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She often dusts the shelves.",
+          "orderedTokens": [
+            "She",
+            "often",
+            "dusts",
+            "the",
+            "shelves"
+          ],
+          "authoredDistractorTokens": [
+            "dust"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `dusts` — `She often dusts the shelves.`",
+                "uk": "тут потрібно `dusts` — `She often dusts the shelves.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы рассказываете о брате. Скажите: «Он обычно сдаёт бутылки на переработку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о брате. Скажите: «Он обычно сдаёт бутылки на переработку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He usually recycles bottles.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете о брате. Скажите: «Он обычно сдаёт бутылки на переработку»",
+            "uk": "Ви розповідаєте про брата. Скажіть: «Він зазвичай здає пляшки на переробку»"
+          },
+          "orderedTokens": [
+            "He",
+            "usually",
+            "recycles",
+            "bottles"
+          ],
+          "authoredDistractorTokens": [
+            "recycle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о брате. Скажите: «Он обычно сдаёт бутылки на переработку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `recycles` — `He usually recycles bottles.`",
+                "uk": "тут потрібно `recycles` — `He usually recycles bottles.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, кто у вас убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, кто у вас убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i13:audio",
+            "transcript": "She usually unloads the dishwasher."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually unloads the dishwasher.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+            "uk": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ dust the shelves.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-33:i14:r1",
+              "text": "usually"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually` перед `dust`.",
+                "uk": "Для «зазвичай» потрібно `usually` перед `dust`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually`; `am` перед `dust` не ставим.",
+                "uk": "Для «зазвичай» потрібно `usually`; `am` перед `dust` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i15:r1",
+            "text": "He often irons shirts."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i15:r2",
+            "text": "He often irons socks."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i15:r3",
+            "text": "He often irons coats."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i15:audio",
+            "transcript": "He often irons shirts."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:i15:r1",
+              "targetText": "He often irons shirts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i15:r2",
+              "targetText": "He often irons socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i15:r3",
+              "targetText": "He often irons coats.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shirts`, а в этом варианте — `socks`.",
+                "uk": "У записі останнє слово — `shirts`, а в цьому варіанті — `socks`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shirts`, а в этом варианте — `coats`.",
+                "uk": "У записі останнє слово — `shirts`, а в цьому варіанті — `coats`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-33:i16:p1",
+              "target": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль",
+                "uk": "витирати пил"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i16:p2",
+              "target": "unload",
+              "meaningByLocale": {
+                "ru": "разгружать",
+                "uk": "розвантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i16:p3",
+              "target": "shirt",
+              "meaningByLocale": {
+                "ru": "рубашка",
+                "uk": "сорочка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i16:p4",
+              "target": "bottle",
+              "meaningByLocale": {
+                "ru": "бутылка",
+                "uk": "пляшка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dust",
+            "unload",
+            "shirt",
+            "bottle"
+          ],
+          "rightColumn": [
+            "вытирать пыль",
+            "разгружать",
+            "рубашка",
+            "бутылка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, что ваш брат обычно делает с пустыми бутылками. Скажите: «Он обычно сдаёт на переработку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, что ваш брат обычно делает с пустыми бутылками. Скажите: «Он обычно сдаёт на переработку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i17:audio",
+            "transcript": "He usually recycles."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually recycles.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-33:word:recycle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recycle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:recycle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recycle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:recycle:audio",
+            "transcript": "recycle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:recycle:r1",
+              "targetText": "recycle",
+              "meaningByLocale": {
+                "ru": "сдавать на переработку. I usually recycle. — «Я обычно сдаю на переработку». Сдавать материалы, чтобы из них сделали новые изделия.",
+                "uk": "здавати на переробку. I usually recycle. — «Я зазвичай здаю на переробку». Здавати матеріали, щоб із них виготовили нові вироби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recycle",
+            "definitionByLocale": {
+              "ru": "сдавать на переработку. I usually recycle. — «Я обычно сдаю на переработку». Сдавать материалы, чтобы из них сделали новые изделия.",
+              "uk": "здавати на переробку. I usually recycle. — «Я зазвичай здаю на переробку». Здавати матеріали, щоб із них виготовили нові вироби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід біля баків питає про пляшки. Скажіть: «Я зазвичай здаю на переробку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід біля баків питає про пляшки. Скажіть: «Я зазвичай здаю на переробку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually recycle.",
+          "localizedMeaning": {
+            "ru": "Сосед у баков спрашивает про бутылки. Скажите: «Я обычно сдаю на переработку»",
+            "uk": "Сусід біля баків питає про пляшки. Скажіть: «Я зазвичай здаю на переробку»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "recycle"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід біля баків питає про пляшки. Скажіть: «Я зазвичай здаю на переробку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually recycle.`",
+                "uk": "тут потрібно `usually` — `I usually recycle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:word:iron",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — iron",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:iron:audio"
+        ],
+        "accessibilityLabel": "Картка слова — iron",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:iron:audio",
+            "transcript": "iron"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:iron:r1",
+              "targetText": "iron",
+              "meaningByLocale": {
+                "ru": "гладить. I often iron shirts. — «Я часто глажу рубашки». Разглаживать одежду горячим утюгом.",
+                "uk": "прасувати. I often iron shirts. — «Я часто прасую сорочки». Розгладжувати одяг гарячою праскою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "iron",
+            "definitionByLocale": {
+              "ru": "гладить. I often iron shirts. — «Я часто глажу рубашки». Разглаживать одежду горячим утюгом.",
+              "uk": "прасувати. I often iron shirts. — «Я часто прасую сорочки». Розгладжувати одяг гарячою праскою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i02:r1",
+            "text": "iron"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i02:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i02:r3",
+            "text": "fold"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i02:audio",
+            "transcript": "iron"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:i02:r1",
+              "targetText": "iron",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i02:r2",
+              "targetText": "wash",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i02:r3",
+              "targetText": "fold",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `iron`, а в этом варианте — `wash`.",
+                "uk": "У записі перше слово — `iron`, а в цьому варіанті — `wash`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `iron`, а в этом варианте — `fold`.",
+                "uk": "У записі перше слово — `iron`, а в цьому варіанті — `fold`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:word:dust",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dust",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:dust:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dust",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:dust:audio",
+            "transcript": "dust"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:dust:r1",
+              "targetText": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль. She often dusts the shelves. — «Она часто вытирает пыль с полок». Убирать пыль мягкой тряпкой.",
+                "uk": "витирати пил. She often dusts the shelves. — «Вона часто витирає пил з полиць». Прибирати пил м’якою ганчіркою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dust",
+            "definitionByLocale": {
+              "ru": "вытирать пыль. She often dusts the shelves. — «Она часто вытирает пыль с полок». Убирать пыль мягкой тряпкой.",
+              "uk": "витирати пил. She often dusts the shelves. — «Вона часто витирає пил з полиць». Прибирати пил м’якою ганчіркою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i03:r1",
+            "text": "dusts"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i03:r2",
+            "text": "dust"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i03:r3",
+            "text": "dusting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово",
+            "uk": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ the shelves.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-33:i03:r1",
+              "text": "dusts"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i03:r2",
+              "text": "dust"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i03:r3",
+              "text": "dusting"
+            }
+          ],
+          "testedDimension": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `dusts`.",
+                "uk": "Після `She` потрібно `dusts`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг дивується чистим полицям знайомої. Поясніть: «Вона часто витирає пил з полиць». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `dusts`.",
+                "uk": "Тут потрібна форма `dusts`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-33:i04:p1",
+              "target": "recycle",
+              "meaningByLocale": {
+                "ru": "сдавать на переработку",
+                "uk": "здавати на переробку"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i04:p2",
+              "target": "iron",
+              "meaningByLocale": {
+                "ru": "гладить",
+                "uk": "прасувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i04:p3",
+              "target": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль",
+                "uk": "витирати пил"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i04:p4",
+              "target": "shirt",
+              "meaningByLocale": {
+                "ru": "рубашка",
+                "uk": "сорочка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recycle",
+            "iron",
+            "dust",
+            "shirt"
+          ],
+          "rightColumn": [
+            "здавати на переробку",
+            "прасувати",
+            "витирати пил",
+            "сорочка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i05:audio",
+            "transcript": "I often iron shirts."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often iron shirts.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "iron",
+            "shirts"
+          ],
+          "authoredDistractorTokens": [
+            "irons"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `iron` — `I often iron shirts.`",
+                "uk": "тут потрібно `iron` — `I often iron shirts.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:word:unload",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unload",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:word:unload:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unload",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:word:unload:audio",
+            "transcript": "unload"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:word:unload:r1",
+              "targetText": "unload",
+              "meaningByLocale": {
+                "ru": "разгружать. I usually unload the dishwasher. — «Я обычно разгружаю посудомоечную машину». Здесь — доставать чистую посуду из машины. Также можно разгружать машину с грузом.",
+                "uk": "розвантажувати. I usually unload the dishwasher. — «Я зазвичай розвантажую посудомийну машину». Тут — діставати чистий посуд із машини. Також можна розвантажувати машину з вантажем."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unload",
+            "definitionByLocale": {
+              "ru": "разгружать. I usually unload the dishwasher. — «Я обычно разгружаю посудомоечную машину». Здесь — доставать чистую посуду из машины. Также можно разгружать машину с грузом.",
+              "uk": "розвантажувати. I usually unload the dishwasher. — «Я зазвичай розвантажую посудомийну машину». Тут — діставати чистий посуд із машини. Також можна розвантажувати машину з вантажем."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви прибираєте посуд після вечері. Скажіть: «Я зазвичай розвантажую посудомийну машину»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прибираєте посуд після вечері. Скажіть: «Я зазвичай розвантажую посудомийну машину»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually unload the dishwasher.",
+          "localizedMeaning": {
+            "ru": "Вы убираете посуду после ужина. Скажите: «Я обычно разгружаю посудомоечную машину»",
+            "uk": "Ви прибираєте посуд після вечері. Скажіть: «Я зазвичай розвантажую посудомийну машину»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "unload",
+            "the",
+            "dishwasher"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви прибираєте посуд після вечері. Скажіть: «Я зазвичай розвантажую посудомийну машину»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually unload the dishwasher.`",
+                "uk": "тут потрібно `usually` — `I usually unload the dishwasher.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вашого брата. Скажіть: «Він часто прасує сорочки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Він часто прасує сорочки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i07:audio",
+            "transcript": "He often irons shirts."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He often irons shirts.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i08:r1",
+            "text": "unloads"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i08:r2",
+            "text": "unload"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i08:r3",
+            "text": "unloading"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово",
+            "uk": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She usually ___ the dishwasher.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-33:i08:r1",
+              "text": "unloads"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i08:r2",
+              "text": "unload"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i08:r3",
+              "text": "unloading"
+            }
+          ],
+          "testedDimension": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `unloads`.",
+                "uk": "Після `She` потрібно `unloads`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Гість питає, хто прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `unloads`.",
+                "uk": "Тут потрібна форма `unloads`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i09:r1",
+            "text": "I usually recycle."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i09:r2",
+            "text": "I usually wash."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i09:r3",
+            "text": "I usually fold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i09:audio",
+            "transcript": "I usually recycle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:i09:r1",
+              "targetText": "I usually recycle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i09:r2",
+              "targetText": "I usually wash.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i09:r3",
+              "targetText": "I usually fold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `recycle`, а в этом варианте — `wash`.",
+                "uk": "У записі останнє слово — `recycle`, а в цьому варіанті — `wash`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `recycle`, а в этом варианте — `fold`.",
+                "uk": "У записі останнє слово — `recycle`, а в цьому варіанті — `fold`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-33:i10:p1",
+              "target": "unload",
+              "meaningByLocale": {
+                "ru": "разгружать",
+                "uk": "розвантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i10:p2",
+              "target": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль",
+                "uk": "витирати пил"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i10:p3",
+              "target": "recycle",
+              "meaningByLocale": {
+                "ru": "сдавать на переработку",
+                "uk": "здавати на переробку"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i10:p4",
+              "target": "iron",
+              "meaningByLocale": {
+                "ru": "гладить",
+                "uk": "прасувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unload",
+            "dust",
+            "recycle",
+            "iron"
+          ],
+          "rightColumn": [
+            "розвантажувати",
+            "витирати пил",
+            "здавати на переробку",
+            "прасувати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i11:audio",
+            "transcript": "She often dusts the shelves."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She often dusts the shelves.",
+          "orderedTokens": [
+            "She",
+            "often",
+            "dusts",
+            "the",
+            "shelves"
+          ],
+          "authoredDistractorTokens": [
+            "dust"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `dusts` — `She often dusts the shelves.`",
+                "uk": "тут потрібно `dusts` — `She often dusts the shelves.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви розповідаєте про брата. Скажіть: «Він зазвичай здає пляшки на переробку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про брата. Скажіть: «Він зазвичай здає пляшки на переробку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He usually recycles bottles.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете о брате. Скажите: «Он обычно сдаёт бутылки на переработку»",
+            "uk": "Ви розповідаєте про брата. Скажіть: «Він зазвичай здає пляшки на переробку»"
+          },
+          "orderedTokens": [
+            "He",
+            "usually",
+            "recycles",
+            "bottles"
+          ],
+          "authoredDistractorTokens": [
+            "recycle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про брата. Скажіть: «Він зазвичай здає пляшки на переробку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `recycles` — `He usually recycles bottles.`",
+                "uk": "тут потрібно `recycles` — `He usually recycles bottles.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, хто в вас прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Гість питає, хто в вас прибирає посуд. Скажіть: «Вона зазвичай розвантажує посудомийну машину»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i13:audio",
+            "transcript": "She usually unloads the dishwasher."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually unloads the dishwasher.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово",
+            "uk": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ dust the shelves.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-33:i14:r1",
+              "text": "usually"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually` перед `dust`.",
+                "uk": "Для «зазвичай» потрібно `usually` перед `dust`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте, як наводите лад. Скажіть: «Я зазвичай витираю пил з полиць». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually`; `am` перед `dust` не ставим.",
+                "uk": "Для «зазвичай» потрібно `usually`; `am` перед `dust` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-33:i15:r1",
+            "text": "He often irons shirts."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i15:r2",
+            "text": "He often irons socks."
+          },
+          {
+            "responseId": "en:lesson-07:session-33:i15:r3",
+            "text": "He often irons coats."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i15:audio",
+            "transcript": "He often irons shirts."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-33:i15:r1",
+              "targetText": "He often irons shirts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i15:r2",
+              "targetText": "He often irons socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i15:r3",
+              "targetText": "He often irons coats.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shirts`, а в этом варианте — `socks`.",
+                "uk": "У записі останнє слово — `shirts`, а в цьому варіанті — `socks`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shirts`, а в этом варианте — `coats`.",
+                "uk": "У записі останнє слово — `shirts`, а в цьому варіанті — `coats`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-33:i16:p1",
+              "target": "dust",
+              "meaningByLocale": {
+                "ru": "вытирать пыль",
+                "uk": "витирати пил"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i16:p2",
+              "target": "unload",
+              "meaningByLocale": {
+                "ru": "разгружать",
+                "uk": "розвантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i16:p3",
+              "target": "shirt",
+              "meaningByLocale": {
+                "ru": "рубашка",
+                "uk": "сорочка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-33:i16:p4",
+              "target": "bottle",
+              "meaningByLocale": {
+                "ru": "бутылка",
+                "uk": "пляшка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dust",
+            "unload",
+            "shirt",
+            "bottle"
+          ],
+          "rightColumn": [
+            "витирати пил",
+            "розвантажувати",
+            "сорочка",
+            "пляшка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, що ваш брат зазвичай робить з порожніми пляшками. Скажіть: «Він зазвичай здає на переробку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, що ваш брат зазвичай робить з порожніми пляшками. Скажіть: «Він зазвичай здає на переробку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-33:i17:audio",
+            "transcript": "He usually recycles."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually recycles.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-33:word:recycle",
+      "correctText": "recycle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i01",
+      "correctText": "I usually recycle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:word:iron",
+      "correctText": "iron",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i02",
+      "correctText": "iron",
+      "correctResponseId": "en:lesson-07:session-33:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:word:dust",
+      "correctText": "dust",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i03",
+      "correctText": "dusts",
+      "correctResponseId": "en:lesson-07:session-33:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i05",
+      "correctText": "I often iron shirts.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:word:unload",
+      "correctText": "unload",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i06",
+      "correctText": "I usually unload the dishwasher.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i07",
+      "correctText": "He often irons shirts.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i08",
+      "correctText": "unloads",
+      "correctResponseId": "en:lesson-07:session-33:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i09",
+      "correctText": "I usually recycle.",
+      "correctResponseId": "en:lesson-07:session-33:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i11",
+      "correctText": "She often dusts the shelves.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i12",
+      "correctText": "He usually recycles bottles.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i13",
+      "correctText": "She usually unloads the dishwasher.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i14",
+      "correctText": "usually",
+      "correctResponseId": "en:lesson-07:session-33:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i15",
+      "correctText": "He often irons shirts.",
+      "correctResponseId": "en:lesson-07:session-33:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-33:i17",
+      "correctText": "He usually recycles.",
+      "correctResponseId": null
+    }
+  ]
+}

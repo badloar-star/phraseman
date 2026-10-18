@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 33 — Обычно сдаю на переработку
+# Английский · Урок 7 · Занятие 33 — Порядок в доме
 
-**Ситуация.** Вы рассказываете, как обращаетесь с отходами, как обычно добираетесь до работы и как часто знакомая звонит.
+**Ситуация.** Вы рассказываете, как поддерживаете порядок дома: что обычно сдаёте на переработку, что часто гладите и как знакомая вытирает пыль с полок.
 
-**Что вы освоите:** ставить usually и often перед глаголом действия, чтобы сообщать о частоте
-**Новые слова:** recycle
+**Что вы освоите:** ставить usually и often перед действием, чтобы сообщать, как часто что-то делаете
+**Новые слова:** recycle, iron, dust, unload
+**Возвращаются:** shirt, bottle, dishwasher, shelf, wash, fold
 
 ---
 
 ## Интро 1
 
-### Привычка сортировать
+### Бутылки во дворе
 
-Сосед спрашивает, что вы обычно делаете с отходами, пригодными для переработки. `recycle` — «сдавать на переработку». `I usually recycle` — «Я обычно сдаю отходы на переработку». `Usually` означает «обычно» и стоит перед действием `recycle`. Из контекста понятно, что сдаёте именно отходы. Бутылке новый шанс, а не почётное место под диваном.
+Сосед у мусорных баков во дворе спрашивает, что вы делаете с пустыми бутылками и старой бумагой. recycle — «сдавать на переработку». Скажите: I usually recycle — «Я обычно сдаю на переработку». Слово usually значит «обычно» и стоит перед recycle.
 
-**Расскажите соседу: «Я обычно сдаю отходы на переработку».**
+**Сосед спрашивает про пустые бутылки. Ответьте: «Я обычно сдаю на переработку».**
 
 - ✅ **I usually recycle.**
-- ❌ I usually recycles. — *После `I` нужно `recycle`, без `s`.*
-- ❌ I usually recycling. — *Здесь нужна форма `recycle`.*
+- ❌ I usually recycles. — *После I нужно recycle, без s.*
+- ❌ I usually recycling. — *Для привычного действия после I нужна форма recycle, без -ing.*
 
 ---
 
 ## Интро 2
 
-### Дорога на работу
+### Воскресное утро
 
-Коллега спрашивает, как вы обычно добираетесь до работы. `I usually walk` — «Я обычно хожу пешком». `Usually` стоит перед действием `walk`. Это обычный способ передвижения, а не обещание ходить пешком абсолютно всегда.
+В воскресное утро к вам заходит подруга и видит гладильную доску и целую стопку рубашек на диване. iron — «гладить». Скажите: I often iron shirts — «Я часто глажу рубашки». often означает «часто». Здесь ставим его перед iron; не разделяем глагол iron и дополнение shirts.
 
-**Ответьте коллеге: «Я обычно хожу пешком».**
+**Подруга удивляется гладильной доске. Объясните: «Я часто глажу рубашки».**
 
-- ✅ **I usually walk.**
-- ❌ I usually walks. — *После `I` нужно `walk`, без `s`.*
-- ❌ I usually walking. — *Здесь нужна форма `walk`.*
+- ✅ **I often iron shirts.**
+- ❌ I iron often shirts. — *Слово often стоит перед iron.*
+- ❌ I often irons shirts. — *После I нужно iron, без s.*
 
 ---
 
 ## Интро 3
 
-### Частые звонки
+### Чистые полки
 
-Вы обсуждаете знакомую, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` означает «часто» и стоит перед `calls`. После `she` у действия остаётся окончание `s`: слово `often` его не заменяет.
+Вы пришли с другом в гости к знакомой, а на её книжных полках нет ни пылинки. dust — «вытирать пыль». Знакомая делает это часто: She often dusts the shelves — «Она часто вытирает пыль с полок». После she у действия появляется s, а слово often остаётся перед dusts.
 
-**Скажите о знакомой: «Она часто звонит».**
+**Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *После `she` нужно `calls`, с `s`.*
-- ❌ She often calling. — *Здесь нужна форма `calls`.*
+- ✅ **She often dusts the shelves.**
+- ❌ She often dust the shelves. — *После she нужно dusts, с s.*
+- ❌ She often dusting the shelves. — *Здесь нужна форма dusts.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке сдавать отходы на переработку**
+**1 · Карточка слова — recycle**
+<!-- interaction_id: en:lesson-07:session-33:word:recycle; family: word_card -->
+> **recycle** — сдавать на переработку. I usually recycle. — «Я обычно сдаю на переработку». Сдавать материалы, чтобы из них сделали новые изделия.
+
+**2 · Сосед у баков спрашивает про бутылки. Скажите: «Я обычно сдаю на переработку»**
 <!-- interaction_id: en:lesson-07:session-33:i01; family: phrase_builder -->
-Плитки: `recycle` `usually` `I` → **I usually recycle.**
+Плитки: `recycle` `often` `usually` `I` → **I usually recycle.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually recycle.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — iron**
+<!-- interaction_id: en:lesson-07:session-33:word:iron; family: word_card -->
+> **iron** — гладить. I often iron shirts. — «Я часто глажу рубашки». Разглаживать одежду горячим утюгом.
+
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-33:i02; family: listen_choose -->
-🔊 *recycle* → **recycle** · study · meet
-- study — *В записи первое слово — `recycle`, а в этом варианте — `study`.*
-- meet — *В записи первое слово — `recycle`, а в этом варианте — `meet`.*
+🔊 *iron* → **iron** · wash · fold
+- wash — *В записи первое слово — `iron`, а в этом варианте — `wash`.*
+- fold — *В записи первое слово — `iron`, а в этом варианте — `fold`.*
 
-**3 · Скажите «Я обычно сдаю отходы на переработку»**
+**5 · Карточка слова — dust**
+<!-- interaction_id: en:lesson-07:session-33:word:dust; family: word_card -->
+> **dust** — вытирать пыль. She often dusts the shelves. — «Она часто вытирает пыль с полок». Убирать пыль мягкой тряпкой.
+
+**6 · Друг удивляется чистым полкам знакомой. Объясните: «Она часто вытирает пыль с полок». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-33:i03; family: context_gap_grammar -->
-I usually ___. → **recycle** · recycles · recycling
-- recycles — *После `I` нужно `recycle`, без `s`.*
-- recycling — *Здесь нужна форма `recycle`.*
+She often ___ the shelves. → **dusts** · dust · dusting
+- dust — *После `She` нужно `dusts`.*
+- dusting — *Здесь нужна форма `dusts`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-33:i04; family: speed_match -->
-recycle — сдавать на переработку · study — учиться · phone — телефон · watch — наручные часы
+recycle — сдавать на переработку · iron — гладить · dust — вытирать пыль · shirt — рубашка
 
-**5 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-33:i05; family: listen_build_dictation -->
-🔊 *I usually recycle.* Плитки: `recycle` `usually` `I` → **I usually recycle.**
+🔊 *I often iron shirts.* Плитки: `shirts` `irons` `iron` `often` `I` → **I often iron shirts.**
+*(плитка `irons` лишняя: здесь нужно `iron` — `I often iron shirts.`)*
 
-**6 · Расскажите о дороге на работу: «Я обычно хожу пешком»**
+**9 · Карточка слова — unload**
+<!-- interaction_id: en:lesson-07:session-33:word:unload; family: word_card -->
+> **unload** — разгружать. I usually unload the dishwasher. — «Я обычно разгружаю посудомоечную машину». Здесь — доставать чистую посуду из машины. Также можно разгружать машину с грузом.
+
+**10 · Вы убираете посуду после ужина. Скажите: «Я обычно разгружаю посудомоечную машину»**
 <!-- interaction_id: en:lesson-07:session-33:i06; family: phrase_builder -->
-Плитки: `walk` `usually` `I` → **I usually walk.**
+Плитки: `dishwasher` `often` `the` `unload` `usually` `I` → **I usually unload the dishwasher.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually unload the dishwasher.`)*
 
-**7 · Скажите о знакомой «Она часто звонит»**
+**11 · Подруга спрашивает про вашего брата. Скажите: «Он часто гладит рубашки»**
 <!-- interaction_id: en:lesson-07:session-33:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **He often irons shirts.**
 
-**8 · Скажите «Она часто звонит»**
+**12 · Гость спрашивает, кто убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-33:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *После `she` нужно `calls`, с `s`.*
-- calling — *Здесь нужна форма `calls`.*
+She usually ___ the dishwasher. → **unloads** · unload · unloading
+- unload — *После `She` нужно `unloads`.*
+- unloading — *Здесь нужна форма `unloads`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-33:i09; family: listen_choose -->
-🔊 *I usually recycle.* → **I usually recycle.** · I usually walk. · I usually study.
-- I usually walk. — *В записи последнее слово — `recycle`, а в этом варианте — `walk`.*
-- I usually study. — *В записи последнее слово — `recycle`, а в этом варианте — `study`.*
+🔊 *I usually recycle.* → **I usually recycle.** · I usually wash. · I usually fold.
+- I usually wash. — *В записи последнее слово — `recycle`, а в этом варианте — `wash`.*
+- I usually fold. — *В записи последнее слово — `recycle`, а в этом варианте — `fold`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-33:i10; family: speed_match -->
-meet — встречаться · recycle — сдавать на переработку · phone — телефон · study — учиться
+unload — разгружать · dust — вытирать пыль · recycle — сдавать на переработку · iron — гладить
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-33:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *She often dusts the shelves.* Плитки: `shelves` `dust` `the` `dusts` `often` `She` → **She often dusts the shelves.**
+*(плитка `dust` лишняя: здесь нужно `dusts` — `She often dusts the shelves.`)*
 
-**12 · Спросите друга «У тебя есть наручные часы?»**
+**16 · Вы рассказываете о брате. Скажите: «Он обычно сдаёт бутылки на переработку»**
 <!-- interaction_id: en:lesson-07:session-33:i12; family: phrase_builder -->
-Плитки: `watch` `a` `have` `you` `Do` → **Do you have a watch?**
+Плитки: `bottles` `recycle` `recycles` `usually` `He` → **He usually recycles bottles.**
+*(плитка `recycle` лишняя: здесь нужно `recycles` — `He usually recycles bottles.`)*
 
-**13 · Друг рассказывает о регулярных встречах компании. Спросите «Где вы встречаетесь?»**
+**17 · Гость спрашивает, кто у вас убирает посуду. Скажите: «Она обычно разгружает посудомоечную машину»**
 <!-- interaction_id: en:lesson-07:session-33:i13; family: scripted_repeat_compare -->
-🎙 **Where do you meet?**
+🎙 **She usually unloads the dishwasher.**
 
-**14 · Скажите «Я обычно учусь»**
+**18 · Вы рассказываете, как наводите порядок. Скажите: «Я обычно вытираю пыль с полок». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-33:i14; family: context_gap_grammar -->
-I ___ study. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `study`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `study` не ставим.*
+I ___ dust the shelves. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `dust`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `dust` не ставим.*
 
-**15 · Послушайте и выберите вопрос**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-33:i15; family: listen_choose -->
-🔊 *Do you have a phone?* → **Do you have a phone?** · Do you have a watch? · Do you have a guitar?
-- Do you have a watch? — *В записи последнее слово — `phone`, а в этом варианте — `watch`.*
-- Do you have a guitar? — *В записи последнее слово — `phone`, а в этом варианте — `guitar`.*
+🔊 *He often irons shirts.* → **He often irons shirts.** · He often irons socks. · He often irons coats.
+- He often irons socks. — *В записи последнее слово — `shirts`, а в этом варианте — `socks`.*
+- He often irons coats. — *В записи последнее слово — `shirts`, а в этом варианте — `coats`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-33:i16; family: speed_match -->
-recycle — сдавать на переработку · watch — наручные часы · meet — встречаться · phone — телефон
+dust — вытирать пыль · unload — разгружать · shirt — рубашка · bottle — бутылка
 
-**17 · Друг спрашивает, как часто Том поддерживает с вами связь по телефону. Скажите «Том часто звонит»**
+**21 · Соседка спрашивает, что ваш брат обычно делает с пустыми бутылками. Скажите: «Он обычно сдаёт на переработку»**
 <!-- interaction_id: en:lesson-07:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often calls.**
-
+🎙 **He usually recycles.**

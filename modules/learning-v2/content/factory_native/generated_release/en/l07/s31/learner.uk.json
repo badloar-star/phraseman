@@ -4,28 +4,73 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-31:i01",
+      "interactionId": "en:lesson-07:session-31:word:visit",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — visit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:word:visit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — visit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:word:visit:audio",
+          "transcript": "visit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:word:visit:r1",
+            "targetText": "visit",
+            "meaningByLocale": {
+              "ru": "навещать. When do you visit our grandmother? — «Когда ты навещаешь нашу бабушку?» Приходить в гости к человеку.",
+              "uk": "провідувати. When do you visit our grandmother? — «Коли ти провідуєш нашу бабусю?» Приходити в гості до людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "visit",
+          "definitionByLocale": {
+            "ru": "навещать. When do you visit our grandmother? — «Когда ты навещаешь нашу бабушку?» Приходить в гости к человеку.",
+            "uk": "провідувати. When do you visit our grandmother? — «Коли ти провідуєш нашу бабусю?» Приходити в гості до людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Ти відвідуєш парки?»",
+      "prompt": "Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Ти відвідуєш парки?»",
+      "accessibilityLabel": "Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you visit parks?",
+        "targetPhrase": "When do you visit our grandmother?",
         "localizedMeaning": {
-          "ru": "Спросите «Ты посещаешь парки?»",
-          "uk": "Запитайте «Ти відвідуєш парки?»"
+          "ru": "Вы узнаёте, в какие дни брат обычно бывает у бабушки. Спросите его: «Когда ты навещаешь нашу бабушку?»",
+          "uk": "Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»"
         },
         "orderedTokens": [
-          "Do",
+          "When",
+          "do",
           "you",
           "visit",
-          "parks"
+          "our",
+          "grandmother"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -38,51 +83,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-31:i02:r1",
-          "text": "visit"
+          "text": "When do you visit our grandmother?"
         },
         {
           "responseId": "en:lesson-07:session-31:i02:r2",
-          "text": "shower"
+          "text": "When do you visit our grandfather?"
         },
         {
           "responseId": "en:lesson-07:session-31:i02:r3",
-          "text": "guitar"
+          "text": "When do you call our grandmother?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i02:audio",
-          "transcript": "visit"
+          "transcript": "When do you visit our grandmother?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-31:i02:r1",
-            "targetText": "visit",
+            "targetText": "When do you visit our grandmother?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-31:i02:r2",
-            "targetText": "shower",
+            "targetText": "When do you visit our grandfather?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-31:i02:r3",
-            "targetText": "guitar",
+            "targetText": "When do you call our grandmother?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +136,19 @@
           {
             "responseId": "en:lesson-07:session-31:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `visit`, а в этом варианте — `shower`.",
-              "uk": "У записі перше слово — `visit`, а в цьому варіанті — `shower`."
+              "ru": "В записи последнее слово — `grandmother`, бабушка, а в этом варианте — `grandfather`, дедушка.",
+              "uk": "У записі останнє слово — `grandmother`, бабуся, а в цьому варіанті — `grandfather`, дідусь."
             }
           },
           {
             "responseId": "en:lesson-07:session-31:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `visit`, а в этом варианте — `guitar`.",
-              "uk": "У записі перше слово — `visit`, а в цьому варіанті — `guitar`."
+              "ru": "В записи четвёртое слово — `visit`, навещать, а в этом варианте — `call`, звонить.",
+              "uk": "У записі четверте слово — `visit`, провідувати, а в цьому варіанті — `call`, телефонувати."
             }
           }
         ],
@@ -114,67 +159,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про звичку відвідувати парки",
+      "prompt": "Спитайте брата про бабусю. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-31:i03:r1",
-          "text": "visit"
+          "text": "do"
         },
         {
           "responseId": "en:lesson-07:session-31:i03:r2",
-          "text": "visits"
+          "text": "does"
         },
         {
           "responseId": "en:lesson-07:session-31:i03:r3",
-          "text": "is visit"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про звичку відвідувати парки",
+      "accessibilityLabel": "Спитайте брата про бабусю. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о привычке посещать парки",
-          "uk": "Запитайте про звичку відвідувати парки"
+          "ru": "Спросите брата о бабушке. Выберите слово",
+          "uk": "Спитайте брата про бабусю. Виберіть слово"
         },
-        "gappedTargetPhrase": "Do you ___ parks?",
+        "gappedTargetPhrase": "When ___ you visit our grandmother?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-31:i03:r1",
-            "text": "visit"
+            "text": "do"
           },
           {
             "responseId": "en:lesson-07:session-31:i03:r2",
-            "text": "visits"
+            "text": "does"
           },
           {
             "responseId": "en:lesson-07:session-31:i03:r3",
-            "text": "is visit"
+            "text": "are"
           }
         ],
-        "testedDimension": "Запитайте про звичку відвідувати парки",
+        "testedDimension": "Спитайте брата про бабусю. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте про звичку відвідувати парки",
+            "testedDimension": "Спитайте брата про бабусю. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `do you` нужно `visit`.",
-              "uk": "Після `do you` потрібне `visit`."
+              "ru": "С `you` нужно `do`.",
+              "uk": "З `you` потрібно `do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте про звичку відвідувати парки",
+            "testedDimension": "Спитайте брата про бабусю. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `visit`, без `is`.",
-              "uk": "Тут потрібне `visit`, без `is`."
+              "ru": "С действием `visit` нужно `do`, а не `are`.",
+              "uk": "З дією `visit` потрібне `do`, а не `are`."
             }
           }
         ]
@@ -183,7 +228,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -199,46 +244,46 @@
             "pairId": "en:lesson-07:session-31:i04:p1",
             "target": "visit",
             "meaningByLocale": {
-              "ru": "посещать",
-              "uk": "відвідувати"
+              "ru": "навещать",
+              "uk": "провідувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i04:p2",
-            "target": "shower",
+            "target": "grandmother",
             "meaningByLocale": {
-              "ru": "принимать душ",
-              "uk": "приймати душ"
+              "ru": "бабушка",
+              "uk": "бабуся"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i04:p3",
-            "target": "guitar",
+            "target": "grandfather",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "дедушка",
+              "uk": "дідусь"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i04:p4",
-            "target": "parks",
+            "target": "call",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "звонить",
+              "uk": "телефонувати"
             }
           }
         ],
         "leftColumn": [
           "visit",
-          "shower",
-          "guitar",
-          "parks"
+          "grandmother",
+          "grandfather",
+          "call"
         ],
         "rightColumn": [
-          "відвідувати",
-          "приймати душ",
-          "гітара",
-          "парки"
+          "провідувати",
+          "бабуся",
+          "дідусь",
+          "телефонувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,64 +300,151 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-31:word:harvest",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — harvest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:word:harvest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — harvest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:word:harvest:audio",
+          "transcript": "harvest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:word:harvest:r1",
+            "targetText": "harvest",
+            "meaningByLocale": {
+              "ru": "собирать урожай. When does she harvest apples? — «Когда она собирает яблоки?» Снимать с деревьев и грядок то, что выросло.",
+              "uk": "збирати врожай. When does she harvest apples? — «Коли вона збирає яблука?» Знімати з дерев і грядок те, що виросло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "harvest",
+          "definitionByLocale": {
+            "ru": "собирать урожай. When does she harvest apples? — «Когда она собирает яблоки?» Снимать с деревьев и грядок то, что выросло.",
+            "uk": "збирати врожай. When does she harvest apples? — «Коли вона збирає яблука?» Знімати з дерев і грядок те, що виросло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-31:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте сусіда й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте сусіда й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i05:audio",
-          "transcript": "Do you visit parks?"
+          "transcript": "When does she harvest apples?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you visit parks?",
+        "hiddenTargetPhrase": "When does she harvest apples?",
         "orderedTokens": [
-          "Do",
-          "you",
-          "visit",
-          "parks"
+          "When",
+          "does",
+          "she",
+          "harvest",
+          "apples"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-31:word:babysit",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — babysit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:word:babysit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — babysit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:word:babysit:audio",
+          "transcript": "babysit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:word:babysit:r1",
+            "targetText": "babysit",
+            "meaningByLocale": {
+              "ru": "присматривать за детьми. When do you babysit? — «Когда ты присматриваешь за детьми?» Временно заботиться о ребёнке вместо родителей, например вечером. Это может быть и ребёнок родственников.",
+              "uk": "доглядати за дітьми. When do you babysit? — «Коли ти доглядаєш за дітьми?» Тимчасово дбати про дитину замість батьків, наприклад увечері. Це може бути й дитина родичів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "babysit",
+          "definitionByLocale": {
+            "ru": "присматривать за детьми. When do you babysit? — «Когда ты присматриваешь за детьми?» Временно заботиться о ребёнке вместо родителей, например вечером. Это может быть и ребёнок родственников.",
+            "uk": "доглядати за дітьми. When do you babysit? — «Коли ти доглядаєш за дітьми?» Тимчасово дбати про дитину замість батьків, наприклад увечері. Це може бути й дитина родичів."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-31:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»",
+      "prompt": "Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»",
+      "accessibilityLabel": "Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "When do you shower?",
+        "targetPhrase": "When do you babysit?",
         "localizedMeaning": {
-          "ru": "Узнайте обычное время душа: «Когда ты принимаешь душ?»",
-          "uk": "Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»"
+          "ru": "Сестра рассказывает о соседях. Спросите её: «Когда ты присматриваешь за детьми?»",
+          "uk": "Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»"
         },
         "orderedTokens": [
           "When",
           "do",
           "you",
-          "shower"
+          "babysit"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,26 +456,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-31:word:shave",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-31:word:shave:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-31:word:shave:audio",
+          "transcript": "shave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-31:word:shave:r1",
+            "targetText": "shave",
+            "meaningByLocale": {
+              "ru": "бриться. When do you shave? — «Когда ты бреешься?» Удалять волосы бритвой; здесь речь о бритье лица.",
+              "uk": "голитися. When do you shave? — «Коли ти голишся?» Видаляти волосся бритвою; тут ідеться про гоління обличчя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shave",
+          "definitionByLocale": {
+            "ru": "бриться. When do you shave? — «Когда ты бреешься?» Удалять волосы бритвой; здесь речь о бритье лица.",
+            "uk": "голитися. When do you shave? — «Коли ти голишся?» Видаляти волосся бритвою; тут ідеться про гоління обличчя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-31:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Де ти працюєш?»",
+      "prompt": "Ви з братом живете в одній квартирі й обговорюєте ранкові звички. Спитайте брата: «Коли ти голишся?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте «Де ти працюєш?»",
+      "accessibilityLabel": "Ви з братом живете в одній квартирі й обговорюєте ранкові звички. Спитайте брата: «Коли ти голишся?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i07:audio",
-          "transcript": "Where do you work?"
+          "transcript": "When do you shave?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where do you work?",
+        "targetPhrase": "When do you shave?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,11 +533,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дізнайтеся місце роботи знайомого",
+      "prompt": "Спитайте сестру про дітей. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-31:i08:r1",
@@ -379,14 +554,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся місце роботи знайомого",
+      "accessibilityLabel": "Спитайте сестру про дітей. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте место работы знакомого",
-          "uk": "Дізнайтеся місце роботи знайомого"
+          "ru": "Спросите сестру о детях. Выберите слово",
+          "uk": "Спитайте сестру про дітей. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where ___ you work?",
+        "gappedTargetPhrase": "When ___ you babysit?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-31:i08:r1",
@@ -401,24 +576,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Дізнайтеся місце роботи знайомого",
+        "testedDimension": "Спитайте сестру про дітей. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-31:i08:r2",
             "correct": false,
-            "testedDimension": "Дізнайтеся місце роботи знайомого",
+            "testedDimension": "Спитайте сестру про дітей. Виберіть слово",
             "feedbackByLocale": {
               "ru": "С `you` нужно `do`.",
-              "uk": "З `you` потрібне `do`."
+              "uk": "З `you` потрібно `do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-31:i08:r3",
             "correct": false,
-            "testedDimension": "Дізнайтеся місце роботи знайомого",
+            "testedDimension": "Спитайте сестру про дітей. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о действии `work` здесь строим с `do`.",
-              "uk": "Запитання про дію `work` тут будуємо з `do`."
+              "ru": "С действием `babysit` нужно `do`, а не `are`.",
+              "uk": "З дією `babysit` потрібне `do`, а не `are`."
             }
           }
         ]
@@ -427,51 +602,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть запитання",
+      "prompt": "Послухайте сусіда",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-31:i09:r1",
-          "text": "Do you visit parks?"
+          "text": "When does she harvest apples?"
         },
         {
           "responseId": "en:lesson-07:session-31:i09:r2",
-          "text": "Do you visit shops?"
+          "text": "When does she harvest pears?"
         },
         {
           "responseId": "en:lesson-07:session-31:i09:r3",
-          "text": "Do you visit schools?"
+          "text": "When does she pick apples?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "accessibilityLabel": "Послухайте сусіда",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i09:audio",
-          "transcript": "Do you visit parks?"
+          "transcript": "When does she harvest apples?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-31:i09:r1",
-            "targetText": "Do you visit parks?",
+            "targetText": "When does she harvest apples?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-31:i09:r2",
-            "targetText": "Do you visit shops?",
+            "targetText": "When does she harvest pears?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-31:i09:r3",
-            "targetText": "Do you visit schools?",
+            "targetText": "When does she pick apples?",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +655,19 @@
           {
             "responseId": "en:lesson-07:session-31:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `parks`, а в этом варианте — `shops`.",
-              "uk": "У записі останнє слово — `parks`, а в цьому варіанті — `shops`."
+              "ru": "В записи последнее слово — `apples`, яблоки, а в этом варианте — `pears`, груши.",
+              "uk": "У записі останнє слово — `apples`, яблука, а в цьому варіанті — `pears`, груші."
             }
           },
           {
             "responseId": "en:lesson-07:session-31:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `parks`, а в этом варианте — `schools`.",
-              "uk": "У записі останнє слово — `parks`, а в цьому варіанті — `schools`."
+              "ru": "В записи четвёртое слово — `harvest`, собирать урожай, а в этом варианте — `pick`, собирать.",
+              "uk": "У записі четверте слово — `harvest`, збирати врожай, а в цьому варіанті — `pick`, збирати."
             }
           }
         ],
@@ -503,8 +678,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -517,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-31:i10:p1",
-            "target": "cheat",
+            "target": "visit",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "навещать",
+              "uk": "провідувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i10:p2",
-            "target": "visit",
+            "target": "grandmother",
             "meaningByLocale": {
-              "ru": "посещать",
-              "uk": "відвідувати"
+              "ru": "бабушка",
+              "uk": "бабуся"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i10:p3",
-            "target": "parks",
+            "target": "apple",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "яблоко",
+              "uk": "яблуко"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i10:p4",
-            "target": "shower",
+            "target": "pear",
             "meaningByLocale": {
-              "ru": "принимать душ",
-              "uk": "приймати душ"
+              "ru": "груша",
+              "uk": "груша"
             }
           }
         ],
         "leftColumn": [
-          "cheat",
           "visit",
-          "parks",
-          "shower"
+          "grandmother",
+          "apple",
+          "pear"
         ],
         "rightColumn": [
-          "шахрувати",
-          "відвідувати",
-          "парки",
-          "приймати душ"
+          "провідувати",
+          "бабуся",
+          "яблуко",
+          "груша"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,30 +751,30 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте сестру й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте сестру й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i11:audio",
-          "transcript": "When do you shower?"
+          "transcript": "Where does she babysit?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "When do you shower?",
+        "hiddenTargetPhrase": "Where does she babysit?",
         "orderedTokens": [
-          "When",
-          "do",
-          "you",
-          "shower"
+          "Where",
+          "does",
+          "she",
+          "babysit"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -612,28 +787,27 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»",
+      "prompt": "Подруга розповідає про ранкові звички свого брата. Спитайте її: «Коли він голиться?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»",
+      "accessibilityLabel": "Подруга розповідає про ранкові звички свого брата. Спитайте її: «Коли він голиться?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a guitar?",
+        "targetPhrase": "When does he shave?",
         "localizedMeaning": {
-          "ru": "Друг рассказывает об игре на гитаре. Спросите «У тебя есть гитара?»",
-          "uk": "Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»"
+          "ru": "Подруга рассказывает об утренних привычках своего брата. Спросите её: «Когда он бреется?»",
+          "uk": "Подруга розповідає про ранкові звички свого брата. Спитайте її: «Коли він голиться?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "guitar"
+          "When",
+          "does",
+          "he",
+          "shave"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -646,25 +820,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед настільною грою скажіть «Я не шахрую»",
+      "prompt": "Сестра їздить до бабусі. Спитайте брата: «Коли вона провідує нашу бабусю?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i13:audio"
       ],
-      "accessibilityLabel": "Перед настільною грою скажіть «Я не шахрую»",
+      "accessibilityLabel": "Сестра їздить до бабусі. Спитайте брата: «Коли вона провідує нашу бабусю?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i13:audio",
-          "transcript": "I don’t cheat."
+          "transcript": "When does she visit our grandmother?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I don’t cheat.",
+        "targetPhrase": "When does she visit our grandmother?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -679,11 +853,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дізнайтеся, чи відвідує Том парки",
+      "prompt": "Спитайте брата про сестру. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-31:i14:r1",
@@ -700,14 +874,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся, чи відвідує Том парки",
+      "accessibilityLabel": "Спитайте брата про сестру. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте, посещает ли Том парки",
-          "uk": "Дізнайтеся, чи відвідує Том парки"
+          "ru": "Спросите брата о сестре. Выберите слово",
+          "uk": "Спитайте брата про сестру. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does Tom ___ parks?",
+        "gappedTargetPhrase": "When does she ___ our grandmother?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-31:i14:r1",
@@ -722,24 +896,24 @@
             "text": "is visit"
           }
         ],
-        "testedDimension": "Дізнайтеся, чи відвідує Том парки",
+        "testedDimension": "Спитайте брата про сестру. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-31:i14:r2",
             "correct": false,
-            "testedDimension": "Дізнайтеся, чи відвідує Том парки",
+            "testedDimension": "Спитайте брата про сестру. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `visit`.",
-              "uk": "Після `does` потрібне `visit`."
+              "ru": "После `does` нужно `visit`, без `s`.",
+              "uk": "Після `does` потрібно `visit`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-31:i14:r3",
             "correct": false,
-            "testedDimension": "Дізнайтеся, чи відвідує Том парки",
+            "testedDimension": "Спитайте брата про сестру. Виберіть слово",
             "feedbackByLocale": {
               "ru": "Здесь нужно `visit`, без `is`.",
-              "uk": "Тут потрібне `visit`, без `is`."
+              "uk": "Тут потрібно `visit`, без `is`."
             }
           }
         ]
@@ -748,15 +922,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть запитання",
+      "prompt": "Послухайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-31:i15:r1",
-          "text": "Where do you work?"
+          "text": "When do you babysit?"
         },
         {
           "responseId": "en:lesson-07:session-31:i15:r2",
@@ -764,25 +938,25 @@
         },
         {
           "responseId": "en:lesson-07:session-31:i15:r3",
-          "text": "Where do you stay?"
+          "text": "Where do you babysit?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "accessibilityLabel": "Послухайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i15:audio",
-          "transcript": "Where do you work?"
+          "transcript": "When do you babysit?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-31:i15:r1",
-            "targetText": "Where do you work?",
+            "targetText": "When do you babysit?",
             "meaningByLocale": null
           },
           {
@@ -792,7 +966,7 @@
           },
           {
             "responseId": "en:lesson-07:session-31:i15:r3",
-            "targetText": "Where do you stay?",
+            "targetText": "Where do you babysit?",
             "meaningByLocale": null
           }
         ],
@@ -801,19 +975,19 @@
           {
             "responseId": "en:lesson-07:session-31:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
-              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+              "ru": "В записи последнее слово — `babysit`, присматривать за детьми, а в этом варианте — `work`, работать.",
+              "uk": "У записі останнє слово — `babysit`, доглядати за дітьми, а в цьому варіанті — `work`, працювати."
             }
           },
           {
             "responseId": "en:lesson-07:session-31:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `work`, а в этом варианте — `stay`.",
-              "uk": "У записі останнє слово — `work`, а в цьому варіанті — `stay`."
+              "ru": "В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.",
+              "uk": "У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де."
             }
           }
         ],
@@ -824,7 +998,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,48 +1012,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-31:i16:p1",
-            "target": "visit",
+            "target": "shave",
             "meaningByLocale": {
-              "ru": "посещать",
-              "uk": "відвідувати"
+              "ru": "бриться",
+              "uk": "голитися"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i16:p2",
-            "target": "guitar",
+            "target": "babysit",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "присматривать за детьми",
+              "uk": "доглядати за дітьми"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i16:p3",
-            "target": "cheat",
+            "target": "harvest",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "собирать урожай",
+              "uk": "збирати врожай"
             }
           },
           {
             "pairId": "en:lesson-07:session-31:i16:p4",
-            "target": "parks",
+            "target": "visit",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "навещать",
+              "uk": "провідувати"
             }
           }
         ],
         "leftColumn": [
-          "visit",
-          "guitar",
-          "cheat",
-          "parks"
+          "shave",
+          "babysit",
+          "harvest",
+          "visit"
         ],
         "rightColumn": [
-          "відвідувати",
-          "гітара",
-          "шахрувати",
-          "парки"
+          "голитися",
+          "доглядати за дітьми",
+          "збирати врожай",
+          "провідувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -897,25 +1071,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг розповідає про прогулянки Тома парками. Уточніть «Коли Том відвідує парки?»",
+      "prompt": "Сусід розповідає, коли його дружина зазвичай збирає врожай. Спитайте: «Коли вона збирає яблука?» Використайте harvest",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-31:i17:audio"
       ],
-      "accessibilityLabel": "Друг розповідає про прогулянки Тома парками. Уточніть «Коли Том відвідує парки?»",
+      "accessibilityLabel": "Сусід розповідає, коли його дружина зазвичай збирає врожай. Спитайте: «Коли вона збирає яблука?» Використайте harvest",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-31:i17:audio",
-          "transcript": "When does Tom visit parks?"
+          "transcript": "When does she harvest apples?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does Tom visit parks?",
+        "targetPhrase": "When does she harvest apples?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -937,11 +1111,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aff0c33677ebe5526630981e4bd389e3ae791e558526765c93edde4af59115c6"
+  "learnerFingerprint": "7e599c5453de97445604bd7ed18b2b2cb6cbf72c47078ac7b9c208c015fb3120"
 }

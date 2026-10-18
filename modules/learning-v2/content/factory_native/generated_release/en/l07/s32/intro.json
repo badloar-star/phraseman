@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-32",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно задавать вопросы с where и when, выбирая do или does",
-    "uk": "самостійно ставити запитання з where і when, вибираючи do або does"
+    "ru": "самостоятельно выбирать Where или When и do или does в вопросах о привычках",
+    "uk": "самостійно вибирати Where або When і do або does у запитаннях про звички"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место встречи друзей",
-        "uk": "Місце зустрічі друзів"
+        "ru": "Афиша катка",
+        "uk": "Афіша ковзанки"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказывает, что его компания регулярно встречается. `Where do you meet?` — «Где вы встречаетесь?» `Where` спрашивает о месте, затем идут `do you meet`. Здесь `you` — друг и его компания. Точка на карте надёжнее инструкции «там, где все».",
-        "uk": "Друг розповідає, що його компанія регулярно зустрічається. `Where do you meet?` — «Де ви зустрічаєтеся?» `Where` запитує про місце, потім ідуть `do you meet`. Тут `you` — друг і його компанія. Точка на карті надійніша за вказівку «там, де всі»."
+        "ru": "Брат предлагает сходить с племянником на лёд после ваших вечерних занятий. rink — «каток». Узнайте время закрытия, чтобы понять, успеете ли покататься: When does the rink close? — «Когда закрывается каток?» When спрашивает о времени. Перед the rink здесь нужно does, затем close, без s. Коньки вы уже нашли; теперь бы не приехать только ради переобувания.",
+        "uk": "Брат пропонує піти з племінником на лід після ваших вечірніх занять. rink — «ковзанка». Дізнайтеся час закриття, щоб зрозуміти, чи встигнете покататися: When does the rink close? — «Коли зачиняється ковзанка?» When запитує про час. Перед the rink тут потрібне does, далі close, без s. Ковзани ви вже знайшли; тепер би не приїхати лише заради перевзування."
       },
       "question": {
         "interactionId": "en:lesson-07:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Узнайте привычное место встреч компании.",
-          "uk": "Дізнайтеся звичне місце зустрічей компанії."
+          "ru": "Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»",
+          "uk": "Брат показує афішу ковзанки. Спитайте його: «Коли зачиняється ковзанка?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-32:intro1:r1",
-              "text": "Where do you meet?"
+              "text": "When does the rink close?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro1:r2",
-              "text": "Where does you meet?"
+              "text": "When do the rink close?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro1:r3",
-              "text": "Where you meet?"
+              "text": "When does the rink closes?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-32:intro1:r1",
-              "text": "Where do you meet?"
+              "text": "When does the rink close?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro1:r2",
-              "text": "Where does you meet?"
+              "text": "When do the rink close?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro1:r3",
-              "text": "Where you meet?"
+              "text": "When does the rink closes?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте привычное место встреч компании.",
-          "uk": "Дізнайтеся звичне місце зустрічей компанії."
+          "ru": "Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»",
+          "uk": "Брат показує афішу ковзанки. Спитайте його: «Коли зачиняється ковзанка?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Время поездок",
-        "uk": "Час поїздок"
+        "ru": "Соседка с велосипедом",
+        "uk": "Сусідка з велосипедом"
       },
       "bodyByLocale": {
-        "ru": "Знакомый рассказывает, что Том часто путешествует. `When does Tom travel?` — «Когда Том путешествует?» Вы уточняете обычное время его поездок. `When` спрашивает о времени, а для Тома используем `does` и `travel`, без `s`.",
-        "uk": "Знайомий розповідає, що Том часто подорожує. `When does Tom travel?` — «Коли Том подорожує?» Ви уточнюєте звичний час його поїздок. `When` запитує про час, а для Тома використовуємо `does` і `travel`, без `s`."
+        "ru": "Соседка тренируется на велосипеде по будням, а по выходным участвует в соревнованиях. Вы хотите понять её обычный график стартов. race — «участвовать в гонке». Спросите: When do you race? — «Когда ты участвуешь в гонках?» С you здесь нужно do, затем race, без s.",
+        "uk": "Сусідка тренується на велосипеді в будні, а на вихідних бере участь у змаганнях. Ви хочете зрозуміти її звичний графік стартів. race — «брати участь у перегонах». Спитайте: When do you race? — «Коли ти береш участь у перегонах?» З you тут потрібне do, далі race, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Узнайте, когда Том обычно путешествует.",
-          "uk": "Дізнайтеся, коли Том зазвичай подорожує."
+          "ru": "Соседка стоит рядом с велосипедом. Спросите её: «Когда ты участвуешь в гонках?»",
+          "uk": "Сусідка стоїть поруч із велосипедом. Спитайте її: «Коли ти береш участь у перегонах?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-32:intro2:r1",
-              "text": "When does Tom travel?"
+              "text": "When do you race?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro2:r2",
-              "text": "When do Tom travel?"
+              "text": "When does you race?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro2:r3",
-              "text": "When does Tom travels?"
+              "text": "When do you races?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-32:intro2:r1",
-              "text": "When does Tom travel?"
+              "text": "When do you race?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro2:r2",
-              "text": "When do Tom travel?"
+              "text": "When does you race?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro2:r3",
-              "text": "When does Tom travels?"
+              "text": "When do you races?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте, когда Том обычно путешествует.",
-          "uk": "Дізнайтеся, коли Том зазвичай подорожує."
+          "ru": "Соседка стоит рядом с велосипедом. Спросите её: «Когда ты участвуешь в гонках?»",
+          "uk": "Сусідка стоїть поруч із велосипедом. Спитайте її: «Коли ти береш участь у перегонах?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Привычный ночлег",
-        "uk": "Звична ночівля"
+        "ru": "Лодка у реки",
+        "uk": "Човен біля річки"
       },
       "bodyByLocale": {
-        "ru": "Знакомый часто ездит в один город. `Where do you stay?` — «Где ты останавливаешься?» Здесь `stay` означает временно проживать во время поездки. Вы спрашиваете о его привычном месте ночлега: `where do you stay`.",
-        "uk": "Знайомий часто їздить до одного міста. `Where do you stay?` — «Де ти зупиняєшся?» Тут `stay` означає тимчасово проживати під час поїздки. Ви запитуєте про його звичне місце ночівлі: `where do you stay`."
+        "ru": "Подруга занимается греблей и показывает фотографии своих тренировок. На снимках разные берега; вы хотите узнать её обычное место занятий. row — «грести». Спросите: Where do you row? — «Где ты гребёшь?» Where спрашивает о месте; дальше идут do you row. Здесь речь о привычном маршруте тренировок.",
+        "uk": "Подруга займається веслуванням і показує фотографії своїх тренувань. На знімках різні береги; ви хочете дізнатися її звичне місце занять. row — «веслувати». Спитайте: Where do you row? — «Де ти веслуєш?» Where запитує про місце; далі йдуть do you row. Тут ідеться про звичний маршрут тренувань."
       },
       "question": {
         "interactionId": "en:lesson-07:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Узнайте, где знакомый обычно останавливается в поездках.",
-          "uk": "Дізнайтеся, де знайомий зазвичай зупиняється в поїздках."
+          "ru": "Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»",
+          "uk": "Подруга показує фотографії регулярних тренувань. Спитайте її: «Де ти веслуєш?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-32:intro3:r1",
-              "text": "Where do you stay?"
+              "text": "Where do you row?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro3:r2",
-              "text": "Where does you stay?"
+              "text": "Where does you row?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro3:r3",
-              "text": "Where do you stays?"
+              "text": "Where do you rows?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-32:intro3:r1",
-              "text": "Where do you stay?"
+              "text": "Where do you row?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro3:r2",
-              "text": "Where does you stay?"
+              "text": "Where does you row?"
             },
             {
               "responseId": "en:lesson-07:session-32:intro3:r3",
-              "text": "Where do you stays?"
+              "text": "Where do you rows?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте, где знакомый обычно останавливается в поездках.",
-          "uk": "Дізнайтеся, де знайомий зазвичай зупиняється в поїздках."
+          "ru": "Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»",
+          "uk": "Подруга показує фотографії регулярних тренувань. Спитайте її: «Де ти веслуєш?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5589517829886216c95fb9fea3116eecc0ac278fbe099ef892effb1f38e1a623"
+  "introFingerprint": "df762adc774c953cfd984489fc66181c344cb27ae5c2458d9893c67e14ba56d9"
 }

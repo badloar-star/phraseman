@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-28:intro1:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-28:intro1:r3": {
-          "ru": "После `where` здесь нужно `do`.",
-          "uk": "Після `where` тут потрібне `do`."
+          "ru": "После do you нужно travel, без s.",
+          "uk": "Після do you потрібно travel, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-28:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-28:intro2:r3": {
-          "ru": "После `do you` нужно `stretch`, без `es`.",
-          "uk": "Після `do you` потрібне `stretch`, без `es`."
+          "ru": "После do you нужно stay, без s.",
+          "uk": "Після do you потрібно stay, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-28:intro3:r2": {
-          "ru": "С `she` нужно `does`.",
-          "uk": "З `she` потрібне `does`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-28:intro3:r3": {
-          "ru": "После `does` нужно `start`, без `s`.",
-          "uk": "Після `does` потрібне `start`, без `s`."
+          "ru": "После do you нужно spend, без s.",
+          "uk": "Після do you потрібно spend, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "aa39c41050db23de9a82057aa524abab2291c219cc6b8751cfd0aa193789e1a0"
+  "auxiliaryFingerprint": "76f745e29e23e497e343517d456b1d7cfb9452b86024427f6e5a2e3cbdebb331"
 }

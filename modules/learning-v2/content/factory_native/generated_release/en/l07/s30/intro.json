@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-30",
   "learningOutcomeByLocale": {
-    "ru": "спрашивать о направлениях поездок с where и о времени действий с when",
-    "uk": "запитувати про напрямки поїздок з where і про час дій з when"
+    "ru": "узнавать, где и когда оплачивают счета, выдают посылки и регистрируют посетителей",
+    "uk": "дізнаватися, де й коли сплачують рахунки, видають посилки й реєструють відвідувачів"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Направления поездок",
-        "uk": "Напрямки поїздок"
+        "ru": "Счёт за воду",
+        "uk": "Рахунок за воду"
       },
       "bodyByLocale": {
-        "ru": "Друг часто путешествует. `travel` — «путешествовать». `Where do you travel?` — «Куда ты путешествуешь?» Здесь `where` спрашивает о направлениях его обычных поездок; затем идут `do you travel`. Глобус большой, поэтому ответ «куда-нибудь» мало помогает.",
-        "uk": "Друг часто подорожує. `travel` — «подорожувати». `Where do you travel?` — «Куди ти подорожуєш?» Тут `where` запитує про напрямки його звичних поїздок; потім ідуть `do you travel`. Глобус великий, тому відповідь «куди-небудь» мало допомагає."
+        "ru": "Вы впервые оплачиваете воду после переезда и спрашиваете соседку, где она обычно это делает. Pay — знакомое «платить». Payment — «платёж, оплата». Спросите: Where do you pay the bill? — «Где вы оплачиваете счёт?» С you здесь нужно do, затем pay, без s. Счёт за воду уже есть, а экскурсия по всем кассам района в ваши планы не входила.",
+        "uk": "Ви вперше сплачуєте за воду після переїзду й питаєте сусідку, де вона зазвичай це робить. Pay — знайоме «платити». Payment — «платіж, оплата». Спитайте: Where do you pay the bill? — «Де ви сплачуєте рахунок?» З you тут потрібне do, далі pay, без s. Рахунок за воду вже є, а екскурсія всіма касами району у ваші плани не входила."
       },
       "question": {
         "interactionId": "en:lesson-07:session-30:intro1:q",
         "promptByLocale": {
-          "ru": "Узнайте обычные направления поездок друга.",
-          "uk": "Дізнайтеся звичні напрямки поїздок друга."
+          "ru": "Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»",
+          "uk": "Сусідка тримає такий самий рахунок. Спитайте її: «Де ви сплачуєте рахунок?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-30:intro1:r1",
-              "text": "Where do you travel?"
+              "text": "Where do you pay the bill?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro1:r2",
-              "text": "Where does you travel?"
+              "text": "Where does you pay the bill?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro1:r3",
-              "text": "Where you travel?"
+              "text": "Where do you pays the bill?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-30:intro1:r1",
-              "text": "Where do you travel?"
+              "text": "Where do you pay the bill?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro1:r2",
-              "text": "Where does you travel?"
+              "text": "Where does you pay the bill?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro1:r3",
-              "text": "Where you travel?"
+              "text": "Where do you pays the bill?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте обычные направления поездок друга.",
-          "uk": "Дізнайтеся звичні напрямки поїздок друга."
+          "ru": "Соседка держит такой же счёт. Спросите её: «Где вы оплачиваете счёт?»",
+          "uk": "Сусідка тримає такий самий рахунок. Спитайте її: «Де ви сплачуєте рахунок?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Время уборки",
-        "uk": "Час прибирання"
+        "ru": "Уведомление о посылке",
+        "uk": "Повідомлення про посилку"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете с соседом по квартире привычный график уборки. `When do you clean?` — «Когда ты убираешь?» Из разговора понятно, что речь о квартире. `When` спрашивает о времени, затем идут `do you clean`.",
-        "uk": "Ви обговорюєте із сусідом по квартирі звичний графік прибирання. `When do you clean?` — «Коли ти прибираєш?» Із розмови зрозуміло, що йдеться про квартиру. `When` запитує про час, потім ідуть `do you clean`."
+        "ru": "Магазин на углу выдаёт посылки, но вы видите только обычную кассу. Collect — «забирать». Узнайте у продавца, где здесь принято получать посылки: Where do customers collect parcels? — «Где клиенты забирают посылки?» С customers в этом вопросе нужно do, затем collect, без s.",
+        "uk": "Магазин на розі видає посилки, але ви бачите лише звичайну касу. Collect — «забирати». Дізнайтеся в продавця, де тут зазвичай отримують посилки: Where do customers collect parcels? — «Де клієнти забирають посилки?» З customers у цьому запитанні потрібне do, далі collect, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-30:intro2:q",
         "promptByLocale": {
-          "ru": "Узнайте, когда сосед обычно убирает квартиру.",
-          "uk": "Дізнайтеся, коли сусід зазвичай прибирає квартиру."
+          "ru": "Вы зашли в магазин на углу. Спросите продавца: «Где клиенты забирают посылки?»",
+          "uk": "Ви зайшли в магазин на розі. Спитайте продавця: «Де клієнти забирають посилки?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-30:intro2:r1",
-              "text": "When do you clean?"
+              "text": "Where do customers collect parcels?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro2:r2",
-              "text": "When does you clean?"
+              "text": "Where does customers collect parcels?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro2:r3",
-              "text": "When do you cleans?"
+              "text": "Where do customers collects parcels?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-30:intro2:r1",
-              "text": "When do you clean?"
+              "text": "Where do customers collect parcels?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro2:r2",
-              "text": "When does you clean?"
+              "text": "Where does customers collect parcels?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro2:r3",
-              "text": "When do you cleans?"
+              "text": "Where do customers collects parcels?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте, когда сосед обычно убирает квартиру.",
-          "uk": "Дізнайтеся, коли сусід зазвичай прибирає квартиру."
+          "ru": "Вы зашли в магазин на углу. Спросите продавца: «Где клиенты забирают посылки?»",
+          "uk": "Ви зайшли в магазин на розі. Спитайте продавця: «Де клієнти забирають посилки?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начало рабочего дня",
-        "uk": "Початок робочого дня"
+        "ru": "Холл поликлиники",
+        "uk": "Хол поліклініки"
       },
       "bodyByLocale": {
-        "ru": "Вы уточняете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» В этом разговоре имеется в виду работа. С `she` ставим `does`, затем `start`, без `s`.",
-        "uk": "Ви уточнюєте робочий розклад колеги. `When does she start?` — «Коли вона починає?» У цій розмові мається на увазі робота. З `she` ставимо `does`, потім `start`, без `s`."
+        "ru": "Вы впервые пришли в поликлинику: запись к врачу уже есть, но перед кабинетом нужно зарегистрировать своё прибытие. Register — «регистрироваться». Подруга бывала здесь раньше. Спросите её: Where do patients register? — «Где пациенты регистрируются?» С patients здесь нужно do, затем register, без s. Вы ищете место регистрации, а не записываетесь на другой приём.",
+        "uk": "Ви вперше прийшли до поліклініки: запис до лікаря вже є, але перед кабінетом потрібно зареєструвати своє прибуття. Register — «реєструватися». Подруга бувала тут раніше. Спитайте її: Where do patients register? — «Де пацієнти реєструються?» З patients тут потрібне do, далі register, без s. Ви шукаєте місце реєстрації, а не записуєтеся на інший прийом."
       },
       "question": {
         "interactionId": "en:lesson-07:session-30:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о начале её рабочего дня.",
-          "uk": "Запитайте про початок її робочого дня."
+          "ru": "В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»",
+          "uk": "У холі поліклініки багато людей. Спитайте подругу: «Де пацієнти реєструються?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-30:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where do patients register?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where does patients register?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where do patients registers?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-30:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where do patients register?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where does patients register?"
             },
             {
               "responseId": "en:lesson-07:session-30:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where do patients registers?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о начале её рабочего дня.",
-          "uk": "Запитайте про початок її робочого дня."
+          "ru": "В холле поликлиники много людей. Спросите подругу: «Где пациенты регистрируются?»",
+          "uk": "У холі поліклініки багато людей. Спитайте подругу: «Де пацієнти реєструються?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bf47b987395581022d7a08b116dae049cedc4878b5b17db025cd5c0d69699f96"
+  "introFingerprint": "bde6928b809de93403028124798c21b5a3ced8834685571645c5e5f5cc02a688"
 }

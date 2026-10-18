@@ -4,28 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-27:i01",
+      "interactionId": "en:lesson-07:session-27:word:canteen",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — canteen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-27:word:canteen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — canteen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-27:word:canteen:audio",
+          "transcript": "canteen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-27:word:canteen:r1",
+            "targetText": "canteen",
+            "meaningByLocale": {
+              "ru": "столовая. The canteen is open. — «Столовая открыта». Место на работе или в школе, где можно поесть.",
+              "uk": "їдальня. The canteen is open. — «Їдальня відчинена». Місце на роботі або в школі, де можна поїсти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "canteen",
+          "definitionByLocale": {
+            "ru": "столовая. The canteen is open. — «Столовая открыта». Место на работе или в школе, где можно поесть.",
+            "uk": "їдальня. The canteen is open. — «Їдальня відчинена». Місце на роботі або в школі, де можна поїсти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-27:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дізнайтеся звичне місце проживання в поїздках: «Де ти зупиняєшся?»",
+      "prompt": "Колега показує на будівлю навпроти. Спитайте її: «Коли відкривається їдальня?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся звичне місце проживання в поїздках: «Де ти зупиняєшся?»",
+      "accessibilityLabel": "Колега показує на будівлю навпроти. Спитайте її: «Коли відкривається їдальня?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where do you stay?",
+        "targetPhrase": "When does the canteen open?",
         "localizedMeaning": {
-          "ru": "Узнайте привычное место проживания в поездках: «Где ты останавливаешься?»",
-          "uk": "Дізнайтеся звичне місце проживання в поїздках: «Де ти зупиняєшся?»"
+          "ru": "Коллега показывает на здание напротив. Спросите её: «Когда открывается столовая?»",
+          "uk": "Колега показує на будівлю навпроти. Спитайте її: «Коли відкривається їдальня?»"
         },
         "orderedTokens": [
-          "Where",
-          "do",
-          "you",
-          "stay"
+          "When",
+          "does",
+          "the",
+          "canteen",
+          "open"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -38,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте колегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-27:i02:r1",
-          "text": "stay"
+          "text": "When does the canteen open?"
         },
         {
           "responseId": "en:lesson-07:session-27:i02:r2",
-          "text": "exercise"
+          "text": "When does the canteen close?"
         },
         {
           "responseId": "en:lesson-07:session-27:i02:r3",
-          "text": "passport"
+          "text": "When does the library open?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте колегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i02:audio",
-          "transcript": "stay"
+          "transcript": "When does the canteen open?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-27:i02:r1",
-            "targetText": "stay",
+            "targetText": "When does the canteen open?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-27:i02:r2",
-            "targetText": "exercise",
+            "targetText": "When does the canteen close?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-27:i02:r3",
-            "targetText": "passport",
+            "targetText": "When does the library open?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `stay`, а в этом варианте — `exercise`.",
-              "uk": "У записі перше слово — `stay`, а в цьому варіанті — `exercise`."
+              "ru": "В записи последнее слово — `open`, открываться, а в этом варианте — `close`, закрываться.",
+              "uk": "У записі останнє слово — `open`, відкриватися, а в цьому варіанті — `close`, зачинятися."
             }
           },
           {
             "responseId": "en:lesson-07:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `stay`, а в этом варианте — `passport`.",
-              "uk": "У записі перше слово — `stay`, а в цьому варіанті — `passport`."
+              "ru": "В записи четвёртое слово — `canteen`, столовая, а в этом варианте — `library`, библиотека.",
+              "uk": "У записі четверте слово — `canteen`, їдальня, а в цьому варіанті — `library`, бібліотека."
             }
           }
         ],
@@ -114,19 +158,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про звичне місце ночівлі в поїздках",
+      "prompt": "Спитайте: «Коли відкривається їдальня?» Вставте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-27:i03:r1",
-          "text": "do"
+          "text": "does"
         },
         {
           "responseId": "en:lesson-07:session-27:i03:r2",
-          "text": "does"
+          "text": "do"
         },
         {
           "responseId": "en:lesson-07:session-27:i03:r3",
@@ -135,46 +179,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про звичне місце ночівлі в поїздках",
+      "accessibilityLabel": "Спитайте: «Коли відкривається їдальня?» Вставте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о привычном месте ночлега в поездках",
-          "uk": "Запитайте про звичне місце ночівлі в поїздках"
+          "ru": "Спросите: «Когда открывается столовая?» Вставьте слово",
+          "uk": "Спитайте: «Коли відкривається їдальня?» Вставте слово"
         },
-        "gappedTargetPhrase": "Where ___ you stay?",
+        "gappedTargetPhrase": "When ___ the canteen open?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-27:i03:r1",
-            "text": "do"
+            "text": "does"
           },
           {
             "responseId": "en:lesson-07:session-27:i03:r2",
-            "text": "does"
+            "text": "do"
           },
           {
             "responseId": "en:lesson-07:session-27:i03:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Запитайте про звичне місце ночівлі в поїздках",
+        "testedDimension": "Спитайте: «Коли відкривається їдальня?» Вставте слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте про звичне місце ночівлі в поїздках",
+            "testedDimension": "Спитайте: «Коли відкривається їдальня?» Вставте слово",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `do`.",
-              "uk": "З `you` потрібне `do`."
+              "ru": "Спрашиваем об открытии столовой: здесь нужно `does`.",
+              "uk": "Питаємо про відкриття їдальні: тут потрібне `does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте про звичне місце ночівлі в поїздках",
+            "testedDimension": "Спитайте: «Коли відкривається їдальня?» Вставте слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о привычном действии `stay` строим с `do`.",
-              "uk": "Запитання про звичну дію `stay` будуємо з `do`."
+              "ru": "Перед the canteen здесь нужно does. Are не подходит к одной столовой.",
+              "uk": "Перед the canteen тут потрібне does. Are не підходить до однієї їдальні."
             }
           }
         ]
@@ -183,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-27:i04:p1",
-            "target": "stay",
+            "target": "canteen",
             "meaningByLocale": {
-              "ru": "останавливаться на время поездки",
-              "uk": "зупинятися на час поїздки"
+              "ru": "столовая",
+              "uk": "їдальня"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i04:p2",
-            "target": "exercise",
+            "target": "open",
             "meaningByLocale": {
-              "ru": "тренироваться",
-              "uk": "тренуватися"
+              "ru": "открываться",
+              "uk": "відкриватися"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i04:p3",
-            "target": "passport",
+            "target": "close",
             "meaningByLocale": {
-              "ru": "паспорт",
-              "uk": "паспорт"
+              "ru": "закрываться",
+              "uk": "зачинятися"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i04:p4",
-            "target": "cars",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
         "leftColumn": [
-          "stay",
-          "exercise",
-          "passport",
-          "cars"
+          "canteen",
+          "open",
+          "close",
+          "work"
         ],
         "rightColumn": [
-          "зупинятися на час поїздки",
-          "тренуватися",
-          "паспорт",
-          "машини"
+          "їдальня",
+          "відкриватися",
+          "зачинятися",
+          "працювати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,64 +299,151 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-27:word:lunch",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lunch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-27:word:lunch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lunch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-27:word:lunch:audio",
+          "transcript": "lunch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-27:word:lunch:r1",
+            "targetText": "lunch",
+            "meaningByLocale": {
+              "ru": "обед. Lunch is ready. — «Обед готов». Еда в середине дня.",
+              "uk": "обід. Lunch is ready. — «Обід готовий». Їжа посеред дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lunch",
+          "definitionByLocale": {
+            "ru": "обед. Lunch is ready. — «Обед готов». Еда в середине дня.",
+            "uk": "обід. Lunch is ready. — «Обід готовий». Їжа посеред дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-27:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте подругу й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте подругу й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i05:audio",
-          "transcript": "Where do you stay?"
+          "transcript": "When do you have lunch?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where do you stay?",
+        "hiddenTargetPhrase": "When do you have lunch?",
         "orderedTokens": [
-          "Where",
+          "When",
           "do",
           "you",
-          "stay"
+          "have",
+          "lunch"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-27:word:eat",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-27:word:eat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-27:word:eat:audio",
+          "transcript": "eat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-27:word:eat:r1",
+            "targetText": "eat",
+            "meaningByLocale": {
+              "ru": "есть, питаться. Where does he eat? — «Где он ест?» Принимать пищу.",
+              "uk": "їсти, харчуватися. Where does he eat? — «Де він їсть?» Приймати їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eat",
+          "definitionByLocale": {
+            "ru": "есть, питаться. Where does he eat? — «Где он ест?» Принимать пищу.",
+            "uk": "їсти, харчуватися. Where does he eat? — «Де він їсть?» Приймати їжу."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-27:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте друга «Де ти тренуєшся?»",
+      "prompt": "Колега говорить про свого чоловіка. Спитайте її: «Де він їсть?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте друга «Де ти тренуєшся?»",
+      "accessibilityLabel": "Колега говорить про свого чоловіка. Спитайте її: «Де він їсть?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where do you exercise?",
+        "targetPhrase": "Where does he eat?",
         "localizedMeaning": {
-          "ru": "Спросите друга «Где ты тренируешься?»",
-          "uk": "Запитайте друга «Де ти тренуєшся?»"
+          "ru": "Коллега говорит о своём муже. Спросите её: «Где он ест?»",
+          "uk": "Колега говорить про свого чоловіка. Спитайте її: «Де він їсть?»"
         },
         "orderedTokens": [
           "Where",
-          "do",
-          "you",
-          "exercise"
+          "does",
+          "he",
+          "eat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,26 +455,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-27:word:dinner",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dinner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-27:word:dinner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dinner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-27:word:dinner:audio",
+          "transcript": "dinner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-27:word:dinner:r1",
+            "targetText": "dinner",
+            "meaningByLocale": {
+              "ru": "ужин. Dinner is ready. — «Ужин готов». Главный приём пищи за день; в этих ситуациях — вечерний ужин.",
+              "uk": "вечеря. Dinner is ready. — «Вечеря готова». Головний прийом їжі за день; у цих ситуаціях — вечірня вечеря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dinner",
+          "definitionByLocale": {
+            "ru": "ужин. Dinner is ready. — «Ужин готов». Главный приём пищи за день; в этих ситуациях — вечерний ужин.",
+            "uk": "вечеря. Dinner is ready. — «Вечеря готова». Головний прийом їжі за день; у цих ситуаціях — вечірня вечеря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-27:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте про початок роботи колеги «Коли вона починає?»",
+      "prompt": "Ви хочете прийти до брата після вечері й дізнаєтеся звичний час вечері його родини. Спитайте брата: «Коли ви вечеряєте?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте про початок роботи колеги «Коли вона починає?»",
+      "accessibilityLabel": "Ви хочете прийти до брата після вечері й дізнаєтеся звичний час вечері його родини. Спитайте брата: «Коли ви вечеряєте?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i07:audio",
-          "transcript": "When does she start?"
+          "transcript": "When do you have dinner?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does she start?",
+        "targetPhrase": "When do you have dinner?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,67 +532,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про початок її роботи",
+      "prompt": "Спитайте брата про вечерю. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-27:i08:r1",
-          "text": "start"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-07:session-27:i08:r2",
-          "text": "starts"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-07:session-27:i08:r3",
-          "text": "is start"
+          "text": "is have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про початок її роботи",
+      "accessibilityLabel": "Спитайте брата про вечерю. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о начале её работы",
-          "uk": "Запитайте про початок її роботи"
+          "ru": "Спросите брата об ужине. Выберите слово",
+          "uk": "Спитайте брата про вечерю. Виберіть слово"
         },
-        "gappedTargetPhrase": "When does she ___?",
+        "gappedTargetPhrase": "When do you ___ dinner?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-27:i08:r1",
-            "text": "start"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-07:session-27:i08:r2",
-            "text": "starts"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-07:session-27:i08:r3",
-            "text": "is start"
+            "text": "is have"
           }
         ],
-        "testedDimension": "Запитайте про початок її роботи",
+        "testedDimension": "Спитайте брата про вечерю. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-27:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте про початок її роботи",
+            "testedDimension": "Спитайте брата про вечерю. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `start`.",
-              "uk": "Після `does` потрібне `start`."
+              "ru": "После `do you` нужно `have`, не `has`.",
+              "uk": "Після `do you` потрібно `have`, не `has`."
             }
           },
           {
             "responseId": "en:lesson-07:session-27:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте про початок її роботи",
+            "testedDimension": "Спитайте брата про вечерю. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `start`, без `is`.",
-              "uk": "Тут потрібне `start`, без `is`."
+              "ru": "Здесь нужно `have`, без `is`.",
+              "uk": "Тут потрібно `have`, без `is`."
             }
           }
         ]
@@ -427,51 +601,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть запитання",
+      "prompt": "Послухайте колегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-27:i09:r1",
-          "text": "Where do you stay?"
+          "text": "Where does he eat?"
         },
         {
           "responseId": "en:lesson-07:session-27:i09:r2",
-          "text": "When do you stay?"
+          "text": "Where does he work?"
         },
         {
           "responseId": "en:lesson-07:session-27:i09:r3",
-          "text": "Where do you work?"
+          "text": "Where does she eat?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть запитання",
+      "accessibilityLabel": "Послухайте колегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i09:audio",
-          "transcript": "Where do you stay?"
+          "transcript": "Where does he eat?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-27:i09:r1",
-            "targetText": "Where do you stay?",
+            "targetText": "Where does he eat?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-27:i09:r2",
-            "targetText": "When do you stay?",
+            "targetText": "Where does he work?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-27:i09:r3",
-            "targetText": "Where do you work?",
+            "targetText": "Where does she eat?",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +654,19 @@
           {
             "responseId": "en:lesson-07:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
-              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+              "ru": "В записи последнее слово — `eat`, есть, а в этом варианте — `work`, работать.",
+              "uk": "У записі останнє слово — `eat`, їсти, а в цьому варіанті — `work`, працювати."
             }
           },
           {
             "responseId": "en:lesson-07:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть запитання",
+            "testedDimension": "Послухайте колегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `stay`, а в этом варианте — `work`.",
-              "uk": "У записі останнє слово — `stay`, а в цьому варіанті — `work`."
+              "ru": "В записи третье слово — `he`, он, а в этом варианте — `she`, она.",
+              "uk": "У записі третє слово — `he`, він, а в цьому варіанті — `she`, вона."
             }
           }
         ],
@@ -503,8 +677,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -517,48 +691,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-27:i10:p1",
-            "target": "complain",
+            "target": "lunch",
             "meaningByLocale": {
-              "ru": "жаловаться",
-              "uk": "скаржитися"
+              "ru": "обед",
+              "uk": "обід"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i10:p2",
-            "target": "stay",
+            "target": "cafe",
             "meaningByLocale": {
-              "ru": "останавливаться на время поездки",
-              "uk": "зупинятися на час поїздки"
+              "ru": "кафе",
+              "uk": "кафе"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i10:p3",
-            "target": "cars",
+            "target": "restaurant",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "ресторан",
+              "uk": "ресторан"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i10:p4",
-            "target": "exercise",
+            "target": "canteen",
             "meaningByLocale": {
-              "ru": "тренироваться",
-              "uk": "тренуватися"
+              "ru": "столовая",
+              "uk": "їдальня"
             }
           }
         ],
         "leftColumn": [
-          "complain",
-          "stay",
-          "cars",
-          "exercise"
+          "lunch",
+          "cafe",
+          "restaurant",
+          "canteen"
         ],
         "rightColumn": [
-          "скаржитися",
-          "зупинятися на час поїздки",
-          "машини",
-          "тренуватися"
+          "обід",
+          "кафе",
+          "ресторан",
+          "їдальня"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,30 +750,30 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте брата й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте брата й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i11:audio",
-          "transcript": "Where do you exercise?"
+          "transcript": "Where do you eat?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where do you exercise?",
+        "hiddenTargetPhrase": "Where do you eat?",
         "orderedTokens": [
           "Where",
           "do",
           "you",
-          "exercise"
+          "eat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -612,28 +786,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед поїздкою запитайте друга «У тебе є паспорт?»",
+      "prompt": "Ви з подругою приєднуєтеся до нової робочої команди й дізнаєтеся її звичний розпорядок. Спитайте: «Де ми обідаємо?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед поїздкою запитайте друга «У тебе є паспорт?»",
+      "accessibilityLabel": "Ви з подругою приєднуєтеся до нової робочої команди й дізнаєтеся її звичний розпорядок. Спитайте: «Де ми обідаємо?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a passport?",
+        "targetPhrase": "Where do we have lunch?",
         "localizedMeaning": {
-          "ru": "Перед поездкой спросите друга «У тебя есть паспорт?»",
-          "uk": "Перед поїздкою запитайте друга «У тебе є паспорт?»"
+          "ru": "Вы с подругой входите в новую рабочую команду и узнаёте её обычный распорядок. Спросите: «Где мы обедаем?»",
+          "uk": "Ви з подругою приєднуєтеся до нової робочої команди й дізнаєтеся її звичний розпорядок. Спитайте: «Де ми обідаємо?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
+          "Where",
+          "do",
+          "we",
           "have",
-          "a",
-          "passport"
+          "lunch"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -646,25 +820,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Обговорюючи звички, скажіть «Я не скаржуся»",
+      "prompt": "Колега говорить про свого чоловіка. Спитайте її: «Коли він вечеряє?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i13:audio"
       ],
-      "accessibilityLabel": "Обговорюючи звички, скажіть «Я не скаржуся»",
+      "accessibilityLabel": "Колега говорить про свого чоловіка. Спитайте її: «Коли він вечеряє?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i13:audio",
-          "transcript": "I don’t complain."
+          "transcript": "When does he have dinner?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I don’t complain.",
+        "targetPhrase": "When does he have dinner?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -679,67 +853,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дізнайтеся звичне місце проживання Тома в поїздках",
+      "prompt": "Спитайте колегу про її чоловіка. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-27:i14:r1",
-          "text": "stay"
+          "text": "eat"
         },
         {
           "responseId": "en:lesson-07:session-27:i14:r2",
-          "text": "stays"
+          "text": "eats"
         },
         {
           "responseId": "en:lesson-07:session-27:i14:r3",
-          "text": "is stay"
+          "text": "is eat"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся звичне місце проживання Тома в поїздках",
+      "accessibilityLabel": "Спитайте колегу про її чоловіка. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте привычное место проживания Тома в поездках",
-          "uk": "Дізнайтеся звичне місце проживання Тома в поїздках"
+          "ru": "Спросите коллегу о её муже. Выберите слово",
+          "uk": "Спитайте колегу про її чоловіка. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where does Tom ___?",
+        "gappedTargetPhrase": "Where does he ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-27:i14:r1",
-            "text": "stay"
+            "text": "eat"
           },
           {
             "responseId": "en:lesson-07:session-27:i14:r2",
-            "text": "stays"
+            "text": "eats"
           },
           {
             "responseId": "en:lesson-07:session-27:i14:r3",
-            "text": "is stay"
+            "text": "is eat"
           }
         ],
-        "testedDimension": "Дізнайтеся звичне місце проживання Тома в поїздках",
+        "testedDimension": "Спитайте колегу про її чоловіка. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-27:i14:r2",
             "correct": false,
-            "testedDimension": "Дізнайтеся звичне місце проживання Тома в поїздках",
+            "testedDimension": "Спитайте колегу про її чоловіка. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `stay`.",
-              "uk": "Після `does` потрібне `stay`."
+              "ru": "После `does` нужно `eat`, без `s`.",
+              "uk": "Після `does` потрібно `eat`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-27:i14:r3",
             "correct": false,
-            "testedDimension": "Дізнайтеся звичне місце проживання Тома в поїздках",
+            "testedDimension": "Спитайте колегу про її чоловіка. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `stay`, без `is`.",
-              "uk": "Тут потрібне `stay`, без `is`."
+              "ru": "Здесь нужно `eat`, без `is`.",
+              "uk": "Тут потрібно `eat`, без `is`."
             }
           }
         ]
@@ -748,51 +922,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де машини",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-27:i15:r1",
-          "text": "The cars are here."
+          "text": "When do you have lunch?"
         },
         {
           "responseId": "en:lesson-07:session-27:i15:r2",
-          "text": "The cars are there."
+          "text": "When do you have dinner?"
         },
         {
           "responseId": "en:lesson-07:session-27:i15:r3",
-          "text": "The cars are outside."
+          "text": "When do we have lunch?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де машини",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i15:audio",
-          "transcript": "The cars are here."
+          "transcript": "When do you have lunch?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-27:i15:r1",
-            "targetText": "The cars are here.",
+            "targetText": "When do you have lunch?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-27:i15:r2",
-            "targetText": "The cars are there.",
+            "targetText": "When do you have dinner?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-27:i15:r3",
-            "targetText": "The cars are outside.",
+            "targetText": "When do we have lunch?",
             "meaningByLocale": null
           }
         ],
@@ -801,19 +975,19 @@
           {
             "responseId": "en:lesson-07:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де машини",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `lunch`, обед, а в этом варианте — `dinner`, ужин.",
+              "uk": "У записі останнє слово — `lunch`, обід, а в цьому варіанті — `dinner`, вечеря."
             }
           },
           {
             "responseId": "en:lesson-07:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де машини",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+              "ru": "В записи третье слово — `you`, вы, а в этом варианте — `we`, мы.",
+              "uk": "У записі третє слово — `you`, ви, а в цьому варіанті — `we`, ми."
             }
           }
         ],
@@ -824,7 +998,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,48 +1012,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-27:i16:p1",
-            "target": "stay",
+            "target": "dinner",
             "meaningByLocale": {
-              "ru": "останавливаться на время поездки",
-              "uk": "зупинятися на час поїздки"
+              "ru": "ужин",
+              "uk": "вечеря"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i16:p2",
-            "target": "passport",
+            "target": "eat",
             "meaningByLocale": {
-              "ru": "паспорт",
-              "uk": "паспорт"
+              "ru": "есть, питаться",
+              "uk": "їсти, харчуватися"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i16:p3",
-            "target": "complain",
+            "target": "canteen",
             "meaningByLocale": {
-              "ru": "жаловаться",
-              "uk": "скаржитися"
+              "ru": "столовая",
+              "uk": "їдальня"
             }
           },
           {
             "pairId": "en:lesson-07:session-27:i16:p4",
-            "target": "cars",
+            "target": "lunch",
             "meaningByLocale": {
-              "ru": "машины",
-              "uk": "машини"
+              "ru": "обед",
+              "uk": "обід"
             }
           }
         ],
         "leftColumn": [
-          "stay",
-          "passport",
-          "complain",
-          "cars"
+          "dinner",
+          "eat",
+          "canteen",
+          "lunch"
         ],
         "rightColumn": [
-          "зупинятися на час поїздки",
-          "паспорт",
-          "скаржитися",
-          "машини"
+          "вечеря",
+          "їсти, харчуватися",
+          "їдальня",
+          "обід"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -897,25 +1071,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-27:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг згадує регулярні тренування Тома. Запитайте «Де Том тренується?»",
+      "prompt": "Ви знову біля їдальні. Спитайте колегу: «Коли відкривається їдальня?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-27:i17:audio"
       ],
-      "accessibilityLabel": "Друг згадує регулярні тренування Тома. Запитайте «Де Том тренується?»",
+      "accessibilityLabel": "Ви знову біля їдальні. Спитайте колегу: «Коли відкривається їдальня?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-27:i17:audio",
-          "transcript": "Where does Tom exercise?"
+          "transcript": "When does the canteen open?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where does Tom exercise?",
+        "targetPhrase": "When does the canteen open?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -937,11 +1111,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7a4b7b5a638c1b316466bdb46bfbb267ac2aa732ee52868235a8ecf90c80abf0"
+  "learnerFingerprint": "00e207e479f844573362519ce943092211de44e5483b03fae725e8134a77cdb1"
 }

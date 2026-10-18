@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-07:session-28:word:travel",
+    "correctText": "travel",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-28:i01",
-    "correctText": "Where do you eat?",
+    "correctText": "When do you travel?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i02",
-    "correctText": "eat",
+    "correctText": "When do you travel?",
     "correctResponseId": "en:lesson-07:session-28:i02:r1"
   },
   {
@@ -16,72 +21,87 @@
   },
   {
     "interactionId": "en:lesson-07:session-28:i04",
-    "correctText": "en:lesson-07:session-28:i04:p1=eat\nen:lesson-07:session-28:i04:p2=stretch\nen:lesson-07:session-28:i04:p3=keycard\nen:lesson-07:session-28:i04:p4=chairs",
+    "correctText": "en:lesson-07:session-28:i04:p1=travel\nen:lesson-07:session-28:i04:p2=work\nen:lesson-07:session-28:i04:p3=leave\nen:lesson-07:session-28:i04:p4=live",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:word:stay",
+    "correctText": "stay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i05",
-    "correctText": "Where do you eat?",
+    "correctText": "Where do you stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:word:spend",
+    "correctText": "spend",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i06",
-    "correctText": "Where do you stretch?",
+    "correctText": "Where do you spend weekends?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-28:word:return",
+    "correctText": "return",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i07",
-    "correctText": "When does she start?",
+    "correctText": "When do you return?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i08",
-    "correctText": "does",
+    "correctText": "do",
     "correctResponseId": "en:lesson-07:session-28:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-28:i09",
-    "correctText": "Where do you eat?",
+    "correctText": "Where do you spend weekends?",
     "correctResponseId": "en:lesson-07:session-28:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-28:i10",
-    "correctText": "en:lesson-07:session-28:i10:p1=shout\nen:lesson-07:session-28:i10:p2=eat\nen:lesson-07:session-28:i10:p3=chairs\nen:lesson-07:session-28:i10:p4=stretch",
+    "correctText": "en:lesson-07:session-28:i10:p1=stay\nen:lesson-07:session-28:i10:p2=hotel\nen:lesson-07:session-28:i10:p3=airport\nen:lesson-07:session-28:i10:p4=weekend",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i11",
-    "correctText": "Where do you stretch?",
+    "correctText": "When does the bus return?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i12",
-    "correctText": "Do you have a keycard?",
+    "correctText": "When does he travel?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i13",
-    "correctText": "I don’t shout.",
+    "correctText": "Where does she stay?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i14",
-    "correctText": "eat",
+    "correctText": "stay",
     "correctResponseId": "en:lesson-07:session-28:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-28:i15",
-    "correctText": "The chairs are here.",
+    "correctText": "When do you return?",
     "correctResponseId": "en:lesson-07:session-28:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-28:i16",
-    "correctText": "en:lesson-07:session-28:i16:p1=eat\nen:lesson-07:session-28:i16:p2=keycard\nen:lesson-07:session-28:i16:p3=shout\nen:lesson-07:session-28:i16:p4=chairs",
+    "correctText": "en:lesson-07:session-28:i16:p1=return\nen:lesson-07:session-28:i16:p2=spend\nen:lesson-07:session-28:i16:p3=stay\nen:lesson-07:session-28:i16:p4=travel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-28:i17",
-    "correctText": "When does Tom eat?",
+    "correctText": "When do you travel?",
     "correctResponseId": null
   }
 ]

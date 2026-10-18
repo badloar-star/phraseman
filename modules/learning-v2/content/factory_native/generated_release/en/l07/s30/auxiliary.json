@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-30:intro1:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-30:intro1:r3": {
-          "ru": "После `where` здесь нужно `do`.",
-          "uk": "Після `where` тут потрібне `do`."
+          "ru": "После do you нужно pay, без s.",
+          "uk": "Після do you потрібно pay, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-30:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "Клиентов много: нужно do.",
+          "uk": "Клієнтів багато: потрібно do."
         },
         "en:lesson-07:session-30:intro2:r3": {
-          "ru": "После `do you` нужно `clean`, без `s`.",
-          "uk": "Після `do you` потрібне `clean`, без `s`."
+          "ru": "После do нужно collect, без s.",
+          "uk": "Після do потрібно collect, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-30:intro3:r2": {
-          "ru": "С `she` нужно `does`.",
-          "uk": "З `she` потрібне `does`."
+          "ru": "Пациентов много: нужно do.",
+          "uk": "Пацієнтів багато: потрібно do."
         },
         "en:lesson-07:session-30:intro3:r3": {
-          "ru": "После `does` нужно `start`.",
-          "uk": "Після `does` потрібне `start`."
+          "ru": "После do нужно register, без s.",
+          "uk": "Після do потрібно register, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "90c6a1b09f22fbc49c04a18342178d3ca9d5d58eb7d5f847a6dbc2169197b73b"
+  "auxiliaryFingerprint": "616b88c0305efaf77cc14f0020e9142005226f74a40bbccd6bd44c2dd971287a"
 }

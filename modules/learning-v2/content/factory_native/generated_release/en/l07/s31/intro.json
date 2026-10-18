@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-31",
   "learningOutcomeByLocale": {
-    "ru": "задавать вопросы о привычках, месте и времени действий",
-    "uk": "ставити запитання про звички, місце й час дій"
+    "ru": "спрашивать с When и Where о семейных делах: с you нужно do, с he и she — does",
+    "uk": "питати з When і Where про сімейні справи: з you потрібно do, з he і she — does"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выходные в парке",
-        "uk": "Вихідні в парку"
+        "ru": "Поездка к бабушке",
+        "uk": "Поїздка до бабусі"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете с другом, как он проводит выходные. `visit` — «посещать». `Do you visit parks?` — «Ты посещаешь парки?» После `visit` здесь называем место — `parks`. Это вопрос о привычке, поэтому начинаем с `do you`. Скамейки пока не требуют записи на приём.",
-        "uk": "Ви обговорюєте з другом, як він проводить вихідні. `visit` — «відвідувати». `Do you visit parks?` — «Ти відвідуєш парки?» Після `visit` тут називаємо місце — `parks`. Це запитання про звичку, тому починаємо з `do you`. Лавки поки не вимагають запису на прийом."
+        "ru": "Брат регулярно навещает вашу бабушку. Вы тоже хотите приезжать почаще и узнаёте, в какие дни он обычно у неё бывает. visit — «навещать». Спросите: When do you visit our grandmother? — «Когда ты навещаешь нашу бабушку?» С you здесь нужно do, затем visit, без s. У бабушки «зайти на минутку» обычно заканчивается обедом.",
+        "uk": "Брат регулярно провідує вашу бабусю. Ви теж хочете приїжджати частіше й дізнаєтеся, у які дні він зазвичай у неї буває. visit — «провідувати». Спитайте: When do you visit our grandmother? — «Коли ти провідуєш нашу бабусю?» З you тут потрібне do, далі visit, без s. У бабусі «зайти на хвилинку» зазвичай закінчується обідом."
       },
       "question": {
         "interactionId": "en:lesson-07:session-31:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите друга, посещает ли он парки.",
-          "uk": "Запитайте друга, чи відвідує він парки."
+          "ru": "Вы узнаёте, в какие дни брат обычно бывает у бабушки. Спросите его: «Когда ты навещаешь нашу бабушку?»",
+          "uk": "Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-31:intro1:r1",
-              "text": "Do you visit parks?"
+              "text": "When do you visit our grandmother?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro1:r2",
-              "text": "Does you visit parks?"
+              "text": "When does you visit our grandmother?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro1:r3",
-              "text": "Do you visits parks?"
+              "text": "When do you visits our grandmother?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-31:intro1:r1",
-              "text": "Do you visit parks?"
+              "text": "When do you visit our grandmother?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro1:r2",
-              "text": "Does you visit parks?"
+              "text": "When does you visit our grandmother?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro1:r3",
-              "text": "Do you visits parks?"
+              "text": "When do you visits our grandmother?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга, посещает ли он парки.",
-          "uk": "Запитайте друга, чи відвідує він парки."
+          "ru": "Вы узнаёте, в какие дни брат обычно бывает у бабушки. Спросите его: «Когда ты навещаешь нашу бабушку?»",
+          "uk": "Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Общее расписание ванной",
-        "uk": "Спільний розклад ванної"
+        "ru": "Яблоки в саду",
+        "uk": "Яблука в саду"
       },
       "bodyByLocale": {
-        "ru": "Вы делите квартиру с другом и обсуждаете обычное время пользования ванной. `When do you shower?` — «Когда ты принимаешь душ?» `When` спрашивает о времени, затем идут `do you shower`. Здесь `shower` — действие «принимать душ».",
-        "uk": "Ви ділите квартиру з другом і обговорюєте звичний час користування ванною. `When do you shower?` — «Коли ти приймаєш душ?» `When` запитує про час, потім ідуть `do you shower`. Тут `shower` — дія «приймати душ»."
+        "ru": "Соседка каждый год собирает урожай со своих яблонь. Вы предлагаете помощь и спрашиваете её мужа, когда она обычно собирает урожай яблок. harvest — «собирать урожай». Спросите: When does she harvest apples? — «Когда она собирает яблоки?» С she здесь нужно does, затем harvest, без s. Речь о сборе урожая, а не об одном яблоке к чаю.",
+        "uk": "Сусідка щороку збирає врожай зі своїх яблунь. Ви пропонуєте допомогу й питаєте її чоловіка, коли вона зазвичай збирає врожай яблук. harvest — «збирати врожай». Спитайте: When does she harvest apples? — «Коли вона збирає яблука?» З she тут потрібне does, далі harvest, без s. Ідеться про збір урожаю, а не про одне яблуко до чаю."
       },
       "question": {
         "interactionId": "en:lesson-07:session-31:intro2:q",
         "promptByLocale": {
-          "ru": "Узнайте, когда друг обычно принимает душ.",
-          "uk": "Дізнайтеся, коли друг зазвичай приймає душ."
+          "ru": "Сосед показывает на сад. Спросите его: «Когда она собирает яблоки?»",
+          "uk": "Сусід показує на сад. Спитайте його: «Коли вона збирає яблука?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-31:intro2:r1",
-              "text": "When do you shower?"
+              "text": "When does she harvest apples?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro2:r2",
-              "text": "When does you shower?"
+              "text": "When do she harvest apples?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro2:r3",
-              "text": "When do you showers?"
+              "text": "When does she harvests apples?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-31:intro2:r1",
-              "text": "When do you shower?"
+              "text": "When does she harvest apples?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro2:r2",
-              "text": "When does you shower?"
+              "text": "When do she harvest apples?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro2:r3",
-              "text": "When do you showers?"
+              "text": "When does she harvests apples?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте, когда друг обычно принимает душ.",
-          "uk": "Дізнайтеся, коли друг зазвичай приймає душ."
+          "ru": "Сосед показывает на сад. Спросите его: «Когда она собирает яблоки?»",
+          "uk": "Сусід показує на сад. Спитайте його: «Коли вона збирає яблука?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Место работы",
-        "uk": "Місце роботи"
+        "ru": "Вечер с детьми",
+        "uk": "Вечір із дітьми"
       },
       "bodyByLocale": {
-        "ru": "Вы узнаёте, где работает знакомый. `Where do you work?` — «Где ты работаешь?» `Where` спрашивает о месте. После него идут `do you work`, без окончания у `work`.",
-        "uk": "Ви дізнаєтеся, де працює знайомий. `Where do you work?` — «Де ти працюєш?» `Where` запитує про місце. Після нього ідуть `do you work`, без закінчення у `work`."
+        "ru": "Сестра по вечерам присматривает за детьми соседей. Вы хотите выбрать свободный вечер для совместной прогулки и узнаёте, когда она обычно занята. babysit — «присматривать за детьми». Спросите: When do you babysit? — «Когда ты присматриваешь за детьми?» С you здесь нужно do, затем babysit, без s.",
+        "uk": "Сестра вечорами доглядає за дітьми сусідів. Ви хочете обрати вільний вечір для спільної прогулянки й дізнаєтеся, коли вона зазвичай зайнята. babysit — «доглядати за дітьми». Спитайте: When do you babysit? — «Коли ти доглядаєш за дітьми?» З you тут потрібне do, далі babysit, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-31:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите знакомого: «Где ты работаешь?»",
-          "uk": "Запитайте знайомого: «Де ти працюєш?»"
+          "ru": "Сестра рассказывает о соседях. Спросите её: «Когда ты присматриваешь за детьми?»",
+          "uk": "Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-31:intro3:r1",
-              "text": "Where do you work?"
+              "text": "When do you babysit?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro3:r2",
-              "text": "Where does you work?"
+              "text": "When does you babysit?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro3:r3",
-              "text": "Where do you works?"
+              "text": "When do you babysits?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-31:intro3:r1",
-              "text": "Where do you work?"
+              "text": "When do you babysit?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro3:r2",
-              "text": "Where does you work?"
+              "text": "When does you babysit?"
             },
             {
               "responseId": "en:lesson-07:session-31:intro3:r3",
-              "text": "Where do you works?"
+              "text": "When do you babysits?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите знакомого: «Где ты работаешь?»",
-          "uk": "Запитайте знайомого: «Де ти працюєш?»"
+          "ru": "Сестра рассказывает о соседях. Спросите её: «Когда ты присматриваешь за детьми?»",
+          "uk": "Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0c3aef6e2cb5c439432cabce01e54d22ecdf8aaf1b111a3781077072848a5a32"
+  "introFingerprint": "21aa5f5f835bc622c5fa643eed04d572d9c0293c7fb6628c7cabe8f9136bcc75"
 }

@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-27:word:canteen",
+    "correctText": "canteen",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-27:i01",
-    "correctText": "Where do you stay?",
+    "correctText": "When does the canteen open?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i02",
-    "correctText": "stay",
+    "correctText": "When does the canteen open?",
     "correctResponseId": "en:lesson-07:session-27:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-27:i03",
-    "correctText": "do",
+    "correctText": "does",
     "correctResponseId": "en:lesson-07:session-27:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-27:i04",
-    "correctText": "en:lesson-07:session-27:i04:p1=stay\nen:lesson-07:session-27:i04:p2=exercise\nen:lesson-07:session-27:i04:p3=passport\nen:lesson-07:session-27:i04:p4=cars",
+    "correctText": "en:lesson-07:session-27:i04:p1=canteen\nen:lesson-07:session-27:i04:p2=open\nen:lesson-07:session-27:i04:p3=close\nen:lesson-07:session-27:i04:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:word:lunch",
+    "correctText": "lunch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i05",
-    "correctText": "Where do you stay?",
+    "correctText": "When do you have lunch?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:word:eat",
+    "correctText": "eat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i06",
-    "correctText": "Where do you exercise?",
+    "correctText": "Where does he eat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-27:word:dinner",
+    "correctText": "dinner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i07",
-    "correctText": "When does she start?",
+    "correctText": "When do you have dinner?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i08",
-    "correctText": "start",
+    "correctText": "have",
     "correctResponseId": "en:lesson-07:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-27:i09",
-    "correctText": "Where do you stay?",
+    "correctText": "Where does he eat?",
     "correctResponseId": "en:lesson-07:session-27:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-27:i10",
-    "correctText": "en:lesson-07:session-27:i10:p1=complain\nen:lesson-07:session-27:i10:p2=stay\nen:lesson-07:session-27:i10:p3=cars\nen:lesson-07:session-27:i10:p4=exercise",
+    "correctText": "en:lesson-07:session-27:i10:p1=lunch\nen:lesson-07:session-27:i10:p2=cafe\nen:lesson-07:session-27:i10:p3=restaurant\nen:lesson-07:session-27:i10:p4=canteen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i11",
-    "correctText": "Where do you exercise?",
+    "correctText": "Where do you eat?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i12",
-    "correctText": "Do you have a passport?",
+    "correctText": "Where do we have lunch?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i13",
-    "correctText": "I don’t complain.",
+    "correctText": "When does he have dinner?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i14",
-    "correctText": "stay",
+    "correctText": "eat",
     "correctResponseId": "en:lesson-07:session-27:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-27:i15",
-    "correctText": "The cars are here.",
+    "correctText": "When do you have lunch?",
     "correctResponseId": "en:lesson-07:session-27:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-27:i16",
-    "correctText": "en:lesson-07:session-27:i16:p1=stay\nen:lesson-07:session-27:i16:p2=passport\nen:lesson-07:session-27:i16:p3=complain\nen:lesson-07:session-27:i16:p4=cars",
+    "correctText": "en:lesson-07:session-27:i16:p1=dinner\nen:lesson-07:session-27:i16:p2=eat\nen:lesson-07:session-27:i16:p3=canteen\nen:lesson-07:session-27:i16:p4=lunch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-27:i17",
-    "correctText": "Where does Tom exercise?",
+    "correctText": "When does the canteen open?",
     "correctResponseId": null
   }
 ]

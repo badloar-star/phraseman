@@ -89,12 +89,14 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--sheet); border-radius: 30px 30px 0 0; box-shadow: var(--sheet-sh); padding: 10px 20px 30px; }
 .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--grab); margin: 0 auto; }
 .xr { display: flex; justify-content: flex-end; margin-top: 4px; }
-.x { width: 36px; height: 36px; border-radius: 50%; background: var(--btn2); display: flex; align-items: center; justify-content: center; color: var(--sec); }
-.x .i { width: 16px; height: 16px; }
+/* зачем: как в коде (closeBtn 44, значок 14) */
+.x { width: 44px; height: 44px; border-radius: 50%; background: var(--btn2); display: flex; align-items: center; justify-content: center; color: var(--sec); }
+.x .i { width: 14px; height: 14px; }
 .hd { display: flex; gap: 14px; align-items: center; margin-top: 2px; }
-.hd .ic { width: 48px; height: 48px; border-radius: 15px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
-.hd .ic .i { width: 24px; height: 24px; }
-.st { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.2px; }
+/* зачем: как в коде (streakBadge 55/14, перо серии 30 на тоне opaqueControl) */
+.hd .ic { width: 55px; height: 55px; border-radius: 14px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
+.hd .ic img { width: 30px; height: 30px; display: block; }
+.st { font-size: 25px; line-height: 31px; font-weight: 700; letter-spacing: -.2px; }
 .ss { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 2px; }
 .sb2 { font-size: 15px; line-height: 22px; color: var(--sec); margin-top: 14px; }
 .prov { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; margin-top: 10px; position: relative; transition: opacity 200ms cubic-bezier(.23,1,.32,1); }
@@ -103,15 +105,16 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 .gl { font-weight: 800; font-size: 19px; color: #4285F4; width: 20px; text-align: center; }
 .trust { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 14px; font-size: 13px; color: var(--muted); }
 .trust .i { width: 14px; height: 14px; }
-.later { height: 50px; border-radius: 25px; background: var(--btn2); color: var(--btn2-ink); box-shadow: var(--btn2-sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 12px; }
-.legal { text-align: center; font-size: 13px; line-height: 20px; font-weight: 600; color: var(--sec); margin-top: 12px; }
+.later { height: 48px; border-radius: 24px; background: var(--btn2); color: var(--btn2-ink); box-shadow: var(--btn2-sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 12px; }
+.legal { text-align: center; font-size: 13px; line-height: 19px; font-weight: 700; color: var(--text); margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
 .dim { opacity: .38; }
 /* нажатие: индикатор на месте значка */
 .spin { width: 20px; height: 20px; border-radius: 50%; border: 2.4px solid currentColor; border-right-color: transparent; opacity: .75; animation: sp 800ms linear infinite; flex: none; }
 @keyframes sp { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .spin { animation: none; border-right-color: currentColor; opacity: .35; } }
 /* «Входим…» — спокойная строка */
-.slow { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: 15px; line-height: 21px; font-weight: 600; color: var(--sec); }
+/* зачем: шкала D145 — 16/21 */
+.slow { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: 16px; line-height: 21px; font-weight: 600; color: var(--sec); }
 .dots { display: inline-flex; gap: 4px; }
 .dots i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; animation: dt 1.2s ease-in-out infinite; }
 .dots i:nth-child(2) { animation-delay: .2s; } .dots i:nth-child(3) { animation-delay: .4s; }
@@ -122,8 +125,9 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 .oops .r1 { display: flex; gap: 12px; align-items: flex-start; }
 .oops .r1 .i { width: 20px; height: 20px; color: var(--sec); margin-top: 1px; }
 .oops .h { font-size: 16px; line-height: 21px; font-weight: 700; }
-.oops .p { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 2px; }
-.retry { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--cta); color: var(--cta-ink); font-size: 15px; font-weight: 700; margin: 12px 0 0 32px; }
+/* зачем: D145 и сторож контраста — причина 16/21 цветом текста, отличие от заголовка весом */
+.oops .p { font-size: 16px; line-height: 21px; color: var(--text); margin-top: 2px; }
+.retry { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--cta); color: var(--cta-ink); font-size: 16px; font-weight: 700; margin: 12px 0 0 32px; }
 .retry .i { width: 16px; height: 16px; }
 </style>
 
@@ -182,7 +186,7 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
     <tr><td>Сбой · заголовок</td><td>Не получилось войти</td><td>новое</td></tr>
     <tr><td>Сбой · нет связи</td><td>Связь пропала. Попробуй ещё раз.</td><td>код, <code>network</code></td></tr>
     <tr><td>Сбой · много попыток</td><td>Слишком много попыток подряд. Подожди пару минут и попробуй снова.</td><td>код, <code>too_many</code> — кнопки повтора нет</td></tr>
-    <tr><td>Сбой · окно закрыли</td><td>Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или выбери другой способ.</td><td>код, отмена</td></tr>
+    <tr><td>Окно выбора аккаунта закрыли</td><td>Ничего не показываем — окно входа как в покое, кнопки активны (решение координатора 18.10)</td><td>тихо, без карточки</td></tr>
     <tr><td>Сбой · другое</td><td>Вход не завершился. Попробуй ещё раз или выбери другой способ.</td><td>новое</td></tr>
     <tr><td>Кнопка повтора</td><td>Попробовать ещё раз</td><td>новое</td></tr>
   </table></div>
@@ -227,10 +231,10 @@ const signIn = (cls, state) => {
   return `<div class="ph ${cls}" role="img" aria-label="Окно входа: ${state}">${sbar}
   <div class="scr under">${account(false)}</div><div class="scrim"></div>
   <div class="sheet"><div class="grab"></div><div class="xr"><div class="x${d}">${I.close}</div></div>
-    <div class="hd"><div class="ic">${I.shield}</div><div><div class="st">Всё в безопасности</div><div class="ss">Твой путь сохранится и дождётся тебя</div></div></div>
+    <div class="hd"><div class="ic"><img src="assets/streak/streak-feather-01.webp" alt=""></div><div><div class="st">Всё в безопасности</div><div class="ss">Твой путь сохранится и дождётся тебя</div></div></div>
     <div class="sb2">Быстрый вход. Прогресс будет на всех твоих устройствах.</div>
     ${oops}${g}${a}${slow}
-    <div class="later${d}">Позже</div><div class="legal${d}">Политика конфиденциальности<br>Условия использования</div>
+    <div class="later${d}">Позже</div><div class="legal${d}"><span>Политика конфиденциальности</span><span>Условия использования</span></div>
   </div><div class="hi"></div></div>`;
 };
 const accPhone = (cls) => `<div class="ph ${cls}" role="img" aria-label="Аккаунт после входа">${sbar}<div class="scr">${account(true)}</div><div class="hi"></div></div>`;

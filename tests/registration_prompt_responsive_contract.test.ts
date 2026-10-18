@@ -27,7 +27,10 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     expect(src).toContain('const captionLineHeight = Math.max(18, Math.round(f.caption * 1.4))');
     expect(src).toContain('styles.footerCol');
     expect(src).toContain('styles.legalLinks');
-    expect(src).toContain("flexWrap: 'wrap'");
+    // зачем (макет auth-states.html, координатор 18.10): «Политика» и «Условия» — по одной на строку, без разделителя; строки не обрезаются крупным шрифтом
+    expect(src).toContain("flexDirection: 'column'");
+    expect(src).toContain('rowGap: 6');
+    expect(src).not.toContain('>|</Text>');
     expect(src).toContain("width: '100%'");
   });
 
@@ -36,7 +39,12 @@ describe('RegistrationPromptModal responsive layout contract', () => {
 
     // зачем (владелец 15.10): видимой строки «Входим…» больше нет — индикатор рисует сама кнопка провайдера (loading),
     // подпись живёт только в accessibilityLabel невидимого узла прогресса.
-    expect(src).toContain('loading={loadingProvider === ');
+    // + макет auth-states.html (координатор 18.10): кольцо на месте значка рисует кнопка (busy), остальные приглушены (dimmed), видимая строка «Входим…» с 3 с — отдельный SignInStatusLine без своего объявления
+    expect(src).toContain('busy={loadingProvider === ');
+    expect(src).toContain('dimmed={');
+    expect(src).toContain('<SignInStatusLine active={loadingProvider !== null} announce={false} />');
+    // порог 8 с размораживает «Позже» и не меняется (строка с 3 с — собственные таймеры компонента)
+    expect(src).toContain('const SIGN_IN_SLOW_THRESHOLD_MS = 8_000;');
     expect(src.split('signInSlow ? signInSlowLabel : signInBusyLabel').length - 1).toBe(1);
     expect(src).toContain('accessibilityLabel={signInSlow ? signInSlowLabel : signInBusyLabel}');
     expect(src).toContain("testID={signInSlow ? 'auth-prompt-slow' : 'auth-prompt-busy'}");

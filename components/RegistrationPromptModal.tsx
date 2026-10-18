@@ -20,8 +20,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { isLightThemeMode } from '../constants/theme'; // зачем: стиль кнопки Apple по теме шторки (координатор 13.10)
 import { useLang } from './LangContext';
-import { googleButtonVariantForSurface } from './auth_google_button_style';
-import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
+import { AuthProviderButtonPlaceholder } from './AuthProviderButtons';
+// зачем (координатор 18.10, auth-states.html): кнопки входа с кольцом на месте значка, строка «Входим…» с 3 с и мягкая карточка сбоя вместо красного текста
+import SignInProgressButton from './auth/SignInProgressButton';
+import { SignInFailureCard, SignInStatusLine } from './auth/SignInProgressNote';
+import type { SignInFailureKind } from './auth/sign_in_progress_copy';
+import GuestSwitchWarningSheet from './auth/GuestSwitchWarningSheet';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { StreakChainIcon } from './StreakChainIcon';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -100,10 +104,7 @@ import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow } from './v2/ShadowSurface';
 import { useKeyboardBottomInset } from './keyboardAvoidance';
-import { useRouter } from 'expo-router';
-import { accountSwitchRequiredCopy, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '../app/account_switch_copy';
 import { signInRefusalCopyFor } from '../app/account_sync_copy';
-import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { identityErrorCode } from '../app/identity_trace';
 import { authErrorKind, authErrorLogCode, authErrorTextForKind } from '../app/auth_error_copy';
@@ -220,6 +221,12 @@ interface Props {
   onClose: () => void;
   onSignedIn?: (result: SignInResult) => void;
   /**
+   * зачем (правило владельца 18.10: гость с прогрессом входит в ДРУГОЙ существующий аккаунт — одна шторка «Войти в другой аккаунт?»; приёмка Сайта
+   * account_switch_owner_rules_1018): шторку показывает окно входа по сигналу из потока входа (auth_provider, Авторизация). Пока сигнала нет — пропс не передают
+   * и шторка не монтируется. «Войти» — onConfirm (вход в B тем же выбором аккаунта), «Отмена»/смахивание — onCancel (остаёмся гостем).
+   */
+  guestSwitch?: Readonly<{ visible: boolean; accountLabel?: string; onConfirm: () => void; onCancel: () => void }>;
+  /**
    * зачем: гибрид «Световод + Чекан» живёт РЯДОМ со старым видом под флагом —
    * боевой дефолт 'classic' не меняется без явного включения владельцем.
    * 'hybrid' добавляет bloom-подложку над шитом (свет загорается первым) и
@@ -236,6 +243,7 @@ function RegistrationPromptModal({
   subtitle,
   onClose,
   onSignedIn,
+  guestSwitch,
   motionVariant = 'classic',
 }: Props) {
   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
@@ -258,13 +266,10 @@ function RegistrationPromptModal({
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
   const [signInSlow, setSignInSlow] = useState(false);
   const [inlineError, setInlineError] = useState<string | null>(null);
+  // зачем (макет auth-states.html, блок 4): сбой входа — мягкая карточка с причиной по виду ошибки, а не красный текст; null — прежние сообщения (смена аккаунта, отказы)
+  const [signInFailureKind, setSignInFailureKind] = useState<SignInFailureKind | null>(null);
   // Провайдер последней неуспешной попытки — для кнопки «Повторить» под ошибкой.
   const [retryProvider, setRetryProvider] = useState<AuthProviderId | null>(null);
-  // зачем (§127): отказ account_switch_required — вместо «Повторить» одна кнопка, сразу открывающая смену аккаунта.
-  const [switchAccountOffered, setSwitchAccountOffered] = useState(false);
-  // AA S2d раунд 3: подпись кнопки «Сменить аккаунт» от текущего отказа (null — текст account_switch_required).
-  const [switchAccountActionText, setSwitchAccountActionText] = useState<string | null>(null);
-  const router = useRouter();
   // Recovery hint: каким аккаунтом входить (маска email с сервера).
   const [recoveryHint, setRecoveryHint] = useState<AuthRecoveryHint | null>(null);
   const [recoveryPanelVisible, setRecoveryPanelVisible] = useState(false);
@@ -396,9 +401,8 @@ function RegistrationPromptModal({
       return;
     }
     setInlineError(null);
+    setSignInFailureKind(null);
     setRetryProvider(null);
-    setSwitchAccountOffered(false);
-    setSwitchAccountActionText(null);
     setRecoveryPanelVisible(false);
     setRecoveryOfferedAfterMismatch(false);
     setRecoveryFlowState({ stage: 'idle' });
@@ -1150,6 +1154,7 @@ function RegistrationPromptModal({
       }
       setLoadingProvider(provider);
       setRetryProvider(null);
+      setSignInFailureKind(null); // новая попытка снимает карточку сбоя
       setSignInSlow(false);
       clearSlowTimer();
       slowTimerRef.current = setTimeout(() => {
@@ -1208,12 +1213,10 @@ function RegistrationPromptModal({
           // зачем (координатор 18.10 06:12): код ошибки — всегда в журнал (раньше только в отладке), человеку — словарь.
           console.warn(`[AUTH-MODAL] sign_in error provider=${provider} code=${authErrorLogCode(result.error)} kind=${authErrorKind(result.error)}`); // guard-ok: причина ошибки входа
           if (result.error === 'account_switch_required') {
-            setRetryProvider(null);
-            // зачем (§127): простым языком + кнопка «Сменить аккаунт» (рендер ниже) вместо инструкции «Настройки → …».
-            const switchCopy = accountSwitchRequiredCopy(lang);
-            setSwitchAccountOffered(true);
-            setSwitchAccountActionText(null);
-            showInlineError(switchCopy.title, switchCopy.body);
+            // зачем (правила владельца 18.10, приёмка Сайта): такого отказа больше нет — гость с прогрессом получает шторку «Войти в другой аккаунт?», вошедший A входит в B сразу.
+            // Если старый ответ всё же пришёл — мягкая карточка «Вход не завершился», без текста про привязку телефона и без перехода в Настройки.
+            console.warn('[AUTH-MODAL] account_switch_required received — legacy refusal, generic failure card'); // guard-ok: ветка называет причину
+            setSignInFailureKind('other');
             return;
           }
           // зачем (AA S2d раунды 2–3, §134 (б), §135 ❓1): вход отменён без стирания —
@@ -1222,9 +1225,7 @@ function RegistrationPromptModal({
           const refusalCopy = signInRefusalCopyFor(result.error, lang);
           if (refusalCopy) {
             if (refusalCopy.offersAccountSwitch) {
-              setRetryProvider(null);
-              setSwitchAccountOffered(true);
-              setSwitchAccountActionText(refusalCopy.action);
+              setRetryProvider(null); // повтор не поможет; кнопки «Сменить аккаунт» с переходом в Настройки больше нет (правило владельца 18.10)
             }
             showInlineError(refusalCopy.title, refusalCopy.body);
             return;
@@ -1322,7 +1323,8 @@ function RegistrationPromptModal({
             );
             return;
           }
-          // сеть и «слишком много попыток» — свои словарные фразы (общие с онбордингом)
+          // сеть и «слишком много попыток» — свои словарные фразы (общие с онбордингом); карточка сбоя берёт ту же причину
+          setSignInFailureKind(authErrorKind(result.error));
           const baseMsg = authErrorTextForKind(authErrorKind(result.error), lang) ?? triLang(lang, {
             ru: 'Не получилось войти. Попробуй позже.',
             uk: 'Не вдалося увійти. Спробуй пізніше.',
@@ -1359,6 +1361,7 @@ function RegistrationPromptModal({
         if (!isAttemptCurrent(attemptToken)) return;
         clearSlowTimer();
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
+        setSignInFailureKind('other');
         showInlineError(
           triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'It did not work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
           triLang(lang, {
@@ -1579,7 +1582,7 @@ function RegistrationPromptModal({
             accessibilityLabel={labelLater}
             accessibilityState={{ disabled: !recoveryDismissAllowed }}
             hitSlop={8}
-            style={[styles.closeBtn, { backgroundColor: glass.buttonFill, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+            style={[styles.closeBtn, { backgroundColor: glass.buttonFill, opacity: !recoveryDismissAllowed ? 0.45 : (loadingProvider !== null && !signInSlow) ? 0.38 : 1 }]}
           >
             <Ionicons name="close" size={14} color={t.accentText} />
           </Pressable>
@@ -1629,28 +1632,40 @@ function RegistrationPromptModal({
             </Animated.Text>
           )}
 
+          {signInFailureKind !== null && loadingProvider === null && !recoverySessionActive ? (
+            <SignInFailureCard
+              kind={signInFailureKind}
+              onRetry={retryProvider !== null ? () => { void handleSignIn(retryProvider); } : undefined}
+            />
+          ) : null}
+
           <Animated.View style={[styles.buttons, rise2]}>
             {googleAvail && (
-              <GoogleSignInButton
-                onPress={() => handleSignIn('google')}
-                loading={loadingProvider === 'google'}
-                disabled={authOperationBusy}
+              <SignInProgressButton
+                provider="google"
                 label={labelGoogle}
-                // зачем ([BLEND-AUTH] 18.10): белая кнопка без обводки на светлой шторке сливалась — вариант по яркости шторки
-                variant={googleButtonVariantForSurface(glass.opaqueSheet)}
-                shape="sheet"
+                busyLabel={signInBusyLabel}
+                busy={loadingProvider === 'google'}
+                // зачем: остальные кнопки приглушены до 38 % и не нажимаются, пока идёт вход другим способом или другая операция (макет, блок 2)
+                dimmed={(loadingProvider !== null && loadingProvider !== 'google') || (loadingProvider === null && authOperationBusy)}
+                surface={isLightThemeMode(themeMode) ? 'light' : 'dark'}
+                // зачем ([BLEND-AUTH] 18.10): вариант Google по яркости шторки, как раньше — кнопка не сливается со шторкой
+                sheetColor={glass.opaqueSheet}
+                onPress={() => handleSignIn('google')}
               />
             )}
           </Animated.View>
           <Animated.View style={[styles.buttons, rise3]}>
             {appleAvail === true && (
-              <AppleSignInButton
-                onPress={() => handleSignIn('apple')}
-                loading={loadingProvider === 'apple'}
-                disabled={authOperationBusy}
+              <SignInProgressButton
+                provider="apple"
                 label={labelApple}
-                variant={isLightThemeMode(themeMode) ? 'light' : 'dark'}
-                shape="sheet"
+                busyLabel={signInBusyLabel}
+                busy={loadingProvider === 'apple'}
+                dimmed={(loadingProvider !== null && loadingProvider !== 'apple') || (loadingProvider === null && authOperationBusy)}
+                surface={isLightThemeMode(themeMode) ? 'light' : 'dark'}
+                sheetColor={glass.opaqueSheet}
+                onPress={() => handleSignIn('apple')}
               />
             )}
             {/* зачем (TG-AA6EC9A6D998): пока iOS не ответил про Apple — место под кнопку уже занято. */}
@@ -1671,6 +1686,9 @@ function RegistrationPromptModal({
             />
           )}
 
+          {/* зачем (макет, блок 3): через 3 с — спокойная строка «Входим…», через 8 с — «Вход занимает больше времени…»; объявляет читалке невидимый узел выше */}
+          <SignInStatusLine active={loadingProvider !== null} announce={false} />
+
           {!googleAvail && appleAvail === false && (
             <Text style={[styles.errorNote, { color: glass.bad, fontSize: f.caption }]}>
               {triLang(lang, {
@@ -1688,13 +1706,13 @@ function RegistrationPromptModal({
             </Text>
           )}
 
-          {!!inlineError && (
+          {!!inlineError && signInFailureKind === null && (
             <Text style={[styles.errorNote, { color: glass.bad, fontSize: f.caption }]}>
               {inlineError}
             </Text>
           )}
 
-          {!!inlineError && retryProvider !== null && loadingProvider === null && !recoverySessionActive && (
+          {!!inlineError && signInFailureKind === null && retryProvider !== null && loadingProvider === null && !recoverySessionActive && (
             <Pressable
               onPress={() => { void handleSignIn(retryProvider); }}
               accessibilityRole="button"
@@ -1703,24 +1721,6 @@ function RegistrationPromptModal({
             >
               <Text style={[styles.laterText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-              </Text>
-            </Pressable>
-          )}
-
-          {!!inlineError && switchAccountOffered && loadingProvider === null && !recoverySessionActive && (
-            <Pressable
-              testID="auth-switch-account"
-              onPress={() => {
-                // зачем (§127): окно входа закрываем и сразу открываем «Сменить аккаунт?» в Настройках — без лишних тапов.
-                console.log('[AUTH-SWITCH-OFFER] tap → settings switch dialog');
-                navigateAfterModalClose(onClose, () => router.push({ pathname: '/(tabs)/settings', params: { [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]: '1' } }));
-              }}
-              accessibilityRole="button"
-              accessibilityLabel={switchAccountActionText ?? accountSwitchRequiredCopy(lang).action}
-              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.ctaFill }]}
-            >
-              <Text style={[styles.laterText, { color: glass.ctaFillInk, fontSize: f.body }]}>
-                {switchAccountActionText ?? accountSwitchRequiredCopy(lang).action}
               </Text>
             </Pressable>
           )}
@@ -2202,7 +2202,7 @@ function RegistrationPromptModal({
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
                 variant="secondary"
                 // зачем (overlays.html `.cta.gh`): «Позже» — капсула 48 на всю ширину с тонким светлым контуром.
-                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass), opacity: !recoveryDismissAllowed ? 0.45 : (loadingProvider !== null && !signInSlow) ? 0.38 : 1 }]}
                 contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 testID="auth-prompt-later"
               >
@@ -2217,7 +2217,7 @@ function RegistrationPromptModal({
                 accessibilityRole="button"
                 accessibilityLabel={labelLaterAccessibility}
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
-                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass), opacity: !recoveryDismissAllowed ? 0.45 : (loadingProvider !== null && !signInSlow) ? 0.38 : 1 }]}
                 testID="auth-prompt-later"
               >
                 <Text style={[styles.laterText, { color: glass.text, fontSize: 16, fontWeight: '700' }]}>
@@ -2225,11 +2225,10 @@ function RegistrationPromptModal({
                 </Text>
               </Pressable>
             )}
-            <View style={styles.legalLinks}>
+            <View style={[styles.legalLinks, loadingProvider !== null && !signInSlow ? { opacity: 0.38 } : null]}>
               <Pressable onPress={() => openLegalLink(KNOWLY_LEGAL_PRIVACY_URL, 'registration_prompt')} hitSlop={8}>
                 <Text style={[styles.legalLink, { color: glass.text, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', en: 'Privacy Policy', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách quyền riêng tư', id: 'Kebijakan privasi', tr: 'Gizlilik Politikası', pl: 'Polityka prywatności' })}</Text>
               </Pressable>
-              <Text style={{ color: glass.mutedText, fontSize: f.caption, lineHeight: captionLineHeight }}>|</Text>
               <Pressable onPress={() => openLegalLink(KNOWLY_LEGAL_TERMS_URL, 'registration_prompt')} hitSlop={8}>
                 <Text style={[styles.legalLink, { color: glass.text, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', en: 'Terms of Use', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}</Text>
               </Pressable>
@@ -2239,6 +2238,14 @@ function RegistrationPromptModal({
           </Animated.View>
         </GestureDetector>
       </GestureHandlerRootView>
+      {guestSwitch ? (
+        <GuestSwitchWarningSheet
+          visible={guestSwitch.visible}
+          accountLabel={guestSwitch.accountLabel}
+          onConfirm={guestSwitch.onConfirm}
+          onCancel={guestSwitch.onCancel}
+        />
+      ) : null}
     </Modal>
   );
 }
@@ -2370,12 +2377,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   legalLinks: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    // зачем (макет auth-states.html, координатор 18.10): «Политика» и «Условия» — по одной на строку, без разделителя
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    columnGap: 12, // зачем (№35): зазор между соседними нажимаемыми ссылками >= 12 (было 8)
-    rowGap: 2,
+    rowGap: 6,
     marginTop: 8,
     width: '100%',
   },

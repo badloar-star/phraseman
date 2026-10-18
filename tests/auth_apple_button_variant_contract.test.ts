@@ -31,9 +31,12 @@ describe('Sign in with Apple — style follows the surface (dark → white, ligh
   });
 
   it('registration sheet: variant follows the app theme (light theme → black, dark → white)', () => {
-    const calls = appleButtonCalls('components/RegistrationPromptModal.tsx');
-    expect(calls).toHaveLength(1);
-    expect(calls[0]).toMatch(/variant=\{isLightThemeMode\(themeMode\) \? 'light' : 'dark'\}/);
+    // зачем (макет auth-states.html, координатор 18.10): окно входа рисует кнопки через SignInProgressButton; стиль Apple берётся из той же appleButtonColors по яркости шторки
+    const text = read('components/RegistrationPromptModal.tsx');
+    const appleCalls = [...text.matchAll(/<SignInProgressButton\b([\s\S]*?)\/>/g)].map((m) => m[1]).filter((attrs) => /provider="apple"/.test(attrs));
+    expect(appleCalls).toHaveLength(1);
+    expect(appleCalls[0]).toMatch(/surface=\{isLightThemeMode\(themeMode\) \? 'light' : 'dark'\}/);
+    expect(read('components/auth/SignInProgressButton.tsx')).toContain("appleButtonColors(surface === 'dark' ? 'dark' : 'light')");
   });
 
   it('the button logs the chosen style once per mount ([AUTH-APPLE-BTN])', () => {

@@ -40,6 +40,9 @@ const PAIRS: Pair[] = [
   { el: 'Вход: текст ошибки', what: 'bad к шторке и к панели opaqueControl', min: TEXT, v: (c) => Math.min(R(solid(c.g.bad!), sheet(c)), onFill(c.g.bad!, c.g.opaqueControl!, sheet(c))) },
   { el: 'Вход: подписи caption (щит, разделитель)', what: 'secondary к шторке', min: TEXT, v: (c) => R(solid(c.g.secondary!), sheet(c)) },
   { el: 'Вход: заголовок и текст', what: 'text / secondary к шторке', min: TEXT, v: (c) => Math.min(R(solid(c.g.text!), sheet(c)), R(solid(c.g.secondary!), sheet(c))) },
+  // мягкая карточка сбоя входа (макет auth-states.html, координатор 18.10): на buttonFill, без красного; кнопки Google/Apple — прежние пары выше (SignInProgressButton берёт те же цвета)
+  { el: 'Вход: карточка сбоя', what: 'тон buttonFill к шторке', min: TONE, v: (c) => R(over(c.g.buttonFill!, sheet(c)), sheet(c)) },
+  { el: 'Вход: карточка сбоя', what: 'заголовок, причина и значок (text) на buttonFill', min: TEXT, v: (c) => onFill(c.g.text!, c.g.buttonFill!, sheet(c)) },
   // онбординг: вход и согласия (CleanOnboarding), фон bgTop/bg/bgBottom
   { el: 'Онбординг: кнопка Google', what: 'заливка к фону', min: GRAPHIC, v: (c) => Math.min(...pages(c).map((p) => R(solid(brand(googleButtonVariantForSurface(c.g.bg!)).bg), p))) },
   { el: 'Онбординг: кнопка Apple', what: 'заливка к фону', min: GRAPHIC, v: (c) => Math.min(...pages(c).map((p) => R(solid(c.g.isLight ? '#000000' : '#FFFFFF'), p))) },

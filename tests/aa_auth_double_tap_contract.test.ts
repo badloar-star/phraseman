@@ -195,6 +195,38 @@ jest.mock('../components/AuthProviderButtons', () => {
     AuthProviderButtonPlaceholder: () => null,
   };
 });
+// зачем (макет auth-states.html, координатор 18.10): окно входа рисует кнопки через SignInProgressButton — двойник сохраняет прежний контракт теста: onPress провайдера и disabled, пока вход идёт (busy) или кнопка приглушена (dimmed)
+jest.mock('../components/auth/SignInProgressButton', () => {
+  const mockReact = require('react');
+  const { Pressable: MockPressable, Text: MockText } = require('react-native');
+  return {
+    __esModule: true,
+    default: ({ provider, onPress, busy, dimmed }: { provider: 'google' | 'apple'; onPress: () => Promise<void>; busy?: boolean; dimmed?: boolean }) => {
+      if (provider === 'google') mockGoogleOnPress = onPress;
+      return mockReact.createElement(
+        MockPressable,
+        { testID: `provider-${provider}`, onPress, disabled: Boolean(busy || dimmed) },
+        mockReact.createElement(MockText, null, provider === 'google' ? 'Google' : 'Apple'),
+      );
+    },
+  };
+});
+// зачем (макет auth-states.html, координатор 18.10): строка «Входим…» и карточка сбоя живут в SignInProgressNote (свой тест — sign_in_progress_states); здесь двойник показывает, ЧТО окно передало карточке:
+// вид сбоя (network / other) и повтор — тем же способом входа. Урезанный react-native этого теста не знает AccessibilityInfo.isReduceMotionEnabled.
+jest.mock('../components/auth/SignInProgressNote', () => {
+  const mockReact = require('react');
+  const { Pressable: MockPressable, Text: MockText } = require('react-native');
+  return {
+    SignInStatusLine: () => null,
+    SignInFailureCard: ({ kind, onRetry }: { kind: string; onRetry?: () => void }) => mockReact.createElement(
+      MockPressable,
+      { testID: 'sign-in-failure', onPress: onRetry },
+      mockReact.createElement(MockText, null, `failure:${kind}`),
+    ),
+  };
+});
+// зачем: GuestSwitchWarningSheet тянет HybridSheetShell (Dimensions) — урезанный react-native этого теста его не знает; шторка гостя здесь не проверяется (её тест — guest_switch_warning_sheet)
+jest.mock('../components/auth/GuestSwitchWarningSheet', () => ({ __esModule: true, default: () => null }));
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
 function deferred<T>() {
@@ -273,10 +305,14 @@ describe('окно входа (RegistrationPromptModal): Google из настр�
       await mockGoogleOnPress!();
     });
     expect(screen.getByTestId('provider-google').props.disabled).toBe(false);
+    // сбой сети — мягкая карточка с видом «network», не красный текст; её «Попробовать ещё раз» повторяет тот же способ входа
+    expect(screen.getByText('failure:network')).toBeTruthy();
     await act(async () => {
       await mockGoogleOnPress!();
     });
     expect(mockSignInWithProvider).toHaveBeenCalledTimes(2);
+    // новая попытка снимает карточку сбоя
+    expect(screen.queryByTestId('sign-in-failure')).toBeNull();
   });
 
   test('исключение входа → catch пишет причину кодом (без текста), кнопка снова доступна', async () => {
@@ -291,6 +327,8 @@ describe('окно входа (RegistrationPromptModal): Google из настр�
     expect(warned).toContain('code=auth/internal-error');
     expect(warned).not.toContain('user@example.test');
     expect(screen.getByTestId('provider-google').props.disabled).toBe(false);
+    // исключение входа — карточка сбоя «other» (человеческая фраза), текст исключения на экран не попадает
+    expect(screen.getByText('failure:other')).toBeTruthy();
   });
 });
 

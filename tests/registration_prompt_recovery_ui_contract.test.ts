@@ -85,13 +85,16 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     expect(source.slice(completionStart, completionStart + 600)).not.toContain('action_toast');
   });
 
-  it('renders account-switch-required as an explicit safe-switch decision, not a generic retry', () => {
+  it('account-switch-required in the sign-in sheet: no «phone already linked» text and no «Сменить аккаунт» button — guest gets the warning sheet, signed-in A goes straight to B', () => {
     expect(source).toContain("result.error === 'account_switch_required'");
     expect(source).toContain('setRetryProvider(null)');
-    // зачем (§127, 04.10): текст переписан простым языком (app/account_switch_copy.ts) — «прогресс на месте»
-    // и одна кнопка «Сменить аккаунт», сразу открывающая окно смены в Настройках, вместо инструкции.
-    expect(source).toContain('accountSwitchRequiredCopy(lang)');
-    expect(source).toContain('testID="auth-switch-account"');
+    // зачем (правила владельца 18.10, приёмка Сайта account_switch_owner_rules_1018; прежнее §127 отменено): текста про привязку телефона и кнопки с переходом в Настройки в окне входа больше нет;
+    // гость с прогрессом видит шторку GuestSwitchWarningSheet, а старый отказ (если пришёл) даёт мягкую карточку сбоя.
+    expect(source).not.toContain('accountSwitchRequiredCopy');
+    expect(source).not.toContain('SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM');
+    expect(source).not.toContain('testID="auth-switch-account"');
+    expect(source).toContain('<GuestSwitchWarningSheet');
+    expect(source).toContain("setSignInFailureKind('other')");
     const copySource = fs.readFileSync(path.join(__dirname, '..', 'app', 'account_switch_copy.ts'), 'utf8');
     expect(copySource).toContain('Твой прогресс на месте');
     expect(onboardingSource).toContain("code === 'account_switch_required'");
@@ -100,7 +103,8 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     // зачем (04.10): техническая строка с кодом ошибки добавляется к тексту ТОЛЬКО при включённых dev-инструментах (ENABLE_DEV_TOOLS) — в сборке
     // для людей её нет; прежняя проверка «этой строки в файле нет» была записана до появления dev-замка и ловила его. Охраняем суть: код
     // никогда не показывается без замка и сам текст account_switch_required берётся из простого текста, а не из кода ошибки.
-    expect(onboardingSource).toContain('ENABLE_DEV_TOOLS && code');
+    // зачем (стал строже): строки с машинным кодом в онбординге больше нет вовсе — даже под dev-замком (прежний пин «ENABLE_DEV_TOOLS && code» устарел)
+    expect(onboardingSource).not.toMatch(/ENABLE_DEV_TOOLS\s*&&\s*code/);
     expect(onboardingSource).not.toMatch(/return code\s*\?/);
   });
 

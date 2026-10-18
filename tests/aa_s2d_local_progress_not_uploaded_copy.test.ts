@@ -38,21 +38,19 @@ function read(rel: string): string {
   return fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
 }
 
-test('RegistrationPromptModal: retry only for not_uploaded; blocked offers the same settings switch button', () => {
+test('RegistrationPromptModal: retry only for not_uploaded; blocked has no retry and no «Сменить аккаунт» button (правило владельца 18.10)', () => {
   const source = read('components/RegistrationPromptModal.tsx');
   const start = source.indexOf('const refusalCopy = signInRefusalCopyFor(result.error, lang);');
   expect(start).toBeGreaterThan(0);
   const branch = source.slice(start, source.indexOf('return;', start));
   expect(branch).toContain('if (refusalCopy.offersAccountSwitch) {');
   expect(branch).toContain('setRetryProvider(null);');
-  expect(branch).toContain('setSwitchAccountOffered(true);');
-  expect(branch).toContain('setSwitchAccountActionText(refusalCopy.action);');
   expect(branch).toContain('showInlineError(refusalCopy.title, refusalCopy.body);');
-  // Кнопка — один и тот же переход в «Сменить аккаунт?», подпись — от текущего отказа.
-  const buttonStart = source.indexOf('testID="auth-switch-account"');
-  const button = source.slice(buttonStart, buttonStart + 1200);
-  expect(button).toContain("navigateAfterModalClose(onClose, () => router.push({ pathname: '/(tabs)/settings', params: { [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]: '1' } }));");
-  expect(button).toContain('switchAccountActionText ?? accountSwitchRequiredCopy(lang).action');
+  // зачем (правила владельца 18.10, приёмка Сайта): перехода в «Настройки → Сменить аккаунт» из окна входа больше нет — ни кнопки, ни состояния «предложить смену»
+  expect(branch).not.toContain('setSwitchAccountOffered');
+  expect(branch).not.toContain('setSwitchAccountActionText');
+  expect(source).not.toContain('testID="auth-switch-account"');
+  expect(source).not.toContain('SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM');
 });
 
 test('CleanOnboarding describeAuthError uses the same copy for both codes', () => {

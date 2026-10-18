@@ -30,7 +30,7 @@ test('публичные пропсы и обработчики входа/во�
     'export default', 'onClose', 'handleSignIn', 'handleLater', 'dismissSheet',
     'testID="auth-prompt-later"', 'testID="auth-recovery-entry"', 'testID="auth-clean-recovery-entry"',
     "testID={signInSlow ? 'auth-prompt-slow' : 'auth-prompt-busy'}",
-    'keyboardShouldPersistTaps="handled"', 'GoogleSignInButton', 'AppleSignInButton',
+    'keyboardShouldPersistTaps="handled"', 'SignInProgressButton', 'provider="google"', 'provider="apple"', 'SignInStatusLine', 'SignInFailureCard',
   ]) assert.ok(src.includes(s), `нет: ${s}`);
 });
 

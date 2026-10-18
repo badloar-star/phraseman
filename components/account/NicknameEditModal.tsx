@@ -7,7 +7,7 @@
 //   • через 400 мс паузы — ОДИН вызов nameReserve: уникальность проверяет и записывает сервер атомарно
 //     (источник истины — name_index), старое имя освобождается там же; кулдауна больше нет;
 //   • имя у родителя и в локальных копиях меняется сразу; «занято» → откат + «Имя уже занято»;
-//     нет входа/сети → имя остаётся на телефоне, сервер догоняет nickname_guard;
+//     нет входа/сети → имя остаётся на телефоне, сервер догоняет nickname_rename_pending (возврат в приложение / вход);
 //   • вызовы по одному: ввод в полёте ставится в очередь, поздний ответ не затирает свежий ввод.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -38,6 +38,11 @@ import {
 } from '../../app/firestore_leaderboard';
 import { patchAppSnapshot } from '../../app/app_snapshot_store';
 import { getDevNameCheck } from '../../app/dev_account_state';
+import {
+  clearNicknameRenamePending,
+  markNicknameRenamePending,
+  takeNicknameRenameTakenNotice,
+} from '../../app/nickname_rename_pending';
 import {
   containsBadWord,
   updateLocalNameReferences,
@@ -108,7 +113,7 @@ export default function NicknameEditModal({
   // Ник можно менять хоть каждую секунду»): кнопки «Сохранить» и обещания проверить имя потом больше нет.
   // Формат — сразу на телефоне; через 400 мс паузы — ОДИН вызов nameReserve (он атомарно проверяет и записывает, старое имя
   // освобождается на сервере). Свободно → имя применено, у поля «Готово»; занято → откат к прежнему имени, «Имя уже занято».
-  // Нет входа/сети → имя остаётся на телефоне, сервер догонит nickname_guard при следующем запуске. Вызовы идут по одному:
+  // Нет входа/сети → имя остаётся на телефоне, сервер догонит nickname_rename_pending при возврате в приложение или входе. Вызовы идут по одному:
   // ввод во время полёта ставится в очередь, поздний ответ не перетирает более свежий ввод. Журнал [NICK-SAVE]/[NICK-CHECK].
   const [newName, setNewName] = useState(currentName);
   const [liveStatus, setLiveStatus] = useState<LiveNameStatus>('idle');
@@ -180,6 +185,8 @@ export default function NicknameEditModal({
         console.log(`[NICK-SAVE] apply:result seq=${seq} status=${reservation.status} ms=${ms} stillTyped=${stillTyped} visible=${visibleRef.current}`); // guard-ok: ответ сервера и что увидит человек
         // зачем (владелец 17.10 «друзья должны находиться мгновенно»): в сторе видно, когда новый ник попал в поисковый индекс.
         logFriendAdd('nick_publish', { source: 'settings', status: reservation.status, ms });
+        // Ответ сервера пришёл — ожидающая досылка (если была от прошлой попытки без сети) больше не нужна.
+        void clearNicknameRenamePending(`modal_${reservation.status}`);
         if (reservation.status === 'ok') {
           if (stillTyped) setLiveStatus('applied');
           return;
@@ -197,8 +204,9 @@ export default function NicknameEditModal({
           if (!visibleRef.current && reservation.status === 'taken') onNotice(takenNotice());
           return;
         }
-        // 'error': нет входа / сети / таймаут — имя остаётся на телефоне, сервер догонит nickname_guard при следующем запуске.
-        console.warn(`[NICK-SAVE] apply:kept_local seq=${seq} reason=reserve_error — имя на телефоне, досылка при следующем запуске`); // guard-ok: ранний исход называет причину
+        // 'error': нет входа / сети / таймаут — имя остаётся на телефоне, сервер догонит nickname_rename_pending при возврате в приложение или входе.
+        console.warn(`[NICK-SAVE] apply:kept_local seq=${seq} reason=reserve_error — имя на телефоне, ждёт досылки`); // guard-ok: ранний исход называет причину
+        if (appliedNameRef.current === name) void markNicknameRenamePending(name, previous);
         if (stillTyped) setLiveStatus('idle');
       })
       .finally(() => {
@@ -218,6 +226,16 @@ export default function NicknameEditModal({
     setLiveStatus('idle');
     setInvalidMessage(null);
     warmNameAvailabilityAuth();
+    // зачем (координатор 09:25): досылка без сети нашла имя занятым и вернула прежнее — показываем «Имя уже занято» сейчас.
+    let cancelled = false;
+    void takeNicknameRenameTakenNotice().then((takenName) => {
+      if (cancelled || !takenName) return;
+      console.log(`[NICK-PENDING] modal:show_taken len=${takenName.length}`); // guard-ok: что увидел человек после досылки
+      takenCacheRef.current.add(normalizeNameIndexKey(takenName));
+      setNewName(takenName);
+      setLiveStatus('taken');
+    });
+    return () => { cancelled = true; };
   }, [visible, currentName]);
 
   // зачем (координатор 12.10, СПЕРВА ЛОГИ): шторка имени пряталась под клавиатурой. Пишем каждое событие клавиатуры, пока шторка

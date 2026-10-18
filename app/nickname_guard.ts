@@ -8,6 +8,7 @@ import {
   withAccountTransitionLock,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { startNicknameRenamePendingSync } from './nickname_rename_pending';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FALLBACK_NICKNAME_PREFIX = 'Phraseman';
@@ -168,6 +169,9 @@ function readPendingReservation(record: Record<string, unknown>): { reservedName
 }
 
 export function resumePendingGeneratedNickname(): Promise<void> {
+  // зачем (координатор 18.10, досылка ника): эту функцию запуск уже вызывает после онбординга — отсюда же стартует подписчик
+  // тихой досылки ника, введённого без входа/сети (возврат в приложение / смена входа → один nameReserve). Идемпотентно.
+  startNicknameRenamePendingSync();
   if (pendingNicknameFlight) return pendingNicknameFlight;
   pendingNicknameFlight = (async () => {
     const pending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedAs('nickname_guard:promise_7', null));

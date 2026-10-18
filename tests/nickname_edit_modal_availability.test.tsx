@@ -65,6 +65,12 @@ jest.mock('../app/firestore_leaderboard', () => ({
   warmNameAvailabilityAuth: jest.fn(),
 }));
 jest.mock('../app/app_snapshot_store', () => ({ patchAppSnapshot: jest.fn() }));
+const mockMarkPending = jest.fn(async () => undefined);
+jest.mock('../app/nickname_rename_pending', () => ({
+  markNicknameRenamePending: (...args: unknown[]) => mockMarkPending(...(args as [])),
+  clearNicknameRenamePending: jest.fn(async () => undefined),
+  takeNicknameRenameTakenNotice: jest.fn(async () => null),
+}));
 jest.mock('../app/nickname_change_helpers', () => ({
   containsBadWord: () => false,
   syncArenaDisplayName: jest.fn(),
@@ -192,6 +198,8 @@ test('no sign-in / no network: the name stays on the phone, no rollback, no «ch
 
   expect(onOptimisticApply).toHaveBeenCalledWith('Offline name');
   expect(onRollback).not.toHaveBeenCalled();
+  // имя ждёт тихой досылки (возврат в приложение / вход)
+  expect(mockMarkPending).toHaveBeenCalledWith('Offline name', 'Current name');
   expect(availabilityText(screen) ?? '').not.toContain('Проверим');
 });
 

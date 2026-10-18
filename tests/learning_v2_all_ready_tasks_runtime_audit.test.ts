@@ -89,7 +89,9 @@ assert.ok(interactionCount > 0, "the ready-session release must contain tasks");
 assert.ok(voiceInteractionCount > 0, "the ready-session release must contain voice tasks");
 assert.equal(
   legacySoundContrastCount,
-  39,
+  // зачем (18.10, класс А): было 39. Переписывание курса по правилу владельца 16.10 заменило старые задания sound_contrast
+  // (переносы fd447f448…c99ea0e2c); осталось одно. Число по-прежнему пинится, чтобы изменение было осознанным.
+  1,
   "the admitted release's historical sound_contrast inventory changed; authoring eligibility requires explicit review",
 );
 

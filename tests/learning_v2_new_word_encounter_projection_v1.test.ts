@@ -61,8 +61,9 @@ describe("Learning V2 new-word encounters of the bundled lesson 1 release", () =
       expect(new Set(encounters.map((entry) => entry.lexicalItemId)).size).toBe(encounters.length);
       for (const entry of encounters) expect(entry.save.targetText.trim()).not.toBe("");
     }
-    // Факт релиза 2026-10-01: 198 карточек слов на 56 занятий.
-    expect(total).toBe(198);
+    // зачем (18.10, класс А): было 198 (выпуск 01.10). Урок 1 переписан по правилу владельца 16.10 «≥4 новых слова,
+    // у каждого своя карточка» (перенос fd447f448 и следующие) — теперь 225 карточек на 56 занятий.
+    expect(total).toBe(225);
   });
 
   test("ships learner-safe meanings for every active locale (transcription from the project dictionary)", () => {
@@ -79,7 +80,9 @@ describe("Learning V2 new-word encounters of the bundled lesson 1 release", () =
       }
     }
     // Покрытие фиксируем числом, чтобы рост/потеря были замечены осознанно.
-    expect([covered.size, all.size]).toEqual([91, 130]);
+    // зачем (18.10, класс А): после переписывания урока 1 (≥4 новых слова) слов 225, транскрипция из словаря у 99;
+    // без транскрипции карточка показывается без неё (ничего не выдумываем). Было [91, 130] на выпуске 01.10.
+    expect([covered.size, all.size]).toEqual([99, 225]);
   });
 
   test("ships learner-safe meanings for every active locale", () => {

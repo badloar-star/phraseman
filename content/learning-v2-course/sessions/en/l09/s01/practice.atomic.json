@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-01",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-01:word:observe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — observe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:observe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — observe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:observe:audio",
+            "transcript": "observe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:observe:r1",
+              "targetText": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать. I am observing the birds. — «Я наблюдаю за птицами». Observe → observing: конечная e исчезает.",
+                "uk": "спостерігати. I am observing the birds. — «Я спостерігаю за птахами». Observe → observing: кінцева e зникає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "observe",
+            "definitionByLocale": {
+              "ru": "наблюдать. I am observing the birds. — «Я наблюдаю за птицами». Observe → observing: конечная e исчезает.",
+              "uk": "спостерігати. I am observing the birds. — «Я спостерігаю за птахами». Observe → observing: кінцева e зникає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i01:r1",
+            "text": "observe"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i01:r2",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i01:r3",
+            "text": "solve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i01:audio",
+            "transcript": "observe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:i01:r1",
+              "targetText": "observe",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i01:r2",
+              "targetText": "improve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i01:r3",
+              "targetText": "solve",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит observe",
+                "uk": "У записі звучить observe"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит observe",
+                "uk": "У записі звучить observe"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что сейчас наблюдаете за птицами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что сейчас наблюдаете за птицами",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am observing the birds.",
+          "localizedMeaning": {
+            "ru": "Скажите, что сейчас наблюдаете за птицами",
+            "uk": "Скажіть, що зараз спостерігаєте за птахами"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "observing",
+            "the",
+            "birds"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для I",
+            "uk": "Виберіть форму для I"
+          },
+          "gappedTargetPhrase": "I ___ observing the birds.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-01:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-01:i04:p1",
+              "target": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать",
+                "uk": "спостерігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i04:p2",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i04:p3",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i04:p4",
+              "target": "source",
+              "meaningByLocale": {
+                "ru": "источник информации",
+                "uk": "джерело інформації"
+              }
+            }
+          ],
+          "leftColumn": [
+            "observe",
+            "improve",
+            "solve",
+            "source"
+          ],
+          "rightColumn": [
+            "наблюдать",
+            "улучшать",
+            "решать",
+            "источник информации"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i05:audio",
+            "transcript": "I am observing the birds."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am observing the birds.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "observing",
+            "the",
+            "birds"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:word:caterpillar",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — caterpillar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:caterpillar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — caterpillar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:caterpillar:audio",
+            "transcript": "caterpillar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:caterpillar:r1",
+              "targetText": "caterpillar",
+              "meaningByLocale": {
+                "ru": "гусеница. She is watching a caterpillar. — «Она наблюдает за гусеницей».",
+                "uk": "гусениця. She is watching a caterpillar. — «Вона спостерігає за гусеницею»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "caterpillar",
+            "definitionByLocale": {
+              "ru": "гусеница. She is watching a caterpillar. — «Она наблюдает за гусеницей».",
+              "uk": "гусениця. She is watching a caterpillar. — «Вона спостерігає за гусеницею»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что она сейчас наблюдает за гусеницей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что она сейчас наблюдает за гусеницей",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is watching a caterpillar.",
+          "localizedMeaning": {
+            "ru": "Скажите, что она сейчас наблюдает за гусеницей",
+            "uk": "Скажіть, що вона зараз спостерігає за гусеницею"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "watching",
+            "a",
+            "caterpillar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:word:magnifier",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — magnifier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:magnifier:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — magnifier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:magnifier:audio",
+            "transcript": "magnifier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:magnifier:r1",
+              "targetText": "magnifier",
+              "meaningByLocale": {
+                "ru": "лупа. They are using a magnifier. — «Они пользуются лупой».",
+                "uk": "лупа. They are using a magnifier. — «Вони користуються лупою»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "magnifier",
+            "definitionByLocale": {
+              "ru": "лупа. They are using a magnifier. — «Они пользуются лупой».",
+              "uk": "лупа. They are using a magnifier. — «Вони користуються лупою»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишите, что друзья сейчас пользуются лупой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i07:audio"
+        ],
+        "accessibilityLabel": "Опишите, что друзья сейчас пользуются лупой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i07:audio",
+            "transcript": "They are using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are using a magnifier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i08:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i08:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i08:r3",
+            "text": "watches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия сейчас",
+            "uk": "Виберіть форму дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ a caterpillar.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-01:i08:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i08:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i08:r3",
+              "text": "watches"
+            }
+          ],
+          "testedDimension": "Выберите форму действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После is для действия сейчас нужно watching.",
+                "uk": "Після is для дії зараз потрібне watching."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь не watches, а is watching.",
+                "uk": "Тут не watches, а is watching."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i09:r1",
+            "text": "I am observing the birds."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i09:r2",
+            "text": "We are observing the birds."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i09:r3",
+            "text": "They are observing the birds."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i09:audio",
+            "transcript": "I am observing the birds."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:i09:r1",
+              "targetText": "I am observing the birds.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i09:r2",
+              "targetText": "We are observing the birds.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i09:r3",
+              "targetText": "They are observing the birds.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am observing the birds.",
+                "uk": "У записі звучить I am observing the birds."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am observing the birds.",
+                "uk": "У записі звучить I am observing the birds."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-01:i10:p1",
+              "target": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать",
+                "uk": "спостерігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i10:p2",
+              "target": "caterpillar",
+              "meaningByLocale": {
+                "ru": "гусеница",
+                "uk": "гусениця"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i10:p3",
+              "target": "magnifier",
+              "meaningByLocale": {
+                "ru": "лупа",
+                "uk": "лупа"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i10:p4",
+              "target": "progress",
+              "meaningByLocale": {
+                "ru": "продвижение",
+                "uk": "поступ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "observe",
+            "caterpillar",
+            "magnifier",
+            "progress"
+          ],
+          "rightColumn": [
+            "наблюдать",
+            "гусеница",
+            "лупа",
+            "продвижение"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i11:audio",
+            "transcript": "They are using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are using a magnifier.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "using",
+            "a",
+            "magnifier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:word:cocoon",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cocoon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:cocoon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cocoon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:cocoon:audio",
+            "transcript": "cocoon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:cocoon:r1",
+              "targetText": "cocoon",
+              "meaningByLocale": {
+                "ru": "кокон, защитная оболочка, которую делают некоторые насекомые. We are observing a cocoon. — «Мы наблюдаем за коконом».",
+                "uk": "кокон, захисна оболонка, яку роблять деякі комахи. We are observing a cocoon. — «Ми спостерігаємо за коконом»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cocoon",
+            "definitionByLocale": {
+              "ru": "кокон, защитная оболочка, которую делают некоторые насекомые. We are observing a cocoon. — «Мы наблюдаем за коконом».",
+              "uk": "кокон, захисна оболонка, яку роблять деякі комахи. We are observing a cocoon. — «Ми спостерігаємо за коконом»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом следите за коконом в учебном террариуме. Опишите действие сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом следите за коконом в учебном террариуме. Опишите действие сейчас",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are observing a cocoon.",
+          "localizedMeaning": {
+            "ru": "Вы с другом следите за коконом в учебном террариуме. Опишите действие сейчас",
+            "uk": "Ви з другом стежите за коконом у навчальному тераріумі. Опишіть дію зараз"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "observing",
+            "a",
+            "cocoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы сейчас рассматриваете лист через лупу. Скажите «Я пользуюсь лупой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i13:audio"
+        ],
+        "accessibilityLabel": "Вы сейчас рассматриваете лист через лупу. Скажите «Я пользуюсь лупой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i13:audio",
+            "transcript": "I am using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am using a magnifier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для they",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для they",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для they",
+            "uk": "Виберіть форму для they"
+          },
+          "gappedTargetPhrase": "They ___ using a magnifier.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-01:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Выберите форму для they",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для they",
+              "feedbackByLocale": {
+                "ru": "С they нужно are.",
+                "uk": "Із they потрібне are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для they",
+              "feedbackByLocale": {
+                "ru": "С they нужно are.",
+                "uk": "Із they потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i15:r1",
+            "text": "She is watching a caterpillar."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i15:r2",
+            "text": "He is watching a caterpillar."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i15:r3",
+            "text": "They are watching a caterpillar."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i15:audio",
+            "transcript": "She is watching a caterpillar."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:i15:r1",
+              "targetText": "She is watching a caterpillar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i15:r2",
+              "targetText": "He is watching a caterpillar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i15:r3",
+              "targetText": "They are watching a caterpillar.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is watching a caterpillar.",
+                "uk": "У записі звучить She is watching a caterpillar."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is watching a caterpillar.",
+                "uk": "У записі звучить She is watching a caterpillar."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-01:i16:p1",
+              "target": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать",
+                "uk": "спостерігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i16:p2",
+              "target": "caterpillar",
+              "meaningByLocale": {
+                "ru": "гусеница",
+                "uk": "гусениця"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i16:p3",
+              "target": "magnifier",
+              "meaningByLocale": {
+                "ru": "лупа",
+                "uk": "лупа"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i16:p4",
+              "target": "cocoon",
+              "meaningByLocale": {
+                "ru": "кокон",
+                "uk": "кокон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "observe",
+            "caterpillar",
+            "magnifier",
+            "cocoon"
+          ],
+          "rightColumn": [
+            "наблюдать",
+            "гусеница",
+            "лупа",
+            "кокон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В музее вы сейчас рассматриваете маленькую монету через лупу. Сообщите, чем заняты: «Я пользуюсь лупой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "В музее вы сейчас рассматриваете маленькую монету через лупу. Сообщите, чем заняты: «Я пользуюсь лупой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i17:audio",
+            "transcript": "I am using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am using a magnifier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-01:word:observe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — observe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:observe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — observe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:observe:audio",
+            "transcript": "observe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:observe:r1",
+              "targetText": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать. I am observing the birds. — «Я наблюдаю за птицами». Observe → observing: конечная e исчезает.",
+                "uk": "спостерігати. I am observing the birds. — «Я спостерігаю за птахами». Observe → observing: кінцева e зникає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "observe",
+            "definitionByLocale": {
+              "ru": "наблюдать. I am observing the birds. — «Я наблюдаю за птицами». Observe → observing: конечная e исчезает.",
+              "uk": "спостерігати. I am observing the birds. — «Я спостерігаю за птахами». Observe → observing: кінцева e зникає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i01:r1",
+            "text": "observe"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i01:r2",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i01:r3",
+            "text": "solve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i01:audio",
+            "transcript": "observe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:i01:r1",
+              "targetText": "observe",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i01:r2",
+              "targetText": "improve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i01:r3",
+              "targetText": "solve",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит observe",
+                "uk": "У записі звучить observe"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит observe",
+                "uk": "У записі звучить observe"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що зараз спостерігаєте за птахами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що зараз спостерігаєте за птахами",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am observing the birds.",
+          "localizedMeaning": {
+            "ru": "Скажите, что сейчас наблюдаете за птицами",
+            "uk": "Скажіть, що зараз спостерігаєте за птахами"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "observing",
+            "the",
+            "birds"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для I",
+            "uk": "Виберіть форму для I"
+          },
+          "gappedTargetPhrase": "I ___ observing the birds.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-01:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-01:i04:p1",
+              "target": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать",
+                "uk": "спостерігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i04:p2",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i04:p3",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i04:p4",
+              "target": "source",
+              "meaningByLocale": {
+                "ru": "источник информации",
+                "uk": "джерело інформації"
+              }
+            }
+          ],
+          "leftColumn": [
+            "observe",
+            "improve",
+            "solve",
+            "source"
+          ],
+          "rightColumn": [
+            "спостерігати",
+            "поліпшувати",
+            "розв’язувати",
+            "джерело інформації"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i05:audio",
+            "transcript": "I am observing the birds."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am observing the birds.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "observing",
+            "the",
+            "birds"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:word:caterpillar",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — caterpillar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:caterpillar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — caterpillar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:caterpillar:audio",
+            "transcript": "caterpillar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:caterpillar:r1",
+              "targetText": "caterpillar",
+              "meaningByLocale": {
+                "ru": "гусеница. She is watching a caterpillar. — «Она наблюдает за гусеницей».",
+                "uk": "гусениця. She is watching a caterpillar. — «Вона спостерігає за гусеницею»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "caterpillar",
+            "definitionByLocale": {
+              "ru": "гусеница. She is watching a caterpillar. — «Она наблюдает за гусеницей».",
+              "uk": "гусениця. She is watching a caterpillar. — «Вона спостерігає за гусеницею»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що вона зараз спостерігає за гусеницею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що вона зараз спостерігає за гусеницею",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is watching a caterpillar.",
+          "localizedMeaning": {
+            "ru": "Скажите, что она сейчас наблюдает за гусеницей",
+            "uk": "Скажіть, що вона зараз спостерігає за гусеницею"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "watching",
+            "a",
+            "caterpillar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:word:magnifier",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — magnifier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:magnifier:audio"
+        ],
+        "accessibilityLabel": "Картка слова — magnifier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:magnifier:audio",
+            "transcript": "magnifier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:magnifier:r1",
+              "targetText": "magnifier",
+              "meaningByLocale": {
+                "ru": "лупа. They are using a magnifier. — «Они пользуются лупой».",
+                "uk": "лупа. They are using a magnifier. — «Вони користуються лупою»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "magnifier",
+            "definitionByLocale": {
+              "ru": "лупа. They are using a magnifier. — «Они пользуются лупой».",
+              "uk": "лупа. They are using a magnifier. — «Вони користуються лупою»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Опишіть, що друзі зараз користуються лупою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i07:audio"
+        ],
+        "accessibilityLabel": "Опишіть, що друзі зараз користуються лупою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i07:audio",
+            "transcript": "They are using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are using a magnifier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i08:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i08:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i08:r3",
+            "text": "watches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия сейчас",
+            "uk": "Виберіть форму дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ a caterpillar.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-01:i08:r1",
+              "text": "watching"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i08:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i08:r3",
+              "text": "watches"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії зараз",
+              "feedbackByLocale": {
+                "ru": "После is для действия сейчас нужно watching.",
+                "uk": "Після is для дії зараз потрібне watching."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь не watches, а is watching.",
+                "uk": "Тут не watches, а is watching."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i09:r1",
+            "text": "I am observing the birds."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i09:r2",
+            "text": "We are observing the birds."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i09:r3",
+            "text": "They are observing the birds."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i09:audio",
+            "transcript": "I am observing the birds."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:i09:r1",
+              "targetText": "I am observing the birds.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i09:r2",
+              "targetText": "We are observing the birds.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i09:r3",
+              "targetText": "They are observing the birds.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am observing the birds.",
+                "uk": "У записі звучить I am observing the birds."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am observing the birds.",
+                "uk": "У записі звучить I am observing the birds."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-01:i10:p1",
+              "target": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать",
+                "uk": "спостерігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i10:p2",
+              "target": "caterpillar",
+              "meaningByLocale": {
+                "ru": "гусеница",
+                "uk": "гусениця"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i10:p3",
+              "target": "magnifier",
+              "meaningByLocale": {
+                "ru": "лупа",
+                "uk": "лупа"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i10:p4",
+              "target": "progress",
+              "meaningByLocale": {
+                "ru": "продвижение",
+                "uk": "поступ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "observe",
+            "caterpillar",
+            "magnifier",
+            "progress"
+          ],
+          "rightColumn": [
+            "спостерігати",
+            "гусениця",
+            "лупа",
+            "поступ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i11:audio",
+            "transcript": "They are using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are using a magnifier.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "using",
+            "a",
+            "magnifier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:word:cocoon",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cocoon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:word:cocoon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cocoon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:word:cocoon:audio",
+            "transcript": "cocoon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:word:cocoon:r1",
+              "targetText": "cocoon",
+              "meaningByLocale": {
+                "ru": "кокон, защитная оболочка, которую делают некоторые насекомые. We are observing a cocoon. — «Мы наблюдаем за коконом».",
+                "uk": "кокон, захисна оболонка, яку роблять деякі комахи. We are observing a cocoon. — «Ми спостерігаємо за коконом»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cocoon",
+            "definitionByLocale": {
+              "ru": "кокон, защитная оболочка, которую делают некоторые насекомые. We are observing a cocoon. — «Мы наблюдаем за коконом».",
+              "uk": "кокон, захисна оболонка, яку роблять деякі комахи. We are observing a cocoon. — «Ми спостерігаємо за коконом»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом стежите за коконом у навчальному тераріумі. Опишіть дію зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом стежите за коконом у навчальному тераріумі. Опишіть дію зараз",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are observing a cocoon.",
+          "localizedMeaning": {
+            "ru": "Вы с другом следите за коконом в учебном террариуме. Опишите действие сейчас",
+            "uk": "Ви з другом стежите за коконом у навчальному тераріумі. Опишіть дію зараз"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "observing",
+            "a",
+            "cocoon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зараз розглядаєте листок крізь лупу. Скажіть «Я користуюся лупою»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i13:audio"
+        ],
+        "accessibilityLabel": "Ви зараз розглядаєте листок крізь лупу. Скажіть «Я користуюся лупою»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i13:audio",
+            "transcript": "I am using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am using a magnifier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для they",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для they",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для they",
+            "uk": "Виберіть форму для they"
+          },
+          "gappedTargetPhrase": "They ___ using a magnifier.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-01:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Виберіть форму для they",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для they",
+              "feedbackByLocale": {
+                "ru": "С they нужно are.",
+                "uk": "Із they потрібне are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для they",
+              "feedbackByLocale": {
+                "ru": "С they нужно are.",
+                "uk": "Із they потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-01:i15:r1",
+            "text": "She is watching a caterpillar."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i15:r2",
+            "text": "He is watching a caterpillar."
+          },
+          {
+            "responseId": "en:lesson-09:session-01:i15:r3",
+            "text": "They are watching a caterpillar."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i15:audio",
+            "transcript": "She is watching a caterpillar."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-01:i15:r1",
+              "targetText": "She is watching a caterpillar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i15:r2",
+              "targetText": "He is watching a caterpillar.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i15:r3",
+              "targetText": "They are watching a caterpillar.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-01:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is watching a caterpillar.",
+                "uk": "У записі звучить She is watching a caterpillar."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-01:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is watching a caterpillar.",
+                "uk": "У записі звучить She is watching a caterpillar."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-01:i16:p1",
+              "target": "observe",
+              "meaningByLocale": {
+                "ru": "наблюдать",
+                "uk": "спостерігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i16:p2",
+              "target": "caterpillar",
+              "meaningByLocale": {
+                "ru": "гусеница",
+                "uk": "гусениця"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i16:p3",
+              "target": "magnifier",
+              "meaningByLocale": {
+                "ru": "лупа",
+                "uk": "лупа"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-01:i16:p4",
+              "target": "cocoon",
+              "meaningByLocale": {
+                "ru": "кокон",
+                "uk": "кокон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "observe",
+            "caterpillar",
+            "magnifier",
+            "cocoon"
+          ],
+          "rightColumn": [
+            "спостерігати",
+            "гусениця",
+            "лупа",
+            "кокон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-01:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У музеї ви зараз розглядаєте маленьку монету крізь лупу. Повідомте, чим зайняті: «Я користуюся лупою»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "У музеї ви зараз розглядаєте маленьку монету крізь лупу. Повідомте, чим зайняті: «Я користуюся лупою»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-01:i17:audio",
+            "transcript": "I am using a magnifier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am using a magnifier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-01:word:observe",
+      "correctText": "observe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i01",
+      "correctText": "observe",
+      "correctResponseId": "en:lesson-09:session-01:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i02",
+      "correctText": "I am observing the birds.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-09:session-01:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i05",
+      "correctText": "I am observing the birds.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:word:caterpillar",
+      "correctText": "caterpillar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i06",
+      "correctText": "She is watching a caterpillar.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:word:magnifier",
+      "correctText": "magnifier",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i07",
+      "correctText": "They are using a magnifier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i08",
+      "correctText": "watching",
+      "correctResponseId": "en:lesson-09:session-01:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i09",
+      "correctText": "I am observing the birds.",
+      "correctResponseId": "en:lesson-09:session-01:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i11",
+      "correctText": "They are using a magnifier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:word:cocoon",
+      "correctText": "cocoon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i12",
+      "correctText": "We are observing a cocoon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i13",
+      "correctText": "I am using a magnifier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-01:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i15",
+      "correctText": "She is watching a caterpillar.",
+      "correctResponseId": "en:lesson-09:session-01:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-01:i17",
+      "correctText": "I am using a magnifier.",
+      "correctResponseId": null
+    }
+  ]
+}

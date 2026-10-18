@@ -94,7 +94,7 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
               {/* зачем (Сверка font13, координатор 18.10): при системном шрифте 1,3 «Hoy aún no» (es/pt-BR/vi/id) уходило в 3 строки плашки (значение + 2 строки подписи); потолок роста кегля 1,1 держит 2 строки (значение + подпись), не ужатие. Расчёт по кадру: подпись ≈65 dp при 1,0 в колонке ≈72 dp */}
               <View style={s.statCopy}>
                 <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statValue, { color: p.text }]}>{stat.value}</FlowText>
-                <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</FlowText>
+                {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</FlowText> : null}
               </View>
             </>;
             return stat.onPress ? (

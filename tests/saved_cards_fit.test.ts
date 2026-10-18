@@ -1,7 +1,5 @@
-// зачем (владелец 18.10 через координатора, снимки iPhone экрана «Сохранённые»: «Do you mind if I join you her…», перевод «Вы не против,» обрезан; капсом: «текст ВСЕГДА уменьшается вместе
-// с карточкой и ВСЕГДА помещается целиком — фраза и перевод, на любой позиции ползунка»; «карточки КРАСИВЫЕ С ГРАДИЕНТОМ И С ТОЧЕЧКАМИ»; «при ОТКРЫТИИ — горизонтальные карточки»):
-// кегль от ширины плитки, перенос по словам без многоточия и без adjustsFontSizeToFit, высота ряда растёт под текст, на любом шаге ползунка и ширине экрана; лицо плитки — токены темы,
-// читаемо во всех темах; первый вход — шаг 0 (горизонтальный), выбор человека запоминается.
+// Требование владельца 18.10: единые размеры, переворот на месте, один язык на каждой стороне.
+// Подбор текста, геометрия zoom и обработчики проверяются без нативной среды.
 import fs from 'node:fs';
 import path from 'node:path';
 import { GALLERY_OPEN_STEP, GALLERY_STEPS } from '../components/cards-grid/cardsGalleryLayout';
@@ -105,8 +103,8 @@ describe('текст помещается целиком на любом шаг�
           const fit = tileFit(face, front, back);
           expect([s, grid, front, fit.wordLines >= plausibleRealLines(front, face.wordSize, face.textW)]).toEqual([s, grid, front, true]);
           if (face.translation) expect([s, grid, back, fit.trLines >= plausibleRealLines(back, face.trSize, face.textW)]).toEqual([s, grid, back, true]);
-          // высота вмещает все строки фразы, подписи и перевода
-          const needed = fit.wordLines * face.wordLine + (face.label ? face.lgLine : 0) + (fit.trLines ? face.trLine * fit.trLines : 0);
+          // Две стороны занимают одну высоту, а не сумму исходного текста и перевода.
+          const needed = Math.max(fit.wordLines * face.wordLine + face.wordTop + (face.label ? face.lgLine : 0), face.trLine * fit.trLines + face.trTop);
           expect(fit.h).toBeGreaterThanOrEqual(needed);
         }
       }
@@ -154,10 +152,10 @@ describe('карточка всегда горизонтальная: ширин
   });
 });
 
-describe('сетка с рядами разной высоты', () => {
+describe('сетка с одинаковой высотой рядов', () => {
   const cards = PHRASES.flatMap(([front, back], i) => [0, 1, 2].map((j) => ({ id: `c${i}-${j}`, front, back })));
 
-  it('ряд — высота самой высокой карточки в нём; верха рядов растут; плитка одного ряда одной высоты', () => {
+  it('верха рядов растут с постоянным шагом; все плитки имеют одну высоту', () => {
     const grids = buildGalleryGrids(cards, 350);
     for (const grid of grids.grids) {
       for (let r = 1; r < grid.rowTops.length; r += 1) expect(grid.rowTops[r]!).toBeCloseTo(grid.rowTops[r - 1]! + grid.rowHeights[r - 1]! + grid.gap, 5);
@@ -247,4 +245,112 @@ describe('исходник и шаг по умолчанию', () => {
     expect(view).toContain('grids={grids}');
     expect(read('components/cards-grid/useGalleryGrids.ts')).toContain('[SAVED-CARDS-SIZE]');
   });
+});
+
+it('один масштаб даёт одинаковые размеры независимо от раздела, длины текста и замеров', () => {
+  const short = [{ id: 'short', front: 'Gate', back: 'Выход' }];
+  const mixed = PHRASES.map(([front, back], i) => ({ id: String(i), front, back }));
+  for (const width of WIDTHS) {
+    for (const fontScale of [1, 1.2]) {
+      const saved = buildGalleryGrids(short, width, fontScale);
+      const video = buildGalleryGrids(mixed, width, fontScale);
+      const community = buildGalleryGrids([...mixed].reverse(), width, fontScale, new Map([['0|1', 12]]));
+      for (let step = 0; step < 4; step += 1) {
+        const expected = saved.grids[step]!.geom(0);
+        for (const grid of [video.grids[step]!, community.grids[step]!]) {
+          for (let i = 0; i < mixed.length; i += 1) {
+            expect(grid.geom(i).w).toBe(expected.w);
+            expect(grid.geom(i).h).toBe(expected.h);
+            expect(grid.fit(i).h).toBeLessThanOrEqual(expected.h);
+          }
+        }
+      }
+    }
+  }
+});
+
+describe('тап галереи переворачивает карточку, отдельные действия сохраняются', () => {
+  it('показывает один язык; выбор, озвучка и longpress сохраняются', () => {
+    jest.isolateModules(() => {
+      let flipped = false;
+      jest.doMock('react', () => ({
+        ...jest.requireActual('react'),
+        memo: (component: unknown) => component,
+        useMemo: (factory: () => unknown) => factory(),
+        useEffect: () => undefined,
+        useState: (initial: unknown) => typeof initial === 'boolean'
+          ? [flipped, (update: (old: boolean) => boolean) => { flipped = update(flipped); }]
+          : [initial, () => undefined],
+      }));
+      jest.doMock('react-native', () => ({ Pressable: 'Pressable', View: 'View', Text: 'Text', StyleSheet: { create: (s: unknown) => s, absoluteFillObject: {} } }));
+      jest.doMock('react-native-reanimated', () => ({
+        __esModule: true, default: { View: 'AnimatedView' }, useAnimatedStyle: (f: () => unknown) => f(),
+        useSharedValue: (value: number) => ({ value }), withTiming: (value: number) => value, Easing: { bezier: () => undefined },
+      }));
+      jest.doMock('@expo/vector-icons/Ionicons', () => 'Icon');
+      jest.doMock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
+      jest.doMock('../components/cards-grid/useLineScale', () => ({ useLineScale: () => (n: number) => n }));
+      jest.doMock('../components/v2/ShadowSurface', () => ({ plateBoxShadow: () => [], nestedBoxShadow: () => [], PlateFill: 'PlateFill' }));
+      jest.doMock('../components/cards-grid/GalleryTileFace', () => ({ GalleryTileFace: 'Gradient' }));
+      jest.doMock('../components/cards-grid/useGalleryGrids', () => ({ useGalleryGrids: () => ({}) }));
+      // Execute the real component functions and event handlers; replace only hooks/native adapters.
+      type Node = { type: string | ((props: Record<string, unknown>) => Node); props: Record<string, unknown> & { children?: unknown } };
+      function expand(node: unknown): Node[] {
+        if (Array.isArray(node)) return node.flatMap(expand);
+        if (!node || typeof node !== 'object' || !('props' in node)) return [];
+        const el = node as Node;
+        if (typeof el.type === 'function') return expand(el.type(el.props));
+        return [el, ...expand(el.props.children)];
+      }
+      const { CardsGallery } = require('../components/cards-grid/CardsGallery');
+      const cards = [{ id: 'a', front: 'Gate', back: 'Выход', dots: 2 }];
+      const onOpen = jest.fn(); const onSpeak = jest.fn(); const onLongPress = jest.fn();
+      const props = {
+        cards, g: liquidGlassTokens('graphite'), width: 350, step: 0, scrollY: 0, viewportH: 800,
+        grids: buildGalleryGrids(cards, 350), onOpen, onSpeak, onLongPress, speakLabel: 'Speak',
+        morph: { from: { value: 0 }, to: { value: 0 }, t: { value: 1 }, shift: { value: 0 }, live: { value: false }, fx: { value: 0 }, fy: { value: 0 } },
+      };
+      let nodes = expand(CardsGallery(props));
+      const tile = () => nodes.find((n) => n.type === 'Pressable' && n.props.testID === 'fc-gallery-tile-a')!;
+      const press = (node: Node, event = {}) => (node.props.onPress as (event: unknown) => void)(event);
+      expect(tile().props.accessibilityLabel).toBe('Gate');
+      press(tile()); nodes = expand(CardsGallery(props));
+      expect(tile().props.accessibilityLabel).toBe('Выход');
+      nodes = expand(CardsGallery({ ...props, step: 2 }));
+      expect(tile().props.accessibilityLabel).toBe('Выход');
+      nodes = expand(CardsGallery({ ...props, cards: [{ ...cards[0], back: '' }] }));
+      expect(tile().props.accessibilityLabel).toBe('Gate');
+      nodes = expand(CardsGallery(props));
+      expect(onOpen).not.toHaveBeenCalled();
+      const front = nodes.find((n) => n.props.testID === 'fc-gallery-tile-a-front')!;
+      const back = nodes.find((n) => n.props.testID === 'fc-gallery-tile-a-back')!;
+      expect(front.props.pointerEvents).toBe('none');
+      expect(back.props.pointerEvents).toBe('auto');
+      expect(expand(front).filter((n) => n.type === 'Text').map((n) => n.props.children)).not.toContain('Выход');
+      expect(expand(back).filter((n) => n.type === 'Text').map((n) => n.props.children)).not.toContain('Gate');
+      (tile().props.onLongPress as () => void)();
+      expect(onLongPress).toHaveBeenCalledWith('a');
+      press(tile()); nodes = expand(CardsGallery(props));
+      expect(tile().props.accessibilityLabel).toBe('Gate');
+      const speak = nodes.find((n) => n.type === 'Pressable' && n.props.accessibilityLabel === 'Speak')!;
+      const stopPropagation = jest.fn(); press(speak, { stopPropagation });
+      expect(stopPropagation).toHaveBeenCalled(); expect(onSpeak).toHaveBeenCalledWith('a');
+      nodes = expand(CardsGallery({ ...props, selectedIds: new Set<string>() }));
+      press(tile()); nodes = expand(CardsGallery({ ...props, selectedIds: new Set<string>() }));
+      expect(onOpen).toHaveBeenCalledWith('a'); expect(tile().props.accessibilityLabel).toBe('Gate');
+      nodes = expand(CardsGallery({ ...props, cards: [{ ...cards[0], back: '' }] }));
+      press(tile());
+      expect(flipped).toBe(false);
+    });
+  });
+});
+
+it('длинное широкое слово и поправка замера не обрезаются фиксированной плиткой', () => {
+  const cards = [{ id: 'wide', front: 'W'.repeat(80), back: 'Ш'.repeat(80) }];
+  for (const extra of [0, 12, 100]) {
+    const fixes = new Map([0, 1, 2, 3].map((step) => [`wide|${step}`, extra]));
+    for (const grid of buildGalleryGrids(cards, 280, 1.3, fixes).grids) {
+      expect(grid.fit(0).h).toBeLessThanOrEqual(grid.geom(0).h);
+    }
+  }
 });

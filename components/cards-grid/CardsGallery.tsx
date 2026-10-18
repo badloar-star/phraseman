@@ -1,21 +1,16 @@
 /**
- * Галерея карточек — общий компонент списков «Карточек» (макет docs/design/v2-app/cards-v2.html, сетка `.zg` и горизонтальная плитка `.wc`; лицо плитки — cards-gallery.html `.face`).
- *
- * зачем (Карточки 2.0, владелец 12.10): плитки лежат абсолютно и пересчитываются от шага (1 / 2 / 3 / 5 колонок) на UI-потоке: смена шага — перетекание
- * 380 мс (позиция и размер каждой плитки идут из старой раскладки в новую), содержимое плитки проявляется после 22 % пути. Лицо плитки по шагу:
- * 1 колонка — озвучка слева, «EN», фраза, перевод, «⋯» справа; 2 — фраза и перевод, озвучка внизу справа; 3 и 5 — только фраза. Точки силы слова — слева снизу на шагах 1 и 2.
- * Тап открывает карточку, долгое нажатие и «⋯» — действия. Рисуются только плитки в окне прокрутки (+ запас; на время перетекания — окно старой и новой раскладки).
- * зачем (владелец 18.10, «текст ВСЕГДА помещается целиком», «карточки с градиентом и точками»): кегль и размеры — от ширины плитки (cardsGalleryFit), перенос по словам БЕЗ многоточия,
- * высота ряда растёт под самую длинную фразу (cardsGalleryGrid); фон плитки — градиент цвета темы со стеклом, бликом и свечением (GalleryTileFace); настоящее число строк плитка
- * сверяет с оценкой (onTextLayout) и при расхождении сообщает поправку (onFix).
+ * Общая галерея Saved/Video/Community/sets по макетам cards-v2.html и cards-gallery.html.
+ * Тап переворачивает существующий FlipCard на месте: исходный текст на лице, перевод на обороте.
+ * Выделение использует onOpen как обработчик выбора; longpress, звук и zoom сохранены.
+ * Геометрия одинакова для всех карточек при данном масштабе; под текст меняется только кегль.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { plateBoxShadow } from '../v2/ShadowSurface';
+import { FlipCard } from './FlipCard';
 import { GALLERY_STEPS, unionRange } from './cardsGalleryLayout';
 import { FIT_MAX_FONT_SCALE } from './cardsGalleryFit';
 import { gridVisibleRange, type GalleryGrid, type GalleryGrids, type TileGeom } from './cardsGalleryGrid';
@@ -28,7 +23,7 @@ import { useGalleryGrids } from './useGalleryGrids';
 export type GalleryCard = Readonly<{
   id: string;
   front: string;
-  /** Перевод (на плитке 1 и 2 колонок). */
+  /** Перевод на обороте плитки на всех шагах. */
   back?: string | null;
   ipa?: string | null;
   /** Сила слова: сколько точек горит (0…3); undefined — точек на плитке нет (чужие экраны). */
@@ -100,6 +95,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
   highlight?: string;
   onFix?: (cardId: string, step: number, extraPx: number) => void;
 }>) {
+  const [flipped, setFlipped] = useState(false);
   cardsPerfCount('tile-render'); // зачем: [CARDS-PERF] сколько плиток перерисовано за прокрутку (memo должен их держать)
   const { from, to, t, shift } = morph;
   const style = useAnimatedStyle(() => {
@@ -118,12 +114,13 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
   const geom = geoms[step]!;
   const radius = GALLERY_STEPS[step]!.radius;
   const colors = galleryFaceColors(g);
-  const showTranslation = face.translation && !!card.back;
+  const hasTranslation = !!card.back?.trim();
+  const showTranslation = face.translation && hasTranslation;
   const speakSize = Math.round(SPEAK_SIZE[step]! * face.k);
   const speakVisible = step <= 1 && !!onSpeak;
   // зачем (владелец 18.10: «карточка всегда горизонтальная; не влезает — уменьши кегль»): кегль этой карточки — после уменьшения под потолок высоты (cardsGalleryFit.fitWithin)
   const fit = gridStep.fit(index);
-  // настоящее число строк против оценки — если шрифт устройства шире таблицы, плитка получает поправку и вырастает, а не режет текст
+  // Поправка по настоящему шрифту уменьшает кегль внутри той же фиксированной геометрии.
   const onWordLines = (lines: number) => { if (lines > fit.wordLines) onFix?.(card.id, step, (lines - fit.wordLines) * fit.wordLine); };
   const onTrLines = (lines: number) => { if (lines > fit.trLines) onFix?.(card.id, step, (lines - fit.trLines) * fit.trLine); };
   const wordEl = (
@@ -146,7 +143,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
       accessibilityRole="button"
       accessibilityLabel={speakLabel}
       hitSlop={8}
-      onPress={() => onSpeak?.(card.id)}
+      onPress={(event) => { event.stopPropagation(); onSpeak?.(card.id); }}
       style={[step === 0 ? styles.speak0 : [styles.speak1, { right: 12 * face.k, bottom: 12 * face.k }], { width: speakSize, height: speakSize, borderRadius: speakSize / 2, backgroundColor: colors.speakBg }]}>
       <Ionicons name="volume-high" size={Math.round((step === 0 ? 18 : 14) * face.k)} color={colors.ink} />
     </Pressable>
@@ -158,15 +155,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
     </View>
   ) : null;
   const pad = { paddingLeft: face.padL, paddingRight: face.padR, paddingTop: face.padV, paddingBottom: face.padV + face.foot };
-  return (
-    <Animated.View style={[styles.tile, style]}>
-      <Pressable
-        testID={`fc-gallery-tile-${card.id}`}
-        accessibilityRole="button"
-        accessibilityLabel={card.back ? `${card.front}, ${card.back}` : card.front}
-        onPress={() => onOpen(card.id)}
-        onLongPress={onLongPress ? () => onLongPress(card.id) : undefined}
-        style={({ pressed }) => [styles.press, { borderRadius: radius, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+  const renderFace = (back: boolean) => (
         <View style={[styles.face, { borderRadius: radius }]}>
           <GalleryTileFace g={g} w={geom.w} h={geom.h} />
           {/* зачем (владелец 18.10): содержимое держит размер ЦЕЛЕВОЙ плитки, а не бегущий — во время перетекания между шагами текст не пересчитывает перенос по сужающейся ширине (иначе onTextLayout принимал промежуточные строки за нехватку места и плитки раздувались), лишнее срезает сама плитка */}
@@ -174,17 +163,17 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
             {step === 0 ? (
               <View style={[styles.row0, { paddingLeft: face.padL, paddingRight: face.padR, gap: 22 * face.k }]}>
                 {speakEl}
-                <View style={styles.text}>{labelEl}{wordEl}{trEl}</View>
+                <View style={styles.text}>{back ? trEl : <>{labelEl}{wordEl}</>}</View>
                 {selected === undefined && onLongPress ? (
-                  <Pressable accessibilityRole="button" accessibilityLabel={moreLabel} hitSlop={10} onPress={() => onLongPress(card.id)} style={[styles.more, { right: 18 * face.k, top: 14 * face.k }]}>
+                  <Pressable accessibilityRole="button" accessibilityLabel={moreLabel} hitSlop={10} onPress={(event) => { event.stopPropagation(); onLongPress(card.id); }} style={[styles.more, { right: 18 * face.k, top: 14 * face.k }]}>
                     <Ionicons name="ellipsis-horizontal" size={Math.round(20 * face.k)} color={colors.inkSoft} />
                   </Pressable>
                 ) : null}
               </View>
             ) : step === 1 ? (
-              <View style={[styles.col1, pad]}>{labelEl}{wordEl}{trEl}{speakEl}</View>
+              <View style={[styles.col1, pad]}>{back ? trEl : <>{labelEl}{wordEl}</>}{speakEl}</View>
             ) : (
-              <View style={[styles.mini, pad]}>{wordEl}{trEl}</View>
+              <View style={[styles.mini, pad]}>{back ? trEl : wordEl}</View>
             )}
             {dotsEl}
           </Animated.View>
@@ -194,7 +183,21 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
             </View>
           ) : null}
         </View>
-      </Pressable>
+  );
+  return (
+    <Animated.View style={[styles.tile, style]}>
+      <FlipCard
+        g={g}
+        testID={`fc-gallery-tile-${card.id}`}
+        front={card.front}
+        back={card.back ?? ''}
+        backTag=""
+        flipLabel=""
+        flipped={flipped && hasTranslation}
+        onFlip={() => { if (selected !== undefined) onOpen(card.id); else if (hasTranslation) setFlipped((value) => !value); }}
+        onLongPress={onLongPress ? () => onLongPress(card.id) : undefined}
+        gallery={{ height: geom.h, radius, front: renderFace(false), back: renderFace(true) }}
+      />
     </Animated.View>
   );
 });
@@ -257,8 +260,6 @@ export const CardsGallery = memo(CardsGalleryInner);
 const styles = StyleSheet.create({
   container: { position: 'relative' },
   tile: { position: 'absolute', left: 0, top: 0 },
-  press: { flex: 1 },
-  pressed: { transform: [{ scale: 0.97 }] },
   face: { flex: 1, overflow: 'hidden' },
   content: { position: 'absolute', left: 0, top: 0 },
   row0: { flex: 1, flexDirection: 'row', alignItems: 'center' },

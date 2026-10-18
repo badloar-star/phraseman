@@ -1,13 +1,10 @@
 /**
- * Сетка галереи с разной высотой рядов: каждый ряд — высота самой «высокой» карточки в нём (текст не режется, плитка растёт).
- *
- * зачем (владелец 18.10: «карточка растёт по высоте под текст»): прежняя раскладка (cardsGalleryLayout) держала одну высоту на шаг — длинная фраза резалась.
- * Здесь для каждого из четырёх шагов считаются ширина плитки, верх и высота каждого ряда; плитке отдаются готовые геометрии по ВСЕМ шагам (x, y, w, h),
- * а перетекание между шагами на UI-потоке просто линейно ведёт её из геометрии «откуда» в геометрию «куда». Окно отрисовки, опора щипка и докрутка
- * списка считаются по верхам рядов (бинарный поиск). Модуль чистый — тестируется без React Native.
+ * Общая геометрия галереи: размер определяется шириной и шагом, независимо от раздела и текста.
+ * Текст подбирается в фиксированную высоту; замеры могут уменьшить кегль, но не растянуть ряд.
+ * Сохраняем геометрии всех четырёх шагов для анимации zoom, окна отрисовки и опоры щипка.
  */
 import { GALLERY_STEPS, clampStep } from './cardsGalleryLayout';
-import { FIT_CAP_RATIO, fitAtScale, fitWithin, stepFace, type CardFit, type StepFace } from './cardsGalleryFit';
+import { fitAtScale, fitWithin, stepFace, type CardFit, type StepFace } from './cardsGalleryFit';
 
 export type TileGeom = Readonly<{ x: number; y: number; w: number; h: number }>;
 
@@ -43,9 +40,8 @@ export function buildGalleryGrid(step: number, cards: readonly GridCard[], width
   const def = GALLERY_STEPS[s]!;
   const tileW = (width - def.gap * (def.cols - 1)) / def.cols;
   const face = stepFace(s, tileW, fontScale);
-  // зачем (владелец 18.10: «карточка всегда горизонтальная»): ряд растёт под самую длинную фразу, но не выше потолка по пропорции (FIT_CAP_RATIO × ширина); дальше уменьшаем кегль
-  // самой длинной карточки (у короткой слова остаются крупными), и лишь если не влезает даже на полу кегля — ряд вырастает выше потолка (текст целиком важнее пропорции).
-  const cap = Math.max(face.minH, Math.round(tileW * FIT_CAP_RATIO[s]!));
+  // Последнее требование владельца: одинаковые размеры во всех разделах, даже у разных текстов.
+  const cap = face.minH;
   const need1 = cards.map((c) => fitAtScale(face, c.front, c.back, 1, fixes?.get(fixKey(c.id, s)) ?? 0));
   const fits: CardFit[] = [];
   const rows = Math.ceil(cards.length / def.cols);
@@ -55,19 +51,15 @@ export function buildGalleryGrid(step: number, cards: readonly GridCard[], width
   for (let r = 0; r < rows; r += 1) {
     const from = r * def.cols;
     const to = Math.min(cards.length, from + def.cols);
-    let want = face.minH;
-    for (let c = from; c < to; c += 1) want = Math.max(want, need1[c]!.h);
-    const rowH = Math.min(want, cap);
-    let h = rowH;
+    const rowH = cap;
     for (let c = from; c < to; c += 1) {
       const card = cards[c]!;
       const f = need1[c]!.h <= rowH ? need1[c]! : fitWithin(face, card.front, card.back, rowH, fixes?.get(fixKey(card.id, s)) ?? 0);
       fits[c] = f;
-      h = Math.max(h, f.h);
     }
     rowTops.push(y);
-    rowHeights.push(h);
-    y += h + def.gap;
+    rowHeights.push(rowH);
+    y += rowH + def.gap;
   }
   const height = rows > 0 ? y - def.gap : 0;
   const geom = (i: number): TileGeom => {

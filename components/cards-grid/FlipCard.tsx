@@ -43,16 +43,19 @@ type Props = Readonly<{
   testID?: string;
   /** Показывать значок озвучки на лице (в живом превью нового слова озвучки ещё нет — слово не сохранено). */
   showSpeak?: boolean;
+  /** Gallery keeps its existing face artwork and fixed geometry, sharing this flip animation. */
+  gallery?: Readonly<{ height: number; radius: number; front: React.ReactNode; back: React.ReactNode }>;
+  onLongPress?: () => void;
 }>;
 
-function FlipCardInner({ g, front, ipa, back, example, exampleTr, backTag, flipped, onFlip, onSpeak, speakLabel, flipLabel, testID, showSpeak = true }: Props) {
+function FlipCardInner({ g, front, ipa, back, example, exampleTr, backTag, flipped, onFlip, onSpeak, speakLabel, flipLabel, testID, showSpeak = true, gallery, onLongPress }: Props) {
   const reduceMotion = useReduceMotion();
   const lh = useLineScale();
   const flip = useSharedValue(flipped ? 1 : 0);
   // зачем: высота карточки = максимум из высоты макета и фактической высоты текста обеих сторон, измеренной onLayout.
   const [frontH, setFrontH] = useState(0);
   const [backH, setBackH] = useState(0);
-  const cardH = Math.max(FLIP_CARD_MIN_H, frontH + FACE_PAD_V, backH + FACE_PAD_V);
+  const cardH = gallery?.height ?? Math.max(FLIP_CARD_MIN_H, frontH + FACE_PAD_V, backH + FACE_PAD_V);
 
   useEffect(() => {
     flip.value = withTiming(flipped ? 1 : 0, { duration: reduceMotion ? 0 : FLIP_MS, easing: FLIP_EASE });
@@ -65,10 +68,12 @@ function FlipCardInner({ g, front, ipa, back, example, exampleTr, backTag, flipp
     <Pressable
       testID={testID}
       accessibilityRole="button"
-      accessibilityLabel={`${flipLabel}: ${flipped ? back : front}`}
+      accessibilityLabel={gallery ? (flipped ? back : front) : `${flipLabel}: ${flipped ? back : front}`}
       onPress={onFlip}
-      style={[styles.card, { height: cardH }]}>
-      <Animated.View style={[styles.face, { borderRadius: FLIP_CARD_RADIUS, boxShadow: plateBoxShadow(g) }, frontStyle]}>
+      onLongPress={onLongPress}
+      style={({ pressed }) => [gallery ? styles.galleryCard : styles.card, { height: cardH }, gallery && pressed && styles.galleryPressed]}>
+      <Animated.View testID={testID ? `${testID}-front` : undefined} pointerEvents={flipped ? 'none' : 'auto'} accessibilityElementsHidden={flipped} importantForAccessibility={flipped ? 'no-hide-descendants' : 'auto'} style={[gallery ? styles.galleryFace : styles.face, { borderRadius: gallery?.radius ?? FLIP_CARD_RADIUS, boxShadow: plateBoxShadow(g) }, frontStyle]}>
+        {gallery ? gallery.front : <>
         <PlateFill g={g} radius={FLIP_CARD_RADIUS} />
         <Text style={[styles.tag, { color: g.secondary, lineHeight: lh(16) }]}>EN</Text>
         {showSpeak && onSpeak ? (
@@ -81,8 +86,10 @@ function FlipCardInner({ g, front, ipa, back, example, exampleTr, backTag, flipp
           {ipa ? <Text style={[styles.sub, { color: g.secondary, lineHeight: lh(20) }]}>{ipa}</Text> : null}
         </View>
         <Ionicons name="sync-outline" size={18} color={g.mutedText} style={styles.turn} />
+        </>}
       </Animated.View>
-      <Animated.View style={[styles.face, { borderRadius: FLIP_CARD_RADIUS, boxShadow: plateBoxShadow(g) }, backStyle]}>
+      <Animated.View testID={testID ? `${testID}-back` : undefined} pointerEvents={flipped ? 'auto' : 'none'} accessibilityElementsHidden={!flipped} importantForAccessibility={flipped ? 'auto' : 'no-hide-descendants'} style={[gallery ? styles.galleryFace : styles.face, { borderRadius: gallery?.radius ?? FLIP_CARD_RADIUS, boxShadow: plateBoxShadow(g) }, backStyle]}>
+        {gallery ? gallery.back : <>
         <PlateFill g={g} radius={FLIP_CARD_RADIUS} raised />
         <Text style={[styles.tag, { color: g.secondary, lineHeight: lh(16) }]}>{backTag}</Text>
         <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
@@ -91,6 +98,7 @@ function FlipCardInner({ g, front, ipa, back, example, exampleTr, backTag, flipp
           {exampleTr ? <Text style={[styles.subTr, { color: g.mutedText, lineHeight: lh(20) }]}>{exampleTr}</Text> : null}
         </View>
         <Ionicons name="sync-outline" size={18} color={g.mutedText} style={styles.turn} />
+        </>}
       </Animated.View>
     </Pressable>
   );
@@ -100,6 +108,9 @@ export const FlipCard = memo(FlipCardInner);
 
 const styles = StyleSheet.create({
   card: { minHeight: FLIP_CARD_MIN_H },
+  galleryCard: { flex: 1 },
+  galleryPressed: { transform: [{ scale: 0.97 }] },
+  galleryFace: { ...StyleSheet.absoluteFillObject, backfaceVisibility: 'hidden' },
   face: { ...StyleSheet.absoluteFillObject, paddingHorizontal: 30, paddingVertical: 20, alignItems: 'center', justifyContent: 'center', backfaceVisibility: 'hidden' },
   // текст граней на всю ширину грани, как в макете; высоту измеряем onLayout
   faceText: { alignSelf: 'stretch', alignItems: 'center' },

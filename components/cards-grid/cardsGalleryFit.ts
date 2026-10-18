@@ -1,12 +1,7 @@
 /**
- * Размер текста и высота плитки галереи «Сохранённых»: текст ВСЕГДА помещается целиком, плитка растёт под него.
- *
- * зачем (владелец 18.10 через координатора, снимки iPhone: «Do you mind if I join you her…», перевод «Вы не против,» обрезан; капсом: «текст ВСЕГДА уменьшается
- * вместе с карточкой и ВСЕГДА помещается целиком — фраза и перевод, на любой позиции ползунка»): кегль считается от ширины плитки пропорционально шагу
- * (k = ширина плитки / ширина плитки в макете cards-v2 на iPhone 390), перенос по словам, БЕЗ многоточия, БЕЗ adjustsFontSizeToFit (запрет, ломается на iOS);
- * высота плитки = максимум из высоты макета (118 / 96 / 62 / 37 × k) и высоты, которую занимает текст. Число строк оцениваем по таблице ширин символов
- * намеренно с запасом (пессимистично), а настоящее число строк сверяет плитка при отрисовке (onTextLayout) и дорисовывает недостающее — см. useGalleryGrids.
- * Модуль чистый: без React Native, без часов — считается и в тестах.
+ * Подбор текста для двух отдельных сторон карточки. Размеры от ширины плитки и шага макета.
+ * Галерея фиксирует геометрию; длинная сторона уменьшает кегль, не увеличивая высоту ряда.
+ * Оценка строк с запасом и поправки onTextLayout работают без нативного adjustsFontSizeToFit.
  */
 import { GALLERY_STEPS } from './cardsGalleryLayout';
 
@@ -15,7 +10,7 @@ export const FIT_REF_GRID_WIDTH = 350;
 /** Пределы масштаба: на узком экране текст и плитка уменьшаются не больше чем до 0.78, на широком растут не больше чем до 1.12. */
 export const FIT_K_MIN = 0.78;
 export const FIT_K_MAX = 1.12;
-/** Потолок системного масштаба шрифта в плитках: при крупнее плитка просто растёт ещё, а Text не раздувается сверх него (maxFontSizeMultiplier). */
+/** Потолок системного масштаба шрифта; подбор кегля учитывает его внутри фиксированной плитки. */
 export const FIT_MAX_FONT_SCALE = 1.3;
 
 /** Числа макета на ширине FIT_REF_GRID_WIDTH (`.zg.s0…s3`, `.wc`), px. Подпись EN, слово, перевод; поля; кнопка звука; запас под точки. */
@@ -39,16 +34,11 @@ const FACES: readonly FaceDef[] = [
  */
 const MIN_H = [105, 96, 62, 37] as const;
 /**
- * Потолок высоты плитки как доля её ширины: 0.62 / 0.7 / 0.72 / 0.72 (ширина больше высоты в 1,6 / 1,4 / 1,4 / 1,4 раза) — плитка не становится квадратной и вертикальной. Фраза не влезла — сперва растём до потолка,
- * потом уменьшаем кегль (не меньше пола ниже), и только если даже на полу не влезает — плитка растёт выше потолка (текст целиком важнее пропорции).
- */
-export const FIT_CAP_RATIO = [0.62, 0.7, 0.72, 0.72] as const;
-/**
  * Пол кегля фразы и перевода, px. зачем (владелец 18.10: «не влезает — уменьши кегль», карточка остаётся горизонтальной): на мелких шагах длинная фраза в плитке шириной 50–110 px читается
  * только очень мелкой — это выбор человека, поставившего мелкий шаг; пол нужен лишь затем, чтобы кегль не уходил в ноль.
  */
-const WORD_FLOOR = [6, 2, 1, 0.5] as const;
-const TR_FLOOR = [6, 2, 1, 0.5] as const;
+const WORD_FLOOR = [0.01, 0.01, 0.01, 0.01] as const;
+const TR_FLOOR = [0.01, 0.01, 0.01, 0.01] as const;
 
 /** Ширина плитки шага в макете — точка отсчёта масштаба. */
 export function fitRefTileWidth(step: number): number {
@@ -153,15 +143,16 @@ export function fitAtScale(face: StepFace, front: string, back: string | null | 
   const trLine = showTr ? Math.ceil(face.trLine * (trSize / face.trSize)) : face.trLine;
   const wordLines = Math.max(1, estimateLines(front, wordSize * face.fontScale, face.textW));
   const trLines = showTr ? estimateLines(back as string, trSize * face.fontScale, face.textW) : 0;
-  let content = wordLines * wordLine + face.wordTop;
-  if (face.label) content += face.lgLine;
-  if (trLines > 0) content += face.trTop + trLines * trLine;
+  // Each side occupies the same fixed tile: translation is on the reverse, never stacked below the source.
+  const frontContent = wordLines * wordLine + face.wordTop + (face.label ? face.lgLine : 0);
+  const backContent = trLines > 0 ? trLines * trLine + face.trTop : 0;
+  const content = Math.max(frontContent, backContent);
   const need = content + face.padV * 2 + face.foot + extraPx;
   return { h: Math.ceil(Math.max(face.minH, need)), scale, wordSize, wordLine, trSize, trLine, wordLines, trLines };
 }
 
 /**
- * Высота плитки под текст при масштабе 1 и число строк — прежний вход (тесты, оценка роста ряда). Для раскладки с потолком по пропорции — fitWithin.
+ * Высота текста при масштабе 1 и число строк. Для фиксированной геометрии галереи — fitWithin.
  */
 export function tileFit(face: StepFace, front: string, back: string | null | undefined, extraPx = 0): TileFit {
   const f = fitAtScale(face, front, back, 1, extraPx);
@@ -169,22 +160,26 @@ export function tileFit(face: StepFace, front: string, back: string | null | und
 }
 
 /**
- * Самый крупный кегль (масштаб ≤ 1), при котором текст помещается в высоту `maxH`. Не помещается даже на полу кегля — возвращаем текст на полу: плитка вырастет выше `maxH`.
+ * Самый крупный кегль (масштаб ≤ 1), при котором текст помещается в высоту `maxH`.
+ * Если текст не помещается даже на минимальном кегле, h показывает необходимую высоту; геометрия сетки остаётся фиксированной.
  */
 export function fitWithin(face: StepFace, front: string, back: string | null | undefined, maxH: number, extraPx = 0): CardFit {
-  const full = fitAtScale(face, front, back, 1, extraPx);
+  // A correction measured at an earlier, larger font must leave room for at least one line.
+  const sideOverhead = Math.max(face.wordTop + (face.label ? face.lgLine : 0), face.trTop);
+  const correction = Math.min(extraPx, Math.max(0, maxH - face.padV * 2 - face.foot - sideOverhead - 2));
+  const full = fitAtScale(face, front, back, 1, correction);
   if (full.h <= maxH) return full;
   // оба кегля (фразы и перевода) уменьшаются, пока каждый не упрётся в свой пол: нижняя граница масштаба — меньший из двух
   const wordFloorScale = WORD_FLOOR[face.step]! / face.wordSize;
   const floorScale = face.translation && back ? Math.min(wordFloorScale, TR_FLOOR[face.step]! / face.trSize) : wordFloorScale;
-  const low = fitAtScale(face, front, back, Math.min(1, floorScale), extraPx);
+  const low = fitAtScale(face, front, back, Math.min(1, floorScale), correction);
   if (low.h > maxH) return low;
   let lo = Math.min(1, floorScale);
   let hi = 1;
   let best = low;
   for (let i = 0; i < 7; i += 1) {
     const mid = (lo + hi) / 2;
-    const f = fitAtScale(face, front, back, mid, extraPx);
+    const f = fitAtScale(face, front, back, mid, correction);
     if (f.h <= maxH) { best = f; lo = mid; } else hi = mid;
   }
   return best;

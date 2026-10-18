@@ -1,9 +1,10 @@
 # Англійська · Урок 8 · Заняття 19 — Поясни ще раз
 
-**Ситуація.** Ви просите пояснити правило гри, допомогти з малюнком і розповідаєте про програмування.
+**Ситуація.** Ви уточнюєте правило нарахування очок, просите показати складання паперового літачка й розбираєте схему складання полиці.
 
 **Що ви опануєте:** закріпити прохання Can you…? зі словом explain
-**Нові слова:** explain
+**Нові слова:** explain, demonstrate, diagram, manual
+**Повертаються:** draw, code, book, pass
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Нове правило гри
 
-Друг пояснив правило настільної гри, але ви його не зрозуміли. `Explain` — «пояснити». `Can you explain it?` — «Можеш це пояснити?» Тут `it` — правило, про яке ви вже говорите. Після `Can you` потрібне `explain it`. Фішка вже на старті, а ви поки на слові «правила».
+У новій настільній грі друг отримує додаткові очки за однакові картки. Ви не зрозуміли це правило. `Explain` — «пояснити». `Can you explain it?` — «Можеш це пояснити?» Тут `it` — правило, про яке ви вже говорите. Після `Can you` потрібне `explain it`. Ви просите пояснити саме це правило нарахування очок.
 
 **Попросіть друга пояснити правило.**
 
@@ -23,111 +24,127 @@
 
 ## Інтро 2
 
-### Малюнок для листівки
+### Згин на паперовому літачку
 
-Ви малюєте листівку, але не виходить намалювати кішку. Друг добре малює. `Can you help me?` — «Можеш мені допомогти?» Тут `me` означає «мені».
+Друг словами пояснює, як скласти ніс паперового літачка, але вам легше зрозуміти, коли дію показують. Demonstrate — «продемонструвати, показати на практиці». `Can you demonstrate it?` — «Можеш це показати на практиці?» It замінює дію, яку ви обговорюєте; після can потрібне demonstrate без to.
 
-**Попросіть друга допомогти вам.**
+**Попросіть друга показати дію на практиці.**
 
-- ✅ **Can you help me?**
-- ❌ Can you helps me? — *Після `can` потрібне `help`, без `s`.*
-- ❌ Can you to help me? — *Після `can` потрібне `help`, без `to`.*
+- ✅ **Can you demonstrate it?**
+- ❌ Can you demonstrates it? — *Після can потрібне demonstrate, без s.*
+- ❌ Can you to demonstrate it? — *Після can потрібне demonstrate, без to.*
 
 ---
 
 ## Інтро 3
 
-### Перші кроки в програмуванні
+### Схема кріплення полиці
 
-Колега запитує, чи вмієте ви писати програми. Ви ще не навчилися. `I can’t code` — «Я не вмію писати код». Після `can’t` потрібне `code`, без `to`.
+Ви складаєте полицю з другом. На схемі стрілки показують, куди вставити кріплення, але ви не розумієте позначень. Diagram — «схема», малюнок, який показує будову або зв’язок деталей. `Can you explain the diagram?` — «Можеш пояснити схему?» Замість it називаємо конкретний предмет: the diagram.
 
-**Скажіть колезі, що поки не вмієте писати код.**
+**Попросіть друга пояснити схему кріплення.**
 
-- ✅ **I can’t code.**
-- ❌ I can code. — *Ви поки не вмієте: потрібне `can’t`.*
-- ❌ I can’t to code. — *Після `can’t` потрібне `code`, без `to`.*
+- ✅ **Can you explain the diagram?**
+- ❌ Can you explains the diagram? — *Після can потрібне explain, без s.*
+- ❌ You can explain the diagram. — *Для прохання почніть із Can you.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Попросіть «Можеш це пояснити?»**
+**1 · Картка слова — explain**
+<!-- interaction_id: en:lesson-08:session-19:word:explain; family: word_card -->
+> **explain** — пояснити. Can you explain it? — «Можеш це пояснити?» Зробити зміст зрозумілим за допомогою слів.
+
+**2 · Попросіть «Можеш це пояснити?»**
 <!-- interaction_id: en:lesson-08:session-19:i01; family: phrase_builder -->
 Плитки: `it` `explain` `you` `Can` → **Can you explain it?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-19:i02; family: listen_choose -->
 🔊 *explain* → **explain** · draw · code
 - draw — *У записі перше слово — `explain`, а в цьому варіанті — `draw`.*
 - code — *У записі перше слово — `explain`, а в цьому варіанті — `code`.*
 
-**3 · Попросіть пояснити це вам**
+**4 · Виберіть форму для прохання пояснити це**
 <!-- interaction_id: en:lesson-08:session-19:i03; family: context_gap_grammar -->
 Can you ___ it? → **explain** · to explain · explains
 - to explain — *Після `can` потрібне `explain`, без `to`.*
 - explains — *Після `can` потрібне `explain`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-19:i04; family: speed_match -->
 explain — пояснити · soup — суп · draw — малювати · code — писати код
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-19:i05; family: listen_build_dictation -->
 🔊 *Can you explain it?* Плитки: `it` `explain` `you` `Can` → **Can you explain it?**
 
-**6 · Попросіть «Можеш мені допомогти?»**
+**7 · Картка слова — demonstrate**
+<!-- interaction_id: en:lesson-08:session-19:word:demonstrate; family: word_card -->
+> **demonstrate** — показати на практиці. Can you demonstrate it? — «Можеш це показати на практиці?» Виконати дію, щоб інший побачив, як це робиться.
+
+**8 · Попросіть «Можеш це показати на практиці?»**
 <!-- interaction_id: en:lesson-08:session-19:i06; family: phrase_builder -->
-Плитки: `me` `help` `you` `Can` → **Can you help me?**
+Плитки: `it` `demonstrate` `you` `Can` → **Can you demonstrate it?**
 
-**7 · Колега запитує про програмування. Скажіть «Я не вмію писати код»**
+**9 · Картка слова — diagram**
+<!-- interaction_id: en:lesson-08:session-19:word:diagram; family: word_card -->
+> **diagram** — схема. Can you explain the diagram? — «Можеш пояснити схему?» Малюнок, що показує будову або зв’язок деталей.
+
+**10 · Ви не розумієте стрілки на схемі. Попросіть друга «Можеш пояснити схему?»**
 <!-- interaction_id: en:lesson-08:session-19:i07; family: scripted_repeat_compare -->
-🎙 **I can’t code.**
+🎙 **Can you explain the diagram?**
 
-**8 · Попросіть допомогти вам**
+**11 · Виберіть форму для прохання показати дію на практиці**
 <!-- interaction_id: en:lesson-08:session-19:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *Після `can` потрібне `help`, без `s`.*
-- to help — *Після `can` потрібне `help`, без `to`.*
+Can you ___ it? → **demonstrate** · demonstrates · to demonstrate
+- demonstrates — *Після can потрібне demonstrate, без s.*
+- to demonstrate — *Після can потрібне demonstrate, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-19:i09; family: listen_choose -->
 🔊 *Can you explain it?* → **Can you explain it?** · Can you explain this? · Can you explain that?
 - Can you explain this? — *У записі останнє слово — `it`, а в цьому варіанті — `this`.*
 - Can you explain that? — *У записі останнє слово — `it`, а в цьому варіанті — `that`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-19:i10; family: speed_match -->
-complain — скаржитися · explain — пояснити · soup — суп · draw — малювати
+explain — пояснити · demonstrate — показати на практиці · diagram — схема · draw — малювати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-19:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you demonstrate it?* Плитки: `it` `demonstrate` `you` `Can` → **Can you demonstrate it?**
 
-**12 · Попросіть «Можеш відчинити двері?»**
+**15 · Картка слова — manual**
+<!-- interaction_id: en:lesson-08:session-19:word:manual; family: word_card -->
+> **manual** — посібник, інструкція. Can you pass me the manual? — «Можеш передати мені посібник?» Тут — брошура з інструкціями зі складання.
+
+**16 · Посібник зі складання лежить у друга. Попросіть «Можеш передати мені посібник?»**
 <!-- interaction_id: en:lesson-08:session-19:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `manual` `the` `me` `pass` `you` `Can` → **Can you pass me the manual?**
 
-**13 · Друг розглядає ваш альбом. Використайте draw: «Я часто малюю»**
+**17 · Друг розглядає ваш альбом. Використайте draw: «Я часто малюю»**
 <!-- interaction_id: en:lesson-08:session-19:i13; family: scripted_repeat_compare -->
 🎙 **I often draw.**
 
-**14 · Почніть прохання «Можеш це пояснити?»**
+**18 · Почніть прохання «Можеш це пояснити?»**
 <!-- interaction_id: en:lesson-08:session-19:i14; family: context_gap_grammar -->
 ___ you explain it? → **Can** · Are · Is
 - Are — *У цьому проханні потрібне `Can you explain`, без `are`.*
 - Is — *Почніть із `Can you explain`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-19:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *У записі останнє слово — `door`, а в цьому варіанті — `window`.*
-- Can you open the box? — *У записі останнє слово — `door`, а в цьому варіанті — `box`.*
+🔊 *Can you pass me the manual?* → **Can you pass me the manual?** · Can you pass me the diagram? · Can you pass me the book?
+- Can you pass me the diagram? — *У записі manual — «посібник», а не diagram — «схема».*
+- Can you pass me the book? — *У записі manual, а не book — «книжка».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-19:i16; family: speed_match -->
-explain — пояснити · complain — скаржитися · code — писати код · soup — суп
+explain — пояснити · demonstrate — показати на практиці · diagram — схема · manual — посібник
 
-**17 · Друг показав вам хід у грі, але ви не зрозуміли, чому він так зробив. Попросіть «Можеш це пояснити?»**
+**21 · Друг показав вам хід у грі, але ви не зрозуміли, чому він так зробив. Попросіть «Можеш це пояснити?»**
 <!-- interaction_id: en:lesson-08:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you explain it?**
 

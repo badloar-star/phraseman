@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-19:word:explain",
+    "correctText": "explain",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-19:i01",
     "correctText": "Can you explain it?",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-19:word:demonstrate",
+    "correctText": "demonstrate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-19:i06",
-    "correctText": "Can you help me?",
+    "correctText": "Can you demonstrate it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:word:diagram",
+    "correctText": "diagram",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-19:i07",
-    "correctText": "I can’t code.",
+    "correctText": "Can you explain the diagram?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-19:i08",
-    "correctText": "help",
+    "correctText": "demonstrate",
     "correctResponseId": "en:lesson-08:session-19:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-19:i10",
-    "correctText": "en:lesson-08:session-19:i10:p1=complain\nen:lesson-08:session-19:i10:p2=explain\nen:lesson-08:session-19:i10:p3=soup\nen:lesson-08:session-19:i10:p4=draw",
+    "correctText": "en:lesson-08:session-19:i10:p1=explain\nen:lesson-08:session-19:i10:p2=demonstrate\nen:lesson-08:session-19:i10:p3=diagram\nen:lesson-08:session-19:i10:p4=draw",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-19:i11",
-    "correctText": "Can you help me?",
+    "correctText": "Can you demonstrate it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-19:word:manual",
+    "correctText": "manual",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-19:i12",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you pass me the manual?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-19:i15",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you pass me the manual?",
     "correctResponseId": "en:lesson-08:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-19:i16",
-    "correctText": "en:lesson-08:session-19:i16:p1=explain\nen:lesson-08:session-19:i16:p2=complain\nen:lesson-08:session-19:i16:p3=code\nen:lesson-08:session-19:i16:p4=soup",
+    "correctText": "en:lesson-08:session-19:i16:p1=explain\nen:lesson-08:session-19:i16:p2=demonstrate\nen:lesson-08:session-19:i16:p3=diagram\nen:lesson-08:session-19:i16:p4=manual",
     "correctResponseId": null
   },
   {

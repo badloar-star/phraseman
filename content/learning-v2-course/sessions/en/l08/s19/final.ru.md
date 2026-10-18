@@ -1,9 +1,10 @@
 # Английский · Урок 8 · Занятие 19 — Объясни ещё раз
 
-**Ситуация.** Вы просите объяснить правило игры, помочь с рисунком и рассказываете о программировании.
+**Ситуация.** Вы уточняете правило начисления очков, просите показать складывание бумажного самолёта и разбираете схему сборки полки.
 
 **Что вы освоите:** закрепить просьбы Can you…? со словом explain
-**Новые слова:** explain
+**Новые слова:** explain, demonstrate, diagram, manual
+**Возвращаются:** draw, code, book, pass
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Новое правило игры
 
-Друг объяснил правило настольной игры, но вы его не поняли. `Explain` — «объяснить». `Can you explain it?` — «Можешь это объяснить?» Здесь `it` — правило, о котором вы уже говорите. После `Can you` нужно `explain it`. Фишка уже на старте, а вы пока на слове «правила».
+В новой настольной игре друг получает дополнительные очки за одинаковые карточки. Вы не поняли это правило. `Explain` — «объяснить». `Can you explain it?` — «Можешь это объяснить?» Здесь `it` — правило, о котором вы уже говорите. После `Can you` нужно `explain it`. Вы просите объяснить именно это правило начисления очков.
 
 **Попросите друга объяснить правило.**
 
@@ -23,111 +24,127 @@
 
 ## Интро 2
 
-### Рисунок для открытки
+### Складка на бумажном самолёте
 
-Вы рисуете открытку, но не получается нарисовать кошку. Друг хорошо рисует. `Can you help me?` — «Можешь мне помочь?» Здесь `me` значит «мне».
+Друг словами объясняет, как сложить нос бумажного самолёта, но вам легче понять, когда действие показывают. Demonstrate — «продемонстрировать, показать на практике». `Can you demonstrate it?` — «Можешь это показать на практике?» It заменяет действие, которое вы обсуждаете; после can нужно demonstrate без to.
 
-**Попросите друга помочь вам.**
+**Попросите друга показать действие на практике.**
 
-- ✅ **Can you help me?**
-- ❌ Can you helps me? — *После `can` нужно `help`, без `s`.*
-- ❌ Can you to help me? — *После `can` нужно `help`, без `to`.*
+- ✅ **Can you demonstrate it?**
+- ❌ Can you demonstrates it? — *После can нужно demonstrate, без s.*
+- ❌ Can you to demonstrate it? — *После can нужно demonstrate, без to.*
 
 ---
 
 ## Интро 3
 
-### Первые шаги в программировании
+### Схема крепления полки
 
-Коллега спрашивает, умеете ли вы писать программы. Вы ещё не научились. `I can’t code` — «Я не умею писать код». После `can’t` нужно `code`, без `to`.
+Вы собираете полку с другом. На схеме стрелки показывают, куда вставить крепления, но вы не понимаете обозначения. Diagram — «схема», рисунок, который показывает устройство или связь деталей. `Can you explain the diagram?` — «Можешь объяснить схему?» Вместо it называем конкретный предмет: the diagram.
 
-**Скажите коллеге, что пока не умеете писать код.**
+**Попросите друга объяснить схему крепления.**
 
-- ✅ **I can’t code.**
-- ❌ I can code. — *Вы пока не умеете: нужно `can’t`.*
-- ❌ I can’t to code. — *После `can’t` нужно `code`, без `to`.*
+- ✅ **Can you explain the diagram?**
+- ❌ Can you explains the diagram? — *После can нужно explain, без s.*
+- ❌ You can explain the diagram. — *Для просьбы начните с Can you.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Попросите «Можешь это объяснить?»**
+**1 · Карточка слова — explain**
+<!-- interaction_id: en:lesson-08:session-19:word:explain; family: word_card -->
+> **explain** — объяснить. Can you explain it? — «Можешь это объяснить?» Сделать смысл понятным с помощью слов.
+
+**2 · Попросите «Можешь это объяснить?»**
 <!-- interaction_id: en:lesson-08:session-19:i01; family: phrase_builder -->
 Плитки: `it` `explain` `you` `Can` → **Can you explain it?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-19:i02; family: listen_choose -->
 🔊 *explain* → **explain** · draw · code
 - draw — *В записи первое слово — `explain`, а в этом варианте — `draw`.*
 - code — *В записи первое слово — `explain`, а в этом варианте — `code`.*
 
-**3 · Попросите объяснить это вам**
+**4 · Выберите форму для просьбы объяснить это**
 <!-- interaction_id: en:lesson-08:session-19:i03; family: context_gap_grammar -->
 Can you ___ it? → **explain** · to explain · explains
 - to explain — *После `can` нужно `explain`, без `to`.*
 - explains — *После `can` нужно `explain`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-19:i04; family: speed_match -->
 explain — объяснить · soup — суп · draw — рисовать · code — писать код
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-19:i05; family: listen_build_dictation -->
 🔊 *Can you explain it?* Плитки: `it` `explain` `you` `Can` → **Can you explain it?**
 
-**6 · Попросите «Можешь мне помочь?»**
+**7 · Карточка слова — demonstrate**
+<!-- interaction_id: en:lesson-08:session-19:word:demonstrate; family: word_card -->
+> **demonstrate** — показать на практике. Can you demonstrate it? — «Можешь это показать на практике?» Выполнить действие, чтобы другой увидел, как это делается.
+
+**8 · Попросите «Можешь это показать на практике?»**
 <!-- interaction_id: en:lesson-08:session-19:i06; family: phrase_builder -->
-Плитки: `me` `help` `you` `Can` → **Can you help me?**
+Плитки: `it` `demonstrate` `you` `Can` → **Can you demonstrate it?**
 
-**7 · Коллега спрашивает о программировании. Скажите «Я не умею писать код»**
+**9 · Карточка слова — diagram**
+<!-- interaction_id: en:lesson-08:session-19:word:diagram; family: word_card -->
+> **diagram** — схема. Can you explain the diagram? — «Можешь объяснить схему?» Рисунок, показывающий устройство или связь деталей.
+
+**10 · Вы не понимаете стрелки на схеме. Попросите друга «Можешь объяснить схему?»**
 <!-- interaction_id: en:lesson-08:session-19:i07; family: scripted_repeat_compare -->
-🎙 **I can’t code.**
+🎙 **Can you explain the diagram?**
 
-**8 · Попросите помочь вам**
+**11 · Выберите форму для просьбы показать действие на практике**
 <!-- interaction_id: en:lesson-08:session-19:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *После `can` нужно `help`, без `s`.*
-- to help — *После `can` нужно `help`, без `to`.*
+Can you ___ it? → **demonstrate** · demonstrates · to demonstrate
+- demonstrates — *После can нужно demonstrate, без s.*
+- to demonstrate — *После can нужно demonstrate, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-19:i09; family: listen_choose -->
 🔊 *Can you explain it?* → **Can you explain it?** · Can you explain this? · Can you explain that?
 - Can you explain this? — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Can you explain that? — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-19:i10; family: speed_match -->
-complain — жаловаться · explain — объяснить · soup — суп · draw — рисовать
+explain — объяснить · demonstrate — показать на практике · diagram — схема · draw — рисовать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-19:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you demonstrate it?* Плитки: `it` `demonstrate` `you` `Can` → **Can you demonstrate it?**
 
-**12 · Попросите «Можешь открыть дверь?»**
+**15 · Карточка слова — manual**
+<!-- interaction_id: en:lesson-08:session-19:word:manual; family: word_card -->
+> **manual** — руководство, инструкция. Can you pass me the manual? — «Можешь передать мне руководство?» Здесь — брошюра с инструкциями по сборке.
+
+**16 · Руководство по сборке лежит у друга. Попросите «Можешь передать мне руководство?»**
 <!-- interaction_id: en:lesson-08:session-19:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `manual` `the` `me` `pass` `you` `Can` → **Can you pass me the manual?**
 
-**13 · Друг рассматривает ваш альбом. Используйте draw: «Я часто рисую»**
+**17 · Друг рассматривает ваш альбом. Используйте draw: «Я часто рисую»**
 <!-- interaction_id: en:lesson-08:session-19:i13; family: scripted_repeat_compare -->
 🎙 **I often draw.**
 
-**14 · Начните просьбу «Можешь это объяснить?»**
+**18 · Начните просьбу «Можешь это объяснить?»**
 <!-- interaction_id: en:lesson-08:session-19:i14; family: context_gap_grammar -->
 ___ you explain it? → **Can** · Are · Is
 - Are — *В этой просьбе нужно `Can you explain`, без `are`.*
 - Is — *Начните с `Can you explain`.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-19:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *В записи последнее слово — `door`, а в этом варианте — `window`.*
-- Can you open the box? — *В записи последнее слово — `door`, а в этом варианте — `box`.*
+🔊 *Can you pass me the manual?* → **Can you pass me the manual?** · Can you pass me the diagram? · Can you pass me the book?
+- Can you pass me the diagram? — *В записи manual — «руководство», а не diagram — «схема».*
+- Can you pass me the book? — *В записи manual, а не book — «книга».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-19:i16; family: speed_match -->
-explain — объяснить · complain — жаловаться · code — писать код · soup — суп
+explain — объяснить · demonstrate — показать на практике · diagram — схема · manual — руководство
 
-**17 · Друг показал вам ход в игре, но вы не поняли, почему он так сделал. Попросите «Можешь это объяснить?»**
+**21 · Друг показал вам ход в игре, но вы не поняли, почему он так сделал. Попросите «Можешь это объяснить?»**
 <!-- interaction_id: en:lesson-08:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you explain it?**
 

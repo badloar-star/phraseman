@@ -198,3 +198,11 @@ hooks, constants — любые 64-hex, совпадающие с хешами �
 перекодированием модули (bootstrap, single voice, entries, lesson index) исключаются. После перекодирования каждый такой
 хеш обязан остаться в новом наборе, иначе код 1; журнал [POSTCHECK] — модуль → хешей набора → пропало. Scope:
 scripts/learning_v2_reencode_bundle_audio_64k.mjs. Verification: сухой скан на HEAD + пересборка вариантов. Rollback: git revert.
+
+## Дополнение: скан ссылок на файлы набора — префиксы хешей и имена исходников (координатор 05:00)
+
+Governance-ID: TG-836A5D6960E4
+
+Outcome: проверить, что, кроме полного 64-hex, нет ссылок на файлы набора по 8–12-символьному префиксу хеша или по имени
+исходника (basename без расширения) — в app, modules, components, hooks, constants, app.json, metro.config.js и манифестах
+assets/**. Только чтение (scratchpad scan_refs.cjs). Итог: число модулей по каждому виду ссылки.

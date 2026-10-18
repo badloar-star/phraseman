@@ -192,17 +192,29 @@ run("build_learning_v2_bootstrap_audio_pack.mjs", ["--check"]);
   const REGENERATED = new Set([BOOTSTRAP_MODULE, "app/learning_v2_factory_single_voice_v1.generated.ts",
     "app/learning_v2_factory_production_audio_entries_v1.generated.ts", "app/learning_v2_factory_lesson_audio_index_v1.generated.ts"]);
   const bundleNow = new Set([...fs.readFileSync(path.join(ROOT, BOOTSTRAP_MODULE), "utf8").matchAll(/contentHash: "([0-9a-f]{64})"/gu)].map((m) => m[1]));
+  // зачем (координатор 05:00): ссылка может быть не полным хешем, а его 8–12-символьным префиксом — ищем и их.
+  // Манифесты в assets/** и app.json / metro.config.js тоже смотрим (там лежит, например, манифест session1-production-v1).
+  const prefixToHash = new Map();
+  for (const h of bundleHashes) for (let n = 8; n <= 12; n += 1) prefixToHash.set(h.slice(0, n), h);
+  REGENERATED.add(SINGLE_VOICE);
+  REGENERATED.add(MANIFEST);
   const holders = [];
-  const walk = (dir) => {
+  const scanFile = (rel) => {
+    const text = fs.readFileSync(path.join(ROOT, rel), "utf8");
+    const held = new Set([...text.matchAll(/(?<![0-9a-f])[0-9a-f]{64}(?![0-9a-f])/gu)].map((m) => m[0]).filter((h) => bundleHashes.has(h)));
+    for (const m of text.matchAll(/(?<![0-9a-f])[0-9a-f]{8,12}(?![0-9a-f])/gu)) { const h = prefixToHash.get(m[0]); if (h) held.add(h); }
+    if (held.size > 0) holders.push({ rel, held: [...held], lost: [...held].filter((h) => !bundleNow.has(h)) });
+  };
+  const walk = (dir, accept) => {
     for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
       const rel = `${dir}/${entry.name}`;
-      if (entry.isDirectory()) { if (entry.name !== "node_modules") walk(rel); continue; }
-      if (!/\.(ts|tsx|js|json)$/u.test(entry.name) || REGENERATED.has(rel)) continue;
-      const held = new Set([...fs.readFileSync(path.join(ROOT, rel), "utf8").matchAll(/[0-9a-f]{64}/gu)].map((m) => m[0]).filter((h) => bundleHashes.has(h)));
-      if (held.size > 0) holders.push({ rel, held: [...held], lost: [...held].filter((h) => !bundleNow.has(h)) });
+      if (entry.isDirectory()) { if (entry.name !== "node_modules" && entry.name !== "learning-v2-bootstrap-v1") walk(rel, accept); continue; }
+      if (accept(entry.name) && !REGENERATED.has(rel)) scanFile(rel);
     }
   };
-  for (const dir of ["app", "modules", "components", "hooks", "constants"]) if (fs.existsSync(path.join(ROOT, dir))) walk(dir);
+  for (const dir of ["app", "modules", "components", "hooks", "constants"]) if (fs.existsSync(path.join(ROOT, dir))) walk(dir, (n) => /\.(ts|tsx|js|json)$/u.test(n));
+  if (fs.existsSync(path.join(ROOT, "assets"))) walk("assets", (n) => /manifest.*\.json$/iu.test(n));
+  for (const rel of ["app.json", "metro.config.js", "app.config.js", "app.config.ts"]) if (fs.existsSync(path.join(ROOT, rel))) scanFile(rel);
   console.log(`[POSTCHECK] модулей с жёсткими хешами набора: ${holders.length}${holders.some((h) => h.rel === SESSION1_MODULE) ? " (включая L1 S1)" : ""}`);
   for (const h of holders) console.log(`[POSTCHECK]   ${h.rel}: хешей набора ${h.held.length}, пропало из набора ${h.lost.length}`);
   const broken = holders.filter((h) => h.lost.length > 0);

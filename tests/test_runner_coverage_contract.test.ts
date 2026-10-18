@@ -85,6 +85,9 @@ describe('раннеры тестов', () => {
       'tests/learning_v2_course_session_audio_readback_v1.test.ts',
       'tests/learning_v2_course_session_audio_release_extension_v1.test.ts',
       'tests/learning_v2_course_lesson_audio_release_index_v1.test.ts',
+      // ещё два зелёных от V2 (c2dbb8e41): возвращены в обычный прогон
+      'tests/learning_v2_intro_semantic_runs_contract.test.ts',
+      'tests/learning_v2_activity_post_terminal_card_catalog_v1.test.ts',
     ]);
     expect(listed.filter((f) => fs.existsSync(path.join(root, f)) && !ignored.has(f) && !restored.has(f))).toEqual([]);
   });

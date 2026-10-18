@@ -80,4 +80,6 @@
 
 ВОЗВРАЩЕНЫ по просьбе V2 (фикстуры починены в 8f28a1e98; прогон V2 без карантина 6/6, 11/11): `course_session_completed_spool_v1`, `course_session_save_card_v1`, `activity_released_session_submission_spool_v2`, `course_session_audio_readback_v1`, `course_session_audio_release_extension_v1`, `course_lesson_audio_release_index_v1`.
 
+ВОЗВРАЩЕНЫ ещё двое от V2 (c2dbb8e41): `intro_semantic_runs_contract`, `activity_post_terminal_card_catalog_v1`.
+
 НЕ в карантине (остаются в обычном прогоне): `learning_v2_session_intro_feedback_behavior` — зелёный после гейта журнала [INTRO-BLUR] (18.10); `new_word_encounter_projection_v1`, `all_ready_tasks_runtime_audit` — перепин V2 сделан; `factory_production_audio_contract`, `factory_native_projection_v1` — перепины лежат в рабочей копии V2 (файлы не трогаю). Если до коммита V2 они красные — это красные V2, а не карантин.

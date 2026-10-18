@@ -5,6 +5,7 @@ Governance-ID: TG-2799A41DB3F0
 Governance-ID: TG-FE5797EC6615
 Governance-ID: TG-CE0B67AD86ED
 Governance-ID: TG-5074C5773D85
+Governance-ID: TG-54E558BF4EFB
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» (поручение координатора 18.10 03:50)
 Related epic/enabler: полный прогон 5028b4273, docs/work/full-run-red-tests-2026-10-18.md

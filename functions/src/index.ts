@@ -1194,3 +1194,7 @@ export {
 export { spendCapBillingKillSwitch } from "./spend_cap_billing_kill_switch";
 // Home Polls v2: account-scoped duplicate guard and aggregate-only results.
 export { homePollV2Vote } from "./home_poll_v2_vote";
+// Legacy 1.x league endpoints remain available, but their room writer now
+// strips historic synthetic members and never creates new ones.
+export { leagueJoinOrUpdateGroup, leagueUpdateMyMember } from "./league_groups";
+export { leagueFinalizeCron } from "./league_finalize_cron";

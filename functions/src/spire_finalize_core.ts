@@ -12,14 +12,11 @@
 //   • повышение — ранг среди живых ≤ зоны И хотя бы одна ступень;
 //   • понижение — нижняя зона среди живых И ВСЕ с нулём ступеней;
 //   • комната, где не играл никто, никого не понижает.
-// Размер зоны — spireLiveZoneSize из spire_residents.ts (D59: база — вся
-// комната с ботами, 15% от 30 = 5 мест; одинокий живой повышается). Своей
-// функции зон здесь НЕТ намеренно: экран (формула ботов) и итог обязаны
-// видеть одну и ту же зону, иначе бот встанет над повышаемым.
+// Размер зоны — spireLiveZoneSize из spire_residents.ts: 15% от реальных
+// участников; одинокий участник с прогрессом может повыситься.
 //
-// Боты: в итог не попадают вообще — ни документа, ни шпиля, ни монет. Их
-// ступени считаются той же формулой spireRoomResidents только чтобы честно
-// записать «место X из 30», которое человек видел на экране.
+// Старые записи жителей отфильтровываются. Место и итог считаются только
+// среди реальных участников, как на экране комнаты.
 //
 // Чистый модуль: ни сети, ни Firestore, ни Date.now() внутри. Крон —
 // spire_finalize_cron.ts.
@@ -34,12 +31,9 @@
 import { createHash } from 'crypto';
 import type { SpireCoinsConfig, SpireRankBy } from './spire_config_contract';
 import { spireCoinsZoneK, spireCoinsZonesFor } from '../../shared/spire_coins_zones';
-import { spireBotWeekCoins } from './spire_config_contract';
 import {
-  buildSpireRoster,
   isSpireResidentMember,
   spireLiveZoneSize,
-  spireRoomResidents,
   type SpireResidentTuning,
 } from './spire_residents';
 
@@ -263,7 +257,7 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
   const liveTotal = live.length;
   // зачем (D190, владелец 14.10): в режиме монет зона — k = N≥15 ? 5 : max(1, floor(N/3)) от ЖИВЫХ, вниз только k последних
   // (нули сверх k не спускаются), группы не пересекаются. Та же функция у экрана «Все участники» (shared/spire_coins_zones.ts).
-  // Режим ступеней — прежняя зона 15% комнаты с ботами (D59).
+  // Режим ступеней — зона 15% реальных участников.
   const zoneSize = rankBy === 'coins' ? spireCoinsZoneK(liveTotal) : spireLiveZoneSize(liveTotal);
   const hasAnyScorer = live.some((m) => spireStandingScored(m, rankBy));
   const lateJoinCutoffMs = input.weekStartMs + WEEK_MS - SPIRE_LATE_JOIN_GRACE_MS;
@@ -280,24 +274,7 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
     sorted.forEach((m, i) => coinsZoneByUid.set(m.uid, zones[i]));
   }
 
-  // Боты на конец недели — та же формула, что на экране (0 чтений/записей).
-  const bots = spireRoomResidents({
-    groupId: input.groupId,
-    weekStartMs: input.weekStartMs,
-    cohortDay: input.cohortDay,
-    nowMs: input.weekStartMs + WEEK_MS - 1,
-    live: live.map((m) => ({ uid: m.uid, steps: m.steps })),
-    tuning: input.tuning,
-  });
-  // D162: у ботов в режиме монет — монеты по формуле от их ступеней (только для показанного «места X из N»).
-  // D191: имена и ранги монет ботов — из того же реестра жителей, что рисует комнату (0 чтений).
-  const rosterByUid = new Map(buildSpireRoster(input.groupId, input.weekStartMs).map((r) => [r.uid, r]));
-  const room: SpireStanding[] = [...live, ...bots.map((b) => ({
-    ...b,
-    weekCoins: spireBotWeekCoins(b.steps),
-    name: rosterByUid.get(b.uid)?.name ?? '',
-    coinRank: rosterByUid.get(b.uid)?.coinRank ?? null,
-  }))];
+  const room: SpireStanding[] = live;
   const roomTotal = room.length;
   const roomSorted = [...room].sort(compare);
   const roomPlace = (s: SpireStanding): number => 1 + room.filter((o) => compare(o, s) < 0).length;

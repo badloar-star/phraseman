@@ -2,19 +2,10 @@
  * Шпиль — строки «Комнаты недели» из документа комнаты + своих локальных ступеней (пакет B).
  * Чистый модуль: ни React, ни Firebase, ни часов (nowMs приходит снаружи).
  *
- * зачем (TOWER.md §4.5, D56): документ spire_groups/{id} несёт только живых
- * (members) и лица ботов (roster); ступени ботов считаются формулой на
- * устройстве (residents.ts). Свои ступени берём ЛОКАЛЬНЫЕ — маркер и место
- * меняются мгновенно после ступени, без ожидания сервера (Optimistic UI), и
- * боты сразу уступают зону. Чужие живые — из кэша комнаты (TTL 6 ч).
+ * Старые документы могут содержать roster жителей; экран показывает только
+ * реальных участников. Свои ступени берём ЛОКАЛЬНЫЕ для мгновенного места.
  */
-import {
-  spireResidentRows,
-  spireRoomResidents,
-  type SpireResidentTuning,
-  type SpireRosterEntry,
-} from './residents';
-import { spireBotCoinRank } from './bot_coin_rank';
+import type { SpireResidentTuning, SpireRosterEntry } from './residents';
 import { spireBotWeekCoins, type SpireRankBy } from './config_contract';
 
 /** Живой участник комнаты — поля документа, которые нужны экрану. */
@@ -77,6 +68,7 @@ export function spireDecodeRoomMembers(raw: unknown): SpireRoomMember[] {
   for (const [key, value] of Object.entries(raw)) {
     if (!isRecord(value)) continue;
     const uid = typeof value.uid === 'string' && value.uid ? value.uid : key;
+    if (uid.startsWith('res_') || (uid.startsWith('bot_') && value.isBot === true)) continue;
     const name = typeof value.name === 'string' ? value.name.trim().slice(0, 48) : '';
     out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs), coinRank: spireDecodeCoinRank(value.coinRank), weekCoins: num(value.weekCoins) });
   }
@@ -151,17 +143,7 @@ export function spireBuildRoomRows(input: SpireRoomRowsInput): SpireRoomRow[] {
     .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false, coinRank: m.coinRank ?? null, weekCoins: liveWeekCoins(m.weekCoins, m.steps) }));
   live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true, coinRank: serverMe?.coinRank ?? null, weekCoins: liveWeekCoins(serverMe?.weekCoins, mySteps) });
 
-  const states = spireRoomResidents({
-    groupId: room.groupId,
-    weekStartMs: room.weekStartMs,
-    cohortDay: room.cohortDay,
-    nowMs: input.nowMs,
-    live: live.map((m) => ({ uid: m.uid, steps: m.steps })),
-    tuning: input.tuning,
-  });
-  const bots: SpireRoomRow[] = spireResidentRows(room.roster, states)
-    .map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, reachedAtMs: r.reachedAtMs, isMe: false, coinRank: r.coinRank ?? spireBotCoinRank(r.uid, room.groupId), weekCoins: spireBotWeekCoins(r.steps) })); // зачем (Ядро 13.10): у ботов старых комнат ранга в roster нет — детерминированная формула, как на сервере
-  return [...live, ...bots].sort(spireCompareRowsBy(input.rankBy ?? 'steps'));
+  return live.sort(spireCompareRowsBy(input.rankBy ?? 'steps'));
 }
 
 /** Моё место (1-based) или null. */

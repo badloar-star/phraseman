@@ -9,10 +9,7 @@
 //     ARENA_STUDY_TARGETS, того же реестра, что делит пул заданий;
 //   • понедельничные не смешиваются с поздними (T24) — cohortDay в ключе
 //     подбора;
-//   • боты НЕ хранятся в members и НЕ обновляются кроном (D56): в документ
-//     один раз при создании пишутся только их лица (roster), ступени клиент и
-//     итог недели считают формулой spire_residents.ts. Поэтому members = только
-//     живые, и вместимость считается по ним без фильтров.
+//   • новые комнаты содержат только реальных участников; roster пуст.
 //
 // ПОЧЕМУ отдельная коллекция spire_groups, а не legacy group records (как предлагал
 // черновик TOWER_CONTRACT.md §2.2): пока Лига жива, её кроны читают
@@ -38,7 +35,6 @@ import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_r
 import { normalizeStars, starsWeekEarned } from './stars_ledger';
 import {
   SPIRE_ROOM_SIZE,
-  buildSpireRoster,
   spireCohortDay,
   spireWeekStartMs,
 } from './spire_residents';
@@ -334,7 +330,7 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     console.warn(LOG, JSON.stringify({ event: 'join_race_lost', groupId: target, attempt }));
   }
 
-  // 3) Новая комната. Лица ботов пишутся здесь же — отдельной записи нет.
+  // 3) Новая комната только с реальными игроками.
   const groupId = makeSpireGroupId(weekId, lang, tier, cohortDay, stableUid, nowMs);
   const weekStartMs = spireWeekStartMs(nowMs);
   await db.runTransaction(async (tx) => {
@@ -348,7 +344,7 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
       open: true,
       liveMemberCount: 1,
       members: { [stableUid]: member },
-      roster: buildSpireRoster(groupId, weekStartMs),
+      roster: [],
       createdAt: nowMs,
       updatedAt: nowMs,
     });

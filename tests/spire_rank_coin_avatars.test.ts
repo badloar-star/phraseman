@@ -49,7 +49,7 @@ describe('Шпиль: монеты рангов вместо букв', () => {
     expect(roster[0].coinRank).toBe(4);
   });
 
-  it('строки комнаты несут ранг; у бота без ранга в roster — формула, у живого без ранга — null; ранг доезжает до соперника на этаже', () => {
+  it('строки комнаты несут ранг только живых участников; старый roster с ботами игнорируется', () => {
     const room: SpireRoomSnapshot = {
       schema: 'spire-room-cache.v1', uid: 'me', lang: 'en', weekId: 'w', groupId: 'g1', tier: 0, cohortDay: 2, weekStartMs: 0,
       members: [
@@ -67,9 +67,7 @@ describe('Шпиль: монеты рангов вместо букв', () => {
     const rivals = [...spireRivalsByFloor(rows).values()].flat();
     expect(rivals.find((r) => r.uid === 'a')?.coinRank).toBe(11);
     expect(rivals.some((r) => r.uid === 'me')).toBe(false); // себя среди «кто на этаже» нет
-    const bots = rows.filter((r) => r.uid.startsWith('res_'));
-    expect(bots.length).toBeGreaterThan(0);
-    for (const bot of bots) expect(bot.coinRank).toEqual(expect.any(Number)); // формула, не null
+    expect(rows.map((r) => r.uid).sort()).toEqual(['a', 'b', 'me']);
   });
 
   it('«Комната недели» (пьедестал + «Все участники») — сразу под заголовком, выше башни (владелец 13.10)', () => {

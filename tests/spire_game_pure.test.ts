@@ -134,11 +134,11 @@ describe('spire room rows', () => {
     fetchedAtMs: 0,
   };
 
-  it('fills the room to 30 with residents and uses LOCAL steps for me (optimistic)', () => {
+  it('shows only real players even when an older cached room contains residents, and uses LOCAL steps for me', () => {
     const rows = spireBuildRoomRows({
       room, myUid: 'me', mySteps: 40, myReachedAtMs: 5, nowMs: Date.UTC(2026, 9, 1), tuning: SPIRE_CONFIG_DEFAULTS.residents,
     });
-    expect(rows).toHaveLength(30);
+    expect(rows.map((row) => row.uid).sort()).toEqual(['me', 'other']);
     const me = rows.find((r) => r.isMe);
     expect(me?.steps).toBe(40);
     expect(spireMyPlace(rows)).toBe(1);

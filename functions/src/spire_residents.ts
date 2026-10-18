@@ -33,7 +33,7 @@ import { RESIDENT_SLOT_COUNT, residentHash, residentProfileAt } from './syntheti
 const LEAGACY_ROOM_SIZE = 30;
 const RESIDENT_UID_PREFIX = 'res_';
 function isResidentMember(uid: string, member?: Record<string, unknown>): boolean {
-  return uid.startsWith(RESIDENT_UID_PREFIX) || member?.isBot === true;
+  return uid.startsWith(RESIDENT_UID_PREFIX) || (uid.startsWith('bot_') && member?.isBot === true);
 }
 // зачем: ровно логика удалённого league_residents.residentIndexForSlot — непрерывный
 // блок от смещения комнаты. Хэш по номеру места давал совпадения (два одинаковых
@@ -252,8 +252,7 @@ export function spireResidentRawState(
 export function spireLiveZoneSize(liveCount: number): number {
   const n = Math.max(0, Math.trunc(liveCount) || 0);
   if (n < 1) return 0;
-  const roomTotal = n + spireVisibleResidentCount(n);
-  return Math.max(1, Math.round(roomTotal * SPIRE_ZONE_RATIO));
+  return Math.max(1, Math.round(n * SPIRE_ZONE_RATIO));
 }
 
 export type SpireResidentBounds = Readonly<{
@@ -304,9 +303,9 @@ export function spireResidentBounds(
 
 // ── Комната целиком ──────────────────────────────────────────────────────────
 
-/** Сколько ботов видно в комнате: добивка до 30 (T25), живые мест не теряют. */
-export function spireVisibleResidentCount(liveCount: number): number {
-  return Math.max(0, SPIRE_ROOM_SIZE - Math.max(0, Math.trunc(liveCount) || 0));
+/** Жители отключены: во всех комнатах показываются только реальные игроки. */
+export function spireVisibleResidentCount(_liveCount: number): number {
+  return 0;
 }
 
 export type SpireRoomResidentsInput = Readonly<{
@@ -329,39 +328,8 @@ export type SpireRoomResidentsInput = Readonly<{
  * когда живой впервые входит в зону повышения (см. evidence).
  */
 export function spireRoomResidents(input: SpireRoomResidentsInput): SpireResidentState[] {
-  const count = spireVisibleResidentCount(input.live.length);
-  if (count === 0) return [];
-  const cohortStartMs = spireCohortStartMs(input.weekStartMs, input.cohortDay);
-  const raw = Array.from({ length: count }, (_, slot) => ({
-    slot,
-    ...spireResidentRawState(
-      spireResidentSeed(input.groupId, slot),
-      cohortStartMs,
-      input.weekStartMs,
-      input.nowMs,
-      input.tuning.maxStepsPerHour,
-    ),
-  }));
-
-  const { lo, hi } = spireResidentBounds(input.live, input.tuning.targetZoneMarginSteps);
-  const rawMax = raw.reduce((max, r) => Math.max(max, r.steps), 0);
-  const squeeze = hi !== null && rawMax > hi ? hi / rawMax : 1;
-
-  return raw.map((r) => {
-    let steps = squeeze < 1 ? Math.floor(r.steps * squeeze) : r.steps;
-    if (hi !== null) steps = Math.min(steps, hi);
-    steps = Math.max(steps, lo);
-    const stepMs = r.steps > 0 ? r.totalMs / r.steps : STEP_MS_MIN;
-    return {
-      uid: spireResidentUid(r.slot),
-      slot: r.slot,
-      steps,
-      // Поднятый до нижней границы бот «доиграл» в начале когорты — время
-      // правдоподобное и детерминированное.
-      reachedAtMs: steps === 0 ? 0 : (r.reachedAtMs || cohortStartMs + HOUR_MS * 9),
-      totalMs: Math.round(steps * stepMs),
-    };
-  });
+  void input;
+  return [];
 }
 
 // ── Личности ботов (roster) ──────────────────────────────────────────────────
@@ -382,22 +350,7 @@ export function isSpireResidentMember(uid: string, member?: Record<string, unkno
  * Профиль берётся на начало недели: за неделю лицо бота не меняется.
  */
 export function buildSpireRoster(groupId: string, weekStartMs: number): SpireRosterEntry[] {
-  const slots = SPIRE_ROOM_SIZE - 1;
-  const roster: SpireRosterEntry[] = [];
-  for (let slot = 0; slot < slots; slot++) {
-    const index = residentIndexForSlot(groupId, slot);
-    const profile = residentProfileAt(index, weekStartMs);
-    // зачем: D108 — ауры и витринные аватары удалены: бот носит базовый аватар,
-    // без ауры и без Plus-метки (она нужна была только чтобы нарисовать Plus-ауру).
-    roster.push({
-      uid: spireResidentUid(slot),
-      slot,
-      name: profile.name,
-      avatar: profile.avatar,
-      aura: null,
-      isPremium: false,
-      streak: profile.streak,
-    });
-  }
-  return roster;
+  void groupId;
+  void weekStartMs;
+  return [];
 }

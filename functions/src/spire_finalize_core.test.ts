@@ -45,13 +45,13 @@ describe('spire finalize: порядок мест (§4.5)', () => {
 });
 
 describe('spire finalize: зоны (правило владельца + D59)', () => {
-  it('одинокий живой с ≥1 ступенью повышается и получает 1 место (D59)', () => {
+  it('одинокий живой с ≥1 ступенью повышается и получает 1 место без синтетических соседей', () => {
     const out = run({ solo: member(4) });
-    expect(out.zoneSize).toBe(5);
+    expect(out.zoneSize).toBe(1);
     expect(out.results.solo.promoted).toBe(true);
     expect(out.results.solo.newTier).toBe(6);
     expect(out.results.solo.rewardCoins).toEqual({ place: 300, promotion: 100, total: 400 });
-    expect(out.roomTotal).toBe(30);
+    expect(out.roomTotal).toBe(1);
   });
 
   it('ноль ступеней понижает, повышение требует ≥1 ступени', () => {
@@ -76,14 +76,14 @@ describe('spire finalize: зоны (правило владельца + D59)', (
     expect(out.results.b.roomRank).toBe(2);
   });
 
-  it('10 живых: топ-5 вверх, нижние 5 вниз (зона 5 от комнаты 30)', () => {
+  it('10 живых: верхние и нижние 15% зоны состоят только из живых', () => {
     const members: Record<string, unknown> = {};
     for (let i = 1; i <= 10; i++) members[`p${i}`] = member(i * 3);
     const out = run(members);
     const up = Object.entries(out.results).filter(([, r]) => r.promoted).map(([u]) => u).sort();
     const down = Object.entries(out.results).filter(([, r]) => r.demoted).map(([u]) => u).sort();
-    expect(up).toEqual(['p10', 'p6', 'p7', 'p8', 'p9']);
-    expect(down).toEqual(['p1', 'p2', 'p3', 'p4', 'p5']);
+    expect(up).toEqual(['p10', 'p9']);
+    expect(down).toEqual(['p1', 'p2']);
   });
 
   it('на вершине (Алмаз) лидер не повышается и НЕ понижается', () => {

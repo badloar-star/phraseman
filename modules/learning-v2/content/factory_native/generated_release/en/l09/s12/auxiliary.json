@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-12:intro1:r2": {
+          "ru": "С he перед frowning нужно is.",
+          "uk": "Із he перед frowning потрібне is."
+        },
+        "en:lesson-09:session-12:intro1:r3": {
+          "ru": "Для действия сейчас после is нужна форма frowning.",
+          "uk": "Для дії зараз після is потрібна форма frowning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-12:intro2:r2": {
+          "ru": "Forehead здесь один предмет описания, поэтому is.",
+          "uk": "Forehead тут один предмет опису, тому is."
+        },
+        "en:lesson-09:session-12:intro2:r3": {
+          "ru": "Am употребляется с I; здесь нужно is.",
+          "uk": "Am уживається з I; тут потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-12:intro3:r2": {
+          "ru": "С this expression нужна форма is.",
+          "uk": "Із this expression потрібна форма is."
+        },
+        "en:lesson-09:session-12:intro3:r3": {
+          "ru": "Am употребляется с I; здесь нужно is.",
+          "uk": "Am уживається з I; тут потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2796adff32ffd100a94b79365d14860f555dbce26e5da621a07813fea12d000"
+}

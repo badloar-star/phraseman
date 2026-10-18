@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "frown → frowning; is frowning / is not frowning",
+    "uk": "frown → frowning; is frowning / is not frowning"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Расписание мелким шрифтом",
+        "uk": "Розклад дрібним шрифтом"
+      },
+      "bodyByLocale": {
+        "ru": "На остановке мужчина пытается разобрать расписание, напечатанное мелким шрифтом, и хмурит брови. Frown — «хмуриться». He is frowning — «Он хмурится». Сейчас он делает это, поэтому is frowning. Нахмуренное лицо не обязательно означает злость: иногда расписание просто решило стать загадкой.",
+        "uk": "На зупинці чоловік намагається розібрати розклад, надрукований дрібним шрифтом, і насуплює брови. Frown — «хмуритися». He is frowning — «Він хмуриться». Зараз він це робить, тому is frowning. Насуплене обличчя не обов’язково означає злість: іноді розклад просто вирішив стати загадкою."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-12:intro1:r1",
+              "text": "He is frowning."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro1:r2",
+              "text": "He frowning."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro1:r3",
+              "text": "He is frown."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-12:intro1:r1",
+              "text": "He is frowning."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro1:r2",
+              "text": "He frowning."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro1:r3",
+              "text": "He is frown."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После аквагрима",
+        "uk": "Після аквагриму"
+      },
+      "bodyByLocale": {
+        "ru": "После праздника вы смыли нарисованное на лбу солнце и смотрите в зеркало. Forehead — «лоб», часть лица над бровями. My forehead is clean — «Мой лоб чистый». Clean здесь описывает состояние, а не действие, поэтому достаточно is clean.",
+        "uk": "Після свята ви змили намальоване на лобі сонце й дивитеся в дзеркало. Forehead — «лоб», частина обличчя над бровами. My forehead is clean — «Мій лоб чистий». Clean тут описує стан, не дію, тому достатньо is clean."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-12:intro2:r1",
+              "text": "My forehead is clean."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro2:r2",
+              "text": "My forehead are clean."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro2:r3",
+              "text": "My forehead am clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-12:intro2:r1",
+              "text": "My forehead is clean."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro2:r2",
+              "text": "My forehead are clean."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro2:r3",
+              "text": "My forehead am clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Грустный герой рисунка",
+        "uk": "Сумний герой малюнка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете рисунок героя для грустной сцены: уголки рта опущены, лицо печальное. Expression здесь — «выражение лица». This expression is sad — «Это выражение лица грустное». Sad описывает, каким выглядит выражение, поэтому is sad. Речь о лице героя, а не об устойчивом выражении в языке.",
+        "uk": "Ви вибираєте малюнок героя для сумної сцени: кутики рота опущені, обличчя сумне. Expression тут — «вираз обличчя». This expression is sad — «Цей вираз обличчя сумний». Sad описує, яким виглядає вираз, тому is sad. Ідеться про обличчя героя, не про сталий вислів у мові."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-12:intro3:r1",
+              "text": "This expression is sad."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro3:r2",
+              "text": "This expression are sad."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro3:r3",
+              "text": "This expression am sad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-12:intro3:r1",
+              "text": "This expression is sad."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro3:r2",
+              "text": "This expression are sad."
+            },
+            {
+              "responseId": "en:lesson-09:session-12:intro3:r3",
+              "text": "This expression am sad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e56efa9b296788984ac8aab278519e5f4456f820e9618068ad687d9fb1fe9bcd"
+}

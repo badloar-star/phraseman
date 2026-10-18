@@ -1,0 +1,1162 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-10:word:bunk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bunk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:word:bunk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bunk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:word:bunk:audio",
+          "transcript": "bunk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:word:bunk:r1",
+            "targetText": "bunk",
+            "meaningByLocale": {
+              "ru": "койка, отдельное спальное место на ярусе кровати. This is my bunk. — «Это моя койка».",
+              "uk": "койка, окреме спальне місце на ярусі ліжка. This is my bunk. — «Це моя койка»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bunk",
+          "definitionByLocale": {
+            "ru": "койка, отдельное спальное место на ярусе кровати. This is my bunk. — «Это моя койка».",
+            "uk": "койка, окреме спальне місце на ярусі ліжка. This is my bunk. — «Це моя койка»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите своё спальное место в хостеле: «Это моя койка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите своё спальное место в хостеле: «Это моя койка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is my bunk.",
+        "localizedMeaning": {
+          "ru": "Покажите своё спальное место в хостеле: «Это моя койка»",
+          "uk": "Покажіть своє спальне місце в хостелі: «Це моя койка»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "bunk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i02:r1",
+          "text": "bunk"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i02:r2",
+          "text": "bank"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i02:r3",
+          "text": "back"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i02:audio",
+          "transcript": "bunk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:i02:r1",
+            "targetText": "bunk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i02:r2",
+            "targetText": "bank",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i02:r3",
+            "targetText": "back",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит bunk",
+              "uk": "У записі звучить bunk"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит bunk",
+              "uk": "У записі звучить bunk"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для he",
+          "uk": "Виберіть форму для he"
+        },
+        "gappedTargetPhrase": "He ___ not snoring.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-10:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите форму для he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для he",
+            "feedbackByLocale": {
+              "ru": "С he нужно is, затем not.",
+              "uk": "Із he потрібне is, потім not."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для he",
+            "feedbackByLocale": {
+              "ru": "С he нужно is, затем not.",
+              "uk": "Із he потрібне is, потім not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-10:i04:p1",
+            "target": "bunk",
+            "meaningByLocale": {
+              "ru": "койка",
+              "uk": "койка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i04:p2",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i04:p3",
+            "target": "snore",
+            "meaningByLocale": {
+              "ru": "храпеть",
+              "uk": "хропіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i04:p4",
+            "target": "pillow",
+            "meaningByLocale": {
+              "ru": "подушка",
+              "uk": "подушка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bunk",
+          "sleep",
+          "snore",
+          "pillow"
+        ],
+        "rightColumn": [
+          "койка",
+          "спать",
+          "храпеть",
+          "подушка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i05:audio",
+          "transcript": "He is not snoring."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is not snoring.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "not",
+          "snoring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:word:dormitory",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dormitory",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:word:dormitory:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dormitory",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:word:dormitory:audio",
+          "transcript": "dormitory"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:word:dormitory:r1",
+            "targetText": "dormitory",
+            "meaningByLocale": {
+              "ru": "общая спальня на несколько человек. This is a dormitory. — «Это общая спальня». Здесь речь о комнате, а не обо всём здании общежития.",
+              "uk": "спільна спальня для кількох людей. This is a dormitory. — «Це спільна спальня». Тут ідеться про кімнату, не про всю будівлю гуртожитку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dormitory",
+          "definitionByLocale": {
+            "ru": "общая спальня на несколько человек. This is a dormitory. — «Это общая спальня». Здесь речь о комнате, а не обо всём здании общежития.",
+            "uk": "спільна спальня для кількох людей. This is a dormitory. — «Це спільна спальня». Тут ідеться про кімнату, не про всю будівлю гуртожитку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите гостю общую спальню лагеря и назовите её",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите гостю общую спальню лагеря и назовите её",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a dormitory.",
+        "localizedMeaning": {
+          "ru": "Покажите гостю общую спальню лагеря и назовите её",
+          "uk": "Покажіть гостеві спільну спальню табору й назвіть її"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "dormitory"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:word:lullaby",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lullaby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:word:lullaby:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lullaby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:word:lullaby:audio",
+          "transcript": "lullaby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:word:lullaby:r1",
+            "targetText": "lullaby",
+            "meaningByLocale": {
+              "ru": "колыбельная. She is singing a lullaby. — «Она поёт колыбельную».",
+              "uk": "колискова. She is singing a lullaby. — «Вона співає колискову»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lullaby",
+          "definitionByLocale": {
+            "ru": "колыбельная. She is singing a lullaby. — «Она поёт колыбельную».",
+            "uk": "колискова. She is singing a lullaby. — «Вона співає колискову»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра сейчас поёт малышу колыбельную. Скажите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Сестра сейчас поёт малышу колыбельную. Скажите об этом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i07:audio",
+          "transcript": "She is singing a lullaby."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is singing a lullaby.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после are not",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i08:r1",
+          "text": "sleeping"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i08:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i08:r3",
+          "text": "sleeps"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после are not",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после are not",
+          "uk": "Виберіть форму після are not"
+        },
+        "gappedTargetPhrase": "They are not ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-10:i08:r1",
+            "text": "sleeping"
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i08:r2",
+            "text": "sleep"
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i08:r3",
+            "text": "sleeps"
+          }
+        ],
+        "testedDimension": "Выберите форму после are not",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после are not",
+            "feedbackByLocale": {
+              "ru": "После are not здесь нужна форма sleeping.",
+              "uk": "Після are not тут потрібна форма sleeping."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после are not",
+            "feedbackByLocale": {
+              "ru": "Для действия сейчас здесь are not sleeping.",
+              "uk": "Для дії зараз тут are not sleeping."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i09:r1",
+          "text": "They are not sleeping."
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i09:r2",
+          "text": "They are sleeping."
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i09:r3",
+          "text": "He is not sleeping."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i09:audio",
+          "transcript": "They are not sleeping."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:i09:r1",
+            "targetText": "They are not sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i09:r2",
+            "targetText": "They are sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i09:r3",
+            "targetText": "He is not sleeping.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are not sleeping.",
+              "uk": "У записі звучить They are not sleeping."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are not sleeping.",
+              "uk": "У записі звучить They are not sleeping."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-10:i10:p1",
+            "target": "bunk",
+            "meaningByLocale": {
+              "ru": "койка",
+              "uk": "койка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i10:p2",
+            "target": "dormitory",
+            "meaningByLocale": {
+              "ru": "общая спальня",
+              "uk": "спільна спальня"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i10:p3",
+            "target": "lullaby",
+            "meaningByLocale": {
+              "ru": "колыбельная",
+              "uk": "колискова"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i10:p4",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bunk",
+          "dormitory",
+          "lullaby",
+          "sing"
+        ],
+        "rightColumn": [
+          "койка",
+          "общая спальня",
+          "колыбельная",
+          "петь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i11:audio",
+          "transcript": "She is singing a lullaby."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is singing a lullaby.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "singing",
+          "a",
+          "lullaby"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:word:earplug",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — earplug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:word:earplug:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — earplug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:word:earplug:audio",
+          "transcript": "earplug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:word:earplug:r1",
+            "targetText": "earplug",
+            "meaningByLocale": {
+              "ru": "беруша, вкладыш для уменьшения шума. This is an earplug. — «Это беруша». Для пары обычно говорят earplugs.",
+              "uk": "беруша, вушний вкладиш для зменшення шуму. This is an earplug. — «Це беруша». Для пари зазвичай кажуть earplugs."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "earplug",
+          "definitionByLocale": {
+            "ru": "беруша, вкладыш для уменьшения шума. This is an earplug. — «Это беруша». Для пары обычно говорят earplugs.",
+            "uk": "беруша, вушний вкладиш для зменшення шуму. This is an earplug. — «Це беруша». Для пари зазвичай кажуть earplugs."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i12:r1",
+          "text": "earplug"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i12:r2",
+          "text": "earring"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i12:r3",
+          "text": "ear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i12:audio",
+          "transcript": "earplug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:i12:r1",
+            "targetText": "earplug",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i12:r2",
+            "targetText": "earring",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i12:r3",
+            "targetText": "ear",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит earplug",
+              "uk": "У записі звучить earplug"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит earplug",
+              "uk": "У записі звучить earplug"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В маленьком футляре одна беруша. Назовите её: «Это беруша»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "В маленьком футляре одна беруша. Назовите её: «Это беруша»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i13:audio",
+          "transcript": "This is an earplug."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is an earplug.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для одного человека",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для одного человека",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одного человека",
+          "uk": "Виберіть форму для однієї людини"
+        },
+        "gappedTargetPhrase": "She ___ singing a lullaby.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-10:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите форму для одного человека",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для одного человека",
+            "feedbackByLocale": {
+              "ru": "С she нужно is.",
+              "uk": "Із she потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для одного человека",
+            "feedbackByLocale": {
+              "ru": "С she нужно is.",
+              "uk": "Із she потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-10:i15:r1",
+          "text": "He is not snoring."
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i15:r2",
+          "text": "He is snoring."
+        },
+        {
+          "responseId": "en:lesson-09:session-10:i15:r3",
+          "text": "They are not snoring."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i15:audio",
+          "transcript": "He is not snoring."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-10:i15:r1",
+            "targetText": "He is not snoring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i15:r2",
+            "targetText": "He is snoring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i15:r3",
+            "targetText": "They are not snoring.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-10:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is not snoring.",
+              "uk": "У записі звучить He is not snoring."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-10:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is not snoring.",
+              "uk": "У записі звучить He is not snoring."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-10:i16:p1",
+            "target": "bunk",
+            "meaningByLocale": {
+              "ru": "койка",
+              "uk": "койка"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i16:p2",
+            "target": "dormitory",
+            "meaningByLocale": {
+              "ru": "общая спальня",
+              "uk": "спільна спальня"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i16:p3",
+            "target": "lullaby",
+            "meaningByLocale": {
+              "ru": "колыбельная",
+              "uk": "колискова"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-10:i16:p4",
+            "target": "earplug",
+            "meaningByLocale": {
+              "ru": "беруша",
+              "uk": "беруша"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bunk",
+          "dormitory",
+          "lullaby",
+          "earplug"
+        ],
+        "rightColumn": [
+          "койка",
+          "общая спальня",
+          "колыбельная",
+          "беруша"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В поезде брат спит тихо. Уточните про этот момент: «Он не храпит»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "В поезде брат спит тихо. Уточните про этот момент: «Он не храпит»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-10:i17:audio",
+          "transcript": "He is not snoring."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is not snoring.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b94ed4d3ece31edf7ed6999fd29c6bed1f2c5f24ecf6af02108492e20e2a2dd2"
+}

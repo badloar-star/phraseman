@@ -3206,4 +3206,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"am/is/are + not + -ing; guess уже знакомо","uk":"am/is/are + not + -ing; guess уже знайоме"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 10,
+    sourceFingerprint: "901f4116b8459b7beb5b9ab73e6b28fa42011d046946086cc3da9b16016462fb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is/are + -ing и is/are + not + -ing; snore уже знакомо","uk":"is/are + -ing та is/are + not + -ing; snore уже знайоме"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 11,
+    sourceFingerprint: "2067d40f337321e013672f321679b6979649fbcb20f773705d641289001d45aa",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"blink → blinking; is + -ing / is not + -ing","uk":"blink → blinking; is + -ing / is not + -ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 12,
+    sourceFingerprint: "6810975c5f649f670de3996b3e7ed32d22f567c272a085da98ecb6a83d11b65f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"frown → frowning; is frowning / is not frowning","uk":"frown → frowning; is frowning / is not frowning"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

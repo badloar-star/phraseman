@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-10:intro1:r2": {
+          "ru": "С he перед not нужна форма is.",
+          "uk": "Із he перед not потрібна форма is."
+        },
+        "en:lesson-09:session-10:intro1:r3": {
+          "ru": "Для действия сейчас здесь нужна форма snoring.",
+          "uk": "Для дії зараз тут потрібна форма snoring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-10:intro2:r2": {
+          "ru": "С they перед not нужно are.",
+          "uk": "Із they перед not потрібне are."
+        },
+        "en:lesson-09:session-10:intro2:r3": {
+          "ru": "После are not для действия сейчас нужна форма sleeping.",
+          "uk": "Після are not для дії зараз потрібна форма sleeping."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-10:intro3:r2": {
+          "ru": "С she перед singing нужно is.",
+          "uk": "Із she перед singing потрібне is."
+        },
+        "en:lesson-09:session-10:intro3:r3": {
+          "ru": "После is здесь нужна форма singing.",
+          "uk": "Після is тут потрібна форма singing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9fdf5953cf18d45442b325d66fba959e0d415c1f0022771e94bf8a6e077d76c9"
+}

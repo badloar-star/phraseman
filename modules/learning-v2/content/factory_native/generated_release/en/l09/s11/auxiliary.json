@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-11:intro1:r2": {
+          "ru": "С he перед blinking нужно is.",
+          "uk": "Із he перед blinking потрібне is."
+        },
+        "en:lesson-09:session-11:intro1:r3": {
+          "ru": "Для действия сейчас после is нужна форма blinking.",
+          "uk": "Для дії зараз після is потрібна форма blinking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-11:intro2:r2": {
+          "ru": "Перед not здесь нужно is.",
+          "uk": "Перед not тут потрібне is."
+        },
+        "en:lesson-09:session-11:intro2:r3": {
+          "ru": "Здесь is not moving, а не is not move.",
+          "uk": "Тут is not moving, а не is not move."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-11:intro3:r2": {
+          "ru": "С she перед drawing нужно is.",
+          "uk": "Із she перед drawing потрібне is."
+        },
+        "en:lesson-09:session-11:intro3:r3": {
+          "ru": "После is для действия сейчас нужна форма drawing.",
+          "uk": "Після is для дії зараз потрібна форма drawing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e50390666f7e8af1d312e117e493e33ac4527dd9b06c0486c05140baef51f9d9"
+}

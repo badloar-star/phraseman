@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-10:word:bunk",
+    "correctText": "bunk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i01",
+    "correctText": "This is my bunk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i02",
+    "correctText": "bunk",
+    "correctResponseId": "en:lesson-09:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i04",
+    "correctText": "en:lesson-09:session-10:i04:p1=bunk\nen:lesson-09:session-10:i04:p2=sleep\nen:lesson-09:session-10:i04:p3=snore\nen:lesson-09:session-10:i04:p4=pillow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i05",
+    "correctText": "He is not snoring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:word:dormitory",
+    "correctText": "dormitory",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i06",
+    "correctText": "This is a dormitory.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:word:lullaby",
+    "correctText": "lullaby",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i07",
+    "correctText": "She is singing a lullaby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i08",
+    "correctText": "sleeping",
+    "correctResponseId": "en:lesson-09:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i09",
+    "correctText": "They are not sleeping.",
+    "correctResponseId": "en:lesson-09:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i10",
+    "correctText": "en:lesson-09:session-10:i10:p1=bunk\nen:lesson-09:session-10:i10:p2=dormitory\nen:lesson-09:session-10:i10:p3=lullaby\nen:lesson-09:session-10:i10:p4=sing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i11",
+    "correctText": "She is singing a lullaby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:word:earplug",
+    "correctText": "earplug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i12",
+    "correctText": "earplug",
+    "correctResponseId": "en:lesson-09:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i13",
+    "correctText": "This is an earplug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i15",
+    "correctText": "He is not snoring.",
+    "correctResponseId": "en:lesson-09:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i16",
+    "correctText": "en:lesson-09:session-10:i16:p1=bunk\nen:lesson-09:session-10:i16:p2=dormitory\nen:lesson-09:session-10:i16:p3=lullaby\nen:lesson-09:session-10:i16:p4=earplug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-10:i17",
+    "correctText": "He is not snoring.",
+    "correctResponseId": null
+  }
+]

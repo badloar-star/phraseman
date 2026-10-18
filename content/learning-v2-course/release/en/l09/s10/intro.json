@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "is/are + -ing и is/are + not + -ing; snore уже знакомо",
+    "uk": "is/are + -ing та is/are + not + -ing; snore уже знайоме"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сосед в хостеле",
+        "uk": "Сусід у хостелі"
+      },
+      "bodyByLocale": {
+        "ru": "В хостеле сосед спит на верхнем ярусе кровати и сейчас не храпит. Bunk — «койка, спальное место на ярусе двухъярусной кровати». He is not snoring — «Он не храпит». Snore уже знакомо. Здесь описываем текущий момент: is not snoring. Это не обещание тишины на всю ночь — прогноз для храпа пока не придумали.",
+        "uk": "У хостелі сусід спить на верхньому ярусі ліжка й зараз не хропе. Bunk — «койка, спальне місце на ярусі двоярусного ліжка». He is not snoring — «Він не хропе». Snore уже знайоме. Тут описуємо поточний момент: is not snoring. Це не обіцянка тиші на всю ніч — прогнозу для хропіння поки не придумали."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-10:intro1:r1",
+              "text": "He is not snoring."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro1:r2",
+              "text": "He not snoring."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro1:r3",
+              "text": "He is not snore."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-10:intro1:r1",
+              "text": "He is not snoring."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro1:r2",
+              "text": "He not snoring."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro1:r3",
+              "text": "He is not snore."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сказка в общей спальне",
+        "uk": "Казка у спільній спальні"
+      },
+      "bodyByLocale": {
+        "ru": "В детском лагере ребята лежат в общей спальне и слушают сказку. Dormitory здесь — «общая спальня на несколько человек». Они ещё не спят: They are not sleeping — «Они не спят». С they используем are not sleeping. Это то, что происходит сейчас, не привычка детей.",
+        "uk": "У дитячому таборі діти лежать у спільній спальні й слухають казку. Dormitory тут — «спільна спальня для кількох людей». Вони ще не сплять: They are not sleeping — «Вони не сплять». Із they використовуємо are not sleeping. Це те, що відбувається зараз, не звичка дітей."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-10:intro2:r1",
+              "text": "They are not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro2:r2",
+              "text": "They not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro2:r3",
+              "text": "They are not sleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-10:intro2:r1",
+              "text": "They are not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro2:r2",
+              "text": "They not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro2:r3",
+              "text": "They are not sleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Песня у кроватки",
+        "uk": "Пісня біля ліжечка"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра сейчас поёт малышу тихую песню перед сном. Lullaby — «колыбельная». She is singing a lullaby — «Она поёт колыбельную». Действие сейчас: is singing. Здесь нет not: сестра действительно поёт, а не просто сидит рядом.",
+        "uk": "Сестра зараз співає малюкові тиху пісню перед сном. Lullaby — «колискова». She is singing a lullaby — «Вона співає колискову». Дія зараз: is singing. Тут немає not: сестра справді співає, а не просто сидить поруч."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-10:intro3:r1",
+              "text": "She is singing a lullaby."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro3:r2",
+              "text": "She singing a lullaby."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro3:r3",
+              "text": "She is sing a lullaby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-10:intro3:r1",
+              "text": "She is singing a lullaby."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro3:r2",
+              "text": "She singing a lullaby."
+            },
+            {
+              "responseId": "en:lesson-09:session-10:intro3:r3",
+              "text": "She is sing a lullaby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1902130c251e6861e3575ad27e3f362d92cf504eee51d579848638497bd99fdf"
+}

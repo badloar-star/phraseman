@@ -106,10 +106,17 @@ export function useVideoCardSave(options: Readonly<{ lang: Lang; packLanguage?: 
       void (async () => {
         try {
           if (wasSaved) {
+            // зачем (Ревизор eb6f98f9f 🟡): снимаем ТОЛЬКО сохранённую из видео карточку (source 'video_phrase', сперва по sourceId) — одноимённую карточку из урока/слов не трогаем.
             const all = await loadFlashcards(lng);
-            const found = all.find((saved) => videoCardSaveKey(saved.en) === key);
-            if (found) await removeFlashcard(found.id, lng);
-            console.log(LOG, 'unsave:done', JSON.stringify({ id: card.id, removed: Boolean(found) })); // guard-ok: итог
+            const found = all.find((saved) => saved.source === 'video_phrase' && saved.sourceId === card.id)
+              ?? all.find((saved) => saved.source === 'video_phrase' && videoCardSaveKey(saved.en) === key);
+            if (found) {
+              await removeFlashcard(found.id, lng);
+              console.log(LOG, 'unsave:done', JSON.stringify({ id: card.id, removedId: found.id })); // guard-ok: итог
+            } else {
+              console.warn(LOG, 'unsave:skipped', JSON.stringify({ id: card.id, reason: 'not_a_video_card' })); // guard-ok: ранний выход называет причину
+              mark(key, true); // фраза сохранена не из видео — её здесь не удаляем, закладка остаётся «сохранено»
+            }
             return;
           }
           const result = await addFlashcard({
@@ -164,6 +171,8 @@ export function useVideoCardSave(options: Readonly<{ lang: Lang; packLanguage?: 
     if (!enabled) return undefined;
     let cancelled = false;
     touchedRef.current = new Set();
+    // зачем (Ревизор eb6f98f9f 🟡): при смене языка набора до прихода загрузки видны ключи прежнего языка — сбрасываем их сразу.
+    if (savedRef.current.size > 0) { savedRef.current = new Set(); listenersRef.current.forEach((listener) => listener()); }
     void loadFlashcards(language)
       .then((cards) => {
         if (cancelled || !aliveRef.current) return;

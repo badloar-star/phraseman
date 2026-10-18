@@ -32,6 +32,11 @@ describe('«Сохранить» на карточках из видео', () =>
     expect(src).toContain("videoCardSaveToast(String(result), uiLang);");
     expect(src).toContain("'rollback'");
     expect(src).toContain('removeFlashcard(found.id, lng)');
+    // зачем (Ревизор eb6f98f9f 🟡): снимаем только сохранённое из видео (source + sourceId), одноимённую карточку из урока не трогаем
+    expect(src).toContain("saved.source === 'video_phrase' && saved.sourceId === card.id");
+    expect(src).toContain("'unsave:skipped'");
+    // и при смене языка набора ключи прежнего языка сбрасываются до прихода загрузки
+    expect(src).toContain('if (savedRef.current.size > 0) { savedRef.current = new Set();');
     expect(src).toContain("const LOG = '[VIDEO-CARD-SAVE]';");
     // зачем (координатор 18.10): лимит Free — пейвол-шторка, не тихий отказ; для Plus — прежний тост
     expect(src).toContain("result === 'limit_reached' && !premium");

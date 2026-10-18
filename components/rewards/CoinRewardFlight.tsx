@@ -34,15 +34,13 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { HOME_RUNE_ICON_SOURCE as COIN_ICON_SOURCE } from '../home/homeRuneAsset';
 import { logMemCoin } from '../coins/mem_coin_probe';
+import { COIN_SIZE, coinFlightBulge } from './coin_flight_bulge';
 
 const FLIGHT_MS = 620;
 const STAGGER_MS = 90;
 const ARC_LIFT = 46;
 // зачем (Макеты m08_1018/q_wrong_t06.png, координатор 18.10): монета шла напрямую от точки награды к счётчику и пересекала подсказку «Собери фразу» в центре экрана. Теперь дуга уходит ВПРАВО, к правому краю экрана,
-// и только потом поднимается к счётчику (по дуге через правый край, не через центр); длительность, кривая и каскад прежние. EDGE_MARGIN — зазор монеты до края, MAX_BULGE — потолок выноса вправо.
-const EDGE_MARGIN = 14;
-const MAX_BULGE = 160;
-const COIN_SIZE = 18;
+// и только потом поднимается к счётчику (по дуге через правый край, не через центр); длительность, кривая и каскад прежние. Расчёт выноса — coin_flight_bulge.ts.
 const FLIGHT_EASE = Easing.bezier(0.33, 0.52, 0.25, 0.99);
 
 /** Потолок частиц для слабых телефонов (координатор: «не больше ~8»). */
@@ -137,9 +135,8 @@ export const CoinRewardFlight = memo(function CoinRewardFlight({ from, to, count
   }, [reducedMotion]);
 
   if (reducedMotion) return null;
-  // зачем (координатор 18.10): вынос дуги — до правого края окна (с зазором), не больше MAX_BULGE; середина пути (from.x + dx/2) определяет, сколько места осталось справа.
-  const midX = from.x + (to.x - from.x) / 2;
-  const bulge = Math.max(0, Math.min(MAX_BULGE, windowWidth - EDGE_MARGIN - COIN_SIZE / 2 - midX));
+  // зачем (координатор 18.10): вынос дуги — до правого края окна (с зазором) по всему пути, а не только по середине (Ревизор eb6f98f9f).
+  const bulge = coinFlightBulge(from.x, to.x - from.x, windowWidth);
   const particles = Array.from({ length: Math.min(count, COIN_REWARD_FLIGHT_MAX_PARTICLES) }, (_, index) => index);
 
   return (

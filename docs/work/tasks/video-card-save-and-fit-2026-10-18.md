@@ -4,6 +4,7 @@ Governance-ID: TG-4C91DD9F6F46
 Governance-ID: TG-0554BB043E21
 Governance-ID: TG-B889B47DA154
 Governance-ID: TG-CE8937A94470
+Governance-ID: TG-9C89FC60C9DA
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: «Карточки → Из видео», addFlashcard (hooks/use-flashcards), FlashcardListItem

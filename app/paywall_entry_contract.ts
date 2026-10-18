@@ -69,6 +69,8 @@ export const PAYWALL_SOURCE_VALUES = [
   'dialogue_v2_finish_mistakes',
   'avatar_aura_picker',
   'flashcards_collection',
+  // зачем (координатор 18.10, Ревизор acd177ed2): «Сохранить» на карточке из видео при лимите Free открывает пейвол-шторку (context flashcard_limit) — у точки свой source для воронки.
+  'video_card_save',
   'mistake_practice_direct',
   'settings_theme_picker',
   'stats_streak',

@@ -13,7 +13,7 @@ describe('вход: аноним + существующий Apple/Google-акк�
     expect(src).toContain('const updatedFromError = linkErr?.userInfo?.authCredential ?? null;');
     expect(src).toContain('[AUTH-HANDOFF] updated_credential provider=${provider} present=');
     // 18.10 (Apple + почта с Google): та же строка — запасной путь, когда custom token не получен
-    expect(src).toContain(': await auth.signInWithCredential(conflictUpdatedCredential ?? credential);');
+    expect(src).toContain('userCredential = await auth.signInWithCredential(conflictUpdatedCredential ?? credential);');
     // обновлённый credential берётся до передачи, а не после неё
     expect(src.indexOf('const updatedFromError = linkErr?.userInfo?.authCredential')).toBeLessThan(src.indexOf('signInWithCredential(conflictUpdatedCredential ?? credential)'));
   });
@@ -39,16 +39,20 @@ describe('вход: аноним + существующий Apple/Google-акк�
 
   // зачем (решение владельца 18.10 «Входить само», iPhone 13:05): Apple + почта, занятая аккаунтом с Google → серверная привязка
   // по проверенной почте и вход custom token; без токена — прежний путь с причиной в журнале.
-  it('Apple email-already-in-use без обновлённого credential: authAppleLinkByVerifiedEmail → signInWithCustomToken', () => {
+  // интерфейс Ядра 76dace644: { ok, linked, retryCredential } | { ok:false, reason } — custom token отклонён контуром учётной записи
+  it('Apple email-already-in-use без обновлённого credential: серверная привязка → тот же токен; не принят → окно Apple ещё раз', () => {
     expect(src).toContain("const appleEmailInUse = provider === 'apple'");
     expect(src).toContain("linkCode === 'auth/email-already-in-use' || linkCode === 'auth/account-exists-with-different-credential'");
-    expect(src).toContain('appleCustomToken = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);');
-    expect(src).toMatch(/userCredential = appleCustomToken\s*\? await auth\.signInWithCustomToken\(appleCustomToken\)\s*: await auth\.signInWithCredential\(conflictUpdatedCredential \?\? credential\);/);
-    expect(src).toContain('[AUTH-APPLE] email_in_use branch=legacy_credential reason=no_custom_token');
+    expect(src).toContain('appleLinkedByServer = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);');
+    expect(src).toContain("console.log('[AUTH-APPLE-LINK] signed_in via=same_credential');");
+    expect(src).toContain('[AUTH-APPLE-LINK] same_credential_rejected code=');
+    expect(src).toContain("console.log('[AUTH-APPLE-LINK] signed_in via=second_apple_window');");
+    expect(src).toContain('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=server_refused_or_unavailable');
+    expect(src).not.toContain('signInWithCustomToken');
     const fn = src.slice(src.indexOf('async function requestAppleLinkByVerifiedEmail('), src.indexOf('async function stampAnonOwnershipBeforeSignIn('));
-    expect(fn).toContain("invokeAuthCallable<typeof payload, { customToken?: unknown }>(");
-    expect(fn).toContain('[AUTH-APPLE] verified_email_link failed code=');
-    expect(fn).not.toMatch(/console\.\w+\([^)]*customToken\}/); // сам токен в журнал не пишется
+    expect(fn).toContain("const retry = data.ok === true && data.retryCredential === true;");
+    expect(fn).toContain('[AUTH-APPLE-LINK] client failed code=');
+    expect(fn).not.toMatch(/console\.\w+\([^)]*idToken/); // токен в журнал не пишется
   });
 
   // зачем (прогон 18.10): после отказа/убийства процесса следующий вход молча брал прежний аккаунт Google без окна выбора.

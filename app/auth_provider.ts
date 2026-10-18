@@ -273,11 +273,11 @@ const APPLE_VERIFIED_EMAIL_LINK_TIMEOUT_MS = 15_000;
 
 /**
  * Решение владельца 18.10 «Входить само»: Apple ID с почтой, уже занятой аккаунтом с Google (без Apple), — Firebase отвечает
- * auth/email-already-in-use и в аккаунт не пускает. Серверная функция Ядра проверяет Apple ID token (подпись, aud, срок,
- * email_verified, nonce), привязывает apple.com к аккаунту с этой почтой и выдаёт custom token. null — функции нет/отказ:
- * вызывающий идёт прежним путём, причина в журнале [AUTH-APPLE].
+ * auth/email-already-in-use и в аккаунт не пускает. Серверная функция Ядра (76dace644) проверяет Apple ID token (подпись, aud,
+ * срок, email_verified, nonce) и привязывает apple.com к аккаунту с этой почтой; клиент повторяет вход тем же токеном Apple.
+ * false — функции нет/отказ: вызывающий идёт прежним путём, причина в журнале [AUTH-APPLE-LINK].
  */
-async function requestAppleLinkByVerifiedEmail(idToken: string, rawNonce: string | null): Promise<string | null> {
+async function requestAppleLinkByVerifiedEmail(idToken: string, rawNonce: string | null): Promise<boolean> {
   const startedAt = Date.now();
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -287,15 +287,17 @@ async function requestAppleLinkByVerifiedEmail(idToken: string, rawNonce: string
     const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authAppleLinkByVerifiedEmail');
     const payload = { idToken, rawNonce };
     const { invokeAuthCallable } = await import('./auth_callable_fetch');
-    const response = await invokeAuthCallable<typeof payload, { customToken?: unknown }>(
+    const response = await invokeAuthCallable<typeof payload, { ok?: unknown; linked?: unknown; retryCredential?: unknown; reason?: unknown }>(
       'authAppleLinkByVerifiedEmail', payload, () => fn(payload), { timeoutMs: APPLE_VERIFIED_EMAIL_LINK_TIMEOUT_MS },
     );
-    const customToken = typeof response?.data?.customToken === 'string' ? response.data.customToken : '';
-    console.log(`[AUTH-APPLE] verified_email_link outcome=${customToken ? 'token' : 'no_token'} ms=${Date.now() - startedAt}`); // guard-ok: исход без токена
-    return customToken || null;
+    const data = response?.data ?? {};
+    const retry = data.ok === true && data.retryCredential === true;
+    const reason = typeof data.reason === 'string' ? data.reason.slice(0, 60) : null;
+    console.log(`[AUTH-APPLE-LINK] client outcome=${retry ? 'retry_credential' : 'refused'} linked=${String(data.linked ?? '-')} reason=${reason ?? '-'} ms=${Date.now() - startedAt}`); // guard-ok: исход без токена и почты
+    return retry;
   } catch (error) {
-    console.warn(`[AUTH-APPLE] verified_email_link failed code=${identityErrorCode(error)} ms=${Date.now() - startedAt}`); // guard-ok: catch пишет причину
-    return null;
+    console.warn(`[AUTH-APPLE-LINK] client failed code=${identityErrorCode(error)} ms=${Date.now() - startedAt}`); // guard-ok: catch пишет причину
+    return false;
   }
 }
 
@@ -3124,21 +3126,38 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           const signInStartedAtMs = Date.now();
           // зачем (блокер 18.10): после неудачной привязки — обновлённый credential из ошибки (Apple: исходный nonce уже израсходован)
           // зачем (решение владельца 18.10 «Входить само», iPhone 13:05): Apple + email-already-in-use без обновлённого credential —
-          // почта занята аккаунтом с Google; тот же токен даёт auth/unknown. Сервер привязывает Apple к аккаунту с этой почтой
-          // и выдаёт custom token. Функции нет/отказ — прежний путь (причина в [AUTH-APPLE]).
+          // почта занята аккаунтом с Google; тот же токен даёт auth/unknown. Сервер (Ядро 76dace644) привязывает Apple к аккаунту с этой
+          // почтой, клиент повторяет вход тем же токеном Apple; не принят — одно окно Apple ещё раз. Отказ сервера — прежний путь.
           const appleEmailInUse = provider === 'apple'
             && (linkCode === 'auth/email-already-in-use' || linkCode === 'auth/account-exists-with-different-credential')
             && !conflictUpdatedCredential;
-          let appleCustomToken: string | null = null;
+          let appleLinkedByServer = false;
           if (appleEmailInUse) {
-            console.warn('[AUTH-APPLE] email_in_use branch=verified_email_link next=server_function'); // guard-ok: ветка решения
-            appleCustomToken = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);
-            if (!appleCustomToken) console.warn('[AUTH-APPLE] email_in_use branch=legacy_credential reason=no_custom_token'); // guard-ok: ранний путь пишет причину
+            console.warn('[AUTH-APPLE-LINK] email_in_use branch=server_link next=authAppleLinkByVerifiedEmail'); // guard-ok: ветка решения
+            appleLinkedByServer = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);
+            if (!appleLinkedByServer) console.warn('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=server_refused_or_unavailable'); // guard-ok: ранний путь пишет причину
           }
-          userCredential = appleCustomToken
-            ? await auth.signInWithCustomToken(appleCustomToken)
-            : await auth.signInWithCredential(conflictUpdatedCredential ?? credential);
-          if (appleCustomToken) console.log('[AUTH-APPLE] email_in_use signed_in via=custom_token'); // guard-ok: итог ветки
+          if (appleLinkedByServer) {
+            try {
+              userCredential = await auth.signInWithCredential(credential);
+              console.log('[AUTH-APPLE-LINK] signed_in via=same_credential'); // guard-ok: итог ветки
+            } catch (appleRetryError) {
+              // запасной путь (пакет Ядра): тот же токен не принят — окно Apple ещё раз, вход новым пропуском, без ошибки
+              console.warn(`[AUTH-APPLE-LINK] same_credential_rejected code=${identityErrorCode(appleRetryError)} next=second_apple_window`); // guard-ok: catch пишет причину
+              const secondApple = Platform.OS === 'android' ? await runAppleAndroidOAuthSignIn() : await runAppleNativeSignIn();
+              if ('cancelled' in secondApple) {
+                console.warn('[AUTH-APPLE-LINK] second_apple_window cancelled'); // guard-ok: ранний выход пишет причину
+                throw new Error('apple_second_window_cancelled');
+              }
+              if (!secondApple.appleNonce) throw new Error('apple_signin_nonce_unavailable');
+              userCredential = await auth.signInWithCredential(
+                authMod.default.AppleAuthProvider.credential(secondApple.idToken, secondApple.appleNonce),
+              );
+              console.log('[AUTH-APPLE-LINK] signed_in via=second_apple_window'); // guard-ok: итог ветки
+            }
+          } else {
+            userCredential = await auth.signInWithCredential(conflictUpdatedCredential ?? credential);
+          }
           console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:signInWithCredential', ms: Date.now() - signInStartedAtMs, updatedCredential: conflictUpdatedCredential !== null }));
           const targetAuthUid = String(userCredential?.user?.uid ?? auth.currentUser?.uid ?? '').trim();
           identityTrace('[AUTH-LINK-GOOGLE]', 'handoff signed_in', {

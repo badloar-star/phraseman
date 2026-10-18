@@ -38,6 +38,15 @@ updated_credential present=false → signInWithCredential тем же токен
 
 Точечные тесты через светофор; проверка на iPhone владельца после выкладки функции.
 
+## Дополнение: интерфейс Ядра (76dace644, docs/work/tasks/auth-apple-link-by-email-2026-10-18.md)
+
+Governance-ID: TG-33BAEE691B44
+
+Custom token отклонён (контур учётной записи не принимает custom-сессию). Ответ: `{ ok:true, linked, retryCredential:true }` |
+`{ ok:false, reason }`. Клиент: при ok+retryCredential — signInWithCredential тем же AppleAuthProvider.credential(idToken,
+rawNonce); не принят — одно окно Apple ещё раз и вход новым пропуском (без ошибки); ok:false — прежний путь. Журнал
+[AUTH-APPLE-LINK] на каждой ветке.
+
 ## Rollback
 
 `git revert <hash>`.

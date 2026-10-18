@@ -647,9 +647,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // +1 (блокер выпуска 18.10): возврат поколения гостя после снятия записи передачи (Firebase отклонил вход).
         // +1 (координатор 18.10 10:10): стирание без сброса согласий для отката прерванной передачи входа.
         // +9 (координатор 18.10, «вход — главная задача»): completeInterruptedProviderHandoff — довод прерванного входа вперёд тем же хвостом, что обычный свап.
-        // +1 (решение владельца 18.10 «Входить само»): Apple + почта, занятая аккаунтом с Google, — вход custom token после серверной привязки.
+        // +1→0 (решение владельца 18.10 «Входить само»): custom token заменён повтором тем же токеном Apple (Ядро 76dace644) — вызова нет.
         // +2 (прогон Сверки №3): затишье восстановления и синхронизации ждём ДО замка передачи входа (взаимное ожидание под замком).
-        occurrences: 138,
+        occurrences: 137,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -683,7 +683,6 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:saveAccountSwitchEmergencyBackup': 6,
           'call:setStableId': 4,
           'call:shelveAccountSwitchEmergencyBackupOf': 1,
-          'call:signInWithCustomToken': 1,
           'call:stampAnonOwnershipBeforeSignIn': 2,
           'call:startCloudDeletionDirect': 1,
           'call:startCloudDeletionEnqueue': 4,

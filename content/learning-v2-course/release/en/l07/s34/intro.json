@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-34",
   "learningOutcomeByLocale": {
-    "ru": "использовать often и usually перед действием, сохраняя нужную форму глагола",
-    "uk": "використовувати often і usually перед дією, зберігаючи потрібну форму дієслова"
+    "ru": "использовать often и usually перед действием и помнить про s после he и she",
+    "uk": "використовувати often і usually перед дією та пам’ятати про s після he і she"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Помощь в свободное время",
-        "uk": "Допомога у вільний час"
+        "ru": "Яблоки на рынке",
+        "uk": "Яблука на ринку"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, помогаете ли вы местной организации бесплатно. `volunteer` — «быть волонтёром, помогать добровольно». `I often volunteer` — «Я часто помогаю как волонтёр». `Often` означает «часто» и стоит перед действием `volunteer`. Доброе дело не обязано ждать свободного места в календаре на следующий год.",
-        "uk": "Друг запитує, чи допомагаєте ви місцевій організації безоплатно. `volunteer` — «бути волонтером, допомагати добровільно». `I often volunteer` — «Я часто допомагаю як волонтер». `Often` означає «часто» і стоїть перед дією `volunteer`. Добра справа не мусить чекати вільного місця в календарі на наступний рік."
+        "ru": "Вы покупаете фрукты для перекуса. Продавец предлагает груши и яблоки и спрашивает, что вы обычно предпочитаете. choose — «выбирать». Ответьте: I usually choose apples — «Я обычно выбираю яблоки». Здесь usually — «обычно» — ставим перед choose.",
+        "uk": "Ви купуєте фрукти для перекусу. Продавець пропонує груші та яблука й питає, що ви зазвичай обираєте. choose — «вибирати». Відповідайте: I usually choose apples — «Я зазвичай вибираю яблука». Тут usually — «зазвичай» — ставимо перед choose."
       },
       "question": {
         "interactionId": "en:lesson-07:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу: «Я часто помогаю как волонтёр».",
-          "uk": "Розкажіть другові: «Я часто допомагаю як волонтер»."
+          "ru": "Продавец спрашивает, какие фрукты вы обычно выбираете. Ответьте: «Я обычно выбираю яблоки».",
+          "uk": "Продавець питає, які фрукти ви зазвичай вибираєте. Відповідьте: «Я зазвичай вибираю яблука»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-34:intro1:r1",
-              "text": "I often volunteer."
+              "text": "I usually choose apples."
             },
             {
               "responseId": "en:lesson-07:session-34:intro1:r2",
-              "text": "I often volunteers."
+              "text": "I usually chooses apples."
             },
             {
               "responseId": "en:lesson-07:session-34:intro1:r3",
-              "text": "I often volunteering."
+              "text": "I usually choosing apples."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-34:intro1:r1",
-              "text": "I often volunteer."
+              "text": "I usually choose apples."
             },
             {
               "responseId": "en:lesson-07:session-34:intro1:r2",
-              "text": "I often volunteers."
+              "text": "I usually chooses apples."
             },
             {
               "responseId": "en:lesson-07:session-34:intro1:r3",
-              "text": "I often volunteering."
+              "text": "I usually choosing apples."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу: «Я часто помогаю как волонтёр».",
-          "uk": "Розкажіть другові: «Я часто допомагаю як волонтер»."
+          "ru": "Продавец спрашивает, какие фрукты вы обычно выбираете. Ответьте: «Я обычно выбираю яблоки».",
+          "uk": "Продавець питає, які фрукти ви зазвичай вибираєте. Відповідьте: «Я зазвичай вибираю яблука»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пешком на работу",
-        "uk": "Пішки на роботу"
+        "ru": "Новый телефон",
+        "uk": "Новий телефон"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, как вы обычно добираетесь до работы. `I usually walk` — «Я обычно хожу пешком». `Usually` означает «обычно» и стоит перед `walk`. Фраза описывает привычный способ добираться до работы.",
-        "uk": "Колега запитує, як ви зазвичай дістаєтеся роботи. `I usually walk` — «Я зазвичай ходжу пішки». `Usually` означає «зазвичай» і стоїть перед `walk`. Фраза описує звичний спосіб діставатися роботи."
+        "ru": "Коллега заметил, что вы знаете характеристики разных телефонов. Он спрашивает, откуда вы столько знаете. compare — «сравнивать». Объясните: I often compare phones — «Я часто сравниваю телефоны». often — «часто»; здесь оно стоит перед compare.",
+        "uk": "Колега помітив, що ви знаєте характеристики різних телефонів. Він питає, звідки ви стільки знаєте. compare — «порівнювати». Поясніть: I often compare phones — «Я часто порівнюю телефони». often — «часто»; тут воно стоїть перед compare."
       },
       "question": {
         "interactionId": "en:lesson-07:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте коллеге: «Я обычно хожу пешком».",
-          "uk": "Відповідайте колезі: «Я зазвичай ходжу пішки»."
+          "ru": "Коллега спрашивает, откуда вы знаете столько о телефонах. Скажите: «Я часто сравниваю телефоны».",
+          "uk": "Колега питає, звідки ви знаєте стільки про телефони. Скажіть: «Я часто порівнюю телефони»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-34:intro2:r1",
-              "text": "I usually walk."
+              "text": "I often compare phones."
             },
             {
               "responseId": "en:lesson-07:session-34:intro2:r2",
-              "text": "I usually walks."
+              "text": "I often compares phones."
             },
             {
               "responseId": "en:lesson-07:session-34:intro2:r3",
-              "text": "I usually walking."
+              "text": "I compare often phones."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-34:intro2:r1",
-              "text": "I usually walk."
+              "text": "I often compare phones."
             },
             {
               "responseId": "en:lesson-07:session-34:intro2:r2",
-              "text": "I usually walks."
+              "text": "I often compares phones."
             },
             {
               "responseId": "en:lesson-07:session-34:intro2:r3",
-              "text": "I usually walking."
+              "text": "I compare often phones."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте коллеге: «Я обычно хожу пешком».",
-          "uk": "Відповідайте колезі: «Я зазвичай ходжу пішки»."
+          "ru": "Коллега спрашивает, откуда вы знаете столько о телефонах. Скажите: «Я часто сравниваю телефоны».",
+          "uk": "Колега питає, звідки ви знаєте стільки про телефони. Скажіть: «Я часто порівнюю телефони»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Поддерживаем связь",
-        "uk": "Підтримуємо зв’язок"
+        "ru": "Ужин с подругой",
+        "uk": "Вечеря з подругою"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете другу о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` действие сохраняет окончание `s`.",
-        "uk": "Ви розповідаєте другові про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` дія зберігає закінчення `s`."
+        "ru": "Вы с братом готовите стол к очередному ужину с друзьями. Он спрашивает, что ваша подруга обычно приносит к чаю. bring — «приносить». Ответьте: She often brings a cake — «Она часто приносит торт». Это её привычка, а не обещание на сегодня. После she к bring добавляем s; often стоит перед brings.",
+        "uk": "Ви з братом готуєте стіл до чергової вечері з друзями. Він питає, що ваша подруга зазвичай приносить до чаю. bring — «приносити». Відповідайте: She often brings a cake — «Вона часто приносить торт». Це її звичка, а не обіцянка на сьогодні. Після she до bring додаємо s; often стоїть перед brings."
       },
       "question": {
         "interactionId": "en:lesson-07:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите о знакомой: «Она часто звонит».",
-          "uk": "Розкажіть про знайому: «Вона часто телефонує»."
+          "ru": "Брат спрашивает, что подруга обычно приносит к чаю. Ответьте: «Она часто приносит торт».",
+          "uk": "Брат питає, що подруга зазвичай приносить до чаю. Відповідьте: «Вона часто приносить торт»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-34:intro3:r1",
-              "text": "She often calls."
+              "text": "She often brings a cake."
             },
             {
               "responseId": "en:lesson-07:session-34:intro3:r2",
-              "text": "She often call."
+              "text": "She often bring a cake."
             },
             {
               "responseId": "en:lesson-07:session-34:intro3:r3",
-              "text": "She often calling."
+              "text": "She often bringing a cake."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-34:intro3:r1",
-              "text": "She often calls."
+              "text": "She often brings a cake."
             },
             {
               "responseId": "en:lesson-07:session-34:intro3:r2",
-              "text": "She often call."
+              "text": "She often bring a cake."
             },
             {
               "responseId": "en:lesson-07:session-34:intro3:r3",
-              "text": "She often calling."
+              "text": "She often bringing a cake."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о знакомой: «Она часто звонит».",
-          "uk": "Розкажіть про знайому: «Вона часто телефонує»."
+          "ru": "Брат спрашивает, что подруга обычно приносит к чаю. Ответьте: «Она часто приносит торт».",
+          "uk": "Брат питає, що подруга зазвичай приносить до чаю. Відповідьте: «Вона часто приносить торт»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2351d3a4a9a9799506ec1dde6f0efd67ad58b869d2250b8b7e2c52fa86d2fe6f"
+  "introFingerprint": "3edb2fbf7620ee870a78ab6f37102f8787413248aac551f8e62dc9d27885b530"
 }

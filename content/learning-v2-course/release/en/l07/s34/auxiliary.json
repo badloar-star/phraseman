@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-34:intro1:r2": {
-          "ru": "После `I` нужно `volunteer`, без `s`.",
-          "uk": "Після `I` потрібне `volunteer`, без `s`."
+          "ru": "После I нужно choose, без s.",
+          "uk": "Після I потрібно choose, без s."
         },
         "en:lesson-07:session-34:intro1:r3": {
-          "ru": "Здесь нужна форма `volunteer`.",
-          "uk": "Тут потрібна форма `volunteer`."
+          "ru": "Здесь нужна форма choose.",
+          "uk": "Тут потрібна форма choose."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-34:intro2:r2": {
-          "ru": "После `I` нужно `walk`, без `s`.",
-          "uk": "Після `I` потрібне `walk`, без `s`."
+          "ru": "После I нужно compare, без s.",
+          "uk": "Після I потрібно compare, без s."
         },
         "en:lesson-07:session-34:intro2:r3": {
-          "ru": "Здесь нужна форма `walk`.",
-          "uk": "Тут потрібна форма `walk`."
+          "ru": "Слово often стоит перед compare.",
+          "uk": "Слово often стоїть перед compare."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-34:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После she нужно brings, с s.",
+          "uk": "Після she потрібно brings, з s."
         },
         "en:lesson-07:session-34:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма brings.",
+          "uk": "Тут потрібна форма brings."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1c677d1edb978ed3aef498589ce883aa31f9649ecf6fbf67bf8e642765d3e520"
+  "auxiliaryFingerprint": "b65670ed047609a12af08ae9b0c8f76897f473b4272749ee86e04f0620a3adeb"
 }

@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 34 — Часто допомагаю як волонтер
+# Англійська · Урок 7 · Заняття 34 — Вибираємо й даруємо
 
-**Ситуація.** Ви розповідаєте про волонтерство, дорогу на роботу й часті дзвінки знайомої.
+**Ситуація.** Ви розповідаєте про покупки й гостей: як вибираєте яблука, як порівнюєте телефони, що приносить подруга і як пакуєте подарунки.
 
-**Що ви опануєте:** використовувати often і usually перед дією, зберігаючи потрібну форму дієслова
-**Нові слова:** volunteer
+**Що ви опануєте:** використовувати often і usually перед дією та пам’ятати про s після he і she
+**Нові слова:** choose, compare, bring, wrap
+**Повертаються:** apple, bread, cake, gift, phone, count, check
 
 ---
 
 ## Інтро 1
 
-### Допомога у вільний час
+### Яблука на ринку
 
-Друг запитує, чи допомагаєте ви місцевій організації безоплатно. `volunteer` — «бути волонтером, допомагати добровільно». `I often volunteer` — «Я часто допомагаю як волонтер». `Often` означає «часто» і стоїть перед дією `volunteer`. Добра справа не мусить чекати вільного місця в календарі на наступний рік.
+Ви купуєте фрукти для перекусу. Продавець пропонує груші та яблука й питає, що ви зазвичай обираєте. choose — «вибирати». Відповідайте: I usually choose apples — «Я зазвичай вибираю яблука». Тут usually — «зазвичай» — ставимо перед choose.
 
-**Розкажіть другові: «Я часто допомагаю як волонтер».**
+**Продавець питає, які фрукти ви зазвичай вибираєте. Відповідьте: «Я зазвичай вибираю яблука».**
 
-- ✅ **I often volunteer.**
-- ❌ I often volunteers. — *Після `I` потрібне `volunteer`, без `s`.*
-- ❌ I often volunteering. — *Тут потрібна форма `volunteer`.*
+- ✅ **I usually choose apples.**
+- ❌ I usually chooses apples. — *Після I потрібно choose, без s.*
+- ❌ I usually choosing apples. — *Тут потрібна форма choose.*
 
 ---
 
 ## Інтро 2
 
-### Пішки на роботу
+### Новий телефон
 
-Колега запитує, як ви зазвичай дістаєтеся роботи. `I usually walk` — «Я зазвичай ходжу пішки». `Usually` означає «зазвичай» і стоїть перед `walk`. Фраза описує звичний спосіб діставатися роботи.
+Колега помітив, що ви знаєте характеристики різних телефонів. Він питає, звідки ви стільки знаєте. compare — «порівнювати». Поясніть: I often compare phones — «Я часто порівнюю телефони». often — «часто»; тут воно стоїть перед compare.
 
-**Відповідайте колезі: «Я зазвичай ходжу пішки».**
+**Колега питає, звідки ви знаєте стільки про телефони. Скажіть: «Я часто порівнюю телефони».**
 
-- ✅ **I usually walk.**
-- ❌ I usually walks. — *Після `I` потрібне `walk`, без `s`.*
-- ❌ I usually walking. — *Тут потрібна форма `walk`.*
+- ✅ **I often compare phones.**
+- ❌ I often compares phones. — *Після I потрібно compare, без s.*
+- ❌ I compare often phones. — *Слово often стоїть перед compare.*
 
 ---
 
 ## Інтро 3
 
-### Підтримуємо зв’язок
+### Вечеря з подругою
 
-Ви розповідаєте другові про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` дія зберігає закінчення `s`.
+Ви з братом готуєте стіл до чергової вечері з друзями. Він питає, що ваша подруга зазвичай приносить до чаю. bring — «приносити». Відповідайте: She often brings a cake — «Вона часто приносить торт». Це її звичка, а не обіцянка на сьогодні. Після she до bring додаємо s; often стоїть перед brings.
 
-**Розкажіть про знайому: «Вона часто телефонує».**
+**Брат питає, що подруга зазвичай приносить до чаю. Відповідьте: «Вона часто приносить торт».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *Після `she` потрібне `calls`.*
-- ❌ She often calling. — *Тут потрібна форма `calls`.*
+- ✅ **She often brings a cake.**
+- ❌ She often bring a cake. — *Після she потрібно brings, з s.*
+- ❌ She often bringing a cake. — *Тут потрібна форма brings.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто допомагаю як волонтер»**
+**1 · Картка слова — choose**
+<!-- interaction_id: en:lesson-07:session-34:word:choose; family: word_card -->
+> **choose** — вибирати. I usually choose apples. — «Я зазвичай вибираю яблука». Вирішувати, який із варіантів вам потрібен.
+
+**2 · Продавець питає, які фрукти ви зазвичай вибираєте. Скажіть: «Я зазвичай вибираю яблука»**
 <!-- interaction_id: en:lesson-07:session-34:i01; family: phrase_builder -->
-Плитки: `volunteer` `often` `I` → **I often volunteer.**
+Плитки: `apples` `often` `choose` `usually` `I` → **I usually choose apples.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually choose apples.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — compare**
+<!-- interaction_id: en:lesson-07:session-34:word:compare; family: word_card -->
+> **compare** — порівнювати. I often compare phones. — «Я часто порівнюю телефони». Розглядати подібності та відмінності двох або кількох речей.
+
+**4 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-34:i02; family: listen_choose -->
-🔊 *volunteer* → **volunteer** · drink · park
-- drink — *У записі перше слово — `volunteer`, а в цьому варіанті — `drink`.*
-- park — *У записі перше слово — `volunteer`, а в цьому варіанті — `park`.*
+🔊 *compare* → **compare** · count · check
+- count — *У записі перше слово — `compare`, а в цьому варіанті — `count`.*
+- check — *У записі перше слово — `compare`, а в цьому варіанті — `check`.*
 
-**3 · Скажіть «Я часто допомагаю як волонтер»**
+**5 · Картка слова — bring**
+<!-- interaction_id: en:lesson-07:session-34:word:bring; family: word_card -->
+> **bring** — приносити. She often brings a cake. — «Вона часто приносить торт». Доставляти щось туди, де перебуває чи перебуватиме мовець або співрозмовник; тут — приносити торт у гості.
+
+**6 · Брат питає, що подруга зазвичай приносить до чаю. Скажіть: «Вона часто приносить торт». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-34:i03; family: context_gap_grammar -->
-I often ___. → **volunteer** · volunteers · volunteering
-- volunteers — *Після `I` потрібне `volunteer`.*
-- volunteering — *Тут потрібна форма `volunteer`.*
+She often ___ a cake. → **brings** · bring · bringing
+- bring — *Після `She` потрібно `brings`.*
+- bringing — *Тут потрібна форма `brings`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-34:i04; family: speed_match -->
-volunteer — бути волонтером · drink — пити · wallet — гаманець · ring — каблучка
+choose — вибирати · compare — порівнювати · bring — приносити · apple — яблуко
 
-**5 · Послухайте й складіть фразу**
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-34:i05; family: listen_build_dictation -->
-🔊 *I often volunteer.* Плитки: `volunteer` `often` `I` → **I often volunteer.**
+🔊 *I often compare phones.* Плитки: `phones` `compares` `compare` `often` `I` → **I often compare phones.**
+*(плитка `compares` зайва: тут потрібно `compare` — `I often compare phones.`)*
 
-**6 · Розкажіть про дорогу на роботу: «Я зазвичай ходжу пішки»**
+**9 · Картка слова — wrap**
+<!-- interaction_id: en:lesson-07:session-34:word:wrap; family: word_card -->
+> **wrap** — пакувати. I usually wrap gifts. — «Я зазвичай пакую подарунки». Загортати в щось; тут — у подарунковий папір.
+
+**10 · Перед святом ви готуєте подарунки. Скажіть: «Я зазвичай пакую подарунки»**
 <!-- interaction_id: en:lesson-07:session-34:i06; family: phrase_builder -->
-Плитки: `walk` `usually` `I` → **I usually walk.**
+Плитки: `gifts` `often` `wrap` `usually` `I` → **I usually wrap gifts.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually wrap gifts.`)*
 
-**7 · Скажіть про знайому «Вона часто телефонує»**
+**11 · Подруга питає про вашого брата. Скажіть: «Він часто порівнює телефони»**
 <!-- interaction_id: en:lesson-07:session-34:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **He often compares phones.**
 
-**8 · Скажіть «Вона часто телефонує»**
+**12 · Подруга питає про вашу сестру. Скажіть: «Вона зазвичай пакує подарунки». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-34:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *Після `she` потрібне `calls`.*
-- calling — *Тут потрібна форма `calls`.*
+She usually ___ gifts. → **wraps** · wrap · wrapping
+- wrap — *Після `She` потрібно `wraps`.*
+- wrapping — *Тут потрібна форма `wraps`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-34:i09; family: listen_choose -->
-🔊 *I often volunteer.* → **I often volunteer.** · I often walk. · I often call.
-- I often walk. — *У записі останнє слово — `volunteer`, а в цьому варіанті — `walk`.*
-- I often call. — *У записі останнє слово — `volunteer`, а в цьому варіанті — `call`.*
+🔊 *I usually choose apples.* → **I usually choose apples.** · I usually choose bread. · I usually choose cake.
+- I usually choose bread. — *У записі останнє слово — `apples`, а в цьому варіанті — `bread`.*
+- I usually choose cake. — *У записі останнє слово — `apples`, а в цьому варіанті — `cake`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-34:i10; family: speed_match -->
-park — паркуватися · volunteer — бути волонтером · wallet — гаманець · drink — пити
+wrap — пакувати · bring — приносити · compare — порівнювати · choose — вибирати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-34:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *She often brings a cake.* Плитки: `cake` `bring` `a` `brings` `often` `She` → **She often brings a cake.**
+*(плитка `bring` зайва: тут потрібно `brings` — `She often brings a cake.`)*
 
-**12 · Ви добираєте прикраси. Запитайте подругу «У тебе є каблучка?»**
+**16 · Ви розповідаєте про брата в булочній. Скажіть: «Він зазвичай вибирає хліб»**
 <!-- interaction_id: en:lesson-07:session-34:i12; family: phrase_builder -->
-Плитки: `ring` `a` `have` `you` `Do` → **Do you have a ring?**
+Плитки: `bread` `choose` `chooses` `usually` `He` → **He usually chooses bread.**
+*(плитка `choose` зайва: тут потрібно `chooses` — `He usually chooses bread.`)*
 
-**13 · Дізнайтеся звичне місце паркування колеги**
+**17 · Гість питає, що приносить ваша сестра. Скажіть: «Вона часто приносить подарунок»**
 <!-- interaction_id: en:lesson-07:session-34:i13; family: scripted_repeat_compare -->
-🎙 **Where do you park?**
+🎙 **She often brings a gift.**
 
-**14 · Скажіть «Я зазвичай п’ю воду»**
+**18 · Ви розповідаєте, як вибираєте покупки. Скажіть: «Я часто порівнюю телефони». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-34:i14; family: context_gap_grammar -->
-I ___ drink water. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `drink`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `drink` не ставимо.*
+I ___ compare phones. → **often** · does · am
+- does — *Для «часто» потрібно `often` перед `compare`.*
+- am — *Для «часто» потрібно `often`; `am` перед `compare` не ставимо.*
 
-**15 · Послухайте й виберіть запитання**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-34:i15; family: listen_choose -->
-🔊 *Do you have a wallet?* → **Do you have a wallet?** · Do you have a ring? · Do you have a phone?
-- Do you have a ring? — *У записі останнє слово — `wallet`, а в цьому варіанті — `ring`.*
-- Do you have a phone? — *У записі останнє слово — `wallet`, а в цьому варіанті — `phone`.*
+🔊 *She often brings a cake.* → **She often brings a cake.** · She often brings a gift. · She often brings a bag.
+- She often brings a gift. — *У записі останнє слово — `cake`, а в цьому варіанті — `gift`.*
+- She often brings a bag. — *У записі останнє слово — `cake`, а в цьому варіанті — `bag`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-34:i16; family: speed_match -->
-volunteer — бути волонтером · ring — каблучка · park — паркуватися · wallet — гаманець
+bring — приносити · wrap — пакувати · gift — подарунок · cake — торт
 
-**17 · Друг запитує про допомогу Тома місцевій організації. Скажіть «Том часто допомагає як волонтер»**
+**21 · Покупець питає, хто у вашій родині вибирає яблука. Скажіть: «Моя сестра зазвичай вибирає яблука»**
 <!-- interaction_id: en:lesson-07:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often volunteers.**
-
+🎙 **My sister usually chooses apples.**

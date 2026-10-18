@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-24",
   "learningOutcomeByLocale": {
-    "ru": "повторить просьбы Can you…? без новых слов",
-    "uk": "повторити прохання Can you…? без нових слів"
+    "ru": "повторить просьбы Can you…? с четырьмя новыми словами",
+    "uk": "повторити прохання Can you…? із чотирма новими словами"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Записка соседу",
-        "uk": "Записка сусідові"
+        "ru": "Мелкий шрифт в музее",
+        "uk": "Дрібний шрифт у музеї"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите оставить соседу записку, но ручки нет. Друг может дать свою на минуту. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» `Lend` — дать на время. Начните с `Can you`, затем `lend me a pen`. Записка короткая — если ручка не закончится на первом слове.",
-        "uk": "Ви хочете залишити сусідові записку, але ручки немає. Друг може дати свою на хвилину. `Can you lend me a pen?` — «Можеш позичити мені ручку?» `Lend` — дати на певний час. Почніть із `Can you`, потім `lend me a pen`. Записка коротка — якщо ручка не закінчиться на першому слові."
+        "ru": "В музее вам дали буклет о новой выставке. Очки остались дома, и мелкий текст трудно разобрать. Brochure — «буклет», небольшое издание с информацией и иллюстрациями. `Can you read the brochure?` — «Можешь прочитать буклет?» Вы просите спутника прочитать текст для вас.",
+        "uk": "У музеї вам дали буклет про нову виставку. Окуляри залишилися вдома, і дрібний текст важко розібрати. Brochure — «буклет», невелике видання з інформацією та ілюстраціями. `Can you read the brochure?` — «Можеш прочитати буклет?» Ви просите супутника прочитати текст для вас."
       },
       "question": {
         "interactionId": "en:lesson-08:session-24:intro1:q",
         "promptByLocale": {
-          "ru": "Попросите друга одолжить вам ручку.",
-          "uk": "Попросіть друга позичити вам ручку."
+          "ru": "Попросите спутника прочитать буклет.",
+          "uk": "Попросіть супутника прочитати буклет."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-24:intro1:r1",
-              "text": "Can you lend me a pen?"
+              "text": "Can you read the brochure?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro1:r2",
-              "text": "Can you to lend me a pen?"
+              "text": "Can you reads the brochure?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro1:r3",
-              "text": "You can lend me a pen."
+              "text": "Can you to read the brochure?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-24:intro1:r1",
-              "text": "Can you lend me a pen?"
+              "text": "Can you read the brochure?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro1:r2",
-              "text": "Can you to lend me a pen?"
+              "text": "Can you reads the brochure?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro1:r3",
-              "text": "You can lend me a pen."
+              "text": "Can you to read the brochure?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга одолжить вам ручку.",
-          "uk": "Попросіть друга позичити вам ручку."
+          "ru": "Попросите спутника прочитать буклет.",
+          "uk": "Попросіть супутника прочитати буклет."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Правило осталось непонятным",
-        "uk": "Правило залишилося незрозумілим"
+        "ru": "Книга для прогулки по старому городу",
+        "uk": "Книжка для прогулянки старим містом"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказал правило игры, но вы не поняли, когда делать ход. `Can you explain it?` — «Можешь это объяснить?» `It` здесь — правило, о котором вы говорите. После `can` нужно `explain`, без `to`.",
-        "uk": "Друг розповів правило гри, але ви не зрозуміли, коли робити хід. `Can you explain it?` — «Можеш це пояснити?» `It` тут — правило, про яке ви говорите. Після `can` потрібне `explain`, без `to`."
+        "ru": "Вы собираетесь гулять по старому городу. У знакомого есть книга с описаниями зданий и маршрутами, и вы хотите взять её на день. Guidebook — «путеводитель». `Can you lend me the guidebook?` — «Можешь одолжить мне путеводитель?» The указывает на конкретную книгу знакомого; lend означает дать на время.",
+        "uk": "Ви збираєтеся гуляти старим містом. У знайомого є книжка з описами будівель і маршрутами, і ви хочете взяти її на день. Guidebook — «путівник». `Can you lend me the guidebook?` — «Можеш позичити мені путівник?» The вказує на конкретну книжку знайомого; lend означає дати на певний час."
       },
       "question": {
         "interactionId": "en:lesson-08:session-24:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите друга объяснить правило.",
-          "uk": "Попросіть друга пояснити правило."
+          "ru": "Попросите знакомого одолжить путеводитель.",
+          "uk": "Попросіть знайомого позичити путівник."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-24:intro2:r1",
-              "text": "Can you explain it?"
+              "text": "Can you lend me the guidebook?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro2:r2",
-              "text": "Can you explains it?"
+              "text": "Can you lends me the guidebook?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro2:r3",
-              "text": "Can you to explain it?"
+              "text": "Can you to lend me the guidebook?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-24:intro2:r1",
-              "text": "Can you explain it?"
+              "text": "Can you lend me the guidebook?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro2:r2",
-              "text": "Can you explains it?"
+              "text": "Can you lends me the guidebook?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro2:r3",
-              "text": "Can you to explain it?"
+              "text": "Can you to lend me the guidebook?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга объяснить правило.",
-          "uk": "Попросіть друга пояснити правило."
+          "ru": "Попросите знакомого одолжить путеводитель.",
+          "uk": "Попросіть знайомого позичити путівник."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ужин без ожидания",
-        "uk": "Вечеря без очікування"
+        "ru": "Порядок остановок экскурсии",
+        "uk": "Порядок зупинок екскурсії"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом идёте в ресторан и хотите заранее договориться о столике. `Can you reserve a table?` — «Можешь забронировать столик?» После `Can you` нужно `reserve a table`.",
-        "uk": "Ви з другом ідете до ресторану й хочете заздалегідь домовитися про столик. `Can you reserve a table?` — «Можеш забронювати столик?» Після `Can you` потрібне `reserve a table`."
+        "ru": "Перед автобусной экскурсией вам прислали план поездки, но непонятно, какая остановка будет первой. Itinerary — «план поездки» с маршрутом и порядком посещений. `Can you explain the itinerary?` — «Можете объяснить план поездки?» Вы обращаетесь к организатору, чтобы разобраться в порядке остановок.",
+        "uk": "Перед автобусною екскурсією вам надіслали план поїздки, але незрозуміло, яка зупинка буде першою. Itinerary — «план поїздки» з маршрутом і порядком відвідувань. `Can you explain the itinerary?` — «Можете пояснити план поїздки?» Ви звертаєтеся до організатора, щоб розібратися в порядку зупинок."
       },
       "question": {
         "interactionId": "en:lesson-08:session-24:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга забронировать столик.",
-          "uk": "Попросіть друга забронювати столик."
+          "ru": "Попросите организатора объяснить план поездки.",
+          "uk": "Попросіть організатора пояснити план поїздки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-24:intro3:r1",
-              "text": "Can you reserve a table?"
+              "text": "Can you explain the itinerary?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro3:r2",
-              "text": "Can you reserves a table?"
+              "text": "Can you explains the itinerary?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro3:r3",
-              "text": "You can reserve a table."
+              "text": "Can you to explain the itinerary?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-24:intro3:r1",
-              "text": "Can you reserve a table?"
+              "text": "Can you explain the itinerary?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro3:r2",
-              "text": "Can you reserves a table?"
+              "text": "Can you explains the itinerary?"
             },
             {
               "responseId": "en:lesson-08:session-24:intro3:r3",
-              "text": "You can reserve a table."
+              "text": "Can you to explain the itinerary?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга забронировать столик.",
-          "uk": "Попросіть друга забронювати столик."
+          "ru": "Попросите организатора объяснить план поездки.",
+          "uk": "Попросіть організатора пояснити план поїздки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f137489a17cc09a778e9333d3e7ae9da688a2861531c0bb4fc5ae031185ae13"
+  "introFingerprint": "2060b26848bac5905d1a9ae60e0e7a7a155ee3dbaf6e45b0d717863ff2fdf76b"
 }

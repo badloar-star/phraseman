@@ -1,133 +1,148 @@
 # Англійська · Урок 8 · Заняття 24 — Попросити про допомогу
 
-**Ситуація.** Ви просите ручку для записки, пояснення правила гри й допомогу з бронюванням столика.
+**Ситуація.** Розібратися в буклеті музею, позичити путівник і уточнити план екскурсії.
 
-**Що ви опануєте:** повторити прохання Can you…? без нових слів
-**Нові слова:** —
+**Що ви опануєте:** повторити прохання Can you…? із чотирма новими словами
+**Нові слова:** brochure, guidebook, itinerary, printout
 
 ---
 
 ## Інтро 1
 
-### Записка сусідові
+### Дрібний шрифт у музеї
 
-Ви хочете залишити сусідові записку, але ручки немає. Друг може дати свою на хвилину. `Can you lend me a pen?` — «Можеш позичити мені ручку?» `Lend` — дати на певний час. Почніть із `Can you`, потім `lend me a pen`. Записка коротка — якщо ручка не закінчиться на першому слові.
+У музеї вам дали буклет про нову виставку. Окуляри залишилися вдома, і дрібний текст важко розібрати. Brochure — «буклет», невелике видання з інформацією та ілюстраціями. `Can you read the brochure?` — «Можеш прочитати буклет?» Ви просите супутника прочитати текст для вас.
 
-**Попросіть друга позичити вам ручку.**
+**Попросіть супутника прочитати буклет.**
 
-- ✅ **Can you lend me a pen?**
-- ❌ Can you to lend me a pen? — *Після `can` потрібне `lend`, без `to`.*
-- ❌ You can lend me a pen. — *Для цього прохання почніть із `Can you`.*
+- ✅ **Can you read the brochure?**
+- ❌ Can you reads the brochure? — *Після can потрібне read, без s.*
+- ❌ Can you to read the brochure? — *Після can потрібне read, без to.*
 
 ---
 
 ## Інтро 2
 
-### Правило залишилося незрозумілим
+### Книжка для прогулянки старим містом
 
-Друг розповів правило гри, але ви не зрозуміли, коли робити хід. `Can you explain it?` — «Можеш це пояснити?» `It` тут — правило, про яке ви говорите. Після `can` потрібне `explain`, без `to`.
+Ви збираєтеся гуляти старим містом. У знайомого є книжка з описами будівель і маршрутами, і ви хочете взяти її на день. Guidebook — «путівник». `Can you lend me the guidebook?` — «Можеш позичити мені путівник?» The вказує на конкретну книжку знайомого; lend означає дати на певний час.
 
-**Попросіть друга пояснити правило.**
+**Попросіть знайомого позичити путівник.**
 
-- ✅ **Can you explain it?**
-- ❌ Can you explains it? — *Після `can` потрібне `explain`, без `s`.*
-- ❌ Can you to explain it? — *Після `can` потрібне `explain`, без `to`.*
+- ✅ **Can you lend me the guidebook?**
+- ❌ Can you lends me the guidebook? — *Після can потрібне lend, без s.*
+- ❌ Can you to lend me the guidebook? — *Після can потрібне lend, без to.*
 
 ---
 
 ## Інтро 3
 
-### Вечеря без очікування
+### Порядок зупинок екскурсії
 
-Ви з другом ідете до ресторану й хочете заздалегідь домовитися про столик. `Can you reserve a table?` — «Можеш забронювати столик?» Після `Can you` потрібне `reserve a table`.
+Перед автобусною екскурсією вам надіслали план поїздки, але незрозуміло, яка зупинка буде першою. Itinerary — «план поїздки» з маршрутом і порядком відвідувань. `Can you explain the itinerary?` — «Можете пояснити план поїздки?» Ви звертаєтеся до організатора, щоб розібратися в порядку зупинок.
 
-**Попросіть друга забронювати столик.**
+**Попросіть організатора пояснити план поїздки.**
 
-- ✅ **Can you reserve a table?**
-- ❌ Can you reserves a table? — *Після `can` потрібне `reserve`, без `s`.*
-- ❌ You can reserve a table. — *Для цього прохання почніть із `Can you`.*
+- ✅ **Can you explain the itinerary?**
+- ❌ Can you explains the itinerary? — *Після can потрібне explain, без s.*
+- ❌ Can you to explain the itinerary? — *Після can потрібне explain, без to.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Попросіть «Можеш позичити мені ручку?»**
+**1 · Картка слова — brochure**
+<!-- interaction_id: en:lesson-08:session-24:word:brochure; family: word_card -->
+> **brochure** — буклет. Can you read the brochure? — «Можеш прочитати буклет?» Невелике друковане видання з інформацією, наприклад про виставку.
+
+**2 · Попросіть «Можеш прочитати буклет?»**
 <!-- interaction_id: en:lesson-08:session-24:i01; family: phrase_builder -->
-Плитки: `pen` `a` `me` `lend` `you` `Can` → **Can you lend me a pen?**
+Плитки: `brochure` `the` `read` `you` `Can` → **Can you read the brochure?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-24:i02; family: listen_choose -->
 🔊 *remind* → **remind** · reserve · explain
 - reserve — *У записі перше слово — `remind`, а в цьому варіанті — `reserve`.*
 - explain — *У записі перше слово — `remind`, а в цьому варіанті — `explain`.*
 
-**3 · Попросіть пояснити правило гри**
+**4 · Виберіть форму для прохання прочитати буклет**
 <!-- interaction_id: en:lesson-08:session-24:i03; family: context_gap_grammar -->
-Can you ___ it? → **explain** · explains · to explain
-- explains — *Після `can` потрібне `explain`, без `s`.*
-- to explain — *Після `can` потрібне `explain`, без `to`.*
+Can you ___ the brochure? → **read** · reads · to read
+- reads — *Після can потрібне read, без s.*
+- to read — *Після can потрібне read, без to.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-24:i04; family: speed_match -->
-lend — позичити · pass — передати · explain — пояснити · hold — тримати
+brochure — буклет · lend — позичити · explain — пояснити · read — читати
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-24:i05; family: listen_build_dictation -->
-🔊 *Can you fetch it?* Плитки: `it` `fetch` `you` `Can` → **Can you fetch it?**
+🔊 *Can you read the brochure?* Плитки: `brochure` `the` `read` `you` `Can` → **Can you read the brochure?**
 
-**6 · Попросіть «Можеш забронювати столик?»**
+**7 · Картка слова — guidebook**
+<!-- interaction_id: en:lesson-08:session-24:word:guidebook; family: word_card -->
+> **guidebook** — путівник. Can you lend me the guidebook? — «Можеш позичити мені путівник?» Книжка про місця, які варто відвідати.
+
+**8 · Попросіть «Можеш позичити мені путівник?»**
 <!-- interaction_id: en:lesson-08:session-24:i06; family: phrase_builder -->
-Плитки: `table` `a` `reserve` `you` `Can` → **Can you reserve a table?**
+Плитки: `guidebook` `the` `me` `lend` `you` `Can` → **Can you lend me the guidebook?**
 
-**7 · Покажіть другові пакет: «Можеш це потримати?»**
+**9 · Картка слова — itinerary**
+<!-- interaction_id: en:lesson-08:session-24:word:itinerary; family: word_card -->
+> **itinerary** — план поїздки. Can you explain the itinerary? — «Можете пояснити план поїздки?» Маршрут і порядок зупинок або відвідувань.
+
+**10 · Порядок зупинок незрозумілий. Попросіть «Можете пояснити план поїздки?»**
 <!-- interaction_id: en:lesson-08:session-24:i07; family: scripted_repeat_compare -->
-🎙 **Can you hold this?**
+🎙 **Can you explain the itinerary?**
 
-**8 · Попросіть передати вам ключ**
+**11 · Виберіть форму для прохання позичити путівник**
 <!-- interaction_id: en:lesson-08:session-24:i08; family: context_gap_grammar -->
-Can you ___ me the key? → **pass** · passes · to pass
-- passes — *Після `can` потрібне `pass`, без `es`.*
-- to pass — *Після `can` потрібне `pass`, без `to`.*
+Can you ___ me the guidebook? → **lend** · lends · to lend
+- lends — *Після can потрібне lend, без s.*
+- to lend — *Після can потрібне lend, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-24:i09; family: listen_choose -->
 🔊 *Can you remind me?* → **Can you remind me?** · Can you remind him? · Can you remind her?
 - Can you remind him? — *У записі останнє слово — `me`, а в цьому варіанті — `him`.*
 - Can you remind her? — *У записі останнє слово — `me`, а в цьому варіанті — `her`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-24:i10; family: speed_match -->
-fetch — сходити й принести · remind — нагадати · reserve — забронювати · yoghurt — йогурт
+brochure — буклет · guidebook — путівник · itinerary — план поїздки · remind — нагадати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-24:i11; family: listen_build_dictation -->
-🔊 *Can you explain it?* Плитки: `it` `explain` `you` `Can` → **Can you explain it?**
+🔊 *Can you explain the itinerary?* Плитки: `itinerary` `the` `explain` `you` `Can` → **Can you explain the itinerary?**
 
-**12 · На столі забули ручку. Запитайте «Чия це ручка?»**
+**15 · Картка слова — printout**
+<!-- interaction_id: en:lesson-08:session-24:word:printout; family: word_card -->
+> **printout** — роздруківка. Can you pass me the printout? — «Можеш передати мені роздруківку?» Інформація з комп’ютера, надрукована на папері.
+
+**16 · Роздруківка бронювання лежить біля друга. Попросіть «Можеш передати мені роздруківку?»**
 <!-- interaction_id: en:lesson-08:session-24:i12; family: phrase_builder -->
-Плитки: `this` `is` `pen` `Whose` → **Whose pen is this?**
+Плитки: `printout` `the` `me` `pass` `you` `Can` → **Can you pass me the printout?**
 
-**13 · Друг запитує про ваш вільний час. Скажіть «Я часто читаю»**
+**17 · Ви можете самі пояснити маршрут другові. Скажіть «Я можу пояснити план поїздки»**
 <!-- interaction_id: en:lesson-08:session-24:i13; family: scripted_repeat_compare -->
-🎙 **I often read.**
+🎙 **I can explain the itinerary.**
 
-**14 · Попросіть забронювати столик**
+**18 · Виберіть форму для прохання передати роздруківку**
 <!-- interaction_id: en:lesson-08:session-24:i14; family: context_gap_grammar -->
-Can you ___ a table? → **reserve** · reserves · to reserve
-- reserves — *Після `can` потрібне `reserve`, без `s`.*
-- to reserve — *Після `can` потрібне `reserve`, без `to`.*
+Can you ___ me the printout? → **pass** · passes · to pass
+- passes — *Після can потрібне pass, без es.*
+- to pass — *Після can потрібне pass, без to.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-24:i15; family: listen_choose -->
-🔊 *Can you pass me the yoghurt?* → **Can you pass me the yoghurt?** · Can you pass me the milk? · Can you pass me the cheese?
-- Can you pass me the milk? — *У записі останнє слово — `yoghurt`, а в цьому варіанті — `milk`.*
-- Can you pass me the cheese? — *У записі останнє слово — `yoghurt`, а в цьому варіанті — `cheese`.*
+🔊 *Can you pass me the printout?* → **Can you pass me the printout?** · Can you pass me the guidebook? · Can you pass me the brochure?
+- Can you pass me the guidebook? — *У записі printout — «роздруківка», а не guidebook — «путівник».*
+- Can you pass me the brochure? — *У записі printout, а не brochure — «буклет».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-24:i16; family: speed_match -->
-hold — тримати · fetch — сходити й принести · remind — нагадати · reserve — забронювати
+brochure — буклет · guidebook — путівник · itinerary — план поїздки · printout — роздруківка
 
-**17 · За сніданком йогурт стоїть біля друга. Ви хочете його з’їсти. Попросіть «Можеш передати мені йогурт?»**
+**21 · У туристичному центрі друг тримає роздруківку маршруту. Попросіть «Можеш передати мені роздруківку?»**
 <!-- interaction_id: en:lesson-08:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Can you pass me the yoghurt?**
-
+🎙 **Can you pass me the printout?**

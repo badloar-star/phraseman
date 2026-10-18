@@ -186,7 +186,7 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
   });
 
   // зачем (координатор 18.10 06:21, решение владельца по вопросу Ревизора 3.72): согласия — выбор человека, следующий подтверждает сам.
-  it('A вышел → согласие на аналитику и принятие Условий сохранены, экран согласия не открывается, в журнале — consent_kept', async () => {
+  it('A вышел → Условия сохранены, аналитика сброшена в «не выбрано», экран согласия не открывается, в журнале — consent_kept', async () => {
     const consent = await import('../app/analytics_consent');
     await consent.setAnalyticsConsent('granted');
     expect(consent.getAnalyticsConsentState()).toBe('granted');
@@ -202,7 +202,12 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     emitSpy.mockRestore();
 
     expect(await AsyncStorage.getItem('onboarding_terms_privacy_accepted_v1')).toBe('1');
-    expect(consent.getAnalyticsConsentState()).toBe('granted');
+    // компромисс владельца 18.10 (Ревизор 3.138): выбор аналитики сбрасывается — следующий человек выбирает сам
+    expect(consent.getAnalyticsConsentState()).toBe('unset');
+    expect(consent.isAnalyticsConsentGranted()).toBe(false);
+    const switchLog = logSpy.mock.calls.find((call) => String(call[0]) === '[CONSENT-SWITCH]' && String(call[1]).includes('"stage":"analytics_reset"'));
+    expect(switchLog).toBeDefined();
+    expect(JSON.parse(String(switchLog![1]))).toMatchObject({ analyticsReset: true, terms: 'kept' });
     // онбординг устройства не тронут
     expect(await AsyncStorage.getItem(DEVICE_ONBOARDING_DONE_KEY)).toBe('1');
     const [[, accountDone], [, deviceDone], [, legal], [, pending]] = await AsyncStorage.multiGet([

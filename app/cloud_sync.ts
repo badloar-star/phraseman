@@ -6432,6 +6432,19 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode, keepConsent
   // зачем (решение координатора 18.10, прогон Сверки №2: экран согласий после каждой смены — лишний шаг): выход и смена аккаунта
   // согласия НЕ сбрасывают, если они уже приняты на этом телефоне. Сбрасывает только удаление аккаунта (полное стирание хранилища).
   if (mode === 'signout') console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_kept', reason: keepConsents ? 'handoff_rollback_same_person' : 'owner_rule_keep_on_signout' })); // guard-ok: ветка решения
+  if (mode === 'signout' && !keepConsents) {
+    // зачем (компромисс владельца 18.10, Ревизор 3.138): Условия сохраняются, а выбор аналитики — нет: следующий человек на этом
+    // телефоне выбирает сам, аналитика молчит до его выбора. Через общую очередь согласия — поздний «granted» прежнего не перебьёт.
+    const analyticsBefore = await AsyncStorage.getItem('analytics_consent_v1').catch((error: unknown) => `read_failed:${identityErrorCode(error)}`);
+    let analyticsReset = true;
+    await import('./analytics_consent')
+      .then((m) => m.setAnalyticsConsent('unset'))
+      .catch((error: unknown) => {
+        analyticsReset = false;
+        console.warn('[CONSENT-SWITCH]', JSON.stringify({ stage: 'analytics_reset_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
+      });
+    console.log('[CONSENT-SWITCH]', JSON.stringify({ stage: 'analytics_reset', before: analyticsBefore ?? null, analyticsReset, terms: 'kept' })); // guard-ok: только выбор, без идентификаторов
+  }
   // зачем (сторож cloud_sync_customization_account_isolation «fails closed»): метки снимаются в общем удалении ниже
   // (removeExactly) — сбой роняет стирание целиком, а не глотается отдельным multiRemove.
   const deviceMarksCleared = mode === 'full';

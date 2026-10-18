@@ -72,6 +72,14 @@
 .lastp .pr .trk2 i { display: block; height: 100%; border-radius: 3px; background: #fff; }
 .lastp .pr .ct2 { font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
 .lastp .pr .ar2 { margin-left: auto; width: 32px; height: 32px; border-radius: 16px; background: color-mix(in srgb, #2A2A2C 50%, transparent); display: flex; align-items: center; justify-content: center; flex: none; }
+/* зачем (владелец 18.10, вариант Г из continue-card-variants.html): кольцо прогресса вокруг одной иконки continue, без полосы и стрелки; цвета темы. */
+.gcard { margin-top: 16px; height: 96px; border-radius: 22px; background: color-mix(in srgb, var(--card-2) 50%, transparent); display: flex; align-items: center; gap: 12px; padding: 0 14px 0 16px; overflow: hidden; }
+.gcard .copy { flex: 1; min-width: 0; } .gcard .tt { font-size: 16px; line-height: 20px; font-weight: 700; letter-spacing: -.3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.gcard .gsub { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 5px; font-variant-numeric: tabular-nums; }
+.gcard .rng { --gf: #C9CBD6; --gt: rgba(255,255,255,.14); --gi: #24262E; width: 74px; height: 74px; flex: none; border-radius: 50%; background: conic-gradient(var(--gf) calc(var(--p) * 1%), var(--gt) 0); display: grid; place-items: center; position: relative; }
+.gcard .rng::before { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--gi); }
+.gcard .rng img { position: relative; width: 48px; height: 48px; object-fit: contain; }
+.h4ph .gcard { margin-top: 14px; background: var(--raised); box-shadow: var(--sh); } .h4ph .gcard .rng { --gf: var(--tx); --gt: var(--track); --gi: var(--raised); }
 .lastp .art2 { position: relative; width: 132px; flex: none; display: flex; align-items: center; justify-content: center; padding: 8px 10px 30px; }
 .lastp .art2 img { width: 64px; height: 64px; object-fit: contain; }
 .lastp .art2.nb { padding-bottom: 8px; }
@@ -160,16 +168,17 @@ const tabbar = (tabs) => `<div class="tb"><div class="cap" style="width:calc((10
 const coin = img('coin_rank_00.webp');
 const LANGS = {
   en: { name: 'Английский', flag: 'language_en', lessons: 1, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
-  es: { name: 'Испанский', flag: 'language_es_dev', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
+  es: { name: 'Испанский', flag: 'language_es_dev', lessons: 1, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
   de: { name: 'Немецкий', flag: 'language_de', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
   fr: { name: 'Французский', flag: 'language_fr_dev', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
   it: { name: 'Итальянский', flag: 'language_it', lessons: 0, dialogues: 0, phrase: 1, videos: 1, cards: 1, spire: 1 },
 };
 const TILE = {
-  lessons: ['book_stack', 'Уроки'], dialogues: ['chat_bubbles', 'Диалоги'], cards: ['notecard_stack', 'Карточки'],
-  spire: ['spire_tile', 'Пик'], video_packs: ['spiral_notepad', 'Наборы из видео'],
+  // зачем (владелец 18.10, b4af17fc1): утверждённый набор иконок B — v2art (книга, диалоги, карточки с закладкой, Пик)
+  lessons: ['v2art/dark/lessons.webp', 'Уроки'], dialogues: ['v2art/dark/dialogs.webp', 'Диалоги'], cards: ['v2art/dark/cards.webp', 'Карточки'],
+  spire: ['v2art/dark/spire_tile.webp', 'Пик'], video_packs: ['v2art/dark/cards_from_video.webp', 'Наборы из видео'],
 };
-const tile = (key) => { const [art, t] = TILE[key]; return `<div class="tl c3" style="min-height:118px"><img src="${img(art + (art === 'spire_tile' ? '.webp' : '.png'))}" alt="" style="position:static;width:58px;height:58px;display:block"><div class="tx" style="margin-top:6px"><div class="t">${t}</div></div></div>`; };
+const tile = (key) => { const [art, t] = TILE[key]; return `<div class="tl c3" style="min-height:118px"><img src="${img(art)}" alt="" style="position:static;width:58px;height:58px;display:block"><div class="tx" style="margin-top:6px"><div class="t">${t}</div></div></div>`; };
 const header = (L) => `<div class="hstats"><span class="hstat" style="flex:1"><span style="display:flex;align-items:center;gap:6px">${icon('flame', 's18')}<span><b style="font-size:15px">0 дней</b><br><span style="font-size:12px;color:var(--sec);font-weight:500">Серия</span></span></span></span><span class="hstat" style="flex:1"><img src="${coin}" alt=""><span><b style="font-size:15px">0</b><br><span style="font-size:12px;color:var(--sec);font-weight:500">Монеты</span></span></span><span class="rb fill" style="width:40px;height:40px"><svg class="i s18" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></svg></span><img src="${coin}" alt="" style="width:46px;height:46px;border-radius:50%"></div>`;
 const cont = `<div class="cont"><div class="art"><img src="${img('spiral_notepad.png')}" alt=""></div><span class="bg">Урок 1</span><div class="cp"><div class="ov">ПРОДОЛЖИТЬ ОБУЧЕНИЕ</div><div class="tt">Местоимения и глагол To Be</div><div class="ct">0 / 50</div><div class="pr"><div class="tr"><i></i></div><span class="ar">${icon('fwd', 's16')}</span></div></div></div>`;
 const rail = () => `<div class="sec" style="margin-top:20px"><div class="ti" style="font-size:18px">Видео</div><div class="ac" style="font-size:14px;color:var(--sec)">Смотреть все ${icon('fwd', 's14')}</div></div><div class="rail">${[0, 1].map(() => `<div class="v" style="width:48%"><div class="th" style="height:130px;aspect-ratio:auto;background:#1B1B1D"></div></div>`).join('')}</div>`;
@@ -189,7 +198,9 @@ const home = (code) => {
 };
 
 // ── карточка «последнее место» (719e4c771): варианты по месту, где человек остановился ──
-const lastPlace = (o) => `<div class="lastp"><div class="cp"><div class="tt">${o.title}</div><div class="pr">${o.total ? `<div class="trk2"><i style="width:${Math.max(4, Math.round(o.done / o.total * 100))}%"></i></div><span class="ct2">${o.done} / ${o.total}</span>` : ''}</div></div><div class="art2${o.badge ? '' : ' nb'}"><img src="${img(o.art)}" alt="">${o.badge ? `<span class="bdg2">${o.badge}</span>` : ''}</div></div>`;
+// зачем (вариант Г): одна строка «N из M · Урок 1» (или тип места), кольцо = доля пройденного; иконка одна — continue, не меняется по месту
+const gSub = (o) => (o.total ? `${o.done} из ${o.total}${o.badge ? ` · ${o.badge}` : ''}` : (o.badge || ''));
+const lastPlace = (o) => `<div class="gcard"><div class="copy"><div class="tt">${o.title}</div>${gSub(o) ? `<div class="gsub">${gSub(o)}</div>` : ''}</div><div class="rng" style="--p:${o.total ? Math.round(o.done / o.total * 100) : 0}"><img src="${img('v2art/dark/continue.webp')}" alt=""></div></div>`;
 const PLACES = {
   v2: { title: 'Коллега приносит кофе', done: 9, total: 56, art: 'v2art/dark/continue.webp', badge: 'Урок 1' },
   legacy: { title: 'Местоимения и глагол To Be', done: 12, total: 50, art: 'v2art/dark/continue.webp', badge: 'Урок 1' },
@@ -203,7 +214,7 @@ const homeLast = (k) => { const L = LANGS.en; return phone(`${header(L)}${lastPl
 const H4_TILES = [['lessons', 'Уроки'], ['dialogs', 'Диалоги'], ['cards', 'Карточки'], ['spire_tile', 'Пик']];
 const h4art = (th, k) => img(`v2art/${th === 'th-ink' ? 'light' : 'dark'}/${k}.webp`);
 const h4head = () => `<div class="h4hd"><span class="h4pl"><span class="fl">${icon('flame', 's18')}</span><span><b>5 дней</b><span class="lb">Серия</span></span></span><span class="h4pl"><img src="${coin}" alt=""><span><b>6 854</b><span class="lb">Монеты</span></span></span><span class="h4ci"></span></div>`;
-const h4last = (th) => `<div class="h4lp"><div class="cp"><div class="tt">Местоимения и глагол To Be</div><div class="pr"><span class="tk"><i></i></span>12 / 50</div></div><img src="${h4art(th, 'continue')}" alt=""></div>`;
+const h4last = (th) => `<div class="gcard"><div class="copy"><div class="tt">Местоимения и глагол To Be</div><div class="gsub">12 из 50 · Урок 1</div></div><div class="rng" style="--p:24"><img src="${h4art(th, 'continue')}" alt=""></div></div>`;
 const h4rowA = (th, live) => `<div class="h4ra">${H4_TILES.map(([k, t]) => `<div class="it"><div class="pt"><img src="${h4art(th, k)}" alt="">${live && k === 'spire_tile' ? '<span class="lv">3 место</span>' : ''}</div><div class="nm">${t}</div></div>`).join('')}</div>`;
 const h4rowB = (th) => `<div class="h4rb">${H4_TILES.map(([k, t]) => `<div class="pt"><span class="nm">${t}${k === 'spire_tile' ? '<span class="lv">3 место</span>' : ''}</span><img src="${h4art(th, k)}" alt=""></div>`).join('')}</div>`;
 const h4today = () => `<div class="h4td"><div class="k">Сегодня</div><div class="rw"><i></i>Потренировать диалог<em>0/1</em></div><div class="rw"><i></i>Повторить карточки<em>2/10</em></div></div>`;

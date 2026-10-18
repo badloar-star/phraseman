@@ -85,3 +85,13 @@ Security and privacy: только образец и метаданные све
 Technical debt: затухание справа в коде «делается» — до его коммита строки сверяются без него.
 Verification: playwright-снимок телефонов №1, №3, №10 (360/430 dp): три плитки целиком, Пик срезан краем, бейдж «3 место» не обрезан сверху; быстрые ворота реестра.
 Rollback: git revert коммита образца и реестра.
+
+## Доработка: решения владельца 08:01 — иконки B, плашка «Продолжить» вариант Г, es-уроки
+Governance-ID: TG-C99E3DCB10E2
+Outcome: в home-by-language-mockup.html карточка «Продолжить» (последнее место и h4-телефоны) — вариант Г из continue-card-variants.html (fa6672b5b): высота 96, слева название и строка «12 из 50 · Урок 1», справа кольцо прогресса 74 px вокруг одной иконки continue (48 px), без полосы и стрелки, цвета темы; плитки ряда из трёх — иконки утверждённого набора B (v2art, b4af17fc1) вместо старых 3D; LANGS.es.lessons = 1 (D188). Заметки строк home-* — «вариант Г — эталон (владелец 18.10)».
+Scope: home-by-language-mockup.html, visual_parity.json (заметки home-001…008). Код приложения не трогаю.
+Architecture: разметка и размеры Г — из continue-card-variants.html (.D, .ring conic-gradient, inset 5 px); арт — assets/v2art/{dark,light}.
+Security and privacy: только образец.
+Technical debt: home-001/002 сверяются по shadow-style-etalon.html — там решение только заметкой.
+Verification: снимок телефонов №1, №3, №10, №11 — кольцо, одна строка, нет полосы/стрелки, иконки B; структурные тесты реестра.
+Rollback: git revert коммита.

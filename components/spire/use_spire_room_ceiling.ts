@@ -18,6 +18,30 @@ export function logPikLoad(stage: string, detail: Readonly<Record<string, unknow
 }
 
 /**
+ * Трасса ветки отрисовки «Пика» [PIK-LOAD] render — какое значение решило, что показать (скелет экрана / замок / подиум-скелет / готово).
+ * зачем (Макеты 18.10, кадр pik_guest_c2a45 через +4,3 с: всё ещё скелет, хотя room:first_frame 0,15 с и ready play=enabled 0,34 с —
+ * правило «сперва логи»): пишет строку только когда меняется решение; inst отличает два смонтированных экземпляра экрана.
+ */
+export function useSpirePikRenderTrace(v: Readonly<{
+  langLocked: boolean; configNull: boolean; unlocked: boolean; preview: boolean; live: boolean; roomLoad: SpireRoomLoad | null;
+  members: number | null; tierNull: boolean; showAll: boolean; podiumSkeleton: boolean; ceilingPassed: boolean;
+}>): void {
+  const [inst] = useState(() => Math.random().toString(36).slice(2, 7));
+  const paused = v.roomLoad?.status === 'paused' && !v.roomLoad.room;
+  const branch = v.langLocked ? 'lang_lock' : v.configNull ? 'screen_skeleton(config=null)' : !v.unlocked ? 'locked(unlocked=false)'
+    : paused ? 'locked(paused)' : v.showAll && v.members !== null ? 'all_members' : v.podiumSkeleton ? 'home+podium_skeleton' : 'home';
+  const key = `${branch}|${v.preview}|${v.live}|${v.roomLoad?.status ?? 'null'}|${v.members}|${v.tierNull}|${v.ceilingPassed}`;
+  useEffect(() => {
+    logPikLoad('render', {
+      inst, branch, preview: v.preview, configNull: v.configNull, unlocked: v.unlocked, live: v.live,
+      roomStatus: v.roomLoad?.status ?? null, roomReason: v.roomLoad?.reason ?? null, members: v.members, tierNull: v.tierNull,
+      podiumSkeleton: v.podiumSkeleton, ceilingPassed: v.ceilingPassed,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: строка журнала только при смене решения (key)
+  }, [key]);
+}
+
+/**
  * Прошёл ли потолок ожидания комнаты. Отсчёт идёт, пока экран «живой» (ворота открыты) и комнаты нет; пришла комната — сброс.
  * key — смена языка/владельца начинает отсчёт заново.
  */

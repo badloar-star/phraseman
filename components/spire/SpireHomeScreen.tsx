@@ -55,7 +55,7 @@ import SpireResultPanel from './SpireResultPanel';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
 const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
-import { useSpireTowerBudget } from './use_spire_tower_budget'; import { useSpireRoomCeiling } from './use_spire_room_ceiling'; // зачем (Сверка 18.10 находка 13): потолок скелета подиума + [PIK-LOAD]
+import { useSpireTowerBudget } from './use_spire_tower_budget'; import { useSpirePikRenderTrace, useSpireRoomCeiling } from './use_spire_room_ceiling'; // зачем (Сверка 18.10 находка 13): потолок скелета подиума + [PIK-LOAD]
 import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock';
 import { SPIRE_THIN_HEADER_STYLES as thin } from './spire_thin_header';
 import SpireStepScreen from './SpireStepScreen';
@@ -259,7 +259,7 @@ export default function SpireHomeScreen() {
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).
   const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
-  const podiumLoading = members === null && game.live && game.roomLoad === null; const roomCeilingPassed = useSpireRoomCeiling({ live: game.live, roomLoad: game.roomLoad, hasRows: members !== null, key: `${spireLang}|${preview ? 'preview' : 'live'}` }); const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0); // зачем (Ревизор по c5ccfd458): колонки подиума есть (комната или скелет) — компакт экономит 40 dp; пустая комната/офлайн — 0, иначе ступень качается
+  const podiumLoading = members === null && game.live && game.roomLoad === null; const roomCeilingPassed = useSpireRoomCeiling({ live: game.live, roomLoad: game.roomLoad, hasRows: members !== null, key: `${spireLang}|${preview ? 'preview' : 'live'}` }); const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0); useSpirePikRenderTrace({ langLocked: langLock.locked, configNull: config === null, unlocked, preview: preview !== null, live: game.live, roomLoad: game.roomLoad, members: members?.length ?? null, tierNull: game.tier === null, showAll, podiumSkeleton, ceilingPassed: roomCeilingPassed }); // зачем (Ревизор по c5ccfd458): колонки подиума есть (комната или скелет) — компакт экономит 40 dp; пустая комната/офлайн — 0, иначе ступень качается
   const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH; // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и ступени ужатия — из замеров верха башни, дока и карточки (use_spire_tower_budget), не из модели высоты
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
 

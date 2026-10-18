@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-45:word:supervise",
+    "correctText": "supervise",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-45:i01",
     "correctText": "I can supervise.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-45:word:delegate",
+    "correctText": "delegate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-45:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can delegate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-45:word:coordinate",
+    "correctText": "coordinate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-45:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can coordinate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-45:i08",
-    "correctText": "drive",
+    "correctText": "delegate",
     "correctResponseId": "en:lesson-08:session-45:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-45:i10",
-    "correctText": "en:lesson-08:session-45:i10:p1=bend\nen:lesson-08:session-45:i10:p2=supervise\nen:lesson-08:session-45:i10:p3=pencil\nen:lesson-08:session-45:i10:p4=microwave",
+    "correctText": "en:lesson-08:session-45:i10:p1=supervise\nen:lesson-08:session-45:i10:p2=delegate\nen:lesson-08:session-45:i10:p3=coordinate\nen:lesson-08:session-45:i10:p4=donate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-45:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can delegate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-45:word:roster",
+    "correctText": "roster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-45:i12",
-    "correctText": "Don’t bend it.",
+    "correctText": "I can check the roster.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-45:i14",
-    "correctText": "whistle",
+    "correctText": "coordinate",
     "correctResponseId": "en:lesson-08:session-45:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-45:i16",
-    "correctText": "en:lesson-08:session-45:i16:p1=supervise\nen:lesson-08:session-45:i16:p2=donate\nen:lesson-08:session-45:i16:p3=bend\nen:lesson-08:session-45:i16:p4=microwave",
+    "correctText": "en:lesson-08:session-45:i16:p1=supervise\nen:lesson-08:session-45:i16:p2=delegate\nen:lesson-08:session-45:i16:p3=coordinate\nen:lesson-08:session-45:i16:p4=roster",
     "correctResponseId": null
   },
   {

@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-45:i01",
+      "interactionId": "en:lesson-08:session-45:word:supervise",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — supervise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-45:word:supervise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — supervise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-45:word:supervise:audio",
+          "transcript": "supervise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-45:word:supervise:r1",
+            "targetText": "supervise",
+            "meaningByLocale": {
+              "ru": "контролировать работу, присматривать за её выполнением. I can supervise. — «Я могу проследить за работой».",
+              "uk": "контролювати роботу, наглядати за її виконанням. I can supervise. — «Я можу простежити за роботою»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "supervise",
+          "definitionByLocale": {
+            "ru": "контролировать работу, присматривать за её выполнением. I can supervise. — «Я могу проследить за работой».",
+            "uk": "контролювати роботу, наглядати за її виконанням. I can supervise. — «Я можу простежити за роботою»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-45:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запропонуйте простежити за роботою",
+      "prompt": "Виберіть форму для пропозиції простежити за роботою",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-45:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запропонуйте простежити за роботою",
+      "accessibilityLabel": "Виберіть форму для пропозиції простежити за роботою",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предложите проследить за работой",
-          "uk": "Запропонуйте простежити за роботою"
+          "ru": "Выберите форму для предложения проследить за работой",
+          "uk": "Виберіть форму для пропозиції простежити за роботою"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "supervises"
           }
         ],
-        "testedDimension": "Запропонуйте простежити за роботою",
+        "testedDimension": "Виберіть форму для пропозиції простежити за роботою",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-45:i03:r2",
             "correct": false,
-            "testedDimension": "Запропонуйте простежити за роботою",
+            "testedDimension": "Виберіть форму для пропозиції простежити за роботою",
             "feedbackByLocale": {
               "ru": "После `can` нужно `supervise`, без `to`.",
               "uk": "Після `can` потрібне `supervise`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-45:i03:r3",
             "correct": false,
-            "testedDimension": "Запропонуйте простежити за роботою",
+            "testedDimension": "Виберіть форму для пропозиції простежити за роботою",
             "feedbackByLocale": {
               "ru": "После `can` нужно `supervise`, без `s`.",
               "uk": "Після `can` потрібне `supervise`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-45:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-45:word:delegate",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — delegate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-45:word:delegate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — delegate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-45:word:delegate:audio",
+          "transcript": "delegate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-45:word:delegate:r1",
+            "targetText": "delegate",
+            "meaningByLocale": {
+              "ru": "поручать задачи другим. She can delegate. — «Она может передать часть задач другим».",
+              "uk": "доручати завдання іншим. She can delegate. — «Вона може передати частину завдань іншим»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delegate",
+          "definitionByLocale": {
+            "ru": "поручать задачи другим. She can delegate. — «Она может передать часть задач другим».",
+            "uk": "доручати завдання іншим. She can delegate. — «Вона може передати частину завдань іншим»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "prompt": "Скажіть «Вона може передати частину завдань іншим»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "accessibilityLabel": "Скажіть «Вона може передати частину завдань іншим»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can drive.",
+        "targetPhrase": "She can delegate.",
         "localizedMeaning": {
-          "ru": "Скажите о подруге «Она умеет водить»",
-          "uk": "Скажіть про подругу «Вона вміє водити»"
+          "ru": "Скажите «Она может передать часть задач другим»",
+          "uk": "Скажіть «Вона може передати частину завдань іншим»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "delegate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-45:word:coordinate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coordinate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-45:word:coordinate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coordinate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-45:word:coordinate:audio",
+          "transcript": "coordinate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-45:word:coordinate:r1",
+            "targetText": "coordinate",
+            "meaningByLocale": {
+              "ru": "координировать, согласовывать работу. I can coordinate. — «Я могу согласовать работу». Например, договориться, какая группа действует первой.",
+              "uk": "координувати, узгоджувати роботу. I can coordinate. — «Я можу узгодити роботу». Наприклад, домовитися, яка група діє першою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coordinate",
+          "definitionByLocale": {
+            "ru": "координировать, согласовывать работу. I can coordinate. — «Я могу согласовать работу». Например, договориться, какая группа действует первой.",
+            "uk": "координувати, узгоджувати роботу. I can coordinate. — «Я можу узгодити роботу». Наприклад, домовитися, яка група діє першою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-45:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я вмію свистіти»",
+      "prompt": "Скажіть «Я можу узгодити роботу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-45:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "accessibilityLabel": "Скажіть «Я можу узгодити роботу»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-45:i07:audio",
-          "transcript": "I can whistle."
+          "transcript": "I can coordinate."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can whistle.",
+        "targetPhrase": "I can coordinate.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вона вміє водити",
+      "prompt": "Виберіть форму для фрази про передавання завдань помічникам",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-45:i08:r1",
-          "text": "drive"
+          "text": "delegate"
         },
         {
           "responseId": "en:lesson-08:session-45:i08:r2",
-          "text": "drives"
+          "text": "delegates"
         },
         {
           "responseId": "en:lesson-08:session-45:i08:r3",
-          "text": "to drive"
+          "text": "to delegate"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "accessibilityLabel": "Виберіть форму для фрази про передавання завдань помічникам",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что она умеет водить",
-          "uk": "Скажіть, що вона вміє водити"
+          "ru": "Выберите форму для фразы о передаче задач помощникам",
+          "uk": "Виберіть форму для фрази про передавання завдань помічникам"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-45:i08:r1",
-            "text": "drive"
+            "text": "delegate"
           },
           {
             "responseId": "en:lesson-08:session-45:i08:r2",
-            "text": "drives"
+            "text": "delegates"
           },
           {
             "responseId": "en:lesson-08:session-45:i08:r3",
-            "text": "to drive"
+            "text": "to delegate"
           }
         ],
-        "testedDimension": "Скажіть, що вона вміє водити",
+        "testedDimension": "Виберіть форму для фрази про передавання завдань помічникам",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази про передавання завдань помічникам",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, даже с `she`.",
-              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+              "ru": "После can нужно delegate, даже с she.",
+              "uk": "Після can потрібне delegate, навіть із she."
             }
           },
           {
             "responseId": "en:lesson-08:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази про передавання завдань помічникам",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, без `to`.",
-              "uk": "Після `can` потрібне `drive`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,14 +643,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-45:i10:p1",
-            "target": "bend",
-            "meaningByLocale": {
-              "ru": "сгибать",
-              "uk": "згинати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-45:i10:p2",
             "target": "supervise",
             "meaningByLocale": {
               "ru": "контролировать работу",
@@ -529,33 +650,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-45:i10:p3",
-            "target": "pencil",
+            "pairId": "en:lesson-08:session-45:i10:p2",
+            "target": "delegate",
             "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
+              "ru": "поручать задачи другим",
+              "uk": "доручати завдання іншим"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-45:i10:p3",
+            "target": "coordinate",
+            "meaningByLocale": {
+              "ru": "согласовывать работу",
+              "uk": "узгоджувати роботу"
             }
           },
           {
             "pairId": "en:lesson-08:session-45:i10:p4",
-            "target": "microwave",
+            "target": "donate",
             "meaningByLocale": {
-              "ru": "микроволновая печь",
-              "uk": "мікрохвильова піч"
+              "ru": "делать пожертвования",
+              "uk": "робити пожертви"
             }
           }
         ],
         "leftColumn": [
-          "bend",
           "supervise",
-          "pencil",
-          "microwave"
+          "delegate",
+          "coordinate",
+          "donate"
         ],
         "rightColumn": [
-          "згинати",
           "контролювати роботу",
-          "олівець",
-          "мікрохвильова піч"
+          "доручати завдання іншим",
+          "узгоджувати роботу",
+          "робити пожертви"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,14 +717,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-45:i11:audio",
-          "transcript": "She can drive."
+          "transcript": "She can delegate."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can drive.",
+        "hiddenTargetPhrase": "She can delegate.",
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "delegate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -607,27 +736,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-45:word:roster",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-45:word:roster:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-45:word:roster:audio",
+          "transcript": "roster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-45:word:roster:r1",
+            "targetText": "roster",
+            "meaningByLocale": {
+              "ru": "график дежурств, список людей с назначенными сменами. I can check the roster. — «Я могу проверить график дежурств».",
+              "uk": "графік чергувань, список людей із призначеними змінами. I can check the roster. — «Я можу перевірити графік чергувань»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roster",
+          "definitionByLocale": {
+            "ru": "график дежурств, список людей с назначенными сменами. I can check the roster. — «Я могу проверить график дежурств».",
+            "uk": "графік чергувань, список людей із призначеними змінами. I can check the roster. — «Я можу перевірити графік чергувань»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-45:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг згинає фотографію команди. Скажіть «Не згинай це»",
+      "prompt": "Потрібно дізнатися, хто чергує вранці. Скажіть «Я можу перевірити графік чергувань»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг згинає фотографію команди. Скажіть «Не згинай це»",
+      "accessibilityLabel": "Потрібно дізнатися, хто чергує вранці. Скажіть «Я можу перевірити графік чергувань»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t bend it.",
+        "targetPhrase": "I can check the roster.",
         "localizedMeaning": {
-          "ru": "Друг сгибает фотографию команды. Скажите «Не сгибай это»",
-          "uk": "Друг згинає фотографію команди. Скажіть «Не згинай це»"
+          "ru": "Нужно узнать, кто дежурит утром. Скажите «Я могу проверить график дежурств»",
+          "uk": "Потрібно дізнатися, хто чергує вранці. Скажіть «Я можу перевірити графік чергувань»"
         },
         "orderedTokens": [
-          "Don’t",
-          "bend",
-          "it"
+          "I",
+          "can",
+          "check",
+          "the",
+          "roster"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -640,7 +814,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -673,67 +847,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте свистіти",
+      "prompt": "Виберіть форму для фрази «Я можу узгодити роботу»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-45:i14:r1",
-          "text": "whistle"
+          "text": "coordinate"
         },
         {
           "responseId": "en:lesson-08:session-45:i14:r2",
-          "text": "whistles"
+          "text": "coordinates"
         },
         {
           "responseId": "en:lesson-08:session-45:i14:r3",
-          "text": "to whistle"
+          "text": "to coordinate"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "accessibilityLabel": "Виберіть форму для фрази «Я можу узгодити роботу»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете свистеть",
-          "uk": "Скажіть, що вмієте свистіти"
+          "ru": "Выберите форму для фразы «Я могу согласовать работу»",
+          "uk": "Виберіть форму для фрази «Я можу узгодити роботу»"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-45:i14:r1",
-            "text": "whistle"
+            "text": "coordinate"
           },
           {
             "responseId": "en:lesson-08:session-45:i14:r2",
-            "text": "whistles"
+            "text": "coordinates"
           },
           {
             "responseId": "en:lesson-08:session-45:i14:r3",
-            "text": "to whistle"
+            "text": "to coordinate"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте свистіти",
+        "testedDimension": "Виберіть форму для фрази «Я можу узгодити роботу»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу узгодити роботу»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "После can нужно coordinate, без s.",
+              "uk": "Після can потрібне coordinate, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу узгодити роботу»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -742,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -818,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -840,40 +1014,40 @@
           },
           {
             "pairId": "en:lesson-08:session-45:i16:p2",
-            "target": "donate",
+            "target": "delegate",
             "meaningByLocale": {
-              "ru": "жертвовать",
-              "uk": "жертвувати"
+              "ru": "поручать задачи другим",
+              "uk": "доручати завдання іншим"
             }
           },
           {
             "pairId": "en:lesson-08:session-45:i16:p3",
-            "target": "bend",
+            "target": "coordinate",
             "meaningByLocale": {
-              "ru": "сгибать",
-              "uk": "згинати"
+              "ru": "согласовывать работу",
+              "uk": "узгоджувати роботу"
             }
           },
           {
             "pairId": "en:lesson-08:session-45:i16:p4",
-            "target": "microwave",
+            "target": "roster",
             "meaningByLocale": {
-              "ru": "микроволновая печь",
-              "uk": "мікрохвильова піч"
+              "ru": "график дежурств",
+              "uk": "графік чергувань"
             }
           }
         ],
         "leftColumn": [
           "supervise",
-          "donate",
-          "bend",
-          "microwave"
+          "delegate",
+          "coordinate",
+          "roster"
         ],
         "rightColumn": [
           "контролювати роботу",
-          "жертвувати",
-          "згинати",
-          "мікрохвильова піч"
+          "доручати завдання іншим",
+          "узгоджувати роботу",
+          "графік чергувань"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -891,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-45:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -931,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cc34e38f8b321fb74e5587e325233f17e9c48a18d1e07d61f39ea771c999bb35"
+  "learnerFingerprint": "20804189fd29739b755d40e9b003629bcf5ddc26e03f15748db7394def551ace"
 }

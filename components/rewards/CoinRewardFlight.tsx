@@ -19,7 +19,7 @@
  * измеряет собственное окно и переводит их в свою систему сам.
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
   cancelAnimation,
@@ -38,6 +38,10 @@ import { logMemCoin } from '../coins/mem_coin_probe';
 const FLIGHT_MS = 620;
 const STAGGER_MS = 90;
 const ARC_LIFT = 46;
+// зачем (Макеты m08_1018/q_wrong_t06.png, координатор 18.10): монета шла напрямую от точки награды к счётчику и пересекала подсказку «Собери фразу» в центре экрана. Теперь дуга уходит ВПРАВО, к правому краю экрана,
+// и только потом поднимается к счётчику (по дуге через правый край, не через центр); длительность, кривая и каскад прежние. EDGE_MARGIN — зазор монеты до края, MAX_BULGE — потолок выноса вправо.
+const EDGE_MARGIN = 14;
+const MAX_BULGE = 160;
 const COIN_SIZE = 18;
 const FLIGHT_EASE = Easing.bezier(0.33, 0.52, 0.25, 0.99);
 
@@ -72,10 +76,12 @@ interface FlightCoinProps {
   isLast: boolean;
   dx: number;
   dy: number;
+  /** Вынос дуги вправо в середине полёта, px (0 — прежняя прямая дуга). */
+  bulge: number;
   onLastDone: () => void;
 }
 
-const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, onLastDone }: FlightCoinProps) {
+const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, bulge, onLastDone }: FlightCoinProps) {
   const progress = useSharedValue(0);
 
   useEffect(() => {
@@ -97,7 +103,8 @@ const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, onLastDone 
     return {
       opacity: p < 0.08 ? p / 0.08 : p > 0.94 ? 1 - (p - 0.94) * 6 : 1,
       transform: [
-        { translateX: dx * p },
+        // Вправо к краю экрана и обратно к счётчику: вынос bulge·sin(πp), в конце (p=1) монета ровно на счётчике.
+        { translateX: dx * p + bulge * Math.sin(Math.PI * p) },
         // Дуга: вертикаль поднимается синусом, как в утверждённом макете.
         { translateY: dy * p - ARC_LIFT * Math.sin(Math.PI * p) },
         { scale: 1 - 0.45 * p },
@@ -115,6 +122,7 @@ const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, onLastDone 
 
 export const CoinRewardFlight = memo(function CoinRewardFlight({ from, to, count, onDone }: CoinRewardFlightProps) {
   const reducedMotion = useReducedMotion();
+  const { width: windowWidth } = useWindowDimensions();
   // Обновления HUD родителя могут сменить колбэк, но никогда не перезапускают полёт.
   const onDoneRef = useRef(onDone);
   onDoneRef.current = onDone;
@@ -129,6 +137,9 @@ export const CoinRewardFlight = memo(function CoinRewardFlight({ from, to, count
   }, [reducedMotion]);
 
   if (reducedMotion) return null;
+  // зачем (координатор 18.10): вынос дуги — до правого края окна (с зазором), не больше MAX_BULGE; середина пути (from.x + dx/2) определяет, сколько места осталось справа.
+  const midX = from.x + (to.x - from.x) / 2;
+  const bulge = Math.max(0, Math.min(MAX_BULGE, windowWidth - EDGE_MARGIN - COIN_SIZE / 2 - midX));
   const particles = Array.from({ length: Math.min(count, COIN_REWARD_FLIGHT_MAX_PARTICLES) }, (_, index) => index);
 
   return (
@@ -157,6 +168,7 @@ export const CoinRewardFlight = memo(function CoinRewardFlight({ from, to, count
                 isLast={index === particles.length - 1}
                 dx={to.x - from.x}
                 dy={to.y - from.y}
+                bulge={bulge}
                 onLastDone={finishFlight}
               />
             </View>

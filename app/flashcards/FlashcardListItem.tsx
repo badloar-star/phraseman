@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { fitPhraseFontSize } from './fit_phrase_font';
-import { VideoCardSaveButton } from '../../components/cards-grid/VideoCardSaveButton';
+import { VideoCardSaveSlot } from '../../components/cards-grid/VideoCardSaveSlot';
 import { useVideoCardSaveContext } from './use_video_card_save';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../../components/ThemeContext';
@@ -269,7 +269,7 @@ function FlashcardListItemImpl({
   /** E7: ряд действий (редактировать / удалить) в деталях — детали появляются даже без описания. */
   const hasDetailsActions = !!(onEditCard || onDeleteFromDetails);
   const hasDetails = !isModernAbbrevCard && (cardHasDetails(item) || hasDetailsActions);
-  const { width: winW, height: winH } = useWindowDimensions();
+  const { width: winW, height: winH, fontScale } = useWindowDimensions();
   // зачем: на низких экранах (iPhone SE 667pt, Android 360x800) текст фразы почти
   // не ужимался — uiScale в ThemeContext считается от ШИРИНЫ, а она у телефонов
   // почти одинаковая (360-430 против эталона 390) и даёт всего -3%. Короткая у
@@ -615,9 +615,15 @@ function FlashcardListItemImpl({
   const frontTextMaxH = Math.max(92, cardHeight - 74);
   // зачем (владелец 18.10, координатор 10:10): длинная фраза (особенно из видео) должна ПОМЕЩАТЬСЯ на карточку — кегль уменьшается расчётом по длине (до 14), перенос по словам, без «…» и без прокрутки;
   // короткие фразы и обычные карточки получают прежний базовый размер без изменений.
+  // Ревизор 4d65c8be5 (в): считаем ТОЛЬКО для наборов из видео (контекст сохранения есть) и с учётом системного масштаба шрифта (Text растёт до maxFontSizeMultiplier 1.35).
   const faceTextWidth = Math.max(120, winW - 92);
-  const frontPhraseSize = fitPhraseFontSize({ text: item.en, baseSize: cardFont(f.h1 + 2, 17), widthPx: faceTextWidth, maxHeightPx: frontTextMaxH - 16 - (item.transcription?.trim() ? Math.round(24 * cardScale) : 0) });
-  const backPhraseSize = fitPhraseFontSize({ text: tr, baseSize: cardFont(f.h1 + 2, 17), widthPx: faceTextWidth, maxHeightPx: frontTextMaxH - 8 });
+  const phraseFontScale = Math.min(Math.max(fontScale, 1), 1.35);
+  const frontPhraseSize = videoCardSave
+    ? fitPhraseFontSize({ text: item.en, baseSize: cardFont(f.h1 + 2, 17), widthPx: faceTextWidth, maxHeightPx: frontTextMaxH - 16 - (item.transcription?.trim() ? Math.round(24 * cardScale) : 0), fontScale: phraseFontScale })
+    : cardFont(f.h1 + 2, 17);
+  const backPhraseSize = videoCardSave
+    ? fitPhraseFontSize({ text: tr, baseSize: cardFont(f.h1 + 2, 17), widthPx: faceTextWidth, maxHeightPx: frontTextMaxH - 8, fontScale: phraseFontScale })
+    : cardFont(f.h1 + 2, 17);
   const overlayOpacity = getOverlayAnim(item.id);
   const delAnim = getDeleteAnim(item.id);
   const overlayBtnScale = overlayOpacity.interpolate({ inputRange: [0, 0.6, 1], outputRange: [0.7, 1.05, 1] });
@@ -1125,12 +1131,10 @@ function FlashcardListItemImpl({
           {/* зачем (владелец 18.10): «Сохранить» на КАЖДОЙ карточке из видео — только нужные, а не весь набор; кнопка есть, когда экран набора из видео положил сохранение в контекст. */}
           {videoCardSave && !savedGlass ? (
             <View onStartShouldSetResponder={() => true} style={{ position: 'absolute', bottom: 8, right: 10, zIndex: 7 }}>
-              <VideoCardSaveButton
+              <VideoCardSaveSlot
                 testID={`fc-video-card-save-${item.id}`}
-                saved={videoCardSave.isSaved(item)}
-                onPress={() => videoCardSave.toggle(item)}
-                saveLabel={videoCardSave.labels.save}
-                savedLabel={videoCardSave.labels.saved}
+                save={videoCardSave}
+                card={item}
                 ink={t.accentText}
                 backgroundColor={`${t.bgSurface}F0`}
                 boxShadow={nestedBoxShadow(g)}

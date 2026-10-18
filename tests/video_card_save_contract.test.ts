@@ -24,25 +24,39 @@ describe('«Сохранить» на карточках из видео', () =>
 
   it('хук: мгновенный тап, откат с причиной и тостом, защита от двойного тапа, повторный тап снимает, журнал', () => {
     const src = read('app/flashcards/use_video_card_save.ts');
-    expect(src).toContain('setKey(key, !wasSaved); // Optimistic UI');
+    expect(src).toContain('mark(key, !wasSaved); // Optimistic UI');
     expect(src).toContain("addFlashcard({");
     expect(src).toContain("source: 'video_phrase'");
     expect(src).toContain("busyRef.current.has(key)");
     expect(src).toContain("'skip: in_flight'");
-    expect(src).toContain("videoCardSaveToast(String(result), lang);");
+    expect(src).toContain("videoCardSaveToast(String(result), uiLang);");
     expect(src).toContain("'rollback'");
-    expect(src).toContain('removeFlashcard(found.id, language)');
+    expect(src).toContain('removeFlashcard(found.id, lng)');
     expect(src).toContain("const LOG = '[VIDEO-CARD-SAVE]';");
     // зачем (координатор 18.10): лимит Free — пейвол-шторка, не тихий отказ; для Plus — прежний тост
-    expect(src).toContain("result === 'limit_reached' && !hasPremiumAccess");
+    expect(src).toContain("result === 'limit_reached' && !premium");
     expect(src).toContain("pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'video_card_save' }");
+  });
+
+  // зачем (Ревизор 4d65c8be5 (а),(б),(г)): тап до прихода загрузки не затирается; значение для строк стабильно, «сохранено» — подпиской по ключу; у кнопки подпись «Сохранить/Сохранено»
+  it('last-write-guard, стабильное значение и подписи кнопки', () => {
+    const src = read('app/flashcards/use_video_card_save.ts');
+    expect(src).toContain('touchedRef.current.add(key)');
+    expect(src).toContain('touchedRef.current.forEach((key) => { if (savedRef.current.has(key)) loaded.add(key); else loaded.delete(key); });');
+    expect(src).toContain('useSyncExternalStore(save.subscribe');
+    expect(src).toContain('}, [lang]);'); // значение создаётся один раз на язык, не на каждое сохранение
+    expect(src).not.toContain('savedKeys');
+    const slot = read('components/cards-grid/VideoCardSaveSlot.tsx');
+    expect(slot).toContain('useVideoCardSaved(save, card)');
+    const button = read('components/cards-grid/VideoCardSaveButton.tsx');
+    expect(button).toContain('accessibilityLabel={saved ? savedLabel : saveLabel}');
   });
 
   it('набор из видео: у каждой карточки своя кнопка-закладка, «Добавить +» набора осталась', () => {
     const view = read('app/flashcards/VideoSetView.tsx');
-    expect(view).toContain('<VideoCardSaveButton');
+    expect(view).toContain('<VideoCardSaveSlot');
     expect(view).toContain('video-set-save-${card.id}');
-    expect(view).toContain('cardSave.toggle(card)');
+    expect(view).toContain('save={cardSave}');
     expect(view).toContain('variant="setAdd"');
   });
 

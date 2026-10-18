@@ -37,6 +37,13 @@ describe('fitPhraseFontSize', () => {
     if (size > 14) expect(estimateWrappedLines(text, size, BOX.widthPx) * size * 1.3).toBeLessThanOrEqual(BOX.maxHeightPx);
   });
 
+  it('системный масштаб шрифта учитывается: при 1,35 текст уменьшается сильнее', () => {
+    const text = 'Could you please tell me where the nearest pharmacy is because I need to buy something';
+    const normal = fitPhraseFontSize({ text, baseSize: 22, ...BOX });
+    const scaled = fitPhraseFontSize({ text, baseSize: 22, ...BOX, fontScale: 1.35 });
+    expect(scaled).toBeLessThanOrEqual(normal);
+  });
+
   it('перенос по словам: слово длиннее строки делится, пустой текст — одна строка', () => {
     expect(estimateWrappedLines('', 16, 200)).toBe(1);
     expect(estimateWrappedLines('supercalifragilisticexpialidocious-and-more-and-more', 16, 100)).toBeGreaterThan(1);
@@ -45,6 +52,8 @@ describe('fitPhraseFontSize', () => {
   it('карточка использует расчёт (а не adjustsFontSizeToFit) для лицевой и обратной стороны', () => {
     const item = read('app/flashcards/FlashcardListItem.tsx');
     expect(item).toContain('fitPhraseFontSize({ text: item.en');
+    expect(item).toContain('const frontPhraseSize = videoCardSave'); // только для наборов из видео (Ревизор 4d65c8be5 (в))
+    expect(item).toContain('fontScale: phraseFontScale');
     expect(item).toContain('fitPhraseFontSize({ text: tr');
     expect(item).toContain('fontSize: frontPhraseSize,');
     expect(item).toContain('fontSize: backPhraseSize');

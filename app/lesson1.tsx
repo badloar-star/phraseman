@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
@@ -2136,6 +2137,7 @@ function LessonScreen() {
   // подключён только на остальных шести экранах. Тот же паттерн measureInWindow,
   // что в lesson_words.tsx/lesson_irregular_verbs.tsx.
   const runeFlight = useCoinRewardFlight();
+  const insets = useStableSafeAreaInsets(); // зачем (Ревизор dcda1af2a): нижний safe-area inset для тоста медали
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
@@ -4209,8 +4211,8 @@ function LessonScreen() {
             promoted={medalToast.promoted}
             anim={medalToastAnim}
             bg={t.bgCard}
-            // зачем (Макеты m08_1018/n_c5_t16.png, координатор 09:22): тост «Бронзовая медаль» (низ 120) закрывал полосу прогресса урока и ряд «Теория/Назад/Повтор» — поднят над ними (низ 236), перекрытий нет.
-            bottom={236}
+            // зачем (Макеты m08_1018/n_c5_t16.png, координатор 09:22): тост «Бронзовая медаль» (низ 120) закрывал полосу прогресса урока и ряд «Теория/Назад/Повтор» — поднят над ними (низ 212 + нижний safe-area inset, Ревизор dcda1af2a), перекрытий нет.
+            bottom={212 + insets.bottom}
             isLightTheme={false}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}

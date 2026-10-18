@@ -7,8 +7,8 @@ const AVG_CHAR_WIDTH_EM = 0.56; // средняя ширина знака жир
 const LINE_HEIGHT_RATIO = 1.3;
 
 /** Сколько строк займёт текст при переносе по словам (слово длиннее строки делится по знакам). */
-export function estimateWrappedLines(text: string, fontSize: number, widthPx: number): number {
-  const charsPerLine = Math.max(1, Math.floor(widthPx / (fontSize * AVG_CHAR_WIDTH_EM)));
+export function estimateWrappedLines(text: string, fontSize: number, widthPx: number, fontScale = 1): number {
+  const charsPerLine = Math.max(1, Math.floor(widthPx / (fontSize * fontScale * AVG_CHAR_WIDTH_EM)));
   let lines = 0;
   for (const paragraph of text.split('\n')) {
     let current = 0;
@@ -41,15 +41,17 @@ export type FitPhraseInput = Readonly<{
   widthPx: number;
   /** Высота области текста, px. */
   maxHeightPx: number;
+  /** Системный масштаб шрифта (Text растёт во столько раз): учитывается и в ширине, и в высоте строки. */
+  fontScale?: number;
 }>;
 
 /** Наибольший кегль от baseSize до minSize, при котором текст целиком помещается в область; не помещается и на минимуме — минимум (дальше решает прокрутка места). */
-export function fitPhraseFontSize({ text, baseSize, minSize = 14, widthPx, maxHeightPx }: FitPhraseInput): number {
+export function fitPhraseFontSize({ text, baseSize, minSize = 14, widthPx, maxHeightPx, fontScale = 1 }: FitPhraseInput): number {
   const floor = Math.min(baseSize, minSize);
   if (!text || widthPx <= 0 || maxHeightPx <= 0) return baseSize;
   for (let size = Math.round(baseSize); size >= floor; size -= 1) {
-    const lines = estimateWrappedLines(text, size, widthPx);
-    if (lines * size * LINE_HEIGHT_RATIO <= maxHeightPx) return size;
+    const lines = estimateWrappedLines(text, size, widthPx, fontScale);
+    if (lines * size * fontScale * LINE_HEIGHT_RATIO <= maxHeightPx) return size;
   }
   return floor;
 }

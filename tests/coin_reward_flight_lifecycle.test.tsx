@@ -11,7 +11,8 @@ jest.mock('react-native', () => {
     React.useEffect(() => { onLayout?.(); }, []);
     return React.createElement('View', props, children);
   });
-  return { View, StyleSheet: { create: (styles: unknown) => styles, absoluteFill: {}, flatten: (style: unknown) => style } };
+  // зачем (координатор 18.10, дуга монеты через правый край): полёт читает ширину окна (useWindowDimensions) для выноса дуги
+  return { View, StyleSheet: { create: (styles: unknown) => styles, absoluteFill: {}, flatten: (style: unknown) => style }, useWindowDimensions: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) };
 });
 jest.mock('react-native-reanimated', () => {
   const React = require('react');

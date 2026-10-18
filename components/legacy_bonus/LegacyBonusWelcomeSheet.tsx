@@ -8,12 +8,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, type MutableRefObject } from 'react';
 import { ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
-import { useReducedMotion } from 'react-native-reanimated';
+import Animated, { Keyframe, useReducedMotion } from 'react-native-reanimated';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import type { Lang } from '../../constants/i18n';
 import { legacyBonusConvertTitle, legacyBonusCta, legacyBonusTitle } from '../../modules/legacy_bonus/legacy_bonus_strings';
 import { legacyBonusHasContent, legacyBonusRows, legacyBonusTotal, type LegacyBonusViewInput } from '../../modules/legacy_bonus/legacy_bonus_view';
 import DuoPressable from '../DuoPressable';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import { useTheme } from '../ThemeContext';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../moments/title_scale';
@@ -21,6 +22,17 @@ import LegacyBonusFlyLayer from './LegacyBonusFlyLayer';
 import LegacyBonusHero from './LegacyBonusHero';
 import LegacyBonusRow from './LegacyBonusRow';
 import { useLegacyBonusBurn } from './use_legacy_bonus_burn';
+
+// зачем (координатор 18.10, сверка с макетом vstrechaite-2-0.html `.rv`): заголовок, блок пересчёта и кнопка проявляются по очереди —
+// прозрачность 0 → 1 (420 мс) и подъём на 10 px (520 мс), задержки 120 / 200 / 260 мс, кривая ease-out макета.
+const reveal = (delayMs: number) => new Keyframe({
+  0: { opacity: 0, transform: [{ translateY: 10 }] },
+  80: { opacity: 1, transform: [{ translateY: 1 }] },
+  100: { opacity: 1, transform: [{ translateY: 0 }] },
+}).duration(520).delay(delayMs);
+const REVEAL_TITLE = reveal(120);
+const REVEAL_CONVERT = reveal(200);
+const REVEAL_CTA = reveal(260);
 
 export type LegacyBonusWelcomeSheetProps = Readonly<{
   visible: boolean;
@@ -54,11 +66,12 @@ function Content({ lang, coinRank, result, requestDismiss }: Readonly<{ lang: La
   return (
     <>
       <ScrollView style={s.scroll} contentContainerStyle={s.scrollContent} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
-        <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: glass.text }]}>{legacyBonusTitle(lang)}</Text>
+        <Animated.Text entering={reduceMotion ? undefined : REVEAL_TITLE} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: glass.text }]}>{legacyBonusTitle(lang)}</Animated.Text>
         {hasContent ? (
-        <>
+        <Animated.View entering={reduceMotion ? undefined : REVEAL_CONVERT}>
         <Text style={[s.convert, { color: glass.text }]}>{legacyBonusConvertTitle(lang)}</Text>
-        <View style={[s.plate, { backgroundColor: glass.opaqueCard }]} testID="legacy-bonus-plate">
+        {/* зачем (сверка с макетом: `.plate` с тенью var(--sh)): плашка отделяется тенью темы, без обводки */}
+        <View style={[s.plate, { backgroundColor: glass.opaqueCard, boxShadow: plateBoxShadow(glass) }]} testID="legacy-bonus-plate">
           <LegacyBonusHero
             ref={burn.heroRef}
             lang={lang}
@@ -84,9 +97,10 @@ function Content({ lang, coinRank, result, requestDismiss }: Readonly<{ lang: La
           </View>
           <LegacyBonusFlyLayer ref={burn.flyRef} />
         </View>
-        </>
+        </Animated.View>
         ) : null}
       </ScrollView>
+      <Animated.View entering={reduceMotion ? undefined : REVEAL_CTA}>
       <DuoPressable
         testID="legacy-bonus-cta"
         accessibilityRole="button"
@@ -100,6 +114,7 @@ function Content({ lang, coinRank, result, requestDismiss }: Readonly<{ lang: La
       >
         <Text style={[s.ctaText, { color: glass.ctaFillInk }]}>{legacyBonusCta(lang)}</Text>
       </DuoPressable>
+      </Animated.View>
     </>
   );
 }
@@ -132,7 +147,8 @@ const s = StyleSheet.create({
   // `.plate`: радиус 18, поля 14 — без обводки (стиль «Тень»: тон и скругление)
   plate: { borderRadius: 18, padding: 14 },
   rows: { gap: 6 },
-  ctaWrap: { width: '100%', marginTop: 12 },
+  // `.cta`: отступ 20 над кнопкой (было 12)
+  ctaWrap: { width: '100%', marginTop: 20 },
   cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
 });

@@ -85,25 +85,26 @@ describe('DialogueV2CatalogueSection', () => {
     expect(source).toContain('labels.lockedAtRank(item.rankRequired)');
   });
 
-  // 18.10 (Макеты e051906a7, dialogs-006): монета ранга — inline-картинка ВНУТРИ Text строки ранга, через неразрывный пробел:
-  // сразу после текста на любой длине и при переносе (на es при 1,3 отдельная монета в ряду уезжала к правому краю).
-  test('rank coin is an inline RN Image inside the rank Text, glued by a no-break space', () => {
+  // 18.10 (владелец, скрин iPhone): inline-картинка внутри переносящегося Text на iOS вставала не на свою строку и наезжала
+  // на «Откроется». Монета ранга — отдельный элемент ряда ПЕРЕД подписью: всегда у начала текста, на любой длине и при переносе.
+  test('rank coin stands before the rank label in its own row, never inline inside wrapped Text', () => {
     const source = fs.readFileSync(
       path.join(__dirname, '..', 'components', 'dialogs', 'DialogueV2CatalogueSection.tsx'),
       'utf8',
     ).replace(/\r\n/g, '\n');
     expect(source).toContain("import { Image as RNImage, Text, View } from 'react-native';");
     expect(source).not.toContain("from 'expo-image'");
-    expect(source).toContain("const NO_BREAK_SPACE = '\\u00a0';");
-    const textStart = source.indexOf('{glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}\n');
-    const textEnd = source.indexOf('</Text>', textStart);
-    expect(textStart).toBeGreaterThan(-1);
-    const inline = source.slice(textStart, textEnd);
-    expect(inline).toContain('{NO_BREAK_SPACE}');
-    expect(inline).toContain('<RNImage');
-    expect(inline).toContain("onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}");
-    // монета больше не отдельный элемент ряда рядом с текстом
-    expect(source).not.toContain("<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>");
+    const rowStart = source.indexOf("<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>");
+    expect(rowStart).toBeGreaterThan(-1);
+    const coinAt = source.indexOf('<RNImage', rowStart);
+    const labelAt = source.indexOf('{glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}', rowStart);
+    expect(coinAt).toBeGreaterThan(rowStart);
+    expect(labelAt).toBeGreaterThan(coinAt);
+    expect(source.slice(coinAt, labelAt)).toContain("onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}");
+    // подпись сжимается и переносится сама, картинки внутри Text больше нет
+    const labelText = source.slice(source.lastIndexOf('<Text', labelAt), source.indexOf('</Text>', labelAt));
+    expect(labelText).toContain('flexShrink: 1');
+    expect(labelText).not.toContain('<RNImage');
   });
 
   // 18.10 (Макеты 4a2237e12, dialogs-006 при 1,3): «Повседневно/е» рвалось посреди слова — тогда счётчик уходит под название (без ужатия);

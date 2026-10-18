@@ -275,9 +275,10 @@ export function DialogueV2CatalogueSection({
                           // строки и при переносе (es «Se desbloquea en el rango N» на 1,3 уходила к правому краю, когда текст в ряду растягивался на всю ширину).
                           // Это возможно только картинкой ВНУТРИ Text: inline в Text умеет только RN Image; выигрыш expo-image для 16 dp копеечный (R129).
                           // Неразрывный пробел держит монету вместе с последним словом.
-                          <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }} maxFontSizeMultiplier={1.3}>
-                            {glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}
-                            {NO_BREAK_SPACE}
+                          // зачем (владелец 18.10, скрин iPhone): картинка ВНУТРИ переносящегося Text на iOS ставится не на свою строку и
+                          // наезжает на «Откроется». Монета ранга теперь стоит ПЕРЕД подписью отдельным элементом ряда — всегда у начала
+                          // текста, на любой длине и при переносе, без inline-картинки.
+                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>
                             <RNImage
                               testID={`dialogue-v2-catalogue-row-coin-${item.id}`}
                               source={coinRankRowForDisplay(item.rankRequired).source}
@@ -285,7 +286,10 @@ export function DialogueV2CatalogueSection({
                               accessible={false}
                               onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}
                             />
-                          </Text>
+                            <Text style={{ flexShrink: 1, color: glass.secondary, fontSize: 13, lineHeight: 18 }} maxFontSizeMultiplier={1.3}>
+                              {glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}
+                            </Text>
+                          </View>
                         ) : null}
                       </View>
 

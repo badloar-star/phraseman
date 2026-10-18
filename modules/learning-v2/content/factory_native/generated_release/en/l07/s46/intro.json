@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-46",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках и спрашивать о месте",
-    "uk": "розповідати про звички й запитувати про місце"
+    "ru": "говорить о привычках, ставя usually или often перед действием",
+    "uk": "говорити про звички, ставлячи usually або often перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Порядок в книгах",
-        "uk": "Порядок у книжках"
+        "ru": "Паста с братом",
+        "uk": "Паста з братом"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, как вы поддерживаете порядок на книжной полке. `Organize` — «организовывать»; когда речь о вещах — «упорядочивать, раскладывать по порядку». `I usually organize my books` — «Я обычно раскладываю свои книги по порядку». `Usually` стоит перед `organize`. Теперь нужную книгу можно найти раньше, чем передумаешь читать.",
-        "uk": "Друг запитує, як ви підтримуєте порядок на книжковій полиці. `Organize` — «організовувати»; коли йдеться про речі — «упорядковувати, розкладати за порядком». `I usually organize my books` — «Я зазвичай розкладаю свої книжки за порядком». `Usually` стоїть перед `organize`. Тепер потрібну книжку можна знайти раніше, ніж передумаєш читати."
+        "ru": "Брат помогает вам готовить пасту и спрашивает, что вы делаете с сыром перед тем, как подать её на стол. grate — «тереть на тёрке». Брат предлагает положить кусок целиком. Вы всё-таки достаёте тёрку — стружку легче распределить по пасте: I usually grate the cheese — «Я обычно тру сыр на тёрке». Слово usually стоит перед grate.",
+        "uk": "Брат допомагає вам готувати пасту й питає, що ви робите із сиром перед тим, як подати її на стіл. grate — «терти на тертці». Брат пропонує покласти шматок цілим. Ви все-таки дістаєте тертку — стружку легше розподілити по пасті: I usually grate the cheese — «Я зазвичай тру сир на тертці». Слово usually стоїть перед grate."
       },
       "question": {
         "interactionId": "en:lesson-07:session-46:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите, что вы обычно делаете со своими книгами.",
-          "uk": "Розкажіть, що ви зазвичай робите зі своїми книжками."
+          "ru": "Брат помогает готовить пасту. Скажите ему: «Я обычно тру сыр на тёрке».",
+          "uk": "Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-46:intro1:r1",
-              "text": "I usually organize my books."
+              "text": "I usually grate the cheese."
             },
             {
               "responseId": "en:lesson-07:session-46:intro1:r2",
-              "text": "I usually organizes my books."
+              "text": "I usually grates the cheese."
             },
             {
               "responseId": "en:lesson-07:session-46:intro1:r3",
-              "text": "I usually organizing my books."
+              "text": "I usually grating the cheese."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-46:intro1:r1",
-              "text": "I usually organize my books."
+              "text": "I usually grate the cheese."
             },
             {
               "responseId": "en:lesson-07:session-46:intro1:r2",
-              "text": "I usually organizes my books."
+              "text": "I usually grates the cheese."
             },
             {
               "responseId": "en:lesson-07:session-46:intro1:r3",
-              "text": "I usually organizing my books."
+              "text": "I usually grating the cheese."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите, что вы обычно делаете со своими книгами.",
-          "uk": "Розкажіть, що ви зазвичай робите зі своїми книжками."
+          "ru": "Брат помогает готовить пасту. Скажите ему: «Я обычно тру сыр на тёрке».",
+          "uk": "Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Глажу утром",
-        "uk": "Прасую вранці"
+        "ru": "Омлет для подруги",
+        "uk": "Омлет для подруги"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы обычно гладите. `I usually iron in the morning` — «Я обычно глажу утром». `Usually` стоит перед `iron`; `in the morning` — «утром».",
-        "uk": "Друг запитує, коли ви зазвичай прасуєте. `I usually iron in the morning` — «Я зазвичай прасую вранці». `Usually` стоїть перед `iron`; `in the morning` — «вранці»."
+        "ru": "Подруга замечает на кухне венчик и спрашивает, часто ли вы им пользуетесь. Вы любите готовить омлеты. whisk — «взбивать», например венчиком или вилкой. Вы рассказываете об этой привычке: I often whisk the eggs — «Я часто взбиваю яйца». Слово often стоит перед whisk.",
+        "uk": "Подруга помічає на кухні вінчик і питає, чи часто ви ним користуєтеся. Ви любите готувати омлети. whisk — «збивати», наприклад вінчиком або виделкою. Ви розповідаєте про цю звичку: I often whisk the eggs — «Я часто збиваю яйця». Слово often стоїть перед whisk."
       },
       "question": {
         "interactionId": "en:lesson-07:session-46:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите о своей привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Подруга спрашивает, часто ли вы пользуетесь венчиком. Скажите ей: «Я часто взбиваю яйца».",
+          "uk": "Подруга питає, чи часто ви користуєтеся вінчиком. Скажіть їй: «Я часто збиваю яйця»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-46:intro2:r1",
-              "text": "I usually iron in the morning."
+              "text": "I often whisk the eggs."
             },
             {
               "responseId": "en:lesson-07:session-46:intro2:r2",
-              "text": "I usually irons in the morning."
+              "text": "I often whisks the eggs."
             },
             {
               "responseId": "en:lesson-07:session-46:intro2:r3",
-              "text": "I usually ironing in the morning."
+              "text": "I often whisking the eggs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-46:intro2:r1",
-              "text": "I usually iron in the morning."
+              "text": "I often whisk the eggs."
             },
             {
               "responseId": "en:lesson-07:session-46:intro2:r2",
-              "text": "I usually irons in the morning."
+              "text": "I often whisks the eggs."
             },
             {
               "responseId": "en:lesson-07:session-46:intro2:r3",
-              "text": "I usually ironing in the morning."
+              "text": "I often whisking the eggs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о своей привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Подруга спрашивает, часто ли вы пользуетесь венчиком. Скажите ей: «Я часто взбиваю яйца».",
+          "uk": "Подруга питає, чи часто ви користуєтеся вінчиком. Скажіть їй: «Я часто збиваю яйця»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищу аэропорт",
-        "uk": "Шукаю аеропорт"
+        "ru": "Суп для соседа",
+        "uk": "Суп для сусіда"
       },
       "bodyByLocale": {
-        "ru": "Вы смотрите на карту города и просите знакомую показать аэропорт. `Where is the airport?` — «Где аэропорт?» После `where` здесь идёт `is`, затем `the airport`.",
-        "uk": "Ви дивитеся на карту міста й просите знайому показати аеропорт. `Where is the airport?` — «Де аеропорт?» Після `where` тут іде `is`, потім `the airport`."
+        "ru": "Сосед зашёл на минуту и попробовал ваш суп. Он спрашивает, оставляете ли вы суп без приправ или обычно приправляете его. season — «приправлять»: добавлять соль и пряности. Вы пробуете суп и добавляете щепотку соли: I usually season the soup — «Я обычно приправляю суп».",
+        "uk": "Сусід зайшов на хвилину й спробував ваш суп. Він питає, чи залишаєте ви суп без приправ, чи зазвичай приправляєте його. season — «приправляти»: додавати сіль і спеції. Ви куштуєте суп і додаєте дрібку солі: I usually season the soup — «Я зазвичай приправляю суп»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-46:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите знакомую показать, где аэропорт.",
-          "uk": "Попросіть знайому показати, де аеропорт."
+          "ru": "Сосед пробует суп. Скажите ему: «Я обычно приправляю суп».",
+          "uk": "Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-46:intro3:r1",
-              "text": "Where is the airport?"
+              "text": "I usually season the soup."
             },
             {
               "responseId": "en:lesson-07:session-46:intro3:r2",
-              "text": "Where are the airport?"
+              "text": "I usually seasons the soup."
             },
             {
               "responseId": "en:lesson-07:session-46:intro3:r3",
-              "text": "Where the airport is?"
+              "text": "I usually seasoning the soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-46:intro3:r1",
-              "text": "Where is the airport?"
+              "text": "I usually season the soup."
             },
             {
               "responseId": "en:lesson-07:session-46:intro3:r2",
-              "text": "Where are the airport?"
+              "text": "I usually seasons the soup."
             },
             {
               "responseId": "en:lesson-07:session-46:intro3:r3",
-              "text": "Where the airport is?"
+              "text": "I usually seasoning the soup."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите знакомую показать, где аэропорт.",
-          "uk": "Попросіть знайому показати, де аеропорт."
+          "ru": "Сосед пробует суп. Скажите ему: «Я обычно приправляю суп».",
+          "uk": "Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c30a3c23043fbaf80e03715847d3040a408a91f6adbc039f942d7b1e24c0a743"
+  "introFingerprint": "d660d828938284405ea13dd2edbadbf6878077bf9bd3996a323df85ecc0baee0"
 }

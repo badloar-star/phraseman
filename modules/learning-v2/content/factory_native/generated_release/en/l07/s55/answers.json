@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-55:word:sweat",
+    "correctText": "sweat",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-55:i01",
-    "correctText": "I often stream films.",
+    "correctText": "I often sweat at the gym.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i02",
-    "correctText": "stream",
+    "correctText": "sweat",
     "correctResponseId": "en:lesson-07:session-55:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-55:i03",
-    "correctText": "stream",
+    "correctText": "sweat",
     "correctResponseId": "en:lesson-07:session-55:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-55:i04",
-    "correctText": "en:lesson-07:session-55:i04:p1=stream\nen:lesson-07:session-55:i04:p2=photograph\nen:lesson-07:session-55:i04:p3=cafes\nen:lesson-07:session-55:i04:p4=artist",
+    "correctText": "en:lesson-07:session-55:i04:p1=sweat\nen:lesson-07:session-55:i04:p2=gym\nen:lesson-07:session-55:i04:p3=water\nen:lesson-07:session-55:i04:p4=cold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:word:shiver",
+    "correctText": "shiver",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i05",
-    "correctText": "I often stream films.",
+    "correctText": "I usually shiver in cold water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:word:surgery",
+    "correctText": "surgery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i06",
-    "correctText": "I often photograph birds.",
+    "correctText": "Where is the surgery?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i07",
-    "correctText": "Where are the cafes?",
+    "correctText": "Is this the surgery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-55:word:swallow",
+    "correctText": "swallow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i08",
-    "correctText": "photograph",
+    "correctText": "swallow",
     "correctResponseId": "en:lesson-07:session-55:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-55:i09",
-    "correctText": "I often stream films.",
+    "correctText": "I usually shiver in cold water.",
     "correctResponseId": "en:lesson-07:session-55:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-55:i10",
-    "correctText": "en:lesson-07:session-55:i10:p1=mural\nen:lesson-07:session-55:i10:p2=stream\nen:lesson-07:session-55:i10:p3=photograph\nen:lesson-07:session-55:i10:p4=cafes",
+    "correctText": "en:lesson-07:session-55:i10:p1=swallow\nen:lesson-07:session-55:i10:p2=sweat\nen:lesson-07:session-55:i10:p3=shiver\nen:lesson-07:session-55:i10:p4=tablet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i11",
-    "correctText": "Where are the cafes?",
+    "correctText": "She often sweats at the gym.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i12",
-    "correctText": "Where is the mural?",
+    "correctText": "I usually swallow a tablet with water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i13",
-    "correctText": "Is Tom an artist?",
+    "correctText": "He usually shivers in cold water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i14",
-    "correctText": "often",
+    "correctText": "usually",
     "correctResponseId": "en:lesson-07:session-55:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-55:i15",
-    "correctText": "Where are the cafes?",
+    "correctText": "Where is the surgery?",
     "correctResponseId": "en:lesson-07:session-55:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-55:i16",
-    "correctText": "en:lesson-07:session-55:i16:p1=stream\nen:lesson-07:session-55:i16:p2=artist\nen:lesson-07:session-55:i16:p3=mural\nen:lesson-07:session-55:i16:p4=photograph",
+    "correctText": "en:lesson-07:session-55:i16:p1=surgery\nen:lesson-07:session-55:i16:p2=swallow\nen:lesson-07:session-55:i16:p3=shiver\nen:lesson-07:session-55:i16:p4=clinic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-55:i17",
-    "correctText": "Tom often streams films.",
+    "correctText": "My brother often sweats at the gym.",
     "correctResponseId": null
   }
 ]

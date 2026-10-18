@@ -4,29 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-46:i01",
+      "interactionId": "en:lesson-07:session-46:word:grate",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:word:grate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:word:grate:audio",
+          "transcript": "grate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:word:grate:r1",
+            "targetText": "grate",
+            "meaningByLocale": {
+              "ru": "тереть на тёрке. I usually grate the cheese. — «Я обычно тру сыр на тёрке». Превращать сыр или овощ в мелкую стружку.",
+              "uk": "терти на тертці. I usually grate the cheese. — «Я зазвичай тру сир на тертці». Перетворювати сир або овоч на дрібну стружку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grate",
+          "definitionByLocale": {
+            "ru": "тереть на тёрке. I usually grate the cheese. — «Я обычно тру сыр на тёрке». Превращать сыр или овощ в мелкую стружку.",
+            "uk": "терти на тертці. I usually grate the cheese. — «Я зазвичай тру сир на тертці». Перетворювати сир або овоч на дрібну стружку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "prompt": "Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "accessibilityLabel": "Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually organize my books.",
+        "targetPhrase": "I usually grate the cheese.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
-          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+          "ru": "Брат помогает готовить пасту. Скажите ему: «Я обычно тру сыр на тёрке».",
+          "uk": "Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці»."
         },
         "orderedTokens": [
           "I",
           "usually",
-          "organize",
-          "my",
-          "books"
+          "grate",
+          "the",
+          "cheese"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -39,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-46:i02:r1",
-          "text": "organize"
+          "text": "I usually grate the cheese."
         },
         {
           "responseId": "en:lesson-07:session-46:i02:r2",
-          "text": "iron"
+          "text": "I usually grate the carrot."
         },
         {
           "responseId": "en:lesson-07:session-46:i02:r3",
-          "text": "pack"
+          "text": "I usually slice the cheese."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i02:audio",
-          "transcript": "organize"
+          "transcript": "I usually grate the cheese."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-46:i02:r1",
-            "targetText": "organize",
+            "targetText": "I usually grate the cheese.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-46:i02:r2",
-            "targetText": "iron",
+            "targetText": "I usually grate the carrot.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-46:i02:r3",
-            "targetText": "pack",
+            "targetText": "I usually slice the cheese.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-46:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `organize`, а в этом варианте — `iron`.",
-              "uk": "У записі перше слово — `organize`, а в цьому варіанті — `iron`."
+              "ru": "В записи последнее слово — `cheese`, сыр, а в этом варианте — `carrot`, морковь.",
+              "uk": "У записі останнє слово — `cheese`, сир, а в цьому варіанті — `carrot`, морква."
             }
           },
           {
             "responseId": "en:lesson-07:session-46:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `organize`, а в этом варианте — `pack`.",
-              "uk": "У записі перше слово — `organize`, а в цьому варіанті — `pack`."
+              "ru": "В записи третье слово — `grate`, тереть на тёрке, а в этом варианте — `slice`, нарезать.",
+              "uk": "У записі третє слово — `grate`, терти на тертці, а в цьому варіанті — `slice`, нарізати."
             }
           }
         ],
@@ -115,67 +158,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "prompt": "Брат питає про сир. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-46:i03:r1",
-          "text": "organize"
+          "text": "grate"
         },
         {
           "responseId": "en:lesson-07:session-46:i03:r2",
-          "text": "organizes"
+          "text": "grates"
         },
         {
           "responseId": "en:lesson-07:session-46:i03:r3",
-          "text": "organizing"
+          "text": "grating"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "accessibilityLabel": "Брат питає про сир. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
-          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+          "ru": "Брат спрашивает про сыр. Выберите слово",
+          "uk": "Брат питає про сир. Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ my books.",
+        "gappedTargetPhrase": "I usually ___ the cheese.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-46:i03:r1",
-            "text": "organize"
+            "text": "grate"
           },
           {
             "responseId": "en:lesson-07:session-46:i03:r2",
-            "text": "organizes"
+            "text": "grates"
           },
           {
             "responseId": "en:lesson-07:session-46:i03:r3",
-            "text": "organizing"
+            "text": "grating"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+        "testedDimension": "Брат питає про сир. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "testedDimension": "Брат питає про сир. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `organize`.",
-              "uk": "Після `I` потрібне `organize`."
+              "ru": "После `I` нужно `grate`, без `s`.",
+              "uk": "Після `I` потрібно `grate`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "testedDimension": "Брат питає про сир. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `organize`.",
-              "uk": "Тут потрібна форма `organize`."
+              "ru": "Здесь нужна форма `grate`.",
+              "uk": "Тут потрібна форма `grate`."
             }
           }
         ]
@@ -184,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-46:i04:p1",
-            "target": "organize",
+            "target": "grate",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "тереть на тёрке",
+              "uk": "терти на тертці"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i04:p2",
-            "target": "iron",
+            "target": "cheese",
             "meaningByLocale": {
-              "ru": "гладить",
-              "uk": "прасувати"
+              "ru": "сыр",
+              "uk": "сир"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i04:p3",
-            "target": "airport",
+            "target": "carrot",
             "meaningByLocale": {
-              "ru": "аэропорт",
-              "uk": "аеропорт"
+              "ru": "морковь",
+              "uk": "морква"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i04:p4",
-            "target": "ferry",
+            "target": "slice",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "нарезать",
+              "uk": "нарізати"
             }
           }
         ],
         "leftColumn": [
-          "organize",
-          "iron",
-          "airport",
-          "ferry"
+          "grate",
+          "cheese",
+          "carrot",
+          "slice"
         ],
         "rightColumn": [
-          "упорядковувати",
-          "прасувати",
-          "аеропорт",
-          "пором"
+          "терти на тертці",
+          "сир",
+          "морква",
+          "нарізати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,67 +299,152 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-46:word:whisk",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — whisk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:word:whisk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — whisk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:word:whisk:audio",
+          "transcript": "whisk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:word:whisk:r1",
+            "targetText": "whisk",
+            "meaningByLocale": {
+              "ru": "взбивать. I often whisk the eggs. — «Я часто взбиваю яйца». Быстро взбивать венчиком или вилкой, например яйца или сливки.",
+              "uk": "збивати. I often whisk the eggs. — «Я часто збиваю яйця». Швидко збивати вінчиком або виделкою, наприклад яйця чи вершки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "whisk",
+          "definitionByLocale": {
+            "ru": "взбивать. I often whisk the eggs. — «Я часто взбиваю яйца». Быстро взбивать венчиком или вилкой, например яйца или сливки.",
+            "uk": "збивати. I often whisk the eggs. — «Я часто збиваю яйця». Швидко збивати вінчиком або виделкою, наприклад яйця чи вершки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-46:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i05:audio",
-          "transcript": "I usually organize my books."
+          "transcript": "I often whisk the eggs."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually organize my books.",
+        "hiddenTargetPhrase": "I often whisk the eggs.",
         "orderedTokens": [
           "I",
-          "usually",
-          "organize",
-          "my",
-          "books"
+          "often",
+          "whisk",
+          "the",
+          "eggs"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-46:word:season",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — season",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:word:season:audio"
+      ],
+      "accessibilityLabel": "Картка слова — season",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:word:season:audio",
+          "transcript": "season"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:word:season:r1",
+            "targetText": "season",
+            "meaningByLocale": {
+              "ru": "приправлять. I usually season the soup. — «Я обычно приправляю суп». Добавлять соль и пряности, чтобы вкус был ярче.",
+              "uk": "приправляти. I usually season the soup. — «Я зазвичай приправляю суп». Додавати сіль і спеції, щоб смак був яскравішим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "season",
+          "definitionByLocale": {
+            "ru": "приправлять. I usually season the soup. — «Я обычно приправляю суп». Добавлять соль и пряности, чтобы вкус был ярче.",
+            "uk": "приправляти. I usually season the soup. — «Я зазвичай приправляю суп». Додавати сіль і спеції, щоб смак був яскравішим."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-46:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я зазвичай прасую вранці»",
+      "prompt": "Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай прасую вранці»",
+      "accessibilityLabel": "Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually iron in the morning.",
+        "targetPhrase": "I usually season the soup.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно глажу утром»",
-          "uk": "Скажіть «Я зазвичай прасую вранці»"
+          "ru": "Сосед пробует суп. Скажите ему: «Я обычно приправляю суп».",
+          "uk": "Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп»."
         },
         "orderedTokens": [
           "I",
           "usually",
-          "iron",
-          "in",
+          "season",
           "the",
-          "morning"
+          "soup"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -328,26 +456,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-46:word:dessert",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dessert",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-46:word:dessert:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dessert",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-46:word:dessert:audio",
+          "transcript": "dessert"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-46:word:dessert:r1",
+            "targetText": "dessert",
+            "meaningByLocale": {
+              "ru": "десерт. We often eat dessert. — «Мы часто едим десерт». Сладкое блюдо после основной еды.",
+              "uk": "десерт. We often eat dessert. — «Ми часто їмо десерт». Солодка страва після основної їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dessert",
+          "definitionByLocale": {
+            "ru": "десерт. We often eat dessert. — «Мы часто едим десерт». Сладкое блюдо после основной еды.",
+            "uk": "десерт. We often eat dessert. — «Ми часто їмо десерт». Солодка страва після основної їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-46:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте в знайомої «Де аеропорт?»",
+      "prompt": "Гість питає, що ви їсте після вечері. Скажіть: «Ми часто їмо десерт».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте в знайомої «Де аеропорт?»",
+      "accessibilityLabel": "Гість питає, що ви їсте після вечері. Скажіть: «Ми часто їмо десерт».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i07:audio",
-          "transcript": "Where is the airport?"
+          "transcript": "We often eat dessert."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the airport?",
+        "targetPhrase": "We often eat dessert.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -362,67 +533,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай прасую вранці»",
+      "prompt": "Подруга питає про вашу сестру. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-46:i08:r1",
-          "text": "iron"
+          "text": "whisks"
         },
         {
           "responseId": "en:lesson-07:session-46:i08:r2",
-          "text": "irons"
+          "text": "whisk"
         },
         {
           "responseId": "en:lesson-07:session-46:i08:r3",
-          "text": "ironing"
+          "text": "whisking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай прасую вранці»",
+      "accessibilityLabel": "Подруга питає про вашу сестру. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно глажу утром»",
-          "uk": "Скажіть «Я зазвичай прасую вранці»"
+          "ru": "Подруга спрашивает о вашей сестре. Выберите слово",
+          "uk": "Подруга питає про вашу сестру. Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ in the morning.",
+        "gappedTargetPhrase": "My sister often ___ the eggs.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-46:i08:r1",
-            "text": "iron"
+            "text": "whisks"
           },
           {
             "responseId": "en:lesson-07:session-46:i08:r2",
-            "text": "irons"
+            "text": "whisk"
           },
           {
             "responseId": "en:lesson-07:session-46:i08:r3",
-            "text": "ironing"
+            "text": "whisking"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай прасую вранці»",
+        "testedDimension": "Подруга питає про вашу сестру. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай прасую вранці»",
+            "testedDimension": "Подруга питає про вашу сестру. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `iron`.",
-              "uk": "Після `I` потрібне `iron`."
+              "ru": "После `my sister` нужно `whisks`.",
+              "uk": "Після `my sister` потрібно `whisks`."
             }
           },
           {
             "responseId": "en:lesson-07:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай прасую вранці»",
+            "testedDimension": "Подруга питає про вашу сестру. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `iron`.",
-              "uk": "Тут потрібна форма `iron`."
+              "ru": "Здесь нужна форма `whisks`.",
+              "uk": "Тут потрібна форма `whisks`."
             }
           }
         ]
@@ -431,51 +602,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте сусіда",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-46:i09:r1",
-          "text": "I usually organize my books."
+          "text": "I usually season the soup."
         },
         {
           "responseId": "en:lesson-07:session-46:i09:r2",
-          "text": "I usually organize my photos."
+          "text": "I usually season the salad."
         },
         {
           "responseId": "en:lesson-07:session-46:i09:r3",
-          "text": "I usually organize my clothes."
+          "text": "I usually stir the soup."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте сусіда",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i09:audio",
-          "transcript": "I usually organize my books."
+          "transcript": "I usually season the soup."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-46:i09:r1",
-            "targetText": "I usually organize my books.",
+            "targetText": "I usually season the soup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-46:i09:r2",
-            "targetText": "I usually organize my photos.",
+            "targetText": "I usually season the salad.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-46:i09:r3",
-            "targetText": "I usually organize my clothes.",
+            "targetText": "I usually stir the soup.",
             "meaningByLocale": null
           }
         ],
@@ -484,19 +655,19 @@
           {
             "responseId": "en:lesson-07:session-46:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `books`, а в этом варианте — `photos`.",
-              "uk": "У записі останнє слово — `books`, а в цьому варіанті — `photos`."
+              "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+              "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
             }
           },
           {
             "responseId": "en:lesson-07:session-46:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `books`, а в этом варианте — `clothes`.",
-              "uk": "У записі останнє слово — `books`, а в цьому варіанті — `clothes`."
+              "ru": "В записи третье слово — `season`, приправлять, а в этом варианте — `stir`, помешивать.",
+              "uk": "У записі третє слово — `season`, приправляти, а в цьому варіанті — `stir`, помішувати."
             }
           }
         ],
@@ -507,8 +678,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -521,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-46:i10:p1",
-            "target": "iron",
+            "target": "whisk",
             "meaningByLocale": {
-              "ru": "гладить",
-              "uk": "прасувати"
+              "ru": "взбивать",
+              "uk": "збивати"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i10:p2",
-            "target": "organize",
+            "target": "season",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "приправлять",
+              "uk": "приправляти"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i10:p3",
-            "target": "mug",
+            "target": "egg",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "яйцо",
+              "uk": "яйце"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i10:p4",
-            "target": "airport",
+            "target": "soup",
             "meaningByLocale": {
-              "ru": "аэропорт",
-              "uk": "аеропорт"
+              "ru": "суп",
+              "uk": "суп"
             }
           }
         ],
         "leftColumn": [
-          "iron",
-          "organize",
-          "mug",
-          "airport"
+          "whisk",
+          "season",
+          "egg",
+          "soup"
         ],
         "rightColumn": [
-          "прасувати",
-          "упорядковувати",
-          "кухоль",
-          "аеропорт"
+          "збивати",
+          "приправляти",
+          "яйце",
+          "суп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -580,30 +751,30 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте гостя й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте гостя й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i11:audio",
-          "transcript": "Where is the airport?"
+          "transcript": "We often eat dessert."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the airport?",
+        "hiddenTargetPhrase": "We often eat dessert.",
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "airport"
+          "We",
+          "often",
+          "eat",
+          "dessert"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -616,27 +787,27 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви прийшли до пристані. Запитайте працівника «Де пором?»",
+      "prompt": "Ви прийшли на кухню. Спитайте брата: «Де десерт?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви прийшли до пристані. Запитайте працівника «Де пором?»",
+      "accessibilityLabel": "Ви прийшли на кухню. Спитайте брата: «Де десерт?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the ferry?",
+        "targetPhrase": "Where is the dessert?",
         "localizedMeaning": {
-          "ru": "Вы пришли к пристани. Спросите сотрудника «Где паром?»",
-          "uk": "Ви прийшли до пристані. Запитайте працівника «Де пором?»"
+          "ru": "Вы пришли на кухню. Спросите брата: «Где десерт?»",
+          "uk": "Ви прийшли на кухню. Спитайте брата: «Де десерт?»"
         },
         "orderedTokens": [
           "Where",
           "is",
           "the",
-          "ferry"
+          "dessert"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -649,25 +820,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перш ніж налити чай, запитайте гостя «У тебе є кухоль?»",
+      "prompt": "Ви готуєте пасту. Спитайте брата: «Де сир?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i13:audio"
       ],
-      "accessibilityLabel": "Перш ніж налити чай, запитайте гостя «У тебе є кухоль?»",
+      "accessibilityLabel": "Ви готуєте пасту. Спитайте брата: «Де сир?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i13:audio",
-          "transcript": "Do you have a mug?"
+          "transcript": "Where is the cheese?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you have a mug?",
+        "targetPhrase": "Where is the cheese?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -682,11 +853,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "prompt": "Брат питає про сир. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-46:i14:r1",
@@ -703,14 +874,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+      "accessibilityLabel": "Брат питає про сир. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
-          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+          "ru": "Брат спрашивает про сыр. Выберите слово",
+          "uk": "Брат питає про сир. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ organize my books.",
+        "gappedTargetPhrase": "I ___ grate the cheese.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-46:i14:r1",
@@ -725,24 +896,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+        "testedDimension": "Брат питає про сир. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-46:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "testedDimension": "Брат питає про сир. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `organize`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `organize`."
+              "ru": "Для «обычно» нужно `usually` перед `grate`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `grate`."
             }
           },
           {
             "responseId": "en:lesson-07:session-46:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»",
+            "testedDimension": "Брат питає про сир. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `organize` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `organize` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `grate` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `grate` не ставимо."
             }
           }
         ]
@@ -751,51 +922,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте гостя",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-46:i15:r1",
-          "text": "Where is the airport?"
+          "text": "Where is the dessert?"
         },
         {
           "responseId": "en:lesson-07:session-46:i15:r2",
-          "text": "Where is the office?"
+          "text": "Where is the pasta?"
         },
         {
           "responseId": "en:lesson-07:session-46:i15:r3",
-          "text": "Where is the ferry?"
+          "text": "Where is the pie?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте гостя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i15:audio",
-          "transcript": "Where is the airport?"
+          "transcript": "Where is the dessert?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-46:i15:r1",
-            "targetText": "Where is the airport?",
+            "targetText": "Where is the dessert?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-46:i15:r2",
-            "targetText": "Where is the office?",
+            "targetText": "Where is the pasta?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-46:i15:r3",
-            "targetText": "Where is the ferry?",
+            "targetText": "Where is the pie?",
             "meaningByLocale": null
           }
         ],
@@ -804,19 +975,19 @@
           {
             "responseId": "en:lesson-07:session-46:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `airport`, а в этом варианте — `office`.",
-              "uk": "У записі останнє слово — `airport`, а в цьому варіанті — `office`."
+              "ru": "В записи последнее слово — `dessert`, десерт, а в этом варианте — `pasta`, макароны.",
+              "uk": "У записі останнє слово — `dessert`, десерт, а в цьому варіанті — `pasta`, макарони."
             }
           },
           {
             "responseId": "en:lesson-07:session-46:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `airport`, а в этом варианте — `ferry`.",
-              "uk": "У записі останнє слово — `airport`, а в цьому варіанті — `ferry`."
+              "ru": "В записи последнее слово — `dessert`, десерт, а в этом варианте — `pie`, пирог.",
+              "uk": "У записі останнє слово — `dessert`, десерт, а в цьому варіанті — `pie`, пиріг."
             }
           }
         ],
@@ -827,7 +998,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -841,48 +1012,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-46:i16:p1",
-            "target": "organize",
+            "target": "dessert",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "десерт",
+              "uk": "десерт"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i16:p2",
-            "target": "ferry",
+            "target": "grate",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "тереть на тёрке",
+              "uk": "терти на тертці"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i16:p3",
-            "target": "iron",
+            "target": "whisk",
             "meaningByLocale": {
-              "ru": "гладить",
-              "uk": "прасувати"
+              "ru": "взбивать",
+              "uk": "збивати"
             }
           },
           {
             "pairId": "en:lesson-07:session-46:i16:p4",
-            "target": "mug",
+            "target": "season",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "приправлять",
+              "uk": "приправляти"
             }
           }
         ],
         "leftColumn": [
-          "organize",
-          "ferry",
-          "iron",
-          "mug"
+          "dessert",
+          "grate",
+          "whisk",
+          "season"
         ],
         "rightColumn": [
-          "упорядковувати",
-          "пором",
-          "прасувати",
-          "кухоль"
+          "десерт",
+          "терти на тертці",
+          "збивати",
+          "приправляти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -900,25 +1071,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-46:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про порядок на полиці Тома. Скажіть «Том зазвичай розкладає свої книжки за порядком»",
+      "prompt": "Подруга питає про вашого брата. Скажіть: «Мій брат часто збиває яйця».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-46:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує про порядок на полиці Тома. Скажіть «Том зазвичай розкладає свої книжки за порядком»",
+      "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Мій брат часто збиває яйця».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-46:i17:audio",
-          "transcript": "Tom usually organizes his books."
+          "transcript": "My brother often whisks the eggs."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually organizes his books.",
+        "targetPhrase": "My brother often whisks the eggs.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -940,11 +1111,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "edd5b2ba898274cf32a9624a33d60ec7d749534c22d6109a742d273e20ee6436"
+  "learnerFingerprint": "baaff4b76f8c36cb2d725747e54212c7f7b586b4550a6bb21d86da472d9bbe80"
 }

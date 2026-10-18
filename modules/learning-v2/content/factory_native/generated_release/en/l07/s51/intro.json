@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-51",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках и задавать вопросы",
-    "uk": "розповідати про звички й ставити запитання"
+    "ru": "рассказывать о привычках, спрашивать «Вы …?» и «Где …?»",
+    "uk": "розповідати про звички, питати «Ви …?» і «Де …?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Музыка дома",
-        "uk": "Музика вдома"
+        "ru": "Шаткий стул",
+        "uk": "Хиткий стілець"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, что вы делаете дома под музыку. `Dance` — «танцевать». `I often dance at home` — «Я часто танцую дома». `Often` стоит перед `dance`. Дома никто не просит показать билет на танцпол.",
-        "uk": "Друг запитує, що ви робите вдома під музику. `Dance` — «танцювати». `I often dance at home` — «Я часто танцюю вдома». `Often` стоїть перед `dance`. Удома ніхто не просить показати квиток на танцмайданчик."
+        "ru": "Гость присел на стул у обеденного стола, и тот закачался: винты на ножках разболтались. Вы берёте отвёртку и подкручиваете их. tighten — «затягивать, подкручивать». Скажите: I often tighten the screws on the chair — «Я часто подтягиваю винты на стуле». Слово often стоит перед tighten.",
+        "uk": "Гість присів на стілець біля обіднього столу, і той захитався: гвинти на ніжках розхиталися. Ви берете викрутку й підкручуєте їх. tighten — «затягувати, підкручувати». Скажіть: I often tighten the screws on the chair — «Я часто підтягую гвинти на стільці». Слово often стоїть перед tighten."
       },
       "question": {
         "interactionId": "en:lesson-07:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Гость заметил отвёртку у стула. Объясните: «Я часто подтягиваю винты на стуле».",
+          "uk": "Гість помітив викрутку біля стільця. Поясніть: «Я часто підтягую гвинти на стільці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-51:intro1:r1",
-              "text": "I often dance at home."
+              "text": "I often tighten the screws on the chair."
             },
             {
               "responseId": "en:lesson-07:session-51:intro1:r2",
-              "text": "I often dances at home."
+              "text": "I often tightens the screws on the chair."
             },
             {
               "responseId": "en:lesson-07:session-51:intro1:r3",
-              "text": "I often dancing at home."
+              "text": "I often tightening the screws on the chair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-51:intro1:r1",
-              "text": "I often dance at home."
+              "text": "I often tighten the screws on the chair."
             },
             {
               "responseId": "en:lesson-07:session-51:intro1:r2",
-              "text": "I often dances at home."
+              "text": "I often tightens the screws on the chair."
             },
             {
               "responseId": "en:lesson-07:session-51:intro1:r3",
-              "text": "I often dancing at home."
+              "text": "I often tightening the screws on the chair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Гость заметил отвёртку у стула. Объясните: «Я часто подтягиваю винты на стуле».",
+          "uk": "Гість помітив викрутку біля стільця. Поясніть: «Я часто підтягую гвинти на стільці»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Книги в магазине",
-        "uk": "Книжки в магазині"
+        "ru": "Тупые ножницы",
+        "uk": "Тупі ножиці"
       },
       "bodyByLocale": {
-        "ru": "Вы заходите в небольшой магазин и хотите узнать, продают ли здесь книги. `Do you sell books?` — «Вы продаёте книги?» После `do you` нужно `sell`, без окончания `s`.",
-        "uk": "Ви заходите до невеликого магазину й хочете дізнатися, чи продають тут книжки. `Do you sell books?` — «Ви продаєте книжки?» Після `do you` потрібне `sell`, без закінчення `s`."
+        "ru": "Дома все ножницы затупились и не режут бумагу. У рынка вы увидели мастерскую, а за стойкой стоит мастер. sharpen — «точить, заострять». Спросите мастера: Do you sharpen scissors? — «Вы точите ножницы?» Вопрос начинается с Do, потом you и sharpen без s.",
+        "uk": "Вдома всі ножиці затупилися й не ріжуть папір. Біля ринку ви побачили майстерню, а за стійкою стоїть майстер. sharpen — «гострити, заточувати». Спитайте майстра: Do you sharpen scissors? — «Ви гострите ножиці?» Запитання починається з Do, потім you і sharpen без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите продавца о книгах.",
-          "uk": "Запитайте продавця про книжки."
+          "ru": "Мастер стоит за стойкой. Спросите его: «Вы точите ножницы?»",
+          "uk": "Майстер стоїть за стійкою. Спитайте його: «Ви гострите ножиці?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-51:intro2:r1",
-              "text": "Do you sell books?"
+              "text": "Do you sharpen scissors?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro2:r2",
-              "text": "Does you sell books?"
+              "text": "Does you sharpen scissors?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro2:r3",
-              "text": "Do you sells books?"
+              "text": "Do you sharpens scissors?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-51:intro2:r1",
-              "text": "Do you sell books?"
+              "text": "Do you sharpen scissors?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro2:r2",
-              "text": "Does you sell books?"
+              "text": "Does you sharpen scissors?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro2:r3",
-              "text": "Do you sells books?"
+              "text": "Do you sharpens scissors?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите продавца о книгах.",
-          "uk": "Запитайте продавця про книжки."
+          "ru": "Мастер стоит за стойкой. Спросите его: «Вы точите ножницы?»",
+          "uk": "Майстер стоїть за стійкою. Спитайте його: «Ви гострите ножиці?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищу стадион",
-        "uk": "Шукаю стадіон"
+        "ru": "Вечер в театре",
+        "uk": "Вечір у театрі"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте на матч и спрашиваете прохожего о дороге. `Where is the stadium?` — «Где стадион?» После `where` здесь идёт `is`, затем `the stadium`.",
-        "uk": "Ви йдете на матч і запитуєте перехожого про дорогу. `Where is the stadium?` — «Де стадіон?» Після `where` тут іде `is`, потім `the stadium`."
+        "ru": "Вы пришли в театр в тяжёлом зимнем пальто, а в фойе очень тепло. Контролёр у входа охотно подскажет, куда сдать верхнюю одежду. cloakroom — «гардероб», где оставляют пальто, а не набор вашей одежды. Спросите: Where is the cloakroom? — «Где гардероб?» После Where идёт is, а потом the cloakroom.",
+        "uk": "Ви прийшли в театр у важкому зимовому пальті, а у фойє дуже тепло. Контролер біля входу охоче підкаже, куди здати верхній одяг. cloakroom — «гардероб», де залишають пальта, а не набір вашого одягу. Спитайте: Where is the cloakroom? — «Де гардероб?» Після Where йде is, а потім the cloakroom."
       },
       "question": {
         "interactionId": "en:lesson-07:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где стадион.",
-          "uk": "Запитайте, де стадіон."
+          "ru": "Контролёр у входа ждёт вашего вопроса. Спросите: «Где гардероб?»",
+          "uk": "Контролер біля входу чекає на ваше запитання. Спитайте: «Де гардероб?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-51:intro3:r1",
-              "text": "Where is the stadium?"
+              "text": "Where is the cloakroom?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro3:r2",
-              "text": "Where are the stadium?"
+              "text": "Where are the cloakroom?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro3:r3",
-              "text": "Where the stadium is?"
+              "text": "Where the cloakroom is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-51:intro3:r1",
-              "text": "Where is the stadium?"
+              "text": "Where is the cloakroom?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro3:r2",
-              "text": "Where are the stadium?"
+              "text": "Where are the cloakroom?"
             },
             {
               "responseId": "en:lesson-07:session-51:intro3:r3",
-              "text": "Where the stadium is?"
+              "text": "Where the cloakroom is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где стадион.",
-          "uk": "Запитайте, де стадіон."
+          "ru": "Контролёр у входа ждёт вашего вопроса. Спросите: «Где гардероб?»",
+          "uk": "Контролер біля входу чекає на ваше запитання. Спитайте: «Де гардероб?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "85771a183af2fe39fd095ed803530424ac220c8e61466fbd0169e4bbe75f2c78"
+  "introFingerprint": "82d6731203eb83d8d17899364a68f2cba41b78c11c6937aa0b4ca75fd7f8eace"
 }

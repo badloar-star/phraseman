@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-43",
   "learningOutcomeByLocale": {
-    "ru": "использовать often и usually перед действием",
-    "uk": "використовувати often і usually перед дією"
+    "ru": "говорить о привычках, ставя often или usually перед действием",
+    "uk": "говорити про звички, ставлячи often або usually перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Шитьё в свободное время",
-        "uk": "Шиття у вільний час"
+        "ru": "Коллега в другом городе",
+        "uk": "Колега в іншому місті"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает о вашем увлечении шитьём. `sew` — «шить». `I often sew` — «Я часто шью». `Often` означает «часто» и стоит перед действием `sew`. Пуговицы дома могут чувствовать себя увереннее.",
-        "uk": "Друг запитує про ваше захоплення шиттям. `sew` — «шити». `I often sew` — «Я часто шию». `Often` означає «часто» і стоїть перед дією `sew`. Ґудзики вдома можуть почуватися впевненіше."
+        "ru": "Ваш коллега работает в другом городе, и руководитель спрашивает, как вы с ним связываетесь. email — «писать по электронной почте». Вы не видитесь каждый день, поэтому чаще пишете письма: I often email my colleague — «Я часто пишу коллеге по почте». Слово often стоит перед email.",
+        "uk": "Ваш колега працює в іншому місті, і керівник питає, як ви з ним зв’язуєтеся. email — «писати електронною поштою». Ви не бачитеся щодня, тому частіше пишете листи: I often email my colleague — «Я часто пишу колезі електронною поштою». Слово often стоїть перед email."
       },
       "question": {
         "interactionId": "en:lesson-07:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу: «Я часто шью».",
-          "uk": "Розкажіть другові: «Я часто шию»."
+          "ru": "Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».",
+          "uk": "Керівник питає про зв’язок із колегою. Скажіть йому: «Я часто пишу колезі електронною поштою»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-43:intro1:r1",
-              "text": "I often sew."
+              "text": "I often email my colleague."
             },
             {
               "responseId": "en:lesson-07:session-43:intro1:r2",
-              "text": "I often sews."
+              "text": "I often emails my colleague."
             },
             {
               "responseId": "en:lesson-07:session-43:intro1:r3",
-              "text": "I often sewing."
+              "text": "I often emailing my colleague."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-43:intro1:r1",
-              "text": "I often sew."
+              "text": "I often email my colleague."
             },
             {
               "responseId": "en:lesson-07:session-43:intro1:r2",
-              "text": "I often sews."
+              "text": "I often emails my colleague."
             },
             {
               "responseId": "en:lesson-07:session-43:intro1:r3",
-              "text": "I often sewing."
+              "text": "I often emailing my colleague."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу: «Я часто шью».",
-          "uk": "Розкажіть другові: «Я часто шию»."
+          "ru": "Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».",
+          "uk": "Керівник питає про зв’язок із колегою. Скажіть йому: «Я часто пишу колезі електронною поштою»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Работа вне дома",
-        "uk": "Робота поза домом"
+        "ru": "Еженедельный отчёт",
+        "uk": "Щотижневий звіт"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, работаете ли вы дома или ездите на работу. `I usually commute` — «Я обычно езжу на работу». `Usually` стоит перед `commute`. В этом разговоре речь о регулярной дороге из дома на работу.",
-        "uk": "Колега запитує, чи працюєте ви вдома, чи їздите на роботу. `I usually commute` — «Я зазвичай їжджу на роботу». `Usually` стоїть перед `commute`. У цій розмові йдеться про регулярну дорогу з дому на роботу."
+        "ru": "Каждую пятницу вы готовите один и тот же вид отчёта о работе команды. Новый руководитель спрашивает, где вы обычно его пишете. report — «отчёт». В офисе шумно, а дома тихо, поэтому вы отвечаете: I usually write the report at home — «Я обычно пишу отчёт дома». Слово usually стоит перед write.",
+        "uk": "Щоп’ятниці ви готуєте той самий вид звіту про роботу команди. Новий керівник питає, де ви зазвичай його пишете. report — «звіт». В офісі шумно, а вдома тихо, тому ви відповідаєте: I usually write the report at home — «Я зазвичай пишу звіт удома». Слово usually стоїть перед write."
       },
       "question": {
         "interactionId": "en:lesson-07:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте: «Я обычно езжу на работу».",
-          "uk": "Відповідайте: «Я зазвичай їжджу на роботу»."
+          "ru": "Начальник спрашивает про отчёт. Скажите ему: «Я обычно пишу отчёт дома».",
+          "uk": "Начальник питає про звіт. Скажіть йому: «Я зазвичай пишу звіт удома»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-43:intro2:r1",
-              "text": "I usually commute."
+              "text": "I usually write the report at home."
             },
             {
               "responseId": "en:lesson-07:session-43:intro2:r2",
-              "text": "I usually commutes."
+              "text": "I usually writes the report at home."
             },
             {
               "responseId": "en:lesson-07:session-43:intro2:r3",
-              "text": "I usually commuting."
+              "text": "I usually writing the report at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-43:intro2:r1",
-              "text": "I usually commute."
+              "text": "I usually write the report at home."
             },
             {
               "responseId": "en:lesson-07:session-43:intro2:r2",
-              "text": "I usually commutes."
+              "text": "I usually writes the report at home."
             },
             {
               "responseId": "en:lesson-07:session-43:intro2:r3",
-              "text": "I usually commuting."
+              "text": "I usually writing the report at home."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте: «Я обычно езжу на работу».",
-          "uk": "Відповідайте: «Я зазвичай їжджу на роботу»."
+          "ru": "Начальник спрашивает про отчёт. Скажите ему: «Я обычно пишу отчёт дома».",
+          "uk": "Начальник питає про звіт. Скажіть йому: «Я зазвичай пишу звіт удома»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Знакомая часто звонит",
-        "uk": "Знайома часто телефонує"
+        "ru": "Срок для клиента",
+        "uk": "Термін для клієнта"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` у действия остаётся окончание `s`.",
-        "uk": "Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` у дії залишається закінчення `s`."
+        "ru": "Новый клиент спрашивает о вашей работе с предыдущими заказчиками: обычно ли команда заканчивает работу к согласованному сроку. deadline — «крайний срок». Фраза meet the deadline значит «успеть к сроку». Команда старается не подводить клиентов: We usually meet the deadline — «Мы обычно успеваем к сроку».",
+        "uk": "Новий клієнт питає про вашу роботу з попередніми замовниками: чи зазвичай команда завершує роботу до узгодженого терміну. deadline — «кінцевий термін». Фраза meet the deadline означає «встигнути до терміну». Команда намагається не підводити клієнтів: We usually meet the deadline — «Ми зазвичай встигаємо до терміну»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».",
+          "uk": "Клієнт питає про термін. Скажіть йому від імені команди: «Ми зазвичай встигаємо до терміну»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-43:intro3:r1",
-              "text": "She often calls."
+              "text": "We usually meet the deadline."
             },
             {
               "responseId": "en:lesson-07:session-43:intro3:r2",
-              "text": "She often call."
+              "text": "We usually meets the deadline."
             },
             {
               "responseId": "en:lesson-07:session-43:intro3:r3",
-              "text": "She often calling."
+              "text": "We usually meeting the deadline."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-43:intro3:r1",
-              "text": "She often calls."
+              "text": "We usually meet the deadline."
             },
             {
               "responseId": "en:lesson-07:session-43:intro3:r2",
-              "text": "She often call."
+              "text": "We usually meets the deadline."
             },
             {
               "responseId": "en:lesson-07:session-43:intro3:r3",
-              "text": "She often calling."
+              "text": "We usually meeting the deadline."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».",
+          "uk": "Клієнт питає про термін. Скажіть йому від імені команди: «Ми зазвичай встигаємо до терміну»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "404f2ca7a67b638445d4d8c41f354489d7e602d26bb0561a52019edddc3568c9"
+  "introFingerprint": "37d8de8c7161b1f19f7045409ac1cd721ef744cf295f28c8f7cb176e1208ea62"
 }

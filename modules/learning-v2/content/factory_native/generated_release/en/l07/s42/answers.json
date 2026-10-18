@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-42:word:try",
+    "correctText": "try",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-42:i01",
-    "correctText": "I usually decorate the room.",
+    "correctText": "I usually try on the coat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i02",
-    "correctText": "decorate",
+    "correctText": "I usually try on the coat.",
     "correctResponseId": "en:lesson-07:session-42:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-42:i03",
-    "correctText": "decorate",
+    "correctText": "try",
     "correctResponseId": "en:lesson-07:session-42:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-42:i04",
-    "correctText": "en:lesson-07:session-42:i04:p1=decorate\nen:lesson-07:session-42:i04:p2=share\nen:lesson-07:session-42:i04:p3=bathroom\nen:lesson-07:session-42:i04:p4=scooter",
+    "correctText": "en:lesson-07:session-42:i04:p1=try\nen:lesson-07:session-42:i04:p2=coat\nen:lesson-07:session-42:i04:p3=shirt\nen:lesson-07:session-42:i04:p4=buy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:word:price",
+    "correctText": "price",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i05",
-    "correctText": "I usually decorate the room.",
+    "correctText": "I usually check the price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:word:present",
+    "correctText": "present",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i06",
-    "correctText": "We share a scooter.",
+    "correctText": "I often buy a present.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-42:word:cancel",
+    "correctText": "cancel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i07",
-    "correctText": "I often volunteer.",
+    "correctText": "I often cancel orders.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i08",
-    "correctText": "share",
+    "correctText": "cancels",
     "correctResponseId": "en:lesson-07:session-42:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-42:i09",
-    "correctText": "I usually decorate the room.",
+    "correctText": "I often buy a present.",
     "correctResponseId": "en:lesson-07:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-42:i10",
-    "correctText": "en:lesson-07:session-42:i10:p1=volunteer\nen:lesson-07:session-42:i10:p2=decorate\nen:lesson-07:session-42:i10:p3=bathroom\nen:lesson-07:session-42:i10:p4=share",
+    "correctText": "en:lesson-07:session-42:i10:p1=price\nen:lesson-07:session-42:i10:p2=present\nen:lesson-07:session-42:i10:p3=coat\nen:lesson-07:session-42:i10:p4=order",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i11",
-    "correctText": "We share a scooter.",
+    "correctText": "I often cancel orders.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i12",
-    "correctText": "Do you have a scooter?",
+    "correctText": "Do you have a receipt?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i13",
-    "correctText": "The bathroom is here.",
+    "correctText": "I usually check the price.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i14",
-    "correctText": "often",
+    "correctText": "usually",
     "correctResponseId": "en:lesson-07:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-42:i15",
-    "correctText": "The bathroom is here.",
+    "correctText": "Do you have a receipt?",
     "correctResponseId": "en:lesson-07:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-42:i16",
-    "correctText": "en:lesson-07:session-42:i16:p1=decorate\nen:lesson-07:session-42:i16:p2=scooter\nen:lesson-07:session-42:i16:p3=volunteer\nen:lesson-07:session-42:i16:p4=bathroom",
+    "correctText": "en:lesson-07:session-42:i16:p1=cancel\nen:lesson-07:session-42:i16:p2=try\nen:lesson-07:session-42:i16:p3=price\nen:lesson-07:session-42:i16:p4=present",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-42:i17",
-    "correctText": "Tom usually decorates the room.",
+    "correctText": "My sister often cancels orders.",
     "correctResponseId": null
   }
 ]

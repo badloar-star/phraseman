@@ -4,30 +4,90 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-49:i01",
+      "interactionId": "en:lesson-07:session-49:word:squeeze",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — squeeze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:word:squeeze:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — squeeze",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:word:squeeze:audio",
+          "transcript": "squeeze"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:word:squeeze:r1",
+            "targetText": "squeeze",
+            "meaningByLocale": {
+              "ru": "выжимать, сжимать. I usually squeeze lemon juice into my tea. — «Я обычно выжимаю лимонный сок в свой чай». Давить так, чтобы вышел сок.",
+              "uk": "вичавлювати, стискати. I usually squeeze lemon juice into my tea. — «Я зазвичай вичавлюю лимонний сік у свій чай». Тиснути так, щоб вийшов сік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "squeeze",
+          "definitionByLocale": {
+            "ru": "выжимать, сжимать. I usually squeeze lemon juice into my tea. — «Я обычно выжимаю лимонный сок в свой чай». Давить так, чтобы вышел сок.",
+            "uk": "вичавлювати, стискати. I usually squeeze lemon juice into my tea. — «Я зазвичай вичавлюю лимонний сік у свій чай». Тиснути так, щоб вийшов сік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто ночую в палатке»",
+      "prompt": "Друг зашёл на чай. Скажите: «Я обычно выжимаю лимонный сок в свой чай»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто ночую в палатке»",
+      "accessibilityLabel": "Друг зашёл на чай. Скажите: «Я обычно выжимаю лимонный сок в свой чай»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often camp.",
+        "targetPhrase": "I usually squeeze lemon juice into my tea.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто ночую в палатке»",
-          "uk": "Скажіть «Я часто ночую в наметі»"
+          "ru": "Друг зашёл на чай. Скажите: «Я обычно выжимаю лимонный сок в свой чай»",
+          "uk": "Друг зайшов на чай. Скажіть: «Я зазвичай вичавлюю лимонний сік у свій чай»"
         },
         "orderedTokens": [
           "I",
-          "often",
-          "camp"
+          "usually",
+          "squeeze",
+          "lemon",
+          "juice",
+          "into",
+          "my",
+          "tea"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг зашёл на чай. Скажите: «Я обычно выжимаю лимонный сок в свой чай»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually squeeze lemon juice into my tea.`",
+              "uk": "тут потрібно `usually` — `I usually squeeze lemon juice into my tea.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,8 +96,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-49:word:melt",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — melt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:word:melt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — melt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:word:melt:audio",
+          "transcript": "melt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:word:melt:r1",
+            "targetText": "melt",
+            "meaningByLocale": {
+              "ru": "растапливать, таять. I often melt butter in a pan. — «Я часто растапливаю масло на сковороде». От тепла твёрдое становится жидким.",
+              "uk": "розтоплювати, танути. I often melt butter in a pan. — «Я часто розтоплюю масло на сковороді». Від тепла тверде стає рідким."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "melt",
+          "definitionByLocale": {
+            "ru": "растапливать, таять. I often melt butter in a pan. — «Я часто растапливаю масло на сковороде». От тепла твёрдое становится жидким.",
+            "uk": "розтоплювати, танути. I often melt butter in a pan. — «Я часто розтоплюю масло на сковороді». Від тепла тверде стає рідким."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-49:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +148,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-49:i02:r1",
-          "text": "camp"
+          "text": "melt"
         },
         {
           "responseId": "en:lesson-07:session-49:i02:r2",
-          "text": "sew"
+          "text": "meet"
         },
         {
           "responseId": "en:lesson-07:session-49:i02:r3",
-          "text": "bake"
+          "text": "mix"
         }
       ],
       "mediaIds": [],
@@ -65,23 +168,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i02:audio",
-          "transcript": "camp"
+          "transcript": "melt"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-49:i02:r1",
-            "targetText": "camp",
+            "targetText": "melt",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-49:i02:r2",
-            "targetText": "sew",
+            "targetText": "meet",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-49:i02:r3",
-            "targetText": "bake",
+            "targetText": "mix",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +195,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `camp`, а в этом варианте — `sew`.",
-              "uk": "У записі перше слово — `camp`, а в цьому варіанті — `sew`."
+              "ru": "В записи первое слово — `melt`, а в этом варианте — `meet`.",
+              "uk": "У записі перше слово — `melt`, а в цьому варіанті — `meet`."
             }
           },
           {
@@ -101,8 +204,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `camp`, а в этом варианте — `bake`.",
-              "uk": "У записі перше слово — `camp`, а в цьому варіанті — `bake`."
+              "ru": "В записи первое слово — `melt`, а в этом варианте — `mix`.",
+              "uk": "У записі перше слово — `melt`, а в цьому варіанті — `mix`."
             }
           }
         ],
@@ -113,67 +216,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто ночую в палатке»",
+      "prompt": "Сосед спрашивает про ваше утро. Скажите: «Я часто растапливаю масло на сковороде». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-49:i03:r1",
-          "text": "camp"
+          "text": "melt"
         },
         {
           "responseId": "en:lesson-07:session-49:i03:r2",
-          "text": "camps"
+          "text": "melts"
         },
         {
           "responseId": "en:lesson-07:session-49:i03:r3",
-          "text": "camping"
+          "text": "melting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто ночую в палатке»",
+      "accessibilityLabel": "Сосед спрашивает про ваше утро. Скажите: «Я часто растапливаю масло на сковороде». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто ночую в палатке»",
-          "uk": "Скажіть «Я часто ночую в наметі»"
+          "ru": "Сосед спрашивает про ваше утро. Скажите: «Я часто растапливаю масло на сковороде». Выберите слово",
+          "uk": "Сусід питає про ваш ранок. Скажіть: «Я часто розтоплюю масло на сковороді». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___.",
+        "gappedTargetPhrase": "I often ___ butter in a pan.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-49:i03:r1",
-            "text": "camp"
+            "text": "melt"
           },
           {
             "responseId": "en:lesson-07:session-49:i03:r2",
-            "text": "camps"
+            "text": "melts"
           },
           {
             "responseId": "en:lesson-07:session-49:i03:r3",
-            "text": "camping"
+            "text": "melting"
           }
         ],
-        "testedDimension": "Скажите «Я часто ночую в палатке»",
+        "testedDimension": "Сосед спрашивает про ваше утро. Скажите: «Я часто растапливаю масло на сковороде». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-49:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто ночую в палатке»",
+            "testedDimension": "Сосед спрашивает про ваше утро. Скажите: «Я часто растапливаю масло на сковороде». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `camp`.",
-              "uk": "Після `I` потрібне `camp`."
+              "ru": "После `I` нужно `melt`, без окончания.",
+              "uk": "Після `I` потрібно `melt`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-49:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто ночую в палатке»",
+            "testedDimension": "Сосед спрашивает про ваше утро. Скажите: «Я часто растапливаю масло на сковороде». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `camp`.",
-              "uk": "Тут потрібна форма `camp`."
+              "ru": "Здесь нужна форма `melt`.",
+              "uk": "Тут потрібна форма `melt`."
             }
           }
         ]
@@ -182,7 +285,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +299,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-49:i04:p1",
-            "target": "camp",
+            "target": "squeeze",
             "meaningByLocale": {
-              "ru": "ночевать в палатке",
-              "uk": "ночувати в наметі"
+              "ru": "выжимать",
+              "uk": "вичавлювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i04:p2",
-            "target": "meditate",
+            "target": "melt",
             "meaningByLocale": {
-              "ru": "медитировать",
-              "uk": "медитувати"
+              "ru": "растапливать",
+              "uk": "розтоплювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i04:p3",
-            "target": "hospital",
+            "target": "butter",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "масло",
+              "uk": "масло"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i04:p4",
-            "target": "garage",
+            "target": "lemon",
             "meaningByLocale": {
-              "ru": "гараж",
-              "uk": "гараж"
+              "ru": "лимон",
+              "uk": "лимон"
             }
           }
         ],
         "leftColumn": [
-          "camp",
-          "meditate",
-          "hospital",
-          "garage"
+          "squeeze",
+          "melt",
+          "butter",
+          "lemon"
         ],
         "rightColumn": [
-          "ночевать в палатке",
-          "медитировать",
-          "больница",
-          "гараж"
+          "выжимать",
+          "растапливать",
+          "масло",
+          "лимон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,9 +357,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-49:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-07:session-49:word:mash",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:word:mash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:word:mash:audio",
+          "transcript": "mash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:word:mash:r1",
+            "targetText": "mash",
+            "meaningByLocale": {
+              "ru": "разминать в пюре. I often mash potatoes. — «Я часто делаю пюре из картошки». Разминать мягкую еду, например варёную картошку, в пюре.",
+              "uk": "розминати в пюре. I often mash potatoes. — «Я часто роблю пюре з картоплі». Розминати м’яку їжу, наприклад варену картоплю, у пюре."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mash",
+          "definitionByLocale": {
+            "ru": "разминать в пюре. I often mash potatoes. — «Я часто делаю пюре из картошки». Разминать мягкую еду, например варёную картошку, в пюре.",
+            "uk": "розминати в пюре. I often mash potatoes. — «Я часто роблю пюре з картоплі». Розминати м’яку їжу, наприклад варену картоплю, у пюре."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-49:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -270,17 +416,30 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i05:audio",
-          "transcript": "I often camp."
+          "transcript": "I often mash potatoes."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often camp.",
+        "hiddenTargetPhrase": "I often mash potatoes.",
         "orderedTokens": [
           "I",
           "often",
-          "camp"
+          "mash",
+          "potatoes"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "mashes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `mash` — `I often mash potatoes.`",
+              "uk": "тут потрібно `mash` — `I often mash potatoes.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,32 +448,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-49:word:cafeteria",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cafeteria",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-49:word:cafeteria:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cafeteria",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-49:word:cafeteria:audio",
+          "transcript": "cafeteria"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-49:word:cafeteria:r1",
+            "targetText": "cafeteria",
+            "meaningByLocale": {
+              "ru": "столовая. Where is the cafeteria? — «Где столовая?» Столовая, обычно с самообслуживанием: например, в учебном заведении или на работе.",
+              "uk": "їдальня. Where is the cafeteria? — «Де їдальня?» Їдальня, зазвичай із самообслуговуванням: наприклад, у навчальному закладі чи на роботі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cafeteria",
+          "definitionByLocale": {
+            "ru": "столовая. Where is the cafeteria? — «Где столовая?» Столовая, обычно с самообслуживанием: например, в учебном заведении или на работе.",
+            "uk": "їдальня. Where is the cafeteria? — «Де їдальня?» Їдальня, зазвичай із самообслуговуванням: наприклад, у навчальному закладі чи на роботі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-49:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно медитирую дома»",
+      "prompt": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно медитирую дома»",
+      "accessibilityLabel": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually meditate at home.",
+        "targetPhrase": "Where is the cafeteria?",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно медитирую дома»",
-          "uk": "Скажіть «Я зазвичай медитую вдома»"
+          "ru": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
+          "uk": "Ви прийшли на курси. Спитайте охоронця: «Де їдальня?»"
         },
         "orderedTokens": [
-          "I",
-          "usually",
-          "meditate",
-          "at",
-          "home"
+          "Where",
+          "is",
+          "the",
+          "cafeteria"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the cafeteria?`",
+              "uk": "тут потрібно `is` — `Where is the cafeteria?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите прохожего «Где больница?»",
+      "prompt": "Вы уточняете, есть ли столовая в этом здании. Скажите: «Здесь есть столовая?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-49:i07:audio"
       ],
-      "accessibilityLabel": "Спросите прохожего «Где больница?»",
+      "accessibilityLabel": "Вы уточняете, есть ли столовая в этом здании. Скажите: «Здесь есть столовая?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i07:audio",
-          "transcript": "Where is the hospital?"
+          "transcript": "Is there a cafeteria here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the hospital?",
+        "targetPhrase": "Is there a cafeteria here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно медитирую дома»",
+      "prompt": "Охранник показывает на коридор. Спросите его о столовой. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-49:i08:r1",
-          "text": "meditate"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-07:session-49:i08:r2",
-          "text": "meditates"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-07:session-49:i08:r3",
-          "text": "meditating"
+          "text": "do"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно медитирую дома»",
+      "accessibilityLabel": "Охранник показывает на коридор. Спросите его о столовой. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно медитирую дома»",
-          "uk": "Скажіть «Я зазвичай медитую вдома»"
+          "ru": "Охранник показывает на коридор. Спросите его о столовой. Выберите слово",
+          "uk": "Охоронець показує на коридор. Спитайте його про їдальню. Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ at home.",
+        "gappedTargetPhrase": "Where ___ the cafeteria?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-49:i08:r1",
-            "text": "meditate"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-07:session-49:i08:r2",
-            "text": "meditates"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-07:session-49:i08:r3",
-            "text": "meditating"
+            "text": "do"
           }
         ],
-        "testedDimension": "Скажите «Я обычно медитирую дома»",
+        "testedDimension": "Охранник показывает на коридор. Спросите его о столовой. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-49:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно медитирую дома»",
+            "testedDimension": "Охранник показывает на коридор. Спросите его о столовой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `meditate`.",
-              "uk": "Після `I` потрібне `meditate`."
+              "ru": "Столовая одна: нужно is.",
+              "uk": "Їдальня одна: потрібно is."
             }
           },
           {
             "responseId": "en:lesson-07:session-49:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно медитирую дома»",
+            "testedDimension": "Охранник показывает на коридор. Спросите его о столовой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `meditate`.",
-              "uk": "Тут потрібна форма `meditate`."
+              "ru": "Здесь нужно is: Where is the cafeteria?",
+              "uk": "Тут потрібно is: Where is the cafeteria?"
             }
           }
         ]
@@ -426,7 +639,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -434,15 +647,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-49:i09:r1",
-          "text": "I often camp."
+          "text": "I often melt butter in a pan."
         },
         {
           "responseId": "en:lesson-07:session-49:i09:r2",
-          "text": "I often sew."
+          "text": "I often melt butter in a cup."
         },
         {
           "responseId": "en:lesson-07:session-49:i09:r3",
-          "text": "I often bake."
+          "text": "I often melt butter in a pot."
         }
       ],
       "mediaIds": [],
@@ -454,23 +667,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i09:audio",
-          "transcript": "I often camp."
+          "transcript": "I often melt butter in a pan."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-49:i09:r1",
-            "targetText": "I often camp.",
+            "targetText": "I often melt butter in a pan.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-49:i09:r2",
-            "targetText": "I often sew.",
+            "targetText": "I often melt butter in a cup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-49:i09:r3",
-            "targetText": "I often bake.",
+            "targetText": "I often melt butter in a pot.",
             "meaningByLocale": null
           }
         ],
@@ -481,8 +694,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `camp`, а в этом варианте — `sew`.",
-              "uk": "У записі останнє слово — `camp`, а в цьому варіанті — `sew`."
+              "ru": "В записи последнее слово — `pan`, а в этом варианте — `cup`.",
+              "uk": "У записі останнє слово — `pan`, а в цьому варіанті — `cup`."
             }
           },
           {
@@ -490,8 +703,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `camp`, а в этом варианте — `bake`.",
-              "uk": "У записі останнє слово — `camp`, а в цьому варіанті — `bake`."
+              "ru": "В записи последнее слово — `pan`, а в этом варианте — `pot`.",
+              "uk": "У записі останнє слово — `pan`, а в цьому варіанті — `pot`."
             }
           }
         ],
@@ -502,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-49:i10:p1",
-            "target": "meditate",
+            "target": "mash",
             "meaningByLocale": {
-              "ru": "медитировать",
-              "uk": "медитувати"
+              "ru": "разминать в пюре",
+              "uk": "розминати в пюре"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i10:p2",
-            "target": "camp",
+            "target": "squeeze",
             "meaningByLocale": {
-              "ru": "ночевать в палатке",
-              "uk": "ночувати в наметі"
+              "ru": "выжимать",
+              "uk": "вичавлювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i10:p3",
-            "target": "newspaper",
+            "target": "melt",
             "meaningByLocale": {
-              "ru": "газета",
-              "uk": "газета"
+              "ru": "растапливать",
+              "uk": "розтоплювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i10:p4",
-            "target": "hospital",
+            "target": "lemon",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "лимон",
+              "uk": "лимон"
             }
           }
         ],
         "leftColumn": [
-          "meditate",
-          "camp",
-          "newspaper",
-          "hospital"
+          "mash",
+          "squeeze",
+          "melt",
+          "lemon"
         ],
         "rightColumn": [
-          "медитировать",
-          "ночевать в палатке",
-          "газета",
-          "больница"
+          "разминать в пюре",
+          "выжимать",
+          "растапливать",
+          "лимон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,8 +788,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -590,18 +803,30 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i11:audio",
-          "transcript": "Where is the hospital?"
+          "transcript": "She often mashes potatoes."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the hospital?",
+        "hiddenTargetPhrase": "She often mashes potatoes.",
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "hospital"
+          "She",
+          "often",
+          "mashes",
+          "potatoes"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "mash"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `mashes` — `She often mashes potatoes.`",
+              "uk": "тут потрібно `mashes` — `She often mashes potatoes.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -611,30 +836,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы приехали к другу на машине. Спросите «Где гараж?»",
+      "prompt": "Вы любите картошку. Скажите: «Я часто делаю пюре из картошки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы приехали к другу на машине. Спросите «Где гараж?»",
+      "accessibilityLabel": "Вы любите картошку. Скажите: «Я часто делаю пюре из картошки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the garage?",
+        "targetPhrase": "I often mash potatoes.",
         "localizedMeaning": {
-          "ru": "Вы приехали к другу на машине. Спросите «Где гараж?»",
-          "uk": "Ви приїхали до друга машиною. Запитайте «Де гараж?»"
+          "ru": "Вы любите картошку. Скажите: «Я часто делаю пюре из картошки»",
+          "uk": "Ви любите картоплю. Скажіть: «Я часто роблю пюре з картоплі»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "garage"
+          "I",
+          "often",
+          "mash",
+          "potatoes"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "usually"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-49:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы любите картошку. Скажите: «Я часто делаю пюре из картошки»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `often` — `I often mash potatoes.`",
+              "uk": "тут потрібно `often` — `I often mash potatoes.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -644,25 +881,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ищете свою газету. Спросите друга «Где моя газета?»",
+      "prompt": "Подруга спрашивает про вашу сестру. Скажите: «Она часто растапливает масло на сковороде»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-49:i13:audio"
       ],
-      "accessibilityLabel": "Вы ищете свою газету. Спросите друга «Где моя газета?»",
+      "accessibilityLabel": "Подруга спрашивает про вашу сестру. Скажите: «Она часто растапливает масло на сковороде»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i13:audio",
-          "transcript": "Where is my newspaper?"
+          "transcript": "She often melts butter in a pan."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is my newspaper?",
+        "targetPhrase": "She often melts butter in a pan.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,15 +914,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто ночую в палатке»",
+      "prompt": "Друг спрашивает про ваш чай. Скажите: «Я обычно выжимаю лимонный сок в чай». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-49:i14:r1",
-          "text": "often"
+          "text": "usually"
         },
         {
           "responseId": "en:lesson-07:session-49:i14:r2",
@@ -698,18 +935,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто ночую в палатке»",
+      "accessibilityLabel": "Друг спрашивает про ваш чай. Скажите: «Я обычно выжимаю лимонный сок в чай». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто ночую в палатке»",
-          "uk": "Скажіть «Я часто ночую в наметі»"
+          "ru": "Друг спрашивает про ваш чай. Скажите: «Я обычно выжимаю лимонный сок в чай». Выберите слово",
+          "uk": "Друг питає про ваш чай. Скажіть: «Я зазвичай вичавлюю лимонний сік у чай». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ camp.",
+        "gappedTargetPhrase": "I ___ squeeze lemon juice into my tea.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-49:i14:r1",
-            "text": "often"
+            "text": "usually"
           },
           {
             "responseId": "en:lesson-07:session-49:i14:r2",
@@ -720,24 +957,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я часто ночую в палатке»",
+        "testedDimension": "Друг спрашивает про ваш чай. Скажите: «Я обычно выжимаю лимонный сок в чай». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-49:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто ночую в палатке»",
+            "testedDimension": "Друг спрашивает про ваш чай. Скажите: «Я обычно выжимаю лимонный сок в чай». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `camp`.",
-              "uk": "Для «часто» потрібне `often` перед `camp`."
+              "ru": "Для «обычно» нужно `usually` перед `squeeze`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `squeeze`."
             }
           },
           {
             "responseId": "en:lesson-07:session-49:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто ночую в палатке»",
+            "testedDimension": "Друг спрашивает про ваш чай. Скажите: «Я обычно выжимаю лимонный сок в чай». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `camp` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `camp` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `squeeze` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `squeeze` не ставимо."
             }
           }
         ]
@@ -746,7 +983,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -754,15 +991,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-49:i15:r1",
-          "text": "Where is the hospital?"
+          "text": "Where is the cafeteria?"
         },
         {
           "responseId": "en:lesson-07:session-49:i15:r2",
-          "text": "Where is the garage?"
+          "text": "Where is the library?"
         },
         {
           "responseId": "en:lesson-07:session-49:i15:r3",
-          "text": "Where is the airport?"
+          "text": "Where is the pharmacy?"
         }
       ],
       "mediaIds": [],
@@ -774,23 +1011,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i15:audio",
-          "transcript": "Where is the hospital?"
+          "transcript": "Where is the cafeteria?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-49:i15:r1",
-            "targetText": "Where is the hospital?",
+            "targetText": "Where is the cafeteria?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-49:i15:r2",
-            "targetText": "Where is the garage?",
+            "targetText": "Where is the library?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-49:i15:r3",
-            "targetText": "Where is the airport?",
+            "targetText": "Where is the pharmacy?",
             "meaningByLocale": null
           }
         ],
@@ -801,8 +1038,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hospital`, а в этом варианте — `garage`.",
-              "uk": "У записі останнє слово — `hospital`, а в цьому варіанті — `garage`."
+              "ru": "В записи последнее слово — `cafeteria`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `cafeteria`, а в цьому варіанті — `library`."
             }
           },
           {
@@ -810,8 +1047,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hospital`, а в этом варианте — `airport`.",
-              "uk": "У записі останнє слово — `hospital`, а в цьому варіанті — `airport`."
+              "ru": "В записи последнее слово — `cafeteria`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `cafeteria`, а в цьому варіанті — `pharmacy`."
             }
           }
         ],
@@ -822,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1073,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-49:i16:p1",
-            "target": "camp",
+            "target": "cafeteria",
             "meaningByLocale": {
-              "ru": "ночевать в палатке",
-              "uk": "ночувати в наметі"
+              "ru": "столовая",
+              "uk": "їдальня"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i16:p2",
-            "target": "garage",
+            "target": "butter",
             "meaningByLocale": {
-              "ru": "гараж",
-              "uk": "гараж"
+              "ru": "масло",
+              "uk": "масло"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i16:p3",
-            "target": "meditate",
+            "target": "squeeze",
             "meaningByLocale": {
-              "ru": "медитировать",
-              "uk": "медитувати"
+              "ru": "выжимать",
+              "uk": "вичавлювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-49:i16:p4",
-            "target": "newspaper",
+            "target": "melt",
             "meaningByLocale": {
-              "ru": "газета",
-              "uk": "газета"
+              "ru": "растапливать",
+              "uk": "розтоплювати"
             }
           }
         ],
         "leftColumn": [
-          "camp",
-          "garage",
-          "meditate",
-          "newspaper"
+          "cafeteria",
+          "butter",
+          "squeeze",
+          "melt"
         ],
         "rightColumn": [
-          "ночевать в палатке",
-          "гараж",
-          "медитировать",
-          "газета"
+          "столовая",
+          "масло",
+          "выжимать",
+          "растапливать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1132,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-49:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, любит ли Том ночёвки в палатке. Скажите «Том часто ночует в палатке»",
+      "prompt": "Сосед спрашивает про вашего брата. Скажите: «Мой брат обычно выжимает лимонный сок в свой чай»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-49:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, любит ли Том ночёвки в палатке. Скажите «Том часто ночует в палатке»",
+      "accessibilityLabel": "Сосед спрашивает про вашего брата. Скажите: «Мой брат обычно выжимает лимонный сок в свой чай»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-49:i17:audio",
-          "transcript": "Tom often camps."
+          "transcript": "My brother usually squeezes lemon juice into his tea."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often camps.",
+        "targetPhrase": "My brother usually squeezes lemon juice into his tea.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2e453180661b31fe72e765f8bbfa60ef3b6afe0be87d831df6526526499285d1"
+  "learnerFingerprint": "d733abb432da8c9e74555d1d5bc034bd5133343561a5b69b203dcc7c98b3ec8b"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-46:intro1:r2": {
-          "ru": "После `I` нужно `organize`, без `s`.",
-          "uk": "Після `I` потрібне `organize`, без `s`."
+          "ru": "После I нужно grate, без s.",
+          "uk": "Після I потрібно grate, без s."
         },
         "en:lesson-07:session-46:intro1:r3": {
-          "ru": "Здесь нужна форма `organize`.",
-          "uk": "Тут потрібна форма `organize`."
+          "ru": "Для привычки после I usually нужно grate.",
+          "uk": "Для звички після I usually потрібно grate."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-46:intro2:r2": {
-          "ru": "После `I` нужно `iron`.",
-          "uk": "Після `I` потрібне `iron`."
+          "ru": "После I нужно whisk, без s.",
+          "uk": "Після I потрібно whisk, без s."
         },
         "en:lesson-07:session-46:intro2:r3": {
-          "ru": "Здесь нужна форма `iron`.",
-          "uk": "Тут потрібна форма `iron`."
+          "ru": "Для привычки после I often нужно whisk.",
+          "uk": "Для звички після I often потрібно whisk."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-46:intro3:r2": {
-          "ru": "Аэропорт один: нужно `is`.",
-          "uk": "Аеропорт один: потрібне `is`."
+          "ru": "После I нужно season, без s.",
+          "uk": "Після I потрібно season, без s."
         },
         "en:lesson-07:session-46:intro3:r3": {
-          "ru": "В этом вопросе `is` стоит перед `the airport`.",
-          "uk": "У цьому запитанні `is` стоїть перед `the airport`."
+          "ru": "Для привычки после I usually нужно season.",
+          "uk": "Для звички після I usually потрібно season."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ccd854ff71e331737d3aef96b8306cc9d831b9488c8b4a5cfbeef736ef44880d"
+  "auxiliaryFingerprint": "8d37a83b768499b8e5a8dd32936c5af10084f1cddc7a091a456b0fce916aa931"
 }

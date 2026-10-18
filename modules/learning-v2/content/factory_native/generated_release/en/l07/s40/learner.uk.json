@@ -4,30 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-40:i01",
+      "interactionId": "en:lesson-07:session-40:word:account",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — account",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-40:word:account:audio"
+      ],
+      "accessibilityLabel": "Картка слова — account",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-40:word:account:audio",
+          "transcript": "account"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-40:word:account:r1",
+            "targetText": "account",
+            "meaningByLocale": {
+              "ru": "счёт в банке. My account is at this bank. — «Мой счёт в этом банке». Здесь речь о банковском счёте, а не о счёте за обед.",
+              "uk": "рахунок у банку. My account is at this bank. — «Мій рахунок у цьому банку». Тут ідеться про банківський рахунок, а не про рахунок за обід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "account",
+          "definitionByLocale": {
+            "ru": "счёт в банке. My account is at this bank. — «Мой счёт в этом банке». Здесь речь о банковском счёте, а не о счёте за обед.",
+            "uk": "рахунок у банку. My account is at this bank. — «Мій рахунок у цьому банку». Тут ідеться про банківський рахунок, а не про рахунок за обід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-40:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я зазвичай здаю відходи на переробку»",
+      "prompt": "Друг питає, у якому банку у вас рахунок. Скажіть: «Мій рахунок у цьому банку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай здаю відходи на переробку»",
+      "accessibilityLabel": "Друг питає, у якому банку у вас рахунок. Скажіть: «Мій рахунок у цьому банку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually recycle.",
+        "targetPhrase": "My account is at this bank.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно сдаю отходы на переработку»",
-          "uk": "Скажіть «Я зазвичай здаю відходи на переробку»"
+          "ru": "Друг спрашивает, в каком банке у вас счёт. Скажите: «Мой счёт в этом банке»",
+          "uk": "Друг питає, у якому банку у вас рахунок. Скажіть: «Мій рахунок у цьому банку»"
         },
         "orderedTokens": [
-          "I",
-          "usually",
-          "recycle"
+          "My",
+          "account",
+          "is",
+          "at",
+          "this",
+          "bank"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-40:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає, у якому банку у вас рахунок. Скажіть: «Мій рахунок у цьому банку»",
+            "feedbackByLocale": {
+              "ru": "для одного счёта нужно `is`.",
+              "uk": "для одного рахунку потрібно `is`."
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,8 +94,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-40:word:withdraw",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — withdraw",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-40:word:withdraw:audio"
+      ],
+      "accessibilityLabel": "Картка слова — withdraw",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-40:word:withdraw:audio",
+          "transcript": "withdraw"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-40:word:withdraw:r1",
+            "targetText": "withdraw",
+            "meaningByLocale": {
+              "ru": "снимать деньги со счёта. I often withdraw cash at the cashpoint. — «Я часто снимаю наличные в банкомате». Получать свои деньги из банка.",
+              "uk": "знімати гроші з рахунку. I often withdraw cash at the cashpoint. — «Я часто знімаю готівку в банкоматі». Отримувати свої гроші з банку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "withdraw",
+          "definitionByLocale": {
+            "ru": "снимать деньги со счёта. I often withdraw cash at the cashpoint. — «Я часто снимаю наличные в банкомате». Получать свои деньги из банка.",
+            "uk": "знімати гроші з рахунку. I often withdraw cash at the cashpoint. — «Я часто знімаю готівку в банкоматі». Отримувати свої гроші з банку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-40:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +146,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-40:i02:r1",
-          "text": "commute"
+          "text": "withdraw"
         },
         {
           "responseId": "en:lesson-07:session-40:i02:r2",
-          "text": "relax"
+          "text": "wait"
         },
         {
           "responseId": "en:lesson-07:session-40:i02:r3",
-          "text": "bake"
+          "text": "wear"
         }
       ],
       "mediaIds": [],
@@ -65,23 +166,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i02:audio",
-          "transcript": "commute"
+          "transcript": "withdraw"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-40:i02:r1",
-            "targetText": "commute",
+            "targetText": "withdraw",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-40:i02:r2",
-            "targetText": "relax",
+            "targetText": "wait",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-40:i02:r3",
-            "targetText": "bake",
+            "targetText": "wear",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +193,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `commute`, а в этом варианте — `relax`.",
-              "uk": "У записі перше слово — `commute`, а в цьому варіанті — `relax`."
+              "ru": "В записи первое слово — `withdraw`, а в этом варианте — `wait`.",
+              "uk": "У записі перше слово — `withdraw`, а в цьому варіанті — `wait`."
             }
           },
           {
@@ -101,8 +202,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `commute`, а в этом варианте — `bake`.",
-              "uk": "У записі перше слово — `commute`, а в цьому варіанті — `bake`."
+              "ru": "В записи первое слово — `withdraw`, а в этом варианте — `wear`.",
+              "uk": "У записі перше слово — `withdraw`, а в цьому варіанті — `wear`."
             }
           }
         ],
@@ -112,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-40:word:tip",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-40:word:tip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-40:word:tip:audio",
+          "transcript": "tip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-40:word:tip:r1",
+            "targetText": "tip",
+            "meaningByLocale": {
+              "ru": "давать чаевые. He usually tips the waiter. — «Он обычно оставляет официанту чаевые». Давать дополнительные деньги человеку за обслуживание.",
+              "uk": "давати чайові. He usually tips the waiter. — «Він зазвичай залишає офіціантові чайові». Давати додаткові гроші людині за обслуговування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tip",
+          "definitionByLocale": {
+            "ru": "давать чаевые. He usually tips the waiter. — «Он обычно оставляет официанту чаевые». Давать дополнительные деньги человеку за обслуживание.",
+            "uk": "давати чайові. He usually tips the waiter. — «Він зазвичай залишає офіціантові чайові». Давати додаткові гроші людині за обслуговування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-40:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто допомагаю як волонтер»",
+      "prompt": "Друг питає про вашого брата в кафе. Скажіть: «Він зазвичай залишає офіціантові чайові». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-40:i03:r1",
-          "text": "volunteer"
+          "text": "tips"
         },
         {
           "responseId": "en:lesson-07:session-40:i03:r2",
-          "text": "volunteers"
+          "text": "tip"
         },
         {
           "responseId": "en:lesson-07:session-40:i03:r3",
-          "text": "volunteering"
+          "text": "tipping"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто допомагаю як волонтер»",
+      "accessibilityLabel": "Друг питає про вашого брата в кафе. Скажіть: «Він зазвичай залишає офіціантові чайові». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто помогаю как волонтёр»",
-          "uk": "Скажіть «Я часто допомагаю як волонтер»"
+          "ru": "Друг спрашивает про вашего брата в кафе. Скажите: «Он обычно оставляет официанту чаевые». Выберите слово",
+          "uk": "Друг питає про вашого брата в кафе. Скажіть: «Він зазвичай залишає офіціантові чайові». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___.",
+        "gappedTargetPhrase": "He usually ___ the waiter.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-40:i03:r1",
-            "text": "volunteer"
+            "text": "tips"
           },
           {
             "responseId": "en:lesson-07:session-40:i03:r2",
-            "text": "volunteers"
+            "text": "tip"
           },
           {
             "responseId": "en:lesson-07:session-40:i03:r3",
-            "text": "volunteering"
+            "text": "tipping"
           }
         ],
-        "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+        "testedDimension": "Друг питає про вашого брата в кафе. Скажіть: «Він зазвичай залишає офіціантові чайові». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-40:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+            "testedDimension": "Друг питає про вашого брата в кафе. Скажіть: «Він зазвичай залишає офіціантові чайові». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `volunteer`.",
-              "uk": "Після `I` потрібне `volunteer`."
+              "ru": "После `He` нужно `tips`.",
+              "uk": "Після `He` потрібно `tips`."
             }
           },
           {
             "responseId": "en:lesson-07:session-40:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто допомагаю як волонтер»",
+            "testedDimension": "Друг питає про вашого брата в кафе. Скажіть: «Він зазвичай залишає офіціантові чайові». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `volunteer`.",
-              "uk": "Тут потрібна форма `volunteer`."
+              "ru": "Здесь нужна форма `tips`.",
+              "uk": "Тут потрібна форма `tips`."
             }
           }
         ]
@@ -182,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-40:i04:p1",
-            "target": "recycle",
+            "target": "account",
             "meaningByLocale": {
-              "ru": "сдавать на переработку",
-              "uk": "здавати на переробку"
+              "ru": "счёт в банке",
+              "uk": "рахунок у банку"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i04:p2",
-            "target": "volunteer",
+            "target": "withdraw",
             "meaningByLocale": {
-              "ru": "быть волонтёром",
-              "uk": "бути волонтером"
+              "ru": "снимать деньги",
+              "uk": "знімати гроші"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i04:p3",
-            "target": "commute",
+            "target": "tip",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "давать чаевые",
+              "uk": "давати чайові"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i04:p4",
-            "target": "relax",
+            "target": "coin",
             "meaningByLocale": {
-              "ru": "расслабляться",
-              "uk": "розслаблятися"
+              "ru": "монета",
+              "uk": "монета"
             }
           }
         ],
         "leftColumn": [
-          "recycle",
-          "volunteer",
-          "commute",
-          "relax"
+          "account",
+          "withdraw",
+          "tip",
+          "coin"
         ],
         "rightColumn": [
-          "здавати на переробку",
-          "бути волонтером",
-          "їздити на роботу або навчання",
-          "розслаблятися"
+          "рахунок у банку",
+          "знімати гроші",
+          "давати чайові",
+          "монета"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,8 +399,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -270,17 +414,33 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i05:audio",
-          "transcript": "I usually commute."
+          "transcript": "I often withdraw cash at the cashpoint."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually commute.",
+        "hiddenTargetPhrase": "I often withdraw cash at the cashpoint.",
         "orderedTokens": [
           "I",
-          "usually",
-          "commute"
+          "often",
+          "withdraw",
+          "cash",
+          "at",
+          "the",
+          "cashpoint"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "withdraws"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-40:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `withdraw` — `I often withdraw cash at the cashpoint.`",
+              "uk": "тут потрібно `withdraw` — `I often withdraw cash at the cashpoint.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,31 +449,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-40:word:deposit",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deposit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-40:word:deposit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deposit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-40:word:deposit:audio",
+          "transcript": "deposit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-40:word:deposit:r1",
+            "targetText": "deposit",
+            "meaningByLocale": {
+              "ru": "класть на счёт. I usually deposit cash at the bank. — «Я обычно кладу наличные на счёт в банке». Отдавать наличные банку, чтобы они лежали на счёте.",
+              "uk": "класти на рахунок. I usually deposit cash at the bank. — «Я зазвичай кладу готівку на рахунок у банку». Віддавати готівку банку, щоб вона лежала на рахунку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deposit",
+          "definitionByLocale": {
+            "ru": "класть на счёт. I usually deposit cash at the bank. — «Я обычно кладу наличные на счёт в банке». Отдавать наличные банку, чтобы они лежали на счёте.",
+            "uk": "класти на рахунок. I usually deposit cash at the bank. — «Я зазвичай кладу готівку на рахунок у банку». Віддавати готівку банку, щоб вона лежала на рахунку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-40:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Том зазвичай збирає речі заздалегідь»",
+      "prompt": "Друг питає, що ви зазвичай робите з отриманою готівкою. Скажіть: «Я зазвичай кладу готівку на рахунок у банку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Том зазвичай збирає речі заздалегідь»",
+      "accessibilityLabel": "Друг питає, що ви зазвичай робите з отриманою готівкою. Скажіть: «Я зазвичай кладу готівку на рахунок у банку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Tom usually packs early.",
+        "targetPhrase": "I usually deposit cash at the bank.",
         "localizedMeaning": {
-          "ru": "Скажите «Том обычно собирает вещи заранее»",
-          "uk": "Скажіть «Том зазвичай збирає речі заздалегідь»"
+          "ru": "Друг спрашивает, что вы обычно делаете с полученными наличными. Скажите: «Я обычно кладу наличные на счёт в банке»",
+          "uk": "Друг питає, що ви зазвичай робите з отриманою готівкою. Скажіть: «Я зазвичай кладу готівку на рахунок у банку»"
         },
         "orderedTokens": [
-          "Tom",
+          "I",
           "usually",
-          "packs",
-          "early"
+          "deposit",
+          "cash",
+          "at",
+          "the",
+          "bank"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-40:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає, що ви зазвичай робите з отриманою готівкою. Скажіть: «Я зазвичай кладу готівку на рахунок у банку»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually deposit cash at the bank.`",
+              "uk": "тут потрібно `usually` — `I usually deposit cash at the bank.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +541,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я часто розслабляюся»",
+      "prompt": "Подруга питає про вашу сестру. Скажіть: «Вона часто кладе готівку на рахунок у банку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-40:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я часто розслабляюся»",
+      "accessibilityLabel": "Подруга питає про вашу сестру. Скажіть: «Вона часто кладе готівку на рахунок у банку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i07:audio",
-          "transcript": "I often relax."
+          "transcript": "She often deposits cash at the bank."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often relax.",
+        "targetPhrase": "She often deposits cash at the bank.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,67 +574,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Розкажіть про домашні справи: «Том часто прасує одяг»",
+      "prompt": "Друг питає, де ваша сестра бере готівку. Скажіть: «Вона зазвичай знімає готівку в банку». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-40:i08:r1",
-          "text": "irons"
+          "text": "withdraws"
         },
         {
           "responseId": "en:lesson-07:session-40:i08:r2",
-          "text": "iron"
+          "text": "withdraw"
         },
         {
           "responseId": "en:lesson-07:session-40:i08:r3",
-          "text": "ironing"
+          "text": "withdrawing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про домашні справи: «Том часто прасує одяг»",
+      "accessibilityLabel": "Друг питає, де ваша сестра бере готівку. Скажіть: «Вона зазвичай знімає готівку в банку». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Расскажите о домашних делах: «Том часто гладит одежду»",
-          "uk": "Розкажіть про домашні справи: «Том часто прасує одяг»"
+          "ru": "Друг спрашивает, где ваша сестра берёт наличные. Скажите: «Она обычно снимает наличные в банке». Выберите слово",
+          "uk": "Друг питає, де ваша сестра бере готівку. Скажіть: «Вона зазвичай знімає готівку в банку». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom often ___.",
+        "gappedTargetPhrase": "She usually ___ cash at the bank.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-40:i08:r1",
-            "text": "irons"
+            "text": "withdraws"
           },
           {
             "responseId": "en:lesson-07:session-40:i08:r2",
-            "text": "iron"
+            "text": "withdraw"
           },
           {
             "responseId": "en:lesson-07:session-40:i08:r3",
-            "text": "ironing"
+            "text": "withdrawing"
           }
         ],
-        "testedDimension": "Розкажіть про домашні справи: «Том часто прасує одяг»",
+        "testedDimension": "Друг питає, де ваша сестра бере готівку. Скажіть: «Вона зазвичай знімає готівку в банку». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-40:i08:r2",
             "correct": false,
-            "testedDimension": "Розкажіть про домашні справи: «Том часто прасує одяг»",
+            "testedDimension": "Друг питає, де ваша сестра бере готівку. Скажіть: «Вона зазвичай знімає готівку в банку». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Tom` нужно `irons`.",
-              "uk": "Після `Tom` потрібне `irons`."
+              "ru": "После `She` нужно `withdraws`.",
+              "uk": "Після `She` потрібно `withdraws`."
             }
           },
           {
             "responseId": "en:lesson-07:session-40:i08:r3",
             "correct": false,
-            "testedDimension": "Розкажіть про домашні справи: «Том часто прасує одяг»",
+            "testedDimension": "Друг питає, де ваша сестра бере готівку. Скажіть: «Вона зазвичай знімає готівку в банку». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `irons`.",
-              "uk": "Тут потрібна форма `irons`."
+              "ru": "Здесь нужна форма `withdraws`.",
+              "uk": "Тут потрібна форма `withdraws`."
             }
           }
         ]
@@ -425,7 +643,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -433,15 +651,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-40:i09:r1",
-          "text": "I usually bake."
+          "text": "He usually tips the waiter."
         },
         {
           "responseId": "en:lesson-07:session-40:i09:r2",
-          "text": "I usually recycle."
+          "text": "He usually tips the cashier."
         },
         {
           "responseId": "en:lesson-07:session-40:i09:r3",
-          "text": "I usually commute."
+          "text": "He usually tips the driver."
         }
       ],
       "mediaIds": [],
@@ -453,23 +671,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i09:audio",
-          "transcript": "I usually bake."
+          "transcript": "He usually tips the waiter."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-40:i09:r1",
-            "targetText": "I usually bake.",
+            "targetText": "He usually tips the waiter.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-40:i09:r2",
-            "targetText": "I usually recycle.",
+            "targetText": "He usually tips the cashier.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-40:i09:r3",
-            "targetText": "I usually commute.",
+            "targetText": "He usually tips the driver.",
             "meaningByLocale": null
           }
         ],
@@ -480,8 +698,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bake`, а в этом варианте — `recycle`.",
-              "uk": "У записі останнє слово — `bake`, а в цьому варіанті — `recycle`."
+              "ru": "В записи последнее слово — `waiter`, а в этом варианте — `cashier`.",
+              "uk": "У записі останнє слово — `waiter`, а в цьому варіанті — `cashier`."
             }
           },
           {
@@ -489,8 +707,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bake`, а в этом варианте — `commute`.",
-              "uk": "У записі останнє слово — `bake`, а в цьому варіанті — `commute`."
+              "ru": "В записи последнее слово — `waiter`, а в этом варианте — `driver`.",
+              "uk": "У записі останнє слово — `waiter`, а в цьому варіанті — `driver`."
             }
           }
         ],
@@ -501,8 +719,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -515,48 +733,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-40:i10:p1",
-            "target": "pack",
+            "target": "deposit",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "класть на счёт",
+              "uk": "класти на рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i10:p2",
-            "target": "iron",
+            "target": "tip",
             "meaningByLocale": {
-              "ru": "гладить одежду",
-              "uk": "прасувати одяг"
+              "ru": "давать чаевые",
+              "uk": "давати чайові"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i10:p3",
-            "target": "bake",
+            "target": "withdraw",
             "meaningByLocale": {
-              "ru": "печь",
-              "uk": "пекти"
+              "ru": "снимать деньги",
+              "uk": "знімати гроші"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i10:p4",
-            "target": "relax",
+            "target": "save",
             "meaningByLocale": {
-              "ru": "расслабляться",
-              "uk": "розслаблятися"
+              "ru": "откладывать деньги",
+              "uk": "відкладати гроші"
             }
           }
         ],
         "leftColumn": [
-          "pack",
-          "iron",
-          "bake",
-          "relax"
+          "deposit",
+          "tip",
+          "withdraw",
+          "save"
         ],
         "rightColumn": [
-          "збирати речі",
-          "прасувати одяг",
-          "пекти",
-          "розслаблятися"
+          "класти на рахунок",
+          "давати чайові",
+          "знімати гроші",
+          "відкладати гроші"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,8 +792,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -589,17 +807,33 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i11:audio",
-          "transcript": "I often volunteer."
+          "transcript": "She often deposits cash at the bank."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often volunteer.",
+        "hiddenTargetPhrase": "She often deposits cash at the bank.",
         "orderedTokens": [
-          "I",
+          "She",
           "often",
-          "volunteer"
+          "deposits",
+          "cash",
+          "at",
+          "the",
+          "bank"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "deposit"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-40:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `deposits` — `She often deposits cash at the bank.`",
+              "uk": "тут потрібно `deposits` — `She often deposits cash at the bank.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -609,30 +843,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дізнайтеся місце роботи знайомого",
+      "prompt": "Сусід питає про пляшки. Скажіть: «Я зазвичай здаю пляшки на переробку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дізнайтеся місце роботи знайомого",
+      "accessibilityLabel": "Сусід питає про пляшки. Скажіть: «Я зазвичай здаю пляшки на переробку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where do you work?",
+        "targetPhrase": "I usually recycle bottles.",
         "localizedMeaning": {
-          "ru": "Узнайте место работы знакомого",
-          "uk": "Дізнайтеся місце роботи знайомого"
+          "ru": "Сосед спрашивает про бутылки. Скажите: «Я обычно сдаю бутылки на переработку»",
+          "uk": "Сусід питає про пляшки. Скажіть: «Я зазвичай здаю пляшки на переробку»"
         },
         "orderedTokens": [
-          "Where",
-          "do",
-          "you",
-          "work"
+          "I",
+          "usually",
+          "recycle",
+          "bottles"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-40:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід питає про пляшки. Скажіть: «Я зазвичай здаю пляшки на переробку»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually recycle bottles.`",
+              "uk": "тут потрібно `usually` — `I usually recycle bottles.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -642,25 +888,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На пропозицію сигарети відповідайте «Я не курю»",
+      "prompt": "Знайомий питає, чим зайнятий ваш брат у вільний час. Скажіть: «Мій брат часто працює волонтером у бібліотеці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-40:i13:audio"
       ],
-      "accessibilityLabel": "На пропозицію сигарети відповідайте «Я не курю»",
+      "accessibilityLabel": "Знайомий питає, чим зайнятий ваш брат у вільний час. Скажіть: «Мій брат часто працює волонтером у бібліотеці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i13:audio",
-          "transcript": "I don’t smoke."
+          "transcript": "My brother often volunteers at the library."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I don’t smoke.",
+        "targetPhrase": "My brother often volunteers at the library.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -675,11 +921,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+      "prompt": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу автобусом». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-40:i14:r1",
@@ -696,14 +942,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+      "accessibilityLabel": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу автобусом». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно собираю вещи заранее»",
-          "uk": "Скажіть «Я зазвичай збираю речі заздалегідь»"
+          "ru": "Вы рассказываете о дороге на работу. Скажите: «Я обычно езжу на работу на автобусе». Выберите слово",
+          "uk": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу автобусом». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ pack early.",
+        "gappedTargetPhrase": "I ___ commute by bus.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-40:i14:r1",
@@ -718,24 +964,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+        "testedDimension": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу автобусом». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-40:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+            "testedDimension": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу автобусом». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `pack`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `pack`."
+              "ru": "Для «обычно» нужно `usually` перед `commute`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `commute`."
             }
           },
           {
             "responseId": "en:lesson-07:session-40:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я зазвичай збираю речі заздалегідь»",
+            "testedDimension": "Ви розповідаєте про дорогу на роботу. Скажіть: «Я зазвичай їжджу на роботу автобусом». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `pack` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `pack` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `commute` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `commute` не ставимо."
             }
           }
         ]
@@ -744,7 +990,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -752,15 +998,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-40:i15:r1",
-          "text": "I often iron."
+          "text": "She often relaxes on the sofa."
         },
         {
           "responseId": "en:lesson-07:session-40:i15:r2",
-          "text": "I often relax."
+          "text": "She often relaxes on the bed."
         },
         {
           "responseId": "en:lesson-07:session-40:i15:r3",
-          "text": "I often volunteer."
+          "text": "She often relaxes on the chair."
         }
       ],
       "mediaIds": [],
@@ -772,23 +1018,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i15:audio",
-          "transcript": "I often iron."
+          "transcript": "She often relaxes on the sofa."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-40:i15:r1",
-            "targetText": "I often iron.",
+            "targetText": "She often relaxes on the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-40:i15:r2",
-            "targetText": "I often relax.",
+            "targetText": "She often relaxes on the bed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-40:i15:r3",
-            "targetText": "I often volunteer.",
+            "targetText": "She often relaxes on the chair.",
             "meaningByLocale": null
           }
         ],
@@ -799,8 +1045,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `iron`, а в этом варианте — `relax`.",
-              "uk": "У записі останнє слово — `iron`, а в цьому варіанті — `relax`."
+              "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
+              "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
             }
           },
           {
@@ -808,8 +1054,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `iron`, а в этом варианте — `volunteer`.",
-              "uk": "У записі останнє слово — `iron`, а в цьому варіанті — `volunteer`."
+              "ru": "В записи последнее слово — `sofa`, а в этом варианте — `chair`.",
+              "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `chair`."
             }
           }
         ],
@@ -820,7 +1066,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -834,48 +1080,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-40:i16:p1",
-            "target": "commute",
+            "target": "deposit",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "класть на счёт",
+              "uk": "класти на рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i16:p2",
-            "target": "pack",
+            "target": "tip",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "давать чаевые",
+              "uk": "давати чайові"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i16:p3",
-            "target": "bake",
+            "target": "account",
             "meaningByLocale": {
-              "ru": "печь",
-              "uk": "пекти"
+              "ru": "счёт в банке",
+              "uk": "рахунок у банку"
             }
           },
           {
             "pairId": "en:lesson-07:session-40:i16:p4",
-            "target": "recycle",
+            "target": "bank",
             "meaningByLocale": {
-              "ru": "сдавать на переработку",
-              "uk": "здавати на переробку"
+              "ru": "банк",
+              "uk": "банк"
             }
           }
         ],
         "leftColumn": [
-          "commute",
-          "pack",
-          "bake",
-          "recycle"
+          "deposit",
+          "tip",
+          "account",
+          "bank"
         ],
         "rightColumn": [
-          "їздити на роботу або навчання",
-          "збирати речі",
-          "пекти",
-          "здавати на переробку"
+          "класти на рахунок",
+          "давати чайові",
+          "рахунок у банку",
+          "банк"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,25 +1139,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-40:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сусід запитує, що Том зазвичай робить з відходами, придатними для переробки. Скажіть «Том зазвичай здає відходи на переробку»",
+      "prompt": "Сусід питає, як ваша сестра добирається до роботи. Скажіть: «Вона зазвичай їздить на роботу поїздом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Сусід запитує, що Том зазвичай робить з відходами, придатними для переробки. Скажіть «Том зазвичай здає відходи на переробку»",
+      "accessibilityLabel": "Сусід питає, як ваша сестра добирається до роботи. Скажіть: «Вона зазвичай їздить на роботу поїздом»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-40:i17:audio",
-          "transcript": "Tom usually recycles."
+          "transcript": "She usually commutes by train."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually recycles.",
+        "targetPhrase": "She usually commutes by train.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -933,11 +1179,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9d2707b036b9affb6bdd18c4f1d381c5664161ce63a07a7db6df05a58d8f9370"
+  "learnerFingerprint": "d8b74611cb106c4847c103c3fd3a02ef8ac53ae389c5f8f262c07ace2d1b1b50"
 }

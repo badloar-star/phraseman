@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-56:word:spread",
+    "correctText": "spread",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-56:i01",
-    "correctText": "I often camp.",
+    "correctText": "I usually spread butter on bread.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i02",
-    "correctText": "hike",
+    "correctText": "spread",
     "correctResponseId": "en:lesson-07:session-56:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-56:i03",
-    "correctText": "dance",
+    "correctText": "spread",
     "correctResponseId": "en:lesson-07:session-56:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-56:i04",
-    "correctText": "en:lesson-07:session-56:i04:p1=camp\nen:lesson-07:session-56:i04:p2=hike\nen:lesson-07:session-56:i04:p3=dance\nen:lesson-07:session-56:i04:p4=ski",
+    "correctText": "en:lesson-07:session-56:i04:p1=spread\nen:lesson-07:session-56:i04:p2=butter\nen:lesson-07:session-56:i04:p3=bread\nen:lesson-07:session-56:i04:p4=salad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:word:toss",
+    "correctText": "toss",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i05",
-    "correctText": "I often dance at home.",
+    "correctText": "I often toss a salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:word:nod",
+    "correctText": "nod",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i06",
-    "correctText": "I usually ski.",
+    "correctText": "He often nods at a neighbour.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i07",
-    "correctText": "Tom often streams films.",
+    "correctText": "Do you accept cards?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i08",
-    "correctText": "streams",
+    "correctText": "nods",
     "correctResponseId": "en:lesson-07:session-56:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-56:i09",
-    "correctText": "I often surf.",
+    "correctText": "I often toss a salad.",
     "correctResponseId": "en:lesson-07:session-56:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-56:i10",
-    "correctText": "en:lesson-07:session-56:i10:p1=surf\nen:lesson-07:session-56:i10:p2=browse\nen:lesson-07:session-56:i10:p3=stream\nen:lesson-07:session-56:i10:p4=hike",
+    "correctText": "en:lesson-07:session-56:i10:p1=nod\nen:lesson-07:session-56:i10:p2=squeeze\nen:lesson-07:session-56:i10:p3=hail\nen:lesson-07:session-56:i10:p4=staple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-56:word:shake",
+    "correctText": "shake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i11",
-    "correctText": "I usually browse online.",
+    "correctText": "I usually shake the bottle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i12",
-    "correctText": "Do you often camp?",
+    "correctText": "Where is the cafeteria?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i13",
-    "correctText": "Does Tom often surf?",
+    "correctText": "She often hails a taxi at night.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i14",
-    "correctText": "usually",
+    "correctText": "often",
     "correctResponseId": "en:lesson-07:session-56:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-56:i15",
-    "correctText": "I usually browse online.",
+    "correctText": "Where is the embassy?",
     "correctResponseId": "en:lesson-07:session-56:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-56:i16",
-    "correctText": "en:lesson-07:session-56:i16:p1=ski\nen:lesson-07:session-56:i16:p2=surf\nen:lesson-07:session-56:i16:p3=browse\nen:lesson-07:session-56:i16:p4=stream",
+    "correctText": "en:lesson-07:session-56:i16:p1=nod\nen:lesson-07:session-56:i16:p2=toss\nen:lesson-07:session-56:i16:p3=university\nen:lesson-07:session-56:i16:p4=surgery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-56:i17",
-    "correctText": "Tom usually hikes.",
+    "correctText": "My brother usually shakes the bottle.",
     "correctResponseId": null
   }
 ]

@@ -4,27 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-48:i01",
+      "interactionId": "en:lesson-07:session-48:word:delete",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:word:delete:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:word:delete:audio",
+          "transcript": "delete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:word:delete:r1",
+            "targetText": "delete",
+            "meaningByLocale": {
+              "ru": "удалять. I usually delete old messages. — «Я обычно удаляю старые сообщения». Удалять, например, сообщение или файл с устройства.",
+              "uk": "видаляти. I usually delete old messages. — «Я зазвичай видаляю старі повідомлення». Видаляти, наприклад, повідомлення або файл із пристрою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delete",
+          "definitionByLocale": {
+            "ru": "удалять. I usually delete old messages. — «Я обычно удаляю старые сообщения». Удалять, например, сообщение или файл с устройства.",
+            "uk": "видаляти. I usually delete old messages. — «Я зазвичай видаляю старі повідомлення». Видаляти, наприклад, повідомлення або файл із пристрою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто медитирую»",
+      "prompt": "Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто медитирую»",
+      "accessibilityLabel": "Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often meditate.",
+        "targetPhrase": "I usually delete old messages.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто медитирую»",
-          "uk": "Скажіть «Я часто медитую»"
+          "ru": "Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».",
+          "uk": "Подруга тримає ваш телефон. Скажіть їй: «Я зазвичай видаляю старі повідомлення»."
         },
         "orderedTokens": [
           "I",
-          "often",
-          "meditate"
+          "usually",
+          "delete",
+          "old",
+          "messages"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-48:i02:r1",
-          "text": "decorate"
+          "text": "I usually delete old messages."
         },
         {
           "responseId": "en:lesson-07:session-48:i02:r2",
-          "text": "donate"
+          "text": "I usually write old messages."
         },
         {
           "responseId": "en:lesson-07:session-48:i02:r3",
-          "text": "meditate"
+          "text": "I usually delete old letters."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i02:audio",
-          "transcript": "decorate"
+          "transcript": "I usually delete old messages."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-48:i02:r1",
-            "targetText": "decorate",
+            "targetText": "I usually delete old messages.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-48:i02:r2",
-            "targetText": "donate",
+            "targetText": "I usually write old messages.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-48:i02:r3",
-            "targetText": "meditate",
+            "targetText": "I usually delete old letters.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `decorate`, а в этом варианте — `donate`.",
-              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `donate`."
+              "ru": "В записи третье слово — `delete`, удалять, а в этом варианте — `write`, писать.",
+              "uk": "У записі третє слово — `delete`, видаляти, а в цьому варіанті — `write`, писати."
             }
           },
           {
             "responseId": "en:lesson-07:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `decorate`, а в этом варианте — `meditate`.",
-              "uk": "У записі перше слово — `decorate`, а в цьому варіанті — `meditate`."
+              "ru": "В записи последнее слово — `messages`, сообщения, а в этом варианте — `letters`, письма.",
+              "uk": "У записі останнє слово — `messages`, повідомлення, а в цьому варіанті — `letters`, листи."
             }
           }
         ],
@@ -113,67 +158,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто шью дома»",
+      "prompt": "Подруга спрашивает о телефоне. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-48:i03:r1",
-          "text": "sew"
+          "text": "delete"
         },
         {
           "responseId": "en:lesson-07:session-48:i03:r2",
-          "text": "sews"
+          "text": "deletes"
         },
         {
           "responseId": "en:lesson-07:session-48:i03:r3",
-          "text": "sewing"
+          "text": "deleting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто шью дома»",
+      "accessibilityLabel": "Подруга спрашивает о телефоне. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто шью дома»",
-          "uk": "Скажіть «Я часто шию вдома»"
+          "ru": "Подруга спрашивает о телефоне. Выберите слово",
+          "uk": "Подруга питає про телефон. Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ at home.",
+        "gappedTargetPhrase": "I usually ___ old messages.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-48:i03:r1",
-            "text": "sew"
+            "text": "delete"
           },
           {
             "responseId": "en:lesson-07:session-48:i03:r2",
-            "text": "sews"
+            "text": "deletes"
           },
           {
             "responseId": "en:lesson-07:session-48:i03:r3",
-            "text": "sewing"
+            "text": "deleting"
           }
         ],
-        "testedDimension": "Скажите «Я часто шью дома»",
+        "testedDimension": "Подруга спрашивает о телефоне. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-48:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто шью дома»",
+            "testedDimension": "Подруга спрашивает о телефоне. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `sew`.",
-              "uk": "Після `I` потрібне `sew`."
+              "ru": "После `I` нужно `delete`, без `s`.",
+              "uk": "Після `I` потрібно `delete`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-48:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто шью дома»",
+            "testedDimension": "Подруга спрашивает о телефоне. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `sew`.",
-              "uk": "Тут потрібна форма `sew`."
+              "ru": "Здесь нужна форма `delete`.",
+              "uk": "Тут потрібна форма `delete`."
             }
           }
         ]
@@ -182,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-48:i04:p1",
-            "target": "meditate",
+            "target": "delete",
             "meaningByLocale": {
-              "ru": "медитировать",
-              "uk": "медитувати"
+              "ru": "удалять",
+              "uk": "видаляти"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i04:p2",
-            "target": "decorate",
+            "target": "message",
             "meaningByLocale": {
-              "ru": "украшать",
-              "uk": "прикрашати"
+              "ru": "сообщение",
+              "uk": "повідомлення"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i04:p3",
-            "target": "sew",
+            "target": "phone",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "телефон",
+              "uk": "телефон"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i04:p4",
-            "target": "polish",
+            "target": "old",
             "meaningByLocale": {
-              "ru": "полировать",
-              "uk": "полірувати"
+              "ru": "старый",
+              "uk": "старий"
             }
           }
         ],
         "leftColumn": [
-          "meditate",
-          "decorate",
-          "sew",
-          "polish"
+          "delete",
+          "message",
+          "phone",
+          "old"
         ],
         "rightColumn": [
-          "медитировать",
-          "украшать",
-          "шить",
-          "полировать"
+          "удалять",
+          "сообщение",
+          "телефон",
+          "старый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,30 +299,152 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-48:word:search",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — search",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:word:search:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — search",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:word:search:audio",
+          "transcript": "search"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:word:search:r1",
+            "targetText": "search",
+            "meaningByLocale": {
+              "ru": "искать. I often search for my phone. — «Я часто ищу свой телефон». Искать; search for something — искать что-то.",
+              "uk": "шукати. I often search for my phone. — «Я часто шукаю свій телефон». Шукати; search for something — шукати щось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "search",
+          "definitionByLocale": {
+            "ru": "искать. I often search for my phone. — «Я часто ищу свой телефон». Искать; search for something — искать что-то.",
+            "uk": "шукати. I often search for my phone. — «Я часто шукаю свій телефон». Шукати; search for something — шукати щось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-48:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте сестру и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте сестру и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i05:audio",
-          "transcript": "I often sew at home."
+          "transcript": "I often search for my phone."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often sew at home.",
+        "hiddenTargetPhrase": "I often search for my phone.",
         "orderedTokens": [
           "I",
           "often",
-          "sew",
+          "search",
+          "for",
+          "my",
+          "phone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:word:receive",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — receive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-48:word:receive:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — receive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:word:receive:audio",
+          "transcript": "receive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:word:receive:r1",
+            "targetText": "receive",
+            "meaningByLocale": {
+              "ru": "получать. I usually receive parcels at home. — «Я обычно получаю посылки дома». Брать то, что вам прислали или дали.",
+              "uk": "отримувати. I usually receive parcels at home. — «Я зазвичай отримую посилки вдома». Брати те, що вам надіслали або дали."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receive",
+          "definitionByLocale": {
+            "ru": "получать. I usually receive parcels at home. — «Я обычно получаю посылки дома». Брать то, что вам прислали или дали.",
+            "uk": "отримувати. I usually receive parcels at home. — «Я зазвичай отримую посилки вдома». Брати те, що вам надіслали або дали."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-48:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually receive parcels at home.",
+        "localizedMeaning": {
+          "ru": "Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».",
+          "uk": "Кур’єр дзвонить у двері. Скажіть йому: «Я зазвичай отримую посилки вдома»."
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "receive",
+          "parcels",
           "at",
           "home"
         ],
@@ -291,60 +458,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-48:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Расскажите об уходе за столом: «Я обычно полирую стол»",
+      "interactionId": "en:lesson-07:session-48:word:press",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — press",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите об уходе за столом: «Я обычно полирую стол»",
+      "audioTargetIds": [
+        "en:lesson-07:session-48:word:press:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — press",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I usually polish the table.",
-        "localizedMeaning": {
-          "ru": "Расскажите об уходе за столом: «Я обычно полирую стол»",
-          "uk": "Розкажіть про догляд за столом: «Я зазвичай полірую стіл»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-48:word:press:audio",
+          "transcript": "press"
         },
-        "orderedTokens": [
-          "I",
-          "usually",
-          "polish",
-          "the",
-          "table"
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-48:word:press:r1",
+            "targetText": "press",
+            "meaningByLocale": {
+              "ru": "нажимать. I usually press the button. — «Я обычно нажимаю кнопку». Надавить пальцем на кнопку.",
+              "uk": "натискати. I usually press the button. — «Я зазвичай натискаю кнопку». Надавити пальцем на кнопку."
+            }
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "press",
+          "definitionByLocale": {
+            "ru": "нажимать. I usually press the button. — «Я обычно нажимаю кнопку». Надавить пальцем на кнопку.",
+            "uk": "натискати. I usually press the button. — «Я зазвичай натискаю кнопку». Надавити пальцем на кнопку."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-48:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "prompt": "Вы с соседом выходите из дома вместе. Он спрашивает, кто из вас обычно вызывает лифт. Скажите: «Я обычно нажимаю кнопку».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "accessibilityLabel": "Вы с соседом выходите из дома вместе. Он спрашивает, кто из вас обычно вызывает лифт. Скажите: «Я обычно нажимаю кнопку».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i07:audio",
-          "transcript": "Tom often donates books."
+          "transcript": "I usually press the button."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often donates books.",
+        "targetPhrase": "I usually press the button.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -359,67 +535,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "prompt": "Расскажите о привычке сестры искать телефон. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-48:i08:r1",
-          "text": "donates"
+          "text": "searches"
         },
         {
           "responseId": "en:lesson-07:session-48:i08:r2",
-          "text": "donate"
+          "text": "search"
         },
         {
           "responseId": "en:lesson-07:session-48:i08:r3",
-          "text": "donating"
+          "text": "searching"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том часто отдаёт книги на благотворительность»",
+      "accessibilityLabel": "Расскажите о привычке сестры искать телефон. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том часто отдаёт книги на благотворительность»",
-          "uk": "Скажіть «Том часто віддає книжки на благодійність»"
+          "ru": "Расскажите о привычке сестры искать телефон. Выберите слово",
+          "uk": "Розкажіть про звичку сестри шукати телефон. Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom often ___ books.",
+        "gappedTargetPhrase": "My sister often ___ for her phone.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-48:i08:r1",
-            "text": "donates"
+            "text": "searches"
           },
           {
             "responseId": "en:lesson-07:session-48:i08:r2",
-            "text": "donate"
+            "text": "search"
           },
           {
             "responseId": "en:lesson-07:session-48:i08:r3",
-            "text": "donating"
+            "text": "searching"
           }
         ],
-        "testedDimension": "Скажите «Том часто отдаёт книги на благотворительность»",
+        "testedDimension": "Расскажите о привычке сестры искать телефон. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том часто отдаёт книги на благотворительность»",
+            "testedDimension": "Расскажите о привычке сестры искать телефон. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Tom` нужно `donates`.",
-              "uk": "Після `Tom` потрібне `donates`."
+              "ru": "После `my sister` нужно `searches`.",
+              "uk": "Після `my sister` потрібно `searches`."
             }
           },
           {
             "responseId": "en:lesson-07:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том часто отдаёт книги на благотворительность»",
+            "testedDimension": "Расскажите о привычке сестры искать телефон. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `donates`.",
-              "uk": "Тут потрібна форма `donates`."
+              "ru": "Здесь нужна форма `searches`.",
+              "uk": "Тут потрібна форма `searches`."
             }
           }
         ]
@@ -428,51 +604,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-48:i09:r1",
-          "text": "I often photograph birds."
+          "text": "I often search for my phone."
         },
         {
           "responseId": "en:lesson-07:session-48:i09:r2",
-          "text": "I often photograph cats."
+          "text": "I often search for my key."
         },
         {
           "responseId": "en:lesson-07:session-48:i09:r3",
-          "text": "I often photograph dogs."
+          "text": "I usually search for my phone."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i09:audio",
-          "transcript": "I often photograph birds."
+          "transcript": "I often search for my phone."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-48:i09:r1",
-            "targetText": "I often photograph birds.",
+            "targetText": "I often search for my phone.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-48:i09:r2",
-            "targetText": "I often photograph cats.",
+            "targetText": "I often search for my key.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-48:i09:r3",
-            "targetText": "I often photograph dogs.",
+            "targetText": "I usually search for my phone.",
             "meaningByLocale": null
           }
         ],
@@ -481,19 +657,19 @@
           {
             "responseId": "en:lesson-07:session-48:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `birds`, а в этом варианте — `cats`.",
-              "uk": "У записі останнє слово — `birds`, а в цьому варіанті — `cats`."
+              "ru": "В записи последнее слово — `phone`, телефон, а в этом варианте — `key`, ключ.",
+              "uk": "У записі останнє слово — `phone`, телефон, а в цьому варіанті — `key`, ключ."
             }
           },
           {
             "responseId": "en:lesson-07:session-48:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `birds`, а в этом варианте — `dogs`.",
-              "uk": "У записі останнє слово — `birds`, а в цьому варіанті — `dogs`."
+              "ru": "В записи второе слово — `often`, часто, а в этом варианте — `usually`, обычно.",
+              "uk": "У записі друге слово — `often`, часто, а в цьому варіанті — `usually`, зазвичай."
             }
           }
         ],
@@ -504,8 +680,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -518,48 +694,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-48:i10:p1",
-            "target": "donate",
+            "target": "search",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "искать",
+              "uk": "шукати"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i10:p2",
-            "target": "organize",
+            "target": "receive",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "получать",
+              "uk": "отримувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i10:p3",
-            "target": "photograph",
+            "target": "unplug",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "выключать из розетки",
+              "uk": "вимикати з розетки"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i10:p4",
-            "target": "sew",
+            "target": "cancel",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "отменять",
+              "uk": "скасовувати"
             }
           }
         ],
         "leftColumn": [
-          "donate",
-          "organize",
-          "photograph",
-          "sew"
+          "search",
+          "receive",
+          "unplug",
+          "cancel"
         ],
         "rightColumn": [
-          "отдавать на благотворительность",
-          "упорядочивать",
-          "фотографировать",
-          "шить"
+          "искать",
+          "получать",
+          "выключать из розетки",
+          "отменять"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -577,31 +753,32 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i11:audio",
-          "transcript": "I usually organize my books."
+          "transcript": "I usually fasten my seat belt."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually organize my books.",
+        "hiddenTargetPhrase": "I usually fasten my seat belt.",
         "orderedTokens": [
           "I",
           "usually",
-          "organize",
+          "fasten",
           "my",
-          "books"
+          "seat",
+          "belt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -614,27 +791,29 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите друга «Ты часто медитируешь?»",
+      "prompt": "Подруга ищет ключи. Спросите её: «Ты часто забываешь ключ?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите друга «Ты часто медитируешь?»",
+      "accessibilityLabel": "Подруга ищет ключи. Спросите её: «Ты часто забываешь ключ?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you often meditate?",
+        "targetPhrase": "Do you often forget the key?",
         "localizedMeaning": {
-          "ru": "Спросите друга «Ты часто медитируешь?»",
-          "uk": "Запитайте друга «Ти часто медитуєш?»"
+          "ru": "Подруга ищет ключи. Спросите её: «Ты часто забываешь ключ?»",
+          "uk": "Подруга шукає ключі. Спитайте її: «Ти часто забуваєш ключ?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "often",
-          "meditate"
+          "forget",
+          "the",
+          "key"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -647,25 +826,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы видите машинку Тома. Спросите его подругу «Том часто шьёт?»",
+      "prompt": "Подруга говорит, что её брат опаздывает. Спросите её: «Твой брат часто не успевает на автобус?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i13:audio"
       ],
-      "accessibilityLabel": "Вы видите машинку Тома. Спросите его подругу «Том часто шьёт?»",
+      "accessibilityLabel": "Подруга говорит, что её брат опаздывает. Спросите её: «Твой брат часто не успевает на автобус?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i13:audio",
-          "transcript": "Does Tom often sew?"
+          "transcript": "Does your brother often miss the bus?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Tom often sew?",
+        "targetPhrase": "Does your brother often miss the bus?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -680,15 +859,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "prompt": "Сосед спрашивает, кто обычно вызывает лифт. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-48:i14:r1",
-          "text": "often"
+          "text": "usually"
         },
         {
           "responseId": "en:lesson-07:session-48:i14:r2",
@@ -701,18 +880,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "accessibilityLabel": "Сосед спрашивает, кто обычно вызывает лифт. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто фотографирую птиц»",
-          "uk": "Скажіть «Я часто фотографую птахів»"
+          "ru": "Сосед спрашивает, кто обычно вызывает лифт. Выберите слово",
+          "uk": "Сусід питає, хто зазвичай викликає ліфт. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ photograph birds.",
+        "gappedTargetPhrase": "I ___ press the button.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-48:i14:r1",
-            "text": "often"
+            "text": "usually"
           },
           {
             "responseId": "en:lesson-07:session-48:i14:r2",
@@ -723,24 +902,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я часто фотографирую птиц»",
+        "testedDimension": "Сосед спрашивает, кто обычно вызывает лифт. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-48:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "testedDimension": "Сосед спрашивает, кто обычно вызывает лифт. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `photograph`.",
-              "uk": "Для «часто» потрібне `often` перед `photograph`."
+              "ru": "Для «обычно» нужно `usually` перед `press`.",
+              "uk": "Для «зазвичай» потрібне `usually` перед `press`."
             }
           },
           {
             "responseId": "en:lesson-07:session-48:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "testedDimension": "Сосед спрашивает, кто обычно вызывает лифт. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `photograph` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `photograph` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `press` не ставим.",
+              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `press` не ставимо."
             }
           }
         ]
@@ -749,51 +928,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-48:i15:r1",
-          "text": "I usually polish the table."
+          "text": "I usually unplug the kettle."
         },
         {
           "responseId": "en:lesson-07:session-48:i15:r2",
-          "text": "I usually polish the desk."
+          "text": "I usually unplug the toaster."
         },
         {
           "responseId": "en:lesson-07:session-48:i15:r3",
-          "text": "I usually polish the chair."
+          "text": "I often unplug the kettle."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i15:audio",
-          "transcript": "I usually polish the table."
+          "transcript": "I usually unplug the kettle."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-48:i15:r1",
-            "targetText": "I usually polish the table.",
+            "targetText": "I usually unplug the kettle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-48:i15:r2",
-            "targetText": "I usually polish the desk.",
+            "targetText": "I usually unplug the toaster.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-48:i15:r3",
-            "targetText": "I usually polish the chair.",
+            "targetText": "I often unplug the kettle.",
             "meaningByLocale": null
           }
         ],
@@ -802,19 +981,19 @@
           {
             "responseId": "en:lesson-07:session-48:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `table`, а в этом варианте — `desk`.",
-              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `desk`."
+              "ru": "В записи последнее слово — `kettle`, чайник, а в этом варианте — `toaster`, тостер.",
+              "uk": "У записі останнє слово — `kettle`, чайник, а в цьому варіанті — `toaster`, тостер."
             }
           },
           {
             "responseId": "en:lesson-07:session-48:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `table`, а в этом варианте — `chair`.",
-              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `chair`."
+              "ru": "В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.",
+              "uk": "У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто."
             }
           }
         ],
@@ -825,7 +1004,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,48 +1018,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-48:i16:p1",
-            "target": "decorate",
+            "target": "press",
             "meaningByLocale": {
-              "ru": "украшать",
-              "uk": "прикрашати"
+              "ru": "нажимать",
+              "uk": "натискати"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i16:p2",
-            "target": "polish",
+            "target": "receive",
             "meaningByLocale": {
-              "ru": "полировать",
-              "uk": "полірувати"
+              "ru": "получать",
+              "uk": "отримувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i16:p3",
-            "target": "organize",
+            "target": "forget",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "забывать",
+              "uk": "забувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-48:i16:p4",
-            "target": "photograph",
+            "target": "miss",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "не успевать на, упускать",
+              "uk": "не встигати на, пропускати"
             }
           }
         ],
         "leftColumn": [
-          "decorate",
-          "polish",
-          "organize",
-          "photograph"
+          "press",
+          "receive",
+          "forget",
+          "miss"
         ],
         "rightColumn": [
-          "украшать",
-          "полировать",
-          "упорядочивать",
-          "фотографировать"
+          "нажимать",
+          "получать",
+          "забывать",
+          "не успевать на, упускать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -898,25 +1077,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-48:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о снимках Тома. Скажите «Том часто фотографирует птиц»",
+      "prompt": "Курьер спрашивает, кто обычно принимает ваши доставки, пока вы на работе. Скажите: «Мой сосед обычно получает посылки».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-48:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о снимках Тома. Скажите «Том часто фотографирует птиц»",
+      "accessibilityLabel": "Курьер спрашивает, кто обычно принимает ваши доставки, пока вы на работе. Скажите: «Мой сосед обычно получает посылки».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-48:i17:audio",
-          "transcript": "Tom often photographs birds."
+          "transcript": "My neighbour usually receives the parcels."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often photographs birds.",
+        "targetPhrase": "My neighbour usually receives the parcels.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -938,11 +1117,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "54bb5bbe3587f6dacc87282fa2f51537dee965c28deded27aa6d31096a65c2bb"
+  "learnerFingerprint": "69822a5145196ea47e3b7db85c9925b80567574622e2c0f8f87468f27e4f5612"
 }

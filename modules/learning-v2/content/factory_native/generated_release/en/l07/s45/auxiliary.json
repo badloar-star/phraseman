@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-45:intro1:r2": {
-          "ru": "После `I` нужно `donate`, без `s`.",
-          "uk": "Після `I` потрібне `donate`, без `s`."
+          "ru": "После I нужно ask, без s.",
+          "uk": "Після I потрібно ask, без s."
         },
         "en:lesson-07:session-45:intro1:r3": {
-          "ru": "Здесь нужна форма `donate`.",
-          "uk": "Тут потрібна форма `donate`."
+          "ru": "Для привычки после I usually нужно ask.",
+          "uk": "Для звички після I usually потрібно ask."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-45:intro2:r2": {
-          "ru": "После `I` нужно `pack`.",
-          "uk": "Після `I` потрібне `pack`."
+          "ru": "После I нужно have, не has.",
+          "uk": "Після I потрібно have, не has."
         },
         "en:lesson-07:session-45:intro2:r3": {
-          "ru": "Здесь нужна форма `pack`.",
-          "uk": "Тут потрібна форма `pack`."
+          "ru": "Здесь после I often нужно have.",
+          "uk": "Тут після I often потрібно have."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-45:intro3:r2": {
-          "ru": "После `I` нужно `walk`.",
-          "uk": "Після `I` потрібне `walk`."
+          "ru": "После I нужно check, без s.",
+          "uk": "Після I потрібно check, без s."
         },
         "en:lesson-07:session-45:intro3:r3": {
-          "ru": "Здесь нужна форма `walk`.",
-          "uk": "Тут потрібна форма `walk`."
+          "ru": "Для привычки после I usually нужно check.",
+          "uk": "Для звички після I usually потрібно check."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6d0427f8017fdccd50ae66ea1bc219447b3cafd2d232a74a8f277c806759a6c3"
+  "auxiliaryFingerprint": "4236ae6d9aafde089c09161f71162297873cb2e3b0f01871e0343976a708a37a"
 }

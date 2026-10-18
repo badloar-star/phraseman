@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-39:intro1:r2": {
-          "ru": "После `I` нужно `bake`.",
-          "uk": "Після `I` потрібне `bake`."
+          "ru": "После I нужно stroll, без s.",
+          "uk": "Після I потрібно stroll, без s."
         },
         "en:lesson-07:session-39:intro1:r3": {
-          "ru": "Здесь нужна форма `bake`.",
-          "uk": "Тут потрібна форма `bake`."
+          "ru": "Здесь нужна форма stroll, без -ing.",
+          "uk": "Тут потрібна форма stroll, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-39:intro2:r2": {
-          "ru": "После `I` нужно `cycle`.",
-          "uk": "Після `I` потрібне `cycle`."
+          "ru": "После I нужно download, без s.",
+          "uk": "Після I потрібно download, без s."
         },
         "en:lesson-07:session-39:intro2:r3": {
-          "ru": "Здесь нужна форма `cycle`.",
-          "uk": "Тут потрібна форма `cycle`."
+          "ru": "Здесь нужна форма download.",
+          "uk": "Тут потрібна форма download."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-39:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После she нужно hugs, с s.",
+          "uk": "Після she потрібно hugs, з s."
         },
         "en:lesson-07:session-39:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма hugs.",
+          "uk": "Тут потрібна форма hugs."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "70f2500769c594455fc0417898bff5c9ed1e5ecd9d05ac2e4b404d12b2b06d8c"
+  "auxiliaryFingerprint": "4f6e9e47ee2e3eaef0497e7443ce749f1b7e7e638892cb82eecccad41d65963e"
 }

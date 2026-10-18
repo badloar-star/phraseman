@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-53:word:staple",
+    "correctText": "staple",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-53:i01",
-    "correctText": "I often surf.",
+    "correctText": "I usually staple the pages together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i02",
-    "correctText": "surf",
+    "correctText": "staple",
     "correctResponseId": "en:lesson-07:session-53:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-53:i03",
-    "correctText": "surf",
+    "correctText": "staple",
     "correctResponseId": "en:lesson-07:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-53:i04",
-    "correctText": "en:lesson-07:session-53:i04:p1=surf\nen:lesson-07:session-53:i04:p2=donate\nen:lesson-07:session-53:i04:p3=museum\nen:lesson-07:session-53:i04:p4=court",
+    "correctText": "en:lesson-07:session-53:i04:p1=staple\nen:lesson-07:session-53:i04:p2=page\nen:lesson-07:session-53:i04:p3=book\nen:lesson-07:session-53:i04:p4=teacher",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:word:highlight",
+    "correctText": "highlight",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i05",
-    "correctText": "I often surf.",
+    "correctText": "I often highlight important lines.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:word:embassy",
+    "correctText": "embassy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i06",
-    "correctText": "I often donate books.",
+    "correctText": "Where is the embassy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i07",
-    "correctText": "Where is the museum?",
+    "correctText": "Is this the embassy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-53:word:erase",
+    "correctText": "erase",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i08",
-    "correctText": "donate",
+    "correctText": "erases",
     "correctResponseId": "en:lesson-07:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-53:i09",
-    "correctText": "I often surf.",
+    "correctText": "I often highlight important lines.",
     "correctResponseId": "en:lesson-07:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-53:i10",
-    "correctText": "en:lesson-07:session-53:i10:p1=uniform\nen:lesson-07:session-53:i10:p2=surf\nen:lesson-07:session-53:i10:p3=donate\nen:lesson-07:session-53:i10:p4=museum",
+    "correctText": "en:lesson-07:session-53:i10:p1=erase\nen:lesson-07:session-53:i10:p2=staple\nen:lesson-07:session-53:i10:p3=highlight\nen:lesson-07:session-53:i10:p4=blackboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i11",
-    "correctText": "Where is the museum?",
+    "correctText": "The teacher often erases the blackboard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i12",
-    "correctText": "Where is the court?",
+    "correctText": "I often highlight important lines.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i13",
-    "correctText": "Do you wear a uniform?",
+    "correctText": "She usually staples the pages together.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i14",
-    "correctText": "often",
+    "correctText": "usually",
     "correctResponseId": "en:lesson-07:session-53:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-53:i15",
-    "correctText": "Where is the museum?",
+    "correctText": "Where is the embassy?",
     "correctResponseId": "en:lesson-07:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-53:i16",
-    "correctText": "en:lesson-07:session-53:i16:p1=surf\nen:lesson-07:session-53:i16:p2=court\nen:lesson-07:session-53:i16:p3=uniform\nen:lesson-07:session-53:i16:p4=donate",
+    "correctText": "en:lesson-07:session-53:i16:p1=embassy\nen:lesson-07:session-53:i16:p2=highlight\nen:lesson-07:session-53:i16:p3=erase\nen:lesson-07:session-53:i16:p4=museum",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-53:i17",
-    "correctText": "Tom often surfs.",
+    "correctText": "The teacher usually erases the blackboard.",
     "correctResponseId": null
   }
 ]

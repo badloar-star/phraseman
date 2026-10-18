@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-40:intro1:r2": {
-          "ru": "После `I` нужно `recycle`.",
-          "uk": "Після `I` потрібне `recycle`."
+          "ru": "После I нужно save, без s.",
+          "uk": "Після I потрібно save, без s."
         },
         "en:lesson-07:session-40:intro1:r3": {
-          "ru": "Здесь нужна форма `recycle`.",
-          "uk": "Тут потрібна форма `recycle`."
+          "ru": "Говоря об этой привычке, после I usually ставим save; am здесь не нужно.",
+          "uk": "Говорячи про цю звичку, після I usually ставимо save; am тут не потрібно."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-40:intro2:r2": {
-          "ru": "После `I` нужно `volunteer`.",
-          "uk": "Після `I` потрібне `volunteer`."
+          "ru": "После I нужно withdraw, без s.",
+          "uk": "Після I потрібно withdraw, без s."
         },
         "en:lesson-07:session-40:intro2:r3": {
-          "ru": "Здесь нужна форма `volunteer`.",
-          "uk": "Тут потрібна форма `volunteer`."
+          "ru": "Здесь нужна форма withdraw.",
+          "uk": "Тут потрібна форма withdraw."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-40:intro3:r2": {
-          "ru": "После `Tom` нужно `packs`, с `s`.",
-          "uk": "Після `Tom` потрібне `packs`, із `s`."
+          "ru": "После he нужно tips, с s.",
+          "uk": "Після he потрібно tips, з s."
         },
         "en:lesson-07:session-40:intro3:r3": {
-          "ru": "Здесь нужна форма `packs`.",
-          "uk": "Тут потрібна форма `packs`."
+          "ru": "Здесь нужна форма tips.",
+          "uk": "Тут потрібна форма tips."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "83596037816f8abf88bf15189bb7fc4b4dbbcb6db529b5167f0dfc6b875854dd"
+  "auxiliaryFingerprint": "652388fc7b093f76593bb96725ac6cb9aec83a3ee4757fe8aed312ed21d6f068"
 }

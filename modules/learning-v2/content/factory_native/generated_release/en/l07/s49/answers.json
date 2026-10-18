@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-49:word:squeeze",
+    "correctText": "squeeze",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-49:i01",
-    "correctText": "I often camp.",
+    "correctText": "I usually squeeze lemon juice into my tea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:word:melt",
+    "correctText": "melt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i02",
-    "correctText": "camp",
+    "correctText": "melt",
     "correctResponseId": "en:lesson-07:session-49:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-49:i03",
-    "correctText": "camp",
+    "correctText": "melt",
     "correctResponseId": "en:lesson-07:session-49:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-49:i04",
-    "correctText": "en:lesson-07:session-49:i04:p1=camp\nen:lesson-07:session-49:i04:p2=meditate\nen:lesson-07:session-49:i04:p3=hospital\nen:lesson-07:session-49:i04:p4=garage",
+    "correctText": "en:lesson-07:session-49:i04:p1=squeeze\nen:lesson-07:session-49:i04:p2=melt\nen:lesson-07:session-49:i04:p3=butter\nen:lesson-07:session-49:i04:p4=lemon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:word:mash",
+    "correctText": "mash",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i05",
-    "correctText": "I often camp.",
+    "correctText": "I often mash potatoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-49:word:cafeteria",
+    "correctText": "cafeteria",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i06",
-    "correctText": "I usually meditate at home.",
+    "correctText": "Where is the cafeteria?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i07",
-    "correctText": "Where is the hospital?",
+    "correctText": "Is there a cafeteria here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i08",
-    "correctText": "meditate",
+    "correctText": "is",
     "correctResponseId": "en:lesson-07:session-49:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-49:i09",
-    "correctText": "I often camp.",
+    "correctText": "I often melt butter in a pan.",
     "correctResponseId": "en:lesson-07:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-49:i10",
-    "correctText": "en:lesson-07:session-49:i10:p1=meditate\nen:lesson-07:session-49:i10:p2=camp\nen:lesson-07:session-49:i10:p3=newspaper\nen:lesson-07:session-49:i10:p4=hospital",
+    "correctText": "en:lesson-07:session-49:i10:p1=mash\nen:lesson-07:session-49:i10:p2=squeeze\nen:lesson-07:session-49:i10:p3=melt\nen:lesson-07:session-49:i10:p4=lemon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i11",
-    "correctText": "Where is the hospital?",
+    "correctText": "She often mashes potatoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i12",
-    "correctText": "Where is the garage?",
+    "correctText": "I often mash potatoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i13",
-    "correctText": "Where is my newspaper?",
+    "correctText": "She often melts butter in a pan.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i14",
-    "correctText": "often",
+    "correctText": "usually",
     "correctResponseId": "en:lesson-07:session-49:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-49:i15",
-    "correctText": "Where is the hospital?",
+    "correctText": "Where is the cafeteria?",
     "correctResponseId": "en:lesson-07:session-49:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-49:i16",
-    "correctText": "en:lesson-07:session-49:i16:p1=camp\nen:lesson-07:session-49:i16:p2=garage\nen:lesson-07:session-49:i16:p3=meditate\nen:lesson-07:session-49:i16:p4=newspaper",
+    "correctText": "en:lesson-07:session-49:i16:p1=cafeteria\nen:lesson-07:session-49:i16:p2=butter\nen:lesson-07:session-49:i16:p3=squeeze\nen:lesson-07:session-49:i16:p4=melt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-49:i17",
-    "correctText": "Tom often camps.",
+    "correctText": "My brother usually squeezes lemon juice into his tea.",
     "correctResponseId": null
   }
 ]

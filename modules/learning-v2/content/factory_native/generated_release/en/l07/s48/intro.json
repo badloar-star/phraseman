@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-48",
   "learningOutcomeByLocale": {
-    "ru": "повторить слова главы и рассказать о своих и чужих привычках",
-    "uk": "повторити слова розділу й розповісти про свої та чужі звички"
+    "ru": "повторить привычки с often и usually и спросить о них с Do you often и Does ... often",
+    "uk": "повторити звички з often і usually та спитати про них із Do you often і Does ... often"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Время для медитации",
-        "uk": "Час для медитації"
+        "ru": "Порядок в переписке",
+        "uk": "Порядок у листуванні"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы медитируете. `I often meditate` — «Я часто медитирую». `Often` стоит перед `meditate`. После `I` у слова `meditate` нет окончания `s`. Чтобы спросить друга, скажите `Do you often meditate?` — «Ты часто медитируешь?» В вопросе `often` остаётся перед действием.",
-        "uk": "Друг запитує, чи часто ви медитуєте. `I often meditate` — «Я часто медитую». `Often` стоїть перед `meditate`. Після `I` у слова `meditate` немає закінчення `s`. Щоб запитати друга, скажіть `Do you often meditate?` — «Ти часто медитуєш?» У запитанні `often` залишається перед дією."
+        "ru": "Подруга берёт ваш телефон, чтобы показать фото, и удивляется, что в нём почти нет старых сообщений. Она спрашивает, как вы держите его в порядке. delete — «удалять». Вы чистите переписку каждую неделю: I usually delete old messages — «Я обычно удаляю старые сообщения».",
+        "uk": "Подруга бере ваш телефон, щоб показати фото, і дивується, що в ньому майже немає старих повідомлень. Вона питає, як ви тримаєте його в порядку. delete — «видаляти». Ви чистите листування щотижня: I usually delete old messages — «Я зазвичай видаляю старі повідомлення»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу о своей привычке.",
-          "uk": "Дайте другові відповідь про свою звичку."
+          "ru": "Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».",
+          "uk": "Подруга тримає ваш телефон. Скажіть їй: «Я зазвичай видаляю старі повідомлення»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-48:intro1:r1",
-              "text": "I often meditate."
+              "text": "I usually delete old messages."
             },
             {
               "responseId": "en:lesson-07:session-48:intro1:r2",
-              "text": "I often meditates."
+              "text": "I usually deletes old messages."
             },
             {
               "responseId": "en:lesson-07:session-48:intro1:r3",
-              "text": "I often meditating."
+              "text": "I usually deleting old messages."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-48:intro1:r1",
-              "text": "I often meditate."
+              "text": "I usually delete old messages."
             },
             {
               "responseId": "en:lesson-07:session-48:intro1:r2",
-              "text": "I often meditates."
+              "text": "I usually deletes old messages."
             },
             {
               "responseId": "en:lesson-07:session-48:intro1:r3",
-              "text": "I often meditating."
+              "text": "I usually deleting old messages."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу о своей привычке.",
-          "uk": "Дайте другові відповідь про свою звичку."
+          "ru": "Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».",
+          "uk": "Подруга тримає ваш телефон. Скажіть їй: «Я зазвичай видаляю старі повідомлення»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шью дома",
-        "uk": "Шию вдома"
+        "ru": "Куда делся телефон",
+        "uk": "Куди зник телефон"
       },
       "bodyByLocale": {
-        "ru": "Подруга замечает швейную машинку у вас дома. `I often sew at home` — «Я часто шью дома». `Often` стоит перед `sew`, а `at home` значит «дома». Машинка здесь работает, а не просто собирает пыль.",
-        "uk": "Подруга помічає швейну машинку у вас удома. `I often sew at home` — «Я часто шию вдома». `Often` стоїть перед `sew`, а `at home` означає «вдома». Машинка тут працює, а не просто збирає пил."
+        "ru": "Сестра замечает, что вы то и дело ходите по комнате и заглядываете под подушки. Она спрашивает, часто ли вам приходится искать телефон. search — «искать». Телефон у вас вечно теряется, и вы отвечаете: I often search for my phone — «Я часто ищу свой телефон». Когда ищем конкретную вещь, говорим search for: for связывает поиск с тем, что мы ищем. В этой фразе often стоит перед search. Телефон снова играет в прятки без вашего согласия.",
+        "uk": "Сестра помічає, що ви раз у раз ходите по кімнаті й заглядаєте під подушки. Вона питає, чи часто вам доводиться шукати телефон. search — «шукати». Телефон у вас постійно губиться, і ви відповідаєте: I often search for my phone — «Я часто шукаю свій телефон». Коли шукаємо конкретну річ, кажемо search for: for пов’язує пошук із тим, що ми шукаємо. У цій фразі often стоїть перед search. Телефон знову грає в хованки без вашої згоди."
       },
       "question": {
         "interactionId": "en:lesson-07:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Объясните подруге, что вы часто делаете дома.",
-          "uk": "Поясніть подрузі, що ви часто робите вдома."
+          "ru": "Сестра спрашивает, часто ли вы ищете телефон. Скажите ей: «Я часто ищу свой телефон».",
+          "uk": "Сестра питає, чи часто ви шукаєте телефон. Скажіть їй: «Я часто шукаю свій телефон»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-48:intro2:r1",
-              "text": "I often sew at home."
+              "text": "I often search for my phone."
             },
             {
               "responseId": "en:lesson-07:session-48:intro2:r2",
-              "text": "I often sews at home."
+              "text": "I often searches for my phone."
             },
             {
               "responseId": "en:lesson-07:session-48:intro2:r3",
-              "text": "I often sewing at home."
+              "text": "I often searching for my phone."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-48:intro2:r1",
-              "text": "I often sew at home."
+              "text": "I often search for my phone."
             },
             {
               "responseId": "en:lesson-07:session-48:intro2:r2",
-              "text": "I often sews at home."
+              "text": "I often searches for my phone."
             },
             {
               "responseId": "en:lesson-07:session-48:intro2:r3",
-              "text": "I often sewing at home."
+              "text": "I often searching for my phone."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните подруге, что вы часто делаете дома.",
-          "uk": "Поясніть подрузі, що ви часто робите вдома."
+          "ru": "Сестра спрашивает, часто ли вы ищете телефон. Скажите ей: «Я часто ищу свой телефон».",
+          "uk": "Сестра питає, чи часто ви шукаєте телефон. Скажіть їй: «Я часто шукаю свій телефон»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Книги Тома",
-        "uk": "Книжки Тома"
+        "ru": "Курьер у двери",
+        "uk": "Кур’єр біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, куда Том относит коробки с книгами. `Tom often donates books` — «Том часто отдаёт книги на благотворительность». После `Tom` нужно `donates`, с окончанием `s`. `Often` стоит перед `donates`. Спросить об этой привычке можно так: `Does Tom often donate books?` — «Том часто отдаёт книги на благотворительность?» После `does` у `donate` нет окончания `s`.",
-        "uk": "Друг запитує, куди Том відносить коробки з книжками. `Tom often donates books` — «Том часто віддає книжки на благодійність». Після `Tom` потрібне `donates`, із закінченням `s`. `Often` стоїть перед `donates`. Запитати про цю звичку можна так: `Does Tom often donate books?` — «Том часто віддає книжки на благодійність?» Після `does` у `donate` немає закінчення `s`."
+        "ru": "Курьер звонит в дверь и спрашивает, где вам удобнее получать посылки: дома или в пункте выдачи. receive — «получать». По вечерам вы почти всегда дома: I usually receive parcels at home — «Я обычно получаю посылки дома». Слово usually стоит перед receive.",
+        "uk": "Кур’єр дзвонить у двері й питає, де вам зручніше отримувати посилки: вдома чи в пункті видачі. receive — «отримувати». Ввечері ви майже завжди вдома: I usually receive parcels at home — «Я зазвичай отримую посилки вдома». Слово usually стоїть перед receive."
       },
       "question": {
         "interactionId": "en:lesson-07:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите о привычке Тома.",
-          "uk": "Розкажіть про звичку Тома."
+          "ru": "Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».",
+          "uk": "Кур’єр дзвонить у двері. Скажіть йому: «Я зазвичай отримую посилки вдома»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-48:intro3:r1",
-              "text": "Tom often donates books."
+              "text": "I usually receive parcels at home."
             },
             {
               "responseId": "en:lesson-07:session-48:intro3:r2",
-              "text": "Tom often donate books."
+              "text": "I usually receives parcels at home."
             },
             {
               "responseId": "en:lesson-07:session-48:intro3:r3",
-              "text": "Tom often donating books."
+              "text": "I usually receiving parcels at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-48:intro3:r1",
-              "text": "Tom often donates books."
+              "text": "I usually receive parcels at home."
             },
             {
               "responseId": "en:lesson-07:session-48:intro3:r2",
-              "text": "Tom often donate books."
+              "text": "I usually receives parcels at home."
             },
             {
               "responseId": "en:lesson-07:session-48:intro3:r3",
-              "text": "Tom often donating books."
+              "text": "I usually receiving parcels at home."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о привычке Тома.",
-          "uk": "Розкажіть про звичку Тома."
+          "ru": "Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».",
+          "uk": "Кур’єр дзвонить у двері. Скажіть йому: «Я зазвичай отримую посилки вдома»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f09eb0ca9dfd670cfbe5054b82f3e832dbd9ab6b4cfe09fd0f457674f96dea4f"
+  "introFingerprint": "fd37bbdacc6ad3f8c5e60c37834f95dded53775cb8fe14d7ae98b54a5051f1f2"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-52:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-52:intro1:r2": {
-          "ru": "После `I` нужно `ski`.",
-          "uk": "Після `I` потрібне `ski`."
+          "ru": "После I нужно haggle, без s.",
+          "uk": "Після I потрібно haggle, без s."
         },
         "en:lesson-07:session-52:intro1:r3": {
-          "ru": "Здесь нужна форма `ski`.",
-          "uk": "Тут потрібна форма `ski`."
+          "ru": "После I usually нужна форма haggle, без -ing.",
+          "uk": "Після I usually потрібна форма haggle, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-52:intro2:r2": {
-          "ru": "После `I` нужно `polish`.",
-          "uk": "Після `I` потрібне `polish`."
+          "ru": "После I нужно swap, без s.",
+          "uk": "Після I потрібно swap, без s."
         },
         "en:lesson-07:session-52:intro2:r3": {
-          "ru": "Здесь нужна форма `polish`.",
-          "uk": "Тут потрібна форма `polish`."
+          "ru": "Здесь нужна форма swap.",
+          "uk": "Тут потрібна форма swap."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-52:intro3:r2": {
-          "ru": "Бассейн один: нужно `is`.",
-          "uk": "Басейн один: потрібне `is`."
+          "ru": "Университет один: нужно is.",
+          "uk": "Університет один: потрібно is."
         },
         "en:lesson-07:session-52:intro3:r3": {
-          "ru": "В этом вопросе `is` стоит перед `the pool`.",
-          "uk": "У цьому запитанні `is` стоїть перед `the pool`."
+          "ru": "В этом вопросе is стоит перед the university.",
+          "uk": "У цьому запитанні is стоїть перед the university."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8837acbd879007f099368ef5935a0da28f6821375de2cb95d932a609c6280830"
+  "auxiliaryFingerprint": "caa3d85a7ce4bb814e592915f55eb90511959c9441a280a25f4ab5a36ab49cd4"
 }

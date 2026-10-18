@@ -4,27 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-43:i01",
+      "interactionId": "en:lesson-07:session-43:word:email",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — email",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:word:email:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — email",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:word:email:audio",
+          "transcript": "email"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:word:email:r1",
+            "targetText": "email",
+            "meaningByLocale": {
+              "ru": "писать по электронной почте. I often email my colleague. — «Я часто пишу коллеге по почте». Отправлять электронное письмо. После email можно назвать адресата или то, что отправляете. Конверт искать не придётся.",
+              "uk": "писати електронною поштою. I often email my colleague. — «Я часто пишу колезі електронною поштою». Надсилати електронний лист. Після email можна назвати адресата або те, що надсилаєте. Конверт шукати не доведеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "email",
+          "definitionByLocale": {
+            "ru": "писать по электронной почте. I often email my colleague. — «Я часто пишу коллеге по почте». Отправлять электронное письмо. После email можно назвать адресата или то, что отправляете. Конверт искать не придётся.",
+            "uk": "писати електронною поштою. I often email my colleague. — «Я часто пишу колезі електронною поштою». Надсилати електронний лист. Після email можна назвати адресата або те, що надсилаєте. Конверт шукати не доведеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто шью»",
+      "prompt": "Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто шью»",
+      "accessibilityLabel": "Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often sew.",
+        "targetPhrase": "I often email my colleague.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто шью»",
-          "uk": "Скажіть «Я часто шию»"
+          "ru": "Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».",
+          "uk": "Керівник питає про зв’язок із колегою. Скажіть йому: «Я часто пишу колезі електронною поштою»."
         },
         "orderedTokens": [
           "I",
           "often",
-          "sew"
+          "email",
+          "my",
+          "colleague"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте руководителя",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-43:i02:r1",
-          "text": "sew"
+          "text": "I often email my colleague."
         },
         {
           "responseId": "en:lesson-07:session-43:i02:r2",
-          "text": "speak"
+          "text": "I often email my sister."
         },
         {
           "responseId": "en:lesson-07:session-43:i02:r3",
-          "text": "commute"
+          "text": "I often call my colleague."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте руководителя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i02:audio",
-          "transcript": "sew"
+          "transcript": "I often email my colleague."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-43:i02:r1",
-            "targetText": "sew",
+            "targetText": "I often email my colleague.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-43:i02:r2",
-            "targetText": "speak",
+            "targetText": "I often email my sister.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-43:i02:r3",
-            "targetText": "commute",
+            "targetText": "I often call my colleague.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-43:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте руководителя",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `sew`, а в этом варианте — `speak`.",
-              "uk": "У записі перше слово — `sew`, а в цьому варіанті — `speak`."
+              "ru": "В записи последнее слово — `colleague`, коллега, а в этом варианте — `sister`, сестра.",
+              "uk": "У записі останнє слово — `colleague`, колега, а в цьому варіанті — `sister`, сестра."
             }
           },
           {
             "responseId": "en:lesson-07:session-43:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте руководителя",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `sew`, а в этом варианте — `commute`.",
-              "uk": "У записі перше слово — `sew`, а в цьому варіанті — `commute`."
+              "ru": "В записи третье слово — `email`, писать по электронной почте, а в этом варианте — `call`, звонить.",
+              "uk": "У записі третє слово — `email`, писати електронною поштою, а в цьому варіанті — `call`, телефонувати."
             }
           }
         ],
@@ -113,67 +158,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто шью»",
+      "prompt": "Руководитель спрашивает о связи с коллегой. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-43:i03:r1",
-          "text": "sew"
+          "text": "email"
         },
         {
           "responseId": "en:lesson-07:session-43:i03:r2",
-          "text": "sews"
+          "text": "emails"
         },
         {
           "responseId": "en:lesson-07:session-43:i03:r3",
-          "text": "sewing"
+          "text": "emailing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто шью»",
+      "accessibilityLabel": "Руководитель спрашивает о связи с коллегой. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто шью»",
-          "uk": "Скажіть «Я часто шию»"
+          "ru": "Руководитель спрашивает о связи с коллегой. Выберите слово",
+          "uk": "Керівник питає про зв’язок із колегою. Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___.",
+        "gappedTargetPhrase": "I often ___ my colleague.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-43:i03:r1",
-            "text": "sew"
+            "text": "email"
           },
           {
             "responseId": "en:lesson-07:session-43:i03:r2",
-            "text": "sews"
+            "text": "emails"
           },
           {
             "responseId": "en:lesson-07:session-43:i03:r3",
-            "text": "sewing"
+            "text": "emailing"
           }
         ],
-        "testedDimension": "Скажите «Я часто шью»",
+        "testedDimension": "Руководитель спрашивает о связи с коллегой. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-43:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто шью»",
+            "testedDimension": "Руководитель спрашивает о связи с коллегой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `sew`.",
-              "uk": "Після `I` потрібне `sew`."
+              "ru": "После `I` нужно `email`, без `s`.",
+              "uk": "Після `I` потрібно `email`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-43:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто шью»",
+            "testedDimension": "Руководитель спрашивает о связи с коллегой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `sew`.",
-              "uk": "Тут потрібна форма `sew`."
+              "ru": "Здесь нужна форма `email`.",
+              "uk": "Тут потрібна форма `email`."
             }
           }
         ]
@@ -182,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-43:i04:p1",
-            "target": "sew",
+            "target": "email",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "писать по электронной почте",
+              "uk": "писати електронною поштою"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i04:p2",
-            "target": "speak",
+            "target": "colleague",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "коллега",
+              "uk": "колега"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i04:p3",
-            "target": "commute",
+            "target": "home",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "дом",
+              "uk": "дім"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i04:p4",
-            "target": "bedrooms",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
         "leftColumn": [
-          "sew",
-          "speak",
-          "commute",
-          "bedrooms"
+          "email",
+          "colleague",
+          "home",
+          "work"
         ],
         "rightColumn": [
-          "шить",
-          "говорить",
-          "ездить на работу или учёбу",
-          "спальни"
+          "писать по электронной почте",
+          "коллега",
+          "дом",
+          "работать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,62 +299,154 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-43:word:report",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — report",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:word:report:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — report",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:word:report:audio",
+          "transcript": "report"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:word:report:r1",
+            "targetText": "report",
+            "meaningByLocale": {
+              "ru": "отчёт. I usually write the report at home. — «Я обычно пишу отчёт дома». Отчёт о результатах или событиях; здесь — о работе команды.",
+              "uk": "звіт. I usually write the report at home. — «Я зазвичай пишу звіт удома». Звіт про результати або події; тут — про роботу команди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "report",
+          "definitionByLocale": {
+            "ru": "отчёт. I usually write the report at home. — «Я обычно пишу отчёт дома». Отчёт о результатах или событиях; здесь — о работе команды.",
+            "uk": "звіт. I usually write the report at home. — «Я зазвичай пишу звіт удома». Звіт про результати або події; тут — про роботу команди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-43:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте начальника и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте начальника и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i05:audio",
-          "transcript": "I often sew."
+          "transcript": "I usually write the report at home."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often sew.",
+        "hiddenTargetPhrase": "I usually write the report at home.",
         "orderedTokens": [
           "I",
-          "often",
-          "sew"
+          "usually",
+          "write",
+          "the",
+          "report",
+          "at",
+          "home"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-43:word:deadline",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — deadline",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:word:deadline:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deadline",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:word:deadline:audio",
+          "transcript": "deadline"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:word:deadline:r1",
+            "targetText": "deadline",
+            "meaningByLocale": {
+              "ru": "крайний срок. We usually meet the deadline. — «Мы обычно успеваем к сроку». Момент, к которому нужно закончить дело: это может быть дата или точное время.",
+              "uk": "кінцевий термін. We usually meet the deadline. — «Ми зазвичай встигаємо до терміну». Момент, до якого потрібно завершити справу: це може бути дата або точний час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deadline",
+          "definitionByLocale": {
+            "ru": "крайний срок. We usually meet the deadline. — «Мы обычно успеваем к сроку». Момент, к которому нужно закончить дело: это может быть дата или точное время.",
+            "uk": "кінцевий термін. We usually meet the deadline. — «Ми зазвичай встигаємо до терміну». Момент, до якого потрібно завершити справу: це може бути дата або точний час."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-43:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о работе вне дома «Я обычно езжу на работу»",
+      "prompt": "Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о работе вне дома «Я обычно езжу на работу»",
+      "accessibilityLabel": "Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually commute.",
+        "targetPhrase": "We usually meet the deadline.",
         "localizedMeaning": {
-          "ru": "Скажите о работе вне дома «Я обычно езжу на работу»",
-          "uk": "Скажіть про роботу поза домом «Я зазвичай їжджу на роботу»"
+          "ru": "Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку».",
+          "uk": "Клієнт питає про термін. Скажіть йому від імені команди: «Ми зазвичай встигаємо до терміну»."
         },
         "orderedTokens": [
-          "I",
+          "We",
           "usually",
-          "commute"
+          "meet",
+          "the",
+          "deadline"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +458,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-43:word:boss",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-43:word:boss:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-43:word:boss:audio",
+          "transcript": "boss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-43:word:boss:r1",
+            "targetText": "boss",
+            "meaningByLocale": {
+              "ru": "начальник. My boss usually works late. — «Мой начальник обычно работает допоздна». Человек, который руководит вашей работой.",
+              "uk": "начальник. My boss usually works late. — «Мій начальник зазвичай працює допізна». Людина, яка керує вашою роботою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boss",
+          "definitionByLocale": {
+            "ru": "начальник. My boss usually works late. — «Мой начальник обычно работает допоздна». Человек, который руководит вашей работой.",
+            "uk": "начальник. My boss usually works late. — «Мій начальник зазвичай працює допізна». Людина, яка керує вашою роботою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-43:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите о знакомой «Она часто звонит»",
+      "prompt": "Коллега спрашивает о вашем начальнике. Скажите: «Мой начальник обычно работает допоздна».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i07:audio"
       ],
-      "accessibilityLabel": "Скажите о знакомой «Она часто звонит»",
+      "accessibilityLabel": "Коллега спрашивает о вашем начальнике. Скажите: «Мой начальник обычно работает допоздна».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i07:audio",
-          "transcript": "She often calls."
+          "transcript": "My boss usually works late."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She often calls.",
+        "targetPhrase": "My boss usually works late.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +535,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она часто звонит»",
+      "prompt": "Коллега спрашивает о начальнике. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-43:i08:r1",
-          "text": "calls"
+          "text": "works"
         },
         {
           "responseId": "en:lesson-07:session-43:i08:r2",
-          "text": "call"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-07:session-43:i08:r3",
-          "text": "calling"
+          "text": "working"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она часто звонит»",
+      "accessibilityLabel": "Коллега спрашивает о начальнике. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она часто звонит»",
-          "uk": "Скажіть «Вона часто телефонує»"
+          "ru": "Коллега спрашивает о начальнике. Выберите слово",
+          "uk": "Колега питає про начальника. Виберіть слово"
         },
-        "gappedTargetPhrase": "She often ___.",
+        "gappedTargetPhrase": "My boss usually ___ late.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-43:i08:r1",
-            "text": "calls"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-07:session-43:i08:r2",
-            "text": "call"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-07:session-43:i08:r3",
-            "text": "calling"
+            "text": "working"
           }
         ],
-        "testedDimension": "Скажите «Она часто звонит»",
+        "testedDimension": "Коллега спрашивает о начальнике. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она часто звонит»",
+            "testedDimension": "Коллега спрашивает о начальнике. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` нужно `calls`.",
-              "uk": "Після `she` потрібне `calls`."
+              "ru": "После `my boss` нужно `works`.",
+              "uk": "Після `my boss` потрібно `works`."
             }
           },
           {
             "responseId": "en:lesson-07:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она часто звонит»",
+            "testedDimension": "Коллега спрашивает о начальнике. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `calls`.",
-              "uk": "Тут потрібна форма `calls`."
+              "ru": "Здесь нужна форма `works`.",
+              "uk": "Тут потрібна форма `works`."
             }
           }
         ]
@@ -424,51 +604,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте клиента",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-43:i09:r1",
-          "text": "I often sew."
+          "text": "We usually meet the deadline."
         },
         {
           "responseId": "en:lesson-07:session-43:i09:r2",
-          "text": "I often bake."
+          "text": "We usually meet the boss."
         },
         {
           "responseId": "en:lesson-07:session-43:i09:r3",
-          "text": "I often iron."
+          "text": "We often meet the deadline."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте клиента",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i09:audio",
-          "transcript": "I often sew."
+          "transcript": "We usually meet the deadline."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-43:i09:r1",
-            "targetText": "I often sew.",
+            "targetText": "We usually meet the deadline.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-43:i09:r2",
-            "targetText": "I often bake.",
+            "targetText": "We usually meet the boss.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-43:i09:r3",
-            "targetText": "I often iron.",
+            "targetText": "We often meet the deadline.",
             "meaningByLocale": null
           }
         ],
@@ -477,19 +657,19 @@
           {
             "responseId": "en:lesson-07:session-43:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте клиента",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sew`, а в этом варианте — `bake`.",
-              "uk": "У записі останнє слово — `sew`, а в цьому варіанті — `bake`."
+              "ru": "В записи последнее слово — `deadline`, крайний срок, а в этом варианте — `boss`, начальник.",
+              "uk": "У записі останнє слово — `deadline`, кінцевий термін, а в цьому варіанті — `boss`, начальник."
             }
           },
           {
             "responseId": "en:lesson-07:session-43:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте клиента",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sew`, а в этом варианте — `iron`.",
-              "uk": "У записі останнє слово — `sew`, а в цьому варіанті — `iron`."
+              "ru": "В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.",
+              "uk": "У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто."
             }
           }
         ],
@@ -500,8 +680,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -514,48 +694,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-43:i10:p1",
-            "target": "bedrooms",
+            "target": "report",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "отчёт",
+              "uk": "звіт"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i10:p2",
-            "target": "sew",
+            "target": "deadline",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "крайний срок",
+              "uk": "кінцевий термін"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i10:p3",
-            "target": "speak",
+            "target": "boss",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "начальник",
+              "uk": "начальник"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i10:p4",
-            "target": "commute",
+            "target": "colleague",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "коллега",
+              "uk": "колега"
             }
           }
         ],
         "leftColumn": [
-          "bedrooms",
-          "sew",
-          "speak",
-          "commute"
+          "report",
+          "deadline",
+          "boss",
+          "colleague"
         ],
         "rightColumn": [
-          "спальни",
-          "шить",
-          "говорить",
-          "ездить на работу или учёбу"
+          "отчёт",
+          "крайний срок",
+          "начальник",
+          "коллега"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,29 +753,31 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i11:audio",
-          "transcript": "I usually commute."
+          "transcript": "I often email the report."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually commute.",
+        "hiddenTargetPhrase": "I often email the report.",
         "orderedTokens": [
           "I",
-          "usually",
-          "commute"
+          "often",
+          "email",
+          "the",
+          "report"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -608,27 +790,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите знакомого «Ты говоришь по-английски?»",
+      "prompt": "Вы собираете материалы к совещанию. Спросите коллегу: «У вас есть отчёт?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите знакомого «Ты говоришь по-английски?»",
+      "accessibilityLabel": "Вы собираете материалы к совещанию. Спросите коллегу: «У вас есть отчёт?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you speak English?",
+        "targetPhrase": "Do you have a report?",
         "localizedMeaning": {
-          "ru": "Спросите знакомого «Ты говоришь по-английски?»",
-          "uk": "Запитайте знайомого «Ти говориш англійською?»"
+          "ru": "Вы собираете материалы к совещанию. Спросите коллегу: «У вас есть отчёт?»",
+          "uk": "Ви збираєте матеріали до наради. Спитайте колегу: «У вас є звіт?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "speak",
-          "English"
+          "have",
+          "a",
+          "report"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +824,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажите гостю «Спальни наверху»",
+      "prompt": "Начальник спрашивает, где вы пишете отчёт. Скажите: «Я обычно пишу отчёт дома».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i13:audio"
       ],
-      "accessibilityLabel": "Покажите гостю «Спальни наверху»",
+      "accessibilityLabel": "Начальник спрашивает, где вы пишете отчёт. Скажите: «Я обычно пишу отчёт дома».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i13:audio",
-          "transcript": "The bedrooms are upstairs."
+          "transcript": "I usually write the report at home."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bedrooms are upstairs.",
+        "targetPhrase": "I usually write the report at home.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,15 +857,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно езжу на работу»",
+      "prompt": "Руководитель спрашивает о связи с коллегой. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-43:i14:r1",
-          "text": "usually"
+          "text": "often"
         },
         {
           "responseId": "en:lesson-07:session-43:i14:r2",
@@ -695,18 +878,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно езжу на работу»",
+      "accessibilityLabel": "Руководитель спрашивает о связи с коллегой. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно езжу на работу»",
-          "uk": "Скажіть «Я зазвичай їжджу на роботу»"
+          "ru": "Руководитель спрашивает о связи с коллегой. Выберите слово",
+          "uk": "Керівник питає про зв’язок із колегою. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ commute.",
+        "gappedTargetPhrase": "I ___ email my colleague.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-43:i14:r1",
-            "text": "usually"
+            "text": "often"
           },
           {
             "responseId": "en:lesson-07:session-43:i14:r2",
@@ -717,24 +900,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я обычно езжу на работу»",
+        "testedDimension": "Руководитель спрашивает о связи с коллегой. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-43:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно езжу на работу»",
+            "testedDimension": "Руководитель спрашивает о связи с коллегой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `commute`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `commute`."
+              "ru": "Для «часто» нужно `often` перед `email`.",
+              "uk": "Для «часто» потрібне `often` перед `email`."
             }
           },
           {
             "responseId": "en:lesson-07:session-43:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно езжу на работу»",
+            "testedDimension": "Руководитель спрашивает о связи с коллегой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `commute` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `commute` не ставимо."
+              "ru": "Для «часто» нужно `often`; `am` перед `email` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `email` не ставимо."
             }
           }
         ]
@@ -743,51 +926,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где спальни",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-43:i15:r1",
-          "text": "The bedrooms are upstairs."
+          "text": "Do you have a report?"
         },
         {
           "responseId": "en:lesson-07:session-43:i15:r2",
-          "text": "The bedrooms are here."
+          "text": "Do you have a printer?"
         },
         {
           "responseId": "en:lesson-07:session-43:i15:r3",
-          "text": "The bedrooms are there."
+          "text": "Do you have a folder?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где спальни",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i15:audio",
-          "transcript": "The bedrooms are upstairs."
+          "transcript": "Do you have a report?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-43:i15:r1",
-            "targetText": "The bedrooms are upstairs.",
+            "targetText": "Do you have a report?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-43:i15:r2",
-            "targetText": "The bedrooms are here.",
+            "targetText": "Do you have a printer?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-43:i15:r3",
-            "targetText": "The bedrooms are there.",
+            "targetText": "Do you have a folder?",
             "meaningByLocale": null
           }
         ],
@@ -796,19 +979,19 @@
           {
             "responseId": "en:lesson-07:session-43:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где спальни",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `here`."
+              "ru": "В записи последнее слово — `report`, отчёт, а в этом варианте — `printer`, принтер.",
+              "uk": "У записі останнє слово — `report`, звіт, а в цьому варіанті — `printer`, принтер."
             }
           },
           {
             "responseId": "en:lesson-07:session-43:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где спальни",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `upstairs`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `upstairs`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `report`, отчёт, а в этом варианте — `folder`, папка.",
+              "uk": "У записі останнє слово — `report`, звіт, а в цьому варіанті — `folder`, тека."
             }
           }
         ],
@@ -819,7 +1002,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -833,48 +1016,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-43:i16:p1",
-            "target": "sew",
+            "target": "boss",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "начальник",
+              "uk": "начальник"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i16:p2",
-            "target": "commute",
+            "target": "email",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу або навчання"
+              "ru": "писать по электронной почте",
+              "uk": "писати електронною поштою"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i16:p3",
-            "target": "bedrooms",
+            "target": "deadline",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "крайний срок",
+              "uk": "кінцевий термін"
             }
           },
           {
             "pairId": "en:lesson-07:session-43:i16:p4",
-            "target": "speak",
+            "target": "report",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "отчёт",
+              "uk": "звіт"
             }
           }
         ],
         "leftColumn": [
-          "sew",
-          "commute",
-          "bedrooms",
-          "speak"
+          "boss",
+          "email",
+          "deadline",
+          "report"
         ],
         "rightColumn": [
-          "шить",
-          "ездить на работу или учёбу",
-          "спальни",
-          "говорить"
+          "начальник",
+          "писать по электронной почте",
+          "крайний срок",
+          "отчёт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,25 +1075,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-43:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает об увлечении Тома шитьём. Скажите «Том часто шьёт»",
+      "prompt": "Коллега спрашивает о вашей сестре. Скажите: «Моя сестра часто пишет своему начальнику по почте». Используйте email.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-43:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает об увлечении Тома шитьём. Скажите «Том часто шьёт»",
+      "accessibilityLabel": "Коллега спрашивает о вашей сестре. Скажите: «Моя сестра часто пишет своему начальнику по почте». Используйте email.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-43:i17:audio",
-          "transcript": "Tom often sews."
+          "transcript": "My sister often emails her boss."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often sews.",
+        "targetPhrase": "My sister often emails her boss.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -932,11 +1115,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0feaaedb0d993aed60ce4f30f23c26852d68f0bde6ed65718df29137fcd49f24"
+  "learnerFingerprint": "f00d309d5eaf8b8ecb550d8a0f464c21adfbad56fb868dbfe017179531334d3b"
 }

@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-47:word:invite",
+    "correctText": "invite",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-47:i01",
-    "correctText": "I often photograph birds.",
+    "correctText": "I often invite my neighbour.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i02",
-    "correctText": "photograph",
+    "correctText": "I often invite my neighbour.",
     "correctResponseId": "en:lesson-07:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-47:i03",
-    "correctText": "photograph",
+    "correctText": "invite",
     "correctResponseId": "en:lesson-07:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-47:i04",
-    "correctText": "en:lesson-07:session-47:i04:p1=photograph\nen:lesson-07:session-47:i04:p2=bake\nen:lesson-07:session-47:i04:p3=restaurants\nen:lesson-07:session-47:i04:p4=subway",
+    "correctText": "en:lesson-07:session-47:i04:p1=invite\nen:lesson-07:session-47:i04:p2=neighbour\nen:lesson-07:session-47:i04:p3=brother\nen:lesson-07:session-47:i04:p4=visit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:word:remember",
+    "correctText": "remember",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i05",
-    "correctText": "I often photograph birds.",
+    "correctText": "I usually remember the number.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:word:forget",
+    "correctText": "forget",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i06",
-    "correctText": "I usually bake at home.",
+    "correctText": "I often forget the key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-47:word:guide",
+    "correctText": "guide",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i07",
-    "correctText": "Where are the restaurants?",
+    "correctText": "The guide usually waits near the statue.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i08",
-    "correctText": "bake",
+    "correctText": "waits",
     "correctResponseId": "en:lesson-07:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-47:i09",
-    "correctText": "I often photograph birds.",
+    "correctText": "I usually remember the number.",
     "correctResponseId": "en:lesson-07:session-47:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-47:i10",
-    "correctText": "en:lesson-07:session-47:i10:p1=bake\nen:lesson-07:session-47:i10:p2=photograph\nen:lesson-07:session-47:i10:p3=glove\nen:lesson-07:session-47:i10:p4=restaurants",
+    "correctText": "en:lesson-07:session-47:i10:p1=remember\nen:lesson-07:session-47:i10:p2=forget\nen:lesson-07:session-47:i10:p3=number\nen:lesson-07:session-47:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i11",
-    "correctText": "I usually bake at home.",
+    "correctText": "I often forget the number.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i12",
-    "correctText": "Where is the subway?",
+    "correctText": "Do you have his number?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i13",
-    "correctText": "Where is my glove?",
+    "correctText": "Where is the guide?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-47:i15",
-    "correctText": "Where are the restaurants?",
+    "correctText": "Do you have his number?",
     "correctResponseId": "en:lesson-07:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-47:i16",
-    "correctText": "en:lesson-07:session-47:i16:p1=photograph\nen:lesson-07:session-47:i16:p2=subway\nen:lesson-07:session-47:i16:p3=bake\nen:lesson-07:session-47:i16:p4=glove",
+    "correctText": "en:lesson-07:session-47:i16:p1=guide\nen:lesson-07:session-47:i16:p2=invite\nen:lesson-07:session-47:i16:p3=forget\nen:lesson-07:session-47:i16:p4=remember",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-47:i17",
-    "correctText": "Tom often photographs birds.",
+    "correctText": "My neighbour often forgets the key.",
     "correctResponseId": null
   }
 ]

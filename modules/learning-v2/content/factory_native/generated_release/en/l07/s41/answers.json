@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-41:word:wake",
+    "correctText": "wake",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-41:i01",
-    "correctText": "I often meditate.",
+    "correctText": "I usually wake early.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i02",
-    "correctText": "meditate",
+    "correctText": "I usually wake early.",
     "correctResponseId": "en:lesson-07:session-41:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-41:i03",
-    "correctText": "meditate",
+    "correctText": "wake",
     "correctResponseId": "en:lesson-07:session-41:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-41:i04",
-    "correctText": "en:lesson-07:session-41:i04:p1=meditate\nen:lesson-07:session-41:i04:p2=chat\nen:lesson-07:session-41:i04:p3=kitchen\nen:lesson-07:session-41:i04:p4=locker",
+    "correctText": "en:lesson-07:session-41:i04:p1=wake\nen:lesson-07:session-41:i04:p2=early\nen:lesson-07:session-41:i04:p3=late\nen:lesson-07:session-41:i04:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:word:unplug",
+    "correctText": "unplug",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i05",
-    "correctText": "I often meditate.",
+    "correctText": "I usually unplug the kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:word:defrost",
+    "correctText": "defrost",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i06",
-    "correctText": "I usually chat here.",
+    "correctText": "I usually defrost the soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-41:word:unlock",
+    "correctText": "unlock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i07",
-    "correctText": "She often calls.",
+    "correctText": "I usually unlock the gate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i08",
-    "correctText": "calls",
+    "correctText": "unlocks",
     "correctResponseId": "en:lesson-07:session-41:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-41:i09",
-    "correctText": "I often meditate.",
+    "correctText": "I usually unplug the kettle.",
     "correctResponseId": "en:lesson-07:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-41:i10",
-    "correctText": "en:lesson-07:session-41:i10:p1=recycle\nen:lesson-07:session-41:i10:p2=meditate\nen:lesson-07:session-41:i10:p3=kitchen\nen:lesson-07:session-41:i10:p4=chat",
+    "correctText": "en:lesson-07:session-41:i10:p1=unplug\nen:lesson-07:session-41:i10:p2=kettle\nen:lesson-07:session-41:i10:p3=unlock\nen:lesson-07:session-41:i10:p4=gate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i11",
-    "correctText": "She often calls.",
+    "correctText": "I usually defrost the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i12",
-    "correctText": "Do you have a locker?",
+    "correctText": "Do you have a key?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i13",
-    "correctText": "I usually recycle.",
+    "correctText": "I usually unplug the kettle.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-41:i15",
-    "correctText": "Do you have a kitchen?",
+    "correctText": "Do you have a key?",
     "correctResponseId": "en:lesson-07:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-41:i16",
-    "correctText": "en:lesson-07:session-41:i16:p1=meditate\nen:lesson-07:session-41:i16:p2=locker\nen:lesson-07:session-41:i16:p3=recycle\nen:lesson-07:session-41:i16:p4=kitchen",
+    "correctText": "en:lesson-07:session-41:i16:p1=defrost\nen:lesson-07:session-41:i16:p2=unlock\nen:lesson-07:session-41:i16:p3=wake\nen:lesson-07:session-41:i16:p4=unplug",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-41:i17",
-    "correctText": "Tom often meditates.",
+    "correctText": "My brother often wakes early.",
     "correctResponseId": null
   }
 ]

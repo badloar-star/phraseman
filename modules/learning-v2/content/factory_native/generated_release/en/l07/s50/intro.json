@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-50",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках и задавать знакомые вопросы",
-    "uk": "розповідати про звички й ставити знайомі запитання"
+    "ru": "рассказывать о привычках, спрашивать «Вы …?» и «Где …?»",
+    "uk": "розповідати про звички, питати «Ви …?» і «Де …?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выхожу на тропу",
-        "uk": "Виходжу на стежку"
+        "ru": "Поздний вечер",
+        "uk": "Пізній вечір"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, как вы обычно проводите время на природе. `Hike` — «ходить в пеший поход»: долго идти пешком на природе, например по лесной тропе. `I usually hike` — «Я обычно хожу в пешие походы». `Usually` стоит перед `hike`. Поход до холодильника не считается — даже если очень устали.",
-        "uk": "Друг запитує, як ви зазвичай проводите час на природі. `Hike` — «ходити в піший похід»: довго йти пішки на природі, наприклад лісовою стежкою. `I usually hike` — «Я зазвичай ходжу в піші походи». `Usually` стоїть перед `hike`. Похід до холодильника не рахується — навіть якщо дуже втомилися."
+        "ru": "Вечером вы стоите на улице с тяжёлыми сумками, а автобусы уже не ходят. Вы поднимаете руку, и рядом останавливается машина с шашечками. hail — «ловить, останавливать (такси)». Скажите: I often hail a taxi at night — «Я часто ловлю такси ночью». Слово often стоит перед hail.",
+        "uk": "Увечері ви стоїте на вулиці з важкими сумками, а автобуси вже не ходять. Ви піднімаєте руку, і поруч зупиняється машина з шашечками. hail — «ловити, зупиняти (таксі)». Скажіть: I often hail a taxi at night — «Я часто ловлю таксі вночі». Слово often стоїть перед hail."
       },
       "question": {
         "interactionId": "en:lesson-07:session-50:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Друг спрашивает, как вы добираетесь домой поздно. Ответьте: «Я часто ловлю такси ночью».",
+          "uk": "Друг питає, як ви добираєтеся додому пізно. Відповідьте: «Я часто ловлю таксі вночі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-50:intro1:r1",
-              "text": "I usually hike."
+              "text": "I often hail a taxi at night."
             },
             {
               "responseId": "en:lesson-07:session-50:intro1:r2",
-              "text": "I usually hikes."
+              "text": "I often hails a taxi at night."
             },
             {
               "responseId": "en:lesson-07:session-50:intro1:r3",
-              "text": "I usually hiking."
+              "text": "I often hailing a taxi at night."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-50:intro1:r1",
-              "text": "I usually hike."
+              "text": "I often hail a taxi at night."
             },
             {
               "responseId": "en:lesson-07:session-50:intro1:r2",
-              "text": "I usually hikes."
+              "text": "I often hails a taxi at night."
             },
             {
               "responseId": "en:lesson-07:session-50:intro1:r3",
-              "text": "I usually hiking."
+              "text": "I often hailing a taxi at night."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Друг спрашивает, как вы добираетесь домой поздно. Ответьте: «Я часто ловлю такси ночью».",
+          "uk": "Друг питає, як ви добираєтеся додому пізно. Відповідьте: «Я часто ловлю таксі вночі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Доставка магазина",
-        "uk": "Доставка магазину"
+        "ru": "У кассы магазина",
+        "uk": "Біля каси магазину"
       },
       "bodyByLocale": {
-        "ru": "Вы звоните в магазин и хотите узнать, доставляют ли покупки. `Do you deliver?` — «Вы доставляете?» Вопрос начинается с `do`, затем идут `you` и `deliver`.",
-        "uk": "Ви телефонуєте до магазину й хочете дізнатися, чи доставляють покупки. `Do you deliver?` — «Ви доставляєте?» Запитання починається з `do`, потім ідуть `you` та `deliver`."
+        "ru": "Вы выбрали подарок в маленьком магазине и подошли к кассе. Наличных мало, и вы хотите заплатить картой, но не уверены, что здесь это можно. accept — «принимать (оплату)». Спросите продавца: Do you accept cards? — «Вы принимаете карты?» Вопрос начинается с Do.",
+        "uk": "Ви вибрали подарунок у маленькому магазині й підійшли до каси. Готівки мало, і ви хочете заплатити карткою, але не певні, що тут це можна. accept — «приймати (оплату)». Спитайте продавця: Do you accept cards? — «Ви приймаєте картки?» Запитання починається з Do."
       },
       "question": {
         "interactionId": "en:lesson-07:session-50:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите сотрудника о доставке.",
-          "uk": "Запитайте працівника про доставку."
+          "ru": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+          "uk": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-50:intro2:r1",
-              "text": "Do you deliver?"
+              "text": "Do you accept cards?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro2:r2",
-              "text": "Does you deliver?"
+              "text": "Does you accept cards?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro2:r3",
-              "text": "Do you delivers?"
+              "text": "Do you accepts cards?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-50:intro2:r1",
-              "text": "Do you deliver?"
+              "text": "Do you accept cards?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro2:r2",
-              "text": "Does you deliver?"
+              "text": "Does you accept cards?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro2:r3",
-              "text": "Do you delivers?"
+              "text": "Do you accepts cards?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите сотрудника о доставке.",
-          "uk": "Запитайте працівника про доставку."
+          "ru": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+          "uk": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищу кинотеатр",
-        "uk": "Шукаю кінотеатр"
+        "ru": "Чужой город",
+        "uk": "Чуже місто"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте на фильм и просите прохожего показать кинотеатр. `Where is the cinema?` — «Где кинотеатр?» После `where` здесь идёт `is`, затем `the cinema`.",
-        "uk": "Ви йдете на фільм і просите перехожого показати кінотеатр. `Where is the cinema?` — «Де кінотеатр?» Після `where` тут іде `is`, потім `the cinema`."
+        "ru": "Вы приехали в чужой город и ищете автовокзал, чтобы ехать дальше. У остановки стоит прохожий, и вы решаете спросить у него дорогу. terminal — «терминал, конечная станция»; bus terminal — «автовокзал». Спросите: Where is the bus terminal? — «Где автовокзал?» После Where идёт is, а потом the bus terminal.",
+        "uk": "Ви приїхали в чуже місто й шукаєте автовокзал, щоб їхати далі. Біля зупинки стоїть перехожий, і ви вирішуєте спитати в нього дорогу. terminal — «термінал, кінцева станція»; bus terminal — «автовокзал». Спитайте: Where is the bus terminal? — «Де автовокзал?» Після Where йде is, а потім the bus terminal."
       },
       "question": {
         "interactionId": "en:lesson-07:session-50:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где кинотеатр.",
-          "uk": "Запитайте, де кінотеатр."
+          "ru": "Прохожий у остановки ждёт вашего вопроса. Спросите: «Где автовокзал?»",
+          "uk": "Перехожий біля зупинки чекає на ваше запитання. Спитайте: «Де автовокзал?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-50:intro3:r1",
-              "text": "Where is the cinema?"
+              "text": "Where is the bus terminal?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro3:r2",
-              "text": "Where are the cinema?"
+              "text": "Where are the bus terminal?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro3:r3",
-              "text": "Where the cinema is?"
+              "text": "Where the bus terminal is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-50:intro3:r1",
-              "text": "Where is the cinema?"
+              "text": "Where is the bus terminal?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro3:r2",
-              "text": "Where are the cinema?"
+              "text": "Where are the bus terminal?"
             },
             {
               "responseId": "en:lesson-07:session-50:intro3:r3",
-              "text": "Where the cinema is?"
+              "text": "Where the bus terminal is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где кинотеатр.",
-          "uk": "Запитайте, де кінотеатр."
+          "ru": "Прохожий у остановки ждёт вашего вопроса. Спросите: «Где автовокзал?»",
+          "uk": "Перехожий біля зупинки чекає на ваше запитання. Спитайте: «Де автовокзал?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fdb9294fbf0b1c56ca9e1f3a38a93f07d72c37f005d3f2770c9e84d54940d5be"
+  "introFingerprint": "d5f5669677675be357f8b01e8a61102d99c3cea4911f410e1eb9c98d59446ee8"
 }

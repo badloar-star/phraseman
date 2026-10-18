@@ -1,24 +1,5 @@
 {
   "schemaVersion": "learning_v2_transfer_pending_v1",
   "note": "Занятия, чей выпуск переписан раньше переноса в приложение. Добавляет сессия переписывания в коммите выпуска без переноса, убирает в коммите переноса. Ворота learning_v2_release_parity_gate: расхождение по ним — справка; запись без расхождения — stale_pin.",
-  "sessions": {
-    "en/l07/s39": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s40": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s41": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s42": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s43": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s44": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s45": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s46": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s47": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s48": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s49": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s50": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s51": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s52": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s53": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s54": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s55": "Revised and voiced96; awaiting app transfer and cloud publication",
-    "en/l07/s56": "Revised and voiced96; awaiting app transfer and cloud publication"
-  }
+  "sessions": {}
 }

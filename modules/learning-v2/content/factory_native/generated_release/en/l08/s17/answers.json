@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-17:word:lend",
+    "correctText": "lend",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-17:i01",
     "correctText": "Can you lend me a pen?",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-17:i04",
-    "correctText": "en:lesson-08:session-17:i04:p1=lend\nen:lesson-08:session-17:i04:p2=berry\nen:lesson-08:session-17:i04:p3=drive\nen:lesson-08:session-17:i04:p4=skate",
+    "correctText": "en:lesson-08:session-17:i04:p1=lend\nen:lesson-08:session-17:i04:p2=pen\nen:lesson-08:session-17:i04:p3=book\nen:lesson-08:session-17:i04:p4=pencil",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-17:word:unfasten",
+    "correctText": "unfasten",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-17:i06",
-    "correctText": "Can you help me?",
+    "correctText": "Can you unfasten it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:word:strap",
+    "correctText": "strap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-17:i07",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you check the strap?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-17:i08",
-    "correctText": "help",
+    "correctText": "unfasten",
     "correctResponseId": "en:lesson-08:session-17:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-17:i10",
-    "correctText": "en:lesson-08:session-17:i10:p1=smoke\nen:lesson-08:session-17:i10:p2=lend\nen:lesson-08:session-17:i10:p3=berry\nen:lesson-08:session-17:i10:p4=drive",
+    "correctText": "en:lesson-08:session-17:i10:p1=lend\nen:lesson-08:session-17:i10:p2=unfasten\nen:lesson-08:session-17:i10:p3=strap\nen:lesson-08:session-17:i10:p4=pen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-17:i11",
-    "correctText": "Can you help me?",
+    "correctText": "Can you unfasten the strap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:word:buckle",
+    "correctText": "buckle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-17:i12",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you check the buckle?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-17:i15",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you check the buckle?",
     "correctResponseId": "en:lesson-08:session-17:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-17:i16",
-    "correctText": "en:lesson-08:session-17:i16:p1=lend\nen:lesson-08:session-17:i16:p2=smoke\nen:lesson-08:session-17:i16:p3=skate\nen:lesson-08:session-17:i16:p4=berry",
+    "correctText": "en:lesson-08:session-17:i16:p1=lend\nen:lesson-08:session-17:i16:p2=unfasten\nen:lesson-08:session-17:i16:p3=strap\nen:lesson-08:session-17:i16:p4=buckle",
     "correctResponseId": null
   },
   {

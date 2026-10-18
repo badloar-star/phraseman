@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-16",
   "learningOutcomeByLocale": {
-    "ru": "повторить умения, трудности и вопрос «чей?» без новых слов",
-    "uk": "повторити вміння, труднощі й запитання «чий?» без нових слів"
+    "ru": "говорить об умениях в мастерской и повторить can, can’t, whose",
+    "uk": "говорити про вміння в майстерні й повторити can, can’t, whose"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Друзья зовут на каток",
-        "uk": "Друзі кличуть на ковзанку"
+        "ru": "Рама для теплицы",
+        "uk": "Рама для теплиці"
       },
       "bodyByLocale": {
-        "ru": "Друзья предлагают покататься на коньках. Вы пока не умеете. `I can’t skate` — «Я не умею кататься на коньках». После `can’t` нужно `skate`, без `to`. Вы отлично держитесь за бортик — катание пока даётся хуже.",
-        "uk": "Друзі пропонують покататися на ковзанах. Ви поки не вмієте. `I can’t skate` — «Я не вмію кататися на ковзанах». Після `can’t` потрібне `skate`, без `to`. Ви чудово тримаєтеся за бортик — катання поки дається гірше."
+        "ru": "Друг собирает металлическую раму для теплицы и предлагает вам сварить детали. У вас нет такого опыта. Weld — «сваривать металл»: соединять детали сильным нагревом. `I can’t weld` — «Я не умею сваривать металл». После `can’t` нужно `weld`, без `to`. Вы объясняете, что эту работу должен выполнить тот, кто умеет.",
+        "uk": "Друг збирає металеву раму для теплиці й пропонує вам зварити деталі. У вас немає такого досвіду. Weld — «зварювати метал»: з’єднувати деталі сильним нагріванням. `I can’t weld` — «Я не вмію зварювати метал». Після `can’t` потрібне `weld`, без `to`. Ви пояснюєте, що цю роботу має виконати той, хто вміє."
       },
       "question": {
         "interactionId": "en:lesson-08:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте друзьям, что пока не умеете кататься на коньках.",
-          "uk": "Дайте друзям відповідь, що поки не вмієте кататися на ковзанах."
+          "ru": "Ответьте другу, что пока не умеете сваривать металл.",
+          "uk": "Дайте другові відповідь, що поки не вмієте зварювати метал."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-16:intro1:r1",
-              "text": "I can’t skate."
+              "text": "I can’t weld."
             },
             {
               "responseId": "en:lesson-08:session-16:intro1:r2",
-              "text": "I can skate."
+              "text": "I can weld."
             },
             {
               "responseId": "en:lesson-08:session-16:intro1:r3",
-              "text": "I can’t to skate."
+              "text": "I can’t to weld."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-16:intro1:r1",
-              "text": "I can’t skate."
+              "text": "I can’t weld."
             },
             {
               "responseId": "en:lesson-08:session-16:intro1:r2",
-              "text": "I can skate."
+              "text": "I can weld."
             },
             {
               "responseId": "en:lesson-08:session-16:intro1:r3",
-              "text": "I can’t to skate."
+              "text": "I can’t to weld."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте друзьям, что пока не умеете кататься на коньках.",
-          "uk": "Дайте друзям відповідь, що поки не вмієте кататися на ковзанах."
+          "ru": "Ответьте другу, что пока не умеете сваривать металл.",
+          "uk": "Дайте другові відповідь, що поки не вмієте зварювати метал."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Другу нужна программа",
-        "uk": "Другові потрібна програма"
+        "ru": "Провод в настольной лампе",
+        "uk": "Дріт у настільній лампі"
       },
       "bodyByLocale": {
-        "ru": "Друг ищет человека, который умеет писать код. Вы умеете и предлагаете помощь. `I can code` — «Я умею писать код». После `can` нужно `code`, без `to`.",
-        "uk": "Друг шукає людину, яка вміє писати код. Ви вмієте й пропонуєте допомогу. `I can code` — «Я вмію писати код». Після `can` потрібне `code`, без `to`."
+        "ru": "У друга отсоединился провод внутри настольной лампы. Друг отключил лампу от сети и ищет того, кто умеет паять. Solder — «паять»: соединять детали расплавленным припоем. Вы умеете и предлагаете помощь. `I can solder` — «Я умею паять». После `can` нужно `solder`, без `to`.",
+        "uk": "У друга від’єднався дріт усередині настільної лампи. Друг відключив лампу від мережі й шукає того, хто вміє паяти. Solder — «паяти»: з’єднувати деталі розплавленим припоєм. Ви вмієте й пропонуєте допомогу. `I can solder` — «Я вмію паяти». Після `can` потрібне `solder`, без `to`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что умеете писать код.",
-          "uk": "Скажіть другові, що вмієте писати код."
+          "ru": "Скажите другу, что умеете паять.",
+          "uk": "Скажіть другові, що вмієте паяти."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-16:intro2:r1",
-              "text": "I can code."
+              "text": "I can solder."
             },
             {
               "responseId": "en:lesson-08:session-16:intro2:r2",
-              "text": "I can’t code."
+              "text": "I can’t solder."
             },
             {
               "responseId": "en:lesson-08:session-16:intro2:r3",
-              "text": "I can to code."
+              "text": "I can to solder."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-16:intro2:r1",
-              "text": "I can code."
+              "text": "I can solder."
             },
             {
               "responseId": "en:lesson-08:session-16:intro2:r2",
-              "text": "I can’t code."
+              "text": "I can’t solder."
             },
             {
               "responseId": "en:lesson-08:session-16:intro2:r3",
-              "text": "I can to code."
+              "text": "I can to solder."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что умеете писать код.",
-          "uk": "Скажіть другові, що вмієте писати код."
+          "ru": "Скажите другу, что умеете паять.",
+          "uk": "Скажіть другові, що вмієте паяти."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Шарф в раздевалке",
-        "uk": "Шарф у роздягальні"
+        "ru": "Тиски на передвижном столе",
+        "uk": "Лещата на пересувному столі"
       },
       "bodyByLocale": {
-        "ru": "В раздевалке лежит забытый шарф. Вы хотите вернуть его хозяину. `Whose scarf is this?` — «Чей это шарф?» Сначала `whose scarf`, затем `is this`.",
-        "uk": "У роздягальні лежить забутий шарф. Ви хочете повернути його власникові. `Whose scarf is this?` — «Чий це шарф?» Спочатку `whose scarf`, потім `is this`."
+        "ru": "В общей мастерской к передвижному столу прикреплены чьи-то тиски. Прежде чем переставлять стол, вы хотите найти владельца инструмента. Vice — «тиски». `Whose vice is this?` — «Чьи это тиски?» Сначала `whose vice`, затем `is this`. По-английски vice — один инструмент, поэтому is, хотя по-русски «тиски» — множественное число.",
+        "uk": "У спільній майстерні до пересувного столу прикріплені чиїсь лещата. Перш ніж переставляти стіл, ви хочете знайти власника інструмента. Vice — «лещата». `Whose vice is this?` — «Чиї це лещата?» Спочатку `whose vice`, потім `is this`. Англійською vice — один інструмент, тому is, хоча українською «лещата» — множина."
       },
       "question": {
         "interactionId": "en:lesson-08:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, чей это шарф.",
-          "uk": "Запитайте, чий це шарф."
+          "ru": "Спросите, чьи это тиски.",
+          "uk": "Запитайте, чиї це лещата."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-16:intro3:r1",
-              "text": "Whose scarf is this?"
+              "text": "Whose vice is this?"
             },
             {
               "responseId": "en:lesson-08:session-16:intro3:r2",
-              "text": "Who scarf is this?"
+              "text": "Who vice is this?"
             },
             {
               "responseId": "en:lesson-08:session-16:intro3:r3",
-              "text": "Whose scarf are this?"
+              "text": "Whose vice are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-16:intro3:r1",
-              "text": "Whose scarf is this?"
+              "text": "Whose vice is this?"
             },
             {
               "responseId": "en:lesson-08:session-16:intro3:r2",
-              "text": "Who scarf is this?"
+              "text": "Who vice is this?"
             },
             {
               "responseId": "en:lesson-08:session-16:intro3:r3",
-              "text": "Whose scarf are this?"
+              "text": "Whose vice are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, чей это шарф.",
-          "uk": "Запитайте, чий це шарф."
+          "ru": "Спросите, чьи это тиски.",
+          "uk": "Запитайте, чиї це лещата."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "24545fa617d452f095f28aab6a086d04f61bc509a8e1e1fead5adc5fb1bada1a"
+  "introFingerprint": "e16f3a8431ca2e1dc368af24e4070342fa8768cc04bf6aae2315e91fcebac3f3"
 }

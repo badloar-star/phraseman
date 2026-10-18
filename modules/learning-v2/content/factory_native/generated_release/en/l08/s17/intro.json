@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ручка для анкеты",
-        "uk": "Ручка для анкети"
+        "ru": "Запись в гостевой книге",
+        "uk": "Запис у гостьовій книзі"
       },
       "bodyByLocale": {
-        "ru": "Вам нужно заполнить анкету, а ручки нет. Вы просите ручку у соседа на минуту. `Lend` — «одолжить, дать на время». `Can you lend me a pen?` — «Можешь одолжить мне ручку?» Начните с `Can you`, затем `lend me a pen`. Здесь это просьба. Ручка нужна на минуту, не в наследство.",
-        "uk": "Вам потрібно заповнити анкету, а ручки немає. Ви просите ручку в сусіда на хвилину. `Lend` — «позичити, дати на певний час». `Can you lend me a pen?` — «Можеш позичити мені ручку?» Почніть із `Can you`, потім `lend me a pen`. Тут це прохання. Ручка потрібна на хвилину, не в спадок."
+        "ru": "После посещения семейной выставки вы хотите оставить отзыв в гостевой книге. Ваша ручка не пишет, и вы просите ручку у друга на минуту. `Lend` — «одолжить, дать на время». `Can you lend me a pen?` — «Можешь одолжить мне ручку?» Начните с `Can you`, затем `lend me a pen`. Здесь это просьба. Вы возьмёте ручку ненадолго и вернёте её.",
+        "uk": "Після відвідин сімейної виставки ви хочете залишити відгук у гостьовій книзі. Ваша ручка не пише, і ви просите ручку в друга на хвилину. `Lend` — «позичити, дати на певний час». `Can you lend me a pen?` — «Можеш позичити мені ручку?» Почніть із `Can you`, потім `lend me a pen`. Тут це прохання. Ви візьмете ручку ненадовго й повернете її."
       },
       "question": {
         "interactionId": "en:lesson-08:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "Попросите соседа одолжить вам ручку.",
-          "uk": "Попросіть сусіда позичити вам ручку."
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите соседа одолжить вам ручку.",
-          "uk": "Попросіть сусіда позичити вам ручку."
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тяжёлая коробка",
-        "uk": "Важка коробка"
+        "ru": "Ремень вокруг чемодана",
+        "uk": "Ремінь навколо валізи"
       },
       "bodyByLocale": {
-        "ru": "Вы поднимаете коробку, но одному неудобно. Друг рядом. `Can you help me?` — «Можешь мне помочь?» Сначала `Can you`, затем `help me`.",
-        "uk": "Ви піднімаєте коробку, але самому незручно. Друг поруч. `Can you help me?` — «Можеш мені допомогти?» Спочатку `Can you`, потім `help me`."
+        "ru": "После поездки вы хотите открыть чемодан, но вокруг него затянут багажный ремень. Друг знает, как устроена застёжка. Unfasten — «расстегнуть», strap — «ремень, лямка». Вы просите друга расстегнуть этот ремень: `Can you unfasten the strap?` — «Можешь расстегнуть ремень?» После `Can you` нужно `unfasten`, без `to`.",
+        "uk": "Після поїздки ви хочете відкрити валізу, але навколо неї затягнутий багажний ремінь. Друг знає, як влаштована застібка. Unfasten — «розстебнути», strap — «ремінь, лямка». Ви просите друга розстебнути цей ремінь: `Can you unfasten the strap?` — «Можеш розстебнути ремінь?» Після `Can you` потрібне `unfasten`, без `to`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите друга помочь вам.",
-          "uk": "Попросіть друга допомогти вам."
+          "ru": "Попросите друга расстегнуть ремень.",
+          "uk": "Попросіть друга розстебнути ремінь."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-17:intro2:r1",
-              "text": "Can you help me?"
+              "text": "Can you unfasten the strap?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro2:r2",
-              "text": "Can you helps me?"
+              "text": "Can you to unfasten the strap?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro2:r3",
-              "text": "You can help me."
+              "text": "You can unfasten the strap."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-17:intro2:r1",
-              "text": "Can you help me?"
+              "text": "Can you unfasten the strap?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro2:r2",
-              "text": "Can you helps me?"
+              "text": "Can you to unfasten the strap?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro2:r3",
-              "text": "You can help me."
+              "text": "You can unfasten the strap."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга помочь вам.",
-          "uk": "Попросіть друга допомогти вам."
+          "ru": "Попросите друга расстегнуть ремень.",
+          "uk": "Попросіть друга розстебнути ремінь."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Руки заняты",
-        "uk": "Руки зайняті"
+        "ru": "Пряжка нового рюкзака",
+        "uk": "Пряжка нового рюкзака"
       },
       "bodyByLocale": {
-        "ru": "Вы держите коробку у закрытой двери. Друг стоит рядом с дверью. `Can you open the door?` — «Можешь открыть дверь?» После `Can you` добавьте `open the door`.",
-        "uk": "Ви тримаєте коробку біля зачинених дверей. Друг стоїть поруч із дверима. `Can you open the door?` — «Можеш відчинити двері?» Після `Can you` додайте `open the door`."
+        "ru": "Вы проверяете новый рюкзак перед прогулкой. Пряжка выглядит закрытой, но вы не уверены, что она защёлкнулась. Buckle — «пряжка». Попросите друга проверить её: `Can you check the buckle?` — «Можешь проверить пряжку?» Здесь check означает «проверить», а просьба начинается с Can you.",
+        "uk": "Ви перевіряєте новий рюкзак перед прогулянкою. Пряжка здається закритою, але ви не впевнені, що вона зафіксувалася. Buckle — «пряжка». Попросіть друга перевірити її: `Can you check the buckle?` — «Можеш перевірити пряжку?» Тут check означає «перевірити», а прохання починається з Can you."
       },
       "question": {
         "interactionId": "en:lesson-08:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга открыть дверь.",
-          "uk": "Попросіть друга відчинити двері."
+          "ru": "Попросите друга проверить пряжку.",
+          "uk": "Попросіть друга перевірити пряжку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-17:intro3:r1",
-              "text": "Can you open the door?"
+              "text": "Can you check the buckle?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro3:r2",
-              "text": "Can you to open the door?"
+              "text": "Can you checks the buckle?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro3:r3",
-              "text": "You can open the door."
+              "text": "You can check the buckle."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-17:intro3:r1",
-              "text": "Can you open the door?"
+              "text": "Can you check the buckle?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro3:r2",
-              "text": "Can you to open the door?"
+              "text": "Can you checks the buckle?"
             },
             {
               "responseId": "en:lesson-08:session-17:intro3:r3",
-              "text": "You can open the door."
+              "text": "You can check the buckle."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга открыть дверь.",
-          "uk": "Попросіть друга відчинити двері."
+          "ru": "Попросите друга проверить пряжку.",
+          "uk": "Попросіть друга перевірити пряжку."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d546068daaf216c16f339469c836015fedc4b76ca0420b1864af15e5c2400e92"
+  "introFingerprint": "cd9bf4eb31bc448c7185a0d25689614c66727f5a43c2c900e6a4596f8a3e9147"
 }

@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-18:word:pass",
+    "correctText": "pass",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-18:i01",
     "correctText": "Can you pass me the key?",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-18:word:pitcher",
+    "correctText": "pitcher",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-18:i06",
-    "correctText": "Can you pass me the milk?",
+    "correctText": "Can you pass me the pitcher?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:word:corkscrew",
+    "correctText": "corkscrew",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-18:i07",
-    "correctText": "I can’t dive.",
+    "correctText": "Can you pass me the corkscrew?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-18:i08",
-    "correctText": "help",
+    "correctText": "pass",
     "correctResponseId": "en:lesson-08:session-18:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-18:i10",
-    "correctText": "en:lesson-08:session-18:i10:p1=gamble\nen:lesson-08:session-18:i10:p2=pass\nen:lesson-08:session-18:i10:p3=milk\nen:lesson-08:session-18:i10:p4=smile",
+    "correctText": "en:lesson-08:session-18:i10:p1=pass\nen:lesson-08:session-18:i10:p2=pitcher\nen:lesson-08:session-18:i10:p3=corkscrew\nen:lesson-08:session-18:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-18:i11",
-    "correctText": "Can you help me?",
+    "correctText": "Can you pass me the pitcher?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:word:coaster",
+    "correctText": "coaster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-18:i12",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you pass me the coaster?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-18:i13",
-    "correctText": "I often smile.",
+    "correctText": "I can’t open it.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-18:i15",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you pass me the coaster?",
     "correctResponseId": "en:lesson-08:session-18:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-18:i16",
-    "correctText": "en:lesson-08:session-18:i16:p1=pass\nen:lesson-08:session-18:i16:p2=gamble\nen:lesson-08:session-18:i16:p3=dive\nen:lesson-08:session-18:i16:p4=milk",
+    "correctText": "en:lesson-08:session-18:i16:p1=pass\nen:lesson-08:session-18:i16:p2=pitcher\nen:lesson-08:session-18:i16:p3=corkscrew\nen:lesson-08:session-18:i16:p4=coaster",
     "correctResponseId": null
   },
   {

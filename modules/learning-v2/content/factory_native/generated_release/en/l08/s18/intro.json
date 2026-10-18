@@ -15,8 +15,8 @@
         "uk": "Ключ на іншому краю столу"
       },
       "bodyByLocale": {
-        "ru": "Вы собираетесь уходить. Ключ лежит рядом с другом, а вам до него не дотянуться. `Pass` — «передать». `Can you pass me the key?` — «Можешь передать мне ключ?» После `Can you` нужно `pass me the key`. Ключ от машины рядом — осталось добраться до ключа.",
-        "uk": "Ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Pass` — «передати». `Can you pass me the key?` — «Можеш передати мені ключ?» Після `Can you` потрібне `pass me the key`. Ключ від машини поруч — залишилося дістатися до ключа."
+        "ru": "Настольная игра закончилась, и вы собираетесь уходить. Ключ лежит рядом с другом, а вам до него не дотянуться. `Pass` — «передать». `Can you pass me the key?` — «Можешь передать мне ключ?» После `Can you` нужно `pass me the key`. Между вами игровое поле: вы просите передать ключ, чтобы не задеть фигурки.",
+        "uk": "Настільна гра закінчилася, і ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Pass` — «передати». `Can you pass me the key?` — «Можеш передати мені ключ?» Після `Can you` потрібне `pass me the key`. Між вами ігрове поле: ви просите передати ключ, щоб не зачепити фігурки."
       },
       "question": {
         "interactionId": "en:lesson-08:session-18:intro1:q",
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Молоко за завтраком",
-        "uk": "Молоко за сніданком"
+        "ru": "Лимонад для гостей",
+        "uk": "Лимонад для гостей"
       },
       "bodyByLocale": {
-        "ru": "За завтраком молоко стоит возле друга. Вы хотите добавить его в кофе. `Can you pass me the milk?` — «Можешь передать мне молоко?» В знакомой просьбе замените `the key` на `the milk`.",
-        "uk": "За сніданком молоко стоїть біля друга. Ви хочете додати його в каву. `Can you pass me the milk?` — «Можеш передати мені молоко?» У знайомому проханні замініть `the key` на `the milk`."
+        "ru": "Вы расставили стаканы на столе во дворе. Кувшин с лимонадом стоит возле друга. Pitcher — «кувшин», здесь сосуд с ручкой и носиком для напитков. `Can you pass me the pitcher?` — «Можешь передать мне кувшин?» В знакомой просьбе замените the key на the pitcher.",
+        "uk": "Ви розставили склянки на столі у дворі. Глечик із лимонадом стоїть біля друга. Pitcher — «глечик», тут посудина з ручкою й носиком для напоїв. `Can you pass me the pitcher?` — «Можеш передати мені глечик?» У знайомому проханні замініть the key на the pitcher."
       },
       "question": {
         "interactionId": "en:lesson-08:session-18:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите передать молоко.",
-          "uk": "Попросіть передати молоко."
+          "ru": "Попросите друга передать кувшин с лимонадом.",
+          "uk": "Попросіть друга передати глечик із лимонадом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-18:intro2:r1",
-              "text": "Can you pass me the milk?"
+              "text": "Can you pass me the pitcher?"
             },
             {
               "responseId": "en:lesson-08:session-18:intro2:r2",
-              "text": "Can you passes me the milk?"
+              "text": "Can you passes me the pitcher?"
             },
             {
               "responseId": "en:lesson-08:session-18:intro2:r3",
-              "text": "Can you to pass me the milk?"
+              "text": "Can you to pass me the pitcher?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-18:intro2:r1",
-              "text": "Can you pass me the milk?"
+              "text": "Can you pass me the pitcher?"
             },
             {
               "responseId": "en:lesson-08:session-18:intro2:r2",
-              "text": "Can you passes me the milk?"
+              "text": "Can you passes me the pitcher?"
             },
             {
               "responseId": "en:lesson-08:session-18:intro2:r3",
-              "text": "Can you to pass me the milk?"
+              "text": "Can you to pass me the pitcher?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите передать молоко.",
-          "uk": "Попросіть передати молоко."
+          "ru": "Попросите друга передать кувшин с лимонадом.",
+          "uk": "Попросіть друга передати глечик із лимонадом."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Первое занятие в бассейне",
-        "uk": "Перше заняття в басейні"
+        "ru": "Бутылка с пробкой",
+        "uk": "Пляшка з корком"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает вам нырнуть, но вы пока не умеете. `I can’t dive` — «Я не умею нырять». Для «не умею» нужно `can’t`; после него `dive`, без `to`.",
-        "uk": "Друг пропонує вам пірнути, але ви поки не вмієте. `I can’t dive` — «Я не вмію пірнати». Для «не вмію» потрібне `can’t`; після нього `dive`, без `to`."
+        "ru": "Вы накрываете стол и хотите открыть бутылку с пробкой. Друг достал штопор из ящика, но оставил его возле себя. Corkscrew — «штопор». `Can you pass me the corkscrew?` — «Можешь передать мне штопор?» Вы просите именно передать инструмент, а не открыть бутылку.",
+        "uk": "Ви накриваєте стіл і хочете відкрити пляшку з корком. Друг дістав штопор із шухляди, але залишив його біля себе. Corkscrew — «штопор». `Can you pass me the corkscrew?` — «Можеш передати мені штопор?» Ви просите саме передати інструмент, а не відкрити пляшку."
       },
       "question": {
         "interactionId": "en:lesson-08:session-18:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что не умеете нырять.",
-          "uk": "Скажіть другові, що не вмієте пірнати."
+          "ru": "Попросите друга передать штопор.",
+          "uk": "Попросіть друга передати штопор."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-18:intro3:r1",
-              "text": "I can’t dive."
+              "text": "Can you pass me the corkscrew?"
             },
             {
               "responseId": "en:lesson-08:session-18:intro3:r2",
-              "text": "I can dive."
+              "text": "You can pass me the corkscrew."
             },
             {
               "responseId": "en:lesson-08:session-18:intro3:r3",
-              "text": "I can’t to dive."
+              "text": "Can you to pass me the corkscrew?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-18:intro3:r1",
-              "text": "I can’t dive."
+              "text": "Can you pass me the corkscrew?"
             },
             {
               "responseId": "en:lesson-08:session-18:intro3:r2",
-              "text": "I can dive."
+              "text": "You can pass me the corkscrew."
             },
             {
               "responseId": "en:lesson-08:session-18:intro3:r3",
-              "text": "I can’t to dive."
+              "text": "Can you to pass me the corkscrew?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что не умеете нырять.",
-          "uk": "Скажіть другові, що не вмієте пірнати."
+          "ru": "Попросите друга передать штопор.",
+          "uk": "Попросіть друга передати штопор."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f7f3822fc13cfc9d26f21caf057251ca44d348318be83d161ab819348edfaea3"
+  "introFingerprint": "81fee17c9c5e7552273f8676a043d3296a8a5f4623b5e62625213fe6c034da96"
 }

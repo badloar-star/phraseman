@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-08:session-16:word:weld",
+    "correctText": "weld",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-16:i01",
-    "correctText": "I can’t skate.",
+    "correctText": "I can’t weld.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-16:i02",
-    "correctText": "dive",
+    "correctText": "weld",
     "correctResponseId": "en:lesson-08:session-16:i02:r1"
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-16:i04",
-    "correctText": "en:lesson-08:session-16:i04:p1=skate\nen:lesson-08:session-16:i04:p2=dive\nen:lesson-08:session-16:i04:p3=code\nen:lesson-08:session-16:i04:p4=knit",
+    "correctText": "en:lesson-08:session-16:i04:p1=weld\nen:lesson-08:session-16:i04:p2=dive\nen:lesson-08:session-16:i04:p3=steer\nen:lesson-08:session-16:i04:p4=knit",
     "correctResponseId": null
   },
   {
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-16:word:solder",
+    "correctText": "solder",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-16:i06",
-    "correctText": "I can code.",
+    "correctText": "I can solder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:word:vice",
+    "correctText": "vice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-16:i07",
-    "correctText": "Whose scarf is this?",
+    "correctText": "Whose vice is this?",
     "correctResponseId": null
   },
   {
@@ -41,27 +56,32 @@
   },
   {
     "interactionId": "en:lesson-08:session-16:i09",
-    "correctText": "I can’t code.",
+    "correctText": "I can’t solder.",
     "correctResponseId": "en:lesson-08:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-16:i10",
-    "correctText": "en:lesson-08:session-16:i10:p1=steer\nen:lesson-08:session-16:i10:p2=spell\nen:lesson-08:session-16:i10:p3=calculate\nen:lesson-08:session-16:i10:p4=swimming pool",
+    "correctText": "en:lesson-08:session-16:i10:p1=weld\nen:lesson-08:session-16:i10:p2=solder\nen:lesson-08:session-16:i10:p3=vice\nen:lesson-08:session-16:i10:p4=calculate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-16:i11",
-    "correctText": "Whose scarf is this?",
+    "correctText": "Whose vice is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-16:word:anvil",
+    "correctText": "anvil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-16:i12",
-    "correctText": "Where is the swimming pool?",
+    "correctText": "Where is the anvil?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-16:i13",
-    "correctText": "I often skate.",
+    "correctText": "I often solder.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-08:session-16:i15",
-    "correctText": "I can’t steer.",
+    "correctText": "Where is the anvil?",
     "correctResponseId": "en:lesson-08:session-16:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-16:i16",
-    "correctText": "en:lesson-08:session-16:i16:p1=code\nen:lesson-08:session-16:i16:p2=knit\nen:lesson-08:session-16:i16:p3=spell\nen:lesson-08:session-16:i16:p4=calculate",
+    "correctText": "en:lesson-08:session-16:i16:p1=weld\nen:lesson-08:session-16:i16:p2=solder\nen:lesson-08:session-16:i16:p3=vice\nen:lesson-08:session-16:i16:p4=anvil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-16:i17",
-    "correctText": "Tom can’t dive.",
+    "correctText": "Tom can’t weld.",
     "correctResponseId": null
   }
 ]

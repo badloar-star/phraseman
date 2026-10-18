@@ -1,9 +1,9 @@
 # Англійська · Урок 8 · Заняття 26 — Лампа не вмикається
 
-**Ситуація.** Ви допомагаєте ввімкнути лампу, підказуєте поворот і просите передати ключ.
+**Ситуація.** Підключити лампу, підготувати зволожувач і ввімкнути знищувач паперів.
 
 **Що ви опануєте:** закріпити короткі вказівки й поєднання plug in
-**Нові слова:** plug
+**Нові слова:** plug, humidifier, shredder, extension lead
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Інтро 2
 
-### Поворот до дому
+### Сухе повітря в спальні
 
-Ви йдете з другом додому. На наступному повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Коротка вказівка починається одразу з `Turn`, без `you` і `to`.
+Після ввімкнення опалення повітря в спальні стало сухим. Ви підготували зволожувач за інструкцією, і другові залишилося підключити його. Humidifier — «зволожувач повітря». `Plug in the humidifier` — «Увімкни зволожувач у розетку». З назвою предмета можна сказати plug in the humidifier; з коротким it потрібен порядок plug it in.
 
-**Підкажіть другові «Поверни ліворуч».**
+**Скажіть другові підключити підготовлений зволожувач.**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для вказівки потрібне `Turn`, без `s`.*
-- ❌ To turn left. — *Почніть із `Turn`, без `to`.*
+- ✅ **Plug in the humidifier.**
+- ❌ Plugs in the humidifier. — *Для вказівки потрібне Plug, без s.*
+- ❌ To plug in the humidifier. — *Почніть з Plug, без to.*
 
 ---
 
 ## Інтро 3
 
-### Ключ біля друга
+### Старі папери в офісі
 
-Ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Can you pass me the key?` — «Можеш передати мені ключ?» Для цього прохання почніть із `Can you`, потім `pass me the key`.
+В офісі потрібно знищити непотрібні роздруківки. Пристрій уже підключений, але вимкнений. Shredder — «знищувач паперів», який ріже аркуші на смужки або шматочки. `Turn on the shredder` — «Увімкни знищувач паперів». Turn on означає ввімкнути прилад; plug in — підключити його до розетки. Це різні дії.
 
-**Попросіть друга передати вам ключ.**
+**Скажіть колезі ввімкнути вже підключений знищувач паперів.**
 
-- ✅ **Can you pass me the key?**
-- ❌ Can you passes me the key? — *Після `can` потрібне `pass`, без `es`.*
-- ❌ Can you to pass me the key? — *Після `can` потрібне `pass`, без `to`.*
+- ✅ **Turn on the shredder.**
+- ❌ Turns on the shredder. — *Для вказівки потрібне Turn, без s.*
+- ❌ To turn on the shredder. — *Почніть з Turn, без to.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Дайте вказівку «Увімкни її в розетку»**
+**1 · Картка слова — plug**
+<!-- interaction_id: en:lesson-08:session-26:word:plug; family: word_card -->
+> **plug** — підключати вилкою до розетки; вживається з in. Plug it in. — «Увімкни її в розетку». Тут it — лампа; it стоїть між plug та in.
+
+**2 · Дайте вказівку «Увімкни її в розетку»**
 <!-- interaction_id: en:lesson-08:session-26:i01; family: phrase_builder -->
 Плитки: `in` `it` `Plug` → **Plug it in.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-26:i02; family: listen_choose -->
 🔊 *plug* → **plug** · pass · jog
 - pass — *У записі перше слово — `plug`, а в цьому варіанті — `pass`.*
 - jog — *У записі перше слово — `plug`, а в цьому варіанті — `jog`.*
 
-**3 · Дайте коротку вказівку підключити лампу до розетки**
+**4 · Виберіть форму для вказівки підключити лампу до розетки**
 <!-- interaction_id: en:lesson-08:session-26:i03; family: context_gap_grammar -->
 ___ it in. → **Plug** · Plugs · To plug
-- Plugs — *Для вказівки потрібне `Plug`, без `s`.*
-- To plug — *Почніть із `Plug`, без `to`.*
+- Plugs — *Для вказівки потрібне Plug, без s.*
+- To plug — *Почніть з Plug, без to.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-26:i04; family: speed_match -->
-plug in — підключити до розетки · worktop — кухонна стільниця · park — паркуватися · jog — бігати підтюпцем
+plug in — підключити до розетки · lamp — лампа · socket — розетка · cable — кабель
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-26:i05; family: listen_build_dictation -->
 🔊 *Plug it in.* Плитки: `in` `it` `Plug` → **Plug it in.**
 
-**6 · Дайте коротку вказівку «Відчини вікно»**
+**7 · Картка слова — humidifier**
+<!-- interaction_id: en:lesson-08:session-26:word:humidifier; family: word_card -->
+> **humidifier** — зволожувач повітря. Plug in the humidifier. — «Увімкни зволожувач у розетку». Прилад, що підвищує вологість повітря.
+
+**8 · Дайте вказівку «Увімкни зволожувач у розетку». Почніть із Plug in**
 <!-- interaction_id: en:lesson-08:session-26:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `humidifier` `the` `in` `Plug` → **Plug in the humidifier.**
 
-**7 · На прогулянці підкажіть другові «Поверни ліворуч»**
+**9 · Картка слова — shredder**
+<!-- interaction_id: en:lesson-08:session-26:word:shredder; family: word_card -->
+> **shredder** — знищувач паперів. Turn on the shredder. — «Увімкни знищувач паперів». Прилад ріже папір на дрібні частини; turn on — увімкнути.
+
+**10 · Прилад уже підключений. Скажіть «Увімкни знищувач паперів»**
 <!-- interaction_id: en:lesson-08:session-26:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Turn on the shredder.**
 
-**8 · Дайте коротку вказівку відчинити вікно**
+**11 · Виберіть форму для вказівки ввімкнути знищувач паперів**
 <!-- interaction_id: en:lesson-08:session-26:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для вказівки потрібне `Open`, без `s`.*
-- To open — *Почніть із `Open`, без `to`.*
+___ on the shredder. → **Turn** · Turns · To turn
+- Turns — *Для вказівки потрібне Turn, без s.*
+- To turn — *Почніть з Turn, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-26:i09; family: listen_choose -->
 🔊 *Plug it in.* → **Plug it in.** · Put it in. · Take it in.
 - Put it in. — *У записі перше слово — `Plug`, а в цьому варіанті — `Put`.*
 - Take it in. — *У записі перше слово — `Plug`, а в цьому варіанті — `Take`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-26:i10; family: speed_match -->
-pass — передати · plug in — підключити до розетки · worktop — кухонна стільниця · park — паркуватися
+plug in — підключити до розетки · humidifier — зволожувач повітря · shredder — знищувач паперів · socket — розетка
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу в тому порядку, як вона звучить**
 <!-- interaction_id: en:lesson-08:session-26:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Turn on the shredder.* Плитки: `shredder` `the` `on` `Turn` → **Turn on the shredder.**
 
-**12 · Попросіть «Можеш передати мені ключ?»**
+**15 · Картка слова — extension lead**
+<!-- interaction_id: en:lesson-08:session-26:word:extension-lead; family: word_card -->
+> **extension lead** — подовжувач. Can you pass me the extension lead? — «Можеш передати мені подовжувач?» Британська назва електричного подовжувача; в американській англійській — extension cord.
+
+**16 · Подовжувач лежить біля друга. Попросіть «Можеш передати мені подовжувач?»**
 <!-- interaction_id: en:lesson-08:session-26:i12; family: phrase_builder -->
-Плитки: `key` `the` `me` `pass` `you` `Can` → **Can you pass me the key?**
+Плитки: `lead` `extension` `the` `me` `pass` `you` `Can` → **Can you pass me the extension lead?**
 
-**13 · Друг запитує про ваші тренування. Скажіть «Я часто бігаю підтюпцем»**
+**17 · Колега запитує, чи можете ви підготувати прилад. Скажіть «Я можу ввімкнути знищувач паперів»**
 <!-- interaction_id: en:lesson-08:session-26:i13; family: scripted_repeat_compare -->
-🎙 **I often jog.**
+🎙 **I can turn on the shredder.**
 
-**14 · Дайте вказівку повернути ліворуч**
+**18 · Виберіть форму для прохання передати подовжувач**
 <!-- interaction_id: en:lesson-08:session-26:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для вказівки потрібне `Turn`, без `s`.*
-- To turn — *Почніть із `Turn`, без `to`.*
+Can you ___ me the extension lead? → **pass** · passes · to pass
+- passes — *Після can потрібне pass, без es.*
+- to pass — *Після can потрібне pass, без to.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-26:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *У записі останнє слово — `window`, а в цьому варіанті — `door`.*
-- Open the box. — *У записі останнє слово — `window`, а в цьому варіанті — `box`.*
+🔊 *Plug in the humidifier.* → **Plug in the humidifier.** · Plug in the printer. · Plug in the lamp.
+- Plug in the printer. — *У записі humidifier — «зволожувач», а не printer — «принтер».*
+- Plug in the lamp. — *У записі humidifier, а не lamp — «лампа».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-26:i16; family: speed_match -->
-plug in — підключити до розетки · jog — бігати підтюпцем · pass — передати · worktop — кухонна стільниця
+plug in — підключити до розетки · humidifier — зволожувач повітря · shredder — знищувач паперів · extension lead — подовжувач
 
-**17 · Друг поставив принтер на стіл. Вилка лежить біля розетки. Дайте коротку вказівку «Увімкни його в розетку»**
+**21 · Друг поставив принтер на стіл. Вилка лежить біля розетки. Дайте коротку вказівку «Увімкни його в розетку»**
 <!-- interaction_id: en:lesson-08:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Plug it in.**
 

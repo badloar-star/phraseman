@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поворот к дому",
-        "uk": "Поворот до дому"
+        "ru": "Сухой воздух в спальне",
+        "uk": "Сухе повітря в спальні"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте с другом домой. На следующем повороте нужно налево. `Turn left` — «Поверни налево». Короткое указание начинается сразу с `Turn`, без `you` и `to`.",
-        "uk": "Ви йдете з другом додому. На наступному повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Коротка вказівка починається одразу з `Turn`, без `you` і `to`."
+        "ru": "После включения отопления воздух в спальне стал сухим. Вы подготовили увлажнитель по инструкции, и другу осталось подключить его. Humidifier — «увлажнитель воздуха». `Plug in the humidifier` — «Включи увлажнитель в розетку». С названием предмета можно сказать plug in the humidifier; с коротким it нужен порядок plug it in.",
+        "uk": "Після ввімкнення опалення повітря в спальні стало сухим. Ви підготували зволожувач за інструкцією, і другові залишилося підключити його. Humidifier — «зволожувач повітря». `Plug in the humidifier` — «Увімкни зволожувач у розетку». З назвою предмета можна сказати plug in the humidifier; з коротким it потрібен порядок plug it in."
       },
       "question": {
         "interactionId": "en:lesson-08:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Скажите другу подключить подготовленный увлажнитель.",
+          "uk": "Скажіть другові підключити підготовлений зволожувач."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-26:intro2:r1",
-              "text": "Turn left."
+              "text": "Plug in the humidifier."
             },
             {
               "responseId": "en:lesson-08:session-26:intro2:r2",
-              "text": "Turns left."
+              "text": "Plugs in the humidifier."
             },
             {
               "responseId": "en:lesson-08:session-26:intro2:r3",
-              "text": "To turn left."
+              "text": "To plug in the humidifier."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-26:intro2:r1",
-              "text": "Turn left."
+              "text": "Plug in the humidifier."
             },
             {
               "responseId": "en:lesson-08:session-26:intro2:r2",
-              "text": "Turns left."
+              "text": "Plugs in the humidifier."
             },
             {
               "responseId": "en:lesson-08:session-26:intro2:r3",
-              "text": "To turn left."
+              "text": "To plug in the humidifier."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Скажите другу подключить подготовленный увлажнитель.",
+          "uk": "Скажіть другові підключити підготовлений зволожувач."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ключ возле друга",
-        "uk": "Ключ біля друга"
+        "ru": "Старые бумаги в офисе",
+        "uk": "Старі папери в офісі"
       },
       "bodyByLocale": {
-        "ru": "Вы собираетесь уходить. Ключ лежит рядом с другом, а вам до него не дотянуться. `Can you pass me the key?` — «Можешь передать мне ключ?» Для этой просьбы начните с `Can you`, затем `pass me the key`.",
-        "uk": "Ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Can you pass me the key?` — «Можеш передати мені ключ?» Для цього прохання почніть із `Can you`, потім `pass me the key`."
+        "ru": "В офисе нужно уничтожить ненужные распечатки. Устройство уже подключено, но выключено. Shredder — «уничтожитель бумаг», который режет листы на полоски или кусочки. `Turn on the shredder` — «Включи уничтожитель бумаг». Turn on означает включить прибор; plug in — подключить его к розетке. Это разные действия.",
+        "uk": "В офісі потрібно знищити непотрібні роздруківки. Пристрій уже підключений, але вимкнений. Shredder — «знищувач паперів», який ріже аркуші на смужки або шматочки. `Turn on the shredder` — «Увімкни знищувач паперів». Turn on означає ввімкнути прилад; plug in — підключити його до розетки. Це різні дії."
       },
       "question": {
         "interactionId": "en:lesson-08:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга передать вам ключ.",
-          "uk": "Попросіть друга передати вам ключ."
+          "ru": "Скажите коллеге включить уже подключённый уничтожитель бумаг.",
+          "uk": "Скажіть колезі ввімкнути вже підключений знищувач паперів."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-26:intro3:r1",
-              "text": "Can you pass me the key?"
+              "text": "Turn on the shredder."
             },
             {
               "responseId": "en:lesson-08:session-26:intro3:r2",
-              "text": "Can you passes me the key?"
+              "text": "Turns on the shredder."
             },
             {
               "responseId": "en:lesson-08:session-26:intro3:r3",
-              "text": "Can you to pass me the key?"
+              "text": "To turn on the shredder."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-26:intro3:r1",
-              "text": "Can you pass me the key?"
+              "text": "Turn on the shredder."
             },
             {
               "responseId": "en:lesson-08:session-26:intro3:r2",
-              "text": "Can you passes me the key?"
+              "text": "Turns on the shredder."
             },
             {
               "responseId": "en:lesson-08:session-26:intro3:r3",
-              "text": "Can you to pass me the key?"
+              "text": "To turn on the shredder."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга передать вам ключ.",
-          "uk": "Попросіть друга передати вам ключ."
+          "ru": "Скажите коллеге включить уже подключённый уничтожитель бумаг.",
+          "uk": "Скажіть колезі ввімкнути вже підключений знищувач паперів."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7867224d5ad2e8871a0f57e094dc7658d58dfbcce62cde62f043094c84d362ba"
+  "introFingerprint": "7da22b16c4fd6ab950fb451d44876b5dda33576dac9f31feb6f4e726427d12d9"
 }

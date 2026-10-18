@@ -1,0 +1,2 @@
+[MEM-MOMENTS] mount full:position-rise live={"full:position-rise":1}
+[MEM-MOMENTS] unmount full:position-rise жил=8334мс live={}

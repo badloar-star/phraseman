@@ -1,0 +1,4 @@
+[MEM-MOMENTS] mount coin (56dp) live={"coin":1}
+[MEM-MOMENTS] mount full:floor-moment live={"coin":1,"full:floor-moment":1}
+[MEM-MOMENTS] unmount full:floor-moment жил=8163мс live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=8180мс live={}

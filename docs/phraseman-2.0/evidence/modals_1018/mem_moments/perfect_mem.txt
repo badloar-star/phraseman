@@ -1,0 +1,4 @@
+[MEM-MOMENTS] mount coin (128dp) live={"coin":1}
+[MEM-MOMENTS] mount full:lesson-perfect live={"coin":1,"full:lesson-perfect":1}
+[MEM-MOMENTS] unmount full:lesson-perfect жил=9083мс live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=9160мс live={}

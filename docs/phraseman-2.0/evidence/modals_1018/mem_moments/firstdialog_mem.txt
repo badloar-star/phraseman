@@ -1,0 +1,4 @@
+[MEM-MOMENTS] mount coin (110dp) live={"coin":1}
+[MEM-MOMENTS] mount full:first-dialog live={"coin":1,"full:first-dialog":1}
+[MEM-MOMENTS] unmount full:first-dialog жил=9221мс live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=9255мс live={}

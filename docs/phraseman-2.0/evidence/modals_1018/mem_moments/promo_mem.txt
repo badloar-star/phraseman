@@ -1,0 +1,4 @@
+[MEM-MOMENTS] mount full:moment-promotion live={"full:moment-promotion":1}
+[MEM-MOMENTS] mount coin (120dp) live={"coin":1,"full:moment-promotion":1}
+[MEM-MOMENTS] unmount coin жил=2278мс live={"full:moment-promotion":1}
+[MEM-MOMENTS] unmount full:moment-promotion жил=8537мс live={}

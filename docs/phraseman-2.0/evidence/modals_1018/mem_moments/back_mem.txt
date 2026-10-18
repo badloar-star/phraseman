@@ -1,0 +1,6 @@
+[MEM-MOMENTS] mount coin (110dp) live={"coin":1}
+[MEM-MOMENTS] mount full:welcome-back live={"coin":1,"full:welcome-back":1}
+[MEM-MOMENTS] mount host:welcome-back live={"coin":1,"full:welcome-back":1,"host:welcome-back":1}
+[MEM-MOMENTS] unmount host:welcome-back жил=8967мс live={"coin":1,"full:welcome-back":1}
+[MEM-MOMENTS] unmount full:welcome-back жил=8971мс live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=8981мс live={}

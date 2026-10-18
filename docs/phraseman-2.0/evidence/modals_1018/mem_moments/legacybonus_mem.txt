@@ -1,0 +1,14 @@
+[MEM-MOMENTS] mount host:legacy-bonus-sheet live={"host:legacy-bonus-sheet":1}
+[MEM-MOMENTS] mount coin (64dp) live={"coin":1,"host:legacy-bonus-sheet":1}
+[MEM-MOMENTS] mount coin (64dp) live={"coin":2,"host:legacy-bonus-sheet":1}
+[MEM-MOMENTS] mount host:legacy-bonus-sheet live={"coin":2,"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] unmount coin жил=2314мс live={"coin":1,"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] unmount coin жил=207мс live={"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] mount coin (64dp) live={"coin":1,"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] mount coin (64dp) live={"coin":2,"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] unmount coin жил=9543мс live={"coin":1,"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] unmount host:legacy-bonus-sheet жил=10325мс live={"coin":1,"host:legacy-bonus-sheet":1}
+[MEM-MOMENTS] mount host:legacy-bonus-sheet (closing) live={"coin":1,"host:legacy-bonus-sheet":2}
+[MEM-MOMENTS] unmount host:legacy-bonus-sheet жил=402мс live={"coin":1,"host:legacy-bonus-sheet":1}
+[MEM-MOMENTS] unmount coin жил=10073мс live={"host:legacy-bonus-sheet":1}
+[MEM-MOMENTS] unmount host:legacy-bonus-sheet жил=13605мс live={}

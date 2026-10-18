@@ -1,0 +1,2 @@
+[MEM-MOMENTS] mount coin (58dp) live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=9186мс live={}

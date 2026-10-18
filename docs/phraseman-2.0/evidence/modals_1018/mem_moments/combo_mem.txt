@@ -1,0 +1,6 @@
+[MEM-MOMENTS] mount coin (28dp) live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=3304мс live={}
+[MEM-MOMENTS] mount coin (28dp) live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=1507мс live={}
+[MEM-MOMENTS] mount coin (28dp) live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=205мс live={}

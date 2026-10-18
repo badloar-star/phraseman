@@ -1,0 +1,4 @@
+[MEM-MOMENTS] mount coin (96dp) live={"coin":1}
+[MEM-MOMENTS] mount host:coin-rank-enough live={"coin":1,"host:coin-rank-enough":1}
+[MEM-MOMENTS] unmount host:coin-rank-enough жил=9172мс live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=9181мс live={}

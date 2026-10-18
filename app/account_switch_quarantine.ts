@@ -929,8 +929,12 @@ async function resumeInternal(
       return { result: 'retryable', reason: 'quiesce_failed' };
     }
     const currentAuth = deps.readAuthUser();
+    // зачем (эмулятор 18.10 11:03, сценарий №9): исход «вход не дошёл до Firebase → гость» проходил молча — фаза, состояние
+    // Firebase и совпадения печатаются здесь, исход — своей строкой (без uid).
+    console.warn(`[SWITCH-QUARANTINE] handoff_resume phase=${handoff.phase} provider=${handoff.provider} auth=${currentAuth ? (currentAuth.isAnonymous ? 'anonymous' : 'provider') : 'none'} ownerUid=${currentAuth?.uid === handoff.ownerAuthUid ? 'yes' : 'no'} targetUid=${handoff.targetAuthUid && currentAuth?.uid === handoff.targetAuthUid ? 'yes' : 'no'}`); // guard-ok: вход в ветку
     try {
       if (currentAuth?.isAnonymous && currentAuth.uid === handoff.ownerAuthUid) {
+        console.warn(`[SWITCH-QUARANTINE] handoff_resume outcome=owner_still_anonymous phase=${handoff.phase} — вход не дошёл до Firebase, остаётся гость`); // guard-ok: ранний выход пишет причину
         await clearProviderCredentialHandoff(handoff);
         deps.activateGeneration(handoff.ownerStableId);
         return { result: 'completed', stableId: handoff.ownerStableId, authUid: currentAuth.uid };

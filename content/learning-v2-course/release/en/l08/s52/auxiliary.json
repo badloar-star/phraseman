@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-52:intro1:r2": {
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
+        },
+        "en:lesson-08:session-52:intro1:r3": {
+          "ru": "После can действие без s/es.",
+          "uk": "Після can дія без s/es."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-52:intro2:r2": {
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
+        },
+        "en:lesson-08:session-52:intro2:r3": {
+          "ru": "После can действие без s/es.",
+          "uk": "Після can дія без s/es."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-52:intro3:r2": {
+          "ru": "С this нужна форма is, не are.",
+          "uk": "Із this потрібна форма is, не are."
+        },
+        "en:lesson-08:session-52:intro3:r3": {
+          "ru": "Am употребляется с I; здесь нужно is.",
+          "uk": "Am уживається з I; тут потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e0761a61130ae67d9938028e9100609eea45476e737faf02f530350aa8515bd6"
+}

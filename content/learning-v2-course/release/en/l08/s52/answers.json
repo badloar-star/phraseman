@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-52:word:manage",
+    "correctText": "manage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i01",
+    "correctText": "I can manage the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i02",
+    "correctText": "manage",
+    "correctResponseId": "en:lesson-08:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i03",
+    "correctText": "manage",
+    "correctResponseId": "en:lesson-08:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i04",
+    "correctText": "en:lesson-08:session-52:i04:p1=manage\nen:lesson-08:session-52:i04:p2=reassure\nen:lesson-08:session-52:i04:p3=evaluate\nen:lesson-08:session-52:i04:p4=deadline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i05",
+    "correctText": "Can you manage the list?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:word:workload",
+    "correctText": "workload",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i06",
+    "correctText": "We can share the workload.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:word:priority",
+    "correctText": "priority",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i07",
+    "correctText": "This is the priority.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i08",
+    "correctText": "share",
+    "correctResponseId": "en:lesson-08:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i09",
+    "correctText": "We can share the workload.",
+    "correctResponseId": "en:lesson-08:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i10",
+    "correctText": "en:lesson-08:session-52:i10:p1=manage\nen:lesson-08:session-52:i10:p2=workload\nen:lesson-08:session-52:i10:p3=priority\nen:lesson-08:session-52:i10:p4=deadline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i11",
+    "correctText": "This is the priority.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:word:backlog",
+    "correctText": "backlog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i12",
+    "correctText": "We can clear the backlog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i13",
+    "correctText": "I can't manage the workload.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i14",
+    "correctText": "manage",
+    "correctResponseId": "en:lesson-08:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i15",
+    "correctText": "I can't manage the workload.",
+    "correctResponseId": "en:lesson-08:session-52:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i16",
+    "correctText": "en:lesson-08:session-52:i16:p1=manage\nen:lesson-08:session-52:i16:p2=workload\nen:lesson-08:session-52:i16:p3=priority\nen:lesson-08:session-52:i16:p4=backlog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-52:i17",
+    "correctText": "We can share the workload.",
+    "correctResponseId": null
+  }
+]

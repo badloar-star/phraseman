@@ -184,7 +184,8 @@ import {
 } from "../smooth_layout";
 import { peekCurrentExamBestPct } from "../exam_best_pct_overlay";
 import { noAndroidOutline } from "../../constants/androidGlow";
-import { coinRankRowForDisplay, isValidCoinRank } from "../coin_rank_table_v1";
+import { isValidCoinRank } from "../coin_rank_table_v1";
+import { coinRankDisplaySource } from "../../components/coins/coin_rank_display";
 import {
   buildLearningV2CourseAccordionMapFromPreparedProgressV1,
   prepareLearningV2CourseAccordionProgressV1,
@@ -2675,8 +2676,9 @@ export default function LessonsTab({
       balanceGeneration: legacyCoinBalanceBinding?.accountGeneration ?? null,
     })); // guard-ok: временная трассировка
   }, [legacyCoinBalance, legacyCoinBalanceBinding, legacyCoinProjectionTrusted, legacyCoinRankBinding]);
+  // зачем (Ревизор 3.120): монета 20 dp в шапке — копия 96² вместо исходника 768².
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)
-    ? coinRankRowForDisplay(legacyCoinRank).source
+    ? coinRankDisplaySource(legacyCoinRank, 20)
     : null;
   // зачем (владелец 17.10: «этот модал удаляй полностью, он не нужен!!!»): окно «Пропуск основателя» удалено целиком —
   // гейт, квитанция «видел», ник пропуска. Карта и прогрев занятия от него больше не зависят. Ключи квитанции в AsyncStorage не трогаем.

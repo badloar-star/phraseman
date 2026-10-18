@@ -21,7 +21,8 @@ test('all three feature illustrations sit at the left on one uninterrupted glass
 
 test('V2 home identity and balance use one real coin-rank asset, never the hex avatar or rune', () => {
   assert.match(home, /useMyCoinRank\(\)/);
-  assert.match(home, /coinRankRowForDisplay\(/);
+  // зачем (Ревизор 3.120): та же монета ранга, но копия под размер показа (96²/192²), а не исходник 768²
+  assert.match(home, /coinRankDisplaySource\(myCoinRank, STORY_RING_SLOT\)/);
   // зачем (17.10, шапка Главной перестроена: HomeV2Header со StoryAvatarSlot и строкой монет): тот же смысл — и аватар, и баланс берут ОДИН ассет ранга монет
   assert.match(v2Home, /testID: 'home-v2-coins'/);
   assert.match(v2Home, /<StoryAvatarSlot[\s\S]{0,400}coinSource=\{homeCoinRankSource\}/);

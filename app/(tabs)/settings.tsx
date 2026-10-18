@@ -35,6 +35,7 @@ import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
+import { coinRankDisplaySource } from '../../components/coins/coin_rank_display';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { enableSmartDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { actionToastTri, emitAppEvent } from '../events';
@@ -1003,7 +1004,8 @@ export default function SettingsMain() {
     <Image
       testID={myCoinRankRow ? testID : `${testID}-default`}
       accessible={false}
-      source={(myCoinRankRow ?? coinRankRowForDisplay(0)).source}
+      // зачем (Ревизор 3.120): монета 44/52 dp — копия под размер вместо исходника 768²
+      source={coinRankDisplaySource((myCoinRankRow ?? coinRankRowForDisplay(0)).rank, size)}
       style={{ width: size, height: size }} contentFit="contain"
     />
   );

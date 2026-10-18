@@ -49,7 +49,9 @@ import { useRuntimeActiveSettled } from '../../hooks/use_runtime_active_settled'
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
-import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
+import { isValidCoinRank } from '../coin_rank_table_v1';
+import { coinRankDisplaySource } from '../../components/coins/coin_rank_display';
+import { STORY_RING_SLOT } from '../../components/stories/story_ring_constants';
 import StoryAvatarSlotBase from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { usePerfR1Probe } from '../perf_r1_probe';
@@ -1411,7 +1413,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (homeRuntimeActive) reconcileHomeRunes();
     }, [focusTick, homeRuntimeActive, reconcileHomeRunes]);
-    const homeCoinRankSource = isValidCoinRank(myCoinRank) ? coinRankRowForDisplay(myCoinRank).source : null;
+    // зачем (Ревизор 3.120): аватар 48 dp и значок 20 dp — копия 192² вместо исходника 768² (холодный старт Главной).
+    const homeCoinRankSource = isValidCoinRank(myCoinRank) ? coinRankDisplaySource(myCoinRank, STORY_RING_SLOT) : null;
 
     useEffect(() => {
         const profile = appSnapshot.profile;

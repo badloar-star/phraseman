@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-08:session-32:word:name-tag",
+    "correctText": "name tag",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-32:i01",
-    "correctText": "Attach it.",
+    "correctText": "Attach the name tag.",
     "correctResponseId": null
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-32:i04",
-    "correctText": "en:lesson-08:session-32:i04:p1=attach\nen:lesson-08:session-32:i04:p2=plug in\nen:lesson-08:session-32:i04:p3=charge\nen:lesson-08:session-32:i04:p4=fold",
+    "correctText": "en:lesson-08:session-32:i04:p1=name tag\nen:lesson-08:session-32:i04:p2=attach\nen:lesson-08:session-32:i04:p3=charge\nen:lesson-08:session-32:i04:p4=fold",
     "correctResponseId": null
   },
   {
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-32:word:laminator",
+    "correctText": "laminator",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-32:i06",
-    "correctText": "Plug it in.",
+    "correctText": "Plug in the laminator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-32:word:packing-tape",
+    "correctText": "packing tape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-32:i07",
-    "correctText": "Fold it.",
+    "correctText": "Use the packing tape.",
     "correctResponseId": null
   },
   {
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-32:i10",
-    "correctText": "en:lesson-08:session-32:i10:p1=measure\nen:lesson-08:session-32:i10:p2=label\nen:lesson-08:session-32:i10:p3=wipe\nen:lesson-08:session-32:i10:p4=fountain",
+    "correctText": "en:lesson-08:session-32:i10:p1=name tag\nen:lesson-08:session-32:i10:p2=laminator\nen:lesson-08:session-32:i10:p3=packing tape\nen:lesson-08:session-32:i10:p4=label",
     "correctResponseId": null
   },
   {
@@ -55,13 +70,18 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-32:word:cable-tie",
+    "correctText": "cable tie",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-32:i12",
-    "correctText": "Where is the fountain?",
+    "correctText": "Pass me the cable tie.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-32:i13",
-    "correctText": "Can you help me?",
+    "correctText": "Where is the laminator?",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-32:i16",
-    "correctText": "en:lesson-08:session-32:i16:p1=fold\nen:lesson-08:session-32:i16:p2=measure\nen:lesson-08:session-32:i16:p3=label\nen:lesson-08:session-32:i16:p4=wipe",
+    "correctText": "en:lesson-08:session-32:i16:p1=name tag\nen:lesson-08:session-32:i16:p2=laminator\nen:lesson-08:session-32:i16:p3=packing tape\nen:lesson-08:session-32:i16:p4=cable tie",
     "correctResponseId": null
   },
   {

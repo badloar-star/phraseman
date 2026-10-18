@@ -9,10 +9,11 @@ const NAME_INDEX = 'name_index';
 // зачем (владелец 18.10: «ник можно менять хоть каждую секунду, убери правило 14 дней»): кулдауна смены ника больше нет.
 // Поле nickname_change_available_at продолжает писаться (= момент смены), чтобы старые клиенты видели «можно сейчас».
 const NICKNAME_CHANGE_COOLDOWN_MS = 0;
-// зачем (Ревизор 28bdf6e12 🟡/💸, координатор 18.10): без кулдауна нужен предохранитель от злоупотреблений — не больше 30 смен
+// зачем (Ревизор 28bdf6e12 🟡/💸, координатор 18.10): без кулдауна нужен предохранитель от злоупотреблений — не больше 300 смен
 // ника в час на аккаунт. Окно и счётчик живут в users/{uid}.progress и пишутся в той же транзакции (без лишних чтений).
 const NICKNAME_RENAME_WINDOW_MS = 60 * 60 * 1000;
-const NICKNAME_RENAME_LIMIT_PER_WINDOW = 30;
+// зачем (координатор 18.10, владелец «хоть каждую секунду»): потолок, которого человек не достанет, — только от скрипта/спама.
+const NICKNAME_RENAME_LIMIT_PER_WINDOW = 300;
 const GENERATED_NICKNAME_WORDS = [
   'Alpha', 'Axiom', 'Cosmos', 'Delta', 'Helium', 'Ion', 'Lambda', 'Neon',
   'Nova', 'Omega', 'Orbit', 'Photon', 'Quark', 'Quantum', 'Radium', 'Sigma',

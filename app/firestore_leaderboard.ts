@@ -177,7 +177,7 @@ async function ensureNameReservationIdentityReady(timeoutMs: number): Promise<st
   return stableId;
 }
 
-// зачем (координатор 18.10): 'rate_limited' — сервер отказал по лимиту 30 смен ника в час; клиент оставляет прежнее имя.
+// зачем (координатор 18.10): 'rate_limited' — сервер отказал по лимиту 300 смен ника в час (защита от скрипта); клиент оставляет прежнее имя.
 export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'rate_limited' | 'error';
 export type ReserveNameResult = {
   status: ReserveNameStatus;

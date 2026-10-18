@@ -108,4 +108,47 @@ describe('nickname rename pending sync', () => {
     await pending.flushNicknameRenamePending('test');
     expect(mockReserve).not.toHaveBeenCalled();
   });
+
+  // Ревизор 127fc785a / f6d8aa518 🟡: не стучаться до nextChangeAt, срок жизни записи, нет личности — не шлём, свежее имя не затираем.
+  it('after rate_limited waits until nextChangeAt instead of calling on every app return', async () => {
+    mockStore.set('user_name', 'New name');
+    await pending.markNicknameRenamePending('New name', 'Old name');
+    mockReserve.mockResolvedValue({ status: 'rate_limited', nextChangeAt: Date.now() + 60_000 });
+    await pending.flushNicknameRenamePending('test');
+    await pending.flushNicknameRenamePending('app_active');
+    expect(mockReserve).toHaveBeenCalledTimes(1);
+    expect(mockStore.has(pending.NICKNAME_RENAME_PENDING_KEY)).toBe(true);
+  });
+
+  it('drops the record after 10 failed attempts', async () => {
+    mockStore.set('user_name', 'New name');
+    await pending.markNicknameRenamePending('New name', 'Old name');
+    mockReserve.mockResolvedValue({ status: 'error' });
+    for (let i = 0; i < 11; i += 1) await pending.flushNicknameRenamePending('test');
+    expect(mockReserve).toHaveBeenCalledTimes(10);
+    expect(mockStore.has(pending.NICKNAME_RENAME_PENDING_KEY)).toBe(false);
+    expect(mockStore.get('user_name')).toBe('New name');
+  });
+
+  it('does not send while there is no current account, keeps the record', async () => {
+    mockStore.set('user_name', 'New name');
+    await pending.markNicknameRenamePending('New name', 'Old name');
+    mockStableId.value = null;
+    await pending.flushNicknameRenamePending('test');
+    expect(mockReserve).not.toHaveBeenCalled();
+    expect(mockStore.has(pending.NICKNAME_RENAME_PENDING_KEY)).toBe(true);
+  });
+
+  it('taken answer does not overwrite a name typed while the request was in flight', async () => {
+    mockStore.set('user_name', 'Busy name');
+    await pending.markNicknameRenamePending('Busy name', 'Old name');
+    mockReserve.mockImplementation(async () => {
+      mockStore.set('user_name', 'Fresh name');
+      return { status: 'taken' };
+    });
+    await pending.flushNicknameRenamePending('test');
+    expect(mockStore.get('user_name')).toBe('Fresh name');
+    expect(mockStore.has(pending.NICKNAME_RENAME_PENDING_KEY)).toBe(false);
+    expect(await pending.takeNicknameRenameTakenNotice()).toBeNull();
+  });
 });

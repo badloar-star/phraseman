@@ -191,7 +191,7 @@ export default function NicknameEditModal({
           if (stillTyped) setLiveStatus('applied');
           return;
         }
-        // зачем (координатор 18.10): 'rate_limited' — лимит 30 смен в час; откат как у «занято», но имя не помечаем занятым.
+        // зачем (координатор 18.10): 'rate_limited' — лимит 300 смен в час (защита от скрипта); откат как у «занято», но имя не помечаем занятым.
         if (reservation.status === 'taken' || reservation.status === 'cooldown' || reservation.status === 'rate_limited') {
           // зачем: откат только если за это время не применилось более свежее имя — поздний ответ не перетирает свежий ввод.
           if (appliedNameRef.current === name) {

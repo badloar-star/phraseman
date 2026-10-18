@@ -11,6 +11,11 @@ import { arenaAnswerFingerprint } from '../modules/arena/answer_check';
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
 
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
+// зачем (18.10): перед ступенью идёт отсчёт 3-2-1 (его проверяет tests/spire_countdown.test.tsx); здесь проверяется ответ на задание, поэтому отсчёт — мгновенный двойник
+jest.mock('../app/spire/use_spire_countdown', () => {
+  const mockReact = require('react');
+  return { useSpireCountdown: ({ onDone }: { onDone: () => void }) => { mockReact.useEffect(() => { onDone(); }, []); return null; } };
+});
 
 // ── useSpireGame: сеть и хранилище подменены, пакет недели отдаётся по команде теста ──
 type Deferred<T> = { promise: Promise<T>; resolve: (v: T) => void };

@@ -22,6 +22,7 @@ import { spireTierName } from '../../modules/spire/tier_names';
 import EnergyBar from '../EnergyBar';
 import V2Pressable from '../v2/V2Pressable';
 import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import SpireCountdownOverlay from './SpireCountdownOverlay';
 import SpireExitSheet from './SpireExitSheet';
 import SpireTaskView from './SpireTaskView';
 import SpireTimerRing from './SpireTimerRing';
@@ -81,6 +82,8 @@ export type SpireStepLayoutProps = Readonly<{
   reportSlot: React.ReactNode;
   /** Шторка выхода (в превью — не показывается). */
   exitSlot: React.ReactNode;
+  /** Цифра отсчёта 3 → 2 → 1 перед стартом ступени; null/нет — отсчёта нет (превью, пауза). */
+  countdownDigit?: number | null;
 }>;
 
 /** Чистая вёрстка ступени: шапка, кольцо, задание, подсказка после ошибки, «k / 10». Без раннера и сети. */
@@ -114,7 +117,8 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
         </View>
         {preparing || !task ? (
-          <Text style={[s.preparing, { color: p.textSecondary }]}>{spireGameText(lang, 'preparing')}</Text>
+          // зачем (18.10): под цифрами отсчёта «Готовим ступень…» не показываем — цифры занимают экран
+          props.countdownDigit != null ? null : <Text style={[s.preparing, { color: p.textSecondary }]}>{spireGameText(lang, 'preparing')}</Text>
         ) : (
           <SpireTaskView
             key={`${task.taskId}:${taskIndex}`}
@@ -157,6 +161,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
         <Text style={[s.footer, { color: p.textSecondary }]}>{`${counter} / ${SPIRE_STEP_TASK_COUNT}`}</Text>
       </ScrollView>
       {props.exitSlot}
+      <SpireCountdownOverlay digit={props.countdownDigit ?? null} />
     </View>
   );
 }
@@ -215,7 +220,8 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
       hearts={runner.state.hearts}
       clock={runner.clock}
       paused={paused}
-      preparing={runner.phase === 'charging'}
+      preparing={runner.phase === 'charging' || runner.phase === 'countdown'}
+      countdownDigit={runner.countdownDigit}
       task={task}
       taskIndex={runner.displayTaskIndex}
       feedback={runner.feedback}

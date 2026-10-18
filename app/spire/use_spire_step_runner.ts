@@ -33,6 +33,7 @@ import {
 import { DebugLogger } from '../debug-logger';
 import { spireBumpStepAttempt } from './spire_local_store';
 import { spireCaptureMistakeOutcome } from './spire_mistake_capture';
+import { useSpireCountdown } from './use_spire_countdown';
 
 const LOG = '[SPIRE]';
 const TICK_MS = 250;
@@ -58,7 +59,7 @@ export type SpireFeedback = Readonly<{
 /** Живой бюджет для кольца: подписка без перерисовки всего экрана. */
 export type SpireClock = Readonly<{ get: () => number; subscribe: (fn: () => void) => () => void }>;
 
-export type SpireRunnerPhase = 'charging' | 'playing' | 'finished';
+export type SpireRunnerPhase = 'countdown' | 'charging' | 'playing' | 'finished'; // зачем (18.10): 'countdown' — отсчёт 3-2-1 до списания энергии и старта таймера, время человеку не тратится
 
 export type SpireStepRunnerInput = Readonly<{
   pick: SpireStepPick;
@@ -89,7 +90,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const { pick, ctx } = input;
   const { confirmSpendOne, acknowledgeSessionStart, refundOne } = useEnergy();
   const intent = useEnergySessionIntent('spire_step', `${ctx.weekKey}:${ctx.lang}:f${ctx.floor}:s${ctx.stepInFloor + 1}`, input.runId);
-  const [phase, setPhase] = useState<SpireRunnerPhase>('charging');
+  const [phase, setPhase] = useState<SpireRunnerPhase>('countdown');
   const [state, setState] = useState<SpireStepState>(() => createSpireStepState(pick.plan));
   const [feedback, setFeedbackState] = useState<SpireFeedback | null>(null);
   // зачем (обзор R1 п.2): canAnswer читал feedback из замыкания — после ВЕРНОГО ответа фаза остаётся 'active', и второй
@@ -101,6 +102,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     setFeedbackState(value);
   }, []);
   const [exitOpen, setExitOpen] = useState(false);
+  const countdownDigit = useSpireCountdown({ paused: exitOpen, onDone: () => setPhase('charging') }); // зачем: отсчёт 3-2-1, энергия/таймер/первое задание — только после «1»; шторка выхода и фон ставят паузу
   const stateRef = useRef(state);
   const clock = useMemo(() => createClock(), []);
   const lastTickRef = useRef(0);
@@ -127,9 +129,9 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     timersRef.current.push(t);
   }, []);
 
-  // ── 1. Списание энергии на первом задании (D72) ──
+  // ── 1. Списание энергии на первом задании (D72); стартует после отсчёта ──
   useEffect(() => {
-    if (chargeStartedRef.current) return;
+    if (phase !== 'charging') return; if (chargeStartedRef.current) return;
     chargeStartedRef.current = true;
     DebugLogger.info(LOG, `step: старт этаж=${ctx.floor} ступень=${ctx.stepInFloor + 1} попытка=${input.attempt} набор=${pick.setIndex} бюджет=${pick.plan.budgetMs}мс op=${intent.operationId}`);
     void (async () => {
@@ -155,7 +157,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       setPhase('playing');
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [phase]);
 
   // ── 2. Первое задание на экране → подтверждаем старт; не показалось → возврат (D87) ──
   useEffect(() => {
@@ -360,8 +362,8 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     exitOpenRef.current = false;
     setExitOpen(false);
     const cur = stateRef.current;
-    if (phase === 'charging') {
-      DebugLogger.info(LOG, 'step: выход до первого задания — энергия не тратится');
+    if (phase === 'charging' || phase === 'countdown') {
+      DebugLogger.info(LOG, `step: выход до первого задания (${phase}) — энергия не тратится`);
       inputRef.current.onAbort('cancelled');
       return;
     }
@@ -388,7 +390,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const displayTaskIndex = feedback ? feedback.taskIndex : Math.min(state.taskIndex, pick.tasks.length - 1);
 
   return {
-    phase, state, clock, feedback, exitOpen, displayTaskIndex,
+    phase, state, clock, feedback, exitOpen, displayTaskIndex, countdownDigit,
     submitChoice, submitTokens, submitItems, reportCurrentTask, requestExit, cancelExit, confirmExit, continueAfterReveal,
   };
 }

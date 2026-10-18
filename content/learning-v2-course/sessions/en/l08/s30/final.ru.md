@@ -1,133 +1,150 @@
 # Английский · Урок 8 · Занятие 30 — Подпиши коробку
 
-**Ситуация.** Вы упаковываете вещи, подсказываете поворот у указателя и просите напомнить о встрече.
+**Ситуация.** Проверить содержимое коробки, место назначения посылки и стоимость почтовой пересылки.
 
 **Что вы освоите:** закрепить короткие указания со словом label
-**Новые слова:** label
+**Новые слова:** contents, destination, postage, bubble wrap
+**Связь с изученным:** label — знакомая «этикетка»; здесь также действие «подписать, пометить».
 
 ---
 
 ## Интро 1
 
-### Коробки для переезда
+### Список на коробке
 
-Друг закрыл коробку с книгами. Нужно написать на ней, что внутри. `Label` — «подписать, пометить». `Label it` — «Подпиши её». Здесь `it` — коробка. Это подпись с содержимым, а не ваш автограф. Для короткого указания начните с `Label`, без `to`.
+Перед переездом друг собирает коробку с книгами и хочет написать на ней, что внутри. Сначала нужно сверить вещи со списком. Contents — «содержимое». `Check the contents` — «Проверь содержимое». Затем можно сказать `Label it` — «Подпиши её». Знакомое label означает не только «этикетка», но и действие — подписать или пометить.
 
-**Скажите другу подписать коробку.**
+**Скажите другу проверить содержимое.**
 
-- ✅ **Label it.**
-- ❌ To label it. — *Для указания начните с `Label`, без `to`.*
-- ❌ Labels it. — *Нужно `Label`, без `s`.*
+- ✅ **Check the contents.**
+- ❌ Checks the contents. — *Для указания нужно Check, без s.*
+- ❌ To check the contents. — *Начните с Check, без to.*
 
 ---
 
 ## Интро 2
 
-### Указатель на развилке
+### Два похожих названия городов
 
-Вы с другом дошли до развилки. Указатель показывает нужное направление налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем `left`.
+Вы отправляете посылку, а в форме доставки два города с похожими названиями. Destination — «место назначения», то место, куда что-то отправляют. `Check the destination` — «Проверь место назначения». Вы просите друга убедиться, что выбран нужный город.
 
-**Подскажите другу «Поверни налево».**
+**Скажите другу проверить место назначения.**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для указания нужно `Turn`, без `s`.*
-- ❌ To turn left. — *Начните с `Turn`, без `to`.*
+- ✅ **Check the destination.**
+- ❌ Checks the destination. — *Для указания нужно Check, без s.*
+- ❌ To check the destination. — *Начните с Check, без to.*
 
 ---
 
 ## Интро 3
 
-### Не забыть встречу
+### Цена отправки перед оплатой
 
-Вы договорились встретиться с другом завтра и боитесь забыть. `Can you remind me?` — «Можешь мне напомнить?» О встрече другу уже известно. После `Can you` нужно `remind me`, без `to`.
+Друг упаковал подарок и оформляет его отправку по почте. Перед оплатой вы предлагаете посмотреть стоимость пересылки. Postage — «стоимость почтовой пересылки». `Check the postage` — «Проверь стоимость пересылки». Postage здесь не цена подарка, а плата за отправку.
 
-**Попросите друга напомнить вам о встрече.**
+**Скажите другу проверить стоимость пересылки.**
 
-- ✅ **Can you remind me?**
-- ❌ Can you reminds me? — *После `can` нужно `remind`, без `s`.*
-- ❌ Can you to remind me? — *После `can` нужно `remind`, без `to`.*
+- ✅ **Check the postage.**
+- ❌ Checks the postage. — *Для указания нужно Check, без s.*
+- ❌ To check the postage. — *Начните с Check, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дайте указание «Подпиши её»**
+**1 · Карточка слова — contents**
+<!-- interaction_id: en:lesson-08:session-30:word:contents; family: word_card -->
+> **contents** — содержимое. Check the contents. — «Проверь содержимое». Вещи внутри коробки; в этом значении contents пишется с s.
+
+**2 · Дайте указание «Проверь содержимое»**
 <!-- interaction_id: en:lesson-08:session-30:i01; family: phrase_builder -->
-Плитки: `it` `Label` → **Label it.**
+Плитки: `contents` `the` `Check` → **Check the contents.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-30:i02; family: listen_choose -->
 🔊 *label* → **label** · remind · clean
 - remind — *В записи первое слово — `label`, а в этом варианте — `remind`.*
 - clean — *В записи первое слово — `label`, а в этом варианте — `clean`.*
 
-**3 · Дайте короткое указание подписать коробку**
+**4 · Выберите форму для указания подписать коробку**
 <!-- interaction_id: en:lesson-08:session-30:i03; family: context_gap_grammar -->
 ___ it. → **Label** · Labels · To label
-- Labels — *Для указания нужно `Label`, без `s`.*
-- To label — *Начните с `Label`, без `to`.*
+- Labels — *Для указания нужно Label, без s.*
+- To label — *Начните с Label, без to.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-30:i04; family: speed_match -->
-label — подписать · signpost — указатель · travel — путешествовать · clean — убирать
+contents — содержимое · label — подписать · box — коробка · parcel — посылка
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-30:i05; family: listen_build_dictation -->
 🔊 *Label it.* Плитки: `it` `Label` → **Label it.**
 
-**6 · Дайте короткое указание «Открой окно»**
+**7 · Карточка слова — destination**
+<!-- interaction_id: en:lesson-08:session-30:word:destination; family: word_card -->
+> **destination** — место назначения. Check the destination. — «Проверь место назначения». Место, куда должна прибыть посылка или человек.
+
+**8 · Дайте указание «Проверь место назначения»**
 <!-- interaction_id: en:lesson-08:session-30:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `destination` `the` `Check` → **Check the destination.**
 
-**7 · На прогулке подскажите другу «Поверни налево»**
+**9 · Карточка слова — postage**
+<!-- interaction_id: en:lesson-08:session-30:word:postage; family: word_card -->
+> **postage** — стоимость почтовой пересылки. Check the postage. — «Проверь стоимость пересылки». Плата за отправку письма или посылки по почте.
+
+**10 · Друг оформляет отправку подарка. Скажите «Проверь стоимость пересылки»**
 <!-- interaction_id: en:lesson-08:session-30:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Check the postage.**
 
-**8 · Дайте короткое указание открыть окно**
+**11 · Выберите форму для указания проверить место назначения**
 <!-- interaction_id: en:lesson-08:session-30:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для указания нужно `Open`, без `s`.*
-- To open — *Начните с `Open`, без `to`.*
+___ the destination. → **Check** · Checks · To check
+- Checks — *Для указания нужно Check, без s.*
+- To check — *Начните с Check, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-30:i09; family: listen_choose -->
 🔊 *Label it.* → **Label it.** · Label this. · Label that.
 - Label this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Label that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-30:i10; family: speed_match -->
-remind — напомнить · label — подписать · signpost — указатель · travel — путешествовать
+contents — содержимое · destination — место назначения · postage — стоимость почтовой пересылки · label — подписать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-30:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Check the postage.* Плитки: `postage` `the` `Check` → **Check the postage.**
 
-**12 · Попросите «Можешь мне напомнить?»**
+**15 · Карточка слова — bubble wrap**
+<!-- interaction_id: en:lesson-08:session-30:word:bubble-wrap; family: word_card -->
+> **bubble wrap** — пузырчатая плёнка. Pass me the bubble wrap. — «Передай мне пузырчатую плёнку». Упаковочный материал с воздушными пузырьками для защиты вещей.
+
+**16 · Вы упаковываете стеклянную вазу. Скажите помощнику «Передай мне пузырчатую плёнку»**
 <!-- interaction_id: en:lesson-08:session-30:i12; family: phrase_builder -->
-Плитки: `me` `remind` `you` `Can` → **Can you remind me?**
+Плитки: `wrap` `bubble` `the` `me` `Pass` → **Pass me the bubble wrap.**
 
-**13 · Друг спрашивает, как вы поддерживаете порядок дома. Используйте clean: «Я часто убираю»**
+**17 · Друг попросил вас подписать коробку. Скажите «Я могу подписать её»**
 <!-- interaction_id: en:lesson-08:session-30:i13; family: scripted_repeat_compare -->
-🎙 **I often clean.**
+🎙 **I can label it.**
 
-**14 · Дайте указание повернуть налево**
+**18 · Выберите форму для просьбы проверить стоимость пересылки**
 <!-- interaction_id: en:lesson-08:session-30:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для указания нужно `Turn`, без `s`.*
-- To turn — *Начните с `Turn`, без `to`.*
+Can you ___ the postage? → **check** · checks · to check
+- checks — *После can нужно check, без s.*
+- to check — *После can нужно check, без to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-30:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *В записи последнее слово — `window`, а в этом варианте — `door`.*
-- Open the box. — *В записи последнее слово — `window`, а в этом варианте — `box`.*
+🔊 *Check the contents.* → **Check the contents.** · Check the destination. · Check the postage.
+- Check the destination. — *В записи contents — «содержимое», а не destination — «место назначения».*
+- Check the postage. — *В записи contents, а не postage — «стоимость пересылки».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-30:i16; family: speed_match -->
-label — подписать · clean — убирать · remind — напомнить · signpost — указатель
+contents — содержимое · destination — место назначения · postage — стоимость почтовой пересылки · bubble wrap — пузырчатая плёнка
 
-**17 · Друг положил домашнее варенье в банку. Чтобы потом узнать, что внутри, дайте короткое указание «Подпиши её»**
+**21 · Друг положил домашнее варенье в банку. Чтобы потом узнать, что внутри, дайте короткое указание «Подпиши её»**
 <!-- interaction_id: en:lesson-08:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Label it.**
 

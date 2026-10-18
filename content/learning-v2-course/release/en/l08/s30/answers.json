@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-08:session-30:word:contents",
+    "correctText": "contents",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-30:i01",
-    "correctText": "Label it.",
+    "correctText": "Check the contents.",
     "correctResponseId": null
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-30:i04",
-    "correctText": "en:lesson-08:session-30:i04:p1=label\nen:lesson-08:session-30:i04:p2=signpost\nen:lesson-08:session-30:i04:p3=travel\nen:lesson-08:session-30:i04:p4=clean",
+    "correctText": "en:lesson-08:session-30:i04:p1=contents\nen:lesson-08:session-30:i04:p2=label\nen:lesson-08:session-30:i04:p3=box\nen:lesson-08:session-30:i04:p4=parcel",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-30:word:destination",
+    "correctText": "destination",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-30:i06",
-    "correctText": "Open the window.",
+    "correctText": "Check the destination.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-30:word:postage",
+    "correctText": "postage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-30:i07",
-    "correctText": "Turn left.",
+    "correctText": "Check the postage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-30:i08",
-    "correctText": "Open",
+    "correctText": "Check",
     "correctResponseId": "en:lesson-08:session-30:i08:r1"
   },
   {
@@ -46,37 +61,42 @@
   },
   {
     "interactionId": "en:lesson-08:session-30:i10",
-    "correctText": "en:lesson-08:session-30:i10:p1=remind\nen:lesson-08:session-30:i10:p2=label\nen:lesson-08:session-30:i10:p3=signpost\nen:lesson-08:session-30:i10:p4=travel",
+    "correctText": "en:lesson-08:session-30:i10:p1=contents\nen:lesson-08:session-30:i10:p2=destination\nen:lesson-08:session-30:i10:p3=postage\nen:lesson-08:session-30:i10:p4=label",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-30:i11",
-    "correctText": "Turn left.",
+    "correctText": "Check the postage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-30:word:bubble-wrap",
+    "correctText": "bubble wrap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-30:i12",
-    "correctText": "Can you remind me?",
+    "correctText": "Pass me the bubble wrap.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-30:i13",
-    "correctText": "I often clean.",
+    "correctText": "I can label it.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-30:i14",
-    "correctText": "Turn",
+    "correctText": "check",
     "correctResponseId": "en:lesson-08:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-30:i15",
-    "correctText": "Open the window.",
+    "correctText": "Check the contents.",
     "correctResponseId": "en:lesson-08:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-30:i16",
-    "correctText": "en:lesson-08:session-30:i16:p1=label\nen:lesson-08:session-30:i16:p2=clean\nen:lesson-08:session-30:i16:p3=remind\nen:lesson-08:session-30:i16:p4=signpost",
+    "correctText": "en:lesson-08:session-30:i16:p1=contents\nen:lesson-08:session-30:i16:p2=destination\nen:lesson-08:session-30:i16:p3=postage\nen:lesson-08:session-30:i16:p4=bubble wrap",
     "correctResponseId": null
   },
   {

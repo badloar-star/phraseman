@@ -4,26 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-30:i01",
+      "interactionId": "en:lesson-08:session-30:word:contents",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — contents",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-30:word:contents:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — contents",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-30:word:contents:audio",
+          "transcript": "contents"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-30:word:contents:r1",
+            "targetText": "contents",
+            "meaningByLocale": {
+              "ru": "содержимое. Check the contents. — «Проверь содержимое». Вещи внутри коробки; в этом значении contents пишется с s.",
+              "uk": "вміст. Check the contents. — «Перевір вміст». Речі всередині коробки; у цьому значенні contents пишеться з s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "contents",
+          "definitionByLocale": {
+            "ru": "содержимое. Check the contents. — «Проверь содержимое». Вещи внутри коробки; в этом значении contents пишется с s.",
+            "uk": "вміст. Check the contents. — «Перевір вміст». Речі всередині коробки; у цьому значенні contents пишеться з s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-30:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте указание «Подпиши её»",
+      "prompt": "Дайте указание «Проверь содержимое»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте указание «Подпиши её»",
+      "accessibilityLabel": "Дайте указание «Проверь содержимое»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Label it.",
+        "targetPhrase": "Check the contents.",
         "localizedMeaning": {
-          "ru": "Дайте указание «Подпиши её»",
-          "uk": "Дайте вказівку «Підпиши її»"
+          "ru": "Дайте указание «Проверь содержимое»",
+          "uk": "Дайте вказівку «Перевір вміст»"
         },
         "orderedTokens": [
-          "Label",
-          "it"
+          "Check",
+          "the",
+          "contents"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -36,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание подписать коробку",
+      "prompt": "Выберите форму для указания подписать коробку",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-30:i03:r1",
@@ -133,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание подписать коробку",
+      "accessibilityLabel": "Выберите форму для указания подписать коробку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание подписать коробку",
-          "uk": "Дайте коротку вказівку підписати коробку"
+          "ru": "Выберите форму для указания подписать коробку",
+          "uk": "Виберіть форму для вказівки підписати коробку"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -155,24 +199,24 @@
             "text": "To label"
           }
         ],
-        "testedDimension": "Дайте короткое указание подписать коробку",
+        "testedDimension": "Выберите форму для указания подписать коробку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание подписать коробку",
+            "testedDimension": "Выберите форму для указания подписать коробку",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Label`, без `s`.",
-              "uk": "Для вказівки потрібне `Label`, без `s`."
+              "ru": "Для указания нужно Label, без s.",
+              "uk": "Для вказівки потрібне Label, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание подписать коробку",
+            "testedDimension": "Выберите форму для указания подписать коробку",
             "feedbackByLocale": {
-              "ru": "Начните с `Label`, без `to`.",
-              "uk": "Почніть із `Label`, без `to`."
+              "ru": "Начните с Label, без to.",
+              "uk": "Почніть із Label, без to."
             }
           }
         ]
@@ -181,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -195,6 +239,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-30:i04:p1",
+            "target": "contents",
+            "meaningByLocale": {
+              "ru": "содержимое",
+              "uk": "вміст"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-30:i04:p2",
             "target": "label",
             "meaningByLocale": {
               "ru": "подписать",
@@ -202,41 +254,33 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-30:i04:p2",
-            "target": "signpost",
-            "meaningByLocale": {
-              "ru": "указатель",
-              "uk": "вказівник"
-            }
-          },
-          {
             "pairId": "en:lesson-08:session-30:i04:p3",
-            "target": "travel",
+            "target": "box",
             "meaningByLocale": {
-              "ru": "путешествовать",
-              "uk": "подорожувати"
+              "ru": "коробка",
+              "uk": "коробка"
             }
           },
           {
             "pairId": "en:lesson-08:session-30:i04:p4",
-            "target": "clean",
+            "target": "parcel",
             "meaningByLocale": {
-              "ru": "убирать",
-              "uk": "прибирати"
+              "ru": "посылка",
+              "uk": "посилка"
             }
           }
         ],
         "leftColumn": [
+          "contents",
           "label",
-          "signpost",
-          "travel",
-          "clean"
+          "box",
+          "parcel"
         ],
         "rightColumn": [
+          "содержимое",
           "подписать",
-          "указатель",
-          "путешествовать",
-          "убирать"
+          "коробка",
+          "посылка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +331,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-30:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-30:word:destination",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — destination",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-30:word:destination:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — destination",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-30:word:destination:audio",
+          "transcript": "destination"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-30:word:destination:r1",
+            "targetText": "destination",
+            "meaningByLocale": {
+              "ru": "место назначения. Check the destination. — «Проверь место назначения». Место, куда должна прибыть посылка или человек.",
+              "uk": "місце призначення. Check the destination. — «Перевір місце призначення». Місце, куди має прибути посилка або людина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "destination",
+          "definitionByLocale": {
+            "ru": "место назначения. Check the destination. — «Проверь место назначения». Место, куда должна прибыть посылка или человек.",
+            "uk": "місце призначення. Check the destination. — «Перевір місце призначення». Місце, куди має прибути посилка або людина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте короткое указание «Открой окно»",
+      "prompt": "Дайте указание «Проверь место назначения»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание «Открой окно»",
+      "accessibilityLabel": "Дайте указание «Проверь место назначения»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Open the window.",
+        "targetPhrase": "Check the destination.",
         "localizedMeaning": {
-          "ru": "Дайте короткое указание «Открой окно»",
-          "uk": "Дайте коротку вказівку «Відчини вікно»"
+          "ru": "Дайте указание «Проверь место назначения»",
+          "uk": "Дайте вказівку «Перевір місце призначення»"
         },
         "orderedTokens": [
-          "Open",
+          "Check",
           "the",
-          "window"
+          "destination"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +406,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-30:word:postage",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — postage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-30:word:postage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — postage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-30:word:postage:audio",
+          "transcript": "postage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-30:word:postage:r1",
+            "targetText": "postage",
+            "meaningByLocale": {
+              "ru": "стоимость почтовой пересылки. Check the postage. — «Проверь стоимость пересылки». Плата за отправку письма или посылки по почте.",
+              "uk": "вартість поштового пересилання. Check the postage. — «Перевір вартість пересилання». Плата за надсилання листа або посилки поштою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "postage",
+          "definitionByLocale": {
+            "ru": "стоимость почтовой пересылки. Check the postage. — «Проверь стоимость пересылки». Плата за отправку письма или посылки по почте.",
+            "uk": "вартість поштового пересилання. Check the postage. — «Перевір вартість пересилання». Плата за надсилання листа або посилки поштою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-30:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На прогулке подскажите другу «Поверни налево»",
+      "prompt": "Друг оформляет отправку подарка. Скажите «Проверь стоимость пересылки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-30:i07:audio"
       ],
-      "accessibilityLabel": "На прогулке подскажите другу «Поверни налево»",
+      "accessibilityLabel": "Друг оформляет отправку подарка. Скажите «Проверь стоимость пересылки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-30:i07:audio",
-          "transcript": "Turn left."
+          "transcript": "Check the postage."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Turn left.",
+        "targetPhrase": "Check the postage.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,67 +483,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание открыть окно",
+      "prompt": "Выберите форму для указания проверить место назначения",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-30:i08:r1",
-          "text": "Open"
+          "text": "Check"
         },
         {
           "responseId": "en:lesson-08:session-30:i08:r2",
-          "text": "Opens"
+          "text": "Checks"
         },
         {
           "responseId": "en:lesson-08:session-30:i08:r3",
-          "text": "To open"
+          "text": "To check"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание открыть окно",
+      "accessibilityLabel": "Выберите форму для указания проверить место назначения",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание открыть окно",
-          "uk": "Дайте коротку вказівку відчинити вікно"
+          "ru": "Выберите форму для указания проверить место назначения",
+          "uk": "Виберіть форму для вказівки перевірити місце призначення"
         },
-        "gappedTargetPhrase": "___ the window.",
+        "gappedTargetPhrase": "___ the destination.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-30:i08:r1",
-            "text": "Open"
+            "text": "Check"
           },
           {
             "responseId": "en:lesson-08:session-30:i08:r2",
-            "text": "Opens"
+            "text": "Checks"
           },
           {
             "responseId": "en:lesson-08:session-30:i08:r3",
-            "text": "To open"
+            "text": "To check"
           }
         ],
-        "testedDimension": "Дайте короткое указание открыть окно",
+        "testedDimension": "Выберите форму для указания проверить место назначения",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для указания проверить место назначения",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Open`, без `s`.",
-              "uk": "Для вказівки потрібне `Open`, без `s`."
+              "ru": "Для указания нужно Check, без s.",
+              "uk": "Для вказівки потрібне Check, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для указания проверить место назначения",
             "feedbackByLocale": {
-              "ru": "Начните с `Open`, без `to`.",
-              "uk": "Почніть із `Open`, без `to`."
+              "ru": "Начните с Check, без to.",
+              "uk": "Почніть з Check, без to."
             }
           }
         ]
@@ -422,7 +552,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +628,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,48 +642,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-30:i10:p1",
-            "target": "remind",
+            "target": "contents",
             "meaningByLocale": {
-              "ru": "напомнить",
-              "uk": "нагадати"
+              "ru": "содержимое",
+              "uk": "вміст"
             }
           },
           {
             "pairId": "en:lesson-08:session-30:i10:p2",
+            "target": "destination",
+            "meaningByLocale": {
+              "ru": "место назначения",
+              "uk": "місце призначення"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-30:i10:p3",
+            "target": "postage",
+            "meaningByLocale": {
+              "ru": "стоимость почтовой пересылки",
+              "uk": "вартість поштового пересилання"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-30:i10:p4",
             "target": "label",
             "meaningByLocale": {
               "ru": "подписать",
               "uk": "підписати"
             }
-          },
-          {
-            "pairId": "en:lesson-08:session-30:i10:p3",
-            "target": "signpost",
-            "meaningByLocale": {
-              "ru": "указатель",
-              "uk": "вказівник"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-30:i10:p4",
-            "target": "travel",
-            "meaningByLocale": {
-              "ru": "путешествовать",
-              "uk": "подорожувати"
-            }
           }
         ],
         "leftColumn": [
-          "remind",
-          "label",
-          "signpost",
-          "travel"
+          "contents",
+          "destination",
+          "postage",
+          "label"
         ],
         "rightColumn": [
-          "напомнить",
-          "подписать",
-          "указатель",
-          "путешествовать"
+          "содержимое",
+          "место назначения",
+          "стоимость почтовой пересылки",
+          "подписать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +701,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -586,13 +716,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-30:i11:audio",
-          "transcript": "Turn left."
+          "transcript": "Check the postage."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Turn left.",
+        "hiddenTargetPhrase": "Check the postage.",
         "orderedTokens": [
-          "Turn",
-          "left"
+          "Check",
+          "the",
+          "postage"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -604,28 +735,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-30:word:bubble-wrap",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bubble wrap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-30:word:bubble-wrap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bubble wrap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-30:word:bubble-wrap:audio",
+          "transcript": "bubble wrap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-30:word:bubble-wrap:r1",
+            "targetText": "bubble wrap",
+            "meaningByLocale": {
+              "ru": "пузырчатая плёнка. Pass me the bubble wrap. — «Передай мне пузырчатую плёнку». Упаковочный материал с воздушными пузырьками для защиты вещей.",
+              "uk": "бульбашкова плівка. Pass me the bubble wrap. — «Передай мені бульбашкову плівку». Пакувальний матеріал із повітряними бульбашками для захисту речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bubble wrap",
+          "definitionByLocale": {
+            "ru": "пузырчатая плёнка. Pass me the bubble wrap. — «Передай мне пузырчатую плёнку». Упаковочный материал с воздушными пузырьками для защиты вещей.",
+            "uk": "бульбашкова плівка. Pass me the bubble wrap. — «Передай мені бульбашкову плівку». Пакувальний матеріал із повітряними бульбашками для захисту речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-30:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросите «Можешь мне напомнить?»",
+      "prompt": "Вы упаковываете стеклянную вазу. Скажите помощнику «Передай мне пузырчатую плёнку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите «Можешь мне напомнить?»",
+      "accessibilityLabel": "Вы упаковываете стеклянную вазу. Скажите помощнику «Передай мне пузырчатую плёнку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you remind me?",
+        "targetPhrase": "Pass me the bubble wrap.",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь мне напомнить?»",
-          "uk": "Попросіть «Можеш мені нагадати?»"
+          "ru": "Вы упаковываете стеклянную вазу. Скажите помощнику «Передай мне пузырчатую плёнку»",
+          "uk": "Ви пакуєте скляну вазу. Скажіть помічникові «Передай мені бульбашкову плівку»"
         },
         "orderedTokens": [
-          "Can",
-          "you",
-          "remind",
-          "me"
+          "Pass",
+          "me",
+          "the",
+          "bubble",
+          "wrap"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -638,25 +813,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, как вы поддерживаете порядок дома. Используйте clean: «Я часто убираю»",
+      "prompt": "Друг попросил вас подписать коробку. Скажите «Я могу подписать её»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-30:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, как вы поддерживаете порядок дома. Используйте clean: «Я часто убираю»",
+      "accessibilityLabel": "Друг попросил вас подписать коробку. Скажите «Я могу подписать её»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-30:i13:audio",
-          "transcript": "I often clean."
+          "transcript": "I can label it."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often clean.",
+        "targetPhrase": "I can label it.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -671,67 +846,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте указание повернуть налево",
+      "prompt": "Выберите форму для просьбы проверить стоимость пересылки",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-30:i14:r1",
-          "text": "Turn"
+          "text": "check"
         },
         {
           "responseId": "en:lesson-08:session-30:i14:r2",
-          "text": "Turns"
+          "text": "checks"
         },
         {
           "responseId": "en:lesson-08:session-30:i14:r3",
-          "text": "To turn"
+          "text": "to check"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте указание повернуть налево",
+      "accessibilityLabel": "Выберите форму для просьбы проверить стоимость пересылки",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте указание повернуть налево",
-          "uk": "Дайте вказівку повернути ліворуч"
+          "ru": "Выберите форму для просьбы проверить стоимость пересылки",
+          "uk": "Виберіть форму для прохання перевірити вартість пересилання"
         },
-        "gappedTargetPhrase": "___ left.",
+        "gappedTargetPhrase": "Can you ___ the postage?",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-30:i14:r1",
-            "text": "Turn"
+            "text": "check"
           },
           {
             "responseId": "en:lesson-08:session-30:i14:r2",
-            "text": "Turns"
+            "text": "checks"
           },
           {
             "responseId": "en:lesson-08:session-30:i14:r3",
-            "text": "To turn"
+            "text": "to check"
           }
         ],
-        "testedDimension": "Дайте указание повернуть налево",
+        "testedDimension": "Выберите форму для просьбы проверить стоимость пересылки",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для просьбы проверить стоимость пересылки",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Turn`, без `s`.",
-              "uk": "Для вказівки потрібне `Turn`, без `s`."
+              "ru": "После can нужно check, без s.",
+              "uk": "Після can потрібне check, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для просьбы проверить стоимость пересылки",
             "feedbackByLocale": {
-              "ru": "Начните с `Turn`, без `to`.",
-              "uk": "Почніть із `Turn`, без `to`."
+              "ru": "После can нужно check, без to.",
+              "uk": "Після can потрібне check, без to."
             }
           }
         ]
@@ -740,7 +915,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -748,15 +923,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-30:i15:r1",
-          "text": "Open the window."
+          "text": "Check the contents."
         },
         {
           "responseId": "en:lesson-08:session-30:i15:r2",
-          "text": "Open the door."
+          "text": "Check the destination."
         },
         {
           "responseId": "en:lesson-08:session-30:i15:r3",
-          "text": "Open the box."
+          "text": "Check the postage."
         }
       ],
       "mediaIds": [],
@@ -768,23 +943,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-30:i15:audio",
-          "transcript": "Open the window."
+          "transcript": "Check the contents."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-30:i15:r1",
-            "targetText": "Open the window.",
+            "targetText": "Check the contents.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-30:i15:r2",
-            "targetText": "Open the door.",
+            "targetText": "Check the destination.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-30:i15:r3",
-            "targetText": "Open the box.",
+            "targetText": "Check the postage.",
             "meaningByLocale": null
           }
         ],
@@ -795,8 +970,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `door`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `door`."
+              "ru": "В записи contents — «содержимое», а не destination — «место назначения».",
+              "uk": "У записі contents — «вміст», а не destination — «місце призначення»."
             }
           },
           {
@@ -804,8 +979,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `box`."
+              "ru": "В записи contents, а не postage — «стоимость пересылки».",
+              "uk": "У записі contents, а не postage — «вартість пересилання»."
             }
           }
         ],
@@ -816,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -830,48 +1005,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-30:i16:p1",
-            "target": "label",
+            "target": "contents",
             "meaningByLocale": {
-              "ru": "подписать",
-              "uk": "підписати"
+              "ru": "содержимое",
+              "uk": "вміст"
             }
           },
           {
             "pairId": "en:lesson-08:session-30:i16:p2",
-            "target": "clean",
+            "target": "destination",
             "meaningByLocale": {
-              "ru": "убирать",
-              "uk": "прибирати"
+              "ru": "место назначения",
+              "uk": "місце призначення"
             }
           },
           {
             "pairId": "en:lesson-08:session-30:i16:p3",
-            "target": "remind",
+            "target": "postage",
             "meaningByLocale": {
-              "ru": "напомнить",
-              "uk": "нагадати"
+              "ru": "стоимость почтовой пересылки",
+              "uk": "вартість поштового пересилання"
             }
           },
           {
             "pairId": "en:lesson-08:session-30:i16:p4",
-            "target": "signpost",
+            "target": "bubble wrap",
             "meaningByLocale": {
-              "ru": "указатель",
-              "uk": "вказівник"
+              "ru": "пузырчатая плёнка",
+              "uk": "бульбашкова плівка"
             }
           }
         ],
         "leftColumn": [
-          "label",
-          "clean",
-          "remind",
-          "signpost"
+          "contents",
+          "destination",
+          "postage",
+          "bubble wrap"
         ],
         "rightColumn": [
-          "подписать",
-          "убирать",
-          "напомнить",
-          "указатель"
+          "содержимое",
+          "место назначения",
+          "стоимость почтовой пересылки",
+          "пузырчатая плёнка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -889,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-30:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -929,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "51880b51a08c74bda8f02fe943913c9bed3939285b5ce20771c80faa8b214069"
+  "learnerFingerprint": "d30c988ba018ce9ca9f6a9fe439196f36706590b567efcd739140729bfbd47f7"
 }

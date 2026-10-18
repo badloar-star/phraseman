@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Условия заказа",
-        "uk": "Умови замовлення"
+        "ru": "Длинный рассказ аудиогида",
+        "uk": "Довга розповідь аудіогіда"
       },
       "bodyByLocale": {
-        "ru": "Команда заказывает оборудование. Нужно обсудить цену и сроки с поставщиком. Вы умеете вести переговоры: `I can negotiate` — «Я умею вести переговоры». После `can` нужно `negotiate`, без `to` и `s`. Список условий готов — осталось не начать переговоры с цвета коробки.",
-        "uk": "Команда замовляє обладнання. Потрібно обговорити ціну й терміни з постачальником. Ви вмієте вести переговори: `I can negotiate` — «Я вмію вести переговори». Після `can` потрібне `negotiate`, без `to` і `s`. Список умов готовий — залишилося не почати переговори з кольору коробки."
+        "ru": "В музее друг прослушал длинный рассказ об одном экспонате и просит выделить главное. Summarise — «кратко пересказывать, подводить итог». `I can summarise it` — «Я могу кратко это пересказать». It означает рассказ аудиогида. Вы передадите основные мысли. После can нужно summarise, без to и s.",
+        "uk": "У музеї друг прослухав довгу розповідь про один експонат і просить виділити головне. Summarise — «стисло переказувати, підсумовувати». `I can summarise it` — «Я можу стисло це переказати». It означає розповідь аудіогіда. Ви передасте основні думки. Після can потрібне summarise, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете вести переговоры.",
-          "uk": "Скажіть, що вмієте вести переговори."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-48:intro1:r1",
-              "text": "I can negotiate."
+              "text": "I can summarise it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro1:r2",
-              "text": "I can to negotiate."
+              "text": "I can to summarise it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro1:r3",
-              "text": "I can negotiates."
+              "text": "I can summarises it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-48:intro1:r1",
-              "text": "I can negotiate."
+              "text": "I can summarise it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro1:r2",
-              "text": "I can to negotiate."
+              "text": "I can to summarise it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro1:r3",
-              "text": "I can negotiates."
+              "text": "I can summarises it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете вести переговоры.",
-          "uk": "Скажіть, що вмієте вести переговори."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Стул из деталей",
-        "uk": "Стілець із деталей"
+        "ru": "Непонятное правило настольной игры",
+        "uk": "Незрозуміле правило настільної гри"
       },
       "bodyByLocale": {
-        "ru": "Друг открыл коробку с новым стулом и не знает, как соединить детали. Вы можете помочь: `I can assemble it` — «Я могу это собрать». `It` означает стул.",
-        "uk": "Друг відкрив коробку з новим стільцем і не знає, як з’єднати деталі. Ви можете допомогти: `I can assemble it` — «Я можу це зібрати». `It` означає стілець."
+        "ru": "В настольной игре непонятно, когда можно обменять карточку. Вы знаете правило и можете объяснить именно этот момент. Clarify — «прояснять, уточнять». `I can clarify it` — «Я могу это прояснить». It относится к непонятному правилу.",
+        "uk": "У настільній грі незрозуміло, коли можна обміняти картку. Ви знаєте правило й можете пояснити саме цей момент. Clarify — «прояснювати, уточнювати». `I can clarify it` — «Я можу це прояснити». It стосується незрозумілого правила."
       },
       "question": {
         "interactionId": "en:lesson-08:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Предложите собрать стул: «Я могу это собрать».",
-          "uk": "Запропонуйте скласти стілець: «Я можу це зібрати»."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-48:intro2:r1",
-              "text": "I can assemble it."
+              "text": "I can clarify it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro2:r2",
-              "text": "I can assembles it."
+              "text": "I can to clarify it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro2:r3",
-              "text": "I can to assemble it."
+              "text": "I can clarifies it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-48:intro2:r1",
-              "text": "I can assemble it."
+              "text": "I can clarify it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro2:r2",
-              "text": "I can assembles it."
+              "text": "I can to clarify it."
             },
             {
               "responseId": "en:lesson-08:session-48:intro2:r3",
-              "text": "I can to assemble it."
+              "text": "I can clarifies it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предложите собрать стул: «Я могу это собрать».",
-          "uk": "Запропонуйте скласти стілець: «Я можу це зібрати»."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Новое рабочее место",
-        "uk": "Нове робоче місце"
+        "ru": "План школьного сада",
+        "uk": "План шкільного саду"
       },
       "bodyByLocale": {
-        "ru": "Вы переходите в другую команду. Там другой порядок работы, и коллега спрашивает, справитесь ли вы. `I can adapt` — «Я могу адаптироваться». Вы говорите, что можете приспособиться к переменам.",
-        "uk": "Ви переходите до іншої команди. Там інший порядок роботи, і колега запитує, чи впораєтеся ви. `I can adapt` — «Я можу адаптуватися». Ви кажете, що можете пристосуватися до змін."
+        "ru": "Команда хочет разбить небольшой школьный сад. На короткой встрече нужно рассказать об основных этапах, не перечисляя все детали. Outline — «кратко излагать основные пункты». `I can outline the plan` — «Я могу кратко изложить план». Вы назовёте главные шаги проекта.",
+        "uk": "Команда хоче облаштувати невеликий шкільний сад. На короткій зустрічі потрібно розповісти про основні етапи, не перелічуючи всі деталі. Outline — «стисло викладати основні пункти». `I can outline the plan` — «Я можу стисло викласти план». Ви назвете головні кроки проєкту."
       },
       "question": {
         "interactionId": "en:lesson-08:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что можете адаптироваться.",
-          "uk": "Скажіть, що можете адаптуватися."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-48:intro3:r1",
-              "text": "I can adapt."
+              "text": "I can outline the plan."
             },
             {
               "responseId": "en:lesson-08:session-48:intro3:r2",
-              "text": "I can adapts."
+              "text": "I can to outline the plan."
             },
             {
               "responseId": "en:lesson-08:session-48:intro3:r3",
-              "text": "I can to adapt."
+              "text": "I can outlines the plan."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-48:intro3:r1",
-              "text": "I can adapt."
+              "text": "I can outline the plan."
             },
             {
               "responseId": "en:lesson-08:session-48:intro3:r2",
-              "text": "I can adapts."
+              "text": "I can to outline the plan."
             },
             {
               "responseId": "en:lesson-08:session-48:intro3:r3",
-              "text": "I can to adapt."
+              "text": "I can outlines the plan."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что можете адаптироваться.",
-          "uk": "Скажіть, що можете адаптуватися."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c160cb9b1778f734ee6884c4717ac46cf71f91c0a04e37933c895fe1c6884d7c"
+  "introFingerprint": "919ac9eb0e3b17c50a086408a7811beb42368f453dc085e68faafda6cabee1c1"
 }

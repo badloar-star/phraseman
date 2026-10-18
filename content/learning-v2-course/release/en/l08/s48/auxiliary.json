@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-48:intro1:r2": {
-          "ru": "После `can` нужно `negotiate`, без `to`.",
-          "uk": "Після `can` потрібне `negotiate`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-48:intro1:r3": {
-          "ru": "После `can` нужно `negotiate`, без `s`.",
-          "uk": "Після `can` потрібне `negotiate`, без `s`."
+          "ru": "После can действие остаётся без s.",
+          "uk": "Після can дія залишається без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-48:intro2:r2": {
-          "ru": "После `can` нужно `assemble`, без `s`.",
-          "uk": "Після `can` потрібне `assemble`, без `s`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-48:intro2:r3": {
-          "ru": "После `can` нужно `assemble`, без `to`.",
-          "uk": "Після `can` потрібне `assemble`, без `to`."
+          "ru": "После can действие остаётся без s.",
+          "uk": "Після can дія залишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-48:intro3:r2": {
-          "ru": "После `can` нужно `adapt`, без `s`.",
-          "uk": "Після `can` потрібне `adapt`, без `s`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-48:intro3:r3": {
-          "ru": "После `can` нужно `adapt`, без `to`.",
-          "uk": "Після `can` потрібне `adapt`, без `to`."
+          "ru": "После can действие остаётся без s.",
+          "uk": "Після can дія залишається без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "773bf16a726e6dd35f3d4aeb0718f8584d79eafe3d552af634b6dc156a045fce"
+  "auxiliaryFingerprint": "cb0577c33e6ca32d270a517faa9db81a9e25b117ccb78a42f6ffb05b272b59ff"
 }

@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-08:session-48:word:summarise",
+    "correctText": "summarise",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-48:i01",
-    "correctText": "I can negotiate.",
+    "correctText": "I can summarise it.",
     "correctResponseId": null
   },
   {
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-48:word:clarify",
+    "correctText": "clarify",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-48:i06",
-    "correctText": "I can operate it.",
+    "correctText": "I can clarify it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:word:outline",
+    "correctText": "outline",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-48:i07",
-    "correctText": "I can adapt.",
+    "correctText": "I can outline the plan.",
     "correctResponseId": null
   },
   {
@@ -55,8 +70,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-48:word:checklist",
+    "correctText": "checklist",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-48:i12",
-    "correctText": "I can diagnose it.",
+    "correctText": "I can make a checklist.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-48:i16",
-    "correctText": "en:lesson-08:session-48:i16:p1=community kitchen\nen:lesson-08:session-48:i16:p2=supervise\nen:lesson-08:session-48:i16:p3=negotiate\nen:lesson-08:session-48:i16:p4=assemble",
+    "correctText": "en:lesson-08:session-48:i16:p1=summarise\nen:lesson-08:session-48:i16:p2=clarify\nen:lesson-08:session-48:i16:p3=outline\nen:lesson-08:session-48:i16:p4=checklist",
     "correctResponseId": null
   },
   {

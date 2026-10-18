@@ -4,27 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-03:i01",
+      "interactionId": "en:lesson-08:session-03:word:speak",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — speak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:word:speak:audio"
+      ],
+      "accessibilityLabel": "Картка слова — speak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:word:speak:audio",
+          "transcript": "speak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:word:speak:r1",
+            "targetText": "speak",
+            "meaningByLocale": {
+              "ru": "говорить. I can speak English. — «Я умею говорить по-английски». Произносить слова вслух.",
+              "uk": "говорити. I can speak English. — «Я вмію говорити англійською». Вимовляти слова вголос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speak",
+          "definitionByLocale": {
+            "ru": "говорить. I can speak English. — «Я умею говорить по-английски». Произносить слова вслух.",
+            "uk": "говорити. I can speak English. — «Я вмію говорити англійською». Вимовляти слова вголос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-03:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я вмію друкувати на клавіатурі»",
+      "prompt": "Турист просить допомогти. Скажіть йому: «Я вмію говорити англійською».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію друкувати на клавіатурі»",
+      "accessibilityLabel": "Турист просить допомогти. Скажіть йому: «Я вмію говорити англійською».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can type.",
+        "targetPhrase": "I can speak English.",
         "localizedMeaning": {
-          "ru": "Скажите «Я умею печатать на клавиатуре»",
-          "uk": "Скажіть «Я вмію друкувати на клавіатурі»"
+          "ru": "Турист просит помочь. Скажите ему: «Я умею говорить по-английски».",
+          "uk": "Турист просить допомогти. Скажіть йому: «Я вмію говорити англійською»."
         },
         "orderedTokens": [
           "I",
           "can",
-          "type"
+          "speak",
+          "English"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,51 +81,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте туриста",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-03:i02:r1",
-          "text": "type"
+          "text": "I can speak English."
         },
         {
           "responseId": "en:lesson-08:session-03:i02:r2",
-          "text": "dance"
+          "text": "He can speak English."
         },
         {
           "responseId": "en:lesson-08:session-03:i02:r3",
-          "text": "juggle"
+          "text": "We can speak English."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте туриста",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i02:audio",
-          "transcript": "type"
+          "transcript": "I can speak English."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-03:i02:r1",
-            "targetText": "type",
+            "targetText": "I can speak English.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-03:i02:r2",
-            "targetText": "dance",
+            "targetText": "He can speak English.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-03:i02:r3",
-            "targetText": "juggle",
+            "targetText": "We can speak English.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +134,19 @@
           {
             "responseId": "en:lesson-08:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте туриста",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `type`, а в этом варианте — `dance`.",
-              "uk": "У записі перше слово — `type`, а в цьому варіанті — `dance`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `He`, він."
             }
           },
           {
             "responseId": "en:lesson-08:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте туриста",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `type`, а в этом варианте — `juggle`.",
-              "uk": "У записі перше слово — `type`, а в цьому варіанті — `juggle`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -113,67 +157,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я вмію друкувати на клавіатурі»",
+      "prompt": "Турист питає, що ви вмієте. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-03:i03:r1",
-          "text": "type"
+          "text": "speak"
         },
         {
           "responseId": "en:lesson-08:session-03:i03:r2",
-          "text": "to type"
+          "text": "speaks"
         },
         {
           "responseId": "en:lesson-08:session-03:i03:r3",
-          "text": "types"
+          "text": "to speak"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію друкувати на клавіатурі»",
+      "accessibilityLabel": "Турист питає, що ви вмієте. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я умею печатать на клавиатуре»",
-          "uk": "Скажіть «Я вмію друкувати на клавіатурі»"
+          "ru": "Турист спрашивает, что вы умеете. Выберите слово",
+          "uk": "Турист питає, що ви вмієте. Виберіть слово"
         },
-        "gappedTargetPhrase": "I can ___.",
+        "gappedTargetPhrase": "I can ___ English.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-03:i03:r1",
-            "text": "type"
+            "text": "speak"
           },
           {
             "responseId": "en:lesson-08:session-03:i03:r2",
-            "text": "to type"
+            "text": "speaks"
           },
           {
             "responseId": "en:lesson-08:session-03:i03:r3",
-            "text": "types"
+            "text": "to speak"
           }
         ],
-        "testedDimension": "Скажіть «Я вмію друкувати на клавіатурі»",
+        "testedDimension": "Турист питає, що ви вмієте. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я вмію друкувати на клавіатурі»",
+            "testedDimension": "Турист питає, що ви вмієте. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `type`, без `to`.",
-              "uk": "Після `can` потрібне `type`, без `to`."
+              "ru": "После `can` нужно `speak`, без `s`.",
+              "uk": "Після `can` потрібно `speak`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я вмію друкувати на клавіатурі»",
+            "testedDimension": "Турист питає, що ви вмієте. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `type`, без `s`.",
-              "uk": "Після `can` потрібне `type`, без `s`."
+              "ru": "После `can` нужно `speak`, без `to`.",
+              "uk": "Після `can` потрібно `speak`, без `to`."
             }
           }
         ]
@@ -182,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +240,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-03:i04:p1",
-            "target": "type",
+            "target": "speak",
             "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
+              "ru": "говорить",
+              "uk": "говорити"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i04:p2",
-            "target": "bank",
+            "target": "photo",
             "meaningByLocale": {
-              "ru": "банк",
-              "uk": "банк"
+              "ru": "фото",
+              "uk": "фото"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i04:p3",
-            "target": "parcel",
+            "target": "tyre",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "шина",
+              "uk": "шина"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i04:p4",
-            "target": "poster",
+            "target": "planner",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "ежедневник",
+              "uk": "щоденник"
             }
           }
         ],
         "leftColumn": [
-          "type",
-          "bank",
-          "parcel",
-          "poster"
+          "speak",
+          "photo",
+          "tyre",
+          "planner"
         ],
         "rightColumn": [
-          "друкувати на клавіатурі",
-          "банк",
-          "посилка",
-          "плакат"
+          "говорити",
+          "фото",
+          "шина",
+          "щоденник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,30 +298,74 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-03:word:edit",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — edit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:word:edit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — edit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:word:edit:audio",
+          "transcript": "edit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:word:edit:r1",
+            "targetText": "edit",
+            "meaningByLocale": {
+              "ru": "редактировать. He can edit photos. — «Он умеет редактировать фото». Исправлять и улучшать снимки или текст.",
+              "uk": "редагувати. He can edit photos. — «Він уміє редагувати фото». Виправляти й покращувати знімки або текст."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "edit",
+          "definitionByLocale": {
+            "ru": "редактировать. He can edit photos. — «Он умеет редактировать фото». Исправлять и улучшать снимки или текст.",
+            "uk": "редагувати. He can edit photos. — «Він уміє редагувати фото». Виправляти й покращувати знімки або текст."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-03:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i05:audio",
-          "transcript": "I can type."
+          "transcript": "He can edit photos."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can type.",
+        "hiddenTargetPhrase": "He can edit photos.",
         "orderedTokens": [
-          "I",
+          "He",
           "can",
-          "type"
+          "edit",
+          "photos"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -290,26 +378,27 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про знайому «Вона вміє танцювати»",
+      "prompt": "Подруга питає про брата. Скажіть їй: «Він уміє редагувати фото».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про знайому «Вона вміє танцювати»",
+      "accessibilityLabel": "Подруга питає про брата. Скажіть їй: «Він уміє редагувати фото».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can dance.",
+        "targetPhrase": "He can edit photos.",
         "localizedMeaning": {
-          "ru": "Скажите о знакомой «Она умеет танцевать»",
-          "uk": "Скажіть про знайому «Вона вміє танцювати»"
+          "ru": "Подруга спрашивает о брате. Скажите ей: «Он умеет редактировать фото».",
+          "uk": "Подруга питає про брата. Скажіть їй: «Він уміє редагувати фото»."
         },
         "orderedTokens": [
-          "She",
+          "He",
           "can",
-          "dance"
+          "edit",
+          "photos"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +410,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-03:word:jeans",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — jeans",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:word:jeans:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jeans",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:word:jeans:audio",
+          "transcript": "jeans"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:word:jeans:r1",
+            "targetText": "jeans",
+            "meaningByLocale": {
+              "ru": "джинсы. Whose jeans are these? — «Чьи это джинсы?». Брюки из джинсовой ткани; они бывают разных цветов.",
+              "uk": "джинси. Whose jeans are these? — «Чиї це джинси?». Штани з джинсової тканини; вони бувають різних кольорів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jeans",
+          "definitionByLocale": {
+            "ru": "джинсы. Whose jeans are these? — «Чьи это джинсы?». Брюки из джинсовой ткани; они бывают разных цветов.",
+            "uk": "джинси. Whose jeans are these? — «Чиї це джинси?». Штани з джинсової тканини; вони бувають різних кольорів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-03:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте учасників зустрічі «Чий це плакат?»",
+      "prompt": "Ви знайшли джинси в сушарці. Спитайте сусідку: «Чиї це джинси?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте учасників зустрічі «Чий це плакат?»",
+      "accessibilityLabel": "Ви знайшли джинси в сушарці. Спитайте сусідку: «Чиї це джинси?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i07:audio",
-          "transcript": "Whose poster is this?"
+          "transcript": "Whose jeans are these?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose poster is this?",
+        "targetPhrase": "Whose jeans are these?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +487,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє танцювати»",
+      "prompt": "Подруга питає про брата. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-03:i08:r1",
-          "text": "dance"
+          "text": "edit"
         },
         {
           "responseId": "en:lesson-08:session-03:i08:r2",
-          "text": "dances"
+          "text": "edits"
         },
         {
           "responseId": "en:lesson-08:session-03:i08:r3",
-          "text": "to dance"
+          "text": "to edit"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє танцювати»",
+      "accessibilityLabel": "Подруга питає про брата. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет танцевать»",
-          "uk": "Скажіть «Вона вміє танцювати»"
+          "ru": "Подруга спрашивает о брате. Выберите слово",
+          "uk": "Подруга питає про брата. Виберіть слово"
         },
-        "gappedTargetPhrase": "She can ___.",
+        "gappedTargetPhrase": "He can ___ photos.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-03:i08:r1",
-            "text": "dance"
+            "text": "edit"
           },
           {
             "responseId": "en:lesson-08:session-03:i08:r2",
-            "text": "dances"
+            "text": "edits"
           },
           {
             "responseId": "en:lesson-08:session-03:i08:r3",
-            "text": "to dance"
+            "text": "to edit"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє танцювати»",
+        "testedDimension": "Подруга питає про брата. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє танцювати»",
+            "testedDimension": "Подруга питає про брата. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `dance`, без `s`.",
-              "uk": "Після `can` потрібне `dance`, без `s`."
+              "ru": "После `can` нужно `edit`, без `s`.",
+              "uk": "Після `can` потрібно `edit`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє танцювати»",
+            "testedDimension": "Подруга питає про брата. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `dance`, без `to`.",
-              "uk": "Після `can` потрібне `dance`, без `to`."
+              "ru": "После `can` нужно `edit`, без `to`.",
+              "uk": "Після `can` потрібно `edit`, без `to`."
             }
           }
         ]
@@ -424,51 +556,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-03:i09:r1",
-          "text": "I can type."
+          "text": "Whose jeans are these?"
         },
         {
           "responseId": "en:lesson-08:session-03:i09:r2",
-          "text": "I can dance."
+          "text": "Whose shoes are these?"
         },
         {
           "responseId": "en:lesson-08:session-03:i09:r3",
-          "text": "I can juggle."
+          "text": "Whose socks are these?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i09:audio",
-          "transcript": "I can type."
+          "transcript": "Whose jeans are these?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-03:i09:r1",
-            "targetText": "I can type.",
+            "targetText": "Whose jeans are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-03:i09:r2",
-            "targetText": "I can dance.",
+            "targetText": "Whose shoes are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-03:i09:r3",
-            "targetText": "I can juggle.",
+            "targetText": "Whose socks are these?",
             "meaningByLocale": null
           }
         ],
@@ -477,19 +609,19 @@
           {
             "responseId": "en:lesson-08:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `type`, а в этом варианте — `dance`.",
-              "uk": "У записі останнє слово — `type`, а в цьому варіанті — `dance`."
+              "ru": "В записи второе слово — `jeans`, джинсы, а в этом варианте — `shoes`, туфли.",
+              "uk": "У записі друге слово — `jeans`, джинси, а в цьому варіанті — `shoes`, туфлі."
             }
           },
           {
             "responseId": "en:lesson-08:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `type`, а в этом варианте — `juggle`.",
-              "uk": "У записі останнє слово — `type`, а в цьому варіанті — `juggle`."
+              "ru": "В записи второе слово — `jeans`, джинсы, а в этом варианте — `socks`, носки.",
+              "uk": "У записі друге слово — `jeans`, джинси, а в цьому варіанті — `socks`, шкарпетки."
             }
           }
         ],
@@ -500,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,48 +646,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-03:i10:p1",
-            "target": "dance",
+            "target": "speak",
             "meaningByLocale": {
-              "ru": "танцевать",
-              "uk": "танцювати"
+              "ru": "говорить",
+              "uk": "говорити"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i10:p2",
-            "target": "type",
+            "target": "jeans",
             "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
+              "ru": "джинсы",
+              "uk": "джинси"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i10:p3",
-            "target": "bank",
+            "target": "planner",
             "meaningByLocale": {
-              "ru": "банк",
-              "uk": "банк"
+              "ru": "ежедневник",
+              "uk": "щоденник"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i10:p4",
-            "target": "parcel",
+            "target": "edit",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "редактировать",
+              "uk": "редагувати"
             }
           }
         ],
         "leftColumn": [
-          "dance",
-          "type",
-          "bank",
-          "parcel"
+          "speak",
+          "jeans",
+          "planner",
+          "edit"
         ],
         "rightColumn": [
-          "танцювати",
-          "друкувати на клавіатурі",
-          "банк",
-          "посилка"
+          "говорити",
+          "джинси",
+          "щоденник",
+          "редагувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,30 +705,30 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сусідку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i11:audio",
-          "transcript": "Whose poster is this?"
+          "transcript": "Whose jeans are these?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose poster is this?",
+        "hiddenTargetPhrase": "Whose jeans are these?",
         "orderedTokens": [
           "Whose",
-          "poster",
-          "is",
-          "this"
+          "jeans",
+          "are",
+          "these"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -609,27 +741,27 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На спільному столі лежить посилка. Запитайте колег «Чия це посилка?»",
+      "prompt": "На зупинці стоїть турист. Спитайте його: «Ви говорите англійською?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На спільному столі лежить посилка. Запитайте колег «Чия це посилка?»",
+      "accessibilityLabel": "На зупинці стоїть турист. Спитайте його: «Ви говорите англійською?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose parcel is this?",
+        "targetPhrase": "Can you speak English?",
         "localizedMeaning": {
-          "ru": "На общем столе лежит посылка. Спросите коллег «Чья это посылка?»",
-          "uk": "На спільному столі лежить посилка. Запитайте колег «Чия це посилка?»"
+          "ru": "На остановке стоит турист. Спросите его: «Вы говорите по-английски?»",
+          "uk": "На зупинці стоїть турист. Спитайте його: «Ви говорите англійською?»"
         },
         "orderedTokens": [
-          "Whose",
-          "parcel",
-          "is",
-          "this"
+          "Can",
+          "you",
+          "speak",
+          "English"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,26 +773,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-03:word:inflate",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inflate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-03:word:inflate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inflate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-03:word:inflate:audio",
+          "transcript": "inflate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-03:word:inflate:r1",
+            "targetText": "inflate",
+            "meaningByLocale": {
+              "ru": "накачивать. I can inflate the tyre. — «Я умею накачивать шину». Наполнять воздухом.",
+              "uk": "накачувати. I can inflate the tyre. — «Я вмію накачувати шину». Наповнювати повітрям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inflate",
+          "definitionByLocale": {
+            "ru": "накачивать. I can inflate the tyre. — «Я умею накачивать шину». Наполнять воздухом.",
+            "uk": "накачувати. I can inflate the tyre. — «Я вмію накачувати шину». Наповнювати повітрям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-03:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, що ви робите вдома під музику. Скажіть «Я часто танцюю вдома»",
+      "prompt": "Сусід просить накачати шину. Скажіть йому: «Я вмію накачувати шину».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i13:audio"
       ],
-      "accessibilityLabel": "Друг запитує, що ви робите вдома під музику. Скажіть «Я часто танцюю вдома»",
+      "accessibilityLabel": "Сусід просить накачати шину. Скажіть йому: «Я вмію накачувати шину».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i13:audio",
-          "transcript": "I often dance at home."
+          "transcript": "I can inflate the tyre."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often dance at home.",
+        "targetPhrase": "I can inflate the tyre.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -675,67 +850,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє друкувати на клавіатурі»",
+      "prompt": "Сусід просить накачати шину. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-03:i14:r1",
-          "text": "can"
+          "text": "inflate"
         },
         {
           "responseId": "en:lesson-08:session-03:i14:r2",
-          "text": "cans"
+          "text": "inflates"
         },
         {
           "responseId": "en:lesson-08:session-03:i14:r3",
-          "text": "is can"
+          "text": "to inflate"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє друкувати на клавіатурі»",
+      "accessibilityLabel": "Сусід просить накачати шину. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет печатать на клавиатуре»",
-          "uk": "Скажіть «Вона вміє друкувати на клавіатурі»"
+          "ru": "Сосед просит накачать шину. Выберите слово",
+          "uk": "Сусід просить накачати шину. Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ type.",
+        "gappedTargetPhrase": "I can ___ the tyre.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-03:i14:r1",
-            "text": "can"
+            "text": "inflate"
           },
           {
             "responseId": "en:lesson-08:session-03:i14:r2",
-            "text": "cans"
+            "text": "inflates"
           },
           {
             "responseId": "en:lesson-08:session-03:i14:r3",
-            "text": "is can"
+            "text": "to inflate"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє друкувати на клавіатурі»",
+        "testedDimension": "Сусід просить накачати шину. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-03:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє друкувати на клавіатурі»",
+            "testedDimension": "Сусід просить накачати шину. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
-              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+              "ru": "После `can` нужно `inflate`, без `s`.",
+              "uk": "Після `can` потрібно `inflate`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-03:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє друкувати на клавіатурі»",
+            "testedDimension": "Сусід просить накачати шину. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Достаточно `she can`; `is` не нужно.",
-              "uk": "Достатньо `she can`; `is` не потрібне."
+              "ru": "После `can` нужно `inflate`, без `to`.",
+              "uk": "Після `can` потрібно `inflate`, без `to`."
             }
           }
         ]
@@ -744,51 +919,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте сусіда",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-03:i15:r1",
-          "text": "Where is the bank?"
+          "text": "I can inflate the tyre."
         },
         {
           "responseId": "en:lesson-08:session-03:i15:r2",
-          "text": "Where is the pharmacy?"
+          "text": "She can inflate the tyre."
         },
         {
           "responseId": "en:lesson-08:session-03:i15:r3",
-          "text": "Where is the library?"
+          "text": "I can inflate the ball."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте сусіда",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i15:audio",
-          "transcript": "Where is the bank?"
+          "transcript": "I can inflate the tyre."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-03:i15:r1",
-            "targetText": "Where is the bank?",
+            "targetText": "I can inflate the tyre.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-03:i15:r2",
-            "targetText": "Where is the pharmacy?",
+            "targetText": "She can inflate the tyre.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-03:i15:r3",
-            "targetText": "Where is the library?",
+            "targetText": "I can inflate the ball.",
             "meaningByLocale": null
           }
         ],
@@ -797,19 +972,19 @@
           {
             "responseId": "en:lesson-08:session-03:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bank`, а в этом варианте — `pharmacy`.",
-              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `pharmacy`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `She`, вона."
             }
           },
           {
             "responseId": "en:lesson-08:session-03:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bank`, а в этом варианте — `library`.",
-              "uk": "У записі останнє слово — `bank`, а в цьому варіанті — `library`."
+              "ru": "В записи последнее слово — `tyre`, шина, а в этом варианте — `ball`, мяч.",
+              "uk": "У записі останнє слово — `tyre`, шина, а в цьому варіанті — `ball`, м’яч."
             }
           }
         ],
@@ -820,7 +995,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -834,48 +1009,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-03:i16:p1",
-            "target": "type",
+            "target": "speak",
             "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
+              "ru": "говорить",
+              "uk": "говорити"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i16:p2",
-            "target": "poster",
+            "target": "edit",
             "meaningByLocale": {
-              "ru": "плакат",
-              "uk": "плакат"
+              "ru": "редактировать",
+              "uk": "редагувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i16:p3",
-            "target": "parcel",
+            "target": "jeans",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "джинсы",
+              "uk": "джинси"
             }
           },
           {
             "pairId": "en:lesson-08:session-03:i16:p4",
-            "target": "dance",
+            "target": "inflate",
             "meaningByLocale": {
-              "ru": "танцевать",
-              "uk": "танцювати"
+              "ru": "накачивать",
+              "uk": "накачувати"
             }
           }
         ],
         "leftColumn": [
-          "type",
-          "poster",
-          "parcel",
-          "dance"
+          "speak",
+          "edit",
+          "jeans",
+          "inflate"
         ],
         "rightColumn": [
-          "друкувати на клавіатурі",
-          "плакат",
-          "посилка",
-          "танцювати"
+          "говорити",
+          "редагувати",
+          "джинси",
+          "накачувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,25 +1068,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-03:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега запитує про вміння Тома. Скажіть «Том уміє друкувати на клавіатурі»",
+      "prompt": "Турист питає про вашого брата. Скажіть: «Він уміє говорити англійською й редагувати фото».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-03:i17:audio"
       ],
-      "accessibilityLabel": "Колега запитує про вміння Тома. Скажіть «Том уміє друкувати на клавіатурі»",
+      "accessibilityLabel": "Турист питає про вашого брата. Скажіть: «Він уміє говорити англійською й редагувати фото».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-03:i17:audio",
-          "transcript": "Tom can type."
+          "transcript": "He can speak English and edit photos."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can type.",
+        "targetPhrase": "He can speak English and edit photos.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -933,11 +1108,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d83548fc23c95cae0fff3ee5da034294fdbf074fb0c53bb92cf6cd9683761537"
+  "learnerFingerprint": "445fee9a3de33302ebe497d06eec4e59fecb52e189766085fff3952107bbb8e6"
 }

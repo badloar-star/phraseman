@@ -1,133 +1,149 @@
-# Английский · Урок 8 · Занятие 1 — Я умею свистеть
+# Английский · Урок 8 · Занятие 1 — Умею шить и танцевать
 
-**Ситуация.** Вы рассказываете, что умеете свистеть и плавать, а ваша знакомая умеет водить.
+**Ситуация.** Вы рассказываете, что умеете шить и печатать, ваш брат умеет танцевать, а у входной двери стоит чей-то рюкзак.
 
 **Что вы освоите:** говорить об умениях с can
-**Новые слова:** whistle
+**Новые слова:** sew, dance, rucksack, type
+**Возвращаются:** button, coat, door, swim
 
 ---
 
 ## Интро 1
 
-### Получилось свистнуть
+### Оторванная пуговица
 
-Друг пытается свистнуть и спрашивает, умеете ли вы. `Whistle` — «свистеть». `I can whistle` — «Я умею свистеть». `Can` перед действием говорит об умении. После него ставим `whistle`: добавлять `to` не нужно. Чайник тоже свистит, но ему для этого приходится закипеть.
+Соседка принесла пальто: на нём оторвалась пуговица, а выходить ей уже сегодня. Она спрашивает, сможете ли вы помочь. sew — «шить». Вы шьёте иголкой и ниткой, поэтому отвечаете: I can sew — «Я умею шить». После can слово sew идёт без to и без s.
 
-**Скажите другу, что умеете свистеть.**
+**Соседка просит пришить пуговицу. Скажите ей: «Я умею шить».**
 
-- ✅ **I can whistle.**
-- ❌ I can to whistle. — *После `can` сразу ставим `whistle`, без `to`.*
-- ❌ I am can whistle. — *Здесь достаточно `I can`; `am` не нужно.*
+- ✅ **I can sew.**
+- ❌ I can to sew. — *После can слово sew идёт без to.*
+- ❌ I can sews. — *После can нужно sew, без s.*
 
 ---
 
 ## Интро 2
 
-### У воды
+### Свадьба и танцы
 
-Перед купанием друг спрашивает, умеете ли вы плавать. `I can swim` — «Я умею плавать». Здесь `can` показывает умение: вы знаете, как плавать. После `can` нужно `swim`, без `to`.
+Подруга зовёт вас на свадьбу и спрашивает, умеет ли ваш брат танцевать: там будет музыка и танцы до самой ночи. dance — «танцевать». Брат давно ходил на занятия, поэтому вы отвечаете: He can dance — «Он умеет танцевать». Can после he не меняется.
 
-**Скажите, что умеете плавать.**
+**Подруга спрашивает о брате. Скажите ей: «Он умеет танцевать».**
 
-- ✅ **I can swim.**
-- ❌ I can to swim. — *После `can` нужно `swim`, без `to`.*
-- ❌ I can swims. — *После `can` нужно `swim`, без `s`.*
+- ✅ **He can dance.**
+- ❌ He cans dance. — *После he остаётся can, без s.*
+- ❌ He can dances. — *После can нужно dance, без s.*
 
 ---
 
 ## Интро 3
 
-### Кто умеет водить
+### Рюкзак у двери
 
-Вы обсуждаете поездку со знакомой. Друг спрашивает, умеет ли она водить. `She can drive` — «Она умеет водить». `Can` не меняется после `she`, а у `drive` после `can` нет окончания `s`.
+Гости разошлись, а у входной двери остался стоять рюкзак. Сестра вышла в коридор вместе с вами, и вы хотите узнать, чей он и кому его вернуть. rucksack — «рюкзак». Вы спрашиваете: Whose rucksack is this — «Чей это рюкзак?». Whose стоит в начале вопроса.
 
-**Скажите о знакомой: «Она умеет водить».**
+**Вы нашли рюкзак у двери. Спросите сестру: «Чей это рюкзак?»**
 
-- ✅ **She can drive.**
-- ❌ She cans drive. — *После `she` всё равно нужно `can`, без `s`.*
-- ❌ She can drives. — *После `can` нужно `drive`, без `s`.*
+- ✅ **Whose rucksack is this?**
+- ❌ Whose rucksack this is? — *После rucksack идёт is, потом this.*
+- ❌ Who rucksack is this? — *Для «чей» нужно whose.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я умею свистеть»**
+**1 · Карточка слова — sew**
+<!-- interaction_id: en:lesson-08:session-01:word:sew; family: word_card -->
+> **sew** — шить. I can sew. — «Я умею шить». Соединять ткань иголкой и ниткой.
+
+**2 · Соседка просит пришить пуговицу. Скажите ей: «Я умею шить».**
 <!-- interaction_id: en:lesson-08:session-01:i01; family: phrase_builder -->
-Плитки: `whistle` `can` `I` → **I can whistle.**
+Плитки: `sew` `can` `I` → **I can sew.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте соседку**
 <!-- interaction_id: en:lesson-08:session-01:i02; family: listen_choose -->
-🔊 *whistle* → **whistle** · work · camp
-- work — *В записи первое слово — `whistle`, а в этом варианте — `work`.*
-- camp — *В записи первое слово — `whistle`, а в этом варианте — `camp`.*
+🔊 *I can sew.* → **I can sew.** · I can swim. · She can sew.
+- I can swim. — *В записи последнее слово — `sew`, шить, а в этом варианте — `swim`, плавать.*
+- She can sew. — *В записи первое слово — `I`, я, а в этом варианте — `She`, она.*
 
-**3 · Скажите «Я умею свистеть»**
+**4 · Соседка спрашивает, что вы умеете. Выберите слово**
 <!-- interaction_id: en:lesson-08:session-01:i03; family: context_gap_grammar -->
-I can ___. → **whistle** · to whistle · whistles
-- to whistle — *После `can` нужно `whistle`, без `to`.*
-- whistles — *После `can` нужно `whistle`, без `s`.*
+I can ___. → **sew** · sews · to sew
+- sews — *После `can` нужно `sew`, без `s`.*
+- to sew — *После `can` нужно `sew`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-01:i04; family: speed_match -->
-whistle — свистеть · pharmacy — аптека · library — библиотека · bakery — пекарня
+sew — шить · door — дверь · button — пуговица · coat — пальто
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — dance**
+<!-- interaction_id: en:lesson-08:session-01:word:dance; family: word_card -->
+> **dance** — танцевать. He can dance. — «Он умеет танцевать». Двигаться под музыку.
+
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-01:i05; family: listen_build_dictation -->
-🔊 *I can whistle.* Плитки: `whistle` `can` `I` → **I can whistle.**
+🔊 *He can dance.* Плитки: `dance` `can` `He` → **He can dance.**
 
-**6 · Скажите «Я умею плавать»**
+**8 · Подруга спрашивает о брате. Скажите ей: «Он умеет танцевать».**
 <!-- interaction_id: en:lesson-08:session-01:i06; family: phrase_builder -->
-Плитки: `swim` `can` `I` → **I can swim.**
+Плитки: `dance` `can` `He` → **He can dance.**
 
-**7 · Скажите о знакомой «Она умеет водить»**
+**9 · Карточка слова — rucksack**
+<!-- interaction_id: en:lesson-08:session-01:word:rucksack; family: word_card -->
+> **rucksack** — рюкзак. Whose rucksack is this? — «Чей это рюкзак?». Сумка, которую носят на спине.
+
+**10 · Вы нашли рюкзак у двери. Спросите сестру: «Чей это рюкзак?»**
 <!-- interaction_id: en:lesson-08:session-01:i07; family: scripted_repeat_compare -->
-🎙 **She can drive.**
+🎙 **Whose rucksack is this?**
 
-**8 · Скажите «Она умеет водить»**
+**11 · Подруга спрашивает о брате. Выберите слово**
 <!-- interaction_id: en:lesson-08:session-01:i08; family: context_gap_grammar -->
-She can ___. → **drive** · drives · to drive
-- drives — *После `can` нужно `drive`, без `s`.*
-- to drive — *После `can` нужно `drive`, без `to`.*
+He ___ dance. → **can** · cans · is can
+- cans — *`Can` не меняется после `he`: окончание `s` не нужно.*
+- is can — *Достаточно `he can`; `is` не нужно.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте сестру**
 <!-- interaction_id: en:lesson-08:session-01:i09; family: listen_choose -->
-🔊 *I can whistle.* → **I can whistle.** · I can swim. · I can drive.
-- I can swim. — *В записи последнее слово — `whistle`, а в этом варианте — `swim`.*
-- I can drive. — *В записи последнее слово — `whistle`, а в этом варианте — `drive`.*
+🔊 *Whose rucksack is this?* → **Whose rucksack is this?** · Whose coat is this? · Whose button is this?
+- Whose coat is this? — *В записи второе слово — `rucksack`, рюкзак, а в этом варианте — `coat`, пальто.*
+- Whose button is this? — *В записи второе слово — `rucksack`, рюкзак, а в этом варианте — `button`, пуговица.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-01:i10; family: speed_match -->
-factory — фабрика · work — работать · camp — ночевать в палатке · whistle — свистеть
+dance — танцевать · rucksack — рюкзак · sew — шить · door — дверь
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте сестру и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-01:i11; family: listen_build_dictation -->
-🔊 *She can drive.* Плитки: `drive` `can` `She` → **She can drive.**
+🔊 *Whose rucksack is this?* Плитки: `this` `is` `rucksack` `Whose` → **Whose rucksack is this?**
 
-**12 · Вы ищете аптеку. Спросите прохожего «Где аптека?»**
+**15 · Карточка слова — type**
+<!-- interaction_id: en:lesson-08:session-01:word:type; family: word_card -->
+> **type** — печатать на клавиатуре. I can type. — «Я умею печатать». Набирать текст на клавиатуре.
+
+**16 · Коллега спрашивает о вашей работе за компьютером. Скажите: «Я умею печатать».**
 <!-- interaction_id: en:lesson-08:session-01:i12; family: phrase_builder -->
-Плитки: `pharmacy` `the` `is` `Where` → **Where is the pharmacy?**
+Плитки: `type` `can` `I` → **I can type.**
 
-**13 · Друг спрашивает о вашей работе. Скажите «Я работаю на фабрике»**
+**17 · Подруга спрашивает о соседке. Скажите: «Она умеет шить».**
 <!-- interaction_id: en:lesson-08:session-01:i13; family: scripted_repeat_compare -->
-🎙 **I work in a factory.**
+🎙 **She can sew.**
 
-**14 · Скажите «Она умеет плавать»**
+**18 · Коллега спрашивает, что вы умеете. Выберите слово**
 <!-- interaction_id: en:lesson-08:session-01:i14; family: context_gap_grammar -->
-She ___ swim. → **can** · cans · is can
-- cans — *`Can` не меняется после `she`: окончание `s` не нужно.*
-- is can — *Достаточно `she can`; `is` не нужно.*
+I can ___. → **type** · types · to type
+- types — *После `can` нужно `type`, без `s`.*
+- to type — *После `can` нужно `type`, без `to`.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-08:session-01:i15; family: listen_choose -->
-🔊 *Where is the library?* → **Where is the library?** · Where is the pharmacy? · Where is the bakery?
-- Where is the pharmacy? — *В записи последнее слово — `library`, а в этом варианте — `pharmacy`.*
-- Where is the bakery? — *В записи последнее слово — `library`, а в этом варианте — `bakery`.*
+🔊 *I can type.* → **I can type.** · I can dance. · He can type.
+- I can dance. — *В записи последнее слово — `type`, печатать на клавиатуре, а в этом варианте — `dance`, танцевать.*
+- He can type. — *В записи первое слово — `I`, я, а в этом варианте — `He`, он.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-01:i16; family: speed_match -->
-whistle — свистеть · library — библиотека · bakery — пекарня · work — работать
+sew — шить · type — печатать на клавиатуре · dance — танцевать · rucksack — рюкзак
 
-**17 · Друг спрашивает об умении Тома. Скажите «Том умеет свистеть»**
+**21 · Подруга спрашивает о вашей сестре. Скажите: «Она умеет шить и танцевать».**
 <!-- interaction_id: en:lesson-08:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can whistle.**
-
+🎙 **She can sew and dance.**

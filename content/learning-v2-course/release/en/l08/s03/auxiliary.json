@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-03:intro1:r2": {
-          "ru": "После `can` нужно `type`, без `to`.",
-          "uk": "Після `can` потрібне `type`, без `to`."
+          "ru": "После can слово speak идёт без to.",
+          "uk": "Після can слово speak йде без to."
         },
         "en:lesson-08:session-03:intro1:r3": {
-          "ru": "После `can` нужно `type`, без `s`.",
-          "uk": "Після `can` потрібне `type`, без `s`."
+          "ru": "После can нужно speak, без s.",
+          "uk": "Після can потрібно speak, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-03:intro2:r2": {
-          "ru": "После `she` нужно `can`, без `s`.",
-          "uk": "Після `she` потрібне `can`, без `s`."
+          "ru": "После he остаётся can, без s.",
+          "uk": "Після he залишається can, без s."
         },
         "en:lesson-08:session-03:intro2:r3": {
-          "ru": "После `can` нужно `dance`, без `s`.",
-          "uk": "Після `can` потрібне `dance`, без `s`."
+          "ru": "После can нужно edit, без s.",
+          "uk": "Після can потрібно edit, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-03:intro3:r2": {
-          "ru": "Для «чей» нужно `whose`, а не `who`.",
-          "uk": "Для «чий» потрібне `whose`, а не `who`."
+          "ru": "Jeans — форма множественного числа, поэтому нужно are these.",
+          "uk": "Jeans — форма множини, тому потрібно are these."
         },
         "en:lesson-08:session-03:intro3:r3": {
-          "ru": "Плакат один: нужно `is this`.",
-          "uk": "Плакат один: потрібне `is this`."
+          "ru": "Для «чьи» нужно whose.",
+          "uk": "Для «чиї» потрібно whose."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dd255cd74b288cb898a4e589324569ce426f63bf8ea2d0cf748d9b9cdc2f03ca"
+  "auxiliaryFingerprint": "4098c07a93d78fde6b49b6068badf4cb539ff5b7449e3a969c4f3bb5a0987ff2"
 }

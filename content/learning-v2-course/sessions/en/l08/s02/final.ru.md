@@ -1,133 +1,149 @@
-# Английский · Урок 8 · Занятие 2 — Умею жонглировать
+# Английский · Урок 8 · Занятие 2 — Перевожу и лазаю
 
-**Ситуация.** Вы рассказываете о жонглировании и свисте, затем выясняете, чья папка на столе.
+**Ситуация.** Вы рассказываете, что умеете переводить и бросать мяч, ваша сестра умеет лазать, а на столе после совещания лежит чей-то ежедневник.
 
-**Что вы освоите:** закрепить can для умений и повторить вопрос «чей?»
-**Новые слова:** juggle
+**Что вы освоите:** говорить об умениях с can
+**Новые слова:** translate, climb, planner, throw
+**Возвращаются:** rucksack, coat, ball, type
 
 ---
 
 ## Интро 1
 
-### Ловлю на лету
+### Письмо из-за границы
 
-Друг показывает, как подбрасывать и ловить несколько мячей. `Juggle` — «жонглировать». `I can juggle` — «Я умею жонглировать». После `can` нужно `juggle`, без `to` и без окончания `s`. Просто подбросить легко — главное потом поймать.
+Сосед получил письмо от друзей из другой страны, но не понимает ни слова. Он просит вас помочь. translate — «переводить». Вы хорошо знаете этот язык, поэтому отвечаете: I can translate — «Я умею переводить». Слово translate идёт сразу после can.
 
-**Скажите другу, что умеете жонглировать.**
+**Сосед просит помочь с письмом. Скажите ему: «Я умею переводить».**
 
-- ✅ **I can juggle.**
-- ❌ I can to juggle. — *После `can` нужно `juggle`, без `to`.*
-- ❌ I can juggles. — *После `can` нужно `juggle`, без `s`.*
+- ✅ **I can translate.**
+- ❌ I can translates. — *После can нужно translate, без s.*
+- ❌ I am can translate. — *Достаточно I can; am не нужно.*
 
 ---
 
 ## Интро 2
 
-### Она умеет свистеть
+### Скалодром в субботу
 
-Знакомая насвистывает мелодию, и друг спрашивает о её умении. `She can whistle` — «Она умеет свистеть». `Can` не меняется после `she`; после него нужно `whistle`, без окончания `s`.
+Подруга собирается в субботу на скалодром и спрашивает, умеет ли ваша сестра лазать по стенам. climb — «лазать, взбираться». Сестра ходит туда с детства, поэтому вы отвечаете: She can climb — «Она умеет лазать». После she слово can не меняется.
 
-**Расскажите об умении знакомой.**
+**Подруга спрашивает о сестре. Скажите ей: «Она умеет лазать».**
 
-- ✅ **She can whistle.**
-- ❌ She cans whistle. — *После `she` нужно `can`, без `s`.*
-- ❌ She can whistles. — *После `can` нужно `whistle`, без `s`.*
+- ✅ **She can climb.**
+- ❌ She can to climb. — *После can слово climb идёт без to.*
+- ❌ She cans climb. — *После she остаётся can, без s.*
 
 ---
 
 ## Интро 3
 
-### Чья папка
+### Ежедневник на столе
 
-На общем столе лежит папка, и вы хотите найти её владельца. `Whose folder is this?` — «Чья это папка?» Сначала `whose folder` — «чья папка», затем `is this`.
+Совещание закончилось, коллеги собирают вещи, а на столе остался ежедневник с датами и делами. Вы хотите узнать, чей он. planner — «ежедневник». Вы спрашиваете: Whose planner is this — «Чей это ежедневник?». Слово planner стоит сразу за whose.
 
-**Спросите коллег, чья это папка.**
+**Вы нашли ежедневник на столе. Спросите коллег: «Чей это ежедневник?»**
 
-- ✅ **Whose folder is this?**
-- ❌ Who folder is this? — *Для «чья» нужно `whose`, а не `who`.*
-- ❌ Whose folder are this? — *Папка одна: нужно `is this`.*
+- ✅ **Whose planner is this?**
+- ❌ Whose planner it is? — *Вопрос заканчивается словами is this.*
+- ❌ Whose this planner is? — *Сначала whose planner, потом is this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я умею жонглировать»**
+**1 · Карточка слова — translate**
+<!-- interaction_id: en:lesson-08:session-02:word:translate; family: word_card -->
+> **translate** — переводить. I can translate. — «Я умею переводить». Передавать слова на другой язык.
+
+**2 · Сосед просит помочь с письмом. Скажите ему: «Я умею переводить».**
 <!-- interaction_id: en:lesson-08:session-02:i01; family: phrase_builder -->
-Плитки: `juggle` `can` `I` → **I can juggle.**
+Плитки: `translate` `can` `I` → **I can translate.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-08:session-02:i02; family: listen_choose -->
-🔊 *juggle* → **juggle** · whistle · hike
-- whistle — *В записи первое слово — `juggle`, а в этом варианте — `whistle`.*
-- hike — *В записи первое слово — `juggle`, а в этом варианте — `hike`.*
+🔊 *I can translate.* → **I can translate.** · I can type. · She can translate.
+- I can type. — *В записи последнее слово — `translate`, переводить, а в этом варианте — `type`, печатать на клавиатуре.*
+- She can translate. — *В записи первое слово — `I`, я, а в этом варианте — `She`, она.*
 
-**3 · Скажите «Я умею жонглировать»**
+**4 · Сосед спрашивает, что вы умеете. Выберите слово**
 <!-- interaction_id: en:lesson-08:session-02:i03; family: context_gap_grammar -->
-I can ___. → **juggle** · to juggle · juggles
-- to juggle — *После `can` нужно `juggle`, без `to`.*
-- juggles — *После `can` нужно `juggle`, без `s`.*
+I can ___. → **translate** · translates · to translate
+- translates — *После `can` нужно `translate`, без `s`.*
+- to translate — *После `can` нужно `translate`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-02:i04; family: speed_match -->
-juggle — жонглировать · garden — сад · folder — папка · package — посылка
+translate — переводить · type — печатать на клавиатуре · coat — пальто · rucksack — рюкзак
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — climb**
+<!-- interaction_id: en:lesson-08:session-02:word:climb; family: word_card -->
+> **climb** — лазать. She can climb. — «Она умеет лазать». Взбираться вверх по стене или склону.
+
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-02:i05; family: listen_build_dictation -->
-🔊 *I can juggle.* Плитки: `juggle` `can` `I` → **I can juggle.**
+🔊 *She can climb.* Плитки: `climb` `can` `She` → **She can climb.**
 
-**6 · Скажите о знакомой «Она умеет свистеть»**
+**8 · Подруга спрашивает о сестре. Скажите ей: «Она умеет лазать».**
 <!-- interaction_id: en:lesson-08:session-02:i06; family: phrase_builder -->
-Плитки: `whistle` `can` `She` → **She can whistle.**
+Плитки: `climb` `can` `She` → **She can climb.**
 
-**7 · Спросите коллег «Чья это папка?»**
+**9 · Карточка слова — planner**
+<!-- interaction_id: en:lesson-08:session-02:word:planner; family: word_card -->
+> **planner** — ежедневник. Whose planner is this? — «Чей это ежедневник?». Тетрадь с датами и делами.
+
+**10 · Вы нашли ежедневник на столе. Спросите коллег: «Чей это ежедневник?»**
 <!-- interaction_id: en:lesson-08:session-02:i07; family: scripted_repeat_compare -->
-🎙 **Whose folder is this?**
+🎙 **Whose planner is this?**
 
-**8 · Скажите «Она умеет свистеть»**
+**11 · Подруга спрашивает о сестре. Выберите слово**
 <!-- interaction_id: en:lesson-08:session-02:i08; family: context_gap_grammar -->
-She can ___. → **whistle** · whistles · to whistle
-- whistles — *После `can` нужно `whistle`, без `s`.*
-- to whistle — *После `can` нужно `whistle`, без `to`.*
-
-**9 · Послушайте и выберите фразу**
-<!-- interaction_id: en:lesson-08:session-02:i09; family: listen_choose -->
-🔊 *I can juggle.* → **I can juggle.** · I can whistle. · I can swim.
-- I can whistle. — *В записи последнее слово — `juggle`, а в этом варианте — `whistle`.*
-- I can swim. — *В записи последнее слово — `juggle`, а в этом варианте — `swim`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-02:i10; family: speed_match -->
-hike — ходить в пеший поход · juggle — жонглировать · garden — сад · package — посылка
-
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-08:session-02:i11; family: listen_build_dictation -->
-🔊 *Whose folder is this?* Плитки: `this` `is` `folder` `Whose` → **Whose folder is this?**
-
-**12 · На общем столе лежит посылка. Спросите коллег «Чья это посылка?»**
-<!-- interaction_id: en:lesson-08:session-02:i12; family: phrase_builder -->
-Плитки: `this` `is` `package` `Whose` → **Whose package is this?**
-
-**13 · Друг спрашивает об отдыхе на природе. Скажите «Я обычно хожу в пешие походы»**
-<!-- interaction_id: en:lesson-08:session-02:i13; family: scripted_repeat_compare -->
-🎙 **I usually hike.**
-
-**14 · Скажите «Она умеет жонглировать»**
-<!-- interaction_id: en:lesson-08:session-02:i14; family: context_gap_grammar -->
-She ___ juggle. → **can** · cans · is can
+She ___ climb. → **can** · cans · is can
 - cans — *`Can` не меняется после `she`: окончание `s` не нужно.*
 - is can — *Достаточно `she can`; `is` не нужно.*
 
-**15 · Послушайте и выберите фразу**
+**12 · Послушайте коллегу**
+<!-- interaction_id: en:lesson-08:session-02:i09; family: listen_choose -->
+🔊 *Whose planner is this?* → **Whose planner is this?** · Whose rucksack is this? · Whose coat is this?
+- Whose rucksack is this? — *В записи второе слово — `planner`, ежедневник, а в этом варианте — `rucksack`, рюкзак.*
+- Whose coat is this? — *В записи второе слово — `planner`, ежедневник, а в этом варианте — `coat`, пальто.*
+
+**13 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-08:session-02:i10; family: speed_match -->
+translate — переводить · climb — лазать · type — печатать на клавиатуре · planner — ежедневник
+
+**14 · Послушайте коллегу и соберите фразу**
+<!-- interaction_id: en:lesson-08:session-02:i11; family: listen_build_dictation -->
+🔊 *Whose planner is this?* Плитки: `this` `is` `planner` `Whose` → **Whose planner is this?**
+
+**15 · Карточка слова — throw**
+<!-- interaction_id: en:lesson-08:session-02:word:throw; family: word_card -->
+> **throw** — бросать. I can throw the ball. — «Я умею бросать мяч». Посылать предмет рукой.
+
+**16 · Вы начинаете учиться играть в баскетбол. Брат спрашивает, умеете ли вы бросать мяч. Скажите ему: «Я умею бросать мяч».**
+<!-- interaction_id: en:lesson-08:session-02:i12; family: phrase_builder -->
+Плитки: `ball` `the` `throw` `can` `I` → **I can throw the ball.**
+
+**17 · Подруга спрашивает о брате. Скажите: «Он умеет бросать мяч».**
+<!-- interaction_id: en:lesson-08:session-02:i13; family: scripted_repeat_compare -->
+🎙 **He can throw the ball.**
+
+**18 · Брат спрашивает, умеете ли вы бросать мяч. Выберите слово**
+<!-- interaction_id: en:lesson-08:session-02:i14; family: context_gap_grammar -->
+I can ___ the ball. → **throw** · throws · to throw
+- throws — *После `can` нужно `throw`, без `s`.*
+- to throw — *После `can` нужно `throw`, без `to`.*
+
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-08:session-02:i15; family: listen_choose -->
-🔊 *Where is the garden?* → **Where is the garden?** · Where is the library? · Where is the bakery?
-- Where is the library? — *В записи последнее слово — `garden`, а в этом варианте — `library`.*
-- Where is the bakery? — *В записи последнее слово — `garden`, а в этом варианте — `bakery`.*
+🔊 *I can throw the ball.* → **I can throw the ball.** · We can throw the ball. · She can throw the ball.
+- We can throw the ball. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
+- She can throw the ball. — *В записи первое слово — `I`, я, а в этом варианте — `She`, она.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-02:i16; family: speed_match -->
-juggle — жонглировать · folder — папка · package — посылка · hike — ходить в пеший поход
+translate — переводить · throw — бросать · planner — ежедневник · type — печатать на клавиатуре
 
-**17 · Друг спрашивает об умении Тома. Скажите «Том умеет жонглировать»**
+**21 · Подруга спрашивает о вашей сестре. Скажите: «Она умеет лазать и бросать мяч».**
 <!-- interaction_id: en:lesson-08:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can juggle.**
-
+🎙 **She can climb and throw the ball.**

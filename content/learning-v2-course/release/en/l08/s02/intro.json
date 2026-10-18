@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-02",
   "learningOutcomeByLocale": {
-    "ru": "закрепить can для умений и повторить вопрос «чей?»",
-    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+    "ru": "говорить об умениях с can",
+    "uk": "говорити про вміння з can"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ловлю на лету",
-        "uk": "Ловлю на льоту"
+        "ru": "Письмо из-за границы",
+        "uk": "Лист із-за кордону"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает, как подбрасывать и ловить несколько мячей. `Juggle` — «жонглировать». `I can juggle` — «Я умею жонглировать». После `can` нужно `juggle`, без `to` и без окончания `s`. Просто подбросить легко — главное потом поймать.",
-        "uk": "Друг показує, як підкидати й ловити кілька м’ячів. `Juggle` — «жонглювати». `I can juggle` — «Я вмію жонглювати». Після `can` потрібне `juggle`, без `to` й без закінчення `s`. Просто підкинути легко — головне потім упіймати."
+        "ru": "Сосед получил письмо от друзей из другой страны, но не понимает ни слова. Он просит вас помочь. translate — «переводить». Вы хорошо знаете этот язык, поэтому отвечаете: I can translate — «Я умею переводить». Слово translate идёт сразу после can.",
+        "uk": "Сусід отримав лист від друзів з іншої країни, але не розуміє ні слова. Він просить вас допомогти. translate — «перекладати». Ви добре знаєте цю мову, тому відповідаєте: I can translate — «Я вмію перекладати». Слово translate йде одразу після can."
       },
       "question": {
         "interactionId": "en:lesson-08:session-02:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что умеете жонглировать.",
-          "uk": "Скажіть другові, що вмієте жонглювати."
+          "ru": "Сосед просит помочь с письмом. Скажите ему: «Я умею переводить».",
+          "uk": "Сусід просить допомогти з листом. Скажіть йому: «Я вмію перекладати»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-02:intro1:r1",
-              "text": "I can juggle."
+              "text": "I can translate."
             },
             {
               "responseId": "en:lesson-08:session-02:intro1:r2",
-              "text": "I can to juggle."
+              "text": "I can translates."
             },
             {
               "responseId": "en:lesson-08:session-02:intro1:r3",
-              "text": "I can juggles."
+              "text": "I am can translate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-02:intro1:r1",
-              "text": "I can juggle."
+              "text": "I can translate."
             },
             {
               "responseId": "en:lesson-08:session-02:intro1:r2",
-              "text": "I can to juggle."
+              "text": "I can translates."
             },
             {
               "responseId": "en:lesson-08:session-02:intro1:r3",
-              "text": "I can juggles."
+              "text": "I am can translate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что умеете жонглировать.",
-          "uk": "Скажіть другові, що вмієте жонглювати."
+          "ru": "Сосед просит помочь с письмом. Скажите ему: «Я умею переводить».",
+          "uk": "Сусід просить допомогти з листом. Скажіть йому: «Я вмію перекладати»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она умеет свистеть",
-        "uk": "Вона вміє свистіти"
+        "ru": "Скалодром в субботу",
+        "uk": "Скеледром у суботу"
       },
       "bodyByLocale": {
-        "ru": "Знакомая насвистывает мелодию, и друг спрашивает о её умении. `She can whistle` — «Она умеет свистеть». `Can` не меняется после `she`; после него нужно `whistle`, без окончания `s`.",
-        "uk": "Знайома насвистує мелодію, і друг запитує про її вміння. `She can whistle` — «Вона вміє свистіти». `Can` не змінюється після `she`; після нього потрібне `whistle`, без закінчення `s`."
+        "ru": "Подруга собирается в субботу на скалодром и спрашивает, умеет ли ваша сестра лазать по стенам. climb — «лазать, взбираться». Сестра ходит туда с детства, поэтому вы отвечаете: She can climb — «Она умеет лазать». После she слово can не меняется.",
+        "uk": "Подруга збирається в суботу на скеледром і питає, чи вміє ваша сестра лазити по стінах. climb — «лазити, дертися». Сестра ходить туди з дитинства, тому ви спокійно відповідаєте: She can climb — «Вона вміє лазити». Після she слово can не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-08:session-02:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите об умении знакомой.",
-          "uk": "Розкажіть про вміння знайомої."
+          "ru": "Подруга спрашивает о сестре. Скажите ей: «Она умеет лазать».",
+          "uk": "Подруга питає про сестру. Скажіть їй: «Вона вміє лазити»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-02:intro2:r1",
-              "text": "She can whistle."
+              "text": "She can climb."
             },
             {
               "responseId": "en:lesson-08:session-02:intro2:r2",
-              "text": "She cans whistle."
+              "text": "She can to climb."
             },
             {
               "responseId": "en:lesson-08:session-02:intro2:r3",
-              "text": "She can whistles."
+              "text": "She cans climb."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-02:intro2:r1",
-              "text": "She can whistle."
+              "text": "She can climb."
             },
             {
               "responseId": "en:lesson-08:session-02:intro2:r2",
-              "text": "She cans whistle."
+              "text": "She can to climb."
             },
             {
               "responseId": "en:lesson-08:session-02:intro2:r3",
-              "text": "She can whistles."
+              "text": "She cans climb."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите об умении знакомой.",
-          "uk": "Розкажіть про вміння знайомої."
+          "ru": "Подруга спрашивает о сестре. Скажите ей: «Она умеет лазать».",
+          "uk": "Подруга питає про сестру. Скажіть їй: «Вона вміє лазити»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чья папка",
-        "uk": "Чия папка"
+        "ru": "Ежедневник на столе",
+        "uk": "Щоденник на столі"
       },
       "bodyByLocale": {
-        "ru": "На общем столе лежит папка, и вы хотите найти её владельца. `Whose folder is this?` — «Чья это папка?» Сначала `whose folder` — «чья папка», затем `is this`.",
-        "uk": "На спільному столі лежить папка, і ви хочете знайти її власника. `Whose folder is this?` — «Чия це папка?» Спочатку `whose folder` — «чия папка», потім `is this`."
+        "ru": "Совещание закончилось, коллеги собирают вещи, а на столе остался ежедневник с датами и делами. Вы хотите узнать, чей он. planner — «ежедневник». Вы спрашиваете: Whose planner is this — «Чей это ежедневник?». Слово planner стоит сразу за whose.",
+        "uk": "Нарада закінчилася, колеги збирають речі, а на столі лишився щоденник з датами й справами. Ви хочете швидко дізнатися, чий він. planner — «щоденник». Ви питаєте: Whose planner is this — «Чий це щоденник?». Слово planner стоїть одразу за whose."
       },
       "question": {
         "interactionId": "en:lesson-08:session-02:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег, чья это папка.",
-          "uk": "Запитайте колег, чия це папка."
+          "ru": "Вы нашли ежедневник на столе. Спросите коллег: «Чей это ежедневник?»",
+          "uk": "Ви знайшли щоденник на столі. Спитайте колег: «Чий це щоденник?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-02:intro3:r1",
-              "text": "Whose folder is this?"
+              "text": "Whose planner is this?"
             },
             {
               "responseId": "en:lesson-08:session-02:intro3:r2",
-              "text": "Who folder is this?"
+              "text": "Whose planner it is?"
             },
             {
               "responseId": "en:lesson-08:session-02:intro3:r3",
-              "text": "Whose folder are this?"
+              "text": "Whose this planner is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-02:intro3:r1",
-              "text": "Whose folder is this?"
+              "text": "Whose planner is this?"
             },
             {
               "responseId": "en:lesson-08:session-02:intro3:r2",
-              "text": "Who folder is this?"
+              "text": "Whose planner it is?"
             },
             {
               "responseId": "en:lesson-08:session-02:intro3:r3",
-              "text": "Whose folder are this?"
+              "text": "Whose this planner is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег, чья это папка.",
-          "uk": "Запитайте колег, чия це папка."
+          "ru": "Вы нашли ежедневник на столе. Спросите коллег: «Чей это ежедневник?»",
+          "uk": "Ви знайшли щоденник на столі. Спитайте колег: «Чий це щоденник?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a3d942c23c8e48ea63a51a33409a8387c61bdae4b8434b9f541f24d5ed637b8d"
+  "introFingerprint": "98a101277f432ade35d2820b06a9c41571138d7c4de9e6ba3e8bc2bf8932159c"
 }

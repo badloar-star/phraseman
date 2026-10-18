@@ -1,133 +1,149 @@
-# Англійська · Урок 8 · Заняття 3 — Умію друкувати
+# Англійська · Урок 8 · Заняття 3 — Говорю, редагую, накачую
 
-**Ситуація.** Ви розповідаєте про друкування на клавіатурі й танці, потім шукаєте власника плаката.
+**Ситуація.** Ви розповідаєте, що говорите англійською й вмієте накачувати шину, ваш брат уміє редагувати фотографії, а в сушарці лишилися чиїсь джинси.
 
-**Що ви опануєте:** закріпити can для вмінь і повторити запитання «чий?»
-**Нові слова:** type
+**Що ви опануєте:** говорити про вміння з can і питати Can you…?
+**Нові слова:** speak, edit, jeans, inflate
+**Повертаються:** planner, photo, shoe, sock, tyre, ball
 
 ---
 
 ## Інтро 1
 
-### За клавіатурою
+### Турист на зупинці
 
-Колега запитує, чи вмієте ви друкувати на клавіатурі. `Type` — «друкувати на клавіатурі». `I can type` — «Я вмію друкувати на клавіатурі». Після `can` потрібне `type`, без `to` й закінчення `s`. Принтер для цього вміння не потрібен — він друкує по-іншому.
+На зупинці турист намагається дізнатися, як доїхати до вокзалу, але говорить лише англійською. Він починає з питання Can you speak English? — «Ви говорите англійською?». У питанні can ставиться перед you. speak — «говорити». Ви вільно говорите англійською, тому відповідаєте: I can speak English — «Я вмію говорити англійською».
 
-**Скажіть колезі про своє вміння.**
+**Турист просить допомогти. Скажіть йому: «Я вмію говорити англійською».**
 
-- ✅ **I can type.**
-- ❌ I can to type. — *Після `can` потрібне `type`, без `to`.*
-- ❌ I can types. — *Після `can` потрібне `type`, без `s`.*
+- ✅ **I can speak English.**
+- ❌ I can to speak English. — *Після can слово speak йде без to.*
+- ❌ I can speaks English. — *Після can потрібно speak, без s.*
 
 ---
 
 ## Інтро 2
 
-### Вона вміє танцювати
+### Фото з поїздки
 
-Друг запитує, чи вміє ваша знайома танцювати. `She can dance` — «Вона вміє танцювати». `Can` не змінюється після `she`, а після `can` потрібне `dance`, без закінчення `s`.
+Подруга повернулася з поїздки із сотнями фотографій і хоче вибрати найкращі. Вона питає, хто допоможе їх обробити, і цікавиться вашим братом. edit — «редагувати». Брат часто обробляє знімки, тому ви відповідаєте: He can edit photos — «Він уміє редагувати фото».
 
-**Розкажіть про вміння знайомої.**
+**Подруга питає про брата. Скажіть їй: «Він уміє редагувати фото».**
 
-- ✅ **She can dance.**
-- ❌ She cans dance. — *Після `she` потрібне `can`, без `s`.*
-- ❌ She can dances. — *Після `can` потрібне `dance`, без `s`.*
+- ✅ **He can edit photos.**
+- ❌ He cans edit photos. — *Після he залишається can, без s.*
+- ❌ He can edits photos. — *Після can потрібно edit, без s.*
 
 ---
 
 ## Інтро 3
 
-### Чий плакат
+### Джинси в сушарці
 
-Після зустрічі в кімнаті залишився плакат. Ви хочете повернути його власникові. `Whose poster is this?` — «Чий це плакат?» Спочатку `whose poster` — «чий плакат», потім `is this`.
+У спільній сушарці у дворі лишилася пара джинсів, а всі сусіди вже давно забрали свої речі. Одна із сусідок підходить до вас, і ви хочете дізнатися, чиї вони. jeans — «джинси». Слово jeans уживається у множині навіть для одних джинсів. Тому потрібні are і these: Whose jeans are these — «Чиї це джинси?».
 
-**Запитайте учасників зустрічі, чий це плакат.**
+**Ви знайшли джинси в сушарці. Спитайте сусідку: «Чиї це джинси?»**
 
-- ✅ **Whose poster is this?**
-- ❌ Who poster is this? — *Для «чий» потрібне `whose`, а не `who`.*
-- ❌ Whose poster are this? — *Плакат один: потрібне `is this`.*
+- ✅ **Whose jeans are these?**
+- ❌ Whose jeans is this? — *Jeans — форма множини, тому потрібно are these.*
+- ❌ Who jeans are these? — *Для «чиї» потрібно whose.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я вмію друкувати на клавіатурі»**
+**1 · Картка слова — speak**
+<!-- interaction_id: en:lesson-08:session-03:word:speak; family: word_card -->
+> **speak** — говорити. I can speak English. — «Я вмію говорити англійською». Вимовляти слова вголос.
+
+**2 · Турист просить допомогти. Скажіть йому: «Я вмію говорити англійською».**
 <!-- interaction_id: en:lesson-08:session-03:i01; family: phrase_builder -->
-Плитки: `type` `can` `I` → **I can type.**
+Плитки: `English` `speak` `can` `I` → **I can speak English.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте туриста**
 <!-- interaction_id: en:lesson-08:session-03:i02; family: listen_choose -->
-🔊 *type* → **type** · dance · juggle
-- dance — *У записі перше слово — `type`, а в цьому варіанті — `dance`.*
-- juggle — *У записі перше слово — `type`, а в цьому варіанті — `juggle`.*
+🔊 *I can speak English.* → **I can speak English.** · He can speak English. · We can speak English.
+- He can speak English. — *У записі перше слово — `I`, я, а в цьому варіанті — `He`, він.*
+- We can speak English. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**3 · Скажіть «Я вмію друкувати на клавіатурі»**
+**4 · Турист питає, що ви вмієте. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-03:i03; family: context_gap_grammar -->
-I can ___. → **type** · to type · types
-- to type — *Після `can` потрібне `type`, без `to`.*
-- types — *Після `can` потрібне `type`, без `s`.*
+I can ___ English. → **speak** · speaks · to speak
+- speaks — *Після `can` потрібно `speak`, без `s`.*
+- to speak — *Після `can` потрібно `speak`, без `to`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-03:i04; family: speed_match -->
-type — друкувати на клавіатурі · bank — банк · parcel — посилка · poster — плакат
+speak — говорити · photo — фото · tyre — шина · planner — щоденник
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — edit**
+<!-- interaction_id: en:lesson-08:session-03:word:edit; family: word_card -->
+> **edit** — редагувати. He can edit photos. — «Він уміє редагувати фото». Виправляти й покращувати знімки або текст.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-03:i05; family: listen_build_dictation -->
-🔊 *I can type.* Плитки: `type` `can` `I` → **I can type.**
+🔊 *He can edit photos.* Плитки: `photos` `edit` `can` `He` → **He can edit photos.**
 
-**6 · Скажіть про знайому «Вона вміє танцювати»**
+**8 · Подруга питає про брата. Скажіть їй: «Він уміє редагувати фото».**
 <!-- interaction_id: en:lesson-08:session-03:i06; family: phrase_builder -->
-Плитки: `dance` `can` `She` → **She can dance.**
+Плитки: `photos` `edit` `can` `He` → **He can edit photos.**
 
-**7 · Запитайте учасників зустрічі «Чий це плакат?»**
+**9 · Картка слова — jeans**
+<!-- interaction_id: en:lesson-08:session-03:word:jeans; family: word_card -->
+> **jeans** — джинси. Whose jeans are these? — «Чиї це джинси?». Штани з джинсової тканини; вони бувають різних кольорів.
+
+**10 · Ви знайшли джинси в сушарці. Спитайте сусідку: «Чиї це джинси?»**
 <!-- interaction_id: en:lesson-08:session-03:i07; family: scripted_repeat_compare -->
-🎙 **Whose poster is this?**
+🎙 **Whose jeans are these?**
 
-**8 · Скажіть «Вона вміє танцювати»**
+**11 · Подруга питає про брата. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-03:i08; family: context_gap_grammar -->
-She can ___. → **dance** · dances · to dance
-- dances — *Після `can` потрібне `dance`, без `s`.*
-- to dance — *Після `can` потрібне `dance`, без `to`.*
+He can ___ photos. → **edit** · edits · to edit
+- edits — *Після `can` потрібно `edit`, без `s`.*
+- to edit — *Після `can` потрібно `edit`, без `to`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-08:session-03:i09; family: listen_choose -->
-🔊 *I can type.* → **I can type.** · I can dance. · I can juggle.
-- I can dance. — *У записі останнє слово — `type`, а в цьому варіанті — `dance`.*
-- I can juggle. — *У записі останнє слово — `type`, а в цьому варіанті — `juggle`.*
+🔊 *Whose jeans are these?* → **Whose jeans are these?** · Whose shoes are these? · Whose socks are these?
+- Whose shoes are these? — *У записі друге слово — `jeans`, джинси, а в цьому варіанті — `shoes`, туфлі.*
+- Whose socks are these? — *У записі друге слово — `jeans`, джинси, а в цьому варіанті — `socks`, шкарпетки.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-03:i10; family: speed_match -->
-dance — танцювати · type — друкувати на клавіатурі · bank — банк · parcel — посилка
+speak — говорити · jeans — джинси · planner — щоденник · edit — редагувати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-03:i11; family: listen_build_dictation -->
-🔊 *Whose poster is this?* Плитки: `this` `is` `poster` `Whose` → **Whose poster is this?**
+🔊 *Whose jeans are these?* Плитки: `these` `are` `jeans` `Whose` → **Whose jeans are these?**
 
-**12 · На спільному столі лежить посилка. Запитайте колег «Чия це посилка?»**
+**15 · На зупинці стоїть турист. Спитайте його: «Ви говорите англійською?»**
 <!-- interaction_id: en:lesson-08:session-03:i12; family: phrase_builder -->
-Плитки: `this` `is` `parcel` `Whose` → **Whose parcel is this?**
+Плитки: `English` `speak` `you` `Can` → **Can you speak English?**
 
-**13 · Друг запитує, що ви робите вдома під музику. Скажіть «Я часто танцюю вдома»**
+**16 · Картка слова — inflate**
+<!-- interaction_id: en:lesson-08:session-03:word:inflate; family: word_card -->
+> **inflate** — накачувати. I can inflate the tyre. — «Я вмію накачувати шину». Наповнювати повітрям.
+
+**17 · Сусід просить накачати шину. Скажіть йому: «Я вмію накачувати шину».**
 <!-- interaction_id: en:lesson-08:session-03:i13; family: scripted_repeat_compare -->
-🎙 **I often dance at home.**
+🎙 **I can inflate the tyre.**
 
-**14 · Скажіть «Вона вміє друкувати на клавіатурі»**
+**18 · Сусід просить накачати шину. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-03:i14; family: context_gap_grammar -->
-She ___ type. → **can** · cans · is can
-- cans — *`Can` не змінюється після `she`: закінчення `s` не потрібне.*
-- is can — *Достатньо `she can`; `is` не потрібне.*
+I can ___ the tyre. → **inflate** · inflates · to inflate
+- inflates — *Після `can` потрібно `inflate`, без `s`.*
+- to inflate — *Після `can` потрібно `inflate`, без `to`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-08:session-03:i15; family: listen_choose -->
-🔊 *Where is the bank?* → **Where is the bank?** · Where is the pharmacy? · Where is the library?
-- Where is the pharmacy? — *У записі останнє слово — `bank`, а в цьому варіанті — `pharmacy`.*
-- Where is the library? — *У записі останнє слово — `bank`, а в цьому варіанті — `library`.*
+🔊 *I can inflate the tyre.* → **I can inflate the tyre.** · She can inflate the tyre. · I can inflate the ball.
+- She can inflate the tyre. — *У записі перше слово — `I`, я, а в цьому варіанті — `She`, вона.*
+- I can inflate the ball. — *У записі останнє слово — `tyre`, шина, а в цьому варіанті — `ball`, м’яч.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-03:i16; family: speed_match -->
-type — друкувати на клавіатурі · poster — плакат · parcel — посилка · dance — танцювати
+speak — говорити · edit — редагувати · jeans — джинси · inflate — накачувати
 
-**17 · Колега запитує про вміння Тома. Скажіть «Том уміє друкувати на клавіатурі»**
+**21 · Турист питає про вашого брата. Скажіть: «Він уміє говорити англійською й редагувати фото».**
 <!-- interaction_id: en:lesson-08:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can type.**
-
+🎙 **He can speak English and edit photos.**

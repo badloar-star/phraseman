@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-02:intro1:r2": {
-          "ru": "После `can` нужно `juggle`, без `to`.",
-          "uk": "Після `can` потрібне `juggle`, без `to`."
+          "ru": "После can нужно translate, без s.",
+          "uk": "Після can потрібно translate, без s."
         },
         "en:lesson-08:session-02:intro1:r3": {
-          "ru": "После `can` нужно `juggle`, без `s`.",
-          "uk": "Після `can` потрібне `juggle`, без `s`."
+          "ru": "Достаточно I can; am не нужно.",
+          "uk": "Достатньо I can; am не потрібне."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-02:intro2:r2": {
-          "ru": "После `she` нужно `can`, без `s`.",
-          "uk": "Після `she` потрібне `can`, без `s`."
+          "ru": "После can слово climb идёт без to.",
+          "uk": "Після can слово climb йде без to."
         },
         "en:lesson-08:session-02:intro2:r3": {
-          "ru": "После `can` нужно `whistle`, без `s`.",
-          "uk": "Після `can` потрібне `whistle`, без `s`."
+          "ru": "После she остаётся can, без s.",
+          "uk": "Після she залишається can, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-02:intro3:r2": {
-          "ru": "Для «чья» нужно `whose`, а не `who`.",
-          "uk": "Для «чия» потрібне `whose`, а не `who`."
+          "ru": "Вопрос заканчивается словами is this.",
+          "uk": "Питання закінчується словами is this."
         },
         "en:lesson-08:session-02:intro3:r3": {
-          "ru": "Папка одна: нужно `is this`.",
-          "uk": "Папка одна: потрібне `is this`."
+          "ru": "Сначала whose planner, потом is this.",
+          "uk": "Спочатку whose planner, потім is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "668a1849d0739363bc63d3899366c063d6b235b984787cfd5177cf71fd6c699d"
+  "auxiliaryFingerprint": "1ba5d9cceeeaf3c1d5f596a17b536a73d225695f62c4963030e51268b559a1d9"
 }

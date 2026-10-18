@@ -3283,4 +3283,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"grin → grinning; Is he grinning?; is not waving","uk":"grin → grinning; Is he grinning?; is not waving"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 21,
+    sourceFingerprint: "c0b110a19cd35f1b7a7dc7369890744da3639a1ec6cdb0b7412be33a1b3309bc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"sigh → sighing; Is he sighing?; I am sighing with relief","uk":"sigh → sighing; Is he sighing?; I am sighing with relief"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 22,
+    sourceFingerprint: "b2e407b2990584b65b7e3b848d5e56cf4915406e19b51bafd5e4a08ccfbef619",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is crawling / is not crawling; Is the snail crawling?","uk":"is crawling / is not crawling; Is the snail crawling?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

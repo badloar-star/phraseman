@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-22:word:beetle",
+    "correctText": "beetle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i01",
+    "correctText": "The beetle is crawling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i02",
+    "correctText": "beetle",
+    "correctResponseId": "en:lesson-09:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i04",
+    "correctText": "en:lesson-09:session-22:i04:p1=beetle\nen:lesson-09:session-22:i04:p2=crawl\nen:lesson-09:session-22:i04:p3=leaf\nen:lesson-09:session-22:i04:p4=garden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i05",
+    "correctText": "The beetle is crawling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:word:snail",
+    "correctText": "snail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i06",
+    "correctText": "Is the snail crawling?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:word:moss",
+    "correctText": "moss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i07",
+    "correctText": "This is moss.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i08",
+    "correctText": "crawling",
+    "correctResponseId": "en:lesson-09:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i09",
+    "correctText": "The snail is crawling.",
+    "correctResponseId": "en:lesson-09:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i10",
+    "correctText": "en:lesson-09:session-22:i10:p1=beetle\nen:lesson-09:session-22:i10:p2=snail\nen:lesson-09:session-22:i10:p3=moss\nen:lesson-09:session-22:i10:p4=stone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i11",
+    "correctText": "Please don’t touch the snail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:word:burrow",
+    "correctText": "burrow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i12",
+    "correctText": "burrow",
+    "correctResponseId": "en:lesson-09:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i13",
+    "correctText": "This is a burrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i14",
+    "correctText": "observe",
+    "correctResponseId": "en:lesson-09:session-22:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i15",
+    "correctText": "The rabbit is not crawling.",
+    "correctResponseId": "en:lesson-09:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i16",
+    "correctText": "en:lesson-09:session-22:i16:p1=beetle\nen:lesson-09:session-22:i16:p2=snail\nen:lesson-09:session-22:i16:p3=moss\nen:lesson-09:session-22:i16:p4=burrow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-22:i17",
+    "correctText": "Is the snail crawling?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-21:intro1:r2": {
+          "ru": "С I перед sighing нужно am.",
+          "uk": "Із I перед sighing потрібне am."
+        },
+        "en:lesson-09:session-21:intro1:r3": {
+          "ru": "Для действия сейчас после am нужно sighing.",
+          "uk": "Для дії зараз після am потрібне sighing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-21:intro2:r2": {
+          "ru": "С he нужна форма is.",
+          "uk": "Із he потрібна форма is."
+        },
+        "en:lesson-09:session-21:intro2:r3": {
+          "ru": "В вопросе о действии сейчас сохраняем sighing.",
+          "uk": "У запитанні про дію зараз зберігаємо sighing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-21:intro3:r2": {
+          "ru": "Перед not sighing с I нужно am.",
+          "uk": "Перед not sighing із I потрібне am."
+        },
+        "en:lesson-09:session-21:intro3:r3": {
+          "ru": "После am not здесь нужна форма sighing.",
+          "uk": "Після am not тут потрібна форма sighing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8a8bead90124bcd1c5f64e6ce9a3c0656cb33090deeefc4f94aceb298b84a51d"
+}

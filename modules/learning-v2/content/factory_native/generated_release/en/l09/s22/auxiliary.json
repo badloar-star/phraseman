@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-22:intro1:r2": {
+          "ru": "Перед crawling нужно is.",
+          "uk": "Перед crawling потрібне is."
+        },
+        "en:lesson-09:session-22:intro1:r3": {
+          "ru": "После is для действия сейчас нужно crawling.",
+          "uk": "Після is для дії зараз потрібне crawling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-22:intro2:r2": {
+          "ru": "Одна улитка: is.",
+          "uk": "Один равлик: is."
+        },
+        "en:lesson-09:session-22:intro2:r3": {
+          "ru": "Для действия сейчас нужна форма crawling.",
+          "uk": "Для дії зараз потрібна форма crawling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-22:intro3:r2": {
+          "ru": "Перед not crawling нужно is.",
+          "uk": "Перед not crawling потрібне is."
+        },
+        "en:lesson-09:session-22:intro3:r3": {
+          "ru": "После is not здесь нужна форма crawling.",
+          "uk": "Після is not тут потрібна форма crawling."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "141fd5786a92142e9605043968f1f041b1496741ba390209dc9c9388c1fc566d"
+}

@@ -27,6 +27,8 @@ jest.mock('node:crypto', () => ({
 jest.mock('firebase-admin', () => ({
   firestore: Object.assign(() => currentDb, {
     FieldValue: { delete: () => ({ __delete: true }) },
+    // окно лимита Ядра (caller_rate_window) пишет expiresAt для TTL
+    Timestamp: { fromMillis: (ms: number) => ({ ms }) },
   }),
 }));
 

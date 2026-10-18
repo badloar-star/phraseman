@@ -1,7 +1,10 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
-import { recoveryHintClientIp, resolveStableUidForAuth } from './auth_identity';
+import { resolveStableUidForAuth } from './auth_identity';
+// зачем (координатор 18.10, Ревизор у Ядра f53ea8375): IP и окно лимита — общим помощником Ядра, чтобы правила
+// «какой адрес доверенный», IPv6 /64 и отказ при сбое были в одном месте для всех дорогих функций.
+import { callerIpFromRawRequest, enforceCallerRateWindow } from './caller_rate_window';
 import { createHash, randomInt } from 'node:crypto';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
@@ -15,14 +18,15 @@ const NICKNAME_CHANGE_COOLDOWN_MS = 0;
 const NICKNAME_RENAME_WINDOW_MS = 60 * 60 * 1000;
 const NICKNAME_RENAMES_PER_HOUR = 5;
 // зачем (владелец 18.10, защита от накрутки счёта Firebase): анонимов можно наплодить — отдельный потолок смен и проверок на IP.
-// Проверка «свободно/занято» тоже ограничена: 60 в час на uid и 200 на IP. Счётчики — в name_rate_limits по хэшу (без uid/IP
-// в открытом виде), фиксированное окно в час, как у authRecoveryHint.
+// Проверка «свободно/занято» тоже ограничена: 60 в час на uid и 200 на IP — общим окном Ядра (callable_rate_windows).
+// Потолок смен на IP считается внутри транзакции брони (только настоящие смены) — в name_rate_limits по хэшу (без IP
+// в открытом виде), фиксированное окно в час.
 const NICKNAME_RENAMES_PER_HOUR_PER_IP = 20;
 const NAME_CHECKS_PER_HOUR = 60;
 const NAME_CHECKS_PER_HOUR_PER_IP = 200;
 const NAME_RATE_LIMITS = 'name_rate_limits';
 
-function nameRateDocId(kind: 'check_uid' | 'check_ip' | 'reserve_ip', key: string): string {
+function nameRateDocId(kind: 'reserve_ip', key: string): string {
   return `${kind}_${createHash('sha256').update(key).digest('hex').slice(0, 32)}`;
 }
 
@@ -36,27 +40,25 @@ function nameRateLog(outcome: string, extra: Record<string, unknown> = {}): void
   console.log(JSON.stringify({ event: 'name_rate', tag: '[NICK-RATE]', outcome, ...extra }));
 }
 
-/** Проверка имени: один счётчик на uid и один на IP, отказ — без записи. */
-async function consumeNameCheckRate(
-  db: FirebaseFirestore.Firestore,
-  authUid: string,
-  ip: string,
-  now = Date.now(),
-): Promise<'ok' | 'limited_uid' | 'limited_ip'> {
-  const refs = [
-    { kind: 'uid' as const, max: NAME_CHECKS_PER_HOUR, ref: db.collection(NAME_RATE_LIMITS).doc(nameRateDocId('check_uid', authUid)) },
-    ...(ip ? [{ kind: 'ip' as const, max: NAME_CHECKS_PER_HOUR_PER_IP, ref: db.collection(NAME_RATE_LIMITS).doc(nameRateDocId('check_ip', ip)) }] : []),
-  ];
-  return db.runTransaction(async (tx) => {
-    const snaps = await Promise.all(refs.map(({ ref }) => tx.get(ref)));
-    const windows = snaps.map((snap) => readRateWindow(snap.exists ? snap.data() : undefined, now));
-    const limitedAt = windows.findIndex((w, i) => w.count >= refs[i].max);
-    if (limitedAt >= 0) return refs[limitedAt].kind === 'uid' ? 'limited_uid' : 'limited_ip';
-    refs.forEach(({ ref }, i) => {
-      tx.set(ref, { count: windows[i].count + 1, windowStartMs: windows[i].start, updatedAtMs: now }, { merge: true });
+/** Проверка имени: окно Ядра на uid и IP; превышение → 'limited' (окно ника молча ждёт «Готово»). */
+async function nameCheckWithinLimit(db: FirebaseFirestore.Firestore, authUid: string, rawRequest: unknown): Promise<boolean> {
+  try {
+    await enforceCallerRateWindow({
+      scope: 'name_check',
+      authUid,
+      rawRequest,
+      maxPerUid: NAME_CHECKS_PER_HOUR,
+      maxPerIp: NAME_CHECKS_PER_HOUR_PER_IP,
+      db,
     });
-    return 'ok';
-  });
+    return true;
+  } catch (error) {
+    if (error instanceof HttpsError && error.code === 'resource-exhausted') {
+      nameRateLog('check_limited', { reason: error.message });
+      return false;
+    }
+    throw error;
+  }
 }
 const GENERATED_NICKNAME_WORDS = [
   'Alpha', 'Axiom', 'Cosmos', 'Delta', 'Helium', 'Ion', 'Lambda', 'Neon',
@@ -290,11 +292,8 @@ export const nameCheckAvailability = onCall(HOT_CALLABLE_OPTIONS, async (request
   const stableUid = await resolveStableUid(db, request.auth.uid, request.data?.stableId);
   const { name, nameLower } = normalizeName(request.data?.name);
   assertValidName(name);
-  const ip = recoveryHintClientIp(request.rawRequest);
-  const rate = await consumeNameCheckRate(db, request.auth.uid, ip);
-  if (rate !== 'ok') {
+  if (!(await nameCheckWithinLimit(db, request.auth.uid, request.rawRequest))) {
     // Клиент молча не показывает статус до «Готово»: применение всё равно проверит имя атомарно в nameReserve.
-    nameRateLog(`check_${rate}`, { hasIp: Boolean(ip) });
     return { ok: true, available: null, limited: true };
   }
 
@@ -425,7 +424,7 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const { name, nameLower } = normalizeName(request.data?.name);
   const oldNameLower = sanitizeString(request.data?.oldName, 32).toLowerCase();
   assertValidName(name);
-  const ip = recoveryHintClientIp(request.rawRequest);
+  const ip = callerIpFromRawRequest(request.rawRequest);
   let rateLimitedBy: 'uid' | 'ip' | null = null;
 
   // Atomic reservation. The ONLY source of truth is name_index/{nameLower}.

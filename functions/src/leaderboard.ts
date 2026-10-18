@@ -6,7 +6,9 @@ import { randomInt } from 'node:crypto';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const NAME_INDEX = 'name_index';
-const NICKNAME_CHANGE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+// зачем (владелец 18.10: «ник можно менять хоть каждую секунду, убери правило 14 дней»): кулдауна смены ника больше нет.
+// Поле nickname_change_available_at продолжает писаться (= момент смены), чтобы старые клиенты видели «можно сейчас».
+const NICKNAME_CHANGE_COOLDOWN_MS = 0;
 const GENERATED_NICKNAME_WORDS = [
   'Alpha', 'Axiom', 'Cosmos', 'Delta', 'Helium', 'Ion', 'Lambda', 'Neon',
   'Nova', 'Omega', 'Orbit', 'Photon', 'Quark', 'Quantum', 'Radium', 'Sigma',
@@ -407,13 +409,9 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       const grantsFreeChange = isInitialNameSet;
       const nicknameChangedAt = isNameChange || previousChangeAt <= 0 ? now : previousChangeAt;
 
-      if (isNameChange && previousChangeAt > 0 && !consumesGraceChange) {
-        const nextChangeAt = previousChangeAt + NICKNAME_CHANGE_COOLDOWN_MS;
-        if (now < nextChangeAt) {
-          cooldownUntil = nextChangeAt;
-          throw new HttpsError('failed-precondition', 'name_change_cooldown');
-        }
-      }
+      // зачем (владелец 18.10): проверка 14-дневного кулдауна убрана — смена ника не ограничена по времени.
+      // Ветка ответа 'cooldown' ниже остаётся для совместимости, но сервер её больше не выдаёт.
+      void cooldownUntil;
 
       if (nameSnap.exists && !nameIndexDocIsHidden(nameSnap.data())) {
         const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);

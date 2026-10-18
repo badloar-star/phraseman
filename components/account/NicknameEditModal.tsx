@@ -1,17 +1,14 @@
 // ════════════════════════════════════════════════════════════════════════════
 // NicknameEditModal.tsx — модалка смены ника для экрана «Аккаунт».
 //
-// Повторяет проверенный флоу настроек (Optimistic UI):
-//   • новое имя видно РОДИТЕЛЮ сразу по тапу «Сохранить», модалка закрывается
-//     мгновенно — бронь имени на сервере (уникальность + кулдаун 14 дней,
-//     источник истины НЕ ослаблен) идёт фоном;
-//   • отказ сервера → откат к старому имени + некритичная инлайн-плашка
-//     (onNotice), а не блокирующий Alert;
-//   • last-write-guard: поздний ответ устаревшей попытки не затирает более
-//     свежее локальное имя (double-tap / повторный сабмит).
-// Валидационные сообщения показываем стеклянным слоем ВНУТРИ этой же модалки
-// (GlassInlineAlert, не <Modal>): RN-<Modal> поверх открытого <Modal> на iOS ломает
-// стек презентаций (см. историю в settings.tsx), а обычный слой — нет.
+// Владелец 18.10: «вводим имя — оно проверяется и, если не занято, СРАЗУ применяется на сервере; ник можно менять
+// хоть каждую секунду» (Optimistic UI):
+//   • формат проверяется на телефоне сразу, строкой у поля (без второго слоя и без <Modal>);
+//   • через 400 мс паузы — ОДИН вызов nameReserve: уникальность проверяет и записывает сервер атомарно
+//     (источник истины — name_index), старое имя освобождается там же; кулдауна больше нет;
+//   • имя у родителя и в локальных копиях меняется сразу; «занято» → откат + «Имя уже занято»;
+//     нет входа/сети → имя остаётся на телефоне, сервер догоняет nickname_guard;
+//   • вызовы по одному: ввод в полёте ставится в очередь, поздний ответ не затирает свежий ввод.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -29,18 +26,15 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from '../text-integrity/FlowText';
-import GlassInlineAlert from './GlassInlineAlert';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
 import { logFriendAdd } from '../../app/friend_add_trace';
 import {
-  checkNameAvailabilityDetailed,
   normalizeNameIndexKey,
   reserveNameDetailed,
   warmNameAvailabilityAuth,
-  type NameAvailabilityStatus,
 } from '../../app/firestore_leaderboard';
 import { patchAppSnapshot } from '../../app/app_snapshot_store';
 import { getDevNameCheck } from '../../app/dev_account_state';
@@ -70,9 +64,9 @@ function traceNick(line: string): void {
   if (typeof __DEV__ !== 'undefined' && __DEV__) console.log(`[NICK] ${line}`); // guard-ok: под __DEV__
 }
 
-const NAME_AVAILABILITY_DEBOUNCE_MS = 600;
-const NAME_AVAILABILITY_CACHE_LIMIT = 12;
-type AvailabilityUiStatus = 'idle' | 'checking' | NameAvailabilityStatus;
+/** Пауза после последней буквы до одного вызова брони (владелец 18.10: проверка «мгновенно», без запроса на каждую букву). */
+const NAME_APPLY_DEBOUNCE_MS = 400;
+type LiveNameStatus = 'idle' | 'checking' | 'applied' | 'taken' | 'invalid';
 
 interface NicknameEditModalProps {
   visible: boolean;
@@ -110,21 +104,119 @@ export default function NicknameEditModal({
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
+  // зачем (владелец 18.10: «вводим имя — оно проверяется и, если не занято, СРАЗУ применяется на сервере. Без всякой хуйни.
+  // Ник можно менять хоть каждую секунду»): кнопки «Сохранить» и обещания проверить имя потом больше нет.
+  // Формат — сразу на телефоне; через 400 мс паузы — ОДИН вызов nameReserve (он атомарно проверяет и записывает, старое имя
+  // освобождается на сервере). Свободно → имя применено, у поля «Готово»; занято → откат к прежнему имени, «Имя уже занято».
+  // Нет входа/сети → имя остаётся на телефоне, сервер догонит nickname_guard при следующем запуске. Вызовы идут по одному:
+  // ввод во время полёта ставится в очередь, поздний ответ не перетирает более свежий ввод. Журнал [NICK-SAVE]/[NICK-CHECK].
   const [newName, setNewName] = useState(currentName);
-  const [saving, setSaving] = useState(false);
-  const [availabilityStatus, setAvailabilityStatus] = useState<AvailabilityUiStatus>('idle');
-  const savingRef = useRef(false);
-  /** last-write-guard: см. шапку файла. */
-  const attemptGuardRef = useRef(0);
-  const availabilityRequestRef = useRef(0);
-  const availabilityCacheRef = useRef(new Map<string, NameAvailabilityStatus>());
+  const [liveStatus, setLiveStatus] = useState<LiveNameStatus>('idle');
+  const [invalidMessage, setInvalidMessage] = useState<string | null>(null);
+  const visibleRef = useRef(visible);
+  visibleRef.current = visible;
+  const newNameRef = useRef(currentName);
+  newNameRef.current = newName;
+  /** Имя, которое сейчас считается применённым (оптимистично до ответа сервера). */
+  const appliedNameRef = useRef(currentName.trim());
+  const inFlightRef = useRef(false);
+  const queuedNameRef = useRef<string | null>(null);
+  const applySeqRef = useRef(0);
+  const applyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Имена, про которые сервер уже сказал «занято», — на сессию окна, без повторного запроса. */
+  const takenCacheRef = useRef(new Set<string>());
+  const requestApplyRef = useRef<(name: string) => void>(() => undefined);
+
+  const takenNotice = () => L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Обери інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.');
+
+  const validateNameFormat = (trimmed: string): string | null => {
+    if (trimmed.length < 2) return L('Минимум 2 символа', 'Мінімум 2 символи', 'Minimum 2 characters', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki');
+    if (trimmed.length > 20) return L('Максимум 20 символов', 'Максимум 20 символів', 'Maximum 20 characters', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków');
+    if (containsBadWord(trimmed)) return L('Недопустимое имя', "Недопустиме ім\'я", 'Invalid name', 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa');
+    return null;
+  };
+
+  /** Локальные копии имени: снимок приложения, хранилище, ссылки на имя в локальных данных. */
+  const writeLocalName = useCallback((name: string, previous: string) => {
+    patchAppSnapshot((current) => current.profile ? {
+      profile: { ...current.profile, source: 'local', updatedAt: Date.now(), name },
+    } : {});
+    void AsyncStorage.setItem('user_name', name).catch((error) => {
+      DebugLogger.error('NicknameEditModal:localName', error, 'warning');
+    });
+    void updateLocalNameReferences(previous, name).catch((error) => {
+      DebugLogger.error('NicknameEditModal:localReferences', error, 'warning');
+    });
+  }, []);
+
+  requestApplyRef.current = (name: string) => {
+    if (name === appliedNameRef.current) {
+      traceNick('apply:skip reason=already_applied');
+      return;
+    }
+    if (inFlightRef.current) {
+      queuedNameRef.current = name;
+      console.log(`[NICK-SAVE] apply:queued len=${name.length} — предыдущий вызов ещё в полёте`); // guard-ok: очередь вызовов брони
+      return;
+    }
+    inFlightRef.current = true;
+    const previous = appliedNameRef.current;
+    const seq = ++applySeqRef.current;
+    const startedAt = Date.now();
+    console.log(`[NICK-SAVE] apply:start seq=${seq} len=${name.length} prevLen=${previous.length} visible=${visibleRef.current}`); // guard-ok: вход в применение имени
+    // Optimistic UI: имя меняется у родителя и в локальных копиях сразу, сервер догоняет.
+    onNotice(null);
+    onOptimisticApply(name);
+    writeLocalName(name, previous);
+    appliedNameRef.current = name;
+    void reserveNameDetailed(name, previous, { source: 'settings' })
+      .catch((error: unknown) => {
+        DebugLogger.error('NicknameEditModal:reserveName', error, 'warning');
+        return { status: 'error' as const };
+      })
+      .then((reservation) => {
+        const ms = Date.now() - startedAt;
+        const stillTyped = newNameRef.current.trim() === name;
+        console.log(`[NICK-SAVE] apply:result seq=${seq} status=${reservation.status} ms=${ms} stillTyped=${stillTyped} visible=${visibleRef.current}`); // guard-ok: ответ сервера и что увидит человек
+        // зачем (владелец 17.10 «друзья должны находиться мгновенно»): в сторе видно, когда новый ник попал в поисковый индекс.
+        logFriendAdd('nick_publish', { source: 'settings', status: reservation.status, ms });
+        if (reservation.status === 'ok') {
+          if (stillTyped) setLiveStatus('applied');
+          return;
+        }
+        if (reservation.status === 'taken' || reservation.status === 'cooldown') {
+          // зачем: откат только если за это время не применилось более свежее имя — поздний ответ не перетирает свежий ввод.
+          if (appliedNameRef.current === name) {
+            console.log(`[NAME-CHANGE] rollback reason=${reservation.status} seq=${seq}`); // guard-ok: причина отката
+            appliedNameRef.current = previous;
+            onRollback(previous);
+            writeLocalName(previous, name);
+          }
+          if (reservation.status === 'taken') takenCacheRef.current.add(normalizeNameIndexKey(name));
+          if (stillTyped) setLiveStatus(reservation.status === 'taken' ? 'taken' : 'idle');
+          if (!visibleRef.current && reservation.status === 'taken') onNotice(takenNotice());
+          return;
+        }
+        // 'error': нет входа / сети / таймаут — имя остаётся на телефоне, сервер догонит nickname_guard при следующем запуске.
+        console.warn(`[NICK-SAVE] apply:kept_local seq=${seq} reason=reserve_error — имя на телефоне, досылка при следующем запуске`); // guard-ok: ранний исход называет причину
+        if (stillTyped) setLiveStatus('idle');
+      })
+      .finally(() => {
+        inFlightRef.current = false;
+        const queued = queuedNameRef.current;
+        queuedNameRef.current = null;
+        if (queued && queued !== appliedNameRef.current) requestApplyRef.current(queued);
+      });
+  };
 
   useEffect(() => {
     if (!visible) return;
-    // Results are only reused while this opening is active. A name may be
-    // claimed or released while the account screen remains mounted.
-    availabilityCacheRef.current.clear();
+    // Новое открытие: стартуем от того имени, что сейчас у родителя (если прошлый вызов ещё летит — он сам доведёт своё).
+    if (!inFlightRef.current) appliedNameRef.current = currentName.trim();
+    takenCacheRef.current.clear();
     setNewName(currentName);
+    setLiveStatus('idle');
+    setInvalidMessage(null);
     warmNameAvailabilityAuth();
   }, [visible, currentName]);
 
@@ -144,249 +236,82 @@ export default function NicknameEditModal({
   }, [visible]);
 
   useEffect(() => {
-    const requestId = ++availabilityRequestRef.current;
-    if (!visible) {
-      setAvailabilityStatus('idle');
-      return;
-    }
-
+    if (!visible) return undefined;
+    // Новый ввод отменяет всё, что ждало своей очереди: применяется только последнее.
+    queuedNameRef.current = null;
     const trimmed = newName.trim();
-    if (
-      trimmed === currentName.trim()
-      || trimmed.length < 2
-      || trimmed.length > 20
-      || containsBadWord(trimmed)
-    ) {
-      setAvailabilityStatus('idle');
-      return;
+    if (!trimmed) {
+      setLiveStatus('idle');
+      return undefined;
     }
-
-    // зачем (координатор 12.10, кадры settings-gap-024/025/026/031): ответ проверки решает сервер, «Проверяем…» живёт доли секунды.
+    const invalid = validateNameFormat(trimmed);
+    if (invalid) {
+      traceNick(`check:invalid len=${trimmed.length}`);
+      setInvalidMessage(invalid);
+      setLiveStatus('invalid');
+      return undefined;
+    }
+    if (trimmed === appliedNameRef.current) {
+      setLiveStatus((current) => (current === 'applied' ? 'applied' : 'idle'));
+      return undefined;
+    }
     // dev `namecheck=` подменяет ответ в памяти ДО кэша и сети; вне dev / в стор-сборке геттер всегда null.
     const devNameCheck = getDevNameCheck();
     if (devNameCheck !== null) {
       console.log(`[DEV-STATE] namecheck=${devNameCheck}: ответ проверки имени подменён, сервер не вызывается`); // guard-ok: dev-ветка
-      setAvailabilityStatus(devNameCheck);
-      return;
+      setLiveStatus(devNameCheck === 'available' ? 'applied' : devNameCheck === 'taken' ? 'taken' : devNameCheck === 'checking' ? 'checking' : 'idle');
+      return undefined;
     }
-
-    const cacheKey = normalizeNameIndexKey(trimmed);
-    const cached = availabilityCacheRef.current.get(cacheKey);
-    if (cached) {
-      setAvailabilityStatus(cached);
-      return;
+    if (takenCacheRef.current.has(normalizeNameIndexKey(trimmed))) {
+      console.log(`[NICK-CHECK] check:taken source=session_cache len=${trimmed.length}`); // guard-ok: ответ из кэша, без сети
+      setLiveStatus('taken');
+      return undefined;
     }
-
-    setAvailabilityStatus('checking');
-    let active = true;
+    setLiveStatus('checking');
     const timer = setTimeout(() => {
-      void checkNameAvailabilityDetailed(trimmed)
-        .then((result) => {
-          if (!active || availabilityRequestRef.current !== requestId) return;
-          // зачем (логи, settings-gaps-states): статус 'error' от проверки раньше уходил без следа — видно, что человек увидит «Проверим при сохранении»
-          if (result.status === 'error') DebugLogger.error('NicknameEditModal:checkAvailabilityStatus', new Error('availability_status_error'), 'warning');
-          if (result.status !== 'error') {
-            const cache = availabilityCacheRef.current;
-            if (cache.size >= NAME_AVAILABILITY_CACHE_LIMIT) cache.clear();
-            cache.set(cacheKey, result.status);
-          }
-          setAvailabilityStatus(result.status);
-        })
-        .catch((error: unknown) => {
-          DebugLogger.error('NicknameEditModal:checkAvailability', error, 'warning');
-          if (active && availabilityRequestRef.current === requestId) setAvailabilityStatus('error');
-        });
-    }, NAME_AVAILABILITY_DEBOUNCE_MS);
-
+      applyTimerRef.current = null;
+      requestApplyRef.current(trimmed);
+    }, NAME_APPLY_DEBOUNCE_MS);
+    applyTimerRef.current = timer;
     return () => {
-      active = false;
       clearTimeout(timer);
+      if (applyTimerRef.current === timer) applyTimerRef.current = null;
     };
-  }, [currentName, newName, visible]);
-
-  // зачем: было Alert.alert('Сообщение', message) — теперь стеклянный слой в модалке, текст тот же.
-  const [inlineAlertMessage, setInlineAlertMessage] = useState<string | null>(null);
-  const alertOverModal = useCallback((message: string) => {
-    traceNick(`validation:alert message=${message}`);
-    setInlineAlertMessage(message);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newName, visible]);
 
   const closeNow = useCallback(() => {
-    setInlineAlertMessage(null);
     Keyboard.dismiss();
     onRequestClose();
   }, [onRequestClose]);
 
-  // зачем (координатор 18.10, аудит Optimistic UI): окно открыли повторно, пока бронь прошлого имени ещё идёт (до ~16 с
-  // на плохой сети) — крестик, «Отмена» и «назад» молчали, окно залипало. Закрытие не трогает идущую попытку: она сама
-  // применит подтверждение или откат по attemptGuard. «Сохранить» остаётся заблокированным до ответа брони.
-  const close = useCallback(() => {
-    if (savingRef.current) console.log('[NAME-CHANGE] close_while_reserving — окно закрыто, бронь прошлого имени доживает'); // guard-ok: редкий крайний случай
-    closeNow();
-  }, [closeNow]);
-
-  const saveName = async () => {
-    if (savingRef.current) {
-      traceNick('save:skip reason=already_saving');
-      return;
-    }
-    if (availabilityStatus === 'checking' || availabilityStatus === 'taken') {
-      traceNick(`save:skip reason=availability status=${availabilityStatus}`);
-      return;
-    }
+  // «Готово», крестик, «назад» и тап по фону: если пауза ещё не истекла — применяем введённое сразу, потом закрываем.
+  const finishAndClose = () => {
     const trimmed = newName.trim();
-    traceNick(`save:in len=${trimmed.length} changed=${trimmed !== currentName.trim()} availability=${availabilityStatus}`);
-    if (!trimmed) { alertOverModal(L('Введи имя', "Введи ім\'я", 'Enter a name or nickname', 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
-    if (trimmed.length < 2) { alertOverModal(L('Минимум 2 символа', 'Мінімум 2 символи', 'Minimum 2 characters', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
-    if (trimmed.length > 20) { alertOverModal(L('Максимум 20 символов', 'Максимум 20 символів', 'Maximum 20 characters', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
-    if (containsBadWord(trimmed)) { alertOverModal(L('Недопустимое имя', "Недопустиме ім\'я", 'Invalid name', 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
-
-    const oldName = currentName.trim();
-    if (trimmed === oldName) {
-      traceNick('save:out unchanged — закрываем без сети');
-      closeNow();
-      return;
+    if (applyTimerRef.current) {
+      clearTimeout(applyTimerRef.current);
+      applyTimerRef.current = null;
+      if (!validateNameFormat(trimmed) && trimmed !== appliedNameRef.current) {
+        console.log(`[NICK-SAVE] close:flush len=${trimmed.length} — пауза не истекла, применяем сразу`); // guard-ok: ранний путь называет причину
+        requestApplyRef.current(trimmed);
+      }
     }
-
-    const myGuard = ++attemptGuardRef.current;
-    const isStaleAttempt = () => attemptGuardRef.current !== myGuard;
-
-    savingRef.current = true;
-    setSaving(true);
-    onNotice(null);
-
-    // Optimistic UI: имя видно сразу, модалка закрывается; бронь — фоном.
-    onOptimisticApply(trimmed);
-    patchAppSnapshot((current) => current.profile ? {
-      profile: {
-        ...current.profile,
-        source: 'local',
-        updatedAt: Date.now(),
-        name: trimmed,
-      },
-    } : {});
     closeNow();
-    void AsyncStorage.setItem('user_name', trimmed).catch((error) => {
-      DebugLogger.error('NicknameEditModal:localApplyOptimistic', error, 'warning');
-    });
-    void updateLocalNameReferences(oldName, trimmed).catch((error) => {
-      DebugLogger.error('NicknameEditModal:localReferencesOptimistic', error, 'warning');
-    });
-
-    // зачем (владелец: откат имени был молчаливым): причина отката пишется в лог ВСЕГДА, не только в __DEV__ —
-    // по строке [NAME-CHANGE] видно, почему имя вернулось (занято / кулдаун / сеть). Само имя в лог не пишем.
-    const rollbackToOldName = (reason: string) => {
-      console.log(`[NAME-CHANGE] rollback reason=${reason} stale=${isStaleAttempt()}`);
-      if (isStaleAttempt()) {
-        traceNick('rollback:skip stale_attempt');
-        return; // более свежая попытка уже решила исход UI
-      }
-      // ВАЖНО для диагностики зависания: откат вызывает onNotice у родителя,
-      // а тот делает animateNextLayoutTransition + setState в кадре, где
-      // HybridAlertShell ещё докрывается. Отсюда и подозрение на гонку с
-      // нативным dismiss, если владелец в этот момент жмёт «Назад».
-      traceNick('rollback:apply — возвращаем старое имя, показываем плашку');
-      onRollback(oldName);
-      patchAppSnapshot((current) => current.profile ? {
-        profile: {
-          ...current.profile,
-          source: 'local',
-          updatedAt: Date.now(),
-          name: oldName,
-        },
-      } : {});
-      void AsyncStorage.setItem('user_name', oldName).catch((error) => {
-        DebugLogger.error('NicknameEditModal:rollbackStorage', error, 'warning');
-      });
-      void updateLocalNameReferences(trimmed, oldName).catch((error) => {
-        DebugLogger.error('NicknameEditModal:rollbackReferences', error, 'warning');
-      });
-    };
-
-    traceNick('save:closed_modal — оптимистично применено, идём в бронь');
-
-    try {
-      let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
-      const reserveStartedAt = Date.now();
-      try {
-        reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
-      } catch (error) {
-        DebugLogger.error('NicknameEditModal:reserveName', error, 'warning');
-        reservation = { status: 'error' };
-      }
-      traceNick(`save:reserve status=${reservation.status} tookMs=${Date.now() - reserveStartedAt}`);
-      // зачем (владелец 17.10 «друзья должны находиться мгновенно»): в сторе видно, когда новый ник попал в поисковый индекс.
-      logFriendAdd('nick_publish', { source: 'settings', status: reservation.status, ms: Date.now() - reserveStartedAt });
-
-      if (isStaleAttempt()) {
-        traceNick('save:out stale_attempt — исход решает более свежая попытка');
-        return;
-      }
-
-      if (reservation.status === 'taken') {
-        traceNick('save:out taken — откат + плашка');
-        rollbackToOldName('taken');
-        onNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Обери інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
-        return;
-      }
-      if (reservation.status === 'cooldown') {
-        traceNick('save:out cooldown_14d — откат + плашка');
-        rollbackToOldName('cooldown_14d');
-        onNotice(L(
-          'Ник можно менять не чаще одного раза в 14 дней.',
-          'Нік можна змінювати не частіше одного разу на 14 днів.',
-          'You can change your name only once every 14 days.',
-          'Puedes cambiar el nombre solo una vez cada 14 días.',
-          'Você só pode mudar o nome uma vez a cada 14 dias.',
-          'Bạn chỉ có thể đổi tên 14 ngày một lần.',
-          'Nama hanya bisa diganti sekali setiap 14 hari.',
-          'Adı en fazla 14 günde bir değiştirebilirsin.',
-          'Nazwę można zmieniać najwyżej raz na 14 dni.',
-        ));
-        return;
-      }
-      if (reservation.status !== 'ok') {
-        // Самая частая ветка при плохой сети — и именно в ней ловится зависание
-        // экрана, если владелец в этот момент жмёт «Назад».
-        traceNick(`save:out reserve_not_ok status=${reservation.status} — откат + плашка`);
-        rollbackToOldName(`reserve_${reservation.status}`);
-        onNotice(L(
-          'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
-          'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
-          'Could not verify the name. Check your internet and try again.',
-          'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
-          'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
-          'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
-          'Tidak bisa memeriksa nama. Periksa koneksi dan coba lagi.',
-          'Ad doğrulanamadı. Bağlantını kontrol et ve tekrar dene.',
-          'Nie udało się sprawdzić nazwy. Sprawdź połączenie i spróbuj ponownie.',
-        ));
-        return;
-      }
-
-      // Бронь подтверждена — оптимистично показанное имя остаётся.
-      traceNick('save:out ok — имя закреплено за аккаунтом');
-    } finally {
-      savingRef.current = false;
-      setSaving(false);
-    }
   };
+  const close = finishAndClose;
 
-  const saveDisabled = saving || availabilityStatus === 'checking' || availabilityStatus === 'taken';
-
+  const availabilityStatus = liveStatus;
   const availabilityMessage = (() => {
-    if (availabilityStatus === 'checking') {
+    if (liveStatus === 'checking') {
       return L('Проверяем имя…', 'Перевіряємо ім\'я…', 'Checking the name…', 'Comprobando nombre…', 'Verificando nome…', 'Đang kiểm tra tên…', 'Memeriksa nama…', 'Ad kontrol ediliyor…', 'Sprawdzamy nazwę…');
     }
-    if (availabilityStatus === 'available') {
-      return L('Имя свободно', 'Ім\'я вільне', 'The name is available', 'El nombre está disponible', 'Nome disponível', 'Tên khả dụng', 'Nama tersedia', 'Ad kullanılabilir', 'Nazwa jest dostępna');
+    if (liveStatus === 'applied') {
+      return L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe');
     }
-    if (availabilityStatus === 'taken') {
+    if (liveStatus === 'taken') {
       return L('Имя уже занято', 'Ім\'я вже зайняте', 'The name is already taken', 'El nombre ya está en uso', 'Este nome já está em uso', 'Tên đã được sử dụng', 'Nama sudah dipakai', 'Bu ad zaten kullanılıyor', 'Nazwa jest już zajęta');
     }
-    if (availabilityStatus === 'error') {
-      return L('Проверим при сохранении', 'Перевіримо під час збереження', 'We\'ll check when you save', 'Lo comprobaremos al guardar', 'Verificaremos ao salvar', 'Sẽ kiểm tra khi lưu', 'Akan diperiksa saat menyimpan', 'Kaydederken kontrol edeceğiz', 'Sprawdzimy przy zapisie');
-    }
+    if (liveStatus === 'invalid') return invalidMessage ?? '';
     return '';
   })();
 
@@ -403,9 +328,9 @@ export default function NicknameEditModal({
 
   // зачем: «свободно» — нейтральный текст темы с галочкой (зелёные поверхности/акценты убраны
   // владельцем); красным остаётся только «занято» — это семантика ошибки, а не декор.
-  const availabilityColor = availabilityStatus === 'taken'
+  const availabilityColor = availabilityStatus === 'taken' || availabilityStatus === 'invalid'
     ? t.wrong
-    : availabilityStatus === 'available'
+    : availabilityStatus === 'applied'
       ? glass.text
       : glass.secondary;
   const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
@@ -437,9 +362,6 @@ export default function NicknameEditModal({
           <View style={{ flex: 1 }}>
             <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, lineHeight: 28 /* зачем (settings-gaps-states, 12.10): заголовок шторки 22/28 как в макете, не зависит от шага шрифта f.h2 */, fontWeight: '700' }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
-            </Text>
-            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18 /* зачем (settings-gaps-states): подпись шторки 13/18 (.gs-shs), а не f.caption=15 при «Средний» */, marginTop: 7 /* зачем: паритет profile.html (13.10): отступ подзаголовка 7 */ }}>
-              {L('Ник можно менять раз в 14 дней', 'Нік можна змінювати раз на 14 днів', 'You can change it once every 14 days', 'Puedes cambiarlo una vez cada 14 días', 'Você pode mudar uma vez a cada 14 dias', 'Có thể đổi 14 ngày một lần', 'Bisa diganti sekali tiap 14 hari', '14 günde bir değiştirebilirsin', 'Zmiana raz na 14 dni')}
             </Text>
           </View>
           <TouchableOpacity
@@ -489,11 +411,10 @@ export default function NicknameEditModal({
           onChangeText={setNewName}
           placeholder={L('Введи имя...', 'Введи ім\'я...', 'Enter your name...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
           placeholderTextColor={glass.mutedText}
-          editable={!saving}
           autoFocus={!isHybrid}
           maxLength={20}
           returnKeyType="done"
-          onSubmitEditing={() => { if (!saveDisabled) void saveName(); }}
+          onSubmitEditing={finishAndClose}
           blurOnSubmit
         />
         <View
@@ -501,12 +422,10 @@ export default function NicknameEditModal({
         >
           {availabilityStatus === 'checking' ? (
             <ActivityIndicator size="small" color={availabilityColor} />
-          ) : availabilityStatus === 'available' ? (
+          ) : availabilityStatus === 'applied' ? (
             <Ionicons name="checkmark-circle-outline" size={16} color={availabilityColor} />
-          ) : availabilityStatus === 'taken' ? (
+          ) : availabilityStatus === 'taken' || availabilityStatus === 'invalid' ? (
             <Ionicons name="close-circle-outline" size={16} color={availabilityColor} />
-          ) : availabilityStatus === 'error' ? (
-            <Ionicons name="cloud-offline-outline" size={16} color={availabilityColor} />
           ) : null}
           {availabilityMessage ? (
             <Text
@@ -520,71 +439,36 @@ export default function NicknameEditModal({
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={{ flexDirection: 'row', gap: 12, marginTop: 8 }}>
-          <TouchableOpacity
-            accessibilityRole="button"
-            activeOpacity={0.7}
-            style={{
-              flex: 1,
-              minHeight: 48,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              borderRadius: 24,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: glass.selected,
-            }}
-            onPress={() => { doHaptic(); close(); }}
-          >
-            {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
-            <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-              {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-            </FlowText>
-          </TouchableOpacity>
+        {/* зачем (владелец 18.10): имя применяется само по мере ввода — нужна одна кнопка «Готово» (закрыть). «Отмена»
+            не может «отменить» уже применённое на сервере имя, поэтому её нет. */}
+        <View style={{ flexDirection: 'row', marginTop: 8 }}>
           <TouchableOpacity
             testID="nickname-save"
             accessibilityRole="button"
             activeOpacity={0.8}
-            disabled={saveDisabled}
-            accessibilityState={{ disabled: saveDisabled }}
             style={{
               flex: 1,
               minHeight: 48,
               paddingHorizontal: 12,
               paddingVertical: 12,
               borderRadius: 24,
-              backgroundColor: glass.accent, // light-accent-ok: кнопка «Сохранить» с подписью accentInk на accent
+              backgroundColor: glass.accent, // light-accent-ok: кнопка «Готово» с подписью accentInk на accent
               alignItems: 'center',
               justifyContent: 'center',
-              opacity: saveDisabled ? 0.5 : 1,
             }}
-            onPress={() => { if (saveDisabled) return; doHaptic(); void saveName(); }}
+            onPress={() => { doHaptic(); finishAndClose(); }}
           >
-            <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
-              {saving ? (
-                <ActivityIndicator size="small" color={glass.ctaInk} />
-              ) : null}
-              {/* text-integrity: без усечения и без сжатия шрифта — длинные переводы
-                  («Kaydediliyor», «Zapisywanie») переносятся, кнопка растёт по minHeight. */}
-              <FlowText
-                testID="nickname-save-label"
-                provenance="authored"
-                style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}
-              >
-                {saving
-                  ? L('Сохраняем', 'Зберігаємо', 'Saving', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
-                  : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-              </FlowText>
-            </View>
+            {/* text-integrity: без усечения и без сжатия шрифта — длинные переводы переносятся, кнопка растёт по minHeight. */}
+            <FlowText
+              testID="nickname-save-label"
+              provenance="authored"
+              style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}
+            >
+              {L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')}
+            </FlowText>
           </TouchableOpacity>
         </View>
       </CascadeItem>
-      <GlassInlineAlert
-        visible={inlineAlertMessage != null}
-        title={L('Сообщение', 'Повідомлення', 'Message', 'Mensaje', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość')}
-        message={inlineAlertMessage ?? undefined}
-        onClose={() => setInlineAlertMessage(null)}
-      />
     </View>
   );
 

@@ -22,9 +22,10 @@ test('вид плашки по overlay-runtime.css: радиус 16, поля 13
 });
 
 test('каждый откат пишет [NAME-CHANGE] с причиной, три причины переданы', () => {
-  assert.ok(modal.includes('[NAME-CHANGE] rollback reason='));
-  assert.ok(modal.includes("rollbackToOldName('taken')"));
-  assert.ok(modal.includes("rollbackToOldName('cooldown_14d')"));
-  assert.ok(modal.includes('rollbackToOldName(`reserve_${reservation.status}`)'));
-  assert.ok(!modal.includes('rollbackToOldName()'));
+  // 18.10 (владелец: «убери правило 14 дней», имя применяется сразу при вводе): откат только на «занято»/старый ответ кулдауна,
+  // сбой сети/входа — имя остаётся на телефоне (досылка nickname_guard), причина каждого исхода в журнале.
+  assert.ok(modal.includes('[NAME-CHANGE] rollback reason=${reservation.status}'));
+  assert.ok(modal.includes('[NICK-SAVE] apply:kept_local'));
+  assert.ok(!modal.includes('14 дней'));
+  assert.ok(!modal.includes('Проверим при сохранении'));
 });

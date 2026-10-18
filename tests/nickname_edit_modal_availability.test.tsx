@@ -82,18 +82,22 @@ async function renderModal(callbacks: {
   onOptimisticApply?: jest.Mock;
   onRollback?: jest.Mock;
   onNotice?: jest.Mock;
+  onRequestClose?: jest.Mock;
 } = {}) {
   return render(
     <NicknameEditModal
       visible
       currentName="Current name"
-      onRequestClose={jest.fn()}
+      onRequestClose={callbacks.onRequestClose ?? jest.fn()}
       onOptimisticApply={callbacks.onOptimisticApply ?? jest.fn()}
       onRollback={callbacks.onRollback ?? jest.fn()}
       onNotice={callbacks.onNotice ?? jest.fn()}
     />,
   );
 }
+
+const availabilityText = (screen: Awaited<ReturnType<typeof renderModal>>) =>
+  screen.queryByTestId('nickname-availability')?.props.children;
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -106,148 +110,103 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-test('checks a changed nickname once after the debounce pause', async () => {
-  mockCheckNameAvailabilityDetailed.mockResolvedValue({ status: 'available' });
+// 18.10 (владелец: «вводим имя — проверяется и, если не занято, СРАЗУ применяется на сервере; ник можно менять хоть каждую
+// секунду»): формат — сразу на телефоне, через 400 мс паузы — ОДИН вызов брони, он же применяет имя.
+
+test('format problems show at once on the phone and never reach the server', async () => {
   const screen = await renderModal();
-
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'First name');
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Final name');
-
-  expect(mockCheckNameAvailabilityDetailed).not.toHaveBeenCalled();
-  await act(async () => {
-    await jest.advanceTimersByTimeAsync(600);
-  });
-
-  expect(mockCheckNameAvailabilityDetailed).toHaveBeenCalledTimes(1);
-  expect(mockCheckNameAvailabilityDetailed).toHaveBeenCalledWith('Final name');
-  expect(screen.getByTestId('nickname-availability').props.children).toContain('Имя свободно');
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'A');
+  expect(availabilityText(screen)).toContain('Минимум 2 символа');
+  await act(async () => { await jest.advanceTimersByTimeAsync(1000); });
+  expect(mockReserveNameDetailed).not.toHaveBeenCalled();
 });
 
-test('shows a taken nickname immediately after the check and disables save', async () => {
-  mockCheckNameAvailabilityDetailed.mockResolvedValue({ status: 'taken' });
-  const screen = await renderModal();
-
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Busy name');
-  await act(async () => {
-    await jest.advanceTimersByTimeAsync(600);
-  });
-
-  expect(screen.getByTestId('nickname-availability').props.children).toContain('Имя уже занято');
-  expect(screen.getByTestId('nickname-save').props.accessibilityState).toEqual({ disabled: true });
-  expect(mockAnnounceForAccessibility).toHaveBeenCalledWith('Имя уже занято');
-});
-
-test('ignores an older availability response after the user enters another nickname', async () => {
-  const first = deferred<{ status: 'available' }>();
-  const second = deferred<{ status: 'taken' }>();
-  mockCheckNameAvailabilityDetailed
-    .mockReturnValueOnce(first.promise)
-    .mockReturnValueOnce(second.promise);
-  const screen = await renderModal();
-
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'First name');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Second name');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
-
-  await act(async () => {
-    second.resolve({ status: 'taken' });
-    await second.promise;
-  });
-  await act(async () => {
-    first.resolve({ status: 'available' });
-    await first.promise;
-  });
-
-  expect(screen.getByTestId('nickname-availability').props.children).toContain('Имя уже занято');
-});
-
-test('reuses the cached result when the same nickname is entered again', async () => {
-  mockCheckNameAvailabilityDetailed.mockResolvedValue({ status: 'available' });
-  const screen = await renderModal();
-
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Cached name');
-  await act(async () => {
-    await jest.advanceTimersByTimeAsync(600);
-  });
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Other name');
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Cached name');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
-
-  expect(mockCheckNameAvailabilityDetailed).toHaveBeenCalledTimes(1);
-  expect(screen.getByTestId('nickname-availability').props.children).toContain('Имя свободно');
-});
-
-test('does not reuse an availability result from a previous modal opening', async () => {
-  mockCheckNameAvailabilityDetailed.mockResolvedValue({ status: 'available' });
-  const screen = await renderModal();
-
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Released later');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
-  await act(async () => {
-    screen.rerender(
-      <NicknameEditModal
-        visible={false}
-        currentName="Current name"
-        onRequestClose={jest.fn()}
-        onOptimisticApply={jest.fn()}
-        onRollback={jest.fn()}
-        onNotice={jest.fn()}
-      />,
-    );
-  });
-  await act(async () => {
-    screen.rerender(
-      <NicknameEditModal
-        visible
-        currentName="Current name"
-        onRequestClose={jest.fn()}
-        onOptimisticApply={jest.fn()}
-        onRollback={jest.fn()}
-        onNotice={jest.fn()}
-      />,
-    );
-  });
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Released later');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
-
-  expect(mockCheckNameAvailabilityDetailed).toHaveBeenCalledTimes(2);
-});
-
-test('allows the atomic reserve attempt when the preliminary check fails', async () => {
-  mockCheckNameAvailabilityDetailed.mockResolvedValue({ status: 'error' });
+test('applies the last typed name once after a 400 ms pause and shows «Готово»', async () => {
   const onOptimisticApply = jest.fn();
   const screen = await renderModal({ onOptimisticApply });
 
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), '  Final name  ');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'First name');
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Final name');
+  expect(availabilityText(screen)).toContain('Проверяем имя');
+  await act(async () => { await jest.advanceTimersByTimeAsync(399); });
+  expect(mockReserveNameDetailed).not.toHaveBeenCalled();
+  await act(async () => { await jest.advanceTimersByTimeAsync(1); });
 
-  expect(screen.getByTestId('nickname-save').props.accessibilityState).toEqual({ disabled: false });
-  await act(async () => {
-    fireEvent.press(screen.getByTestId('nickname-save'));
-    await Promise.resolve();
-  });
-
-  expect(onOptimisticApply).toHaveBeenCalledWith('Final name');
+  expect(mockReserveNameDetailed).toHaveBeenCalledTimes(1);
   expect(mockReserveNameDetailed).toHaveBeenCalledWith('Final name', 'Current name', { source: 'settings' });
+  expect(onOptimisticApply).toHaveBeenCalledWith('Final name');
+  expect(availabilityText(screen)).toContain('Готово');
+  expect(availabilityText(screen)).not.toContain('Проверим при сохранении');
 });
 
-test('rolls the optimistic nickname back when the atomic reserve reports taken', async () => {
-  mockCheckNameAvailabilityDetailed.mockResolvedValue({ status: 'available' });
+test('a taken name rolls back to the previous one and is not asked again in this opening', async () => {
   mockReserveNameDetailed.mockResolvedValue({ status: 'taken' });
   const onRollback = jest.fn();
-  const onNotice = jest.fn();
-  const screen = await renderModal({ onRollback, onNotice });
+  const screen = await renderModal({ onRollback });
 
-  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Busy later');
-  await act(async () => { await jest.advanceTimersByTimeAsync(600); });
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Busy name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+
+  expect(onRollback).toHaveBeenCalledWith('Current name');
+  expect(availabilityText(screen)).toContain('Имя уже занято');
+  expect(mockAnnounceForAccessibility).toHaveBeenCalledWith('Имя уже занято');
+
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Other');
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Busy name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+  expect(mockReserveNameDetailed).toHaveBeenCalledTimes(1);
+  expect(availabilityText(screen)).toContain('Имя уже занято');
+});
+
+test('calls go one at a time: input during a call is queued, and the late answer does not override fresher input', async () => {
+  const first = deferred<{ status: 'ok' }>();
+  mockReserveNameDetailed.mockReturnValueOnce(first.promise).mockResolvedValueOnce({ status: 'ok' });
+  const screen = await renderModal();
+
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'First name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Second name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+  expect(mockReserveNameDetailed).toHaveBeenCalledTimes(1);
+
+  await act(async () => {
+    first.resolve({ status: 'ok' });
+    await first.promise;
+  });
+  await act(async () => { await Promise.resolve(); });
+
+  expect(mockReserveNameDetailed).toHaveBeenCalledTimes(2);
+  // the queued call frees the name that was applied a moment ago
+  expect(mockReserveNameDetailed).toHaveBeenLastCalledWith('Second name', 'First name', { source: 'settings' });
+  expect(availabilityText(screen)).toContain('Готово');
+});
+
+test('no sign-in / no network: the name stays on the phone, no rollback, no «check on save» promise', async () => {
+  mockReserveNameDetailed.mockResolvedValue({ status: 'error' });
+  const onRollback = jest.fn();
+  const onOptimisticApply = jest.fn();
+  const screen = await renderModal({ onRollback, onOptimisticApply });
+
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Offline name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+
+  expect(onOptimisticApply).toHaveBeenCalledWith('Offline name');
+  expect(onRollback).not.toHaveBeenCalled();
+  expect(availabilityText(screen) ?? '').not.toContain('Проверим');
+});
+
+test('«Готово» before the pause ends applies the typed name right away and closes', async () => {
+  const onRequestClose = jest.fn();
+  const screen = await renderModal({ onRequestClose });
+
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Quick name');
   await act(async () => {
     fireEvent.press(screen.getByTestId('nickname-save'));
     await Promise.resolve();
   });
 
-  expect(onRollback).toHaveBeenCalledWith('Current name');
-  expect(onNotice.mock.calls.at(-1)?.[0]).toContain('имя уже занято');
+  expect(mockReserveNameDetailed).toHaveBeenCalledWith('Quick name', 'Current name', { source: 'settings' });
+  expect(onRequestClose).toHaveBeenCalled();
 });
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports

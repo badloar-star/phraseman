@@ -65,8 +65,10 @@ test('paywall_purchase: логика покупки не тронута, окн�
   assert.ok(files.paywall.includes('showUnverifiedPurchaseAlert(lang)'));
 });
 
-test('ник: ошибки валидации — стеклянный слой внутри модалки, не второй <Modal>', () => {
-  assert.ok(files.nickname.includes('<GlassInlineAlert'));
+test('ник: ошибки валидации — строкой у поля внутри шторки, не второй <Modal>', () => {
+  // 18.10 (владелец: проверка имени мгновенно при вводе): формат показывается строкой статуса у поля, слой-алерт не нужен.
+  assert.ok(!files.nickname.includes('<GlassInlineAlert'));
+  assert.ok(files.nickname.includes("liveStatus === 'invalid'"));
   // 12.10: мёртвый «Модал имени» в Настройках удалён (аудит COVERAGE_AUDIT_R1 §C) — слой живёт только в NicknameEditModal.
   assert.ok(!files.settings.includes('<GlassInlineAlert'));
   assert.ok(!/<Modal[ >]/.test(inline.replace(/\/\/.*$/gm, '')), 'слой не Modal — нет present-over-present на iOS');

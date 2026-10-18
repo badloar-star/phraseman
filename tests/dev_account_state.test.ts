@@ -175,8 +175,9 @@ describe('dev account states', () => {
     expect(getDevNameCheck()).toBeNull();
     const modal = read('components/account/NicknameEditModal.tsx');
     expect(modal.indexOf('getDevNameCheck()')).toBeGreaterThan(-1);
-    expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('availabilityCacheRef.current.get(cacheKey)'));
-    expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('void checkNameAvailabilityDetailed(trimmed)'));
+    // 18.10: проверка+применение — один вызов брони по паузе; dev-подмена стоит до кэша «занято» и до вызова.
+    expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('takenCacheRef.current.has(normalizeNameIndexKey(trimmed))'));
+    expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('requestApplyRef.current(trimmed);\n    }, NAME_APPLY_DEBOUNCE_MS)'));
   });
 
   // зачем (координатор 12.10, auth-gap-003/012): switch=required — вход отдаёт account_switch_required до сети, выход по-прежнему отказывает.

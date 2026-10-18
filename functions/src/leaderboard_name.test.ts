@@ -205,7 +205,8 @@ describe('nameReserve — atomic uniqueness', () => {
     expect(store.public_profiles['stable-a']).toMatchObject({ uid: 'stable-a', name: 'Civi', nameLower: 'civi' });
   });
 
-  it('blocks changing a reserved name again before 14 days', async () => {
+  // 18.10 (владелец: «ник можно менять хоть каждую секунду, убери правило 14 дней»): повторная смена сразу проходит.
+  it('allows changing a reserved name again right away (no 14-day cooldown)', async () => {
     const { db } = makeDbStub({
       users: {
         'stable-a': {
@@ -220,8 +221,7 @@ describe('nameReserve — atomic uniqueness', () => {
       { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'settings' },
       'auth-a',
     );
-    expect(res.status).toBe('cooldown');
-    expect(res.nextChangeAt).toBe(1778209599000);
+    expect(res.status).toBe('ok');
   });
 
   it('allows the first settings change after onboarding and consumes the free-change flag', async () => {
@@ -359,7 +359,7 @@ describe('nameReserve — atomic uniqueness', () => {
     expect(store.name_index['civi']).toBeUndefined();
   });
 
-  it('keeps the 14-day cooldown for settings changes only', async () => {
+  it('lets settings rename right after a previous change (cooldown removed 18.10)', async () => {
     const { db } = makeDbStub({
       users: {
         'stable-a': {
@@ -378,11 +378,10 @@ describe('nameReserve — atomic uniqueness', () => {
       { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'settings' },
       'auth-a',
     );
-    expect(res.status).toBe('cooldown');
-    expect(res.nextChangeAt).toBe(1778209599000);
+    expect(res.status).toBe('ok');
   });
 
-  it('does not let a spoofed onboarding source bypass the rename cooldown', async () => {
+  it('an onboarding-source rename right after a change also goes through (cooldown removed 18.10)', async () => {
     const { db, store } = makeDbStub({
       users: {
         'stable-a': {
@@ -402,9 +401,9 @@ describe('nameReserve — atomic uniqueness', () => {
       { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'onboarding' },
       'auth-a',
     );
-    expect(res.status).toBe('cooldown');
-    expect(store.name_index['nova']).toBeUndefined();
-    expect(store.name_index['civi']).toMatchObject({ uid: 'stable-a' });
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a' });
+    expect(store.name_index['civi']).toBeUndefined();
   });
 
   it('reclaims a name whose owner account is GONE (no users doc)', async () => {
@@ -614,7 +613,7 @@ describe('nameGenerateAndReserve — «Имя N» из имени аккаунт
 });
 
 describe('settings rename grace policy', () => {
-  it('allows three successful renames and blocks the fourth during cooldown', async () => {
+  it('allows any number of renames in a row — the fourth is not blocked anymore (18.10)', async () => {
     const { db, store } = makeDbStub({
       users: {
         'stable-a': {
@@ -647,6 +646,6 @@ describe('settings rename grace policy', () => {
       { stableId: 'stable-a', name: 'Vector 10005', oldName, source: 'onboarding' },
       'auth-a',
     );
-    expect(blocked.status).toBe('cooldown');
+    expect(blocked.status).toBe('ok');
   });
 });

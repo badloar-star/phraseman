@@ -195,6 +195,26 @@ export type NameAvailabilityResult = {
   status: NameAvailabilityStatus;
 };
 
+/**
+ * зачем (владелец 18.10 «ввёл имя — НЕ СОХРАНИЛОСЬ», координатор: СПЕРВА ЛОГИ): проверка и бронь ника отдавали голое 'error'
+ * без причины — по журналу нельзя было понять, что упало: нет личности (не вошёл / гость), не поднялся auth, связка stableId,
+ * таймаут или отказ сервера. Каждая ветка теперь пишет шаг, значения и время. Имя не пишем (PII) — только длину.
+ */
+function nickLog(tag: 'NICK-CHECK' | 'NICK-SAVE', step: string, fields: Record<string, unknown> = {}, failure = false): void {
+  const line = `[${tag}] ${step} ${JSON.stringify(fields)}`;
+  if (failure) DebugLogger.warn(`firestore_leaderboard:${tag}`, line);
+  else console.log(line); // guard-ok: одна строка на шаг проверки/брони ника
+}
+
+function nickIdentitySnapshot(): Record<string, unknown> {
+  return { authUid: getAuthUserId() ? 'есть' : 'нет', cachedIdentity: readCachedNameReservationIdentity() ? 'есть' : 'нет', cloud: CLOUD_SYNC_ENABLED, expoGo: IS_EXPO_GO };
+}
+
+function nickErrorFields(e: unknown): Record<string, unknown> {
+  const err = e as { code?: unknown; message?: unknown } | null;
+  return { code: String(err?.code ?? ''), message: String(err?.message ?? e).slice(0, 160) };
+}
+
 export function normalizeNameIndexKey(name: string): string {
   return String(name ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
 }
@@ -207,18 +227,28 @@ export async function reserveNameDetailed(
   oldName: string,
   options: ReserveNameOptions = {},
 ): Promise<ReserveNameResult> {
-  if (!CLOUD_SYNC_ENABLED) return { status: 'ok' };
+  const startedAt = Date.now();
+  const base = { len: name.trim().length, oldLen: oldName.trim().length, source: options.source ?? 'none' };
+  nickLog('NICK-SAVE', 'reserve:in', { ...base, ...nickIdentitySnapshot() });
+  if (!CLOUD_SYNC_ENABLED) {
+    nickLog('NICK-SAVE', 'reserve:out ok reason=cloud_off (локально, без сервера)', base);
+    return { status: 'ok' };
+  }
   // На холодном старте signInAnonymously может занять >8с (GMS init, slow network).
   // Ждём токен явно перед вызовом CF — иначе callable уходит без auth → 401 →
   // юзер видит ложное «проверь интернет». Таймаут не даёт зависнуть навсегда.
   let stableId = readCachedNameReservationIdentity() || await ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS);
   if (!stableId) {
     const authReady = await waitForAnonAuth(NAME_RESERVE_RETRY_TIMEOUT_MS);
+    nickLog('NICK-SAVE', 'reserve:identity_retry', { ...base, authReady, ms: Date.now() - startedAt, ...nickIdentitySnapshot() });
     stableId = authReady
       ? readCachedNameReservationIdentity() || await ensureNameReservationIdentityReady(NAME_RESERVE_RETRY_TIMEOUT_MS)
       : null;
   }
-  if (!stableId) return { status: 'error' };
+  if (!stableId) {
+    nickLog('NICK-SAVE', 'reserve:out error reason=no_identity (нет stableId или связки auth)', { ...base, ms: Date.now() - startedAt, ...nickIdentitySnapshot() }, true);
+    return { status: 'error' };
+  }
   try {
     const fn = callable<{ stableId?: string; name: string; oldName: string; source?: ReserveNameOptions['source'] }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
     const { data } = await withTimeout(
@@ -227,10 +257,12 @@ export async function reserveNameDetailed(
       'name_reserve',
     );
     rememberNameReservationIdentity(stableId);
+    nickLog('NICK-SAVE', `reserve:out server status=${data.status}`, { ...base, ok: data.ok, ms: Date.now() - startedAt });
     if (data.status === 'taken') return { status: 'taken' };
     if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
     return { status: 'ok', nextChangeAt: data.nextChangeAt };
   } catch (e: any) {
+    nickLog('NICK-SAVE', 'reserve:call_failed', { ...base, ...nickErrorFields(e), ms: Date.now() - startedAt }, true);
     if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return { status: 'taken' };
     const errCode = String(e?.code ?? '');
     const errMsg = String(e?.message ?? '');
@@ -240,10 +272,16 @@ export async function reserveNameDetailed(
     const isIdentityError = errCode.includes('failed-precondition') || errMsg.includes('stable_id_required');
     if (isAuthError || isIdentityError) {
       const authReady = await waitForAnonAuth(NAME_RESERVE_RETRY_TIMEOUT_MS);
-      if (!authReady) return { status: 'error' };
+      if (!authReady) {
+        nickLog('NICK-SAVE', 'reserve:out error reason=auth_not_ready_after_retry', { ...base, isAuthError, isIdentityError, ms: Date.now() - startedAt }, true);
+        return { status: 'error' };
+      }
       try {
         const stableId = await ensureNameReservationIdentityReady(NAME_RESERVE_RETRY_TIMEOUT_MS);
-        if (!stableId) return { status: 'error' };
+        if (!stableId) {
+          nickLog('NICK-SAVE', 'reserve:out error reason=no_identity_after_retry', { ...base, ms: Date.now() - startedAt, ...nickIdentitySnapshot() }, true);
+          return { status: 'error' };
+        }
         // stableId is returned only after the auth link is ready.
         const fn = callable<{ stableId?: string; name: string; oldName: string; source?: ReserveNameOptions['source'] }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
         const { data } = await withTimeout(
@@ -252,13 +290,16 @@ export async function reserveNameDetailed(
           'name_reserve',
         );
         rememberNameReservationIdentity(stableId);
+        nickLog('NICK-SAVE', `reserve:out server_retry status=${data.status}`, { ...base, ms: Date.now() - startedAt });
         if (data.status === 'taken') return { status: 'taken' };
         if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
         return { status: 'ok', nextChangeAt: data.nextChangeAt };
-      } catch {
+      } catch (retryError) {
+        nickLog('NICK-SAVE', 'reserve:out error reason=retry_call_failed', { ...base, ...nickErrorFields(retryError), ms: Date.now() - startedAt }, true);
         return { status: 'error' };
       }
     }
+    nickLog('NICK-SAVE', 'reserve:out error reason=call_failed_not_auth', { ...base, ...nickErrorFields(e), ms: Date.now() - startedAt }, true);
     return { status: 'error' };
   }
 }
@@ -315,22 +356,35 @@ async function runNameAvailabilityCheck(name: string, readyStableId?: string): P
 }
 
 export async function checkNameAvailabilityDetailed(name: string): Promise<NameAvailabilityResult> {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return { status: 'available' };
+  const startedAt = Date.now();
+  const base = { len: name.trim().length };
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+    nickLog('NICK-CHECK', 'check:out available reason=cloud_off', { ...base, ...nickIdentitySnapshot() });
+    return { status: 'available' };
+  }
   const identityPromise = ensureNameReservationIdentityReady(NAME_CHECK_IDENTITY_TIMEOUT_MS);
   const authPromise = ensureNameCallableAuthReady(NAME_CHECK_IDENTITY_TIMEOUT_MS);
   let stableId = readCachedNameReservationIdentity() || await authPromise;
   if (!stableId) stableId = await identityPromise;
-  if (!stableId) return { status: 'error' };
+  if (!stableId) {
+    // зачем: именно эта ветка давала «Проверим при сохранении» — человек не вошёл / auth не поднялся.
+    nickLog('NICK-CHECK', 'check:out error reason=no_identity', { ...base, ms: Date.now() - startedAt, ...nickIdentitySnapshot() }, true);
+    return { status: 'error' };
+  }
   try {
-    return await withTimeout(
+    const result = await withTimeout(
       runNameAvailabilityCheck(name, stableId),
       NAME_CHECK_TIMEOUT_MS,
       'name_check',
     );
+    nickLog('NICK-CHECK', `check:out server status=${result.status}`, { ...base, ms: Date.now() - startedAt });
+    return result;
   } catch (e: any) {
     if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) {
+      nickLog('NICK-CHECK', 'check:out taken reason=error_name_taken', { ...base, ms: Date.now() - startedAt });
       return { status: 'taken' };
     }
+    nickLog('NICK-CHECK', 'check:out error reason=call_failed', { ...base, ...nickErrorFields(e), ms: Date.now() - startedAt }, true);
     return { status: 'error' };
   }
 }

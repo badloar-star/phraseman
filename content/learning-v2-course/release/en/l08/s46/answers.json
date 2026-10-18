@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-46:word:diagnose",
+    "correctText": "diagnose",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-46:i01",
     "correctText": "I can diagnose it.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-46:word:reboot",
+    "correctText": "reboot",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-46:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can reboot it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:word:fault",
+    "correctText": "fault",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can find the fault.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i08",
-    "correctText": "drive",
+    "correctText": "reboot",
     "correctResponseId": "en:lesson-08:session-46:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-46:i10",
-    "correctText": "en:lesson-08:session-46:i10:p1=panic\nen:lesson-08:session-46:i10:p2=diagnose\nen:lesson-08:session-46:i10:p3=mug\nen:lesson-08:session-46:i10:p4=pantry",
+    "correctText": "en:lesson-08:session-46:i10:p1=diagnose\nen:lesson-08:session-46:i10:p2=reboot\nen:lesson-08:session-46:i10:p3=fault\nen:lesson-08:session-46:i10:p4=organize",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can reboot it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:word:workaround",
+    "correctText": "workaround",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i12",
-    "correctText": "Don’t panic.",
+    "correctText": "I can find a workaround.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-46:i14",
-    "correctText": "whistle",
+    "correctText": "find",
     "correctResponseId": "en:lesson-08:session-46:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-46:i16",
-    "correctText": "en:lesson-08:session-46:i16:p1=diagnose\nen:lesson-08:session-46:i16:p2=organize\nen:lesson-08:session-46:i16:p3=panic\nen:lesson-08:session-46:i16:p4=pantry",
+    "correctText": "en:lesson-08:session-46:i16:p1=diagnose\nen:lesson-08:session-46:i16:p2=reboot\nen:lesson-08:session-46:i16:p3=fault\nen:lesson-08:session-46:i16:p4=workaround",
     "correctResponseId": null
   },
   {

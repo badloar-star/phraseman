@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 46 — Я могу определить причину
 
-**Ситуация.** Вы помогаете определить причину поломки, говорите об умении подруги водить и подаёте сигнал свистом.
+**Ситуация.** Найти причину полос при печати, перезапустить зависший планшет и обнаружить неисправность наушников.
 
 **Что вы освоите:** повторить can для умения и сохранить действие без to и окончаний
-**Новые слова:** diagnose
+**Новые слова:** diagnose, reboot, fault, workaround
 
 ---
 
 ## Интро 1
 
-### Компьютер не запускается
+### Полосы на распечатанной фотографии
 
-Компьютер друга не запускается. Вы умеете находить причины таких неполадок. `Diagnose` — «диагностировать»: здесь — определить причину неисправности. Скажите: `I can diagnose it` — «Я могу определить причину». Здесь `it` относится к неисправности. После `can` нужно `diagnose`, без `to`. Уговоры «ну включись» пока не помогли.
+Принтер печатает фотографию с полосами. Друг не знает, почему это происходит, а вы умеете находить причины таких неполадок. Diagnose здесь — «определить причину неисправности». `I can diagnose it` — «Я могу определить причину». It относится к проблеме с печатью. После can нужно diagnose, без to и s.
 
-**Скажите, что можете определить причину неисправности.**
+**Выберите фразу для этой ситуации.**
 
 - ✅ **I can diagnose it.**
-- ❌ I can to diagnose it. — *После `can` нужно `diagnose`, без `to`.*
-- ❌ I can diagnoses it. — *После `can` нужно `diagnose`, без `s`.*
+- ❌ I can to diagnose it. — *После can не нужно to.*
+- ❌ I can diagnoses it. — *После can действие остаётся без s.*
 
 ---
 
 ## Интро 2
 
-### Поездка за покупками
+### Планшет перестал реагировать
 
-Вы планируете купить продукты на всю неделю. Друг спрашивает, умеет ли ваша подруга водить машину. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.
+Экран планшета застыл во время игры. Подруга знает, как перезапустить устройство. Reboot — «перезагрузить». `She can reboot it` — «Она может его перезагрузить». После can нужно reboot, даже с she.
 
-**Скажите, что она умеет водить.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **She can drive.**
-- ❌ She can drives. — *После `can` нужно `drive`, без `s`.*
-- ❌ She can to drive. — *После `can` нужно `drive`, без `to`.*
+- ✅ **She can reboot it.**
+- ❌ She can to reboot it. — *После can не нужно to.*
+- ❌ She can reboots it. — *После can действие остаётся без s.*
 
 ---
 
 ## Интро 3
 
-### Сигнал на тренировке
+### Звук только в одном наушнике
 
-Во дворе друзья тренируются бегать. Нужен человек, который подаст стартовый сигнал свистом. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.
+В проводных наушниках звук идёт только с одной стороны. Вы умеете проверять такие устройства и находить место неполадки. Fault — «неисправность». `I can find the fault` — «Я могу найти неисправность». Здесь find означает обнаружить проблему, а не найти потерянный предмет.
 
-**Скажите, что умеете свистеть.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **I can whistle.**
-- ❌ I can to whistle. — *После `can` нужно `whistle`, без `to`.*
-- ❌ I can whistles. — *После `can` нужно `whistle`, без `s`.*
+- ✅ **I can find the fault.**
+- ❌ I can to find the fault. — *После can не нужно to.*
+- ❌ I can finds the fault. — *После can действие остаётся без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Соберите «Я могу определить причину»**
+**1 · Карточка слова — diagnose**
+<!-- interaction_id: en:lesson-08:session-46:word:diagnose; family: word_card -->
+> **diagnose** — диагностировать, здесь — определять причину неисправности. I can diagnose it. — «Я могу определить причину».
+
+**2 · Соберите «Я могу определить причину»**
 <!-- interaction_id: en:lesson-08:session-46:i01; family: phrase_builder -->
 Плитки: `it` `diagnose` `can` `I` → **I can diagnose it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-46:i02; family: listen_choose -->
 🔊 *diagnose* → **diagnose** · mug · organize
 - mug — *В записи первое слово — `diagnose`, а в этом варианте — `mug`.*
 - organize — *В записи первое слово — `diagnose`, а в этом варианте — `organize`.*
 
-**3 · Скажите, что можете определить причину неисправности**
+**4 · Выберите форму для фразы об определении причины неисправности**
 <!-- interaction_id: en:lesson-08:session-46:i03; family: context_gap_grammar -->
 I can ___ it. → **diagnose** · to diagnose · diagnoses
 - to diagnose — *После `can` нужно `diagnose`, без `to`.*
 - diagnoses — *После `can` нужно `diagnose`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-46:i04; family: speed_match -->
 diagnose — диагностировать · pantry — кладовая · mug — кружка · organize — организовывать
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-46:i05; family: listen_build_dictation -->
 🔊 *I can diagnose it.* Плитки: `it` `diagnose` `can` `I` → **I can diagnose it.**
 
-**6 · Скажите о подруге «Она умеет водить»**
+**7 · Карточка слова — reboot**
+<!-- interaction_id: en:lesson-08:session-46:word:reboot; family: word_card -->
+> **reboot** — перезагрузить устройство. She can reboot it. — «Она может его перезагрузить».
+
+**8 · Скажите о планшете «Она может его перезагрузить»**
 <!-- interaction_id: en:lesson-08:session-46:i06; family: phrase_builder -->
-Плитки: `drive` `can` `She` → **She can drive.**
+Плитки: `it` `reboot` `can` `She` → **She can reboot it.**
 
-**7 · Скажите «Я умею свистеть»**
+**9 · Карточка слова — fault**
+<!-- interaction_id: en:lesson-08:session-46:word:fault; family: word_card -->
+> **fault** — неисправность. I can find the fault. — «Я могу найти неисправность». В этом занятии речь о проблеме в работе устройства.
+
+**10 · Скажите «Я могу найти неисправность»**
 <!-- interaction_id: en:lesson-08:session-46:i07; family: scripted_repeat_compare -->
-🎙 **I can whistle.**
+🎙 **I can find the fault.**
 
-**8 · Скажите, что она умеет водить**
+**11 · Выберите форму для фразы «Она может его перезагрузить»**
 <!-- interaction_id: en:lesson-08:session-46:i08; family: context_gap_grammar -->
-She can ___. → **drive** · drives · to drive
-- drives — *После `can` нужно `drive`, даже с `she`.*
-- to drive — *После `can` нужно `drive`, без `to`.*
+She can ___ it. → **reboot** · reboots · to reboot
+- reboots — *После can нужно reboot, даже с she.*
+- to reboot — *После can не нужно to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-46:i09; family: listen_choose -->
 🔊 *I can diagnose it.* → **I can diagnose it.** · I can diagnose this. · I can diagnose that.
 - I can diagnose this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - I can diagnose that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-46:i10; family: speed_match -->
-panic — паниковать · diagnose — диагностировать · mug — кружка · pantry — кладовая
+diagnose — определять причину неисправности · reboot — перезагружать · fault — неисправность · organize — организовывать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-46:i11; family: listen_build_dictation -->
-🔊 *She can drive.* Плитки: `drive` `can` `She` → **She can drive.**
+🔊 *She can reboot it.* Плитки: `it` `reboot` `can` `She` → **She can reboot it.**
 
-**12 · Друг волнуется из-за неисправности. Подбодрите его: «Не паникуй»**
+**15 · Карточка слова — workaround**
+<!-- interaction_id: en:lesson-08:session-46:word:workaround; family: word_card -->
+> **workaround** — обходное решение: другой способ выполнить задачу, пока проблема остаётся. I can find a workaround. — «Я могу найти обходное решение». Например, сохранить файл и отправить его по почте вместо сломанной кнопки в программе.
+
+**16 · Кнопка отправки файла в программе не работает. Скажите «Я могу найти обходное решение»**
 <!-- interaction_id: en:lesson-08:session-46:i12; family: phrase_builder -->
-Плитки: `panic` `Don’t` → **Don’t panic.**
+Плитки: `workaround` `a` `find` `can` `I` → **I can find a workaround.**
 
-**13 · Друзья планируют встречу. Скажите «Я могу её организовать»**
+**17 · Друзья планируют встречу. Скажите «Я могу её организовать»**
 <!-- interaction_id: en:lesson-08:session-46:i13; family: scripted_repeat_compare -->
 🎙 **I can organize it.**
 
-**14 · Скажите, что умеете свистеть**
+**18 · Выберите форму для фразы «Я могу найти неисправность»**
 <!-- interaction_id: en:lesson-08:session-46:i14; family: context_gap_grammar -->
-I can ___. → **whistle** · whistles · to whistle
-- whistles — *После `can` нужно `whistle`, без `s`.*
-- to whistle — *После `can` нужно `whistle`, без `to`.*
+I can ___ the fault. → **find** · finds · to find
+- finds — *После can нужно find, без s.*
+- to find — *После can не нужно to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-46:i15; family: listen_choose -->
 🔊 *I can swim.* → **I can swim.** · I can drive. · I can whistle.
 - I can drive. — *В записи последнее слово — `swim`, а в этом варианте — `drive`.*
 - I can whistle. — *В записи последнее слово — `swim`, а в этом варианте — `whistle`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-46:i16; family: speed_match -->
-diagnose — диагностировать · organize — организовывать · panic — паниковать · pantry — кладовая
+diagnose — определять причину неисправности · reboot — перезагружать · fault — неисправность · workaround — обходное решение
 
-**17 · У принтера возникла неисправность. Вы умеете находить причины таких неполадок. Скажите «Я могу определить причину»**
+**21 · У принтера возникла неисправность. Вы умеете находить причины таких неполадок. Скажите «Я могу определить причину»**
 <!-- interaction_id: en:lesson-08:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I can diagnose it.**
 

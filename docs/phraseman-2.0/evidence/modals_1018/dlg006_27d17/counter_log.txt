@@ -1,0 +1,1 @@
+10-18 05:47:25.828 I/ReactNativeJS( 2590): [DIALOGUE-V2] catalogue:counter_below_all reason=everyday lines=["Повседневно","е"] → счётчик под названием у всех карточек

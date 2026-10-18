@@ -1,0 +1,1166 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-05:word:knock",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — knock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:word:knock:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — knock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:word:knock:audio",
+          "transcript": "knock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:word:knock:r1",
+            "targetText": "knock",
+            "meaningByLocale": {
+              "ru": "стучать. I am knocking at the door. — «Я стучу в дверь».",
+              "uk": "стукати. I am knocking at the door. — «Я стукаю у двері»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knock",
+          "definitionByLocale": {
+            "ru": "стучать. I am knocking at the door. — «Я стучу в дверь».",
+            "uk": "стукати. I am knocking at the door. — «Я стукаю у двері»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i01:r1",
+          "text": "knock"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i01:r2",
+          "text": "lock"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i01:r3",
+          "text": "look"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i01:audio",
+          "transcript": "knock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:i01:r1",
+            "targetText": "knock",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i01:r2",
+            "targetText": "lock",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i01:r3",
+            "targetText": "look",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит knock",
+              "uk": "У записі звучить knock"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит knock",
+              "uk": "У записі звучить knock"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что сейчас стучите в дверь мастерской",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что сейчас стучите в дверь мастерской",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am knocking at the door.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что сейчас стучите в дверь мастерской",
+          "uk": "Повідомте, що зараз стукаєте у двері майстерні"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "knocking",
+          "at",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для I",
+          "uk": "Виберіть форму для I"
+        },
+        "gappedTargetPhrase": "I ___ knocking at the door.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-05:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите форму для I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-05:i04:p1",
+            "target": "knock",
+            "meaningByLocale": {
+              "ru": "стучать",
+              "uk": "стукати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i04:p2",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i04:p3",
+            "target": "wait",
+            "meaningByLocale": {
+              "ru": "ждать",
+              "uk": "чекати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i04:p4",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "knock",
+          "door",
+          "wait",
+          "key"
+        ],
+        "rightColumn": [
+          "стучать",
+          "дверь",
+          "ждать",
+          "ключ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i05:audio",
+          "transcript": "I am knocking at the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am knocking at the door.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "knocking",
+          "at",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:word:visitor",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — visitor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:word:visitor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — visitor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:word:visitor:audio",
+          "transcript": "visitor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:word:visitor:r1",
+            "targetText": "visitor",
+            "meaningByLocale": {
+              "ru": "посетитель. A visitor is waiting. — «Посетитель ждёт».",
+              "uk": "відвідувач. A visitor is waiting. — «Відвідувач чекає»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "visitor",
+          "definitionByLocale": {
+            "ru": "посетитель. A visitor is waiting. — «Посетитель ждёт».",
+            "uk": "відвідувач. A visitor is waiting. — «Відвідувач чекає»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите экскурсоводу, что посетитель сейчас ждёт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите экскурсоводу, что посетитель сейчас ждёт",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A visitor is waiting.",
+        "localizedMeaning": {
+          "ru": "Сообщите экскурсоводу, что посетитель сейчас ждёт",
+          "uk": "Повідомте екскурсоводові, що відвідувач зараз чекає"
+        },
+        "orderedTokens": [
+          "A",
+          "visitor",
+          "is",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:word:doorway",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — doorway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:word:doorway:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — doorway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:word:doorway:audio",
+          "transcript": "doorway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:word:doorway:r1",
+            "targetText": "doorway",
+            "meaningByLocale": {
+              "ru": "дверной проём. She is in the doorway. — «Она в дверном проёме».",
+              "uk": "дверний отвір. She is in the doorway. — «Вона у дверному отворі»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doorway",
+          "definitionByLocale": {
+            "ru": "дверной проём. She is in the doorway. — «Она в дверном проёме».",
+            "uk": "дверний отвір. She is in the doorway. — «Вона у дверному отворі»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга позирует в дверном проёме. Скажите, где она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Подруга позирует в дверном проёме. Скажите, где она",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i07:audio",
+          "transcript": "She is in the doorway."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is in the doorway.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i08:r1",
+          "text": "waiting"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i08:r2",
+          "text": "wait"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i08:r3",
+          "text": "waits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия сейчас",
+          "uk": "Виберіть форму дії зараз"
+        },
+        "gappedTargetPhrase": "A visitor is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-05:i08:r1",
+            "text": "waiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i08:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i08:r3",
+            "text": "waits"
+          }
+        ],
+        "testedDimension": "Выберите форму действия сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия сейчас",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужно waiting.",
+              "uk": "Після is для дії зараз потрібне waiting."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия сейчас",
+            "feedbackByLocale": {
+              "ru": "Здесь is waiting, а не is waits.",
+              "uk": "Тут is waiting, а не is waits."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i09:r1",
+          "text": "A visitor is waiting."
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i09:r2",
+          "text": "A visitor is waving."
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i09:r3",
+          "text": "A visitor is knocking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i09:audio",
+          "transcript": "A visitor is waiting."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:i09:r1",
+            "targetText": "A visitor is waiting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i09:r2",
+            "targetText": "A visitor is waving.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i09:r3",
+            "targetText": "A visitor is knocking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A visitor is waiting.",
+              "uk": "У записі звучить A visitor is waiting."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A visitor is waiting.",
+              "uk": "У записі звучить A visitor is waiting."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-05:i10:p1",
+            "target": "knock",
+            "meaningByLocale": {
+              "ru": "стучать",
+              "uk": "стукати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i10:p2",
+            "target": "visitor",
+            "meaningByLocale": {
+              "ru": "посетитель",
+              "uk": "відвідувач"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i10:p3",
+            "target": "doorway",
+            "meaningByLocale": {
+              "ru": "дверной проём",
+              "uk": "дверний отвір"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i10:p4",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          }
+        ],
+        "leftColumn": [
+          "knock",
+          "visitor",
+          "doorway",
+          "door"
+        ],
+        "rightColumn": [
+          "стучать",
+          "посетитель",
+          "дверной проём",
+          "дверь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i11:audio",
+          "transcript": "She is in the doorway."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is in the doorway.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "in",
+          "the",
+          "doorway"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:word:latch",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — latch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:word:latch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — latch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:word:latch:audio",
+          "transcript": "latch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:word:latch:r1",
+            "targetText": "latch",
+            "meaningByLocale": {
+              "ru": "защёлка. This is the latch. — «Это защёлка». Деталь, которая удерживает дверь закрытой.",
+              "uk": "клямка. This is the latch. — «Це клямка». Деталь, яка утримує двері зачиненими."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "latch",
+          "definitionByLocale": {
+            "ru": "защёлка. This is the latch. — «Это защёлка». Деталь, которая удерживает дверь закрытой.",
+            "uk": "клямка. This is the latch. — «Це клямка». Деталь, яка утримує двері зачиненими."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i12:r1",
+          "text": "latch"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i12:r2",
+          "text": "match"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i12:r3",
+          "text": "watch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i12:audio",
+          "transcript": "latch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:i12:r1",
+            "targetText": "latch",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i12:r2",
+            "targetText": "match",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i12:r3",
+            "targetText": "watch",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит latch",
+              "uk": "У записі звучить latch"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит latch",
+              "uk": "У записі звучить latch"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы показываете ребёнку защёлку на двери садового домика. Назовите её: «Это защёлка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Вы показываете ребёнку защёлку на двери садового домика. Назовите её: «Это защёлка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i13:audio",
+          "transcript": "This is the latch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is the latch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите пропущенную форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите пропущенную форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите пропущенную форму",
+          "uk": "Виберіть пропущену форму"
+        },
+        "gappedTargetPhrase": "She ___ in the doorway.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-05:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите пропущенную форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите пропущенную форму",
+            "feedbackByLocale": {
+              "ru": "С she нужна is.",
+              "uk": "Із she потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите пропущенную форму",
+            "feedbackByLocale": {
+              "ru": "С she нужна is.",
+              "uk": "Із she потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-05:i15:r1",
+          "text": "I am knocking at the door."
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i15:r2",
+          "text": "He is knocking at the door."
+        },
+        {
+          "responseId": "en:lesson-09:session-05:i15:r3",
+          "text": "They are knocking at the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i15:audio",
+          "transcript": "I am knocking at the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-05:i15:r1",
+            "targetText": "I am knocking at the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i15:r2",
+            "targetText": "He is knocking at the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i15:r3",
+            "targetText": "They are knocking at the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am knocking at the door.",
+              "uk": "У записі звучить I am knocking at the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-05:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am knocking at the door.",
+              "uk": "У записі звучить I am knocking at the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-05:i16:p1",
+            "target": "knock",
+            "meaningByLocale": {
+              "ru": "стучать",
+              "uk": "стукати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i16:p2",
+            "target": "visitor",
+            "meaningByLocale": {
+              "ru": "посетитель",
+              "uk": "відвідувач"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i16:p3",
+            "target": "doorway",
+            "meaningByLocale": {
+              "ru": "дверной проём",
+              "uk": "дверний отвір"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-05:i16:p4",
+            "target": "latch",
+            "meaningByLocale": {
+              "ru": "защёлка",
+              "uk": "клямка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "knock",
+          "visitor",
+          "doorway",
+          "latch"
+        ],
+        "rightColumn": [
+          "стучать",
+          "посетитель",
+          "дверной проём",
+          "защёлка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-05:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы у кабинета преподавателя и стучите, чтобы сообщить о приходе. Скажите, что делаете: «Я стучу в дверь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Вы у кабинета преподавателя и стучите, чтобы сообщить о приходе. Скажите, что делаете: «Я стучу в дверь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-05:i17:audio",
+          "transcript": "I am knocking at the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am knocking at the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "183cb5ef73bfb4714c173e66ecf56e17e9d8a435b3d03aa36c121a0ddc0bda84"
+}

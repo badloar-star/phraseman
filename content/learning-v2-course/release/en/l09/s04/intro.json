@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "wave → waving с am/is/are; сказать, откуда человек машет",
+    "uk": "wave → waving з am/is/are; сказати, звідки людина махає"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друг не замечает вас у кафе",
+        "uk": "Друг не помічає вас біля кафе"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ждёте друга у кафе. Он идёт мимо и смотрит в другую сторону. Вы машете рукой, чтобы он вас заметил. Wave — «махать рукой». I am waving — «Я машу рукой». У wave перед -ing убираем e: waving. Сейчас работает рука, а в предложении — am вместе с waving. Телефону можно дать отдохнуть: рукой иногда быстрее.",
+        "uk": "Ви чекаєте на друга біля кафе. Він іде повз і дивиться в інший бік. Ви махаєте рукою, щоб він вас помітив. Wave — «махати рукою». I am waving — «Я махаю рукою». У wave перед -ing прибираємо e: waving. Зараз працює рука, а в реченні — am разом із waving. Телефону можна дати відпочити: рукою іноді швидше."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-04:intro1:r1",
+              "text": "I am waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro1:r2",
+              "text": "I waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro1:r3",
+              "text": "I am wave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-04:intro1:r1",
+              "text": "I am waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro1:r2",
+              "text": "I waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro1:r3",
+              "text": "I am wave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Первый рейс на остров",
+        "uk": "Перший рейс на острів"
+      },
+      "bodyByLocale": {
+        "ru": "Ваш брат впервые отправился на остров на пароме. Вы остались на берегу, а он машет вам с борта. Ferry — «паром». He is waving from the ferry — «Он машет рукой с парома». From the ferry указывает, откуда он машет. С he используем is waving.",
+        "uk": "Ваш брат уперше вирушив на острів на поромі. Ви залишилися на березі, а він махає вам із борту. Ferry — «пором». He is waving from the ferry — «Він махає рукою з порома». From the ferry вказує, звідки він махає. Із he використовуємо is waving."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-04:intro2:r1",
+              "text": "He is waving from the ferry."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro2:r2",
+              "text": "He waving from the ferry."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro2:r3",
+              "text": "He is wave from the ferry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-04:intro2:r1",
+              "text": "He is waving from the ferry."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro2:r2",
+              "text": "He waving from the ferry."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro2:r3",
+              "text": "He is wave from the ferry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сигнал после тренировки на воде",
+        "uk": "Сигнал після тренування на воді"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаетесь на каяке после тренировки. Двое друзей уже стоят на причале и машут вам, показывая, где остановиться. Dock — «причал». They are waving from the dock — «Они машут рукой с причала». После they нужно are, даже если у каждого свободна только одна рука.",
+        "uk": "Ви повертаєтеся на каяку після тренування. Двоє друзів уже стоять на причалі й махають вам, показуючи, де зупинитися. Dock — «причал». They are waving from the dock — «Вони махають рукою з причалу». Після they потрібне are, навіть якщо в кожного вільна лише одна рука."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-04:intro3:r1",
+              "text": "They are waving from the dock."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro3:r2",
+              "text": "They waving from the dock."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro3:r3",
+              "text": "They are wave from the dock."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-04:intro3:r1",
+              "text": "They are waving from the dock."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro3:r2",
+              "text": "They waving from the dock."
+            },
+            {
+              "responseId": "en:lesson-09:session-04:intro3:r3",
+              "text": "They are wave from the dock."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bb6e9a0d62eac376e805dc52e1b471441ba6600b555ace4788bf5f66ce499e45"
+}

@@ -16,6 +16,7 @@ import {
   Animated,
   Easing,
   Modal,
+  Platform,
   Pressable,
   Share,
   StyleSheet,
@@ -58,6 +59,7 @@ import { useSelfProfileCard } from './profile-card/useSelfProfileCard';
 import ReanimatedView from 'react-native-reanimated';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
+import { NATIVE_MODAL_DISMISS_GAP_MS } from '../app/safe_modal_navigation';
 
 const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
@@ -104,6 +106,8 @@ interface Props {
   player: PlayerInfo | null;
   myInfo: MyInfo;
   onClose: () => void;
+  /** Native dismissal completed; callers can safely present another modal. */
+  onDismissed?: () => void;
   /** Kept as a no-op compatibility prop for the retired showcase. */
   motionVariant?: 'classic' | 'hybrid';
 }
@@ -522,23 +526,41 @@ function renderProfileModalOverlays(
   );
 }
 
-function PlayerProfileModal({ player, myInfo, onClose }: Props) {
+function PlayerProfileModal({ player, myInfo, onClose, onDismissed }: Props) {
   const slideAnim = useRef(new Animated.Value(60)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [friendToast, setFriendToast] = useState<string | null>(null);
   const [friendToastType, setFriendToastType] = useState<'error' | 'info'>('info');
   const reduceMotion = useReduceMotion();
   const modalOpen = !!player;
+  const modalOpenRef = useRef(modalOpen);
+  modalOpenRef.current = modalOpen;
+  const wasPresentedRef = useRef(modalOpen);
+  if (modalOpen) wasPresentedRef.current = true;
+  const onDismissedRef = useRef(onDismissed);
+  onDismissedRef.current = onDismissed;
+  const notifyDismissed = useCallback(() => {
+    if (modalOpenRef.current || !wasPresentedRef.current) return;
+    wasPresentedRef.current = false;
+    onDismissedRef.current?.();
+  }, []);
+  useEffect(() => {
+    // iOS supplies the native completion event. Android does not guarantee it;
+    // a bounded gap prevents the next sheet racing the closing native window.
+    if (modalOpen || Platform.OS === 'ios' || !wasPresentedRef.current) return;
+    const timer = setTimeout(notifyDismissed, NATIVE_MODAL_DISMISS_GAP_MS);
+    return () => clearTimeout(timer);
+  }, [modalOpen, notifyDismissed]);
 
   useEffect(() => {
-    if (player) return;
+    if (modalOpen) return;
     slideAnim.setValue(60);
     fadeAnim.setValue(0);
     setFriendToast(null);
-  }, [fadeAnim, player, slideAnim]);
+  }, [fadeAnim, modalOpen, slideAnim]);
 
   useEffect(() => {
-    if (!player) return;
+    if (!modalOpen) return;
     slideAnim.stopAnimation();
     fadeAnim.stopAnimation();
     if (reduceMotion) slideAnim.setValue(0);
@@ -556,7 +578,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
         useNativeDriver: true,
       }),
     ]).start();
-  }, [fadeAnim, player, reduceMotion, slideAnim]);
+  }, [fadeAnim, modalOpen, reduceMotion, slideAnim]);
 
   const handleClose = useCallback(() => {
     onClose();
@@ -581,6 +603,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       transparent
       animationType="none"
       onRequestClose={handleHardwareBack}
+      onDismiss={notifyDismissed}
       hardwareAccelerated
       statusBarTranslucent
       navigationBarTranslucent

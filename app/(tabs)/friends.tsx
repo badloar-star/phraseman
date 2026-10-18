@@ -1245,6 +1245,20 @@ export default function FriendsTabScreen() {
     enabled: friendsRuntimeActive && friendsListError,
   });
   const [requests, setRequests] = useState<FriendRequestEntry[]>(() => warmFriendsSnapshot?.requests ?? friendsSnapshot?.requests ?? []);
+  // Live friend/request subscriptions may publish equivalent arrays with new
+  // identities. Profile hydration follows UID membership so those emissions do
+  // not restart the async load and clone profile state in a render loop.
+  const profileMembershipKey = useMemo(
+    () => JSON.stringify([...new Set([
+      ...friends.map(friend => friend.uid),
+      ...requests.map(request => request.fromUid),
+    ])].sort()),
+    [friends, requests],
+  );
+  const friendMembershipKey = useMemo(
+    () => JSON.stringify([...new Set(friends.map(friend => friend.uid))].sort()),
+    [friends],
+  );
   const [profiles, setProfiles] = useState<Record<string, FriendProfile>>(() => {
     // Модульный кеш переживает ремаунты — показываем мгновенно без async.
     const modCache = peekProfilesCache();
@@ -1293,6 +1307,16 @@ export default function FriendsTabScreen() {
   }, [friendsSnapshot]);
 
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
+  const [profileDismissPending, setProfileDismissPending] = useState(false);
+  // The card can open before the batch resolves. Keep its public rank and other
+  // profile fields live without issuing another read or requiring a reopen.
+  const selectedPlayerProfile = useMemo(() => {
+    if (!selectedPlayer) return null;
+    const uid = selectedPlayer.friendUid ?? selectedPlayer.uid;
+    if (!uid || !profiles[uid]) return selectedPlayer;
+    const profile = profileWithLookupDisplayName(uid, profiles[uid] ?? null, selectedPlayer.name);
+    return profile ? { ...selectedPlayer, ...profile } : selectedPlayer;
+  }, [profiles, selectedPlayer]);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
   // зачем (Q41/Q48/Q49, координатор 01.10): блокировка из шторки друга, заодно удаляет из друзей.
   const [blockTarget, setBlockTarget] = useState<{ uid: string; name: string } | null>(null);
@@ -1587,7 +1611,7 @@ export default function FriendsTabScreen() {
   // ── Profile loading ────────────────────────────────────────────────────────
 
   useEffect(() => {
-    const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
+    const uids = JSON.parse(profileMembershipKey) as string[];
     if (!friendsRuntimeActive || uids.length === 0) return;
     if (isDevFriendsDemoOn()) return; // зачем: демо-друзья вымышленные — профили из Firestore не читаем
     if (isDevFriendsFail('list')) return; // зачем (Авторизация 12.10, community-021): при подмене `list` друзей нет — профили из Firestore не читаем
@@ -1598,6 +1622,7 @@ export default function FriendsTabScreen() {
       if (cancelled) return;
       profilesCacheRef.current = updatedCache;
       setProfiles(prev => {
+        if (Object.entries(fresh).every(([uid, profile]) => prev[uid] === profile)) return prev;
         const next = { ...prev, ...fresh };
         return next;
       });
@@ -1608,7 +1633,7 @@ export default function FriendsTabScreen() {
       if (friendsTogetherPolicy.enabled) {
         void (async () => {
           try {
-            const friendUids = friends.map(f => f.uid);
+            const friendUids = JSON.parse(friendMembershipKey) as string[];
             if (friendUids.length === 0) return;
             const batchMap = await fetchFriendProfilesBatch(friendUids);
             if (cancelled) return;
@@ -1626,7 +1651,7 @@ export default function FriendsTabScreen() {
       }
     })();
     return () => { cancelled = true; };
-  }, [friends, requests, friendsRuntimeActive, focusTick, friendsTogetherPolicy.enabled]);
+  }, [friendMembershipKey, friendsRuntimeActive, friendsTogetherPolicy.enabled, profileMembershipKey]);
 
   // ── Cleanup ────────────────────────────────────────────────────────────────
 
@@ -2052,6 +2077,7 @@ export default function FriendsTabScreen() {
 
   const openProfile = useCallback((profile: FriendProfile) => {
     if (modalWedgeGuardRef.current) return;
+    modalWedgeGuardRef.current = true;
     hapticTap();
     setSelectedPlayer({
       name: profile.name,
@@ -2161,7 +2187,7 @@ export default function FriendsTabScreen() {
   // Обновляем гард на каждый рендер: любая открытая модалка блокирует открытие следующей.
   const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null || blockTarget !== null
     || addModalOpen
-    || togetherSheetSession !== null;
+    || togetherSheetSession !== null || profileDismissPending;
   modalWedgeGuardRef.current = modalWedgeActive;
 
   useEffect(() => {
@@ -2196,6 +2222,7 @@ export default function FriendsTabScreen() {
 
   const openFriendSheet = useCallback((profile: FriendProfile) => {
     if (modalWedgeGuardRef.current) return;
+    modalWedgeGuardRef.current = true;
     hapticTap();
     setTogetherSheetSession(createFriendSheetSession(profile));
   }, []);
@@ -2518,7 +2545,7 @@ export default function FriendsTabScreen() {
       />
 
       <UnifiedPlayerModal
-        player={selectedPlayer}
+        player={selectedPlayerProfile}
         myInfo={{
           name: myProfile?.name ?? L('Я', 'Я', 'Me', 'Yo', 'Eu', 'Tôi', 'Saya', 'Ben', 'Ja'),
           avatar: myProfile?.avatar ?? '1',
@@ -2526,7 +2553,11 @@ export default function FriendsTabScreen() {
           aura: myProfile?.aura,
           streak: myProfile?.streak ?? null,
         }}
-        onClose={() => setSelectedPlayer(null)}
+        onClose={() => {
+          setProfileDismissPending(true);
+          setSelectedPlayer(null);
+        }}
+        onDismissed={() => setProfileDismissPending(false)}
       />
 
       {togetherSheetSession !== null && (() => {

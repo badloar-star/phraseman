@@ -91,6 +91,24 @@ export type AccountSwitchRecoveryDependencies = Readonly<{
   activateGeneration(stableId: string): void;
 }>;
 
+// зачем (блокер входа 18.10, журнал iPhone 08:45:50–08:46:17): горячая перезагрузка корня посреди входа запускала восстановление
+// параллельно идущему входу — оно выходило из только что вошедшего Google. Признак «вход провайдера идёт» живёт в globalThis:
+// при горячей перезагрузке модуль входа может переоцениться, а глобальное значение видят обе копии. Срок 2 мин — завис вход, не держим.
+const PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL = '__phrasemanProviderSignInInFlightAtMs';
+const PROVIDER_SIGN_IN_IN_FLIGHT_MAX_AGE_MS = 120_000;
+
+export function markProviderSignInInFlight(active: boolean, now: number = Date.now()): void {
+  (globalThis as Record<string, unknown>)[PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL] = active ? now : null;
+}
+
+/** Возраст идущего входа провайдера в мс или null (входа нет либо признак старше срока). */
+export function providerSignInInFlightAgeMs(now: number = Date.now()): number | null {
+  const startedAt = (globalThis as Record<string, unknown>)[PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL];
+  if (typeof startedAt !== 'number') return null;
+  const age = now - startedAt;
+  return age >= 0 && age < PROVIDER_SIGN_IN_IN_FLIGHT_MAX_AGE_MS ? age : null;
+}
+
 export type AccountSwitchResumeResult =
   | Readonly<{ result: 'none' }>
   | Readonly<{ result: 'completed'; stableId: string; authUid: string }>
@@ -855,6 +873,12 @@ async function resumeInternal(
   }
 
   if (providerHandoffRaw !== null) {
+    // зачем (блокер входа 18.10): вход провайдера в этом же запуске ещё идёт — запись передачи принадлежит ему, не откатываем
+    const inFlightAgeMs = providerSignInInFlightAgeMs();
+    if (inFlightAgeMs !== null) {
+      console.warn(`[SWITCH-QUARANTINE] resume_deferred reason=sign_in_in_flight ageMs=${inFlightAgeMs}`); // guard-ok: ранний выход пишет причину
+      return { result: 'retryable', reason: 'sign_in_in_flight' };
+    }
     let handoff: AccountProviderHandoffMarker;
     try { handoff = parseProviderHandoff(providerHandoffRaw); } catch {
       publish({ visible: true, status: 'quarantined', reason: 'provider_handoff_invalid' });

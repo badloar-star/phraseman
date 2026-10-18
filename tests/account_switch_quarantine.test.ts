@@ -24,6 +24,8 @@ import {
   prepareProviderCredentialHandoff,
   markProviderCredentialHandoffAuthenticated,
   markProviderCredentialHandoffCredentialReady,
+  markProviderSignInInFlight,
+  providerSignInInFlightAgeMs,
   resumeAccountSwitchQuarantine,
   type AccountSwitchQuarantineMarker,
   type AccountSwitchRecoveryDependencies,
@@ -392,6 +394,35 @@ describe('durable account-switch quarantine', () => {
       freshStableId: 'stable-fresh',
     })).resolves.toBe(false);
     expect(storage.has(ACCOUNT_SWITCH_QUARANTINE_KEY)).toBe(true);
+  });
+
+  // зачем (блокер входа 18.10, журнал iPhone 08:45): горячая перезагрузка корня посреди входа запускала восстановление поверх
+  // уже вошедшего Google. Пока вход провайдера идёт (признак в globalThis), запись передачи не трогаем.
+  it('does not roll back a provider handoff while a provider sign-in is still in flight in this process', async () => {
+    await prepareProviderCredentialHandoff({
+      operationId: 'provider_handoff_inflight_01',
+      nonce: 'provider_handoff_inflight_nonce_01',
+      ownerStableId: 'stable-A',
+      ownerAuthUid: 'auth-A',
+      provider: 'google',
+      now: 2_000,
+    });
+    const built = dependencies({
+      readAuthUser: jest.fn(() => ({ uid: 'auth-B', isAnonymous: false, provider: 'google', providerSubject: 'google-B' })),
+    });
+    markProviderSignInInFlight(true);
+    try {
+      await expect(resumeAccountSwitchQuarantine(built.deps)).resolves.toEqual({ result: 'retryable', reason: 'sign_in_in_flight' });
+      expect(built.deps.signOut).not.toHaveBeenCalled();
+      expect(built.deps.wipeLocalData).not.toHaveBeenCalled();
+      expect(storage.has(ACCOUNT_PROVIDER_HANDOFF_KEY)).toBe(true);
+    } finally {
+      markProviderSignInInFlight(false);
+    }
+    // признак старше 2 мин не держит восстановление (завис вход)
+    markProviderSignInInFlight(true, Date.now() - 121_000);
+    expect(providerSignInInFlightAgeMs()).toBeNull();
+    markProviderSignInInFlight(false);
   });
 
   it('recovers a crash before provider credential replacement without wiping the clean source', async () => {

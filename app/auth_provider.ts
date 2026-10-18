@@ -132,6 +132,7 @@ import {
   hasAccountSwitchPostCompletionHandoff,
   inspectAccountSwitchQuarantine,
   markProviderCredentialHandoffAuthenticated,
+  markProviderSignInInFlight,
   markProviderCredentialHandoffCredentialReady,
   prepareAccountSwitchQuarantine,
   prepareProviderCredentialHandoff,
@@ -2478,9 +2479,12 @@ export async function signInWithProvider(
     startedAt: Date.now(),
     requireCurrentStableIdOwnership: Boolean(options.requireCurrentStableIdOwnership),
   };
+  // зачем (блокер входа 18.10): восстановление при загрузке не откатывает запись передачи, пока этот вход идёт (переживает горячую перезагрузку)
+  markProviderSignInInFlight(true);
   try {
     return await task;
   } finally {
+    markProviderSignInInFlight(false);
     if (providerSignInInFlight?.task === task) providerSignInInFlight = null;
     reservation.operationSettled = true;
     releaseProviderCredentialModeReservationIfSettled(reservation);

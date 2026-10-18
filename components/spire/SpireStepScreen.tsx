@@ -27,7 +27,6 @@ import SpireTaskView from './SpireTaskView';
 import SpireTimerRing from './SpireTimerRing';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
-import SpireEnergyPill from './SpireEnergyPill';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 import BackGlyph from '../v2/BackGlyph';
@@ -86,7 +85,7 @@ export type SpireStepLayoutProps = Readonly<{
 
 /** Чистая вёрстка ступени: шапка, кольцо, задание, подсказка после ошибки, «k / 10». Без раннера и сети. */
 export function SpireStepLayout(props: SpireStepLayoutProps) {
-  const { lang, ctx, budgetMs, hearts, clock, paused, preparing, task, taskIndex, feedback, answering, exitOpen, studyTarget, showEnergy } = props;
+  const { lang, ctx, budgetMs, hearts, clock, paused, preparing, task, taskIndex, feedback, answering, exitOpen, studyTarget } = props;
   const p = useSpirePalette(); const sh = useSpireShadow();
   const insets = useStableSafeAreaInsets();
   const counter = Math.min(taskIndex + 1, SPIRE_STEP_TASK_COUNT);
@@ -108,7 +107,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           <Text style={[s.sub, { color: p.textSecondary }]}>{`${spireText(lang, 'floor')} ${ctx.floor} · ${spireTierName(ctx.tier, lang)}`}</Text>
         </View>
         <Hearts lang={lang} hearts={hearts} />
-        {showEnergy ? <SpireEnergyPill ownerActive={false} /> : null}
+        {/* зачем (spire-009, вердикт Макетов c0cd6e2ae, координатор 18.10): в образце (spire.html, stepHead) шапка ступени — заголовок и сердца, энергии справа нет; «⚡ 2» убрана. Пилюля остаётся на главной Шпиля, проп showEnergy сохранён для вызовов */}
       </View>
       <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <View style={s.ringWrap}>

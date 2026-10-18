@@ -42,9 +42,10 @@ describe('Шпиль: стиль «Тень» и пилюля энергии', (
     }
   });
 
-  it('пилюля энергии: и в шапке главного, и в шапке ступени; превью показывает её', () => {
+  it('пилюля энергии: в шапке главного Шпиля; в шапке ступени её нет (образец); превью показывает её', () => {
     expect(read('components', 'spire', 'SpireHomeScreen.tsx')).toMatch(/<SpireEnergyPill ownerActive=/);
-    expect(read('components', 'spire', 'SpireStepScreen.tsx')).toMatch(/<SpireEnergyPill ownerActive=\{false\} \/>/);
+    // перепин 18.10 (spire-009, вердикт Макетов c0cd6e2ae, одобрено координатором): в образце spire.html (stepHead) шапка ступени — заголовок и сердца, энергии справа нет; «⚡ 2» из шапки ступени убрана
+    expect(read('components', 'spire', 'SpireStepScreen.tsx')).not.toMatch(/<SpireEnergyPill/);
     // приказ владельца 01.10 (подтверждён 15.10): энергия в шапке без фона и тени, высота 37 как у сердец
     const pill = read('components', 'spire', 'SpireEnergyPill.tsx');
     expect(pill).toMatch(/height: 37, paddingHorizontal: 6/);

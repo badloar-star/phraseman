@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-30:word:admission",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — admission",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:admission:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — admission",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:admission:audio",
+            "transcript": "admission"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:admission:r1",
+              "targetText": "admission",
+              "meaningByLocale": {
+                "ru": "«вход, допуск на мероприятие». Admission is free. — «Вход бесплатный».",
+                "uk": "«вхід, допуск на захід». Admission is free. — «Вхід безкоштовний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "admission",
+            "definitionByLocale": {
+              "ru": "«вход, допуск на мероприятие». Admission is free. — «Вход бесплатный».",
+              "uk": "«вхід, допуск на захід». Admission is free. — «Вхід безкоштовний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i01:r1",
+            "text": "Admission is free."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i01:r2",
+            "text": "Admission is not free."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i01:r3",
+            "text": "The ticket is free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i01:audio",
+            "transcript": "Admission is free."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:i01:r1",
+              "targetText": "Admission is free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i01:r2",
+              "targetText": "Admission is not free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i01:r3",
+              "targetText": "The ticket is free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Admission is free.",
+                "uk": "У записі звучить Admission is free."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Admission is free.",
+                "uk": "У записі звучить Admission is free."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите, что вы с друзьями сейчас стоите в очереди",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите, что вы с друзьями сейчас стоите в очереди",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are queuing.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что вы с друзьями сейчас стоите в очереди",
+            "uk": "Повідомте, що ви з друзями зараз стоїте в черзі"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "queuing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму с we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму с we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму с we",
+            "uk": "Виберіть форму з we"
+          },
+          "gappedTargetPhrase": "We ___ queuing.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-30:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму с we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму с we",
+              "feedbackByLocale": {
+                "ru": "Is не сочетается с we; нужно are.",
+                "uk": "Is не поєднується з we; потрібне are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму с we",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I; с we — are.",
+                "uk": "Am уживаємо з I; з we — are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-30:i04:p1",
+              "target": "admission",
+              "meaningByLocale": {
+                "ru": "вход на мероприятие",
+                "uk": "вхід на захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i04:p2",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "стоять в очереди",
+                "uk": "стояти в черзі"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i04:p3",
+              "target": "free",
+              "meaningByLocale": {
+                "ru": "бесплатный",
+                "uk": "безкоштовний"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i04:p4",
+              "target": "ticket",
+              "meaningByLocale": {
+                "ru": "билет",
+                "uk": "квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admission",
+            "queue",
+            "free",
+            "ticket"
+          ],
+          "rightColumn": [
+            "вход на мероприятие",
+            "стоять в очереди",
+            "бесплатный",
+            "билет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i05:audio",
+            "transcript": "Are you queuing?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you queuing?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "queuing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:word:foyer",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — foyer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:foyer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — foyer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:foyer:audio",
+            "transcript": "foyer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:foyer:r1",
+              "targetText": "foyer",
+              "meaningByLocale": {
+                "ru": "«фойе». We are in the foyer. — «Мы в фойе».",
+                "uk": "«фойє». We are in the foyer. — «Ми у фойє»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foyer",
+            "definitionByLocale": {
+              "ru": "«фойе». We are in the foyer. — «Мы в фойе».",
+              "uk": "«фойє». We are in the foyer. — «Ми у фойє»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите другу, что вы с компанией в фойе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите другу, что вы с компанией в фойе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are in the foyer.",
+          "localizedMeaning": {
+            "ru": "Сообщите другу, что вы с компанией в фойе",
+            "uk": "Повідомте другові, що ви з компанією у фойє"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "in",
+            "the",
+            "foyer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:word:usher",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — usher",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:usher:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — usher",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:usher:audio",
+            "transcript": "usher"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:usher:r1",
+              "targetText": "usher",
+              "meaningByLocale": {
+                "ru": "«билетёр, помогающий зрителям найти места». The usher is helping. — «Билетёр помогает».",
+                "uk": "«білетер, який допомагає глядачам знайти місця». The usher is helping. — «Білетер допомагає»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "usher",
+            "definitionByLocale": {
+              "ru": "«билетёр, помогающий зрителям найти места». The usher is helping. — «Билетёр помогает».",
+              "uk": "«білетер, який допомагає глядачам знайти місця». The usher is helping. — «Білетер допомагає»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Билетёр сейчас помогает посетителю. Сообщите об этом спутнику",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Билетёр сейчас помогает посетителю. Сообщите об этом спутнику",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i07:audio",
+            "transcript": "The usher is helping."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The usher is helping.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после are для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i08:r1",
+            "text": "queuing"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i08:r2",
+            "text": "queue"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i08:r3",
+            "text": "queues"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после are для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после are для действия сейчас",
+            "uk": "Виберіть форму після are для дії зараз"
+          },
+          "gappedTargetPhrase": "We are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-30:i08:r1",
+              "text": "queuing"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i08:r2",
+              "text": "queue"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i08:r3",
+              "text": "queues"
+            }
+          ],
+          "testedDimension": "Выберите форму после are для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после are для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После are здесь нужна форма queuing.",
+                "uk": "Після are тут потрібна форма queuing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после are для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь are queuing, не are queues.",
+                "uk": "Тут are queuing, не are queues."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i09:r1",
+            "text": "The usher is helping."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i09:r2",
+            "text": "The usher is not helping."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i09:r3",
+            "text": "We are queuing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i09:audio",
+            "transcript": "The usher is helping."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:i09:r1",
+              "targetText": "The usher is helping.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i09:r2",
+              "targetText": "The usher is not helping.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i09:r3",
+              "targetText": "We are queuing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The usher is helping.",
+                "uk": "У записі звучить The usher is helping."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The usher is helping.",
+                "uk": "У записі звучить The usher is helping."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-30:i10:p1",
+              "target": "admission",
+              "meaningByLocale": {
+                "ru": "вход на мероприятие",
+                "uk": "вхід на захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i10:p2",
+              "target": "foyer",
+              "meaningByLocale": {
+                "ru": "фойе",
+                "uk": "фойє"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i10:p3",
+              "target": "usher",
+              "meaningByLocale": {
+                "ru": "билетёр",
+                "uk": "білетер"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i10:p4",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "стоять в очереди",
+                "uk": "стояти в черзі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admission",
+            "foyer",
+            "usher",
+            "queue"
+          ],
+          "rightColumn": [
+            "вход на мероприятие",
+            "фойе",
+            "билетёр",
+            "стоять в очереди"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте фразу о привычке и соберите её",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о привычке и соберите её",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i11:audio",
+            "transcript": "I often come here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often come here.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "come",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:word:intermission",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — intermission",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:intermission:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — intermission",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:intermission:audio",
+            "transcript": "intermission"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:intermission:r1",
+              "targetText": "intermission",
+              "meaningByLocale": {
+                "ru": "«антракт». It is intermission. — «Сейчас антракт». Перерыв между частями представления.",
+                "uk": "«антракт». It is intermission. — «Зараз антракт». Перерва між частинами вистави."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "intermission",
+            "definitionByLocale": {
+              "ru": "«антракт». It is intermission. — «Сейчас антракт». Перерыв между частями представления.",
+              "uk": "«антракт». It is intermission. — «Зараз антракт». Перерва між частинами вистави."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i12:r1",
+            "text": "It is intermission."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i12:r2",
+            "text": "It is not intermission."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i12:r3",
+            "text": "Admission is free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i12:audio",
+            "transcript": "It is intermission."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:i12:r1",
+              "targetText": "It is intermission.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i12:r2",
+              "targetText": "It is not intermission.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i12:r3",
+              "targetText": "Admission is free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is intermission.",
+                "uk": "У записі звучить It is intermission."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is intermission.",
+                "uk": "У записі звучить It is intermission."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знакомый по телефону спрашивает, почему зрители вышли из зала. Скажите: «Сейчас антракт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Знакомый по телефону спрашивает, почему зрители вышли из зала. Скажите: «Сейчас антракт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i13:audio",
+            "transcript": "It is intermission."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is intermission.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало вопроса с you",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i14:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i14:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало вопроса с you",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало вопроса с you",
+            "uk": "Виберіть початок запитання з you"
+          },
+          "gappedTargetPhrase": "___ you queuing?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-30:i14:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i14:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i14:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Выберите начало вопроса с you",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало вопроса с you",
+              "feedbackByLocale": {
+                "ru": "С you нужна форма are.",
+                "uk": "З you потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало вопроса с you",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I; с you — are.",
+                "uk": "Am уживаємо з I; з you — are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг торопится и начинает толкаться в очереди. Вежливо попросите не толкаться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Друг торопится и начинает толкаться в очереди. Вежливо попросите не толкаться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i15:audio",
+            "transcript": "Don't push, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Don't push, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-30:i16:p1",
+              "target": "admission",
+              "meaningByLocale": {
+                "ru": "вход на мероприятие",
+                "uk": "вхід на захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i16:p2",
+              "target": "foyer",
+              "meaningByLocale": {
+                "ru": "фойе",
+                "uk": "фойє"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i16:p3",
+              "target": "usher",
+              "meaningByLocale": {
+                "ru": "билетёр",
+                "uk": "білетер"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i16:p4",
+              "target": "intermission",
+              "meaningByLocale": {
+                "ru": "антракт",
+                "uk": "антракт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admission",
+            "foyer",
+            "usher",
+            "intermission"
+          ],
+          "rightColumn": [
+            "вход на мероприятие",
+            "фойе",
+            "билетёр",
+            "антракт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В кафе вас приняли за людей в очереди, но вы просто ждёте друга. Скажите: «Мы не стоим в очереди»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "В кафе вас приняли за людей в очереди, но вы просто ждёте друга. Скажите: «Мы не стоим в очереди»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i17:audio",
+            "transcript": "We are not queuing."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are not queuing.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-30:word:admission",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — admission",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:admission:audio"
+        ],
+        "accessibilityLabel": "Картка слова — admission",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:admission:audio",
+            "transcript": "admission"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:admission:r1",
+              "targetText": "admission",
+              "meaningByLocale": {
+                "ru": "«вход, допуск на мероприятие». Admission is free. — «Вход бесплатный».",
+                "uk": "«вхід, допуск на захід». Admission is free. — «Вхід безкоштовний»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "admission",
+            "definitionByLocale": {
+              "ru": "«вход, допуск на мероприятие». Admission is free. — «Вход бесплатный».",
+              "uk": "«вхід, допуск на захід». Admission is free. — «Вхід безкоштовний»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i01:r1",
+            "text": "Admission is free."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i01:r2",
+            "text": "Admission is not free."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i01:r3",
+            "text": "The ticket is free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i01:audio",
+            "transcript": "Admission is free."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:i01:r1",
+              "targetText": "Admission is free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i01:r2",
+              "targetText": "Admission is not free.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i01:r3",
+              "targetText": "The ticket is free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Admission is free.",
+                "uk": "У записі звучить Admission is free."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Admission is free.",
+                "uk": "У записі звучить Admission is free."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте, що ви з друзями зараз стоїте в черзі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте, що ви з друзями зараз стоїте в черзі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are queuing.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что вы с друзьями сейчас стоите в очереди",
+            "uk": "Повідомте, що ви з друзями зараз стоїте в черзі"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "queuing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму з we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму з we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму с we",
+            "uk": "Виберіть форму з we"
+          },
+          "gappedTargetPhrase": "We ___ queuing.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-30:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму з we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму з we",
+              "feedbackByLocale": {
+                "ru": "Is не сочетается с we; нужно are.",
+                "uk": "Is не поєднується з we; потрібне are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму з we",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I; с we — are.",
+                "uk": "Am уживаємо з I; з we — are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-30:i04:p1",
+              "target": "admission",
+              "meaningByLocale": {
+                "ru": "вход на мероприятие",
+                "uk": "вхід на захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i04:p2",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "стоять в очереди",
+                "uk": "стояти в черзі"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i04:p3",
+              "target": "free",
+              "meaningByLocale": {
+                "ru": "бесплатный",
+                "uk": "безкоштовний"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i04:p4",
+              "target": "ticket",
+              "meaningByLocale": {
+                "ru": "билет",
+                "uk": "квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admission",
+            "queue",
+            "free",
+            "ticket"
+          ],
+          "rightColumn": [
+            "вхід на захід",
+            "стояти в черзі",
+            "безкоштовний",
+            "квиток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i05:audio",
+            "transcript": "Are you queuing?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you queuing?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "queuing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:word:foyer",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — foyer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:foyer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — foyer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:foyer:audio",
+            "transcript": "foyer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:foyer:r1",
+              "targetText": "foyer",
+              "meaningByLocale": {
+                "ru": "«фойе». We are in the foyer. — «Мы в фойе».",
+                "uk": "«фойє». We are in the foyer. — «Ми у фойє»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foyer",
+            "definitionByLocale": {
+              "ru": "«фойе». We are in the foyer. — «Мы в фойе».",
+              "uk": "«фойє». We are in the foyer. — «Ми у фойє»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте другові, що ви з компанією у фойє",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте другові, що ви з компанією у фойє",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are in the foyer.",
+          "localizedMeaning": {
+            "ru": "Сообщите другу, что вы с компанией в фойе",
+            "uk": "Повідомте другові, що ви з компанією у фойє"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "in",
+            "the",
+            "foyer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:word:usher",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — usher",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:usher:audio"
+        ],
+        "accessibilityLabel": "Картка слова — usher",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:usher:audio",
+            "transcript": "usher"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:usher:r1",
+              "targetText": "usher",
+              "meaningByLocale": {
+                "ru": "«билетёр, помогающий зрителям найти места». The usher is helping. — «Билетёр помогает».",
+                "uk": "«білетер, який допомагає глядачам знайти місця». The usher is helping. — «Білетер допомагає»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "usher",
+            "definitionByLocale": {
+              "ru": "«билетёр, помогающий зрителям найти места». The usher is helping. — «Билетёр помогает».",
+              "uk": "«білетер, який допомагає глядачам знайти місця». The usher is helping. — «Білетер допомагає»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Білетер зараз допомагає відвідувачеві. Повідомте про це супутнику",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Білетер зараз допомагає відвідувачеві. Повідомте про це супутнику",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i07:audio",
+            "transcript": "The usher is helping."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The usher is helping.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після are для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i08:r1",
+            "text": "queuing"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i08:r2",
+            "text": "queue"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i08:r3",
+            "text": "queues"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після are для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после are для действия сейчас",
+            "uk": "Виберіть форму після are для дії зараз"
+          },
+          "gappedTargetPhrase": "We are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-30:i08:r1",
+              "text": "queuing"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i08:r2",
+              "text": "queue"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i08:r3",
+              "text": "queues"
+            }
+          ],
+          "testedDimension": "Виберіть форму після are для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після are для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После are здесь нужна форма queuing.",
+                "uk": "Після are тут потрібна форма queuing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після are для дії зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь are queuing, не are queues.",
+                "uk": "Тут are queuing, не are queues."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i09:r1",
+            "text": "The usher is helping."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i09:r2",
+            "text": "The usher is not helping."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i09:r3",
+            "text": "We are queuing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i09:audio",
+            "transcript": "The usher is helping."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:i09:r1",
+              "targetText": "The usher is helping.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i09:r2",
+              "targetText": "The usher is not helping.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i09:r3",
+              "targetText": "We are queuing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The usher is helping.",
+                "uk": "У записі звучить The usher is helping."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The usher is helping.",
+                "uk": "У записі звучить The usher is helping."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-30:i10:p1",
+              "target": "admission",
+              "meaningByLocale": {
+                "ru": "вход на мероприятие",
+                "uk": "вхід на захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i10:p2",
+              "target": "foyer",
+              "meaningByLocale": {
+                "ru": "фойе",
+                "uk": "фойє"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i10:p3",
+              "target": "usher",
+              "meaningByLocale": {
+                "ru": "билетёр",
+                "uk": "білетер"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i10:p4",
+              "target": "queue",
+              "meaningByLocale": {
+                "ru": "стоять в очереди",
+                "uk": "стояти в черзі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admission",
+            "foyer",
+            "usher",
+            "queue"
+          ],
+          "rightColumn": [
+            "вхід на захід",
+            "фойє",
+            "білетер",
+            "стояти в черзі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте фразу про звичку й складіть її",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про звичку й складіть її",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i11:audio",
+            "transcript": "I often come here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often come here.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "come",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:word:intermission",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — intermission",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:word:intermission:audio"
+        ],
+        "accessibilityLabel": "Картка слова — intermission",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:word:intermission:audio",
+            "transcript": "intermission"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:word:intermission:r1",
+              "targetText": "intermission",
+              "meaningByLocale": {
+                "ru": "«антракт». It is intermission. — «Сейчас антракт». Перерыв между частями представления.",
+                "uk": "«антракт». It is intermission. — «Зараз антракт». Перерва між частинами вистави."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "intermission",
+            "definitionByLocale": {
+              "ru": "«антракт». It is intermission. — «Сейчас антракт». Перерыв между частями представления.",
+              "uk": "«антракт». It is intermission. — «Зараз антракт». Перерва між частинами вистави."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i12:r1",
+            "text": "It is intermission."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i12:r2",
+            "text": "It is not intermission."
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i12:r3",
+            "text": "Admission is free."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i12:audio",
+            "transcript": "It is intermission."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-30:i12:r1",
+              "targetText": "It is intermission.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i12:r2",
+              "targetText": "It is not intermission.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i12:r3",
+              "targetText": "Admission is free.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is intermission.",
+                "uk": "У записі звучить It is intermission."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is intermission.",
+                "uk": "У записі звучить It is intermission."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знайомий телефоном запитує, чому глядачі вийшли із зали. Скажіть: «Зараз антракт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Знайомий телефоном запитує, чому глядачі вийшли із зали. Скажіть: «Зараз антракт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i13:audio",
+            "transcript": "It is intermission."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is intermission.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок запитання з you",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-30:i14:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i14:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-30:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок запитання з you",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало вопроса с you",
+            "uk": "Виберіть початок запитання з you"
+          },
+          "gappedTargetPhrase": "___ you queuing?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-30:i14:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i14:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i14:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Виберіть початок запитання з you",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок запитання з you",
+              "feedbackByLocale": {
+                "ru": "С you нужна форма are.",
+                "uk": "З you потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок запитання з you",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I; с you — are.",
+                "uk": "Am уживаємо з I; з you — are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг поспішає й починає штовхатися в черзі. Ввічливо попросіть не штовхатися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Друг поспішає й починає штовхатися в черзі. Ввічливо попросіть не штовхатися",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i15:audio",
+            "transcript": "Don't push, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Don't push, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-30:i16:p1",
+              "target": "admission",
+              "meaningByLocale": {
+                "ru": "вход на мероприятие",
+                "uk": "вхід на захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i16:p2",
+              "target": "foyer",
+              "meaningByLocale": {
+                "ru": "фойе",
+                "uk": "фойє"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i16:p3",
+              "target": "usher",
+              "meaningByLocale": {
+                "ru": "билетёр",
+                "uk": "білетер"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-30:i16:p4",
+              "target": "intermission",
+              "meaningByLocale": {
+                "ru": "антракт",
+                "uk": "антракт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admission",
+            "foyer",
+            "usher",
+            "intermission"
+          ],
+          "rightColumn": [
+            "вхід на захід",
+            "фойє",
+            "білетер",
+            "антракт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У кафе вас прийняли за людей у черзі, але ви просто чекаєте друга. Скажіть: «Ми не стоїмо в черзі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "У кафе вас прийняли за людей у черзі, але ви просто чекаєте друга. Скажіть: «Ми не стоїмо в черзі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-30:i17:audio",
+            "transcript": "We are not queuing."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are not queuing.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-30:word:admission",
+      "correctText": "admission",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i01",
+      "correctText": "Admission is free.",
+      "correctResponseId": "en:lesson-09:session-30:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i02",
+      "correctText": "We are queuing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-30:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i05",
+      "correctText": "Are you queuing?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:word:foyer",
+      "correctText": "foyer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i06",
+      "correctText": "We are in the foyer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:word:usher",
+      "correctText": "usher",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i07",
+      "correctText": "The usher is helping.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i08",
+      "correctText": "queuing",
+      "correctResponseId": "en:lesson-09:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i09",
+      "correctText": "The usher is helping.",
+      "correctResponseId": "en:lesson-09:session-30:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i11",
+      "correctText": "I often come here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:word:intermission",
+      "correctText": "intermission",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i12",
+      "correctText": "It is intermission.",
+      "correctResponseId": "en:lesson-09:session-30:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i13",
+      "correctText": "It is intermission.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i14",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-09:session-30:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i15",
+      "correctText": "Don't push, please.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:i17",
+      "correctText": "We are not queuing.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+10-18 13:07:51.247 I/ReactNativeJS( 5991): '[AUTH-SWITCH-SHEET]', 'choice', '{"choice":"cancel","via":"button"}'
+10-18 13:07:51.363 W/ReactNativeJS( 5991): [AUTH-SWITCH] 2026-10-18T12:07:51.360Z rule2 offer_answered {"provider":"google","choice":"cancel","waitedMs":40592}
+10-18 13:07:51.364 I/ReactNativeJS( 5991): [AUTH-SWITCH-OFFER] resume_credential discarded provider=google reason=guest_sheet_cancel
+10-18 13:07:51.365 I/ReactNativeJS( 5991): [AUTH-SWITCH-OFFER] modal guest sheet outcome=cancelled provider=google current=1

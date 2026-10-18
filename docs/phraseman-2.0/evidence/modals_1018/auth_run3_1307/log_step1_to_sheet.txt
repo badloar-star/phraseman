@@ -1,0 +1,28 @@
+10-18 13:07:07.043 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:f8cc6671","deferIdentityPreparation":false,"t":16618292}
+10-18 13:07:07.043 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:edcc1b1b","preProviderStable":"h:f2a6806c","t":16618292}
+10-18 13:07:07.622 I/ReactNativeJS( 5991): [SETTINGS-ACCOUNT-CARD] t=27618 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-18 13:07:07.623 I/ReactNativeJS( 5991): [SETTINGS-ACCOUNT-CARD] t=27622 refresh enter active=true inflight=false dirty=true gen=1
+10-18 13:07:07.625 I/ReactNativeJS( 5991): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-18 13:07:07.708 I/ReactNativeJS( 5991): '[AUTH-PROGRESS-UI]', 'status', '{"phase":"calm"}'
+10-18 13:07:07.724 I/ReactNativeJS( 5991): '[AUTH-PROGRESS-UI]', 'status', '{"phase":"long"}'
+10-18 13:07:08.623 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":16619872}
+10-18 13:07:08.623 I/ReactNativeJS( 5991): [AUTH-HANDOFF] updated_credential provider=google present=true code=auth/credential-already-in-use
+10-18 13:07:08.709 I/ReactNativeJS( 5991): [SETTINGS-ACCOUNT-CARD] t=28709 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1086
+10-18 13:07:08.710 I/ReactNativeJS( 5991): [SETTINGS-ACCOUNT-CARD] t=28709 refresh result=none applied=true gen=1/1 active=true
+10-18 13:07:09.084 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":139,"getAllKeysMs":70,"selected":2245,"filterMs":30,"multiGetMs":331,"bytes":51084,"top5":"cloud_last_sync_snapshot_v1=45547 achievements_v1=2504 customization_selectio
+10-18 13:07:09.087 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":31,"t":16620336}
+10-18 13:07:09.122 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":31,"progress":4,"t":16620370}
+10-18 13:07:09.122 W/ReactNativeJS( 5991): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":31,"progress":4,"t":16620370}
+10-18 13:07:09.496 I/ReactNativeJS( 5991): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"a8bf4dfe"}'
+10-18 13:07:09.830 W/ReactNativeJS( 5991): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1117,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&exclud
+10-18 13:07:09.833 I/ReactNativeJS( 5991): [AUTH-HANDOFF] lock_acquired waitedMs=102
+10-18 13:07:09.911 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":16621157}
+10-18 13:07:09.911 W/ReactNativeJS( 5991): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:f2a6806c","tookMs":15864,"t":16621160}
+10-18 13:07:09.912 W/ReactNativeJS( 5991): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:f2a6806c","tookMs":15864,"t":1662
+10-18 13:07:10.760 I/ReactNativeJS( 5991): [AUTH-SWITCH-OFFER] resume_credential stored provider=google ttlMs=600000
+10-18 13:07:10.761 W/ReactNativeJS( 5991): [AUTH-SWITCH] 2026-10-18T12:07:10.761Z rule2 guest_with_progress_existing_account {"provider":"google","localStable":"h:f2a6806c","captured":"yes","next":"guest_switch_sheet"}
+10-18 13:07:10.766 I/ReactNativeJS( 5991): [AUTH-SWITCH-OFFER] modal guest sheet offered provider=google
+10-18 13:07:10.772 W/ReactNativeJS( 5991): [AUTH-SWITCH] 2026-10-18T12:07:10.768Z rule2 offer_shown {"provider":"google","reason":"guest_has_progress_existing_account"}
+10-18 13:07:11.071 I/ReactNativeJS( 5991): '[AUTH-SWITCH-SHEET]', 'show', '{"lang":"ru","hasAccountLabel":false}'
+10-18 13:07:12.420 W/ReactNativeJS( 5991): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1003,"caller":"withExactActiveScope <- persistLearningV2CompletionRetryCursor <- reserveAttempt","waitedMs":45}'
+10-18 13:07:13.714 W/ReactNativeJS( 5991): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1244,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&exclud

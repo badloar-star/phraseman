@@ -137,3 +137,9 @@
 - `components/spire/SpireClimbDock.tsx:101`
 - `components/spire/SpireResultPanel.tsx:54`
 - `components/profile-card/profile_card_copy.ts:80`
+
+## После релиза — не начато (сессия «Моменты», стоп-план 18.10 08:17)
+Задача от Координатора 08:00/08:22, не начата до стопа — правок в коде нет:
+- Карточки, режимы тренировки: `flashcards_swipe.tsx:4399`, blitz `:1313`, speaking `:1520/:1463`, recall `:930` — замена экранов-ошибок по `C:/Temp/claude/no_error_screens_rule.txt`.
+- Видео: `lingman_videos.tsx:838/:749`, `lingman_playlist.tsx:141/:148` — вместо ошибки показывать кэш.
+- 💸 `app/youtube_catalog_client.ts` (≈154 чтения на загрузку каталога): кэш на диске 24 ч, сеть только при пустом/устаревшем кэше или по явному обновлению, журнал `[COST-CUT] youtube_catalog hit/miss/age`. Делать вместе с Видео — это одно место.

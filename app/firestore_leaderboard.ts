@@ -177,7 +177,7 @@ async function ensureNameReservationIdentityReady(timeoutMs: number): Promise<st
   return stableId;
 }
 
-// зачем (координатор 18.10): 'rate_limited' — сервер отказал по лимиту 300 смен ника в час (защита от скрипта); клиент оставляет прежнее имя.
+// зачем (координатор 18.10): 'rate_limited' — сервер отказал по лимиту смен ника (5 в час на аккаунт или потолок на IP); клиент оставляет прежнее имя.
 export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'rate_limited' | 'error';
 export type ReserveNameResult = {
   status: ReserveNameStatus;
@@ -191,7 +191,8 @@ export type GeneratedNicknameResult = {
 export type ReserveNameOptions = {
   source?: 'onboarding' | 'settings';
 };
-export type NameAvailabilityStatus = 'available' | 'taken' | 'error';
+// зачем (владелец 18.10): 'limited' — сервер исчерпал лимит проверок (60/ч на uid, 200/ч на IP); окно молча ждёт «Готово».
+export type NameAvailabilityStatus = 'available' | 'taken' | 'limited' | 'error';
 export type NameAvailabilityResult = {
   status: NameAvailabilityStatus;
 };
@@ -352,9 +353,10 @@ export function warmNameAvailabilityAuth(): void {
 async function runNameAvailabilityCheck(name: string, readyStableId?: string): Promise<NameAvailabilityResult> {
   const stableId = readyStableId || readCachedNameReservationIdentity() || await ensureNameCallableAuthReady(NAME_CHECK_IDENTITY_TIMEOUT_MS);
   if (!stableId) return { status: 'error' };
-  const fn = callable<{ stableId?: string; name: string }, { ok: boolean; available: boolean }>('nameCheckAvailability');
+  const fn = callable<{ stableId?: string; name: string }, { ok: boolean; available: boolean | null; limited?: boolean }>('nameCheckAvailability');
   const { data } = await fn({ stableId, name: name.trim() });
   rememberNameReservationIdentity(stableId);
+  if (data.limited) return { status: 'limited' };
   return { status: data.available === false ? 'taken' : 'available' };
 }
 

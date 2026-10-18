@@ -31,12 +31,13 @@ test('NicknameEditModal: шторка Liquid Glass, вся логика смен
   assert.ok(nickname.includes('placement="bottom"'), 'макет PRF-19 — нижняя шторка');
   assert.ok(nickname.includes('glass.opaqueSheet'), 'непрозрачная основа');
   assert.ok(nickname.includes('glass.accentInk'), 'текст CTA — чернила темы');
-  // 18.10 (владелец): имя применяется само по мере ввода — одна кнопка «Готово», без «Отмены».
+  // 18.10 (владелец): при наборе — только проверка «свободно/занято» (пауза 400 мс), имя применяется по «Готово» — одна кнопка, без «Отмены».
   for (const id of ['nickname-input', 'nickname-save', 'nickname-save-label', 'nickname-availability']) {
     assert.ok(nickname.includes(`"${id}"`), `testID ${id}`);
   }
   for (const token of ['onOptimisticApply(name)', 'onRollback(previous)', 'onNotice(null)', "reserveNameDetailed(name, previous, { source: 'settings' })",
-    'appliedNameRef', 'queuedNameRef', 'NAME_APPLY_DEBOUNCE_MS = 400', "availabilityStatus === 'taken'", 'motionVariant']) {
+    'appliedNameRef', 'queuedNameRef', 'NAME_CHECK_DEBOUNCE_MS = 400', 'checkNameAvailabilityDetailed(trimmed)', "finishAndClose('done')",
+    "availabilityStatus === 'taken'", 'motionVariant']) {
     assert.ok(nickname.includes(token), token);
   }
   assert.ok(nickname.includes('t.wrong'), 'занятое имя — семантический цвет ошибки');

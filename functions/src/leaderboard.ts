@@ -1,19 +1,63 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
-import { resolveStableUidForAuth } from './auth_identity';
-import { randomInt } from 'node:crypto';
+import { recoveryHintClientIp, resolveStableUidForAuth } from './auth_identity';
+import { createHash, randomInt } from 'node:crypto';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const NAME_INDEX = 'name_index';
 // зачем (владелец 18.10: «ник можно менять хоть каждую секунду, убери правило 14 дней»): кулдауна смены ника больше нет.
 // Поле nickname_change_available_at продолжает писаться (= момент смены), чтобы старые клиенты видели «можно сейчас».
 const NICKNAME_CHANGE_COOLDOWN_MS = 0;
-// зачем (Ревизор 28bdf6e12 🟡/💸, координатор 18.10): без кулдауна нужен предохранитель от злоупотреблений — не больше 300 смен
-// ника в час на аккаунт. Окно и счётчик живут в users/{uid}.progress и пишутся в той же транзакции (без лишних чтений).
+// зачем (владелец 18.10, кнопками через координатора): ник — не больше 5 смен в час на аккаунт. Окно и счётчик живут в
+// users/{uid}.progress и пишутся в той же транзакции (без лишних чтений). Считается только настоящая смена (isNameChange);
+// набор в окне ника смену не тратит — там лишь проверка nameCheckAvailability, применение — по «Готово».
 const NICKNAME_RENAME_WINDOW_MS = 60 * 60 * 1000;
-// зачем (координатор 18.10, владелец «хоть каждую секунду»): потолок, которого человек не достанет, — только от скрипта/спама.
-const NICKNAME_RENAME_LIMIT_PER_WINDOW = 300;
+const NICKNAME_RENAMES_PER_HOUR = 5;
+// зачем (владелец 18.10, защита от накрутки счёта Firebase): анонимов можно наплодить — отдельный потолок смен и проверок на IP.
+// Проверка «свободно/занято» тоже ограничена: 60 в час на uid и 200 на IP. Счётчики — в name_rate_limits по хэшу (без uid/IP
+// в открытом виде), фиксированное окно в час, как у authRecoveryHint.
+const NICKNAME_RENAMES_PER_HOUR_PER_IP = 20;
+const NAME_CHECKS_PER_HOUR = 60;
+const NAME_CHECKS_PER_HOUR_PER_IP = 200;
+const NAME_RATE_LIMITS = 'name_rate_limits';
+
+function nameRateDocId(kind: 'check_uid' | 'check_ip' | 'reserve_ip', key: string): string {
+  return `${kind}_${createHash('sha256').update(key).digest('hex').slice(0, 32)}`;
+}
+
+function readRateWindow(data: FirebaseFirestore.DocumentData | undefined, now: number): { start: number; count: number } {
+  const start = Number(data?.windowStartMs ?? 0);
+  const active = Number.isFinite(start) && start > 0 && now - start < NICKNAME_RENAME_WINDOW_MS;
+  return active ? { start, count: Number(data?.count ?? 0) || 0 } : { start: now, count: 0 };
+}
+
+function nameRateLog(outcome: string, extra: Record<string, unknown> = {}): void {
+  console.log(JSON.stringify({ event: 'name_rate', tag: '[NICK-RATE]', outcome, ...extra }));
+}
+
+/** Проверка имени: один счётчик на uid и один на IP, отказ — без записи. */
+async function consumeNameCheckRate(
+  db: FirebaseFirestore.Firestore,
+  authUid: string,
+  ip: string,
+  now = Date.now(),
+): Promise<'ok' | 'limited_uid' | 'limited_ip'> {
+  const refs = [
+    { kind: 'uid' as const, max: NAME_CHECKS_PER_HOUR, ref: db.collection(NAME_RATE_LIMITS).doc(nameRateDocId('check_uid', authUid)) },
+    ...(ip ? [{ kind: 'ip' as const, max: NAME_CHECKS_PER_HOUR_PER_IP, ref: db.collection(NAME_RATE_LIMITS).doc(nameRateDocId('check_ip', ip)) }] : []),
+  ];
+  return db.runTransaction(async (tx) => {
+    const snaps = await Promise.all(refs.map(({ ref }) => tx.get(ref)));
+    const windows = snaps.map((snap) => readRateWindow(snap.exists ? snap.data() : undefined, now));
+    const limitedAt = windows.findIndex((w, i) => w.count >= refs[i].max);
+    if (limitedAt >= 0) return refs[limitedAt].kind === 'uid' ? 'limited_uid' : 'limited_ip';
+    refs.forEach(({ ref }, i) => {
+      tx.set(ref, { count: windows[i].count + 1, windowStartMs: windows[i].start, updatedAtMs: now }, { merge: true });
+    });
+    return 'ok';
+  });
+}
 const GENERATED_NICKNAME_WORDS = [
   'Alpha', 'Axiom', 'Cosmos', 'Delta', 'Helium', 'Ion', 'Lambda', 'Neon',
   'Nova', 'Omega', 'Orbit', 'Photon', 'Quark', 'Quantum', 'Radium', 'Sigma',
@@ -246,6 +290,13 @@ export const nameCheckAvailability = onCall(HOT_CALLABLE_OPTIONS, async (request
   const stableUid = await resolveStableUid(db, request.auth.uid, request.data?.stableId);
   const { name, nameLower } = normalizeName(request.data?.name);
   assertValidName(name);
+  const ip = recoveryHintClientIp(request.rawRequest);
+  const rate = await consumeNameCheckRate(db, request.auth.uid, ip);
+  if (rate !== 'ok') {
+    // Клиент молча не показывает статус до «Готово»: применение всё равно проверит имя атомарно в nameReserve.
+    nameRateLog(`check_${rate}`, { hasIp: Boolean(ip) });
+    return { ok: true, available: null, limited: true };
+  }
 
   // Source of truth = name_index/{nameLower}. A reservation owned by another,
   // still-live account makes the name unavailable. (No leaderboard fallback —
@@ -374,6 +425,8 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const { name, nameLower } = normalizeName(request.data?.name);
   const oldNameLower = sanitizeString(request.data?.oldName, 32).toLowerCase();
   assertValidName(name);
+  const ip = recoveryHintClientIp(request.rawRequest);
+  let rateLimitedBy: 'uid' | 'ip' | null = null;
 
   // Atomic reservation. The ONLY source of truth is name_index/{nameLower}.
   // Every concurrent claimant reads that exact doc inside the transaction, so
@@ -396,6 +449,9 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       const nameSnap = await tx.get(nameRef);
       const userSnap = await tx.get(userRef);
       const userData = userSnap.data();
+      const ipRateRef = ip ? db.collection(NAME_RATE_LIMITS).doc(nameRateDocId('reserve_ip', ip)) : null;
+      const ipRateSnap = ipRateRef ? await tx.get(ipRateRef) : null;
+      const ipWindow = readRateWindow(ipRateSnap?.exists ? ipRateSnap.data() : undefined, now);
       const currentNameLower =
         readProgressString(userData, 'user_name_lower') ||
         readProgressString(userData, 'user_name').toLowerCase() ||
@@ -421,8 +477,14 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       const renameWindowStart = readProgressMs(userData, 'nickname_rename_window_start');
       const renameWindowCount = readProgressCount(userData, 'nickname_rename_window_count') ?? 0;
       const renameWindowActive = renameWindowStart > 0 && now - renameWindowStart < NICKNAME_RENAME_WINDOW_MS;
-      if (isNameChange && renameWindowActive && renameWindowCount >= NICKNAME_RENAME_LIMIT_PER_WINDOW) {
+      if (isNameChange && renameWindowActive && renameWindowCount >= NICKNAME_RENAMES_PER_HOUR) {
         rateLimitedUntil = renameWindowStart + NICKNAME_RENAME_WINDOW_MS;
+        rateLimitedBy = 'uid';
+        throw new HttpsError('resource-exhausted', 'name_change_rate_limited');
+      }
+      if (isNameChange && ipRateRef && ipWindow.count >= NICKNAME_RENAMES_PER_HOUR_PER_IP) {
+        rateLimitedUntil = ipWindow.start + NICKNAME_RENAME_WINDOW_MS;
+        rateLimitedBy = 'ip';
         throw new HttpsError('resource-exhausted', 'name_change_rate_limited');
       }
       const nextRenameWindow = !isNameChange
@@ -460,6 +522,10 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
 
       if (oldRef && oldSnap?.exists && oldSnap.data()?.uid === stableUid) {
         tx.delete(oldRef);
+      }
+
+      if (isNameChange && ipRateRef) {
+        tx.set(ipRateRef, { count: ipWindow.count + 1, windowStartMs: ipWindow.start, updatedAtMs: now }, { merge: true });
       }
 
       tx.set(db.collection('leaderboard').doc(stableUid), {
@@ -502,6 +568,7 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       return { ok: true, status: 'cooldown', nextChangeAt: cooldownUntil };
     }
     if (e instanceof HttpsError && e.message === 'name_change_rate_limited') {
+      nameRateLog(`reserve_limited_${rateLimitedBy ?? 'unknown'}`, { hasIp: Boolean(ip), waitMs: rateLimitedUntil - Date.now() });
       return { ok: true, status: 'rate_limited', nextChangeAt: rateLimitedUntil };
     }
     throw e;

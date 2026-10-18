@@ -221,7 +221,7 @@ export function flushNicknameRenamePending(trigger: string): Promise<void> {
       log('flush:reverted_to_previous', { trigger, reason: result.status });
       return;
     }
-    // 'error' и 'rate_limited' (лимит 300 смен в час, координатор 18.10) — запись держим, ждём следующего возврата в приложение / смены входа.
+    // 'error' и 'rate_limited' (лимит 5 смен в час, владелец 18.10) — запись держим, ждём следующего возврата в приложение / смены входа.
     const next: PendingRename = {
       ...pending,
       attempts: pending.attempts + 1,

@@ -1,14 +1,15 @@
 // ════════════════════════════════════════════════════════════════════════════
 // NicknameEditModal.tsx — модалка смены ника для экрана «Аккаунт».
 //
-// Владелец 18.10: «вводим имя — оно проверяется и, если не занято, СРАЗУ применяется на сервере; ник можно менять
-// хоть каждую секунду» (Optimistic UI):
+// Владелец 18.10 (кнопками через координатора): ник — не больше 5 смен в час, и медленный набор лимит не съедает:
 //   • формат проверяется на телефоне сразу, строкой у поля (без второго слоя и без <Modal>);
-//   • через 400 мс паузы — ОДИН вызов nameReserve: уникальность проверяет и записывает сервер атомарно
-//     (источник истины — name_index), старое имя освобождается там же; кулдауна больше нет;
-//   • имя у родителя и в локальных копиях меняется сразу; «занято» → откат + «Имя уже занято»;
+//   • через 400 мс паузы — ТОЛЬКО проверка «свободно/занято» (nameCheckAvailability, без записи и без счёта смены;
+//     у неё свой лимит на сервере; ответы кэшируются на время окна);
+//   • ПРИМЕНЕНИЕ — одним вызовом nameReserve по «Готово» или при закрытии окна с изменённым именем: имя у родителя и в
+//     локальных копиях меняется сразу (Optimistic UI), сервер атомарно записывает (источник истины — name_index);
+//   • отказ: «занято» → откат + «Имя уже занято»; лимит → откат + «Сменить имя можно через N мин» (из nextChangeAt);
 //     нет входа/сети → имя остаётся на телефоне, сервер догоняет nickname_rename_pending (возврат в приложение / вход);
-//   • вызовы по одному: ввод в полёте ставится в очередь, поздний ответ не затирает свежий ввод.
+//   • вызовы по одному: повторное «Готово» в полёте ставится в очередь, поздний ответ не затирает свежее имя.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -32,6 +33,7 @@ import { triLang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
 import { logFriendAdd } from '../../app/friend_add_trace';
 import {
+  checkNameAvailabilityDetailed,
   normalizeNameIndexKey,
   reserveNameDetailed,
   warmNameAvailabilityAuth,
@@ -69,9 +71,11 @@ function traceNick(line: string): void {
   if (typeof __DEV__ !== 'undefined' && __DEV__) console.log(`[NICK] ${line}`); // guard-ok: под __DEV__
 }
 
-/** Пауза после последней буквы до одного вызова брони (владелец 18.10: проверка «мгновенно», без запроса на каждую букву). */
-const NAME_APPLY_DEBOUNCE_MS = 400;
-type LiveNameStatus = 'idle' | 'checking' | 'applied' | 'taken' | 'rate_limited' | 'invalid';
+/** Пауза после последней буквы до одной проверки имени (без запроса на каждую букву; смену не тратит). */
+const NAME_CHECK_DEBOUNCE_MS = 400;
+type LiveNameStatus = 'idle' | 'checking' | 'available' | 'taken' | 'rate_limited' | 'invalid';
+/** Сервер не дал nextChangeAt — показываем час окна лимита, а не «через минуту». */
+const RATE_LIMIT_FALLBACK_MS = 60 * 60 * 1000;
 
 /**
  * «Сменить имя можно через 12 мин» — для ветки rate_limited, когда сервер знает оставшееся время (лимит 5 смен в час).
@@ -129,12 +133,8 @@ export default function NicknameEditModal({
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
-  // зачем (владелец 18.10: «вводим имя — оно проверяется и, если не занято, СРАЗУ применяется на сервере. Без всякой хуйни.
-  // Ник можно менять хоть каждую секунду»): кнопки «Сохранить» и обещания проверить имя потом больше нет.
-  // Формат — сразу на телефоне; через 400 мс паузы — ОДИН вызов nameReserve (он атомарно проверяет и записывает, старое имя
-  // освобождается на сервере). Свободно → имя применено, у поля «Готово»; занято → откат к прежнему имени, «Имя уже занято».
-  // Нет входа/сети → имя остаётся на телефоне, сервер догонит nickname_rename_pending при возврате в приложение или входе. Вызовы идут по одному:
-  // ввод во время полёта ставится в очередь, поздний ответ не перетирает более свежий ввод. Журнал [NICK-SAVE]/[NICK-CHECK].
+  // зачем (владелец 18.10: лимит 5 смен в час, «медленный набор не должен съедать лимит»): при наборе — только проверка
+  // «свободно/занято», применение (nameReserve, счёт смены) — по «Готово» или закрытию окна. Журнал [NICK-SAVE]/[NICK-CHECK].
   const [newName, setNewName] = useState(currentName);
   const [liveStatus, setLiveStatus] = useState<LiveNameStatus>('idle');
   const [invalidMessage, setInvalidMessage] = useState<string | null>(null);
@@ -147,10 +147,14 @@ export default function NicknameEditModal({
   const inFlightRef = useRef(false);
   const queuedNameRef = useRef<string | null>(null);
   const applySeqRef = useRef(0);
-  const applyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  /** Имена, про которые сервер уже сказал «занято», — на сессию окна, без повторного запроса. */
-  const takenCacheRef = useRef(new Set<string>());
+  const checkSeqRef = useRef(0);
+  /** Ответы проверки на время окна: повторный ввод того же имени не идёт в сеть (экономия лимита проверок и чтений). */
+  const checkedCacheRef = useRef(new Map<string, 'available' | 'taken'>());
+  /** До какого момента сервер не примет смену (лимит) — «Готово» не шлёт вызов впустую, а сразу показывает время. */
+  const rateLimitedUntilRef = useRef(0);
   const requestApplyRef = useRef<(name: string) => void>(() => undefined);
+
+  const rateLimitedText = () => nickRetryInMinutesText(lang, (rateLimitedUntilRef.current - Date.now()) / 60_000);
 
   const takenNotice = () => L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Обери інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.');
 
@@ -208,10 +212,11 @@ export default function NicknameEditModal({
         // Ответ сервера пришёл — ожидающая досылка (если была от прошлой попытки без сети) больше не нужна.
         void clearNicknameRenamePending(`modal_${reservation.status}`);
         if (reservation.status === 'ok') {
-          if (stillTyped) setLiveStatus('applied');
+          if (visibleRef.current && stillTyped) setLiveStatus('available');
           return;
         }
-        // зачем (координатор 18.10): 'rate_limited' — лимит 300 смен в час (защита от скрипта); откат как у «занято», но имя не помечаем занятым.
+        // зачем (владелец 18.10): 'rate_limited' — лимит 5 смен в час (или потолок на IP); откат как у «занято», но имя не
+        // помечаем занятым, а показываем точное время из nextChangeAt.
         if (reservation.status === 'taken' || reservation.status === 'cooldown' || reservation.status === 'rate_limited') {
           // зачем: откат только если за это время не применилось более свежее имя — поздний ответ не перетирает свежий ввод.
           if (appliedNameRef.current === name) {
@@ -220,9 +225,19 @@ export default function NicknameEditModal({
             onRollback(previous);
             writeLocalName(previous, name);
           }
-          if (reservation.status === 'taken') takenCacheRef.current.add(normalizeNameIndexKey(name));
-          if (stillTyped) setLiveStatus(reservation.status === 'taken' || reservation.status === 'rate_limited' ? reservation.status : 'idle');
-          if (!visibleRef.current && reservation.status === 'taken') onNotice(takenNotice());
+          if (reservation.status === 'taken') checkedCacheRef.current.set(normalizeNameIndexKey(name), 'taken');
+          if (reservation.status === 'rate_limited') {
+            const until = Number(reservation.nextChangeAt) || 0;
+            rateLimitedUntilRef.current = until > Date.now() ? until : Date.now() + RATE_LIMIT_FALLBACK_MS;
+          }
+          const notice = reservation.status === 'taken' ? takenNotice() : reservation.status === 'rate_limited' ? rateLimitedText() : null;
+          if (visibleRef.current && stillTyped) {
+            setLiveStatus(reservation.status === 'cooldown' ? 'idle' : reservation.status);
+          } else if (notice) {
+            // окно уже закрыто «Готово» — причину отката показывает плашка у родителя
+            console.log(`[NICK-SAVE] apply:notice_to_parent seq=${seq} reason=${reservation.status}`); // guard-ok: что увидел человек
+            onNotice(notice);
+          }
           return;
         }
         // 'error': нет входа / сети / таймаут — имя остаётся на телефоне, сервер догонит nickname_rename_pending при возврате в приложение или входе.
@@ -238,11 +253,32 @@ export default function NicknameEditModal({
       });
   };
 
+  /** Одна проверка «свободно/занято» после паузы: без записи и без счёта смены; поздний ответ не перетирает свежий ввод. */
+  const runAvailabilityCheck = (trimmed: string) => {
+    const seq = ++checkSeqRef.current;
+    const key = normalizeNameIndexKey(trimmed);
+    const startedAt = Date.now();
+    void checkNameAvailabilityDetailed(trimmed)
+      .catch((error: unknown) => {
+        DebugLogger.error('NicknameEditModal:checkName', error, 'warning');
+        return { status: 'error' as const };
+      })
+      .then((result) => {
+        const fresh = seq === checkSeqRef.current && newNameRef.current.trim() === trimmed;
+        console.log(`[NICK-CHECK] modal:result seq=${seq} status=${result.status} ms=${Date.now() - startedAt} fresh=${fresh}`); // guard-ok: ответ проверки и что увидит человек
+        if (result.status === 'available' || result.status === 'taken') checkedCacheRef.current.set(key, result.status);
+        if (!fresh || !visibleRef.current) return;
+        // 'limited' (лимит проверок) и 'error' — статус молча не показываем: «Готово» всё равно проверит имя атомарно.
+        setLiveStatus(result.status === 'available' || result.status === 'taken' ? result.status : 'idle');
+      });
+  };
+
   useEffect(() => {
     if (!visible) return;
     // Новое открытие: стартуем от того имени, что сейчас у родителя (если прошлый вызов ещё летит — он сам доведёт своё).
     if (!inFlightRef.current) appliedNameRef.current = currentName.trim();
-    takenCacheRef.current.clear();
+    checkedCacheRef.current.clear();
+    checkSeqRef.current += 1;
     setNewName(currentName);
     setLiveStatus('idle');
     setInvalidMessage(null);
@@ -252,7 +288,7 @@ export default function NicknameEditModal({
     void takeNicknameRenameTakenNotice().then((takenName) => {
       if (cancelled || !takenName) return;
       console.log(`[NICK-PENDING] modal:show_taken len=${takenName.length}`); // guard-ok: что увидел человек после досылки
-      takenCacheRef.current.add(normalizeNameIndexKey(takenName));
+      checkedCacheRef.current.set(normalizeNameIndexKey(takenName), 'taken');
       setNewName(takenName);
       setLiveStatus('taken');
     });
@@ -276,8 +312,8 @@ export default function NicknameEditModal({
 
   useEffect(() => {
     if (!visible) return undefined;
-    // Новый ввод отменяет всё, что ждало своей очереди: применяется только последнее.
-    queuedNameRef.current = null;
+    // Новый ввод делает устаревшим ответ прошлой проверки.
+    checkSeqRef.current += 1;
     const trimmed = newName.trim();
     if (!trimmed) {
       setLiveStatus('idle');
@@ -291,31 +327,25 @@ export default function NicknameEditModal({
       return undefined;
     }
     if (trimmed === appliedNameRef.current) {
-      setLiveStatus((current) => (current === 'applied' ? 'applied' : 'idle'));
+      setLiveStatus('idle');
       return undefined;
     }
     // dev `namecheck=` подменяет ответ в памяти ДО кэша и сети; вне dev / в стор-сборке геттер всегда null.
     const devNameCheck = getDevNameCheck();
     if (devNameCheck !== null) {
       console.log(`[DEV-STATE] namecheck=${devNameCheck}: ответ проверки имени подменён, сервер не вызывается`); // guard-ok: dev-ветка
-      setLiveStatus(devNameCheck === 'available' ? 'applied' : devNameCheck === 'taken' ? 'taken' : devNameCheck === 'checking' ? 'checking' : 'idle');
+      setLiveStatus(devNameCheck === 'available' ? 'available' : devNameCheck === 'taken' ? 'taken' : devNameCheck === 'checking' ? 'checking' : 'idle');
       return undefined;
     }
-    if (takenCacheRef.current.has(normalizeNameIndexKey(trimmed))) {
-      console.log(`[NICK-CHECK] check:taken source=session_cache len=${trimmed.length}`); // guard-ok: ответ из кэша, без сети
-      setLiveStatus('taken');
+    const cached = checkedCacheRef.current.get(normalizeNameIndexKey(trimmed));
+    if (cached) {
+      console.log(`[NICK-CHECK] check:${cached} source=session_cache len=${trimmed.length}`); // guard-ok: ответ из кэша, без сети
+      setLiveStatus(cached);
       return undefined;
     }
     setLiveStatus('checking');
-    const timer = setTimeout(() => {
-      applyTimerRef.current = null;
-      requestApplyRef.current(trimmed);
-    }, NAME_APPLY_DEBOUNCE_MS);
-    applyTimerRef.current = timer;
-    return () => {
-      clearTimeout(timer);
-      if (applyTimerRef.current === timer) applyTimerRef.current = null;
-    };
+    const timer = setTimeout(() => runAvailabilityCheck(trimmed), NAME_CHECK_DEBOUNCE_MS);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newName, visible]);
 
@@ -324,35 +354,47 @@ export default function NicknameEditModal({
     onRequestClose();
   }, [onRequestClose]);
 
-  // «Готово», крестик, «назад» и тап по фону: если пауза ещё не истекла — применяем введённое сразу, потом закрываем.
-  const finishAndClose = () => {
+  // «Готово» / ввод и крестик / «назад» / тап по фону: изменённое имя применяется одним nameReserve и окно закрывается.
+  // Если имя заведомо не пройдёт (формат, «занято» из проверки, лимит ещё не истёк): «Готово» оставляет окно открытым с
+  // причиной у поля, а закрытие просто закрывает — без вызова и без траты смены.
+  const finishAndClose = (trigger: 'done' | 'dismiss') => {
     const trimmed = newName.trim();
-    if (applyTimerRef.current) {
-      clearTimeout(applyTimerRef.current);
-      applyTimerRef.current = null;
-      if (!validateNameFormat(trimmed) && trimmed !== appliedNameRef.current) {
-        console.log(`[NICK-SAVE] close:flush len=${trimmed.length} — пауза не истекла, применяем сразу`); // guard-ok: ранний путь называет причину
-        requestApplyRef.current(trimmed);
-      }
+    if (!trimmed || trimmed === appliedNameRef.current) {
+      console.log(`[NICK-SAVE] close:${trigger} reason=${trimmed ? 'unchanged' : 'empty'}`); // guard-ok: ранний путь называет причину
+      closeNow();
+      return;
     }
+    const invalid = validateNameFormat(trimmed);
+    const knownTaken = checkedCacheRef.current.get(normalizeNameIndexKey(trimmed)) === 'taken';
+    const limitedMs = rateLimitedUntilRef.current - Date.now();
+    const blocked: LiveNameStatus | null = invalid ? 'invalid' : knownTaken ? 'taken' : limitedMs > 0 ? 'rate_limited' : null;
+    if (blocked) {
+      console.log(`[NICK-SAVE] close:${trigger} blocked=${blocked} waitMs=${Math.max(0, limitedMs)} — вызова нет`); // guard-ok: ранний путь называет причину
+      if (trigger === 'done') {
+        setLiveStatus(blocked);
+        return;
+      }
+      closeNow();
+      return;
+    }
+    console.log(`[NICK-SAVE] close:${trigger} apply len=${trimmed.length}`); // guard-ok: вход в применение имени
+    requestApplyRef.current(trimmed);
     closeNow();
   };
-  const close = finishAndClose;
+  const close = () => finishAndClose('dismiss');
 
   const availabilityStatus = liveStatus;
   const availabilityMessage = (() => {
     if (liveStatus === 'checking') {
       return L('Проверяем имя…', 'Перевіряємо ім\'я…', 'Checking the name…', 'Comprobando nombre…', 'Verificando nome…', 'Đang kiểm tra tên…', 'Memeriksa nama…', 'Ad kontrol ediliyor…', 'Sprawdzamy nazwę…');
     }
-    if (liveStatus === 'applied') {
-      return L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe');
+    if (liveStatus === 'available') {
+      return L('Имя свободно', 'Ім\'я вільне', 'The name is available', 'El nombre está disponible', 'Nome disponível', 'Tên khả dụng', 'Nama tersedia', 'Ad kullanılabilir', 'Nazwa jest dostępna');
     }
     if (liveStatus === 'taken') {
       return L('Имя уже занято', 'Ім\'я вже зайняте', 'The name is already taken', 'El nombre ya está en uso', 'Este nome já está em uso', 'Tên đã được sử dụng', 'Nama sudah dipakai', 'Bu ad zaten kullanılıyor', 'Nazwa jest już zajęta');
     }
-    if (liveStatus === 'rate_limited') {
-      return L('Слишком часто, попробуй через минуту', 'Занадто часто, спробуй за хвилину', 'Too often — try again in a minute', 'Demasiado seguido, inténtalo en un minuto', 'Muitas vezes seguidas — tente em um minuto', 'Đổi quá nhiều lần, thử lại sau một phút', 'Terlalu sering, coba lagi dalam satu menit', 'Çok sık, bir dakika sonra tekrar dene', 'Zbyt często, spróbuj za minutę');
-    }
+    if (liveStatus === 'rate_limited') return rateLimitedText();
     if (liveStatus === 'invalid') return invalidMessage ?? '';
     return '';
   })();
@@ -372,7 +414,7 @@ export default function NicknameEditModal({
   // владельцем); красным остаётся только «занято» — это семантика ошибки, а не декор.
   const availabilityColor = availabilityStatus === 'taken' || availabilityStatus === 'rate_limited' || availabilityStatus === 'invalid'
     ? t.wrong
-    : availabilityStatus === 'applied'
+    : availabilityStatus === 'available'
       ? glass.text
       : glass.secondary;
   const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
@@ -456,7 +498,7 @@ export default function NicknameEditModal({
           autoFocus={!isHybrid}
           maxLength={20}
           returnKeyType="done"
-          onSubmitEditing={finishAndClose}
+          onSubmitEditing={() => finishAndClose('done')}
           blurOnSubmit
         />
         <View
@@ -464,7 +506,7 @@ export default function NicknameEditModal({
         >
           {availabilityStatus === 'checking' ? (
             <ActivityIndicator size="small" color={availabilityColor} />
-          ) : availabilityStatus === 'applied' ? (
+          ) : availabilityStatus === 'available' ? (
             <Ionicons name="checkmark-circle-outline" size={16} color={availabilityColor} />
           ) : availabilityStatus === 'taken' || availabilityStatus === 'rate_limited' || availabilityStatus === 'invalid' ? (
             <Ionicons name="close-circle-outline" size={16} color={availabilityColor} />
@@ -481,8 +523,8 @@ export default function NicknameEditModal({
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        {/* зачем (владелец 18.10): имя применяется само по мере ввода — нужна одна кнопка «Готово» (закрыть). «Отмена»
-            не может «отменить» уже применённое на сервере имя, поэтому её нет. */}
+        {/* зачем (владелец 18.10): одна кнопка «Готово» применяет имя и закрывает окно; крестик/фон тоже применяют
+            изменённое имя — отдельной «Отмены» нет. */}
         <View style={{ flexDirection: 'row', marginTop: 8 }}>
           <TouchableOpacity
             testID="nickname-save"
@@ -498,7 +540,7 @@ export default function NicknameEditModal({
               alignItems: 'center',
               justifyContent: 'center',
             }}
-            onPress={() => { doHaptic(); finishAndClose(); }}
+            onPress={() => { doHaptic(); finishAndClose('done'); }}
           >
             {/* text-integrity: без усечения и без сжатия шрифта — длинные переводы переносятся, кнопка растёт по minHeight. */}
             <FlowText

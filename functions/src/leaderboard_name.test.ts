@@ -126,6 +126,13 @@ function callableRun(fn: any, data: LbDocData, authUid: string) {
   return fn(req);
 }
 
+/** Тот же вызов, но с адресом клиента (лимиты на IP). */
+function callableRunFromIp(fn: any, data: LbDocData, authUid: string, ip: string) {
+  const req = { auth: { uid: authUid, token: {} }, data, rawRequest: { headers: { 'x-forwarded-for': ip } }, app: {} };
+  if (typeof fn.run === 'function') return fn.run(req);
+  return fn(req);
+}
+
 describe('nameReserve — atomic uniqueness', () => {
   beforeEach(() => {
     jest.spyOn(Date, 'now').mockReturnValue(1_777_000_000_000);
@@ -649,8 +656,8 @@ describe('settings rename grace policy', () => {
     expect(blocked.status).toBe('ok');
   });
 
-  // 18.10 (Ревизор 🟡/💸, координатор): без кулдауна — предохранитель 300 смен ника в час (только от скрипта) на аккаунт, счётчик в той же транзакции.
-  it('allows 300 renames per hour, refuses the 301st as rate_limited, and opens again after the window', async () => {
+  // 18.10 (Ревизор 🟡/💸, координатор): без кулдауна — владелец: не больше 5 смен ника в час на аккаунт, счётчик в той же транзакции.
+  it('allows 5 renames per hour, refuses the 6th as rate_limited, and opens again after the window', async () => {
     const { store } = makeDbStub({
       users: {
         'stable-a': {
@@ -662,25 +669,61 @@ describe('settings rename grace policy', () => {
     });
 
     let oldName = 'Start name';
-    for (let i = 1; i <= 300; i += 1) {
+    for (let i = 1; i <= 5; i += 1) {
       const nextName = `Rename ${i}`;
       const res: any = await callableRun(nameReserve, { stableId: 'stable-a', name: nextName, oldName, source: 'settings' }, 'auth-a');
       expect(res.status).toBe('ok');
       oldName = nextName;
     }
     const progress = () => store.users['stable-a']?.progress as Record<string, unknown>;
-    expect(progress().nickname_rename_window_count).toBe('300');
+    expect(progress().nickname_rename_window_count).toBe('5');
 
-    const limited: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Rename 301', oldName, source: 'settings' }, 'auth-a');
+    const limited: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Rename 6', oldName, source: 'settings' }, 'auth-a');
     expect(limited.status).toBe('rate_limited');
     expect(limited.nextChangeAt).toBeGreaterThan(Date.now());
-    expect(store.name_index['rename 301']).toBeUndefined();
-    expect(progress().user_name).toBe('Rename 300');
+    expect(store.name_index['rename 6']).toBeUndefined();
+    expect(progress().user_name).toBe('Rename 5');
 
     // окно истекло — снова можно, счётчик начинается заново
     progress().nickname_rename_window_start = String(Date.now() - 60 * 60 * 1000 - 1);
-    const reopened: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Rename 301', oldName, source: 'settings' }, 'auth-a');
+    const reopened: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Rename 6', oldName, source: 'settings' }, 'auth-a');
     expect(reopened.status).toBe('ok');
     expect(progress().nickname_rename_window_count).toBe('1');
+  });
+
+  // владелец 18.10: анонимов можно наплодить — у смен ника отдельный потолок на IP (20 в час).
+  it('caps renames per IP across accounts and answers rate_limited with the window end', async () => {
+    const users: Record<string, LbDocData> = {};
+    const index: Record<string, LbDocData> = {};
+    for (let i = 1; i <= 21; i += 1) {
+      users[`stable-${i}`] = { firebaseAuthUid: `auth-${i}`, progress: { user_name: `Start ${i}`, user_name_lower: `start ${i}` } };
+      index[`start ${i}`] = { uid: `stable-${i}`, name: `Start ${i}`, nameLower: `start ${i}` };
+    }
+    const { store } = makeDbStub({ users, name_index: index });
+    for (let i = 1; i <= 20; i += 1) {
+      const res: any = await callableRunFromIp(nameReserve, { stableId: `stable-${i}`, name: `Moved ${i}`, oldName: `Start ${i}`, source: 'settings' }, `auth-${i}`, '203.0.113.7');
+      expect(res.status).toBe('ok');
+    }
+    const limited: any = await callableRunFromIp(nameReserve, { stableId: 'stable-21', name: 'Moved 21', oldName: 'Start 21', source: 'settings' }, 'auth-21', '203.0.113.7');
+    expect(limited.status).toBe('rate_limited');
+    expect(limited.nextChangeAt).toBeGreaterThan(Date.now());
+    expect(store.name_index['moved 21']).toBeUndefined();
+    // другой адрес — не задет
+    const other: any = await callableRunFromIp(nameReserve, { stableId: 'stable-21', name: 'Moved 21', oldName: 'Start 21', source: 'settings' }, 'auth-21', '198.51.100.9');
+    expect(other.status).toBe('ok');
+    // счётчики лежат по хэшу, без адреса в открытом виде
+    expect(Object.keys(store.name_rate_limits ?? {}).some((id) => id.includes('203.0.113.7'))).toBe(false);
+  });
+
+  // владелец 18.10: проверка «свободно/занято» при наборе не тратит смену, но и сама ограничена (60 в час на uid).
+  it('name check does not count as a rename and is itself limited to 60 per hour per uid', async () => {
+    const { store } = makeDbStub({ users: { 'stable-me': { firebaseAuthUid: 'auth-me' } } });
+    for (let i = 1; i <= 60; i += 1) {
+      const res: any = await callableRun(nameCheckAvailability, { stableId: 'stable-me', name: `Probe ${i}` }, 'auth-me');
+      expect(res.available).toBe(true);
+    }
+    const limited: any = await callableRun(nameCheckAvailability, { stableId: 'stable-me', name: 'Probe 61' }, 'auth-me');
+    expect(limited).toEqual({ ok: true, available: null, limited: true });
+    expect((store.users['stable-me'] as any).progress?.nickname_rename_window_count).toBeUndefined();
   });
 });

@@ -1,9 +1,9 @@
 # Англійська · Урок 8 · Заняття 23 — Столик на вечір
 
-**Ситуація.** Ви просите друга забронювати столик, позичити ручку й розповідаєте про труднощі з підрахунком.
+**Ситуація.** Забронювати столик на вечерю, вибрати місце для тихої розмови й попросити дитячий стільчик.
 
 **Що ви опануєте:** закріпити прохання Can you…? зі словом reserve
-**Нові слова:** reserve
+**Нові слова:** reserve, booth, terrace, highchair
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Інтро 2
 
-### Записати номер
+### Тиха розмова в кафе
 
-Вам потрібно записати номер телефону, але ручки із собою немає. У друга є ручка. `Can you lend me a pen?` — «Можеш позичити мені ручку?» Ви просите дати ручку на певний час.
+Ви хочете спокійно обговорити з другом поїздку. У кафе є окремі місця зі столом між м’якими диванчиками. Booth — таке окреме місце для гостей, часто відділене спинками сидінь. `Can you reserve a booth?` — «Можеш забронювати місце з диванчиками?» Ви просите друга вибрати саме цей тип місця.
 
-**Попросіть друга позичити вам ручку.**
+**Попросіть друга забронювати місце з диванчиками.**
 
-- ✅ **Can you lend me a pen?**
-- ❌ Can you lends me a pen? — *Після `can` потрібне `lend`, без `s`.*
-- ❌ Can you to lend me a pen? — *Після `can` потрібне `lend`, без `to`.*
+- ✅ **Can you reserve a booth?**
+- ❌ Can you reserves a booth? — *Після can потрібне reserve, без s.*
+- ❌ Can you to reserve a booth? — *Після can потрібне reserve, без to.*
 
 ---
 
 ## Інтро 3
 
-### Додати ціни
+### Місце для малюка
 
-Ви намагаєтеся додати ціни покупок подумки, але збиваєтеся. `I can’t calculate` — «Я не можу порахувати». Тут `can’t` описує те, що зараз не виходить. Після нього потрібне `calculate`, без `to`.
+Ви прийшли до ресторану з малюком. Звичайний стілець занизький, тому ви звертаєтеся до офіціанта. Highchair — «дитячий стільчик для годування». `Can you bring a highchair?` — «Можете принести дитячий стільчик?» Тут bring — принести до вашого столу.
 
-**Скажіть другові, що не можете порахувати.**
+**Попросіть офіціанта принести дитячий стільчик.**
 
-- ✅ **I can’t calculate.**
-- ❌ I can calculate. — *Зараз не виходить: потрібне `can’t`.*
-- ❌ I can’t to calculate. — *Після `can’t` потрібне `calculate`, без `to`.*
+- ✅ **Can you bring a highchair?**
+- ❌ Can you brings a highchair? — *Після can потрібне bring, без s.*
+- ❌ Can you to bring a highchair? — *Після can потрібне bring, без to.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Попросіть «Можеш забронювати столик?»**
+**1 · Картка слова — reserve**
+<!-- interaction_id: en:lesson-08:session-23:word:reserve; family: word_card -->
+> **reserve** — забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас.
+
+**2 · Попросіть «Можеш забронювати столик?»**
 <!-- interaction_id: en:lesson-08:session-23:i01; family: phrase_builder -->
 Плитки: `table` `a` `reserve` `you` `Can` → **Can you reserve a table?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-23:i02; family: listen_choose -->
 🔊 *reserve* → **reserve** · teach · calculate
 - teach — *У записі перше слово — `reserve`, а в цьому варіанті — `teach`.*
 - calculate — *У записі перше слово — `reserve`, а в цьому варіанті — `calculate`.*
 
-**3 · Попросіть друга забронювати столик**
+**4 · Виберіть форму для прохання забронювати столик**
 <!-- interaction_id: en:lesson-08:session-23:i03; family: context_gap_grammar -->
 Can you ___ a table? → **reserve** · to reserve · reserves
-- to reserve — *Після `can` потрібне `reserve`, без `to`.*
-- reserves — *Після `can` потрібне `reserve`, без `s`.*
+- to reserve — *Після can потрібне reserve, без to.*
+- reserves — *Після can потрібне reserve, без s.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-23:i04; family: speed_match -->
-reserve — забронювати · cheese — сир · teach — викладати · calculate — обчислювати
+reserve — забронювати · table — стіл · room — кімната · seat — місце для сидіння
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-23:i05; family: listen_build_dictation -->
 🔊 *Can you reserve a table?* Плитки: `table` `a` `reserve` `you` `Can` → **Can you reserve a table?**
 
-**6 · Попросіть «Можеш мені допомогти?»**
+**7 · Картка слова — booth**
+<!-- interaction_id: en:lesson-08:session-23:word:booth; family: word_card -->
+> **booth** — місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна.
+
+**8 · Попросіть «Можеш забронювати місце з диванчиками?»**
 <!-- interaction_id: en:lesson-08:session-23:i06; family: phrase_builder -->
-Плитки: `me` `help` `you` `Can` → **Can you help me?**
+Плитки: `booth` `a` `reserve` `you` `Can` → **Can you reserve a booth?**
 
-**7 · Ви збилися під час підрахунку цін. Скажіть «Я не можу порахувати»**
+**9 · Картка слова — highchair**
+<!-- interaction_id: en:lesson-08:session-23:word:highchair; family: word_card -->
+> **highchair** — дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом.
+
+**10 · Офіціант підходить до вашого столу. Попросіть «Можете принести дитячий стільчик?»**
 <!-- interaction_id: en:lesson-08:session-23:i07; family: scripted_repeat_compare -->
-🎙 **I can’t calculate.**
+🎙 **Can you bring a highchair?**
 
-**8 · Попросіть допомогти вам**
+**11 · Виберіть форму для прохання принести дитячий стільчик**
 <!-- interaction_id: en:lesson-08:session-23:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *Після `can` потрібне `help`, без `s`.*
-- to help — *Після `can` потрібне `help`, без `to`.*
+Can you ___ a highchair? → **bring** · brings · to bring
+- brings — *Після can потрібне bring, без s.*
+- to bring — *Після can потрібне bring, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-23:i09; family: listen_choose -->
 🔊 *Can you reserve a table?* → **Can you reserve a table?** · Can you reserve a room? · Can you reserve a seat?
 - Can you reserve a room? — *У записі останнє слово — `table`, а в цьому варіанті — `room`.*
 - Can you reserve a seat? — *У записі останнє слово — `table`, а в цьому варіанті — `seat`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-23:i10; family: speed_match -->
-cheat — шахрувати · reserve — забронювати · cheese — сир · teach — викладати
+reserve — забронювати · booth — місце зі столом і диванчиками · highchair — дитячий стільчик для годування · seat — місце для сидіння
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-23:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you bring a highchair?* Плитки: `highchair` `a` `bring` `you` `Can` → **Can you bring a highchair?**
 
-**12 · Попросіть «Можеш відчинити двері?»**
+**15 · Картка слова — terrace**
+<!-- interaction_id: en:lesson-08:session-23:word:terrace; family: word_card -->
+> **terrace** — тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі».
+
+**16 · Ви хочете поїсти на свіжому повітрі. Попросіть «Можеш забронювати столик на терасі?»**
 <!-- interaction_id: en:lesson-08:session-23:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `terrace` `the` `on` `table` `a` `reserve` `you` `Can` → **Can you reserve a table on the terrace?**
 
-**13 · Колега запитує про ваші заняття зі студентами. Скажіть «Я часто викладаю»**
+**17 · Друг не може зайнятися бронюванням. Ви готові зробити це самі. Скажіть «Я можу забронювати столик»**
 <!-- interaction_id: en:lesson-08:session-23:i13; family: scripted_repeat_compare -->
-🎙 **I often teach.**
+🎙 **I can reserve a table.**
 
-**14 · Почніть прохання «Можеш забронювати столик?»**
+**18 · Почніть прохання «Можеш забронювати столик?»**
 <!-- interaction_id: en:lesson-08:session-23:i14; family: context_gap_grammar -->
 ___ you reserve a table? → **Can** · Are · Is
 - Are — *У цьому проханні потрібне `Can you reserve`, без `are`.*
 - Is — *Почніть із `Can you reserve`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-23:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *У записі останнє слово — `door`, а в цьому варіанті — `window`.*
-- Can you open the box? — *У записі останнє слово — `door`, а в цьому варіанті — `box`.*
+🔊 *Can you reserve a booth?* → **Can you reserve a booth?** · Can you reserve a table? · Can you reserve a room?
+- Can you reserve a table? — *У записі booth — «місце з диванчиками», а не table — «стіл».*
+- Can you reserve a room? — *У записі booth, а не room — «кімната».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-23:i16; family: speed_match -->
-reserve — забронювати · cheat — шахрувати · calculate — обчислювати · cheese — сир
+reserve — забронювати · booth — місце зі столом і диванчиками · highchair — дитячий стільчик для годування · terrace — тераса
 
-**17 · Ви йдете з другом до популярного ресторану. Щоб не чекати вільного місця, попросіть його заздалегідь домовитися про столик. Попросіть «Можеш забронювати столик?»**
+**21 · Ви йдете з другом до популярного ресторану. Щоб не чекати вільного місця, попросіть його заздалегідь домовитися про столик. Попросіть «Можеш забронювати столик?»**
 <!-- interaction_id: en:lesson-08:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you reserve a table?**
 

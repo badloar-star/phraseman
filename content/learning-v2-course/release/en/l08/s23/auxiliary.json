@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-23:intro2:r2": {
-          "ru": "После `can` нужно `lend`, без `s`.",
-          "uk": "Після `can` потрібне `lend`, без `s`."
+          "ru": "После can нужно reserve, без s.",
+          "uk": "Після can потрібне reserve, без s."
         },
         "en:lesson-08:session-23:intro2:r3": {
-          "ru": "После `can` нужно `lend`, без `to`.",
-          "uk": "Після `can` потрібне `lend`, без `to`."
+          "ru": "После can нужно reserve, без to.",
+          "uk": "Після can потрібне reserve, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-23:intro3:r2": {
-          "ru": "Сейчас не получается: нужно `can’t`.",
-          "uk": "Зараз не виходить: потрібне `can’t`."
+          "ru": "После can нужно bring, без s.",
+          "uk": "Після can потрібне bring, без s."
         },
         "en:lesson-08:session-23:intro3:r3": {
-          "ru": "После `can’t` нужно `calculate`, без `to`.",
-          "uk": "Після `can’t` потрібне `calculate`, без `to`."
+          "ru": "После can нужно bring, без to.",
+          "uk": "Після can потрібне bring, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "43bb954486ac10a98f26677c2df642bd07762be119fe5b7731cd013423963cef"
+  "auxiliaryFingerprint": "54cbb597fccd38f42fd4834fcd221e771805d3d59b0ff62d4618b9017863b2ff"
 }

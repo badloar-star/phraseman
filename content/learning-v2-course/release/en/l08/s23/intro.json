@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Записать номер",
-        "uk": "Записати номер"
+        "ru": "Тихий разговор в кафе",
+        "uk": "Тиха розмова в кафе"
       },
       "bodyByLocale": {
-        "ru": "Вам нужно записать номер телефона, но ручки с собой нет. У друга есть ручка. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» Вы просите дать ручку на время.",
-        "uk": "Вам потрібно записати номер телефону, але ручки із собою немає. У друга є ручка. `Can you lend me a pen?` — «Можеш позичити мені ручку?» Ви просите дати ручку на певний час."
+        "ru": "Вы хотите спокойно обсудить с другом поездку. В кафе есть отдельные места со столом между мягкими диванчиками. Booth — такое отдельное место для гостей, часто отделённое спинками сидений. `Can you reserve a booth?` — «Можешь забронировать место с диванчиками?» Вы просите друга выбрать именно этот тип места.",
+        "uk": "Ви хочете спокійно обговорити з другом поїздку. У кафе є окремі місця зі столом між м’якими диванчиками. Booth — таке окреме місце для гостей, часто відділене спинками сидінь. `Can you reserve a booth?` — «Можеш забронювати місце з диванчиками?» Ви просите друга вибрати саме цей тип місця."
       },
       "question": {
         "interactionId": "en:lesson-08:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите друга одолжить вам ручку.",
-          "uk": "Попросіть друга позичити вам ручку."
+          "ru": "Попросите друга забронировать место с диванчиками.",
+          "uk": "Попросіть друга забронювати місце з диванчиками."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-23:intro2:r1",
-              "text": "Can you lend me a pen?"
+              "text": "Can you reserve a booth?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro2:r2",
-              "text": "Can you lends me a pen?"
+              "text": "Can you reserves a booth?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro2:r3",
-              "text": "Can you to lend me a pen?"
+              "text": "Can you to reserve a booth?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-23:intro2:r1",
-              "text": "Can you lend me a pen?"
+              "text": "Can you reserve a booth?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro2:r2",
-              "text": "Can you lends me a pen?"
+              "text": "Can you reserves a booth?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro2:r3",
-              "text": "Can you to lend me a pen?"
+              "text": "Can you to reserve a booth?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга одолжить вам ручку.",
-          "uk": "Попросіть друга позичити вам ручку."
+          "ru": "Попросите друга забронировать место с диванчиками.",
+          "uk": "Попросіть друга забронювати місце з диванчиками."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сложить цены",
-        "uk": "Додати ціни"
+        "ru": "Место для малыша",
+        "uk": "Місце для малюка"
       },
       "bodyByLocale": {
-        "ru": "Вы пытаетесь сложить цены покупок в уме, но сбиваетесь. `I can’t calculate` — «Я не могу посчитать». Здесь `can’t` описывает то, что сейчас не получается. После него нужно `calculate`, без `to`.",
-        "uk": "Ви намагаєтеся додати ціни покупок подумки, але збиваєтеся. `I can’t calculate` — «Я не можу порахувати». Тут `can’t` описує те, що зараз не виходить. Після нього потрібне `calculate`, без `to`."
+        "ru": "Вы пришли в ресторан с малышом. Обычный стул слишком низкий, поэтому вы обращаетесь к официанту. Highchair — «детский стульчик для кормления». `Can you bring a highchair?` — «Можете принести детский стульчик?» Здесь bring — принести к вашему столу.",
+        "uk": "Ви прийшли до ресторану з малюком. Звичайний стілець занизький, тому ви звертаєтеся до офіціанта. Highchair — «дитячий стільчик для годування». `Can you bring a highchair?` — «Можете принести дитячий стільчик?» Тут bring — принести до вашого столу."
       },
       "question": {
         "interactionId": "en:lesson-08:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что не можете посчитать.",
-          "uk": "Скажіть другові, що не можете порахувати."
+          "ru": "Попросите официанта принести детский стульчик.",
+          "uk": "Попросіть офіціанта принести дитячий стільчик."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-23:intro3:r1",
-              "text": "I can’t calculate."
+              "text": "Can you bring a highchair?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro3:r2",
-              "text": "I can calculate."
+              "text": "Can you brings a highchair?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro3:r3",
-              "text": "I can’t to calculate."
+              "text": "Can you to bring a highchair?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-23:intro3:r1",
-              "text": "I can’t calculate."
+              "text": "Can you bring a highchair?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro3:r2",
-              "text": "I can calculate."
+              "text": "Can you brings a highchair?"
             },
             {
               "responseId": "en:lesson-08:session-23:intro3:r3",
-              "text": "I can’t to calculate."
+              "text": "Can you to bring a highchair?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что не можете посчитать.",
-          "uk": "Скажіть другові, що не можете порахувати."
+          "ru": "Попросите официанта принести детский стульчик.",
+          "uk": "Попросіть офіціанта принести дитячий стільчик."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2bcffa02270985ea66c19bbda0916430ad59981c7501d1a71e5eaa5515ed135e"
+  "introFingerprint": "57db3b76327ce7d5749707590adde14957167a60f8193eeb020ba4c2d2387e8b"
 }

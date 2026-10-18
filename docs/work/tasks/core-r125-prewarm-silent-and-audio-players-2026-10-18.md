@@ -162,3 +162,13 @@ Outcome: координатор 03:26. (1) Исходники authoring-single-v
 каждом шаге таблица = файлы. (2) Части идут с PHRASEMAN_ALLOW_WIDE_COMMIT=1 только в окружении команды коммита части (не
 глобально), со списком путей и --expect. Scope: scratchpad-скрипты + копия в docs/work/tasks/morning-audio-window-scripts-2026-10-18/.
 Verification: репетиция в одноразовом хранилище с исходниками. Rollback: git revert документов.
+
+## Дополнение: аудит тишины только по каталогам звука V2 (без ложного rc=1)
+
+Governance-ID: TG-A8AC81DAF10B
+
+Outcome: координатор 03:53 — в снимке аудит давал rc=1 из-за 285 «нет файла» вне V2 (sfx, sounds). scripts/audit_bundled_audio_silence.mjs
+получает --only-prefix <путь> (можно несколько): проверяются только require() в этих каталогах, rc=1 — только тишина или
+пропажа ВНУТРИ области; журнал [AUDIO-SILENCE] scope: найдено / в области / вне области. Без параметра поведение прежнее.
+Ночные и утренние скрипты зовут аудит с --only-prefix assets/audio/learning-v2-bootstrap-v1/ (то, что едет в сборку).
+Scope: scripts/audit_bundled_audio_silence.mjs, scratchpad. Rollback: git revert.

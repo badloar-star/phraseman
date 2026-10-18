@@ -10,11 +10,11 @@ git -c core.autocrlf=false archive HEAD app assets/audio/learning-v2-bootstrap-v
 cmd //c mklink //J "$(cygpath -w $T)\node_modules" "C:\appsprojects\phraseman\node_modules" > /dev/null
 echo "$HEADREV" > $T/HEAD_REV.txt
 # скрипт перекодирования — из рабочей копии (журнал пропуска уже сжатых может быть ещё не в HEAD), поведение то же
-cp scripts/learning_v2_reencode_bundle_audio_64k.mjs $T/scripts/
+cp scripts/learning_v2_reencode_bundle_audio_64k.mjs scripts/audit_bundled_audio_silence.mjs $T/scripts/
 grep -oE 'contentHash: "[0-9a-f]{64}"' $T/app/learning_v2_bootstrap_audio_assets_v1.generated.ts | grep -oE '[0-9a-f]{64}' | sort -u > $T/OLD_BUNDLE_HASHES.txt
 say "снимок HEAD $HEADREV за $(( $(date +%s) - t0 )) с, старый набор $(wc -l < $T/OLD_BUNDLE_HASHES.txt) хешей"
 t0=$(date +%s); node $T/scripts/learning_v2_reencode_bundle_audio_64k.mjs --root $T --kbps "$KBPS" >> $L 2>&1; rc=$?
 say "перекодирование rc=$rc за $(( $(date +%s) - t0 )) с"; [ $rc -eq 0 ] || exit 1
-t0=$(date +%s); node $T/scripts/audit_bundled_audio_silence.mjs --out "$S/AUDIO_SILENCE_variant_${KBPS}k.md" --jobs 6 >> $L 2>&1; rc=$?
+t0=$(date +%s); node $T/scripts/audit_bundled_audio_silence.mjs --only-prefix assets/audio/learning-v2-bootstrap-v1/ --out "$S/AUDIO_SILENCE_variant_${KBPS}k.md" --jobs 6 >> $L 2>&1; rc=$?
 say "аудит тишины rc=$rc за $(( $(date +%s) - t0 )) с $(grep -o '"silent":[0-9]*,"quiet":[0-9]*' $L | tail -1)"
 say "набор: $(ls $T/assets/audio/learning-v2-bootstrap-v1 | wc -l) файлов, $(du -sm $T/assets/audio/learning-v2-bootstrap-v1 | cut -f1) МБ; $(grep -o 'Learning V2 bootstrap audio PASS ([^)]*)' $L | tail -1)"

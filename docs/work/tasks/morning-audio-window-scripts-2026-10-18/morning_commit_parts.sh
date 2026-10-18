@@ -29,5 +29,5 @@ echo "[MORNING-PART] части закоммичены, HEAD $(git rev-parse --s
 # условие 4 координатора: после последней части — ворота паритета, сторож V2 «файлы таблицы закоммичены», аудит тишины
 node scripts/learning_v2_release_parity_gate.mjs >> $L 2>&1; g=$?
 c=0; [ -f scripts/check_learning_v2_single_voice_committed.mjs ] && { node scripts/check_learning_v2_single_voice_committed.mjs >> $L 2>&1; c=$?; }
-node scripts/audit_bundled_audio_silence.mjs --out "$S/AUDIO_SILENCE_after_parts_${KBPS}.md" --jobs 6 >> $L 2>&1; a=$?
+node scripts/audit_bundled_audio_silence.mjs --only-prefix assets/audio/learning-v2-bootstrap-v1/ --out "$S/AUDIO_SILENCE_after_parts_${KBPS}.md" --jobs 6 >> $L 2>&1; a=$?
 echo "[MORNING-PART] итог: ворота паритета rc=$g, сторож V2 исходников rc=$c, аудит тишины rc=$a ($(grep -o '"silent":[0-9]*' $L | tail -1)), остаток звука V2 в рабочей копии: $(git status --porcelain -- assets/audio/learning-v2-bootstrap-v1 assets/audio/learning-v2/factory-production-v1 assets/audio/learning-v2/authoring-single-voice-v1 | wc -l) путей" | tee -a $L

@@ -21,7 +21,7 @@ step "0. ворота паритета ДО перекодирования (сн
 grep -oE 'contentHash: "[0-9a-f]{64}"' app/learning_v2_bootstrap_audio_assets_v1.generated.ts | grep -oE '[0-9a-f]{64}' | sort -u > $S/old_bundle_hashes.txt
 say "старый набор: $(wc -l < $S/old_bundle_hashes.txt) хешей"
 step "1. перекодирование" node scripts/learning_v2_reencode_bundle_audio_64k.mjs --kbps "$KBPS" || exit 1
-step "2. аудит тишины" node scripts/audit_bundled_audio_silence.mjs --out "$S/AUDIO_SILENCE_morning_${KBPS}k.md" --jobs 6 || { say "ТИШИНА найдена — стоп, ничего не коммитить"; exit 1; }
+step "2. аудит тишины" node scripts/audit_bundled_audio_silence.mjs --only-prefix assets/audio/learning-v2-bootstrap-v1/ --out "$S/AUDIO_SILENCE_morning_${KBPS}k.md" --jobs 6 || { say "ТИШИНА найдена — стоп, ничего не коммитить"; exit 1; }
 step "3. ворота паритета" node scripts/learning_v2_release_parity_gate.mjs || exit 1
 step "4. сторож выпуска сессий" node scripts/guard_learning_v2_session_release.mjs || exit 1
 # списки частей: новые файлы набора → исходники → таблицы и модули (код, в окно) → удаления старых файлов набора

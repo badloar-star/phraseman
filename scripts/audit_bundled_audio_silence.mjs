@@ -21,6 +21,10 @@ const outArg = args.indexOf("--out");
 const OUT = outArg >= 0 ? path.resolve(ROOT, args[outArg + 1]) : null;
 const jobsArg = args.indexOf("--jobs");
 const JOBS = jobsArg >= 0 ? Math.max(1, Number(args[jobsArg + 1]) || 4) : 4;
+// зачем (координатор 18.10): ночной снимок несёт только каталоги звука V2, и 285 require() вне их (sfx, sounds) давали
+// ложный rc=1 «нет файла». --only-prefix <путь> (можно несколько) — проверять только эти каталоги; rc=1 тогда значит
+// настоящую тишину или пропажу ВНУТРИ области. Без параметра — как раньше, весь звук сборки.
+const ONLY_PREFIXES = args.flatMap((arg, i) => (arg === "--only-prefix" && args[i + 1] ? [args[i + 1].replace(/\\/gu, "/")] : []));
 const FFMPEG = process.env.FFMPEG
   ?? "C:/Users/badlo/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe";
 const PEAK_SILENT_DB = -45;
@@ -89,6 +93,16 @@ function measure(file) {
   });
 }
 
+const found = audio.size;
+if (ONLY_PREFIXES.length > 0) {
+  for (const [abs, info] of [...audio.entries()]) if (!ONLY_PREFIXES.some((prefix) => info.rel.startsWith(prefix))) audio.delete(abs);
+}
+console.log(`${LOG} scope ${JSON.stringify({ prefixes: ONLY_PREFIXES.length > 0 ? ONLY_PREFIXES : "всё", found, inScope: audio.size, outOfScope: found - audio.size })}`);
+if (ONLY_PREFIXES.length > 0 && audio.size === 0) {
+  // область пуста — это ошибка вызова (не тот путь), а не «тишины нет»
+  console.error(`${LOG} в области ${JSON.stringify(ONLY_PREFIXES)} не найдено ни одного файла — проверь путь`);
+  process.exit(2);
+}
 const list = [...audio.entries()];
 const results = [];
 let next = 0;

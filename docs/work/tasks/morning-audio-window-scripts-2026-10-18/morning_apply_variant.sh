@@ -55,7 +55,7 @@ say "перенесено: новых $nadd, удалено $ndel, измене�
 # проверки в рабочей копии
 for g in build_learning_v2_factory_audio_module build_learning_v2_factory_single_voice_module build_learning_v2_bootstrap_audio_pack build_learning_v2_factory_lesson_audio_index; do
   node scripts/$g.mjs --check >> $L 2>&1 || { say "$g --check упал — стоп"; exit 1; }; done
-node scripts/audit_bundled_audio_silence.mjs --out "$S/AUDIO_SILENCE_morning_${KBPS}k.md" --jobs 6 >> $L 2>&1 || { say "ТИШИНА после переноса — стоп"; exit 1; }
+node scripts/audit_bundled_audio_silence.mjs --only-prefix assets/audio/learning-v2-bootstrap-v1/ --out "$S/AUDIO_SILENCE_morning_${KBPS}k.md" --jobs 6 >> $L 2>&1 || { say "ТИШИНА после переноса — стоп"; exit 1; }
 node scripts/learning_v2_release_parity_gate.mjs >> $L 2>&1 || { say "ворота паритета после переноса красные — стоп"; exit 1; }
 node scripts/guard_learning_v2_session_release.mjs >> $L 2>&1 || { say "сторож сессий красный — стоп"; exit 1; }
 say "проверки после переноса зелёные: --check ×4, тишина 0, ворота, сторож"

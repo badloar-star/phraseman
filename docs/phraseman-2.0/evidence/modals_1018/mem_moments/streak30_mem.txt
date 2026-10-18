@@ -1,0 +1,4 @@
+[MEM-MOMENTS] mount coin (60dp) live={"coin":1}
+[MEM-MOMENTS] mount full:streak-milestone-screen live={"coin":1,"full:streak-milestone-screen":1}
+[MEM-MOMENTS] unmount full:streak-milestone-screen жил=9533мс live={"coin":1}
+[MEM-MOMENTS] unmount coin жил=9539мс live={}

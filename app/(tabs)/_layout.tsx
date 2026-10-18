@@ -1376,7 +1376,11 @@ function ReleasedTabLayout() {
       ) : placeholder('ph-lessons'),
       show(2) ? <TabPane key="video" freezeWanted={freezeWanted(2)}><TabRenderProbe id="tab:video"><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadVideoScreen} /></TabRenderProbe></TabPane> : placeholder('ph-video'),
       show(3) ? <TabPane key="community" freezeWanted={freezeWanted(3)}><TabRenderProbe id="tab:community"><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadCommunityScreen} /></TabRenderProbe></TabPane> : placeholder('ph-community'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellTitle={SETTINGS_TAB_TITLE} /></TabRenderProbe></TabPane> : placeholder('ph-settings'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellTitle={SETTINGS_TAB_TITLE} /></TabRenderProbe></TabPane> : (
+        // зачем (пересъёмка 7e1c3c093: 1,8 с пусто после тапа): до первого посещения лента держит здесь заглушку — она и есть первый кадр
+        // после тапа/свайпа, поэтому каркас Настроек рисуется уже в ней, заранее, а не после монтажа экрана
+        <View key="ph-settings" style={{ width: tabPaneWidth, flex: 1 }} collapsable={false}><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>
+      ),
     ];
     return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
   }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);

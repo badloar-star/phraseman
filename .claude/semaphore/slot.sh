@@ -205,6 +205,15 @@ status(){
     local why; why=$(cat "$d/why" 2>/dev/null || echo "?")
     echo "   · сессия ${id:0:8} · $(( ($(now)-born)/60 ))м · $why"
   done
+  # зачем (V2 18.10 05:54): держатель слота не видел, что за ним стоит очередь — показываем ждущих run (их замок run.*.d без своего слота)
+  local waiting=0 wlist=""
+  for r in "$DIR"/run.*.d; do
+    [ -d "$r" ] || continue
+    local rid; rid=$(basename "$r" .d); rid=${rid#run.}
+    [ -d "$DIR/slot.$rid.d" ] && continue
+    waiting=$((waiting+1)); wlist="${wlist}${rid:0:8},"
+  done
+  echo "   в очереди run: $waiting${wlist:+ ($wlist)}"
   # Реальная нагрузка на машину — сырой факт, а не догадка.
   local procs; procs=$(tasklist 2>/dev/null | grep -icE "node\.exe|claude" || echo "?")
   echo "   процессов node/claude на ПК: $procs"

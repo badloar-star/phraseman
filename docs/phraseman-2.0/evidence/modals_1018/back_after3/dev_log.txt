@@ -1,0 +1,68 @@
+[BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":1,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+[BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":21}
+[BACK-BTN] step {"seq":1,"step":"tabs_layout_render","ms":90,"pathname":"/today_tasks","focusTick":1}
+[BACK-BTN] step {"seq":1,"step":"home_render","ms":100,"n":28}
+[BACK-BTN] step {"seq":1,"step":"home_cause","ms":106,"changed":["homeRuntimeActive"]}
+[BACK-BTN] step {"seq":1,"step":"today_unmount","ms":248}
+[BACK-BTN] step {"seq":1,"step":"home_effects_done","ms":293,"n":28}
+[BACK-BTN] step {"seq":1,"step":"tabs_focus_tick","ms":305}
+[BACK-BTN] step {"seq":1,"step":"tabs_layout_render","ms":315,"pathname":"/today_tasks","focusTick":2}
+[BACK-BTN] step {"seq":1,"step":"home_render","ms":320,"n":29}
+[BACK-BTN] step {"seq":1,"step":"home_cause","ms":323,"changed":["focusTick"]}
+[BACK-BTN] arrived {"seq":1,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":394}
+[BACK-BTN] long-frame {"seq":1,"ms":421,"atMs":421}
+[BACK-BTN] frames {"seq":1,"frames":1,"long":1,"maxMs":421,"windowMs":421}
+'[HOME-CHILD-COST]', '{"id":"video_rail","phase":"update","window":4,"actualMs":11.1,"baseMs":17.9,"propsChanged":[{"name":"videos","from":"arr[15]","to":"arr[15]"},{"name":"onSeeAll","from":"fn","to":"fn"}]}'
+[BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":2,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+[BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":15}
+[BACK-BTN] step {"seq":2,"step":"tabs_layout_render","ms":70,"pathname":"/today_tasks","focusTick":2}
+[BACK-BTN] step {"seq":2,"step":"home_render","ms":79,"n":33}
+[BACK-BTN] step {"seq":2,"step":"home_cause","ms":82,"changed":["homeRuntimeActive"]}
+[BACK-BTN] step {"seq":2,"step":"today_unmount","ms":188}
+[BACK-BTN] step {"seq":2,"step":"home_effects_done","ms":213,"n":33}
+[BACK-BTN] step {"seq":2,"step":"tabs_focus_tick","ms":225}
+[BACK-BTN] step {"seq":2,"step":"tabs_layout_render","ms":239,"pathname":"/today_tasks","focusTick":3}
+[BACK-BTN] step {"seq":2,"step":"home_render","ms":243,"n":34}
+[BACK-BTN] step {"seq":2,"step":"home_cause","ms":247,"changed":["focusTick"]}
+[BACK-BTN] arrived {"seq":2,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":321}
+[BACK-BTN] long-frame {"seq":2,"ms":366,"atMs":366}
+'[HOME-CHILD-COST]', '{"id":"video_rail","phase":"update","window":6,"actualMs":9.4,"baseMs":16.6,"propsChanged":[{"name":"videos","from":"arr[15]","to":"arr[15]"},{"name":"onSeeAll","from":"fn","to":"fn"}]}'
+[BACK-BTN] long-frame {"seq":2,"ms":79,"atMs":473}
+[BACK-BTN] frames {"seq":2,"frames":3,"long":2,"maxMs":366,"windowMs":473}
+[BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":3,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+[BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":20}
+[BACK-BTN] step {"seq":3,"step":"tabs_layout_render","ms":68,"pathname":"/today_tasks","focusTick":3}
+[BACK-BTN] step {"seq":3,"step":"home_render","ms":77,"n":39}
+[BACK-BTN] step {"seq":3,"step":"home_cause","ms":87,"changed":["homeRuntimeActive"]}
+'[HOME-CHILD-COST]', '{"id":"video_rail","phase":"nested-update","window":8,"actualMs":9.4,"baseMs":24.6,"propsChanged":[{"name":"ownerActive","from":"false","to":"true"},{"name":"onSeeAll","from":"fn","to":"fn"}]}'
+[BACK-BTN] step {"seq":3,"step":"today_unmount","ms":215}
+[BACK-BTN] step {"seq":3,"step":"home_effects_done","ms":248,"n":39}
+[BACK-BTN] step {"seq":3,"step":"tabs_focus_tick","ms":256}
+[BACK-BTN] step {"seq":3,"step":"tabs_layout_render","ms":262,"pathname":"/today_tasks","focusTick":4}
+[BACK-BTN] step {"seq":3,"step":"home_render","ms":267,"n":40}
+[BACK-BTN] step {"seq":3,"step":"home_cause","ms":270,"changed":["focusTick"]}
+[BACK-BTN] arrived {"seq":3,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":348}
+[BACK-BTN] long-frame {"seq":3,"ms":384,"atMs":384}
+[BACK-BTN] long-frame {"seq":3,"ms":115,"atMs":499}
+[BACK-BTN] frames {"seq":3,"frames":2,"long":2,"maxMs":384,"windowMs":499}
+'[HOME-CHILD-COST]', '{"id":"feature_tiles","phase":"update","window":8,"actualMs":9.2,"baseMs":29,"propsChanged":[{"name":"tiles","from":"arr[3]","to":"arr[3]"}]}'
+'[HOME-CHILD-COST]', '{"id":"video_rail","phase":"update","window":8,"actualMs":12.8,"baseMs":18.1,"propsChanged":[{"name":"videos","from":"arr[15]","to":"arr[15]"},{"name":"onSeeAll","from":"fn","to":"fn"}]}'
+[BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":4,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+[BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":86}
+[BACK-BTN] step {"seq":4,"step":"tabs_layout_render","ms":127,"pathname":"/today_tasks","focusTick":4}
+[BACK-BTN] step {"seq":4,"step":"home_render","ms":135,"n":44}
+[BACK-BTN] step {"seq":4,"step":"home_cause","ms":145,"changed":["homeRuntimeActive"]}
+[BACK-BTN] step {"seq":4,"step":"today_unmount","ms":236}
+[BACK-BTN] step {"seq":4,"step":"home_effects_done","ms":274,"n":44}
+[BACK-BTN] step {"seq":4,"step":"tabs_focus_tick","ms":287}
+[BACK-BTN] step {"seq":4,"step":"tabs_layout_render","ms":295,"pathname":"/today_tasks","focusTick":5}
+[BACK-BTN] step {"seq":4,"step":"home_render","ms":298,"n":45}
+[BACK-BTN] step {"seq":4,"step":"home_cause","ms":301,"changed":["focusTick"]}
+[BACK-BTN] arrived {"seq":4,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":377}
+[BACK-BTN] long-frame {"seq":4,"ms":403,"atMs":403}
+[BACK-BTN] frames {"seq":4,"frames":1,"long":1,"maxMs":403,"windowMs":403}
+'[HOME-CHILD-COST]', '{"id":"video_rail","phase":"update","window":10,"actualMs":24,"baseMs":29,"propsChanged":[{"name":"videos","from":"arr[15]","to":"arr[15]"},{"name":"onSeeAll","from":"fn","to":"fn"}]}'

@@ -1,0 +1,29 @@
+10-18 09:47:17.182 I/'[SPIRE]', '[SPIRE-LOAD]', 'screen:enter', '{"sinceEnterMs":0,"config":"memory"}'
+10-18 09:47:17.196 I/'[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":13,"play":"disabled","because":["tier=null (нет комнаты и недели)"],"people":null,"room":"none"}'
+10-18 09:47:17.202 I/[SPIRE-LAYOUT] clearance {"floor":1,"myFloor":null,"dockH":0,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":0,"tailUsed":120,"endClearance":124,"minClearance":16,"source":"живые данные","outcome":"none","startBlock":"none"}
+10-18 09:47:17.205 I/'[PIK-LOAD]', '{"stage":"room:waiting","ceilingMs":2500}'
+10-18 09:47:17.210 I/'[PIK-LOAD]', '{"stage":"render","inst":"lxf2j","branch":"home+podium_skeleton","preview":false,"configNull":false,"unlocked":true,"live":true,"roomStatus":null,"roomReason":null,"members":null,"tierNull":true,"podiumSkeleton":true,"ceilingPassed":false}'
+10-18 09:47:17.270 I/'[SPIRE]', '[SPIRE-LOAD]', 'identity', '{"sinceEnterMs":89,"ms":80}'
+10-18 09:47:17.272 I/'[SPIRE]', '[SPIRE-LOAD]', 'room:first_frame', '{"sinceEnterMs":90,"source":"memory","members":1,"tier":0}'
+10-18 09:47:17.283 I/[SPIRE-LAYOUT] scroll {"viewportH":806.1,"bottomPad":112,"paddingBottom":232}
+10-18 09:47:17.283 I/[SPIRE-LAYOUT] scroll.content {"contentH":1151.2}
+10-18 09:47:17.287 I/[SPIRE-LAYOUT] friends+podium {"y":919.2,"h":0,"bottom":919.2,"friends":0,"startBlock":"none"}
+10-18 09:47:17.287 I/[SPIRE-LAYOUT] dock.wrap {"y":646.1,"h":52.2,"bottomOffset":108,"pillTop":96}
+10-18 09:47:17.289 I/[SPIRE-LAYOUT] dock {"block":"none","h":52.2,"w":371}
+10-18 09:47:17.289 I/[SPIRE-LAYOUT] dock.cta {"y":0,"h":52.2}
+10-18 09:47:17.616 I/[SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-18 09:47:17.620 I/[SPIRE-LAYOUT] scroll-req#нет-этажа {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-18 09:47:17.636 I/'[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":454,"play":"enabled","because":null,"people":30,"room":"cache/memory_peek"}'
+10-18 09:47:17.641 I/[SPIRE-LAYOUT] clearance {"floor":1,"myFloor":null,"dockH":52.2,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":65,"tailUsed":120,"endClearance":71.8,"minClearance":16,"source":"живые данные","outcome":"none","startBlock":"none"}
+10-18 09:47:17.643 I/'[PIK-LOAD]', '{"stage":"room:state","live":true,"status":"cache","reason":"memory_peek","members":1,"hasRows":true}'
+10-18 09:47:17.644 I/'[PIK-LOAD]', '{"stage":"render","inst":"lxf2j","branch":"home","preview":false,"configNull":false,"unlocked":true,"live":true,"roomStatus":"cache","roomReason":"memory_peek","members":30,"tierNull":false,"podiumSkeleton":false,"ceilingPassed":false}'
+10-18 09:47:17.691 I/'[SPIRE]', '[SPIRE-LOAD]', 'room:sync', '{"sinceEnterMs":511,"status":"cache","reason":"cache_fresh","members":1,"ms":69,"alive":true}'
+10-18 09:47:17.719 I/'[SPIRE]', '[SPIRE-LOAD]', 'config:load', '{"sinceEnterMs":539,"enabled":true,"alive":true}'
+10-18 09:47:17.764 I/[SPIRE-LAYOUT] scroll.content {"contentH":825.5}
+10-18 09:47:17.766 I/[SPIRE-LAYOUT] scroll-req#после-layout {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":1145.1,"needH":1145.3,"ready":"да","animated":"нет"}
+10-18 09:47:17.774 I/[SPIRE-LAYOUT] friends+podium {"y":593.5,"h":0,"bottom":593.5,"friends":0,"startBlock":"none"}
+10-18 09:47:17.936 I/[SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":null,"scale":1,"cy":1032.1,"requestedY":954.1,"contentH":1145.1,"needH":1145.3,"ready":"да","animated":"нет"}
+10-18 09:47:17.970 I/'[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":789,"play":"enabled","because":null,"people":30,"room":"cache/cache_fresh"}'
+10-18 09:47:17.978 I/'[PIK-LOAD]', '{"stage":"room:state","live":true,"status":"cache","reason":"cache_fresh","members":1,"hasRows":true}'
+10-18 09:47:18.381 I/[SPIRE-LAYOUT] scroll.content {"contentH":861.7}
+10-18 09:47:18.386 I/[SPIRE-LAYOUT] friends+podium {"y":629.7,"h":0,"bottom":629.7,"friends":0,"startBlock":"none"}

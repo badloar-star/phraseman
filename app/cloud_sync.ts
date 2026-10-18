@@ -6346,7 +6346,28 @@ export function prewarmAccountWipeModules(source: string): void {
   });
 }
 
-async function wipeLocalAccountDataUnsafe(): Promise<void> {
+/**
+ * зачем (координатор 18.10 03:08, решение Ядра 15.10; R132): при ВЫХОДЕ и СМЕНЕ аккаунта онбординг, согласия и выбор языков —
+ * настройки устройства, а не аккаунта. Раньше onboarding_done уходил вместе с SYNC_KEYS, и после выхода и холодного старта
+ * человек заново проходил онбординг. Удаление аккаунта (mode 'full') сбрасывает их, как и раньше (account_deleted_notice).
+ */
+export const SIGNOUT_DEVICE_KEEP_KEYS = [
+  'onboarding_done',
+  'onboarding_completed_at_ms_v1',
+  'onboarding_step',
+  'onboarding_flow_version_v1',
+  'onboarding_terms_privacy_accepted_v1',
+  'analytics_consent_v1',
+  'app_lang',
+  'lang',
+  'study_target_v1',
+  'study_languages_started_v1',
+] as const;
+
+/** 'full' — удаление аккаунта и вход со сменой (как было); 'signout' — выход/смена: онбординг и языки остаются. */
+export type AccountWipeMode = 'full' | 'signout';
+
+async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full'): Promise<void> {
   const startedAt = identityTraceClockMs();
   activeWipeStages = {};
   activeWipeStageAt = startedAt;
@@ -6355,7 +6376,7 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
     const { closePhoneStateBeforeLocalWipe } = await import('./phone_state_bootstrap');
     await closePhoneStateBeforeLocalWipe();
     markWipeStage('closePhoneState');
-    await wipeLocalAccountDataUnsafeBody();
+    await wipeLocalAccountDataUnsafeBody(mode);
   } catch (error) {
     failure = identityErrorCode(error);
     throw error;
@@ -6370,7 +6391,7 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   }
 }
 
-async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
+async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<void> {
   const receiptOwnerStableId = captureAccountGeneration().stableId?.trim()
     || peekStableId()?.trim()
     || null;
@@ -6397,7 +6418,9 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
     'account_switch_quarantine_v1',
     'account_switch_completion_receipt_v1',
     'account_provider_handoff_v1',
+    ...(mode === 'signout' ? SIGNOUT_DEVICE_KEEP_KEYS : []),
   ]);
+  console.log('[ACCOUNT-WIPE]', JSON.stringify({ mode, keep: Array.from(KEEP).sort() })); // guard-ok: одна строка на стирание, только имена ключей
   const removeExactly = async (keys: readonly string[]): Promise<void> => {
     const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
     const chunkSize = 128;
@@ -6585,8 +6608,10 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
 
 export async function wipeLocalAccountData(
   inheritedLease?: AccountTransitionLockLease,
+  options?: Readonly<{ mode?: AccountWipeMode }>,
 ): Promise<void> {
-  await withAccountTransitionLock(wipeLocalAccountDataUnsafe, inheritedLease);
+  const mode = options?.mode ?? 'full';
+  await withAccountTransitionLock(() => wipeLocalAccountDataUnsafe(mode), inheritedLease);
 }
 
 const CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS = [

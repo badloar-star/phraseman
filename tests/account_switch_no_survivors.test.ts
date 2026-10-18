@@ -29,7 +29,9 @@ jest.mock('../app/user_id_policy', () => ({
 // eslint-disable-next-line import/first
 import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 // eslint-disable-next-line import/first
-import { wipeLocalAccountData } from '../app/cloud_sync';
+import { accountOwnedStorageKeysFrom, SIGNOUT_DEVICE_KEEP_KEYS, wipeLocalAccountData } from '../app/cloud_sync';
+// eslint-disable-next-line import/first
+import { ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE } from '../app/account_deleted_notice';
 
 const storage = AsyncStorage as typeof AsyncStorage & { __reset?: () => void };
 
@@ -128,6 +130,35 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     const survivors = left.filter((key) => !isAllowedSurvivor(key)).sort();
     // имена выживших в сообщение об ошибке: по ним видно, что дописать в accountLocalDataKeysForToday / WIPE_ONLY_*
     expect({ survivors }).toEqual({ survivors: [] });
+  });
+
+  // зачем (координатор 18.10 03:08, решение Ядра 15.10; R132): «разрешено выжить» превращено в «ОБЯЗАН выжить» для выхода.
+  it('выход/смена (mode signout): онбординг, согласия и языки устройства остаются с прежними значениями', async () => {
+    for (const key of SIGNOUT_DEVICE_KEEP_KEYS) await AsyncStorage.setItem(key, `device:${key}`);
+    for (const key of ACCOUNT_A_KEYS_FROM_AUDIT) await AsyncStorage.setItem(key, 'a');
+
+    await wipeLocalAccountData(undefined, { mode: 'signout' });
+
+    const kept = await AsyncStorage.multiGet([...SIGNOUT_DEVICE_KEEP_KEYS]);
+    expect(kept).toEqual(SIGNOUT_DEVICE_KEEP_KEYS.map((key) => [key, `device:${key}`]));
+    const left = await AsyncStorage.getAllKeys();
+    expect(ACCOUNT_A_KEYS_FROM_AUDIT.filter((key) => left.includes(key))).toEqual([]);
+    expect(logSpy.mock.calls.some((call) => String(call[0]) === '[ACCOUNT-WIPE]' && String(call[1]).includes('"mode":"signout"')
+      && String(call[1]).includes('onboarding_done'))).toBe(true);
+  });
+
+  it('полное стирание (удаление, вход со сменой): ключи аккаунта из этого набора исчезают, онбординг удаления сбрасывается явно', async () => {
+    const accountOwned = new Set(accountOwnedStorageKeysFrom([]));
+    const accountKeysInSet = SIGNOUT_DEVICE_KEEP_KEYS.filter((key) => accountOwned.has(key));
+    expect(accountKeysInSet).toEqual(expect.arrayContaining(['onboarding_done', 'app_lang']));
+    for (const key of accountKeysInSet) await AsyncStorage.setItem(key, 'a');
+
+    await wipeLocalAccountData();
+
+    const left = await AsyncStorage.getAllKeys();
+    expect(accountKeysInSet.filter((key) => left.includes(key))).toEqual([]);
+    // удаление аккаунта сбрасывает онбординг своим списком (account_deleted_notice) — не через режим выхода
+    expect(ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE).toEqual(expect.arrayContaining(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']));
   });
 
   // имена согласованы с Ядром 15.10 (app/account_owner_change.ts: onAccountOwnerChanged поверх subscribeAccountGeneration; сброс только при смене непустого stableId A -> B / null):

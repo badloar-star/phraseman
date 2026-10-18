@@ -4001,7 +4001,8 @@ function accountSwitchRecoveryDependencies() {
       await clearAccountPushBeforeSwitchSignOut();
       await signOutCurrentProviderKeepingSwitchResume();
     },
-    wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(); },
+    // зачем (координатор 18.10, Ядро 15.10): выход/смена — онбординг, согласия и языки устройства не стираются (R132).
+    wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(undefined, { mode: 'signout' }); },
     clearStableId: async (): Promise<void> => {
       await clearStableId();
       await clearPendingAuthLink();

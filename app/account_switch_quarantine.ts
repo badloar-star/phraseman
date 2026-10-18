@@ -1238,7 +1238,8 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
       });
       console.log(`[AA-S6] quarantine_signout done tookMs=${Date.now() - signOutStartedAtMs}`);
     },
-    wipeLocalData: async () => { await cloud.wipeLocalAccountData(); },
+    // зачем (координатор 18.10, Ядро 15.10): возобновлённая смена — тот же выход: онбординг и языки устройства остаются.
+    wipeLocalData: async () => { await cloud.wipeLocalAccountData(undefined, { mode: 'signout' }); },
     clearStableId: async () => {
       const startedAtMs = Date.now();
       await stable.clearStableId();

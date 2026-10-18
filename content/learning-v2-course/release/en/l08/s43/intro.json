@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Стол ещё в коробке",
-        "uk": "Стіл ще в коробці"
+        "ru": "Набор для скворечника",
+        "uk": "Набір для шпаківні"
       },
       "bodyByLocale": {
-        "ru": "Друг купил стол, который нужно собрать из деталей. Вы умеете это делать. `Assemble` — «собирать». Скажите: `I can assemble it` — «Я могу это собрать». Здесь `it` означает стол. После `can` нужно `assemble`, без `to`. Детали пока больше похожи на пазл, чем на место для обеда.",
-        "uk": "Друг купив стіл, який потрібно скласти з деталей. Ви вмієте це робити. `Assemble` — «збирати». Скажіть: `I can assemble it` — «Я можу це зібрати». Тут `it` означає стіл. Після `can` потрібне `assemble`, без `to`. Деталі поки більше схожі на пазл, ніж на місце для обіду."
+        "ru": "Ребёнок принёс набор деревянных деталей для скворечника. Он просит помочь соединить детали по инструкции. Assemble — «собирать из частей». `I can assemble it` — «Я могу это собрать». It здесь означает скворечник. После can нужно assemble, без to и s.",
+        "uk": "Дитина принесла набір дерев’яних деталей для шпаківні. Вона просить допомогти з’єднати деталі за інструкцією. Assemble — «збирати з частин». `I can assemble it` — «Я можу це зібрати». It тут означає шпаківню. Після can потрібне assemble, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что можете это собрать.",
-          "uk": "Скажіть, що можете це зібрати."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что можете это собрать.",
-          "uk": "Скажіть, що можете це зібрати."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "За мебелью на машине",
-        "uk": "По меблі машиною"
+        "ru": "Полки на разной высоте",
+        "uk": "Полиці на різній висоті"
       },
       "bodyByLocale": {
-        "ru": "Нужно забрать коробки с мебелью из магазина. Друг спрашивает, умеет ли ваша подруга водить машину. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
-        "uk": "Потрібно забрати коробки з меблями з магазину. Друг запитує, чи вміє ваша подруга водити машину. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+        "ru": "Два соседних стеллажа стоят рядом, но их полки находятся на разной высоте. Подруга умеет переставить их так, чтобы они образовали одну линию. Align — «выравнивать, располагать на одной линии». `She can align the shelves` — «Она может выровнять полки». После can нужно align, даже с she.",
+        "uk": "Два сусідні стелажі стоять поруч, але їхні полиці розташовані на різній висоті. Подруга вміє переставити їх так, щоб вони утворили одну лінію. Align — «вирівнювати, розташовувати на одній лінії». `She can align the shelves` — «Вона може вирівняти полиці». Після can потрібне align, навіть із she."
       },
       "question": {
         "interactionId": "en:lesson-08:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-43:intro2:r1",
-              "text": "She can drive."
+              "text": "She can align the shelves."
             },
             {
               "responseId": "en:lesson-08:session-43:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to align the shelves."
             },
             {
               "responseId": "en:lesson-08:session-43:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can aligns the shelves."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-43:intro2:r1",
-              "text": "She can drive."
+              "text": "She can align the shelves."
             },
             {
               "responseId": "en:lesson-08:session-43:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to align the shelves."
             },
             {
               "responseId": "en:lesson-08:session-43:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can aligns the shelves."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сигнал к обеду",
-        "uk": "Сигнал до обіду"
+        "ru": "Опора под настенной полкой",
+        "uk": "Опора під настінною полицею"
       },
       "bodyByLocale": {
-        "ru": "На пикнике обед готов, а друзья играют неподалёку. Вы предлагаете позвать их свистом. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
-        "uk": "На пікніку обід готовий, а друзі грають неподалік. Ви пропонуєте покликати їх свистом. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+        "ru": "Для настенной полки нужна металлическая опора в форме уголка. Bracket — «кронштейн, опора для крепления». Вы умеете прикреплять такую деталь: `I can attach the bracket` — «Я могу прикрепить кронштейн». Знакомое attach здесь значит физически прикрепить деталь.",
+        "uk": "Для настінної полиці потрібна металева опора у формі кутника. Bracket — «кронштейн, опора для кріплення». Ви вмієте прикріплювати таку деталь: `I can attach the bracket` — «Я можу прикріпити кронштейн». Знайоме attach тут означає фізично прикріпити деталь."
       },
       "question": {
         "interactionId": "en:lesson-08:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-43:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can attach the bracket."
             },
             {
               "responseId": "en:lesson-08:session-43:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to attach the bracket."
             },
             {
               "responseId": "en:lesson-08:session-43:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can attaches the bracket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-43:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can attach the bracket."
             },
             {
               "responseId": "en:lesson-08:session-43:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to attach the bracket."
             },
             {
               "responseId": "en:lesson-08:session-43:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can attaches the bracket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3484fab13b5e6462ebffd2f4d2de8d6cabcd2e90afeda9398ffe105b0414b2e1"
+  "introFingerprint": "82bf966b41bde8afc9638955e64f1f703cd1ecd1e9075484eec699cfcbed559f"
 }

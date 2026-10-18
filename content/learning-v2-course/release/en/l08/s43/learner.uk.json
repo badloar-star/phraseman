@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-43:i01",
+      "interactionId": "en:lesson-08:session-43:word:assemble",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — assemble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:word:assemble:audio"
+      ],
+      "accessibilityLabel": "Картка слова — assemble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:word:assemble:audio",
+          "transcript": "assemble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:word:assemble:r1",
+            "targetText": "assemble",
+            "meaningByLocale": {
+              "ru": "собирать из частей. I can assemble it. — «Я могу это собрать».",
+              "uk": "збирати з частин. I can assemble it. — «Я можу це зібрати»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "assemble",
+          "definitionByLocale": {
+            "ru": "собирать из частей. I can assemble it. — «Я могу это собрать».",
+            "uk": "збирати з частин. I can assemble it. — «Я можу це зібрати»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -38,7 +81,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -114,11 +157,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що можете це зібрати",
+      "prompt": "Виберіть форму для фрази «Я можу це зібрати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-43:i03:r1",
@@ -135,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що можете це зібрати",
+      "accessibilityLabel": "Виберіть форму для фрази «Я можу це зібрати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что можете это собрать",
-          "uk": "Скажіть, що можете це зібрати"
+          "ru": "Выберите форму для фразы «Я могу это собрать»",
+          "uk": "Виберіть форму для фрази «Я можу це зібрати»"
         },
         "gappedTargetPhrase": "I can ___ it.",
         "gapOptions": [
@@ -157,12 +200,12 @@
             "text": "assembles"
           }
         ],
-        "testedDimension": "Скажіть, що можете це зібрати",
+        "testedDimension": "Виберіть форму для фрази «Я можу це зібрати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-43:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що можете це зібрати",
+            "testedDimension": "Виберіть форму для фрази «Я можу це зібрати»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `assemble`, без `to`.",
               "uk": "Після `can` потрібне `assemble`, без `to`."
@@ -171,7 +214,7 @@
           {
             "responseId": "en:lesson-08:session-43:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що можете це зібрати",
+            "testedDimension": "Виберіть форму для фрази «Я можу це зібрати»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `assemble`, без `s`.",
               "uk": "Після `can` потрібне `assemble`, без `s`."
@@ -183,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -256,7 +299,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -291,27 +334,72 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-43:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-43:word:align",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — align",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:word:align:audio"
+      ],
+      "accessibilityLabel": "Картка слова — align",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:word:align:audio",
+          "transcript": "align"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:word:align:r1",
+            "targetText": "align",
+            "meaningByLocale": {
+              "ru": "выравнивать, располагать на одной линии. She can align the shelves. — «Она может выровнять полки». Shelves — «полки».",
+              "uk": "вирівнювати, розташовувати на одній лінії. She can align the shelves. — «Вона може вирівняти полиці». Shelves — «полиці»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "align",
+          "definitionByLocale": {
+            "ru": "выравнивать, располагать на одной линии. She can align the shelves. — «Она может выровнять полки». Shelves — «полки».",
+            "uk": "вирівнювати, розташовувати на одній лінії. She can align the shelves. — «Вона може вирівняти полиці». Shelves — «полиці»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "prompt": "Скажіть «Вона може вирівняти полиці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "accessibilityLabel": "Скажіть «Вона може вирівняти полиці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can drive.",
+        "targetPhrase": "She can align the shelves.",
         "localizedMeaning": {
-          "ru": "Скажите о подруге «Она умеет водить»",
-          "uk": "Скажіть про подругу «Вона вміє водити»"
+          "ru": "Скажите «Она может выровнять полки»",
+          "uk": "Скажіть «Вона може вирівняти полиці»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "align",
+          "the",
+          "shelves"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -323,26 +411,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-43:word:bracket",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bracket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:word:bracket:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bracket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:word:bracket:audio",
+          "transcript": "bracket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:word:bracket:r1",
+            "targetText": "bracket",
+            "meaningByLocale": {
+              "ru": "кронштейн, опора для крепления. I can attach the bracket. — «Я могу прикрепить кронштейн».",
+              "uk": "кронштейн, опора для кріплення. I can attach the bracket. — «Я можу прикріпити кронштейн»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bracket",
+          "definitionByLocale": {
+            "ru": "кронштейн, опора для крепления. I can attach the bracket. — «Я могу прикрепить кронштейн».",
+            "uk": "кронштейн, опора для кріплення. I can attach the bracket. — «Я можу прикріпити кронштейн»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-43:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я вмію свистіти»",
+      "prompt": "Скажіть «Я можу прикріпити кронштейн»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-43:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "accessibilityLabel": "Скажіть «Я можу прикріпити кронштейн»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-43:i07:audio",
-          "transcript": "I can whistle."
+          "transcript": "I can attach the bracket."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can whistle.",
+        "targetPhrase": "I can attach the bracket.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +488,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вона вміє водити",
+      "prompt": "Виберіть форму для фрази «Вона може вирівняти полиці»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-43:i08:r1",
-          "text": "drive"
+          "text": "align"
         },
         {
           "responseId": "en:lesson-08:session-43:i08:r2",
-          "text": "drives"
+          "text": "aligns"
         },
         {
           "responseId": "en:lesson-08:session-43:i08:r3",
-          "text": "to drive"
+          "text": "to align"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "accessibilityLabel": "Виберіть форму для фрази «Вона може вирівняти полиці»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что она умеет водить",
-          "uk": "Скажіть, що вона вміє водити"
+          "ru": "Выберите форму для фразы «Она может выровнять полки»",
+          "uk": "Виберіть форму для фрази «Вона може вирівняти полиці»"
         },
-        "gappedTargetPhrase": "She can ___.",
+        "gappedTargetPhrase": "She can ___ the shelves.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-43:i08:r1",
-            "text": "drive"
+            "text": "align"
           },
           {
             "responseId": "en:lesson-08:session-43:i08:r2",
-            "text": "drives"
+            "text": "aligns"
           },
           {
             "responseId": "en:lesson-08:session-43:i08:r3",
-            "text": "to drive"
+            "text": "to align"
           }
         ],
-        "testedDimension": "Скажіть, що вона вміє водити",
+        "testedDimension": "Виберіть форму для фрази «Вона може вирівняти полиці»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази «Вона може вирівняти полиці»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, даже с `she`.",
-              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+              "ru": "После can нужно align, даже с she.",
+              "uk": "Після can потрібне align, навіть із she."
             }
           },
           {
             "responseId": "en:lesson-08:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази «Вона може вирівняти полиці»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, без `to`.",
-              "uk": "Після `can` потрібне `drive`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -426,7 +557,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -502,7 +633,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -516,48 +647,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-43:i10:p1",
-            "target": "spill",
+            "target": "assemble",
             "meaningByLocale": {
-              "ru": "проливать",
-              "uk": "проливати"
+              "ru": "собирать из частей",
+              "uk": "збирати з частин"
             }
           },
           {
             "pairId": "en:lesson-08:session-43:i10:p2",
-            "target": "assemble",
+            "target": "align",
             "meaningByLocale": {
-              "ru": "собирать",
-              "uk": "збирати"
+              "ru": "выравнивать",
+              "uk": "вирівнювати"
             }
           },
           {
             "pairId": "en:lesson-08:session-43:i10:p3",
-            "target": "speak",
+            "target": "bracket",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "кронштейн",
+              "uk": "кронштейн"
             }
           },
           {
             "pairId": "en:lesson-08:session-43:i10:p4",
-            "target": "recycling bin",
+            "target": "sew",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "шить",
+              "uk": "шити"
             }
           }
         ],
         "leftColumn": [
-          "spill",
           "assemble",
-          "speak",
-          "recycling bin"
+          "align",
+          "bracket",
+          "sew"
         ],
         "rightColumn": [
-          "проливати",
-          "збирати",
-          "говорити",
-          "контейнер для переробки"
+          "збирати з частин",
+          "вирівнювати",
+          "кронштейн",
+          "шити"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,8 +706,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -590,14 +721,16 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-43:i11:audio",
-          "transcript": "She can drive."
+          "transcript": "She can align the shelves."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can drive.",
+        "hiddenTargetPhrase": "She can align the shelves.",
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "align",
+          "the",
+          "shelves"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -609,27 +742,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-43:word:dowel",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dowel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:word:dowel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dowel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:word:dowel:audio",
+          "transcript": "dowel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:word:dowel:r1",
+            "targetText": "dowel",
+            "meaningByLocale": {
+              "ru": "деревянный штифт для соединения деталей мебели. I can find the dowel. — «Я могу найти штифт». Это маленькая круглая деревянная деталь, которую вставляют в отверстия.",
+              "uk": "дерев’яний штифт для з’єднання деталей меблів. I can find the dowel. — «Я можу знайти штифт». Це маленька кругла дерев’яна деталь, яку вставляють в отвори."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dowel",
+          "definitionByLocale": {
+            "ru": "деревянный штифт для соединения деталей мебели. I can find the dowel. — «Я могу найти штифт». Это маленькая круглая деревянная деталь, которую вставляют в отверстия.",
+            "uk": "дерев’яний штифт для з’єднання деталей меблів. I can find the dowel. — «Я можу знайти штифт». Це маленька кругла дерев’яна деталь, яку вставляють в отвори."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-43:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг нахиляє склянку води над деталями. Скажіть «Не пролий це»",
+      "prompt": "Дерев’яний штифт закотився під шафу. Скажіть «Я можу знайти штифт»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг нахиляє склянку води над деталями. Скажіть «Не пролий це»",
+      "accessibilityLabel": "Дерев’яний штифт закотився під шафу. Скажіть «Я можу знайти штифт»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t spill it.",
+        "targetPhrase": "I can find the dowel.",
         "localizedMeaning": {
-          "ru": "Друг наклоняет стакан воды над деталями. Скажите «Не пролей это»",
-          "uk": "Друг нахиляє склянку води над деталями. Скажіть «Не пролий це»"
+          "ru": "Деревянный штифт закатился под шкаф. Скажите «Я могу найти штифт»",
+          "uk": "Дерев’яний штифт закотився під шафу. Скажіть «Я можу знайти штифт»"
         },
         "orderedTokens": [
-          "Don’t",
-          "spill",
-          "it"
+          "I",
+          "can",
+          "find",
+          "the",
+          "dowel"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -642,7 +820,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -675,67 +853,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте свистіти",
+      "prompt": "Виберіть форму для фрази «Я можу прикріпити кронштейн»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-43:i14:r1",
-          "text": "whistle"
+          "text": "attach"
         },
         {
           "responseId": "en:lesson-08:session-43:i14:r2",
-          "text": "whistles"
+          "text": "attaches"
         },
         {
           "responseId": "en:lesson-08:session-43:i14:r3",
-          "text": "to whistle"
+          "text": "to attach"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "accessibilityLabel": "Виберіть форму для фрази «Я можу прикріпити кронштейн»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете свистеть",
-          "uk": "Скажіть, що вмієте свистіти"
+          "ru": "Выберите форму для фразы «Я могу прикрепить кронштейн»",
+          "uk": "Виберіть форму для фрази «Я можу прикріпити кронштейн»"
         },
-        "gappedTargetPhrase": "I can ___.",
+        "gappedTargetPhrase": "I can ___ the bracket.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-43:i14:r1",
-            "text": "whistle"
+            "text": "attach"
           },
           {
             "responseId": "en:lesson-08:session-43:i14:r2",
-            "text": "whistles"
+            "text": "attaches"
           },
           {
             "responseId": "en:lesson-08:session-43:i14:r3",
-            "text": "to whistle"
+            "text": "to attach"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте свистіти",
+        "testedDimension": "Виберіть форму для фрази «Я можу прикріпити кронштейн»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-43:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу прикріпити кронштейн»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "После can нужно attach, без es.",
+              "uk": "Після can потрібне attach, без es."
             }
           },
           {
             "responseId": "en:lesson-08:session-43:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу прикріпити кронштейн»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -744,7 +922,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -820,7 +998,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,46 +1014,46 @@
             "pairId": "en:lesson-08:session-43:i16:p1",
             "target": "assemble",
             "meaningByLocale": {
-              "ru": "собирать",
-              "uk": "збирати"
+              "ru": "собирать из частей",
+              "uk": "збирати з частин"
             }
           },
           {
             "pairId": "en:lesson-08:session-43:i16:p2",
-            "target": "sew",
+            "target": "align",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "выравнивать",
+              "uk": "вирівнювати"
             }
           },
           {
             "pairId": "en:lesson-08:session-43:i16:p3",
-            "target": "spill",
+            "target": "bracket",
             "meaningByLocale": {
-              "ru": "проливать",
-              "uk": "проливати"
+              "ru": "кронштейн",
+              "uk": "кронштейн"
             }
           },
           {
             "pairId": "en:lesson-08:session-43:i16:p4",
-            "target": "recycling bin",
+            "target": "dowel",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "деревянный штифт",
+              "uk": "дерев’яний штифт"
             }
           }
         ],
         "leftColumn": [
           "assemble",
-          "sew",
-          "spill",
-          "recycling bin"
+          "align",
+          "bracket",
+          "dowel"
         ],
         "rightColumn": [
-          "збирати",
-          "шити",
-          "проливати",
-          "контейнер для переробки"
+          "збирати з частин",
+          "вирівнювати",
+          "кронштейн",
+          "дерев’яний штифт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,7 +1071,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-43:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -933,11 +1111,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c34368b1b7a7d0ff23dcd9da87d3276d30204f55a1ee39852ae53442bc92fef9"
+  "learnerFingerprint": "dcd15a2b62d53017782ae0835ad35c06cc8e3ea51f2ce815fad8e92d2d98d56c"
 }

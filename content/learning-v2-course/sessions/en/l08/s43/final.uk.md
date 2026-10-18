@@ -1,133 +1,149 @@
 # Англійська · Урок 8 · Заняття 43 — Я можу це зібрати
 
-**Ситуація.** Ви допомагаєте скласти меблі, обираєте водія для поїздки по них і подаєте сигнал свистом.
+**Ситуація.** Зібрати шпаківню, вирівняти полиці й прикріпити опору до стіни.
 
 **Що ви опануєте:** повторити can для вміння та залишити дію без to і закінчень
-**Нові слова:** assemble
+**Нові слова:** assemble, align, bracket, dowel
 
 ---
 
 ## Інтро 1
 
-### Стіл ще в коробці
+### Набір для шпаківні
 
-Друг купив стіл, який потрібно скласти з деталей. Ви вмієте це робити. `Assemble` — «збирати». Скажіть: `I can assemble it` — «Я можу це зібрати». Тут `it` означає стіл. Після `can` потрібне `assemble`, без `to`. Деталі поки більше схожі на пазл, ніж на місце для обіду.
+Дитина принесла набір дерев’яних деталей для шпаківні. Вона просить допомогти з’єднати деталі за інструкцією. Assemble — «збирати з частин». `I can assemble it` — «Я можу це зібрати». It тут означає шпаківню. Після can потрібне assemble, без to і s.
 
-**Скажіть, що можете це зібрати.**
+**Виберіть фразу для цієї ситуації.**
 
 - ✅ **I can assemble it.**
-- ❌ I can to assemble it. — *Після `can` потрібне `assemble`, без `to`.*
-- ❌ I can assembles it. — *Після `can` потрібне `assemble`, без `s`.*
+- ❌ I can to assemble it. — *Після can не потрібне to.*
+- ❌ I can assembles it. — *Після can дія залишається без s.*
 
 ---
 
 ## Інтро 2
 
-### По меблі машиною
+### Полиці на різній висоті
 
-Потрібно забрати коробки з меблями з магазину. Друг запитує, чи вміє ваша подруга водити машину. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`.
+Два сусідні стелажі стоять поруч, але їхні полиці розташовані на різній висоті. Подруга вміє переставити їх так, щоб вони утворили одну лінію. Align — «вирівнювати, розташовувати на одній лінії». `She can align the shelves` — «Вона може вирівняти полиці». Після can потрібне align, навіть із she.
 
-**Скажіть, що вона вміє водити.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **She can drive.**
-- ❌ She can drives. — *Після `can` потрібне `drive`, без `s`.*
-- ❌ She can to drive. — *Після `can` потрібне `drive`, без `to`.*
+- ✅ **She can align the shelves.**
+- ❌ She can to align the shelves. — *Після can не потрібне to.*
+- ❌ She can aligns the shelves. — *Після can дія залишається без s.*
 
 ---
 
 ## Інтро 3
 
-### Сигнал до обіду
+### Опора під настінною полицею
 
-На пікніку обід готовий, а друзі грають неподалік. Ви пропонуєте покликати їх свистом. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння.
+Для настінної полиці потрібна металева опора у формі кутника. Bracket — «кронштейн, опора для кріплення». Ви вмієте прикріплювати таку деталь: `I can attach the bracket` — «Я можу прикріпити кронштейн». Знайоме attach тут означає фізично прикріпити деталь.
 
-**Скажіть, що вмієте свистіти.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **I can whistle.**
-- ❌ I can to whistle. — *Після `can` потрібне `whistle`, без `to`.*
-- ❌ I can whistles. — *Після `can` потрібне `whistle`, без `s`.*
+- ✅ **I can attach the bracket.**
+- ❌ I can to attach the bracket. — *Після can не потрібне to.*
+- ❌ I can attaches the bracket. — *Після can дія залишається без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Складіть «Я можу це зібрати»**
+**1 · Картка слова — assemble**
+<!-- interaction_id: en:lesson-08:session-43:word:assemble; family: word_card -->
+> **assemble** — збирати з частин. I can assemble it. — «Я можу це зібрати».
+
+**2 · Складіть «Я можу це зібрати»**
 <!-- interaction_id: en:lesson-08:session-43:i01; family: phrase_builder -->
 Плитки: `it` `assemble` `can` `I` → **I can assemble it.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-43:i02; family: listen_choose -->
 🔊 *assemble* → **assemble** · speak · sew
 - speak — *У записі перше слово — `assemble`, а в цьому варіанті — `speak`.*
 - sew — *У записі перше слово — `assemble`, а в цьому варіанті — `sew`.*
 
-**3 · Скажіть, що можете це зібрати**
+**4 · Виберіть форму для фрази «Я можу це зібрати»**
 <!-- interaction_id: en:lesson-08:session-43:i03; family: context_gap_grammar -->
 I can ___ it. → **assemble** · to assemble · assembles
 - to assemble — *Після `can` потрібне `assemble`, без `to`.*
 - assembles — *Після `can` потрібне `assemble`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-43:i04; family: speed_match -->
 assemble — збирати · recycling bin — контейнер для переробки · speak — говорити · sew — шити
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-43:i05; family: listen_build_dictation -->
 🔊 *I can assemble it.* Плитки: `it` `assemble` `can` `I` → **I can assemble it.**
 
-**6 · Скажіть про подругу «Вона вміє водити»**
+**7 · Картка слова — align**
+<!-- interaction_id: en:lesson-08:session-43:word:align; family: word_card -->
+> **align** — вирівнювати, розташовувати на одній лінії. She can align the shelves. — «Вона може вирівняти полиці». Shelves — «полиці».
+
+**8 · Скажіть «Вона може вирівняти полиці»**
 <!-- interaction_id: en:lesson-08:session-43:i06; family: phrase_builder -->
-Плитки: `drive` `can` `She` → **She can drive.**
+Плитки: `shelves` `the` `align` `can` `She` → **She can align the shelves.**
 
-**7 · Скажіть «Я вмію свистіти»**
+**9 · Картка слова — bracket**
+<!-- interaction_id: en:lesson-08:session-43:word:bracket; family: word_card -->
+> **bracket** — кронштейн, опора для кріплення. I can attach the bracket. — «Я можу прикріпити кронштейн».
+
+**10 · Скажіть «Я можу прикріпити кронштейн»**
 <!-- interaction_id: en:lesson-08:session-43:i07; family: scripted_repeat_compare -->
-🎙 **I can whistle.**
+🎙 **I can attach the bracket.**
 
-**8 · Скажіть, що вона вміє водити**
+**11 · Виберіть форму для фрази «Вона може вирівняти полиці»**
 <!-- interaction_id: en:lesson-08:session-43:i08; family: context_gap_grammar -->
-She can ___. → **drive** · drives · to drive
-- drives — *Після `can` потрібне `drive`, навіть із `she`.*
-- to drive — *Після `can` потрібне `drive`, без `to`.*
+She can ___ the shelves. → **align** · aligns · to align
+- aligns — *Після can потрібне align, навіть із she.*
+- to align — *Після can не потрібне to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-43:i09; family: listen_choose -->
 🔊 *I can assemble it.* → **I can assemble it.** · I can assemble this. · I can assemble that.
 - I can assemble this. — *У записі останнє слово — `it`, а в цьому варіанті — `this`.*
 - I can assemble that. — *У записі останнє слово — `it`, а в цьому варіанті — `that`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-43:i10; family: speed_match -->
-spill — проливати · assemble — збирати · speak — говорити · recycling bin — контейнер для переробки
+assemble — збирати з частин · align — вирівнювати · bracket — кронштейн · sew — шити
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-43:i11; family: listen_build_dictation -->
-🔊 *She can drive.* Плитки: `drive` `can` `She` → **She can drive.**
+🔊 *She can align the shelves.* Плитки: `shelves` `the` `align` `can` `She` → **She can align the shelves.**
 
-**12 · Друг нахиляє склянку води над деталями. Скажіть «Не пролий це»**
+**15 · Картка слова — dowel**
+<!-- interaction_id: en:lesson-08:session-43:word:dowel; family: word_card -->
+> **dowel** — дерев’яний штифт для з’єднання деталей меблів. I can find the dowel. — «Я можу знайти штифт». Це маленька кругла дерев’яна деталь, яку вставляють в отвори.
+
+**16 · Дерев’яний штифт закотився під шафу. Скажіть «Я можу знайти штифт»**
 <!-- interaction_id: en:lesson-08:session-43:i12; family: phrase_builder -->
-Плитки: `it` `spill` `Don’t` → **Don’t spill it.**
+Плитки: `dowel` `the` `find` `can` `I` → **I can find the dowel.**
 
-**13 · Розкажіть «Я часто шию»**
+**17 · Розкажіть «Я часто шию»**
 <!-- interaction_id: en:lesson-08:session-43:i13; family: scripted_repeat_compare -->
 🎙 **I often sew.**
 
-**14 · Скажіть, що вмієте свистіти**
+**18 · Виберіть форму для фрази «Я можу прикріпити кронштейн»**
 <!-- interaction_id: en:lesson-08:session-43:i14; family: context_gap_grammar -->
-I can ___. → **whistle** · whistles · to whistle
-- whistles — *Після `can` потрібне `whistle`, без `s`.*
-- to whistle — *Після `can` потрібне `whistle`, без `to`.*
+I can ___ the bracket. → **attach** · attaches · to attach
+- attaches — *Після can потрібне attach, без es.*
+- to attach — *Після can не потрібне to.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-43:i15; family: listen_choose -->
 🔊 *I can swim.* → **I can swim.** · I can drive. · I can whistle.
 - I can drive. — *У записі останнє слово — `swim`, а в цьому варіанті — `drive`.*
 - I can whistle. — *У записі останнє слово — `swim`, а в цьому варіанті — `whistle`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-43:i16; family: speed_match -->
-assemble — збирати · sew — шити · spill — проливати · recycling bin — контейнер для переробки
+assemble — збирати з частин · align — вирівнювати · bracket — кронштейн · dowel — дерев’яний штифт
 
-**17 · Друг розпаковує стілець з окремих деталей і шукає допомогу зі складанням. Скажіть «Я можу це зібрати»**
+**21 · Друг розпаковує стілець з окремих деталей і шукає допомогу зі складанням. Скажіть «Я можу це зібрати»**
 <!-- interaction_id: en:lesson-08:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I can assemble it.**
 

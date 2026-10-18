@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-54:i01",
+      "interactionId": "en:lesson-07:session-54:word:weed",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — weed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:word:weed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — weed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:word:weed:audio",
+          "transcript": "weed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:word:weed:r1",
+            "targetText": "weed",
+            "meaningByLocale": {
+              "ru": "полоть, убирать сорняки. I often weed the garden. — «Я часто пропалываю огород». Удалять сорняки с грядок или других участков сада.",
+              "uk": "полоти, прибирати бур’яни. I often weed the garden. — «Я часто прополюю город». Видаляти бур’яни з грядок або інших ділянок саду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "weed",
+          "definitionByLocale": {
+            "ru": "полоть, убирать сорняки. I often weed the garden. — «Я часто пропалываю огород». Удалять сорняки с грядок или других участков сада.",
+            "uk": "полоти, прибирати бур’яни. I often weed the garden. — «Я часто прополюю город». Видаляти бур’яни з грядок або інших ділянок саду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-54:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно просматриваю сайты»",
+      "prompt": "Сосед смотрит на ваши грядки. Скажите: «Я часто пропалываю огород»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно просматриваю сайты»",
+      "accessibilityLabel": "Сосед смотрит на ваши грядки. Скажите: «Я часто пропалываю огород»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually browse online.",
+        "targetPhrase": "I often weed the garden.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно просматриваю сайты»",
-          "uk": "Скажіть «Я зазвичай переглядаю сайти»"
+          "ru": "Сосед смотрит на ваши грядки. Скажите: «Я часто пропалываю огород»",
+          "uk": "Сусід дивиться на ваші грядки. Скажіть: «Я часто прополюю город»"
         },
         "orderedTokens": [
           "I",
-          "usually",
-          "browse",
-          "online"
+          "often",
+          "weed",
+          "the",
+          "garden"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "usually"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед смотрит на ваши грядки. Скажите: «Я часто пропалываю огород»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `often` — `I often weed the garden.`",
+              "uk": "тут потрібно `often` — `I often weed the garden.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,7 +94,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -46,15 +102,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-54:i02:r1",
-          "text": "browse"
+          "text": "weed"
         },
         {
           "responseId": "en:lesson-07:session-54:i02:r2",
-          "text": "repair"
+          "text": "wear"
         },
         {
           "responseId": "en:lesson-07:session-54:i02:r3",
-          "text": "organize"
+          "text": "weigh"
         }
       ],
       "mediaIds": [],
@@ -66,23 +122,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i02:audio",
-          "transcript": "browse"
+          "transcript": "weed"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-54:i02:r1",
-            "targetText": "browse",
+            "targetText": "weed",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-54:i02:r2",
-            "targetText": "repair",
+            "targetText": "wear",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-54:i02:r3",
-            "targetText": "organize",
+            "targetText": "weigh",
             "meaningByLocale": null
           }
         ],
@@ -93,8 +149,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `browse`, а в этом варианте — `repair`.",
-              "uk": "У записі перше слово — `browse`, а в цьому варіанті — `repair`."
+              "ru": "В записи первое слово — `weed`, а в этом варианте — `wear`.",
+              "uk": "У записі перше слово — `weed`, а в цьому варіанті — `wear`."
             }
           },
           {
@@ -102,8 +158,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `browse`, а в этом варианте — `organize`.",
-              "uk": "У записі перше слово — `browse`, а в цьому варіанті — `organize`."
+              "ru": "В записи первое слово — `weed`, а в этом варианте — `weigh`.",
+              "uk": "У записі перше слово — `weed`, а в цьому варіанті — `weigh`."
             }
           }
         ],
@@ -114,67 +170,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно просматриваю сайты»",
+      "prompt": "Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-54:i03:r1",
-          "text": "browse"
+          "text": "weed"
         },
         {
           "responseId": "en:lesson-07:session-54:i03:r2",
-          "text": "browses"
+          "text": "weeds"
         },
         {
           "responseId": "en:lesson-07:session-54:i03:r3",
-          "text": "browsing"
+          "text": "weeding"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно просматриваю сайты»",
+      "accessibilityLabel": "Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно просматриваю сайты»",
-          "uk": "Скажіть «Я зазвичай переглядаю сайти»"
+          "ru": "Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово",
+          "uk": "Сусід питає про город. Скажіть: «Я часто прополюю город». Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ online.",
+        "gappedTargetPhrase": "I often ___ the garden.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-54:i03:r1",
-            "text": "browse"
+            "text": "weed"
           },
           {
             "responseId": "en:lesson-07:session-54:i03:r2",
-            "text": "browses"
+            "text": "weeds"
           },
           {
             "responseId": "en:lesson-07:session-54:i03:r3",
-            "text": "browsing"
+            "text": "weeding"
           }
         ],
-        "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+        "testedDimension": "Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-54:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "testedDimension": "Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `browse`.",
-              "uk": "Після `I` потрібне `browse`."
+              "ru": "После `I` нужно `weed`, без окончания.",
+              "uk": "Після `I` потрібно `weed`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-54:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "testedDimension": "Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `browse`.",
-              "uk": "Тут потрібна форма `browse`."
+              "ru": "Здесь нужна форма `weed`.",
+              "uk": "Тут потрібна форма `weed`."
             }
           }
         ]
@@ -183,7 +239,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +253,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-54:i04:p1",
-            "target": "browse",
+            "target": "weed",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "полоть",
+              "uk": "полоти"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i04:p2",
-            "target": "repair",
+            "target": "garden",
             "meaningByLocale": {
-              "ru": "ремонтировать",
-              "uk": "ремонтувати"
+              "ru": "сад, огород",
+              "uk": "сад, город"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i04:p3",
-            "target": "kiosk",
+            "target": "hedge",
             "meaningByLocale": {
-              "ru": "киоск",
-              "uk": "кіоск"
+              "ru": "живая изгородь",
+              "uk": "живопліт"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i04:p4",
-            "target": "striped",
+            "target": "sink",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "раковина",
+              "uk": "раковина"
             }
           }
         ],
         "leftColumn": [
-          "browse",
-          "repair",
-          "kiosk",
-          "striped"
+          "weed",
+          "garden",
+          "hedge",
+          "sink"
         ],
         "rightColumn": [
-          "просматривать",
-          "ремонтировать",
-          "киоск",
-          "полосатый"
+          "полоть",
+          "сад, огород",
+          "живая изгородь",
+          "раковина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +311,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-54:word:unclog",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unclog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:word:unclog:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unclog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:word:unclog:audio",
+          "transcript": "unclog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:word:unclog:r1",
+            "targetText": "unclog",
+            "meaningByLocale": {
+              "ru": "устранять засор. Do you unclog sinks? — «Вы прочищаете раковины?» Освобождать трубу, чтобы вода снова уходила.",
+              "uk": "усувати засмічення. Do you unclog sinks? — «Ви прочищаєте раковини?» Звільняти трубу, щоб вода знову йшла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unclog",
+          "definitionByLocale": {
+            "ru": "устранять засор. Do you unclog sinks? — «Вы прочищаете раковины?» Освобождать трубу, чтобы вода снова уходила.",
+            "uk": "усувати засмічення. Do you unclog sinks? — «Ви прочищаєте раковини?» Звільняти трубу, щоб вода знову йшла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-54:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-54:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i05:audio",
-          "transcript": "I usually browse online."
+          "transcript": "Do you unclog sinks?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually browse online.",
+        "hiddenTargetPhrase": "Do you unclog sinks?",
         "orderedTokens": [
-          "I",
-          "usually",
-          "browse",
-          "online"
+          "Do",
+          "you",
+          "unclog",
+          "sinks"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Does"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you unclog sinks?`",
+              "uk": "тут потрібно `Do` — `Do you unclog sinks?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,32 +402,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-54:word:prune",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prune",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:word:prune:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prune",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:word:prune:audio",
+          "transcript": "prune"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:word:prune:r1",
+            "targetText": "prune",
+            "meaningByLocale": {
+              "ru": "обрезать (ветки). I usually prune the hedge. — «Я обычно подрезаю живую изгородь». Обрезать ветки растения, например для ухода за ним или придания формы.",
+              "uk": "обрізати (гілки). I usually prune the hedge. — «Я зазвичай підрізаю живопліт». Обрізати гілки рослини, наприклад для догляду за нею чи надання форми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prune",
+          "definitionByLocale": {
+            "ru": "обрезать (ветки). I usually prune the hedge. — «Я обычно подрезаю живую изгородь». Обрезать ветки растения, например для ухода за ним или придания формы.",
+            "uk": "обрізати (гілки). I usually prune the hedge. — «Я зазвичай підрізаю живопліт». Обрізати гілки рослини, наприклад для догляду за нею чи надання форми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-54:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно раскладываю свои книги по порядку»",
+      "prompt": "Гость спрашивает, кто обычно ухаживает за вашей изгородью. Скажите: «Я обычно подрезаю живую изгородь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно раскладываю свои книги по порядку»",
+      "accessibilityLabel": "Гость спрашивает, кто обычно ухаживает за вашей изгородью. Скажите: «Я обычно подрезаю живую изгородь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually organize my books.",
+        "targetPhrase": "I usually prune the hedge.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно раскладываю свои книги по порядку»",
-          "uk": "Скажіть «Я зазвичай розкладаю свої книжки за порядком»"
+          "ru": "Гость спрашивает, кто обычно ухаживает за вашей изгородью. Скажите: «Я обычно подрезаю живую изгородь»",
+          "uk": "Гість питає, хто зазвичай доглядає за вашим живоплотом. Скажіть: «Я зазвичай підрізаю живопліт»"
         },
         "orderedTokens": [
           "I",
           "usually",
-          "organize",
-          "my",
-          "books"
+          "prune",
+          "the",
+          "hedge"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Гость спрашивает, кто обычно ухаживает за вашей изгородью. Скажите: «Я обычно подрезаю живую изгородь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually prune the hedge.`",
+              "uk": "тут потрібно `usually` — `I usually prune the hedge.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -326,25 +492,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите мастера «Вы ремонтируете телефоны?»",
+      "prompt": "Сантехник взял трубку. Спросите его: «Вы прочищаете раковины?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Спросите мастера «Вы ремонтируете телефоны?»",
+      "accessibilityLabel": "Сантехник взял трубку. Спросите его: «Вы прочищаете раковины?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i07:audio",
-          "transcript": "Do you repair phones?"
+          "transcript": "Do you unclog sinks?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you repair phones?",
+        "targetPhrase": "Do you unclog sinks?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -359,67 +525,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите «Вы ремонтируете телефоны?»",
+      "prompt": "Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-54:i08:r1",
-          "text": "repair"
+          "text": "prune"
         },
         {
           "responseId": "en:lesson-07:session-54:i08:r2",
-          "text": "repairs"
+          "text": "prunes"
         },
         {
           "responseId": "en:lesson-07:session-54:i08:r3",
-          "text": "repairing"
+          "text": "pruning"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Вы ремонтируете телефоны?»",
+      "accessibilityLabel": "Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Вы ремонтируете телефоны?»",
-          "uk": "Запитайте «Ви ремонтуєте телефони?»"
+          "ru": "Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово",
+          "uk": "Сусід дивиться на живопліт. Скажіть: «Я зазвичай підрізаю живопліт». Виберіть слово"
         },
-        "gappedTargetPhrase": "Do you ___ phones?",
+        "gappedTargetPhrase": "I usually ___ the hedge.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-54:i08:r1",
-            "text": "repair"
+            "text": "prune"
           },
           {
             "responseId": "en:lesson-07:session-54:i08:r2",
-            "text": "repairs"
+            "text": "prunes"
           },
           {
             "responseId": "en:lesson-07:session-54:i08:r3",
-            "text": "repairing"
+            "text": "pruning"
           }
         ],
-        "testedDimension": "Спросите «Вы ремонтируете телефоны?»",
+        "testedDimension": "Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-54:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите «Вы ремонтируете телефоны?»",
+            "testedDimension": "Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `do you` нужно `repair`.",
-              "uk": "Після `do you` потрібне `repair`."
+              "ru": "После `I` нужно `prune`, без окончания.",
+              "uk": "Після `I` потрібно `prune`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-54:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите «Вы ремонтируете телефоны?»",
+            "testedDimension": "Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `repair`.",
-              "uk": "Тут потрібна форма `repair`."
+              "ru": "Здесь нужна форма `prune`.",
+              "uk": "Тут потрібна форма `prune`."
             }
           }
         ]
@@ -428,7 +594,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -436,15 +602,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-54:i09:r1",
-          "text": "I usually browse online."
+          "text": "I usually prune the hedge."
         },
         {
           "responseId": "en:lesson-07:session-54:i09:r2",
-          "text": "We usually browse online."
+          "text": "I usually trim the hedge."
         },
         {
           "responseId": "en:lesson-07:session-54:i09:r3",
-          "text": "They usually browse online."
+          "text": "I usually water the hedge."
         }
       ],
       "mediaIds": [],
@@ -456,23 +622,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i09:audio",
-          "transcript": "I usually browse online."
+          "transcript": "I usually prune the hedge."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-54:i09:r1",
-            "targetText": "I usually browse online.",
+            "targetText": "I usually prune the hedge.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-54:i09:r2",
-            "targetText": "We usually browse online.",
+            "targetText": "I usually trim the hedge.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-54:i09:r3",
-            "targetText": "They usually browse online.",
+            "targetText": "I usually water the hedge.",
             "meaningByLocale": null
           }
         ],
@@ -483,8 +649,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
-              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+              "ru": "В записи глагол — prune, обрезать ветки, а в этом варианте — trim, подстригать.",
+              "uk": "У записі дієслово — prune, обрізати гілки, а в цьому варіанті — trim, підстригати."
             }
           },
           {
@@ -492,8 +658,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `I`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `I`, а в цьому варіанті — `They`."
+              "ru": "В записи глагол — prune, обрезать ветки, а в этом варианте — water, поливать.",
+              "uk": "У записі дієслово — prune, обрізати гілки, а в цьому варіанті — water, поливати."
             }
           }
         ],
@@ -504,7 +670,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -518,48 +684,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-54:i10:p1",
-            "target": "organize",
+            "target": "unclog",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "устранять засор",
+              "uk": "усувати засмічення"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i10:p2",
-            "target": "browse",
+            "target": "weed",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "полоть",
+              "uk": "полоти"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i10:p3",
-            "target": "repair",
+            "target": "prune",
             "meaningByLocale": {
-              "ru": "ремонтировать",
-              "uk": "ремонтувати"
+              "ru": "обрезать ветки",
+              "uk": "обрізати гілки"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i10:p4",
-            "target": "striped",
+            "target": "garden",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "сад, огород",
+              "uk": "сад, город"
             }
           }
         ],
         "leftColumn": [
-          "organize",
-          "browse",
-          "repair",
-          "striped"
+          "unclog",
+          "weed",
+          "prune",
+          "garden"
         ],
         "rightColumn": [
-          "упорядочивать",
-          "просматривать",
-          "ремонтировать",
-          "полосатый"
+          "устранять засор",
+          "полоть",
+          "обрезать ветки",
+          "сад, огород"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -577,8 +743,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -592,18 +758,31 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i11:audio",
-          "transcript": "Do you repair phones?"
+          "transcript": "She often weeds the garden."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you repair phones?",
+        "hiddenTargetPhrase": "She often weeds the garden.",
         "orderedTokens": [
-          "Do",
-          "you",
-          "repair",
-          "phones"
+          "She",
+          "often",
+          "weeds",
+          "the",
+          "garden"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "weed"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `weeds` — `She often weeds the garden.`",
+              "uk": "тут потрібно `weeds` — `She often weeds the garden.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -612,31 +791,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-54:word:sow",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-54:word:sow:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-54:word:sow:audio",
+          "transcript": "sow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-54:word:sow:r1",
+            "targetText": "sow",
+            "meaningByLocale": {
+              "ru": "сеять. I usually sow seeds in a pot. — «Я обычно сею семена в горшок». Класть семена в землю, чтобы выросли растения.",
+              "uk": "сіяти. I usually sow seeds in a pot. — «Я зазвичай сію насіння в горщик». Класти насіння в землю, щоб виросли рослини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sow",
+          "definitionByLocale": {
+            "ru": "сеять. I usually sow seeds in a pot. — «Я обычно сею семена в горшок». Класть семена в землю, чтобы выросли растения.",
+            "uk": "сіяти. I usually sow seeds in a pot. — «Я зазвичай сію насіння в горщик». Класти насіння в землю, щоб виросли рослини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-54:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы хотите купить газету. Спросите прохожего «Где киоск?»",
+      "prompt": "Подруга спрашивает про рассаду. Скажите: «Я обычно сею семена в горшок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы хотите купить газету. Спросите прохожего «Где киоск?»",
+      "accessibilityLabel": "Подруга спрашивает про рассаду. Скажите: «Я обычно сею семена в горшок»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the kiosk?",
+        "targetPhrase": "I usually sow seeds in a pot.",
         "localizedMeaning": {
-          "ru": "Вы хотите купить газету. Спросите прохожего «Где киоск?»",
-          "uk": "Ви хочете купити газету. Запитайте перехожого «Де кіоск?»"
+          "ru": "Подруга спрашивает про рассаду. Скажите: «Я обычно сею семена в горшок»",
+          "uk": "Подруга питає про розсаду. Скажіть: «Я зазвичай сію насіння в горщик»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "kiosk"
+          "I",
+          "usually",
+          "sow",
+          "seeds",
+          "in",
+          "a",
+          "pot"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-54:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает про рассаду. Скажите: «Я обычно сею семена в горшок»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually sow seeds in a pot.`",
+              "uk": "тут потрібно `usually` — `I usually sow seeds in a pot.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -646,25 +883,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, какая у вас рубашка. Скажите «Моя рубашка полосатая»",
+      "prompt": "Гость спрашивает про вашего брата. Скажите: «Он обычно подрезает живую изгородь». Используйте prune",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-54:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, какая у вас рубашка. Скажите «Моя рубашка полосатая»",
+      "accessibilityLabel": "Гость спрашивает про вашего брата. Скажите: «Он обычно подрезает живую изгородь». Используйте prune",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i13:audio",
-          "transcript": "My shirt is striped."
+          "transcript": "He usually prunes the hedge."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "My shirt is striped.",
+        "targetPhrase": "He usually prunes the hedge.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -679,67 +916,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно просматриваю сайты»",
+      "prompt": "Вы позвонили сантехнику. Спросите его о раковине. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-54:i14:r1",
-          "text": "usually"
+          "text": "unclog"
         },
         {
           "responseId": "en:lesson-07:session-54:i14:r2",
-          "text": "does"
+          "text": "unclogs"
         },
         {
           "responseId": "en:lesson-07:session-54:i14:r3",
-          "text": "am"
+          "text": "unclogging"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно просматриваю сайты»",
+      "accessibilityLabel": "Вы позвонили сантехнику. Спросите его о раковине. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно просматриваю сайты»",
-          "uk": "Скажіть «Я зазвичай переглядаю сайти»"
+          "ru": "Вы позвонили сантехнику. Спросите его о раковине. Выберите слово",
+          "uk": "Ви зателефонували сантехніку. Спитайте його про раковину. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ browse online.",
+        "gappedTargetPhrase": "Do you ___ sinks?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-54:i14:r1",
-            "text": "usually"
+            "text": "unclog"
           },
           {
             "responseId": "en:lesson-07:session-54:i14:r2",
-            "text": "does"
+            "text": "unclogs"
           },
           {
             "responseId": "en:lesson-07:session-54:i14:r3",
-            "text": "am"
+            "text": "unclogging"
           }
         ],
-        "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+        "testedDimension": "Вы позвонили сантехнику. Спросите его о раковине. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-54:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "testedDimension": "Вы позвонили сантехнику. Спросите его о раковине. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `browse`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `browse`."
+              "ru": "После Do you нужно unclog, без s.",
+              "uk": "Після Do you потрібно unclog, без s."
             }
           },
           {
             "responseId": "en:lesson-07:session-54:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно просматриваю сайты»",
+            "testedDimension": "Вы позвонили сантехнику. Спросите его о раковине. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `browse` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `browse` не ставимо."
+              "ru": "Здесь нужна форма unclog.",
+              "uk": "Тут потрібна форма unclog."
             }
           }
         ]
@@ -748,7 +985,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -756,15 +993,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-54:i15:r1",
-          "text": "Where is the kiosk?"
+          "text": "Do you unclog sinks?"
         },
         {
           "responseId": "en:lesson-07:session-54:i15:r2",
-          "text": "Where is the museum?"
+          "text": "Do you unclog drains?"
         },
         {
           "responseId": "en:lesson-07:session-54:i15:r3",
-          "text": "Where is the cinema?"
+          "text": "Do you unclog pipes?"
         }
       ],
       "mediaIds": [],
@@ -776,23 +1013,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i15:audio",
-          "transcript": "Where is the kiosk?"
+          "transcript": "Do you unclog sinks?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-54:i15:r1",
-            "targetText": "Where is the kiosk?",
+            "targetText": "Do you unclog sinks?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-54:i15:r2",
-            "targetText": "Where is the museum?",
+            "targetText": "Do you unclog drains?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-54:i15:r3",
-            "targetText": "Where is the cinema?",
+            "targetText": "Do you unclog pipes?",
             "meaningByLocale": null
           }
         ],
@@ -803,8 +1040,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `museum`.",
-              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `museum`."
+              "ru": "В записи последнее слово — `sinks`, а в этом варианте — `drains`.",
+              "uk": "У записі останнє слово — `sinks`, а в цьому варіанті — `drains`."
             }
           },
           {
@@ -812,8 +1049,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `kiosk`, а в этом варианте — `cinema`.",
-              "uk": "У записі останнє слово — `kiosk`, а в цьому варіанті — `cinema`."
+              "ru": "В записи последнее слово — `sinks`, а в этом варианте — `pipes`.",
+              "uk": "У записі останнє слово — `sinks`, а в цьому варіанті — `pipes`."
             }
           }
         ],
@@ -824,7 +1061,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,48 +1075,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-54:i16:p1",
-            "target": "browse",
+            "target": "unclog",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "устранять засор",
+              "uk": "усувати засмічення"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i16:p2",
-            "target": "kiosk",
+            "target": "sow",
             "meaningByLocale": {
-              "ru": "киоск",
-              "uk": "кіоск"
+              "ru": "сеять",
+              "uk": "сіяти"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i16:p3",
-            "target": "striped",
+            "target": "prune",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "обрезать ветки",
+              "uk": "обрізати гілки"
             }
           },
           {
             "pairId": "en:lesson-07:session-54:i16:p4",
-            "target": "organize",
+            "target": "sink",
             "meaningByLocale": {
-              "ru": "упорядочивать",
-              "uk": "упорядковувати"
+              "ru": "раковина",
+              "uk": "раковина"
             }
           }
         ],
         "leftColumn": [
-          "browse",
-          "kiosk",
-          "striped",
-          "organize"
+          "unclog",
+          "sow",
+          "prune",
+          "sink"
         ],
         "rightColumn": [
-          "просматривать",
-          "киоск",
-          "полосатый",
-          "упорядочивать"
+          "устранять засор",
+          "сеять",
+          "обрезать ветки",
+          "раковина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -897,25 +1134,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-54:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, что Том обычно делает в интернете. Скажите «Том обычно просматривает сайты»",
+      "prompt": "Знакомый спрашивает про вашу соседку. Скажите: «Моя соседка часто пропалывает огород»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-54:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, что Том обычно делает в интернете. Скажите «Том обычно просматривает сайты»",
+      "accessibilityLabel": "Знакомый спрашивает про вашу соседку. Скажите: «Моя соседка часто пропалывает огород»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-54:i17:audio",
-          "transcript": "Tom usually browses online."
+          "transcript": "My neighbour often weeds the garden."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually browses online.",
+        "targetPhrase": "My neighbour often weeds the garden.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -937,11 +1174,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b227be3494f1fbcb3bb6ae9907344e4eb2333c64053711c4ecef180a1b509119"
+  "learnerFingerprint": "bad0b8f093a60cbd11631cccff70e87b0673e8f277ab3661149712eff6632e7a"
 }

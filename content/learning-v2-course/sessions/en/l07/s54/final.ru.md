@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 54 — Просматриваю сайты
+# Английский · Урок 7 · Занятие 54 — Огород и засор
 
-**Ситуация.** Вы рассказываете о просмотре сайтов, порядке в книгах и ремонте телефона.
+**Ситуация.** Вы рассказываете о делах в саду и доме: как пропалываете огород, подрезаете изгородь, сеете семена и спрашиваете сантехника о засоре.
 
-**Что вы освоите:** рассказывать о привычках и спрашивать об услугах
-**Новые слова:** browse
+**Что вы освоите:** рассказывать о привычках и спрашивать «Вы …?»
+**Новые слова:** weed, prune, unclog, sow
+**Возвращаются:** garden, hedge, sink, pot, seed, drain, pipe, neighbour, trim, water
 
 ---
 
 ## Интро 1
 
-### Без точного запроса
+### Ровные грядки
 
-Друг спрашивает, что вы обычно делаете в интернете, когда не ищете ничего определённого. `Browse` — «просматривать, бегло смотреть». `I usually browse online` — «Я обычно просматриваю сайты». `Online` здесь значит «в интернете». `Usually` стоит перед `browse`. Зашли просто посмотреть — а открытых вкладок уже больше, чем пальцев.
+Весной между грядками вылезают сорняки. Вы выходите во двор и выдёргиваете их, пока они не заглушили овощи. Сосед смотрит через забор и спрашивает, как вам удаётся держать грядки без сорняков. weed — «полоть». Скажите: I often weed the garden — «Я часто пропалываю огород». Слово often стоит перед weed.
 
-**Расскажите другу о своей привычке.**
+**Сосед удивляется, что на грядках почти нет сорняков. Объясните: «Я часто пропалываю огород».**
 
-- ✅ **I usually browse online.**
-- ❌ I usually browses online. — *После `I` нужно `browse`.*
-- ❌ I usually browsing online. — *Здесь нужна форма `browse`.*
+- ✅ **I often weed the garden.**
+- ❌ I often weeds the garden. — *После I нужно weed, без s.*
+- ❌ I often weeding the garden. — *Здесь нужна форма weed.*
 
 ---
 
 ## Интро 2
 
-### Книги по порядку
+### Живая изгородь
 
-Подруга спрашивает, как вы поддерживаете порядок на книжной полке. `I usually organize my books` — «Я обычно раскладываю свои книги по порядку». `Usually` стоит перед `organize`; `my books` — «мои книги».
+Изгородь у калитки разрослась и мешает проходить. Вы берёте садовые ножницы и срезаете лишние ветки, чтобы куст рос ровно. prune — «обрезать (ветки)». Скажите: I usually prune the hedge — «Я обычно подрезаю живую изгородь». Слово usually стоит перед prune.
 
-**Расскажите, что вы обычно делаете со своими книгами.**
+**Гость спрашивает, кто обычно ухаживает за вашей изгородью. Ответьте: «Я обычно подрезаю живую изгородь».**
 
-- ✅ **I usually organize my books.**
-- ❌ I usually organizes my books. — *После `I` нужно `organize`.*
-- ❌ I usually organizing my books. — *Здесь нужна форма `organize`.*
+- ✅ **I usually prune the hedge.**
+- ❌ I usually prunes the hedge. — *После I нужно prune, без s.*
+- ❌ I usually pruning the hedge. — *После I usually нужна форма prune, без -ing.*
 
 ---
 
 ## Интро 3
 
-### В ремонтной мастерской
+### Вода не уходит
 
-Вы заходите в мастерскую с неисправным телефоном и хотите узнать, занимаются ли здесь телефонами. `Do you repair phones?` — «Вы ремонтируете телефоны?» После `do you` нужно `repair`, без окончания `s`.
+Раковина на кухне засорилась, и вода почти не уходит, а ждать до выходных не хочется. Вы позвонили в сервис, и на другом конце линии отвечает сантехник. unclog — «устранять засор». Спросите: Do you unclog sinks? — «Вы прочищаете раковины?» Вопрос начинается с Do.
 
-**Спросите мастера об услуге.**
+**Сантехник ждёт вашего вопроса. Спросите: «Вы прочищаете раковины?»**
 
-- ✅ **Do you repair phones?**
-- ❌ Does you repair phones? — *С `you` нужно `do`.*
-- ❌ Do you repairs phones? — *После `do you` нужно `repair`.*
+- ✅ **Do you unclog sinks?**
+- ❌ Does you unclog sinks? — *С you нужно Do.*
+- ❌ Do you unclogs sinks? — *После Do you нужно unclog, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я обычно просматриваю сайты»**
+**1 · Карточка слова — weed**
+<!-- interaction_id: en:lesson-07:session-54:word:weed; family: word_card -->
+> **weed** — полоть, убирать сорняки. I often weed the garden. — «Я часто пропалываю огород». Удалять сорняки с грядок или других участков сада.
+
+**2 · Сосед смотрит на ваши грядки. Скажите: «Я часто пропалываю огород»**
 <!-- interaction_id: en:lesson-07:session-54:i01; family: phrase_builder -->
-Плитки: `online` `browse` `usually` `I` → **I usually browse online.**
+Плитки: `garden` `usually` `the` `weed` `often` `I` → **I often weed the garden.**
+*(плитка `usually` лишняя: здесь нужно `often` — `I often weed the garden.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-54:i02; family: listen_choose -->
-🔊 *browse* → **browse** · repair · organize
-- repair — *В записи первое слово — `browse`, а в этом варианте — `repair`.*
-- organize — *В записи первое слово — `browse`, а в этом варианте — `organize`.*
+🔊 *weed* → **weed** · wear · weigh
+- wear — *В записи первое слово — `weed`, а в этом варианте — `wear`.*
+- weigh — *В записи первое слово — `weed`, а в этом варианте — `weigh`.*
 
-**3 · Скажите «Я обычно просматриваю сайты»**
+**4 · Сосед спрашивает про огород. Скажите: «Я часто пропалываю огород». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-54:i03; family: context_gap_grammar -->
-I usually ___ online. → **browse** · browses · browsing
-- browses — *После `I` нужно `browse`.*
-- browsing — *Здесь нужна форма `browse`.*
+I often ___ the garden. → **weed** · weeds · weeding
+- weeds — *После `I` нужно `weed`, без окончания.*
+- weeding — *Здесь нужна форма `weed`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-54:i04; family: speed_match -->
-browse — просматривать · repair — ремонтировать · kiosk — киоск · striped — полосатый
+weed — полоть · garden — сад, огород · hedge — живая изгородь · sink — раковина
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — unclog**
+<!-- interaction_id: en:lesson-07:session-54:word:unclog; family: word_card -->
+> **unclog** — устранять засор. Do you unclog sinks? — «Вы прочищаете раковины?» Освобождать трубу, чтобы вода снова уходила.
+
+**7 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-54:i05; family: listen_build_dictation -->
-🔊 *I usually browse online.* Плитки: `online` `browse` `usually` `I` → **I usually browse online.**
+🔊 *Do you unclog sinks?* Плитки: `sinks` `Does` `unclog` `you` `Do` → **Do you unclog sinks?**
+*(плитка `Does` лишняя: здесь нужно `Do` — `Do you unclog sinks?`)*
 
-**6 · Скажите «Я обычно раскладываю свои книги по порядку»**
+**8 · Карточка слова — prune**
+<!-- interaction_id: en:lesson-07:session-54:word:prune; family: word_card -->
+> **prune** — обрезать (ветки). I usually prune the hedge. — «Я обычно подрезаю живую изгородь». Обрезать ветки растения, например для ухода за ним или придания формы.
+
+**9 · Гость спрашивает, кто обычно ухаживает за вашей изгородью. Скажите: «Я обычно подрезаю живую изгородь»**
 <!-- interaction_id: en:lesson-07:session-54:i06; family: phrase_builder -->
-Плитки: `books` `my` `organize` `usually` `I` → **I usually organize my books.**
+Плитки: `hedge` `often` `the` `prune` `usually` `I` → **I usually prune the hedge.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually prune the hedge.`)*
 
-**7 · Спросите мастера «Вы ремонтируете телефоны?»**
+**10 · Сантехник взял трубку. Спросите его: «Вы прочищаете раковины?»**
 <!-- interaction_id: en:lesson-07:session-54:i07; family: scripted_repeat_compare -->
-🎙 **Do you repair phones?**
+🎙 **Do you unclog sinks?**
 
-**8 · Спросите «Вы ремонтируете телефоны?»**
+**11 · Сосед смотрит на изгородь. Скажите: «Я обычно подрезаю живую изгородь». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-54:i08; family: context_gap_grammar -->
-Do you ___ phones? → **repair** · repairs · repairing
-- repairs — *После `do you` нужно `repair`.*
-- repairing — *Здесь нужна форма `repair`.*
+I usually ___ the hedge. → **prune** · prunes · pruning
+- prunes — *После `I` нужно `prune`, без окончания.*
+- pruning — *Здесь нужна форма `prune`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-54:i09; family: listen_choose -->
-🔊 *I usually browse online.* → **I usually browse online.** · We usually browse online. · They usually browse online.
-- We usually browse online. — *В записи первое слово — `I`, а в этом варианте — `We`.*
-- They usually browse online. — *В записи первое слово — `I`, а в этом варианте — `They`.*
+🔊 *I usually prune the hedge.* → **I usually prune the hedge.** · I usually trim the hedge. · I usually water the hedge.
+- I usually trim the hedge. — *В записи глагол — prune, обрезать ветки, а в этом варианте — trim, подстригать.*
+- I usually water the hedge. — *В записи глагол — prune, обрезать ветки, а в этом варианте — water, поливать.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-54:i10; family: speed_match -->
-organize — упорядочивать · browse — просматривать · repair — ремонтировать · striped — полосатый
+unclog — устранять засор · weed — полоть · prune — обрезать ветки · garden — сад, огород
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-54:i11; family: listen_build_dictation -->
-🔊 *Do you repair phones?* Плитки: `phones` `repair` `you` `Do` → **Do you repair phones?**
+🔊 *She often weeds the garden.* Плитки: `garden` `weed` `the` `weeds` `often` `She` → **She often weeds the garden.**
+*(плитка `weed` лишняя: здесь нужно `weeds` — `She often weeds the garden.`)*
 
-**12 · Вы хотите купить газету. Спросите прохожего «Где киоск?»**
+**15 · Карточка слова — sow**
+<!-- interaction_id: en:lesson-07:session-54:word:sow; family: word_card -->
+> **sow** — сеять. I usually sow seeds in a pot. — «Я обычно сею семена в горшок». Класть семена в землю, чтобы выросли растения.
+
+**16 · Подруга спрашивает про рассаду. Скажите: «Я обычно сею семена в горшок»**
 <!-- interaction_id: en:lesson-07:session-54:i12; family: phrase_builder -->
-Плитки: `kiosk` `the` `is` `Where` → **Where is the kiosk?**
+Плитки: `pot` `often` `a` `in` `seeds` `sow` `usually` `I` → **I usually sow seeds in a pot.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually sow seeds in a pot.`)*
 
-**13 · Друг спрашивает, какая у вас рубашка. Скажите «Моя рубашка полосатая»**
+**17 · Гость спрашивает про вашего брата. Скажите: «Он обычно подрезает живую изгородь». Используйте prune**
 <!-- interaction_id: en:lesson-07:session-54:i13; family: scripted_repeat_compare -->
-🎙 **My shirt is striped.**
+🎙 **He usually prunes the hedge.**
 
-**14 · Скажите «Я обычно просматриваю сайты»**
+**18 · Вы позвонили сантехнику. Спросите его о раковине. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-54:i14; family: context_gap_grammar -->
-I ___ browse online. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `browse`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `browse` не ставим.*
+Do you ___ sinks? → **unclog** · unclogs · unclogging
+- unclogs — *После Do you нужно unclog, без s.*
+- unclogging — *Здесь нужна форма unclog.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-54:i15; family: listen_choose -->
-🔊 *Where is the kiosk?* → **Where is the kiosk?** · Where is the museum? · Where is the cinema?
-- Where is the museum? — *В записи последнее слово — `kiosk`, а в этом варианте — `museum`.*
-- Where is the cinema? — *В записи последнее слово — `kiosk`, а в этом варианте — `cinema`.*
+🔊 *Do you unclog sinks?* → **Do you unclog sinks?** · Do you unclog drains? · Do you unclog pipes?
+- Do you unclog drains? — *В записи последнее слово — `sinks`, а в этом варианте — `drains`.*
+- Do you unclog pipes? — *В записи последнее слово — `sinks`, а в этом варианте — `pipes`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-54:i16; family: speed_match -->
-browse — просматривать · kiosk — киоск · striped — полосатый · organize — упорядочивать
+unclog — устранять засор · sow — сеять · prune — обрезать ветки · sink — раковина
 
-**17 · Друг спрашивает, что Том обычно делает в интернете. Скажите «Том обычно просматривает сайты»**
+**21 · Знакомый спрашивает про вашу соседку. Скажите: «Моя соседка часто пропалывает огород»**
 <!-- interaction_id: en:lesson-07:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually browses online.**
-
+🎙 **My neighbour often weeds the garden.**

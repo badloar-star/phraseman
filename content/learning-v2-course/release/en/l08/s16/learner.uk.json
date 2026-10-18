@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-16:i01",
+      "interactionId": "en:lesson-08:session-16:word:weld",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — weld",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:word:weld:audio"
+      ],
+      "accessibilityLabel": "Картка слова — weld",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:word:weld:audio",
+          "transcript": "weld"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-16:word:weld:r1",
+            "targetText": "weld",
+            "meaningByLocale": {
+              "ru": "сваривать металл. I can’t weld. — «Я не умею сваривать металл». Соединять металлические детали сильным нагревом.",
+              "uk": "зварювати метал. I can’t weld. — «Я не вмію зварювати метал». З’єднувати металеві деталі сильним нагріванням."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "weld",
+          "definitionByLocale": {
+            "ru": "сваривать металл. I can’t weld. — «Я не умею сваривать металл». Соединять металлические детали сильным нагревом.",
+            "uk": "зварювати метал. I can’t weld. — «Я не вмію зварювати метал». З’єднувати металеві деталі сильним нагріванням."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я не вмію кататися на ковзанах»",
+      "prompt": "Скажіть «Я не вмію зварювати метал»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не вмію кататися на ковзанах»",
+      "accessibilityLabel": "Скажіть «Я не вмію зварювати метал»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can’t skate.",
+        "targetPhrase": "I can’t weld.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не умею кататься на коньках»",
-          "uk": "Скажіть «Я не вмію кататися на ковзанах»"
+          "ru": "Скажите «Я не умею сваривать металл»",
+          "uk": "Скажіть «Я не вмію зварювати метал»"
         },
         "orderedTokens": [
           "I",
           "can’t",
-          "skate"
+          "weld"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,7 +88,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-16:i02:r1",
-          "text": "dive"
+          "text": "weld"
         },
         {
           "responseId": "en:lesson-08:session-16:i02:r2",
@@ -53,7 +96,7 @@
         },
         {
           "responseId": "en:lesson-08:session-16:i02:r3",
-          "text": "code"
+          "text": "dive"
         }
       ],
       "mediaIds": [],
@@ -65,13 +108,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-16:i02:audio",
-          "transcript": "dive"
+          "transcript": "weld"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-16:i02:r1",
-            "targetText": "dive",
+            "targetText": "weld",
             "meaningByLocale": null
           },
           {
@@ -81,7 +124,7 @@
           },
           {
             "responseId": "en:lesson-08:session-16:i02:r3",
-            "targetText": "code",
+            "targetText": "dive",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `dive`, а в этом варианте — `knit`.",
-              "uk": "У записі перше слово — `dive`, а в цьому варіанті — `knit`."
+              "ru": "В записи weld — «сваривать металл», а не knit — «вязать».",
+              "uk": "У записі weld — «зварювати метал», а не knit — «в’язати»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `dive`, а в этом варианте — `code`.",
-              "uk": "У записі перше слово — `dive`, а в цьому варіанті — `code`."
+              "ru": "В записи weld, а не dive — «нырять».",
+              "uk": "У записі weld, а не dive — «пірнати»."
             }
           }
         ],
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не вмію керувати кермом»",
+      "prompt": "Виберіть форму: «Я не вмію керувати кермом»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-16:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не вмію керувати кермом»",
+      "accessibilityLabel": "Виберіть форму: «Я не вмію керувати кермом»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не умею управлять рулём»",
-          "uk": "Скажіть «Я не вмію керувати кермом»"
+          "ru": "Выберите форму: «Я не умею управлять рулём»",
+          "uk": "Виберіть форму: «Я не вмію керувати кермом»"
         },
         "gappedTargetPhrase": "I can’t ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "steers"
           }
         ],
-        "testedDimension": "Скажіть «Я не вмію керувати кермом»",
+        "testedDimension": "Виберіть форму: «Я не вмію керувати кермом»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-16:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не вмію керувати кермом»",
+            "testedDimension": "Виберіть форму: «Я не вмію керувати кермом»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `steer`, без `to`.",
               "uk": "Після `can’t` потрібне `steer`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-16:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не вмію керувати кермом»",
+            "testedDimension": "Виберіть форму: «Я не вмію керувати кермом»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `steer`, без `s`.",
               "uk": "Після `can’t` потрібне `steer`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,10 +239,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-16:i04:p1",
-            "target": "skate",
+            "target": "weld",
             "meaningByLocale": {
-              "ru": "кататься на коньках",
-              "uk": "кататися на ковзанах"
+              "ru": "сваривать металл",
+              "uk": "зварювати метал"
             }
           },
           {
@@ -212,10 +255,10 @@
           },
           {
             "pairId": "en:lesson-08:session-16:i04:p3",
-            "target": "code",
+            "target": "steer",
             "meaningByLocale": {
-              "ru": "писать код",
-              "uk": "писати код"
+              "ru": "управлять рулём",
+              "uk": "керувати кермом"
             }
           },
           {
@@ -228,15 +271,15 @@
           }
         ],
         "leftColumn": [
-          "skate",
+          "weld",
           "dive",
-          "code",
+          "steer",
           "knit"
         ],
         "rightColumn": [
-          "кататися на ковзанах",
+          "зварювати метал",
           "пірнати",
-          "писати код",
+          "керувати кермом",
           "в’язати"
         ],
         "pairingKey": "pair_id",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-16:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-16:word:solder",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — solder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:word:solder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — solder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:word:solder:audio",
+          "transcript": "solder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-16:word:solder:r1",
+            "targetText": "solder",
+            "meaningByLocale": {
+              "ru": "паять. I can solder. — «Я умею паять». Соединять детали расплавленным припоем.",
+              "uk": "паяти. I can solder. — «Я вмію паяти». З’єднувати деталі розплавленим припоєм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "solder",
+          "definitionByLocale": {
+            "ru": "паять. I can solder. — «Я умею паять». Соединять детали расплавленным припоем.",
+            "uk": "паяти. I can solder. — «Я вмію паяти». З’єднувати деталі розплавленим припоєм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я вмію писати код»",
+      "prompt": "Скажіть «Я вмію паяти»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію писати код»",
+      "accessibilityLabel": "Скажіть «Я вмію паяти»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can code.",
+        "targetPhrase": "I can solder.",
         "localizedMeaning": {
-          "ru": "Скажите «Я умею писать код»",
-          "uk": "Скажіть «Я вмію писати код»"
+          "ru": "Скажите «Я умею паять»",
+          "uk": "Скажіть «Я вмію паяти»"
         },
         "orderedTokens": [
           "I",
           "can",
-          "code"
+          "solder"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-16:word:vice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:word:vice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:word:vice:audio",
+          "transcript": "vice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-16:word:vice:r1",
+            "targetText": "vice",
+            "meaningByLocale": {
+              "ru": "тиски. Whose vice is this? — «Чьи это тиски?» В английском один инструмент: is. Американское написание — vise.",
+              "uk": "лещата. Whose vice is this? — «Чиї це лещата?» Англійською один інструмент: is. Американське написання — vise."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vice",
+          "definitionByLocale": {
+            "ru": "тиски. Whose vice is this? — «Чьи это тиски?» В английском один инструмент: is. Американское написание — vise.",
+            "uk": "лещата. Whose vice is this? — «Чиї це лещата?» Англійською один інструмент: is. Американське написання — vise."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-16:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Чий це шарф?»",
+      "prompt": "Запитайте «Чиї це лещата?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-16:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте «Чий це шарф?»",
+      "accessibilityLabel": "Запитайте «Чиї це лещата?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-16:i07:audio",
-          "transcript": "Whose scarf is this?"
+          "transcript": "Whose vice is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose scarf is this?",
+        "targetPhrase": "Whose vice is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,11 +484,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє в’язати»",
+      "prompt": "Виберіть форму: «Вона вміє в’язати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-16:i08:r1",
@@ -376,12 +505,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє в’язати»",
+      "accessibilityLabel": "Виберіть форму: «Вона вміє в’язати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет вязать»",
-          "uk": "Скажіть «Вона вміє в’язати»"
+          "ru": "Выберите форму: «Она умеет вязать»",
+          "uk": "Виберіть форму: «Вона вміє в’язати»"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
@@ -398,12 +527,12 @@
             "text": "to knit"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє в’язати»",
+        "testedDimension": "Виберіть форму: «Вона вміє в’язати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-16:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє в’язати»",
+            "testedDimension": "Виберіть форму: «Вона вміє в’язати»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `knit`, без `s`.",
               "uk": "Після `can` потрібне `knit`, без `s`."
@@ -412,7 +541,7 @@
           {
             "responseId": "en:lesson-08:session-16:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє в’язати»",
+            "testedDimension": "Виберіть форму: «Вона вміє в’язати»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `knit`, без `to`.",
               "uk": "Після `can` потрібне `knit`, без `to`."
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,7 +561,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-16:i09:r1",
-          "text": "I can’t code."
+          "text": "I can’t solder."
         },
         {
           "responseId": "en:lesson-08:session-16:i09:r2",
@@ -452,13 +581,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-16:i09:audio",
-          "transcript": "I can’t code."
+          "transcript": "I can’t solder."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-16:i09:r1",
-            "targetText": "I can’t code.",
+            "targetText": "I can’t solder.",
             "meaningByLocale": null
           },
           {
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `code`, а в этом варианте — `dive`.",
-              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `dive`."
+              "ru": "В записи последнее слово — `solder`, а в этом варианте — `dive`.",
+              "uk": "У записі останнє слово — `solder`, а в цьому варіанті — `dive`."
             }
           },
           {
@@ -488,8 +617,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `code`, а в этом варианте — `spell`.",
-              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `spell`."
+              "ru": "В записи последнее слово — `solder`, а в этом варианте — `spell`.",
+              "uk": "У записі останнє слово — `solder`, а в цьому варіанті — `spell`."
             }
           }
         ],
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-16:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,351 +643,30 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-16:i10:p1",
-            "target": "steer",
+            "target": "weld",
             "meaningByLocale": {
-              "ru": "управлять рулём",
-              "uk": "керувати кермом"
+              "ru": "сваривать металл",
+              "uk": "зварювати метал"
             }
           },
           {
             "pairId": "en:lesson-08:session-16:i10:p2",
-            "target": "spell",
+            "target": "solder",
             "meaningByLocale": {
-              "ru": "правильно писать слова",
-              "uk": "правильно писати слова"
+              "ru": "паять",
+              "uk": "паяти"
             }
           },
           {
             "pairId": "en:lesson-08:session-16:i10:p3",
-            "target": "calculate",
+            "target": "vice",
             "meaningByLocale": {
-              "ru": "вычислять",
-              "uk": "обчислювати"
+              "ru": "тиски",
+              "uk": "лещата"
             }
           },
           {
             "pairId": "en:lesson-08:session-16:i10:p4",
-            "target": "swimming pool",
-            "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
-            }
-          }
-        ],
-        "leftColumn": [
-          "steer",
-          "spell",
-          "calculate",
-          "swimming pool"
-        ],
-        "rightColumn": [
-          "керувати кермом",
-          "правильно писати слова",
-          "обчислювати",
-          "басейн"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-16:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-16:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-16:i11:audio",
-          "transcript": "Whose scarf is this?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose scarf is this?",
-        "orderedTokens": [
-          "Whose",
-          "scarf",
-          "is",
-          "this"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-16:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Де басейн?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Де басейн?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the swimming pool?",
-        "localizedMeaning": {
-          "ru": "Спросите «Где бассейн?»",
-          "uk": "Запитайте «Де басейн?»"
-        },
-        "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "swimming",
-          "pool"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-16:i13",
-      "ordinal": 16,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи часто ви катаєтеся на ковзанах. Скажіть «Я часто катаюся на ковзанах»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-16:i13:audio"
-      ],
-      "accessibilityLabel": "Друг запитує, чи часто ви катаєтеся на ковзанах. Скажіть «Я часто катаюся на ковзанах»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-16:i13:audio",
-          "transcript": "I often skate."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I often skate.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-16:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Скажіть «Він не може порахувати»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-16:i14:r1",
-          "text": "can’t"
-        },
-        {
-          "responseId": "en:lesson-08:session-16:i14:r2",
-          "text": "can"
-        },
-        {
-          "responseId": "en:lesson-08:session-16:i14:r3",
-          "text": "is can’t"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він не може порахувати»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Скажите «Он не может посчитать»",
-          "uk": "Скажіть «Він не може порахувати»"
-        },
-        "gappedTargetPhrase": "He ___ calculate.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-16:i14:r1",
-            "text": "can’t"
-          },
-          {
-            "responseId": "en:lesson-08:session-16:i14:r2",
-            "text": "can"
-          },
-          {
-            "responseId": "en:lesson-08:session-16:i14:r3",
-            "text": "is can’t"
-          }
-        ],
-        "testedDimension": "Скажіть «Він не може порахувати»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-16:i14:r2",
-            "correct": false,
-            "testedDimension": "Скажіть «Він не може порахувати»",
-            "feedbackByLocale": {
-              "ru": "Не получается: нужно `can’t`.",
-              "uk": "Не виходить: потрібне `can’t`."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-16:i14:r3",
-            "correct": false,
-            "testedDimension": "Скажіть «Він не може порахувати»",
-            "feedbackByLocale": {
-              "ru": "Достаточно `he can’t`; `is` не нужно.",
-              "uk": "Достатньо `he can’t`; `is` не потрібне."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-16:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-16:i15:r1",
-          "text": "I can’t steer."
-        },
-        {
-          "responseId": "en:lesson-08:session-16:i15:r2",
-          "text": "I can’t knit."
-        },
-        {
-          "responseId": "en:lesson-08:session-16:i15:r3",
-          "text": "I can’t calculate."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-16:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-16:i15:audio",
-          "transcript": "I can’t steer."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-16:i15:r1",
-            "targetText": "I can’t steer.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-16:i15:r2",
-            "targetText": "I can’t knit.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-16:i15:r3",
-            "targetText": "I can’t calculate.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-16:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `steer`, а в этом варианте — `knit`.",
-              "uk": "У записі останнє слово — `steer`, а в цьому варіанті — `knit`."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-16:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `steer`, а в этом варианте — `calculate`.",
-              "uk": "У записі останнє слово — `steer`, а в цьому варіанті — `calculate`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-16:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-16:i16:p1",
-            "target": "code",
-            "meaningByLocale": {
-              "ru": "писать код",
-              "uk": "писати код"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-16:i16:p2",
-            "target": "knit",
-            "meaningByLocale": {
-              "ru": "вязать",
-              "uk": "в’язати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-16:i16:p3",
-            "target": "spell",
-            "meaningByLocale": {
-              "ru": "правильно писать слова",
-              "uk": "правильно писати слова"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-16:i16:p4",
             "target": "calculate",
             "meaningByLocale": {
               "ru": "вычислять",
@@ -867,15 +675,15 @@
           }
         ],
         "leftColumn": [
-          "code",
-          "knit",
-          "spell",
+          "weld",
+          "solder",
+          "vice",
           "calculate"
         ],
         "rightColumn": [
-          "писати код",
-          "в’язати",
-          "правильно писати слова",
+          "зварювати метал",
+          "паяти",
+          "лещата",
           "обчислювати"
         ],
         "pairingKey": "pair_id",
@@ -893,26 +701,389 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-16:i17",
+      "interactionId": "en:lesson-08:session-16:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:i11:audio",
+          "transcript": "Whose vice is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose vice is this?",
+        "orderedTokens": [
+          "Whose",
+          "vice",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:word:anvil",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — anvil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:word:anvil:audio"
+      ],
+      "accessibilityLabel": "Картка слова — anvil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:word:anvil:audio",
+          "transcript": "anvil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-16:word:anvil:r1",
+            "targetText": "anvil",
+            "meaningByLocale": {
+              "ru": "наковальня. Where is the anvil? — «Где наковальня?» Тяжёлая металлическая опора для ковки.",
+              "uk": "ковадло. Where is the anvil? — «Де ковадло?» Важка металева опора для кування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anvil",
+          "definitionByLocale": {
+            "ru": "наковальня. Where is the anvil? — «Где наковальня?» Тяжёлая металлическая опора для ковки.",
+            "uk": "ковадло. Where is the anvil? — «Де ковадло?» Важка металева опора для кування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коваль пропонує показати роботу на ковадлі. Запитайте «Де ковадло?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коваль пропонує показати роботу на ковадлі. Запитайте «Де ковадло?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the anvil?",
+        "localizedMeaning": {
+          "ru": "Кузнец предлагает показать работу на наковальне. Спросите «Где наковальня?»",
+          "uk": "Коваль пропонує показати роботу на ковадлі. Запитайте «Де ковадло?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "anvil"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i13",
       "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи часто ви паяєте. Скажіть «Я часто паяю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи часто ви паяєте. Скажіть «Я часто паяю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:i13:audio",
+          "transcript": "I often solder."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often solder.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму: «Він не може порахувати»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-16:i14:r1",
+          "text": "can’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-16:i14:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-16:i14:r3",
+          "text": "is can’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму: «Він не може порахувати»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму: «Он не может посчитать»",
+          "uk": "Виберіть форму: «Він не може порахувати»"
+        },
+        "gappedTargetPhrase": "He ___ calculate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-16:i14:r1",
+            "text": "can’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-16:i14:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-16:i14:r3",
+            "text": "is can’t"
+          }
+        ],
+        "testedDimension": "Виберіть форму: «Він не може порахувати»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму: «Він не може порахувати»",
+            "feedbackByLocale": {
+              "ru": "Не получается: нужно `can’t`.",
+              "uk": "Не виходить: потрібне `can’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму: «Він не може порахувати»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `he can’t`; `is` не нужно.",
+              "uk": "Достатньо `he can’t`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-16:i15:r1",
+          "text": "Where is the anvil?"
+        },
+        {
+          "responseId": "en:lesson-08:session-16:i15:r2",
+          "text": "Where is the vice?"
+        },
+        {
+          "responseId": "en:lesson-08:session-16:i15:r3",
+          "text": "Where is the book?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-16:i15:audio",
+          "transcript": "Where is the anvil?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-16:i15:r1",
+            "targetText": "Where is the anvil?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-16:i15:r2",
+            "targetText": "Where is the vice?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-16:i15:r3",
+            "targetText": "Where is the book?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи anvil — «наковальня», а не vice — «тиски».",
+              "uk": "У записі anvil — «ковадло», а не vice — «лещата»."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи anvil, а не book — «книга».",
+              "uk": "У записі anvil, а не book — «книжка»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-16:i16:p1",
+            "target": "weld",
+            "meaningByLocale": {
+              "ru": "сваривать металл",
+              "uk": "зварювати метал"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-16:i16:p2",
+            "target": "solder",
+            "meaningByLocale": {
+              "ru": "паять",
+              "uk": "паяти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-16:i16:p3",
+            "target": "vice",
+            "meaningByLocale": {
+              "ru": "тиски",
+              "uk": "лещата"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-16:i16:p4",
+            "target": "anvil",
+            "meaningByLocale": {
+              "ru": "наковальня",
+              "uk": "ковадло"
+            }
+          }
+        ],
+        "leftColumn": [
+          "weld",
+          "solder",
+          "vice",
+          "anvil"
+        ],
+        "rightColumn": [
+          "зварювати метал",
+          "паяти",
+          "лещата",
+          "ковадло"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-16:i17",
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг пропонує Томові пірнути. Том ще не вміє. Скажіть «Том не вміє пірнати»",
+      "prompt": "Друг пропонує Томові зварити раму. Том ще не навчився. Скажіть «Том не вміє зварювати метал»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Друг пропонує Томові пірнути. Том ще не вміє. Скажіть «Том не вміє пірнати»",
+      "accessibilityLabel": "Друг пропонує Томові зварити раму. Том ще не навчився. Скажіть «Том не вміє зварювати метал»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-16:i17:audio",
-          "transcript": "Tom can’t dive."
+          "transcript": "Tom can’t weld."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can’t dive.",
+        "targetPhrase": "Tom can’t weld.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -934,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8b6f2bb829f149bf64de61e80db9d444dd099c8639d4db469e8bde94c7287838"
+  "learnerFingerprint": "3bdf61c2abe353518691ba41d8c5a2b41f5c4d8ba30cf7dc54221aae191af838"
 }

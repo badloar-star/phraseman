@@ -10,8 +10,8 @@
           "uk": "Ви поки не вмієте: потрібне `can’t`."
         },
         "en:lesson-08:session-16:intro1:r3": {
-          "ru": "После `can’t` нужно `skate`, без `to`.",
-          "uk": "Після `can’t` потрібне `skate`, без `to`."
+          "ru": "После `can’t` нужно `weld`, без `to`.",
+          "uk": "Після `can’t` потрібне `weld`, без `to`."
         }
       }
     },
@@ -23,8 +23,8 @@
           "uk": "Ви вмієте: потрібне `can`."
         },
         "en:lesson-08:session-16:intro2:r3": {
-          "ru": "После `can` нужно `code`, без `to`.",
-          "uk": "Після `can` потрібне `code`, без `to`."
+          "ru": "После `can` нужно `solder`, без `to`.",
+          "uk": "Після `can` потрібне `solder`, без `to`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-16:intro3:r2": {
-          "ru": "Для «чей» нужно `whose`.",
-          "uk": "Для «чий» потрібне `whose`."
+          "ru": "Для «чьи» нужно `whose`.",
+          "uk": "Для «чиї» потрібне `whose`."
         },
         "en:lesson-08:session-16:intro3:r3": {
-          "ru": "Шарф один: нужно `is this`.",
-          "uk": "Шарф один: потрібне `is this`."
+          "ru": "Инструмент один: нужно `is this`.",
+          "uk": "Інструмент один: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e394176ce150ab382ed49505d9d3bbd6b649ea59ce32d4bd9ccf83599116c2f5"
+  "auxiliaryFingerprint": "7c1a97d0cca4e0eb2f99b9005f550a341ac343b23d839d59a045575848f120dc"
 }

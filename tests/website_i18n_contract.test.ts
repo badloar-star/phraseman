@@ -39,9 +39,9 @@ type SiteI18n = {
 
 function loadSiteI18n(): SiteI18n {
   const sandbox: { KnowlySiteI18n?: SiteI18n; URLSearchParams: typeof URLSearchParams } = { URLSearchParams };
-  const localePath = path.join(siteRoot, 'assets', 'site-i18n.locales.js');
+  // зачем (координатор 18.10): assets/site-i18n.locales.js удалён — ни одна страница и ни одна сборка его не подключали, а по прямой ссылке
+  // он отдавал старое обещание «7-day money-back guarantee». Рантайм без каталога работает на пустом { en: {}, ru: {} } — логика та же.
   const runtimePath = path.join(siteRoot, 'assets', 'site-i18n.js');
-  vm.runInNewContext(fs.readFileSync(localePath, 'utf8'), sandbox, { filename: localePath });
   vm.runInNewContext(fs.readFileSync(runtimePath, 'utf8'), sandbox, { filename: runtimePath });
   if (!sandbox.KnowlySiteI18n) throw new Error('KnowlySiteI18n was not exported');
   return sandbox.KnowlySiteI18n;

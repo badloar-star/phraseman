@@ -387,8 +387,8 @@
     var s = currencySymbol(currency);
     var fmt = function (cents) { return s + (cents / 100).toFixed(2); };
     return {
-      monthly: { label: fmt(priceCents.monthly) },
-      yearly: { label: fmt(priceCents.yearly), perMonth: fmt(Math.round(priceCents.yearly / 12)) },
+      monthly: { label: fmt(priceCents.monthly), amount: priceCents.monthly / 100 },
+      yearly: { label: fmt(priceCents.yearly), perMonth: fmt(Math.round(priceCents.yearly / 12)), amount: priceCents.yearly / 100 },
       lifetime: { label: fmt(priceCents.lifetime) },
     };
   }
@@ -401,6 +401,12 @@
       if (plan === 'yearly') {
         var small = document.querySelector('[data-price-sub="yearly"]');
         if (small && remotePrices.yearly.perMonth) small.textContent = localized('≈ ') + remotePrices.yearly.perMonth + localized('/мес');
+        var badge = document.querySelector('[data-price-badge="yearly"]');
+        if (badge) {
+          var pct = yearlySavingsPct(remotePrices, 'remote');
+          badge.textContent = pct === null ? '' : yearlySavingsLabel(pct);
+          if (pct === null) badge.setAttribute('hidden', 'true'); else badge.removeAttribute('hidden');
+        }
       }
     });
   }
@@ -450,6 +456,24 @@
       yearly: p.yearly || { amount: 39.99, label: '€39.99', perMonth: '€3.33' },
       lifetime: p.lifetime || { amount: 99.99, label: '€99.99' },
     };
+  }
+
+  /* зачем (координатор 18.10): «Выгоднее 58%» было вшито строкой и не менялось вместе с ценами. Теперь — от тех же цен, что на странице:
+     1 − год / (12 × месяц), округление вниз. Цен нет (или год не дешевле) — бейдж скрыт, старую цифру не показываем. Продукт сайта — Phraseman Plus (web_checkout productNameForPlan), не «Premium». */
+  function yearlySavingsPct(p, from) {
+    var m = Number(p && p.monthly && p.monthly.amount);
+    var y = Number(p && p.yearly && p.yearly.amount);
+    if (!(m > 0) || !(y > 0)) {
+      console.log('[SITE-PRICE] badge pct=hidden from=' + from + ' reason=no_prices monthly=' + m + ' yearly=' + y);
+      return null;
+    }
+    var pct = Math.floor((1 - y / (12 * m)) * 100);
+    console.log('[SITE-PRICE] badge pct=' + (pct > 0 ? pct : 'hidden') + ' from=' + from + ' monthly=' + m + ' yearly=' + y);
+    return pct > 0 ? pct : null;
+  }
+
+  function yearlySavingsLabel(pct) {
+    return localized('Выгоднее') + ' ' + pct + '%';
   }
 
   var paywallState = { plan: 'yearly', busy: false };
@@ -605,9 +629,12 @@
 
   function planOption(key, name, sub, priceLabel, priceSub, badge) {
     var opt = h('label', { class: 'qplan-opt' + (paywallState.plan === key ? ' selected' : '') }, [
-      badge ? h('span', { class: 'qplan-badge' }, [badge]) : null,
+      key === 'yearly'
+        ? h('span', badge ? { class: 'qplan-badge', 'data-price-badge': key } : { class: 'qplan-badge', 'data-price-badge': key, hidden: 'true' }, [badge || ''])
+        : (badge ? h('span', { class: 'qplan-badge' }, [badge]) : null),
       h('input', { type: 'radio', name: 'plan', value: key }),
-      h('span', { class: 'qplan-name' }, [name, h('small', {}, [sub])]),
+      // зачем (координатор 18.10): подписи под названием плана нет, если её нечего сказать (у «Года» её заменил бейдж выгоды)
+      h('span', { class: 'qplan-name' }, sub ? [name, h('small', {}, [sub])] : [name]),
       h('span', { class: 'qplan-price' }, [
         h('b', { 'data-price-label': key }, [priceLabel]),
         priceSub ? h('small', key === 'yearly' ? { 'data-price-sub': 'yearly' } : {}, [priceSub]) : null,
@@ -625,17 +652,17 @@
     quiz: {
       kicker: 'Последний шаг',
       h1a: 'Открой свой план ', h1b: 'целиком',
-      sub: 'Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором твоих ошибок.',
+      sub: 'Plus открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором твоих ошибок.',
     },
     paywall: {
-      kicker: 'Phraseman Premium',
+      kicker: 'Phraseman Plus',
       h1a: 'Открой Phraseman ', h1b: 'целиком',
       sub: 'Все планы и темы, без лимитов энергии, ИИ-диалоги с разбором твоих ошибок. Активация — кодом в приложении за минуту.',
     },
     gift: {
       kicker: 'Подарок',
-      h1a: 'Подари ', h1b: 'Phraseman Premium',
-      sub: 'Один платёж — и ты получишь код активации. Перешли его тому, кому даришь: он введёт код в приложении, и Premium включится сразу. Автопродления нет.',
+      h1a: 'Подари ', h1b: 'Phraseman Plus',
+      sub: 'Один платёж — и ты получишь код активации. Перешли его тому, кому даришь: он введёт код в приложении, и Plus включится сразу. Автопродления нет.',
     },
   };
 
@@ -651,22 +678,22 @@
         ? ' Плюс умные повторения — страховка от «выучил и забыл».'
         : '';
     return h('p', { class: 'qpersonal' }, [
-      'В твоём плане «' + goal.name + '» — фразы, которые нужны в ' + goal.scen + '. В Premium он открывается целиком.' + extra,
+      'В твоём плане «' + goal.name + '» — фразы, которые нужны в ' + goal.scen + '. В Plus он открывается целиком.' + extra,
     ]);
   }
 
   function comparisonTable() {
     var rows = [
-      { t: 'Уроки, фразы дня и лиги', free: '✓', prem: '✓' },
+      { t: 'Уроки и фразы дня', free: '✓', prem: '✓' },
       { t: 'Все планы и темы: Поездка, Работа, Переезд…', free: '—', prem: '✓' },
       { t: 'Энергия на уроки', free: 'дневной лимит', prem: 'без лимитов' },
       { t: 'ИИ-диалоги с разбором твоих ошибок', free: '—', prem: '✓' },
     ];
-    return h('div', { class: 'qcompare', 'aria-label': 'Сравнение Бесплатно и Premium' }, [
+    return h('div', { class: 'qcompare', 'aria-label': 'Сравнение Бесплатно и Plus' }, [
       h('div', { class: 'qcompare-row qcompare-head' }, [
         h('span', {}, ['']),
         h('span', {}, ['Бесплатно']),
-        h('span', { class: 'qcompare-gold' }, ['Premium']),
+        h('span', { class: 'qcompare-gold' }, ['Plus']),
       ]),
     ].concat(rows.map(function (r) {
       return h('div', { class: 'qcompare-row' }, [
@@ -710,8 +737,8 @@
   function paywallFaq(isGift) {
     return h('div', { class: 'qfaq-mini' }, [
       isGift
-        ? h('details', {}, [h('summary', {}, ['Как подарить?']), h('p', {}, ['Сразу после оплаты ты увидишь код активации (и он придёт на твой email). Перешли код тому, кому даришь, — запиской, сообщением, открыткой. Получатель введёт его в приложении: Настройки → Промокоды — и Premium включится мгновенно.'])])
-        : h('details', {}, [h('summary', {}, ['Как активируется Premium?']), h('p', {}, ['Сразу после оплаты ты увидишь личный код активации (и он сохранится у нас — не потеряется). Введи его в приложении: Настройки → Промокоды — Premium включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установи его, ссылки будут на следующем экране.'])]),
+        ? h('details', {}, [h('summary', {}, ['Как подарить?']), h('p', {}, ['Сразу после оплаты ты увидишь код активации (и он придёт на твой email). Перешли код тому, кому даришь, — запиской, сообщением, открыткой. Получатель введёт его в приложении: Настройки → Промокоды — и Plus включится мгновенно.'])])
+        : h('details', {}, [h('summary', {}, ['Как активируется Plus?']), h('p', {}, ['Сразу после оплаты ты увидишь личный код активации (и он сохранится у нас — не потеряется). Введи его в приложении: Настройки → Промокоды — Plus включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установи его, ссылки будут на следующем экране.'])]),
       h('details', {}, [h('summary', {}, ['На каких устройствах работает?']), h('p', {}, ['На всех, где ты вошёл в свой аккаунт Phraseman: iPhone, iPad и Android. Код вводится один раз на любом из них.'])]),
       isGift
         ? h('details', {}, [h('summary', {}, ['Спишется ли что-то ещё?']), h('p', {}, ['Нет. Подарочная оплата всегда разовая: один платёж — один код на выбранный срок. Никаких автопродлений ни у тебя, ни у получателя.'])])
@@ -749,8 +776,9 @@
       comparisonTable(),
       h('div', { class: 'qplans' }, [
         planOption('monthly', 'Месяц', isGift ? 'разовый платёж — 31 день' : 'попробовать в своём темпе', p.monthly.label, isGift ? 'один раз' : 'в месяц', null),
-        /* зачем (координатор 18.10): «самый популярный выбор» — данных о популярности нет; год правда дешевле месяца в пересчёте (€39.99/12 ≈ €3.33 против €7.99) */
-        planOption('yearly', 'Год', isGift ? 'разовый платёж — целый год' : 'выгоднее всего', p.yearly.label, p.yearly.perMonth ? localized('≈ ') + p.yearly.perMonth + localized('/мес') : 'в год', 'Выгоднее 58%'),
+        /* зачем (координатор 18.10): «самый популярный выбор» — данных о популярности нет; подпись под «Годом» убрана — выгоду говорит бейдж, посчитанный от цен */
+        planOption('yearly', 'Год', isGift ? 'разовый платёж — целый год' : null, p.yearly.label, p.yearly.perMonth ? localized('≈ ') + p.yearly.perMonth + localized('/мес') : 'в год',
+          (function () { var pct = yearlySavingsPct(p, remotePrices ? 'remote' : 'config'); return pct === null ? null : yearlySavingsLabel(pct); })()),
         /* зачем: владелец 15.10 — тариф «навсегда» с сайта убран (оплата только месяц/год) */
       ]),
       h('div', { class: 'qpay-fields' }, [
@@ -784,7 +812,7 @@
           href: '/download/',
           onclick: function () { track('paywall_skip_download'); },
         }, ['Скачай приложение бесплатно →']),
-        ' Premium подождёт.',
+        ' Plus подождёт.',
       ]),
       backButton(),
     ]);

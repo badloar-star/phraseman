@@ -70,8 +70,12 @@ echo "[DEPLOY-CLEAN] выгружено файлов: $(find "$X" -type f | wc -
 if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
   for envf in functions/.env "functions/.env.$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')).projects.default)" "$(cygpath -w "$ROOT/.firebaserc")")"; do
     [ -f "$ROOT/$envf" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: нет $envf в рабочем дереве — параметры функций не задать"; exit 1; }
+    # зачем (координатор 18.10): файл берётся из рабочего дерева, не из HEAD — сторож, чтобы в выкладку не уехал секрет.
+    # Имя с SECRET / KEY / TOKEN / PASSWORD — отказ; исключения — версии ключа (*_VERSION) и аудитория токена (*_AUDIENCE): это не секреты.
+    SUSPECT=$(grep -oE '^[A-Za-z0-9_]+' "$ROOT/$envf" | grep -iE 'SECRET|KEY|TOKEN|PASSWORD' | grep -vE '_VERSION$|_AUDIENCE$' | tr '\n' ' ')
+    [ -z "$SUSPECT" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: в $envf ключ, похожий на секрет: $SUSPECT— секреты только в Secret Manager"; exit 1; }
     cp "$ROOT/$envf" "$X/$envf"
-    echo "[DEPLOY-CLEAN] параметры функций из рабочего дерева: $envf ($(grep -cE '^[A-Z0-9_]+=' "$ROOT/$envf") ключей: $(grep -oE '^[A-Z0-9_]+' "$ROOT/$envf" | tr '\n' ' '))"
+    echo "[DEPLOY-CLEAN] параметры функций из рабочего дерева: $envf sha256=$(sha256sum "$ROOT/$envf" | cut -c1-16) ($(grep -cE '^[A-Za-z0-9_]+=' "$ROOT/$envf") ключей: $(grep -oE '^[A-Za-z0-9_]+' "$ROOT/$envf" | tr '\n' ' '))"
   done
 fi
 

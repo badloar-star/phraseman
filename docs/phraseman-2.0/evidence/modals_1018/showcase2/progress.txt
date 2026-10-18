@@ -1,0 +1,22 @@
+23:37:37 report_pack_modal НЕ НАЙДЕН «Жалоба на набор карточек (UGC)»
+23:43:06 celebrations-roulette-win-modal НЕ НАЙДЕН «Рулетка — карточка выигрыша»
+23:49:31 celebrations-roulette-win-celebration НЕ НАЙДЕН «Рулетка — праздничная вспышка (конфетти)»
+23:52:24 celebrations-referral-friend-reward НЕ НАЙДЕН «Друг принёс ключ (награда за друга)»
+23:54:02 celebrations-dialog-victory НЕ НАЙДЕН «Салют финала ИИ-диалога»
+00:00:00 mistake-eli5 НЕ НАЙДЕН «Объясни проще (разбор ошибки)»
+00:06:56 section-sheet-header НЕ НАЙДЕН «Шапка шторки раздела (крестик)»
+00:08:50 update_modal НЕ НАЙДЕН «Обновление приложения»
+00:12:31 release_notes_modal НЕ НАЙДЕН «Что нового (релиз-ноуты)»
+00:20:27 personal_admin_message_modal НЕ НАЙДЕН «Личное сообщение от команды»
+00:26:53 vip_survey_review_prompt_modal НЕ НАЙДЕН «Просьба об отзыве после Plus»
+00:29:40 app_messages_inbox НЕ НАЙДЕН «Инбокс сообщений (кнопка + панель)»
+00:31:40 level_up_mint_hybrid_0_1 ok
+00:31:57 level_up_mint_hybrid_7_8 ok
+00:33:49 level_up_mint_hybrid_18_19 ok
+00:38:03 intro_full_access_welcome НЕ НАЙДЕН «Приветствие «3 дня всё открыто»»
+00:39:26 intro_full_access_ended НЕ НАЙДЕН «Подарок закончился — выбор»
+00:42:14 no_energy_modal НЕ НАЙДЕН «Нет энергии»
+00:46:25 card_pack_shard_paywall_confirm НЕ НАЙДЕН «Покупка набора карточек — подтверждение»
+00:49:56 card_pack_shard_paywall_insufficient НЕ НАЙДЕН «Покупка набора карточек — не хватает жемчужин»
+00:53:08 card_pack_shard_paywall_voucher НЕ НАЙДЕН «Покупка набора карточек — подарочный ваучер»
+00:57:46 paywall_dev_preview_route НЕ НАЙДЕН «Dev-превью цен пейвола»

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-37:intro1:r2": {
-          "ru": "После `I` нужно `pack`, без `s`.",
-          "uk": "Після `I` потрібне `pack`, без `s`."
+          "ru": "После I нужно peel, без s.",
+          "uk": "Після I потрібно peel, без s."
         },
         "en:lesson-07:session-37:intro1:r3": {
-          "ru": "Здесь нужна форма `pack`.",
-          "uk": "Тут потрібна форма `pack`."
+          "ru": "Здесь usually ставим перед peel, не между peel и an orange.",
+          "uk": "Тут usually ставимо перед peel, не між peel та an orange."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-37:intro2:r2": {
-          "ru": "После `I` нужно `shop`.",
-          "uk": "Після `I` потрібне `shop`."
+          "ru": "После I нужно reheat, без s.",
+          "uk": "Після I потрібно reheat, без s."
         },
         "en:lesson-07:session-37:intro2:r3": {
-          "ru": "Здесь нужна форма `shop`.",
-          "uk": "Тут потрібна форма `shop`."
+          "ru": "Здесь нужна форма reheat.",
+          "uk": "Тут потрібна форма reheat."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-37:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После he нужно dips, с s.",
+          "uk": "Після he потрібно dips, з s."
         },
         "en:lesson-07:session-37:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма dips.",
+          "uk": "Тут потрібна форма dips."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1c61adf45b6c95820e32b62ac138c7acba674be9c98bd44b2a4673c6db115c33"
+  "auxiliaryFingerprint": "bec13d7703b19b9b3e4ab239d93daf517b84eeb2bb0a5e13b40412b48dcf4146"
 }

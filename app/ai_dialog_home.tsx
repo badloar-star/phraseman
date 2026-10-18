@@ -46,7 +46,7 @@ function AiDialogHomeBody() {
   // ширину под действиями. Квота — в шапке (quotaInHeader), не над каталогом.
   const title = triLang(lang, {
     ru: 'Диалоги', uk: 'Діалоги', en: 'Dialogues', es: 'Diálogos',
-    'pt-BR': 'Diálogos', vi: 'Đối thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
+    'pt-BR': 'Diálogos', vi: 'Hội thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
   });
   const subtitle = triLang(lang, {
     ru: 'Практикуй язык в жизненных ситуациях',

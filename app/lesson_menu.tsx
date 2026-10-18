@@ -408,15 +408,15 @@ function LessonMenu() {
 
   const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
   const defaultLessonTitle = triLang(lang, {
-  ru: `Урок ${lessonId}`,
-  uk: `Урок ${lessonId}`,
-  es: `Lección ${lessonId}`,
-  en: `Lesson ${lessonId}`,
+  ru: `Урок\u00A0${lessonId}`,
+  uk: `Урок\u00A0${lessonId}`,
+  es: `Lección\u00A0${lessonId}`,
+  en: `Lesson\u00A0${lessonId}`,
   "pt-BR": `Lição ${lessonId}`,
-  vi: `Bài ${lessonId}`,
-  id: `Pelajaran ${lessonId}`,
-  tr: `Ders ${lessonId}`,
-  pl: `Lekcja ${lessonId}`,
+  vi: `Bài\u00A0${lessonId}`,
+  id: `Pelajaran\u00A0${lessonId}`,
+  tr: `Ders\u00A0${lessonId}`,
+  pl: `Lekcja\u00A0${lessonId}`,
 });
   const lessonName = lessonNames[lessonId - 1] || defaultLessonTitle;
   const lessonCefrLabel = lessonCefrLabelForStudyTarget(lessonId, studyTarget);
@@ -1052,15 +1052,15 @@ function LessonMenu() {
             const total = lessonWordCount(lessonId);
             if (total > 0) {
               return triLang(lang, {
-                ru: `${wordsLearned}/${total} слов`,
-                uk: `${wordsLearned}/${total} слів`,
-                es: `${wordsLearned}/${total} palabras`,
-                en: `${wordsLearned}/${total} words`,
-                'pt-BR': `${wordsLearned}/${total} palavras`,
-                vi: `${wordsLearned}/${total} từ`,
-                id: `${wordsLearned}/${total} kata`,
-                tr: `${wordsLearned}/${total} kelime`,
-                pl: `${wordsLearned}/${total} słów`,
+                ru: `${wordsLearned}/${total}\u00A0слов`,
+                uk: `${wordsLearned}/${total}\u00A0слів`,
+                es: `${wordsLearned}/${total}\u00A0palabras`,
+                en: `${wordsLearned}/${total}\u00A0words`,
+                'pt-BR': `${wordsLearned}/${total}\u00A0palavras`,
+                vi: `${wordsLearned}/${total}\u00A0từ`,
+                id: `${wordsLearned}/${total}\u00A0kata`,
+                tr: `${wordsLearned}/${total}\u00A0kelime`,
+                pl: `${wordsLearned}/${total}\u00A0słów`,
               });
             }
             return triLang(lang, {
@@ -1129,15 +1129,15 @@ function LessonMenu() {
             const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
             return total > 0
               ? triLang(lang, {
-                  ru: `${irregularLearned}/${total} глаголов`,
-                  uk: `${irregularLearned}/${total} дієслів`,
-                  es: `${irregularLearned}/${total} verbos`,
-                  en: `${irregularLearned}/${total} verbs`,
-                  'pt-BR': `${irregularLearned}/${total} verbos`,
-                  vi: `${irregularLearned}/${total} động từ`,
-                  id: `${irregularLearned}/${total} kata kerja`,
-                  tr: `${irregularLearned}/${total} fiil`,
-                  pl: `${irregularLearned}/${total} czasowników`,
+                  ru: `${irregularLearned}/${total}\u00A0глаголов`,
+                  uk: `${irregularLearned}/${total}\u00A0дієслів`,
+                  es: `${irregularLearned}/${total}\u00A0verbos`,
+                  en: `${irregularLearned}/${total}\u00A0verbs`,
+                  'pt-BR': `${irregularLearned}/${total}\u00A0verbos`,
+                  vi: `${irregularLearned}/${total}\u00A0động từ`,
+                  id: `${irregularLearned}/${total}\u00A0kata kerja`,
+                  tr: `${irregularLearned}/${total}\u00A0fiil`,
+                  pl: `${irregularLearned}/${total}\u00A0czasowników`,
                 })
               : triLang(lang, {
                   ru: 'Неправильные глаголы урока',
@@ -1201,15 +1201,15 @@ function LessonMenu() {
 }),
       sub: prepositionTotal > 0
         ? triLang(lang, {
-            ru: `${prepositionAnswered}/${prepositionTotal} вызовов`,
-            uk: `${prepositionAnswered}/${prepositionTotal} викликів`,
-            es: `${prepositionAnswered}/${prepositionTotal} ejercicios`,
-            en: `${prepositionAnswered}/${prepositionTotal} exercises`,
-            'pt-BR': `${prepositionAnswered}/${prepositionTotal} exercícios`,
-            vi: `${prepositionAnswered}/${prepositionTotal} bài tập`,
-            id: `${prepositionAnswered}/${prepositionTotal} latihan`,
-            tr: `${prepositionAnswered}/${prepositionTotal} alıştırma`,
-            pl: `${prepositionAnswered}/${prepositionTotal} ćwiczeń`,
+            ru: `${prepositionAnswered}/${prepositionTotal}\u00A0вызовов`,
+            uk: `${prepositionAnswered}/${prepositionTotal}\u00A0викликів`,
+            es: `${prepositionAnswered}/${prepositionTotal}\u00A0ejercicios`,
+            en: `${prepositionAnswered}/${prepositionTotal}\u00A0exercises`,
+            'pt-BR': `${prepositionAnswered}/${prepositionTotal}\u00A0exercícios`,
+            vi: `${prepositionAnswered}/${prepositionTotal}\u00A0bài tập`,
+            id: `${prepositionAnswered}/${prepositionTotal}\u00A0latihan`,
+            tr: `${prepositionAnswered}/${prepositionTotal}\u00A0alıştırma`,
+            pl: `${prepositionAnswered}/${prepositionTotal}\u00A0ćwiczeń`,
           })
         : triLang(lang, {
             ru: 'Предлоги этого урока',
@@ -1422,15 +1422,15 @@ function LessonMenu() {
               glass={lessonMenuGlass}
               testID="lesson-menu-star-summary"
               accessibilityLabel={triLang(lang, {
-                ru: `${progress} из 50, ${earnedStars} из 3 звёзд`,
-                uk: `${progress} із 50, ${earnedStars} із 3 зірок`,
-                en: `${progress} of 50, ${earnedStars} of 3 stars`,
-                es: `${progress} de 50, ${earnedStars} de 3 estrellas`,
-                'pt-BR': `${progress} de 50, ${earnedStars} de 3 estrelas`,
-                vi: `${progress} trên 50, ${earnedStars} trên 3 sao`,
-                id: `${progress} dari 50, ${earnedStars} dari 3 bintang`,
-                tr: `50 üzerinden ${progress}, 3 yıldızdan ${earnedStars}`,
-                pl: `${progress} z 50, ${earnedStars} z 3 gwiazdek`,
+                ru: `${progress}\u00A0из 50, ${earnedStars}\u00A0из 3 звёзд`,
+                uk: `${progress}\u00A0із 50, ${earnedStars}\u00A0із 3 зірок`,
+                en: `${progress}\u00A0of 50, ${earnedStars}\u00A0of 3 stars`,
+                es: `${progress}\u00A0de 50, ${earnedStars}\u00A0de 3 estrellas`,
+                'pt-BR': `${progress}\u00A0de 50, ${earnedStars}\u00A0de 3 estrelas`,
+                vi: `${progress}\u00A0trên 50, ${earnedStars}\u00A0trên 3 sao`,
+                id: `${progress}\u00A0dari 50, ${earnedStars}\u00A0dari 3 bintang`,
+                tr: `50 üzerinden\u00A0${progress}, 3 yıldızdan\u00A0${earnedStars}`,
+                pl: `${progress}\u00A0z 50, ${earnedStars}\u00A0z 3 gwiazdek`,
               })}
               progress={progress}
               earnedStars={earnedStars}

@@ -58,8 +58,8 @@ export const lessonsListCopy = {
     pl: 'Ucz się. Ćwicz. Mów pewniej.',
   }),
   lesson: (lang: Lang, num: number): string => triLang(lang, {
-    ru: `Урок ${num}`, uk: `Урок ${num}`, en: `Lesson ${num}`, es: `Lección ${num}`,
-    'pt-BR': `Lição ${num}`, vi: `Bài ${num}`, id: `Pelajaran ${num}`, tr: `Ders ${num}`, pl: `Lekcja ${num}`,
+    ru: `Урок\u00A0${num}`, uk: `Урок\u00A0${num}`, en: `Lesson\u00A0${num}`, es: `Lección\u00A0${num}`,
+    'pt-BR': `Lição\u00A0${num}`, vi: `Bài\u00A0${num}`, id: `Pelajaran\u00A0${num}`, tr: `Ders\u00A0${num}`, pl: `Lekcja\u00A0${num}`,
   }),
   done: (lang: Lang): string => triLang(lang, {
     ru: 'Пройден', uk: 'Пройдено', en: 'Completed', es: 'Completada', 'pt-BR': 'Concluída',
@@ -74,18 +74,18 @@ export const lessonsListCopy = {
     'pt-BR': 'Incluída no Plus', vi: 'Có trong Plus', id: 'Termasuk dalam Plus', tr: "Plus'a dahil", pl: 'W ramach Plus',
   }),
   lockPrev: (lang: Lang, prev: number): string => triLang(lang, {
-    ru: `Пройди урок ${prev} на 2★`, uk: `Пройди урок ${prev} на 2★`, en: `Complete lesson ${prev} with 2★`,
-    es: `Completa la lección ${prev} con 2★`, 'pt-BR': `Conclua a lição ${prev} com 2★`,
-    vi: `Hoàn thành bài ${prev} đạt 2★`, id: `Selesaikan pelajaran ${prev} dengan 2★`,
-    tr: `${prev}. dersi 2★ ile tamamla`, pl: `Ukończ lekcję ${prev} na 2★`,
+    ru: `Пройди урок\u00A0${prev}\u00A0на 2★`, uk: `Пройди урок\u00A0${prev}\u00A0на 2★`, en: `Complete lesson\u00A0${prev}\u00A0with 2★`,
+    es: `Completa la lección\u00A0${prev}\u00A0con 2★`, 'pt-BR': `Conclua a lição\u00A0${prev}\u00A0com 2★`,
+    vi: `Hoàn thành bài\u00A0${prev}\u00A0đạt 2★`, id: `Selesaikan pelajaran\u00A0${prev}\u00A0dengan 2★`,
+    tr: `${prev}.\u00A0dersi 2★ ile tamamla`, pl: `Ukończ lekcję\u00A0${prev}\u00A0na 2★`,
   }),
   countOf: (lang: Lang, done: number, total: number): string => triLang(lang, {
-    ru: `${done} из ${total}`, uk: `${done} з ${total}`, en: `${done} of ${total}`, es: `${done} de ${total}`,
-    'pt-BR': `${done} de ${total}`, vi: `${done}/${total}`, id: `${done} dari ${total}`, tr: `${done}/${total}`, pl: `${done} z ${total}`,
+    ru: `${done}\u00A0из\u00A0${total}`, uk: `${done}\u00A0з\u00A0${total}`, en: `${done}\u00A0of\u00A0${total}`, es: `${done}\u00A0de\u00A0${total}`,
+    'pt-BR': `${done}\u00A0de\u00A0${total}`, vi: `${done}/${total}`, id: `${done}\u00A0dari\u00A0${total}`, tr: `${done}/${total}`, pl: `${done}\u00A0z\u00A0${total}`,
   }),
   stars: (lang: Lang, n: number): string => triLang(lang, {
-    ru: `${n} из 3 звёзд`, uk: `${n} з 3 зірок`, en: `${n} of 3 stars`, es: `${n} de 3 estrellas`,
-    'pt-BR': `${n} de 3 estrelas`, vi: `${n}/3 sao`, id: `${n} dari 3 bintang`, tr: `3 yıldızdan ${n}`, pl: `${n} z 3 gwiazdek`,
+    ru: `${n}\u00A0из 3 звёзд`, uk: `${n}\u00A0з 3 зірок`, en: `${n}\u00A0of 3 stars`, es: `${n}\u00A0de 3 estrellas`,
+    'pt-BR': `${n}\u00A0de 3 estrelas`, vi: `${n}/3 sao`, id: `${n}\u00A0dari 3 bintang`, tr: `3 yıldızdan\u00A0${n}`, pl: `${n}\u00A0z 3 gwiazdek`,
   }),
   levelLocked: (lang: Lang): string => triLang(lang, {
     ru: 'закрыт', uk: 'закрито', en: 'locked', es: 'bloqueado', 'pt-BR': 'bloqueado',

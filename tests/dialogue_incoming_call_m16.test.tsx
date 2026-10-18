@@ -53,7 +53,8 @@ describe('m16 · входящий звонок', () => {
     const onAnswer = jest.fn();
     const onLater = jest.fn();
     await render(<DialogueIncomingCall lang="ru" glass={glass} partnerName="Mia" cefr="A1" sceneTitle="Закажи кофе" onAnswer={onAnswer} onLater={onLater} />);
-    expect(screen.getByText('Входящий · диалог A1')).toBeTruthy();
+    // зачем (переводчик 18.10): уровень привязан к слову неразрывным пробелом — «A1» не уезжает на другую строку
+    expect(screen.getByText('Входящий · диалог A1')).toBeTruthy();
     expect(screen.getByText('Mia звонит')).toBeTruthy();
     expect(screen.getByText('Закажи кофе')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('dialogue-v2-incoming-answer'));

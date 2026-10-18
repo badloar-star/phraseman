@@ -47,15 +47,15 @@ export function formatAiDialogQuotaResetDate(resetAtMs: number | null | undefine
 
 export function aiDialogMonthlyRemainingText(lang: Lang, remaining: number, limit: number): string {
   return triLang(lang, {
-    ru: `${remaining} из ${limit} в этом месяце`,
-    uk: `${remaining} з ${limit} цього місяця`,
-    en: `${remaining} of ${limit} this month`,
-    es: `${remaining} de ${limit} este mes`,
-    'pt-BR': `${remaining} de ${limit} neste mês`,
-    vi: `${remaining}/${limit} trong tháng này`,
-    id: `${remaining} dari ${limit} bulan ini`,
-    tr: `Bu ay ${limit} yanıttan ${remaining}`,
-    pl: `${remaining} z ${limit} w tym miesiącu`,
+    ru: `${remaining}\u00A0из\u00A0${limit}\u00A0в этом месяце`,
+    uk: `${remaining}\u00A0з\u00A0${limit}\u00A0цього місяця`,
+    en: `${remaining}\u00A0of\u00A0${limit}\u00A0this month`,
+    es: `${remaining}\u00A0de\u00A0${limit}\u00A0este mes`,
+    'pt-BR': `${remaining}\u00A0de\u00A0${limit}\u00A0neste mês`,
+    vi: `${remaining}/${limit}\u00A0trong tháng này`,
+    id: `${remaining}\u00A0dari\u00A0${limit}\u00A0bulan ini`,
+    tr: `Bu ay\u00A0${limit}\u00A0yanıttan\u00A0${remaining}`,
+    pl: `${remaining}\u00A0z\u00A0${limit}\u00A0w tym miesiącu`,
   });
 }
 

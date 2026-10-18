@@ -24,12 +24,12 @@ export function aiDialogMonthlyLimitText(lang: Lang, limit: number): string {
   return triLang(lang, {
     ru: `Лимит — ${limit} ${pluralWord('ru', limit, DIALOG_REPLY_FORMS.ru)} в месяц`,
     uk: `Ліміт — ${limit} ${pluralWord('uk', limit, DIALOG_REPLY_FORMS.uk)} на місяць`,
-    en: `Limit: ${limit} ${pluralWord('en', limit, DIALOG_REPLY_FORMS.en)} a month`,
-    es: `Límite: ${limit} respuestas al mes`,
-    'pt-BR': `Limite: ${limit} respostas por mês`,
-    vi: `Giới hạn: ${limit} lượt trả lời mỗi tháng`,
-    id: `Batas: ${limit} balasan per bulan`,
-    tr: `Sınır: ayda ${limit} yanıt`,
-    pl: `Limit: ${limit} ${pluralWord('pl', limit, DIALOG_REPLY_FORMS.pl)} miesięcznie`,
+    en: `Limit:\u00A0${limit} ${pluralWord('en', limit, DIALOG_REPLY_FORMS.en)} a month`,
+    es: `Límite:\u00A0${limit}\u00A0respuestas al mes`,
+    'pt-BR': `Limite:\u00A0${limit}\u00A0respostas por mês`,
+    vi: `Giới hạn:\u00A0${limit}\u00A0lượt trả lời mỗi tháng`,
+    id: `Batas:\u00A0${limit}\u00A0balasan per bulan`,
+    tr: `Sınır: ayda\u00A0${limit}\u00A0yanıt`,
+    pl: `Limit:\u00A0${limit} ${pluralWord('pl', limit, DIALOG_REPLY_FORMS.pl)} miesięcznie`,
   });
 }

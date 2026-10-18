@@ -17,31 +17,31 @@ import { DialogueGlassQuotaPill } from './glass/DialogueGlassSessionParts';
 export function dialogueV2HubCopy(lang: Lang) {
   return Object.freeze({
     quotaA11y: (remaining: number, total: number) => triLang(lang, {
-      ru: `В этом месяце осталось ${remaining} из ${total} ответов`, uk: `Цього місяця залишилось ${remaining} з ${total} відповідей`,
-      en: `${remaining} of ${total} replies left this month`, es: `${remaining === 1 ? 'Queda' : 'Quedan'} ${remaining} de ${total} respuestas este mes`,
-      'pt-BR': `${remaining === 1 ? 'Resta' : 'Restam'} ${remaining} de ${total} respostas este mês`, vi: `Tháng này còn ${remaining}/${total} lượt trả lời`,
-      id: `Sisa ${remaining} dari ${total} balasan bulan ini`, tr: `Bu ay ${total} yanıttan ${remaining} kaldı`,
-      pl: `W tym miesiącu zostało ${remaining} z ${total} odpowiedzi`, fr: `Il reste ${remaining} réponses sur ${total} ce mois-ci`,
-      de: `Diesen Monat noch ${remaining} von ${total} Antworten`,
+      ru: `В этом месяце осталось\u00A0${remaining}\u00A0из\u00A0${total}\u00A0ответов`, uk: `Цього місяця залишилось\u00A0${remaining}\u00A0з\u00A0${total}\u00A0відповідей`,
+      en: `${remaining}\u00A0of\u00A0${total}\u00A0replies left this month`, es: `${remaining === 1 ? 'Queda' : 'Quedan'} ${remaining}\u00A0de\u00A0${total}\u00A0respuestas este mes`,
+      'pt-BR': `${remaining === 1 ? 'Resta' : 'Restam'} ${remaining}\u00A0de\u00A0${total}\u00A0respostas este mês`, vi: `Tháng này còn\u00A0${remaining}/${total}\u00A0lượt trả lời`,
+      id: `Sisa\u00A0${remaining}\u00A0dari\u00A0${total}\u00A0balasan bulan ini`, tr: `Bu ay\u00A0${total}\u00A0yanıttan\u00A0${remaining}\u00A0kaldı`,
+      pl: `W tym miesiącu zostało\u00A0${remaining}\u00A0z\u00A0${total}\u00A0odpowiedzi`, fr: `Il reste\u00A0${remaining}\u00A0réponses sur\u00A0${total}\u00A0ce mois-ci`,
+      de: `Diesen Monat noch\u00A0${remaining}\u00A0von\u00A0${total}\u00A0Antworten`,
     }),
     // зачем (Ревизор 3.45): остаток ещё не известен телефону — диктор называет месячный лимит, а не выдуманный остаток.
     quotaUnknownA11y: (total: number) => triLang(lang, {
       // зачем (переводчик 18.10): та же фраза, что aiDialogMonthlyLimitText, со склонением по числу для ru/uk/pl
       ru: `Лимит — ${total} ${pluralWord('ru', total, DIALOG_REPLY_FORMS.ru)} в месяц`, uk: `Ліміт — ${total} ${pluralWord('uk', total, DIALOG_REPLY_FORMS.uk)} на місяць`,
-      en: `Limit: ${total} ${pluralWord('en', total, DIALOG_REPLY_FORMS.en)} a month`, es: `Límite: ${total} respuestas al mes`,
-      'pt-BR': `Limite: ${total} respostas por mês`, vi: `Giới hạn: ${total} lượt trả lời mỗi tháng`,
-      id: `Batas: ${total} balasan per bulan`, tr: `Sınır: ayda ${total} yanıt`,
-      pl: `Limit: ${total} ${pluralWord('pl', total, DIALOG_REPLY_FORMS.pl)} miesięcznie`, fr: `Limite : ${total} réponses par mois`,
-      de: `Limit: ${total} Antworten pro Monat`,
+      en: `Limit:\u00A0${total} ${pluralWord('en', total, DIALOG_REPLY_FORMS.en)} a month`, es: `Límite:\u00A0${total}\u00A0respuestas al mes`,
+      'pt-BR': `Limite:\u00A0${total}\u00A0respostas por mês`, vi: `Giới hạn:\u00A0${total}\u00A0lượt trả lời mỗi tháng`,
+      id: `Batas:\u00A0${total}\u00A0balasan per bulan`, tr: `Sınır: ayda\u00A0${total}\u00A0yanıt`,
+      pl: `Limit:\u00A0${total} ${pluralWord('pl', total, DIALOG_REPLY_FORMS.pl)} miesięcznie`, fr: `Limite : ${total}\u00A0réponses par mois`,
+      de: `Limit:\u00A0${total}\u00A0Antworten pro Monat`,
     }),
     exhaustedTitle: triLang(lang, { ru: 'Plus снимает лимит ответов', uk: 'Plus знімає ліміт відповідей', en: 'Plus removes the reply limit', es: 'Plus quita el límite de respuestas', 'pt-BR': 'O Plus remove o limite de respostas', vi: 'Plus bỏ giới hạn lượt trả lời', id: 'Plus menghapus batas balasan', tr: 'Plus yanıt sınırını kaldırır', pl: 'Plus znosi limit odpowiedzi', fr: 'Plus supprime la limite de réponses', de: 'Plus hebt das Antwortlimit auf' }),
     exhaustedText: (total: number) => triLang(lang, {
-      ru: `В этом месяце осталось 0 из ${total} ответов.`, uk: `Цього місяця залишилось 0 з ${total} відповідей.`,
-      en: `0 of ${total} replies left this month.`, es: `Quedan 0 de ${total} respuestas este mes.`,
-      'pt-BR': `Restam 0 de ${total} respostas este mês.`, vi: `Tháng này còn 0/${total} lượt trả lời.`,
-      id: `Sisa 0 dari ${total} balasan bulan ini.`, tr: `Bu ay ${total} yanıttan 0 kaldı.`,
-      pl: `W tym miesiącu zostało 0 z ${total} odpowiedzi.`, fr: `Il reste 0 réponse sur ${total} ce mois-ci.`,
-      de: `Diesen Monat noch 0 von ${total} Antworten.`,
+      ru: `В этом месяце осталось 0 из\u00A0${total}\u00A0ответов.`, uk: `Цього місяця залишилось 0 з\u00A0${total}\u00A0відповідей.`,
+      en: `0 of\u00A0${total}\u00A0replies left this month.`, es: `Quedan 0 de\u00A0${total}\u00A0respuestas este mes.`,
+      'pt-BR': `Restam 0 de\u00A0${total}\u00A0respostas este mês.`, vi: `Tháng này còn 0/${total}\u00A0lượt trả lời.`,
+      id: `Sisa 0 dari\u00A0${total}\u00A0balasan bulan ini.`, tr: `Bu ay\u00A0${total}\u00A0yanıttan 0 kaldı.`,
+      pl: `W tym miesiącu zostało 0 z\u00A0${total}\u00A0odpowiedzi.`, fr: `Il reste 0 réponse sur\u00A0${total}\u00A0ce mois-ci.`,
+      de: `Diesen Monat noch 0 von\u00A0${total}\u00A0Antworten.`,
     }),
     // зачем (Сверка dialogs-001, макет dialogs.html `lockedCard`): карточка без действия под каталогом — часть сценариев закрыта рангом.
     lockedNoteTitle: triLang(lang, {

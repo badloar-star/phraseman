@@ -947,15 +947,15 @@ function DialogsTabContentBody({
                 ? `${aiDialogMonthlyLimitText(lang, quotaLimit)}.`
                 : repliesLeftThisMonth != null
                 ? triLang(lang, {
-                    ru: `В этом календарном месяце осталось ${repliesLeftThisMonth} из ${quotaLimit} реплик.${quotaResetDate ? ` Сброс — ${quotaResetDate}.` : ''}`,
-                    uk: `У цьому календарному місяці залишилося ${repliesLeftThisMonth} з ${quotaLimit} реплік.${quotaResetDate ? ` Скидання — ${quotaResetDate}.` : ''}`,
-                    en: `${repliesLeftThisMonth} of ${quotaLimit} replies remain this calendar month.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
-                    es: `Quedan ${repliesLeftThisMonth} de ${quotaLimit} respuestas este mes natural.${quotaResetDate ? ` Reinicio: ${quotaResetDate}.` : ''}`,
-                    'pt-BR': `Restam ${repliesLeftThisMonth} de ${quotaLimit} respostas neste mês civil.${quotaResetDate ? ` Reinício: ${quotaResetDate}.` : ''}`,
-                    vi: `Còn ${repliesLeftThisMonth}/${quotaLimit} lượt trả lời trong tháng dương lịch này.${quotaResetDate ? ` Đặt lại: ${quotaResetDate}.` : ''}`,
-                    id: `Tersisa ${repliesLeftThisMonth} dari ${quotaLimit} balasan untuk bulan kalender ini.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
-                    tr: `Bu takvim ayında ${quotaLimit} yanıttan ${repliesLeftThisMonth} tanesi kaldı.${quotaResetDate ? ` Sıfırlanma: ${quotaResetDate}.` : ''}`,
-                    pl: `W tym miesiącu kalendarzowym zostało ${repliesLeftThisMonth} z ${quotaLimit} odpowiedzi.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
+                    ru: `В этом календарном месяце осталось\u00A0${repliesLeftThisMonth}\u00A0из\u00A0${quotaLimit}\u00A0реплик.${quotaResetDate ? ` Сброс — ${quotaResetDate}.` : ''}`,
+                    uk: `У цьому календарному місяці залишилося\u00A0${repliesLeftThisMonth}\u00A0з\u00A0${quotaLimit}\u00A0реплік.${quotaResetDate ? ` Скидання — ${quotaResetDate}.` : ''}`,
+                    en: `${repliesLeftThisMonth}\u00A0of\u00A0${quotaLimit}\u00A0replies remain this calendar month.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
+                    es: `Quedan\u00A0${repliesLeftThisMonth}\u00A0de\u00A0${quotaLimit}\u00A0respuestas este mes natural.${quotaResetDate ? ` Reinicio: ${quotaResetDate}.` : ''}`,
+                    'pt-BR': `Restam\u00A0${repliesLeftThisMonth}\u00A0de\u00A0${quotaLimit}\u00A0respostas neste mês civil.${quotaResetDate ? ` Reinício: ${quotaResetDate}.` : ''}`,
+                    vi: `Còn\u00A0${repliesLeftThisMonth}/${quotaLimit}\u00A0lượt trả lời trong tháng dương lịch này.${quotaResetDate ? ` Đặt lại: ${quotaResetDate}.` : ''}`,
+                    id: `Tersisa\u00A0${repliesLeftThisMonth}\u00A0dari\u00A0${quotaLimit}\u00A0balasan untuk bulan kalender ini.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
+                    tr: `Bu takvim ayında\u00A0${quotaLimit}\u00A0yanıttan\u00A0${repliesLeftThisMonth}\u00A0tanesi kaldı.${quotaResetDate ? ` Sıfırlanma: ${quotaResetDate}.` : ''}`,
+                    pl: `W tym miesiącu kalendarzowym zostało\u00A0${repliesLeftThisMonth}\u00A0z\u00A0${quotaLimit}\u00A0odpowiedzi.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
                   })
                 : triLang(lang, {
                     ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',

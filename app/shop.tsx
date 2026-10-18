@@ -124,15 +124,15 @@ const CURRENCY_GENITIVE = {
 } as const;
 
 const YOU_HAVE = {
-  ru: (n: number, c: string) => `У тебя ${n} ${c}`, // i18n-ok: словарь функций «У тебя N монет» по 9 языкам, перевод рядом
-  uk: (n: number, c: string) => `У тебе ${n} ${c}`,
-  es: (n: number, c: string) => `Tienes ${n} ${c}`,
-  en: (n: number, c: string) => `You have ${n} ${c}`,
-  'pt-BR': (n: number, c: string) => `Você tem ${n} ${c}`,
-  vi: (n: number, c: string) => `Bạn có ${n} ${c}`,
-  id: (n: number, c: string) => `Kamu punya ${n} ${c}`,
+  ru: (n: number, c: string) => `У тебя\u00A0${n} ${c}`, // i18n-ok: словарь функций «У тебя N монет» по 9 языкам, перевод рядом
+  uk: (n: number, c: string) => `У тебе\u00A0${n} ${c}`,
+  es: (n: number, c: string) => `Tienes\u00A0${n} ${c}`,
+  en: (n: number, c: string) => `You have\u00A0${n} ${c}`,
+  'pt-BR': (n: number, c: string) => `Você tem\u00A0${n} ${c}`,
+  vi: (n: number, c: string) => `Bạn có\u00A0${n} ${c}`,
+  id: (n: number, c: string) => `Kamu punya\u00A0${n} ${c}`,
   tr: (n: number, c: string) => `${n} ${c} var`,
-  pl: (n: number, c: string) => `Masz ${n} ${c}`,
+  pl: (n: number, c: string) => `Masz\u00A0${n} ${c}`,
 } as const;
 
 const CATEGORY_LABEL = {

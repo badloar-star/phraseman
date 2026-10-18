@@ -268,15 +268,15 @@ export default function DialogWhySheet({
                 maxFontSizeMultiplier={1.2}
               >
                 {triLang(lang, {
-                  ru: `Бесплатно сегодня: ${gate.freeLeft} из ${gate.freePerDay}`,
-                  uk: `Безкоштовно сьогодні: ${gate.freeLeft} з ${gate.freePerDay}`,
-                  en: `Free today: ${gate.freeLeft} of ${gate.freePerDay}`,
-                  es: `Gratis hoy: ${gate.freeLeft} de ${gate.freePerDay}`,
-                  'pt-BR': `Grátis hoje: ${gate.freeLeft} de ${gate.freePerDay}`,
-                  vi: `Miễn phí hôm nay: ${gate.freeLeft}/${gate.freePerDay}`,
-                  id: `Gratis hari ini: ${gate.freeLeft} dari ${gate.freePerDay}`,
-                  tr: `Bugün ücretsiz: ${gate.freePerDay} hakkından ${gate.freeLeft}`,
-                  pl: `Dziś za darmo: ${gate.freeLeft} z ${gate.freePerDay}`,
+                  ru: `Бесплатно сегодня:\u00A0${gate.freeLeft}\u00A0из\u00A0${gate.freePerDay}`,
+                  uk: `Безкоштовно сьогодні:\u00A0${gate.freeLeft}\u00A0з\u00A0${gate.freePerDay}`,
+                  en: `Free today:\u00A0${gate.freeLeft}\u00A0of\u00A0${gate.freePerDay}`,
+                  es: `Gratis hoy:\u00A0${gate.freeLeft}\u00A0de\u00A0${gate.freePerDay}`,
+                  'pt-BR': `Grátis hoje:\u00A0${gate.freeLeft}\u00A0de\u00A0${gate.freePerDay}`,
+                  vi: `Miễn phí hôm nay:\u00A0${gate.freeLeft}/${gate.freePerDay}`,
+                  id: `Gratis hari ini:\u00A0${gate.freeLeft}\u00A0dari\u00A0${gate.freePerDay}`,
+                  tr: `Bugün ücretsiz:\u00A0${gate.freePerDay}\u00A0hakkından\u00A0${gate.freeLeft}`,
+                  pl: `Dziś za darmo:\u00A0${gate.freeLeft}\u00A0z\u00A0${gate.freePerDay}`,
                 })}
               </Text>
             ) : null}

@@ -70,8 +70,8 @@ const TOUR_PLAYERS: ReadonlyArray<Readonly<{ rank: number; steps: number }>> = [
   { rank: 12, steps: 47 }, { rank: 9, steps: 39 }, { rank: 7, steps: 33 },
 ];
 const tourPlayerLabel = (lang: Lang, n: number): string => triLang(lang, {
-  ru: `Игрок ${n}`, uk: `Гравець ${n}`, en: `Player ${n}`, es: `Jugador ${n}`, 'pt-BR': `Jogador ${n}`,
-  vi: `Người chơi ${n}`, id: `Pemain ${n}`, tr: `Oyuncu ${n}`, pl: `Gracz ${n}`,
+  ru: `Игрок\u00A0${n}`, uk: `Гравець\u00A0${n}`, en: `Player\u00A0${n}`, es: `Jugador\u00A0${n}`, 'pt-BR': `Jogador\u00A0${n}`,
+  vi: `Người chơi\u00A0${n}`, id: `Pemain\u00A0${n}`, tr: `Oyuncu\u00A0${n}`, pl: `Gracz\u00A0${n}`,
 });
 
 function TourTop({ lang }: Readonly<{ lang: Lang }>) {

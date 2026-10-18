@@ -12,6 +12,7 @@
 // и приложение активно. Хаптик и звук компонент не играет — сообщает событие onCue(имя), экран решает по тайм-листу момента.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import { useMemMomentsTrack } from './mem_moments_probe';
 import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import Animated, {
   Easing,
@@ -136,6 +137,7 @@ function MomentCoin(props: MomentCoinProps) {
   const { rank, size, mood, moodKey = 0, say, zz, glints, crown, shadow = true, emote, emoteKey, emoteCount, onCue, onPress, testID } = props;
   const reduceMotion = useReducedMotion();
   const runtimeActive = useRuntimeActive(props.active ?? true);
+  useMemMomentsTrack('coin', true, `${size}dp`); // зачем (R129): монета с циклами живёт ровно пока виден момент — [MEM-MOMENTS], только отладка
   const palette = useSpirePalette();
   const plateShadow = useSpireShadow().plate;
   const track = TRACKS[mood];

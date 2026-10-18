@@ -5,6 +5,7 @@
 // Закрытие ведём плавно: сначала шторка уезжает (слот держится), и только когда нативное окно ушло — слот освобождается и клиент помечает окно закрытым.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { lazy, memo, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useMemMomentsTrack } from '../moments/mem_moments_probe';
 import { dismissLegacyBonusWelcome, markLegacyBonusWelcomeShown, useLegacyBonusWelcome } from '../../app/legacy_bonus_client';
 import type { Lang } from '../../constants/i18n';
 import type { LegacyBonusViewInput } from '../../modules/legacy_bonus/legacy_bonus_view';
@@ -26,6 +27,8 @@ function LegacyBonusWelcomeInner({ lang, coinRank }: Readonly<{ lang: Lang; coin
     }
   }, [frozen, incoming]);
   const slot = useOverlayVisible('legacyBonusWelcome', frozen !== null);
+  // зачем (R129): шторка держится смонтированной, пока не придёт «окно ушло» (onDismissed) — журнал покажет, если она застряла невидимой
+  useMemMomentsTrack('host:legacy-bonus-sheet', frozen !== null, closing ? 'closing' : '');
   const loggedSlotRef = useRef(false);
   useEffect(() => {
     if (slot && !loggedSlotRef.current) {

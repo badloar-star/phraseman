@@ -10,6 +10,7 @@
 import type { SoundV2EventId } from '../../modules/sound_v2/catalog';
 import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import React, { memo, useEffect, useState } from 'react';
+import { useMemMomentsTrack } from './mem_moments_probe';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
@@ -63,6 +64,7 @@ function Beat({ index, on, reduceMotion, children }: Readonly<{ index: number; o
 }
 
 function WelcomeBackMoment({ lang, coinRank, decision, onCards, onHome, testID = 'welcome-back' }: WelcomeBackMomentProps) {
+  useMemMomentsTrack('host:welcome-back'); // зачем (R129): факт размонтирования после закрытия — [MEM-MOMENTS], только отладка
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReducedMotion();

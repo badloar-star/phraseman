@@ -9,6 +9,7 @@
 // Журнал: [STREAK-MILESTONE] — решение (рубеж, день, сегодня, флаг, диск, причина), показ, закрытие.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useMemMomentsTrack } from '../../moments/mem_moments_probe';
 import { Modal, StyleSheet, View } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import { getLocalDayKey } from '../../../app/local_date';
@@ -95,6 +96,8 @@ function StreakMilestoneHost({ lang, onOpenChange }: StreakMilestoneHostProps) {
     }, 'done');
   }, [fire, milestone, onOpenChange]);
 
+  // зачем (R129): окно рубежа размонтируется после закрытия — журнал [MEM-MOMENTS], только отладка
+  useMemMomentsTrack('host:streak-milestone', open && milestone !== null, String(milestone));
   if (!open || milestone === null) return null;
   const moment = <StreakMilestoneMoment lang={lang} milestone={milestone} coinRank={coinRank} onDone={done} />;
   if (streakMomentKind(milestone) === 'toast') {

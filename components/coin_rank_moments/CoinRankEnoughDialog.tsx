@@ -9,6 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { V2_TYPE } from '../../constants/v2Style';
 import React, { memo, useEffect, useState } from 'react';
+import { useMemMomentsTrack } from '../moments/mem_moments_probe';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, { Easing, FadeIn, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
@@ -44,6 +45,7 @@ export type CoinRankEnoughDialogProps = Readonly<{
 }>;
 
 function CoinRankEnoughDialog({ lang, coinRank, coins, onUpgrade, onLater, testID = 'coin-rank-enough' }: CoinRankEnoughDialogProps) {
+  useMemMomentsTrack('host:coin-rank-enough'); // зачем (R129): факт размонтирования после закрытия — [MEM-MOMENTS], только отладка
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();

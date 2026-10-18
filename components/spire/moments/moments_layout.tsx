@@ -6,6 +6,7 @@
 // (как GlassAlertDialog и `--dim`). Появление: fade 420 мс (`emFade`); reduceMotion — сразу.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, type ReactNode } from 'react';
+import { useMemMomentsTrack } from '../../moments/mem_moments_probe';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { LinearGradient } from '../../SafeLinearGradient';
@@ -35,6 +36,7 @@ export const MomentFullScreen = memo(function MomentFullScreen({ children, testI
   const p = useSpirePalette();
   const g = useShadowGlass(); // зачем (Сверка Макетов r1, G1): цвет свечения — мягкий акцент темы, как --acc-soft эталона
   const reduceMotion = useReducedMotion();
+  useMemMomentsTrack(`full:${testID ?? '?'}`); // зачем (R129): полноэкранный момент со свечением и градиентом уходит целиком — [MEM-MOMENTS], только отладка
   return (
     <Animated.View
       testID={testID}

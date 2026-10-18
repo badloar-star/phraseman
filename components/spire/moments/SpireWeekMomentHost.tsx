@@ -8,6 +8,7 @@
 // «Напомнить вечером» (m03) — только если хук Ядра сказал, что напоминание доступно (weekMoment.remind.available); иначе второй кнопки нет.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useMemMomentsTrack } from '../../moments/mem_moments_probe';
 import { Modal, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSpirePalette } from '../useSpirePalette';
@@ -52,6 +53,7 @@ export function spireWeekGapToTop5(result: SpireWeekMomentShow['result']): numbe
 }
 
 function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemind, testID = 'spire-week-moment' }: SpireWeekMomentHostProps) {
+  useMemMomentsTrack('host:spire-week', true, decision.weekId); // зачем (R129): факт размонтирования хоста после закрытия — журнал [MEM-MOMENTS], только отладка
   const { result, outcome } = decision;
   // зачем (координатор 14.10, аудит Optimistic UI; эталон v3-all: «Играть» — человек сам начинает новую неделю): сначала синхронно закрываем окно, потом ведём в Пик; повторный тап не уводит дважды
   // зачем (аудит Optimistic UI 17.10, п.11): защёлка привязана к самому решению — новое решение в том же окне снова даёт «Играть»

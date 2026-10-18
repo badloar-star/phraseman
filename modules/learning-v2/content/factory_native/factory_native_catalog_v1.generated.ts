@@ -3248,4 +3248,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"dream → dreaming; am dreaming / am not dreaming","uk":"dream → dreaming; am dreaming / am not dreaming"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 16,
+    sourceFingerprint: "e28a417c532c00957aae9c5e267532ff86208366adb6f6ae447ecbdbc71be0d6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is cleaning / is not working; Please don’t touch…","uk":"is cleaning / is not working; Please don’t touch…"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-16:intro1:r2": {
+          "ru": "После don’t нужна базовая форма touch.",
+          "uk": "Після don’t потрібна базова форма touch."
+        },
+        "en:lesson-09:session-16:intro1:r3": {
+          "ru": "Для такой просьбы нужно don’t перед touch.",
+          "uk": "Для такого прохання потрібне don’t перед touch."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-16:intro2:r2": {
+          "ru": "Перед cleaning здесь нужно is.",
+          "uk": "Перед cleaning тут потрібне is."
+        },
+        "en:lesson-09:session-16:intro2:r3": {
+          "ru": "Действие сейчас: is cleaning.",
+          "uk": "Дія зараз: is cleaning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-16:intro3:r2": {
+          "ru": "Перед not working нужна форма is.",
+          "uk": "Перед not working потрібна форма is."
+        },
+        "en:lesson-09:session-16:intro3:r3": {
+          "ru": "После is not здесь нужна форма working.",
+          "uk": "Після is not тут потрібна форма working."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5d56fb01b0b4a1045231465558c853682a0b140731acd9be5298c40951270aa4"
+}

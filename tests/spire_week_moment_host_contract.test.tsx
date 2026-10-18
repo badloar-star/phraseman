@@ -17,7 +17,7 @@ jest.mock('react-native', () => ({
   NativeModules: {},
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }),
 }));
-jest.mock('react-native-svg', () => ({ __esModule: true, default: () => null, Circle: () => null, Ellipse: () => null, Path: () => null, Polygon: () => null, Rect: () => null }));
+jest.mock('react-native-svg', () => ({ __esModule: true, default: () => null, Circle: () => null, Ellipse: () => null, Path: () => null, Polygon: () => null, Rect: () => null, Defs: () => null, RadialGradient: () => null, Stop: () => null })); // зачем: ореол m01-B (MomentGlowSpot) рисует радиальный градиент
 jest.mock('react-native-gesture-handler', () => {
   const R = jest.requireActual('react');
   return { GestureHandlerRootView: (props: { children: React.ReactNode }) => R.createElement('View', null, props.children) };

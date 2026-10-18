@@ -23,7 +23,6 @@ import MomentFirework, { useMomentRumble } from '../../spire/moments/moments_eff
 import { MomentFullScreen } from '../../spire/moments/moments_layout';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import StreakConfetti from './StreakConfetti';
-import StreakGlowSpot from './StreakGlowSpot';
 import StreakMomentFlame from './StreakMomentFlame';
 import { STREAK_FLAME_FULL_DAYS } from '../StreakFlameFill';
 
@@ -146,10 +145,6 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const morphed = has('morph');
   const before = milestone - 1; // guard-ok: цифра огня ДО морфа (n−1, как в образце), вид — не баланс
   const prevStage = Math.max(0, baseStage - 1) as StreakFlameStage; // guard-ok: стадия огня ДО морфа (вид), не баланс
-  // зачем (Сверка Макетов r1, G1′, координатор 17.10): эталон 2.0 (engagement-moments-app.css:114–115) рисует ореол мягким акцентом темы
-  // (--acc-soft; .violet/.red переопределены тем же) — НЕ цветом стадии огня: фиолетовый/белый/лавандовый на весь экран у d30/d100/d365/d1000 — расхождение.
-  // Стадия огня по-прежнему красит сам огонь; аргумент оставлен ради тех же точек вызова.
-  const glowColor = (_st: StreakFlameStage): string => glass.accentSoft;
   const flameA11y = streakMomentText(lang, 'flameA11y', { n: milestone });
 
   const T = (text: string, style: 'ov' | 'ovMuted' | 'xl' | 'md' | 'p') => (
@@ -162,12 +157,14 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     </View>
   );
 
-  // сцены: каждая возвращает содержимое `body`; `glow` — цвет ореола за огнём (null — без ореола), `confetti` — конфетти под текстом
+  // сцены: каждая возвращает содержимое `body`; `glowTop` — центр ореола по высоте экрана (null — без ореола), `confetti` — конфетти под текстом.
+  // зачем (координатор 18.10): ореол — эталонный `.glowspot` моментов (MomentFullScreen → moment_glow.tsx: широкий, тусклый, --acc-soft), высоты — из
+  // streak-milestones.html: medium 34 %, big 30 %, half500 32 %, twoYears 34 %; у «Года» (365) и «Легенды» (1000) в эталоне ореола нет ни в одном акте.
   let body: ReactNode;
-  let glow: string | null = null;
+  let glowTop: `${number}%` | null = null;
   let confetti = false;
   if (kind === 'medium') {
-    glow = glowColor(baseStage);
+    glowTop = '34%';
     body = (
       <>
         <StreakMomentFlame days={milestoneFlameDays(milestone)} label={milestone} size={150} stage={baseStage} burstKey={burstKey || undefined} accessibilityLabel={flameA11y} />
@@ -176,7 +173,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     );
   } else if (kind === 'big') {
     const st = morphed ? baseStage : prevStage;
-    glow = glowColor(st);
+    glowTop = '30%';
     confetti = milestone === 100 && has('extra');
     const ach = streakAchievementId(milestone);
     body = (
@@ -211,7 +208,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
       </>
     );
   } else if (kind === 'half500') {
-    glow = glowColor(baseStage);
+    glowTop = '32%';
     confetti = has('burst');
     body = (
       <>
@@ -222,6 +219,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
       </>
     );
   } else if (kind === 'twoYears') {
+    glowTop = '34%';
     body = (
       <>
         {T(overline, 'ovMuted')}
@@ -232,7 +230,6 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     );
   } else if (kind === 'year') {
     const st: StreakFlameStage = act === 2 && !morphed ? 3 : 4;
-    glow = act === 1 ? null : glowColor(st);
     confetti = has('act3');
     body = act === 1 ? (
       <>{T(overline, 'ov')}{T(streakMomentText(lang, 'yearAct1'), 'md')}<View style={s.extra}><MonthRing rings={1} size={250} center={String(milestone)} lit={has('months')} stepMs={STREAK_MONTH_ARCS.year.stepMs} /></View></>
@@ -248,7 +245,6 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   } else {
     // legend
     const st: StreakFlameStage = act === 1 && !morphed ? 4 : 5;
-    glow = act === 2 ? null : glowColor(st);
     confetti = has('act3');
     body = act === 1 ? (
       <>
@@ -275,9 +271,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const skippable = (kind === 'year' || kind === 'legend') && !finalAct;
   const bodyKey = `${kind}-${act}`;
   return (
-    <MomentFullScreen testID={testID}>
+    <MomentFullScreen testID={testID} glowTop={glowTop ?? undefined}>
       <Animated.View style={[s.fill, { paddingTop: insets.top + 52, paddingBottom: insets.bottom + 24 }, rumble.style]}>
-        {glow ? <StreakGlowSpot color={glow} strength={1} top={insets.top + 80} /> : null}
         {confetti ? <StreakConfetti fire /> : null}
         {/* зачем (контракт «до кнопки можно добраться»): на низком экране сцена прокручивается, а «Дальше» остаётся внизу */}
         <ScrollView

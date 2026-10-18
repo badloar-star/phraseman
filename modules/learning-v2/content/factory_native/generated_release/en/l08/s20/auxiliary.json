@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-20:intro2:r2": {
-          "ru": "После `can` нужно `open`, без `s`.",
-          "uk": "Після `can` потрібне `open`, без `s`."
+          "ru": "После can нужно adjust, без s.",
+          "uk": "Після can потрібне adjust, без s."
         },
         "en:lesson-08:session-20:intro2:r3": {
-          "ru": "После `can` нужно `open`, без `to`.",
-          "uk": "Після `can` потрібне `open`, без `to`."
+          "ru": "После can нужно adjust, без to.",
+          "uk": "Після can потрібне adjust, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-20:intro3:r2": {
-          "ru": "Вы пока не умеете: нужно `can’t`.",
-          "uk": "Ви поки не вмієте: потрібне `can’t`."
+          "ru": "После can нужно pass, без es.",
+          "uk": "Після can потрібне pass, без es."
         },
         "en:lesson-08:session-20:intro3:r3": {
-          "ru": "После `can’t` нужно `knit`, без `to`.",
-          "uk": "Після `can’t` потрібне `knit`, без `to`."
+          "ru": "Для просьбы начните с Can you.",
+          "uk": "Для прохання почніть із Can you."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c4e779778cda85c58a8dd90637622419e7bcd0e43b539aaae99c4853ee5b50cc"
+  "auxiliaryFingerprint": "935fde48a332298a1eed0714fa27c160408bc17dca100ee76a9767cfd7d0ac1e"
 }

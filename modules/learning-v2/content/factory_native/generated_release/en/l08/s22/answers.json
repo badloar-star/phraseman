@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-22:word:remind",
+    "correctText": "remind",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-22:i01",
     "correctText": "Can you remind me?",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-22:i04",
-    "correctText": "en:lesson-08:session-22:i04:p1=remind\nen:lesson-08:session-22:i04:p2=carrot\nen:lesson-08:session-22:i04:p3=read\nen:lesson-08:session-22:i04:p4=spell",
+    "correctText": "en:lesson-08:session-22:i04:p1=remind\nen:lesson-08:session-22:i04:p2=book\nen:lesson-08:session-22:i04:p3=tomorrow\nen:lesson-08:session-22:i04:p4=return",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-22:word:notification",
+    "correctText": "notification",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-22:i06",
-    "correctText": "Can you help me?",
+    "correctText": "Can you read the notification?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:word:anniversary",
+    "correctText": "anniversary",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-22:i07",
-    "correctText": "I can’t spell.",
+    "correctText": "Can you remind me about the anniversary?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-22:i08",
-    "correctText": "help",
+    "correctText": "read",
     "correctResponseId": "en:lesson-08:session-22:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-22:i10",
-    "correctText": "en:lesson-08:session-22:i10:p1=argue\nen:lesson-08:session-22:i10:p2=remind\nen:lesson-08:session-22:i10:p3=carrot\nen:lesson-08:session-22:i10:p4=read",
+    "correctText": "en:lesson-08:session-22:i10:p1=remind\nen:lesson-08:session-22:i10:p2=notification\nen:lesson-08:session-22:i10:p3=anniversary\nen:lesson-08:session-22:i10:p4=book",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-22:i11",
-    "correctText": "Can you help me?",
+    "correctText": "Can you read the notification?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:word:memo",
+    "correctText": "memo",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-22:i12",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you read the memo?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-22:i13",
-    "correctText": "I often read.",
+    "correctText": "I can explain.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-22:i15",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you read the memo?",
     "correctResponseId": "en:lesson-08:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-22:i16",
-    "correctText": "en:lesson-08:session-22:i16:p1=remind\nen:lesson-08:session-22:i16:p2=argue\nen:lesson-08:session-22:i16:p3=spell\nen:lesson-08:session-22:i16:p4=carrot",
+    "correctText": "en:lesson-08:session-22:i16:p1=remind\nen:lesson-08:session-22:i16:p2=notification\nen:lesson-08:session-22:i16:p3=anniversary\nen:lesson-08:session-22:i16:p4=memo",
     "correctResponseId": null
   },
   {

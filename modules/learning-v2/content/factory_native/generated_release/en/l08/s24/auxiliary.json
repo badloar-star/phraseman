@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-24:intro1:r2": {
-          "ru": "После `can` нужно `lend`, без `to`.",
-          "uk": "Після `can` потрібне `lend`, без `to`."
+          "ru": "После can нужно read, без s.",
+          "uk": "Після can потрібне read, без s."
         },
         "en:lesson-08:session-24:intro1:r3": {
-          "ru": "Для этой просьбы начните с `Can you`.",
-          "uk": "Для цього прохання почніть із `Can you`."
+          "ru": "После can нужно read, без to.",
+          "uk": "Після can потрібне read, без to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-24:intro2:r2": {
-          "ru": "После `can` нужно `explain`, без `s`.",
-          "uk": "Після `can` потрібне `explain`, без `s`."
+          "ru": "После can нужно lend, без s.",
+          "uk": "Після can потрібне lend, без s."
         },
         "en:lesson-08:session-24:intro2:r3": {
-          "ru": "После `can` нужно `explain`, без `to`.",
-          "uk": "Після `can` потрібне `explain`, без `to`."
+          "ru": "После can нужно lend, без to.",
+          "uk": "Після can потрібне lend, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-24:intro3:r2": {
-          "ru": "После `can` нужно `reserve`, без `s`.",
-          "uk": "Після `can` потрібне `reserve`, без `s`."
+          "ru": "После can нужно explain, без s.",
+          "uk": "Після can потрібне explain, без s."
         },
         "en:lesson-08:session-24:intro3:r3": {
-          "ru": "Для этой просьбы начните с `Can you`.",
-          "uk": "Для цього прохання почніть із `Can you`."
+          "ru": "После can нужно explain, без to.",
+          "uk": "Після can потрібне explain, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1359407120bfea48509344c09969015e018601b36b4250cf66330d832a300308"
+  "auxiliaryFingerprint": "8e4cbe485bb3bfef8b64d9af1a1312d4f9ab40c7bbec3bb3a3a49929a5df0c26"
 }

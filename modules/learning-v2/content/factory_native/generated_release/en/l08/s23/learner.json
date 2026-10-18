@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-23:i01",
+      "interactionId": "en:lesson-08:session-23:word:reserve",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reserve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-23:word:reserve:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reserve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-23:word:reserve:audio",
+          "transcript": "reserve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-23:word:reserve:r1",
+            "targetText": "reserve",
+            "meaningByLocale": {
+              "ru": "забронировать. Can you reserve a table? — «Можешь забронировать столик?» Заранее договориться, чтобы место оставили для вас.",
+              "uk": "забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reserve",
+          "definitionByLocale": {
+            "ru": "забронировать. Can you reserve a table? — «Можешь забронировать столик?» Заранее договориться, чтобы место оставили для вас.",
+            "uk": "забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -39,7 +82,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -115,11 +158,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросите друга забронировать столик",
+      "prompt": "Выберите форму для просьбы забронировать столик",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-23:i03:r1",
@@ -136,12 +179,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите друга забронировать столик",
+      "accessibilityLabel": "Выберите форму для просьбы забронировать столик",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите друга забронировать столик",
-          "uk": "Попросіть друга забронювати столик"
+          "ru": "Выберите форму для просьбы забронировать столик",
+          "uk": "Виберіть форму для прохання забронювати столик"
         },
         "gappedTargetPhrase": "Can you ___ a table?",
         "gapOptions": [
@@ -158,24 +201,24 @@
             "text": "reserves"
           }
         ],
-        "testedDimension": "Попросите друга забронировать столик",
+        "testedDimension": "Выберите форму для просьбы забронировать столик",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-23:i03:r2",
             "correct": false,
-            "testedDimension": "Попросите друга забронировать столик",
+            "testedDimension": "Выберите форму для просьбы забронировать столик",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `reserve`, без `to`.",
-              "uk": "Після `can` потрібне `reserve`, без `to`."
+              "ru": "После can нужно reserve, без to.",
+              "uk": "Після can потрібне reserve, без to."
             }
           },
           {
             "responseId": "en:lesson-08:session-23:i03:r3",
             "correct": false,
-            "testedDimension": "Попросите друга забронировать столик",
+            "testedDimension": "Выберите форму для просьбы забронировать столик",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `reserve`, без `s`.",
-              "uk": "Після `can` потрібне `reserve`, без `s`."
+              "ru": "После can нужно reserve, без s.",
+              "uk": "Після can потрібне reserve, без s."
             }
           }
         ]
@@ -184,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,40 +249,40 @@
           },
           {
             "pairId": "en:lesson-08:session-23:i04:p2",
-            "target": "cheese",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "стол",
+              "uk": "стіл"
             }
           },
           {
             "pairId": "en:lesson-08:session-23:i04:p3",
-            "target": "teach",
+            "target": "room",
             "meaningByLocale": {
-              "ru": "преподавать",
-              "uk": "викладати"
+              "ru": "комната",
+              "uk": "кімната"
             }
           },
           {
             "pairId": "en:lesson-08:session-23:i04:p4",
-            "target": "calculate",
+            "target": "seat",
             "meaningByLocale": {
-              "ru": "вычислять",
-              "uk": "обчислювати"
+              "ru": "место для сидения",
+              "uk": "місце для сидіння"
             }
           }
         ],
         "leftColumn": [
           "reserve",
-          "cheese",
-          "teach",
-          "calculate"
+          "table",
+          "room",
+          "seat"
         ],
         "rightColumn": [
           "забронировать",
-          "сыр",
-          "преподавать",
-          "вычислять"
+          "стол",
+          "комната",
+          "место для сидения"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -257,7 +300,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -293,28 +336,72 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-23:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-23:word:booth",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — booth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-23:word:booth:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — booth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-23:word:booth:audio",
+          "transcript": "booth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-23:word:booth:r1",
+            "targetText": "booth",
+            "meaningByLocale": {
+              "ru": "место со столом и диванчиками в кафе. Can you reserve a booth? — «Можешь забронировать место с диванчиками?» Здесь отдельная зона для гостей, а не кабина.",
+              "uk": "місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "booth",
+          "definitionByLocale": {
+            "ru": "место со столом и диванчиками в кафе. Can you reserve a booth? — «Можешь забронировать место с диванчиками?» Здесь отдельная зона для гостей, а не кабина.",
+            "uk": "місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросите «Можешь мне помочь?»",
+      "prompt": "Попросите «Можешь забронировать место с диванчиками?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите «Можешь мне помочь?»",
+      "accessibilityLabel": "Попросите «Можешь забронировать место с диванчиками?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you help me?",
+        "targetPhrase": "Can you reserve a booth?",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь мне помочь?»",
-          "uk": "Попросіть «Можеш мені допомогти?»"
+          "ru": "Попросите «Можешь забронировать место с диванчиками?»",
+          "uk": "Попросіть «Можеш забронювати місце з диванчиками?»"
         },
         "orderedTokens": [
           "Can",
           "you",
-          "help",
-          "me"
+          "reserve",
+          "a",
+          "booth"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -326,26 +413,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-23:word:highchair",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — highchair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-23:word:highchair:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — highchair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-23:word:highchair:audio",
+          "transcript": "highchair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-23:word:highchair:r1",
+            "targetText": "highchair",
+            "meaningByLocale": {
+              "ru": "детский стульчик для кормления. Can you bring a highchair? — «Можете принести детский стульчик?» Высокий стульчик для малыша за столом; highchair пишется слитно.",
+              "uk": "дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "highchair",
+          "definitionByLocale": {
+            "ru": "детский стульчик для кормления. Can you bring a highchair? — «Можете принести детский стульчик?» Высокий стульчик для малыша за столом; highchair пишется слитно.",
+            "uk": "дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-23:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы сбились при подсчёте цен. Скажите «Я не могу посчитать»",
+      "prompt": "Официант подходит к вашему столу. Попросите «Можете принести детский стульчик?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-23:i07:audio"
       ],
-      "accessibilityLabel": "Вы сбились при подсчёте цен. Скажите «Я не могу посчитать»",
+      "accessibilityLabel": "Официант подходит к вашему столу. Попросите «Можете принести детский стульчик?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-23:i07:audio",
-          "transcript": "I can’t calculate."
+          "transcript": "Can you bring a highchair?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can’t calculate.",
+        "targetPhrase": "Can you bring a highchair?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -360,67 +490,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросите помочь вам",
+      "prompt": "Выберите форму для просьбы принести детский стульчик",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-23:i08:r1",
-          "text": "help"
+          "text": "bring"
         },
         {
           "responseId": "en:lesson-08:session-23:i08:r2",
-          "text": "helps"
+          "text": "brings"
         },
         {
           "responseId": "en:lesson-08:session-23:i08:r3",
-          "text": "to help"
+          "text": "to bring"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите помочь вам",
+      "accessibilityLabel": "Выберите форму для просьбы принести детский стульчик",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите помочь вам",
-          "uk": "Попросіть допомогти вам"
+          "ru": "Выберите форму для просьбы принести детский стульчик",
+          "uk": "Виберіть форму для прохання принести дитячий стільчик"
         },
-        "gappedTargetPhrase": "Can you ___ me?",
+        "gappedTargetPhrase": "Can you ___ a highchair?",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-23:i08:r1",
-            "text": "help"
+            "text": "bring"
           },
           {
             "responseId": "en:lesson-08:session-23:i08:r2",
-            "text": "helps"
+            "text": "brings"
           },
           {
             "responseId": "en:lesson-08:session-23:i08:r3",
-            "text": "to help"
+            "text": "to bring"
           }
         ],
-        "testedDimension": "Попросите помочь вам",
+        "testedDimension": "Выберите форму для просьбы принести детский стульчик",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-23:i08:r2",
             "correct": false,
-            "testedDimension": "Попросите помочь вам",
+            "testedDimension": "Выберите форму для просьбы принести детский стульчик",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `help`, без `s`.",
-              "uk": "Після `can` потрібне `help`, без `s`."
+              "ru": "После can нужно bring, без s.",
+              "uk": "Після can потрібне bring, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-23:i08:r3",
             "correct": false,
-            "testedDimension": "Попросите помочь вам",
+            "testedDimension": "Выберите форму для просьбы принести детский стульчик",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `help`, без `to`.",
-              "uk": "Після `can` потрібне `help`, без `to`."
+              "ru": "После can нужно bring, без to.",
+              "uk": "Після can потрібне bring, без to."
             }
           }
         ]
@@ -429,7 +559,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -505,7 +635,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -519,14 +649,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-23:i10:p1",
-            "target": "cheat",
-            "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-23:i10:p2",
             "target": "reserve",
             "meaningByLocale": {
               "ru": "забронировать",
@@ -534,33 +656,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-23:i10:p3",
-            "target": "cheese",
+            "pairId": "en:lesson-08:session-23:i10:p2",
+            "target": "booth",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "место со столом и диванчиками",
+              "uk": "місце зі столом і диванчиками"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-23:i10:p3",
+            "target": "highchair",
+            "meaningByLocale": {
+              "ru": "детский стульчик для кормления",
+              "uk": "дитячий стільчик для годування"
             }
           },
           {
             "pairId": "en:lesson-08:session-23:i10:p4",
-            "target": "teach",
+            "target": "seat",
             "meaningByLocale": {
-              "ru": "преподавать",
-              "uk": "викладати"
+              "ru": "место для сидения",
+              "uk": "місце для сидіння"
             }
           }
         ],
         "leftColumn": [
-          "cheat",
           "reserve",
-          "cheese",
-          "teach"
+          "booth",
+          "highchair",
+          "seat"
         ],
         "rightColumn": [
-          "жульничать",
           "забронировать",
-          "сыр",
-          "преподавать"
+          "место со столом и диванчиками",
+          "детский стульчик для кормления",
+          "место для сидения"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -593,15 +723,16 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-23:i11:audio",
-          "transcript": "Can you help me?"
+          "transcript": "Can you bring a highchair?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Can you help me?",
+        "hiddenTargetPhrase": "Can you bring a highchair?",
         "orderedTokens": [
           "Can",
           "you",
-          "help",
-          "me"
+          "bring",
+          "a",
+          "highchair"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -613,29 +744,75 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-23:word:terrace",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — terrace",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-23:word:terrace:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — terrace",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-23:word:terrace:audio",
+          "transcript": "terrace"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-23:word:terrace:r1",
+            "targetText": "terrace",
+            "meaningByLocale": {
+              "ru": "терраса. Can you reserve a table on the terrace? — «Можешь забронировать столик на террасе?» Открытая площадка у здания; on the terrace — «на террасе».",
+              "uk": "тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "terrace",
+          "definitionByLocale": {
+            "ru": "терраса. Can you reserve a table on the terrace? — «Можешь забронировать столик на террасе?» Открытая площадка у здания; on the terrace — «на террасе».",
+            "uk": "тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-23:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросите «Можешь открыть дверь?»",
+      "prompt": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите «Можешь открыть дверь?»",
+      "accessibilityLabel": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you open the door?",
+        "targetPhrase": "Can you reserve a table on the terrace?",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь открыть дверь?»",
-          "uk": "Попросіть «Можеш відчинити двері?»"
+          "ru": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
+          "uk": "Ви хочете поїсти на свіжому повітрі. Попросіть «Можеш забронювати столик на терасі?»"
         },
         "orderedTokens": [
           "Can",
           "you",
-          "open",
+          "reserve",
+          "a",
+          "table",
+          "on",
           "the",
-          "door"
+          "terrace"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -648,25 +825,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега спрашивает о ваших занятиях со студентами. Скажите «Я часто преподаю»",
+      "prompt": "Друг не может заняться бронью. Вы готовы сделать это сами. Скажите «Я могу забронировать столик»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-23:i13:audio"
       ],
-      "accessibilityLabel": "Коллега спрашивает о ваших занятиях со студентами. Скажите «Я часто преподаю»",
+      "accessibilityLabel": "Друг не может заняться бронью. Вы готовы сделать это сами. Скажите «Я могу забронировать столик»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-23:i13:audio",
-          "transcript": "I often teach."
+          "transcript": "I can reserve a table."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often teach.",
+        "targetPhrase": "I can reserve a table.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -681,8 +858,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Начните просьбу «Можешь забронировать столик?»",
@@ -750,7 +927,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -758,15 +935,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-23:i15:r1",
-          "text": "Can you open the door?"
+          "text": "Can you reserve a booth?"
         },
         {
           "responseId": "en:lesson-08:session-23:i15:r2",
-          "text": "Can you open the window?"
+          "text": "Can you reserve a table?"
         },
         {
           "responseId": "en:lesson-08:session-23:i15:r3",
-          "text": "Can you open the box?"
+          "text": "Can you reserve a room?"
         }
       ],
       "mediaIds": [],
@@ -778,23 +955,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-23:i15:audio",
-          "transcript": "Can you open the door?"
+          "transcript": "Can you reserve a booth?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-23:i15:r1",
-            "targetText": "Can you open the door?",
+            "targetText": "Can you reserve a booth?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-23:i15:r2",
-            "targetText": "Can you open the window?",
+            "targetText": "Can you reserve a table?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-23:i15:r3",
-            "targetText": "Can you open the box?",
+            "targetText": "Can you reserve a room?",
             "meaningByLocale": null
           }
         ],
@@ -805,8 +982,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+              "ru": "В записи booth — «место с диванчиками», а не table — «стол».",
+              "uk": "У записі booth — «місце з диванчиками», а не table — «стіл»."
             }
           },
           {
@@ -814,8 +991,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `box`."
+              "ru": "В записи booth, а не room — «комната».",
+              "uk": "У записі booth, а не room — «кімната»."
             }
           }
         ],
@@ -826,7 +1003,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,40 +1025,40 @@
           },
           {
             "pairId": "en:lesson-08:session-23:i16:p2",
-            "target": "cheat",
+            "target": "booth",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "место со столом и диванчиками",
+              "uk": "місце зі столом і диванчиками"
             }
           },
           {
             "pairId": "en:lesson-08:session-23:i16:p3",
-            "target": "calculate",
+            "target": "highchair",
             "meaningByLocale": {
-              "ru": "вычислять",
-              "uk": "обчислювати"
+              "ru": "детский стульчик для кормления",
+              "uk": "дитячий стільчик для годування"
             }
           },
           {
             "pairId": "en:lesson-08:session-23:i16:p4",
-            "target": "cheese",
+            "target": "terrace",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "терраса",
+              "uk": "тераса"
             }
           }
         ],
         "leftColumn": [
           "reserve",
-          "cheat",
-          "calculate",
-          "cheese"
+          "booth",
+          "highchair",
+          "terrace"
         ],
         "rightColumn": [
           "забронировать",
-          "жульничать",
-          "вычислять",
-          "сыр"
+          "место со столом и диванчиками",
+          "детский стульчик для кормления",
+          "терраса"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -899,7 +1076,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-23:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -939,11 +1116,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6f8f922208593dd9a98489046fdd6ba7e99935c55723a433bcc2c0c5081302ac"
+  "learnerFingerprint": "702c54408c0910b97ce78f1d8a73b03c23b2e27b130b907f0ac52312fbeca7b5"
 }

@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-21:intro2:r2": {
-          "ru": "После `can` нужно `lend`, без `s`.",
-          "uk": "Після `can` потрібне `lend`, без `s`."
+          "ru": "После can нужно fetch, без es.",
+          "uk": "Після can потрібне fetch, без es."
         },
         "en:lesson-08:session-21:intro2:r3": {
-          "ru": "После `can` нужно `lend`, без `to`.",
-          "uk": "Після `can` потрібне `lend`, без `to`."
+          "ru": "После can нужно fetch, без to.",
+          "uk": "Після can потрібне fetch, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-21:intro3:r2": {
-          "ru": "Вы пока не умеете: нужно `can’t`.",
-          "uk": "Ви поки не вмієте: потрібне `can’t`."
+          "ru": "Для просьбы начните с Can you.",
+          "uk": "Для прохання почніть із Can you."
         },
         "en:lesson-08:session-21:intro3:r3": {
-          "ru": "После `can’t` нужно `steer`, без `to`.",
-          "uk": "Після `can’t` потрібне `steer`, без `to`."
+          "ru": "После can нужно fetch, без to.",
+          "uk": "Після can потрібне fetch, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5cb41b8ac9ff4eb31809f06f9ec3b9599fe48ee2561c2cbe0481d4b6ef6555b0"
+  "auxiliaryFingerprint": "f272ce84a41344bb4ba9a5ea97ac45bdbe4cf6bf28af999a2c5e2b45cab2c3fa"
 }

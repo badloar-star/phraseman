@@ -15,8 +15,8 @@
         "uk": "Парасолька залишилася нагорі"
       },
       "bodyByLocale": {
-        "ru": "Вы уже у двери, а зонт остался в комнате наверху. Друг ещё не спустился. `Fetch` — «сходить за чем-то и принести». `Can you fetch it?` — «Можешь сходить за ним и принести?» Здесь `it` — ваш зонт. После `Can you` нужно `fetch it`, без `to`. Зонт готов к дождю — только пока в комнате.",
-        "uk": "Ви вже біля дверей, а парасолька залишилася в кімнаті нагорі. Друг ще не спустився. `Fetch` — «сходити по щось і принести». `Can you fetch it?` — «Можеш сходити по неї та принести?» Тут `it` — ваша парасолька. Після `Can you` потрібне `fetch it`, без `to`. Парасолька готова до дощу — тільки поки в кімнаті."
+        "ru": "Вы уже у двери, а зонт остался в комнате наверху. Друг ещё не спустился. `Fetch` — «сходить за чем-то и принести». `Can you fetch it?` — «Можешь сходить за ним и принести?» Здесь `it` — ваш зонт. После `Can you` нужно `fetch it`, без `to`. Другу нужно зайти в комнату и вернуться к вам с зонтом.",
+        "uk": "Ви вже біля дверей, а парасолька залишилася в кімнаті нагорі. Друг ще не спустився. `Fetch` — «сходити по щось і принести». `Can you fetch it?` — «Можеш сходити по неї та принести?» Тут `it` — ваша парасолька. Після `Can you` потрібне `fetch it`, без `to`. Другові треба зайти в кімнату й повернутися до вас із парасолькою."
       },
       "question": {
         "interactionId": "en:lesson-08:session-21:intro1:q",
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Записать адрес",
-        "uk": "Записати адресу"
+        "ru": "Дождь перед поездкой на велосипеде",
+        "uk": "Дощ перед поїздкою на велосипеді"
       },
       "bodyByLocale": {
-        "ru": "Друг диктует адрес, а вашей ручки нет. У него есть запасная. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» `Lend` значит дать на время; ручку вы вернёте.",
-        "uk": "Друг диктує адресу, а вашої ручки немає. У нього є запасна. `Can you lend me a pen?` — «Можеш позичити мені ручку?» `Lend` означає дати на певний час; ручку ви повернете."
+        "ru": "Вы собираетесь ехать на велосипеде, и начинается дождь. В гараже лежит ваше непромокаемое пончо, а друг как раз идёт туда. Poncho — «пончо», свободная накидка с отверстием для головы. `Can you fetch the poncho?` — «Можешь сходить за пончо и принести его?» Вместо it называем нужную вещь: the poncho.",
+        "uk": "Ви збираєтеся їхати на велосипеді, і починається дощ. У гаражі лежить ваше непромокальне пончо, а друг саме йде туди. Poncho — «пончо», вільна накидка з отвором для голови. `Can you fetch the poncho?` — «Можеш сходити по пончо й принести його?» Замість it називаємо потрібну річ: the poncho."
       },
       "question": {
         "interactionId": "en:lesson-08:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите друга одолжить вам ручку.",
-          "uk": "Попросіть друга позичити вам ручку."
+          "ru": "Попросите друга принести пончо из гаража.",
+          "uk": "Попросіть друга принести пончо з гаража."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-21:intro2:r1",
-              "text": "Can you lend me a pen?"
+              "text": "Can you fetch the poncho?"
             },
             {
               "responseId": "en:lesson-08:session-21:intro2:r2",
-              "text": "Can you lends me a pen?"
+              "text": "Can you fetches the poncho?"
             },
             {
               "responseId": "en:lesson-08:session-21:intro2:r3",
-              "text": "Can you to lend me a pen?"
+              "text": "Can you to fetch the poncho?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-21:intro2:r1",
-              "text": "Can you lend me a pen?"
+              "text": "Can you fetch the poncho?"
             },
             {
               "responseId": "en:lesson-08:session-21:intro2:r2",
-              "text": "Can you lends me a pen?"
+              "text": "Can you fetches the poncho?"
             },
             {
               "responseId": "en:lesson-08:session-21:intro2:r3",
-              "text": "Can you to lend me a pen?"
+              "text": "Can you to fetch the poncho?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга одолжить вам ручку.",
-          "uk": "Попросіть друга позичити вам ручку."
+          "ru": "Попросите друга принести пончо из гаража.",
+          "uk": "Попросіть друга принести пончо з гаража."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "На прогулке в лодке",
-        "uk": "На прогулянці в човні"
+        "ru": "Защитить стол на пикнике",
+        "uk": "Захистити стіл на пікніку"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает вам взять руль лодки, но вы ещё не умеете им управлять. `I can’t steer` — «Я не умею управлять рулём». После `can’t` нужно `steer`, без `to`.",
-        "uk": "Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`."
+        "ru": "На пикнике пошёл дождь. Вы хотите накрыть стол тентом, который остался в машине. Tarp — «тент, защитное полотнище», сокращение от tarpaulin. `Can you fetch the tarp?` — «Можешь сходить за тентом и принести его?» Вы обращаетесь к другу, который знает, где он лежит.",
+        "uk": "На пікніку пішов дощ. Ви хочете накрити стіл тентом, який залишився в машині. Tarp — «тент, захисне полотнище», скорочення від tarpaulin. `Can you fetch the tarp?` — «Можеш сходити по тент і принести його?» Ви звертаєтеся до друга, який знає, де він лежить."
       },
       "question": {
         "interactionId": "en:lesson-08:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что пока не умеете управлять рулём.",
-          "uk": "Скажіть другові, що поки не вмієте керувати кермом."
+          "ru": "Попросите друга принести тент из машины.",
+          "uk": "Попросіть друга принести тент із машини."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-21:intro3:r1",
-              "text": "I can’t steer."
+              "text": "Can you fetch the tarp?"
             },
             {
               "responseId": "en:lesson-08:session-21:intro3:r2",
-              "text": "I can steer."
+              "text": "You can fetch the tarp."
             },
             {
               "responseId": "en:lesson-08:session-21:intro3:r3",
-              "text": "I can’t to steer."
+              "text": "Can you to fetch the tarp?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-21:intro3:r1",
-              "text": "I can’t steer."
+              "text": "Can you fetch the tarp?"
             },
             {
               "responseId": "en:lesson-08:session-21:intro3:r2",
-              "text": "I can steer."
+              "text": "You can fetch the tarp."
             },
             {
               "responseId": "en:lesson-08:session-21:intro3:r3",
-              "text": "I can’t to steer."
+              "text": "Can you to fetch the tarp?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что пока не умеете управлять рулём.",
-          "uk": "Скажіть другові, що поки не вмієте керувати кермом."
+          "ru": "Попросите друга принести тент из машины.",
+          "uk": "Попросіть друга принести тент із машини."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "57b809df094b9e401ca3e224dfbcba79129208a214135f22d0e745c9c064dcef"
+  "introFingerprint": "f6008561fb9f703da602963d37965d098438713cb885ea0e4de48ab8ca8612e8"
 }

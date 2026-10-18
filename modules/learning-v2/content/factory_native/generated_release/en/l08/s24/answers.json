@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-08:session-24:word:brochure",
+    "correctText": "brochure",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-24:i01",
-    "correctText": "Can you lend me a pen?",
+    "correctText": "Can you read the brochure?",
     "correctResponseId": null
   },
   {
@@ -11,32 +16,42 @@
   },
   {
     "interactionId": "en:lesson-08:session-24:i03",
-    "correctText": "explain",
+    "correctText": "read",
     "correctResponseId": "en:lesson-08:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-24:i04",
-    "correctText": "en:lesson-08:session-24:i04:p1=lend\nen:lesson-08:session-24:i04:p2=pass\nen:lesson-08:session-24:i04:p3=explain\nen:lesson-08:session-24:i04:p4=hold",
+    "correctText": "en:lesson-08:session-24:i04:p1=brochure\nen:lesson-08:session-24:i04:p2=lend\nen:lesson-08:session-24:i04:p3=explain\nen:lesson-08:session-24:i04:p4=read",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i05",
-    "correctText": "Can you fetch it?",
+    "correctText": "Can you read the brochure?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:word:guidebook",
+    "correctText": "guidebook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i06",
-    "correctText": "Can you reserve a table?",
+    "correctText": "Can you lend me the guidebook?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:word:itinerary",
+    "correctText": "itinerary",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i07",
-    "correctText": "Can you hold this?",
+    "correctText": "Can you explain the itinerary?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i08",
-    "correctText": "pass",
+    "correctText": "lend",
     "correctResponseId": "en:lesson-08:session-24:i08:r1"
   },
   {
@@ -46,42 +61,47 @@
   },
   {
     "interactionId": "en:lesson-08:session-24:i10",
-    "correctText": "en:lesson-08:session-24:i10:p1=fetch\nen:lesson-08:session-24:i10:p2=remind\nen:lesson-08:session-24:i10:p3=reserve\nen:lesson-08:session-24:i10:p4=yoghurt",
+    "correctText": "en:lesson-08:session-24:i10:p1=brochure\nen:lesson-08:session-24:i10:p2=guidebook\nen:lesson-08:session-24:i10:p3=itinerary\nen:lesson-08:session-24:i10:p4=remind",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i11",
-    "correctText": "Can you explain it?",
+    "correctText": "Can you explain the itinerary?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-24:word:printout",
+    "correctText": "printout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i12",
-    "correctText": "Whose pen is this?",
+    "correctText": "Can you pass me the printout?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i13",
-    "correctText": "I often read.",
+    "correctText": "I can explain the itinerary.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i14",
-    "correctText": "reserve",
+    "correctText": "pass",
     "correctResponseId": "en:lesson-08:session-24:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-24:i15",
-    "correctText": "Can you pass me the yoghurt?",
+    "correctText": "Can you pass me the printout?",
     "correctResponseId": "en:lesson-08:session-24:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-24:i16",
-    "correctText": "en:lesson-08:session-24:i16:p1=hold\nen:lesson-08:session-24:i16:p2=fetch\nen:lesson-08:session-24:i16:p3=remind\nen:lesson-08:session-24:i16:p4=reserve",
+    "correctText": "en:lesson-08:session-24:i16:p1=brochure\nen:lesson-08:session-24:i16:p2=guidebook\nen:lesson-08:session-24:i16:p3=itinerary\nen:lesson-08:session-24:i16:p4=printout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-24:i17",
-    "correctText": "Can you pass me the yoghurt?",
+    "correctText": "Can you pass me the printout?",
     "correctResponseId": null
   }
 ]

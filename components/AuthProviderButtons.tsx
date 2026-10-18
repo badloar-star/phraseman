@@ -43,10 +43,12 @@ interface ProviderButtonProps {
 interface GoogleButtonProps extends ProviderButtonProps {
   /** 'light' = белый фон (для светлого UI), 'dark' = тёмный фон (для тёмного UI). */
   variant?: 'light' | 'dark';
+  /** Цвет тонкой линии по краю (googleButtonPaintForSurface(...).edge); null/нет — без линии. */
+  edge?: string | null;
 }
 
 
-export function GoogleSignInButton({ onPress, loading, disabled, label, busyLabel, variant = 'light', shape = 'default' }: GoogleButtonProps) {
+export function GoogleSignInButton({ onPress, loading, disabled, label, busyLabel, variant = 'light', shape = 'default', edge = null }: GoogleButtonProps) {
   const isDark = variant === 'dark';
   const bg = isDark ? '#1F1F1F' : '#FFFFFF'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
   const fg = isDark ? '#FFFFFF' : '#1F1F1F'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
@@ -86,6 +88,14 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, busyLabe
       </Text>
       {/* Spacer чтобы текст был визуально по центру, компенсируя ширину иконки слева */}
       <View style={styles.iconWrap} />
+      {/* зачем (координатор 18.10, [BLEND-AUTH]): белая Google на светлом фоне отделяется тонкой линией (hairline разрешён в 2.0).
+          Наложение поверх, а не borderWidth кнопки — размеры и вёрстка не меняются. */}
+      {edge ? (
+        <View
+          pointerEvents="none"
+          style={[StyleSheet.absoluteFill, styles.edge, { borderRadius: isPill ? PILL_RADIUS : shape === 'sheet' ? SHEET_RADIUS : RADIUS, borderColor: edge }]}
+        />
+      ) : null}
     </TouchableOpacity>
   );
 }
@@ -174,6 +184,9 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: 0.55,
+  },
+  edge: {
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: hairline полупрозрачная линия бренда Google — исключение 2.0 (владелец 24.09)
   },
   iconWrap: {
     width: 28,

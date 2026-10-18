@@ -47,7 +47,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LinearGradient } from './SafeLinearGradient';
 import { memoStylesByPalette, useOnboardingPalette, type OnboardingPalette } from './onboarding_palette';
-import { googleButtonVariantForSurface } from './auth_google_button_style';
+import { googleButtonPaintForSurface } from './auth_google_button_style';
 import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
@@ -3866,7 +3866,8 @@ function CleanOnboarding({
                 <GoogleSignInButton
                   label={oc.signInGoogle}
                   busyLabel={oc.signInBusyShort}
-                  variant={googleButtonVariantForSurface(P.bg) /* зачем ([BLEND-AUTH] 18.10): противоположно фону — без обводки иначе сливается */}
+                  variant={googleButtonPaintForSurface(P.bg).variant /* зачем (координатор 18.10): Google белая (эталон auth-states, бренд); на светлом фоне — линия hairline */}
+                  edge={googleButtonPaintForSurface(P.bg).edge}
                   loading={authLoading === 'google' && !awaitingSwitchDecision}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('google'); }}
@@ -3965,7 +3966,8 @@ function CleanOnboarding({
             <GoogleSignInButton
               label={oc.continueWithGoogle}
               busyLabel={oc.signInBusyShort}
-              variant={googleButtonVariantForSurface(P.bg) /* зачем ([BLEND-AUTH] 18.10): противоположно фону — без обводки иначе сливается */}
+              variant={googleButtonPaintForSurface(P.bg).variant /* зачем (координатор 18.10): Google белая (эталон auth-states, бренд); на светлом фоне — линия hairline */}
+              edge={googleButtonPaintForSurface(P.bg).edge}
               shape="pill"
               loading={authLoading === 'google' && !awaitingSwitchDecision}
               disabled={!!authLoading}

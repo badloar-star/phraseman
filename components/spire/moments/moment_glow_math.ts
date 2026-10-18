@@ -35,3 +35,27 @@ export function momentGlowCenterOpacity(color: string, isLight: boolean): number
   if (own === null || own <= 0) return MOMENT_GLOW_PULSE_MEAN;
   return Math.min(1, target / own);
 }
+
+/**
+ * Цвет без альфы (шестнадцатеричный из 6 знаков или функция rgb) — для stopColor градиента.
+ * зачем (Макеты streak-milestone-d0030, координатор 18.10: ореол «вдвое ярче эталона»; замер кадра Сверки d30_e2072: у огня ≈0,23 акцента при задуманных
+ * ≈0,07): react-native-svg не учитывает альфу внутри stopColor (мягкий акцент Авроры с альфой 0,24 рисовался непрозрачным), и в центре выходило 0,78 вместо 0,19.
+ * Альфа цвета переносится в stopOpacity (momentGlowStop), а цвет отдаётся непрозрачным.
+ */
+export function opaqueColor(color: string): string {
+  const c = color.trim();
+  const hex = /^#([0-9a-f]{6})([0-9a-f]{2})?$/i.exec(c);
+  if (hex) return `#${hex[1]}`;
+  const rgb = /^rgba?\(([^)]+)\)$/i.exec(c);
+  if (rgb) {
+    const parts = rgb[1]!.split(/[\s,/]+/).filter(Boolean);
+    if (parts.length >= 3) return `rgb(${parts[0]}, ${parts[1]}, ${parts[2]})`; // theme-exempt: это не цвет, а пересборка цвета темы без альфы
+  }
+  return c;
+}
+
+/** Центр ореола: непрозрачный цвет и итоговая непрозрачность = своя альфа × сила (= альфа эталона × среднее пульса). */
+export function momentGlowStop(color: string, isLight: boolean): Readonly<{ stopColor: string; stopOpacity: number }> {
+  const own = colorAlpha(color);
+  return { stopColor: opaqueColor(color), stopOpacity: (own ?? 1) * momentGlowCenterOpacity(color, isLight) };
+}

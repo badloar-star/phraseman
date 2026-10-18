@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {
-  colorAlpha, MOMENT_GLOW_FADE_AT, MOMENT_GLOW_PULSE_MEAN, MOMENT_GLOW_RADIUS, MOMENT_GLOW_SIZE, momentGlowCenterOpacity,
+  colorAlpha, MOMENT_GLOW_FADE_AT, MOMENT_GLOW_PULSE_MEAN, MOMENT_GLOW_RADIUS, MOMENT_GLOW_SIZE, momentGlowCenterOpacity, momentGlowStop, opaqueColor,
 } from '../components/spire/moments/moment_glow_math';
 
 describe('[MOMENT-GLOW] ореол моментов = эталонный .glowspot', () => {
@@ -27,6 +27,17 @@ describe('[MOMENT-GLOW] ореол моментов = эталонный .glowsp
     expect(light).toBeCloseTo(0.3 * MOMENT_GLOW_PULSE_MEAN, 5);
     // бледнее эталона не усиливаем сверх полной непрозрачности
     expect(momentGlowCenterOpacity('rgba(0,0,0,0.1)', false)).toBe(1);
+  });
+
+  // зачем (Макеты d0030 «вдвое ярче»): react-native-svg не учитывает альфу в stopColor — цвет непрозрачный, вся сила в stopOpacity
+  it('стоп градиента: цвет без альфы, непрозрачность = альфа эталона × среднее пульса (Аврора тёмная #7EF0C83D → ≈0,187)', () => {
+    expect(opaqueColor('#7EF0C83D')).toBe('#7EF0C8');
+    expect(opaqueColor('rgba(126, 240, 200, 0.3)')).toBe('rgb(126, 240, 200)');
+    const dark = momentGlowStop('#7EF0C83D', false);
+    expect(dark.stopColor).toBe('#7EF0C8');
+    expect(dark.stopOpacity).toBeCloseTo(0.24 * MOMENT_GLOW_PULSE_MEAN, 2);
+    const light = momentGlowStop('#7EF0C84D', true);
+    expect(light.stopOpacity).toBeCloseTo(0.3 * MOMENT_GLOW_PULSE_MEAN, 2);
   });
 
   it('рубежи серии: ореол из MomentFullScreen; у «Года» и «Легенды» его нет', () => {

@@ -1,0 +1,32 @@
+10-18 12:03:58.223 I/ReactNativeJS( 2593): [ACC-SPEED] warm start source=registration_prompt
+10-18 12:04:08.926 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:f86c69db","localStable":"h:62675bf7","requireOwnership":false,"t":12840174}
+10-18 12:04:08.950 I/ReactNativeJS( 2593): [AUTH-REGION] fn=authStampAnonOwnership region=us-central1 reason=eu_unavailable_this_run
+10-18 12:04:09.468 I/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] picker previous_session_cleared ms=463
+10-18 12:04:10.086 I/ReactNativeJS( 2593): [SETTINGS-ACCOUNT-CARD] t=50079 focus active=false dirty=false authReady=true shown=none focusTick=2
+10-18 12:04:10.094 I/ReactNativeJS( 2593): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-18 12:04:38.537 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":12869778}
+10-18 12:04:38.539 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:f86c69db","preProviderStable":"h:62675bf7","t":12869787}
+10-18 12:04:39.231 I/ReactNativeJS( 2593): [SETTINGS-ACCOUNT-CARD] t=79225 focus active=true dirty=true authReady=true shown=none focusTick=2
+10-18 12:04:39.234 I/ReactNativeJS( 2593): [SETTINGS-ACCOUNT-CARD] t=79231 refresh enter active=true inflight=false dirty=true gen=2
+10-18 12:04:39.259 I/ReactNativeJS( 2593): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-18 12:04:39.549 I/ReactNativeJS( 2593): '[AUTH-PROGRESS-UI]', 'status', '{"phase":"calm"}'
+10-18 12:04:39.558 I/ReactNativeJS( 2593): '[AUTH-PROGRESS-UI]', 'status', '{"phase":"long"}'
+10-18 12:04:40.399 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":12871647}
+10-18 12:04:40.404 I/ReactNativeJS( 2593): [AUTH-HANDOFF] updated_credential provider=google present=true code=auth/credential-already-in-use
+10-18 12:04:40.427 I/ReactNativeJS( 2593): [SETTINGS-ACCOUNT-CARD] t=80426 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1192
+10-18 12:04:40.428 I/ReactNativeJS( 2593): [SETTINGS-ACCOUNT-CARD] t=80427 refresh result=none applied=true gen=2/2 active=true
+10-18 12:04:40.834 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":688,"getAllKeysMs":31,"selected":2245,"filterMs":41,"multiGetMs":310,"bytes":50644,"top5":"cloud_last_sync_snapshot_v1=45518 achievements_v1=2504 customization_selection_o","t":12872082}
+10-18 12:04:40.839 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":26,"t":12872086}
+10-18 12:04:41.006 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":26,"progress":1,"t":12872252}
+10-18 12:04:41.013 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"not_clean","dirty":26,"progress":1,"t":12872252}
+10-18 12:04:41.068 I/ReactNativeJS( 2593): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":true,"stableId":"143aa86c"}'
+10-18 12:04:42.127 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":12873373}
+10-18 12:04:42.130 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] post_completion_handoff ignored {"provider":"google","reason":"guest_has_progress","t":12873378}
+10-18 12:04:42.136 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] post_completion_handoff ignored: [AUTH-LINK-GOOGLE] post_completion_handoff ignored {"provider":"google","reason":"guest_has_progress","t":12873378}
+10-18 12:04:42.137 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:62675bf7","tookMs":33211,"t":12873386}
+10-18 12:04:42.137 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:62675bf7","tookMs":33211,"t":12873386}
+10-18 12:04:42.732 I/ReactNativeJS( 2593): [AUTH-SWITCH-OFFER] resume_credential stored provider=google ttlMs=600000
+10-18 12:04:42.734 W/ReactNativeJS( 2593): [AUTH-SWITCH] 2026-10-18T11:04:42.734Z rule2 guest_with_progress_existing_account {"provider":"google","localStable":"h:62675bf7","captured":"yes","next":"guest_switch_sheet"}
+10-18 12:04:42.749 I/ReactNativeJS( 2593): [AUTH-SWITCH-OFFER] modal guest sheet offered provider=google
+10-18 12:04:42.763 W/ReactNativeJS( 2593): [AUTH-SWITCH] 2026-10-18T11:04:42.762Z rule2 offer_shown {"provider":"google","reason":"guest_has_progress_existing_account"}
+10-18 12:04:43.035 I/ReactNativeJS( 2593): '[AUTH-SWITCH-SHEET]', 'show', '{"lang":"ru","hasAccountLabel":false}'

@@ -1,0 +1,15 @@
+10-18 12:06:19.798 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":12971047}
+10-18 12:06:19.799 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:db6e8f22","preProviderStable":"h:6b7f5c0e","t":12971048}
+10-18 12:06:21.212 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":12972460}
+10-18 12:06:21.233 I/ReactNativeJS( 2593): [AUTH-HANDOFF] updated_credential provider=google present=true code=auth/credential-already-in-use
+10-18 12:06:22.915 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":690,"getAllKeysMs":981,"selected":2240,"filterMs":99,"multiGetMs":537,"bytes":3746,"top5":"achievements_v1=2504 customization_selection_operation_v1:<id>:1:customization_l","t":12974150}
+10-18 12:06:22.919 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":16,"t":12974167}
+10-18 12:06:22.961 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":16,"progress":0,"t":12974209}
+10-18 12:06:22.964 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":16,"progress":0,"t":12974209}
+10-18 12:06:23.330 I/ReactNativeJS( 2593): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":true,"postCompletionHandoff":true,"stableId":"33cb43d0"}'
+10-18 12:06:23.566 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] firebase failed {"provider":"google","code":"provider_handoff_active","handoffMarker":false,"tookMs":45207,"t":12974811}
+10-18 12:06:23.580 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] firebase failed: [AUTH-LINK-GOOGLE] firebase failed {"provider":"google","code":"provider_handoff_active","handoffMarker":false,"tookMs":45207,"t":12974811}
+10-18 12:06:23.689 W/ReactNativeJS( 2593): [AUTH-SWITCH] 2026-10-18T11:06:23.674Z rule2 done {"provider":"google","result":"error","source":"fresh_picker","tookMs":100914}
+10-18 12:06:23.741 I/ReactNativeJS( 2593): [AUTH-SWITCH-OFFER] modal guest sheet outcome=signed_in provider=google current=1
+10-18 12:06:23.803 W/ReactNativeJS( 2593): [AUTH-MODAL] sign_in error provider=google code=firebase_provider_handoff_active kind=other
+10-18 12:06:24.127 I/ReactNativeJS( 2593): '[AUTH-PROGRESS-UI]', 'failure shown', '{"kind":"other","canRetry":true,"ownCopy":false}'

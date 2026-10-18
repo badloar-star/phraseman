@@ -1,0 +1,88 @@
+10-18 12:05:11.704 I/ReactNativeJS( 2593): '[AUTH-SWITCH-SHEET]', 'choice', '{"choice":"confirm"}'
+10-18 12:05:11.859 W/ReactNativeJS( 2593): [AUTH-SWITCH] 2026-10-18T11:05:11.850Z rule2 offer_answered {"provider":"google","choice":"confirm","waitedMs":29090}
+10-18 12:05:12.333 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"push_prefs_flush","stepMs":412,"sinceStartMs":412,"outcome":"none"}'
+10-18 12:05:12.334 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"shard_preflight_start","stepMs":2,"sinceStartMs":414}'
+10-18 12:05:12.527 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"shard_preflight_done","stepMs":192,"sinceStartMs":606,"pendingSpend":0}'
+10-18 12:05:12.601 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"shard_sync_done","stepMs":70,"sinceStartMs":676}'
+10-18 12:05:12.663 I/ReactNativeJS( 2593): [AUTH-REGION] fn=authEnsureStableLink region=us-central1 reason=eu_unavailable_this_run
+10-18 12:05:15.778 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"force_sync_deadline","stepMs":3180,"sinceStartMs":3856,"deadlineMs":3000}'
+10-18 12:05:15.779 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"force_sync_done","stepMs":3,"sinceStartMs":3859,"synced":false}'
+10-18 12:05:15.781 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"emergency_backup_skipped","stepMs":2,"sinceStartMs":3861,"reason":"final_snapshot_under_lock"}'
+10-18 12:05:15.782 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"lock_wait_start","stepMs":1,"sinceStartMs":3862}'
+10-18 12:05:15.804 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"lock_acquired","stepMs":14,"sinceStartMs":3876}'
+10-18 12:05:15.909 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"shard_queue_read","stepMs":112,"sinceStartMs":3988,"entries":0}'
+10-18 12:05:19.652 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"final_snapshot_done","stepMs":3731,"sinceStartMs":7719}'
+10-18 12:05:19.876 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"marker_done","stepMs":234,"sinceStartMs":7953}'
+10-18 12:05:20.053 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"entitlement_transition_done","stepMs":103,"sinceStartMs":8056}'
+10-18 12:05:20.069 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"quarantine_resume_start","stepMs":78,"sinceStartMs":8134}'
+10-18 12:05:20.350 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"head:read_journals","ms":224,"sinceResumeMs":248}'
+10-18 12:05:20.421 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"quiesce:premium","ms":4,"idle":true}'
+10-18 12:05:20.426 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"quiesce:cloud","ms":18,"idle":true}'
+10-18 12:05:20.428 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"quiesce:restore","ms":23,"idle":true}'
+10-18 12:05:20.429 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:quiesce","ms":25,"sinceResumeMs":335,"outcome":"true"}'
+10-18 12:05:20.439 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":9,"sinceResumeMs":344,"outcome":"ok"}'
+10-18 12:05:21.342 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:signOut","ms":860,"sinceResumeMs":1206,"outcome":"ok"}'
+10-18 12:05:21.535 I/ReactNativeJS( 2593): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-18 12:05:21.751 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":404,"sinceResumeMs":1656,"from":"prepared","to":"provider_signed_out","lockWaitMs":1}'
+10-18 12:05:21.847 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":92,"sinceResumeMs":1749,"to":"provider_signed_out","totalSinceQueuedMs":498}'
+10-18 12:05:21.860 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":12,"sinceResumeMs":1766,"outcome":"ok"}'
+10-18 12:05:22.793 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"consent_reset","keys":["analytics_consent_v1","onboarding_terms_privacy_accepted_v1"],"before":{"analytics_consent_v1":"denied","onboarding_terms_privacy_accepted_v1":"1"},"legalRemoved":true,"analyticsReset":true,"regatePending":true}'
+10-18 12:05:22.794 I/ReactNativeJS( 2593): '[ACCOUNT-WIPE]', '{"mode":"signout","keep":["account_provider_handoff_v1","account_switch_completion_receipt_v1","account_switch_quarantine_v1","app_font_size","app_theme","fc_voice_prefs_by_lang_v1","fc_voice_prefs_v1","haptics_tap","onboarding_completed_at_ms_v1","onboarding_flow_ver
+10-18 12:05:26.532 W/ReactNativeJS( 2593): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":4660,"caller":"_wipeLocalAccountData <- wipeLocalAccountData <- wipeLocalData","waitedMs":3}'
+10-18 12:05:26.549 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:wipeLocalData","ms":4675,"sinceResumeMs":6441,"outcome":"ok"}'
+10-18 12:05:26.931 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":376,"sinceResumeMs":6836,"from":"provider_signed_out","to":"local_data_cleared","lockWaitMs":0}'
+10-18 12:05:27.137 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":180,"sinceResumeMs":7017,"to":"local_data_cleared","totalSinceQueuedMs":557}'
+10-18 12:05:27.191 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":21,"sinceResumeMs":7065,"outcome":"ok"}'
+10-18 12:05:27.268 W/ReactNativeJS( 2593): [PROFILE-FLIP] cleared {"previous":"h:62675bf7","t":12918511}
+10-18 12:05:27.271 W/ReactNativeJS( 2593): [WARNING] [PROFILE-FLIP] cleared: [PROFILE-FLIP] cleared {"previous":"h:62675bf7","t":12918511}
+10-18 12:05:27.762 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:clearStableId","ms":568,"sinceResumeMs":7665,"outcome":"ok"}'
+10-18 12:05:27.772 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":9,"sinceResumeMs":7677,"from":"local_data_cleared","to":"stable_id_cleared","lockWaitMs":0}'
+10-18 12:05:27.846 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":65,"sinceResumeMs":7743,"to":"stable_id_cleared","totalSinceQueuedMs":75}'
+10-18 12:05:27.905 W/ReactNativeJS( 2593): [PROFILE-FLIP] startup source {"source":"generated","stable":"h:6b7f5c0e","t":12919152}
+10-18 12:05:28.832 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"anon:ensureAnonUser","ms":980}'
+10-18 12:05:28.834 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"anon:getStableId","ms":0}'
+10-18 12:05:28.835 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:ensureAnonymousIdentity","ms":988,"sinceResumeMs":8740,"outcome":"ok"}'
+10-18 12:05:28.902 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":66,"sinceResumeMs":8807,"from":"stable_id_cleared","to":"anonymous_authenticated","lockWaitMs":0}'
+10-18 12:05:28.909 I/ReactNativeJS( 2593): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-18 12:05:28.950 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":48,"sinceResumeMs":8856,"to":"anonymous_authenticated","totalSinceQueuedMs":115}'
+10-18 12:05:28.962 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":11,"sinceResumeMs":8867,"outcome":"ok"}'
+10-18 12:05:29.184 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":221,"sinceResumeMs":9089,"from":"anonymous_authenticated","to":"fresh_stable_created","lockWaitMs":0}'
+10-18 12:05:29.302 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":118,"sinceResumeMs":9208,"to":"fresh_stable_created","totalSinceQueuedMs":340}'
+10-18 12:05:29.362 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":55,"sinceResumeMs":9264,"outcome":"ok"}'
+10-18 12:05:30.096 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":731,"sinceResumeMs":10001,"from":"fresh_stable_created","to":"ready","lockWaitMs":0}'
+10-18 12:05:30.477 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":377,"sinceResumeMs":10382,"to":"ready","totalSinceQueuedMs":1112}'
+10-18 12:05:30.615 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":126,"sinceResumeMs":10511,"outcome":"ok"}'
+10-18 12:05:31.759 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"tail:clear_marker","ms":1124,"sinceResumeMs":11646,"cleared":true}'
+10-18 12:05:31.840 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"tail:remove_receipt","ms":56,"sinceResumeMs":11722}'
+10-18 12:05:32.074 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"tail:activate_generation","ms":231,"sinceResumeMs":11977}'
+10-18 12:05:32.078 W/ReactNativeJS( 2593): '[ACC-SPEED]', '{"step":"resume_done","ms":11982,"sinceResumeMs":11982,"result":"completed"}'
+10-18 12:05:32.091 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"quarantine_resume_done","stepMs":12031,"sinceStartMs":20165,"kind":"resumed"}'
+10-18 12:05:32.109 I/ReactNativeJS( 2593): '[AUTH-LOGOUT]', '{"stage":"exit","ok":true,"reason":null,"detail":null,"lastStage":"quarantine_resume_done","tookMs":20227}'
+10-18 12:05:32.110 W/ReactNativeJS( 2593): [AUTH-SWITCH] 2026-10-18T11:05:32.109Z rule2 switched {"provider":"google","synced":"no","tookMs":20250}
+10-18 12:05:32.204 I/ReactNativeJS( 2593): [AUTH-SWITCH-OFFER] resume_credential used provider=google ageMs=49468
+10-18 12:05:32.218 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:db6e8f22","localStable":"h:6b7f5c0e","requireOwnership":false,"t":12923460}
+10-18 12:05:32.240 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] native skipped {"provider":"google","source":"resume_credential","t":12923482}
+10-18 12:05:32.244 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":12923491}
+10-18 12:05:32.253 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:db6e8f22","preProviderStable":"h:6b7f5c0e","t":12923498}
+10-18 12:05:33.709 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":12924954}
+10-18 12:05:33.710 I/ReactNativeJS( 2593): [AUTH-HANDOFF] updated_credential provider=google present=true code=auth/credential-already-in-use
+10-18 12:05:33.718 I/ReactNativeJS( 2593): [AUTH-REGION] fn=authEnsureStableLink region=us-central1 reason=eu_unavailable_this_run
+10-18 12:05:34.544 W/ReactNativeJS( 2593): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":2362,"caller":"withExactActiveScope <- persistLearningV2CompletionRetryCursor <- reserveAttempt","waitedMs":1}'
+10-18 12:05:34.703 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":657,"getAllKeysMs":552,"selected":2237,"filterMs":110,"multiGetMs":305,"bytes":340,"top5":"v2:required-session-completion-scheduler:v1:<id>=340 shard_survey_last_at_ms=0 u","t":12925951}
+10-18 12:05:34.720 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":1,"t":12925968}
+10-18 12:05:34.730 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":1,"progress":0,"t":12925978}
+10-18 12:05:34.731 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] clean_proof decision: [AUTH-LINK-GOOGLE] clean_proof decision {"decision":"clean_by_defaults","dirty":1,"progress":0,"t":12925978}
+10-18 12:05:35.656 I/ReactNativeJS( 2593): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":true,"postCompletionHandoff":true,"stableId":"33cb43d0"}'
+10-18 12:05:35.674 W/ReactNativeJS( 2593): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1124,"caller":"withLocalAccountLock <- list","waitedMs":0}'
+10-18 12:05:37.845 W/ReactNativeJS( 2593): [AUTH-HANDOFF] kept reason=session_changed phase=prepared provider=google
+10-18 12:05:37.906 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] firebase failed {"provider":"google","code":"provider_handoff_lock_timeout","handoffMarker":true,"tookMs":5695,"t":12929155}
+10-18 12:05:37.912 W/ReactNativeJS( 2593): [WARNING] [AUTH-LINK-GOOGLE] firebase failed: [AUTH-LINK-GOOGLE] firebase failed {"provider":"google","code":"provider_handoff_lock_timeout","handoffMarker":true,"tookMs":5695,"t":12929155}
+10-18 12:05:37.985 W/ReactNativeJS( 2593): [AUTH-SWITCH-OFFER] resume_sign_in not_continued provider=google result=error code=firebase_provider_handoff_lock_timeout
+10-18 12:05:37.986 W/ReactNativeJS( 2593): [AUTH-SWITCH] 2026-10-18T11:05:37.986Z rule2 resume_unavailable {"provider":"google","next":"fresh_sign_in"}
+10-18 12:05:38.363 W/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:db6e8f22","localStable":"h:6b7f5c0e","requireOwnership":false,"t":12929606}
+10-18 12:05:38.388 I/ReactNativeJS( 2593): [AUTH-REGION] fn=authStampAnonOwnership region=us-central1 reason=eu_unavailable_this_run
+10-18 12:05:38.608 W/ReactNativeJS( 2593): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":2648,"caller":"withLocalAccountLock","waitedMs":266}'
+10-18 12:05:38.707 I/ReactNativeJS( 2593): [AUTH-LINK-GOOGLE] picker previous_session_cleared ms=261
+10-18 12:05:40.004 W/ReactNativeJS( 2593): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1280,"caller":"withExactActiveScope <- clearLearningV2CompletionRetryCursor","waitedMs":1}'
+10-18 12:05:40.763 I/ReactNativeJS( 2593): [SETTINGS-ACCOUNT-CARD] t=40732 focus active=false dirty=false authReady=true shown=none focusTick=2
+10-18 12:05:40.811 I/ReactNativeJS( 2593): [ACCOUNT-V2] auth_sync skip reason=flag_off

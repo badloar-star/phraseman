@@ -20,7 +20,6 @@ import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import PressableHybrid from './PressableHybrid';
 import { useLv2Glass } from './learning-v2/LearningV2Glass';
-import { nestedBoxShadow } from './v2/ShadowSurface';
 
 interface Props {
   /** Deprecated sizing input: every screen now uses one fixed compact pill. */
@@ -43,6 +42,7 @@ interface Props {
   /**
    * зачем (приказ владельца 01.10, решение координатора 13.10 по spire-gap-016/017): в шапке Шпиля и ступени энергия —
    * ТОЛЬКО значок и число, без капсулы. Цвета остаются стеклянными (glass), снимается лишь заливка и тень капсулы.
+   * Устарел (владелец 18.10): капсулы нет нигде, флаг ни на что не влияет — оставлен для совместимости вызовов.
    */
   noCapsule?: boolean;
 }
@@ -67,7 +67,7 @@ const COLORS = Object.freeze({
   value: '#FFFFFF', // theme-exempt: значение на собственном тёмном фоне капсулы
 });
 
-function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCapsule = false }: Props) {
+function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Props) {
   const lg = useLv2Glass();
   const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited, recoveryIntervalMs } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -94,15 +94,21 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
   // зачем (эмулятор 30.09): порог «низкий заряд» был числом 20 от старой шкалы на 100; при
   // шкале 2.0 (5) молния горела красным ВСЕГДА. Доля 20% от ёмкости: на 100 — прежние <20.
   const lowCharge = current < Math.max(1, Math.ceil(activeCap * LOW_CHARGE_SHARE));
+  // зачем (владелец 18.10 «убрать подложку под молнией и числом везде»): капсулы больше нет — смысловые цвета (перезаряд/мало) доводятся до ≥ 3 к ФОНУ экрана;
+  // где и так хватает (тёмные темы), цвет прежний.
+  // фон экрана бывает градиентом — порог держится к худшей из трёх точек
+  const pageFills = [lg.bg, lg.bgTop, lg.bgBottom] as const;
   const accent = bonusEnergyCapacity > 0
-    ? COLORS.overcharge
+    ? lowChargeInk(COLORS.overcharge, pageFills, lg.text)
     : lowCharge
-      // зачем ([BLEND-AUDIT] 18.10): красная молния низкого заряда на капсуле buttonFill давала 2,05:1 — оттенок подгоняется до 3:1 (иначе основной текст), число рядом несёт смысл «мало»
-      ? (glass ? lowChargeInk(lg.bad, lg.buttonFill, lg.text) : COLORS.low)
+      ? lowChargeInk(glass ? lg.bad : COLORS.low, pageFills, lg.text)
       // зачем (темы 2.0): в «Акценте/Максимуме» молния в цвете темы; перезаряд (золото) и
       // низкий заряд (красный) — смысловые цвета, темой не красятся.
       // зачем (Сверка 18.10, walk/03_light_lessons.png): без капсулы фирменный #9187FF на светлом фоне давал до 2,06:1 — в светлых темах графический цвет темы (≥ 3)
       : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : (lg.isLight ? lg.accentGraphic : COLORS.normal));
+  // зачем (Сверка 18.10, карта курса V2 светлая): без капсулы белое число лежало прямо на светлом фоне (≈1:1) — цвет текста темы; в тёмных он белый, как было.
+  // ∞ тем же цветом: белый знак на светлом фоне давал 1,07:1.
+  const valueColor = glass ? lg.text : (lg.isLight ? lg.text : COLORS.value);
   // зачем (владелец 01.10: «иконка энергии чуть больше и без фона нигде»): только значок и число.
   const iconSize = 17;
   // зачем (владелец 2026-09-30, learn.html C4 «−1 энергии при старте: 5 → 4»): в стеклянной
@@ -189,13 +195,9 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
           accessibilityRole="button"
           accessibilityLabel={accessibilityLabel}
           style={styles.touchTarget}
-          contentStyle={[
-            styles.capsule,
-            // зачем (сверка dialogs-001/007, Макеты 4fbcfc81d; образец kit.js `energy()` = `.pill`, эталон «Тень» etalon.html): в стеклянной шапке энергия сидит в капсуле — заливка токена темы + внутренняя тень «Тень», БЕЗ обводки.
-            // Размер прежний (60×28, зафиксирован владельцем 24.09: тест energy_ui_owner_direction_probe); вне glass (старые шапки) пилюля по-прежнему без фона.
-            // зачем ([BLEND-AUDIT] 18.10): заливка buttonFill, а не opaqueControl — в светлых темах opaqueControl равен фону страницы (1,00:1), buttonFill ≥ 1,5 к странице
-            glass && !noCapsule ? { backgroundColor: lg.buttonFill, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,
-          ]}
+          // зачем (владелец 18.10 через координатора): подложки-капсулы нет НИГДЕ — ни заливки, ни обводки, ни тени; только молния и число.
+          // Размер блока 60×28 и зона нажатия 60×44 прежние — вёрстка шапок не сдвигается.
+          contentStyle={styles.capsule}
         >
           <EnergyIcon
             filled
@@ -207,14 +209,14 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
             animateLoop={focused && ownerActive}
           />
           {isUnlimited ? (
-            <Text style={styles.infinity} maxFontSizeMultiplier={1.15}>∞</Text>
+            <Text style={[styles.infinity, { color: valueColor }]} maxFontSizeMultiplier={1.15}>∞</Text>
           ) : (
             <Animated.View style={dropStyle}>
               <AnimatedEnergyNumber
                 value={current}
                 active={focused && ownerActive}
                 // зачем (Сверка 18.10, карта курса V2 светлая): без капсулы белое число лежало прямо на светлом фоне (≈1:1) — цвет текста темы; в тёмных он белый, как было
-                color={glass ? lg.text : (lg.isLight ? lg.text : COLORS.value)}
+                color={valueColor}
                 style={styles.valueCompact}
               />
             </Animated.View>
@@ -253,7 +255,7 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   valueCompact: { width: 36, height: 22, fontSize: 16, lineHeight: 22 },
-  infinity: { width: 30, textAlign: 'center', color: COLORS.value, fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  infinity: { width: 30, textAlign: 'center', fontSize: 16, lineHeight: 22, fontWeight: '700' },
   overchargeGlow: { shadowColor: COLORS.overcharge, shadowOpacity: 0.24, shadowRadius: 10, shadowOffset: { width: 0, height: 0 }, elevation: 7 },
 });
 

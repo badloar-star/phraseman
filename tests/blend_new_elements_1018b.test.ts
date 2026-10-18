@@ -2,6 +2,7 @@
 // (23 темы × тёмная/светлая × насыщенность 0/0,5/1). Пороги правила владельца: текст ≥ 4,5, значок/графика/заливка кнопки ≥ 3, тон плашки ≥ 1,5.
 // Поверхности и токены — как в коде (пути в подписях). Печатает таблицу худших значений; проверка — без провалов.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { lowChargeInk } from '../constants/energy_low_ink';
 
 type Rgb = [number, number, number];
 const parse = (c: string): { rgb: Rgb; a: number } => {
@@ -22,6 +23,7 @@ const worstOn = (fg: string, bases: Rgb[], alpha = 1) => Math.min(...bases.map((
 const toneOn = (fill: string, bases: Rgb[], alpha = 1) => Math.min(...bases.map((b) => ratio(over(fill, b, alpha), b)));
 
 const TEXT = 4.5, GRAPHIC = 3, TONE = 1.5;
+const lightOf = (t: T): boolean => (t as unknown as { isLight: boolean }).isLight === true;
 type Pair = { el: string; what: string; min: number; v: (t: T) => number };
 const PAIRS: Pair[] = [
   { el: 'Премьера (YoutubePremiereHero)', what: 'строка состояния secondary к плашке', min: TEXT, v: (t) => worstOn(t.secondary!, plates(t)) },
@@ -51,6 +53,12 @@ const PAIRS: Pair[] = [
   { el: 'Карта V2: плитка главы', what: 'значок text / закрытой главы secondary на плитке', min: GRAPHIC, v: (t) => Math.min(...plates(t).flatMap((p) => { const f = over(`${t.text!.slice(0, 7)}17`, p); return [ratio(over(t.text!, f), f), ratio(over(t.secondary!, f), f)]; })) },
   { el: 'Карта V2: плитка урока 46', what: 'intended-tone glassTone(text, 9 %) к фону, эталон dialogs.html', min: 1.15, v: (t) => toneOn(`${t.text!.slice(0, 7)}17`, pages(t)) },
   { el: 'Карта V2: плитка урока 46', what: 'значок text на плитке', min: GRAPHIC, v: (t) => Math.min(...pages(t).map((p) => { const f = over(`${t.text!.slice(0, 7)}17`, p); return ratio(over(t.text!, f), f); })) },
+  // Энергия без подложки (владелец 18.10): EnergyBar в шапках и EnergyMistakeHud в шапке занятия — молния ≥ 3, цифра ≥ 4,5 прямо к фону экрана.
+  { el: 'Энергия (EnergyBar)', what: 'молния: glass text / светлые accentGraphic / тёмные #9187FF / «Акцент-Максимум» accentText', min: GRAPHIC, v: (t) => { const lvl = (t as unknown as { level: string }).level; return Math.min(worstOn(t.text!, pages(t)), worstOn(lightOf(t) ? t.accentGraphic! : '#9187FF', pages(t)), lvl === 'accent' || lvl === 'max' ? worstOn(t.accentText!, pages(t)) : 99); } },
+  { el: 'Энергия (EnergyBar)', what: 'мало / перезаряд — lowChargeInk к фону', min: GRAPHIC, v: (t) => Math.min(...[t.bad!, '#FF786F', '#F5C451'].map((c) => worstOn(lowChargeInk(c, [t.bg!, t.bgTop!, t.bgBottom!], t.text!), pages(t)))) },
+  { el: 'Энергия (EnergyBar)', what: 'число и ∞ (text / белое в тёмных)', min: TEXT, v: (t) => worstOn(lightOf(t) ? t.text! : '#FFFFFF', pages(t)) },
+  { el: 'Энергия в занятии (EnergyMistakeHud)', what: 'молния accentTextSafe / пустая secondary', min: GRAPHIC, v: (t) => Math.min(worstOn(t.accentTextSafe!, pages(t)), worstOn(t.secondary!, pages(t))) },
+  { el: 'Энергия в занятии', what: 'цифра text; 0/1 и «−1» — красный lowChargeInk ≥ 4,5', min: TEXT, v: (t) => Math.min(worstOn(t.text!, pages(t)), worstOn(lowChargeInk('#F05454', [t.bg!, t.bgTop!, t.bgBottom!], t.text!, 4.5), pages(t))) },
   { el: 'Карта V2: прогресс главы', what: 'заливка accentGraphic к дорожке opaqueControl на карточке', min: GRAPHIC, v: (t) => Math.min(...plates(t).map((p) => { const track = over(t.opaqueControl!, p); return ratio(over(t.accentGraphic!, track), track); })) },
 ];
 

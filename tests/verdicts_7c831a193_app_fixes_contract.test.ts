@@ -17,11 +17,11 @@ describe('«Устно · верно» (cards-section-046, cards-v2-037)', () =>
 describe('пилюля энергии (energy-modes-003/009/010)', () => {
   const hud = read('components/energy/EnergyAttemptsHud.tsx');
   const pill = read('components/energy/EnergyMistakeHud.tsx');
-  it('кромка нейтральная (белый 13 % / чёрный 12 %), а не цвет темы; красный пульс последней энергии остаётся', () => {
-    expect(hud).toContain("edge={g.isLight ? 'rgba(0,0,0,0.12)'");
-    expect(hud).toContain("'rgba(255,255,255,0.13)'");
-    expect(hud).not.toContain('edge={g.glassEdge}');
-    expect(pill).toContain('warnRing');
+  // зачем (владелец 18.10): подложки у энергии нет нигде — кромка и кольцо-пульс по контуру пилюли сняты; последняя энергия — красная цифра.
+  it('без кромки и заливки; красный цифры доведён до ≥ 4,5 к фону темы', () => {
+    expect(hud).not.toMatch(/edge=|plate=/);
+    expect(hud).toContain('bad={lowChargeInk(t.wrong, [g.bg, g.bgTop, g.bgBottom], g.text, 4.5)}');
+    expect(pill).not.toContain('warnRing');
   });
 });
 

@@ -6,7 +6,6 @@ import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
-  withRepeat,
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
@@ -59,8 +58,6 @@ type Props = Readonly<{
   muted: string;
   textColor: string;
   bad: string;
-  plate: string;
-  edge: string;
   /** Подпись для озвучки экрана («Энергия: 3 из 5»). */
   accessibilityLabel: string;
   testID?: string;
@@ -71,7 +68,7 @@ type Props = Readonly<{
  * Ошибка: пилюля трясётся, молния вспухает, над ней вылетает «−1», цифра перекатывается. Последняя энергия (1) — красный пульс.
  * Ноль — пилюля приглушена, цифра красная. «Уменьшить движение»: без тряски и подъёма, «−1» только появляется и гаснет на месте.
  */
-function EnergyMistakeHud({ energy, maxEnergy, lossSeq, accent, muted, textColor, bad, plate, edge, accessibilityLabel, testID = 'energy-mistake-hud' }: Props) {
+function EnergyMistakeHud({ energy, maxEnergy, lossSeq, accent, muted, textColor, bad, accessibilityLabel, testID = 'energy-mistake-hud' }: Props) {
   const M = ENERGY_MISTAKE_MOTION;
   const reduceMotion = useReduceMotion();
   const safeEnergy = Math.max(0, Math.floor(energy));
@@ -91,7 +88,6 @@ function EnergyMistakeHud({ energy, maxEnergy, lossSeq, accent, muted, textColor
   const tickY = useSharedValue(0);
   const tickScale = useSharedValue(1);
   const tickOpacity = useSharedValue(1);
-  const warnOpacity = useSharedValue(0);
 
   const playTick = () => {
     cancelAnimation(tickY);
@@ -170,19 +166,9 @@ function EnergyMistakeHud({ energy, maxEnergy, lossSeq, accent, muted, textColor
 
   useEffect(() => () => { if (swapTimerRef.current) clearTimeout(swapTimerRef.current); }, []);
 
-  // Последняя энергия: красный пульс ×3; уходим с неё — гасим.
+  // зачем (владелец 18.10 «только молния и число, без подложки»): красное кольцо-пульс по контуру пилюли рисовало ту же капсулу — снято;
+  // последнюю энергию показывает красная цифра.
   const lastEnergy = safeEnergy === 1;
-  useEffect(() => {
-    cancelAnimation(warnOpacity);
-    if (!lastEnergy) { warnOpacity.value = 0; return; }
-    DebugLogger.info(TAG, `последняя энергия: пульс reduceMotion=${String(reduceMotion)}`);
-    if (reduceMotion) { warnOpacity.value = 1; return; }
-    warnOpacity.value = withRepeat(
-      withSequence(withTiming(1, { duration: M.warnMs / 2 }), withTiming(0, { duration: M.warnMs / 2 })),
-      M.warnCycles,
-      false,
-    );
-  }, [lastEnergy, reduceMotion, warnOpacity, M.warnCycles, M.warnMs]);
 
   const pillStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: shakeX.value }, { rotate: `${shakeRot.value}deg` }],
@@ -196,19 +182,18 @@ function EnergyMistakeHud({ energy, maxEnergy, lossSeq, accent, muted, textColor
     opacity: tickOpacity.value,
     transform: [{ translateY: tickY.value }, { scale: tickScale.value }],
   }));
-  const warnStyle = useAnimatedStyle(() => ({ opacity: warnOpacity.value }));
 
   const zero = shown === 0;
   return (
     <Reanimated.View
       testID={testID}
-      style={[styles.pill, { backgroundColor: plate, borderColor: edge }, zero ? styles.zero : null, pillStyle]}
+      // зачем (владелец 18.10): без заливки, кромки и приглушения нуля — молния и цифра прямо на фоне шапки (цвета ≥ 3 / ≥ 4,5 к фону)
+      style={[styles.pill, pillStyle]}
       accessible
       accessibilityRole="text"
       accessibilityLabel={accessibilityLabel}
       accessibilityValue={{ min: 0, max: Math.max(1, Math.floor(maxEnergy)), now: Math.min(safeEnergy, Math.floor(maxEnergy)) }}
     >
-      <Reanimated.View pointerEvents="none" style={[styles.warnRing, { borderColor: bad }, warnStyle]} />
       <Reanimated.View style={boltStyle}>
         <EnergyIcon
           filled={!zero}
@@ -240,15 +225,12 @@ const styles = StyleSheet.create({
     height: 34,
     borderRadius: 17,
     paddingHorizontal: 11,
-    borderWidth: 1, // shadow-ok: тонкая 1px кромка пилюли по макету energy-modes-states.html (исключение PhraseMan 2.0, 24.09; решение владельца 12.10 vs макет — вопрос координатору); guard-ok: тонкая 1px кромка пилюли — как на макете energy-modes-states.html (исключение PhraseMan 2.0, 24.09)
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 6,
   },
-  zero: { opacity: 0.75 },
-  warnRing: { ...StyleSheet.absoluteFillObject, borderRadius: 17, borderWidth: 1.5 }, // shadow-ok: красный пульс-индикатор последней энергии (состояние, не контейнер); guard-ok: красный пульс последней энергии, кромка 1.5px — по макету (gwarn); typo-exempt: кромка пульса 1.5 по макету energy-modes-states.html
   valueBox: { minWidth: 10, alignItems: 'center', justifyContent: 'center' },
   value: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center', fontVariant: ['tabular-nums'] },
   fly: { position: 'absolute', alignSelf: 'center', top: 6, zIndex: 9 },

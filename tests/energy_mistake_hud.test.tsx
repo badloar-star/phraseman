@@ -40,7 +40,7 @@ jest.mock('../components/EnergyIcon', () => ({
 }));
 
 const base = {
-  maxEnergy: 5, accent: '#7EF0C8', muted: '#75757A', textColor: '#fff', bad: '#FF6B6B', plate: '#1D1D22', edge: 'rgba(255,255,255,.13)',
+  maxEnergy: 5, accent: '#7EF0C8', muted: '#75757A', textColor: '#fff', bad: '#FF6B6B',
   accessibilityLabel: 'Энергия: 3 из 5',
 };
 const value = () => screen.getByTestId('energy-mistake-hud-value').props.children;
@@ -102,15 +102,16 @@ describe('EnergyMistakeHud', () => {
     expect(value()).toBe(5);
   });
 
-  test('энергия 0 — иконка пустая, пилюля приглушена', async () => {
+  test('энергия 0 — иконка пустая, цифра красная', async () => {
     await render(<EnergyMistakeHud {...base} energy={0} lossSeq={0} />);
     expect(screen.getByTestId('icon').props.filled).toBe(false);
     expect(value()).toBe(0);
   });
 
-  test('последняя энергия (1) запускает красный пульс', async () => {
-    const { withRepeat } = require('react-native-reanimated');
+  // зачем (владелец 18.10, без подложки): кольцо-пульс по контуру пилюли снято — последнюю энергию показывает красная цифра.
+  test('последняя энергия (1) — цифра красная', async () => {
     await render(<EnergyMistakeHud {...base} energy={1} lossSeq={0} />);
-    expect(withRepeat).toHaveBeenCalledWith(expect.anything(), ENERGY_MISTAKE_MOTION.warnCycles, false);
+    const style = screen.getByTestId('energy-mistake-hud-value').props.style;
+    expect(JSON.stringify(style)).toContain(base.bad);
   });
 });

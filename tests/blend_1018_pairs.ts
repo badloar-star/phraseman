@@ -165,7 +165,8 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: '«—/30», «N/30» (text) к плашке', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'значок к плашке', min: GRAPHIC, after: (t) => ratio(solid(String(t.isLight) === 'true' ? t.secondary! : t.accentBright!), solid(t.plateFillFrom!)) },
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'срок сброса (secondary) к плашке', min: TEXT, after: (t) => ratio(solid(t.secondary!), solid(t.plateFillFrom!)) },
-  { element: 'Диалоги: капсула энергии', what: 'низкий заряд (красный из токена темы, сдвинут по яркости) к заливке buttonFill', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.buttonFill!, t.text!)), solid(t.buttonFill!)) },
+  // зачем (владелец 18.10): капсулы энергии нет нигде — низкий заряд меряется к фону экрана
+  { element: 'Энергия без подложки', what: 'низкий заряд (красный из токена темы, сдвинут по яркости) к фону', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.bg!, t.text!)), solid(t.bg!)) },
   // ── комбо урока: молния m08 (2f796870d, accentGraphic) и кольцо нагрева на 3/5/10 (ComboHeatSlot: «Искра» accentGraphic, «Молния» warn, «Гроза» bad); страница = bg
   { element: 'Комбо урока: молния m08', what: 'штрих (accentGraphic) к странице', min: GRAPHIC, after: (t) => ratio(solid(t.accentGraphic!), solid(t.bg!)) },
   { element: 'Комбо урока: кольцо нагрева', what: '3 «Искра» (accentGraphic) к странице', min: GRAPHIC, after: (t) => ratio(solid(t.accentGraphic!), solid(t.bg!)) },

@@ -16,6 +16,7 @@ import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurfac
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { feedThumbUrl } from './YoutubeVideoCard';
+import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
 /**
  * Ролик в сетке «2 колонки» — вариант 1 «Сетка» макета video-redesign.html (#c1, владелец 11.10).
@@ -59,7 +60,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
     : [formatRelativeVideoDate(video.publishedAt, lang), formatViewCount(video.viewCount, lang), savedLine].filter(Boolean);
 
   return (
-    <View testID="lingman-video-card" style={styles.card}>
+    <View testID="lingman-video-card" onLayout={(event) => noteSkeletonGeom('video_grid', 'ready', event.nativeEvent.layout.height)} style={styles.card}>
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel={`${watch}: ${cleanYoutubeTitle(video.title)}${stateLabel ? `. ${stateLabel}` : ''}`}

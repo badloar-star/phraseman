@@ -15,6 +15,7 @@ import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
 import { PackDeck, PackDeckPlayButton } from '../../components/packs/PackRow';
 import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
+import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
 import { formatPackTitleForDisplay } from './marketplace';
@@ -133,6 +134,7 @@ function MyPacksV2Inner(props: Props) {
     return (
       <PackDeck
         key={pack.id}
+        geomScreen="my_packs"
         g={g}
         lang={lang}
         title={title}
@@ -194,7 +196,7 @@ function MyPacksV2Inner(props: Props) {
 
         {status === 'loading' ? (
           <View testID="fc-my-packs-loading" style={styles.loading}>
-            {[0, 1, 2].map((index) => <View key={index} /* guard-ok: три статичные заглушки */ style={[styles.skeleton, { height: skeletonH }]} />)}
+            {[0, 1, 2].map((index) => <View key={index} /* guard-ok: три статичные заглушки */ onLayout={index === 0 ? (event) => noteSkeletonGeom('my_packs', 'skeleton', event.nativeEvent.layout.height) : undefined} style={[styles.skeleton, { height: skeletonH }]} />)}
           </View>
         ) : null}
 

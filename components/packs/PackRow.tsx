@@ -42,7 +42,8 @@ import {
   splitTitleHighlight,
   type PackRowVariant,
 } from './packRowModel';
-import { PACK_DECK_METRICS, packDeckCountLevel } from './packDeckModel';
+import { PACK_DECK_METRICS, noteDeckHadChips, packDeckCountLevel } from './packDeckModel';
+import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
 type IonName = keyof typeof Ionicons.glyphMap;
 
@@ -190,6 +191,7 @@ function PackRowBase({
   // приподнятой плашки рисуется с прямыми углами (ревью 11.10, п.5).
   return (
     <View
+      onLayout={geomScreen ? (event) => noteSkeletonGeom(geomScreen, 'ready', event.nativeEvent.layout.height) : undefined}
       style={[
         { borderRadius: m.radius },
         emphasis === 'dimmed' ? styles.dimmed : null,
@@ -260,6 +262,8 @@ type DeckProps = Readonly<{
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   a11yActions?: readonly Readonly<{ name: string; label: string; run: () => void }>[];
+  /** Имя экрана для журнала [SKELETON-GEOM]: высота готовой стопки сравнивается с высотой скелетона (координатор 18.10). */
+  geomScreen?: string;
 }>;
 
 /** `.mc` — чип слова: тон `dividerTone` и малая тень (стиль «Тень», без кольца), слово 13/600 в одну строку. */
@@ -285,7 +289,7 @@ const DeckAvatar = memo(function DeckAvatar({ g, coinRank }: Readonly<{ g: Glass
 
 function PackDeckBase({
   g, lang, title, testID, titleTestID, accessibilityLabel, count, level = null, words = [], author = null, authorTestID, note = null,
-  highlight, emphasis = 'normal', trailing, onPress, onLongPress, disabled, style, a11yActions,
+  highlight, emphasis = 'normal', trailing, onPress, onLongPress, disabled, style, a11yActions, geomScreen,
 }: DeckProps) {
   const lh = useLineScale();
   const m = PACK_DECK_METRICS;
@@ -297,6 +301,7 @@ function PackDeckBase({
   // зачем (координатор 12.10, мёртвый бейдж «На проверке»): статус набора автора живёт в подписи стопки, а не на удалённой плитке хаба
   const subText = note ? `${baseSub} · ${note}` : baseSub;
   const chipLine = lh(18);
+  noteDeckHadChips(words.length > 0); // скелетон следующего показа берёт высоту по факту
 
   const body = (
     <View style={[styles.deck, { paddingTop: m.stackTop }]}>

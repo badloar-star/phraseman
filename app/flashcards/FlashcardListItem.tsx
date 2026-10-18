@@ -36,6 +36,7 @@ import WordStrengthDots from './WordStrengthDots';
 import { formatVideoMoment } from './video_moment';
 import type { WordStrength } from './word_strength';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
+import { noteSkeletonGeom } from '../skeleton_geom_log';
 
 const EXEMPT_COLOR_1 = '#D32F2F'; // theme-exempt: скрим и белый значок на красном действии «Удалить» — постоянные
 const EXEMPT_COLOR_2 = '#fff'; // theme-exempt: скрим и белый значок на красном действии «Удалить» — постоянные
@@ -715,7 +716,7 @@ function FlashcardListItemImpl({
           </View>
         )}
 
-        <View style={{ height: cardHeight, position: 'relative' }}>
+        <View onLayout={savedGlass && itemIdx === 0 ? (event) => noteSkeletonGeom('saved', 'ready', event.nativeEvent.layout.height) : undefined} style={{ height: cardHeight, position: 'relative' }}>
           <TouchableOpacity
             activeOpacity={0.92}
             onPressIn={() => {

@@ -11,6 +11,7 @@ import { View } from 'react-native';
 import SkeletonBlock from '../SkeletonShimmer';
 import { dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { glassTone } from './glass/glassTone';
+import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
 const CARD_COUNT = 4;
 
@@ -22,7 +23,7 @@ export const DialogueV2CatalogueSkeleton = memo(function DialogueV2CatalogueSkel
     // та же обёртка, что у DialogueV2CatalogueSection: категории через 13, первая — 32 под шапкой хаба
     <View testID="dialogue-v2-catalogue-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ gap: 13, marginTop: 32 }}>
       {Array.from({ length: CARD_COUNT }, (_unused, index) => (
-        <View key={index} /* guard-ok: статичный список одинаковых заглушек */ style={[dialogueGlassCardStyle(glass, 22), { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 18 }]}>
+        <View key={index} /* guard-ok: статичный список одинаковых заглушек */ onLayout={index === 0 ? (event) => noteSkeletonGeom('dialogs', 'skeleton', event.nativeEvent.layout.height) : undefined} style={[dialogueGlassCardStyle(glass, 22), { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 18 }]}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 22, minHeight: 55 }}>
             <SkeletonBlock width={55} height={55} borderRadius={14} baseColor={base} highlightColor={highlight} />
             <View style={{ flex: 1, minWidth: 0, gap: 8 }}>

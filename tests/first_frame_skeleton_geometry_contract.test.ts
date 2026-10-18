@@ -30,7 +30,8 @@ describe('первый кадр = геометрия готового экран
 
   it('«Друзья»: скелетон поиска = карточка найденного (14 + 48 + 14 + 48 + 14 = 138, сверху 2)', () => {
     const friends = read('app/(tabs)/friends.tsx');
-    expect(friends).toContain("<View testID=\"friends-search-skeleton\" style={{ marginTop: 2 }}>");
+    expect(friends).toContain('testID="friends-search-skeleton"');
+    expect(friends).toContain('style={{ marginTop: 2 }}');
     expect(friends).toContain('height: 138, borderRadius: 14');
     const found = read('components/friends/FriendsFoundCard.tsx');
     expect(found).toContain('gap: 14, padding: 14, marginTop: 2');

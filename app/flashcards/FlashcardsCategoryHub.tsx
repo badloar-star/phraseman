@@ -87,6 +87,7 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
 import { PackDeck, PackDeckLikes, packCardsWord, type PackRowEmphasis } from '../../components/packs/PackRow';
 import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
+import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { useLang } from '../../components/LangContext';
 import { KitTouchable } from '../../components/KitTouchable';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
@@ -313,6 +314,7 @@ function CommunityPackRowBase({
       g={g}
       lang={uiLang}
       title={title}
+      geomScreen="cards_hub"
       testID={`flashcards-pack-card-${pack.id}`}
       titleTestID={`flashcards-pack-title-${pack.id}`}
       authorTestID={`flashcards-pack-author-${pack.id}`}
@@ -1037,7 +1039,7 @@ export default function FlashcardsCategoryHub({
           {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && (!communityLoaded || isDevCardsHeld('catalog_loading')) ? (
             <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
               {[0, 1, 2, 3].map((i) => (
-                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: skeletonRowH, borderRadius: 20, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />
+                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ onLayout={i === 0 ? (event) => noteSkeletonGeom('cards_hub', 'skeleton', event.nativeEvent.layout.height) : undefined} style={{ height: skeletonRowH, borderRadius: 20, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />
               ))}
             </View>
           ) : visibleCommunityPacks.length === 0 ? (

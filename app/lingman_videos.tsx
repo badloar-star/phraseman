@@ -10,6 +10,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import { noteSkeletonGeom } from './skeleton_geom_log';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
 import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPickerSheet';
@@ -740,7 +741,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const renderGridSkeleton = (coverHeight: number, withBookmark = true) => Array.from({ length: 3 }).map((_, row) => (
     <View key={row} style={styles.gridSkeletonRow}>
       {[0, 1].map((col) => (
-        <View key={col} style={withBookmark ? styles.gridSkeletonCell : [styles.gridSkeletonCell, styles.gridSkeletonCellStack]}>
+        <View key={col} onLayout={row === 0 && col === 0 ? (event) => noteSkeletonGeom(withBookmark ? 'video_grid' : 'video_playlists', 'skeleton', event.nativeEvent.layout.height) : undefined} style={withBookmark ? styles.gridSkeletonCell : [styles.gridSkeletonCell, styles.gridSkeletonCellStack]}>
           <SkeletonBlock width="100%" height={coverHeight} borderRadius={14} />
           <View style={styles.gridSkeletonTitle}>
             <SkeletonBlock width="90%" height={13} borderRadius={7} />

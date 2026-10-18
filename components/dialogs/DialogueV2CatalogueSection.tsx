@@ -16,6 +16,7 @@ import { PressableScale } from '../feedback/PressableScale';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
 import { dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { glassTone } from './glass/glassTone';
+import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 import { useHubHeaderCollapseActions } from './hub_header_collapse';
 
 /** Ступени тона поверх карточки категории: строка +4,5 %, плитка +9 % цвета текста темы (макет dialogs.html A4: #161618 → #1D1D1F → #28282A); светлая тема темнеет, а не светлеет. */
@@ -171,6 +172,7 @@ export function DialogueV2CatalogueSection({
           <View
             key={world.id}
             testID={`dialogue-v2-world-${world.id}`}
+            onLayout={expanded ? undefined : (event) => noteSkeletonGeom('dialogs', 'ready', event.nativeEvent.layout.height)}
             // зачем: свёрнутая — `.card.c2` хаба (A1: r22, поля 16/16/18); раскрытая — карточка кадра A4 (r24, поля 14/14/16).
             style={[dialogueGlassCardStyle(glass, expanded ? 24 : 22), expanded
               ? { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 16 }

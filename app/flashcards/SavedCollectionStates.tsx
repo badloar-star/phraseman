@@ -8,6 +8,7 @@ import { PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLoadGate } from '../use_load_gate';
 import { logNoErrorScreen } from '../no_error_screen_log';
+import { noteSkeletonGeom } from '../skeleton_geom_log';
 
 type Props = {
   lang: Lang;
@@ -33,7 +34,7 @@ export function SavedCollectionLoading({ lang }: { lang: Lang }) {
     'pt-BR': 'Carregando cartões', vi: 'Đang tải thẻ', id: 'Memuat kartu', tr: 'Kartlar yükleniyor', pl: 'Wczytywanie kart',
   });
   return <View testID="fc-saved-loading" accessibilityLabel={label} style={styles.loading}>
-    {Array.from({ length: 4 }, (_, index) => <View key={index} style={[styles.skeleton, { boxShadow: plateBoxShadow(g) }]}>
+    {Array.from({ length: 4 }, (_, index) => <View key={index} onLayout={index === 0 ? (event) => noteSkeletonGeom('saved', 'skeleton', event.nativeEvent.layout.height) : undefined} style={[styles.skeleton, { boxShadow: plateBoxShadow(g) }]}>
       <PlateFill g={g} radius={20} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: index % 2 === 0 ? '39%' : '52%' }]} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '24%' }]} />

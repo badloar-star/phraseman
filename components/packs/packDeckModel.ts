@@ -41,12 +41,18 @@ export const PACK_DECK_METRICS = {
   stackGap: 14,
 } as const;
 
+// зачем (координатор 18.10): «набор без слов — скелетон по факту previewWords»: помним, были ли у последней нарисованной стопки чипы слов; пока не видели ни одной — 143.
+let lastDeckHadChips: boolean | null = null;
+export function noteDeckHadChips(hadChips: boolean): void {
+  lastDeckHadChips = hadChips;
+}
+
 /**
  * Высота стопки для скелетона (1 строка названия, подпись, ряд чипов слов): отступ сверху + поля + название + подпись + чипы.
  * зачем (координатор 18.10, «первый кадр = геометрия готового экрана»): у опубликованных наборов previewWords почти всегда есть
  * (считается из карточек набора), и настоящая стопка 143, а не 91 — заглушка 91 давала скачок ~52 dp на каждой строке при подмене.
  */
-export function packDeckSkeletonHeight(withChips = true): number {
+export function packDeckSkeletonHeight(withChips: boolean = lastDeckHadChips ?? true): number {
   const m = PACK_DECK_METRICS;
   const head = Math.max(m.titleLine + m.subGap + m.subLine, m.playSize);
   return m.stackTop + m.padTop + head + m.padBottom + (withChips ? m.chipsTop + m.chipHeight : 0);

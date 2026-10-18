@@ -7,6 +7,7 @@ import { StreakChainIcon } from '../StreakChainIcon';
 import { useTheme } from '../ThemeContext';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, FriendsRoundButton, useFriendsGlass } from './FriendsGlassKit';
 import { FlowText } from '../text-integrity';
+import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
 // зачем (владелец 2026-09-29): карточка найденного профиля в окне «Добавить друга» 1 в 1 по
 // макету community.html#COM-04-FOUND / COM-04-ADDING (`.cf-found`): монета/инициал 48, имя, серия,
@@ -39,6 +40,7 @@ export default function FriendsFoundCard({ profile, onAdd, onClose, isAdding }: 
     <FriendsCard
       glass={glass}
       testID="friends-found-user-card"
+      onLayoutHeight={(height) => noteSkeletonGeom('friends_search', 'ready', height + 2)} // + marginTop 2: скелетон меряется вместе с отступом
       style={{ flexDirection: 'column', alignItems: 'stretch', gap: 14, padding: 14, marginTop: 2 }}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>

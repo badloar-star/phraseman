@@ -45,14 +45,16 @@ export function friendsCardStyle(glass: FriendsGlass): ViewStyle {
 }
 
 /** Плашка-контейнер с мягким бликом (то же устройство, что SettingsGlassCard). */
-export function FriendsCard({ glass, children, testID, style }: {
+export function FriendsCard({ glass, children, testID, style, onLayoutHeight }: {
   glass: FriendsGlass;
   children: React.ReactNode;
   testID?: string;
   style?: StyleProp<ViewStyle>;
+  /** Высота готовой карточки — для журнала [SKELETON-GEOM] (координатор 18.10). */
+  onLayoutHeight?: (height: number) => void;
 }) {
   return (
-    <View testID={testID} style={[friendsCardStyle(glass), style]}>
+    <View testID={testID} onLayout={onLayoutHeight ? (event) => onLayoutHeight(event.nativeEvent.layout.height) : undefined} style={[friendsCardStyle(glass), style]}>
       <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }} />
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
       <ThemeGlassSmoke glass={glass} />

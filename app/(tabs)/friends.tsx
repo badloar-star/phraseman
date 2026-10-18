@@ -187,6 +187,7 @@ import {
 } from '../friends_together/dev_bots';
 import { DebugLogger } from '../debug-logger';
 import { isValidCoinRank } from '../coin_rank_table_v1';
+import { noteSkeletonGeom } from '../skeleton_geom_log';
 
 // зачем: PM-212 — чтение AsyncStorage при ИМПОРТЕ модуля убрано. Тёплый кеш
 // греет root layout, а сам экран зовёт идемпотентный prime в эффектах монтирования
@@ -786,7 +787,7 @@ function AddFriendModal({
             {isSearching && !foundUser && (
               // зачем (координатор 18.10, «первый кадр = геометрия готового экрана»): заглушка той же высоты, что карточка найденного
               // (FriendsFoundCard: поля 14 + монета 48 + шаг 14 + кнопка 48 + поля 14 = 138, сверху 2) — было 92, скачок ~46 dp.
-              <View testID="friends-search-skeleton" style={{ marginTop: 2 }}>
+              <View testID="friends-search-skeleton" onLayout={(event) => noteSkeletonGeom('friends_search', 'skeleton', event.nativeEvent.layout.height + 2)} style={{ marginTop: 2 }}>
                 <PulseOn active>
                   <View style={{ height: 138, borderRadius: 14, backgroundColor: glass.opaqueControl, width: '100%' }} />
                 </PulseOn>

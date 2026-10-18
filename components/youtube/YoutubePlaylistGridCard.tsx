@@ -9,6 +9,7 @@ import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
 /**
  * Плейлист в сетке «2 колонки» — вариант 1 «Сетка» макета video-redesign.html (#c1, экран «Плейлисты», владелец 11.10).
@@ -25,6 +26,7 @@ function YoutubePlaylistGridCardBase({ playlist, onPress }: { playlist: YoutubeP
   return (
     <TouchableOpacity
       testID="youtube-playlist-row"
+      onLayout={(event) => noteSkeletonGeom('video_playlists', 'ready', event.nativeEvent.layout.height)}
       accessibilityRole="button"
       accessibilityLabel={`${playlist.title}, ${playlist.itemCount} ${countLabel}`}
       onPress={onPress}

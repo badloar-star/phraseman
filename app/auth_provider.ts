@@ -685,6 +685,8 @@ const ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS = 1_500;
 // гостя пишет своё под замком 1–2,6 с (курсор Learning V2, withLocalAccountLock) — 1,5 с передаче входа не хватало, человек получал
 // ошибку. Передача ждёт замок и тишину до 8 с: на экране «Входим…», ничего ещё не тронуто.
 const PROVIDER_HANDOFF_LOCK_WAIT_MS = 8_000;
+/** Повторная проверка затишья уже ПОД замком (основное ожидание — до замка, см. pre_quiesce). */
+const PROVIDER_HANDOFF_LOCKED_RECHECK_MS = 3_000;
 
 /**
  * Best-effort долив аварийной копии «Сменить аккаунт» после restoreFromCloud.
@@ -3028,6 +3030,15 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           }));
           const sourceAuthUid = String(anonUser?.uid ?? '').trim();
           if (!sourceAuthUid) throw new Error('anonymous_source_uid_missing');
+          // зачем (прогон Сверки №3, d5da12ca5: quiesce_failed restoreIdle=false после 8 с): ждать восстановление нового гостя ПОД
+          // замком нельзя — его писатели ждут тот же замок (взаимное ожидание до срока). Затишье ждём ДО записи передачи и замка:
+          // здесь ещё ничего не тронуто; под замком остаётся короткая повторная проверка.
+          const preQuiesceStartedAt = Date.now();
+          const [preRestoreIdle, preCloudIdle] = await Promise.all([
+            waitForRestoreApplicationIdleWithDeadline(PROVIDER_HANDOFF_LOCK_WAIT_MS),
+            quiesceCloudSyncForAccountTransition(PROVIDER_HANDOFF_LOCK_WAIT_MS),
+          ]);
+          console.log(`[AUTH-HANDOFF] pre_quiesce restoreIdle=${preRestoreIdle} cloudIdle=${preCloudIdle} ms=${Date.now() - preQuiesceStartedAt}`); // guard-ok: затишье до замка
           providerHandoffMarker = await prepareProviderCredentialHandoff({
             operationId: `provider_handoff_${Crypto.randomUUID()}`,
             nonce: `provider_handoff_nonce_${Crypto.randomUUID()}`,
@@ -3042,11 +3053,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           // every other account writer cannot land after the clean proof.
           await beginEntitlementSafeAccountTransition();
           const [restoreIdle, cloudIdle] = await Promise.all([
-            waitForRestoreApplicationIdleWithDeadline(PROVIDER_HANDOFF_LOCK_WAIT_MS),
-            quiesceCloudSyncForAccountTransition(PROVIDER_HANDOFF_LOCK_WAIT_MS),
+            waitForRestoreApplicationIdleWithDeadline(PROVIDER_HANDOFF_LOCKED_RECHECK_MS),
+            quiesceCloudSyncForAccountTransition(PROVIDER_HANDOFF_LOCKED_RECHECK_MS),
           ]);
           if (!restoreIdle || !cloudIdle) {
-            console.warn(`[AUTH-HANDOFF] quiesce_failed restoreIdle=${restoreIdle} cloudIdle=${cloudIdle} limitMs=${PROVIDER_HANDOFF_LOCK_WAIT_MS}`); // guard-ok: ранний отказ пишет причину
+            console.warn(`[AUTH-HANDOFF] quiesce_failed restoreIdle=${restoreIdle} cloudIdle=${cloudIdle} limitMs=${PROVIDER_HANDOFF_LOCKED_RECHECK_MS} preRestoreIdle=${preRestoreIdle} preCloudIdle=${preCloudIdle}`); // guard-ok: ранний отказ пишет причину
             throw new Error('provider_handoff_quiesce_failed');
           }
           // зачем (ревью Opus 15.10, R15): первая проверка чистоты шла ДО замка и тишины синхронизации — запись в этом окне

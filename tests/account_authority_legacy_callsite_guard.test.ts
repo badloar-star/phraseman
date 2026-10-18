@@ -648,7 +648,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // +1 (координатор 18.10 10:10): стирание без сброса согласий для отката прерванной передачи входа.
         // +9 (координатор 18.10, «вход — главная задача»): completeInterruptedProviderHandoff — довод прерванного входа вперёд тем же хвостом, что обычный свап.
         // +1 (решение владельца 18.10 «Входить само»): Apple + почта, занятая аккаунтом с Google, — вход custom token после серверной привязки.
-        occurrences: 136,
+        // +2 (прогон Сверки №3): затишье восстановления и синхронизации ждём ДО замка передачи входа (взаимное ожидание под замком).
+        occurrences: 138,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -672,7 +673,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:onAuthStateChanged': 2,
           'call:peekStableId': 9,
           'call:pruneShelvedAccountSwitchBackups': 1,
-          'call:quiesceCloudSyncForAccountTransition': 4,
+          'call:quiesceCloudSyncForAccountTransition': 5,
           'call:quiesceSyncBeforeStableIdSwap': 4,
           'call:readExistingStableId': 1,
           'call:rememberSwapConfirmedStableAuthLink': 2,
@@ -688,7 +689,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:startCloudDeletionEnqueue': 4,
           'call:syncToCloud': 2,
           'call:waitForAccountDeletionCredentialSafe': 4,
-          'call:waitForRestoreApplicationIdleWithDeadline': 4,
+          'call:waitForRestoreApplicationIdleWithDeadline': 5,
           'call:wipeLocalAccountData': 7,
           'call:withAccountTransitionLock': 3,
           'call:withAccountTransitionLockWithDeadline': 2,

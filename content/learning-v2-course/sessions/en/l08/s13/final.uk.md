@@ -1,9 +1,10 @@
 # Англійська · Урок 8 · Заняття 13 — Уперше біля керма
 
-**Ситуація.** Ви вперше пробуєте керувати човном, розповідаєте про вміння плавати й з’ясовуєте, кому належить екран.
+**Ситуація.** Ви відмовляєтеся брати кермо човна без підготовки, обираєте курс вітрильної справи для подруги й розбираєте весла біля прокату.
 
 **Що ви опануєте:** сказати, чого поки не вмієте, і повторити can, whose та often
-**Нові слова:** steer
+**Нові слова:** steer, sail, oar, buoy
+**Повертаються:** swim, translate, ball, coat
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Човен біля причалу
 
-Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `Steer` — «керувати кермом, спрямовувати рух». `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`. Міцно триматися за кермо ви вже можете — залишилося навчитися повертати куди треба.
+Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `Steer` — «керувати кермом, спрямовувати рух». `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`. Ви пояснюєте, що поки не володієте цим умінням.
 
 **Скажіть другові, що поки не вмієте керувати кермом.**
 
@@ -23,111 +24,127 @@
 
 ## Інтро 2
 
-### Подруга в басейні
+### Курс вітрильної справи
 
-Подруга записалася на перші уроки плавання. Вона поки не вміє плавати. `She can’t swim` — «Вона не вміє плавати». Після `she` слово `can’t` не змінюється; далі потрібне `swim`, без `s`.
+Подруга обирає курс у вітрильному клубі. Вона ще не керувала човном із вітрилом, тому їй потрібна група початківців. Sail — «ходити під вітрилом, керувати вітрильним човном». `She can’t sail` — «Вона не вміє ходити під вітрилом». Після `she` слово `can’t` не змінюється; далі потрібне `sail`, без `s`.
 
 **Розкажіть про вміння подруги.**
 
-- ✅ **She can’t swim.**
-- ❌ She can swim. — *Подруга поки не вміє: потрібне `can’t`.*
-- ❌ She can’t swims. — *Після `can’t` потрібне `swim`, без `s`.*
+- ✅ **She can’t sail.**
+- ❌ She can sail. — *Подруга поки не вміє: потрібне `can’t`.*
+- ❌ She can’t sails. — *Після `can’t` потрібне `sail`, без `s`.*
 
 ---
 
 ## Інтро 3
 
-### Екран після зустрічі
+### Весло в човні прокату
 
-Після робочої зустрічі в кімнаті залишився переносний екран. Ви хочете дізнатися, кому він належить. `Whose screen is this?` — «Чий це екран?» Спочатку `whose screen`, потім `is this`.
+У човні прокату лежить весло з чужими ініціалами. Oar — «весло»: ним веслують, зазвичай спираючи його на кріплення на борту. Перед видачею човна ви запитуєте працівників, кому належить це весло. `Whose oar is this?` — «Чиє це весло?» Спочатку `whose oar`, потім `is this`.
 
-**Запитайте колег, чий це екран.**
+**Запитайте працівників прокату, чиє це весло.**
 
-- ✅ **Whose screen is this?**
-- ❌ Who screen is this? — *Для «чий» потрібне `whose`.*
-- ❌ Whose screen are this? — *Екран один: потрібне `is this`.*
+- ✅ **Whose oar is this?**
+- ❌ Who oar is this? — *Для «чиє» потрібне `whose`.*
+- ❌ Whose oar are this? — *Весло одне: потрібне `is this`.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не вмію керувати кермом»**
+**1 · Картка слова — steer**
+<!-- interaction_id: en:lesson-08:session-13:word:steer; family: word_card -->
+> **steer** — керувати кермом. I can’t steer. — «Я не вмію керувати кермом». Спрямовувати рух човна чи машини.
+
+**2 · Скажіть «Я не вмію керувати кермом»**
 <!-- interaction_id: en:lesson-08:session-13:i01; family: phrase_builder -->
 Плитки: `steer` `can’t` `I` → **I can’t steer.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-13:i02; family: listen_choose -->
 🔊 *steer* → **steer** · swim · translate
-- swim — *У записі перше слово — `steer`, а в цьому варіанті — `swim`.*
-- translate — *У записі перше слово — `steer`, а в цьому варіанті — `translate`.*
+- swim — *У записі steer — «керувати кермом», а не swim — «плавати».*
+- translate — *У записі steer, а не translate — «перекладати».*
 
-**3 · Скажіть «Я не вмію керувати кермом»**
+**4 · Виберіть слово: «Я не вмію керувати кермом»**
 <!-- interaction_id: en:lesson-08:session-13:i03; family: context_gap_grammar -->
 I can’t ___. → **steer** · to steer · steers
 - to steer — *Після `can’t` потрібне `steer`, без `to`.*
 - steers — *Після `can’t` потрібне `steer`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-13:i04; family: speed_match -->
-steer — керувати кермом · taxi — таксі · swim — плавати · screen — екран
+steer — керувати кермом · swim — плавати · ball — м’яч · coat — пальто
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-13:i05; family: listen_build_dictation -->
 🔊 *I can’t steer.* Плитки: `steer` `can’t` `I` → **I can’t steer.**
 
-**6 · Скажіть «Вона не вміє плавати»**
+**7 · Картка слова — sail**
+<!-- interaction_id: en:lesson-08:session-13:word:sail; family: word_card -->
+> **sail** — ходити під вітрилом. She can’t sail. — «Вона не вміє ходити під вітрилом». Тут — керувати вітрильним човном.
+
+**8 · Скажіть «Вона не вміє ходити під вітрилом»**
 <!-- interaction_id: en:lesson-08:session-13:i06; family: phrase_builder -->
-Плитки: `swim` `can’t` `She` → **She can’t swim.**
+Плитки: `sail` `can’t` `She` → **She can’t sail.**
 
-**7 · Запитайте «Чий це екран?»**
+**9 · Картка слова — oar**
+<!-- interaction_id: en:lesson-08:session-13:word:oar; family: word_card -->
+> **oar** — весло. Whose oar is this? — «Чиє це весло?» Ним веслують, зазвичай спираючи його на кріплення на борту.
+
+**10 · Запитайте «Чиє це весло?»**
 <!-- interaction_id: en:lesson-08:session-13:i07; family: scripted_repeat_compare -->
-🎙 **Whose screen is this?**
+🎙 **Whose oar is this?**
 
-**8 · Скажіть «Вона не вміє плавати»**
+**11 · Виберіть слово: «Вона не вміє ходити під вітрилом»**
 <!-- interaction_id: en:lesson-08:session-13:i08; family: context_gap_grammar -->
-She can’t ___. → **swim** · swims · to swim
-- swims — *Після `can’t` потрібне `swim`, без `s`.*
-- to swim — *Після `can’t` потрібне `swim`, без `to`.*
+She can’t ___. → **sail** · sails · to sail
+- sails — *Після `can’t` потрібне `sail`, без `s`.*
+- to sail — *Після `can’t` потрібне `sail`, без `to`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-13:i09; family: listen_choose -->
-🔊 *I can’t steer.* → **I can’t steer.** · I can’t swim. · I can’t translate.
-- I can’t swim. — *У записі останнє слово — `steer`, а в цьому варіанті — `swim`.*
+🔊 *I can’t steer.* → **I can’t steer.** · I can’t sail. · I can’t translate.
+- I can’t sail. — *У записі останнє слово — `steer`, а в цьому варіанті — `sail`.*
 - I can’t translate. — *У записі останнє слово — `steer`, а в цьому варіанті — `translate`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-13:i10; family: speed_match -->
-translate — перекладати · steer — керувати кермом · screen — екран · swim — плавати
+sail — ходити під вітрилом · steer — керувати кермом · oar — весло · swim — плавати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-13:i11; family: listen_build_dictation -->
-🔊 *Whose screen is this?* Плитки: `this` `is` `screen` `Whose` → **Whose screen is this?**
+🔊 *Whose oar is this?* Плитки: `this` `is` `oar` `Whose` → **Whose oar is this?**
 
-**12 · Друг запитує, чи вмієте ви перекладати. Скажіть «Я вмію перекладати»**
+**15 · Картка слова — buoy**
+<!-- interaction_id: en:lesson-08:session-13:word:buoy; family: word_card -->
+> **buoy** — буй. Where is the buoy? — «Де буй?» Плавучий знак на воді, наприклад для позначення межі ділянки.
+
+**16 · Інструктор просить знайти на воді буй. Запитайте «Де буй?»**
 <!-- interaction_id: en:lesson-08:session-13:i12; family: phrase_builder -->
-Плитки: `translate` `can` `I` → **I can translate.**
+Плитки: `buoy` `the` `is` `Where` → **Where is the buoy?**
 
-**13 · Друг запитує, чи часто ви плаваєте. Скажіть «Я часто плаваю»**
+**17 · Друг запитує, чи часто ви ходите під вітрилом. Скажіть «Я часто ходжу під вітрилом»**
 <!-- interaction_id: en:lesson-08:session-13:i13; family: scripted_repeat_compare -->
-🎙 **I often swim.**
+🎙 **I often sail.**
 
-**14 · Скажіть «Він не вміє керувати кермом»**
+**18 · Виберіть форму: «Він не вміє керувати кермом»**
 <!-- interaction_id: en:lesson-08:session-13:i14; family: context_gap_grammar -->
 He ___ steer. → **can’t** · can · is can’t
 - can — *Він не вміє: потрібне `can’t`.*
 - is can’t — *Достатньо `he can’t`; `is` не потрібне.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-13:i15; family: listen_choose -->
-🔊 *Where is the taxi?* → **Where is the taxi?** · Where is the bus? · Where is the tram?
-- Where is the bus? — *У записі останнє слово — `taxi`, а в цьому варіанті — `bus`.*
-- Where is the tram? — *У записі останнє слово — `taxi`, а в цьому варіанті — `tram`.*
+🔊 *Where is the buoy?* → **Where is the buoy?** · Where is the oar? · Where is the coat?
+- Where is the oar? — *У записі buoy — «буй», а не oar — «весло».*
+- Where is the coat? — *У записі buoy — «буй», а не coat — «пальто».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-13:i16; family: speed_match -->
-steer — керувати кермом · taxi — таксі · translate — перекладати · screen — екран
+steer — керувати кермом · sail — ходити під вітрилом · oar — весло · buoy — буй
 
-**17 · Друг пропонує Томові взяти кермо човна. Том ще не навчився. Скажіть «Том не вміє керувати кермом»**
+**21 · Друг пропонує Томові взяти кермо човна. Том ще не навчився. Скажіть «Том не вміє керувати кермом»**
 <!-- interaction_id: en:lesson-08:session-13:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Tom can’t steer.**
 

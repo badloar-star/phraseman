@@ -15,8 +15,8 @@
         "uk": "Човен біля причалу"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает вам взять руль лодки, но вы ещё не умеете им управлять. `Steer` — «управлять рулём, направлять движение». `I can’t steer` — «Я не умею управлять рулём». После `can’t` нужно `steer`, без `to`. Крепко держаться за руль вы уже можете — осталось научиться поворачивать куда надо.",
-        "uk": "Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `Steer` — «керувати кермом, спрямовувати рух». `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`. Міцно триматися за кермо ви вже можете — залишилося навчитися повертати куди треба."
+        "ru": "Друг предлагает вам взять руль лодки, но вы ещё не умеете им управлять. `Steer` — «управлять рулём, направлять движение». `I can’t steer` — «Я не умею управлять рулём». После `can’t` нужно `steer`, без `to`. Вы объясняете, что пока не владеете этим умением.",
+        "uk": "Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `Steer` — «керувати кермом, спрямовувати рух». `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`. Ви пояснюєте, що поки не володієте цим умінням."
       },
       "question": {
         "interactionId": "en:lesson-08:session-13:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подруга в бассейне",
-        "uk": "Подруга в басейні"
+        "ru": "Курс парусного дела",
+        "uk": "Курс вітрильної справи"
       },
       "bodyByLocale": {
-        "ru": "Подруга записалась на первые уроки плавания. Она пока не умеет плавать. `She can’t swim` — «Она не умеет плавать». После `she` слово `can’t` не меняется; дальше нужно `swim`, без `s`.",
-        "uk": "Подруга записалася на перші уроки плавання. Вона поки не вміє плавати. `She can’t swim` — «Вона не вміє плавати». Після `she` слово `can’t` не змінюється; далі потрібне `swim`, без `s`."
+        "ru": "Подруга выбирает курс в парусном клубе. Она ещё не управляла лодкой с парусом, поэтому ей нужна группа новичков. Sail — «ходить под парусом, управлять парусной лодкой». `She can’t sail` — «Она не умеет ходить под парусом». После `she` слово `can’t` не меняется; дальше нужно `sail`, без `s`.",
+        "uk": "Подруга обирає курс у вітрильному клубі. Вона ще не керувала човном із вітрилом, тому їй потрібна група початківців. Sail — «ходити під вітрилом, керувати вітрильним човном». `She can’t sail` — «Вона не вміє ходити під вітрилом». Після `she` слово `can’t` не змінюється; далі потрібне `sail`, без `s`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-13:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-13:intro2:r1",
-              "text": "She can’t swim."
+              "text": "She can’t sail."
             },
             {
               "responseId": "en:lesson-08:session-13:intro2:r2",
-              "text": "She can swim."
+              "text": "She can sail."
             },
             {
               "responseId": "en:lesson-08:session-13:intro2:r3",
-              "text": "She can’t swims."
+              "text": "She can’t sails."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-13:intro2:r1",
-              "text": "She can’t swim."
+              "text": "She can’t sail."
             },
             {
               "responseId": "en:lesson-08:session-13:intro2:r2",
-              "text": "She can swim."
+              "text": "She can sail."
             },
             {
               "responseId": "en:lesson-08:session-13:intro2:r3",
-              "text": "She can’t swims."
+              "text": "She can’t sails."
             }
           ]
         },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Экран после встречи",
-        "uk": "Екран після зустрічі"
+        "ru": "Весло в лодке проката",
+        "uk": "Весло в човні прокату"
       },
       "bodyByLocale": {
-        "ru": "После рабочей встречи в комнате остался переносной экран. Вы хотите узнать, кому он принадлежит. `Whose screen is this?` — «Чей это экран?» Сначала `whose screen`, затем `is this`.",
-        "uk": "Після робочої зустрічі в кімнаті залишився переносний екран. Ви хочете дізнатися, кому він належить. `Whose screen is this?` — «Чий це екран?» Спочатку `whose screen`, потім `is this`."
+        "ru": "В лодке проката лежит весло с чужими инициалами. Oar — «весло»: им гребут, обычно опирая его на крепление на борту. Перед выдачей лодки вы спрашиваете сотрудников, кому принадлежит это весло. `Whose oar is this?` — «Чьё это весло?» Сначала `whose oar`, затем `is this`.",
+        "uk": "У човні прокату лежить весло з чужими ініціалами. Oar — «весло»: ним веслують, зазвичай спираючи його на кріплення на борту. Перед видачею човна ви запитуєте працівників, кому належить це весло. `Whose oar is this?` — «Чиє це весло?» Спочатку `whose oar`, потім `is this`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег, чей это экран.",
-          "uk": "Запитайте колег, чий це екран."
+          "ru": "Спросите сотрудников проката, чьё это весло.",
+          "uk": "Запитайте працівників прокату, чиє це весло."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-13:intro3:r1",
-              "text": "Whose screen is this?"
+              "text": "Whose oar is this?"
             },
             {
               "responseId": "en:lesson-08:session-13:intro3:r2",
-              "text": "Who screen is this?"
+              "text": "Who oar is this?"
             },
             {
               "responseId": "en:lesson-08:session-13:intro3:r3",
-              "text": "Whose screen are this?"
+              "text": "Whose oar are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-13:intro3:r1",
-              "text": "Whose screen is this?"
+              "text": "Whose oar is this?"
             },
             {
               "responseId": "en:lesson-08:session-13:intro3:r2",
-              "text": "Who screen is this?"
+              "text": "Who oar is this?"
             },
             {
               "responseId": "en:lesson-08:session-13:intro3:r3",
-              "text": "Whose screen are this?"
+              "text": "Whose oar are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег, чей это экран.",
-          "uk": "Запитайте колег, чий це екран."
+          "ru": "Спросите сотрудников проката, чьё это весло.",
+          "uk": "Запитайте працівників прокату, чиє це весло."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0a3d6ec4f44833b69baf752c9758802dc0b35a9fedf2cf4ba84e5e01e6fa5f35"
+  "introFingerprint": "0573131bfd9830d961b3cfe0f2c33b29b42f1afe374a5fd22afcc981f398c3e5"
 }

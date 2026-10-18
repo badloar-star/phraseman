@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-13:i01",
+      "interactionId": "en:lesson-08:session-13:word:steer",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — steer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:word:steer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — steer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:word:steer:audio",
+          "transcript": "steer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:word:steer:r1",
+            "targetText": "steer",
+            "meaningByLocale": {
+              "ru": "управлять рулём. I can’t steer. — «Я не умею управлять рулём». Направлять движение лодки или машины.",
+              "uk": "керувати кермом. I can’t steer. — «Я не вмію керувати кермом». Спрямовувати рух човна чи машини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "steer",
+          "definitionByLocale": {
+            "ru": "управлять рулём. I can’t steer. — «Я не умею управлять рулём». Направлять движение лодки или машины.",
+            "uk": "керувати кермом. I can’t steer. — «Я не вмію керувати кермом». Спрямовувати рух човна чи машини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `steer`, а в этом варианте — `swim`.",
-              "uk": "У записі перше слово — `steer`, а в цьому варіанті — `swim`."
+              "ru": "В записи steer — «управлять рулём», а не swim — «плавать».",
+              "uk": "У записі steer — «керувати кермом», а не swim — «плавати»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `steer`, а в этом варианте — `translate`.",
-              "uk": "У записі перше слово — `steer`, а в цьому варіанті — `translate`."
+              "ru": "В записи steer, а не translate — «переводить».",
+              "uk": "У записі steer, а не translate — «перекладати»."
             }
           }
         ],
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я не умею управлять рулём»",
+      "prompt": "Выберите слово: «Я не умею управлять рулём»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-13:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не умею управлять рулём»",
+      "accessibilityLabel": "Выберите слово: «Я не умею управлять рулём»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не умею управлять рулём»",
-          "uk": "Скажіть «Я не вмію керувати кермом»"
+          "ru": "Выберите слово: «Я не умею управлять рулём»",
+          "uk": "Виберіть слово: «Я не вмію керувати кермом»"
         },
         "gappedTargetPhrase": "I can’t ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "steers"
           }
         ],
-        "testedDimension": "Скажите «Я не умею управлять рулём»",
+        "testedDimension": "Выберите слово: «Я не умею управлять рулём»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-13:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я не умею управлять рулём»",
+            "testedDimension": "Выберите слово: «Я не умею управлять рулём»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `steer`, без `to`.",
               "uk": "Після `can’t` потрібне `steer`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-13:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я не умею управлять рулём»",
+            "testedDimension": "Выберите слово: «Я не умею управлять рулём»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `steer`, без `s`.",
               "uk": "Після `can’t` потрібне `steer`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,14 +247,6 @@
           },
           {
             "pairId": "en:lesson-08:session-13:i04:p2",
-            "target": "taxi",
-            "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-13:i04:p3",
             "target": "swim",
             "meaningByLocale": {
               "ru": "плавать",
@@ -219,25 +254,33 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-13:i04:p4",
-            "target": "screen",
+            "pairId": "en:lesson-08:session-13:i04:p3",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "мяч",
+              "uk": "м’яч"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i04:p4",
+            "target": "coat",
+            "meaningByLocale": {
+              "ru": "пальто",
+              "uk": "пальто"
             }
           }
         ],
         "leftColumn": [
           "steer",
-          "taxi",
           "swim",
-          "screen"
+          "ball",
+          "coat"
         ],
         "rightColumn": [
           "управлять рулём",
-          "такси",
           "плавать",
-          "экран"
+          "мяч",
+          "пальто"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-13:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-13:word:sail",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:word:sail:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:word:sail:audio",
+          "transcript": "sail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:word:sail:r1",
+            "targetText": "sail",
+            "meaningByLocale": {
+              "ru": "ходить под парусом. She can’t sail. — «Она не умеет ходить под парусом». Здесь — управлять парусной лодкой.",
+              "uk": "ходити під вітрилом. She can’t sail. — «Вона не вміє ходити під вітрилом». Тут — керувати вітрильним човном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sail",
+          "definitionByLocale": {
+            "ru": "ходить под парусом. She can’t sail. — «Она не умеет ходить под парусом». Здесь — управлять парусной лодкой.",
+            "uk": "ходити під вітрилом. She can’t sail. — «Вона не вміє ходити під вітрилом». Тут — керувати вітрильним човном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Она не умеет плавать»",
+      "prompt": "Скажите «Она не умеет ходить под парусом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она не умеет плавать»",
+      "accessibilityLabel": "Скажите «Она не умеет ходить под парусом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can’t swim.",
+        "targetPhrase": "She can’t sail.",
         "localizedMeaning": {
-          "ru": "Скажите «Она не умеет плавать»",
-          "uk": "Скажіть «Вона не вміє плавати»"
+          "ru": "Скажите «Она не умеет ходить под парусом»",
+          "uk": "Скажіть «Вона не вміє ходити під вітрилом»"
         },
         "orderedTokens": [
           "She",
           "can’t",
-          "swim"
+          "sail"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-13:word:oar",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — oar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:word:oar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — oar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:word:oar:audio",
+          "transcript": "oar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:word:oar:r1",
+            "targetText": "oar",
+            "meaningByLocale": {
+              "ru": "весло. Whose oar is this? — «Чьё это весло?» Им гребут, обычно опирая его на крепление на борту.",
+              "uk": "весло. Whose oar is this? — «Чиє це весло?» Ним веслують, зазвичай спираючи його на кріплення на борту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oar",
+          "definitionByLocale": {
+            "ru": "весло. Whose oar is this? — «Чьё это весло?» Им гребут, обычно опирая его на крепление на борту.",
+            "uk": "весло. Whose oar is this? — «Чиє це весло?» Ним веслують, зазвичай спираючи його на кріплення на борту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-13:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите «Чей это экран?»",
+      "prompt": "Спросите «Чьё это весло?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Спросите «Чей это экран?»",
+      "accessibilityLabel": "Спросите «Чьё это весло?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-13:i07:audio",
-          "transcript": "Whose screen is this?"
+          "transcript": "Whose oar is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose screen is this?",
+        "targetPhrase": "Whose oar is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она не умеет плавать»",
+      "prompt": "Выберите слово: «Она не умеет ходить под парусом»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-13:i08:r1",
-          "text": "swim"
+          "text": "sail"
         },
         {
           "responseId": "en:lesson-08:session-13:i08:r2",
-          "text": "swims"
+          "text": "sails"
         },
         {
           "responseId": "en:lesson-08:session-13:i08:r3",
-          "text": "to swim"
+          "text": "to sail"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она не умеет плавать»",
+      "accessibilityLabel": "Выберите слово: «Она не умеет ходить под парусом»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она не умеет плавать»",
-          "uk": "Скажіть «Вона не вміє плавати»"
+          "ru": "Выберите слово: «Она не умеет ходить под парусом»",
+          "uk": "Виберіть слово: «Вона не вміє ходити під вітрилом»"
         },
         "gappedTargetPhrase": "She can’t ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-13:i08:r1",
-            "text": "swim"
+            "text": "sail"
           },
           {
             "responseId": "en:lesson-08:session-13:i08:r2",
-            "text": "swims"
+            "text": "sails"
           },
           {
             "responseId": "en:lesson-08:session-13:i08:r3",
-            "text": "to swim"
+            "text": "to sail"
           }
         ],
-        "testedDimension": "Скажите «Она не умеет плавать»",
+        "testedDimension": "Выберите слово: «Она не умеет ходить под парусом»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-13:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет плавать»",
+            "testedDimension": "Выберите слово: «Она не умеет ходить под парусом»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `swim`, без `s`.",
-              "uk": "Після `can’t` потрібне `swim`, без `s`."
+              "ru": "После `can’t` нужно `sail`, без `s`.",
+              "uk": "Після `can’t` потрібне `sail`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-13:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет плавать»",
+            "testedDimension": "Выберите слово: «Она не умеет ходить под парусом»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `swim`, без `to`.",
-              "uk": "Після `can’t` потрібне `swim`, без `to`."
+              "ru": "После `can’t` нужно `sail`, без `to`.",
+              "uk": "Після `can’t` потрібне `sail`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -436,7 +565,7 @@
         },
         {
           "responseId": "en:lesson-08:session-13:i09:r2",
-          "text": "I can’t swim."
+          "text": "I can’t sail."
         },
         {
           "responseId": "en:lesson-08:session-13:i09:r3",
@@ -463,7 +592,7 @@
           },
           {
             "responseId": "en:lesson-08:session-13:i09:r2",
-            "targetText": "I can’t swim.",
+            "targetText": "I can’t sail.",
             "meaningByLocale": null
           },
           {
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `steer`, а в этом варианте — `swim`.",
-              "uk": "У записі останнє слово — `steer`, а в цьому варіанті — `swim`."
+              "ru": "В записи последнее слово — `steer`, а в этом варианте — `sail`.",
+              "uk": "У записі останнє слово — `steer`, а в цьому варіанті — `sail`."
             }
           },
           {
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,10 +643,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-13:i10:p1",
-            "target": "translate",
+            "target": "sail",
             "meaningByLocale": {
-              "ru": "переводить",
-              "uk": "перекладати"
+              "ru": "ходить под парусом",
+              "uk": "ходити під вітрилом"
             }
           },
           {
@@ -530,10 +659,10 @@
           },
           {
             "pairId": "en:lesson-08:session-13:i10:p3",
-            "target": "screen",
+            "target": "oar",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "весло",
+              "uk": "весло"
             }
           },
           {
@@ -546,15 +675,15 @@
           }
         ],
         "leftColumn": [
-          "translate",
+          "sail",
           "steer",
-          "screen",
+          "oar",
           "swim"
         ],
         "rightColumn": [
-          "переводить",
+          "ходить под парусом",
           "управлять рулём",
-          "экран",
+          "весло",
           "плавать"
         ],
         "pairingKey": "pair_id",
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-13:i11:audio",
-          "transcript": "Whose screen is this?"
+          "transcript": "Whose oar is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose screen is this?",
+        "hiddenTargetPhrase": "Whose oar is this?",
         "orderedTokens": [
           "Whose",
-          "screen",
+          "oar",
           "is",
           "this"
         ],
@@ -608,27 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-13:word:buoy",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — buoy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:word:buoy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — buoy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:word:buoy:audio",
+          "transcript": "buoy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:word:buoy:r1",
+            "targetText": "buoy",
+            "meaningByLocale": {
+              "ru": "буй. Where is the buoy? — «Где буй?» Плавающий знак на воде, например для обозначения границы участка.",
+              "uk": "буй. Where is the buoy? — «Де буй?» Плавучий знак на воді, наприклад для позначення межі ділянки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buoy",
+          "definitionByLocale": {
+            "ru": "буй. Where is the buoy? — «Где буй?» Плавающий знак на воде, например для обозначения границы участка.",
+            "uk": "буй. Where is the buoy? — «Де буй?» Плавучий знак на воді, наприклад для позначення межі ділянки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-13:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает, умеете ли вы переводить. Скажите «Я умею переводить»",
+      "prompt": "Инструктор просит найти на воде буй. Спросите «Где буй?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает, умеете ли вы переводить. Скажите «Я умею переводить»",
+      "accessibilityLabel": "Инструктор просит найти на воде буй. Спросите «Где буй?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can translate.",
+        "targetPhrase": "Where is the buoy?",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, умеете ли вы переводить. Скажите «Я умею переводить»",
-          "uk": "Друг запитує, чи вмієте ви перекладати. Скажіть «Я вмію перекладати»"
+          "ru": "Инструктор просит найти на воде буй. Спросите «Где буй?»",
+          "uk": "Інструктор просить знайти на воді буй. Запитайте «Де буй?»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "translate"
+          "Where",
+          "is",
+          "the",
+          "buoy"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, часто ли вы плаваете. Скажите «Я часто плаваю»",
+      "prompt": "Друг спрашивает, часто ли вы ходите под парусом. Скажите «Я часто хожу под парусом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-13:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, часто ли вы плаваете. Скажите «Я часто плаваю»",
+      "accessibilityLabel": "Друг спрашивает, часто ли вы ходите под парусом. Скажите «Я часто хожу под парусом»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-13:i13:audio",
-          "transcript": "I often swim."
+          "transcript": "I often sail."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often swim.",
+        "targetPhrase": "I often sail.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,11 +847,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Он не умеет управлять рулём»",
+      "prompt": "Выберите форму: «Он не умеет управлять рулём»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-13:i14:r1",
@@ -695,12 +868,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он не умеет управлять рулём»",
+      "accessibilityLabel": "Выберите форму: «Он не умеет управлять рулём»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он не умеет управлять рулём»",
-          "uk": "Скажіть «Він не вміє керувати кермом»"
+          "ru": "Выберите форму: «Он не умеет управлять рулём»",
+          "uk": "Виберіть форму: «Він не вміє керувати кермом»"
         },
         "gappedTargetPhrase": "He ___ steer.",
         "gapOptions": [
@@ -717,12 +890,12 @@
             "text": "is can’t"
           }
         ],
-        "testedDimension": "Скажите «Он не умеет управлять рулём»",
+        "testedDimension": "Выберите форму: «Он не умеет управлять рулём»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-13:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Он не умеет управлять рулём»",
+            "testedDimension": "Выберите форму: «Он не умеет управлять рулём»",
             "feedbackByLocale": {
               "ru": "Он не умеет: нужно `can’t`.",
               "uk": "Він не вміє: потрібне `can’t`."
@@ -731,7 +904,7 @@
           {
             "responseId": "en:lesson-08:session-13:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Он не умеет управлять рулём»",
+            "testedDimension": "Выберите форму: «Он не умеет управлять рулём»",
             "feedbackByLocale": {
               "ru": "Достаточно `he can’t`; `is` не нужно.",
               "uk": "Достатньо `he can’t`; `is` не потрібне."
@@ -743,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -751,15 +924,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-13:i15:r1",
-          "text": "Where is the taxi?"
+          "text": "Where is the buoy?"
         },
         {
           "responseId": "en:lesson-08:session-13:i15:r2",
-          "text": "Where is the bus?"
+          "text": "Where is the oar?"
         },
         {
           "responseId": "en:lesson-08:session-13:i15:r3",
-          "text": "Where is the tram?"
+          "text": "Where is the coat?"
         }
       ],
       "mediaIds": [],
@@ -771,23 +944,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-13:i15:audio",
-          "transcript": "Where is the taxi?"
+          "transcript": "Where is the buoy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-13:i15:r1",
-            "targetText": "Where is the taxi?",
+            "targetText": "Where is the buoy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-13:i15:r2",
-            "targetText": "Where is the bus?",
+            "targetText": "Where is the oar?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-13:i15:r3",
-            "targetText": "Where is the tram?",
+            "targetText": "Where is the coat?",
             "meaningByLocale": null
           }
         ],
@@ -798,8 +971,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `taxi`, а в этом варианте — `bus`.",
-              "uk": "У записі останнє слово — `taxi`, а в цьому варіанті — `bus`."
+              "ru": "В записи buoy — «буй», а не oar — «весло».",
+              "uk": "У записі buoy — «буй», а не oar — «весло»."
             }
           },
           {
@@ -807,8 +980,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `taxi`, а в этом варианте — `tram`.",
-              "uk": "У записі останнє слово — `taxi`, а в цьому варіанті — `tram`."
+              "ru": "В записи buoy — «буй», а не coat — «пальто».",
+              "uk": "У записі buoy — «буй», а не coat — «пальто»."
             }
           }
         ],
@@ -819,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -841,40 +1014,40 @@
           },
           {
             "pairId": "en:lesson-08:session-13:i16:p2",
-            "target": "taxi",
+            "target": "sail",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "ходить под парусом",
+              "uk": "ходити під вітрилом"
             }
           },
           {
             "pairId": "en:lesson-08:session-13:i16:p3",
-            "target": "translate",
+            "target": "oar",
             "meaningByLocale": {
-              "ru": "переводить",
-              "uk": "перекладати"
+              "ru": "весло",
+              "uk": "весло"
             }
           },
           {
             "pairId": "en:lesson-08:session-13:i16:p4",
-            "target": "screen",
+            "target": "buoy",
             "meaningByLocale": {
-              "ru": "экран",
-              "uk": "екран"
+              "ru": "буй",
+              "uk": "буй"
             }
           }
         ],
         "leftColumn": [
           "steer",
-          "taxi",
-          "translate",
-          "screen"
+          "sail",
+          "oar",
+          "buoy"
         ],
         "rightColumn": [
           "управлять рулём",
-          "такси",
-          "переводить",
-          "экран"
+          "ходить под парусом",
+          "весло",
+          "буй"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-13:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -932,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0460173de11da11639cbf8692d31b802290e4ba45a9b924f00c0cbdd61bf41be"
+  "learnerFingerprint": "c39aefa5a7d34fcff63e161c9445e294c1311f43bde14b7b908580574063d8bc"
 }

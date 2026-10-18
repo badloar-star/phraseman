@@ -48,7 +48,7 @@ describe('video pack document', () => {
   it('передаёт клиенту поля, по которым набор попадает в каталог и в раздел «Из видео»', () => {
     // Любое расхождение здесь = набор не виден людям вообще.
     expect(build()).toMatchObject({
-      listingStatus: 'published',
+      listingStatus: 'published_video',
       packLanguage: 'en',
       videoId: 'dQw4w9WgXcQ',
       titleRu: 'Фразы в аэропорту',

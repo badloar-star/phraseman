@@ -96,9 +96,9 @@ export function mapCommunityPackDocToMarket(
   const st = String(data.listingStatus ?? '');
   const forCatalog = opts?.forCatalog !== false;
   if (forCatalog) {
-    if (st !== 'published' && st !== 'update_pending') return null;
+    if (st !== 'published' && st !== 'published_video' && st !== 'update_pending') return null;
   } else if (
-    st !== 'published' &&
+    st !== 'published' && st !== 'published_video' &&
     st !== 'update_pending' &&
     st !== 'admin_revision_required' &&
     st !== 'admin_removed'
@@ -408,7 +408,7 @@ async function fetchVideoCatalogFromNetwork(
   try {
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
-      .where('listingStatus', '==', 'published')
+      .where('listingStatus', '==', 'published_video')
       .where('videoId', '!=', null)
       .limit(VIDEO_PACKS_LIMIT)
       .get();
@@ -483,13 +483,13 @@ async function fetchCommunityCatalogFromNetwork(
     // в общем limit(80) и не доходили до витрины. +1 запрос раз в 6 часов (кэш).
     const languageSnapshots = await Promise.all(PACK_LANGUAGE_CHOICES.map(language => firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
-      .where('listingStatus', 'in', ['published', 'update_pending'])
+      .where('listingStatus', '==', 'published')
       .where('packLanguage', '==', language)
       .limit(40)
       .get()));
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
-      .where('listingStatus', 'in', ['published', 'update_pending'])
+      .where('listingStatus', '==', 'published')
       .limit(80)
       .get();
     const docs = [...new Map([...languageSnapshots.flatMap(snapshot => snapshot.docs), ...snap.docs].map(doc => [doc.id, doc])).values()];
@@ -592,7 +592,7 @@ export async function loadAuthorCommunityPacksPendingUpdateResult(
     const out: FlashcardMarketPack[] = [];
     for (const doc of snap.docs) {
       const st = String(doc.data().listingStatus ?? '');
-      if (st !== 'published' && st !== 'update_pending' && st !== 'admin_revision_required') continue;
+      if (st !== 'published' && st !== 'published_video' && st !== 'update_pending' && st !== 'admin_revision_required') continue;
       const m = mapCommunityPackDocToMarket(doc.id, doc.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
       if (m) out.push(m);
     }
@@ -667,7 +667,7 @@ export async function fetchCommunityPackForAuthorEdit(
     if (!communityPackDocMatchesStudyTarget(d, studyTarget)) return null;
     if (String(d.authorStableId ?? '').trim() !== authorStableId) return null;
     const st = String(d.listingStatus ?? '');
-    if (st !== 'published' && st !== 'update_pending' && st !== 'admin_revision_required') return null;
+    if (st !== 'published' && st !== 'published_video' && st !== 'update_pending' && st !== 'admin_revision_required') return null;
     const cardsRaw = Array.isArray(d.cards) ? d.cards : [];
     const cards = cardsRaw.map((raw: unknown, i: number) => {
       const c = raw as Record<string, unknown>;
@@ -810,7 +810,7 @@ export async function fetchCommunityPackCards(
     if (!communityPackDocMatchesStudyTarget(d, studyTarget)) { console.log(`[PACK-OPEN] cards:target_mismatch packId=${packId}`); return []; }
     const st = String(d.listingStatus ?? '');
     console.log(`[PACK-OPEN] cards:status packId=${packId} listingStatus=${st} rawCards=${Array.isArray(d.cards) ? d.cards.length : typeof d.cards}`);
-    if (st === 'published' || st === 'update_pending' || st === 'admin_revision_required') {
+    if (st === 'published' || st === 'published_video' || st === 'update_pending' || st === 'admin_revision_required') {
       return communityPackCardsToCardItems(packId, d.cards, communityPackDocLanguage(d));
     }
     if (st === 'admin_removed' && isCommunityPacksCloudEnabled()) {

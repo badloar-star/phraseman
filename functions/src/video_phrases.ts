@@ -193,7 +193,7 @@ export function buildVideoPackDoc(args: Readonly<{
     /** Длительности в данных фраз нет — бейдж времени не рисуем (0 = нет бейджа). */
     videoDurationSec: 0,
     status: 'published',
-    listingStatus: 'published',
+    listingStatus: 'published_video',
     priceRunes: 0,
     /** Признак официального набора (shared/official_pack_marker.ts) — по нему клиент пишет «Professor Lingman». */
     authorStableId: officialVideoPackAuthorId(id),

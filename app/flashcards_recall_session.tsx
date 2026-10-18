@@ -84,6 +84,7 @@ import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 
@@ -338,6 +339,9 @@ export default function FlashcardsRecallSession() {
     });
     return () => sub.remove();
   }, [loadExhausted, retryRecallLoad]);
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): тихие повторы исчерпаны и карточек нет —
+  // не экран «Сейчас недоступно», а тихий уход в Карточки (leave), причина — [NO-ERROR-SCREEN] flashcards_recall.
+  useSilentLeave(!activeCard && loadExhausted, 'flashcards_recall', 'cards_unavailable_after_retries', leave);
 
   // D158 (баг «Блица», тот же класс): загрузка, которая не ответила ни успехом, ни ошибкой, не держит
   // скелетон вечно — через потолок уходит в тот же цикл тихих повторов.
@@ -925,36 +929,10 @@ export default function FlashcardsRecallSession() {
     );
   }
 
-  // зачем (D158 §117): после потолка тихих повторов — спокойное «Сейчас недоступно» с тихой
-  // «Попробовать снова» вместо вечного скелетона; значок нейтральный (тот же, что у пустого набора).
-  if (!activeCard && loadExhausted) {
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={styles.safe}>
-          <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-          <ContentWrap>
-            {renderHeader(true)}
-            <PracticeStatePanel
-              glass={recallGlass}
-              testID="fc-recall-unavailable"
-              icon="layers-outline"
-              message={copy.unavailable}
-              action={{
-                label: copy.tryAgain,
-                icon: 'refresh-outline',
-                onPress: () => retryRecallLoad('tap'),
-                testID: 'fc-recall-try-again',
-              }}
-            />
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
   // зачем (владелец 01.10): пока идут тихие повторы — тот же скелетон, а useEffect выше молча
   // перезапрашивает карточки (D158: с потолком).
-  if (loading || (!activeCard && loadError)) {
+  // зачем (правило «экранов-ошибок нигде», 18.10): после потолка повторов «Сейчас недоступно» больше не рисуем — скелет на кадр и тихий уход.
+  if (loading || (!activeCard && (loadError || loadExhausted))) {
     return (
       <ScreenGradient>
         <SafeAreaView style={styles.safe}>

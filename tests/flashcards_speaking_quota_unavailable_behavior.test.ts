@@ -202,8 +202,8 @@ test('unavailable quota is retryable with the same receipt and never double-cons
   expect(mockReplace).not.toHaveBeenCalled();
   expect(view.queryByTestId('mock-speak-hold')).toBeNull();
 
-  await fireEvent.press(view.getByTestId('fc-speak-quota-retry'));
-  await waitFor(() => expect(mockConsumeQuota).toHaveBeenCalledTimes(2));
+  // зачем (правило «экранов-ошибок нигде», 18.10): кнопки «Попробовать снова» нет — первый тихий повтор через 1 с.
+  await waitFor(() => expect(mockConsumeQuota).toHaveBeenCalledTimes(2), { timeout: 4000 });
   expect({
     consume: mockConsumeQuota.mock.calls.length,
     confirm: mockConfirmEnergy.mock.calls.length,
@@ -243,12 +243,13 @@ test('pending allowed Speaking consume survives unmount and same-intent remount 
   expect(mockAcknowledgeEnergy).toHaveBeenCalledTimes(1);
 });
 
-test('§SPEECH-NA: «Устно» на устройстве без распознавателя показывает сообщение и не тратит энергию', async () => {
+test('§SPEECH-NA: «Устно» на устройстве без распознавателя тихо уходит назад и не тратит энергию', async () => {
   mockSpeechNa = true;
   const view = await render(React.createElement(FlashcardsSpeakingSession));
 
   await waitFor(() => expect(view.getByTestId('fc-speak-speech-unavailable')).toBeTruthy());
-  expect(view.getByText('Speech recognition doesn’t work on this device')).toBeTruthy();
+  // зачем (правило «экранов-ошибок нигде», 18.10): сообщения во весь экран больше нет — тихий уход ([NO-ERROR-SCREEN]).
+  expect(view.queryByText('Speech recognition doesn’t work on this device')).toBeNull();
   await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
   expect(mockConfirmEnergy).not.toHaveBeenCalled();
   expect(mockConsumeQuota).not.toHaveBeenCalled();

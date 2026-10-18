@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppState, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,6 +20,7 @@ import { peekYoutubeCatalogScreenSnapshot, revalidateYoutubeChannelCatalog, type
 import { allVideosItemToSnapshot, allVideosPlaylistToSnapshot, useAllChannelVideos } from './all_channel_videos_source';
 import { PLAYLIST_SLOW_MS, playlistViewKind } from './lingman_playlist_view_state';
 import BackGlyph from '../components/v2/BackGlyph';
+import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 
 function trustedPlaylistUrl(rawUrl: string, playlistId: string): string | null {
   const trusted = getTrustedLingmanYoutubeUrl(rawUrl);
@@ -76,6 +77,23 @@ export default function LingmanPlaylistScreen() {
   const view = playlistViewKind({ hasPlaylist: !!playlist, videosCount: videos.length, status: allChannel.status, waitedTooLong });
   useEffect(() => { console.log('[VIDEO-PLAYLIST] вид', JSON.stringify({ view, playlistId, status: allChannel.status, videos: videos.length, waitedTooLong })); }, [view]); // guard-ok: одна строка на смену вида — что увидел человек
   const retry = () => { setWaitedTooLong(false); allChannel.refresh(); };
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): «Плейлист грузится дольше обычного /
+  // Повторить» и «Повторить» у пустого плейлиста убраны — спокойное «Пока пусто · Обновим, как появится связь»; повтор сам,
+  // при каждом возврате в приложение.
+  const slowView = view === 'slow' || view === 'content_slow';
+  const retryRef = useRef(retry);
+  retryRef.current = retry;
+  useEffect(() => {
+    if (!slowView) return undefined;
+    console.warn(`[NO-ERROR-SCREEN] screen=lingman_playlist reason=${view} shown=calm_empty playlistId=${playlistId} status=${allChannel.status}`); // guard-ok: причина спокойного вида
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      console.warn(`[NO-ERROR-SCREEN] screen=lingman_playlist retry=foreground playlistId=${playlistId}`); // guard-ok: тихий повтор
+      retryRef.current();
+    });
+    return () => sub.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slowView]);
   const copy = {
     playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', en: 'Play all', es: 'Reproducir todo', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
@@ -100,7 +118,8 @@ export default function LingmanPlaylistScreen() {
     const run = async () => {
       for (let attempt = 1; attempt <= 5 && !cancelled; attempt += 1) {
         try {
-          const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous: catalogRef.current, commit: (n) => { catalogRef.current = n; if (!cancelled) setCatalog(n); } });
+          // зачем (кэш каталога 24 ч): первая попытка — из снимка, повторы — в сеть (новый плейлист мог появиться позже снимка).
+          const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous: catalogRef.current, force: attempt > 1, commit: (n) => { catalogRef.current = n; if (!cancelled) setCatalog(n); } });
           if (next && !cancelled) { catalogRef.current = next; setCatalog(next); }
         } catch (error: unknown) {
           DebugLogger.error('[VIDEO-PLAYLIST]:revalidate', error, 'warning');
@@ -140,17 +159,12 @@ export default function LingmanPlaylistScreen() {
         </View>
         {view === 'slow' ? (
           <View testID="youtube-playlist-slow" style={styles.empty}>
-            <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.slow}</Text>
-            <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
-              <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
-            </TouchableOpacity>
+            <Text style={[styles.emptyText, { color: g.secondary }]}>{quietEmptyTitle(lang)}</Text>
+            <Text style={[styles.quietDetail, { color: g.secondary }]}>{quietEmptyDetail(lang)}</Text>
           </View>
         ) : !playlist && videosSettledEmpty ? (
           <View testID="youtube-playlist-empty" style={styles.empty}>
             <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
-            <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
-              <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
-            </TouchableOpacity>
           </View>
         ) : !playlist ? <View testID="youtube-playlist-skeleton" style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View> : (
           <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
@@ -167,17 +181,12 @@ export default function LingmanPlaylistScreen() {
               />
             )) : view === 'content_slow' ? (
               <View testID="youtube-playlist-slow" style={styles.empty}>
-                <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.slow}</Text>
-                <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
-                  <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
-                </TouchableOpacity>
+                <Text style={[styles.emptyText, { color: g.secondary }]}>{quietEmptyTitle(lang)}</Text>
+                <Text style={[styles.quietDetail, { color: g.secondary }]}>{quietEmptyDetail(lang)}</Text>
               </View>
             ) : videosSettledEmpty ? (
               <View testID="youtube-playlist-empty" style={styles.empty}>
                 <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.emptyPlaylist}</Text>
-                <TouchableOpacity testID="youtube-playlist-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={retry} activeOpacity={0.85} style={[styles.retryBtn, { backgroundColor: g.cta }]}>
-                  <Text style={[styles.retryText, { color: g.ctaInk }]}>{copy.retry}</Text>
-                </TouchableOpacity>
               </View>
             ) : <View style={styles.loading}><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View>}</View>
           </ScrollView>
@@ -202,6 +211,5 @@ const styles = StyleSheet.create({
   videoList: { marginTop: 20 },
   empty: { alignItems: 'center', gap: 16, paddingVertical: 32 },
   emptyText: { fontSize: 16, lineHeight: 22, fontWeight: '500', textAlign: 'center' },
-  retryBtn: { minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center' },
-  retryText: { fontSize: 16, fontWeight: '700' },
+  quietDetail: { marginTop: -8, fontSize: 16, lineHeight: 21, fontWeight: '400', textAlign: 'center' },
 });

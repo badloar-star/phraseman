@@ -354,7 +354,7 @@ test('granted direct access keeps the normal deck, energy, question and timer pa
   intervalSpy.mockRestore();
 });
 
-test('an unavailable quota refunds once and can retry the same quota receipt when storage becomes ready', async () => {
+test('an unavailable quota refunds once and silently retries the same quota receipt when storage becomes ready', async () => {
   let resolveConfirm: ((result: string) => void) | undefined;
   mockConfirmEnergy.mockImplementation(() => new Promise((resolve) => { resolveConfirm = resolve; }));
   mockAccessResolved = true;
@@ -381,8 +381,8 @@ test('an unavailable quota refunds once and can retry the same quota receipt whe
 
   mockConfirmEnergy.mockResolvedValue('spent');
   mockConsumeQuota.mockResolvedValue({ status: 'allowed', used: 1, limit: 3 });
-  await fireEvent.press(view.getByTestId('fc-blitz-quota-retry'));
-  await waitFor(() => expect(view.getByTestId('fc-blitz-question')).toBeTruthy());
+  // зачем (правило «экранов-ошибок нигде», 18.10): кнопки «Попробовать снова» нет — первый тихий повтор через 1 с.
+  await waitFor(() => expect(view.getByTestId('fc-blitz-question')).toBeTruthy(), { timeout: 4000 });
 
   expect(mockConsumeQuota).toHaveBeenCalledTimes(2);
   expect(mockConsumeQuota.mock.calls[0]?.[0].receiptId).toBe(mockConsumeQuota.mock.calls[1]?.[0].receiptId);

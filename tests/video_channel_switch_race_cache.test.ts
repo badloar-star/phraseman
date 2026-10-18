@@ -128,9 +128,10 @@ describe('R2: снимки каналов в памяти', () => {
     const cached = peekYoutubeChannelMemorySnapshot('alice', 'english');
     const again = reader();
     const commit = jest.fn();
+    // зачем (Firebase-экономия, 18.10): снимок моложе суток — вообще без чтений.
     const result = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: again, previous: cached, commit });
     expect(result).toBe(cached);
-    expect(again.get).toHaveBeenCalledTimes(1);
+    expect(again.get).not.toHaveBeenCalled();
     expect(again.list).not.toHaveBeenCalled();
     expect(commit).not.toHaveBeenCalled();
   });

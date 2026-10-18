@@ -147,6 +147,7 @@ describe('YouTube catalog mobile client', () => {
       reader: reader(),
       previous: buildYoutubeScreenSnapshot(catalog),
       commit,
+      force: true,
     });
     expect(commit).not.toHaveBeenCalled();
   });
@@ -159,9 +160,9 @@ describe('YouTube catalog mobile client', () => {
     const previous = buildYoutubeScreenSnapshot(await fetchYoutubeChannelCatalogWithReader('english', reader()));
     const source = reader();
     const commit = jest.fn();
-    const result = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: source, previous, commit });
+    const result = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: source, previous, commit, force: true });
 
-    expect(result).toBe(previous);
+    expect(result?.version).toBe(previous.version);
     expect(commit).not.toHaveBeenCalled();
     expect(source.get).toHaveBeenCalledTimes(1);
     expect(source.get).toHaveBeenCalledWith('youtube_catalog/public');
@@ -174,7 +175,28 @@ describe('YouTube catalog mobile client', () => {
     const current = buildYoutubeScreenSnapshot(await fetchYoutubeChannelCatalogWithReader('english', reader()));
     const stale = { ...current, version: 'older-version' };
     const source = reader();
-    await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: source, previous: stale, commit: jest.fn() });
+    await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: source, previous: stale, commit: jest.fn(), force: true });
     expect(source.list).toHaveBeenCalled();
+  });
+
+  // зачем (владелец, Firebase-экономия; координатор 08:22): снимок моложе суток — без сети вовсе; старше суток — в сеть.
+  it('[COST-CUT] serves a snapshot younger than 24 h with zero reads and goes to the network once it is older', async () => {
+    beginAccountGeneration('alice');
+    const token = captureAccountGeneration();
+    const previous = buildYoutubeScreenSnapshot(await fetchYoutubeChannelCatalogWithReader('english', reader()));
+    const fetchedMs = Date.parse(previous.fetchedAt);
+
+    const fresh = reader();
+    const hit = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: fresh, previous, commit: jest.fn(), nowMs: fetchedMs + 23 * 60 * 60 * 1000 });
+    expect(hit).toBe(previous);
+    expect(fresh.get).not.toHaveBeenCalled();
+    expect(fresh.list).not.toHaveBeenCalled();
+
+    const old = reader();
+    const nowMs = fetchedMs + 25 * 60 * 60 * 1000;
+    const miss = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: old, previous, commit: jest.fn(), nowMs });
+    expect(old.get).toHaveBeenCalledTimes(1);
+    expect(old.list).not.toHaveBeenCalled();
+    expect(miss?.fetchedAt).toBe(new Date(nowMs).toISOString());
   });
 });

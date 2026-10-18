@@ -142,6 +142,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { useSilentLeave } from '../hooks/use_silent_leave';
 
 // зачем: запись черновика сессии не чаще раза в это время (см. эффект сохранения черновика).
 const DRAFT_SAVE_DELAY_MS = 1500;
@@ -4400,10 +4401,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       <PracticeStatePanel
         glass={swipeGlass}
         testID="flashcards-swipe-no-cards"
-        icon={loadError ? 'cloud-offline-outline' : 'layers-outline'}
+        icon="layers-outline"
         title={text.noCardsTitle}
-        message={loadError || text.noCardsSub}
-        messageColor={loadError ? t.wrong : undefined}
+        message={text.noCardsSub}
         action={{
           label: text.reload,
           icon: 'refresh-outline',
@@ -4426,6 +4426,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     !loadingSources &&
     !starting &&
     selectedSources.length === 0;
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): тренировка не подготовилась (loadError) —
+  // не «Нет карточек» с текстом ошибки и облаком, а тихий уход в Карточки; настоящий пустой список остаётся обычным пустым видом.
+  useSilentLeave(showQuickNoCards && Boolean(loadError), 'flashcards_swipe', 'prepare_failed', exitTraining);
 
   const renderScreen = () => {
     if (showQuickStart) return renderQuickStart();

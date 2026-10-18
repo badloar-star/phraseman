@@ -317,6 +317,18 @@ export async function fetchYoutubeHomeRailCatalog(
  * оставался пустым (владелец: «должны отображаться в любом сценарии»).
  * Личность решает только одно: писать ли снапшот в аккаунт-скоупный кэш.
  */
+// зачем (владелец, Firebase-экономия; координатор 08:22): каталог роликов меняется редко, а заход во вкладку стоил минимум одно
+// чтение манифеста (при смене версии — до ~154). Снимок моложе суток показываем без сети вовсе; сеть — только когда снимка нет,
+// он старше суток или пользователь сам потянул «обновить» (force). Журнал [COST-CUT] youtube_catalog hit/miss/age.
+export const YOUTUBE_CATALOG_FRESH_MS = 24 * 60 * 60 * 1000;
+const COST_CUT_LOG = '[COST-CUT] youtube_catalog';
+
+/** Возраст снимка по fetchedAt; нечитаемая дата — «бесконечно старый» (идём в сеть). */
+export function youtubeCatalogSnapshotAgeMs(snapshot: Pick<YoutubeCatalogScreenSnapshot, 'fetchedAt'>, nowMs: number): number {
+  const fetchedMs = Date.parse(snapshot.fetchedAt);
+  return Number.isFinite(fetchedMs) ? nowMs - fetchedMs : Number.POSITIVE_INFINITY;
+}
+
 /** Личность СМЕНИЛАСЬ на другую (alice → bob), а не «ещё не была готова». */
 function accountSwitchedAway(token: AccountGenerationToken): boolean {
   // Токен, снятый до опознания пользователя, ничей — он не «устаревает».
@@ -335,8 +347,22 @@ export async function revalidateYoutubeChannelCatalog(options: {
    * Устаревший ответ не кладём ни в сохранённый снимок, ни в состояние экрана.
    */
   isCurrent?: () => boolean;
+  /** Явное обновление пользователем (потянуть вниз): сутки кэша не действуют. */
+  force?: boolean;
+  /** Для тестов: «сейчас», мс. */
+  nowMs?: number;
 }): Promise<YoutubeCatalogScreenSnapshot | null> {
   if (accountSwitchedAway(options.token)) return null;
+  const nowMs = options.nowMs ?? Date.now();
+  const sameChannel = options.previous?.channel?.id === options.channelId ? options.previous : null;
+  const ageMs = sameChannel ? youtubeCatalogSnapshotAgeMs(sameChannel, nowMs) : null;
+  const ageMin = ageMs === null || !Number.isFinite(ageMs) ? '-' : String(Math.round(ageMs / 60_000));
+  if (sameChannel && !options.force && ageMs !== null && ageMs >= 0 && ageMs < YOUTUBE_CATALOG_FRESH_MS) {
+    console.log(`${COST_CUT_LOG} hit age=${ageMin}m channel=${options.channelId} version=${sameChannel.version} reads=0`);
+    return sameChannel;
+  }
+  const missReason = !options.previous ? 'no_cache' : !sameChannel ? 'other_channel' : options.force ? 'user_refresh' : 'stale';
+  console.log(`${COST_CUT_LOG} miss reason=${missReason} age=${ageMin}m channel=${options.channelId}`);
   const reader = options.reader ?? await createFirestoreReader();
   // зачем (аудит стоимости Firebase 11.10): вкладка перечитывала весь каталог (корень, канал, до 100 видео и 50
   // плейлистов — до ~154 чтений) на КАЖДОМ заходе и возвращении в приложение. Сервер пишет каталог новым снимком
@@ -348,7 +374,11 @@ export async function revalidateYoutubeChannelCatalog(options: {
     if (accountSwitchedAway(options.token)) return null;
     if (manifest.activeVersion === previous.version && manifest.channels.some((channel) => channel.id === options.channelId)) {
       console.log(`[VIDEO-CATALOG] revalidate:unchanged version=${manifest.activeVersion} channel=${options.channelId}`);
-      return previous;
+      // зачем: версия та же — снимок «свежий» ещё сутки; новую отметку кладём и в сохранённый снимок, иначе каждый
+      // следующий заход снова считал бы его старым и платил чтением манифеста.
+      const refreshed: YoutubeCatalogScreenSnapshot = { ...previous, fetchedAt: new Date(nowMs).toISOString() };
+      rememberYoutubeCatalogScreenSnapshot(options.token, refreshed);
+      return refreshed;
     }
     console.log(`[VIDEO-CATALOG] revalidate:version_changed ${previous.version} -> ${manifest.activeVersion}`);
   }

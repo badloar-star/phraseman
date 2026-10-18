@@ -43,7 +43,7 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { buildManifestCardIndex, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
 import { attemptRevisionCandidates, resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
 import NoEnergyModal from '../components/NoEnergyModal';
-import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
+import { useSpeechUnavailableOnDevice } from './speech_device_availability';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -136,6 +136,10 @@ import { consumeMonthlyTrainingSession } from './monthly_training_sessions';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { NO_ERROR_SCREEN_LOG, useSilentLeave } from '../hooks/use_silent_leave';
+
+/** Паузы тихих повторов старта говорения, когда квота не подтвердилась (правило «экранов-ошибок нигде»). */
+const SPEAK_QUOTA_RETRY_DELAYS_MS = [1000, 3000, 8000] as const;
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8'; // theme-exempt: бирюза режима «Устно» — идентичность режима (значок на ней тёмный) и смешение с чёрным для тени дорожки
@@ -1395,6 +1399,22 @@ export default function FlashcardsSpeakingSession() {
 
   const panelTheme = useMemo(() => buildSpeakingPanelTheme(t), [t]);
 
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): квота/энергия не подтвердились — тихие
+  // повторы retryQuotaStart (1/3/8 с), затем тихий уход; нет распознавания речи на устройстве — сразу тихий уход.
+  const [quotaAutoRetries, setQuotaAutoRetries] = useState(0);
+  useEffect(() => {
+    if (!quotaUnavailable || quotaAutoRetries >= SPEAK_QUOTA_RETRY_DELAYS_MS.length) return undefined;
+    const delayMs = SPEAK_QUOTA_RETRY_DELAYS_MS[quotaAutoRetries];
+    console.warn(`${NO_ERROR_SCREEN_LOG} screen=flashcards_speaking reason=quota_unavailable shown=skeleton retry=${quotaAutoRetries + 1}/${SPEAK_QUOTA_RETRY_DELAYS_MS.length} inMs=${delayMs}`); // guard-ok: причина тихого повтора
+    const timer = setTimeout(() => {
+      setQuotaAutoRetries((n) => n + 1);
+      retryQuotaStart();
+    }, delayMs);
+    return () => clearTimeout(timer);
+  }, [quotaAutoRetries, quotaUnavailable, retryQuotaStart]);
+  useSilentLeave(quotaUnavailable && quotaAutoRetries >= SPEAK_QUOTA_RETRY_DELAYS_MS.length, 'flashcards_speaking', 'quota_unavailable_after_retries', leave);
+  useSilentLeave(speechNa, 'flashcards_speaking', 'speech_recognition_unavailable_on_device', leave);
+
   // ── Рендер ─────────────────────────────────────────────────────────────────
   const header = (interactive: boolean) => (
     <>
@@ -1461,24 +1481,13 @@ RU: ${card.translation}`}
     </>
   );
 
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): «Распознавание речи не работает на этом
+  // устройстве» больше не экран — тихий уход назад (useSilentLeave выше); на кадр до ухода — только шапка.
   if (speechNa) {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID="fc-speak-speech-unavailable">
-          <ContentWrap>
-            {header(true)}
-            <PracticeStatePanel
-              glass={speakingGlass}
-              icon="mic-off-outline"
-              message={speechUnavailableOnDeviceText(lang)}
-              action={{
-                label: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
-                icon: 'arrow-back-outline',
-                onPress: leave,
-                testID: 'fc-speak-speech-unavailable-back',
-              }}
-            />
-          </ContentWrap>
+          <ContentWrap>{header(true)}</ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -1488,10 +1497,11 @@ RU: ${card.translation}`}
    * Performance Bible: первый кадр = финальная геометрия. На загрузке держим
    * шапку, прогресс, место карточки, слот панели и транспортный ряд.
    */
-  if (loading) {
+  // зачем (правило «экранов-ошибок нигде», 18.10): квота не подтвердилась — тот же скелет, пока идут тихие повторы, затем тихий уход.
+  if (loading || quotaUnavailable) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }} testID={quotaUnavailable ? 'fc-speak-quota-unavailable' : undefined}>
           <ContentWrap>
             {header(false)}
             <View style={[styles.progressTrack, { backgroundColor: speakingGlass.opaqueControl }]} />
@@ -1511,42 +1521,6 @@ RU: ${card.translation}`}
               <SkeletonBlock width={98} height={98} borderRadius={49} />
               <SkeletonBlock width={54} height={54} borderRadius={27} />
             </View>
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
-  if (quotaUnavailable) {
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }} testID="fc-speak-quota-unavailable">
-          <ContentWrap>
-            {/* зачем (аудит #22, 15.10): «Тренировка не открылась» была без выхода — шапка с ✕ */}
-            {header(false)}
-            {/* зачем (cards.html setupError): данные тренировки не открылись — плитка, сообщение,
-                одна кнопка; повтор прежний (retryQuotaStart). */}
-            <PracticeStatePanel
-              glass={speakingGlass}
-              icon="cloud-offline-outline"
-              message={triLang(lang, {
-                  ru: 'Тренировка не открылась. Попробуй ещё раз.',
-                  uk: 'Тренування не відкрилося. Спробуй ще раз.',
-                  en: "Practice didn't open. Try again.",
-                  es: 'La práctica no se abrió. Inténtalo de nuevo.',
-                  'pt-BR': 'O treino não abriu. Tente de novo.',
-                  vi: 'Bài luyện chưa mở được. Hãy thử lại.',
-                  id: 'Latihan belum terbuka. Coba lagi.',
-                  tr: 'Alıştırma açılmadı. Tekrar dene.',
-                  pl: 'Trening się nie otworzył. Spróbuj ponownie.',
-                })}
-              action={{
-                label: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
-                icon: 'refresh-outline',
-                onPress: retryQuotaStart,
-                testID: 'fc-speak-quota-retry',
-              }}
-            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>

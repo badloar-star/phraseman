@@ -39,12 +39,14 @@ for (const file of FILES) {
   });
 }
 
-test('ошибка каталога «Видео» — только без каталога и без сохранённой копии (D158)', () => {
+// зачем (правило владельца «экранов-ошибок нигде», 18.10): «Не удалось загрузить каталог» больше не выводится — без каталога и
+// без сохранённой копии показывается спокойное «Пока пусто · Обновим, как появится связь».
+test('каталог «Видео» без кэша — спокойное «Пока пусто», не ошибка (D158 + правило 18.10)', () => {
   const src = strip('../app/lingman_videos.tsx');
   const branch = src.indexOf('catalogExhausted && !catalog && !snapshot ? (');
-  const shown = src.indexOf('{copy.catalogFailed}');
-  assert.ok(branch > -1 && shown > branch, 'catalogFailed показывается только в ветке без каталога и без копии');
-  assert.equal(src.split('{copy.catalogFailed}').length - 1, 1, 'catalogFailed выводится ровно в одном месте');
+  const shown = src.indexOf('{quietEmptyTitle(lang)}');
+  assert.ok(branch > -1 && shown > branch, 'спокойное «Пока пусто» — в ветке без каталога и без копии');
+  assert.equal(src.split('{copy.catalogFailed}').length - 1, 0, 'catalogFailed больше не выводится');
 });
 
 test('плеер без кнопки «Повторить» и без lingman-player-error', () => {

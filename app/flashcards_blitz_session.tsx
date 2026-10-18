@@ -107,6 +107,10 @@ import {
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { NO_ERROR_SCREEN_LOG, useSilentLeave } from '../hooks/use_silent_leave';
+
+/** Паузы тихих повторов старта блица, когда квота не подтвердилась (правило «экранов-ошибок нигде»). */
+const BLITZ_QUOTA_RETRY_DELAYS_MS = [1000, 3000, 8000] as const;
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050). */
 const ACCENT = '#FF8A3D'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
@@ -1302,6 +1306,21 @@ export default function FlashcardsBlitzSession() {
     });
   }, [deckOptions, deckRefs, lang]);
 
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): квота/энергия не подтвердились или
+  // сработал сторож — не экран ошибки, а тихие повторы того же retryQuotaStart (1/3/8 с), затем тихий уход назад.
+  const [quotaAutoRetries, setQuotaAutoRetries] = useState(0);
+  useEffect(() => {
+    if (!quotaUnavailable || quotaAutoRetries >= BLITZ_QUOTA_RETRY_DELAYS_MS.length) return undefined;
+    const delayMs = BLITZ_QUOTA_RETRY_DELAYS_MS[quotaAutoRetries];
+    console.warn(`${NO_ERROR_SCREEN_LOG} screen=flashcards_blitz reason=quota_unavailable shown=skeleton retry=${quotaAutoRetries + 1}/${BLITZ_QUOTA_RETRY_DELAYS_MS.length} inMs=${delayMs}`); // guard-ok: причина тихого повтора
+    const timer = setTimeout(() => {
+      setQuotaAutoRetries((n) => n + 1);
+      retryQuotaStart();
+    }, delayMs);
+    return () => clearTimeout(timer);
+  }, [quotaAutoRetries, quotaUnavailable, retryQuotaStart]);
+  useSilentLeave(quotaUnavailable && quotaAutoRetries >= BLITZ_QUOTA_RETRY_DELAYS_MS.length, 'flashcards_blitz', 'quota_unavailable_after_retries', leave);
+
   // ── Рендер ─────────────────────────────────────────────────────────────────
   /**
    * зачем (владелец, 2026-08-16, «прыжки страниц»): раньше здесь во весь экран
@@ -1310,54 +1329,12 @@ export default function FlashcardsBlitzSession() {
    * первый кадр = финальная геометрия. Держим ту же раскладку и подменяем только
    * содержимое скелетонами тех же размеров (questionBox 110, optionBtn ~50).
    */
-  if (quotaUnavailable) {
+  // зачем (правило владельца «экранов-ошибок нигде», 18.10): вместо «Тренировка не открылась / Попробовать снова» — тот же
+  // скелет загрузки, пока идут тихие повторы (эффект выше), затем тихий уход ([NO-ERROR-SCREEN] flashcards_blitz).
+  if (!blitzAccessGranted || loading || energyGate === 'checking' || quotaUnavailable) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-quota-unavailable">
-          <ContentWrap>
-            {/* зачем (аудит #22, 15.10): «Тренировка не открылась» была без выхода — стрелка назад как на скелете загрузки */}
-            <View style={styles.headerRow}>
-              <PracticeBackButton
-                glass={blitzGlass}
-                color={t.textPrimary}
-                onPress={leave}
-                testID="fc-blitz-back"
-                accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-              />
-            </View>
-            {/* зачем (cards.html setupError): данные тренировки не открылись — плитка, сообщение,
-                одна кнопка «Попробовать снова»; повтор тот же (retryQuotaStart). */}
-            <PracticeStatePanel
-              glass={blitzGlass}
-              icon="cloud-offline-outline"
-              message={triLang(lang, {
-                  ru: 'Тренировка не открылась. Попробуй ещё раз.',
-                  uk: 'Тренування не відкрилося. Спробуй ще раз.',
-                  en: "Practice didn't open. Try again.",
-                  es: 'La práctica no se abrió. Inténtalo de nuevo.',
-                  'pt-BR': 'O treino não abriu. Tente de novo.',
-                  vi: 'Bài luyện chưa mở được. Hãy thử lại.',
-                  id: 'Latihan belum terbuka. Coba lagi.',
-                  tr: 'Alıştırma açılmadı. Tekrar dene.',
-                  pl: 'Trening się nie otworzył. Spróbuj ponownie.',
-                })}
-              action={{
-                label: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
-                icon: 'refresh-outline',
-                onPress: retryQuotaStart,
-                testID: 'fc-blitz-quota-retry',
-              }}
-            />
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
-  if (!blitzAccessGranted || loading || energyGate === 'checking') {
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }} testID={quotaUnavailable ? 'fc-blitz-quota-unavailable' : undefined}>
           <ContentWrap>
             <View style={styles.headerRow}>
               {/* зачем (бета-тест 15.10, А2): без onPress стрелка была неактивной — из зависшей загрузки на iOS не выйти */}

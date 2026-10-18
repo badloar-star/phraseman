@@ -47,8 +47,9 @@ describe('аудит кнопок: Карточки', () => {
     const speaking = read('app/flashcards_speaking_session.tsx');
     expect(speaking).toContain('onPress={leave}');
     expect(speaking).not.toContain('onPress={interactive ? leave : undefined}');
-    expect(speaking).toMatch(/fc-speak-quota-unavailable"[\s\S]{0,400}\{header\(false\)\}/);
-    expect(read('app/flashcards_blitz_session.tsx')).toMatch(/fc-blitz-quota-unavailable"[\s\S]{0,500}testID="fc-blitz-back"/);
+    // зачем (правило «экранов-ошибок нигде», 18.10): «не открылась» теперь скелет загрузки с тем же выходом, пока идут тихие повторы.
+    expect(speaking).toMatch(/fc-speak-quota-unavailable' : undefined\}>[\s\S]{0,400}\{header\(false\)\}/);
+    expect(read('app/flashcards_blitz_session.tsx')).toMatch(/fc-blitz-quota-unavailable' : undefined\}>[\s\S]{0,500}testID="fc-blitz-back"/);
     expect(read('app/flashcards_swipe.tsx')).toContain('testID="flashcards-swipe-quickstart-back"');
   });
 });
@@ -69,7 +70,8 @@ describe('аудит кнопок: Видео', () => {
   it('#25: 0 роликов — «На этом языке пока нет роликов» и «Повторить», не вечный скелет', () => {
     const src = read('app/lingman_videos.tsx');
     expect(src).toContain("ru: 'На этом языке пока нет роликов'");
-    expect(src).toContain('testID="youtube-no-videos-retry"');
+    // зачем (правило «экранов-ошибок нигде», 18.10): у пустого состояния нет кнопки «Повторить» — потянуть вниз и тихие повторы.
+    expect(src).not.toContain('testID="youtube-no-videos-retry"');
     expect(src).toContain("catalog && !refreshing && (allChannel.status === 'ready' || allChannel.status === 'unavailable') && allVideos.length === 0 && allChannel.playlists.length === 0");
   });
 

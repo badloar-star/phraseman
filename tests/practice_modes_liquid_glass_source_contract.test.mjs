@@ -60,9 +60,9 @@ assert.match(states, /boxShadow: plateBoxShadow\(glass\)/, '.qc has the plate sh
 
 // Пусто / мало карточек / ошибка загрузки / данные тренировки не открылись — единая панель.
 for (const [name, source, ids] of [
-  ['blitz', modes.blitz, ['fc-blitz-quota-retry', 'fc-blitz-pick-decks-empty', 'fc-blitz-too-few']],
+  ['blitz', modes.blitz, ['fc-blitz-pick-decks-empty', 'fc-blitz-too-few']],
   ['recall', modes.recall, ['fc-recall-pick-decks-empty', 'fc-recall-empty']],
-  ['speaking', modes.speaking, ['fc-speak-quota-retry', 'fc-speak-pick-decks-empty', 'fc-speak-empty']],
+  ['speaking', modes.speaking, ['fc-speak-pick-decks-empty', 'fc-speak-empty']],
   ['swipe', modes.swipe, ['flashcards-swipe-no-cards', 'flashcards-swipe-reload']],
 ]) {
   assert.match(source, /components\/practice\/PracticeStates/, `${name} imports shared states`);
@@ -70,9 +70,14 @@ for (const [name, source, ids] of [
   for (const id of ids) assert.ok(source.includes(id), `${name} keeps ${id}`);
 }
 // Действия служебных состояний прежние.
-assert.match(modes.blitz, /onPress: retryQuotaStart,[\s\S]{0,80}testID: 'fc-blitz-quota-retry'/);
+// зачем (правило владельца «экранов-ошибок нигде», 18.10): «Тренировка не открылась / Попробовать снова» убрано — тихие повторы и тихий уход.
+assert.doesNotMatch(modes.blitz, /fc-blitz-quota-retry/);
+assert.match(modes.blitz, /useSilentLeave\(quotaUnavailable && quotaAutoRetries >= BLITZ_QUOTA_RETRY_DELAYS_MS\.length/);
 assert.match(modes.blitz, /onPress: openDeckPicker,[\s\S]{0,80}testID: 'fc-blitz-pick-decks-empty'/);
-assert.match(modes.speaking, /onPress: retryQuotaStart,[\s\S]{0,80}testID: 'fc-speak-quota-retry'/);
+assert.doesNotMatch(modes.speaking, /fc-speak-quota-retry/);
+assert.match(modes.speaking, /useSilentLeave\(speechNa, 'flashcards_speaking'/);
+assert.match(modes.recall, /useSilentLeave\(!activeCard && loadExhausted, 'flashcards_recall'/);
+assert.match(modes.swipe, /useSilentLeave\(showQuickNoCards && Boolean\(loadError\), 'flashcards_swipe'/);
 assert.match(modes.speaking, /onPress: openDeckPicker,[\s\S]{0,80}testID: 'fc-speak-pick-decks-empty'/);
 assert.match(modes.recall, /onPress: openDeckSetup/);
 assert.doesNotMatch(modes.recall, /fc-recall-load-error/);

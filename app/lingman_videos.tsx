@@ -49,6 +49,7 @@ import { DebugLogger } from './debug-logger';
 import { useVideoFavorites, useVideoSaveCounts } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
 import { pluralWord } from '../constants/plural';
+import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 import {
   getActiveYoutubeChannel,
   getLingmanYoutubeSnapshot,
@@ -344,7 +345,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       }
       const previous = view.kind === 'pending' ? null : view.catalog;
       if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load seq=${seq} channelId=${channelId} source=${requestedChannelId ? 'requested' : routeChannel ? 'deepLink' : 'resolution'} view=${view.kind} previousVersion=${previous?.version ?? '-'}`);
-      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, isCurrent: isCurrentLoad, commit: (value) => {
+      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, isCurrent: isCurrentLoad, force: refresh, commit: (value) => {
         if (!isCurrentLoad()) { logStale('commit', channelId); return; }
         catalogRef.current = value;
         setCatalog(value);
@@ -419,7 +420,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     if (issue !== 'error' || !nothingToShow || !screenRuntimeActive || catalogExhausted) return;
     const backoffMs = loadGateBackoffMs(catalogRetryRef.current + 1);
     if (backoffMs === null) {
-      console.warn('[VIDEO-TAB] тихие повторы каталога исчерпаны → «Сейчас недоступно»', { attempts: catalogRetryRef.current });
+      console.warn(`[NO-ERROR-SCREEN] screen=lingman_videos reason=catalog_unavailable_no_cache shown=calm_empty attempts=${catalogRetryRef.current} next=foreground`); // guard-ok: причина спокойного вида
       setCatalogExhausted(true);
       return;
     }
@@ -756,15 +757,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     >
       <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="videocam-off-outline" size={24} color={g.text} /></View>
       <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.noVideos}</Text>
-      <Pressable
-        testID="youtube-no-videos-retry"
-        accessibilityRole="button"
-        accessibilityLabel={copy.retry}
-        onPress={() => void loadCatalog(undefined, true)}
-        style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.ctaFill, opacity: pressed ? 0.8 : 1 }]}
-      >
-        <Text style={[styles.unavailableActionLabel, { color: g.ctaFillInk }]}>{copy.retry}</Text>
-      </Pressable>
     </ScrollView>
   );
   const savedRow = hasSavedRow ? (
@@ -842,17 +834,12 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             refreshControl={<HybridRefreshControl refreshing={false} onRefresh={() => retryCatalogAfterUnavailable('tap')} />}
             contentContainerStyle={[styles.unavailable, inTab ? { paddingBottom: tabContentBottomPad } : null]} // зачем (проверка «ничего под таббаром», координатор 15.10): нижний отступ вкладки из общего источника — «нет роликов»/«сейчас недоступно» при крупном шрифте не уходят под капсулу
           >
-            <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="cloud-offline-outline" size={24} color={g.text} /></View>
-            <Text accessibilityRole="header" accessibilityLabel={copy.unavailable} style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.catalogFailed}</Text>
-            <Pressable
-              testID="youtube-catalog-try-again"
-              accessibilityRole="button"
-              accessibilityLabel={copy.tryAgain}
-              onPress={() => retryCatalogAfterUnavailable('tap')}
-              style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.ctaFill, opacity: pressed ? 0.8 : 1 }]}
-            >
-              <Text style={[styles.unavailableActionLabel, { color: g.ctaFillInk }]}>{copy.retry}</Text>
-            </Pressable>
+            {/* зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 09:02): каталога нет ни в кэше, ни из сети —
+                не «Не удалось загрузить» с облаком и «Повторить», а спокойное «Пока пусто · Обновим, как появится связь»; повторы идут сами
+                (3 тихих по load_gate_config, затем при возврате в приложение), потянуть вниз — тоже повтор. Журнал — [NO-ERROR-SCREEN]. */}
+            <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="videocam-outline" size={24} color={g.text} /></View>
+            <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.secondary }]}>{quietEmptyTitle(lang)}</Text>
+            <Text style={[styles.unavailableTitle, { color: g.secondary, marginTop: 4 }]}>{quietEmptyDetail(lang)}</Text>
           </ScrollView>
         ) : (visibleLoading || issue === 'error') && !catalog && !snapshot ? (
           <View testID="youtube-catalog-loading" style={styles.gridSkeleton}>

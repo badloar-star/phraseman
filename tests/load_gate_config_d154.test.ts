@@ -23,12 +23,13 @@ test('three quiet retries with ~1/3/8 s pauses sum to the 12 s ceiling', () => {
   expect(loadGateBackoffMs(Number.NaN)).toBeNull();
 });
 
-test('«Вспомни» uses the shared gate and ends in a calm «Сейчас недоступно», not an eternal skeleton', () => {
+test('«Вспомни» uses the shared gate and ends in a silent leave, not an error screen or an eternal skeleton', () => {
   const src = read('app/flashcards_recall_session.tsx');
   expect(src).toContain("from './load_gate_config'");
   expect(src).toContain('loadGateBackoffMs(silentRecallRetryRef.current + 1)');
-  expect(src).toContain('testID="fc-recall-unavailable"');
-  expect(src).toContain("testID: 'fc-recall-try-again'");
+  // зачем (правило владельца «экранов-ошибок нигде», 18.10): после потолка — тихий уход, а не «Сейчас недоступно».
+  expect(src).not.toContain('testID="fc-recall-unavailable"');
+  expect(src).toContain("useSilentLeave(!activeCard && loadExhausted, 'flashcards_recall'");
   expect(src).toContain("AppState.addEventListener('change'");
   // Старый «5 по 20 с, затем вечный скелетон» не возвращается.
   expect(src).not.toMatch(/silentRecallRetryRef\.current >= 5/);
@@ -97,7 +98,8 @@ test('«Видео» tab: ceiling + 1/3/8 s retries, then calm «Сейчас н
   expect(src).toContain("from './load_gate_config'");
   expect(src).toContain('loadGateBackoffMs(catalogRetryRef.current + 1)');
   expect(src).toContain('testID="youtube-catalog-unavailable"');
-  expect(src).toContain('testID="youtube-catalog-try-again"');
+  // зачем (правило «экранов-ошибок нигде», 18.10): без кнопки «Попробовать снова» — повтор сам и при возврате в приложение.
+  expect(src).not.toContain('testID="youtube-catalog-try-again"');
   expect(src).toContain("AppState.addEventListener('change'");
   expect(src).not.toMatch(/catalogRetryRef\.current >= 5/);
   expect(src).not.toContain('}, 20000);');

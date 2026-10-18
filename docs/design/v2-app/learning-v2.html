@@ -432,9 +432,10 @@ const mapFirst = () => mapA({ rows: [
 ] });
 
 // Все уроки
+// зачем (сверка 119c4e25d): «Обучение» → «Классический курс» (слово владельца 17.10), чипы тоном без контура и 16 (D145) — как в коде
 const lessonsList = () => phone(`
   <div class="hdr" style="margin-top:6px"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti xl">Все уроки</div></div></div>
-  <div class="flex" style="gap:8px;margin-top:20px;flex-wrap:nowrap"><span class="pill s" style="background:#E9E9EB;color:#0B0C0E">A1</span><span class="pill s ol">A2</span><span class="pill s ol">B1</span><span class="pill s ol">B2</span><span class="pill s ol" style="margin-left:auto">${li('albums', 's16')}Обучение</span></div>
+  <div class="flex" style="gap:8px;margin-top:20px;flex-wrap:wrap"><span class="pill s" style="background:#E9E9EB;color:#0B0C0E;font-size:16px">A1</span><span class="pill s" style="font-size:16px">A2</span><span class="pill s" style="font-size:16px">B1</span><span class="pill s" style="font-size:16px">B2</span><span class="pill s" style="margin-left:auto;font-size:16px">${li('albums', 's16')}Классический курс</span></div>
   <div class="stack" style="margin-top:18px">
     ${lrow(1, LESSONS[0], { ion: true, cur: true, pct: 12 / 56 })}
     ${lrow(2, LESSONS[1], { ion: true, pct: 0 })}

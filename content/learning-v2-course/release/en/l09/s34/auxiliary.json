@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-34:intro1:r2": {
+          "ru": "Правильно tying: ie меняется на y.",
+          "uk": "Правильно tying: ie змінюється на y."
+        },
+        "en:lesson-09:session-34:intro1:r3": {
+          "ru": "После am для действия сейчас нужна форма tying.",
+          "uk": "Після am для дії зараз потрібна форма tying."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-34:intro2:r2": {
+          "ru": "Перед одним исчисляемым предметом здесь нужно a.",
+          "uk": "Перед одним злічуваним предметом тут потрібне a."
+        },
+        "en:lesson-09:session-34:intro2:r3": {
+          "ru": "С it используем is.",
+          "uk": "З it використовуємо is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-34:intro3:r2": {
+          "ru": "Между предметом и признаком здесь нужна связка is.",
+          "uk": "Між предметом і ознакою тут потрібна зв’язка is."
+        },
+        "en:lesson-09:session-34:intro3:r3": {
+          "ru": "Одна петля: is.",
+          "uk": "Одна петля: is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ab7b8f03fec0609b11f038c38c9b7903b9cad926aee4c99ac469363a8f1d5221"
+}

@@ -1,0 +1,240 @@
+diff --git a/app/presync_quiet_retry.ts b/app/presync_quiet_retry.ts
+new file mode 100644
+index 000000000..05513a8d6
+--- /dev/null
++++ b/app/presync_quiet_retry.ts
+@@ -0,0 +1,61 @@
++/*
++ * Тихие повторы перед отказом входа local_progress_not_uploaded.
++ *
++ * зачем (владелец 18.10 «ни один вход без ошибки, кроме «нет сети»»; разбор sign-in-refusals-audit п.2): гость с прогрессом
++ * входил в аккаунт, выгрузка (forceSyncToCloud) срывалась одним сбоем, аварийная копия — одной ошибкой проверки, и человек
++ * видел «Прогресс на месте… вход отменён». Обе операции безопасно повторять: выгрузка идемпотентна, копия перезаписывает
++ * свою же запись и проверяется до стирания. Повторяем ТОЛЬКО то, что может пройти со второго раза:
++ *   - выгрузку — при быстром сбое (error), но не при таймауте (ещё 20 с ожидания хуже отказа);
++ *   - копию — при сбоях записи/проверки (local_progress_not_uploaded), но не при «нельзя по состоянию устройства»
++ *     (local_progress_backup_blocked: чужая копия, старый формат, нет места, карантин удаления).
++ * Журнал: [SIGNIN-RETRY].
++ */
++import { classifyPresyncBackupRefusal } from './presync_backup_refusal';
++
++export const PRESYNC_QUIET_RETRY_DELAYS_MS: readonly number[] = [600, 1_500];
++
++const pause = (ms: number) => new Promise<void>((resolve) => { setTimeout(resolve, ms); });
++
++export type PresyncAttempt = Readonly<{ uploaded: boolean; refusal: string; errorCode: string | null }>;
++
++/** Выгрузка гостя с тихими повторами при быстром сбое. `attempt` — один вызов forceSyncToCloud под таймаутом. */
++export async function presyncUploadWithQuietRetry(
++  attempt: () => Promise<PresyncAttempt>,
++  delays: readonly number[] = PRESYNC_QUIET_RETRY_DELAYS_MS,
++  log: (line: string) => void = (line) => console.log(line), // guard-ok: журнал повторов входа
++): Promise<PresyncAttempt & { attempts: number }> {
++  for (let index = 0; ; index += 1) {
++    const result = await attempt();
++    const delay = delays[index];
++    const retryable = !result.uploaded && result.refusal !== 'timeout';
++    if (result.uploaded || !retryable || delay === undefined) {
++      log(`[SIGNIN-RETRY] presync done uploaded=${result.uploaded ? 'yes' : 'no'} refusal=${result.refusal} attempts=${index + 1}${!result.uploaded && !retryable ? ' stop=timeout' : ''}`);
++      return { ...result, attempts: index + 1 };
++    }
++    log(`[SIGNIN-RETRY] presync retry attempt=${index + 2} afterMs=${delay} refusal=${result.refusal}`);
++    await pause(delay);
++  }
++}
++
++/** Аварийная копия с тихими повторами. `attempt` возвращает null при успехе или код отказа копии. */
++export async function presyncBackupWithQuietRetry(
++  attempt: () => Promise<string | null>,
++  delays: readonly number[] = PRESYNC_QUIET_RETRY_DELAYS_MS,
++  log: (line: string) => void = (line) => console.log(line), // guard-ok: журнал повторов входа
++): Promise<{ backupCode: string | null; attempts: number }> {
++  for (let index = 0; ; index += 1) {
++    const backupCode = await attempt();
++    const delay = delays[index];
++    // «Нельзя по состоянию устройства» повтор не исправит — сразу дальше, к своей ветке.
++    const retryable = backupCode !== null && classifyPresyncBackupRefusal(backupCode) === 'local_progress_not_uploaded';
++    if (backupCode === null || !retryable || delay === undefined) {
++      log(`[SIGNIN-RETRY] backup done code=${backupCode ?? 'ok'} attempts=${index + 1}`);
++      return { backupCode, attempts: index + 1 };
++    }
++    log(`[SIGNIN-RETRY] backup retry attempt=${index + 2} afterMs=${delay} code=${backupCode}`);
++    await pause(delay);
++  }
++}
++
++/* expo-router route shim: модуль в app/ — не экран */
++export default function __RouteShim() { return null; }
+diff --git a/app/guest_background_upload.ts b/app/guest_background_upload.ts
+new file mode 100644
+index 000000000..17a04d0bd
+--- /dev/null
++++ b/app/guest_background_upload.ts
+@@ -0,0 +1,78 @@
++/*
++ * Фоновая выгрузка прогресса гостя при уходе приложения в фон — не чаще раза в 6 часов.
++ *
++ * зачем (владелец 18.10 «ни один вход без ошибки, кроме «нет сети»»; разбор sign-in-refusals-audit п.2б): к моменту входа
++ * облако гостя уже свежее, и выгрузка перед сменой аккаунта почти ничего не пишет — меньше шансов на local_progress_not_uploaded.
++ * 💸 Экономно: только гость, только с настоящим прогрессом, не чаще раза в 6 ч, запись пропускается, если документ не изменился
++ * (skipUnchangedDocWrite в forceSyncToCloud). Сбой ничего не ломает: следующая попытка — при следующем уходе в фон.
++ * Журнал: [GUEST-BG-UPLOAD].
++ */
++export const GUEST_BACKGROUND_UPLOAD_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
++export const GUEST_BACKGROUND_UPLOAD_LAST_AT_KEY = 'guest_background_upload_last_at_v1';
++
++export type GuestBackgroundUploadOutcome =
++  | 'skipped_not_guest'
++  | 'skipped_no_progress'
++  | 'skipped_recent'
++  | 'skipped_in_flight'
++  | 'uploaded'
++  | 'not_uploaded'
++  | 'failed';
++
++export type GuestBackgroundUploadDeps = Readonly<{
++  isGuest: () => boolean;
++  hasMeaningfulProgress: () => Promise<boolean>;
++  /** Одна выгрузка (forceSyncToCloud({ skipUnchangedDocWrite: true, adoptOnIdentityMismatch: false })). true — записано. */
++  upload: () => Promise<boolean>;
++  readLastAtMs: () => Promise<number | null>;
++  writeLastAtMs: (ms: number) => Promise<void>;
++  nowMs?: () => number;
++  log?: (line: string) => void;
++}>;
++
++let inFlight = false;
++
++/** Только для тестов. */
++export function resetGuestBackgroundUploadForTest(): void {
++  inFlight = false;
++}
++
++export async function maybeUploadGuestOnBackground(deps: GuestBackgroundUploadDeps): Promise<GuestBackgroundUploadOutcome> {
++  const log = deps.log ?? ((line: string) => console.log(line)); // guard-ok: журнал фоновой выгрузки гостя
++  const now = (deps.nowMs ?? Date.now)();
++  const done = (outcome: GuestBackgroundUploadOutcome, extra = ''): GuestBackgroundUploadOutcome => {
++    log(`[GUEST-BG-UPLOAD] ${outcome}${extra}`);
++    return outcome;
++  };
++  if (inFlight) return done('skipped_in_flight');
++  if (!deps.isGuest()) return done('skipped_not_guest');
++  inFlight = true;
++  try {
++    let lastAt: number | null = null;
++    try {
++      lastAt = await deps.readLastAtMs();
++    } catch (error) {
++      // Не прочитали метку — считаем, что выгрузки не было (одна лишняя выгрузка дешевле пропуска).
++      log(`[GUEST-BG-UPLOAD] last_at_read_failed reason=${error instanceof Error ? error.message.slice(0, 60) : typeof error}`);
++    }
++    if (lastAt !== null && now - lastAt < GUEST_BACKGROUND_UPLOAD_MIN_INTERVAL_MS) {
++      return done('skipped_recent', ` sinceMs=${now - lastAt}`);
++    }
++    if (!(await deps.hasMeaningfulProgress())) return done('skipped_no_progress');
++    const uploaded = await deps.upload();
++    if (!uploaded) return done('not_uploaded');
++    try {
++      await deps.writeLastAtMs(now);
++    } catch (error) {
++      log(`[GUEST-BG-UPLOAD] last_at_write_failed reason=${error instanceof Error ? error.message.slice(0, 60) : typeof error}`);
++    }
++    return done('uploaded');
++  } catch (error) {
++    return done('failed', ` reason=${error instanceof Error ? error.message.slice(0, 60) : typeof error}`);
++  } finally {
++    inFlight = false;
++  }
++}
++
++/* expo-router route shim: модуль в app/ — не экран */
++export default function __RouteShim() { return null; }
+diff --git a/tests/presync_quiet_retry.test.ts b/tests/presync_quiet_retry.test.ts
+new file mode 100644
+index 000000000..43d283efc
+--- /dev/null
++++ b/tests/presync_quiet_retry.test.ts
+@@ -0,0 +1,83 @@
++// зачем (владелец 18.10 «ни один вход без ошибки, кроме «нет сети»»; разбор sign-in-refusals-audit п.2): тихие повторы
++// выгрузки и аварийной копии гостя перед отказом local_progress_not_uploaded; и фоновая выгрузка гостя не чаще раза в 6 ч.
++import { presyncBackupWithQuietRetry, presyncUploadWithQuietRetry } from '../app/presync_quiet_retry';
++import {
++  GUEST_BACKGROUND_UPLOAD_MIN_INTERVAL_MS,
++  maybeUploadGuestOnBackground,
++  resetGuestBackgroundUploadForTest,
++} from '../app/guest_background_upload';
++
++const quiet = () => undefined;
++
++describe('presyncUploadWithQuietRetry', () => {
++  it('быстрый сбой повторяется; со второго раза — выгружено', async () => {
++    const attempt = jest.fn()
++      .mockResolvedValueOnce({ uploaded: false, refusal: 'error', errorCode: 'x' })
++      .mockResolvedValueOnce({ uploaded: true, refusal: 'not_uploaded', errorCode: null });
++    await expect(presyncUploadWithQuietRetry(attempt, [0, 0], quiet)).resolves.toMatchObject({ uploaded: true, attempts: 2 });
++  });
++
++  it('таймаут не повторяется (ещё 20 с ожидания хуже)', async () => {
++    const attempt = jest.fn().mockResolvedValue({ uploaded: false, refusal: 'timeout', errorCode: 'timeout_swap_presync' });
++    await expect(presyncUploadWithQuietRetry(attempt, [0, 0], quiet)).resolves.toMatchObject({ uploaded: false, attempts: 1 });
++  });
++
++  it('не больше трёх попыток', async () => {
++    const attempt = jest.fn().mockResolvedValue({ uploaded: false, refusal: 'error', errorCode: 'x' });
++    await expect(presyncUploadWithQuietRetry(attempt, [0, 0], quiet)).resolves.toMatchObject({ uploaded: false, attempts: 3 });
++  });
++});
++
++describe('presyncBackupWithQuietRetry', () => {
++  it('сбой проверки копии повторяется; со второго раза — копия есть', async () => {
++    const attempt = jest.fn().mockResolvedValueOnce('account_switch_backup_verification_failed').mockResolvedValueOnce(null);
++    await expect(presyncBackupWithQuietRetry(attempt, [0, 0], quiet)).resolves.toEqual({ backupCode: null, attempts: 2 });
++  });
++
++  it('«нельзя по состоянию устройства» не повторяется', async () => {
++    const attempt = jest.fn().mockResolvedValue('account_switch_backup_other_owner_pending');
++    await expect(presyncBackupWithQuietRetry(attempt, [0, 0], quiet)).resolves.toEqual({ backupCode: 'account_switch_backup_other_owner_pending', attempts: 1 });
++  });
++});
++
++describe('maybeUploadGuestOnBackground', () => {
++  const T = 1_800_000_000_000;
++  const deps = (over: Record<string, unknown> = {}) => ({
++    isGuest: () => true,
++    hasMeaningfulProgress: async () => true,
++    upload: jest.fn(async () => true),
++    readLastAtMs: async () => null,
++    writeLastAtMs: jest.fn(async () => undefined),
++    nowMs: () => T,
++    log: quiet,
++    ...over,
++  });
++  beforeEach(() => resetGuestBackgroundUploadForTest());
++
++  it('гость с прогрессом, давно не выгружался — выгрузка и метка времени', async () => {
++    const d = deps();
++    await expect(maybeUploadGuestOnBackground(d)).resolves.toBe('uploaded');
++    expect(d.writeLastAtMs).toHaveBeenCalledWith(T);
++  });
++
++  it('💸 не чаще раза в 6 часов', async () => {
++    const d = deps({ readLastAtMs: async () => T - GUEST_BACKGROUND_UPLOAD_MIN_INTERVAL_MS + 1 });
++    await expect(maybeUploadGuestOnBackground(d)).resolves.toBe('skipped_recent');
++    expect(d.upload).not.toHaveBeenCalled();
++  });
++
++  it('не гость и гость без прогресса — без выгрузки', async () => {
++    const a = deps({ isGuest: () => false });
++    await expect(maybeUploadGuestOnBackground(a)).resolves.toBe('skipped_not_guest');
++    const b = deps({ hasMeaningfulProgress: async () => false });
++    await expect(maybeUploadGuestOnBackground(b)).resolves.toBe('skipped_no_progress');
++    expect(a.upload).not.toHaveBeenCalled();
++    expect(b.upload).not.toHaveBeenCalled();
++  });
++
++  it('сбой выгрузки не бросает и не ставит метку — повтор при следующем уходе в фон', async () => {
++    const d = deps({ upload: jest.fn(async () => { throw new Error('network'); }) });
++    await expect(maybeUploadGuestOnBackground(d)).resolves.toBe('failed');
++    expect(d.writeLastAtMs).not.toHaveBeenCalled();
++  });
++});

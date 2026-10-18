@@ -107,7 +107,23 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }
   const thirtiethRef = useRef<View>(null);
   const laidOutRef = useRef(0);
   const tracedRef = useRef(false);
-  const onCellLayout = () => {
+  // зачем (Макеты 8a2a2bccf: клетки 42×0, scaleZero весь отрезок 2 с) — сперва журнал [D30-CAL]: раскладка клетки ДО преобразований (если h=0 при w=42 —
+  // не масштаб, а высота не задана), ширина ряда, плановый старт ZoomIn и его конец с замером на экране (итоговый масштаб). Только отладка.
+  const mountAtRef = useRef(Date.now());
+  const d30Log = (what: string, data: Record<string, unknown>) => console.log(`[D30-CAL] ${what} ${JSON.stringify({ sinceMountMs: Date.now() - mountAtRef.current, ...data })}`); // guard-ok: строка пробы (только отладка)
+  // плановый конец ZoomIn клетки (задержка + длительность) + 50 мс: замер на экране = итоговый масштаб (без колбэка воркета — тесты его не грузят)
+  const measureAfterEnter = (i: number) => {
+    const atMs = (reduceMotion ? 0 : i * CELL_DELAY_MS + CELL_DUR_MS) + 50;
+    setTimeout(() => {
+      const ref = i === 0 ? firstRef.current : thirtiethRef.current;
+      if (!ref) { d30Log('enter:end', { i, plannedEndMs: atMs, box: null, reason: 'no_ref_unmounted' }); return; }
+      ref.measureInWindow((x, y, w, h) => d30Log('enter:end', { i, plannedEndMs: atMs, box: { x: Math.round(x), y: Math.round(y), w: Math.round(w), h: Math.round(h) }, scaleZero: Math.round(w) === 0 || Math.round(h) === 0 }));
+    }, atMs);
+  };
+  const enteringFor = (i: number) => (reduceMotion ? undefined : ZoomIn.delay(i * CELL_DELAY_MS).duration(CELL_DUR_MS));
+  const onCellLayout = (i: number, w: number, h: number) => {
+    if (i === 0 || i === 29) measureAfterEnter(i);
+    if (i === 0 || i === 29) d30Log('cell:layout', { i, w: Math.round(w), h: Math.round(h), heightZero: Math.round(h) === 0, plannedEnterStartMs: reduceMotion ? null : i * CELL_DELAY_MS, durMs: CELL_DUR_MS, style: { width: '12.2%', aspectRatio: 1 } });
     laidOutRef.current += 1;
     if (tracedRef.current || laidOutRef.current < CAL_CELLS || !probeRefs) return;
     tracedRef.current = true;
@@ -116,13 +132,13 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }
     });
   };
   return (
-    <View ref={rootRef} accessible={false} style={s.cal}>
+    <View ref={rootRef} accessible={false} style={s.cal} onLayout={probe ? (e) => d30Log('row:layout', { w: Math.round(e.nativeEvent.layout.width), h: Math.round(e.nativeEvent.layout.height), reduceMotion }) : undefined}>
       {Array.from({ length: CAL_CELLS }, (_, i) => (
         <Animated.View
           key={i} // guard-ok: 35 одинаковых клеток фиксированного календаря, порядок не меняется
           ref={i === 0 ? firstRef : i === 29 ? thirtiethRef : undefined}
-          entering={reduceMotion ? undefined : ZoomIn.delay(i * CELL_DELAY_MS).duration(CELL_DUR_MS)}
-          onLayout={probe ? onCellLayout : undefined}
+          entering={enteringFor(i)}
+          onLayout={probe ? (e) => onCellLayout(i, e.nativeEvent.layout.width, e.nativeEvent.layout.height) : undefined}
           style={[s.cell, { backgroundColor: i < lit ? colors.accentGraphic : p.control }]}
         />
       ))}

@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-32:word:rink",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rink",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:rink:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rink",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:rink:audio",
+            "transcript": "rink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:rink:r1",
+              "targetText": "rink",
+              "meaningByLocale": {
+                "ru": "каток. When does the rink close? — «Когда закрывается каток?» Площадка для катания на коньках; здесь ледовый каток.",
+                "uk": "ковзанка. When does the rink close? — «Коли зачиняється ковзанка?» Майданчик для катання; тут льодова ковзанка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rink",
+            "definitionByLocale": {
+              "ru": "каток. When does the rink close? — «Когда закрывается каток?» Площадка для катания на коньках; здесь ледовый каток.",
+              "uk": "ковзанка. When does the rink close? — «Коли зачиняється ковзанка?» Майданчик для катання; тут льодова ковзанка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When does the rink close?",
+          "localizedMeaning": {
+            "ru": "Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»",
+            "uk": "Брат показує афішу ковзанки. Спитайте його: «Коли зачиняється ковзанка?»"
+          },
+          "orderedTokens": [
+            "When",
+            "does",
+            "the",
+            "rink",
+            "close"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i02:r1",
+            "text": "When does the rink close?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i02:r2",
+            "text": "When does the rink open?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i02:r3",
+            "text": "When does the library close?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i02:audio",
+            "transcript": "When does the rink close?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:i02:r1",
+              "targetText": "When does the rink close?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i02:r2",
+              "targetText": "When does the rink open?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i02:r3",
+              "targetText": "When does the library close?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи close — «закрываться», а здесь open — «открываться».",
+                "uk": "У записі close — «зачинятися», а тут open — «відкриватися»."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `rink`, каток, а в этом варианте — `library`, библиотека.",
+                "uk": "У записі четверте слово — `rink`, ковзанка, а в цьому варіанті — `library`, бібліотека."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите: «Когда закрывается каток?» Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i03:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i03:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите: «Когда закрывается каток?» Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите: «Когда закрывается каток?» Вставьте слово",
+            "uk": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово"
+          },
+          "gappedTargetPhrase": "When ___ the rink close?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-32:i03:r1",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i03:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Спросите: «Когда закрывается каток?» Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите: «Когда закрывается каток?» Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "Перед the rink здесь нужно `does`.",
+                "uk": "Перед the rink тут потрібне `does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите: «Когда закрывается каток?» Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "С the rink здесь нужно does; are не подходит к одному катку.",
+                "uk": "З the rink тут потрібне does; are не підходить до однієї ковзанки."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-32:i04:p1",
+              "target": "rink",
+              "meaningByLocale": {
+                "ru": "каток",
+                "uk": "ковзанка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i04:p2",
+              "target": "river",
+              "meaningByLocale": {
+                "ru": "река",
+                "uk": "річка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i04:p3",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i04:p4",
+              "target": "close",
+              "meaningByLocale": {
+                "ru": "закрываться",
+                "uk": "зачинятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rink",
+            "river",
+            "stadium",
+            "close"
+          ],
+          "rightColumn": [
+            "каток",
+            "река",
+            "стадион",
+            "закрываться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:word:race",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — race",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:race:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — race",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:race:audio",
+            "transcript": "race"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:race:r1",
+              "targetText": "race",
+              "meaningByLocale": {
+                "ru": "участвовать в гонке. When do you race? — «Когда ты участвуешь в гонках?» Состязаться с другими: кто быстрее.",
+                "uk": "брати участь у перегонах. When do you race? — «Коли ти береш участь у перегонах?» Змагатися з іншими: хто швидший."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "race",
+            "definitionByLocale": {
+              "ru": "участвовать в гонке. When do you race? — «Когда ты участвуешь в гонках?» Состязаться с другими: кто быстрее.",
+              "uk": "брати участь у перегонах. When do you race? — «Коли ти береш участь у перегонах?» Змагатися з іншими: хто швидший."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i05:audio",
+            "transcript": "Where do you race?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where do you race?",
+          "orderedTokens": [
+            "Where",
+            "do",
+            "you",
+            "race"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:word:row",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — row",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:row:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — row",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:row:audio",
+            "transcript": "row"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:row:r1",
+              "targetText": "row",
+              "meaningByLocale": {
+                "ru": "грести. Where do you row? — «Где ты гребёшь?» Двигать лодку вёслами.",
+                "uk": "веслувати. Where do you row? — «Де ти веслуєш?» Рухати човен веслами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "row",
+            "definitionByLocale": {
+              "ru": "грести. Where do you row? — «Где ты гребёшь?» Двигать лодку вёслами.",
+              "uk": "веслувати. Where do you row? — «Де ти веслуєш?» Рухати човен веслами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where do you row?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»",
+            "uk": "Подруга показує фотографії регулярних тренувань. Спитайте її: «Де ти веслуєш?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "do",
+            "you",
+            "row"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:word:judge",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — judge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:judge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — judge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:judge:audio",
+            "transcript": "judge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:judge:r1",
+              "targetText": "judge",
+              "meaningByLocale": {
+                "ru": "судья. The judge is strict. — «Судья строгий». Здесь — судья, который оценивает результаты соревнований.",
+                "uk": "суддя. The judge is strict. — «Суддя суворий». Тут — суддя, який оцінює результати змагань."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "judge",
+            "definitionByLocale": {
+              "ru": "судья. The judge is strict. — «Судья строгий». Здесь — судья, который оценивает результаты соревнований.",
+              "uk": "суддя. The judge is strict. — «Суддя суворий». Тут — суддя, який оцінює результати змагань."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы пришли на соревнования у реки. Спросите соседку: «Когда судья приезжает?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Вы пришли на соревнования у реки. Спросите соседку: «Когда судья приезжает?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i07:audio",
+            "transcript": "When does the judge arrive?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the judge arrive?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i08:r1",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i08:r2",
+            "text": "When"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i08:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+            "uk": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово"
+          },
+          "gappedTargetPhrase": "___ do you race?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-32:i08:r1",
+              "text": "Where"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i08:r2",
+              "text": "When"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i08:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "When спрашивает о времени, а здесь нужно узнать место.",
+                "uk": "When запитує про час, а тут потрібно дізнатися місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "Чтобы узнать место, нужен вопрос `Where do you race?`.",
+                "uk": "Щоб дізнатися місце, потрібне запитання `Where do you race?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i09:r1",
+            "text": "Where do you row?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i09:r2",
+            "text": "Where do you run?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i09:r3",
+            "text": "When do you row?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i09:audio",
+            "transcript": "Where do you row?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:i09:r1",
+              "targetText": "Where do you row?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i09:r2",
+              "targetText": "Where do you run?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i09:r3",
+              "targetText": "When do you row?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `row`, грести, а в этом варианте — `run`, бегать.",
+                "uk": "У записі останнє слово — `row`, веслувати, а в цьому варіанті — `run`, бігати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.",
+                "uk": "У записі перше слово — `Where`, де, а в цьому варіанті — `When`, коли."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-32:i10:p1",
+              "target": "rink",
+              "meaningByLocale": {
+                "ru": "каток",
+                "uk": "ковзанка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i10:p2",
+              "target": "river",
+              "meaningByLocale": {
+                "ru": "река",
+                "uk": "річка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i10:p3",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i10:p4",
+              "target": "judge",
+              "meaningByLocale": {
+                "ru": "судья",
+                "uk": "суддя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rink",
+            "river",
+            "stadium",
+            "judge"
+          ],
+          "rightColumn": [
+            "каток",
+            "река",
+            "стадион",
+            "судья"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i11:audio",
+            "transcript": "Where does the judge work?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where does the judge work?",
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "judge",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка говорит о гонках. Спросите её: «Когда ты участвуешь в гонках?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка говорит о гонках. Спросите её: «Когда ты участвуешь в гонках?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When do you race?",
+          "localizedMeaning": {
+            "ru": "Соседка говорит о гонках. Спросите её: «Когда ты участвуешь в гонках?»",
+            "uk": "Сусідка говорить про перегони. Спитайте її: «Коли ти береш участь у перегонах?»"
+          },
+          "orderedTokens": [
+            "When",
+            "do",
+            "you",
+            "race"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга рассказывает о своей сестре. Спросите её: «Где она гребёт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга рассказывает о своей сестре. Спросите её: «Где она гребёт?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i13:audio",
+            "transcript": "Where does she row?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where does she row?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу о её сестре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i14:r1",
+            "text": "row"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i14:r2",
+            "text": "rows"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i14:r3",
+            "text": "is row"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу о её сестре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о её сестре. Выберите слово",
+            "uk": "Спитайте подругу про її сестру. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Where does she ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-32:i14:r1",
+              "text": "row"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i14:r2",
+              "text": "rows"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i14:r3",
+              "text": "is row"
+            }
+          ],
+          "testedDimension": "Спросите подругу о её сестре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу о её сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `does` нужно `row`, без `s`.",
+                "uk": "Після `does` потрібно `row`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу о её сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно `row`, без `is`.",
+                "uk": "Тут потрібно `row`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i15:r1",
+            "text": "When do you race?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i15:r2",
+            "text": "When do you run?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i15:r3",
+            "text": "Where do you race?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i15:audio",
+            "transcript": "When do you race?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:i15:r1",
+              "targetText": "When do you race?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i15:r2",
+              "targetText": "When do you run?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i15:r3",
+              "targetText": "Where do you race?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `race`, участвовать в гонке, а в этом варианте — `run`, бегать.",
+                "uk": "У записі останнє слово — `race`, брати участь у перегонах, а в цьому варіанті — `run`, бігати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.",
+                "uk": "У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-32:i16:p1",
+              "target": "judge",
+              "meaningByLocale": {
+                "ru": "судья",
+                "uk": "суддя"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i16:p2",
+              "target": "row",
+              "meaningByLocale": {
+                "ru": "грести",
+                "uk": "веслувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i16:p3",
+              "target": "race",
+              "meaningByLocale": {
+                "ru": "участвовать в гонке",
+                "uk": "брати участь у перегонах"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i16:p4",
+              "target": "rink",
+              "meaningByLocale": {
+                "ru": "каток",
+                "uk": "ковзанка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "judge",
+            "row",
+            "race",
+            "rink"
+          ],
+          "rightColumn": [
+            "судья",
+            "грести",
+            "участвовать в гонке",
+            "каток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы снова с братом у катка. Спросите брата: «Когда закрывается каток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Вы снова с братом у катка. Спросите брата: «Когда закрывается каток?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i17:audio",
+            "transcript": "When does the rink close?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the rink close?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-32:word:rink",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rink",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:rink:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rink",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:rink:audio",
+            "transcript": "rink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:rink:r1",
+              "targetText": "rink",
+              "meaningByLocale": {
+                "ru": "каток. When does the rink close? — «Когда закрывается каток?» Площадка для катания на коньках; здесь ледовый каток.",
+                "uk": "ковзанка. When does the rink close? — «Коли зачиняється ковзанка?» Майданчик для катання; тут льодова ковзанка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rink",
+            "definitionByLocale": {
+              "ru": "каток. When does the rink close? — «Когда закрывается каток?» Площадка для катания на коньках; здесь ледовый каток.",
+              "uk": "ковзанка. When does the rink close? — «Коли зачиняється ковзанка?» Майданчик для катання; тут льодова ковзанка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показує афішу ковзанки. Спитайте його: «Коли зачиняється ковзанка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показує афішу ковзанки. Спитайте його: «Коли зачиняється ковзанка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When does the rink close?",
+          "localizedMeaning": {
+            "ru": "Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»",
+            "uk": "Брат показує афішу ковзанки. Спитайте його: «Коли зачиняється ковзанка?»"
+          },
+          "orderedTokens": [
+            "When",
+            "does",
+            "the",
+            "rink",
+            "close"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i02:r1",
+            "text": "When does the rink close?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i02:r2",
+            "text": "When does the rink open?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i02:r3",
+            "text": "When does the library close?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i02:audio",
+            "transcript": "When does the rink close?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:i02:r1",
+              "targetText": "When does the rink close?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i02:r2",
+              "targetText": "When does the rink open?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i02:r3",
+              "targetText": "When does the library close?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи close — «закрываться», а здесь open — «открываться».",
+                "uk": "У записі close — «зачинятися», а тут open — «відкриватися»."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `rink`, каток, а в этом варианте — `library`, библиотека.",
+                "uk": "У записі четверте слово — `rink`, ковзанка, а в цьому варіанті — `library`, бібліотека."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i03:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i03:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите: «Когда закрывается каток?» Вставьте слово",
+            "uk": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово"
+          },
+          "gappedTargetPhrase": "When ___ the rink close?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-32:i03:r1",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i03:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово",
+              "feedbackByLocale": {
+                "ru": "Перед the rink здесь нужно `does`.",
+                "uk": "Перед the rink тут потрібне `does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте: «Коли зачиняється ковзанка?» Вставте слово",
+              "feedbackByLocale": {
+                "ru": "С the rink здесь нужно does; are не подходит к одному катку.",
+                "uk": "З the rink тут потрібне does; are не підходить до однієї ковзанки."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-32:i04:p1",
+              "target": "rink",
+              "meaningByLocale": {
+                "ru": "каток",
+                "uk": "ковзанка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i04:p2",
+              "target": "river",
+              "meaningByLocale": {
+                "ru": "река",
+                "uk": "річка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i04:p3",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i04:p4",
+              "target": "close",
+              "meaningByLocale": {
+                "ru": "закрываться",
+                "uk": "зачинятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rink",
+            "river",
+            "stadium",
+            "close"
+          ],
+          "rightColumn": [
+            "ковзанка",
+            "річка",
+            "стадіон",
+            "зачинятися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:word:race",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — race",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:race:audio"
+        ],
+        "accessibilityLabel": "Картка слова — race",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:race:audio",
+            "transcript": "race"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:race:r1",
+              "targetText": "race",
+              "meaningByLocale": {
+                "ru": "участвовать в гонке. When do you race? — «Когда ты участвуешь в гонках?» Состязаться с другими: кто быстрее.",
+                "uk": "брати участь у перегонах. When do you race? — «Коли ти береш участь у перегонах?» Змагатися з іншими: хто швидший."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "race",
+            "definitionByLocale": {
+              "ru": "участвовать в гонке. When do you race? — «Когда ты участвуешь в гонках?» Состязаться с другими: кто быстрее.",
+              "uk": "брати участь у перегонах. When do you race? — «Коли ти береш участь у перегонах?» Змагатися з іншими: хто швидший."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i05:audio",
+            "transcript": "Where do you race?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where do you race?",
+          "orderedTokens": [
+            "Where",
+            "do",
+            "you",
+            "race"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:word:row",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — row",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:row:audio"
+        ],
+        "accessibilityLabel": "Картка слова — row",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:row:audio",
+            "transcript": "row"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:row:r1",
+              "targetText": "row",
+              "meaningByLocale": {
+                "ru": "грести. Where do you row? — «Где ты гребёшь?» Двигать лодку вёслами.",
+                "uk": "веслувати. Where do you row? — «Де ти веслуєш?» Рухати човен веслами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "row",
+            "definitionByLocale": {
+              "ru": "грести. Where do you row? — «Где ты гребёшь?» Двигать лодку вёслами.",
+              "uk": "веслувати. Where do you row? — «Де ти веслуєш?» Рухати човен веслами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує фотографії регулярних тренувань. Спитайте її: «Де ти веслуєш?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує фотографії регулярних тренувань. Спитайте її: «Де ти веслуєш?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where do you row?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»",
+            "uk": "Подруга показує фотографії регулярних тренувань. Спитайте її: «Де ти веслуєш?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "do",
+            "you",
+            "row"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:word:judge",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — judge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:word:judge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — judge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:word:judge:audio",
+            "transcript": "judge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:word:judge:r1",
+              "targetText": "judge",
+              "meaningByLocale": {
+                "ru": "судья. The judge is strict. — «Судья строгий». Здесь — судья, который оценивает результаты соревнований.",
+                "uk": "суддя. The judge is strict. — «Суддя суворий». Тут — суддя, який оцінює результати змагань."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "judge",
+            "definitionByLocale": {
+              "ru": "судья. The judge is strict. — «Судья строгий». Здесь — судья, который оценивает результаты соревнований.",
+              "uk": "суддя. The judge is strict. — «Суддя суворий». Тут — суддя, який оцінює результати змагань."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви прийшли на змагання біля річки. Спитайте сусідку: «Коли суддя приїжджає?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Ви прийшли на змагання біля річки. Спитайте сусідку: «Коли суддя приїжджає?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i07:audio",
+            "transcript": "When does the judge arrive?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the judge arrive?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i08:r1",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i08:r2",
+            "text": "When"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i08:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово",
+            "uk": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово"
+          },
+          "gappedTargetPhrase": "___ do you race?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-32:i08:r1",
+              "text": "Where"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i08:r2",
+              "text": "When"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i08:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово",
+              "feedbackByLocale": {
+                "ru": "When спрашивает о времени, а здесь нужно узнать место.",
+                "uk": "When запитує про час, а тут потрібно дізнатися місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Дізнайтеся місце перегонів: «Де ти береш участь у перегонах?» Вставте слово",
+              "feedbackByLocale": {
+                "ru": "Чтобы узнать место, нужен вопрос `Where do you race?`.",
+                "uk": "Щоб дізнатися місце, потрібне запитання `Where do you race?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i09:r1",
+            "text": "Where do you row?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i09:r2",
+            "text": "Where do you run?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i09:r3",
+            "text": "When do you row?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i09:audio",
+            "transcript": "Where do you row?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:i09:r1",
+              "targetText": "Where do you row?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i09:r2",
+              "targetText": "Where do you run?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i09:r3",
+              "targetText": "When do you row?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `row`, грести, а в этом варианте — `run`, бегать.",
+                "uk": "У записі останнє слово — `row`, веслувати, а в цьому варіанті — `run`, бігати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.",
+                "uk": "У записі перше слово — `Where`, де, а в цьому варіанті — `When`, коли."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-32:i10:p1",
+              "target": "rink",
+              "meaningByLocale": {
+                "ru": "каток",
+                "uk": "ковзанка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i10:p2",
+              "target": "river",
+              "meaningByLocale": {
+                "ru": "река",
+                "uk": "річка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i10:p3",
+              "target": "stadium",
+              "meaningByLocale": {
+                "ru": "стадион",
+                "uk": "стадіон"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i10:p4",
+              "target": "judge",
+              "meaningByLocale": {
+                "ru": "судья",
+                "uk": "суддя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rink",
+            "river",
+            "stadium",
+            "judge"
+          ],
+          "rightColumn": [
+            "ковзанка",
+            "річка",
+            "стадіон",
+            "суддя"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i11:audio",
+            "transcript": "Where does the judge work?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where does the judge work?",
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "judge",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка говорить про перегони. Спитайте її: «Коли ти береш участь у перегонах?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка говорить про перегони. Спитайте її: «Коли ти береш участь у перегонах?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When do you race?",
+          "localizedMeaning": {
+            "ru": "Соседка говорит о гонках. Спросите её: «Когда ты участвуешь в гонках?»",
+            "uk": "Сусідка говорить про перегони. Спитайте її: «Коли ти береш участь у перегонах?»"
+          },
+          "orderedTokens": [
+            "When",
+            "do",
+            "you",
+            "race"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга розповідає про свою сестру. Спитайте її: «Де вона веслує?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга розповідає про свою сестру. Спитайте її: «Де вона веслує?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i13:audio",
+            "transcript": "Where does she row?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where does she row?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте подругу про її сестру. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i14:r1",
+            "text": "row"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i14:r2",
+            "text": "rows"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i14:r3",
+            "text": "is row"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте подругу про її сестру. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу о её сестре. Выберите слово",
+            "uk": "Спитайте подругу про її сестру. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Where does she ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-32:i14:r1",
+              "text": "row"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i14:r2",
+              "text": "rows"
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i14:r3",
+              "text": "is row"
+            }
+          ],
+          "testedDimension": "Спитайте подругу про її сестру. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про її сестру. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `does` нужно `row`, без `s`.",
+                "uk": "Після `does` потрібно `row`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Спитайте подругу про її сестру. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно `row`, без `is`.",
+                "uk": "Тут потрібно `row`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-32:i15:r1",
+            "text": "When do you race?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i15:r2",
+            "text": "When do you run?"
+          },
+          {
+            "responseId": "en:lesson-07:session-32:i15:r3",
+            "text": "Where do you race?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i15:audio",
+            "transcript": "When do you race?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-32:i15:r1",
+              "targetText": "When do you race?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i15:r2",
+              "targetText": "When do you run?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i15:r3",
+              "targetText": "Where do you race?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `race`, участвовать в гонке, а в этом варианте — `run`, бегать.",
+                "uk": "У записі останнє слово — `race`, брати участь у перегонах, а в цьому варіанті — `run`, бігати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.",
+                "uk": "У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-32:i16:p1",
+              "target": "judge",
+              "meaningByLocale": {
+                "ru": "судья",
+                "uk": "суддя"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i16:p2",
+              "target": "row",
+              "meaningByLocale": {
+                "ru": "грести",
+                "uk": "веслувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i16:p3",
+              "target": "race",
+              "meaningByLocale": {
+                "ru": "участвовать в гонке",
+                "uk": "брати участь у перегонах"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-32:i16:p4",
+              "target": "rink",
+              "meaningByLocale": {
+                "ru": "каток",
+                "uk": "ковзанка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "judge",
+            "row",
+            "race",
+            "rink"
+          ],
+          "rightColumn": [
+            "суддя",
+            "веслувати",
+            "брати участь у перегонах",
+            "ковзанка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знову з братом біля ковзанки. Спитайте брата: «Коли зачиняється ковзанка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знову з братом біля ковзанки. Спитайте брата: «Коли зачиняється ковзанка?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-32:i17:audio",
+            "transcript": "When does the rink close?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the rink close?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-32:word:rink",
+      "correctText": "rink",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i01",
+      "correctText": "When does the rink close?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i02",
+      "correctText": "When does the rink close?",
+      "correctResponseId": "en:lesson-07:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i03",
+      "correctText": "does",
+      "correctResponseId": "en:lesson-07:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:word:race",
+      "correctText": "race",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i05",
+      "correctText": "Where do you race?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:word:row",
+      "correctText": "row",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i06",
+      "correctText": "Where do you row?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:word:judge",
+      "correctText": "judge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i07",
+      "correctText": "When does the judge arrive?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i08",
+      "correctText": "Where",
+      "correctResponseId": "en:lesson-07:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i09",
+      "correctText": "Where do you row?",
+      "correctResponseId": "en:lesson-07:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i11",
+      "correctText": "Where does the judge work?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i12",
+      "correctText": "When do you race?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i13",
+      "correctText": "Where does she row?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i14",
+      "correctText": "row",
+      "correctResponseId": "en:lesson-07:session-32:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i15",
+      "correctText": "When do you race?",
+      "correctResponseId": "en:lesson-07:session-32:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-32:i17",
+      "correctText": "When does the rink close?",
+      "correctResponseId": null
+    }
+  ]
+}

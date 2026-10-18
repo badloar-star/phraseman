@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-32:word:rink",
+    "correctText": "rink",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-32:i01",
-    "correctText": "Where do you meet?",
+    "correctText": "When does the rink close?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i02",
-    "correctText": "park",
+    "correctText": "When does the rink close?",
     "correctResponseId": "en:lesson-07:session-32:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-32:i03",
-    "correctText": "do",
+    "correctText": "does",
     "correctResponseId": "en:lesson-07:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-32:i04",
-    "correctText": "en:lesson-07:session-32:i04:p1=meet\nen:lesson-07:session-32:i04:p2=park\nen:lesson-07:session-32:i04:p3=stay\nen:lesson-07:session-32:i04:p4=eat",
+    "correctText": "en:lesson-07:session-32:i04:p1=rink\nen:lesson-07:session-32:i04:p2=river\nen:lesson-07:session-32:i04:p3=stadium\nen:lesson-07:session-32:i04:p4=close",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:word:race",
+    "correctText": "race",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i05",
-    "correctText": "Where do you stay?",
+    "correctText": "Where do you race?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:word:row",
+    "correctText": "row",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i06",
-    "correctText": "When does Tom travel?",
+    "correctText": "Where do you row?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-32:word:judge",
+    "correctText": "judge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i07",
-    "correctText": "Do you visit parks?",
+    "correctText": "When does the judge arrive?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i08",
-    "correctText": "park",
+    "correctText": "Where",
     "correctResponseId": "en:lesson-07:session-32:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-32:i09",
-    "correctText": "Where do you play?",
+    "correctText": "Where do you row?",
     "correctResponseId": "en:lesson-07:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-32:i10",
-    "correctText": "en:lesson-07:session-32:i10:p1=play\nen:lesson-07:session-32:i10:p2=travel\nen:lesson-07:session-32:i10:p3=visit\nen:lesson-07:session-32:i10:p4=meet",
+    "correctText": "en:lesson-07:session-32:i10:p1=rink\nen:lesson-07:session-32:i10:p2=river\nen:lesson-07:session-32:i10:p3=stadium\nen:lesson-07:session-32:i10:p4=judge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i11",
-    "correctText": "When does Tom travel?",
+    "correctText": "Where does the judge work?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i12",
-    "correctText": "Where do you park?",
+    "correctText": "When do you race?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i13",
-    "correctText": "I don’t cheat.",
+    "correctText": "Where does she row?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i14",
-    "correctText": "When",
+    "correctText": "row",
     "correctResponseId": "en:lesson-07:session-32:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-32:i15",
-    "correctText": "Where do you travel?",
+    "correctText": "When do you race?",
     "correctResponseId": "en:lesson-07:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-32:i16",
-    "correctText": "en:lesson-07:session-32:i16:p1=stay\nen:lesson-07:session-32:i16:p2=eat\nen:lesson-07:session-32:i16:p3=play\nen:lesson-07:session-32:i16:p4=visit",
+    "correctText": "en:lesson-07:session-32:i16:p1=judge\nen:lesson-07:session-32:i16:p2=row\nen:lesson-07:session-32:i16:p3=race\nen:lesson-07:session-32:i16:p4=rink",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-32:i17",
-    "correctText": "Where does Tom stay?",
+    "correctText": "When does the rink close?",
     "correctResponseId": null
   }
 ]

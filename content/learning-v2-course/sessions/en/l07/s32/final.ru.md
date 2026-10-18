@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 32 — Где и когда?
+# Английский · Урок 7 · Занятие 32 — Каток, гонки и река
 
-**Ситуация.** Вы узнаёте место встреч друзей, время поездок Тома и место ночлега знакомого в регулярных поездках.
+**Ситуация.** Вы планируете спортивный день: узнаёте у брата, когда закрывается каток, у соседки — когда она участвует в гонках, а у подруги — где она гребёт. Здесь вы сами выбираете Where или When и do или does.
 
-**Что вы освоите:** самостоятельно задавать вопросы с where и when, выбирая do или does
-**Новые слова:** —
+**Что вы освоите:** самостоятельно выбирать Where или When и do или does в вопросах о привычках
+**Новые слова:** rink, race, row, judge
+**Возвращаются:** river, stadium, library, close, run, arrive, work
 
 ---
 
 ## Интро 1
 
-### Место встречи друзей
+### Афиша катка
 
-Друг рассказывает, что его компания регулярно встречается. `Where do you meet?` — «Где вы встречаетесь?» `Where` спрашивает о месте, затем идут `do you meet`. Здесь `you` — друг и его компания. Точка на карте надёжнее инструкции «там, где все».
+Брат предлагает сходить с племянником на лёд после ваших вечерних занятий. rink — «каток». Узнайте время закрытия, чтобы понять, успеете ли покататься: When does the rink close? — «Когда закрывается каток?» When спрашивает о времени. Перед the rink здесь нужно does, затем close, без s. Коньки вы уже нашли; теперь бы не приехать только ради переобувания.
 
-**Узнайте привычное место встреч компании.**
+**Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»**
 
-- ✅ **Where do you meet?**
-- ❌ Where does you meet? — *С `you` нужно `do`.*
-- ❌ Where you meet? — *После `where` здесь нужно `do`.*
+- ✅ **When does the rink close?**
+- ❌ When do the rink close? — *Перед the rink здесь нужно does.*
+- ❌ When does the rink closes? — *После does нужно close, без s.*
 
 ---
 
 ## Интро 2
 
-### Время поездок
+### Соседка с велосипедом
 
-Знакомый рассказывает, что Том часто путешествует. `When does Tom travel?` — «Когда Том путешествует?» Вы уточняете обычное время его поездок. `When` спрашивает о времени, а для Тома используем `does` и `travel`, без `s`.
+Соседка тренируется на велосипеде по будням, а по выходным участвует в соревнованиях. Вы хотите понять её обычный график стартов. race — «участвовать в гонке». Спросите: When do you race? — «Когда ты участвуешь в гонках?» С you здесь нужно do, затем race, без s.
 
-**Узнайте, когда Том обычно путешествует.**
+**Соседка стоит рядом с велосипедом. Спросите её: «Когда ты участвуешь в гонках?»**
 
-- ✅ **When does Tom travel?**
-- ❌ When do Tom travel? — *Для Тома нужно `does`.*
-- ❌ When does Tom travels? — *После `does` нужно `travel`, без `s`.*
+- ✅ **When do you race?**
+- ❌ When does you race? — *С you нужно do.*
+- ❌ When do you races? — *После do you нужно race, без s.*
 
 ---
 
 ## Интро 3
 
-### Привычный ночлег
+### Лодка у реки
 
-Знакомый часто ездит в один город. `Where do you stay?` — «Где ты останавливаешься?» Здесь `stay` означает временно проживать во время поездки. Вы спрашиваете о его привычном месте ночлега: `where do you stay`.
+Подруга занимается греблей и показывает фотографии своих тренировок. На снимках разные берега; вы хотите узнать её обычное место занятий. row — «грести». Спросите: Where do you row? — «Где ты гребёшь?» Where спрашивает о месте; дальше идут do you row. Здесь речь о привычном маршруте тренировок.
 
-**Узнайте, где знакомый обычно останавливается в поездках.**
+**Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»**
 
-- ✅ **Where do you stay?**
-- ❌ Where does you stay? — *С `you` нужно `do`.*
-- ❌ Where do you stays? — *После `do you` нужно `stay`, без `s`.*
+- ✅ **Where do you row?**
+- ❌ Where does you row? — *С you нужно do.*
+- ❌ Where do you rows? — *После do you нужно row, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Узнайте обычное место встреч друзей**
+**1 · Карточка слова — rink**
+<!-- interaction_id: en:lesson-07:session-32:word:rink; family: word_card -->
+> **rink** — каток. When does the rink close? — «Когда закрывается каток?» Площадка для катания на коньках; здесь ледовый каток.
+
+**2 · Брат показывает афишу катка. Спросите его: «Когда закрывается каток?»**
 <!-- interaction_id: en:lesson-07:session-32:i01; family: phrase_builder -->
-Плитки: `meet` `you` `do` `Where` → **Where do you meet?**
+Плитки: `close` `rink` `the` `does` `When` → **When does the rink close?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте брата**
 <!-- interaction_id: en:lesson-07:session-32:i02; family: listen_choose -->
-🔊 *park* → **park** · play · stay
-- play — *В записи первое слово — `park`, а в этом варианте — `play`.*
-- stay — *В записи первое слово — `park`, а в этом варианте — `stay`.*
+🔊 *When does the rink close?* → **When does the rink close?** · When does the rink open? · When does the library close?
+- When does the rink open? — *В записи close — «закрываться», а здесь open — «открываться».*
+- When does the library close? — *В записи четвёртое слово — `rink`, каток, а в этом варианте — `library`, библиотека.*
 
-**3 · Узнайте, где коллега обычно ест**
+**4 · Спросите: «Когда закрывается каток?» Вставьте слово**
 <!-- interaction_id: en:lesson-07:session-32:i03; family: context_gap_grammar -->
-Where ___ you eat? → **do** · does · are
-- does — *С `you` нужно `do`.*
-- are — *Вопрос о привычном действии `eat` строим с `do`.*
+When ___ the rink close? → **does** · do · are
+- do — *Перед the rink здесь нужно `does`.*
+- are — *С the rink здесь нужно does; are не подходит к одному катку.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-32:i04; family: speed_match -->
-meet — встречаться · park — парковаться · stay — останавливаться на время поездки · eat — есть
+rink — каток · river — река · stadium — стадион · close — закрываться
 
-**5 · Послушайте и соберите вопрос**
+**6 · Карточка слова — race**
+<!-- interaction_id: en:lesson-07:session-32:word:race; family: word_card -->
+> **race** — участвовать в гонке. When do you race? — «Когда ты участвуешь в гонках?» Состязаться с другими: кто быстрее.
+
+**7 · Послушайте соседку и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-32:i05; family: listen_build_dictation -->
-🔊 *Where do you stay?* Плитки: `stay` `you` `do` `Where` → **Where do you stay?**
+🔊 *Where do you race?* Плитки: `race` `you` `do` `Where` → **Where do you race?**
 
-**6 · Узнайте обычное время поездок Тома**
+**8 · Карточка слова — row**
+<!-- interaction_id: en:lesson-07:session-32:word:row; family: word_card -->
+> **row** — грести. Where do you row? — «Где ты гребёшь?» Двигать лодку вёслами.
+
+**9 · Подруга показывает фотографии регулярных тренировок. Спросите её: «Где ты гребёшь?»**
 <!-- interaction_id: en:lesson-07:session-32:i06; family: phrase_builder -->
-Плитки: `travel` `Tom` `does` `When` → **When does Tom travel?**
+Плитки: `row` `you` `do` `Where` → **Where do you row?**
 
-**7 · Спросите друга «Ты посещаешь парки?»**
+**10 · Карточка слова — judge**
+<!-- interaction_id: en:lesson-07:session-32:word:judge; family: word_card -->
+> **judge** — судья. The judge is strict. — «Судья строгий». Здесь — судья, который оценивает результаты соревнований.
+
+**11 · Вы пришли на соревнования у реки. Спросите соседку: «Когда судья приезжает?»**
 <!-- interaction_id: en:lesson-07:session-32:i07; family: scripted_repeat_compare -->
-🎙 **Do you visit parks?**
+🎙 **When does the judge arrive?**
 
-**8 · Спросите «Где Том паркуется?»**
+**12 · Узнайте место гонок: «Где ты участвуешь в гонках?» Вставьте слово**
 <!-- interaction_id: en:lesson-07:session-32:i08; family: context_gap_grammar -->
-Where does Tom ___? → **park** · parks · is park
-- parks — *После `does` нужно `park`.*
-- is park — *Здесь нужно `park`, без `is`.*
+___ do you race? → **Where** · When · Are
+- When — *When спрашивает о времени, а здесь нужно узнать место.*
+- Are — *Чтобы узнать место, нужен вопрос `Where do you race?`.*
 
-**9 · Послушайте и выберите вопрос**
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-32:i09; family: listen_choose -->
-🔊 *Where do you play?* → **Where do you play?** · When do you play? · Where do you eat?
-- When do you play? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you eat? — *В записи последнее слово — `play`, а в этом варианте — `eat`.*
+🔊 *Where do you row?* → **Where do you row?** · Where do you run? · When do you row?
+- Where do you run? — *В записи последнее слово — `row`, грести, а в этом варианте — `run`, бегать.*
+- When do you row? — *В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-32:i10; family: speed_match -->
-play — играть · travel — путешествовать · visit — посещать · meet — встречаться
+rink — каток · river — река · stadium — стадион · judge — судья
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте брата и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-32:i11; family: listen_build_dictation -->
-🔊 *When does Tom travel?* Плитки: `travel` `Tom` `does` `When` → **When does Tom travel?**
+🔊 *Where does the judge work?* Плитки: `work` `judge` `the` `does` `Where` → **Where does the judge work?**
 
-**12 · Узнайте, где коллега обычно паркуется**
+**16 · Соседка говорит о гонках. Спросите её: «Когда ты участвуешь в гонках?»**
 <!-- interaction_id: en:lesson-07:session-32:i12; family: phrase_builder -->
-Плитки: `park` `you` `do` `Where` → **Where do you park?**
+Плитки: `race` `you` `do` `When` → **When do you race?**
 
-**13 · Перед игрой скажите «Я не жульничаю»**
+**17 · Подруга рассказывает о своей сестре. Спросите её: «Где она гребёт?»**
 <!-- interaction_id: en:lesson-07:session-32:i13; family: scripted_repeat_compare -->
-🎙 **I don’t cheat.**
+🎙 **Where does she row?**
 
-**14 · Узнайте время приёма пищи: «Когда Том ест?»**
+**18 · Спросите подругу о её сестре. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-32:i14; family: context_gap_grammar -->
-___ does Tom eat? → **When** · Does · Are
-- Does — *Чтобы спросить о времени, перед `does` нужно `when`.*
-- Are — *Вопрос о времени начинается с `when`.*
+Where does she ___? → **row** · rows · is row
+- rows — *После `does` нужно `row`, без `s`.*
+- is row — *Здесь нужно `row`, без `is`.*
 
-**15 · Послушайте и выберите вопрос**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-07:session-32:i15; family: listen_choose -->
-🔊 *Where do you travel?* → **Where do you travel?** · When do you travel? · Where do you work?
-- When do you travel? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you work? — *В записи последнее слово — `travel`, а в этом варианте — `work`.*
+🔊 *When do you race?* → **When do you race?** · When do you run? · Where do you race?
+- When do you run? — *В записи последнее слово — `race`, участвовать в гонке, а в этом варианте — `run`, бегать.*
+- Where do you race? — *В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-32:i16; family: speed_match -->
-stay — останавливаться на время поездки · eat — есть · play — играть · visit — посещать
+judge — судья · row — грести · race — участвовать в гонке · rink — каток
 
-**17 · Том регулярно ездит в один город. Узнайте у друга «Где Том останавливается?»**
+**21 · Вы снова с братом у катка. Спросите брата: «Когда закрывается каток?»**
 <!-- interaction_id: en:lesson-07:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where does Tom stay?**
-
+🎙 **When does the rink close?**

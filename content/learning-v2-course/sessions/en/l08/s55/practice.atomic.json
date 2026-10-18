@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-55:word:improve",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — improve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:improve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — improve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:improve:audio",
+            "transcript": "improve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:improve:r1",
+              "targetText": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать. I can improve it. — «Я могу это улучшить».",
+                "uk": "поліпшувати. I can improve it. — «Я можу це поліпшити»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "improve",
+            "definitionByLocale": {
+              "ru": "улучшать. I can improve it. — «Я могу это улучшить».",
+              "uk": "поліпшувати. I can improve it. — «Я можу це поліпшити»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите улучшить освещение: «Я могу это улучшить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите улучшить освещение: «Я могу это улучшить»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can improve it.",
+          "localizedMeaning": {
+            "ru": "Предложите улучшить освещение: «Я могу это улучшить»",
+            "uk": "Запропонуйте поліпшити освітлення: «Я можу це поліпшити»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "improve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i02:r1",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i02:r2",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i02:r3",
+            "text": "design"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i02:audio",
+            "transcript": "improve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:i02:r1",
+              "targetText": "improve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i02:r2",
+              "targetText": "solve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i02:r3",
+              "targetText": "design",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит improve",
+                "uk": "У записі звучить improve"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит improve",
+                "uk": "У записі звучить improve"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i03:r1",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i03:r2",
+            "text": "to improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i03:r3",
+            "text": "improves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-55:i03:r1",
+              "text": "improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i03:r2",
+              "text": "to improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i03:r3",
+              "text": "improves"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-55:i04:p1",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i04:p2",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i04:p3",
+              "target": "design",
+              "meaningByLocale": {
+                "ru": "разрабатывать оформление",
+                "uk": "розробляти оформлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i04:p4",
+              "target": "manage",
+              "meaningByLocale": {
+                "ru": "справляться",
+                "uk": "справлятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "improve",
+            "solve",
+            "design",
+            "manage"
+          ],
+          "rightColumn": [
+            "улучшать",
+            "решать",
+            "разрабатывать оформление",
+            "справляться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i05:audio",
+            "transcript": "I can improve it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can improve it.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "improve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:word:feedback",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — feedback",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:feedback:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — feedback",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:feedback:audio",
+            "transcript": "feedback"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:feedback:r1",
+              "targetText": "feedback",
+              "meaningByLocale": {
+                "ru": "обратная связь, отзыв о работе. She can give feedback. — «Она может дать обратную связь». В этой фразе feedback без a.",
+                "uk": "зворотний зв’язок, відгук про роботу. She can give feedback. — «Вона може дати зворотний зв’язок». У цій фразі feedback без a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "feedback",
+            "definitionByLocale": {
+              "ru": "обратная связь, отзыв о работе. She can give feedback. — «Она может дать обратную связь». В этой фразе feedback без a.",
+              "uk": "зворотний зв’язок, відгук про роботу. She can give feedback. — «Вона може дати зворотний зв’язок». У цій фразі feedback без a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите «Она может дать обратную связь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Она может дать обратную связь»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can give feedback.",
+          "localizedMeaning": {
+            "ru": "Скажите «Она может дать обратную связь»",
+            "uk": "Скажіть «Вона може дати зворотний зв’язок»"
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "give",
+            "feedback"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:word:progress",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — progress",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:progress:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — progress",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:progress:audio",
+            "transcript": "progress"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:progress:r1",
+              "targetText": "progress",
+              "meaningByLocale": {
+                "ru": "прогресс, продвижение. I can see my progress. — «Я вижу свой прогресс».",
+                "uk": "прогрес, поступ. I can see my progress. — «Я бачу свій прогрес»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "progress",
+            "definitionByLocale": {
+              "ru": "прогресс, продвижение. I can see my progress. — «Я вижу свой прогресс».",
+              "uk": "прогрес, поступ. I can see my progress. — «Я бачу свій прогрес»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите «Я вижу свой прогресс»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите «Я вижу свой прогресс»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i07:audio",
+            "transcript": "I can see my progress."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can see my progress.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i08:r1",
+            "text": "give"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i08:r2",
+            "text": "to give"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i08:r3",
+            "text": "gives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "She can ___ feedback.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-55:i08:r1",
+              "text": "give"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i08:r2",
+              "text": "to give"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i08:r3",
+              "text": "gives"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i09:r1",
+            "text": "She can give feedback."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i09:r2",
+            "text": "He can give feedback."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i09:r3",
+            "text": "They can give feedback."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i09:audio",
+            "transcript": "She can give feedback."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:i09:r1",
+              "targetText": "She can give feedback.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i09:r2",
+              "targetText": "He can give feedback.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i09:r3",
+              "targetText": "They can give feedback.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can give feedback.",
+                "uk": "У записі звучить She can give feedback."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can give feedback.",
+                "uk": "У записі звучить She can give feedback."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-55:i10:p1",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i10:p2",
+              "target": "feedback",
+              "meaningByLocale": {
+                "ru": "обратная связь",
+                "uk": "зворотний зв’язок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i10:p3",
+              "target": "progress",
+              "meaningByLocale": {
+                "ru": "продвижение",
+                "uk": "поступ"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i10:p4",
+              "target": "solution",
+              "meaningByLocale": {
+                "ru": "решение задачи",
+                "uk": "розв’язання задачі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "improve",
+            "feedback",
+            "progress",
+            "solution"
+          ],
+          "rightColumn": [
+            "улучшать",
+            "обратная связь",
+            "продвижение",
+            "решение задачи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i11:audio",
+            "transcript": "I can see my progress."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can see my progress.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "my",
+            "progress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:word:accuracy",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — accuracy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:accuracy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — accuracy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:accuracy:audio",
+            "transcript": "accuracy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:accuracy:r1",
+              "targetText": "accuracy",
+              "meaningByLocale": {
+                "ru": "точность. I can improve my accuracy. — «Я могу повысить свою точность». Например, делать меньше ошибок при наборе текста.",
+                "uk": "точність. I can improve my accuracy. — «Я можу підвищити свою точність». Наприклад, робити менше помилок під час набору тексту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accuracy",
+            "definitionByLocale": {
+              "ru": "точность. I can improve my accuracy. — «Я могу повысить свою точность». Например, делать меньше ошибок при наборе текста.",
+              "uk": "точність. I can improve my accuracy. — «Я можу підвищити свою точність». Наприклад, робити менше помилок під час набору тексту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы тренируетесь печатать без ошибок. Скажите «Я могу повысить свою точность»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы тренируетесь печатать без ошибок. Скажите «Я могу повысить свою точность»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can improve my accuracy.",
+          "localizedMeaning": {
+            "ru": "Вы тренируетесь печатать без ошибок. Скажите «Я могу повысить свою точность»",
+            "uk": "Ви тренуєтеся друкувати без помилок. Скажіть «Я можу підвищити свою точність»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "improve",
+            "my",
+            "accuracy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите «Ты можешь дать мне обратную связь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Попросите «Ты можешь дать мне обратную связь?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i13:audio",
+            "transcript": "Can you give me feedback?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you give me feedback?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i14:r1",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i14:r2",
+            "text": "to improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i14:r3",
+            "text": "improves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ my accuracy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-55:i14:r1",
+              "text": "improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i14:r2",
+              "text": "to improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i14:r3",
+              "text": "improves"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i15:r1",
+            "text": "I can see my progress."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i15:r2",
+            "text": "I can see your progress."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i15:r3",
+            "text": "We can see your progress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i15:audio",
+            "transcript": "I can see my progress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:i15:r1",
+              "targetText": "I can see my progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i15:r2",
+              "targetText": "I can see your progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i15:r3",
+              "targetText": "We can see your progress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see my progress.",
+                "uk": "У записі звучить I can see my progress."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see my progress.",
+                "uk": "У записі звучить I can see my progress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-55:i16:p1",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i16:p2",
+              "target": "feedback",
+              "meaningByLocale": {
+                "ru": "обратная связь",
+                "uk": "зворотний зв’язок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i16:p3",
+              "target": "progress",
+              "meaningByLocale": {
+                "ru": "продвижение",
+                "uk": "поступ"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i16:p4",
+              "target": "accuracy",
+              "meaningByLocale": {
+                "ru": "точность",
+                "uk": "точність"
+              }
+            }
+          ],
+          "leftColumn": [
+            "improve",
+            "feedback",
+            "progress",
+            "accuracy"
+          ],
+          "rightColumn": [
+            "улучшать",
+            "обратная связь",
+            "продвижение",
+            "точность"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы сделали пробную упаковку для подарка. Попросите знакомого сказать, что получилось хорошо, а что изменить: «Ты можешь дать мне обратную связь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Вы сделали пробную упаковку для подарка. Попросите знакомого сказать, что получилось хорошо, а что изменить: «Ты можешь дать мне обратную связь?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i17:audio",
+            "transcript": "Can you give me feedback?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you give me feedback?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-55:word:improve",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — improve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:improve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — improve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:improve:audio",
+            "transcript": "improve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:improve:r1",
+              "targetText": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать. I can improve it. — «Я могу это улучшить».",
+                "uk": "поліпшувати. I can improve it. — «Я можу це поліпшити»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "improve",
+            "definitionByLocale": {
+              "ru": "улучшать. I can improve it. — «Я могу это улучшить».",
+              "uk": "поліпшувати. I can improve it. — «Я можу це поліпшити»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте поліпшити освітлення: «Я можу це поліпшити»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте поліпшити освітлення: «Я можу це поліпшити»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can improve it.",
+          "localizedMeaning": {
+            "ru": "Предложите улучшить освещение: «Я могу это улучшить»",
+            "uk": "Запропонуйте поліпшити освітлення: «Я можу це поліпшити»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "improve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i02:r1",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i02:r2",
+            "text": "solve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i02:r3",
+            "text": "design"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i02:audio",
+            "transcript": "improve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:i02:r1",
+              "targetText": "improve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i02:r2",
+              "targetText": "solve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i02:r3",
+              "targetText": "design",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит improve",
+                "uk": "У записі звучить improve"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит improve",
+                "uk": "У записі звучить improve"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i03:r1",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i03:r2",
+            "text": "to improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i03:r3",
+            "text": "improves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-55:i03:r1",
+              "text": "improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i03:r2",
+              "text": "to improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i03:r3",
+              "text": "improves"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-55:i04:p1",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i04:p2",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i04:p3",
+              "target": "design",
+              "meaningByLocale": {
+                "ru": "разрабатывать оформление",
+                "uk": "розробляти оформлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i04:p4",
+              "target": "manage",
+              "meaningByLocale": {
+                "ru": "справляться",
+                "uk": "справлятися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "improve",
+            "solve",
+            "design",
+            "manage"
+          ],
+          "rightColumn": [
+            "поліпшувати",
+            "розв’язувати",
+            "розробляти оформлення",
+            "справлятися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i05:audio",
+            "transcript": "I can improve it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can improve it.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "improve",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:word:feedback",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — feedback",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:feedback:audio"
+        ],
+        "accessibilityLabel": "Картка слова — feedback",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:feedback:audio",
+            "transcript": "feedback"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:feedback:r1",
+              "targetText": "feedback",
+              "meaningByLocale": {
+                "ru": "обратная связь, отзыв о работе. She can give feedback. — «Она может дать обратную связь». В этой фразе feedback без a.",
+                "uk": "зворотний зв’язок, відгук про роботу. She can give feedback. — «Вона може дати зворотний зв’язок». У цій фразі feedback без a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "feedback",
+            "definitionByLocale": {
+              "ru": "обратная связь, отзыв о работе. She can give feedback. — «Она может дать обратную связь». В этой фразе feedback без a.",
+              "uk": "зворотний зв’язок, відгук про роботу. She can give feedback. — «Вона може дати зворотний зв’язок». У цій фразі feedback без a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть «Вона може дати зворотний зв’язок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Вона може дати зворотний зв’язок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can give feedback.",
+          "localizedMeaning": {
+            "ru": "Скажите «Она может дать обратную связь»",
+            "uk": "Скажіть «Вона може дати зворотний зв’язок»"
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "give",
+            "feedback"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:word:progress",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — progress",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:progress:audio"
+        ],
+        "accessibilityLabel": "Картка слова — progress",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:progress:audio",
+            "transcript": "progress"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:progress:r1",
+              "targetText": "progress",
+              "meaningByLocale": {
+                "ru": "прогресс, продвижение. I can see my progress. — «Я вижу свой прогресс».",
+                "uk": "прогрес, поступ. I can see my progress. — «Я бачу свій прогрес»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "progress",
+            "definitionByLocale": {
+              "ru": "прогресс, продвижение. I can see my progress. — «Я вижу свой прогресс».",
+              "uk": "прогрес, поступ. I can see my progress. — «Я бачу свій прогрес»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть «Я бачу свій прогрес»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть «Я бачу свій прогрес»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i07:audio",
+            "transcript": "I can see my progress."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can see my progress.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i08:r1",
+            "text": "give"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i08:r2",
+            "text": "to give"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i08:r3",
+            "text": "gives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "She can ___ feedback.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-55:i08:r1",
+              "text": "give"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i08:r2",
+              "text": "to give"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i08:r3",
+              "text": "gives"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i09:r1",
+            "text": "She can give feedback."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i09:r2",
+            "text": "He can give feedback."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i09:r3",
+            "text": "They can give feedback."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i09:audio",
+            "transcript": "She can give feedback."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:i09:r1",
+              "targetText": "She can give feedback.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i09:r2",
+              "targetText": "He can give feedback.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i09:r3",
+              "targetText": "They can give feedback.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can give feedback.",
+                "uk": "У записі звучить She can give feedback."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can give feedback.",
+                "uk": "У записі звучить She can give feedback."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-55:i10:p1",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i10:p2",
+              "target": "feedback",
+              "meaningByLocale": {
+                "ru": "обратная связь",
+                "uk": "зворотний зв’язок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i10:p3",
+              "target": "progress",
+              "meaningByLocale": {
+                "ru": "продвижение",
+                "uk": "поступ"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i10:p4",
+              "target": "solution",
+              "meaningByLocale": {
+                "ru": "решение задачи",
+                "uk": "розв’язання задачі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "improve",
+            "feedback",
+            "progress",
+            "solution"
+          ],
+          "rightColumn": [
+            "поліпшувати",
+            "зворотний зв’язок",
+            "поступ",
+            "розв’язання задачі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i11:audio",
+            "transcript": "I can see my progress."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can see my progress.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "my",
+            "progress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:word:accuracy",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — accuracy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:word:accuracy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — accuracy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:word:accuracy:audio",
+            "transcript": "accuracy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:word:accuracy:r1",
+              "targetText": "accuracy",
+              "meaningByLocale": {
+                "ru": "точность. I can improve my accuracy. — «Я могу повысить свою точность». Например, делать меньше ошибок при наборе текста.",
+                "uk": "точність. I can improve my accuracy. — «Я можу підвищити свою точність». Наприклад, робити менше помилок під час набору тексту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accuracy",
+            "definitionByLocale": {
+              "ru": "точность. I can improve my accuracy. — «Я могу повысить свою точность». Например, делать меньше ошибок при наборе текста.",
+              "uk": "точність. I can improve my accuracy. — «Я можу підвищити свою точність». Наприклад, робити менше помилок під час набору тексту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви тренуєтеся друкувати без помилок. Скажіть «Я можу підвищити свою точність»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви тренуєтеся друкувати без помилок. Скажіть «Я можу підвищити свою точність»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can improve my accuracy.",
+          "localizedMeaning": {
+            "ru": "Вы тренируетесь печатать без ошибок. Скажите «Я могу повысить свою точность»",
+            "uk": "Ви тренуєтеся друкувати без помилок. Скажіть «Я можу підвищити свою точність»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "improve",
+            "my",
+            "accuracy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть «Ти можеш дати мені зворотний зв’язок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Попросіть «Ти можеш дати мені зворотний зв’язок?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i13:audio",
+            "transcript": "Can you give me feedback?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you give me feedback?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i14:r1",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i14:r2",
+            "text": "to improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i14:r3",
+            "text": "improves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ my accuracy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-55:i14:r1",
+              "text": "improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i14:r2",
+              "text": "to improve"
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i14:r3",
+              "text": "improves"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-55:i15:r1",
+            "text": "I can see my progress."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i15:r2",
+            "text": "I can see your progress."
+          },
+          {
+            "responseId": "en:lesson-08:session-55:i15:r3",
+            "text": "We can see your progress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i15:audio",
+            "transcript": "I can see my progress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-55:i15:r1",
+              "targetText": "I can see my progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i15:r2",
+              "targetText": "I can see your progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i15:r3",
+              "targetText": "We can see your progress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see my progress.",
+                "uk": "У записі звучить I can see my progress."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see my progress.",
+                "uk": "У записі звучить I can see my progress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-55:i16:p1",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i16:p2",
+              "target": "feedback",
+              "meaningByLocale": {
+                "ru": "обратная связь",
+                "uk": "зворотний зв’язок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i16:p3",
+              "target": "progress",
+              "meaningByLocale": {
+                "ru": "продвижение",
+                "uk": "поступ"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-55:i16:p4",
+              "target": "accuracy",
+              "meaningByLocale": {
+                "ru": "точность",
+                "uk": "точність"
+              }
+            }
+          ],
+          "leftColumn": [
+            "improve",
+            "feedback",
+            "progress",
+            "accuracy"
+          ],
+          "rightColumn": [
+            "поліпшувати",
+            "зворотний зв’язок",
+            "поступ",
+            "точність"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зробили пробне пакування для подарунка. Попросіть знайомого сказати, що вдалося добре, а що змінити: «Ти можеш дати мені зворотний зв’язок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Ви зробили пробне пакування для подарунка. Попросіть знайомого сказати, що вдалося добре, а що змінити: «Ти можеш дати мені зворотний зв’язок?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-55:i17:audio",
+            "transcript": "Can you give me feedback?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you give me feedback?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-55:word:improve",
+      "correctText": "improve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i01",
+      "correctText": "I can improve it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i02",
+      "correctText": "improve",
+      "correctResponseId": "en:lesson-08:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i03",
+      "correctText": "improve",
+      "correctResponseId": "en:lesson-08:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i05",
+      "correctText": "I can improve it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:word:feedback",
+      "correctText": "feedback",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i06",
+      "correctText": "She can give feedback.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:word:progress",
+      "correctText": "progress",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i07",
+      "correctText": "I can see my progress.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i08",
+      "correctText": "give",
+      "correctResponseId": "en:lesson-08:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i09",
+      "correctText": "She can give feedback.",
+      "correctResponseId": "en:lesson-08:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i11",
+      "correctText": "I can see my progress.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:word:accuracy",
+      "correctText": "accuracy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i12",
+      "correctText": "I can improve my accuracy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i13",
+      "correctText": "Can you give me feedback?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i14",
+      "correctText": "improve",
+      "correctResponseId": "en:lesson-08:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i15",
+      "correctText": "I can see my progress.",
+      "correctResponseId": "en:lesson-08:session-55:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-55:i17",
+      "correctText": "Can you give me feedback?",
+      "correctResponseId": null
+    }
+  ]
+}

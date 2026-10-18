@@ -1,5 +1,5 @@
 // зачем (координатор 14.10): подпись транскрипции на стопке хаба Карточек обязана читаться на всех 23 темах —
-// раньше приглушённый цвет давал контраст 1.57–5.33. Подпись берёт цвет слова (faceInk); порог ≥ 4.0 (graphite тёмная 4.10).
+// раньше приглушённый цвет давал контраст 1.57–5.33. Подпись берёт цвет слова (faceInk); порог ≥ 4.5 (цвет слова на заливке стопки; доля цвета темы 0,45, Ревизор 3.36, 18.10).
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { liquidGlassTokens, LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
@@ -34,7 +34,7 @@ describe('хаб Карточек: подпись транскрипции на 
     expect(src).toMatch(/const faceInkSoft = faceInk;/);
   });
 
-  it('контраст цвета слова на заливке стопки ≥ 4.0 на всех 23 темах, обоих видах, уровнях и значениях ползунка', () => {
+  it('контраст цвета слова на заливке стопки ≥ 4.5 на всех 23 темах, обоих видах, уровнях и значениях ползунка', () => {
     const ids = [...new Set([...(LIQUID_GLASS_THEME_IDS as readonly string[]), ...(LIQUID_GLASS_GRADIENT_THEME_IDS as readonly string[])])];
     expect(ids.length).toBe(23);
     const bad: string[] = [];
@@ -44,10 +44,10 @@ describe('хаб Карточек: подпись транскрипции на 
           for (const intensity of [0, 0.25, 0.5, 0.75, 1]) {
             const g: any = liquidGlassTokens(id as any, { level, appearance, intensity });
             const [a, b] = themePair(g);
-            const stops = [mixDark(a, g.deepBase, 0.5), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)];
+            const stops = [mixDark(a, g.deepBase, 0.45), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)];
             const ink = g.isLight ? g.text : g.mediaInk;
             const worst = Math.min(...stops.map((s) => ratio(ink, s)));
-            if (worst < 4.0) bad.push(`${id}/${appearance}/${level}/${intensity}: ${worst.toFixed(2)}`);
+            if (worst < 4.5) bad.push(`${id}/${appearance}/${level}/${intensity}: ${worst.toFixed(2)}`);
           }
         }
       }

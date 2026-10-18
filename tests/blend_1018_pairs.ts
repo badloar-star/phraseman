@@ -3,6 +3,7 @@
 // Порог: заливка кнопки к фону ≥ 3:1 (графика) или явный тон ≥ 1,5:1 (контейнеры-плашки отделены тенью — считаем только подпись), текст ≥ 4,5:1.
 // Общий модуль для теста (tests/blend_1018_audit.test.ts) и отчёта (scripts/blend_1018_report.cjs). «Было» — токены до исправлений 17.10 (before), «стало» — текущие (after). BLEND_WRITE=1 пишет таблицу «тема × элемент × контраст» в docs/phraseman-2.0/evidence/blend_1018.md.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { feedbackInkSoftForLight } from '../constants/learningV2ModeFeedbackPalette';
 
 type Tok = Record<string, string>;
 const parse = (c: string): { rgb: number[]; a: number } => {
@@ -80,6 +81,8 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Продолжить', what: 'заливка полосы к дорожке', min: GRAPHIC, before: (t) => ratio(solid(t.accentGraphic!), solid(t.opaqueControl!)), after: (t) => ratio(solid(t.accentGraphic!), solid(t.buttonFill!)) },
   { element: 'Продолжить', what: 'плашка на арте: подпись (белый арт)', min: TEXT, before: (t) => ratio(solid(t.text!), over(t.opaqueControl!, [255, 255, 255], 0.5)), after: (t) => ratio(solid(t.text!), over(t.opaqueControl!, [255, 255, 255], 0.9)) },
   { element: 'Продолжить', what: 'плашка на арте: подпись (чёрный арт)', min: TEXT, before: (t) => ratio(solid(t.text!), over(t.opaqueControl!, [0, 0, 0], 0.5)), after: (t) => ratio(solid(t.text!), over(t.opaqueControl!, [0, 0, 0], 0.9)) },
+  // ── шторка занятия: круг g.text, значок play — g.opaqueSheet (раньше g.ctaInk)
+  { element: 'Шторка занятия', what: 'значок play к кругу', min: GRAPHIC, before: (t) => ratio(solid(t.ctaInk!), solid(t.text!)), after: (t) => ratio(solid(t.opaqueSheet!), solid(t.text!)) },
   // ── шторка голосового лимита
   { element: 'Шторка голоса', what: 'значок микрофона к плитке', min: GRAPHIC, before: (t) => ratio(solid(t.accent!), over(t.accentSoft!, solid(t.opaqueCard!))), after: (t) => ratio(solid(t.accentGraphic!), over(t.accentSoft!, solid(t.opaqueCard!))) },
   { element: 'Шторка голоса', what: 'пилюля счётчика к листу (тон)', min: TONE, before: (t) => ratio(solid(t.opaqueControl!), solid(t.opaqueCard!)), after: (t) => ratio(solid(t.buttonFill!), solid(t.opaqueCard!)) },
@@ -94,7 +97,7 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Поле пар', what: 'выбранная к обычной плитке (тон)', min: TONE, before: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.16), solid(t.opaqueCard!)), after: (t) => ratio(over(t.accentGraphic!, solid(t.bg!), 0.32), solid(t.opaqueCard!)) },
   // ── обратная связь режимов: основной текст (был жёсткий #17332A, стал g.text) и приглушённый (был #355148, стал g.secondary)
   { element: 'Обратная связь режимов', what: 'основной текст к тинту', min: TEXT, before: (t) => fbWorst('#17332A', t), after: (t) => fbWorst(t.text!, t) },
-  { element: 'Обратная связь режимов', what: 'приглушённый текст к тинту (теперь тоже g.text)', min: TEXT, before: (t) => fbWorst('#355148', t), after: (t) => fbWorst(t.text!, t) },
+  { element: 'Обратная связь режимов', what: 'приглушённый текст к тинту (светлые — токен вторичного, тёмные — g.text)', min: TEXT, before: (t) => fbWorst('#355148', t), after: (t) => fbWorst(String(t.isLight) === 'true' ? feedbackInkSoftForLight(t as never) : t.text!, t) },
   // ── панель обратной связи V2 без обводки (8c4b052de): отличие панели от страницы держит только тинт 12 % — считаем честно, пол 1,03 (цель 1,5 недостижима тинтом 12 %: решение Макетов — тень или плотнее тинт)
   { element: 'Обратная связь режимов', what: 'панель (тинт 12 %) к странице — тон', min: TONE, floor: 1.02, after: (t) => Math.min(...FB_TINTS.map((tint) => ratio(over(tint, solid(t.bg!)), solid(t.bg!)))) },
   { element: 'Обратная связь режимов', what: '«верно» к «неверно» — различие панелей', min: 1.05, floor: 1.0, after: (t) => ratio(over(FB_TINTS[0], solid(t.bg!)), over(FB_TINTS[1], solid(t.bg!))) },

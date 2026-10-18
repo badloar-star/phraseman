@@ -223,8 +223,9 @@ export default function LearningV2SessionOutcomeSheet({
               <View style={[sx.orbPlate, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.cta }]}>
                 <View style={sx.orbPlateShade} />
               </View>
+              {/* зачем (Сверка ib_light_sheet, 18.10): круг залит g.text, значок — цветом листа (g.opaqueSheet) = инверсия круга; прежний g.ctaInk в светлых темах почти сливался с кругом */}
               <View style={[sx.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.text }]}>
-                <Ionicons name={locked ? "lock-closed" : checkpoint ? "trophy" : "play"} size={38} color={locked ? g.secondary : g.ctaInk} />
+                <Ionicons name={locked ? "lock-closed" : checkpoint ? "trophy" : "play"} size={38} color={locked ? g.secondary : g.opaqueSheet} />
               </View>
             </Animated.View>
             <Animated.View style={detailsStyle}>

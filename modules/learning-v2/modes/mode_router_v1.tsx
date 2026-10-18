@@ -25,6 +25,7 @@ import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { LearningV2ModeFeedbackLaneV1 } from "./mode_feedback_v1";
 import { useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { nestedShadowStyle } from "../../../constants/liquidGlassShadowStyle";
+import { feedbackInkSoftForLight } from "../../../constants/learningV2ModeFeedbackPalette";
 import PhraseBuilderModeV1 from "./phrase_builder_mode_v1";
 import ListenChooseModeV1 from "./listen_choose_mode_v1";
 import ListenBuildDictationModeV1 from "./listen_build_dictation_mode_v1";
@@ -111,7 +112,7 @@ export function LearningV2ModeRouterV1(
   return (
     <>
       <Component {...props} />
-      <LearningV2ModeFeedbackLaneV1 feedback={props.learnerFeedback} interfaceLocale={props.interfaceLocale} ink={g.text} shadow={nestedShadowStyle(g) as never} />
+      <LearningV2ModeFeedbackLaneV1 feedback={props.learnerFeedback} interfaceLocale={props.interfaceLocale} ink={g.text} inkSoft={g.isLight ? feedbackInkSoftForLight(g) : g.text} shadow={nestedShadowStyle(g) as never} />
     </>
   );
 }

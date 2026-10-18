@@ -133,23 +133,27 @@ export function LearningV2TextAnalysisV1({
   analysis,
   interfaceLocale,
   ink: inkColor,
+  inkSoft: inkSoftColor,
 }: Readonly<{
   analysis: LearningV2ModeTextAnalysisV1;
   interfaceLocale: LearningV2InterfaceLocale;
   /** Цвет текста из токена темы (g.text). Без него — прежний тёмный: в тёмных темах он сливается с фоном (1,2:1), поэтому вызывающий обязан передавать токен. */
   ink?: string;
+  /** Приглушённый цвет вторичных строк (в светлых темах — токен вторичного текста, в тёмных — тот же g.text). Без него — как ink. */
+  inkSoft?: string;
 }>) {
   // зачем ([BLEND-AUDIT] 18.10): текст был жёстко тёмным #17332A / #355148 поверх 12 %-тинта — в тёмных темах 1,2:1 (нечитаемо, 115 из 230 сочетаний тема/оформление/ползунок); цвет теперь приходит токеном темы
   const ink = inkColor ? { color: inkColor } : null;
+  const inkSoft = inkSoftColor ? { color: inkSoftColor } : ink;
   return (
     <View testID="learning-v2-text-analysis" style={styles.analysis}>
       <Text style={[styles.analysisPhrase, ink]}>{analysis.text}</Text>
       <Text style={[styles.analysisMeaning, ink]}>{analysis.meaningByLocale[interfaceLocale]}</Text>
-      <Text style={[styles.analysisExplanation, ink]}>{analysis.explanationByLocale[interfaceLocale]}</Text>
+      <Text style={[styles.analysisExplanation, inkSoft]}>{analysis.explanationByLocale[interfaceLocale]}</Text>
       {analysis.units.map((unit, index) => (
         <View key={`${unit.start}-${unit.end}-${unit.text}-${index}`} style={styles.unit}>
           <Text style={[styles.unitTitle, ink]}>{`${unit.text} · ${unit.partOfSpeechLabelByLocale[interfaceLocale]} · ${unit.meaningByLocale[interfaceLocale]}`}</Text>
-          <Text style={[styles.unitFunction, ink]}>{unit.functionByLocale[interfaceLocale]}</Text>
+          <Text style={[styles.unitFunction, inkSoft]}>{unit.functionByLocale[interfaceLocale]}</Text>
         </View>
       ))}
     </View>
@@ -160,17 +164,21 @@ export function LearningV2ModeFeedbackLaneV1({
   feedback,
   interfaceLocale,
   ink: inkColor,
+  inkSoft: inkSoftColor,
   shadow,
 }: Readonly<{
   feedback: LearningV2ModeLearnerFeedbackV1 | null;
   interfaceLocale: LearningV2InterfaceLocale;
   /** Цвет текста панели из токена темы (g.text), см. LearningV2TextAnalysisV1. */
   ink?: string;
+  /** Приглушённый цвет вторичных строк, см. LearningV2TextAnalysisV1. */
+  inkSoft?: string;
   /** Тень панели (nestedBoxShadow темы): без обводки отличие 12 %-тинта от страницы всего 1,09:1 — панель отделяется тенью ([BLEND-AUDIT] 18.10). */
   shadow?: ReadonlyArray<Record<string, unknown>>;
 }>) {
   if (!feedback) return null;
   const ink = inkColor ? { color: inkColor } : null;
+  const inkSoft = inkSoftColor ? { color: inkSoftColor } : ink;
   return (
     <View
       testID="learning-v2-mode-feedback-lane"
@@ -180,10 +188,10 @@ export function LearningV2ModeFeedbackLaneV1({
     >
       <Text style={[styles.text, ink]}>{feedback.text}</Text>
       {feedback.analysis ? (
-        <LearningV2TextAnalysisV1 analysis={feedback.analysis} interfaceLocale={interfaceLocale} ink={inkColor} />
+        <LearningV2TextAnalysisV1 analysis={feedback.analysis} interfaceLocale={interfaceLocale} ink={inkColor} inkSoft={inkSoftColor} />
       ) : null}
       {feedback.tone === "wrong" && feedback.diagnostics?.minimalContrastByLocale?.[interfaceLocale] ? (
-        <Text style={[styles.contrast, ink]}>{feedback.diagnostics.minimalContrastByLocale[interfaceLocale]}</Text>
+        <Text style={[styles.contrast, inkSoft]}>{feedback.diagnostics.minimalContrastByLocale[interfaceLocale]}</Text>
       ) : null}
     </View>
   );

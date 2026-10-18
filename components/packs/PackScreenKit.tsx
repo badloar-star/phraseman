@@ -107,6 +107,7 @@ type CtaProps = Readonly<{
 }>;
 
 /** `.cta` — главная кнопка: цвет темы и цветная тень действия. */
+// зачем (parity cards-v2-018, 18.10): заливка главной кнопки наборов — ctaFill/ctaFillInk (эталон `.cta` = --cta: в «Спокойно» светлая нейтральная, в «Акценте» цвет темы), а не сырой accent (мятный при любом уровне и 1,0–2,5:1 к фону на светлых градиентных темах)
 export const PackCta = memo(function PackCta({ g, label, onPress, testID, accessibilityLabel, icon, trailingIcon, grow, small, disabled, style }: CtaProps) {
   const lh = useLineScale();
   return (
@@ -117,11 +118,11 @@ export const PackCta = memo(function PackCta({ g, label, onPress, testID, access
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled}
       onPress={onPress}
-      style={[styles.cta, small ? styles.ctaSmall : null, grow ? styles.grow : null, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, style]}
+      style={[styles.cta, small ? styles.ctaSmall : null, grow ? styles.grow : null, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }, style]}
     >
-      {icon ? <Ionicons name={icon} size={small ? 16 : 18} color={g.accentInk} /> : null}
-      <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{label}</Text>
-      {trailingIcon ? <Ionicons name={trailingIcon} size={small ? 16 : 18} color={g.accentInk} /> : null}
+      {icon ? <Ionicons name={icon} size={small ? 16 : 18} color={g.ctaFillInk} /> : null}
+      <Text style={[styles.ctaText, { color: g.ctaFillInk, lineHeight: lh(22) }]}>{label}</Text>
+      {trailingIcon ? <Ionicons name={trailingIcon} size={small ? 16 : 18} color={g.ctaFillInk} /> : null}
     </KitTouchable>
   );
 });

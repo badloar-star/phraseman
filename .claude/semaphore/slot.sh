@@ -39,7 +39,10 @@ reap(){
   local n=0
   for d in "$DIR"/slot.*.d; do
     [ -d "$d" ] || continue
-    local born; born=$(cat "$d/born" 2>/dev/null || echo 0)
+    local born; born=$(cat "$d/born" 2>/dev/null)
+    # зачем (координатор 18.10 05:05): между mkdir и записью born чужой reap видел born=0 (age=1792296299s) и снимал
+    # свежий слот — два тяжёлых прогона шли разом. Пустой born = возраст по времени каталога, а не «протух».
+    case "$born" in ""|*[!0-9]*) born=$(stat -c %Y "$d" 2>/dev/null || now) ;; esac
     if [ $(( $(now) - born )) -gt $TTL ]; then
       ev "reap $(basename "$d" .d) age=$(( $(now) - born ))s why=$(cat "$d/why" 2>/dev/null)"
       rm -rf "$d" && n=$((n+1))
@@ -69,7 +72,11 @@ try_acquire(){
       rm -rf "$DIR/slot.$ME.d"
       return 1
     fi
-    now > "$DIR/slot.$ME.d/born"
+    if ! now > "$DIR/slot.$ME.d/born" 2>/dev/null; then
+      # зачем: слот сняли между mkdir и записью — не печатаем ложный GO, ждём дальше
+      ev "lost_race slot removed before born write"
+      return 1
+    fi
     printf '%s' "$why" > "$DIR/slot.$ME.d/why"
     ev "GO held=$(held)/$SLOTS holders=$(ls -d "$DIR"/slot.*.d 2>/dev/null | xargs -n1 basename 2>/dev/null | cut -c6-13 | tr '\n' ',') why=$why"
     echo "GO  слот $(held)/$SLOTS · $why"
@@ -149,7 +156,8 @@ run(){
   local run_lock="$DIR/run.$ME.d"
   # протухший замок прогона (сессия умерла посреди run) снимаем по тому же TTL
   if [ -d "$run_lock" ]; then
-    local rborn; rborn=$(cat "$run_lock/born" 2>/dev/null || echo 0)
+    local rborn; rborn=$(cat "$run_lock/born" 2>/dev/null)
+    case "$rborn" in ""|*[!0-9]*) rborn=$(stat -c %Y "$run_lock" 2>/dev/null || now) ;; esac
     [ $(( $(now) - rborn )) -gt $TTL ] && rm -rf "$run_lock"
   fi
   until mkdir "$run_lock" 2>/dev/null; do

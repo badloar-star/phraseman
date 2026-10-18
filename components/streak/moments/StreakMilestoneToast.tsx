@@ -71,8 +71,9 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
       <StreakMomentFlame days={milestone} size={40} stage={streakFlameStage(milestone)} burstKey={burstKey || undefined} accessibilityLabel={streakMomentText(lang, 'flameA11y', { n: milestone })} />
       <View style={[s.dot, { backgroundColor: p.textSecondary }]} />
       <View style={s.text}>
-        <Text style={[s.title, { color: p.text }]} numberOfLines={1}>{streakMilestoneTitle(lang, milestone)}</Text>
-        <Text style={[s.sub, { color: p.textSecondary }]} numberOfLines={1}>{sub}</Text>
+        {/* зачем (координатор 18.10, длинные языки при шрифте 1,3 и 360 dp): «Até uma semana — 3 dias» в ~230 dp обрезалось многоточием — до двух строк */}
+        <Text style={[s.title, { color: p.text }]} numberOfLines={2}>{streakMilestoneTitle(lang, milestone)}</Text>
+        <Text style={[s.sub, { color: p.textSecondary }]} numberOfLines={2}>{sub}</Text>
       </View>
       <MomentCoin rank={coinRank} size={32} mood="idle" shadow={false} />
       <MomentFirework x={34} y={28} r={30} n={6} fire={sparks} />

@@ -23,6 +23,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { DialogCoachTurn } from '../../app/ai_dialog_coach';
 import { localizeQuotes } from '../../app/mistake_explanation_text';
+import { dialogueCtaPaint } from './glass/dialogue_cta_paint';
 
 interface DialogWhySheetProps {
   visible: boolean;
@@ -173,13 +174,13 @@ export default function DialogWhySheet({
                   onPress={gate.onUnlock}
                   accessibilityLabel={`${showLabel}, ${gate.priceRunes}`}
                   style={styles.unlockHit}
-                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.accent }]}
+                  contentStyle={[styles.unlockBtn, { backgroundColor: cta.fill }]}
                   testID="ai-dialog-why-unlock"
                 >
-                  <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: cta.ink, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
                     {`ᚱ ${gate.priceRunes}`}
                   </Text>
-                  <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: cta.ink, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                     {`· ${showLabel}`}
                   </Text>
                 </PressableHybrid>
@@ -227,10 +228,10 @@ export default function DialogWhySheet({
                   onPress={plusGate.onOpenPlus}
                   accessibilityLabel={plusGate.openPlusLabel}
                   style={styles.unlockHit}
-                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.accent }]}
+                  contentStyle={[styles.unlockBtn, { backgroundColor: cta.fill }]}
                   testID="dialogue-v2-why-open-plus"
                 >
-                  <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: cta.ink, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                     {plusGate.openPlusLabel}
                   </Text>
                 </PressableHybrid>

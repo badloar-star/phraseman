@@ -1,5 +1,8 @@
 import React, { memo, useCallback, useRef } from 'react';
-import { PixelRatio, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+// зачем (координатор 08:01): лента — ScrollView из gesture-handler, чтобы её жест жил в одной арене с пейджером вкладок (TabSlider) и не отдавался ему
+import { ScrollView as GestureScrollView } from 'react-native-gesture-handler';
+import { useRibbonTabLock } from './use_ribbon_tab_lock';
 import type { LayoutChangeEvent, TextLayoutEvent } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import V2Pressable from '../../v2/V2Pressable';
@@ -9,6 +12,8 @@ import { useHomePlateStyle } from './homePlate';
 import type { HomeFeatureTile } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
+import { LinearGradient } from '../../SafeLinearGradient';
+import { colorWithAlpha } from '../../v2/plateAlpha';
 import { useSpireHomePlace } from '../../../app/spire/spire_home_place';
 // зачем (координатор 18.10): подпись бейджа — из лёгкого модуля, а не из components/spire/moments (сторож запрещает; модуль моментов не нужен в холодном старте Главной)
 import { spirePlaceBadgeText } from './home_spire_place_badge';
@@ -77,18 +82,22 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
   // зачем (слово владельца 18.10: «Пик оставляем, но показываем только три штуки в старом размере, как было, а остальные дальше — горизонтальный скролл»): при 4 плитках видны три плитки прежней ширины
   // (как было при трёх), четвёртая (Пик) — за краем, прокрутка вбок. Ширина считается от окна, а не от замера: первый кадр = финальная геометрия.
   const { width: windowW } = useWindowDimensions();
+  const ribbonLock = useRibbonTabLock('feature_tiles');
   const tileW = Math.floor((windowW - V2.screenPad * 2 - TILE_GAP * 2) / 3);
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   // зачем (владелец 17.10, «Пик — кнопка-иконка»; эталон #four-tiles вариант (а)): 4 плитки — квадрат только с артом по центру, название ПОД плашкой.
   // На 360 dp внутри плашки ~72 dp название не помещается, а ужимать шрифт запрещено; длинное переносится, не обрезается.
   if (tiles.length === 4) {
     return (
-      <ScrollView
+      <View style={s.scroller}>
+      <GestureScrollView
         testID="home-v2-feature-tiles"
         horizontal
+        nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
-        style={s.scroller}
+        style={s.scrollerInner}
         contentContainerStyle={s.scrollRow}
+        {...ribbonLock}
       >
         {tiles.map((tile) => (
           <V2Pressable
@@ -115,7 +124,18 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
           </V2Pressable>
         ))}
-      </ScrollView>
+      </GestureScrollView>
+      {/* зачем (владелец 18.10 через координатора, вариант (в) «затухание справа»): мягкое затухание фона у правого края — видно, что лента продолжается.
+          Цвет — токен фона темы (bg), не литерал; касания проходят сквозь (pointerEvents none), размер плиток не меняется. */}
+      <LinearGradient
+        testID="home-v2-feature-tiles-fade"
+        pointerEvents="none"
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={[colorWithAlpha(g.bg, 0), g.bg]}
+        style={s.fade}
+      />
+      </View>
     );
   }
   return (
@@ -166,6 +186,7 @@ function logTileLabel(kind: 'box' | 'lines', tile: HomeFeatureTile, lang: string
   }
 }
 
+const TILE_FADE_W = 24;
 const TILE_GAP = 10; // зачем: «Тень» 12.10 — между плашками ≥ 10, иначе тени слипаются
 
 const s = StyleSheet.create({
@@ -173,6 +194,9 @@ const s = StyleSheet.create({
   row: { flexDirection: 'row', gap: TILE_GAP },
   // горизонтальная лента: выходит за поля страницы (отрицательный margin) и возвращает их отступом внутри, чтобы плитки скроллились до края экрана
   scroller: { marginHorizontal: -V2.screenPad, flexGrow: 0 },
+  scrollerInner: { flexGrow: 0 },
+  // затухание справа: ширина 24 dp по слову владельца, во всю высоту ленты (плашка + подпись)
+  fade: { position: 'absolute', top: 0, bottom: 0, right: 0, width: TILE_FADE_W },
   scrollRow: { flexDirection: 'row', gap: TILE_GAP, paddingHorizontal: V2.screenPad },
   tileSlot: { flex: 1 },
   // Квадрат от ширины ячейки — первый кадр сразу финальной геометрии, без замеров.

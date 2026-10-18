@@ -13,7 +13,9 @@ type CtaTokens = Readonly<{
  * Если accent не держит 3:1 на фоне и обеих плитках, берём гарантированную пару ctaFill/ctaFillInk (≥3 к поверхностям, подпись ≥4,5) и без пастельного градиента поверх.
  * Во всех остальных случаях — прежний accent/accentInk и фактура темы (вид не меняется); тёмное оформление не затронуто.
  */
-export function dialogueCtaPaint(g: CtaTokens): Readonly<{ fill: string; ink: string; texture: boolean }> {
-  const merges = !!g.isLight && Math.min(colorContrast(g.accent, g.bg), colorContrast(g.accent, g.plateFillFrom), colorContrast(g.accent, g.plateFillTo)) < 3;
+export function dialogueCtaPaint(g: CtaTokens, extraSurfaces: readonly string[] = []): Readonly<{ fill: string; ink: string; texture: boolean }> {
+  // зачем (Ревизор 18.10, DialogGoalsSheet/DialogWhySheet): кнопка в шторке лежит на opaqueSheet — шторка передаёт свою поверхность сюда, правило то же
+  const surfaces = [g.bg, g.plateFillFrom, g.plateFillTo, ...extraSurfaces];
+  const merges = !!g.isLight && Math.min(...surfaces.map((s) => colorContrast(g.accent, s))) < 3;
   return merges ? { fill: g.ctaFill, ink: g.ctaFillInk, texture: false } : { fill: g.accent, ink: g.accentInk, texture: true };
 }

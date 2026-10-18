@@ -32,7 +32,8 @@ test('V2 home identity and balance use one real coin-rank asset, never the hex a
 
 test('continue-learning card has no differently colored half-panel', () => {
   // зачем (01.10): заготовка первого кадра лишь приглушает арт (artPending), заливки-половинки нет.
-  assert.match(continueCard, /<View pointerEvents="none" onLayout=\{logLayout\('artColumn'\)\} style=\{\[s\.art, pending \? s\.artPending : null\]\}>/); // зачем (15.10): на колонке арта журнал геометрии [HOME-CONTINUE-ART]
+  // зачем (владелец 18.10 «вариант Г»): колонки арта больше нет — иконка в кольце прогресса справа; журнал геометрии [HOME-CONTINUE-ART] на кольце, заготовка лишь приглушает
+  assert.match(continueCard, /<View pointerEvents="none" onLayout=\{logLayout\('ring'\)\} style=\{\[s\.ring, pending \? s\.artPending : null\]\}>/);
   assert.doesNotMatch(continueCard, /s\.art, \{ backgroundColor: p\.glassRaised \}/);
   // 17.10: к стеклу добавилась приглушённая заливка занятости (busy → cardBusy, R09); стекло карточки прежнее
   assert.match(continueCard, /style=\{\[s\.card, glass(?:, busy \? s\.cardBusy : null)?\]\}/);
@@ -51,8 +52,12 @@ test('continue-learning card receives the approved notepad art from the real pro
   assert.match(home, /const priorityCardImage = priorityCardArt\.base \?\? lastLessonImage;/);
   assert.match(home, /<HomeV2ContinueCard[\s\S]{0,900}art=\{priorityCardImage\}/);
   assert.match(continueCard, /<ThemedArtLayers source=\{art\}/); // 17.10: арт рисует ThemedArtLayers (основа + слой акцента темы)
-  assert.match(continueCard, /style=\{badge && !pending \? s\.artImage : s\.artImageSolo\}/); // зачем (15.10): рисунок — contain, с плашкой 46, без неё 64
-  assert.match(continueCard, /art: \{[^}]*right: 0/);
+  // зачем (владелец 18.10 «вариант Г», «иконка 1 и не меняется»): одна иконка постоянного размера внутри кольца, contain, без плашки-бейджа поверх арта
+  assert.match(continueCard, /<ThemedArtLayers source=\{art\} accent=\{artAccent\} style=\{s\.artImage\} contentFit="contain"/);
+  assert.match(continueCard, /ring: \{ width: RING_SIZE, height: RING_SIZE/);
+  // «обязаны слушаться цвета темы»: дуга accentGraphic, дорожка buttonFill — токены темы, без литералов
+  assert.match(continueCard, /stroke=\{shadowGlass\.buttonFill\}/);
+  assert.match(continueCard, /stroke=\{shadowGlass\.accentGraphic\}/);
 });
 
 // зачем (владелец 04.10, по скриншоту: «в два раза ниже»): карточка ≈ 80 вместо ≈ 150 —

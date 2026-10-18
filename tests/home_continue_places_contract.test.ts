@@ -171,11 +171,15 @@ describe('подключение: точки входа пишут метку, �
     expect(home).toContain('{priorityCardVisible || continueCardPending ? (');
   });
 
-  it('карточка без полосы прогресса: та же высота, стрелка справа, заготовка загрузки прежняя', () => {
+  // зачем (владелец 18.10 «вариант Г»): полосы и стрелки больше нет — прогресс в кольце; у диалога/набора (hideProgress) дуги и «done / total» нет, высота та же
+  it('карточка места без прогресса: та же высота, кольцо без дуги и счётчика, заготовка загрузки прежняя', () => {
     const card = read('components/home/v2/HomeV2ContinueCard.tsx');
     expect(card).toContain('hideProgress?: boolean;');
-    expect(card).toContain('{hideProgress && !pending ? (');
-    expect(card).toContain('<View style={s.track} />');
+    expect(card).toContain('const showRing = !hideProgress;');
+    expect(card).toContain("const subLine = [showRing ? `${done} / ${total}` : null, badge ?? null].filter(Boolean).join(' · ');");
+    expect(card).toMatch(/\{showRing && ratio > 0 \? \(/);
+    expect(card).toMatch(/minHeight: CARD_HEIGHT/);
+    expect(card).toContain('style={[s.ring, pending ? s.artPending : null]}');
   });
 
   it('ничего из этого не ходит в Firestore', () => {

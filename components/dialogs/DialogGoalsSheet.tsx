@@ -26,6 +26,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { DialogObjective } from '../../app/ai_dialog_scenarios';
 import { formatDialogObjectiveLabel } from './dialog_objective_label';
+import { dialogueCtaPaint } from './glass/dialogue_cta_paint';
 
 interface DialogGoalsSheetProps {
   visible: boolean;
@@ -55,6 +56,8 @@ export default function DialogGoalsSheet({
 }: DialogGoalsSheetProps) {
   const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Ревизор 18.10, правило «кнопки нигде не сливаются»): сырой accent на opaqueSheet в 10 светлых градиентных темах давал 1,3–1,8:1
+  const cta = dialogueCtaPaint(glass, [glass.opaqueSheet]);
 
   const closeLabel = triLang(lang, {
     ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
@@ -170,9 +173,9 @@ export default function DialogGoalsSheet({
             onPress={requestDismiss}
             accessibilityLabel={closeLabel}
             style={styles.ctaHit}
-            contentStyle={[styles.cta, { backgroundColor: glass.accent }]}
+            contentStyle={[styles.cta, { backgroundColor: cta.fill }]}
           >
-            <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+            <Text style={{ color: cta.ink, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
               {closeLabel}
             </Text>
           </PressableHybrid>

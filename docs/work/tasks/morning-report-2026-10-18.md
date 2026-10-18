@@ -180,3 +180,8 @@ Scope: docs/design/v2-app/morning-report-2026-10-18.html. Security and privacy: 
 Governance-ID: TG-C354C120C178
 Outcome: строка про заготовку звука уточнена (координатор 03:53): 64 кбит/с уже готов — загрузка ≈134 МБ, запас ≈66 МБ, пустых записей 0; 96 кбит/с — около 04:15, цифру пришлют. Образцы «Послушать» не меняются.
 Scope: docs/design/v2-app/morning-report-2026-10-18.html. Security and privacy: нет данных пользователей. Technical debt: нет. Verification: 390 px; повторный прогон plain_words = 0. Rollback: git revert. Architecture: plain_words.cjs.
+
+## «2е»: нагрев кольца уже виден — текст и миниатюра
+Governance-ID: TG-C354C120C178
+Outcome: в решении «2е» снята фраза «нагрев пока не виден — Моменты чинят»; миниатюра приложения заменена кадром Сверки m08_hold/r2_c5_3 (янтарное кольцо «5» и выглянувшая монета). В реестре m08-a: нагрев снят из отличий, осталась форма индикатора (решение 2е).
+Scope: morning-report-2026-10-18.html, previews/m08-combo-app.jpg, visual_parity.json (m08-a). Security and privacy: без данных пользователей. Technical debt: удар на 10 не снят — доснять. Verification: гейт реестра 12/12; 390 px. Rollback: git revert. Architecture: plain_words.cjs + обрезка кадра.

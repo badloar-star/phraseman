@@ -33,6 +33,7 @@ import { useSpirePalette } from '../useSpirePalette';
 import { useSpireScene } from '../useSpireScene';
 import MomentFirework, { useMomentRumble } from './moments_effects';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
+import { logMomentReward } from './moment_reward_log';
 import { stepMomentText } from './step_moment_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
@@ -73,6 +74,7 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] этаж ${outcome.floorBefore} пройден → ${next}, монеты=${reward} страж=${String(guardNext)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    logMomentReward('floor', reward);
     // зачем: игра уже сыграла 'floor' мгновенно — момент повторит только если прошло > 400 мс
     playUnlessRecentlyPlayed('floor', 'SpireFloorMoment');
     if (reduceMotion) return undefined;
@@ -128,6 +130,7 @@ function SummitView({ lang, coins, coinRank, onNext, busy, testID }: SpireFloorM
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] вершина: бонус=${coins.summitBonus} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    logMomentReward('summit', coins.summitBonus);
     // зачем: игра уже сыграла 'summit' мгновенно — момент повторит только если прошло > 400 мс
     playUnlessRecentlyPlayed('summit', 'SpireFloorMoment');
     if (reduceMotion) return undefined;

@@ -26,6 +26,7 @@ import CountText from './CountText';
 import { SPIRE_FLOOR_COUNT, spireStepsIn } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
+import { logMomentReward } from './moment_reward_log';
 import { stepMomentText } from './step_moment_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
@@ -67,6 +68,7 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
 
   useEffect(() => {
     console.log(`[STEP-MOMENT] пройдена: время=${outcome.usedMs}/${outcome.budgetMs} ошибок=${outcome.errors} ступень=${outcome.local.stepInFloor}/${stairsN} монеты=${coins.perStep} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    logMomentReward('step', coins.perStep);
     // зачем: игра уже сыграла 'step' мгновенно — момент повторит только если прошло > 400 мс
     playUnlessRecentlyPlayed('step', 'SpireStepResultMoment');
     if (reduceMotion) return undefined;

@@ -66,7 +66,21 @@ async function callSpireReportSteps(payload: Readonly<Record<string, unknown>>):
     'spireReportSteps',
   );
   const res = await fn(payload);
+  // зачем (координатор 18.10, проверка наград моментов — сперва логи): окно ступени/этажа пишет «+N монет», а Главная их не видит до чужого снимка.
+  // Ответ несёт coinsGranted/stars/starsSeq (functions/src/spire_progress.ts:367), но клиент их не вливает — строка показывает факт: что начислил сервер,
+  // каким стал баланс на сервере и что лежит в локальном кошельке сейчас (вливания нет: merged=false).
+  void logSpireRewardResponse(res.data);
   return res.data ?? { ok: false, reason: 'empty_response' };
+}
+
+async function logSpireRewardResponse(data: unknown): Promise<void> {
+  try {
+    const d = (data ?? {}) as Readonly<Record<string, unknown>>;
+    const { peekRunes } = await import('./runes_system');
+    console.log(`[MOMENT-REWARD] spire:flush ${JSON.stringify({ ok: d.ok ?? null, reason: d.reason ?? null, coinsGranted: d.coinsGranted ?? null, serverBalance: d.stars ?? null, serverSeq: d.starsSeq ?? null, localBalance: peekRunes(), merged: false })}`); // guard-ok: строка на ответ (раз в пачку, не на ступень)
+  } catch (error) {
+    console.warn(`[MOMENT-REWARD] spire:flush log_failed ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина сбоя журнала
+  }
 }
 
 /**

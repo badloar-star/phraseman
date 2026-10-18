@@ -64,6 +64,7 @@ import SpireOvertakeToast from '../components/spire/moments/SpireOvertakeToast';
 import SpireLastChanceSheet from '../components/spire/moments/SpireLastChanceSheet';
 import { POSITION_MOMENT_LANGS, POSITION_MOMENT_STRING_KEYS, positionClockHms, positionMomentText } from '../components/spire/moments/position_moment_strings';
 import { normalizeEol } from './helpers/read_source';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const ROWS = [
@@ -99,7 +100,7 @@ describe('m05A · строка «Ты» едет вверх через лини�
 
   it('подъём внутри топ-5 (линию не пересёк): вместо «Ты в топ-5» — «3 место»', async () => {
     await render(<SpirePositionRiseMoment lang="ru" rows={ROWS} fromIndex={3} toIndex={2} coinsGained={10} onPlay={jest.fn()} onLater={jest.fn()} />);
-    expect(screen.getByTestId('position-rise-heading').props.children).toBe('3 место. Поднимаешься');
+    expect(screen.getByTestId('position-rise-heading').props.children).toBe(glueNumbers('3 место. Поднимаешься'));
   });
 });
 
@@ -112,7 +113,7 @@ describe('m05B · тост «обгоняет тебя»', () => {
     const onDismiss = jest.fn();
     await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} onPlay={onPlay} onDismiss={onDismiss} />);
     expect(screen.getByTestId('overtake-toast-title').props.children).toBe('Ира обгоняет тебя');
-    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe('на 30 монет недели');
+    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe(glueNumbers('на 30 монет недели'));
     await fireEvent.press(screen.getByTestId('overtake-toast-play'));
     await fireEvent.press(screen.getByTestId('overtake-toast-play'));
     expect(onPlay).toHaveBeenCalledTimes(1);

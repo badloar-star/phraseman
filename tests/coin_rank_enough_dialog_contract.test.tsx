@@ -57,6 +57,7 @@ jest.mock('../components/v2/V2Kit', () => {
 import CoinRankEnoughDialog from '../components/coin_rank_moments/CoinRankEnoughDialog';
 import { COIN_RANK_LANGS, COIN_RANK_STRING_KEYS, coinRankNumber, coinRankText, coinRankCoinsWord } from '../components/coin_rank_moments/coin_rank_strings';
 import { normalizeEol } from './helpers/read_source';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
@@ -88,7 +89,7 @@ describe('окно «Хватает на ранг N» (m14A)', () => {
 describe('тексты и исходник', () => {
   it('каждая строка есть на 9 языках; подстановки работают', () => {
     for (const key of COIN_RANK_STRING_KEYS) for (const lang of COIN_RANK_LANGS) expect([key, lang, coinRankText(lang, key).length > 0]).toEqual([key, lang, true]);
-    expect(coinRankText('en', 'title', { n: 6 })).toBe('You can afford rank 6');
+    expect(coinRankText('en', 'title', { n: 6 })).toBe(glueNumbers('You can afford rank 6'));
     expect(coinRankNumber(6000)).toBe('6 000');
     // лист приёмки m14: слово «монета» склоняется по числу
     expect([1, 2, 5, 11, 21, 22].map((n) => coinRankCoinsWord('ru', n))).toEqual(['монета', 'монеты', 'монет', 'монет', 'монета', 'монеты']);

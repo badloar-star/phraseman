@@ -6,6 +6,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
+import { glueNumbers } from '../moments/glue_numbers';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -25,7 +26,8 @@ export const COIN_RANK_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr
 export function coinRankText(lang: Lang, key: CoinRankStringKey, vars?: Readonly<Record<string, string | number>>): string {
   const raw = (S[key] as Nine)[LANG_INDEX[lang] ?? LANG_INDEX.en];
   if (!vars) return raw;
-  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole));
+  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+  return glueNumbers(raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole)));
 }
 
 // зачем (лист приёмки m14, эталон «7 004 монеты — ранг 6 стоит 6 000.»): слово «монета» склоняется по числу (1 монета, 2–4 монеты, 5+ монет); в языках без трёх форм — две

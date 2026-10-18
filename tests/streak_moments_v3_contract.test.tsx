@@ -102,6 +102,7 @@ import { setSoundV2FlagForTests } from '../modules/sound_v2/sound_v2_flag';
 import { playEvent } from '../modules/sound_v2/sound_bank';
 import { playSfx } from '../app/flashcards/SoundService';
 import { MOMENTS_V3_FLAG_KEY, isMomentsV3Enabled } from '../components/streak/moments/streak_moments_flag';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const ROOT = path.join(__dirname, '..');
 const DIR = 'components/streak/moments';
@@ -269,13 +270,13 @@ describe('рубежи серии — флаг, подключение, исхо
     expect([1, 3, 7, 11].map((n) => streakDayWord('uk', n))).toEqual(['день', 'дні', 'днів', 'днів']);
     expect([1, 2, 5].map((n) => streakDayWord('pl', n))).toEqual(['dzień', 'dni', 'dni']);
     expect([1, 2].map((n) => streakDayWord('en', n))).toEqual(['day', 'days']);
-    expect(streakMilestoneTitle('ru', 3)).toBe('3 дня подряд');
-    expect(streakMilestoneSubline('ru', 3)).toBe('До недели — 4 дня');
-    expect(streakMilestoneSubline('ru', 7)).toBe('Новая стадия огня — до 30 дней');
+    expect(streakMilestoneTitle('ru', 3)).toBe(glueNumbers('3 дня подряд'));
+    expect(streakMilestoneSubline('ru', 3)).toBe(glueNumbers('До недели — 4 дня'));
+    expect(streakMilestoneSubline('ru', 7)).toBe(glueNumbers('Новая стадия огня — до 30 дней'));
     expect(streakMilestoneSubline('ru', 100)).toBe('Новая стадия огня — до года');
-    expect(streakMilestoneSubline('ru', 730)).toBe('До Легенды — 270 дней');
-    expect(streakMilestoneSubline('ru', 365)).toBe('До двух лет — 365 дней');
-    expect(streakMomentText('ru', 'overline', { n: 7 })).toBe('Серия · 7 дней');
+    expect(streakMilestoneSubline('ru', 730)).toBe(glueNumbers('До Легенды — 270 дней'));
+    expect(streakMilestoneSubline('ru', 365)).toBe(glueNumbers('До двух лет — 365 дней'));
+    expect(streakMomentText('ru', 'overline', { n: 7 })).toBe(glueNumbers('Серия · 7 дней'));
   });
 
   it('тексты про монету: без запрещённых формулировок (владелец 14.10: «монета задремала» и т. п.); анимации монеты — как в образце', () => {

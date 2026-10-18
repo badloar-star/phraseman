@@ -8,6 +8,7 @@
 import type { Lang } from '../../../constants/i18n';
 import { clampSpireTierIndex } from '../../../modules/spire/tier_names';
 import { pluralWord, type PluralForms } from '../../../constants/plural';
+import { glueNumbers } from '../../moments/glue_numbers';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -117,7 +118,8 @@ export function momentText(lang: Lang, key: MomentStringKey, vars?: Readonly<Rec
   const raw = row[LANG_INDEX[lang] ?? LANG_INDEX.en];
   const filled = withMomentCoinWords(lang, vars);
   if (!filled) return raw;
-  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in filled ? String(filled[name]) : whole));
+  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+  return glueNumbers(raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in filled ? String(filled[name]) : whole)));
 }
 
 export const MOMENT_STRING_KEYS = Object.keys(S) as readonly MomentStringKey[];

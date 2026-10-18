@@ -5,6 +5,7 @@
 // мгновенного перехода в пейвол. Переводы 8 языков — финальные от «Специалиста по переводам» (0cf596364): заголовок как у окна энергии, без обещания «бесплатно».
 // ════════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
+import { glueNumbers } from '../../moments/glue_numbers';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -48,5 +49,6 @@ export const NO_ENERGY_SHEET_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id
 export function noEnergySheetText(lang: Lang, key: NoEnergySheetStringKey, vars?: Readonly<Record<string, string | number>>): string {
   const raw = (S[key] as Nine)[LANG_INDEX[lang] ?? LANG_INDEX.en];
   if (!vars) return raw;
-  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole));
+  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+  return glueNumbers(raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole)));
 }

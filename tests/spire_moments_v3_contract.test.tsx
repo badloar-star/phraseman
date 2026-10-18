@@ -88,6 +88,7 @@ import { isMomentsV3Enabled, MOMENTS_V3_FLAG_KEY } from '../components/spire/mom
 import { SPIRE_TOWER_GEOM, SPIRE_TW } from '../components/spire/spire_tower_model';
 import { spireTowerBounds } from '../components/spire/spire_tower_bounds';
 import { spireSkinForTier } from '../modules/spire/tower_skins';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const ROWS = [
@@ -164,7 +165,7 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
         expect([key, lang, momentText(lang, key).length > 0]).toEqual([key, lang, true]);
       }
     }
-    expect(momentText('en', 'promoPlace', { n: 5 })).toBe('Place 5. You’re moving up');
+    expect(momentText('en', 'promoPlace', { n: 5 })).toBe(glueNumbers('Place 5. You’re moving up'));
     expect(momentLeagueIn('ru', 1, 'Базальт')).toBe('Базальте');
     expect(momentLeagueIn('en', 1, 'Basalt')).toBe('Basalt');
   });

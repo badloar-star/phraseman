@@ -8,6 +8,7 @@ import { render, screen, fireEvent } from '@testing-library/react-native';
 
 jest.mock('react-native', () => ({
   View: 'View',
+  ScrollView: 'ScrollView', // зачем (проверка выпуска 18.10, 87775d364): тело шторки прокручивается на тесном экране
   Text: 'Text',
   Pressable: 'Pressable',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },
@@ -51,6 +52,7 @@ jest.mock('../app/paywall_price_cache', () => ({
 
 import SpireNoEnergySheet, { noEnergyPriceLine } from '../components/spire/moments/SpireNoEnergySheet';
 import { NO_ENERGY_SHEET_LANGS, NO_ENERGY_SHEET_STRING_KEYS, noEnergySheetText } from '../components/spire/moments/no_energy_sheet_strings';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const MONTHLY = { v: 1 as const, savedAt: 1, monthly: { productId: 'm', price: '€4,99', perMonth: '€4,99' } };
 const YEARLY_ONLY = { v: 1 as const, savedAt: 1, yearly: { productId: 'y', price: '€39,99', perMonth: '€3,33' } };
@@ -67,7 +69,7 @@ describe('m22 шторка «Энергия закончилась → Plus»', 
     await render(<SpireNoEnergySheet lang="ru" visible onPlus={jest.fn()} onClose={jest.fn()} />);
     expect(screen.getByText('Энергия')).toBeTruthy();
     expect(screen.getByText('Энергия закончилась')).toBeTruthy();
-    expect(screen.getByTestId('no-energy-sheet-sub').props.children).toBe('Следующая — через 9:40. С Plus — без ожидания.');
+    expect(screen.getByTestId('no-energy-sheet-sub').props.children).toBe(glueNumbers('Следующая — через 9:40. С Plus — без ожидания.'));
     expect(screen.getByText('Энергия не кончается')).toBeTruthy();
     expect(screen.getByText('Попробовать Plus')).toBeTruthy();
     expect(screen.getByText('Подожду 10 минут')).toBeTruthy();

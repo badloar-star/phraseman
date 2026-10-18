@@ -54,6 +54,7 @@ import { STEP_MOMENT_LANGS, STEP_MOMENT_STRING_KEYS, stepMomentText } from '../c
 import type { SpireStepOutcome } from '../app/spire/use_spire_game';
 import type { SpireCoinsConfig } from '../modules/spire/config_contract';
 import { normalizeEol } from './helpers/read_source';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const COINS = { perStep: 10 } as unknown as SpireCoinsConfig;
@@ -65,7 +66,7 @@ describe('m06 · ступень пройдена', () => {
   it('«10 из 10», «Без ошибок · +10 монет», время и бюджет, «Чисто!», лесенка 7 из 8, «Дальше» зовёт подъём', async () => {
     const onAgain = jest.fn();
     await render(<SpireStepResultMoment lang="ru" outcome={outcome({})} coins={COINS} coinRank={5} onAgain={onAgain} onLater={jest.fn()} />);
-    expect(screen.getByTestId('step-moment-title').props.children).toBe('10 из 10');
+    expect(screen.getByTestId('step-moment-title').props.children).toBe(glueNumbers('10 из 10'));
     expect(screen.getByText('Без ошибок · +10 монет')).toBeTruthy();
     expect(screen.getByTestId('step-moment-time').props.children).toBe('1:12');
     expect(screen.getByText('из 2:00')).toBeTruthy();
@@ -77,7 +78,7 @@ describe('m06 · ступень пройдена', () => {
 
   it('с ошибками: «9 из 10», «Ошибок: 1 · +10 монет», облачка «Чисто!» нет', async () => {
     await render(<SpireStepResultMoment lang="ru" outcome={outcome({ errors: 1 })} coins={COINS} coinRank={5} onAgain={jest.fn()} onLater={jest.fn()} />);
-    expect(screen.getByTestId('step-moment-title').props.children).toBe('9 из 10');
+    expect(screen.getByTestId('step-moment-title').props.children).toBe(glueNumbers('9 из 10'));
     expect(screen.getByText('Ошибок: 1 · +10 монет')).toBeTruthy();
     expect(screen.queryByText('Чисто!')).toBeNull();
   });
@@ -106,7 +107,7 @@ describe('m06 · ступень не пройдена', () => {
 describe('тексты и исходник', () => {
   it('каждая строка есть на 9 языках; подстановки работают', () => {
     for (const key of STEP_MOMENT_STRING_KEYS) for (const lang of STEP_MOMENT_LANGS) expect([key, lang, stepMomentText(lang, key, { ok: 9, all: 10, t: '2:00' }).length > 0]).toEqual([key, lang, true]);
-    expect(stepMomentText('en', 'ofTasks', { ok: 9, all: 10 })).toBe('9 of 10');
+    expect(stepMomentText('en', 'ofTasks', { ok: 9, all: 10 })).toBe(glueNumbers('9 of 10'));
   });
 
   it('момент ничего не пишет и не списывает; бесконечных анимаций и обводок нет', () => {

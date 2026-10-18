@@ -51,6 +51,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import ComboMomentLayer from '../components/feedback/ComboMomentLayer';
 import { deriveComboBeat } from '../components/feedback/combo_moment_gate';
 import { COMBO_MOMENT_LANGS, COMBO_MOMENT_STRING_KEYS, comboMomentText } from '../components/feedback/combo_moment_strings';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 describe('m08 · удары серии', () => {
   it('пороги 3/5/10 вверх — spark/lightning/storm ровно один раз; обрыв — только из серии ≥ 3', () => {
@@ -65,7 +66,7 @@ describe('m08 · удары серии', () => {
   });
   it('тексты на 9 языках: «N подряд», «серия сброшена»', () => {
     for (const key of COMBO_MOMENT_STRING_KEYS) for (const lang of COMBO_MOMENT_LANGS) expect(comboMomentText(lang, key, 3).length).toBeGreaterThan(0);
-    expect(comboMomentText('ru', 'inRow', 5)).toBe('5 подряд');
+    expect(comboMomentText('ru', 'inRow', 5)).toBe(glueNumbers('5 подряд'));
     expect(comboMomentText('ru', 'broken')).toBe('серия сброшена');
   });
 });

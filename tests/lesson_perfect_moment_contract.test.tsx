@@ -51,6 +51,7 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 import LessonPerfectMoment from '../components/lesson_moments/LessonPerfectMoment';
 import { PERFECT_MOMENT_LANGS, PERFECT_MOMENT_STRING_KEYS, perfectMomentText } from '../components/lesson_moments/perfect_moment_strings';
 import { normalizeEol } from './helpers/read_source';
+import { glueNumbers } from '../components/moments/glue_numbers'; // зачем (18.10): тексты моментов склеивают число со словом неразрывным пробелом
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
@@ -58,8 +59,8 @@ describe('m09 · идеальный урок', () => {
   it('«20 из 20», «Ни одной ошибки · +150 монет», штамп ИДЕАЛ, «Дальше» зовёт колбэк', async () => {
     const onNext = jest.fn();
     await render(<LessonPerfectMoment lang="ru" coinRank={5} total={20} coinsEarned={150} onNext={onNext} />);
-    expect(screen.getByTestId('lesson-perfect-title').props.children).toBe('20 из 20');
-    expect(screen.getByTestId('lesson-perfect-sub').props.children).toBe('Ни одной ошибки · +150 монет');
+    expect(screen.getByTestId('lesson-perfect-title').props.children).toBe(glueNumbers('20 из 20'));
+    expect(screen.getByTestId('lesson-perfect-sub').props.children).toBe(glueNumbers('Ни одной ошибки · +150 монет'));
     expect(screen.getByText('ИДЕАЛ')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('lesson-perfect-next'));
     expect(onNext).toHaveBeenCalledTimes(1);
@@ -67,15 +68,15 @@ describe('m09 · идеальный урок', () => {
 
   it('число монет — из итога (не захардкоженные ≈150): 90 → «+90 монет»', async () => {
     await render(<LessonPerfectMoment lang="ru" coinRank={null} total={12} coinsEarned={90} onNext={jest.fn()} />);
-    expect(screen.getByTestId('lesson-perfect-title').props.children).toBe('12 из 12');
-    expect(screen.getByTestId('lesson-perfect-sub').props.children).toBe('Ни одной ошибки · +90 монет');
+    expect(screen.getByTestId('lesson-perfect-title').props.children).toBe(glueNumbers('12 из 12'));
+    expect(screen.getByTestId('lesson-perfect-sub').props.children).toBe(glueNumbers('Ни одной ошибки · +90 монет'));
   });
 });
 
 describe('тексты и исходник', () => {
   it('каждая строка есть на 9 языках; подстановки работают', () => {
     for (const key of PERFECT_MOMENT_STRING_KEYS) for (const lang of PERFECT_MOMENT_LANGS) expect([key, lang, perfectMomentText(lang, key, { n: 150 }).length > 0]).toEqual([key, lang, true]);
-    expect(perfectMomentText('en', 'noMistakes', { n: 150 })).toBe('No mistakes · +150 coins');
+    expect(perfectMomentText('en', 'noMistakes', { n: 150 })).toBe(glueNumbers('No mistakes · +150 coins'));
   });
 
   it('момент ничего не пишет и не начисляет; бесконечных анимаций и обводок нет; монеты не захардкожены', () => {

@@ -7,6 +7,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
 import { withMomentCoinWords } from './moments_strings';
+import { glueNumbers } from '../../moments/glue_numbers';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -33,7 +34,8 @@ export function positionMomentText(lang: Lang, key: PositionMomentStringKey, var
   // зачем (Ревизор P19, 15.10): {nw}/{nwa} — слово «монета» в форме под {n} («на 1 монету», «22 монеты»), а не зашитое «монет».
   const filled = withMomentCoinWords(lang, vars);
   if (!filled) return raw;
-  return raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in filled ? String(filled[name]) : whole));
+  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+  return glueNumbers(raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in filled ? String(filled[name]) : whole)));
 }
 
 /** «h:mm:ss» → «03:12:40» (отсчёт до конца недели). */

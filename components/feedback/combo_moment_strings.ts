@@ -2,6 +2,7 @@
 // зачем (владелец 15.10; эталон engagement-moments-v3-all.html `comboInit`): ровно тексты образца. TODO-i18n: всё кроме RU — предложение, носителем не проверено
 // (docs/work/tasks/moments-v3-m08-strings.md).
 import type { Lang } from '../../constants/i18n';
+import { glueNumbers } from '../moments/glue_numbers';
 
 type Nine = Readonly<{ ru: string; uk: string; en: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string }>;
 
@@ -17,5 +18,6 @@ export const COMBO_MOMENT_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 
 export function comboMomentText(lang: Lang, key: ComboMomentStringKey, n?: number): string {
   const table = S[key] as Nine;
   const raw = (table as Record<string, string>)[lang] ?? table.en;
-  return n == null ? raw : raw.replace('{n}', String(n));
+  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+  return glueNumbers(n == null ? raw : raw.replace('{n}', String(n)));
 }

@@ -6,6 +6,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
 import type { StreakMilestone } from './streak_milestones';
+import { glueNumbers } from '../../moments/glue_numbers';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -71,7 +72,8 @@ const TITLES: Readonly<Record<StreakMilestone, Nine>> = {
 };
 
 function fill(template: string, vars?: Readonly<Record<string, string | number>>): string {
-  return vars ? template.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? String(vars[k]) : m)) : template;
+  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+  return glueNumbers(vars ? template.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? String(vars[k]) : m)) : template);
 }
 
 function pick(row: Nine, lang: Lang): string {

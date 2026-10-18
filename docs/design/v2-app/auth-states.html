@@ -64,23 +64,25 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 
 /* «Аккаунт» */
 .rb { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text); }
-.ttl { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: 4px; }
+/* зачем (вердикт 427ea405d): «Аккаунт» как в коде account_details.tsx + SettingsGlassRows */
+.ttl { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; margin-top: 4px; }
 .hero { display: flex; flex-direction: column; align-items: center; margin-top: 18px; }
-.hero img { width: 92px; height: 92px; }
-.hero .nm { font-size: 20px; line-height: 26px; font-weight: 700; margin-top: 8px; }
-.chipbtn { margin-top: 8px; height: 32px; padding: 0 14px; border-radius: 16px; background: var(--chip); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; }
-.eb { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin: 20px 4px 8px; }
-.list { border-radius: 20px; background: var(--card); box-shadow: var(--card-sh); overflow: hidden; }
-.lr { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 14px; }
-.lr + .lr { box-shadow: inset 0 1px 0 var(--line); }
-.lr .tl { width: 36px; height: 36px; border-radius: 11px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
-.lr .tl .i { width: 18px; height: 18px; }
+.hero img { width: 102px; height: 102px; }
+.hero .nm { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 10px; }
+.chipbtn { margin-top: 8px; height: 32px; padding: 0 12px; border-radius: 16px; background: var(--chip); font-size: 13px; line-height: 18px; font-weight: 600; display: inline-flex; align-items: center; }
+.eb { font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 1.7px; text-transform: uppercase; color: var(--sec); margin: 24px 4px 10px; }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.lr { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 10px 14px; border-radius: 14px; background: var(--card); box-shadow: var(--card-sh); }
+.lr .tl { width: 41px; height: 41px; border-radius: 10px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
+/* зачем (Дизайн 18.10, PRF-02): значки строк — Ionicons 20 из шрифта приложения, как в коде */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.lr .tl .io { font-family: IoniconsApp; font-style: normal; font-size: 20px; line-height: 1; }
 .lr .cp { flex: 1; min-width: 0; }
-.lr .t1 { font-size: 16px; line-height: 21px; font-weight: 600; }
-.lr .t2 { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lr .vl { font-size: 15px; color: var(--sec); font-weight: 500; flex: none; }
+.lr .t1 { font-size: 16px; line-height: 21px; font-weight: 700; }
+.lr .t2 { font-size: 13px; line-height: 18px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr .vl { font-size: 13px; line-height: 18px; color: var(--sec); flex: none; }
 .lr .ch { color: var(--muted); }
-.lr .mini { height: 30px; padding: 0 12px; border-radius: 15px; background: var(--chip); font-size: 13px; font-weight: 600; display: flex; align-items: center; flex: none; }
+.lr .mini { height: 44px; padding: 0 14px; border-radius: 22px; background: var(--chip); font-size: 13px; font-weight: 700; display: flex; align-items: center; flex: none; }
 .lr.del .t1 { color: var(--del); }
 
 /* окно входа (шторка) */
@@ -103,7 +105,8 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 .prov.g { background: var(--g-bg); color: var(--g-ink); box-shadow: var(--g-sh); margin-top: 18px; }
 .prov.a { background: var(--a-bg); color: var(--a-ink); box-shadow: var(--a-sh); }
 .gl { font-weight: 800; font-size: 19px; color: #4285F4; width: 20px; text-align: center; }
-.trust { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 14px; font-size: 13px; color: var(--muted); }
+/* зачем (Дизайн 50effffc1): строка доверия и «Входим…» — один слот высотой 21, ничего не прыгает */
+.trust { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 14px; min-height: 21px; font-size: 13px; color: var(--muted); }
 .trust .i { width: 14px; height: 14px; }
 .later { height: 48px; border-radius: 24px; background: var(--btn2); color: var(--btn2-ink); box-shadow: var(--btn2-sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 12px; }
 .legal { text-align: center; font-size: 13px; line-height: 19px; font-weight: 700; color: var(--text); margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
@@ -169,7 +172,7 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
   <h2>6. «Аккаунт» после входа</h2>
   <div class="row" id="r-acc"></div>
   <div class="spec">
-    <div><b>Как в коде</b> (app/account_details.tsx, прежний эталон): монета ранга, имя, «Изменить имя»; «Данные» — имя, почта с «Скопировать», способ входа, дата; «Аккаунт» — «Выйти и войти под другим аккаунтом» и «Удалить аккаунт».</div>
+    <div><b>Как в коде</b> (app/account_details.tsx, SettingsGlassRows): заголовок 34/40, монета ранга 102, имя 19/24, «Изменить имя» 32; подписи групп «ДАННЫЕ», «АККАУНТ» заглавными; каждая строка — отдельная карточка ≥ 64, радиус 14, зазор 10, плитка 41; «Почта» с «Скопировать» 44, способ входа, дата; «Выйти и войти под другим аккаунтом» и «Удалить аккаунт».</div>
     <div><b>Переход.</b> После удачного входа шторка уезжает вниз, «Аккаунт» сразу показывает почту и способ входа — без отдельного экрана «успех» и без спиннера на весь экран.</div>
   </div>
 
@@ -215,10 +218,11 @@ const sbar = `<div class="sbar"><span>9:41</span><span>●●●</span></div>`;
 
 const list = (rows) => `<div class="list">${rows.join('')}</div>`;
 const lr = (ic, t1, o = {}) => `<div class="lr${o.del ? ' del' : ''}"><div class="tl">${ic}</div><div class="cp"><div class="t1">${t1}</div>${o.t2 ? `<div class="t2">${o.t2}</div>` : ''}</div>${o.vl ? `<div class="vl">${o.vl}</div>` : ''}${o.mini ? `<div class="mini">${o.mini}</div>` : ''}${o.vl || o.mini || o.noCh ? '' : `<span class="ch">${I.fwd}</span>`}</div>`;
+const ion = (c) => `<i class="io" aria-hidden="true">&#x${c};</i>`;
 const account = (linked) => `<div class="rb">${I.back}</div><div class="ttl">Аккаунт</div>
   <div class="hero"><img src="assets/coin_rank_05.webp" alt=""><div class="nm">${linked ? 'Алекс' : 'Не задано'}</div><div class="chipbtn">Изменить имя</div></div>
-  <div class="eb">Данные</div>${list([lr(I.user, 'Имя', { vl: linked ? 'Алекс' : 'Не задано' }), ...(linked ? [lr(I.mail, 'Email', { t2: 'alex@example.com', mini: 'Скопировать' }), lr(I.key, 'Способ входа', { vl: 'Google' })] : []), lr(I.cal, 'С нами с', { vl: '12.08.2025' })])}
-  <div class="eb">Аккаунт</div>${list([...(linked ? [lr(I.swap, 'Выйти и войти под другим аккаунтом')] : []), lr(I.trash, 'Удалить аккаунт', { del: 1, noCh: 1 })])}`;
+  <div class="eb">Данные</div>${list([lr(ion('f4ac'), 'Имя', { t2: 'Показывается друзьям', vl: linked ? 'Алекс' : 'Не задано' }), ...(linked ? [lr(ion('f434'), 'Почта', { t2: 'alex@example.com', mini: 'Скопировать' }), lr(ion('f21f'), 'Способ входа', { vl: 'Google' })] : []), lr(ion('f5fc'), 'С нами с', { vl: '12.08.2025' })])}
+  <div class="eb">Аккаунт</div>${list([...(linked ? [lr(ion('f137'), 'Выйти и войти под другим аккаунтом')] : []), lr(ion('f5f6'), 'Удалить аккаунт', { t2: 'Требует отдельного подтверждения', del: 1, noCh: 1 })])}`;
 
 /* state: idle | press | slow | fail */
 const signIn = (cls, state) => {

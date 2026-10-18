@@ -145,6 +145,25 @@ export const SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM = 'switchAccount';
 /** Параметр маршрута Настроек: открыть окно входа сразу (приглашение гостю в итоге урока 1). */
 export const SETTINGS_OPEN_SIGN_IN_PARAM = 'signIn';
 
+/**
+ * Одно предупреждение, когда гость с прогрессом входит в ДРУГОЙ, уже существующий аккаунт (новое правило владельца, координатор 18.10).
+ * зачем: честно сказать, что прогресс на этом телефоне не сохранён ни в одном аккаунте и пропадёт, — простыми словами,
+ * без «гость», «привязка», «данные». Показ окна и кнопки подключает Авторизация.
+ */
+export function guestSignInOtherAccountCopy(lang: Lang): { title: string; body: string; confirm: string; cancel: string } {
+  return triLang(lang, {
+    ru: { title: 'Войти в другой аккаунт?', body: 'Прогресс на этом телефоне не привязан к аккаунту и пропадёт.', confirm: 'Войти', cancel: 'Отмена' },
+    uk: { title: 'Увійти в інший акаунт?', body: 'Прогрес на цьому телефоні не прив’язаний до акаунта й зникне.', confirm: 'Увійти', cancel: 'Скасувати' },
+    en: { title: 'Sign in to another account?', body: 'Your progress on this phone isn’t linked to any account and will be lost.', confirm: 'Sign in', cancel: 'Cancel' },
+    es: { title: '¿Entrar en otra cuenta?', body: 'Tu progreso en este teléfono no está vinculado a ninguna cuenta y se perderá.', confirm: 'Entrar', cancel: 'Cancelar' },
+    'pt-BR': { title: 'Entrar em outra conta?', body: 'Seu progresso neste celular não está ligado a nenhuma conta e será perdido.', confirm: 'Entrar', cancel: 'Cancelar' },
+    vi: { title: 'Đăng nhập tài khoản khác?', body: 'Tiến độ trên điện thoại này chưa gắn với tài khoản nào và sẽ bị mất.', confirm: 'Đăng nhập', cancel: 'Hủy' },
+    id: { title: 'Masuk ke akun lain?', body: 'Progres di ponsel ini belum terhubung ke akun mana pun dan akan hilang.', confirm: 'Masuk', cancel: 'Batal' },
+    tr: { title: 'Başka bir hesaba girilsin mi?', body: 'Bu telefondaki ilerlemen hiçbir hesaba bağlı değil ve kaybolacak.', confirm: 'Giriş yap', cancel: 'İptal' },
+    pl: { title: 'Zalogować się na inne konto?', body: 'Postęp na tym telefonie nie jest przypisany do żadnego konta i przepadnie.', confirm: 'Zaloguj', cancel: 'Anuluj' },
+  });
+}
+
 /* expo-router route shim: app/ files are treated as routes and need a default export. */
 export default function __RouteShim() {
   return null;

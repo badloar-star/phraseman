@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-51:word:reassure",
+    "correctText": "reassure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i01",
+    "correctText": "I can reassure him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i02",
+    "correctText": "reassure",
+    "correctResponseId": "en:lesson-08:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i03",
+    "correctText": "reassure",
+    "correctResponseId": "en:lesson-08:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i04",
+    "correctText": "en:lesson-08:session-51:i04:p1=reassure\nen:lesson-08:session-51:i04:p2=persuade\nen:lesson-08:session-51:i04:p3=evaluate\nen:lesson-08:session-51:i04:p4=source",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i05",
+    "correctText": "Can you reassure him?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:word:objection",
+    "correctText": "objection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i06",
+    "correctText": "I can understand her objection.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:word:incentive",
+    "correctText": "incentive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i07",
+    "correctText": "We can offer an incentive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i08",
+    "correctText": "offer",
+    "correctResponseId": "en:lesson-08:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i09",
+    "correctText": "I can understand her objection.",
+    "correctResponseId": "en:lesson-08:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i10",
+    "correctText": "en:lesson-08:session-51:i10:p1=reassure\nen:lesson-08:session-51:i10:p2=objection\nen:lesson-08:session-51:i10:p3=incentive\nen:lesson-08:session-51:i10:p4=persuade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i11",
+    "correctText": "We can offer an incentive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:word:reluctant",
+    "correctText": "reluctant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i12",
+    "correctText": "He is reluctant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i13",
+    "correctText": "I can persuade her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i14",
+    "correctText": "reassure",
+    "correctResponseId": "en:lesson-08:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i15",
+    "correctText": "He is reluctant.",
+    "correctResponseId": "en:lesson-08:session-51:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i16",
+    "correctText": "en:lesson-08:session-51:i16:p1=reassure\nen:lesson-08:session-51:i16:p2=objection\nen:lesson-08:session-51:i16:p3=incentive\nen:lesson-08:session-51:i16:p4=reluctant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-51:i17",
+    "correctText": "Can you reassure him?",
+    "correctResponseId": null
+  }
+]

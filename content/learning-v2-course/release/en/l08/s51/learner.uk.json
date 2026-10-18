@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-51:word:reassure",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reassure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:word:reassure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reassure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:word:reassure:audio",
+          "transcript": "reassure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:word:reassure:r1",
+            "targetText": "reassure",
+            "meaningByLocale": {
+              "ru": "успокаивать, вселять уверенность. I can reassure him. — «Я могу его успокоить».",
+              "uk": "заспокоювати, вселяти впевненість. I can reassure him. — «Я можу його заспокоїти»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reassure",
+          "definitionByLocale": {
+            "ru": "успокаивать, вселять уверенность. I can reassure him. — «Я могу его успокоить».",
+            "uk": "заспокоювати, вселяти впевненість. I can reassure him. — «Я можу його заспокоїти»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте «Я можу його заспокоїти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте «Я можу його заспокоїти»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can reassure him.",
+        "localizedMeaning": {
+          "ru": "Предложите «Я могу его успокоить»",
+          "uk": "Запропонуйте «Я можу його заспокоїти»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "reassure",
+          "him"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-51:i02:r1",
+          "text": "reassure"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i02:r2",
+          "text": "persuade"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i02:r3",
+          "text": "evaluate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i02:audio",
+          "transcript": "reassure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:i02:r1",
+            "targetText": "reassure",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i02:r2",
+            "targetText": "persuade",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i02:r3",
+            "targetText": "evaluate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит reassure",
+              "uk": "У записі звучить reassure"
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит reassure",
+              "uk": "У записі звучить reassure"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-51:i03:r1",
+          "text": "reassure"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i03:r2",
+          "text": "to reassure"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i03:r3",
+          "text": "reassures"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "I can ___ him.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-51:i03:r1",
+            "text": "reassure"
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i03:r2",
+            "text": "to reassure"
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i03:r3",
+            "text": "reassures"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-51:i04:p1",
+            "target": "reassure",
+            "meaningByLocale": {
+              "ru": "вселять уверенность",
+              "uk": "вселяти впевненість"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i04:p2",
+            "target": "persuade",
+            "meaningByLocale": {
+              "ru": "убеждать",
+              "uk": "переконувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i04:p3",
+            "target": "evaluate",
+            "meaningByLocale": {
+              "ru": "оценивать",
+              "uk": "оцінювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i04:p4",
+            "target": "source",
+            "meaningByLocale": {
+              "ru": "источник информации",
+              "uk": "джерело інформації"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reassure",
+          "persuade",
+          "evaluate",
+          "source"
+        ],
+        "rightColumn": [
+          "вселяти впевненість",
+          "переконувати",
+          "оцінювати",
+          "джерело інформації"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i05:audio",
+          "transcript": "Can you reassure him?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you reassure him?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "reassure",
+          "him"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:word:objection",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — objection",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:word:objection:audio"
+      ],
+      "accessibilityLabel": "Картка слова — objection",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:word:objection:audio",
+          "transcript": "objection"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:word:objection:r1",
+            "targetText": "objection",
+            "meaningByLocale": {
+              "ru": "возражение. I can understand her objection. — «Я могу понять её возражение».",
+              "uk": "заперечення. I can understand her objection. — «Я можу зрозуміти її заперечення»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "objection",
+          "definitionByLocale": {
+            "ru": "возражение. I can understand her objection. — «Я могу понять её возражение».",
+            "uk": "заперечення. I can understand her objection. — «Я можу зрозуміти її заперечення»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я можу зрозуміти її заперечення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я можу зрозуміти її заперечення»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can understand her objection.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я могу понять её возражение»",
+          "uk": "Скажіть «Я можу зрозуміти її заперечення»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "understand",
+          "her",
+          "objection"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:word:incentive",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — incentive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:word:incentive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — incentive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:word:incentive:audio",
+          "transcript": "incentive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:word:incentive:r1",
+            "targetText": "incentive",
+            "meaningByLocale": {
+              "ru": "стимул, поощрение. We can offer an incentive. — «Мы можем предложить поощрение».",
+              "uk": "стимул, заохочення. We can offer an incentive. — «Ми можемо запропонувати заохочення»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "incentive",
+          "definitionByLocale": {
+            "ru": "стимул, поощрение. We can offer an incentive. — «Мы можем предложить поощрение».",
+            "uk": "стимул, заохочення. We can offer an incentive. — «Ми можемо запропонувати заохочення»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Ми можемо запропонувати заохочення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Ми можемо запропонувати заохочення»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i07:audio",
+          "transcript": "We can offer an incentive."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can offer an incentive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-51:i08:r1",
+          "text": "offer"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i08:r2",
+          "text": "to offer"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i08:r3",
+          "text": "offers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "We can ___ an incentive.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-51:i08:r1",
+            "text": "offer"
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i08:r2",
+            "text": "to offer"
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i08:r3",
+            "text": "offers"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-51:i09:r1",
+          "text": "I can understand her objection."
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i09:r2",
+          "text": "I can understand his objection."
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i09:r3",
+          "text": "We can understand her objection."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i09:audio",
+          "transcript": "I can understand her objection."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:i09:r1",
+            "targetText": "I can understand her objection.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i09:r2",
+            "targetText": "I can understand his objection.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i09:r3",
+            "targetText": "We can understand her objection.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can understand her objection.",
+              "uk": "У записі звучить I can understand her objection."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can understand her objection.",
+              "uk": "У записі звучить I can understand her objection."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-51:i10:p1",
+            "target": "reassure",
+            "meaningByLocale": {
+              "ru": "вселять уверенность",
+              "uk": "вселяти впевненість"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i10:p2",
+            "target": "objection",
+            "meaningByLocale": {
+              "ru": "возражение",
+              "uk": "заперечення"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i10:p3",
+            "target": "incentive",
+            "meaningByLocale": {
+              "ru": "поощрение",
+              "uk": "заохочення"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i10:p4",
+            "target": "persuade",
+            "meaningByLocale": {
+              "ru": "убеждать",
+              "uk": "переконувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reassure",
+          "objection",
+          "incentive",
+          "persuade"
+        ],
+        "rightColumn": [
+          "вселяти впевненість",
+          "заперечення",
+          "заохочення",
+          "переконувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i11:audio",
+          "transcript": "We can offer an incentive."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can offer an incentive.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "offer",
+          "an",
+          "incentive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:word:reluctant",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reluctant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:word:reluctant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reluctant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:word:reluctant:audio",
+          "transcript": "reluctant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:word:reluctant:r1",
+            "targetText": "reluctant",
+            "meaningByLocale": {
+              "ru": "неохотно соглашающийся, не испытывающий желания. He is reluctant. — «Он не очень хочет». Reluctant — прилагательное; в этой фразе после he нужна связка is.",
+              "uk": "той, хто неохоче погоджується, не має бажання. He is reluctant. — «Він не дуже хоче». Reluctant — прикметник; у цій фразі після he потрібна зв’язка is."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reluctant",
+          "definitionByLocale": {
+            "ru": "неохотно соглашающийся, не испытывающий желания. He is reluctant. — «Он не очень хочет». Reluctant — прилагательное; в этой фразе после he нужна связка is.",
+            "uk": "той, хто неохоче погоджується, не має бажання. He is reluctant. — «Він не дуже хоче». Reluctant — прикметник; у цій фразі після he потрібна зв’язка is."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг не дуже хоче брати участь у конкурсі. Скажіть «Він не дуже хоче»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не дуже хоче брати участь у конкурсі. Скажіть «Він не дуже хоче»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is reluctant.",
+        "localizedMeaning": {
+          "ru": "Друг не очень хочет участвовать в конкурсе. Скажите «Он не очень хочет»",
+          "uk": "Друг не дуже хоче брати участь у конкурсі. Скажіть «Він не дуже хоче»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "reluctant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега сумнівається в пропозиції. Скажіть «Я можу її переконати» — повторення persuade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Колега сумнівається в пропозиції. Скажіть «Я можу її переконати» — повторення persuade",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i13:audio",
+          "transcript": "I can persuade her."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can persuade her.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-51:i14:r1",
+          "text": "reassure"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i14:r2",
+          "text": "to reassure"
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i14:r3",
+          "text": "reassures"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "Can you ___ him?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-51:i14:r1",
+            "text": "reassure"
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i14:r2",
+            "text": "to reassure"
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i14:r3",
+            "text": "reassures"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-51:i15:r1",
+          "text": "He is reluctant."
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i15:r2",
+          "text": "She is reluctant."
+        },
+        {
+          "responseId": "en:lesson-08:session-51:i15:r3",
+          "text": "He is ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i15:audio",
+          "transcript": "He is reluctant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-51:i15:r1",
+            "targetText": "He is reluctant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i15:r2",
+            "targetText": "She is reluctant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i15:r3",
+            "targetText": "He is ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-51:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is reluctant.",
+              "uk": "У записі звучить He is reluctant."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-51:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is reluctant.",
+              "uk": "У записі звучить He is reluctant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-51:i16:p1",
+            "target": "reassure",
+            "meaningByLocale": {
+              "ru": "вселять уверенность",
+              "uk": "вселяти впевненість"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i16:p2",
+            "target": "objection",
+            "meaningByLocale": {
+              "ru": "возражение",
+              "uk": "заперечення"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i16:p3",
+            "target": "incentive",
+            "meaningByLocale": {
+              "ru": "поощрение",
+              "uk": "заохочення"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-51:i16:p4",
+            "target": "reluctant",
+            "meaningByLocale": {
+              "ru": "не испытывающий желания",
+              "uk": "той, хто не має бажання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reassure",
+          "objection",
+          "incentive",
+          "reluctant"
+        ],
+        "rightColumn": [
+          "вселяти впевненість",
+          "заперечення",
+          "заохочення",
+          "той, хто не має бажання"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-51:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат хвилюється перед першим днем на роботі. Попросіть знайомого підтримати його: «Ти можеш його заспокоїти?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Брат хвилюється перед першим днем на роботі. Попросіть знайомого підтримати його: «Ти можеш його заспокоїти?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-51:i17:audio",
+          "transcript": "Can you reassure him?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you reassure him?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "da04fbe1d6627a8c39db31c356cff53402fef67d219f8d29a2c613893e5eb2b8"
+}

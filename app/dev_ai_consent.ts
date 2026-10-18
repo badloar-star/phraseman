@@ -7,15 +7,20 @@
  * Только `__DEV__ && !IS_STORE_RELEASE`: в стор-сборке геттер всегда false, а установка отклоняется. Перезапуск приложения сбрасывает. Лог: [DEV-STATE] aiConsent.
  */
 import { IS_STORE_RELEASE } from './config';
+import { DIAG_ENABLED } from './dev_diag_gate';
 
 // зачем (координатор 13.10, dialogs-010): экран «AI-диалоги выключены» достигается только решением «отказ» — добавлен режим denied
 // (тоже только память, без записи и облака). null — подмены нет, гейт отвечает по настоящему решению.
 export type DevAiConsentOverride = 'granted' | 'denied';
 let override: DevAiConsentOverride | null = null;
 
+// зачем (координатор 18.10, Сверка встала на шторке согласия): подмена доступна только при ВСЕХ трёх условиях — __DEV__, не стор-сборка (IS_STORE_RELEASE)
+// и DIAG_ENABLED (EXPO_PUBLIC_STORE_RELEASE !== '1'). В релизе __DEV__ = false — флаг физически не работает: установка отклоняется, геттер null.
 function devAvailable(): boolean {
-  return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
+  return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE && DIAG_ENABLED;
 }
+
+let lastLoggedOverride: DevAiConsentOverride | null = null;
 
 /** Включить/выключить подмену. В стор-сборке — отказ с логом, значение не меняется. Возвращает true, если применено. */
 export function setDevAiConsentGranted(next: boolean): boolean {
@@ -35,7 +40,13 @@ export function setDevAiConsentOverride(next: DevAiConsentOverride | null): bool
 
 /** Текущая подмена решения или null. В стор-сборке всегда null. */
 export function getDevAiConsentOverride(): DevAiConsentOverride | null {
-  return devAvailable() ? override : null;
+  const value = devAvailable() ? override : null;
+  // Каждый раз, когда гейт впервые ответил подменой (или подмену сняли), — одна строка: за человека согласие не принималось, это dev-подмена.
+  if (value !== lastLoggedOverride) {
+    lastLoggedOverride = value;
+    console.log(`[AI-CONSENT] dev_override=${value ?? 'off'} (только ответ гейта в памяти; согласие человека не записано и в облако не ушло)`); // guard-ok: одна строка на смену подмены
+  }
+  return value;
 }
 
 /** true — гейт согласия в dev отвечает «согласие дано». В стор-сборке всегда false. */

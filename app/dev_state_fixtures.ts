@@ -438,6 +438,11 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else rejected.seen = `ожидалось reset | energy | welcome | plus | referral | stories | team, пришло ${String(one(params.seen))}`;
   }
   request.aiConsent = pick('aiConsent', ['granted', 'denied', 'off'] as const);
+  // зачем (координатор 18.10): короткая ссылка для Сверки — consent=on|off = aiConsent=granted|off (та же подмена в памяти, только dev).
+  if (request.aiConsent === undefined) {
+    const consentShort = pick('consent', ['on', 'off'] as const);
+    if (consentShort !== undefined) request.aiConsent = consentShort === 'on' ? 'granted' : 'off';
+  }
   request.inbox = pick('inbox', ['empty', 'off'] as const);
   {
     const rawTime = one(params.reminderTime);

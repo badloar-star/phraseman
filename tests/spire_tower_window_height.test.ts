@@ -281,8 +281,10 @@ describe('скелет подиума и свайп по окну башни', (
     expect(podium).toContain('const sizes = compact ? PODIUM_SIZES.compact : PODIUM_SIZES.full;');
     const home = read('components/spire/SpireHomeScreen.tsx');
     expect(home).toContain('const podiumLoading = members === null && game.live && game.roomLoad === null;');
-    expect(home).toContain('const podiumColumns = podiumLoading || (members !== null && members.length > 0);');
-    expect(home).toContain('loading={podiumLoading}');
+    // зачем (Сверка 18.10 находка 13, вечный скелет подиума у гостя): скелет — только пока комната грузится И не прошёл потолок 2,5 с
+    // (use_spire_room_ceiling); колонки подиума и проп loading следуют за podiumSkeleton. Прежнее условие загрузки сохранено.
+    expect(home).toContain('const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0);');
+    expect(home).toContain('loading={podiumSkeleton}');
   });
 
   it('жест окна башни: касание блокирует прокрутку страницы и RefreshControl, отпускание — возвращает', () => {

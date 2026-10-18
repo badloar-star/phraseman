@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 37 — Не сгибай
 
-**Ситуация.** Вы бережёте фотографию, украшение на торте и просите друга не ждать, пока вы собираете вещи.
+**Ситуация.** Сохранить прямую линейку, не помять сертификат и не перекручивать провод наушников.
 
 **Что вы освоите:** предупредить «не делай» и вежливо попросить не ждать
-**Новые слова:** bend
+**Новые слова:** bend, crumple, twist, snap
 
 ---
 
 ## Интро 1
 
-### Фотография в конверте
+### Линейка длиннее пенала
 
-Друг пытается втиснуть фотографию в маленький конверт и начинает сгибать её. `Bend` — «сгибать». `Don’t bend it` — «Не сгибай это». Здесь `it` относится к фотографии, а после `don’t` нужно `bend`, без `to` и окончаний. Фотография с моря не должна превращаться в бумажный кораблик.
+После урока черчения друг пытается согнуть вашу тонкую металлическую линейку, чтобы она поместилась в пенал. Bend — «сгибать». `Don’t bend it` — «Не сгибай её». It заменяет линейку. После don’t нужно bend, без to и s.
 
-**Предупредите друга: «Не сгибай это».**
+**Предупредите друга не сгибать линейку.**
 
 - ✅ **Don’t bend it.**
-- ❌ Don’t bends it. — *После `don’t` нужно `bend`, без `s`.*
-- ❌ Don’t to bend it. — *После `don’t` нужно `bend`, без `to`.*
+- ❌ Don’t bends it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to bend it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 2
 
-### Украшение на торте
+### Сертификат после вручения
 
-Друг тянется к хрупкому украшению на торте. Покажите на него: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.
+Вам вручили бумажный сертификат. Друг помогает убрать его в рюкзак, но сжимает лист в руке. Crumple — «мять, комкать». `Don’t crumple it` — «Не мни его». Это не аккуратный сгиб: бумага становится мятой.
 
-**Покажите на украшение и скажите «Не трогай это».**
+**Скажите другу не мять сертификат.**
 
-- ✅ **Don’t touch this.**
-- ❌ Don’t touches this. — *После `don’t` нужно `touch`, без `es`.*
-- ❌ Not touch this. — *В такой просьбе нужно `Don’t touch this`.*
+- ✅ **Don’t crumple it.**
+- ❌ Don’t crumples it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to crumple it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 3
 
-### Чемодан ещё открыт
+### Провод наушников в руках
 
-Друг готов идти в кафе, а вы ещё собираете вещи в поездку. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.
+Друг держит ваши проводные наушники и крутит провод между пальцами. Twist — «скручивать, перекручивать». `Don’t twist it` — «Не перекручивай его». It здесь заменяет провод, а не наушники во множественном числе.
 
-**Попросите друга вежливо не ждать вас.**
+**Скажите другу не перекручивать провод.**
 
-- ✅ **Please don’t wait.**
-- ❌ Please doesn’t wait. — *В обращении к человеку нужно `don’t wait`.*
-- ❌ Please don’t to wait. — *После `don’t` нужно `wait`, без `to`.*
+- ✅ **Don’t twist it.**
+- ❌ Don’t twists it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to twist it. — *После don’t не нужно to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Предупредите «Не сгибай это»**
+**1 · Карточка слова — bend**
+<!-- interaction_id: en:lesson-08:session-37:word:bend; family: word_card -->
+> **bend** — сгибать. Don’t bend it. — «Не сгибай это». Придавать предмету изогнутую форму.
+
+**2 · Предупредите «Не сгибай это»**
 <!-- interaction_id: en:lesson-08:session-37:i01; family: phrase_builder -->
 Плитки: `it` `bend` `Don’t` → **Don’t bend it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-37:i02; family: listen_choose -->
 🔊 *bend* → **bend** · shop · measure
 - shop — *В записи первое слово — `bend`, а в этом варианте — `shop`.*
 - measure — *В записи первое слово — `bend`, а в этом варианте — `measure`.*
 
-**3 · Скажите «Не сгибай это»**
+**4 · Выберите форму для предупреждения «Не сгибай это»**
 <!-- interaction_id: en:lesson-08:session-37:i03; family: context_gap_grammar -->
 Don’t ___ it. → **bend** · bends · to bend
 - bends — *После `don’t` нужно `bend`, без `s`.*
 - to bend — *После `don’t` нужно `bend`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-37:i04; family: speed_match -->
 bend — сгибать · parcel locker — почтовый шкаф для посылок · shop — делать покупки · measure — измерить
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-37:i05; family: listen_build_dictation -->
 🔊 *Don’t bend it.* Плитки: `it` `bend` `Don’t` → **Don’t bend it.**
 
-**6 · Покажите на украшение: «Не трогай это»**
+**7 · Карточка слова — crumple**
+<!-- interaction_id: en:lesson-08:session-37:word:crumple; family: word_card -->
+> **crumple** — мять, комкать. Don’t crumple it. — «Не мни его». Например, сжать лист бумаги так, что он станет мятым.
+
+**8 · Скажите о сертификате: «Не мни его»**
 <!-- interaction_id: en:lesson-08:session-37:i06; family: phrase_builder -->
-Плитки: `this` `touch` `Don’t` → **Don’t touch this.**
+Плитки: `it` `crumple` `Don’t` → **Don’t crumple it.**
 
-**7 · Вы ещё собираете вещи. Скажите другу «Пожалуйста, не жди»**
+**9 · Карточка слова — twist**
+<!-- interaction_id: en:lesson-08:session-37:word:twist; family: word_card -->
+> **twist** — скручивать, перекручивать. Don’t twist it. — «Не перекручивай его». Поворачивать части предмета в разные стороны.
+
+**10 · Друг крутит провод. Скажите «Не перекручивай его»**
 <!-- interaction_id: en:lesson-08:session-37:i07; family: scripted_repeat_compare -->
-🎙 **Please don’t wait.**
+🎙 **Don’t twist it.**
 
-**8 · Попросите друга не ждать**
+**11 · Выберите форму для просьбы не ждать**
 <!-- interaction_id: en:lesson-08:session-37:i08; family: context_gap_grammar -->
 Please ___ wait. → **don’t** · doesn’t · not
 - doesn’t — *В обращении нужно `don’t wait`.*
 - not — *В этой просьбе нужно `don’t`: `Please don’t wait`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-37:i09; family: listen_choose -->
 🔊 *Don’t bend it.* → **Don’t bend it.** · Don’t bend this. · Don’t bend that.
 - Don’t bend this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Don’t bend that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-37:i10; family: speed_match -->
-pack — собирать вещи · bend — сгибать · shop — делать покупки · parcel locker — почтовый шкаф для посылок
+bend — сгибать · crumple — комкать · twist — перекручивать · wait — ждать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-37:i11; family: listen_build_dictation -->
 🔊 *Please don’t wait.* Плитки: `wait` `don’t` `Please` → **Please don’t wait.**
 
-**12 · Покажите на стол. Дайте указание «Измерь его»**
+**15 · Карточка слова — snap**
+<!-- interaction_id: en:lesson-08:session-37:word:snap; family: word_card -->
+> **snap** — ломать с треском, переламывать. Don’t snap it. — «Не сломай его». Например, переломить тонкий стебель или веточку.
+
+**16 · Друг сильно наклоняет тонкий стебель растения. Скажите «Не сломай его» — используйте snap**
 <!-- interaction_id: en:lesson-08:session-37:i12; family: phrase_builder -->
-Плитки: `it` `Measure` → **Measure it.**
+Плитки: `it` `snap` `Don’t` → **Don’t snap it.**
 
-**13 · Скажите «Я часто собираю вещи в дорогу» — используйте pack**
+**17 · Вы задержались у гардероба после вручения сертификатов. Скажите другу «Пожалуйста, не жди»**
 <!-- interaction_id: en:lesson-08:session-37:i13; family: scripted_repeat_compare -->
-🎙 **I often pack.**
+🎙 **Please don’t wait.**
 
-**14 · Предупредите «Не трогай это»**
+**18 · Выберите форму для просьбы не комкать бумагу**
 <!-- interaction_id: en:lesson-08:session-37:i14; family: context_gap_grammar -->
-Don’t ___ this. → **touch** · touches · to touch
-- touches — *После `don’t` нужно `touch`, без `es`.*
-- to touch — *После `don’t` нужно `touch`, без `to`.*
+Don’t ___ it. → **crumple** · crumples · to crumple
+- crumples — *После don’t нужно crumple, без s.*
+- to crumple — *После don’t не нужно to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-37:i15; family: listen_choose -->
 🔊 *Don’t rush.* → **Don’t rush.** · Don’t wait. · Don’t shout.
 - Don’t wait. — *В записи последнее слово — `rush`, а в этом варианте — `wait`.*
 - Don’t shout. — *В записи последнее слово — `rush`, а в этом варианте — `shout`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-37:i16; family: speed_match -->
-bend — сгибать · pack — собирать вещи · measure — измерить · parcel locker — почтовый шкаф для посылок
+bend — сгибать · crumple — комкать · twist — перекручивать · snap — ломать с треском
 
-**17 · Друг убирает открытку в тесный карман и начинает сгибать её. Предупредите «Не сгибай это»**
+**21 · Друг убирает открытку в тесный карман и начинает сгибать её. Предупредите «Не сгибай это»**
 <!-- interaction_id: en:lesson-08:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Don’t bend it.**
 

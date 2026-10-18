@@ -369,7 +369,17 @@ export default function SettingsMain() {
       scrollRef.current.scrollTo({ y: settingsScrollYRef.current, animated: false });
     }
   }, [settingsTabVisible]);
-  useEffect(() => { noteScrollEvent('settings', 'lang_change', { lang, savedY: Math.round(settingsScrollYRef.current) }); }, [lang]);
+  // зачем ([SCROLL-RESTORE] 18.10, журнал Сверки ru → es: Настройки открывались прокрученными на сохранённые 598 при контенте уже другой высоты): при РЕАЛЬНОЙ смене языка сохранённое положение сбрасывается — следующий показ вкладки откроет верх
+  const settingsPrevLangRef = useRef(lang);
+  useEffect(() => {
+    const savedYBefore = Math.round(settingsScrollYRef.current);
+    const changed = settingsPrevLangRef.current !== lang;
+    if (changed) {
+      settingsPrevLangRef.current = lang;
+      settingsScrollYRef.current = 0;
+    }
+    noteScrollEvent('settings', 'lang_change', { lang, savedYBefore, reset: changed });
+  }, [lang]);
 
   const appSnapshot = useAppSnapshotSelector((snapshot) => ({
     profile: snapshot.profile,

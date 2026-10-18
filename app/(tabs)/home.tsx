@@ -56,7 +56,8 @@ import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
 import { sameSnapshotSection } from '../home_snapshot_equal';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
-import { useHomeFocusCostBegin, useHomeFocusCostEnd } from '../home_focus_cost_probe';
+import { useHomeFocusCostBegin, useHomeFocusCostEnd, withHomeChildCost } from '../home_focus_cost_probe';
+import { noteBackArrived } from '../back_tap_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -85,12 +86,12 @@ import { createHomeVideoLoadPipeline } from '../home_video_load_pipeline';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 // зачем (PM-052, D75, 02.10): сбор наград на Главной (очередь + частицы в счётчик) удалён —
 // монеты летят там, где заработаны (CoinRewardFlight), без копилки «на потом».
-import HomeV2Header from '../../components/home/v2/HomeV2Header';
+import HomeV2HeaderBase from '../../components/home/v2/HomeV2Header';
 import { useCloudProfileRefreshing } from '../cloud_profile_refresh_state';
-import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
-import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
-import HomeV2VideoRail from '../../components/home/v2/HomeV2VideoRail';
-import HomeV2TodayCard from '../../components/home/v2/HomeV2TodayCard';
+import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard';
+import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
+import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
+import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
@@ -156,6 +157,12 @@ const SpireWeekMomentHost = lazy(() => import('../../components/spire/moments/Sp
 const WelcomeBackMoment = lazy(() => import('../../components/moments/WelcomeBackMoment'));
 // зачем (Ядро 15.10, D195, окно «Встречайте PhraseMan 2.0»): хост — крошечная обёртка (ждёт первый кадр Главной); клиент начисления и шторка с анимациями грузятся лениво внутри него
 import LegacyBonusWelcomeHost from '../../components/legacy_bonus/LegacyBonusWelcomeHost';
+// зачем ([HOME-CHILD-COST] 18.10, журнал Сверки: рендер детей Главной 76–142 мс на возврате): dev-измерение каждого крупного ребёнка React Profiler; в релизе withHomeChildCost возвращает тот же компонент
+const HomeV2Header = withHomeChildCost('header', HomeV2HeaderBase);
+const HomeV2ContinueCard = withHomeChildCost('continue_card', HomeV2ContinueCardBase);
+const HomeV2FeatureTiles = withHomeChildCost('feature_tiles', HomeV2FeatureTilesBase);
+const HomeV2VideoRail = withHomeChildCost('video_rail', HomeV2VideoRailBase);
+const HomeV2TodayCard = withHomeChildCost('today_card', HomeV2TodayCardBase);
 // зачем (m14A, Ядро 14.10): «Хватает на ранг N» — когда монет впервые хватает на следующий ранг; слот в той же очереди окон (после «С возвращением»), грузится лениво
 const CoinRankEnoughDialog = lazy(() => import('../../components/coin_rank_moments/CoinRankEnoughDialog'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
@@ -620,12 +627,30 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // где и была точна, а не 60 раз в секунду.
     const homeTopFadeShown = useSharedValue(false);
     const homeTabBarLastY = useSharedValue(0);
+    // зачем ([SCROLL-RESTORE] 18.10, журнал Сверки ru → es: после lang_change y=0, высота 945 → 975 за 430 мс, и экран сам уезжает на y=81 — шапка срезана): в окне 2,5 с после РЕАЛЬНОЙ смены языка, пока человек не прокручивал пальцем,
+    // возвращаем верх один раз. Жест пальцем отключает коррекцию; вне окна и без смены языка ничего не делает.
+    const homeLangChangedAtRef = useRef(0);
+    const homeDraggedAfterLangRef = useRef(false);
+    const homeLangCorrectedRef = useRef(false);
+    const homePrevLangRef = useRef(lang);
+    const correctHomeScrollAfterLang = useCallback((source: string) => {
+        const changedAt = homeLangChangedAtRef.current;
+        const sinceLangMs = Date.now() - changedAt;
+        if (changedAt === 0 || sinceLangMs > 2500) return;
+        if (homeDraggedAfterLangRef.current || homeLangCorrectedRef.current) return;
+        const y = homeScrollYRef.current;
+        if (y <= 0) return;
+        homeLangCorrectedRef.current = true;
+        console.log('[SCROLL-RESTORE] home:correct_to_top', JSON.stringify({ source, y: Math.round(y), sinceLangMs })); // guard-ok: одна строка на коррекцию после смены языка
+        homeScrollRef.current?.scrollTo({ y: 0, animated: false });
+    }, []);
     const notifyHomeScrollY = useCallback((y: number) => {
         homeScrollYRef.current = y;
-        noteScrollOffset('home', y); // зачем ([SCROLL-RESTORE] 18.10): рывок положения без пальца вскоре после смены языка или фокуса
+        noteScrollOffset('home', y);
+        correctHomeScrollAfterLang('scroll_y'); // зачем ([SCROLL-RESTORE] 18.10): рывок положения без пальца вскоре после смены языка или фокуса
         topFadeScroll?.reportTabBarOffset?.(y);
         refreshDailyPhraseVisibility();
-    }, [refreshDailyPhraseVisibility, topFadeScroll]);
+    }, [correctHomeScrollAfterLang, refreshDailyPhraseVisibility, topFadeScroll]);
     const homeScrollWorklet = useCallback((y: number) => {
         'worklet';
         const clamped = Math.max(0, y);
@@ -649,8 +674,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const { goToTab, activeIdx, runtimeOwnerId } = useTabNav();
     const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
     // зачем ([SCROLL-RESTORE] 18.10, находка Сверки: Главная открывается прокрученной вниз): у Главной нет своего scrollTo, поэтому пишем события, после которых положение могло смениться, и размер содержимого
-    useEffect(() => { noteScrollEvent('home', 'lang_change', { lang, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' }); }, [lang]);
-    useEffect(() => { noteScrollEvent('home', 'focus', { focusTick, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' }); }, [focusTick]);
+    useEffect(() => {
+        if (homePrevLangRef.current !== lang) {
+            homePrevLangRef.current = lang;
+            homeLangChangedAtRef.current = Date.now();
+            homeDraggedAfterLangRef.current = false;
+            homeLangCorrectedRef.current = false;
+        }
+        noteScrollEvent('home', 'lang_change', { lang, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' });
+    }, [lang]);
+    useEffect(() => {
+        noteScrollEvent('home', 'focus', { focusTick, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' });
+        noteBackArrived('home', 'focus_tick'); // зачем ([BACK-BTN] 18.10): возврат с «Сегодня» — «прибыли» на Главной; без нажатия «назад» проба молчит
+    }, [focusTick]);
     // зачем (HOME-COLD_cold1: video:start через 5 998 мс, homeOnboardingDone:false): флаг, уже прочитанный корнем,
     // включает homeRuntimeActive на первом кадре; multiGet ниже остаётся источником правды.
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true);
@@ -2498,7 +2534,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
         const renderHomeV2 = () => (
-          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => noteScrollDrag('home', true)} onContentSizeChange={(_w: number, h: number) => noteScrollContentHeight('home', h)} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();
           }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>

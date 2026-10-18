@@ -26,6 +26,7 @@ import { useV2Palette } from '../components/v2/useV2Palette';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { useTodayTasks } from '../hooks/use_today_tasks';
 import { safeRouterBack } from './navigation_back';
+import { noteBackDecision } from './back_tap_probe';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
 import BackButton from '../components/v2/BackButton';
@@ -133,7 +134,7 @@ export default function TodayTasksScreen() {
           <BackButton
             testID="today-tasks-back"
             screen="today_tasks"
-            onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
+            onPress={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }} // зачем ([BACK-BTN] 18.10): после tap — решение, «прибыли» пишет Главная на фокусе
             accessibilityLabel={backLabel}
           />
           <Text accessibilityRole="header" numberOfLines={1} style={[s.title, { color: p.text }]}>{title}</Text>

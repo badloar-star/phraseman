@@ -13,7 +13,7 @@ import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, markComboMomentBusy, publishComboCoin, type ComboBeat, type ComboCoinShow } from './combo_moment_gate';
+import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, comboCoinStayMs, markComboMomentBusy, publishComboCoin, type ComboBeat, type ComboCoinShow } from './combo_moment_gate';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 // эталон `zap`: путь в кадре 390 × 844, растягивается на экран
@@ -81,8 +81,9 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
     }
     console.log(`${COMBO_MOMENT_LOG} слой: удар «${beat}» (${prev} → ${comboCount}), монета=${COIN_FOR[beat].mood} ранг=${String(coinRank)}`); // guard-ok: журнал удара
     setCoin((c) => ({ ...COIN_FOR[beat], key: (c?.key ?? 0) + 1 }));
-    markComboMomentBusy(Date.now(), T.coinStay);
-    console.log(`${MOMENT_QUEUE_LOG} m08 занят ${T.coinStay} мс (удар «${beat}») — тосты урока ждут`); // guard-ok: строка на отметку занятости
+    const stayMs = comboCoinStayMs(); // эталонные 1,8 с; в отладке — × dev_state?m08hold
+    markComboMomentBusy(Date.now(), stayMs);
+    console.log(`${MOMENT_QUEUE_LOG} m08 занят ${stayMs} мс (удар «${beat}») — тосты урока ждут`); // guard-ok: строка на отметку занятости
     if (beat === 'break') playBreakSound();
     if (!reduced && beat === 'storm') {
       zap.value = withSequence(withTiming(ZAP_LEN, { duration: 0 }), withTiming(0, { duration: T.zapDraw }));
@@ -100,8 +101,8 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
     hideTimerRef.current = setTimeout(() => {
       hideTimerRef.current = null;
       setCoin(null);
-      console.log(`${COMBO_TRACE} слой: монета скрыта по таймеру ${T.coinStay} мс (удар «${beat}»)`); // guard-ok: журнал скрытия
-    }, T.coinStay);
+      console.log(`${COMBO_TRACE} слой: монета скрыта по таймеру ${stayMs} мс (удар «${beat}»)`); // guard-ok: журнал скрытия
+    }, stayMs);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: удар решается только сменой серии
   }, [comboCount]);
 

@@ -17,6 +17,6 @@ describe('[MOMENT-QUEUE] m08 и тост медали', () => {
   it('урок спрашивает очередь перед тостом медали, слой отмечает занятость на ударе', () => {
     const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
     expect(read('app/lesson1.tsx')).toContain('const waitMs = comboMomentBusyLeftMs(Date.now());');
-    expect(read('components/feedback/ComboMomentLayer.tsx')).toContain('markComboMomentBusy(Date.now(), T.coinStay);');
+    expect(read('components/feedback/ComboMomentLayer.tsx')).toContain('markComboMomentBusy(Date.now(), stayMs);');
   });
 });

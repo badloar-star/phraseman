@@ -248,6 +248,8 @@ export type DevStateRequest = Readonly<{
   seen?: DevSeenRequest;
   /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
   coinRank?: number | 'off';
+  /** m08 «Молния»: монета держится ×N (1..10) — поймать «выглядывание» и «радость» на кадре; off — снять (combo_moment_gate.ts). */
+  m08Hold?: number | 'off';
   /** Лига башни Шпиля для ПОКАЗА (0..11, Гранит…Алмаз): подмена выбора наряда башни в памяти процесса — неделя, комната и облако не меняются (dev_spire_tier.ts). off — снять. */
   spireTier?: number | 'off';
   /** Короткий урок 1.0 для честной проверки итога: N заданий (1..10) вместо 50, начисление — боевой код (dev_short_lesson). */
@@ -509,6 +511,14 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     if (coinRankRaw === 'off') request.coinRank = 'off';
     else if (Number.isInteger(rankN) && rankN >= 0 && rankN <= 19) request.coinRank = rankN;
     else rejected.coinRank = `ожидалось 0..19 или off, пришло ${coinRankRaw}`;
+  }
+  // зачем (координатор 18.10): Сверке задержать монету m08 для кадра; только память процесса, в сторе отклоняется
+  const m08HoldRaw = one(params.m08hold);
+  if (m08HoldRaw !== undefined) {
+    const holdN = Number(m08HoldRaw);
+    if (m08HoldRaw === 'off') request.m08Hold = 'off';
+    else if (Number.isInteger(holdN) && holdN >= 1 && holdN <= 10) request.m08Hold = holdN;
+    else rejected.m08Hold = `ожидалось 1..10 или off, пришло ${m08HoldRaw}`;
   }
   // зачем (Авторизация 12.10, coins-001/003/004, system-010/012): показ баланса, удержание повышения, экран ошибки, окно объявления — только память
   const coinsRaw = one(params.coins);
@@ -1156,6 +1166,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('coinRank', String(request.coinRank), async () => {
       const { setDevCoinRankOverride } = await import('./dev_coin_rank');
       return setDevCoinRankOverride(request.coinRank === 'off' ? null : (request.coinRank as number));
+    });
+  }
+  if (request.m08Hold !== undefined) {
+    await step('m08hold', String(request.m08Hold), async () => {
+      const { setDevComboCoinHold } = await import('../components/feedback/combo_moment_gate');
+      return setDevComboCoinHold(request.m08Hold === 'off' ? null : (request.m08Hold as number));
     });
   }
   if (request.coins !== undefined) {

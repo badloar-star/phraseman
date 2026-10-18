@@ -6,6 +6,7 @@
 // Счётчик серии и награды не трогаем (он у lesson1) — модуль только решает, что показать. Чистые функции, причина уходит в журнал [MOMENT-m08].
 // ═══════════════════════════════════════════════════════════════════════════
 import { COMBO_LIGHTNING_AT, COMBO_SPARK_AT, COMBO_STORM_AT } from '../../app/feedback/combo_engine';
+import { DIAG_ENABLED } from '../../app/dev_diag_gate';
 
 export const COMBO_MOMENT_LOG = '[MOMENT-m08]';
 /** Трассировка показа/скрытия/отмены таймеров «Молнии» (Ревизор 15.10, баг залипания) — постоянный журнал ранних выходов и таймеров. */
@@ -82,4 +83,27 @@ export function subscribeComboCoin(listener: () => void): () => void {
 }
 export function getComboCoin(): ComboCoinShow | null {
   return comboCoinShow;
+}
+
+/**
+ * DEV: удержать монету m08 дольше (`dev_state?m08hold=N`, 1..10; off — снять). зачем (координатор 18.10): Сверке нужно поймать на кадре
+ * «выглядывание» на 5 и «радость» на 10 — монета живёт 1,8 с. Только отладка (общий гейт dev_diag_gate); в сторе множитель всегда 1, установка отклоняется.
+ */
+let devCoinHoldX = 1;
+export function setDevComboCoinHold(x: number | null): boolean {
+  if (!DIAG_ENABLED) {
+    console.warn('[DEV-STATE] m08hold: отклонено — не dev-сборка', { x }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  if (x !== null && (!Number.isInteger(x) || x < 1 || x > 10)) {
+    console.warn('[DEV-STATE] m08hold: отклонено — множитель вне 1..10', { x }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  devCoinHoldX = x ?? 1;
+  console.log(`[DEV-STATE] m08hold ×${devCoinHoldX} — монета m08 держится ${COMBO_MOMENT_TIMELINE.coinStay * devCoinHoldX} мс`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+/** Сколько держать монету после удара: эталонные 1,8 с; в отладке — × множитель m08hold. */
+export function comboCoinStayMs(): number {
+  return COMBO_MOMENT_TIMELINE.coinStay * (DIAG_ENABLED ? devCoinHoldX : 1);
 }

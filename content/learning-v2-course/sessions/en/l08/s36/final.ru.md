@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 36 — Не поцарапай
 
-**Ситуация.** Вы бережёте новый стол, бережёте склеенную модель и просите друга идти без вас.
+**Ситуация.** Беречь виниловую пластинку, металлическую бутылку и край керамической чашки.
 
 **Что вы освоите:** предупредить «не делай» и вежливо попросить не ждать
-**Новые слова:** scratch
+**Новые слова:** scratch, dent, chip, scuff
 
 ---
 
 ## Интро 1
 
-### Новый стол
+### Пластинка без конверта
 
-Друг двигает тяжёлую коробку по новому столу. `Scratch` — «царапать». `Don’t scratch it` — «Не поцарапай это». Здесь `it` относится к столу, а после `don’t` нужно `scratch`, без `to` и окончаний. У стола пока нет царапин — пусть так и останется.
+Друг достал вашу виниловую пластинку и собирается положить её на стол рядом с ключами. Scratch — «царапать». `Don’t scratch it` — «Не поцарапай её». It заменяет пластинку. После don’t нужно scratch, без to и es.
 
-**Предупредите друга: «Не поцарапай это».**
+**Предупредите друга: «Не поцарапай её».**
 
 - ✅ **Don’t scratch it.**
-- ❌ Don’t scratches it. — *После `don’t` нужно `scratch`, без `es`.*
-- ❌ Don’t to scratch it. — *После `don’t` нужно `scratch`, без `to`.*
+- ❌ Don’t scratches it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to scratch it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 2
 
-### Клей ещё не высох
+### Бутылка под инструментами
 
-Вы только что склеили модель самолёта. Друг тянется к ней, но клей ещё не высох. Покажите на модель: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.
+Вы собираете вещи для работы на даче. Друг кладёт тяжёлые инструменты поверх вашей металлической бутылки. Dent — «оставлять вмятину». `Don’t dent it` — «Не помни её». Речь о вмятине на бутылке, а не о царапине на её поверхности.
 
-**Покажите на модель и скажите «Не трогай это».**
+**Скажите другу не помять бутылку.**
 
-- ✅ **Don’t touch this.**
-- ❌ Don’t touches this. — *После `don’t` нужно `touch`, без `es`.*
-- ❌ Not touch this. — *В такой просьбе нужно `Don’t touch this`.*
+- ✅ **Don’t dent it.**
+- ❌ Don’t dents it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to dent it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 3
 
-### Разговор затянулся
+### Чашка под краном
 
-Друг готов идти на обед, а вы ещё разговариваете по телефону. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.
+Друг моет вашу керамическую чашку и поднимает её так высоко, что край почти касается металлического крана. Chip — «отколоть кусочек, сделать скол». `Don’t chip it` — «Не отколи от неё кусочек». It относится к чашке: вы хотите сохранить её край целым.
 
-**Попросите друга вежливо не ждать вас.**
+**Предупредите друга не отколоть кусочек от чашки.**
 
-- ✅ **Please don’t wait.**
-- ❌ Please doesn’t wait. — *В обращении к человеку нужно `don’t wait`.*
-- ❌ Please don’t to wait. — *После `don’t` нужно `wait`, без `to`.*
+- ✅ **Don’t chip it.**
+- ❌ Don’t chips it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to chip it. — *После don’t не нужно to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Предупредите «Не поцарапай это»**
+**1 · Карточка слова — scratch**
+<!-- interaction_id: en:lesson-08:session-36:word:scratch; family: word_card -->
+> **scratch** — царапать. Don’t scratch it. — «Не поцарапай это». Оставлять тонкие повреждения на поверхности.
+
+**2 · Предупредите «Не поцарапай это»**
 <!-- interaction_id: en:lesson-08:session-36:i01; family: phrase_builder -->
 Плитки: `it` `scratch` `Don’t` → **Don’t scratch it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-36:i02; family: listen_choose -->
 🔊 *scratch* → **scratch** · live · fold
 - live — *В записи первое слово — `scratch`, а в этом варианте — `live`.*
 - fold — *В записи первое слово — `scratch`, а в этом варианте — `fold`.*
 
-**3 · Скажите «Не поцарапай это»**
+**4 · Выберите форму для предупреждения «Не поцарапай это»**
 <!-- interaction_id: en:lesson-08:session-36:i03; family: context_gap_grammar -->
 Don’t ___ it. → **scratch** · scratches · to scratch
 - scratches — *После `don’t` нужно `scratch`, без `es`.*
 - to scratch — *После `don’t` нужно `scratch`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-36:i04; family: speed_match -->
 scratch — царапать · smoke alarm — датчик дыма · live — жить · fold — сложить
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-36:i05; family: listen_build_dictation -->
 🔊 *Don’t scratch it.* Плитки: `it` `scratch` `Don’t` → **Don’t scratch it.**
 
-**6 · Покажите на модель: «Не трогай это»**
+**7 · Карточка слова — dent**
+<!-- interaction_id: en:lesson-08:session-36:word:dent; family: word_card -->
+> **dent** — оставлять вмятину, мять. Don’t dent it. — «Не помни это». Например, помять металлическую бутылку.
+
+**8 · Скажите о металлической бутылке: «Не помни её»**
 <!-- interaction_id: en:lesson-08:session-36:i06; family: phrase_builder -->
-Плитки: `this` `touch` `Don’t` → **Don’t touch this.**
+Плитки: `it` `dent` `Don’t` → **Don’t dent it.**
 
-**7 · Вы ещё разговариваете по телефону. Скажите другу «Пожалуйста, не жди»**
+**9 · Карточка слова — chip**
+<!-- interaction_id: en:lesson-08:session-36:word:chip; family: word_card -->
+> **chip** — откалывать кусочек. Don’t chip it. — «Не отколи от неё кусочек». Например, случайно сделать скол на краю чашки.
+
+**10 · Чашка почти касается крана. Скажите «Не отколи от неё кусочек»**
 <!-- interaction_id: en:lesson-08:session-36:i07; family: scripted_repeat_compare -->
-🎙 **Please don’t wait.**
+🎙 **Don’t chip it.**
 
-**8 · Попросите друга не ждать**
+**11 · Выберите форму для просьбы не ждать**
 <!-- interaction_id: en:lesson-08:session-36:i08; family: context_gap_grammar -->
 Please ___ wait. → **don’t** · doesn’t · not
 - doesn’t — *В обращении нужно `don’t wait`.*
 - not — *В этой просьбе нужно `don’t`: `Please don’t wait`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-36:i09; family: listen_choose -->
 🔊 *Don’t scratch it.* → **Don’t scratch it.** · Don’t scratch this. · Don’t scratch that.
 - Don’t scratch this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Don’t scratch that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-36:i10; family: speed_match -->
-relax — расслабляться · scratch — царапать · live — жить · smoke alarm — датчик дыма
+scratch — царапать · dent — оставлять вмятину · chip — откалывать кусочек · wait — ждать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-36:i11; family: listen_build_dictation -->
 🔊 *Please don’t wait.* Плитки: `wait` `don’t` `Please` → **Please don’t wait.**
 
-**12 · Покажите на лист бумаги. Дайте указание «Сложи его»**
+**15 · Карточка слова — scuff**
+<!-- interaction_id: en:lesson-08:session-36:word:scuff; family: word_card -->
+> **scuff** — оставлять потёртости. Don’t scuff the shoes. — «Не оставь потёртостей на туфлях». Повредить поверхность трением, например о ступеньку.
+
+**16 · Друг трёт новые туфли о край ступеньки. Скажите «Не оставь потёртостей на туфлях»**
 <!-- interaction_id: en:lesson-08:session-36:i12; family: phrase_builder -->
-Плитки: `it` `Fold` → **Fold it.**
+Плитки: `shoes` `the` `scuff` `Don’t` → **Don’t scuff the shoes.**
 
-**13 · Скажите «Я часто расслабляюсь» — используйте relax**
+**17 · Друг уже у выхода из музея, а вы возвращаете аудиогид. Скажите «Пожалуйста, не жди»**
 <!-- interaction_id: en:lesson-08:session-36:i13; family: scripted_repeat_compare -->
-🎙 **I often relax.**
+🎙 **Please don’t wait.**
 
-**14 · Предупредите «Не трогай это»**
+**18 · Выберите форму для предупреждения не помять бутылку**
 <!-- interaction_id: en:lesson-08:session-36:i14; family: context_gap_grammar -->
-Don’t ___ this. → **touch** · touches · to touch
-- touches — *После `don’t` нужно `touch`, без `es`.*
-- to touch — *После `don’t` нужно `touch`, без `to`.*
+Don’t ___ it. → **dent** · dents · to dent
+- dents — *После don’t нужно dent, без s.*
+- to dent — *После don’t не нужно to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-36:i15; family: listen_choose -->
 🔊 *Don’t rush.* → **Don’t rush.** · Don’t wait. · Don’t shout.
 - Don’t wait. — *В записи последнее слово — `rush`, а в этом варианте — `wait`.*
 - Don’t shout. — *В записи последнее слово — `rush`, а в этом варианте — `shout`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-36:i16; family: speed_match -->
-scratch — царапать · relax — расслабляться · fold — сложить · smoke alarm — датчик дыма
+scratch — царапать · dent — оставлять вмятину · chip — откалывать кусочек · scuff — оставлять потёртости
 
-**17 · Друг чистит экран телефона острым предметом. Предупредите «Не поцарапай это»**
+**21 · Друг чистит экран телефона острым предметом. Предупредите «Не поцарапай это»**
 <!-- interaction_id: en:lesson-08:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Don’t scratch it.**
 

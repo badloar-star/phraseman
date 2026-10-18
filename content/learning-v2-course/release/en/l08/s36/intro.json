@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Новый стол",
-        "uk": "Новий стіл"
+        "ru": "Пластинка без конверта",
+        "uk": "Платівка без конверта"
       },
       "bodyByLocale": {
-        "ru": "Друг двигает тяжёлую коробку по новому столу. `Scratch` — «царапать». `Don’t scratch it` — «Не поцарапай это». Здесь `it` относится к столу, а после `don’t` нужно `scratch`, без `to` и окончаний. У стола пока нет царапин — пусть так и останется.",
-        "uk": "Друг рухає важку коробку по новому столу. `Scratch` — «дряпати». `Don’t scratch it` — «Не подряпай це». Тут `it` стосується столу, а після `don’t` потрібне `scratch`, без `to` і закінчень. На столі поки немає подряпин — нехай так і залишиться."
+        "ru": "Друг достал вашу виниловую пластинку и собирается положить её на стол рядом с ключами. Scratch — «царапать». `Don’t scratch it` — «Не поцарапай её». It заменяет пластинку. После don’t нужно scratch, без to и es.",
+        "uk": "Друг дістав вашу вінілову платівку й збирається покласти її на стіл поруч із ключами. Scratch — «дряпати». `Don’t scratch it` — «Не подряпай її». It замінює платівку. Після don’t потрібне scratch, без to і es."
       },
       "question": {
         "interactionId": "en:lesson-08:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Предупредите друга: «Не поцарапай это».",
-          "uk": "Попередьте друга: «Не подряпай це»."
+          "ru": "Предупредите друга: «Не поцарапай её».",
+          "uk": "Попередьте друга: «Не подряпай її»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предупредите друга: «Не поцарапай это».",
-          "uk": "Попередьте друга: «Не подряпай це»."
+          "ru": "Предупредите друга: «Не поцарапай её».",
+          "uk": "Попередьте друга: «Не подряпай її»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Клей ещё не высох",
-        "uk": "Клей ще не висох"
+        "ru": "Бутылка под инструментами",
+        "uk": "Пляшка під інструментами"
       },
       "bodyByLocale": {
-        "ru": "Вы только что склеили модель самолёта. Друг тянется к ней, но клей ещё не высох. Покажите на модель: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
-        "uk": "Ви щойно склеїли модель літака. Друг тягнеться до неї, але клей ще не висох. Покажіть на модель: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+        "ru": "Вы собираете вещи для работы на даче. Друг кладёт тяжёлые инструменты поверх вашей металлической бутылки. Dent — «оставлять вмятину». `Don’t dent it` — «Не помни её». Речь о вмятине на бутылке, а не о царапине на её поверхности.",
+        "uk": "Ви збираєте речі для роботи на дачі. Друг кладе важкі інструменти поверх вашої металевої пляшки. Dent — «залишати вм’ятину». `Don’t dent it` — «Не помни її». Ідеться про вм’ятину на пляшці, а не про подряпину на її поверхні."
       },
       "question": {
         "interactionId": "en:lesson-08:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите на модель и скажите «Не трогай это».",
-          "uk": "Покажіть на модель й скажіть «Не чіпай це»."
+          "ru": "Скажите другу не помять бутылку.",
+          "uk": "Скажіть другові не пом’яти пляшку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-36:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t dent it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t dents it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to dent it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-36:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t dent it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t dents it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to dent it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на модель и скажите «Не трогай это».",
-          "uk": "Покажіть на модель й скажіть «Не чіпай це»."
+          "ru": "Скажите другу не помять бутылку.",
+          "uk": "Скажіть другові не пом’яти пляшку."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Разговор затянулся",
-        "uk": "Розмова затягнулася"
+        "ru": "Чашка под краном",
+        "uk": "Чашка під краном"
       },
       "bodyByLocale": {
-        "ru": "Друг готов идти на обед, а вы ещё разговариваете по телефону. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.",
-        "uk": "Друг готовий іти на обід, а ви ще розмовляєте телефоном. Нехай іде без вас: `Please don’t wait` — «Будь ласка, не чекай». `Please` пом’якшує прохання."
+        "ru": "Друг моет вашу керамическую чашку и поднимает её так высоко, что край почти касается металлического крана. Chip — «отколоть кусочек, сделать скол». `Don’t chip it` — «Не отколи от неё кусочек». It относится к чашке: вы хотите сохранить её край целым.",
+        "uk": "Друг миє вашу керамічну чашку й піднімає її так високо, що край майже торкається металевого крана. Chip — «відколоти шматочок, зробити відкол». `Don’t chip it` — «Не відколюй від неї шматочок». It стосується чашки: ви хочете зберегти її край цілим."
       },
       "question": {
         "interactionId": "en:lesson-08:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга вежливо не ждать вас.",
-          "uk": "Ввічливо попросіть друга не чекати на вас."
+          "ru": "Предупредите друга не отколоть кусочек от чашки.",
+          "uk": "Попередьте друга не відколоти шматочок від чашки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-36:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Don’t chip it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Don’t chips it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Don’t to chip it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-36:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Don’t chip it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Don’t chips it."
             },
             {
               "responseId": "en:lesson-08:session-36:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Don’t to chip it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга вежливо не ждать вас.",
-          "uk": "Ввічливо попросіть друга не чекати на вас."
+          "ru": "Предупредите друга не отколоть кусочек от чашки.",
+          "uk": "Попередьте друга не відколоти шматочок від чашки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "82ddb5e56837de611d687d222f2b91c09741138170669e5c5e878d865b44082e"
+  "introFingerprint": "f73e017b226d9af516c7d95bc4616e1db82fe4b455eef9226c68f90634ff2105"
 }

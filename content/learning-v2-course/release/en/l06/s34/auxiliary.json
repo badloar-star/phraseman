@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-34:intro1:r2": {
-          "ru": "Говорим `I drink`, без `am`.",
-          "uk": "Кажемо `I drink`, без `am`."
+          "ru": "После I слово остаётся drink, без s.",
+          "uk": "Після I слово лишається drink, без s."
         },
         "en:lesson-06:session-34:intro1:r3": {
-          "ru": "После `I` — `drink`, без `s`.",
-          "uk": "Після `I` — `drink`, без `s`."
+          "ru": "Здесь действие: I drink, без am.",
+          "uk": "Тут дія: I drink, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-34:intro2:r2": {
-          "ru": "После `she` — `drinks`.",
-          "uk": "Після `she` — `drinks`."
+          "ru": "После she нужно drinks, с s.",
+          "uk": "Після she потрібно drinks, з s."
         },
         "en:lesson-06:session-34:intro2:r3": {
-          "ru": "Нужно `She drinks`, без `is`.",
-          "uk": "Потрібно `She drinks`, без `is`."
+          "ru": "Здесь действие: She drinks, без is.",
+          "uk": "Тут дія: She drinks, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-34:intro3:r2": {
-          "ru": "О владельце спрашиваем `Whose`, не `Who`.",
-          "uk": "Про власника запитуємо `Whose`, не `Who`."
+          "ru": "О владельце спрашиваем Whose — «чья».",
+          "uk": "Про власника питаємо Whose — «чия»."
         },
         "en:lesson-06:session-34:intro3:r3": {
-          "ru": "Одно кольцо: `is this`.",
-          "uk": "Одна каблучка: `is this`."
+          "ru": "Фляжка одна: нужно is this.",
+          "uk": "Фляга одна: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "238b4755ff05703007a471c55dbf18e5bcc60e479931f5cb088c3979158c4fa6"
+  "auxiliaryFingerprint": "34720c051f10394c26aff3a36df9e9f4bfb14802fab262e6dabeda0db7a54127"
 }

@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 34 — Вода після пробіжки
+# Англійська · Урок 6 · Заняття 34 — Холодний лимонад
 
-**Ситуація.** Після пробіжки Анна й Том п’ють воду. Дорогою додому вони знаходять каблучку на сходах і намагаються повернути її власникові.
+**Ситуація.** У спекотний день ви з подругою, братом і сестрою вирішуєте, хто що п’є, і шукаєте власника фляги, забутої на лавці. Після she і he до слова drink додається s.
 
-**Що ви опануєте:** розповісти, що людина зазвичай п’є, й повторити знайомі слова
-**Нові слова:** drink
+**Що ви опануєте:** розповісти, хто що п’є, і спитати, чия це річ
+**Нові слова:** drink, lemonade, straw, flask
+**Повертаються:** water, tea, milk, juice, glass, bottle, bench, cold, warm, sweet
 
 ---
 
 ## Інтро 1
 
-### Що ви п’єте
+### У кафе з подругою
 
-Ви обговорюєте, що зазвичай п’єте після пробіжки. `drink` — «пити». `I drink water` — «Я п’ю воду». Слово `drink` уже називає дію, тому `am` перед ним не потрібне. Тримати пляшку для спортивного вигляду — ще не пити: `drink` означає, що вода таки потрапляє всередину.
+Ви з подругою сидите в кафе біля вікна, надворі спекотно. Вона замовляє каву й питає, що будете ви. Але ви п’єте тільки воду й завжди носите з собою повну пляшку. drink — «пити». I drink water — «Я п’ю воду». Після I слово лишається drink, без s.
 
-**Скажіть про свою звичку «Я п’ю воду».**
+**Подруга питає, що ви будете пити. Скажіть: «Я п’ю воду».**
 
 - ✅ **I drink water.**
-- ❌ I am drink water. — *Кажемо `I drink`, без `am`.*
-- ❌ I drinks water. — *Після `I` — `drink`, без `s`.*
+- ❌ I drinks water. — *Після I слово лишається drink, без s.*
+- ❌ I am drink water. — *Тут дія: I drink, без am.*
 
 ---
 
 ## Інтро 2
 
-### Звичка Анни
+### Лимонад із холодильника
 
-Том запитує, що Анна зазвичай п’є після пробіжки. `She drinks water` — «Вона п’є воду». Після `she` додаємо `s`: `drink → drinks`. Можна назвати Анну на ім’я: `Anna drinks water`. Зараз її пляшка може бути закрита: ми розповідаємо про звичку.
+Сестра приходить додому після тренування, одразу відчиняє холодильник і дістає велику пляшку. Вона п’є цей напій тільки холодним, зі шматочками льоду. Подруга питає, що вона п’є. lemonade — «лимонад». Після she до drink додаємо s: She drinks lemonade.
 
-**Дайте Тому відповідь про Анну: «Вона п’є воду».**
+**Подруга питає, що п’є ваша сестра. Скажіть: «Вона п’є лимонад».**
 
-- ✅ **She drinks water.**
-- ❌ She drink water. — *Після `she` — `drinks`.*
-- ❌ She is drinks water. — *Потрібно `She drinks`, без `is`.*
+- ✅ **She drinks lemonade.**
+- ❌ She drink lemonade. — *Після she потрібно drinks, з s.*
+- ❌ She is drinks lemonade. — *Тут дія: She drinks, без is.*
 
 ---
 
 ## Інтро 3
 
-### Знайшли каблучку
+### Фляга на лавці
 
-На сходах лежить каблучка. Ви хочете знайти власника: `Whose ring is this?` — «Чия це каблучка?» `ring` — «каблучка», `whose` — «чия». Одна каблучка: `is this`. Це запитання допоможе повернути знахідку, а не гадати, хто її загубив.
+Після прогулянки парком ви помічаєте на лавці маленьку металеву флягу з кришкою. Поруч сидять люди з книжками й газетами, і ви хочете дізнатися, чия вона. flask — «фляга». Щоб спитати про власника, кажемо Whose: Whose flask is this? — «Чия це фляга?»
 
-**Запитайте в сусідів «Чия це каблучка?»**
+**Ви показуєте людям поруч на флягу. Спитайте: «Чия це фляга?»**
 
-- ✅ **Whose ring is this?**
-- ❌ Who ring is this? — *Про власника запитуємо `Whose`, не `Who`.*
-- ❌ Whose ring are these? — *Одна каблучка: `is this`.*
+- ✅ **Whose flask is this?**
+- ❌ Who flask is this? — *Про власника питаємо Whose — «чия».*
+- ❌ Whose flask are this? — *Фляга одна: потрібно is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про звичку: «Я п’ю воду»**
+**1 · Картка слова — drink**
+<!-- interaction_id: en:lesson-06:session-34:word:drink; family: word_card -->
+> **drink** — пити. We drink tea. — «Ми п’ємо чай». Про те, що роблять, коли хочеться пити.
+
+**2 · Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»**
 <!-- interaction_id: en:lesson-06:session-34:i01; family: phrase_builder -->
-Плитки: `water` `drink` `I` → **I drink water.**
+Плитки: `tea` `drink` `We` `drinks` → **We drink tea.**
+*(плитка `drinks` зайва: тут потрібно `drink` — `We drink tea.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — lemonade**
+<!-- interaction_id: en:lesson-06:session-34:word:lemonade; family: word_card -->
+> **lemonade** — лимонад. The lemonade is sweet. — «Лимонад солодкий». Про солодкий прохолодний напій.
+
+**4 · Послухайте сестру**
 <!-- interaction_id: en:lesson-06:session-34:i02; family: listen_choose -->
-🔊 *drink* → **drink** · jog · study
-- jog — *У записі перше слово — `drink`, а в цьому варіанті — `jog`.*
-- study — *У записі перше слово — `drink`, а в цьому варіанті — `study`.*
+🔊 *She drinks lemonade.* → **She drinks lemonade.** · She drinks water. · He drinks lemonade.
+- She drinks water. — *У записі останнє слово — `lemonade`, лимонад, а в цьому варіанті — `water`, вода.*
+- He drinks lemonade. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Вона п’є воду»**
+**5 · Скажіть про брата: «Мій брат п’є молоко». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-34:i03; family: context_gap_grammar -->
-She ___ water. → **drinks** · drink · is drinks
-- drink — *Після `she` — `drinks`.*
-- is drinks — *Потрібно `She drinks`, без `is`.*
+My brother ___ milk. → **drinks** · drink · is drinks
+- drink — *Брат — це `he`, тому потрібно `drinks`, з `s`.*
+- is drinks — *Кажемо `drinks`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-34:i04; family: speed_match -->
-drink — пити · inactive — неактивний · handrail — поручень · ring — каблучка
+drink — пити · lemonade — лимонад · straw — трубочка для пиття · flask — фляга
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — flask**
+<!-- interaction_id: en:lesson-06:session-34:word:flask; family: word_card -->
+> **flask** — фляга. My flask is on the bench. — «Моя фляга на лавці». Про маленьку флягу, яку беруть із собою.
+
+**8 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-34:i05; family: listen_build_dictation -->
-🔊 *Anna drinks water.* Плитки: `water` `drinks` `Anna` → **Anna drinks water.**
+🔊 *My flask is on the bench.* Плитки: `bench` `on` `the` `My` `flask` `is` `are` → **My flask is on the bench.**
+*(плитка `are` зайва: тут потрібно `is` — `My flask is on the bench.`)*
 
-**6 · Скажіть «Він бігає підтюпцем тут»**
+**9 · Ви куштуєте напій сестри. Скажіть: «Лимонад холодний»**
 <!-- interaction_id: en:lesson-06:session-34:i06; family: phrase_builder -->
-Плитки: `here` `jogs` `He` → **He jogs here.**
+Плитки: `lemonade` `cold` `is` `The` `are` → **The lemonade is cold.**
+*(плитка `are` зайва: тут потрібно `is` — `The lemonade is cold.`)*
 
-**7 · На сходах замінили поручень. Скажіть «Цей поручень новий»**
+**10 · Подруга питає, що п’є ваш брат. Скажіть: «Він п’є чай»**
 <!-- interaction_id: en:lesson-06:session-34:i07; family: scripted_repeat_compare -->
-🎙 **This handrail is new.**
+🎙 **He drinks tea.**
 
-**8 · Скажіть «Ми п’ємо воду»**
+**11 · Скажіть про себе: «Я п’ю сік». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-34:i08; family: context_gap_grammar -->
-We ___ water. → **drink** · drinks · are drink
-- drinks — *Після `we` — `drink`, без `s`.*
-- are drink — *Потрібно `We drink`, без `are`.*
+I ___ juice. → **drink** · drinks · am drink
+- drinks — *Після `I` потрібно `drink`, без `s`.*
+- am drink — *Кажемо `I drink`, без `am`.*
 
-**9 · Послухайте, кому належить каблучка**
+**12 · Картка слова — straw**
+<!-- interaction_id: en:lesson-06:session-34:word:straw; family: word_card -->
+> **straw** — трубочка для пиття. The straw is in the glass. — «Трубочка в склянці». Про тонку трубочку, через яку п’ють.
+
+**13 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-34:i09; family: listen_choose -->
-🔊 *This ring is mine.* → **This ring is mine.** · This ring is yours. · This ring is hers.
-- This ring is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This ring is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The straw is in the glass.* → **The straw is in the glass.** · The straw is in the bottle. · The flask is in the glass.
+- The straw is in the bottle. — *У записі останнє слово — `glass`, склянка, а в цьому варіанті — `bottle`, пляшка.*
+- The flask is in the glass. — *У записі йдеться про `straw`, трубочку, а в цьому варіанті — про `flask`, флягу.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-34:i10; family: speed_match -->
-drink — пити · jog — бігати підтюпцем · ring — каблучка · inactive — неактивний
+flask — фляга · drink — пити · lemonade — лимонад · straw — трубочка для пиття
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-34:i11; family: listen_build_dictation -->
-🔊 *The handrail is here.* Плитки: `here` `is` `handrail` `The` `are` → **The handrail is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The handrail is here.`)*
+🔊 *She drinks water at home.* Плитки: `drinks` `water` `at` `home` `She` `drink` → **She drinks water at home.**
+*(плитка `drink` зайва: тут потрібно `drinks` — `She drinks water at home.`)*
 
-**12 · Ви знайшли каблучку. Запитайте «Чия це каблучка?»**
+**16 · Подруга показує на трубочку на лавці. Спитайте: «Чия це трубочка?»**
 <!-- interaction_id: en:lesson-06:session-34:i12; family: phrase_builder -->
-Плитки: `this` `is` `ring` `Whose` → **Whose ring is this?**
+Плитки: `straw` `is` `this` `Whose` `Who` → **Whose straw is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose straw is this?`)*
 
-**13 · Скажіть «Вони бігають підтюпцем тут»**
+**17 · Сусідка питає, що ви п’єте із сестрою. Скажіть: «Ми п’ємо лимонад»**
 <!-- interaction_id: en:lesson-06:session-34:i13; family: scripted_repeat_compare -->
-🎙 **They jog here.**
+🎙 **We drink lemonade.**
 
-**14 · Скажіть «Том п’є воду»**
+**18 · Скажіть про флягу: «Фляга тепла». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-34:i14; family: context_gap_grammar -->
-Tom ___ water. → **drinks** · drink · is drinks
-- drink — *Том — він: `Tom drinks`.*
-- is drinks — *Потрібно `Tom drinks`, без `is`.*
+The flask ___ warm. → **is** · are · drinks
+- are — *Фляга одна, тому потрібно `is`, а не `are`.*
+- drinks — *`drinks` означає «п’є», а тут треба сказати, яка фляга: `is warm`.*
 
-**15 · Послухайте, кого Анна називає неактивним**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-34:i15; family: listen_choose -->
-🔊 *He is inactive.* → **He is inactive.** · She is inactive. · Tom is inactive.
-- She is inactive. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
-- Tom is inactive. — *У записі перше слово — `He`, а в цьому варіанті — `Tom`.*
+🔊 *I drink tea.* → **I drink tea.** · I drink milk. · We drink tea.
+- I drink milk. — *У записі останнє слово — `tea`, чай, а в цьому варіанті — `milk`, молоко.*
+- We drink tea. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-34:i16; family: speed_match -->
-drink — пити · handrail — поручень · inactive — неактивний · jog — бігати підтюпцем
+straw — трубочка для пиття · flask — фляга · drink — пити · lemonade — лимонад
 
-**17 · Друг запитує, що Анна зазвичай п’є після пробіжки. Дайте відповідь «Вона п’є воду»**
+**21 · Подруга питає, що п’є ваша сестра. Скажіть: «Вона п’є молоко»**
 <!-- interaction_id: en:lesson-06:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She drinks water.**
-
+🎙 **She drinks milk.**

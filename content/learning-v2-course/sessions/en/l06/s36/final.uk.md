@@ -1,134 +1,154 @@
 # Англійська · Урок 6 · Заняття 36 — Нові сусіди
 
-**Ситуація.** Анна знайомиться із сусідами біля входу в будинок і пояснює, де живе її друг Том.
+**Ситуація.** У вашому домі з’явилися нові сусіди, і всі знайомляться: хто де живе, хто винаймає квартиру, а за містом стоїть хатинка з садом. Після she і he до слова live додається s.
 
-**Що ви опануєте:** сказати, де ви живете, й розповісти про місце проживання іншої людини
-**Нові слова:** live
+**Що ви опануєте:** сказати, де ви живете, і розповісти про місце проживання іншої людини
+**Нові слова:** live, flat, cottage, landlord
+**Повертаються:** neighbour, street, stairs, key, door, park, small, kind, old
 
 ---
 
 ## Інтро 1
 
-### Я тут живу
+### Сусідка на сходах
 
-Новий сусід приймає вас за гостя. `live` — «жити». Скажіть `I live here` — «Я живу тут». Перед `live` не потрібне `am`: слово вже називає дію. Навіть якщо ви часто заходите до сусіда на чай, це ще не означає, що ви в нього живете.
+На сходах ви зустрічаєте нову сусідку. Вона бачить у вас у руках ключі й пакет із продуктами та думає, що ви прийшли в гості: вона нова в будинку й ще не знає, хто де живе. live — «жити». I live here — «Я живу тут». Після I слово лишається live, без s.
 
-**Поясніть сусідові «Я живу тут».**
+**Нова сусідка питає, чи ви не прийшли в гості. Скажіть: «Я живу тут».**
 
 - ✅ **I live here.**
-- ❌ I am live here. — *Кажемо `I live`, без `am`.*
-- ❌ I lives here. — *Після `I` — `live`, без `s`.*
+- ❌ I lives here. — *Після I слово лишається live, без s.*
+- ❌ I am live here. — *Тут дія: I live, без am.*
 
 ---
 
 ## Інтро 2
 
-### Де живе Том
+### Сестра переїхала
 
-Сусід запитує про Тома. Покажіть на сусідній будинок: `He lives there` — «Він живе там». Після `he` додаємо `s`: `live → lives`. Можна назвати друга на ім’я: `Tom lives there`. Це його місце проживання; Том не зобов’язаний бути вдома цієї секунди.
+Сестра нещодавно переїхала в маленьку світлу квартиру поруч із парком і дуже їй рада: там завжди тихо й багато сонця. Сусідка питає у вас, де вона тепер оселилася. flat — «квартира». Про сестру після she до live додаємо s: She lives in a flat.
 
-**Покажіть на будинок Тома й скажіть «Він живе там».**
+**Сусідка питає, де живе ваша сестра. Скажіть: «Вона живе в квартирі».**
 
-- ✅ **He lives there.**
-- ❌ He live there. — *Після `he` потрібно `lives`.*
-- ❌ He is lives there. — *Потрібно `He lives`, без `is`.*
+- ✅ **She lives in a flat.**
+- ❌ She live in a flat. — *Після she потрібно lives, з s.*
+- ❌ She is lives in a flat. — *Тут дія: She lives, без is.*
 
 ---
 
 ## Інтро 3
 
-### Окуляри біля входу
+### Хатинка за містом
 
-Біля входу забули сонцезахисні окуляри. `sunglasses` — «сонцезахисні окуляри». Запитайте сусідів: `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» З `sunglasses` використовуємо `are these`, навіть коли перед нами одна пара.
+У вихідний ви з подругою гуляєте за містом і виходите до маленької хатинки з червоним дахом і садом. З труби йде дим, але поруч нікого немає. cottage — «хатинка за містом». Щоб спитати про власника, кажемо Whose: Whose cottage is this? — «Чия це хатинка?»
 
-**Знайдіть власника: запитайте «Чиї це сонцезахисні окуляри?»**
+**Ви показуєте подрузі на хатинку. Спитайте: «Чия це хатинка?»**
 
-- ✅ **Whose sunglasses are these?**
-- ❌ Whose sunglasses is this? — *З `sunglasses` — `are these`.*
-- ❌ Who sunglasses are these? — *Про власника запитуємо `Whose`.*
+- ✅ **Whose cottage is this?**
+- ❌ Who cottage is this? — *Про власника питаємо Whose — «чия».*
+- ❌ Whose cottage are this? — *Хатинка одна: потрібно is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Поясніть сусідові «Я живу тут»**
+**1 · Картка слова — live**
+<!-- interaction_id: en:lesson-06:session-36:word:live; family: word_card -->
+> **live** — жити. We live in a flat. — «Ми живемо в квартирі». Про місце, де людина вдома.
+
+**2 · Нова сусідка питає про вас із братом. Скажіть: «Ми живемо тут»**
 <!-- interaction_id: en:lesson-06:session-36:i01; family: phrase_builder -->
-Плитки: `here` `live` `I` → **I live here.**
+Плитки: `here` `live` `We` `lives` → **We live here.**
+*(плитка `lives` зайва: тут потрібно `live` — `We live here.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — flat**
+<!-- interaction_id: en:lesson-06:session-36:word:flat; family: word_card -->
+> **flat** — квартира. The flat is small. — «Квартира маленька». Про житло у великому багатоповерховому будинку.
+
+**4 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-36:i02; family: listen_choose -->
-🔊 *live* → **live** · sleep · stretch
-- sleep — *У записі перше слово — `live`, а в цьому варіанті — `sleep`.*
-- stretch — *У записі перше слово — `live`, а в цьому варіанті — `stretch`.*
+🔊 *She lives in a flat.* → **She lives in a flat.** · She lives in a cottage. · He lives in a flat.
+- She lives in a cottage. — *У записі останнє слово — `flat`, квартира, а в цьому варіанті — `cottage`, хатинка.*
+- He lives in a flat. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Він живе там»**
+**5 · Скажіть про брата: «Мій брат живе біля парку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-36:i03; family: context_gap_grammar -->
-He ___ there. → **lives** · live · is lives
-- live — *Після `he` — `lives`.*
-- is lives — *Потрібно `He lives`, без `is`.*
+My brother ___ near the park. → **lives** · live · is lives
+- live — *Брат — це `he`, тому потрібно `lives`, з `s`.*
+- is lives — *Кажемо `lives`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-36:i04; family: speed_match -->
-live — жити · informal — неформальний · smoke alarm — датчик диму · sunglasses — сонцезахисні окуляри
+live — жити · flat — квартира · cottage — будиночок · landlord — господар квартири
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — landlord**
+<!-- interaction_id: en:lesson-06:session-36:word:landlord; family: word_card -->
+> **landlord** — господар квартири. The landlord is kind. — «Господар квартири добрий». Про людину, яка здає житло.
+
+**8 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-36:i05; family: listen_build_dictation -->
-🔊 *Tom lives there.* Плитки: `there` `lives` `Tom` → **Tom lives there.**
+🔊 *The landlord is on the stairs.* Плитки: `stairs` `on` `the` `The` `landlord` `is` `are` → **The landlord is on the stairs.**
+*(плитка `are` зайва: тут потрібно `is` — `The landlord is on the stairs.`)*
 
-**6 · Скажіть «Вона робить тут розтяжку»**
+**9 · Картка слова — cottage**
+<!-- interaction_id: en:lesson-06:session-36:word:cottage; family: word_card -->
+> **cottage** — хатинка. The cottage is small. — «Хатинка маленька». Про невеликий будинок, часто за містом.
+
+**10 · Ви розповідаєте подрузі про хатинку за містом. Скажіть: «Хатинка стара»**
 <!-- interaction_id: en:lesson-06:session-36:i06; family: phrase_builder -->
-Плитки: `here` `stretches` `She` → **She stretches here.**
+Плитки: `cottage` `old` `is` `The` `are` → **The cottage is old.**
+*(плитка `are` зайва: тут потрібно `is` — `The cottage is old.`)*
 
-**7 · У будинку замінили датчик. Скажіть «Цей датчик диму новий»**
+**11 · Сусідка питає, де живе ваш брат. Скажіть: «Він живе тут»**
 <!-- interaction_id: en:lesson-06:session-36:i07; family: scripted_repeat_compare -->
-🎙 **This smoke alarm is new.**
+🎙 **He lives here.**
 
-**8 · Скажіть «Ми живемо тут»**
+**12 · Скажіть про себе: «Я живу біля парку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-36:i08; family: context_gap_grammar -->
-We ___ here. → **live** · lives · are live
-- lives — *Після `we` — `live`, без `s`.*
-- are live — *Для «живемо» потрібно `We live`, без `are`.*
+I ___ near the park. → **live** · lives · am live
+- lives — *Після `I` потрібно `live`, без `s`.*
+- am live — *Кажемо `I live`, без `am`.*
 
-**9 · Послухайте, кому належать окуляри**
+**13 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-36:i09; family: listen_choose -->
-🔊 *These sunglasses are mine.* → **These sunglasses are mine.** · These sunglasses are yours. · These sunglasses are hers.
-- These sunglasses are yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- These sunglasses are hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The flat is small.* → **The flat is small.** · The flat is big. · The cottage is small.
+- The flat is big. — *У записі останнє слово — `small`, маленька, а в цьому варіанті — `big`, велика.*
+- The cottage is small. — *У записі йдеться про `flat`, квартиру, а в цьому варіанті — про `cottage`, хатинку.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-36:i10; family: speed_match -->
-live — жити · stretch — робити розтяжку · sunglasses — сонцезахисні окуляри · informal — неформальний
+landlord — господар квартири · live — жити · flat — квартира · cottage — будиночок
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-36:i11; family: listen_build_dictation -->
-🔊 *The smoke alarm is here.* Плитки: `here` `is` `alarm` `smoke` `The` `are` → **The smoke alarm is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The smoke alarm is here.`)*
+🔊 *He lives in a cottage.* Плитки: `lives` `in` `a` `cottage` `He` `live` → **He lives in a cottage.**
+*(плитка `live` зайва: тут потрібно `lives` — `He lives in a cottage.`)*
 
-**12 · Ви знайшли окуляри. Запитайте «Чиї це сонцезахисні окуляри?»**
+**16 · Сусідка показує на ключі біля дверей. Спитайте: «Чиї це ключі?»**
 <!-- interaction_id: en:lesson-06:session-36:i12; family: phrase_builder -->
-Плитки: `these` `are` `sunglasses` `Whose` → **Whose sunglasses are these?**
+Плитки: `keys` `are` `these` `Whose` `Who` → **Whose keys are these?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose keys are these?`)*
 
-**13 · Скажіть «Вони роблять тут розтяжку»**
+**17 · Сусідка питає, де живете ви із сестрою. Скажіть: «Ми живемо в квартирі»**
 <!-- interaction_id: en:lesson-06:session-36:i13; family: scripted_repeat_compare -->
-🎙 **They stretch here.**
+🎙 **We live in a flat.**
 
-**14 · Скажіть «Анна живе тут»**
+**18 · Скажіть про господаря квартири: «Господар квартири добрий». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-36:i14; family: context_gap_grammar -->
-Anna ___ here. → **lives** · live · is lives
-- live — *Анна — вона: `Anna lives`.*
-- is lives — *Потрібно `Anna lives`, без `is`.*
+The landlord ___ kind. → **is** · are · lives
+- are — *Господар один, тому потрібно `is`, а не `are`.*
+- lives — *`lives` означає «живе», а тут треба сказати, який господар: `is kind`.*
 
-**15 · Послухайте, де живуть сусіди**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-36:i15; family: listen_choose -->
-🔊 *They live here.* → **They live here.** · They live there. · They live nearby.
-- They live there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- They live nearby. — *У записі останнє слово — `here`, а в цьому варіанті — `nearby`.*
+🔊 *I live in a flat.* → **I live in a flat.** · I live in a cottage. · We live in a flat.
+- I live in a cottage. — *У записі останнє слово — `flat`, квартира, а в цьому варіанті — `cottage`, хатинка.*
+- We live in a flat. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-36:i16; family: speed_match -->
-live — жити · smoke alarm — датчик диму · informal — неформальний · stretch — робити розтяжку
+cottage — будиночок · landlord — господар квартири · live — жити · flat — квартира
 
-**17 · Сусід запитує про Тома. Покажіть на його будинок: «Він живе там»**
+**21 · Сусідка питає, де живе ваша сестра. Скажіть: «Вона живе біля парку»**
 <!-- interaction_id: en:lesson-06:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He lives there.**
-
+🎙 **She lives near the park.**

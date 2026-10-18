@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-35:word:sleep",
+    "correctText": "sleep",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-35:i01",
-    "correctText": "The cat sleeps here.",
+    "correctText": "We sleep here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i02",
-    "correctText": "sleep",
+    "correctText": "It sleeps on the sofa.",
     "correctResponseId": "en:lesson-06:session-35:i02:r1"
   },
   {
@@ -16,22 +21,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-35:i04",
-    "correctText": "en:lesson-06:session-35:i04:p1=sleep\nen:lesson-06:session-35:i04:p2=formal\nen:lesson-06:session-35:i04:p3=ramp\nen:lesson-06:session-35:i04:p4=bracelet",
+    "correctText": "en:lesson-06:session-35:i04:p1=sleep\nen:lesson-06:session-35:i04:p2=nap\nen:lesson-06:session-35:i04:p3=pyjamas\nen:lesson-06:session-35:i04:p4=quilt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-35:word:pyjamas",
+    "correctText": "pyjamas",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i05",
-    "correctText": "He sleeps here.",
+    "correctText": "My pyjamas are on the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-35:word:quilt",
+    "correctText": "quilt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i06",
-    "correctText": "She exercises here.",
+    "correctText": "My quilt is warm.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i07",
-    "correctText": "This ramp is new.",
+    "correctText": "She sleeps at home.",
     "correctResponseId": null
   },
   {
@@ -40,48 +55,53 @@
     "correctResponseId": "en:lesson-06:session-35:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-35:word:nap",
+    "correctText": "nap",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-35:i09",
-    "correctText": "This bracelet is mine.",
+    "correctText": "The nap is short.",
     "correctResponseId": "en:lesson-06:session-35:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-35:i10",
-    "correctText": "en:lesson-06:session-35:i10:p1=sleep\nen:lesson-06:session-35:i10:p2=exercise\nen:lesson-06:session-35:i10:p3=bracelet\nen:lesson-06:session-35:i10:p4=formal",
+    "correctText": "en:lesson-06:session-35:i10:p1=quilt\nen:lesson-06:session-35:i10:p2=sleep\nen:lesson-06:session-35:i10:p3=nap\nen:lesson-06:session-35:i10:p4=pyjamas",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i11",
-    "correctText": "The ramp is here.",
+    "correctText": "She sleeps on the quilt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i12",
-    "correctText": "Whose bracelet is this?",
+    "correctText": "Whose slippers are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i13",
-    "correctText": "I exercise here.",
+    "correctText": "We sleep on the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i14",
-    "correctText": "sleeps",
+    "correctText": "are",
     "correctResponseId": "en:lesson-06:session-35:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-35:i15",
-    "correctText": "This ramp is new.",
+    "correctText": "I sleep at home.",
     "correctResponseId": "en:lesson-06:session-35:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-35:i16",
-    "correctText": "en:lesson-06:session-35:i16:p1=sleep\nen:lesson-06:session-35:i16:p2=ramp\nen:lesson-06:session-35:i16:p3=formal\nen:lesson-06:session-35:i16:p4=exercise",
+    "correctText": "en:lesson-06:session-35:i16:p1=pyjamas\nen:lesson-06:session-35:i16:p2=quilt\nen:lesson-06:session-35:i16:p3=nap\nen:lesson-06:session-35:i16:p4=sleep",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-35:i17",
-    "correctText": "The cat sleeps here.",
+    "correctText": "It sleeps on the cushion.",
     "correctResponseId": null
   }
 ]

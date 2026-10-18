@@ -4,31 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-35:i01",
+      "interactionId": "en:lesson-06:session-35:word:sleep",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sleep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-35:word:sleep:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sleep",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-35:word:sleep:audio",
+          "transcript": "sleep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-35:word:sleep:r1",
+            "targetText": "sleep",
+            "meaningByLocale": {
+              "ru": "спать. We sleep on the sofa. — «Мы спим на диване». О том, что делают ночью в кровати.",
+              "uk": "спати. We sleep on the sofa. — «Ми спимо на дивані». Про те, що роблять уночі в ліжку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleep",
+          "definitionByLocale": {
+            "ru": "спать. We sleep on the sofa. — «Мы спим на диване». О том, что делают ночью в кровати.",
+            "uk": "спати. We sleep on the sofa. — «Ми спимо на дивані». Про те, що роблять уночі в ліжку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-35:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Розкажіть про звичку кота: «Кіт спить тут»",
+      "prompt": "Подруга питає про вас із сестрою. Скажіть: «Ми спимо тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про звичку кота: «Кіт спить тут»",
+      "accessibilityLabel": "Подруга питає про вас із сестрою. Скажіть: «Ми спимо тут»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The cat sleeps here.",
+        "targetPhrase": "We sleep here.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычке кота: «Кот спит здесь»",
-          "uk": "Розкажіть про звичку кота: «Кіт спить тут»"
+          "ru": "Подруга спрашивает о вас с сестрой. Скажите: «Мы спим здесь»",
+          "uk": "Подруга питає про вас із сестрою. Скажіть: «Ми спимо тут»"
         },
         "orderedTokens": [
-          "The",
-          "cat",
-          "sleeps",
+          "We",
+          "sleep",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "sleeps"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-35:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає про вас із сестрою. Скажіть: «Ми спимо тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `sleep` — `We sleep here.`",
+              "uk": "тут потрібно `sleep` — `We sleep here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i02:r1",
-          "text": "sleep"
+          "text": "It sleeps on the sofa."
         },
         {
           "responseId": "en:lesson-06:session-35:i02:r2",
-          "text": "drink"
+          "text": "It sleeps on the bed."
         },
         {
           "responseId": "en:lesson-06:session-35:i02:r3",
-          "text": "exercise"
+          "text": "He sleeps on the sofa."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i02:audio",
-          "transcript": "sleep"
+          "transcript": "It sleeps on the sofa."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-35:i02:r1",
-            "targetText": "sleep",
+            "targetText": "It sleeps on the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-35:i02:r2",
-            "targetText": "drink",
+            "targetText": "It sleeps on the bed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-35:i02:r3",
-            "targetText": "exercise",
+            "targetText": "He sleeps on the sofa.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +145,19 @@
           {
             "responseId": "en:lesson-06:session-35:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `sleep`, а в этом варианте — `drink`.",
-              "uk": "У записі перше слово — `sleep`, а в цьому варіанті — `drink`."
+              "ru": "В записи последнее слово — `sofa`, диван, а в этом варианте — `bed`, кровать.",
+              "uk": "У записі останнє слово — `sofa`, диван, а в цьому варіанті — `bed`, ліжко."
             }
           },
           {
             "responseId": "en:lesson-06:session-35:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `sleep`, а в этом варианте — `exercise`.",
-              "uk": "У записі перше слово — `sleep`, а в цьому варіанті — `exercise`."
+              "ru": "В записи первое слово — `It`, оно, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `It`, воно, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -114,11 +168,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про кота «Він спить тут», використовуючи it",
+      "prompt": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i03:r1",
@@ -135,14 +189,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про кота «Він спить тут», використовуючи it",
+      "accessibilityLabel": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о коте «Он спит здесь», используя it",
-          "uk": "Скажіть про кота «Він спить тут», використовуючи it"
+          "ru": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
+          "uk": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово"
         },
-        "gappedTargetPhrase": "It ___ here.",
+        "gappedTargetPhrase": "My brother ___ on the sofa.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-35:i03:r1",
@@ -157,24 +211,24 @@
             "text": "is sleeps"
           }
         ],
-        "testedDimension": "Скажіть про кота «Він спить тут», використовуючи it",
+        "testedDimension": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-35:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про кота «Він спить тут», використовуючи it",
+            "testedDimension": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `it` — `sleeps`.",
-              "uk": "Після `it` — `sleeps`."
+              "ru": "Брат — это `he`, поэтому нужно `sleeps`, с `s`.",
+              "uk": "Брат — це `he`, тому потрібно `sleeps`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-35:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про кота «Він спить тут», використовуючи it",
+            "testedDimension": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `It sleeps`, без `is`.",
-              "uk": "Потрібно `It sleeps`, без `is`."
+              "ru": "Говорим `sleeps`, без `is`.",
+              "uk": "Кажемо `sleeps`, без `is`."
             }
           }
         ]
@@ -183,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +259,40 @@
           },
           {
             "pairId": "en:lesson-06:session-35:i04:p2",
-            "target": "formal",
+            "target": "nap",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "короткий сон",
+              "uk": "короткий сон"
             }
           },
           {
             "pairId": "en:lesson-06:session-35:i04:p3",
-            "target": "ramp",
+            "target": "pyjamas",
             "meaningByLocale": {
-              "ru": "пандус",
-              "uk": "пандус"
+              "ru": "пижама",
+              "uk": "піжама"
             }
           },
           {
             "pairId": "en:lesson-06:session-35:i04:p4",
-            "target": "bracelet",
+            "target": "quilt",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "стёганое одеяло",
+              "uk": "стьобана ковдра"
             }
           }
         ],
         "leftColumn": [
           "sleep",
-          "formal",
-          "ramp",
-          "bracelet"
+          "nap",
+          "pyjamas",
+          "quilt"
         ],
         "rightColumn": [
           "спати",
-          "офіційний",
-          "пандус",
-          "браслет"
+          "короткий сон",
+          "піжама",
+          "стьобана ковдра"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,33 +309,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-35:word:pyjamas",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pyjamas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-35:word:pyjamas:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pyjamas",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-35:word:pyjamas:audio",
+          "transcript": "pyjamas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-35:word:pyjamas:r1",
+            "targetText": "pyjamas",
+            "meaningByLocale": {
+              "ru": "пижама. My pyjamas are soft. — «Моя пижама мягкая». Об одежде для сна из брюк и рубашки.",
+              "uk": "піжама. My pyjamas are soft. — «Моя піжама м’яка». Про одяг для сну зі штанів і сорочки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pyjamas",
+          "definitionByLocale": {
+            "ru": "пижама. My pyjamas are soft. — «Моя пижама мягкая». Об одежде для сна из брюк и рубашки.",
+            "uk": "піжама. My pyjamas are soft. — «Моя піжама м’яка». Про одяг для сну зі штанів і сорочки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-35:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сестру й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сестру й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i05:audio",
-          "transcript": "He sleeps here."
+          "transcript": "My pyjamas are on the bed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "He sleeps here.",
+        "hiddenTargetPhrase": "My pyjamas are on the bed.",
         "orderedTokens": [
-          "He",
-          "sleeps",
-          "here"
+          "My",
+          "pyjamas",
+          "are",
+          "on",
+          "the",
+          "bed"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сестру й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `My pyjamas are on the bed.`",
+              "uk": "тут потрібно `are` — `My pyjamas are on the bed.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -290,30 +402,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-35:word:quilt",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quilt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-35:word:quilt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quilt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-35:word:quilt:audio",
+          "transcript": "quilt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-35:word:quilt:r1",
+            "targetText": "quilt",
+            "meaningByLocale": {
+              "ru": "стёганое одеяло. The quilt is warm. — «Стёганое одеяло тёплое». О тёплом одеяле, которое сшито из нескольких слоёв.",
+              "uk": "стьобана ковдра. The quilt is warm. — «Стьобана ковдра тепла». Про теплу ковдру, яку пошито з кількох шарів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quilt",
+          "definitionByLocale": {
+            "ru": "стёганое одеяло. The quilt is warm. — «Стёганое одеяло тёплое». О тёплом одеяле, которое сшито из нескольких слоёв.",
+            "uk": "стьобана ковдра. The quilt is warm. — «Стьобана ковдра тепла». Про теплу ковдру, яку пошито з кількох шарів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-35:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вона тренується тут»",
+      "prompt": "Ви показуєте свою ковдру гостеві. Скажіть: «Моя стьобана ковдра тепла»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона тренується тут»",
+      "accessibilityLabel": "Ви показуєте свою ковдру гостеві. Скажіть: «Моя стьобана ковдра тепла»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She exercises here.",
+        "targetPhrase": "My quilt is warm.",
         "localizedMeaning": {
-          "ru": "Скажите «Она тренируется здесь»",
-          "uk": "Скажіть «Вона тренується тут»"
+          "ru": "Вы показываете своё одеяло гостю. Скажите: «Моё стёганое одеяло тёплое»",
+          "uk": "Ви показуєте свою ковдру гостеві. Скажіть: «Моя стьобана ковдра тепла»"
         },
         "orderedTokens": [
-          "She",
-          "exercises",
-          "here"
+          "My",
+          "quilt",
+          "is",
+          "warm"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-35:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте свою ковдру гостеві. Скажіть: «Моя стьобана ковдра тепла»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My quilt is warm.`",
+              "uk": "тут потрібно `is` — `My quilt is warm.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +491,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Біля входу встановили пандус. Скажіть «Цей пандус новий»",
+      "prompt": "Подруга питає, де спить ваша сестра. Скажіть: «Вона спить удома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i07:audio"
       ],
-      "accessibilityLabel": "Біля входу встановили пандус. Скажіть «Цей пандус новий»",
+      "accessibilityLabel": "Подруга питає, де спить ваша сестра. Скажіть: «Вона спить удома»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i07:audio",
-          "transcript": "This ramp is new."
+          "transcript": "She sleeps at home."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This ramp is new.",
+        "targetPhrase": "She sleeps at home.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,11 +524,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони сплять тут»",
+      "prompt": "Скажіть про себе: «Я сплю на дивані». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i08:r1",
@@ -372,19 +540,19 @@
         },
         {
           "responseId": "en:lesson-06:session-35:i08:r3",
-          "text": "are sleep"
+          "text": "am sleep"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони сплять тут»",
+      "accessibilityLabel": "Скажіть про себе: «Я сплю на дивані». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они спят здесь»",
-          "uk": "Скажіть «Вони сплять тут»"
+          "ru": "Скажите о себе: «Я сплю на диване». Выберите слово",
+          "uk": "Скажіть про себе: «Я сплю на дивані». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "I ___ on the sofa.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-35:i08:r1",
@@ -396,27 +564,27 @@
           },
           {
             "responseId": "en:lesson-06:session-35:i08:r3",
-            "text": "are sleep"
+            "text": "am sleep"
           }
         ],
-        "testedDimension": "Скажіть «Вони сплять тут»",
+        "testedDimension": "Скажіть про себе: «Я сплю на дивані». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-35:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони сплять тут»",
+            "testedDimension": "Скажіть про себе: «Я сплю на дивані». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `sleep`, без `s`.",
-              "uk": "Після `they` — `sleep`, без `s`."
+              "ru": "После `I` нужно `sleep`, без `s`.",
+              "uk": "Після `I` потрібно `sleep`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-35:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони сплять тут»",
+            "testedDimension": "Скажіть про себе: «Я сплю на дивані». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They sleep`, без `are`.",
-              "uk": "Потрібно `They sleep`, без `are`."
+              "ru": "Говорим `I sleep`, без `am`.",
+              "uk": "Кажемо `I sleep`, без `am`."
             }
           }
         ]
@@ -424,52 +592,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-35:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-35:word:nap",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить браслет",
+      "prompt": "Картка слова — nap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-35:word:nap:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-35:word:nap:audio",
+          "transcript": "nap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-35:word:nap:r1",
+            "targetText": "nap",
+            "meaningByLocale": {
+              "ru": "короткий сон. The nap is short. — «Короткий сон недолгий». О коротком сне днём.",
+              "uk": "короткий сон. The nap is short. — «Короткий сон недовгий». Про короткий сон удень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nap",
+          "definitionByLocale": {
+            "ru": "короткий сон. The nap is short. — «Короткий сон недолгий». О коротком сне днём.",
+            "uk": "короткий сон. The nap is short. — «Короткий сон недовгий». Про короткий сон удень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-35:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i09:r1",
-          "text": "This bracelet is mine."
+          "text": "The nap is short."
         },
         {
           "responseId": "en:lesson-06:session-35:i09:r2",
-          "text": "This bracelet is yours."
+          "text": "The nap is long."
         },
         {
           "responseId": "en:lesson-06:session-35:i09:r3",
-          "text": "This bracelet is hers."
+          "text": "The quilt is short."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить браслет",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i09:audio",
-          "transcript": "This bracelet is mine."
+          "transcript": "The nap is short."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-35:i09:r1",
-            "targetText": "This bracelet is mine.",
+            "targetText": "The nap is short.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-35:i09:r2",
-            "targetText": "This bracelet is yours.",
+            "targetText": "The nap is long.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-35:i09:r3",
-            "targetText": "This bracelet is hers.",
+            "targetText": "The quilt is short.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-35:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить браслет",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `short`, короткий, а в этом варианте — `long`, длинный.",
+              "uk": "У записі останнє слово — `short`, короткий, а в цьому варіанті — `long`, довгий."
             }
           },
           {
             "responseId": "en:lesson-06:session-35:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить браслет",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи речь о `nap`, коротком сне, а в этом варианте — о `quilt`, одеяле.",
+              "uk": "У записі йдеться про `nap`, короткий сон, а в цьому варіанті — про `quilt`, ковдру."
             }
           }
         ],
@@ -501,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -515,6 +726,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-35:i10:p1",
+            "target": "quilt",
+            "meaningByLocale": {
+              "ru": "стёганое одеяло",
+              "uk": "стьобана ковдра"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-35:i10:p2",
             "target": "sleep",
             "meaningByLocale": {
               "ru": "спать",
@@ -522,41 +741,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-35:i10:p2",
-            "target": "exercise",
-            "meaningByLocale": {
-              "ru": "тренироваться",
-              "uk": "тренуватися"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-35:i10:p3",
-            "target": "bracelet",
+            "target": "nap",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "короткий сон",
+              "uk": "короткий сон"
             }
           },
           {
             "pairId": "en:lesson-06:session-35:i10:p4",
-            "target": "formal",
+            "target": "pyjamas",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "пижама",
+              "uk": "піжама"
             }
           }
         ],
         "leftColumn": [
+          "quilt",
           "sleep",
-          "exercise",
-          "bracelet",
-          "formal"
+          "nap",
+          "pyjamas"
         ],
         "rightColumn": [
+          "стьобана ковдра",
           "спати",
-          "тренуватися",
-          "браслет",
-          "офіційний"
+          "короткий сон",
+          "піжама"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,42 +785,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i11:audio",
-          "transcript": "The ramp is here."
+          "transcript": "She sleeps on the quilt."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The ramp is here.",
+        "hiddenTargetPhrase": "She sleeps on the quilt.",
         "orderedTokens": [
-          "The",
-          "ramp",
-          "is",
-          "here"
+          "She",
+          "sleeps",
+          "on",
+          "the",
+          "quilt"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "sleep"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-35:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The ramp is here.`",
-              "uk": "тут потрібно `is` — `The ramp is here.`"
+              "ru": "здесь нужно `sleeps` — `She sleeps on the quilt.`",
+              "uk": "тут потрібно `sleeps` — `She sleeps on the quilt.`"
             }
           }
         ],
@@ -622,30 +834,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли браслет. Запитайте «Чий це браслет?»",
+      "prompt": "Сусідка показує на капці біля дверей. Спитайте: «Чиї це капці?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли браслет. Запитайте «Чий це браслет?»",
+      "accessibilityLabel": "Сусідка показує на капці біля дверей. Спитайте: «Чиї це капці?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose bracelet is this?",
+        "targetPhrase": "Whose slippers are these?",
         "localizedMeaning": {
-          "ru": "Вы нашли браслет. Спросите «Чей это браслет?»",
-          "uk": "Ви знайшли браслет. Запитайте «Чий це браслет?»"
+          "ru": "Соседка показывает на тапочки у двери. Спросите: «Чьи это тапочки?»",
+          "uk": "Сусідка показує на капці біля дверей. Спитайте: «Чиї це капці?»"
         },
         "orderedTokens": [
           "Whose",
-          "bracelet",
-          "is",
-          "this"
+          "slippers",
+          "are",
+          "these"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-35:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка показує на капці біля дверей. Спитайте: «Чиї це капці?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose slippers are these?`",
+              "uk": "тут потрібно `Whose` — `Whose slippers are these?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -655,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я тренуюся тут»",
+      "prompt": "Сусідка питає, де спите ви з братом. Скажіть: «Ми спимо на дивані»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я тренуюся тут»",
+      "accessibilityLabel": "Сусідка питає, де спите ви з братом. Скажіть: «Ми спимо на дивані»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i13:audio",
-          "transcript": "I exercise here."
+          "transcript": "We sleep on the sofa."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I exercise here.",
+        "targetPhrase": "We sleep on the sofa.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -688,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Кіт спить тут»",
+      "prompt": "Скажіть про піжаму: «Піжама на ліжку». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i14:r1",
-          "text": "sleeps"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-35:i14:r2",
-          "text": "sleep"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-35:i14:r3",
-          "text": "is sleeps"
+          "text": "sleeps"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Кіт спить тут»",
+      "accessibilityLabel": "Скажіть про піжаму: «Піжама на ліжку». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Кот спит здесь»",
-          "uk": "Скажіть «Кіт спить тут»"
+          "ru": "Скажите о пижаме: «Пижама на кровати». Выберите слово",
+          "uk": "Скажіть про піжаму: «Піжама на ліжку». Виберіть слово"
         },
-        "gappedTargetPhrase": "The cat ___ here.",
+        "gappedTargetPhrase": "The pyjamas ___ on the bed.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-35:i14:r1",
-            "text": "sleeps"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-35:i14:r2",
-            "text": "sleep"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-35:i14:r3",
-            "text": "is sleeps"
+            "text": "sleeps"
           }
         ],
-        "testedDimension": "Скажіть «Кіт спить тут»",
+        "testedDimension": "Скажіть про піжаму: «Піжама на ліжку». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-35:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Кіт спить тут»",
+            "testedDimension": "Скажіть про піжаму: «Піжама на ліжку». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Один кот: `The cat sleeps`.",
-              "uk": "Один кіт: `The cat sleeps`."
+              "ru": "Пижама — это две вещи: нужно `are`, а не `is`.",
+              "uk": "Піжама — це дві речі: потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-06:session-35:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Кіт спить тут»",
+            "testedDimension": "Скажіть про піжаму: «Піжама на ліжку». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `The cat sleeps`, без `is`.",
-              "uk": "Потрібно `The cat sleeps`, без `is`."
+              "ru": "`sleeps` значит «спит», а здесь нужно сказать, где пижама: `are on`.",
+              "uk": "`sleeps` означає «спить», а тут треба сказати, де піжама: `are on`."
             }
           }
         ]
@@ -757,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, який цей пандус",
+      "prompt": "Послухайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i15:r1",
-          "text": "This ramp is new."
+          "text": "I sleep at home."
         },
         {
           "responseId": "en:lesson-06:session-35:i15:r2",
-          "text": "This ramp is old."
+          "text": "I sleep on the sofa."
         },
         {
           "responseId": "en:lesson-06:session-35:i15:r3",
-          "text": "This ramp is small."
+          "text": "We sleep at home."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, який цей пандус",
+      "accessibilityLabel": "Послухайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i15:audio",
-          "transcript": "This ramp is new."
+          "transcript": "I sleep at home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-35:i15:r1",
-            "targetText": "This ramp is new.",
+            "targetText": "I sleep at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-35:i15:r2",
-            "targetText": "This ramp is old.",
+            "targetText": "I sleep on the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-35:i15:r3",
-            "targetText": "This ramp is small.",
+            "targetText": "We sleep at home.",
             "meaningByLocale": null
           }
         ],
@@ -810,19 +1034,19 @@
           {
             "responseId": "en:lesson-06:session-35:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, який цей пандус",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              "ru": "В записи последнее слово — `home`, дом, а в этом варианте — `sofa`, диван.",
+              "uk": "У записі останнє слово — `home`, дім, а в цьому варіанті — `sofa`, диван."
             }
           },
           {
             "responseId": "en:lesson-06:session-35:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, який цей пандус",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -833,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -847,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-35:i16:p1",
+            "target": "pyjamas",
+            "meaningByLocale": {
+              "ru": "пижама",
+              "uk": "піжама"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-35:i16:p2",
+            "target": "quilt",
+            "meaningByLocale": {
+              "ru": "стёганое одеяло",
+              "uk": "стьобана ковдра"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-35:i16:p3",
+            "target": "nap",
+            "meaningByLocale": {
+              "ru": "короткий сон",
+              "uk": "короткий сон"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-35:i16:p4",
             "target": "sleep",
             "meaningByLocale": {
               "ru": "спать",
               "uk": "спати"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-35:i16:p2",
-            "target": "ramp",
-            "meaningByLocale": {
-              "ru": "пандус",
-              "uk": "пандус"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-35:i16:p3",
-            "target": "formal",
-            "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-35:i16:p4",
-            "target": "exercise",
-            "meaningByLocale": {
-              "ru": "тренироваться",
-              "uk": "тренуватися"
-            }
           }
         ],
         "leftColumn": [
-          "sleep",
-          "ramp",
-          "formal",
-          "exercise"
+          "pyjamas",
+          "quilt",
+          "nap",
+          "sleep"
         ],
         "rightColumn": [
-          "спати",
-          "пандус",
-          "офіційний",
-          "тренуватися"
+          "піжама",
+          "стьобана ковдра",
+          "короткий сон",
+          "спати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -906,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-35:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Гість хоче зайняти улюблене місце кота. Поясніть: «Кіт спить тут»",
+      "prompt": "Подруга питає про кота. Скажіть: «Він спить на диванній подушці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-35:i17:audio"
       ],
-      "accessibilityLabel": "Гість хоче зайняти улюблене місце кота. Поясніть: «Кіт спить тут»",
+      "accessibilityLabel": "Подруга питає про кота. Скажіть: «Він спить на диванній подушці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-35:i17:audio",
-          "transcript": "The cat sleeps here."
+          "transcript": "It sleeps on the cushion."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The cat sleeps here.",
+        "targetPhrase": "It sleeps on the cushion.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -946,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4b67f4f94afd2ecc8470479256db380f76dce5e9d45e54ebd91fa21610653853"
+  "learnerFingerprint": "eab916ef4b6fb930a083768797e6d7fa557a0aed5ced028a2a3b858028a67822"
 }

@@ -1,134 +1,154 @@
 # Английский · Урок 6 · Занятие 38 — Место для отдыха
 
-**Ситуация.** Анна показывает Тому тихое место во дворе, где она обычно отдыхает после работы.
+**Ситуация.** В жаркий выходной вы с подругой, братом и сестрой ищете тихое место во дворе, где можно отдохнуть, и разбираетесь, чьи вещи лежат у бассейна. После she и he к слову rest добавляется s.
 
 **Что вы освоите:** рассказать, где вы отдыхаете, и описать привычку другого человека
-**Новые слова:** rest
+**Новые слова:** rest, shade, sunbed, gazebo
+**Возвращаются:** garden, bench, pool, tree, gate, cushion, quiet, big
 
 ---
 
 ## Интро 1
 
-### Здесь можно передохнуть
+### Тишина вместо бара
 
-Том спрашивает, почему вы любите эту скамейку. `rest` — «отдыхать». `I rest here` — «Я отдыхаю здесь». Вы рассказываете о своём обычном месте отдыха. Перед `rest` не нужно `am`. Чтобы отдыхать, необязательно уснуть: можно просто сидеть, а список дел пусть немного подождёт.
+После долгого рабочего дня коллега зовёт вас в шумный бар. Но вы устали, ноги гудят, и вам хочется тишины и своего сада с цветами и скамейкой. rest — «отдыхать». I rest in the garden — «Я отдыхаю в саду». После I слово остаётся rest, без s.
 
-**Объясните Тому «Я отдыхаю здесь».**
+**Коллега зовёт вас в бар. Скажите, где вы отдыхаете: «Я отдыхаю в саду».**
 
-- ✅ **I rest here.**
-- ❌ I am rest here. — *Говорим `I rest`, без `am`.*
-- ❌ I rests here. — *После `I` — `rest`, без `s`.*
+- ✅ **I rest in the garden.**
+- ❌ I rests in the garden. — *После I слово остаётся rest, без s.*
+- ❌ I am rest in the garden. — *Здесь действие: I rest, без am.*
 
 ---
 
 ## Интро 2
 
-### Любимая скамейка Анны
+### Прохладная тень
 
-Сосед спрашивает, где Анна обычно отдыхает. `She rests here` — «Она отдыхает здесь». После `she` добавляем `s`: `rest → rests`. `Anna rests here` означает то же самое, только вместо `she` называем имя. Она не обязана сидеть на скамейке сейчас: вы описываете привычку.
+В полдень солнце так печёт, что в саду трудно дышать, листья замерли. Сестра берёт книгу и уходит под большое дерево, где прохладно и тихо. Подруга спрашивает, куда она пропала посреди дня. shade — «тень». После she к rest добавляем s: She rests in the shade.
 
-**Ответьте соседу об Анне: «Она отдыхает здесь».**
+**Подруга спрашивает, где ваша сестра. Скажите: «Она отдыхает в тени».**
 
-- ✅ **She rests here.**
-- ❌ She rest here. — *После `she` — `rests`.*
-- ❌ She is rests here. — *Нужно `She rests`, без `is`.*
+- ✅ **She rests in the shade.**
+- ❌ She rest in the shade. — *После she нужно rests, с s.*
+- ❌ She is rests in the shade. — *Здесь действие: She rests, без is.*
 
 ---
 
 ## Интро 3
 
-### Забытый ноутбук
+### Шезлонг у бассейна
 
-На скамейке остался ноутбук. `laptop` — «ноутбук». Чтобы найти владельца, спросите людей рядом: `Whose laptop is this?` — «Чей это ноутбук?» Один ноутбук: `is this`. Слово `whose` помогает спросить именно о владельце находки.
+У бассейна во дворе стоит свободный шезлонг, на нём лежат полотенце и очки от солнца. Хозяина нигде не видно, а вы хотите присесть и отдохнуть. sunbed — «шезлонг». Чтобы спросить о владельце, говорим Whose: Whose sunbed is this? — «Чей это шезлонг?»
 
-**Спросите у людей рядом «Чей это ноутбук?»**
+**Вы показываете соседке на шезлонг. Спросите: «Чей это шезлонг?»**
 
-- ✅ **Whose laptop is this?**
-- ❌ Who laptop is this? — *О владельце спрашиваем `Whose`.*
-- ❌ Whose laptop are these? — *Один ноутбук: `is this`.*
+- ✅ **Whose sunbed is this?**
+- ❌ Who sunbed is this? — *О владельце спрашиваем Whose — «чей».*
+- ❌ Whose sunbed are this? — *Шезлонг один: нужно is this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о привычке: «Я отдыхаю здесь»**
+**1 · Карточка слова — rest**
+<!-- interaction_id: en:lesson-06:session-38:word:rest; family: word_card -->
+> **rest** — отдыхать. We rest on the bench. — «Мы отдыхаем на скамейке». О том, что делают, когда устали.
+
+**2 · Коллега зовёт вас с сестрой в бар. Скажите: «Мы отдыхаем здесь»**
 <!-- interaction_id: en:lesson-06:session-38:i01; family: phrase_builder -->
-Плитки: `here` `rest` `I` → **I rest here.**
+Плитки: `here` `rest` `We` `rests` → **We rest here.**
+*(плитка `rests` лишняя: здесь нужно `rest` — `We rest here.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — shade**
+<!-- interaction_id: en:lesson-06:session-38:word:shade; family: word_card -->
+> **shade** — тень. The bench is in the shade. — «Скамейка в тени». О месте, куда не попадает солнце.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-38:i02; family: listen_choose -->
-🔊 *rest* → **rest** · clean · shop
-- clean — *В записи первое слово — `rest`, а в этом варианте — `clean`.*
-- shop — *В записи первое слово — `rest`, а в этом варианте — `shop`.*
+🔊 *She rests in the shade.* → **She rests in the shade.** · She rests in the garden. · He rests in the shade.
+- She rests in the garden. — *В записи последнее слово — `shade`, тень, а в этом варианте — `garden`, сад.*
+- He rests in the shade. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она отдыхает здесь»**
+**5 · Скажите о брате: «Мой брат отдыхает на скамейке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-38:i03; family: context_gap_grammar -->
-She ___ here. → **rests** · rest · is rests
-- rest — *После `she` — `rests`.*
-- is rests — *Нужно `She rests`, без `is`.*
+My brother ___ on the bench. → **rests** · rest · is rests
+- rest — *Брат — это `he`, поэтому нужно `rests`, с `s`.*
+- is rests — *Говорим `rests`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-38:i04; family: speed_match -->
-rest — отдыхать · unofficial — неофициальный · bike shed — велосипедный сарай · laptop — ноутбук
+rest — отдыхать · shade — тень · sunbed — шезлонг · gazebo — беседка
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — sunbed**
+<!-- interaction_id: en:lesson-06:session-38:word:sunbed; family: word_card -->
+> **sunbed** — шезлонг. The sunbed is near the pool. — «Шезлонг возле бассейна». О лежаке, на котором лежат у воды.
+
+**8 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-38:i05; family: listen_build_dictation -->
-🔊 *Anna rests here.* Плитки: `here` `rests` `Anna` → **Anna rests here.**
+🔊 *The sunbed is near the pool.* Плитки: `pool` `near` `the` `The` `sunbed` `is` `are` → **The sunbed is near the pool.**
+*(плитка `are` лишняя: здесь нужно `is` — `The sunbed is near the pool.`)*
 
-**6 · Скажите «Он убирает свою комнату»**
+**9 · Карточка слова — gazebo**
+<!-- interaction_id: en:lesson-06:session-38:word:gazebo; family: word_card -->
+> **gazebo** — беседка. The gazebo is in the garden. — «Беседка в саду». О маленьком домике из столбов с крышей, но без стен.
+
+**10 · Вы показываете подруге сад. Скажите: «Беседка в саду»**
 <!-- interaction_id: en:lesson-06:session-38:i06; family: phrase_builder -->
-Плитки: `room` `his` `cleans` `He` → **He cleans his room.**
+Плитки: `garden` `in` `the` `The` `gazebo` `is` `are` → **The gazebo is in the garden.**
+*(плитка `are` лишняя: здесь нужно `is` — `The gazebo is in the garden.`)*
 
-**7 · Во дворе построили сарай для велосипедов. Скажите «Этот велосипедный сарай новый»**
+**11 · Подруга спрашивает, где отдыхает ваш брат. Скажите: «Он отдыхает в саду»**
 <!-- interaction_id: en:lesson-06:session-38:i07; family: scripted_repeat_compare -->
-🎙 **This bike shed is new.**
+🎙 **He rests in the garden.**
 
-**8 · Скажите «Мы отдыхаем здесь»**
+**12 · Скажите о себе: «Я отдыхаю на скамейке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-38:i08; family: context_gap_grammar -->
-We ___ here. → **rest** · rests · are rest
-- rests — *После `we` — `rest`, без `s`.*
-- are rest — *Нужно `We rest`, без `are`.*
+I ___ on the bench. → **rest** · rests · am rest
+- rests — *После `I` нужно `rest`, без `s`.*
+- am rest — *Говорим `I rest`, без `am`.*
 
-**9 · Послушайте, кому принадлежит ноутбук**
+**13 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-38:i09; family: listen_choose -->
-🔊 *This laptop is mine.* → **This laptop is mine.** · This laptop is yours. · This laptop is hers.
-- This laptop is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
-- This laptop is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
+🔊 *The shade is near the tree.* → **The shade is near the tree.** · The shade is near the gate. · The gazebo is near the tree.
+- The shade is near the gate. — *В записи последнее слово — `tree`, дерево, а в этом варианте — `gate`, калитка.*
+- The gazebo is near the tree. — *В записи речь о `shade`, тени, а в этом варианте — о `gazebo`, беседке.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-38:i10; family: speed_match -->
-rest — отдыхать · clean — убирать · laptop — ноутбук · unofficial — неофициальный
+gazebo — беседка · rest — отдыхать · shade — тень · sunbed — шезлонг
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-38:i11; family: listen_build_dictation -->
-🔊 *The bike shed is here.* Плитки: `here` `is` `shed` `bike` `The` `are` → **The bike shed is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bike shed is here.`)*
+🔊 *She rests on the sunbed.* Плитки: `rests` `on` `the` `sunbed` `She` `rest` → **She rests on the sunbed.**
+*(плитка `rest` лишняя: здесь нужно `rests` — `She rests on the sunbed.`)*
 
-**12 · Вы нашли ноутбук. Спросите «Чей это ноутбук?»**
+**16 · Подруга показывает на подушку на скамейке. Спросите: «Чья это подушка?»**
 <!-- interaction_id: en:lesson-06:session-38:i12; family: phrase_builder -->
-Плитки: `this` `is` `laptop` `Whose` → **Whose laptop is this?**
+Плитки: `cushion` `is` `this` `Whose` `Who` → **Whose cushion is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose cushion is this?`)*
 
-**13 · Скажите «Они убирают свою комнату»**
+**17 · Соседка спрашивает, где вы с сестрой отдыхаете. Скажите: «Мы отдыхаем в беседке»**
 <!-- interaction_id: en:lesson-06:session-38:i13; family: scripted_repeat_compare -->
-🎙 **They clean their room.**
+🎙 **We rest in the gazebo.**
 
-**14 · Скажите «Том отдыхает здесь»**
+**18 · Скажите о тени: «Тень большая». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-38:i14; family: context_gap_grammar -->
-Tom ___ here. → **rests** · rest · is rests
-- rest — *Том — он: `Tom rests`.*
-- is rests — *Нужно `Tom rests`, без `is`.*
+The shade ___ big. → **is** · are · rests
+- are — *Тень одна, поэтому нужно `is`, а не `are`.*
+- rests — *`rests` значит «отдыхает», а здесь нужно сказать, какая тень: `is big`.*
 
-**15 · Послушайте, где отдыхают Анна и Том**
+**19 · Послушайте сестру**
 <!-- interaction_id: en:lesson-06:session-38:i15; family: listen_choose -->
-🔊 *They rest here.* → **They rest here.** · They rest there. · They rest nearby.
-- They rest there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- They rest nearby. — *В записи последнее слово — `here`, а в этом варианте — `nearby`.*
+🔊 *I rest in the gazebo.* → **I rest in the gazebo.** · I rest in the garden. · We rest in the gazebo.
+- I rest in the garden. — *В записи последнее слово — `gazebo`, беседка, а в этом варианте — `garden`, сад.*
+- We rest in the gazebo. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-38:i16; family: speed_match -->
-rest — отдыхать · bike shed — велосипедный сарай · unofficial — неофициальный · clean — убирать
+sunbed — шезлонг · gazebo — беседка · shade — тень · rest — отдыхать
 
-**17 · Сосед спрашивает, где обычно отдыхает Анна. Ответьте «Она отдыхает здесь»**
+**21 · Подруга спрашивает, где отдыхает ваша сестра. Скажите: «Она отдыхает в беседке»**
 <!-- interaction_id: en:lesson-06:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She rests here.**
-
+🎙 **She rests in the gazebo.**

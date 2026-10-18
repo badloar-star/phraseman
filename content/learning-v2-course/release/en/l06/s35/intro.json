@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-35",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычном месте сна и повторить окончания действий",
-    "uk": "розповісти про звичне місце сну й повторити закінчення дій"
+    "ru": "рассказать, кто где спит, и спросить, чьи это вещи",
+    "uk": "розповісти, хто де спить, і спитати, чиї це речі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кот выбрал диван",
-        "uk": "Кіт обрав диван"
+        "ru": "Ночёвка в палатке",
+        "uk": "Ночівля в наметі"
       },
       "bodyByLocale": {
-        "ru": "`sleep` — «спать». Вы рассказываете о привычке кота: `The cat sleeps here` — «Кот спит здесь». Кота можно назвать `it`: `It sleeps here`. После `it` у `sleep` появляется `s`. Диван купили для гостей, но кот с этим решением явно не согласен.",
-        "uk": "`sleep` — «спати». Ви розповідаєте про звичку кота: `The cat sleeps here` — «Кіт спить тут». Кота можна назвати `it`: `It sleeps here`. Після `it` у `sleep` з’являється `s`. Диван купили для гостей, але кіт із цим рішенням явно не згоден."
+        "ru": "Подруга зовёт вас переночевать в палатке на берегу озера: будет холодно, зато весело. Но вы любите свою мягкую тёплую кровать и свою подушку, поэтому отказываетесь. sleep — «спать». I sleep at home — «Я сплю дома». После I слово остаётся sleep, без s.",
+        "uk": "Подруга кличе вас переночувати в наметі на березі озера: буде холодно, зате весело. Але ви любите своє м’яке тепле ліжко й свою подушку, тому відмовляєтеся. sleep — «спати». I sleep at home — «Я сплю вдома». Після I слово лишається sleep, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-35:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите о привычке кота: «Он спит здесь» — используйте `it`.",
-          "uk": "Скажіть про звичку кота: «Він спить тут» — використайте `it`."
+          "ru": "Подруга зовёт вас с ночёвкой в палатку. Скажите: «Я сплю дома».",
+          "uk": "Подруга кличе вас із ночівлею в намет. Скажіть: «Я сплю вдома»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-35:intro1:r1",
-              "text": "It sleeps here."
+              "text": "I sleep at home."
             },
             {
               "responseId": "en:lesson-06:session-35:intro1:r2",
-              "text": "It sleep here."
+              "text": "I sleeps at home."
             },
             {
               "responseId": "en:lesson-06:session-35:intro1:r3",
-              "text": "It is sleeps here."
+              "text": "I am sleep at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-35:intro1:r1",
-              "text": "It sleeps here."
+              "text": "I sleep at home."
             },
             {
               "responseId": "en:lesson-06:session-35:intro1:r2",
-              "text": "It sleep here."
+              "text": "I sleeps at home."
             },
             {
               "responseId": "en:lesson-06:session-35:intro1:r3",
-              "text": "It is sleeps here."
+              "text": "I am sleep at home."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о привычке кота: «Он спит здесь» — используйте `it`.",
-          "uk": "Скажіть про звичку кота: «Він спить тут» — використайте `it`."
+          "ru": "Подруга зовёт вас с ночёвкой в палатку. Скажите: «Я сплю дома».",
+          "uk": "Подруга кличе вас із ночівлею в намет. Скажіть: «Я сплю вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Это его место",
-        "uk": "Це його місце"
+        "ru": "Кот на одеяле",
+        "uk": "Кіт на ковдрі"
       },
       "bodyByLocale": {
-        "ru": "Том показывает на другое кресло. Вы уточняете: `He sleeps here` — «Он спит здесь». Речь о коте, которого вы называете `he`: окончание остаётся `s`. Эта фраза может обозначать обычное место сна, даже если кот сейчас гуляет.",
-        "uk": "Том показує на інше крісло. Ви уточнюєте: `He sleeps here` — «Він спить тут». Ідеться про кота, якого ви називаєте `he`: закінчення залишається `s`. Ця фраза може означати звичне місце сну, навіть якщо кіт зараз гуляє."
+        "ru": "Сестра сшила красивое стёганое одеяло и положила его на диван. Теперь на нём каждый день лежит кот: ему там мягко и тепло, и уходить он не собирается. Подруга спрашивает, где кот. quilt — «стёганое одеяло». О коте говорим it, и к sleep добавляем s: It sleeps on the quilt.",
+        "uk": "Сестра пошила гарну стьобану ковдру й поклала її на диван. Тепер на ній щодня лежить кіт: йому там м’яко й тепло, і йти він не збирається. Подруга питає, де кіт. quilt — «стьобана ковдра». Про кота кажемо it, і до sleep додаємо s: It sleeps on the quilt."
       },
       "question": {
         "interactionId": "en:lesson-06:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Уточните Тому привычное место кота: «Он спит здесь» — используйте `he`.",
-          "uk": "Уточніть Тому звичне місце кота: «Він спить тут» — використайте `he`."
+          "ru": "Подруга спрашивает, где спит кот. Скажите: «Он спит на одеяле» — про кота говорим it.",
+          "uk": "Подруга питає, де спить кіт. Скажіть: «Він спить на ковдрі» — про кота кажемо it."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-35:intro2:r1",
-              "text": "He sleeps here."
+              "text": "It sleeps on the quilt."
             },
             {
               "responseId": "en:lesson-06:session-35:intro2:r2",
-              "text": "He sleep here."
+              "text": "It sleep on the quilt."
             },
             {
               "responseId": "en:lesson-06:session-35:intro2:r3",
-              "text": "He are sleeps here."
+              "text": "It is sleeps on the quilt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-35:intro2:r1",
-              "text": "He sleeps here."
+              "text": "It sleeps on the quilt."
             },
             {
               "responseId": "en:lesson-06:session-35:intro2:r2",
-              "text": "He sleep here."
+              "text": "It sleep on the quilt."
             },
             {
               "responseId": "en:lesson-06:session-35:intro2:r3",
-              "text": "He are sleeps here."
+              "text": "It is sleeps on the quilt."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Уточните Тому привычное место кота: «Он спит здесь» — используйте `he`.",
-          "uk": "Уточніть Тому звичне місце кота: «Він спить тут» — використайте `he`."
+          "ru": "Подруга спрашивает, где спит кот. Скажите: «Он спит на одеяле» — про кота говорим it.",
+          "uk": "Подруга питає, де спить кіт. Скажіть: «Він спить на ковдрі» — про кота кажемо it."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Браслет на диване",
-        "uk": "Браслет на дивані"
+        "ru": "Пижама у ванной",
+        "uk": "Піжама біля ванної"
       },
       "bodyByLocale": {
-        "ru": "Убирая диван, Анна находит браслет. `bracelet` — «браслет». Чтобы вернуть его гостю, спросите: `Whose bracelet is this?` — «Чей это браслет?» Один браслет: `is this`; `whose` спрашивает о владельце.",
-        "uk": "Прибираючи диван, Анна знаходить браслет. `bracelet` — «браслет». Щоб повернути його гостеві, запитайте: `Whose bracelet is this?` — «Чий це браслет?» Один браслет: `is this`; `whose` запитує про власника."
+        "ru": "Гость уехал рано утром и ничего не сказал. У ванной остались сложенные в стопку брюки и рубашка в полоску для сна. Соседка заходит и удивляется. pyjamas — «пижама». Это две вещи сразу, поэтому нужно are these: Whose pyjamas are these? — «Чья это пижама?»",
+        "uk": "Гість поїхав рано вранці й нічого не сказав. Біля ванної лишилися складені стосом штани й сорочка в смужку для сну. Сусідка заходить і дивується. pyjamas — «піжама». Це дві речі одразу, тому потрібно are these: Whose pyjamas are these? — «Чия це піжама?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Обратитесь к гостю: «Чей это браслет?»",
-          "uk": "Зверніться до гостя: «Чий це браслет?»"
+          "ru": "Вы показываете соседке на вещи. Спросите: «Чья это пижама?»",
+          "uk": "Ви показуєте сусідці на речі. Спитайте: «Чия це піжама?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-35:intro3:r1",
-              "text": "Whose bracelet is this?"
+              "text": "Whose pyjamas are these?"
             },
             {
               "responseId": "en:lesson-06:session-35:intro3:r2",
-              "text": "Who bracelet is this?"
+              "text": "Whose pyjamas is this?"
             },
             {
               "responseId": "en:lesson-06:session-35:intro3:r3",
-              "text": "Whose bracelet are these?"
+              "text": "Who pyjamas are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-35:intro3:r1",
-              "text": "Whose bracelet is this?"
+              "text": "Whose pyjamas are these?"
             },
             {
               "responseId": "en:lesson-06:session-35:intro3:r2",
-              "text": "Who bracelet is this?"
+              "text": "Whose pyjamas is this?"
             },
             {
               "responseId": "en:lesson-06:session-35:intro3:r3",
-              "text": "Whose bracelet are these?"
+              "text": "Who pyjamas are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Обратитесь к гостю: «Чей это браслет?»",
-          "uk": "Зверніться до гостя: «Чий це браслет?»"
+          "ru": "Вы показываете соседке на вещи. Спросите: «Чья это пижама?»",
+          "uk": "Ви показуєте сусідці на речі. Спитайте: «Чия це піжама?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8a000dfca458263ffac5c9e88a73fdc672c5bead8c4fe38b4c0ab2217713e5d8"
+  "introFingerprint": "b657568975876620700934d45e5f00e54ab83d5d3ceb6275e318ad6df1315722"
 }

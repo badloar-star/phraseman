@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-36:word:live",
+    "correctText": "live",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-36:i01",
-    "correctText": "I live here.",
+    "correctText": "We live here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:word:flat",
+    "correctText": "flat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i02",
-    "correctText": "live",
+    "correctText": "She lives in a flat.",
     "correctResponseId": "en:lesson-06:session-36:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-36:i04",
-    "correctText": "en:lesson-06:session-36:i04:p1=live\nen:lesson-06:session-36:i04:p2=informal\nen:lesson-06:session-36:i04:p3=smoke alarm\nen:lesson-06:session-36:i04:p4=sunglasses",
+    "correctText": "en:lesson-06:session-36:i04:p1=live\nen:lesson-06:session-36:i04:p2=flat\nen:lesson-06:session-36:i04:p3=cottage\nen:lesson-06:session-36:i04:p4=landlord",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:word:landlord",
+    "correctText": "landlord",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i05",
-    "correctText": "Tom lives there.",
+    "correctText": "The landlord is on the stairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-36:word:cottage",
+    "correctText": "cottage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i06",
-    "correctText": "She stretches here.",
+    "correctText": "The cottage is old.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i07",
-    "correctText": "This smoke alarm is new.",
+    "correctText": "He lives here.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-06:session-36:i09",
-    "correctText": "These sunglasses are mine.",
+    "correctText": "The flat is small.",
     "correctResponseId": "en:lesson-06:session-36:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-36:i10",
-    "correctText": "en:lesson-06:session-36:i10:p1=live\nen:lesson-06:session-36:i10:p2=stretch\nen:lesson-06:session-36:i10:p3=sunglasses\nen:lesson-06:session-36:i10:p4=informal",
+    "correctText": "en:lesson-06:session-36:i10:p1=landlord\nen:lesson-06:session-36:i10:p2=live\nen:lesson-06:session-36:i10:p3=flat\nen:lesson-06:session-36:i10:p4=cottage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i11",
-    "correctText": "The smoke alarm is here.",
+    "correctText": "He lives in a cottage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i12",
-    "correctText": "Whose sunglasses are these?",
+    "correctText": "Whose keys are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i13",
-    "correctText": "They stretch here.",
+    "correctText": "We live in a flat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i14",
-    "correctText": "lives",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-36:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-36:i15",
-    "correctText": "They live here.",
+    "correctText": "I live in a flat.",
     "correctResponseId": "en:lesson-06:session-36:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-36:i16",
-    "correctText": "en:lesson-06:session-36:i16:p1=live\nen:lesson-06:session-36:i16:p2=smoke alarm\nen:lesson-06:session-36:i16:p3=informal\nen:lesson-06:session-36:i16:p4=stretch",
+    "correctText": "en:lesson-06:session-36:i16:p1=cottage\nen:lesson-06:session-36:i16:p2=landlord\nen:lesson-06:session-36:i16:p3=live\nen:lesson-06:session-36:i16:p4=flat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-36:i17",
-    "correctText": "He lives there.",
+    "correctText": "She lives near the park.",
     "correctResponseId": null
   }
 ]

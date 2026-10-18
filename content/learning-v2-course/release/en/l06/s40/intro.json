@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-40",
   "learningOutcomeByLocale": {
-    "ru": "повторить рассказ о привычках и месте жительства",
-    "uk": "повторити розповідь про звички й місце проживання"
+    "ru": "самому выбрать между «без s» и «с s» и рассказать о соседях",
+    "uk": "самому вибрати між «без s» і «з s» та розповісти про сусідів"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто здесь живёт",
-        "uk": "Хто тут живе"
+        "ru": "Новый жилец",
+        "uk": "Новий мешканець"
       },
       "bodyByLocale": {
-        "ru": "Новый сосед спрашивает об Анне. `She lives here` — «Она живёт здесь». У `live` после `she` появляется `s`. Если вы говорите о себе и Томе вместе: `We live here` — «Мы живём здесь», без `s`. Это место жительства, а не обещание никогда не выходить из дома.",
-        "uk": "Новий сусід запитує про Анну. `She lives here` — «Вона живе тут». У `live` після `she` з’являється `s`. Якщо ви говорите про себе й Тома разом: `We live here` — «Ми живемо тут», без `s`. Це місце проживання, а не обіцянка ніколи не виходити з дому."
+        "ru": "В вашем доме появился новичок: он занёс коробки и пока никого не знает. Вы стучите к нему, чтобы познакомить с соседями, а подруга спрашивает, где он поселился. newcomer — «новичок в доме». Про одного человека к live добавляем s: The newcomer lives in a flat.",
+        "uk": "У вашому домі з’явився новачок: він заніс коробки й поки нікого не знає. Ви стукаєте до нього, щоб познайомити із сусідами, а подруга питає, де він оселився. newcomer — «новачок у домі». Про одну людину до live додаємо s: The newcomer lives in a flat."
       },
       "question": {
         "interactionId": "en:lesson-06:session-40:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите соседу об Анне «Она живёт здесь».",
-          "uk": "Скажіть сусідові про Анну «Вона живе тут»."
+          "ru": "Подруга спрашивает, где поселился новичок. Скажите: «Новичок живёт в квартире».",
+          "uk": "Подруга питає, де оселився новачок. Скажіть: «Новачок живе в квартирі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-40:intro1:r1",
-              "text": "She lives here."
+              "text": "The newcomer lives in a flat."
             },
             {
               "responseId": "en:lesson-06:session-40:intro1:r2",
-              "text": "She live here."
+              "text": "The newcomer live in a flat."
             },
             {
               "responseId": "en:lesson-06:session-40:intro1:r3",
-              "text": "She is lives here."
+              "text": "The newcomer is lives in a flat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-40:intro1:r1",
-              "text": "She lives here."
+              "text": "The newcomer lives in a flat."
             },
             {
               "responseId": "en:lesson-06:session-40:intro1:r2",
-              "text": "She live here."
+              "text": "The newcomer live in a flat."
             },
             {
               "responseId": "en:lesson-06:session-40:intro1:r3",
-              "text": "She is lives here."
+              "text": "The newcomer is lives in a flat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите соседу об Анне «Она живёт здесь».",
-          "uk": "Скажіть сусідові про Анну «Вона живе тут»."
+          "ru": "Подруга спрашивает, где поселился новичок. Скажите: «Новичок живёт в квартире».",
+          "uk": "Подруга питає, де оселився новачок. Скажіть: «Новачок живе в квартирі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Где занимается Анна",
-        "uk": "Де займається Анна"
+        "ru": "Листок на столике",
+        "uk": "Листок на столику"
       },
       "bodyByLocale": {
-        "ru": "Сосед ищет компанию для занятий и спрашивает об Анне. `She studies at home` — «Она занимается дома». У `study` после `she` буква `y` меняется на `ies`: `studies`. Если занимаетесь вместе, скажите `We study at home` — «Мы занимаемся дома»: после `we` остаётся `study`.",
-        "uk": "Сусід шукає компанію для занять і запитує про Анну. `She studies at home` — «Вона займається вдома». У `study` після `she` літера `y` змінюється на `ies`: `studies`. Якщо займаєтеся разом, скажіть `We study at home` — «Ми займаємося вдома»: після `we` залишається `study`."
+        "ru": "Соседка пригласила всех на чай в эту субботу и оставила листок на столике в холле. Новичок берёт его в руки и не понимает, от кого он: подписи нет. invitation — «приглашение». Спросите о нём: Whose invitation is this? — «Чьё это приглашение?»",
+        "uk": "Сусідка запросила всіх на чай у цю суботу й залишила листок на столику в холі. Новачок бере його в руки й не розуміє, від кого він: підпису немає. invitation — «запрошення». Спитайте про нього: Whose invitation is this? — «Чиє це запрошення?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-40:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите соседу «Она занимается дома».",
-          "uk": "Розкажіть сусідові «Вона займається вдома»."
+          "ru": "Вы показываете новичку на листок. Спросите: «Чьё это приглашение?»",
+          "uk": "Ви показуєте новачкові на листок. Спитайте: «Чиє це запрошення?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-40:intro2:r1",
-              "text": "She studies at home."
+              "text": "Whose invitation is this?"
             },
             {
               "responseId": "en:lesson-06:session-40:intro2:r2",
-              "text": "She studys at home."
+              "text": "Who invitation is this?"
             },
             {
               "responseId": "en:lesson-06:session-40:intro2:r3",
-              "text": "She study at home."
+              "text": "Whose invitation are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-40:intro2:r1",
-              "text": "She studies at home."
+              "text": "Whose invitation is this?"
             },
             {
               "responseId": "en:lesson-06:session-40:intro2:r2",
-              "text": "She studys at home."
+              "text": "Who invitation is this?"
             },
             {
               "responseId": "en:lesson-06:session-40:intro2:r3",
-              "text": "She study at home."
+              "text": "Whose invitation are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите соседу «Она занимается дома».",
-          "uk": "Розкажіть сусідові «Вона займається вдома»."
+          "ru": "Вы показываете новичку на листок. Спросите: «Чьё это приглашение?»",
+          "uk": "Ви показуєте новачкові на листок. Спитайте: «Чиє це запрошення?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дорога Тома на работу",
-        "uk": "Дорога Тома на роботу"
+        "ru": "Сестра на пороге",
+        "uk": "Сестра на порозі"
       },
       "bodyByLocale": {
-        "ru": "Сосед предлагает Тому подвозить его на работу. Вы объясняете привычку Тома: `He cycles to work` — «Он ездит на работу на велосипеде». `cycle` — ехать на велосипеде; после `he` — `cycles`. `They cycle to work` — «Они ездят на работу на велосипеде»: после `they` окончание `s` не нужно.",
-        "uk": "Сусід пропонує Томові підвозити його на роботу. Ви пояснюєте звичку Тома: `He cycles to work` — «Він їздить на роботу велосипедом». `cycle` — їхати велосипедом; після `he` — `cycles`. `They cycle to work` — «Вони їздять на роботу велосипедом»: після `they` закінчення `s` не потрібне."
+        "ru": "Тёплым вечером сестра выносит тетради на порог и занимается там: рядом стоит горшок с цветами, и дует лёгкий ветерок. Новичок спрашивает, чем она занята. doorstep — «порог». У study после she буква y меняется на ies: She studies on the doorstep.",
+        "uk": "Теплого вечора сестра виносить зошити на поріг і займається там: поруч стоїть горщик із квітами, і віє легкий вітерець. Новачок питає, чим вона зайнята. doorstep — «поріг». У study після she літера y змінюється на ies: She studies on the doorstep."
       },
       "question": {
         "interactionId": "en:lesson-06:session-40:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите соседу о Томе «Он ездит на работу на велосипеде».",
-          "uk": "Скажіть сусідові про Тома «Він їздить на роботу велосипедом»."
+          "ru": "Новичок спрашивает, где занимается ваша сестра. Скажите: «Она занимается на пороге».",
+          "uk": "Новачок питає, де займається ваша сестра. Скажіть: «Вона займається на порозі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-40:intro3:r1",
-              "text": "He cycles to work."
+              "text": "She studies on the doorstep."
             },
             {
               "responseId": "en:lesson-06:session-40:intro3:r2",
-              "text": "He cycle to work."
+              "text": "She studys on the doorstep."
             },
             {
               "responseId": "en:lesson-06:session-40:intro3:r3",
-              "text": "He is cycles to work."
+              "text": "She study on the doorstep."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-40:intro3:r1",
-              "text": "He cycles to work."
+              "text": "She studies on the doorstep."
             },
             {
               "responseId": "en:lesson-06:session-40:intro3:r2",
-              "text": "He cycle to work."
+              "text": "She studys on the doorstep."
             },
             {
               "responseId": "en:lesson-06:session-40:intro3:r3",
-              "text": "He is cycles to work."
+              "text": "She study on the doorstep."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите соседу о Томе «Он ездит на работу на велосипеде».",
-          "uk": "Скажіть сусідові про Тома «Він їздить на роботу велосипедом»."
+          "ru": "Новичок спрашивает, где занимается ваша сестра. Скажите: «Она занимается на пороге».",
+          "uk": "Новачок питає, де займається ваша сестра. Скажіть: «Вона займається на порозі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5a89883ec57458020dd53836092e618a85b2721f5c9943c0ab0a9ecd106a2445"
+  "introFingerprint": "a29a52b1dd0fff4c9f4b52446a244baa8c43a71995b4cf45d241ca5069f0022e"
 }

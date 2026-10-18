@@ -1,12 +1,12 @@
 [
   {
     "interactionId": "en:lesson-06:session-37:i01",
-    "correctText": "I shop here.",
+    "correctText": "We shop here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i02",
-    "correctText": "shop",
+    "correctText": "She shops for bargains.",
     "correctResponseId": "en:lesson-06:session-37:i02:r1"
   },
   {
@@ -15,23 +15,38 @@
     "correctResponseId": "en:lesson-06:session-37:i03:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-37:word:bargain",
+    "correctText": "bargain",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-37:i04",
-    "correctText": "en:lesson-06:session-37:i04:p1=shop\nen:lesson-06:session-37:i04:p2=official\nen:lesson-06:session-37:i04:p3=parcel locker\nen:lesson-06:session-37:i04:p4=earrings",
+    "correctText": "en:lesson-06:session-37:i04:p1=aisle\nen:lesson-06:session-37:i04:p2=checkout\nen:lesson-06:session-37:i04:p3=bargain\nen:lesson-06:session-37:i04:p4=grocer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:word:checkout",
+    "correctText": "checkout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i05",
-    "correctText": "Anna shops here.",
+    "correctText": "The basket is at the checkout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:word:aisle",
+    "correctText": "aisle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i06",
-    "correctText": "He calls his mother.",
+    "correctText": "The aisle is long.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i07",
-    "correctText": "This parcel locker is new.",
+    "correctText": "He shops here.",
     "correctResponseId": null
   },
   {
@@ -41,47 +56,52 @@
   },
   {
     "interactionId": "en:lesson-06:session-37:i09",
-    "correctText": "These earrings are mine.",
+    "correctText": "The aisle is near the door.",
     "correctResponseId": "en:lesson-06:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-37:i10",
-    "correctText": "en:lesson-06:session-37:i10:p1=shop\nen:lesson-06:session-37:i10:p2=call\nen:lesson-06:session-37:i10:p3=earrings\nen:lesson-06:session-37:i10:p4=official",
+    "correctText": "en:lesson-06:session-37:i10:p1=grocer\nen:lesson-06:session-37:i10:p2=aisle\nen:lesson-06:session-37:i10:p3=checkout\nen:lesson-06:session-37:i10:p4=bargain",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i11",
-    "correctText": "The parcel locker is here.",
+    "correctText": "He shops with a basket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i12",
-    "correctText": "Whose earrings are these?",
+    "correctText": "Whose bag is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i13",
-    "correctText": "I call my mother.",
+    "correctText": "They shop here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-37:word:grocer",
+    "correctText": "grocer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i14",
-    "correctText": "shops",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-37:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-37:i15",
-    "correctText": "We shop here.",
+    "correctText": "I shop with a basket.",
     "correctResponseId": "en:lesson-06:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-37:i16",
-    "correctText": "en:lesson-06:session-37:i16:p1=shop\nen:lesson-06:session-37:i16:p2=parcel locker\nen:lesson-06:session-37:i16:p3=official\nen:lesson-06:session-37:i16:p4=call",
+    "correctText": "en:lesson-06:session-37:i16:p1=bargain\nen:lesson-06:session-37:i16:p2=grocer\nen:lesson-06:session-37:i16:p3=aisle\nen:lesson-06:session-37:i16:p4=checkout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-37:i17",
-    "correctText": "She shops here.",
+    "correctText": "She shops with a trolley.",
     "correctResponseId": null
   }
 ]

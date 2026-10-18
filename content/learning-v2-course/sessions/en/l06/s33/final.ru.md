@@ -1,134 +1,154 @@
 # Английский · Урок 6 · Занятие 33 — Учёба дома
 
-**Ситуация.** Анна занимается дома. Том заходит к ней, замечает часы у дверного звонка и спрашивает, кому они принадлежат.
+**Ситуация.** Вы с братом и сестрой готовитесь к экзаменам: кто занимается дома, кто с репетитором, а на столе лежат тетради и листы. После she и he у слова study буква y меняется на ies.
 
-**Что вы освоите:** рассказать, кто где учится, и освоить форму studies
-**Новые слова:** study
+**Что вы освоите:** рассказать, кто где занимается, и запомнить форму studies
+**Новые слова:** study, tutor, essay, lecture
+**Возвращаются:** home, library, pen, table, kind, long, early, read
 
 ---
 
 ## Интро 1
 
-### Учиться и заниматься
+### Отказ от кафе
 
-`study` — «учиться», «заниматься». `I study at home` — «Я занимаюсь дома». Здесь речь о занятиях: например, вы читаете учебник или решаете задачи. Просто сидеть рядом с учебником — ещё не совсем `study`, даже если он открыт.
+Подруга зовёт вас в кафе, но завтра у вас экзамен, и учебник уже лежит на столе, открытый на нужной странице. Вы отказываетесь: нужно готовиться. study — «заниматься, учиться». I study at home — «Я занимаюсь дома». После I слово остаётся study, без изменений.
 
-**Скажите «Я занимаюсь дома».**
+**Подруга зовёт вас в кафе. Скажите, что занимаетесь дома: «Я занимаюсь дома».**
 
 - ✅ **I study at home.**
-- ❌ I studies at home. — *После `I` — `study`, без изменения окончания.*
-- ❌ I am study at home. — *Говорим `I study`, без `am`.*
+- ❌ I studies at home. — *После I слово остаётся study, без изменений.*
+- ❌ I am study at home. — *Здесь действие: I study, без am.*
 
 ---
 
 ## Интро 2
 
-### Она занимается
+### Репетитор
 
-`She studies at home` — «Она занимается дома». У `study` после `he` или `she` буква `y` меняется на `ies`: получается `studies`. `They study here` — «Они занимаются здесь»: после `they` остаётся `study`. Эти фразы могут описывать обычное место занятий, а не то, что происходит прямо сейчас.
+По вторникам к сестре приходит репетитор, и они вдвоём сидят над тетрадями за кухонным столом, и рядом остывает чай. Брат спрашивает, где сестра. tutor — «репетитор». Про сестру после she в слове study буква y меняется на ies: She studies with a tutor.
 
-**Скажите «Она занимается дома».**
+**Брат спрашивает, где сестра. Скажите: «Она занимается с репетитором».**
 
-- ✅ **She studies at home.**
-- ❌ She studys at home. — *Пишем `studies`: вместо `y` — `ies`.*
-- ❌ She study at home. — *После `she` нужно `studies`.*
+- ✅ **She studies with a tutor.**
+- ❌ She studys with a tutor. — *Пишем studies: вместо y — ies.*
+- ❌ She study with a tutor. — *После she нужно studies, с ies.*
 
 ---
 
 ## Интро 3
 
-### Часы у двери
+### Чьё сочинение
 
-`watch` — «наручные часы», `doorbell` — «дверной звонок», `active` — «активный». `Whose watch is this?` — «Чьи это наручные часы?» По-английски одни наручные часы — один предмет: `is this`. `He walks here` — «Он ходит здесь пешком». `This doorbell is new` — «Этот дверной звонок новый».
+Сосед зашёл за солью, увидел на вашем столе исписанный лист и заинтересовался, чей он. Это школьная работа вашего брата, он оставил её перед уходом. essay — «сочинение». Чтобы спросить о владельце, говорим Whose: Whose essay is this? — «Чьё это сочинение?»
 
-**Спросите «Чьи это наручные часы?»**
+**Вы показываете соседу на лист. Спросите: «Чьё это сочинение?»**
 
-- ✅ **Whose watch is this?**
-- ❌ Whose watch are these? — *Один предмет `watch`: `is this`.*
-- ❌ Who watch is this? — *О владельце спрашиваем `Whose` — «чьи».*
+- ✅ **Whose essay is this?**
+- ❌ Who essay is this? — *О владельце спрашиваем Whose — «чьё».*
+- ❌ Whose essay are this? — *Сочинение одно: нужно is this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я занимаюсь дома»**
+**1 · Карточка слова — study**
+<!-- interaction_id: en:lesson-06:session-33:word:study; family: word_card -->
+> **study** — заниматься, учиться. We study in the library. — «Мы занимаемся в библиотеке». О том, что делают с учебником и тетрадью.
+
+**2 · Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»**
 <!-- interaction_id: en:lesson-06:session-33:i01; family: phrase_builder -->
-Плитки: `home` `at` `study` `I` → **I study at home.**
+Плитки: `home` `at` `study` `We` `studies` → **We study at home.**
+*(плитка `studies` лишняя: здесь нужно `study` — `We study at home.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — tutor**
+<!-- interaction_id: en:lesson-06:session-33:word:tutor; family: word_card -->
+> **tutor** — репетитор. My tutor is kind. — «Мой репетитор добрый». О человеке, который занимается с учеником отдельно.
+
+**4 · Послушайте сестру**
 <!-- interaction_id: en:lesson-06:session-33:i02; family: listen_choose -->
-🔊 *study* → **study** · shower · walk
-- shower — *В записи первое слово — `study`, а в этом варианте — `shower`.*
-- walk — *В записи первое слово — `study`, а в этом варианте — `walk`.*
+🔊 *She studies with a tutor.* → **She studies with a tutor.** · She studies with a friend. · He studies with a tutor.
+- She studies with a friend. — *В записи последнее слово — `tutor`, репетитор, а в этом варианте — `friend`, друг.*
+- He studies with a tutor. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите «Она занимается дома»**
+**5 · Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-33:i03; family: context_gap_grammar -->
-She ___ at home. → **studies** · study · studys
-- study — *После `she` нужно `studies`.*
+My brother ___ in the library. → **studies** · study · studys
+- study — *Брат — это `he`, поэтому нужно `studies`, с `ies`.*
 - studys — *В `study` меняем `y` на `ies`: `studies`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-33:i04; family: speed_match -->
-study — учиться · active — активный · doorbell — дверной звонок · watch — наручные часы
+study — учиться, заниматься · tutor — репетитор · essay — сочинение · lecture — лекция
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — essay**
+<!-- interaction_id: en:lesson-06:session-33:word:essay; family: word_card -->
+> **essay** — сочинение. The essay is long. — «Сочинение длинное». О тексте, который пишут в школе.
+
+**8 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-33:i05; family: listen_build_dictation -->
-🔊 *Anna studies at home.* Плитки: `home` `at` `studies` `Anna` → **Anna studies at home.**
+🔊 *My essay is on the table.* Плитки: `table` `on` `the` `My` `essay` `is` `are` → **My essay is on the table.**
+*(плитка `are` лишняя: здесь нужно `is` — `My essay is on the table.`)*
 
-**6 · Скажите «Он ходит здесь пешком»**
+**9 · Сестра хвалит репетитора. Скажите: «Мой репетитор добрый»**
 <!-- interaction_id: en:lesson-06:session-33:i06; family: phrase_builder -->
-Плитки: `here` `walks` `He` → **He walks here.**
+Плитки: `tutor` `kind` `is` `My` `are` → **My tutor is kind.**
+*(плитка `are` лишняя: здесь нужно `is` — `My tutor is kind.`)*
 
-**7 · Скажите «Этот дверной звонок новый»**
+**10 · Брат спрашивает, где вы с сестрой занимаетесь. Скажите: «Мы занимаемся в библиотеке»**
 <!-- interaction_id: en:lesson-06:session-33:i07; family: scripted_repeat_compare -->
-🎙 **This doorbell is new.**
+🎙 **We study in the library.**
 
-**8 · Скажите «Они занимаются здесь»**
+**11 · Скажите о себе: «Я читаю сочинение». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-33:i08; family: context_gap_grammar -->
-They ___ here. → **study** · studies · are study
-- studies — *После `they` — `study`.*
-- are study — *Нужно `They study`, без `are`.*
+I ___ the essay. → **read** · reads · am read
+- reads — *После `I` нужно `read`, без `s`.*
+- am read — *Говорим `I read`, без `am`.*
 
-**9 · Послушайте, чьи часы здесь**
+**12 · Карточка слова — lecture**
+<!-- interaction_id: en:lesson-06:session-33:word:lecture; family: word_card -->
+> **lecture** — лекция. The lecture is early. — «Лекция ранняя». О занятии, на котором один человек рассказывает многим.
+
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-33:i09; family: listen_choose -->
-🔊 *My watch is here.* → **My watch is here.** · Your watch is here. · His watch is here.
-- Your watch is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His watch is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The lecture is long.* → **The lecture is long.** · The lecture is early. · The essay is long.
+- The lecture is early. — *В записи последнее слово — `long`, длинная, а в этом варианте — `early`, ранняя.*
+- The essay is long. — *В записи речь о `lecture`, лекции, а в этом варианте — об `essay`, сочинении.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-33:i10; family: speed_match -->
-study — учиться · walk — ходить пешком · watch — наручные часы · active — активный
+lecture — лекция · study — учиться, заниматься · tutor — репетитор · essay — сочинение
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте сестру и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-33:i11; family: listen_build_dictation -->
-🔊 *She is active.* Плитки: `active` `is` `She` `are` → **She is active.**
-*(плитка `are` лишняя: здесь нужно `is` — `She is active.`)*
+🔊 *She studies at home.* Плитки: `studies` `at` `home` `She` `study` → **She studies at home.**
+*(плитка `study` лишняя: здесь нужно `studies` — `She studies at home.`)*
 
-**12 · Спросите «Чьи это наручные часы?»**
+**16 · Сосед показывает на ручку на столе. Спросите: «Чья это ручка?»**
 <!-- interaction_id: en:lesson-06:session-33:i12; family: phrase_builder -->
-Плитки: `this` `is` `watch` `Whose` → **Whose watch is this?**
+Плитки: `pen` `is` `this` `Whose` `Who` → **Whose pen is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose pen is this?`)*
 
-**13 · Скажите «Мы занимаемся здесь»**
+**17 · Подруга спрашивает о вашем брате. Скажите: «Он занимается дома»**
 <!-- interaction_id: en:lesson-06:session-33:i13; family: scripted_repeat_compare -->
-🎙 **We study here.**
+🎙 **He studies at home.**
 
-**14 · Скажите «Том занимается дома»**
+**18 · Скажите о лекции: «Лекция длинная». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-33:i14; family: context_gap_grammar -->
-Tom ___ at home. → **studies** · study · is studies
-- study — *Том — он: `Tom studies`.*
-- is studies — *Нужно `Tom studies`, без `is`.*
+The lecture ___ long. → **is** · are · studies
+- are — *Лекция одна, поэтому нужно `is`, а не `are`.*
+- studies — *`studies` значит «занимается», а здесь нужно сказать, какая лекция: `is long`.*
 
-**15 · Послушайте, какой дверной звонок**
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-33:i15; family: listen_choose -->
-🔊 *This doorbell is new.* → **This doorbell is new.** · This doorbell is old. · This doorbell is small.
-- This doorbell is old. — *В записи последнее слово — `new`, а в этом варианте — `old`.*
-- This doorbell is small. — *В записи последнее слово — `new`, а в этом варианте — `small`.*
+🔊 *I study with a tutor.* → **I study with a tutor.** · I study with a friend. · We study with a tutor.
+- I study with a friend. — *В записи последнее слово — `tutor`, репетитор, а в этом варианте — `friend`, друг.*
+- We study with a tutor. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-33:i16; family: speed_match -->
-study — учиться · doorbell — дверной звонок · active — активный · walk — ходить пешком
+essay — сочинение · lecture — лекция · study — учиться, заниматься · tutor — репетитор
 
-**17 · Расскажите, где обычно занимается Анна: «Она занимается дома»**
+**21 · Сосед спрашивает, где занимается ваша сестра. Скажите: «Она занимается в библиотеке»**
 <!-- interaction_id: en:lesson-06:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She studies at home.**
-
+🎙 **She studies in the library.**

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-37:intro1:r2": {
-          "ru": "Для действия говорим `I shop`, без `am`.",
-          "uk": "Для дії кажемо `I shop`, без `am`."
+          "ru": "После I слово остаётся wait, без s.",
+          "uk": "Після I слово лишається wait, без s."
         },
         "en:lesson-06:session-37:intro1:r3": {
-          "ru": "После `I` — `shop`, без `s`.",
-          "uk": "Після `I` — `shop`, без `s`."
+          "ru": "Здесь действие: I wait, без am.",
+          "uk": "Тут дія: I wait, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-37:intro2:r2": {
-          "ru": "После `she` — `shops`.",
-          "uk": "Після `she` — `shops`."
+          "ru": "После she нужно waits, с s.",
+          "uk": "Після she потрібно waits, з s."
         },
         "en:lesson-06:session-37:intro2:r3": {
-          "ru": "Нужно `She shops`, без `is`.",
-          "uk": "Потрібно `She shops`, без `is`."
+          "ru": "Здесь действие: She waits, без is.",
+          "uk": "Тут дія: She waits, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-37:intro3:r2": {
-          "ru": "С `earrings` — `are these`.",
-          "uk": "З `earrings` — `are these`."
+          "ru": "Корзина одна: нужно is.",
+          "uk": "Кошик один: потрібно is."
         },
         "en:lesson-06:session-37:intro3:r3": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "О владельце спрашиваем Whose — «чья».",
+          "uk": "Про власника питаємо Whose — «чий»."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "abf4f0312cfc7f5959c3fbec98d1908bd9e309b952dab96e2a88fb60fdad3688"
+  "auxiliaryFingerprint": "95330a7fbb153dcd2722d1d7f6c200d65a2cddc09557dc9855b04fd433d9bb79"
 }

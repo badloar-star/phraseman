@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-33",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто где учится, и освоить форму studies",
-    "uk": "розповісти, хто де навчається, й опанувати форму studies"
+    "ru": "рассказать, кто где занимается, и запомнить форму studies",
+    "uk": "розповісти, хто де займається, і запам’ятати форму studies"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Учиться и заниматься",
-        "uk": "Учитися й займатися"
+        "ru": "Отказ от кафе",
+        "uk": "Відмова від кафе"
       },
       "bodyByLocale": {
-        "ru": "`study` — «учиться», «заниматься». `I study at home` — «Я занимаюсь дома». Здесь речь о занятиях: например, вы читаете учебник или решаете задачи. Просто сидеть рядом с учебником — ещё не совсем `study`, даже если он открыт.",
-        "uk": "`study` — «учитися», «займатися». `I study at home` — «Я займаюся вдома». Тут ідеться про навчання: наприклад, ви читаєте підручник або розв’язуєте задачі. Просто сидіти поруч із підручником — ще не зовсім `study`, навіть якщо він відкритий."
+        "ru": "Подруга зовёт вас в кафе, но завтра у вас экзамен, и учебник уже лежит на столе, открытый на нужной странице. Вы отказываетесь: нужно готовиться. study — «заниматься, учиться». I study at home — «Я занимаюсь дома». После I слово остаётся study, без изменений.",
+        "uk": "Подруга кличе вас до кафе, але завтра у вас іспит, і підручник уже лежить на столі, відкритий на потрібній сторінці. Ви відмовляєтеся: треба готуватися. study — «займатися, вчитися». I study at home — «Я займаюся вдома». Після I слово лишається study, без змін."
       },
       "question": {
         "interactionId": "en:lesson-06:session-33:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я занимаюсь дома».",
-          "uk": "Скажіть «Я займаюся вдома»."
+          "ru": "Подруга зовёт вас в кафе. Скажите, что занимаетесь дома: «Я занимаюсь дома».",
+          "uk": "Подруга кличе вас до кафе. Скажіть, що займаєтеся вдома: «Я займаюся вдома»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я занимаюсь дома».",
-          "uk": "Скажіть «Я займаюся вдома»."
+          "ru": "Подруга зовёт вас в кафе. Скажите, что занимаетесь дома: «Я занимаюсь дома».",
+          "uk": "Подруга кличе вас до кафе. Скажіть, що займаєтеся вдома: «Я займаюся вдома»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она занимается",
-        "uk": "Вона займається"
+        "ru": "Репетитор",
+        "uk": "Репетитор"
       },
       "bodyByLocale": {
-        "ru": "`She studies at home` — «Она занимается дома». У `study` после `he` или `she` буква `y` меняется на `ies`: получается `studies`. `They study here` — «Они занимаются здесь»: после `they` остаётся `study`. Эти фразы могут описывать обычное место занятий, а не то, что происходит прямо сейчас.",
-        "uk": "`She studies at home` — «Вона займається вдома». У `study` після `he` або `she` літера `y` змінюється на `ies`: виходить `studies`. `They study here` — «Вони займаються тут»: після `they` залишається `study`. Ці фрази можуть описувати звичне місце занять, а не те, що відбувається просто зараз."
+        "ru": "По вторникам к сестре приходит репетитор, и они вдвоём сидят над тетрадями за кухонным столом, и рядом остывает чай. Брат спрашивает, где сестра. tutor — «репетитор». Про сестру после she в слове study буква y меняется на ies: She studies with a tutor.",
+        "uk": "У вівторок до сестри приходить репетитор, і вони вдвох сидять над зошитами за кухонним столом, і поруч холоне чай. Брат питає, де сестра. tutor — «репетитор». Про сестру після she в слові study літера y змінюється на ies: She studies with a tutor."
       },
       "question": {
         "interactionId": "en:lesson-06:session-33:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она занимается дома».",
-          "uk": "Скажіть «Вона займається вдома»."
+          "ru": "Брат спрашивает, где сестра. Скажите: «Она занимается с репетитором».",
+          "uk": "Брат питає, де сестра. Скажіть: «Вона займається з репетитором»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-33:intro2:r1",
-              "text": "She studies at home."
+              "text": "She studies with a tutor."
             },
             {
               "responseId": "en:lesson-06:session-33:intro2:r2",
-              "text": "She studys at home."
+              "text": "She studys with a tutor."
             },
             {
               "responseId": "en:lesson-06:session-33:intro2:r3",
-              "text": "She study at home."
+              "text": "She study with a tutor."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-33:intro2:r1",
-              "text": "She studies at home."
+              "text": "She studies with a tutor."
             },
             {
               "responseId": "en:lesson-06:session-33:intro2:r2",
-              "text": "She studys at home."
+              "text": "She studys with a tutor."
             },
             {
               "responseId": "en:lesson-06:session-33:intro2:r3",
-              "text": "She study at home."
+              "text": "She study with a tutor."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она занимается дома».",
-          "uk": "Скажіть «Вона займається вдома»."
+          "ru": "Брат спрашивает, где сестра. Скажите: «Она занимается с репетитором».",
+          "uk": "Брат питає, де сестра. Скажіть: «Вона займається з репетитором»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Часы у двери",
-        "uk": "Годинник біля дверей"
+        "ru": "Чьё сочинение",
+        "uk": "Чий твір"
       },
       "bodyByLocale": {
-        "ru": "`watch` — «наручные часы», `doorbell` — «дверной звонок», `active` — «активный». `Whose watch is this?` — «Чьи это наручные часы?» По-английски одни наручные часы — один предмет: `is this`. `He walks here` — «Он ходит здесь пешком». `This doorbell is new` — «Этот дверной звонок новый».",
-        "uk": "`watch` — «наручний годинник», `doorbell` — «дверний дзвінок», `active` — «активний». `Whose watch is this?` — «Чий це наручний годинник?» Один `watch` — один предмет: `is this`. `He walks here` — «Він ходить тут пішки». `This doorbell is new` — «Цей дверний дзвінок новий»."
+        "ru": "Сосед зашёл за солью, увидел на вашем столе исписанный лист и заинтересовался, чей он. Это школьная работа вашего брата, он оставил её перед уходом. essay — «сочинение». Чтобы спросить о владельце, говорим Whose: Whose essay is this? — «Чьё это сочинение?»",
+        "uk": "Сусід зайшов по сіль, побачив на вашому столі списаний аркуш і зацікавився, чий він. Це шкільна робота вашого брата, він залишив її перед виходом. essay — «твір». Щоб спитати про власника, кажемо Whose: Whose essay is this? — «Чий це твір?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-33:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чьи это наручные часы?»",
-          "uk": "Запитайте «Чий це наручний годинник?»"
+          "ru": "Вы показываете соседу на лист. Спросите: «Чьё это сочинение?»",
+          "uk": "Ви показуєте сусідові на аркуш. Спитайте: «Чий це твір?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-33:intro3:r1",
-              "text": "Whose watch is this?"
+              "text": "Whose essay is this?"
             },
             {
               "responseId": "en:lesson-06:session-33:intro3:r2",
-              "text": "Whose watch are these?"
+              "text": "Who essay is this?"
             },
             {
               "responseId": "en:lesson-06:session-33:intro3:r3",
-              "text": "Who watch is this?"
+              "text": "Whose essay are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-33:intro3:r1",
-              "text": "Whose watch is this?"
+              "text": "Whose essay is this?"
             },
             {
               "responseId": "en:lesson-06:session-33:intro3:r2",
-              "text": "Whose watch are these?"
+              "text": "Who essay is this?"
             },
             {
               "responseId": "en:lesson-06:session-33:intro3:r3",
-              "text": "Who watch is this?"
+              "text": "Whose essay are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чьи это наручные часы?»",
-          "uk": "Запитайте «Чий це наручний годинник?»"
+          "ru": "Вы показываете соседу на лист. Спросите: «Чьё это сочинение?»",
+          "uk": "Ви показуєте сусідові на аркуш. Спитайте: «Чий це твір?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6709845058bd607a7787732d4f3907279c6392736fc7b857f47a82b8f17271f7"
+  "introFingerprint": "e836e74f860cf8fe265be2a07f6fd7f9e6d628efdbd193ff51689f4e7711ca2f"
 }

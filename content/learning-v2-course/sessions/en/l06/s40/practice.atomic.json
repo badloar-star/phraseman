@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-40:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новичок спрашивает о вас с братом. Скажите: «Мы живём в квартире»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новичок спрашивает о вас с братом. Скажите: «Мы живём в квартире»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We live in a flat.",
+          "localizedMeaning": {
+            "ru": "Новичок спрашивает о вас с братом. Скажите: «Мы живём в квартире»",
+            "uk": "Новачок питає про вас із братом. Скажіть: «Ми живемо в квартирі»"
+          },
+          "orderedTokens": [
+            "We",
+            "live",
+            "in",
+            "a",
+            "flat"
+          ],
+          "authoredDistractorTokens": [
+            "lives"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Новичок спрашивает о вас с братом. Скажите: «Мы живём в квартире»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `live` — `We live in a flat.`",
+                "uk": "тут потрібно `live` — `We live in a flat.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i02:r1",
+            "text": "She studies in the library."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r2",
+            "text": "She studies in the garden."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r3",
+            "text": "He studies in the library."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i02:audio",
+            "transcript": "She studies in the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:i02:r1",
+              "targetText": "She studies in the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i02:r2",
+              "targetText": "She studies in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i02:r3",
+              "targetText": "He studies in the library.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `library`, библиотека, а в этом варианте — `garden`, сад.",
+                "uk": "У записі останнє слово — `library`, бібліотека, а в цьому варіанті — `garden`, сад."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i03:r1",
+            "text": "cycles"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r2",
+            "text": "cycle"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r3",
+            "text": "is cycles"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+            "uk": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ to work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-40:i03:r1",
+              "text": "cycles"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i03:r2",
+              "text": "cycle"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i03:r3",
+              "text": "is cycles"
+            }
+          ],
+          "testedDimension": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Брат — это `he`, поэтому нужно `cycles`, с `s`.",
+                "uk": "Брат — це `he`, тому потрібно `cycles`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `cycles`, без `is`.",
+                "uk": "Кажемо `cycles`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-40:i04:p1",
+              "target": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме",
+                "uk": "новоприбулий"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i04:p2",
+              "target": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение",
+                "uk": "запрошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i04:p3",
+              "target": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок",
+                "uk": "квітковий горщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i04:p4",
+              "target": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог",
+                "uk": "поріг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "newcomer",
+            "invitation",
+            "flowerpot",
+            "doorstep"
+          ],
+          "rightColumn": [
+            "новичок в доме",
+            "приглашение",
+            "цветочный горшок",
+            "порог"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:invitation",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — invitation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:invitation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — invitation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:invitation:audio",
+            "transcript": "invitation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:invitation:r1",
+              "targetText": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение. The invitation is on the table. — «Приглашение на столе». О листке, который зовёт в гости.",
+                "uk": "запрошення. The invitation is on the table. — «Запрошення на столі». Про листок, який кличе в гості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "invitation",
+            "definitionByLocale": {
+              "ru": "приглашение. The invitation is on the table. — «Приглашение на столе». О листке, который зовёт в гости.",
+              "uk": "запрошення. The invitation is on the table. — «Запрошення на столі». Про листок, який кличе в гості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте новичка и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте новичка и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i05:audio",
+            "transcript": "The invitation is on the doorstep."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The invitation is on the doorstep.",
+          "orderedTokens": [
+            "The",
+            "invitation",
+            "is",
+            "on",
+            "the",
+            "doorstep"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте новичка и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The invitation is on the doorstep.`",
+                "uk": "тут потрібно `is` — `The invitation is on the doorstep.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:newcomer",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — newcomer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:newcomer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — newcomer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:newcomer:audio",
+            "transcript": "newcomer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:newcomer:r1",
+              "targetText": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме. The newcomer is shy. — «Новичок в доме стеснительный». О человеке, который только что переехал.",
+                "uk": "новачок у домі. The newcomer is shy. — «Новачок у домі соромливий». Про людину, яка щойно переїхала."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "newcomer",
+            "definitionByLocale": {
+              "ru": "новичок в доме. The newcomer is shy. — «Новичок в доме стеснительный». О человеке, который только что переехал.",
+              "uk": "новачок у домі. The newcomer is shy. — «Новачок у домі соромливий». Про людину, яка щойно переїхала."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новичок стесняется. Скажите про него: «Новичок стеснительный»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новичок стесняется. Скажите про него: «Новичок стеснительный»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The newcomer is shy.",
+          "localizedMeaning": {
+            "ru": "Новичок стесняется. Скажите про него: «Новичок стеснительный»",
+            "uk": "Новачок соромиться. Скажіть про нього: «Новачок соромливий»"
+          },
+          "orderedTokens": [
+            "The",
+            "newcomer",
+            "is",
+            "shy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Новичок стесняется. Скажите про него: «Новичок стеснительный»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The newcomer is shy.`",
+                "uk": "тут потрібно `is` — `The newcomer is shy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новичок спрашивает, где живёт ваша сестра. Скажите: «Она живёт возле библиотеки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Новичок спрашивает, где живёт ваша сестра. Скажите: «Она живёт возле библиотеки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i07:audio",
+            "transcript": "She lives near the library."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She lives near the library.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i08:r1",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r2",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r3",
+            "text": "am study"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+            "uk": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ in the library.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-40:i08:r1",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i08:r2",
+              "text": "studies"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i08:r3",
+              "text": "am study"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `study`, без изменений.",
+                "uk": "Після `I` потрібно `study`, без змін."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I study`, без `am`.",
+                "uk": "Кажемо `I study`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:flowerpot",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flowerpot",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:flowerpot:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flowerpot",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:flowerpot:audio",
+            "transcript": "flowerpot"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:flowerpot:r1",
+              "targetText": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок. The flowerpot is small. — «Цветочный горшок маленький». О горшке, в котором растёт цветок.",
+                "uk": "квітковий горщик. The flowerpot is small. — «Квітковий горщик маленький». Про горщик, у якому росте квітка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flowerpot",
+            "definitionByLocale": {
+              "ru": "цветочный горшок. The flowerpot is small. — «Цветочный горшок маленький». О горшке, в котором растёт цветок.",
+              "uk": "квітковий горщик. The flowerpot is small. — «Квітковий горщик маленький». Про горщик, у якому росте квітка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i09:r1",
+            "text": "The flowerpot is small."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r2",
+            "text": "The flowerpot is big."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r3",
+            "text": "The doorstep is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i09:audio",
+            "transcript": "The flowerpot is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:i09:r1",
+              "targetText": "The flowerpot is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i09:r2",
+              "targetText": "The flowerpot is big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i09:r3",
+              "targetText": "The doorstep is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `small`, маленький, а в этом варианте — `big`, большой.",
+                "uk": "У записі останнє слово — `small`, маленький, а в цьому варіанті — `big`, великий."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `flowerpot`, цветочном горшке, а в этом варианте — о `doorstep`, пороге.",
+                "uk": "У записі йдеться про `flowerpot`, квітковий горщик, а в цьому варіанті — про `doorstep`, поріг."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-40:i10:p1",
+              "target": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог",
+                "uk": "поріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i10:p2",
+              "target": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме",
+                "uk": "новоприбулий"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i10:p3",
+              "target": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение",
+                "uk": "запрошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i10:p4",
+              "target": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок",
+                "uk": "квітковий горщик"
+              }
+            }
+          ],
+          "leftColumn": [
+            "doorstep",
+            "newcomer",
+            "invitation",
+            "flowerpot"
+          ],
+          "rightColumn": [
+            "порог",
+            "новичок в доме",
+            "приглашение",
+            "цветочный горшок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i11:audio",
+            "transcript": "He cycles with a helmet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He cycles with a helmet.",
+          "orderedTokens": [
+            "He",
+            "cycles",
+            "with",
+            "a",
+            "helmet"
+          ],
+          "authoredDistractorTokens": [
+            "cycle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cycles` — `He cycles with a helmet.`",
+                "uk": "тут потрібно `cycles` — `He cycles with a helmet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i12",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новичок показывает на горшок у двери. Спросите: «Чей это цветочный горшок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новичок показывает на горшок у двери. Спросите: «Чей это цветочный горшок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose flowerpot is this?",
+          "localizedMeaning": {
+            "ru": "Новичок показывает на горшок у двери. Спросите: «Чей это цветочный горшок?»",
+            "uk": "Новачок показує на горщик біля дверей. Спитайте: «Чий це квітковий горщик?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "flowerpot",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Новичок показывает на горшок у двери. Спросите: «Чей это цветочный горшок?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose flowerpot is this?`",
+                "uk": "тут потрібно `Whose` — `Whose flowerpot is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:doorstep",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — doorstep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:doorstep:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — doorstep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:doorstep:audio",
+            "transcript": "doorstep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:doorstep:r1",
+              "targetText": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог. The doorstep is wide. — «Порог широкий». О ступеньке прямо перед входной дверью.",
+                "uk": "поріг. The doorstep is wide. — «Поріг широкий». Про сходинку просто перед вхідними дверима."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "doorstep",
+            "definitionByLocale": {
+              "ru": "порог. The doorstep is wide. — «Порог широкий». О ступеньке прямо перед входной дверью.",
+              "uk": "поріг. The doorstep is wide. — «Поріг широкий». Про сходинку просто перед вхідними дверима."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новичок спрашивает о вас с сестрой. Скажите: «Мы занимаемся на пороге»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i13:audio"
+        ],
+        "accessibilityLabel": "Новичок спрашивает о вас с сестрой. Скажите: «Мы занимаемся на пороге»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i13:audio",
+            "transcript": "We study on the doorstep."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We study on the doorstep.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r3",
+            "text": "lives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+            "uk": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The invitation ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-40:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i14:r3",
+              "text": "lives"
+            }
+          ],
+          "testedDimension": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Приглашение одно, поэтому нужно `is`, а не `are`.",
+                "uk": "Запрошення одне, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`lives` значит «живёт», а здесь нужно сказать, где приглашение: `is on`.",
+                "uk": "`lives` означає «живе», а тут треба сказати, де запрошення: `is on`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i15:r1",
+            "text": "I cycle to the park."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r2",
+            "text": "I cycle to work."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r3",
+            "text": "We cycle to the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i15:audio",
+            "transcript": "I cycle to the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:i15:r1",
+              "targetText": "I cycle to the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i15:r2",
+              "targetText": "I cycle to work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i15:r3",
+              "targetText": "We cycle to the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, парк, а в этом варианте — `work`, работа.",
+                "uk": "У записі останнє слово — `park`, парк, а в цьому варіанті — `work`, робота."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-40:i16:p1",
+              "target": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение",
+                "uk": "запрошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i16:p2",
+              "target": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок",
+                "uk": "квітковий горщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i16:p3",
+              "target": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог",
+                "uk": "поріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i16:p4",
+              "target": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме",
+                "uk": "новоприбулий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "invitation",
+            "flowerpot",
+            "doorstep",
+            "newcomer"
+          ],
+          "rightColumn": [
+            "приглашение",
+            "цветочный горшок",
+            "порог",
+            "новичок в доме"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новичок спрашивает о вашем брате. Скажите: «Он ездит на работу на велосипеде»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Новичок спрашивает о вашем брате. Скажите: «Он ездит на работу на велосипеде»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i17:audio",
+            "transcript": "He cycles to work."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He cycles to work.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-40:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новачок питає про вас із братом. Скажіть: «Ми живемо в квартирі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новачок питає про вас із братом. Скажіть: «Ми живемо в квартирі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We live in a flat.",
+          "localizedMeaning": {
+            "ru": "Новичок спрашивает о вас с братом. Скажите: «Мы живём в квартире»",
+            "uk": "Новачок питає про вас із братом. Скажіть: «Ми живемо в квартирі»"
+          },
+          "orderedTokens": [
+            "We",
+            "live",
+            "in",
+            "a",
+            "flat"
+          ],
+          "authoredDistractorTokens": [
+            "lives"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Новачок питає про вас із братом. Скажіть: «Ми живемо в квартирі»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `live` — `We live in a flat.`",
+                "uk": "тут потрібно `live` — `We live in a flat.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i02:r1",
+            "text": "She studies in the library."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r2",
+            "text": "She studies in the garden."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i02:r3",
+            "text": "He studies in the library."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i02:audio",
+            "transcript": "She studies in the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:i02:r1",
+              "targetText": "She studies in the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i02:r2",
+              "targetText": "She studies in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i02:r3",
+              "targetText": "He studies in the library.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `library`, библиотека, а в этом варианте — `garden`, сад.",
+                "uk": "У записі останнє слово — `library`, бібліотека, а в цьому варіанті — `garden`, сад."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i03:r1",
+            "text": "cycles"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r2",
+            "text": "cycle"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i03:r3",
+            "text": "is cycles"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово",
+            "uk": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ to work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-40:i03:r1",
+              "text": "cycles"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i03:r2",
+              "text": "cycle"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i03:r3",
+              "text": "is cycles"
+            }
+          ],
+          "testedDimension": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Брат — это `he`, поэтому нужно `cycles`, с `s`.",
+                "uk": "Брат — це `he`, тому потрібно `cycles`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `cycles`, без `is`.",
+                "uk": "Кажемо `cycles`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-40:i04:p1",
+              "target": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме",
+                "uk": "новоприбулий"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i04:p2",
+              "target": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение",
+                "uk": "запрошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i04:p3",
+              "target": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок",
+                "uk": "квітковий горщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i04:p4",
+              "target": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог",
+                "uk": "поріг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "newcomer",
+            "invitation",
+            "flowerpot",
+            "doorstep"
+          ],
+          "rightColumn": [
+            "новоприбулий",
+            "запрошення",
+            "квітковий горщик",
+            "поріг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:invitation",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — invitation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:invitation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — invitation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:invitation:audio",
+            "transcript": "invitation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:invitation:r1",
+              "targetText": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение. The invitation is on the table. — «Приглашение на столе». О листке, который зовёт в гости.",
+                "uk": "запрошення. The invitation is on the table. — «Запрошення на столі». Про листок, який кличе в гості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "invitation",
+            "definitionByLocale": {
+              "ru": "приглашение. The invitation is on the table. — «Приглашение на столе». О листке, который зовёт в гости.",
+              "uk": "запрошення. The invitation is on the table. — «Запрошення на столі». Про листок, який кличе в гості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте новачка й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте новачка й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i05:audio",
+            "transcript": "The invitation is on the doorstep."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The invitation is on the doorstep.",
+          "orderedTokens": [
+            "The",
+            "invitation",
+            "is",
+            "on",
+            "the",
+            "doorstep"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте новачка й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The invitation is on the doorstep.`",
+                "uk": "тут потрібно `is` — `The invitation is on the doorstep.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:newcomer",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — newcomer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:newcomer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — newcomer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:newcomer:audio",
+            "transcript": "newcomer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:newcomer:r1",
+              "targetText": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме. The newcomer is shy. — «Новичок в доме стеснительный». О человеке, который только что переехал.",
+                "uk": "новачок у домі. The newcomer is shy. — «Новачок у домі соромливий». Про людину, яка щойно переїхала."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "newcomer",
+            "definitionByLocale": {
+              "ru": "новичок в доме. The newcomer is shy. — «Новичок в доме стеснительный». О человеке, который только что переехал.",
+              "uk": "новачок у домі. The newcomer is shy. — «Новачок у домі соромливий». Про людину, яка щойно переїхала."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новачок соромиться. Скажіть про нього: «Новачок соромливий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новачок соромиться. Скажіть про нього: «Новачок соромливий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The newcomer is shy.",
+          "localizedMeaning": {
+            "ru": "Новичок стесняется. Скажите про него: «Новичок стеснительный»",
+            "uk": "Новачок соромиться. Скажіть про нього: «Новачок соромливий»"
+          },
+          "orderedTokens": [
+            "The",
+            "newcomer",
+            "is",
+            "shy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Новачок соромиться. Скажіть про нього: «Новачок соромливий»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The newcomer is shy.`",
+                "uk": "тут потрібно `is` — `The newcomer is shy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новачок питає, де живе ваша сестра. Скажіть: «Вона живе біля бібліотеки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Новачок питає, де живе ваша сестра. Скажіть: «Вона живе біля бібліотеки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i07:audio",
+            "transcript": "She lives near the library."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She lives near the library.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i08:r1",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r2",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i08:r3",
+            "text": "am study"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово",
+            "uk": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ in the library.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-40:i08:r1",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i08:r2",
+              "text": "studies"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i08:r3",
+              "text": "am study"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `study`, без изменений.",
+                "uk": "Після `I` потрібно `study`, без змін."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I study`, без `am`.",
+                "uk": "Кажемо `I study`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:flowerpot",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flowerpot",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:flowerpot:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flowerpot",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:flowerpot:audio",
+            "transcript": "flowerpot"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:flowerpot:r1",
+              "targetText": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок. The flowerpot is small. — «Цветочный горшок маленький». О горшке, в котором растёт цветок.",
+                "uk": "квітковий горщик. The flowerpot is small. — «Квітковий горщик маленький». Про горщик, у якому росте квітка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flowerpot",
+            "definitionByLocale": {
+              "ru": "цветочный горшок. The flowerpot is small. — «Цветочный горшок маленький». О горшке, в котором растёт цветок.",
+              "uk": "квітковий горщик. The flowerpot is small. — «Квітковий горщик маленький». Про горщик, у якому росте квітка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i09:r1",
+            "text": "The flowerpot is small."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r2",
+            "text": "The flowerpot is big."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i09:r3",
+            "text": "The doorstep is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i09:audio",
+            "transcript": "The flowerpot is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:i09:r1",
+              "targetText": "The flowerpot is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i09:r2",
+              "targetText": "The flowerpot is big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i09:r3",
+              "targetText": "The doorstep is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `small`, маленький, а в этом варианте — `big`, большой.",
+                "uk": "У записі останнє слово — `small`, маленький, а в цьому варіанті — `big`, великий."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи речь о `flowerpot`, цветочном горшке, а в этом варианте — о `doorstep`, пороге.",
+                "uk": "У записі йдеться про `flowerpot`, квітковий горщик, а в цьому варіанті — про `doorstep`, поріг."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-40:i10:p1",
+              "target": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог",
+                "uk": "поріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i10:p2",
+              "target": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме",
+                "uk": "новоприбулий"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i10:p3",
+              "target": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение",
+                "uk": "запрошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i10:p4",
+              "target": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок",
+                "uk": "квітковий горщик"
+              }
+            }
+          ],
+          "leftColumn": [
+            "doorstep",
+            "newcomer",
+            "invitation",
+            "flowerpot"
+          ],
+          "rightColumn": [
+            "поріг",
+            "новоприбулий",
+            "запрошення",
+            "квітковий горщик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i11:audio",
+            "transcript": "He cycles with a helmet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He cycles with a helmet.",
+          "orderedTokens": [
+            "He",
+            "cycles",
+            "with",
+            "a",
+            "helmet"
+          ],
+          "authoredDistractorTokens": [
+            "cycle"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `cycles` — `He cycles with a helmet.`",
+                "uk": "тут потрібно `cycles` — `He cycles with a helmet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i12",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новачок показує на горщик біля дверей. Спитайте: «Чий це квітковий горщик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новачок показує на горщик біля дверей. Спитайте: «Чий це квітковий горщик?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose flowerpot is this?",
+          "localizedMeaning": {
+            "ru": "Новичок показывает на горшок у двери. Спросите: «Чей это цветочный горшок?»",
+            "uk": "Новачок показує на горщик біля дверей. Спитайте: «Чий це квітковий горщик?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "flowerpot",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Новачок показує на горщик біля дверей. Спитайте: «Чий це квітковий горщик?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose flowerpot is this?`",
+                "uk": "тут потрібно `Whose` — `Whose flowerpot is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:word:doorstep",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — doorstep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:word:doorstep:audio"
+        ],
+        "accessibilityLabel": "Картка слова — doorstep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:word:doorstep:audio",
+            "transcript": "doorstep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:word:doorstep:r1",
+              "targetText": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог. The doorstep is wide. — «Порог широкий». О ступеньке прямо перед входной дверью.",
+                "uk": "поріг. The doorstep is wide. — «Поріг широкий». Про сходинку просто перед вхідними дверима."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "doorstep",
+            "definitionByLocale": {
+              "ru": "порог. The doorstep is wide. — «Порог широкий». О ступеньке прямо перед входной дверью.",
+              "uk": "поріг. The doorstep is wide. — «Поріг широкий». Про сходинку просто перед вхідними дверима."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новачок питає про вас із сестрою. Скажіть: «Ми займаємося на порозі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i13:audio"
+        ],
+        "accessibilityLabel": "Новачок питає про вас із сестрою. Скажіть: «Ми займаємося на порозі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i13:audio",
+            "transcript": "We study on the doorstep."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We study on the doorstep.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i14:r3",
+            "text": "lives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о приглашении: «Приглашение на столе». Выберите слово",
+            "uk": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The invitation ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-40:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i14:r3",
+              "text": "lives"
+            }
+          ],
+          "testedDimension": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Приглашение одно, поэтому нужно `is`, а не `are`.",
+                "uk": "Запрошення одне, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про запрошення: «Запрошення на столі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`lives` значит «живёт», а здесь нужно сказать, где приглашение: `is on`.",
+                "uk": "`lives` означає «живе», а тут треба сказати, де запрошення: `is on`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-40:i15:r1",
+            "text": "I cycle to the park."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r2",
+            "text": "I cycle to work."
+          },
+          {
+            "responseId": "en:lesson-06:session-40:i15:r3",
+            "text": "We cycle to the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i15:audio",
+            "transcript": "I cycle to the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-40:i15:r1",
+              "targetText": "I cycle to the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i15:r2",
+              "targetText": "I cycle to work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i15:r3",
+              "targetText": "We cycle to the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, парк, а в этом варианте — `work`, работа.",
+                "uk": "У записі останнє слово — `park`, парк, а в цьому варіанті — `work`, робота."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+                "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-40:i16:p1",
+              "target": "invitation",
+              "meaningByLocale": {
+                "ru": "приглашение",
+                "uk": "запрошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i16:p2",
+              "target": "flowerpot",
+              "meaningByLocale": {
+                "ru": "цветочный горшок",
+                "uk": "квітковий горщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i16:p3",
+              "target": "doorstep",
+              "meaningByLocale": {
+                "ru": "порог",
+                "uk": "поріг"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-40:i16:p4",
+              "target": "newcomer",
+              "meaningByLocale": {
+                "ru": "новичок в доме",
+                "uk": "новоприбулий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "invitation",
+            "flowerpot",
+            "doorstep",
+            "newcomer"
+          ],
+          "rightColumn": [
+            "запрошення",
+            "квітковий горщик",
+            "поріг",
+            "новоприбулий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новачок питає про вашого брата. Скажіть: «Він їздить на роботу на велосипеді»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Новачок питає про вашого брата. Скажіть: «Він їздить на роботу на велосипеді»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-40:i17:audio",
+            "transcript": "He cycles to work."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He cycles to work.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-40:i01",
+      "correctText": "We live in a flat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i02",
+      "correctText": "She studies in the library.",
+      "correctResponseId": "en:lesson-06:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i03",
+      "correctText": "cycles",
+      "correctResponseId": "en:lesson-06:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:word:invitation",
+      "correctText": "invitation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i05",
+      "correctText": "The invitation is on the doorstep.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:word:newcomer",
+      "correctText": "newcomer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i06",
+      "correctText": "The newcomer is shy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i07",
+      "correctText": "She lives near the library.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i08",
+      "correctText": "study",
+      "correctResponseId": "en:lesson-06:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:word:flowerpot",
+      "correctText": "flowerpot",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i09",
+      "correctText": "The flowerpot is small.",
+      "correctResponseId": "en:lesson-06:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i11",
+      "correctText": "He cycles with a helmet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i12",
+      "correctText": "Whose flowerpot is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:word:doorstep",
+      "correctText": "doorstep",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i13",
+      "correctText": "We study on the doorstep.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-40:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i15",
+      "correctText": "I cycle to the park.",
+      "correctResponseId": "en:lesson-06:session-40:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-40:i17",
+      "correctText": "He cycles to work.",
+      "correctResponseId": null
+    }
+  ]
+}

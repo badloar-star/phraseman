@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-33:intro1:r2": {
-          "ru": "После `I` — `study`, без изменения окончания.",
-          "uk": "Після `I` — `study`, без зміни закінчення."
+          "ru": "После I слово остаётся study, без изменений.",
+          "uk": "Після I слово лишається study, без змін."
         },
         "en:lesson-06:session-33:intro1:r3": {
-          "ru": "Говорим `I study`, без `am`.",
-          "uk": "Кажемо `I study`, без `am`."
+          "ru": "Здесь действие: I study, без am.",
+          "uk": "Тут дія: I study, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-33:intro2:r2": {
-          "ru": "Пишем `studies`: вместо `y` — `ies`.",
-          "uk": "Пишемо `studies`: замість `y` — `ies`."
+          "ru": "Пишем studies: вместо y — ies.",
+          "uk": "Пишемо studies: замість y — ies."
         },
         "en:lesson-06:session-33:intro2:r3": {
-          "ru": "После `she` нужно `studies`.",
-          "uk": "Після `she` потрібно `studies`."
+          "ru": "После she нужно studies, с ies.",
+          "uk": "Після she потрібно studies, з ies."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-33:intro3:r2": {
-          "ru": "Один предмет `watch`: `is this`.",
-          "uk": "Один предмет `watch`: `is this`."
+          "ru": "О владельце спрашиваем Whose — «чьё».",
+          "uk": "Про власника питаємо Whose — «чий»."
         },
         "en:lesson-06:session-33:intro3:r3": {
-          "ru": "О владельце спрашиваем `Whose` — «чьи».",
-          "uk": "Про власника запитуємо `Whose` — «чий»."
+          "ru": "Сочинение одно: нужно is this.",
+          "uk": "Твір один: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "022ebb2520cf99d470853aa0eafaf9172e7f384d3a09bd3bdfc07bcf3417be69"
+  "auxiliaryFingerprint": "a99286852091a5de34d5d1b27d955945207da5ad76a95fdfcf67b91a7ee5e2f7"
 }

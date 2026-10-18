@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-39:word:cycle",
+    "correctText": "cycle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-39:i01",
-    "correctText": "I cycle to work.",
+    "correctText": "We cycle to work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i02",
-    "correctText": "cycle",
+    "correctText": "He cycles to work.",
     "correctResponseId": "en:lesson-06:session-39:i02:r1"
   },
   {
@@ -16,22 +21,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-39:i04",
-    "correctText": "en:lesson-06:session-39:i04:p1=cycle\nen:lesson-06:session-39:i04:p2=relevant\nen:lesson-06:session-39:i04:p3=boiler\nen:lesson-06:session-39:i04:p4=violin",
+    "correctText": "en:lesson-06:session-39:i04:p1=cycle\nen:lesson-06:session-39:i04:p2=puncture\nen:lesson-06:session-39:i04:p3=reflector\nen:lesson-06:session-39:i04:p4=mudguard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-39:word:mudguard",
+    "correctText": "mudguard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i05",
-    "correctText": "Tom cycles to work.",
+    "correctText": "The mudguard is on the bicycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-39:word:reflector",
+    "correctText": "reflector",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i06",
-    "correctText": "He showers at work.",
+    "correctText": "The reflector is bright.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i07",
-    "correctText": "This boiler is new.",
+    "correctText": "He cycles to the park.",
     "correctResponseId": null
   },
   {
@@ -40,48 +55,53 @@
     "correctResponseId": "en:lesson-06:session-39:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-39:word:puncture",
+    "correctText": "puncture",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-39:i09",
-    "correctText": "This violin is mine.",
+    "correctText": "The puncture is small.",
     "correctResponseId": "en:lesson-06:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-39:i10",
-    "correctText": "en:lesson-06:session-39:i10:p1=cycle\nen:lesson-06:session-39:i10:p2=shower\nen:lesson-06:session-39:i10:p3=violin\nen:lesson-06:session-39:i10:p4=relevant",
+    "correctText": "en:lesson-06:session-39:i10:p1=mudguard\nen:lesson-06:session-39:i10:p2=cycle\nen:lesson-06:session-39:i10:p3=puncture\nen:lesson-06:session-39:i10:p4=reflector",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i11",
-    "correctText": "The boiler is here.",
+    "correctText": "She cycles with a helmet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i12",
-    "correctText": "Whose violin is this?",
+    "correctText": "Whose pump is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i13",
-    "correctText": "I shower at home.",
+    "correctText": "We cycle to the park.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i14",
-    "correctText": "cycles",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-39:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-39:i15",
-    "correctText": "He showers at work.",
+    "correctText": "I cycle to work.",
     "correctResponseId": "en:lesson-06:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-39:i16",
-    "correctText": "en:lesson-06:session-39:i16:p1=cycle\nen:lesson-06:session-39:i16:p2=boiler\nen:lesson-06:session-39:i16:p3=relevant\nen:lesson-06:session-39:i16:p4=shower",
+    "correctText": "en:lesson-06:session-39:i16:p1=reflector\nen:lesson-06:session-39:i16:p2=mudguard\nen:lesson-06:session-39:i16:p3=puncture\nen:lesson-06:session-39:i16:p4=cycle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-39:i17",
-    "correctText": "He cycles to work.",
+    "correctText": "She cycles with a reflector.",
     "correctResponseId": null
   }
 ]

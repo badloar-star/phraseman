@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-35:intro1:r2": {
-          "ru": "После `it` — `sleeps`.",
-          "uk": "Після `it` — `sleeps`."
+          "ru": "После I слово остаётся sleep, без s.",
+          "uk": "Після I слово лишається sleep, без s."
         },
         "en:lesson-06:session-35:intro1:r3": {
-          "ru": "Говорим `It sleeps`, без `is`.",
-          "uk": "Кажемо `It sleeps`, без `is`."
+          "ru": "Здесь действие: I sleep, без am.",
+          "uk": "Тут дія: I sleep, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-35:intro2:r2": {
-          "ru": "После `he` — `sleeps`.",
-          "uk": "Після `he` — `sleeps`."
+          "ru": "После it нужно sleeps, с s.",
+          "uk": "Після it потрібно sleeps, з s."
         },
         "en:lesson-06:session-35:intro2:r3": {
-          "ru": "Нужно `He sleeps`, без `are`.",
-          "uk": "Потрібно `He sleeps`, без `are`."
+          "ru": "Здесь действие: It sleeps, без is.",
+          "uk": "Тут дія: It sleeps, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-35:intro3:r2": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "Пижама — это две вещи: нужно are these.",
+          "uk": "Піжама — це дві речі: потрібно are these."
         },
         "en:lesson-06:session-35:intro3:r3": {
-          "ru": "Один браслет: `is this`.",
-          "uk": "Один браслет: `is this`."
+          "ru": "О владельце спрашиваем Whose — «чья».",
+          "uk": "Про власника питаємо Whose — «чия»."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f9f98ed744a75c7a9e0552ad0986c7006014c44051854630a7c0c102f7186256"
+  "auxiliaryFingerprint": "9f728250919036e9a6b41095241bcce0055d132e01e469f5f56c240cad3eee94"
 }

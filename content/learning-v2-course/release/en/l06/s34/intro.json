@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-34",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, что человек обычно пьёт, и повторить знакомые слова",
-    "uk": "розповісти, що людина зазвичай п’є, й повторити знайомі слова"
+    "ru": "рассказать, кто что пьёт, и спросить, чья это вещь",
+    "uk": "розповісти, хто що п’є, і спитати, чия це річ"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-06:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что вы пьёте",
-        "uk": "Що ви п’єте"
+        "ru": "В кафе с подругой",
+        "uk": "У кафе з подругою"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете, что обычно пьёте после пробежки. `drink` — «пить». `I drink water` — «Я пью воду». Слово `drink` уже называет действие, поэтому `am` перед ним не нужно. Держать бутылку для спортивного вида — ещё не пить: `drink` означает, что вода всё-таки попадает внутрь.",
-        "uk": "Ви обговорюєте, що зазвичай п’єте після пробіжки. `drink` — «пити». `I drink water` — «Я п’ю воду». Слово `drink` уже називає дію, тому `am` перед ним не потрібне. Тримати пляшку для спортивного вигляду — ще не пити: `drink` означає, що вода таки потрапляє всередину."
+        "ru": "Вы с подругой сидите в кафе у окна, на улице жарко. Она заказывает кофе и спрашивает, что будете вы. Но вы пьёте только воду и всегда носите с собой полную бутылку. drink — «пить». I drink water — «Я пью воду». После I слово остаётся drink, без s.",
+        "uk": "Ви з подругою сидите в кафе біля вікна, надворі спекотно. Вона замовляє каву й питає, що будете ви. Але ви п’єте тільки воду й завжди носите з собою повну пляшку. drink — «пити». I drink water — «Я п’ю воду». Після I слово лишається drink, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите о своей привычке «Я пью воду».",
-          "uk": "Скажіть про свою звичку «Я п’ю воду»."
+          "ru": "Подруга спрашивает, что вы будете пить. Скажите: «Я пью воду».",
+          "uk": "Подруга питає, що ви будете пити. Скажіть: «Я п’ю воду»."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-06:session-34:intro1:r2",
-              "text": "I am drink water."
+              "text": "I drinks water."
             },
             {
               "responseId": "en:lesson-06:session-34:intro1:r3",
-              "text": "I drinks water."
+              "text": "I am drink water."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-06:session-34:intro1:r2",
-              "text": "I am drink water."
+              "text": "I drinks water."
             },
             {
               "responseId": "en:lesson-06:session-34:intro1:r3",
-              "text": "I drinks water."
+              "text": "I am drink water."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о своей привычке «Я пью воду».",
-          "uk": "Скажіть про свою звичку «Я п’ю воду»."
+          "ru": "Подруга спрашивает, что вы будете пить. Скажите: «Я пью воду».",
+          "uk": "Подруга питає, що ви будете пити. Скажіть: «Я п’ю воду»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Привычка Анны",
-        "uk": "Звичка Анни"
+        "ru": "Лимонад из холодильника",
+        "uk": "Лимонад із холодильника"
       },
       "bodyByLocale": {
-        "ru": "Том спрашивает, что Анна обычно пьёт после пробежки. `She drinks water` — «Она пьёт воду». После `she` добавляем `s`: `drink → drinks`. Можно назвать Анну по имени: `Anna drinks water`. Сейчас её бутылка может быть закрыта: мы рассказываем о привычке.",
-        "uk": "Том запитує, що Анна зазвичай п’є після пробіжки. `She drinks water` — «Вона п’є воду». Після `she` додаємо `s`: `drink → drinks`. Можна назвати Анну на ім’я: `Anna drinks water`. Зараз її пляшка може бути закрита: ми розповідаємо про звичку."
+        "ru": "Сестра приходит домой после тренировки, сразу открывает холодильник и достаёт большую бутылку. Она пьёт этот напиток только холодным, с кусочками льда. Подруга спрашивает, что она пьёт. lemonade — «лимонад». После she к drink добавляем s: She drinks lemonade.",
+        "uk": "Сестра приходить додому після тренування, одразу відчиняє холодильник і дістає велику пляшку. Вона п’є цей напій тільки холодним, зі шматочками льоду. Подруга питає, що вона п’є. lemonade — «лимонад». Після she до drink додаємо s: She drinks lemonade."
       },
       "question": {
         "interactionId": "en:lesson-06:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте Тому об Анне: «Она пьёт воду».",
-          "uk": "Дайте Тому відповідь про Анну: «Вона п’є воду»."
+          "ru": "Подруга спрашивает, что пьёт ваша сестра. Скажите: «Она пьёт лимонад».",
+          "uk": "Подруга питає, що п’є ваша сестра. Скажіть: «Вона п’є лимонад»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-34:intro2:r1",
-              "text": "She drinks water."
+              "text": "She drinks lemonade."
             },
             {
               "responseId": "en:lesson-06:session-34:intro2:r2",
-              "text": "She drink water."
+              "text": "She drink lemonade."
             },
             {
               "responseId": "en:lesson-06:session-34:intro2:r3",
-              "text": "She is drinks water."
+              "text": "She is drinks lemonade."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-34:intro2:r1",
-              "text": "She drinks water."
+              "text": "She drinks lemonade."
             },
             {
               "responseId": "en:lesson-06:session-34:intro2:r2",
-              "text": "She drink water."
+              "text": "She drink lemonade."
             },
             {
               "responseId": "en:lesson-06:session-34:intro2:r3",
-              "text": "She is drinks water."
+              "text": "She is drinks lemonade."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте Тому об Анне: «Она пьёт воду».",
-          "uk": "Дайте Тому відповідь про Анну: «Вона п’є воду»."
+          "ru": "Подруга спрашивает, что пьёт ваша сестра. Скажите: «Она пьёт лимонад».",
+          "uk": "Подруга питає, що п’є ваша сестра. Скажіть: «Вона п’є лимонад»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Нашли кольцо",
-        "uk": "Знайшли каблучку"
+        "ru": "Фляжка на скамейке",
+        "uk": "Фляга на лавці"
       },
       "bodyByLocale": {
-        "ru": "На лестнице лежит кольцо. Вы хотите найти владельца: `Whose ring is this?` — «Чьё это кольцо?» `ring` — «кольцо», `whose` — «чьё». Одно кольцо: `is this`. Этот вопрос пригодится, чтобы вернуть находку, а не гадать, кто её потерял.",
-        "uk": "На сходах лежить каблучка. Ви хочете знайти власника: `Whose ring is this?` — «Чия це каблучка?» `ring` — «каблучка», `whose` — «чия». Одна каблучка: `is this`. Це запитання допоможе повернути знахідку, а не гадати, хто її загубив."
+        "ru": "После прогулки по парку вы замечаете на скамейке маленькую металлическую фляжку с крышкой. Рядом сидят люди с книгами и газетами, и вы хотите узнать, чья она. flask — «фляжка». Чтобы спросить о владельце, говорим Whose: Whose flask is this? — «Чья это фляжка?»",
+        "uk": "Після прогулянки парком ви помічаєте на лавці маленьку металеву флягу з кришкою. Поруч сидять люди з книжками й газетами, і ви хочете дізнатися, чия вона. flask — «фляга». Щоб спитати про власника, кажемо Whose: Whose flask is this? — «Чия це фляга?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите у соседей «Чьё это кольцо?»",
-          "uk": "Запитайте в сусідів «Чия це каблучка?»"
+          "ru": "Вы показываете людям рядом на фляжку. Спросите: «Чья это фляжка?»",
+          "uk": "Ви показуєте людям поруч на флягу. Спитайте: «Чия це фляга?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-34:intro3:r1",
-              "text": "Whose ring is this?"
+              "text": "Whose flask is this?"
             },
             {
               "responseId": "en:lesson-06:session-34:intro3:r2",
-              "text": "Who ring is this?"
+              "text": "Who flask is this?"
             },
             {
               "responseId": "en:lesson-06:session-34:intro3:r3",
-              "text": "Whose ring are these?"
+              "text": "Whose flask are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-34:intro3:r1",
-              "text": "Whose ring is this?"
+              "text": "Whose flask is this?"
             },
             {
               "responseId": "en:lesson-06:session-34:intro3:r2",
-              "text": "Who ring is this?"
+              "text": "Who flask is this?"
             },
             {
               "responseId": "en:lesson-06:session-34:intro3:r3",
-              "text": "Whose ring are these?"
+              "text": "Whose flask are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите у соседей «Чьё это кольцо?»",
-          "uk": "Запитайте в сусідів «Чия це каблучка?»"
+          "ru": "Вы показываете людям рядом на фляжку. Спросите: «Чья это фляжка?»",
+          "uk": "Ви показуєте людям поруч на флягу. Спитайте: «Чия це фляга?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ed773573b21750e9e1597e20d23585281dfe6b2860e63ebab64f70bcd251f6c5"
+  "introFingerprint": "c3786739ffab87ba6e8ddd3afb471cbfe3daaae300f44c735722800fbad972c5"
 }

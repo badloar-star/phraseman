@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-39",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о поездках на велосипеде и о привычке другого человека",
-    "uk": "розповісти про поїздки велосипедом і про звичку іншої людини"
+    "ru": "рассказать, как вы ездите на велосипеде, и описать привычку другого человека",
+    "uk": "розповісти, як ви їздите на велосипеді, і описати звичку іншої людини"
   },
   "pages": [
     {
@@ -15,14 +15,14 @@
         "uk": "Велосипед замість машини"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, как вы добираетесь на работу. `cycle` — «ездить на велосипеде». `I cycle to work` — «Я езжу на работу на велосипеде». Перед `cycle` не нужно `am`. Велосипед сам по себе не считается тренировкой: если он всё время стоит в коридоре, вы ещё не `cycle`.",
-        "uk": "Колега запитує, як ви дістаєтеся на роботу. `cycle` — «їздити велосипедом». `I cycle to work` — «Я їжджу на роботу велосипедом». Перед `cycle` не потрібне `am`. Сам велосипед не вважається тренуванням: якщо він увесь час стоїть у коридорі, ви ще не `cycle`."
+        "ru": "Утром коллега стоит у своей машины и предлагает подвезти вас на работу. Но вы привыкли ехать сами: свежий воздух вас бодрит. cycle — «ездить на велосипеде». I cycle to work — «Я езжу на работу на велосипеде». После I слово остаётся cycle, без s.",
+        "uk": "Зранку колега стоїть біля своєї машини й пропонує підвезти вас на роботу. Але ви звикли їхати самі: свіже повітря вас бадьорить. cycle — «їздити на велосипеді». I cycle to work — «Я їжджу на роботу на велосипеді». Після I слово лишається cycle, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-39:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте коллеге «Я езжу на работу на велосипеде».",
-          "uk": "Дайте колезі відповідь «Я їжджу на роботу велосипедом»."
+          "ru": "Коллега предлагает подвезти вас. Скажите: «Я езжу на работу на велосипеде».",
+          "uk": "Колега пропонує підвезти вас. Скажіть: «Я їжджу на роботу на велосипеді»."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-06:session-39:intro1:r2",
-              "text": "I am cycle to work."
+              "text": "I cycles to work."
             },
             {
               "responseId": "en:lesson-06:session-39:intro1:r3",
-              "text": "I cycles to work."
+              "text": "I am cycle to work."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-06:session-39:intro1:r2",
-              "text": "I am cycle to work."
+              "text": "I cycles to work."
             },
             {
               "responseId": "en:lesson-06:session-39:intro1:r3",
-              "text": "I cycles to work."
+              "text": "I am cycle to work."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте коллеге «Я езжу на работу на велосипеде».",
-          "uk": "Дайте колезі відповідь «Я їжджу на роботу велосипедом»."
+          "ru": "Коллега предлагает подвезти вас. Скажите: «Я езжу на работу на велосипеде».",
+          "uk": "Колега пропонує підвезти вас. Скажіть: «Я їжджу на роботу на велосипеді»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Как добирается Том",
-        "uk": "Як дістається Том"
+        "ru": "Вечерняя дорога",
+        "uk": "Вечірня дорога"
       },
       "bodyByLocale": {
-        "ru": "Анна спрашивает о дороге Тома на работу. `He cycles to work` — «Он ездит на работу на велосипеде». После `he` добавляем `s`: `cycle → cycles`. `Tom cycles to work` — тот же рассказ с именем. Фраза описывает привычку Тома; он может сейчас сидеть рядом с вами.",
-        "uk": "Анна запитує про дорогу Тома на роботу. `He cycles to work` — «Він їздить на роботу велосипедом». Після `he` додаємо `s`: `cycle → cycles`. `Tom cycles to work` — та сама розповідь з ім’ям. Фраза описує звичку Тома; він може зараз сидіти поруч із вами."
+        "ru": "Брат возвращается с работы поздно, когда на дороге уже темно, а фонарей мало. Сосед советует ему прикрепить к велосипеду светоотражатель, чтобы водители его видели. reflector — «светоотражатель». После he к cycle добавляем s: He cycles with a reflector.",
+        "uk": "Брат повертається з роботи пізно, коли на дорозі вже темно, а ліхтарів мало. Сусід радить йому причепити до велосипеда світловідбивач, щоб водії його бачили. reflector — «світловідбивач». Після he до cycle додаємо s: He cycles with a reflector."
       },
       "question": {
         "interactionId": "en:lesson-06:session-39:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите Анне о Томе: «Он ездит на работу на велосипеде».",
-          "uk": "Розкажіть Анні про Тома: «Він їздить на роботу велосипедом»."
+          "ru": "Сосед спрашивает, как ваш брат ездит вечером. Скажите: «Он ездит со светоотражателем».",
+          "uk": "Сусід питає, як ваш брат їздить увечері. Скажіть: «Він їздить зі світловідбивачем»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-39:intro2:r1",
-              "text": "He cycles to work."
+              "text": "He cycles with a reflector."
             },
             {
               "responseId": "en:lesson-06:session-39:intro2:r2",
-              "text": "He cycle to work."
+              "text": "He cycle with a reflector."
             },
             {
               "responseId": "en:lesson-06:session-39:intro2:r3",
-              "text": "He is cycles to work."
+              "text": "He is cycles with a reflector."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-39:intro2:r1",
-              "text": "He cycles to work."
+              "text": "He cycles with a reflector."
             },
             {
               "responseId": "en:lesson-06:session-39:intro2:r2",
-              "text": "He cycle to work."
+              "text": "He cycle with a reflector."
             },
             {
               "responseId": "en:lesson-06:session-39:intro2:r3",
-              "text": "He is cycles to work."
+              "text": "He is cycles with a reflector."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите Анне о Томе: «Он ездит на работу на велосипеде».",
-          "uk": "Розкажіть Анні про Тома: «Він їздить на роботу велосипедом»."
+          "ru": "Сосед спрашивает, как ваш брат ездит вечером. Скажите: «Он ездит со светоотражателем».",
+          "uk": "Сусід питає, як ваш брат їздить увечері. Скажіть: «Він їздить зі світловідбивачем»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Душ после дороги",
-        "uk": "Душ після дороги"
+        "ru": "Крыло в подъезде",
+        "uk": "Крило в під’їзді"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, где Том обычно принимает душ после поездки. `shower` — «принимать душ». `He showers at work` — «Он принимает душ на работе». После `he` — `showers`, с `s`; `at work` означает «на работе». Здесь мы рассказываем о его обычном порядке дня.",
-        "uk": "Колега запитує, де Том зазвичай приймає душ після поїздки. `shower` — «приймати душ». `He showers at work` — «Він приймає душ на роботі». Після `he` — `showers`, з `s`; `at work` означає «на роботі». Тут ми розповідаємо про його звичний розпорядок дня."
+        "ru": "В подъезде у самой стены стоит велосипед, а рядом на полу лежит снятое крыло колеса, забрызганное грязью. Соседка проходит мимо с тяжёлой сумкой и никак не может понять, кто оставил его на проходе. mudguard — «крыло колеса». Whose mudguard is this? — «Чьё это крыло колеса?»",
+        "uk": "У під’їзді біля самої стіни стоїть велосипед, а поруч на підлозі лежить зняте крило колеса, забризкане брудом. Сусідка проходить повз із важкою сумкою й ніяк не може зрозуміти, хто залишив його на проході. mudguard — «крило колеса». Whose mudguard is this? — «Чиє це крило колеса?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-39:intro3:q",
         "promptByLocale": {
-          "ru": "Ответьте коллеге «Он принимает душ на работе».",
-          "uk": "Дайте колезі відповідь «Він приймає душ на роботі»."
+          "ru": "Вы показываете соседке на крыло. Спросите: «Чьё это крыло колеса?»",
+          "uk": "Ви показуєте сусідці на крило. Спитайте: «Чиє це крило колеса?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-39:intro3:r1",
-              "text": "He showers at work."
+              "text": "Whose mudguard is this?"
             },
             {
               "responseId": "en:lesson-06:session-39:intro3:r2",
-              "text": "He shower at work."
+              "text": "Who mudguard is this?"
             },
             {
               "responseId": "en:lesson-06:session-39:intro3:r3",
-              "text": "He is showers at work."
+              "text": "Whose mudguard are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-39:intro3:r1",
-              "text": "He showers at work."
+              "text": "Whose mudguard is this?"
             },
             {
               "responseId": "en:lesson-06:session-39:intro3:r2",
-              "text": "He shower at work."
+              "text": "Who mudguard is this?"
             },
             {
               "responseId": "en:lesson-06:session-39:intro3:r3",
-              "text": "He is showers at work."
+              "text": "Whose mudguard are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте коллеге «Он принимает душ на работе».",
-          "uk": "Дайте колезі відповідь «Він приймає душ на роботі»."
+          "ru": "Вы показываете соседке на крыло. Спросите: «Чьё это крыло колеса?»",
+          "uk": "Ви показуєте сусідці на крило. Спитайте: «Чиє це крило колеса?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2cf85ddece5e7b49034ffad75b68aaeb644a53d784cba12efea76c5f323a36b0"
+  "introFingerprint": "7916194eb026ece0ec91203565457de1e7356ad447098abce2529ca0337a2224"
 }

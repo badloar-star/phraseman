@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-39:intro1:r2": {
-          "ru": "Говорим `I cycle`, без `am`.",
-          "uk": "Кажемо `I cycle`, без `am`."
+          "ru": "После I слово остаётся cycle, без s.",
+          "uk": "Після I слово лишається cycle, без s."
         },
         "en:lesson-06:session-39:intro1:r3": {
-          "ru": "После `I` — `cycle`, без `s`.",
-          "uk": "Після `I` — `cycle`, без `s`."
+          "ru": "Здесь действие: I cycle, без am.",
+          "uk": "Тут дія: I cycle, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-39:intro2:r2": {
-          "ru": "После `he` — `cycles`.",
-          "uk": "Після `he` — `cycles`."
+          "ru": "После he нужно cycles, с s.",
+          "uk": "Після he потрібно cycles, з s."
         },
         "en:lesson-06:session-39:intro2:r3": {
-          "ru": "Нужно `He cycles`, без `is`.",
-          "uk": "Потрібно `He cycles`, без `is`."
+          "ru": "Здесь действие: He cycles, без is.",
+          "uk": "Тут дія: He cycles, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-39:intro3:r2": {
-          "ru": "После `he` — `showers`.",
-          "uk": "Після `he` — `showers`."
+          "ru": "О владельце спрашиваем Whose — «чьё».",
+          "uk": "Про власника питаємо Whose — «чиє»."
         },
         "en:lesson-06:session-39:intro3:r3": {
-          "ru": "Нужно `He showers`, без `is`.",
-          "uk": "Потрібно `He showers`, без `is`."
+          "ru": "Крыло одно: нужно is this.",
+          "uk": "Крило одне: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a1601520e77a141b83aefeef37c407e6c84444b39cc67a673c27ceb39efa31f9"
+  "auxiliaryFingerprint": "b09312224e3353a0f3631be7633460a0dec221152525f51e66b129b97407b852"
 }

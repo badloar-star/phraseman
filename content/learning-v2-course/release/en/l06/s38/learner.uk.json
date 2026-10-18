@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-38:i01",
+      "interactionId": "en:lesson-06:session-38:word:rest",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-38:word:rest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-38:word:rest:audio",
+          "transcript": "rest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-38:word:rest:r1",
+            "targetText": "rest",
+            "meaningByLocale": {
+              "ru": "отдыхать. We rest on the bench. — «Мы отдыхаем на скамейке». О том, что делают, когда устали.",
+              "uk": "відпочивати. We rest on the bench. — «Ми відпочиваємо на лавці». Про те, що роблять, коли втомилися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rest",
+          "definitionByLocale": {
+            "ru": "отдыхать. We rest on the bench. — «Мы отдыхаем на скамейке». О том, что делают, когда устали.",
+            "uk": "відпочивати. We rest on the bench. — «Ми відпочиваємо на лавці». Про те, що роблять, коли втомилися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-38:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Розкажіть про звичку: «Я відпочиваю тут»",
+      "prompt": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про звичку: «Я відпочиваю тут»",
+      "accessibilityLabel": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I rest here.",
+        "targetPhrase": "We rest here.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычке: «Я отдыхаю здесь»",
-          "uk": "Розкажіть про звичку: «Я відпочиваю тут»"
+          "ru": "Коллега зовёт вас с сестрой в бар. Скажите: «Мы отдыхаем здесь»",
+          "uk": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "rest",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "rests"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-38:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `rest` — `We rest here.`",
+              "uk": "тут потрібно `rest` — `We rest here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-38:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-38:word:shade",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — shade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-38:word:shade:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-38:word:shade:audio",
+          "transcript": "shade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-38:word:shade:r1",
+            "targetText": "shade",
+            "meaningByLocale": {
+              "ru": "тень. The bench is in the shade. — «Скамейка в тени». О месте, куда не попадает солнце.",
+              "uk": "тінь. The bench is in the shade. — «Лава в тіні». Про місце, куди не потрапляє сонце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shade",
+          "definitionByLocale": {
+            "ru": "тень. The bench is in the shade. — «Скамейка в тени». О месте, куда не попадает солнце.",
+            "uk": "тінь. The bench is in the shade. — «Лава в тіні». Про місце, куди не потрапляє сонце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-38:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i02:r1",
-          "text": "rest"
+          "text": "She rests in the shade."
         },
         {
           "responseId": "en:lesson-06:session-38:i02:r2",
-          "text": "clean"
+          "text": "She rests in the garden."
         },
         {
           "responseId": "en:lesson-06:session-38:i02:r3",
-          "text": "shop"
+          "text": "He rests in the shade."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i02:audio",
-          "transcript": "rest"
+          "transcript": "She rests in the shade."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-38:i02:r1",
-            "targetText": "rest",
+            "targetText": "She rests in the shade.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-38:i02:r2",
-            "targetText": "clean",
+            "targetText": "She rests in the garden.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-38:i02:r3",
-            "targetText": "shop",
+            "targetText": "He rests in the shade.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +188,19 @@
           {
             "responseId": "en:lesson-06:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `rest`, а в этом варианте — `clean`.",
-              "uk": "У записі перше слово — `rest`, а в цьому варіанті — `clean`."
+              "ru": "В записи последнее слово — `shade`, тень, а в этом варианте — `garden`, сад.",
+              "uk": "У записі останнє слово — `shade`, тінь, а в цьому варіанті — `garden`, сад."
             }
           },
           {
             "responseId": "en:lesson-06:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `rest`, а в этом варианте — `shop`.",
-              "uk": "У записі перше слово — `rest`, а в цьому варіанті — `shop`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -113,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона відпочиває тут»",
+      "prompt": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i03:r1",
@@ -134,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона відпочиває тут»",
+      "accessibilityLabel": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она отдыхает здесь»",
-          "uk": "Скажіть «Вона відпочиває тут»"
+          "ru": "Скажите о брате: «Мой брат отдыхает на скамейке». Выберите слово",
+          "uk": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ here.",
+        "gappedTargetPhrase": "My brother ___ on the bench.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-38:i03:r1",
@@ -156,24 +254,24 @@
             "text": "is rests"
           }
         ],
-        "testedDimension": "Скажіть «Вона відпочиває тут»",
+        "testedDimension": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-38:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона відпочиває тут»",
+            "testedDimension": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `rests`.",
-              "uk": "Після `she` — `rests`."
+              "ru": "Брат — это `he`, поэтому нужно `rests`, с `s`.",
+              "uk": "Брат — це `he`, тому потрібно `rests`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-38:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона відпочиває тут»",
+            "testedDimension": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `She rests`, без `is`.",
-              "uk": "Потрібно `She rests`, без `is`."
+              "ru": "Говорим `rests`, без `is`.",
+              "uk": "Кажемо `rests`, без `is`."
             }
           }
         ]
@@ -182,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,40 +302,40 @@
           },
           {
             "pairId": "en:lesson-06:session-38:i04:p2",
-            "target": "unofficial",
+            "target": "shade",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "тень",
+              "uk": "тінь"
             }
           },
           {
             "pairId": "en:lesson-06:session-38:i04:p3",
-            "target": "bike shed",
+            "target": "sunbed",
             "meaningByLocale": {
-              "ru": "велосипедный сарай",
-              "uk": "сарай для велосипедів"
+              "ru": "шезлонг",
+              "uk": "шезлонг"
             }
           },
           {
             "pairId": "en:lesson-06:session-38:i04:p4",
-            "target": "laptop",
+            "target": "gazebo",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "беседка",
+              "uk": "альтанка"
             }
           }
         ],
         "leftColumn": [
           "rest",
-          "unofficial",
-          "bike shed",
-          "laptop"
+          "shade",
+          "sunbed",
+          "gazebo"
         ],
         "rightColumn": [
           "відпочивати",
-          "неофіційний",
-          "сарай для велосипедів",
-          "ноутбук"
+          "тінь",
+          "шезлонг",
+          "альтанка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,33 +352,91 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-38:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-06:session-38:word:sunbed",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sunbed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-38:word:sunbed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sunbed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-38:word:sunbed:audio",
+          "transcript": "sunbed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-38:word:sunbed:r1",
+            "targetText": "sunbed",
+            "meaningByLocale": {
+              "ru": "шезлонг. The sunbed is near the pool. — «Шезлонг возле бассейна». О лежаке, на котором лежат у воды.",
+              "uk": "шезлонг. The sunbed is near the pool. — «Шезлонг біля басейну». Про лежак, на якому лежать біля води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunbed",
+          "definitionByLocale": {
+            "ru": "шезлонг. The sunbed is near the pool. — «Шезлонг возле бассейна». О лежаке, на котором лежат у воды.",
+            "uk": "шезлонг. The sunbed is near the pool. — «Шезлонг біля басейну». Про лежак, на якому лежать біля води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-38:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сусідку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i05:audio",
-          "transcript": "Anna rests here."
+          "transcript": "The sunbed is near the pool."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna rests here.",
+        "hiddenTargetPhrase": "The sunbed is near the pool.",
         "orderedTokens": [
-          "Anna",
-          "rests",
-          "here"
+          "The",
+          "sunbed",
+          "is",
+          "near",
+          "the",
+          "pool"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-38:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сусідку й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The sunbed is near the pool.`",
+              "uk": "тут потрібно `is` — `The sunbed is near the pool.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,31 +445,88 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-38:word:gazebo",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gazebo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-38:word:gazebo:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gazebo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-38:word:gazebo:audio",
+          "transcript": "gazebo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-38:word:gazebo:r1",
+            "targetText": "gazebo",
+            "meaningByLocale": {
+              "ru": "беседка. The gazebo is in the garden. — «Беседка в саду». О маленьком домике из столбов с крышей, но без стен.",
+              "uk": "альтанка. The gazebo is in the garden. — «Альтанка в саду». Про маленький будиночок зі стовпів із дахом, але без стін."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gazebo",
+          "definitionByLocale": {
+            "ru": "беседка. The gazebo is in the garden. — «Беседка в саду». О маленьком домике из столбов с крышей, но без стен.",
+            "uk": "альтанка. The gazebo is in the garden. — «Альтанка в саду». Про маленький будиночок зі стовпів із дахом, але без стін."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-38:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він прибирає свою кімнату»",
+      "prompt": "Ви показуєте подрузі сад. Скажіть: «Альтанка в саду»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він прибирає свою кімнату»",
+      "accessibilityLabel": "Ви показуєте подрузі сад. Скажіть: «Альтанка в саду»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He cleans his room.",
+        "targetPhrase": "The gazebo is in the garden.",
         "localizedMeaning": {
-          "ru": "Скажите «Он убирает свою комнату»",
-          "uk": "Скажіть «Він прибирає свою кімнату»"
+          "ru": "Вы показываете подруге сад. Скажите: «Беседка в саду»",
+          "uk": "Ви показуєте подрузі сад. Скажіть: «Альтанка в саду»"
         },
         "orderedTokens": [
-          "He",
-          "cleans",
-          "his",
-          "room"
+          "The",
+          "gazebo",
+          "is",
+          "in",
+          "the",
+          "garden"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте подрузі сад. Скажіть: «Альтанка в саду»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The gazebo is in the garden.`",
+              "uk": "тут потрібно `is` — `The gazebo is in the garden.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +536,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У дворі збудували сарай для велосипедів. Скажіть «Цей сарай для велосипедів новий»",
+      "prompt": "Подруга питає, де відпочиває ваш брат. Скажіть: «Він відпочиває в саду»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i07:audio"
       ],
-      "accessibilityLabel": "У дворі збудували сарай для велосипедів. Скажіть «Цей сарай для велосипедів новий»",
+      "accessibilityLabel": "Подруга питає, де відпочиває ваш брат. Скажіть: «Він відпочиває в саду»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i07:audio",
-          "transcript": "This bike shed is new."
+          "transcript": "He rests in the garden."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This bike shed is new.",
+        "targetPhrase": "He rests in the garden.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,11 +569,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Ми відпочиваємо тут»",
+      "prompt": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i08:r1",
@@ -372,19 +585,19 @@
         },
         {
           "responseId": "en:lesson-06:session-38:i08:r3",
-          "text": "are rest"
+          "text": "am rest"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Ми відпочиваємо тут»",
+      "accessibilityLabel": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы отдыхаем здесь»",
-          "uk": "Скажіть «Ми відпочиваємо тут»"
+          "ru": "Скажите о себе: «Я отдыхаю на скамейке». Выберите слово",
+          "uk": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ here.",
+        "gappedTargetPhrase": "I ___ on the bench.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-38:i08:r1",
@@ -396,27 +609,27 @@
           },
           {
             "responseId": "en:lesson-06:session-38:i08:r3",
-            "text": "are rest"
+            "text": "am rest"
           }
         ],
-        "testedDimension": "Скажіть «Ми відпочиваємо тут»",
+        "testedDimension": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Ми відпочиваємо тут»",
+            "testedDimension": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `we` — `rest`, без `s`.",
-              "uk": "Після `we` — `rest`, без `s`."
+              "ru": "После `I` нужно `rest`, без `s`.",
+              "uk": "Після `I` потрібно `rest`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Ми відпочиваємо тут»",
+            "testedDimension": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `We rest`, без `are`.",
-              "uk": "Потрібно `We rest`, без `are`."
+              "ru": "Говорим `I rest`, без `am`.",
+              "uk": "Кажемо `I rest`, без `am`."
             }
           }
         ]
@@ -425,51 +638,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить ноутбук",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i09:r1",
-          "text": "This laptop is mine."
+          "text": "The shade is near the tree."
         },
         {
           "responseId": "en:lesson-06:session-38:i09:r2",
-          "text": "This laptop is yours."
+          "text": "The shade is near the gate."
         },
         {
           "responseId": "en:lesson-06:session-38:i09:r3",
-          "text": "This laptop is hers."
+          "text": "The gazebo is near the tree."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить ноутбук",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i09:audio",
-          "transcript": "This laptop is mine."
+          "transcript": "The shade is near the tree."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-38:i09:r1",
-            "targetText": "This laptop is mine.",
+            "targetText": "The shade is near the tree.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-38:i09:r2",
-            "targetText": "This laptop is yours.",
+            "targetText": "The shade is near the gate.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-38:i09:r3",
-            "targetText": "This laptop is hers.",
+            "targetText": "The gazebo is near the tree.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +691,19 @@
           {
             "responseId": "en:lesson-06:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить ноутбук",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `tree`, дерево, а в этом варианте — `gate`, калитка.",
+              "uk": "У записі останнє слово — `tree`, дерево, а в цьому варіанті — `gate`, хвіртка."
             }
           },
           {
             "responseId": "en:lesson-06:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить ноутбук",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи речь о `shade`, тени, а в этом варианте — о `gazebo`, беседке.",
+              "uk": "У записі йдеться про `shade`, тінь, а в цьому варіанті — про `gazebo`, альтанку."
             }
           }
         ],
@@ -501,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -515,6 +728,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-38:i10:p1",
+            "target": "gazebo",
+            "meaningByLocale": {
+              "ru": "беседка",
+              "uk": "альтанка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-38:i10:p2",
             "target": "rest",
             "meaningByLocale": {
               "ru": "отдыхать",
@@ -522,41 +743,33 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-38:i10:p2",
-            "target": "clean",
-            "meaningByLocale": {
-              "ru": "убирать",
-              "uk": "прибирати"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-38:i10:p3",
-            "target": "laptop",
+            "target": "shade",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "тень",
+              "uk": "тінь"
             }
           },
           {
             "pairId": "en:lesson-06:session-38:i10:p4",
-            "target": "unofficial",
+            "target": "sunbed",
             "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
+              "ru": "шезлонг",
+              "uk": "шезлонг"
             }
           }
         ],
         "leftColumn": [
+          "gazebo",
           "rest",
-          "clean",
-          "laptop",
-          "unofficial"
+          "shade",
+          "sunbed"
         ],
         "rightColumn": [
+          "альтанка",
           "відпочивати",
-          "прибирати",
-          "ноутбук",
-          "неофіційний"
+          "тінь",
+          "шезлонг"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,43 +787,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i11:audio",
-          "transcript": "The bike shed is here."
+          "transcript": "She rests on the sunbed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The bike shed is here.",
+        "hiddenTargetPhrase": "She rests on the sunbed.",
         "orderedTokens": [
-          "The",
-          "bike",
-          "shed",
-          "is",
-          "here"
+          "She",
+          "rests",
+          "on",
+          "the",
+          "sunbed"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "rest"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-38:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bike shed is here.`",
-              "uk": "тут потрібно `is` — `The bike shed is here.`"
+              "ru": "здесь нужно `rests` — `She rests on the sunbed.`",
+              "uk": "тут потрібно `rests` — `She rests on the sunbed.`"
             }
           }
         ],
@@ -623,30 +836,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли ноутбук. Запитайте «Чий це ноутбук?»",
+      "prompt": "Подруга показує на подушку на лавці. Спитайте: «Чия це подушка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли ноутбук. Запитайте «Чий це ноутбук?»",
+      "accessibilityLabel": "Подруга показує на подушку на лавці. Спитайте: «Чия це подушка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose laptop is this?",
+        "targetPhrase": "Whose cushion is this?",
         "localizedMeaning": {
-          "ru": "Вы нашли ноутбук. Спросите «Чей это ноутбук?»",
-          "uk": "Ви знайшли ноутбук. Запитайте «Чий це ноутбук?»"
+          "ru": "Подруга показывает на подушку на скамейке. Спросите: «Чья это подушка?»",
+          "uk": "Подруга показує на подушку на лавці. Спитайте: «Чия це подушка?»"
         },
         "orderedTokens": [
           "Whose",
-          "laptop",
+          "cushion",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-38:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показує на подушку на лавці. Спитайте: «Чия це подушка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose cushion is this?`",
+              "uk": "тут потрібно `Whose` — `Whose cushion is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,25 +881,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Вони прибирають свою кімнату»",
+      "prompt": "Сусідка питає, де ви із сестрою відпочиваєте. Скажіть: «Ми відпочиваємо в альтанці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Вони прибирають свою кімнату»",
+      "accessibilityLabel": "Сусідка питає, де ви із сестрою відпочиваєте. Скажіть: «Ми відпочиваємо в альтанці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i13:audio",
-          "transcript": "They clean their room."
+          "transcript": "We rest in the gazebo."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They clean their room.",
+        "targetPhrase": "We rest in the gazebo.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -689,67 +914,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Том відпочиває тут»",
+      "prompt": "Скажіть про тінь: «Тінь велика». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i14:r1",
-          "text": "rests"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-38:i14:r2",
-          "text": "rest"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-38:i14:r3",
-          "text": "is rests"
+          "text": "rests"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Том відпочиває тут»",
+      "accessibilityLabel": "Скажіть про тінь: «Тінь велика». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том отдыхает здесь»",
-          "uk": "Скажіть «Том відпочиває тут»"
+          "ru": "Скажите о тени: «Тень большая». Выберите слово",
+          "uk": "Скажіть про тінь: «Тінь велика». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ here.",
+        "gappedTargetPhrase": "The shade ___ big.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-38:i14:r1",
-            "text": "rests"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-38:i14:r2",
-            "text": "rest"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-38:i14:r3",
-            "text": "is rests"
+            "text": "rests"
           }
         ],
-        "testedDimension": "Скажіть «Том відпочиває тут»",
+        "testedDimension": "Скажіть про тінь: «Тінь велика». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-38:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Том відпочиває тут»",
+            "testedDimension": "Скажіть про тінь: «Тінь велика». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom rests`.",
-              "uk": "Том — він: `Tom rests`."
+              "ru": "Тень одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Тінь одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-38:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Том відпочиває тут»",
+            "testedDimension": "Скажіть про тінь: «Тінь велика». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom rests`, без `is`.",
-              "uk": "Потрібно `Tom rests`, без `is`."
+              "ru": "`rests` значит «отдыхает», а здесь нужно сказать, какая тень: `is big`.",
+              "uk": "`rests` означає «відпочиває», а тут треба сказати, яка тінь: `is big`."
             }
           }
         ]
@@ -758,51 +983,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де відпочивають Анна й Том",
+      "prompt": "Послухайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i15:r1",
-          "text": "They rest here."
+          "text": "I rest in the gazebo."
         },
         {
           "responseId": "en:lesson-06:session-38:i15:r2",
-          "text": "They rest there."
+          "text": "I rest in the garden."
         },
         {
           "responseId": "en:lesson-06:session-38:i15:r3",
-          "text": "They rest nearby."
+          "text": "We rest in the gazebo."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де відпочивають Анна й Том",
+      "accessibilityLabel": "Послухайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i15:audio",
-          "transcript": "They rest here."
+          "transcript": "I rest in the gazebo."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-38:i15:r1",
-            "targetText": "They rest here.",
+            "targetText": "I rest in the gazebo.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-38:i15:r2",
-            "targetText": "They rest there.",
+            "targetText": "I rest in the garden.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-38:i15:r3",
-            "targetText": "They rest nearby.",
+            "targetText": "We rest in the gazebo.",
             "meaningByLocale": null
           }
         ],
@@ -811,19 +1036,19 @@
           {
             "responseId": "en:lesson-06:session-38:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де відпочивають Анна й Том",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `gazebo`, беседка, а в этом варианте — `garden`, сад.",
+              "uk": "У записі останнє слово — `gazebo`, альтанка, а в цьому варіанті — `garden`, сад."
             }
           },
           {
             "responseId": "en:lesson-06:session-38:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де відпочивають Анна й Том",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -834,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,48 +1073,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-38:i16:p1",
+            "target": "sunbed",
+            "meaningByLocale": {
+              "ru": "шезлонг",
+              "uk": "шезлонг"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-38:i16:p2",
+            "target": "gazebo",
+            "meaningByLocale": {
+              "ru": "беседка",
+              "uk": "альтанка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-38:i16:p3",
+            "target": "shade",
+            "meaningByLocale": {
+              "ru": "тень",
+              "uk": "тінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-38:i16:p4",
             "target": "rest",
             "meaningByLocale": {
               "ru": "отдыхать",
               "uk": "відпочивати"
             }
-          },
-          {
-            "pairId": "en:lesson-06:session-38:i16:p2",
-            "target": "bike shed",
-            "meaningByLocale": {
-              "ru": "велосипедный сарай",
-              "uk": "сарай для велосипедів"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-38:i16:p3",
-            "target": "unofficial",
-            "meaningByLocale": {
-              "ru": "неофициальный",
-              "uk": "неофіційний"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-38:i16:p4",
-            "target": "clean",
-            "meaningByLocale": {
-              "ru": "убирать",
-              "uk": "прибирати"
-            }
           }
         ],
         "leftColumn": [
-          "rest",
-          "bike shed",
-          "unofficial",
-          "clean"
+          "sunbed",
+          "gazebo",
+          "shade",
+          "rest"
         ],
         "rightColumn": [
-          "відпочивати",
-          "сарай для велосипедів",
-          "неофіційний",
-          "прибирати"
+          "шезлонг",
+          "альтанка",
+          "тінь",
+          "відпочивати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,25 +1132,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-38:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сусід запитує, де зазвичай відпочиває Анна. Дайте відповідь «Вона відпочиває тут»",
+      "prompt": "Подруга питає, де відпочиває ваша сестра. Скажіть: «Вона відпочиває в альтанці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-38:i17:audio"
       ],
-      "accessibilityLabel": "Сусід запитує, де зазвичай відпочиває Анна. Дайте відповідь «Вона відпочиває тут»",
+      "accessibilityLabel": "Подруга питає, де відпочиває ваша сестра. Скажіть: «Вона відпочиває в альтанці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-38:i17:audio",
-          "transcript": "She rests here."
+          "transcript": "She rests in the gazebo."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She rests here.",
+        "targetPhrase": "She rests in the gazebo.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "05fa7ce8c33ea478e0aac6c0fe140ab49a96a1c53907ab4f8d59b9d2583a0857"
+  "learnerFingerprint": "5cd50c159f91644016a5a9a9ad023d29d6f3f85c1479fa2e5c81c69306d4944b"
 }

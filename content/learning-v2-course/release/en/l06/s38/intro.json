@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-06:session-38",
   "learningOutcomeByLocale": {
     "ru": "рассказать, где вы отдыхаете, и описать привычку другого человека",
-    "uk": "розповісти, де ви відпочиваєте, й описати звичку іншої людини"
+    "uk": "розповісти, де ви відпочиваєте, і описати звичку іншої людини"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Здесь можно передохнуть",
-        "uk": "Тут можна перепочити"
+        "ru": "Тишина вместо бара",
+        "uk": "Тиша замість бару"
       },
       "bodyByLocale": {
-        "ru": "Том спрашивает, почему вы любите эту скамейку. `rest` — «отдыхать». `I rest here` — «Я отдыхаю здесь». Вы рассказываете о своём обычном месте отдыха. Перед `rest` не нужно `am`. Чтобы отдыхать, необязательно уснуть: можно просто сидеть, а список дел пусть немного подождёт.",
-        "uk": "Том запитує, чому ви любите цю лавку. `rest` — «відпочивати». `I rest here` — «Я відпочиваю тут». Ви розповідаєте про своє звичне місце відпочинку. Перед `rest` не потрібне `am`. Щоб відпочивати, необов’язково заснути: можна просто сидіти, а список справ нехай трохи зачекає."
+        "ru": "После долгого рабочего дня коллега зовёт вас в шумный бар. Но вы устали, ноги гудят, и вам хочется тишины и своего сада с цветами и скамейкой. rest — «отдыхать». I rest in the garden — «Я отдыхаю в саду». После I слово остаётся rest, без s.",
+        "uk": "Після довгого робочого дня колега кличе вас до галасливого бару. Але ви втомилися, ноги гудуть, і вам хочеться тиші та свого саду з квітами й лавкою. rest — «відпочивати». I rest in the garden — «Я відпочиваю в саду». Після I слово лишається rest, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-38:intro1:q",
         "promptByLocale": {
-          "ru": "Объясните Тому «Я отдыхаю здесь».",
-          "uk": "Поясніть Тому «Я відпочиваю тут»."
+          "ru": "Коллега зовёт вас в бар. Скажите, где вы отдыхаете: «Я отдыхаю в саду».",
+          "uk": "Колега кличе вас до бару. Скажіть, де ви відпочиваєте: «Я відпочиваю в саду»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-38:intro1:r1",
-              "text": "I rest here."
+              "text": "I rest in the garden."
             },
             {
               "responseId": "en:lesson-06:session-38:intro1:r2",
-              "text": "I am rest here."
+              "text": "I rests in the garden."
             },
             {
               "responseId": "en:lesson-06:session-38:intro1:r3",
-              "text": "I rests here."
+              "text": "I am rest in the garden."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-38:intro1:r1",
-              "text": "I rest here."
+              "text": "I rest in the garden."
             },
             {
               "responseId": "en:lesson-06:session-38:intro1:r2",
-              "text": "I am rest here."
+              "text": "I rests in the garden."
             },
             {
               "responseId": "en:lesson-06:session-38:intro1:r3",
-              "text": "I rests here."
+              "text": "I am rest in the garden."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните Тому «Я отдыхаю здесь».",
-          "uk": "Поясніть Тому «Я відпочиваю тут»."
+          "ru": "Коллега зовёт вас в бар. Скажите, где вы отдыхаете: «Я отдыхаю в саду».",
+          "uk": "Колега кличе вас до бару. Скажіть, де ви відпочиваєте: «Я відпочиваю в саду»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Любимая скамейка Анны",
-        "uk": "Улюблена лавка Анни"
+        "ru": "Прохладная тень",
+        "uk": "Прохолодна тінь"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, где Анна обычно отдыхает. `She rests here` — «Она отдыхает здесь». После `she` добавляем `s`: `rest → rests`. `Anna rests here` означает то же самое, только вместо `she` называем имя. Она не обязана сидеть на скамейке сейчас: вы описываете привычку.",
-        "uk": "Сусід запитує, де Анна зазвичай відпочиває. `She rests here` — «Вона відпочиває тут». Після `she` додаємо `s`: `rest → rests`. `Anna rests here` означає те саме, тільки замість `she` називаємо ім’я. Вона не зобов’язана сидіти на лавці зараз: ви описуєте звичку."
+        "ru": "В полдень солнце так печёт, что в саду трудно дышать, листья замерли. Сестра берёт книгу и уходит под большое дерево, где прохладно и тихо. Подруга спрашивает, куда она пропала посреди дня. shade — «тень». После she к rest добавляем s: She rests in the shade.",
+        "uk": "Опівдні сонце так пече, що в саду важко дихати, листя завмерло. Сестра бере книжку й іде під велике дерево, де прохолодно й тихо. Подруга питає, куди вона зникла посеред дня. shade — «тінь». Після she до rest додаємо s: She rests in the shade."
       },
       "question": {
         "interactionId": "en:lesson-06:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте соседу об Анне: «Она отдыхает здесь».",
-          "uk": "Дайте сусідові відповідь про Анну: «Вона відпочиває тут»."
+          "ru": "Подруга спрашивает, где ваша сестра. Скажите: «Она отдыхает в тени».",
+          "uk": "Подруга питає, де ваша сестра. Скажіть: «Вона відпочиває в тіні»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-38:intro2:r1",
-              "text": "She rests here."
+              "text": "She rests in the shade."
             },
             {
               "responseId": "en:lesson-06:session-38:intro2:r2",
-              "text": "She rest here."
+              "text": "She rest in the shade."
             },
             {
               "responseId": "en:lesson-06:session-38:intro2:r3",
-              "text": "She is rests here."
+              "text": "She is rests in the shade."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-38:intro2:r1",
-              "text": "She rests here."
+              "text": "She rests in the shade."
             },
             {
               "responseId": "en:lesson-06:session-38:intro2:r2",
-              "text": "She rest here."
+              "text": "She rest in the shade."
             },
             {
               "responseId": "en:lesson-06:session-38:intro2:r3",
-              "text": "She is rests here."
+              "text": "She is rests in the shade."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте соседу об Анне: «Она отдыхает здесь».",
-          "uk": "Дайте сусідові відповідь про Анну: «Вона відпочиває тут»."
+          "ru": "Подруга спрашивает, где ваша сестра. Скажите: «Она отдыхает в тени».",
+          "uk": "Подруга питає, де ваша сестра. Скажіть: «Вона відпочиває в тіні»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Забытый ноутбук",
-        "uk": "Забутий ноутбук"
+        "ru": "Шезлонг у бассейна",
+        "uk": "Шезлонг біля басейну"
       },
       "bodyByLocale": {
-        "ru": "На скамейке остался ноутбук. `laptop` — «ноутбук». Чтобы найти владельца, спросите людей рядом: `Whose laptop is this?` — «Чей это ноутбук?» Один ноутбук: `is this`. Слово `whose` помогает спросить именно о владельце находки.",
-        "uk": "На лавці залишився ноутбук. `laptop` — «ноутбук». Щоб знайти власника, запитайте людей поруч: `Whose laptop is this?` — «Чий це ноутбук?» Один ноутбук: `is this`. Слово `whose` допомагає запитати саме про власника знахідки."
+        "ru": "У бассейна во дворе стоит свободный шезлонг, на нём лежат полотенце и очки от солнца. Хозяина нигде не видно, а вы хотите присесть и отдохнуть. sunbed — «шезлонг». Чтобы спросить о владельце, говорим Whose: Whose sunbed is this? — «Чей это шезлонг?»",
+        "uk": "Біля басейну у дворі стоїть вільний шезлонг, на ньому лежать рушник і окуляри від сонця. Власника ніде не видно, а ви хочете присісти й відпочити. sunbed — «шезлонг». Щоб спитати про власника, кажемо Whose: Whose sunbed is this? — «Чий це шезлонг?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-38:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите у людей рядом «Чей это ноутбук?»",
-          "uk": "Запитайте в людей поруч «Чий це ноутбук?»"
+          "ru": "Вы показываете соседке на шезлонг. Спросите: «Чей это шезлонг?»",
+          "uk": "Ви показуєте сусідці на шезлонг. Спитайте: «Чий це шезлонг?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-38:intro3:r1",
-              "text": "Whose laptop is this?"
+              "text": "Whose sunbed is this?"
             },
             {
               "responseId": "en:lesson-06:session-38:intro3:r2",
-              "text": "Who laptop is this?"
+              "text": "Who sunbed is this?"
             },
             {
               "responseId": "en:lesson-06:session-38:intro3:r3",
-              "text": "Whose laptop are these?"
+              "text": "Whose sunbed are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-38:intro3:r1",
-              "text": "Whose laptop is this?"
+              "text": "Whose sunbed is this?"
             },
             {
               "responseId": "en:lesson-06:session-38:intro3:r2",
-              "text": "Who laptop is this?"
+              "text": "Who sunbed is this?"
             },
             {
               "responseId": "en:lesson-06:session-38:intro3:r3",
-              "text": "Whose laptop are these?"
+              "text": "Whose sunbed are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите у людей рядом «Чей это ноутбук?»",
-          "uk": "Запитайте в людей поруч «Чий це ноутбук?»"
+          "ru": "Вы показываете соседке на шезлонг. Спросите: «Чей это шезлонг?»",
+          "uk": "Ви показуєте сусідці на шезлонг. Спитайте: «Чий це шезлонг?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2a6a4814ab7678d44bb38e58996f56b24d55c9b11cd76b32e63d03663ffaf555"
+  "introFingerprint": "5b7148d4efc0916cb2cfa015bd7225eb6ba686a3769dbfe66251d6181c7d8e5f"
 }

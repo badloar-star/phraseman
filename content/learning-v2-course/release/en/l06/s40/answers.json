@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-06:session-40:i01",
-    "correctText": "We live here.",
+    "correctText": "We live in a flat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i02",
-    "correctText": "She studies at home.",
+    "correctText": "She studies in the library.",
     "correctResponseId": "en:lesson-06:session-40:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-40:i03",
-    "correctText": "drinks",
+    "correctText": "cycles",
     "correctResponseId": "en:lesson-06:session-40:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-40:i04",
-    "correctText": "en:lesson-06:session-40:i04:p1=study\nen:lesson-06:session-40:i04:p2=drink\nen:lesson-06:session-40:i04:p3=sleep\nen:lesson-06:session-40:i04:p4=live",
+    "correctText": "en:lesson-06:session-40:i04:p1=newcomer\nen:lesson-06:session-40:i04:p2=invitation\nen:lesson-06:session-40:i04:p3=flowerpot\nen:lesson-06:session-40:i04:p4=doorstep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:word:invitation",
+    "correctText": "invitation",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i05",
-    "correctText": "He cycles to work.",
+    "correctText": "The invitation is on the doorstep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:word:newcomer",
+    "correctText": "newcomer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i06",
-    "correctText": "She shops here.",
+    "correctText": "The newcomer is shy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i07",
-    "correctText": "The cat sleeps here.",
+    "correctText": "She lives near the library.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i08",
-    "correctText": "rest",
+    "correctText": "study",
     "correctResponseId": "en:lesson-06:session-40:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-40:word:flowerpot",
+    "correctText": "flowerpot",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-40:i09",
-    "correctText": "This thermostat is new.",
+    "correctText": "The flowerpot is small.",
     "correctResponseId": "en:lesson-06:session-40:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-40:i10",
-    "correctText": "en:lesson-06:session-40:i10:p1=shop\nen:lesson-06:session-40:i10:p2=rest\nen:lesson-06:session-40:i10:p3=cycle\nen:lesson-06:session-40:i10:p4=thermostat",
+    "correctText": "en:lesson-06:session-40:i10:p1=doorstep\nen:lesson-06:session-40:i10:p2=newcomer\nen:lesson-06:session-40:i10:p3=invitation\nen:lesson-06:session-40:i10:p4=flowerpot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i11",
-    "correctText": "I drink water.",
+    "correctText": "He cycles with a helmet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i12",
-    "correctText": "Whose laptop is this?",
+    "correctText": "Whose flowerpot is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-40:word:doorstep",
+    "correctText": "doorstep",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i13",
-    "correctText": "They study at home.",
+    "correctText": "We study on the doorstep.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i14",
-    "correctText": "lives",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-40:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-40:i15",
-    "correctText": "We shop here.",
+    "correctText": "I cycle to the park.",
     "correctResponseId": "en:lesson-06:session-40:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-40:i16",
-    "correctText": "en:lesson-06:session-40:i16:p1=sleep\nen:lesson-06:session-40:i16:p2=cycle\nen:lesson-06:session-40:i16:p3=rest\nen:lesson-06:session-40:i16:p4=thermostat",
+    "correctText": "en:lesson-06:session-40:i16:p1=invitation\nen:lesson-06:session-40:i16:p2=flowerpot\nen:lesson-06:session-40:i16:p3=doorstep\nen:lesson-06:session-40:i16:p4=newcomer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-40:i17",
-    "correctText": "She studies at home.",
+    "correctText": "He cycles to work.",
     "correctResponseId": null
   }
 ]

@@ -1,9 +1,10 @@
-# Англійська · Урок 6 · Заняття 39 — На роботу велосипедом
+# Англійська · Урок 6 · Заняття 39 — На роботу на велосипеді
 
-**Ситуація.** Анна й Том обговорюють, як дістаються на роботу. Том зазвичай обирає велосипед.
+**Ситуація.** Ви з колегою, братом і сестрою обговорюєте, як хто добирається до роботи: хто їде на велосипеді, що в нього з колесом і чий насос лежить біля стіни. Після she і he до слова cycle додається s.
 
-**Що ви опануєте:** розповісти про поїздки велосипедом і про звичку іншої людини
-**Нові слова:** cycle
+**Що ви опануєте:** розповісти, як ви їздите на велосипеді, і описати звичку іншої людини
+**Нові слова:** cycle, puncture, reflector, mudguard
+**Повертаються:** bicycle, helmet, pump, work, park, small, bright, dirty
 
 ---
 
@@ -11,124 +12,143 @@
 
 ### Велосипед замість машини
 
-Колега запитує, як ви дістаєтеся на роботу. `cycle` — «їздити велосипедом». `I cycle to work` — «Я їжджу на роботу велосипедом». Перед `cycle` не потрібне `am`. Сам велосипед не вважається тренуванням: якщо він увесь час стоїть у коридорі, ви ще не `cycle`.
+Зранку колега стоїть біля своєї машини й пропонує підвезти вас на роботу. Але ви звикли їхати самі: свіже повітря вас бадьорить. cycle — «їздити на велосипеді». I cycle to work — «Я їжджу на роботу на велосипеді». Після I слово лишається cycle, без s.
 
-**Дайте колезі відповідь «Я їжджу на роботу велосипедом».**
+**Колега пропонує підвезти вас. Скажіть: «Я їжджу на роботу на велосипеді».**
 
 - ✅ **I cycle to work.**
-- ❌ I am cycle to work. — *Кажемо `I cycle`, без `am`.*
-- ❌ I cycles to work. — *Після `I` — `cycle`, без `s`.*
+- ❌ I cycles to work. — *Після I слово лишається cycle, без s.*
+- ❌ I am cycle to work. — *Тут дія: I cycle, без am.*
 
 ---
 
 ## Інтро 2
 
-### Як дістається Том
+### Вечірня дорога
 
-Анна запитує про дорогу Тома на роботу. `He cycles to work` — «Він їздить на роботу велосипедом». Після `he` додаємо `s`: `cycle → cycles`. `Tom cycles to work` — та сама розповідь з ім’ям. Фраза описує звичку Тома; він може зараз сидіти поруч із вами.
+Брат повертається з роботи пізно, коли на дорозі вже темно, а ліхтарів мало. Сусід радить йому причепити до велосипеда світловідбивач, щоб водії його бачили. reflector — «світловідбивач». Після he до cycle додаємо s: He cycles with a reflector.
 
-**Розкажіть Анні про Тома: «Він їздить на роботу велосипедом».**
+**Сусід питає, як ваш брат їздить увечері. Скажіть: «Він їздить зі світловідбивачем».**
 
-- ✅ **He cycles to work.**
-- ❌ He cycle to work. — *Після `he` — `cycles`.*
-- ❌ He is cycles to work. — *Потрібно `He cycles`, без `is`.*
+- ✅ **He cycles with a reflector.**
+- ❌ He cycle with a reflector. — *Після he потрібно cycles, з s.*
+- ❌ He is cycles with a reflector. — *Тут дія: He cycles, без is.*
 
 ---
 
 ## Інтро 3
 
-### Душ після дороги
+### Крило в під’їзді
 
-Колега запитує, де Том зазвичай приймає душ після поїздки. `shower` — «приймати душ». `He showers at work` — «Він приймає душ на роботі». Після `he` — `showers`, з `s`; `at work` означає «на роботі». Тут ми розповідаємо про його звичний розпорядок дня.
+У під’їзді біля самої стіни стоїть велосипед, а поруч на підлозі лежить зняте крило колеса, забризкане брудом. Сусідка проходить повз із важкою сумкою й ніяк не може зрозуміти, хто залишив його на проході. mudguard — «крило колеса». Whose mudguard is this? — «Чиє це крило колеса?»
 
-**Дайте колезі відповідь «Він приймає душ на роботі».**
+**Ви показуєте сусідці на крило. Спитайте: «Чиє це крило колеса?»**
 
-- ✅ **He showers at work.**
-- ❌ He shower at work. — *Після `he` — `showers`.*
-- ❌ He is showers at work. — *Потрібно `He showers`, без `is`.*
+- ✅ **Whose mudguard is this?**
+- ❌ Who mudguard is this? — *Про власника питаємо Whose — «чиє».*
+- ❌ Whose mudguard are this? — *Крило одне: потрібно is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть «Я їжджу на роботу велосипедом»**
+**1 · Картка слова — cycle**
+<!-- interaction_id: en:lesson-06:session-39:word:cycle; family: word_card -->
+> **cycle** — їздити на велосипеді. We cycle to the park. — «Ми їдемо в парк на велосипеді». Про те, що роблять, коли їдуть на двох колесах.
+
+**2 · Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»**
 <!-- interaction_id: en:lesson-06:session-39:i01; family: phrase_builder -->
-Плитки: `work` `to` `cycle` `I` → **I cycle to work.**
+Плитки: `work` `to` `cycle` `We` `cycles` → **We cycle to work.**
+*(плитка `cycles` зайва: тут потрібно `cycle` — `We cycle to work.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте колегу**
 <!-- interaction_id: en:lesson-06:session-39:i02; family: listen_choose -->
-🔊 *cycle* → **cycle** · shower · rest
-- shower — *У записі перше слово — `cycle`, а в цьому варіанті — `shower`.*
-- rest — *У записі перше слово — `cycle`, а в цьому варіанті — `rest`.*
+🔊 *He cycles to work.* → **He cycles to work.** · He cycles to the park. · She cycles to work.
+- He cycles to the park. — *У записі останнє слово — `work`, робота, а в цьому варіанті — `park`, парк.*
+- She cycles to work. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**3 · Скажіть «Він їздить на роботу велосипедом»**
+**4 · Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-39:i03; family: context_gap_grammar -->
-He ___ to work. → **cycles** · cycle · is cycles
-- cycle — *Після `he` — `cycles`.*
-- is cycles — *Потрібно `He cycles`, без `is`.*
+My sister ___ to work. → **cycles** · cycle · is cycles
+- cycle — *Сестра — це `she`, тому потрібно `cycles`, з `s`.*
+- is cycles — *Кажемо `cycles`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-39:i04; family: speed_match -->
-cycle — їздити велосипедом · relevant — доречний · boiler — опалювальний котел · violin — скрипка
+cycle — їздити на велосипеді · puncture — прокол шини · reflector — світловідбивач · mudguard — крило колеса
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — mudguard**
+<!-- interaction_id: en:lesson-06:session-39:word:mudguard; family: word_card -->
+> **mudguard** — крило колеса. The mudguard is dirty. — «Крило колеса брудне». Про смужку над колесом, яка захищає від бризок.
+
+**7 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-39:i05; family: listen_build_dictation -->
-🔊 *Tom cycles to work.* Плитки: `work` `to` `cycles` `Tom` → **Tom cycles to work.**
+🔊 *The mudguard is on the bicycle.* Плитки: `bicycle` `on` `the` `The` `mudguard` `is` `are` → **The mudguard is on the bicycle.**
+*(плитка `are` зайва: тут потрібно `is` — `The mudguard is on the bicycle.`)*
 
-**6 · Скажіть «Він приймає душ на роботі»**
+**8 · Картка слова — reflector**
+<!-- interaction_id: en:lesson-06:session-39:word:reflector; family: word_card -->
+> **reflector** — світловідбивач. The reflector is bright. — «Світловідбивач яскравий». Про маленьке коло на велосипеді, яке блищить у світлі фар.
+
+**9 · Ви показуєте велосипед колезі. Скажіть: «Світловідбивач яскравий»**
 <!-- interaction_id: en:lesson-06:session-39:i06; family: phrase_builder -->
-Плитки: `work` `at` `showers` `He` → **He showers at work.**
+Плитки: `reflector` `bright` `is` `The` `are` → **The reflector is bright.**
+*(плитка `are` зайва: тут потрібно `is` — `The reflector is bright.`)*
 
-**7 · У будівлі замінили опалювальний котел. Скажіть «Цей опалювальний котел новий»**
+**10 · Колега питає, як їздить ваш брат. Скажіть: «Він їздить у парк на велосипеді»**
 <!-- interaction_id: en:lesson-06:session-39:i07; family: scripted_repeat_compare -->
-🎙 **This boiler is new.**
+🎙 **He cycles to the park.**
 
-**8 · Скажіть «Вони їздять на роботу велосипедом»**
+**11 · Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-39:i08; family: context_gap_grammar -->
-They ___ to work. → **cycle** · cycles · are cycle
-- cycles — *Після `they` — `cycle`, без `s`.*
-- are cycle — *Потрібно `They cycle`, без `are`.*
+I ___ to the park. → **cycle** · cycles · am cycle
+- cycles — *Після `I` потрібно `cycle`, без `s`.*
+- am cycle — *Кажемо `I cycle`, без `am`.*
 
-**9 · Послухайте, кому належить скрипка**
+**12 · Картка слова — puncture**
+<!-- interaction_id: en:lesson-06:session-39:word:puncture; family: word_card -->
+> **puncture** — прокол шини. The puncture is small. — «Прокол маленький». Про дірку в шині, через яку виходить повітря.
+
+**13 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-39:i09; family: listen_choose -->
-🔊 *This violin is mine.* → **This violin is mine.** · This violin is yours. · This violin is hers.
-- This violin is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This violin is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The puncture is small.* → **The puncture is small.** · The puncture is big. · The reflector is small.
+- The puncture is big. — *У записі останнє слово — `small`, маленький, а в цьому варіанті — `big`, великий.*
+- The reflector is small. — *У записі йдеться про `puncture`, прокол, а в цьому варіанті — про `reflector`, світловідбивач.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-39:i10; family: speed_match -->
-cycle — їздити велосипедом · shower — приймати душ · violin — скрипка · relevant — доречний
+mudguard — крило колеса · cycle — їздити на велосипеді · puncture — прокол шини · reflector — світловідбивач
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-39:i11; family: listen_build_dictation -->
-🔊 *The boiler is here.* Плитки: `here` `is` `boiler` `The` `are` → **The boiler is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The boiler is here.`)*
+🔊 *She cycles with a helmet.* Плитки: `cycles` `with` `a` `helmet` `She` `cycle` → **She cycles with a helmet.**
+*(плитка `cycle` зайва: тут потрібно `cycles` — `She cycles with a helmet.`)*
 
-**12 · У кімнаті залишили скрипку. Запитайте «Чия це скрипка?»**
+**16 · Сусід показує на насос біля велосипеда. Спитайте: «Чий це насос?»**
 <!-- interaction_id: en:lesson-06:session-39:i12; family: phrase_builder -->
-Плитки: `this` `is` `violin` `Whose` → **Whose violin is this?**
+Плитки: `pump` `is` `this` `Whose` `Who` → **Whose pump is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose pump is this?`)*
 
-**13 · Скажіть «Я приймаю душ удома»**
+**17 · Колега питає про вас із сестрою. Скажіть: «Ми їздимо в парк на велосипеді»**
 <!-- interaction_id: en:lesson-06:session-39:i13; family: scripted_repeat_compare -->
-🎙 **I shower at home.**
+🎙 **We cycle to the park.**
 
-**14 · Скажіть «Анна їздить на роботу велосипедом»**
+**18 · Скажіть про прокол: «Прокол маленький». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-39:i14; family: context_gap_grammar -->
-Anna ___ to work. → **cycles** · cycle · is cycles
-- cycle — *Анна — вона: `Anna cycles`.*
-- is cycles — *Потрібно `Anna cycles`, без `is`.*
+The puncture ___ small. → **is** · are · cycles
+- are — *Прокол один, тому потрібно `is`, а не `are`.*
+- cycles — *`cycles` означає «їздить на велосипеді», а тут треба сказати, який прокол: `is small`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-06:session-39:i15; family: listen_choose -->
-🔊 *He showers at work.* → **He showers at work.** · He showers at home. · She showers at work.
-- He showers at home. — *У записі останнє слово — `work`, а в цьому варіанті — `home`.*
-- She showers at work. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
+🔊 *I cycle to work.* → **I cycle to work.** · I cycle to the park. · We cycle to work.
+- I cycle to the park. — *У записі останнє слово — `work`, робота, а в цьому варіанті — `park`, парк.*
+- We cycle to work. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-39:i16; family: speed_match -->
-cycle — їздити велосипедом · boiler — опалювальний котел · relevant — доречний · shower — приймати душ
+reflector — світловідбивач · mudguard — крило колеса · puncture — прокол шини · cycle — їздити на велосипеді
 
-**17 · Колега запитує, як Том дістається на роботу. Дайте відповідь «Він їздить на роботу велосипедом»**
+**21 · Сусід питає про вашу сестру. Скажіть: «Вона їздить зі світловідбивачем»**
 <!-- interaction_id: en:lesson-06:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He cycles to work.**
-
+🎙 **She cycles with a reflector.**

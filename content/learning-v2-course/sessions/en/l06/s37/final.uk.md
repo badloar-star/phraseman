@@ -1,134 +1,154 @@
 # Англійська · Урок 6 · Заняття 37 — Знайомий магазин
 
-**Ситуація.** Анна показує Тому магазин, у якому зазвичай робить покупки.
+**Ситуація.** Ви показуєте сусідці магазин, де купуєте щотижня: хто як ходить по покупки, хто шукає вигідні ціни й чия річ залишилася на касі. Після she і he до слова shop додається s.
 
-**Що ви опануєте:** розповісти, де ви зазвичай робите покупки, й описати звичку іншої людини
-**Нові слова:** shop
+**Що ви опануєте:** розповісти, де й як ви купуєте, і описати звичку іншої людини
+**Нові слова:** aisle, checkout, bargain, grocer
+**Повертаються:** wait, shop, basket, trolley, bag, shelf, door, bread, jacket, friendly
 
 ---
 
 ## Інтро 1
 
-### Я тут купую
+### Між полицями
 
-Ви проходите повз знайомий магазин. `shop` як дія означає «робити покупки». `I shop here` — «Я роблю покупки тут». У цій фразі це не назва магазину, а ваша дія: перед `shop` не потрібне `am`. Продавець вас уже впізнає, навіть коли ви зайшли «тільки подивитися».
+У магазині ви шукаєте хліб і довго стоїте біля полиць: продавець викладає нові батони, і ви чекаєте, поки він закінчить. Він помічає вас і питає, чому ви стоїте на місці. aisle — «прохід між полицями». I wait in the aisle — «Я чекаю в проході». Після I слово лишається wait.
 
-**Розкажіть Тому «Я роблю покупки тут».**
+**Продавець питає, чому ви стоїте на місці. Скажіть: «Я чекаю в проході».**
 
-- ✅ **I shop here.**
-- ❌ I am shop here. — *Для дії кажемо `I shop`, без `am`.*
-- ❌ I shops here. — *Після `I` — `shop`, без `s`.*
+- ✅ **I wait in the aisle.**
+- ❌ I waits in the aisle. — *Після I слово лишається wait, без s.*
+- ❌ I am wait in the aisle. — *Тут дія: I wait, без am.*
 
 ---
 
 ## Інтро 2
 
-### Анна обирає цей магазин
+### Сестра шукає вигоду
 
-Том запитує, де Анна зазвичай купує продукти. `She shops here` — «Вона робить покупки тут». Після `she` додаємо `s`: `shop → shops`. Можна сказати `Anna shops here`. Фраза описує її звичку; зараз вона може просто проходити повз.
+Сестра ніколи не бере речі за повну ціну: вона записує ціни в блокнот і чекає, поки потрібна річ подешевшає. Сусідка дивується, як їй вдається стільки заощаджувати. bargain — «вигідна покупка». Після she до wait додаємо s: She waits for bargains.
 
-**Дайте Тому відповідь про Анну: «Вона робить покупки тут».**
+**Сусідка питає, як купує ваша сестра. Скажіть: «Вона чекає на вигідні покупки».**
 
-- ✅ **She shops here.**
-- ❌ She shop here. — *Після `she` — `shops`.*
-- ❌ She is shops here. — *Потрібно `She shops`, без `is`.*
+- ✅ **She waits for bargains.**
+- ❌ She wait for bargains. — *Після she потрібно waits, з s.*
+- ❌ She is waits for bargains. — *Тут дія: She waits, без is.*
 
 ---
 
 ## Інтро 3
 
-### Сережки на прилавку
+### Кошик на касі
 
-Покупець залишив сережки на прилавку. `earrings` — «сережки». Щоб знайти власника, запитайте: `Whose earrings are these?` — «Чиї це сережки?» Тут кілька сережок, тому `are these`; `whose` запитує, кому вони належать.
+Ви стоїте в черзі до каси. Перед вами на стрічці лежить повний кошик, але поруч нікого немає: покупець відійшов або забув про нього. Касир чекає й дивиться на довгу чергу за вами. checkout — «каса». Whose basket is at the checkout? — «Чий кошик на касі?»
 
-**Запитайте покупців «Чиї це сережки?»**
+**Ви питаєте в людей у черзі. Спитайте: «Чий кошик на касі?»**
 
-- ✅ **Whose earrings are these?**
-- ❌ Whose earrings is this? — *З `earrings` — `are these`.*
-- ❌ Who earrings are these? — *Про власника запитуємо `Whose`.*
+- ✅ **Whose basket is at the checkout?**
+- ❌ Whose basket are at the checkout? — *Кошик один: потрібно is.*
+- ❌ Who basket is at the checkout? — *Про власника питаємо Whose — «чий».*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про звичку: «Я роблю покупки тут»**
+**1 · Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»**
 <!-- interaction_id: en:lesson-06:session-37:i01; family: phrase_builder -->
-Плитки: `here` `shop` `I` → **I shop here.**
+Плитки: `here` `shop` `We` `shops` → **We shop here.**
+*(плитка `shops` зайва: тут потрібно `shop` — `We shop here.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте продавця**
 <!-- interaction_id: en:lesson-06:session-37:i02; family: listen_choose -->
-🔊 *shop* → **shop** · call · live
-- call — *У записі перше слово — `shop`, а в цьому варіанті — `call`.*
-- live — *У записі перше слово — `shop`, а в цьому варіанті — `live`.*
+🔊 *She shops for bargains.* → **She shops for bargains.** · She shops for bread. · He shops for bargains.
+- She shops for bread. — *У записі останнє слово — `bargains`, вигідні покупки, а в цьому варіанті — `bread`, хліб.*
+- He shops for bargains. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Вона робить покупки тут»**
+**3 · Скажіть про брата: «Мій брат купує хліб». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-37:i03; family: context_gap_grammar -->
-She ___ here. → **shops** · shop · is shops
-- shop — *Після `she` — `shops`.*
-- is shops — *Потрібно `She shops`, без `is`.*
+My brother ___ bread. → **shops** · shop · is shops
+- shop — *Брат — це `he`, тому потрібно `shops`, з `s`.*
+- is shops — *Кажемо `shops`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**4 · Картка слова — bargain**
+<!-- interaction_id: en:lesson-06:session-37:word:bargain; family: word_card -->
+> **bargain** — вигідна покупка. The jacket is a bargain. — «Куртка — вигідна покупка». Про річ, яку купили дешево.
+
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-37:i04; family: speed_match -->
-shop — робити покупки · official — офіційний · parcel locker — поштова шафа для посилок · earrings — сережки
+aisle — прохід між полицями · checkout — каса · bargain — вигідна покупка · grocer — продавець продуктів
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — checkout**
+<!-- interaction_id: en:lesson-06:session-37:word:checkout; family: word_card -->
+> **checkout** — каса. The checkout is near the door. — «Каса біля дверей». Про місце в магазині, де платять за покупки.
+
+**7 · Послухайте касира й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-37:i05; family: listen_build_dictation -->
-🔊 *Anna shops here.* Плитки: `here` `shops` `Anna` → **Anna shops here.**
+🔊 *The basket is at the checkout.* Плитки: `checkout` `at` `the` `The` `basket` `is` `are` → **The basket is at the checkout.**
+*(плитка `are` зайва: тут потрібно `is` — `The basket is at the checkout.`)*
 
-**6 · Скажіть «Він телефонує своїй мамі»**
+**8 · Картка слова — aisle**
+<!-- interaction_id: en:lesson-06:session-37:word:aisle; family: word_card -->
+> **aisle** — прохід між полицями. The aisle is long. — «Прохід між полицями довгий». Про прохід між рядами в магазині.
+
+**9 · Ви показуєте сусідці магазин. Скажіть: «Прохід довгий»**
 <!-- interaction_id: en:lesson-06:session-37:i06; family: phrase_builder -->
-Плитки: `mother` `his` `calls` `He` → **He calls his mother.**
+Плитки: `aisle` `long` `is` `The` `are` → **The aisle is long.**
+*(плитка `are` зайва: тут потрібно `is` — `The aisle is long.`)*
 
-**7 · Біля магазину встановили шафу для посилок. Скажіть «Ця поштова шафа для посилок нова»**
+**10 · Покупниця питає, де купує ваш брат. Скажіть: «Він купує тут»**
 <!-- interaction_id: en:lesson-06:session-37:i07; family: scripted_repeat_compare -->
-🎙 **This parcel locker is new.**
+🎙 **He shops here.**
 
-**8 · Скажіть «Вони роблять покупки тут»**
+**11 · Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-37:i08; family: context_gap_grammar -->
-They ___ here. → **shop** · shops · are shop
-- shops — *Після `they` — `shop`, без `s`.*
-- are shop — *Потрібно `They shop`, без `are`.*
+I ___ with a basket. → **shop** · shops · am shop
+- shops — *Після `I` потрібно `shop`, без `s`.*
+- am shop — *Кажемо `I shop`, без `am`.*
 
-**9 · Послухайте, кому належать сережки**
+**12 · Послухайте касира**
 <!-- interaction_id: en:lesson-06:session-37:i09; family: listen_choose -->
-🔊 *These earrings are mine.* → **These earrings are mine.** · These earrings are yours. · These earrings are hers.
-- These earrings are yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- These earrings are hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The aisle is near the door.* → **The aisle is near the door.** · The aisle is near the shelf. · The checkout is near the door.
+- The aisle is near the shelf. — *У записі останнє слово — `door`, двері, а в цьому варіанті — `shelf`, полиця.*
+- The checkout is near the door. — *У записі йдеться про `aisle`, прохід, а в цьому варіанті — про `checkout`, касу.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-37:i10; family: speed_match -->
-shop — робити покупки · call — телефонувати · earrings — сережки · official — офіційний
+grocer — продавець продуктів · aisle — прохід між полицями · checkout — каса · bargain — вигідна покупка
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-37:i11; family: listen_build_dictation -->
-🔊 *The parcel locker is here.* Плитки: `here` `is` `locker` `parcel` `The` `are` → **The parcel locker is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The parcel locker is here.`)*
+🔊 *He shops with a basket.* Плитки: `shops` `with` `a` `basket` `He` `shop` → **He shops with a basket.**
+*(плитка `shop` зайва: тут потрібно `shops` — `He shops with a basket.`)*
 
-**12 · Ви знайшли сережки. Запитайте «Чиї це сережки?»**
+**15 · Покупець показує на пакет біля каси. Спитайте: «Чий це пакет?»**
 <!-- interaction_id: en:lesson-06:session-37:i12; family: phrase_builder -->
-Плитки: `these` `are` `earrings` `Whose` → **Whose earrings are these?**
+Плитки: `bag` `is` `this` `Whose` `Who` → **Whose bag is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose bag is this?`)*
 
-**13 · Скажіть «Я телефоную мамі»**
+**16 · Продавець питає, де купують сестра й брат. Скажіть: «Вони купують тут»**
 <!-- interaction_id: en:lesson-06:session-37:i13; family: scripted_repeat_compare -->
-🎙 **I call my mother.**
+🎙 **They shop here.**
 
-**14 · Скажіть «Том робить покупки тут»**
+**17 · Картка слова — grocer**
+<!-- interaction_id: en:lesson-06:session-37:word:grocer; family: word_card -->
+> **grocer** — продавець продуктів. The grocer is friendly. — «Продавець продуктів привітний». Про людину, яка продає фрукти й хліб.
+
+**18 · Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-37:i14; family: context_gap_grammar -->
-Tom ___ here. → **shops** · shop · is shops
-- shop — *Том — він: `Tom shops`.*
-- is shops — *Потрібно `Tom shops`, без `is`.*
+The grocer ___ friendly. → **is** · are · shops
+- are — *Продавець один, тому потрібно `is`, а не `are`.*
+- shops — *`shops` означає «купує», а тут треба сказати, який продавець: `is friendly`.*
 
-**15 · Послухайте, де Анна й Том роблять покупки**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-37:i15; family: listen_choose -->
-🔊 *We shop here.* → **We shop here.** · We shop there. · We shop nearby.
-- We shop there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- We shop nearby. — *У записі останнє слово — `here`, а в цьому варіанті — `nearby`.*
+🔊 *I shop with a basket.* → **I shop with a basket.** · I shop with a trolley. · We shop with a basket.
+- I shop with a trolley. — *У записі останнє слово — `basket`, кошик, а в цьому варіанті — `trolley`, візок.*
+- We shop with a basket. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-37:i16; family: speed_match -->
-shop — робити покупки · parcel locker — поштова шафа для посилок · official — офіційний · call — телефонувати
+bargain — вигідна покупка · grocer — продавець продуктів · aisle — прохід між полицями · checkout — каса
 
-**17 · Друг запитує, де Анна зазвичай робить покупки. Дайте відповідь «Вона робить покупки тут»**
+**21 · Покупниця питає про вашу сестру. Скажіть: «Вона ходить по покупки з візком»**
 <!-- interaction_id: en:lesson-06:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She shops here.**
-
+🎙 **She shops with a trolley.**

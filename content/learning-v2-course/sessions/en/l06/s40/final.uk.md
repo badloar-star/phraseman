@@ -1,133 +1,154 @@
 # Англійська · Урок 6 · Заняття 40 — Розкажіть про сусідів
 
-**Ситуація.** Ви знайомите нового сусіда з Анною й Томом і розповідаєте про їхні звичні справи.
+**Ситуація.** Ви знайомите нового мешканця з подругою, братом і сестрою та розповідаєте про них. Нової граматики немає: ви самі вибираєте live чи lives, study чи studies, cycle чи cycles, а для речей кажете is або are.
 
-**Що ви опануєте:** повторити розповідь про звички й місце проживання
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати між «без s» і «з s» та розповісти про сусідів
+**Нові слова:** newcomer, invitation, flowerpot, doorstep
+**Повертаються:** live, study, cycle, flat, library, park, garden, helmet, shy, small
 
 ---
 
 ## Інтро 1
 
-### Хто тут живе
+### Новий мешканець
 
-Новий сусід запитує про Анну. `She lives here` — «Вона живе тут». У `live` після `she` з’являється `s`. Якщо ви говорите про себе й Тома разом: `We live here` — «Ми живемо тут», без `s`. Це місце проживання, а не обіцянка ніколи не виходити з дому.
+У вашому домі з’явився новачок: він заніс коробки й поки нікого не знає. Ви стукаєте до нього, щоб познайомити із сусідами, а подруга питає, де він оселився. newcomer — «новачок у домі». Про одну людину до live додаємо s: The newcomer lives in a flat.
 
-**Скажіть сусідові про Анну «Вона живе тут».**
+**Подруга питає, де оселився новачок. Скажіть: «Новачок живе в квартирі».**
 
-- ✅ **She lives here.**
-- ❌ She live here. — *Після `she` — `lives`.*
-- ❌ She is lives here. — *Потрібно `She lives`, без `is`.*
+- ✅ **The newcomer lives in a flat.**
+- ❌ The newcomer live in a flat. — *Про одну людину потрібно lives, з s.*
+- ❌ The newcomer is lives in a flat. — *Тут дія: lives, без is.*
 
 ---
 
 ## Інтро 2
 
-### Де займається Анна
+### Листок на столику
 
-Сусід шукає компанію для занять і запитує про Анну. `She studies at home` — «Вона займається вдома». У `study` після `she` літера `y` змінюється на `ies`: `studies`. Якщо займаєтеся разом, скажіть `We study at home` — «Ми займаємося вдома»: після `we` залишається `study`.
+Сусідка запросила всіх на чай у цю суботу й залишила листок на столику в холі. Новачок бере його в руки й не розуміє, від кого він: підпису немає. invitation — «запрошення». Спитайте про нього: Whose invitation is this? — «Чиє це запрошення?»
 
-**Розкажіть сусідові «Вона займається вдома».**
+**Ви показуєте новачкові на листок. Спитайте: «Чиє це запрошення?»**
 
-- ✅ **She studies at home.**
-- ❌ She studys at home. — *Пишемо `studies`: замість `y` — `ies`.*
-- ❌ She study at home. — *Після `she` потрібно `studies`.*
+- ✅ **Whose invitation is this?**
+- ❌ Who invitation is this? — *Про власника питаємо Whose — «чиє».*
+- ❌ Whose invitation are this? — *Запрошення одне: потрібно is this.*
 
 ---
 
 ## Інтро 3
 
-### Дорога Тома на роботу
+### Сестра на порозі
 
-Сусід пропонує Томові підвозити його на роботу. Ви пояснюєте звичку Тома: `He cycles to work` — «Він їздить на роботу велосипедом». `cycle` — їхати велосипедом; після `he` — `cycles`. `They cycle to work` — «Вони їздять на роботу велосипедом»: після `they` закінчення `s` не потрібне.
+Теплого вечора сестра виносить зошити на поріг і займається там: поруч стоїть горщик із квітами, і віє легкий вітерець. Новачок питає, чим вона зайнята. doorstep — «поріг». У study після she літера y змінюється на ies: She studies on the doorstep.
 
-**Скажіть сусідові про Тома «Він їздить на роботу велосипедом».**
+**Новачок питає, де займається ваша сестра. Скажіть: «Вона займається на порозі».**
 
-- ✅ **He cycles to work.**
-- ❌ He cycle to work. — *Після `he` — `cycles`.*
-- ❌ He is cycles to work. — *Потрібно `He cycles`, без `is`.*
+- ✅ **She studies on the doorstep.**
+- ❌ She studys on the doorstep. — *Пишемо studies: замість y — ies.*
+- ❌ She study on the doorstep. — *Після she потрібно studies, з ies.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Представтеся разом із Томом: «Ми живемо тут»**
+**1 · Новачок питає про вас із братом. Скажіть: «Ми живемо в квартирі»**
 <!-- interaction_id: en:lesson-06:session-40:i01; family: phrase_builder -->
-Плитки: `here` `live` `We` → **We live here.**
+Плитки: `flat` `in` `live` `a` `We` `lives` → **We live in a flat.**
+*(плитка `lives` зайва: тут потрібно `live` — `We live in a flat.`)*
 
-**2 · Послухайте й виберіть фразу**
+**2 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-40:i02; family: listen_choose -->
-🔊 *She studies at home.* → **She studies at home.** · He studies at home. · Anna studies at home.
-- He studies at home. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
-- Anna studies at home. — *У записі перше слово — `She`, а в цьому варіанті — `Anna`.*
+🔊 *She studies in the library.* → **She studies in the library.** · She studies in the garden. · He studies in the library.
+- She studies in the garden. — *У записі останнє слово — `library`, бібліотека, а в цьому варіанті — `garden`, сад.*
+- He studies in the library. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Анна п’є воду»**
+**3 · Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-40:i03; family: context_gap_grammar -->
-Anna ___ water. → **drinks** · drink · is drinks
-- drink — *Анна — вона: `Anna drinks`.*
-- is drinks — *Потрібно `Anna drinks`, без `is`.*
+My brother ___ to work. → **cycles** · cycle · is cycles
+- cycle — *Брат — це `he`, тому потрібно `cycles`, з `s`.*
+- is cycles — *Кажемо `cycles`, без `is`.*
 
-**4 · З’єднайте знайомі слова зі значеннями**
+**4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-40:i04; family: speed_match -->
-study — учитися · drink — пити · sleep — спати · live — жити
+newcomer — новоприбулий · invitation — запрошення · flowerpot — квітковий горщик · doorstep — поріг
 
-**5 · Послухайте й складіть фразу**
+**5 · Картка слова — invitation**
+<!-- interaction_id: en:lesson-06:session-40:word:invitation; family: word_card -->
+> **invitation** — запрошення. The invitation is on the table. — «Запрошення на столі». Про листок, який кличе в гості.
+
+**6 · Послухайте новачка й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-40:i05; family: listen_build_dictation -->
-🔊 *He cycles to work.* Плитки: `work` `to` `cycles` `He` → **He cycles to work.**
+🔊 *The invitation is on the doorstep.* Плитки: `doorstep` `on` `the` `The` `invitation` `is` `are` → **The invitation is on the doorstep.**
+*(плитка `are` зайва: тут потрібно `is` — `The invitation is on the doorstep.`)*
 
-**6 · Скажіть «Вона робить покупки тут»**
+**7 · Картка слова — newcomer**
+<!-- interaction_id: en:lesson-06:session-40:word:newcomer; family: word_card -->
+> **newcomer** — новачок у домі. The newcomer is shy. — «Новачок у домі соромливий». Про людину, яка щойно переїхала.
+
+**8 · Новачок соромиться. Скажіть про нього: «Новачок соромливий»**
 <!-- interaction_id: en:lesson-06:session-40:i06; family: phrase_builder -->
-Плитки: `here` `shops` `She` → **She shops here.**
+Плитки: `newcomer` `shy` `is` `The` `are` → **The newcomer is shy.**
+*(плитка `are` зайва: тут потрібно `is` — `The newcomer is shy.`)*
 
-**7 · Покажіть улюблене місце кота: «Кіт спить тут»**
+**9 · Новачок питає, де живе ваша сестра. Скажіть: «Вона живе біля бібліотеки»**
 <!-- interaction_id: en:lesson-06:session-40:i07; family: scripted_repeat_compare -->
-🎙 **The cat sleeps here.**
+🎙 **She lives near the library.**
 
-**8 · Скажіть «Вони відпочивають тут»**
+**10 · Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-40:i08; family: context_gap_grammar -->
-They ___ here. → **rest** · rests · are rest
-- rests — *Після `they` — `rest`, без `s`.*
-- are rest — *Потрібно `They rest`, без `are`.*
+I ___ in the library. → **study** · studies · am study
+- studies — *Після `I` потрібно `study`, без змін.*
+- am study — *Кажемо `I study`, без `am`.*
 
-**9 · Послухайте, який цей термостат**
+**11 · Картка слова — flowerpot**
+<!-- interaction_id: en:lesson-06:session-40:word:flowerpot; family: word_card -->
+> **flowerpot** — квітковий горщик. The flowerpot is small. — «Квітковий горщик маленький». Про горщик, у якому росте квітка.
+
+**12 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-40:i09; family: listen_choose -->
-🔊 *This thermostat is new.* → **This thermostat is new.** · This thermostat is old. · This thermostat is small.
-- This thermostat is old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
-- This thermostat is small. — *У записі останнє слово — `new`, а в цьому варіанті — `small`.*
+🔊 *The flowerpot is small.* → **The flowerpot is small.** · The flowerpot is big. · The doorstep is small.
+- The flowerpot is big. — *У записі останнє слово — `small`, маленький, а в цьому варіанті — `big`, великий.*
+- The doorstep is small. — *У записі йдеться про `flowerpot`, квітковий горщик, а в цьому варіанті — про `doorstep`, поріг.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-40:i10; family: speed_match -->
-shop — робити покупки · rest — відпочивати · cycle — їздити велосипедом · thermostat — термостат
+doorstep — поріг · newcomer — новоприбулий · invitation — запрошення · flowerpot — квітковий горщик
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-40:i11; family: listen_build_dictation -->
-🔊 *I drink water.* Плитки: `water` `drink` `I` → **I drink water.**
+🔊 *He cycles with a helmet.* Плитки: `cycles` `with` `a` `helmet` `He` `cycle` → **He cycles with a helmet.**
+*(плитка `cycle` зайва: тут потрібно `cycles` — `He cycles with a helmet.`)*
 
-**12 · У спільній кімнаті залишили ноутбук. Запитайте «Чий це ноутбук?»**
+**15 · Новачок показує на горщик біля дверей. Спитайте: «Чий це квітковий горщик?»**
 <!-- interaction_id: en:lesson-06:session-40:i12; family: phrase_builder -->
-Плитки: `this` `is` `laptop` `Whose` → **Whose laptop is this?**
+Плитки: `flowerpot` `is` `this` `Whose` `Who` → **Whose flowerpot is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose flowerpot is this?`)*
 
-**13 · Скажіть «Вони займаються вдома»**
+**16 · Картка слова — doorstep**
+<!-- interaction_id: en:lesson-06:session-40:word:doorstep; family: word_card -->
+> **doorstep** — поріг. The doorstep is wide. — «Поріг широкий». Про сходинку просто перед вхідними дверима.
+
+**17 · Новачок питає про вас із сестрою. Скажіть: «Ми займаємося на порозі»**
 <!-- interaction_id: en:lesson-06:session-40:i13; family: scripted_repeat_compare -->
-🎙 **They study at home.**
+🎙 **We study on the doorstep.**
 
-**14 · Скажіть «Том живе тут»**
+**18 · Скажіть про запрошення: «Запрошення на столі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-40:i14; family: context_gap_grammar -->
-Tom ___ here. → **lives** · live · is lives
-- live — *Том — він: `Tom lives`.*
-- is lives — *Потрібно `Tom lives`, без `is`.*
+The invitation ___ on the table. → **is** · are · lives
+- are — *Запрошення одне, тому потрібно `is`, а не `are`.*
+- lives — *`lives` означає «живе», а тут треба сказати, де запрошення: `is on`.*
 
-**15 · Послухайте, де Анна й Том роблять покупки**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-06:session-40:i15; family: listen_choose -->
-🔊 *We shop here.* → **We shop here.** · We shop there. · We shop nearby.
-- We shop there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- We shop nearby. — *У записі останнє слово — `here`, а в цьому варіанті — `nearby`.*
+🔊 *I cycle to the park.* → **I cycle to the park.** · I cycle to work. · We cycle to the park.
+- I cycle to work. — *У записі останнє слово — `park`, парк, а в цьому варіанті — `work`, робота.*
+- We cycle to the park. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-40:i16; family: speed_match -->
-sleep — спати · cycle — їздити велосипедом · rest — відпочивати · thermostat — термостат
+invitation — запрошення · flowerpot — квітковий горщик · doorstep — поріг · newcomer — новоприбулий
 
-**17 · Новий сусід запитує, де зазвичай займається Анна. Дайте відповідь «Вона займається вдома»**
+**21 · Новачок питає про вашого брата. Скажіть: «Він їздить на роботу на велосипеді»**
 <!-- interaction_id: en:lesson-06:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She studies at home.**
-
+🎙 **He cycles to work.**

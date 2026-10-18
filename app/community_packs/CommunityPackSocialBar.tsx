@@ -297,13 +297,14 @@ export default function CommunityPackSocialBar({
           ? actionToastTri('error', {
             ru: 'Не удалось поставить лайк. Попробуй ещё раз', uk: 'Не вдалося поставити вподобання. Спробуй ще раз',
             en: "Couldn't like the pack. Try again", es: 'No se pudo dar me gusta. Inténtalo de nuevo',
-            'pt-BR': 'Não foi possível curtir. Tente de novo', vi: 'Không thích được. Hãy thử lại',
+            // зачем (переводчик 18.10): vi «Không thích được» читалось как «не могу полюбить» — говорим «ещё не отметили набор»
+            'pt-BR': 'Não foi possível curtir. Tente de novo', vi: 'Chưa thích được bộ thẻ. Hãy thử lại',
             id: 'Gagal menyukai. Coba lagi', tr: 'Beğenilemedi. Tekrar dene', pl: 'Nie udało się polubić. Spróbuj ponownie',
           })
           : actionToastTri('error', {
             ru: 'Не удалось убрать лайк. Попробуй ещё раз', uk: 'Не вдалося прибрати вподобання. Спробуй ще раз',
             en: "Couldn't remove the like. Try again", es: 'No se pudo quitar el me gusta. Inténtalo de nuevo',
-            'pt-BR': 'Não foi possível remover a curtida. Tente de novo', vi: 'Không bỏ thích được. Hãy thử lại',
+            'pt-BR': 'Não foi possível remover a curtida. Tente de novo', vi: 'Chưa bỏ thích được. Hãy thử lại',
             id: 'Gagal membatalkan suka. Coba lagi', tr: 'Beğeni kaldırılamadı. Tekrar dene', pl: 'Nie udało się cofnąć polubienia. Spróbuj ponownie',
           }));
     };

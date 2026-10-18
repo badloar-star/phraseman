@@ -23,6 +23,7 @@ import { openAiChat } from './explain/explain_provider';
 import { assertAiOutputLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type AiOutputLang } from './ai_language_contract';
 import { enforceFreeJobGenLimit, refundFreeJobGenLimit, type FreeJobGenReservation } from './explain/explain_budget';
 import { PAID_AI_FETCH_TIMEOUT_MS } from './paid_ai_fetch_timeout';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const REGION = 'us-central1';
@@ -199,6 +200,10 @@ export const mistakeHubAdvice = onCall({
   let reservation: FreeJobGenReservation | null;
   try {
     reservation = await enforceFreeJobGenLimit(HUB_ADVICE_JOB, authUid, stableUid, HUB_ADVICE_DAILY_GEN_CAP, nowMs);
+    // зачем (Ревизор 18.10, аудит п.4): общий дневной потолок ПЛАТНЫХ генераций советов — 2000 на всё приложение (кэш не считается).
+    await enforceCallerRateWindow({ scope: 'hub_advice_global', authUid: '__all__', rawRequest: null, maxPerUid: 2000, maxPerIp: 0, windowMs: 24 * 60 * 60 * 1000 });
+    // зачем (Ревизор 18.10, аудит п.3): потолок ПЛАТНЫХ генераций советов на IP в сутки (открытие хаба из кэша не считается).
+    await enforceCallerRateWindow({ scope: 'hub_advice_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 });
   } catch (limitError) {
     console.warn('[AI-LIMIT] mistake_hub_advice daily cap refused', {
       reason: limitError instanceof HttpsError ? limitError.message : 'limit_check_failed',

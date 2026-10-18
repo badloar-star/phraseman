@@ -47,6 +47,8 @@ import {
   resolveDialogIdentityCached,
 } from './premium_dialog_fastpath';
 import { reserveDailySpend } from './spend_cap';
+import { enforceCallerRateWindow } from './caller_rate_window';
+import { enforceFreeJobGenLimit } from './explain/explain_budget';
 
 import { reportSwallowedServer, swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 // A targeted/isolated deployment can load this module directly instead of lib/index.js.
@@ -1156,13 +1158,20 @@ export const premiumDialogSend = onCall({
   // зачем: сохраняем прежнее поведение отказов — если сработал часовой лимит, а
   // квота успела списаться, возвращаем её обратно, иначе реплика «сгорала» бы
   // впустую при rate-limit.
+  // зачем (Ревизор 18.10, аудит накрутки п.3): бесплатные реплики — не больше 60 в сутки с одного IP (общий счёт с потоковой отправкой
+  // и dialogueV2TextTurn, scope dlg_free_ip), и анониму квота 5 вместо обычной: ферма анонимов иначе получала 30 на каждый uid.
+  if (!isPremium) {
+    await enforceCallerRateWindow({ scope: 'dlg_free_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 60, windowMs: 24 * 60 * 60 * 1000 });
+  }
+  const anonymousCaller = String((request.auth?.token as { firebase?: { sign_in_provider?: unknown } } | undefined)?.firebase?.sign_in_provider ?? '') === 'anonymous';
+  const freeMonthlyCap = anonymousCaller ? Math.min(5, dialogQuota.freeMonthlyReplies) : dialogQuota.freeMonthlyReplies;
   const quotaPromise = enforceMonthlyQuota(
     authUid,
     stableUid,
     isPremium,
     // Premium получает premium-кап. Режим «Фри» из админ-пульта сохраняет отдельный
     // бюджетный cap, но не выдаёт premium-квоту.
-    dialogQuota.freeMonthlyReplies,
+    freeMonthlyCap,
   );
   const [rateResult, quotaResult] = await Promise.allSettled([
     enforceRateLimit(authUid, stableUid),
@@ -1722,6 +1731,12 @@ export const premiumDialogTranslate = onCall({
   // Rate-limit против абьюза перевода — своё окно 'tr', чтобы предзагрузка
   // переводов не съедала часовой лимит самих реплик (см. enforceRateLimit).
   await enforceRateLimit(authUid, stableUid, 'tr');
+  // зачем (Ревизор 18.10, аудит накрутки п.1/п.3): у бесплатных был только часовой 'tr' 60/ч — до 1440 платных переводов в сутки на
+  // анонима. Дневной потолок 50 на uid и 200 на IP (ферма анонимов). Plus — без изменений.
+  if (!isPremium) {
+    await enforceFreeJobGenLimit('dialog_tr', authUid, stableUid, 50);
+    await enforceCallerRateWindow({ scope: 'dlg_tr_free', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 200, windowMs: 24 * 60 * 60 * 1000 });
+  }
   timer.mark('limitsMs');
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);

@@ -58,3 +58,19 @@ Contain: оценки, а не фактическая стоимость. Пер
 ## Rollback
 
 Флаг `enabled: false` в `spend_cap_config/global` отключает слой 2 без выкладки. Код — ревертнуть коммит.
+
+## Слой 1: задачи Ревизора 1–6 (firebase-abuse-limits-audit-2026-10-18.md)
+
+Governance-ID: TG-0AAC437206C8
+
+1. **premiumDialogTranslate.** Бесплатным — дневной потолок 50 на uid (enforceFreeJobGenLimit 'dialog_tr') и 200 в сутки на IP. Plus не трогаем.
+2. **Общий дневной потолок бесплатных 20 000/сутки** (enforceGlobalBudget) закрыт слоем 2 (37e8d86cf). Один документ на каждый вызов упирается в предел Firestore около одной записи в секунду на документ. Шардированный счётчик расходов это закрывает. Решение — ревью Ревизора.
+3. **IP на ИИ, сутки:**
+   - бесплатные ходы диалога (premiumDialogSend/Stream, dialogueV2TextTurn) — 60;
+   - перевод — 200;
+   - explainMistake/explainPhrase/explainChoice — 30.
+4. **Дневные общие потолки** через reserveExplainBudget: explainMistake 3000, mistakeHubAdvice 2000.
+5. **webLeadCapture:** IP 5/ч и 20/сутки.
+6. **maxInstances:** ИИ 20 → 10, englishTestApi 100 → 10, content learningV2*SessionGet* 40 → 10.
+
+Анониму квота диалога 5 вместо 30 — отдельным шагом. Нужно провести sign_in_provider в квоту V2: она считается внутри зависимостей хода.

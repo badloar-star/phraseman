@@ -36,6 +36,7 @@ import { buildExplainPrompt, buildJudgeOutputLanguageSample, resolvePromptLangKe
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -141,6 +142,8 @@ export const explainPhrase = onCall({
   const authUid = request.auth.uid;
   // SECURITY: resolve the stable identity from auth ONLY. Two args — request.data is NOT passed.
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  // зачем (Ревизор 18.10, аудит накрутки п.3/п.4): ферма анонимов с одного адреса — потолок вызовов в сутки на IP.
+  await enforceCallerRateWindow({ scope: 'explain_phrase_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 });
 
   // 2. Deterministic input gate (level 1) — reject junk before any cache/AI work.
   const input = validateExplainInput({ phraseEn, phraseMeaning, lang });

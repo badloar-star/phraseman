@@ -35,6 +35,7 @@ import { resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -120,6 +121,8 @@ export const explainChoice = onCall({
   const jobCfg = await resolveJobConfig(db, 'choice');
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  // зачем (Ревизор 18.10, аудит накрутки п.3/п.4): ферма анонимов с одного адреса — потолок вызовов в сутки на IP.
+  await enforceCallerRateWindow({ scope: 'explain_choice_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 });
 
   // 2. Deterministic input gate — also returns the cleaned/capped distractor list.
   const input = validateChoiceInput({ correctEn, phraseMeaning, distractors: rawDistractors, lang });

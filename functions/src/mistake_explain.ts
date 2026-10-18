@@ -43,6 +43,7 @@ import {
   type MistakeOpenAiUsage,
 } from './explain/mistake_output_retry';
 import { reserveDailySpend } from './spend_cap';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -306,6 +307,8 @@ function sanitizePayload(data: ExplainMistakeRequest): ExplainMistakePayload {
 }
 
 async function enforceRateLimit(db: FirebaseFirestore.Firestore, authUid: string, stableUid: string): Promise<void> {
+  // зачем (Ревизор 18.10, аудит п.4): общий дневной потолок ПЛАТНЫХ объяснений ошибок — 3000 на всё приложение (зовётся только на промахе кэша).
+  await enforceCallerRateWindow({ scope: 'mistake_explain_global', authUid: '__all__', rawRequest: null, maxPerUid: 3000, maxPerIp: 0, windowMs: 24 * 60 * 60 * 1000 });
   const now = Date.now();
   const ref = db.collection(RATE_COLLECTION).doc(docId('mistake-rate', authUid, stableUid));
   await db.runTransaction(async (tx) => {
@@ -888,6 +891,8 @@ export const explainMistake = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  // зачем (Ревизор 18.10, аудит накрутки п.3/п.4): ферма анонимов с одного адреса — потолок вызовов в сутки на IP.
+  await enforceCallerRateWindow({ scope: 'mistake_explain_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 });
 
   const langKey = resolvePromptLangKey(payload.interfaceLang);
   const mistakeHash = mistakeHashFor(payload.targetAnswer, payload.userAnswer, langKey, payload.studyTarget);

@@ -70,6 +70,7 @@ import {
   resolveDialogIdentityCached,
 } from './premium_dialog_fastpath';
 import { reserveDailySpend } from './spend_cap';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export { createLiveReplyPublisher, extractPartialReply };
@@ -212,9 +213,11 @@ export const premiumDialogStream = onRequest({
     return;
   }
   let authUid: string;
+  let signInProvider = '';
   try {
     const decoded = await admin.auth().verifyIdToken(idToken);
     authUid = decoded.uid;
+    signInProvider = String(decoded.firebase?.sign_in_provider ?? '');
   } catch (e) {
     console.warn('[DIALOG-LAT] stream: id token rejected', {
       reason: String((e as Error)?.message ?? e).slice(0, 120),
@@ -325,6 +328,18 @@ export const premiumDialogStream = onRequest({
     res.status(403).json({ error: 'dialog_plus_required' });
     return;
   }
+  // зачем (Ревизор 18.10, аудит накрутки п.3): бесплатные реплики — не больше 60 в сутки с одного IP (общий счёт с premiumDialogSend и
+  // dialogueV2TextTurn), анониму квота 5 вместо обычной.
+  if (!isPremium) {
+    try {
+      await enforceCallerRateWindow({ scope: 'dlg_free_ip', authUid, rawRequest: req, maxPerUid: 0, maxPerIp: 60, windowMs: 24 * 60 * 60 * 1000 });
+    } catch (limitError) {
+      console.warn('[ABUSE-LIMIT] stream refused', { reason: String((limitError as Error)?.message ?? limitError).slice(0, 80) });
+      res.status(429).json({ error: 'dialog_rate_limited' });
+      return;
+    }
+  }
+  const freeMonthlyCap = signInProvider === 'anonymous' ? Math.min(5, dialogQuota.freeMonthlyReplies) : dialogQuota.freeMonthlyReplies;
 
   // Часовой лимит и дневная квота живут в РАЗНЫХ документах — идут параллельно.
   const [rateResult, quotaResult] = await Promise.allSettled([
@@ -333,7 +348,7 @@ export const premiumDialogStream = onRequest({
       authUid,
       stableUid,
       isPremium,
-      dialogQuota.freeMonthlyReplies,
+      freeMonthlyCap,
     ),
   ]);
   timer.mark('limitsMs');

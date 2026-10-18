@@ -29,6 +29,7 @@ import {
   unsubscribeUrlFor,
 } from './email_unsubscribe';
 import { RESEND_API_KEY } from './resend_secret';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 const REGION = 'us-central1';
 const LEADS_COLLECTION = 'web_leads';
@@ -363,6 +364,16 @@ export const webLeadCapture = onRequest(
     const email = normalizeEmailContactEmail(body.email);
     if (!email) {
       res.status(400).json({ ok: false, error: 'invalid_email' });
+      return;
+    }
+    // зачем (Ревизор 18.10, аудит накрутки п.5): публичная форма шлёт письма Resend на любой адрес — кулдаун был только на адрес,
+    // и скрипт с одного IP мог бомбить чужие ящики и жечь репутацию домена. Потолок IP: 5 в час и 20 в сутки, до записи и письма.
+    try {
+      await enforceCallerRateWindow({ scope: 'web_lead_ip_h', authUid: null, rawRequest: req, maxPerUid: 0, maxPerIp: 5 });
+      await enforceCallerRateWindow({ scope: 'web_lead_ip_d', authUid: null, rawRequest: req, maxPerUid: 0, maxPerIp: 20, windowMs: 24 * 60 * 60 * 1000 });
+    } catch (limitError) {
+      logger.warn('[ABUSE-LIMIT] webLeadCapture refused', { reason: String((limitError as Error)?.message ?? limitError).slice(0, 80) });
+      res.status(429).json({ ok: false, error: 'rate_limited' });
       return;
     }
 

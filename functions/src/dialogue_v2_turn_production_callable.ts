@@ -773,6 +773,10 @@ export function createDialogueV2SessionTextTurnHandler(
             sessionGroupState: serverTurn.groupState,
             resolveStableAccountId: async () => stableAccountId,
             reserveMonthlyQuota: async (uid, stableId, premium) => {
+              // зачем (Ревизор 18.10, аудит накрутки п.3): бесплатные реплики — не больше 60 в сутки с одного IP, общий счёт с premiumDialogSend/Stream.
+              if (!premium) {
+                await enforceCallerRateWindow({ scope: 'dlg_free_ip', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 60, windowMs: 24 * 60 * 60 * 1000 });
+              }
               const next = await baseReserve(uid, stableId, premium);
               reservation = next;
               return next;

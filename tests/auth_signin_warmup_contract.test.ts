@@ -61,6 +61,10 @@ describe('sign-in warm path contract (latency fix 2026-08-22)', () => {
     expect(slice).toContain("'authEnsureStableLink'");
     expect(slice).toContain("'authStampAnonOwnership'");
     expect(slice).toContain("'authMergeStableAccounts'");
+    // 18.10 (Ядро, Cloud Run: 7,2 с холодной привязки Apple на iPhone) — привязка Apple греется вместе с остальными
+    expect(slice).toContain("'authAppleLinkByVerifiedEmail'");
+    expect(slice).toContain('[AUTH-WARM] sent source=${source}');
+    expect(slice).toContain('[AUTH-WARM] skip source=${source} reason=throttled');
     expect(slice).toContain('AUTH_WARMUP_THROTTLE_MS');
     // ошибка прогрева не глушится молча (правило «ни одного немого catch»), но и не мешает входу.
     expect(slice).toContain("swallowError('cloud_sync:warmAuthSignInCallables')");
@@ -81,5 +85,8 @@ describe('sign-in warm path contract (latency fix 2026-08-22)', () => {
     // Экран аккаунта (14.10, [ACC-SPEED]): будим функции входа ещё до тапа «Войти»/«Сменить».
     const accountDetails = readFileSync(path.join(__dirname, '..', 'app', 'account_details.tsx'), 'utf8');
     expect(accountDetails).toContain("useEffect(() => { warmAuthSignInCallables('account_details'); }, []);");
+    // 18.10: ещё раньше — на фокусе Настроек, после кадра (оттуда идут в «Аккаунт» и к окну входа)
+    const settings = readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
+    expect(settings).toContain("InteractionManager.runAfterInteractions(() => { warmAuthSignInCallables('settings_focus'); });");
   });
 });

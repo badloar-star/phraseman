@@ -52,6 +52,7 @@ import { type StudyTarget } from '../study_target';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { triLang } from '../../constants/i18n';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
+import { warmAuthSignInCallables } from '../cloud_sync';
 import { readAccountSwitchUnsavedCardsDecision } from '../account_switch_unsaved_cards';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { useGlassAlert } from '../../hooks/use-glass-alert';
@@ -203,6 +204,12 @@ export default function SettingsMain() {
     const sinceCommit = perfRef.current.committedAt > 0 ? now - perfRef.current.committedAt : -1;
     noteTabFirstFrame(4, 'settings:first_focus', { sinceRenderMs: now - perfRef.current.firstRenderAt, sinceCommitMs: sinceCommit });
     console.warn(`[SETTINGS-PERF] first_focus sinceRenderMs=${now - perfRef.current.firstRenderAt} sinceCommitMs=${sinceCommit} premounted=${sinceCommit > 500 ? 'да' : 'нет'}`); // guard-ok: временный замер №16
+  }, []));
+  // зачем (координатор и Ядро 18.10: холодный старт функций входа ~6 с, прогрев приходил ПОСЛЕ настоящего вызова): будим их уже
+  // на фокусе Настроек — отсюда человек идёт в «Аккаунт» и к окну входа. После кадра, троттл 10 мин внутри, журнал [AUTH-WARM].
+  useFocusEffect(React.useCallback(() => {
+    const task = InteractionManager.runAfterInteractions(() => { warmAuthSignInCallables('settings_focus'); });
+    return () => task.cancel();
   }, []));
   // зачем (№16, сперва логи): доля первого кадра по поддеревьям — тело экрана и окно входа; только монтирование, только dev.
   useFocusEffect(React.useCallback(() => {

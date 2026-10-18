@@ -1314,10 +1314,8 @@ test('a timed-out normal Google picker keeps blocking recovery until native sett
     const normal = mod.signInWithProvider('google');
 
     await jest.advanceTimersByTimeAsync(30_001);
-    await expect(normal).resolves.toMatchObject({
-      result: 'error',
-      error: expect.stringContaining('google_signin_timeout'),
-    });
+    // зачем (координатор 18.10, iPhone 14:22): истёкший срок окна Google — тихая отмена, без карточки ошибки
+    await expect(normal).resolves.toEqual({ result: 'cancelled' });
     await expect(mod.acquireAuthRecoveryNativeCredential('apple'))
       .rejects.toThrow('auth_recovery_credential_blocked_signin_google');
 

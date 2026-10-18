@@ -33,7 +33,7 @@ import Constants from 'expo-constants';
 import * as Crypto from 'expo-crypto';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
-import { Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, setStableId, clearStableId, peekStableId, readExistingStableId } from './stable_id';
 import { identityErrorCode, identityTag, identityTrace, identityTraceClockMs } from './identity_trace';
@@ -2028,7 +2028,23 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
     }
     const nativeTask = googleNativeSignInInFlight;
     if (!nativeTask) throw new Error('google_signin_native_task_missing');
-    res = await withTimeout(nativeTask.promise, GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
+    // зачем (iPhone 14:22: окно Google → 30 с → таймаут; по журналу не отличить «ещё выбирает» от «вызов завис»): пока ждём
+    // ответ Google, пишем каждый переход приложения (системный запрос Google, веб-окно, возврат) с мс от открытия окна.
+    const pickerWaitStartedAt = Date.now();
+    const pickerAppStateSub = typeof AppState?.addEventListener === 'function'
+      ? AppState.addEventListener('change', (state) => {
+        console.log(`[AUTH-GOOGLE-PICKER] app_state=${state} sincePickerMs=${Date.now() - pickerWaitStartedAt}`); // guard-ok: без идентификаторов
+      })
+      : null;
+    try {
+      res = await withTimeout(nativeTask.promise, GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
+      console.log(`[AUTH-GOOGLE-PICKER] settled outcome=${String(res?.type ?? 'flat')} ms=${Date.now() - pickerWaitStartedAt}`); // guard-ok: только тип ответа
+    } catch (pickerError) {
+      console.warn(`[AUTH-GOOGLE-PICKER] settled outcome=rejected code=${identityErrorCode(pickerError)} ms=${Date.now() - pickerWaitStartedAt}`); // guard-ok: catch пишет причину
+      throw pickerError;
+    } finally {
+      pickerAppStateSub?.remove();
+    }
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn returned', JSON.stringify({
       type: res?.type,
       hasData: !!(res?.data ?? res),
@@ -2842,6 +2858,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       directCred = await openProviderPickerForDirectSwitch(provider);
     } catch (pickerError) {
       authSwitchTrace('rule3 picker_failed', { provider, code: identityErrorCode(pickerError) });
+      // зачем (координатор 18.10, iPhone 14:22: карточка через 30 с): истёкший срок окна выбора — тихо, человек остаётся в A
+      if (identityErrorCode(pickerError) === 'google_signin_timeout') {
+        authSwitchTrace('rule3 picker_timeout', { provider, outcome: 'silent_cancel_stay_in_current_account' });
+        return { result: 'cancelled' };
+      }
       return { result: 'error', error: `native_${identityErrorCode(pickerError)}` };
     }
     if ('cancelled' in directCred) {
@@ -2928,6 +2949,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     logAuthEvent('auth_signin_error', { provider, stage: 'native', error: telemetryCode });
     const errStr = `native_${detail}`.slice(0, 120);
     identityTrace('[AUTH-LINK-GOOGLE]', 'native failed', { provider, code: identityErrorCode(e) });
+    // зачем (координатор 18.10, iPhone 14:22): срок окна выбора Google истёк — не ошибка, а тихий возврат в окно входа,
+    // как при отмене. Нативный вызов остаётся и переиспользуется следующим нажатием (второе окно не откроется).
+    if (errStr.includes('google_signin_timeout')) {
+      console.warn(`[AUTH-GOOGLE-PICKER] timeout silent_cancel provider=${provider} source=sign_in`); // guard-ok: ранний выход пишет причину
+      logAuthEvent('auth_signin_cancelled', { provider, reason: 'picker_timeout' });
+      return { result: 'cancelled' };
+    }
     if (errStr.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
       return { result: 'error', error: errStr };
     }

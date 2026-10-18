@@ -2203,11 +2203,15 @@ export function warmAuthSignInCallables(source = 'unknown'): void {
   const nowMs = Date.now();
   if (nowMs - lastAuthWarmupAtMs < AUTH_WARMUP_THROTTLE_MS) {
     console.log(`[ACC-SPEED] warm skip source=${source} reason=throttled sinceLastMs=${nowMs - lastAuthWarmupAtMs}`); // guard-ok: ранний выход
+    console.log(`[AUTH-WARM] skip source=${source} reason=throttled sinceLastMs=${nowMs - lastAuthWarmupAtMs}`); // guard-ok: ранний выход
     return;
   }
   lastAuthWarmupAtMs = nowMs;
   console.log(`[ACC-SPEED] warm start source=${source}`); // guard-ok: старт прогрева
-  const names = ['authEnsureStableLink', 'authStampAnonOwnership', 'authMergeStableAccounts'];
+  // зачем (координатор и Ядро 18.10, Cloud Run: 7,2 с привязки Apple и 7,98 с ensureLink на iPhone — холодный старт ~6 с,
+  // тёплые 0,15–0,36 с): привязка Apple по проверенной почте греется вместе с остальными; сервер отвечает на warmup до проверки входа.
+  const names = ['authEnsureStableLink', 'authStampAnonOwnership', 'authMergeStableAccounts', 'authAppleLinkByVerifiedEmail'];
+  console.log(`[AUTH-WARM] sent source=${source} at=${new Date(nowMs).toISOString()} fns=${names.join(',')}`); // guard-ok: когда и что греем
   // зачем (координатор 14.10, прогон №5 + лог Cloud Run): через callable() прогревы вставали в ОДНОПОТОЧНУЮ очередь RNFirebase
   // (firebase.json android_task_executor_maximum_pool_size: 0 — инвариант утечки потоков, не трогаем) и приходили на сервер
   // по одному: 13,3 / 22,4 / 32,4 с, а реальные вызовы входа ждали за ними. Обычный fetch идёт мимо очереди — параллельно.

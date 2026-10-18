@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-08:session-01:word:sew",
+    "correctText": "sew",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-01:i01",
-    "correctText": "I can whistle.",
+    "correctText": "I can sew.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i02",
-    "correctText": "whistle",
+    "correctText": "I can sew.",
     "correctResponseId": "en:lesson-08:session-01:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-01:i03",
-    "correctText": "whistle",
+    "correctText": "sew",
     "correctResponseId": "en:lesson-08:session-01:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-01:i04",
-    "correctText": "en:lesson-08:session-01:i04:p1=whistle\nen:lesson-08:session-01:i04:p2=pharmacy\nen:lesson-08:session-01:i04:p3=library\nen:lesson-08:session-01:i04:p4=bakery",
+    "correctText": "en:lesson-08:session-01:i04:p1=sew\nen:lesson-08:session-01:i04:p2=door\nen:lesson-08:session-01:i04:p3=button\nen:lesson-08:session-01:i04:p4=coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-01:word:dance",
+    "correctText": "dance",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i05",
-    "correctText": "I can whistle.",
+    "correctText": "He can dance.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i06",
-    "correctText": "I can swim.",
+    "correctText": "He can dance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-01:word:rucksack",
+    "correctText": "rucksack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i07",
-    "correctText": "She can drive.",
+    "correctText": "Whose rucksack is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i08",
-    "correctText": "drive",
+    "correctText": "can",
     "correctResponseId": "en:lesson-08:session-01:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-01:i09",
-    "correctText": "I can whistle.",
+    "correctText": "Whose rucksack is this?",
     "correctResponseId": "en:lesson-08:session-01:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-01:i10",
-    "correctText": "en:lesson-08:session-01:i10:p1=factory\nen:lesson-08:session-01:i10:p2=work\nen:lesson-08:session-01:i10:p3=camp\nen:lesson-08:session-01:i10:p4=whistle",
+    "correctText": "en:lesson-08:session-01:i10:p1=dance\nen:lesson-08:session-01:i10:p2=rucksack\nen:lesson-08:session-01:i10:p3=sew\nen:lesson-08:session-01:i10:p4=door",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i11",
-    "correctText": "She can drive.",
+    "correctText": "Whose rucksack is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-01:word:type",
+    "correctText": "type",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i12",
-    "correctText": "Where is the pharmacy?",
+    "correctText": "I can type.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i13",
-    "correctText": "I work in a factory.",
+    "correctText": "She can sew.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i14",
-    "correctText": "can",
+    "correctText": "type",
     "correctResponseId": "en:lesson-08:session-01:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-01:i15",
-    "correctText": "Where is the library?",
+    "correctText": "I can type.",
     "correctResponseId": "en:lesson-08:session-01:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-01:i16",
-    "correctText": "en:lesson-08:session-01:i16:p1=whistle\nen:lesson-08:session-01:i16:p2=library\nen:lesson-08:session-01:i16:p3=bakery\nen:lesson-08:session-01:i16:p4=work",
+    "correctText": "en:lesson-08:session-01:i16:p1=sew\nen:lesson-08:session-01:i16:p2=type\nen:lesson-08:session-01:i16:p3=dance\nen:lesson-08:session-01:i16:p4=rucksack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-01:i17",
-    "correctText": "Tom can whistle.",
+    "correctText": "She can sew and dance.",
     "correctResponseId": null
   }
 ]

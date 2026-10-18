@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-08:session-03:word:speak",
+    "correctText": "speak",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-03:i01",
-    "correctText": "I can type.",
+    "correctText": "I can speak English.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i02",
-    "correctText": "type",
+    "correctText": "I can speak English.",
     "correctResponseId": "en:lesson-08:session-03:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-03:i03",
-    "correctText": "type",
+    "correctText": "speak",
     "correctResponseId": "en:lesson-08:session-03:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-03:i04",
-    "correctText": "en:lesson-08:session-03:i04:p1=type\nen:lesson-08:session-03:i04:p2=bank\nen:lesson-08:session-03:i04:p3=parcel\nen:lesson-08:session-03:i04:p4=poster",
+    "correctText": "en:lesson-08:session-03:i04:p1=speak\nen:lesson-08:session-03:i04:p2=photo\nen:lesson-08:session-03:i04:p3=tyre\nen:lesson-08:session-03:i04:p4=planner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-03:word:edit",
+    "correctText": "edit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i05",
-    "correctText": "I can type.",
+    "correctText": "He can edit photos.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i06",
-    "correctText": "She can dance.",
+    "correctText": "He can edit photos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-03:word:jeans",
+    "correctText": "jeans",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i07",
-    "correctText": "Whose poster is this?",
+    "correctText": "Whose jeans are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i08",
-    "correctText": "dance",
+    "correctText": "edit",
     "correctResponseId": "en:lesson-08:session-03:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-03:i09",
-    "correctText": "I can type.",
+    "correctText": "Whose jeans are these?",
     "correctResponseId": "en:lesson-08:session-03:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-03:i10",
-    "correctText": "en:lesson-08:session-03:i10:p1=dance\nen:lesson-08:session-03:i10:p2=type\nen:lesson-08:session-03:i10:p3=bank\nen:lesson-08:session-03:i10:p4=parcel",
+    "correctText": "en:lesson-08:session-03:i10:p1=speak\nen:lesson-08:session-03:i10:p2=jeans\nen:lesson-08:session-03:i10:p3=planner\nen:lesson-08:session-03:i10:p4=edit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i11",
-    "correctText": "Whose poster is this?",
+    "correctText": "Whose jeans are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i12",
-    "correctText": "Whose parcel is this?",
+    "correctText": "Can you speak English?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-03:word:inflate",
+    "correctText": "inflate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i13",
-    "correctText": "I often dance at home.",
+    "correctText": "I can inflate the tyre.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i14",
-    "correctText": "can",
+    "correctText": "inflate",
     "correctResponseId": "en:lesson-08:session-03:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-03:i15",
-    "correctText": "Where is the bank?",
+    "correctText": "I can inflate the tyre.",
     "correctResponseId": "en:lesson-08:session-03:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-03:i16",
-    "correctText": "en:lesson-08:session-03:i16:p1=type\nen:lesson-08:session-03:i16:p2=poster\nen:lesson-08:session-03:i16:p3=parcel\nen:lesson-08:session-03:i16:p4=dance",
+    "correctText": "en:lesson-08:session-03:i16:p1=speak\nen:lesson-08:session-03:i16:p2=edit\nen:lesson-08:session-03:i16:p3=jeans\nen:lesson-08:session-03:i16:p4=inflate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-03:i17",
-    "correctText": "Tom can type.",
+    "correctText": "He can speak English and edit photos.",
     "correctResponseId": null
   }
 ]

@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Получилось свистнуть",
-        "uk": "Вдалося свиснути"
+        "ru": "Оторванная пуговица",
+        "uk": "Відірваний ґудзик"
       },
       "bodyByLocale": {
-        "ru": "Друг пытается свистнуть и спрашивает, умеете ли вы. `Whistle` — «свистеть». `I can whistle` — «Я умею свистеть». `Can` перед действием говорит об умении. После него ставим `whistle`: добавлять `to` не нужно. Чайник тоже свистит, но ему для этого приходится закипеть.",
-        "uk": "Друг намагається свиснути й запитує, чи вмієте ви. `Whistle` — «свистіти». `I can whistle` — «Я вмію свистіти». `Can` перед дією говорить про вміння. Після нього ставимо `whistle`: додавати `to` не потрібно. Чайник теж свистить, але йому для цього доводиться закипіти."
+        "ru": "Соседка принесла пальто: на нём оторвалась пуговица, а выходить ей уже сегодня. Она спрашивает, сможете ли вы помочь. sew — «шить». Вы шьёте иголкой и ниткой, поэтому отвечаете: I can sew — «Я умею шить». После can слово sew идёт без to и без s.",
+        "uk": "Сусідка принесла пальто: на ньому відірвався ґудзик, а виходити їй уже сьогодні. Вона питає, чи зможете ви допомогти. sew — «шити». Ви шиєте голкою й ниткою, тому відповідаєте: I can sew — «Я вмію шити». Після can слово sew йде без to й без s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-01:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что умеете свистеть.",
-          "uk": "Скажіть другові, що вмієте свистіти."
+          "ru": "Соседка просит пришить пуговицу. Скажите ей: «Я умею шить».",
+          "uk": "Сусідка просить пришити ґудзик. Скажіть їй: «Я вмію шити»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-01:intro1:r1",
-              "text": "I can whistle."
+              "text": "I can sew."
             },
             {
               "responseId": "en:lesson-08:session-01:intro1:r2",
-              "text": "I can to whistle."
+              "text": "I can to sew."
             },
             {
               "responseId": "en:lesson-08:session-01:intro1:r3",
-              "text": "I am can whistle."
+              "text": "I can sews."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-01:intro1:r1",
-              "text": "I can whistle."
+              "text": "I can sew."
             },
             {
               "responseId": "en:lesson-08:session-01:intro1:r2",
-              "text": "I can to whistle."
+              "text": "I can to sew."
             },
             {
               "responseId": "en:lesson-08:session-01:intro1:r3",
-              "text": "I am can whistle."
+              "text": "I can sews."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что умеете свистеть.",
-          "uk": "Скажіть другові, що вмієте свистіти."
+          "ru": "Соседка просит пришить пуговицу. Скажите ей: «Я умею шить».",
+          "uk": "Сусідка просить пришити ґудзик. Скажіть їй: «Я вмію шити»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "У воды",
-        "uk": "Біля води"
+        "ru": "Свадьба и танцы",
+        "uk": "Весілля й танці"
       },
       "bodyByLocale": {
-        "ru": "Перед купанием друг спрашивает, умеете ли вы плавать. `I can swim` — «Я умею плавать». Здесь `can` показывает умение: вы знаете, как плавать. После `can` нужно `swim`, без `to`.",
-        "uk": "Перед купанням друг запитує, чи вмієте ви плавати. `I can swim` — «Я вмію плавати». Тут `can` показує вміння: ви знаєте, як плавати. Після `can` потрібне `swim`, без `to`."
+        "ru": "Подруга зовёт вас на свадьбу и спрашивает, умеет ли ваш брат танцевать: там будет музыка и танцы до самой ночи. dance — «танцевать». Брат давно ходил на занятия, поэтому вы отвечаете: He can dance — «Он умеет танцевать». Can после he не меняется.",
+        "uk": "Подруга кличе вас на весілля й питає, чи вміє ваш брат танцювати: там буде музика й танці до самої ночі. dance — «танцювати». Брат давно ходив на заняття, тому ви відповідаєте: He can dance — «Він уміє танцювати». Can після he не змінюється: закінчення s не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-08:session-01:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете плавать.",
-          "uk": "Скажіть, що вмієте плавати."
+          "ru": "Подруга спрашивает о брате. Скажите ей: «Он умеет танцевать».",
+          "uk": "Подруга питає про брата. Скажіть їй: «Він уміє танцювати»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-01:intro2:r1",
-              "text": "I can swim."
+              "text": "He can dance."
             },
             {
               "responseId": "en:lesson-08:session-01:intro2:r2",
-              "text": "I can to swim."
+              "text": "He cans dance."
             },
             {
               "responseId": "en:lesson-08:session-01:intro2:r3",
-              "text": "I can swims."
+              "text": "He can dances."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-01:intro2:r1",
-              "text": "I can swim."
+              "text": "He can dance."
             },
             {
               "responseId": "en:lesson-08:session-01:intro2:r2",
-              "text": "I can to swim."
+              "text": "He cans dance."
             },
             {
               "responseId": "en:lesson-08:session-01:intro2:r3",
-              "text": "I can swims."
+              "text": "He can dances."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете плавать.",
-          "uk": "Скажіть, що вмієте плавати."
+          "ru": "Подруга спрашивает о брате. Скажите ей: «Он умеет танцевать».",
+          "uk": "Подруга питає про брата. Скажіть їй: «Він уміє танцювати»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто умеет водить",
-        "uk": "Хто вміє водити"
+        "ru": "Рюкзак у двери",
+        "uk": "Наплічник біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете поездку со знакомой. Друг спрашивает, умеет ли она водить. `She can drive` — «Она умеет водить». `Can` не меняется после `she`, а у `drive` после `can` нет окончания `s`.",
-        "uk": "Ви обговорюєте поїздку зі знайомою. Друг запитує, чи вміє вона водити. `She can drive` — «Вона вміє водити». `Can` не змінюється після `she`, а в `drive` після `can` немає закінчення `s`."
+        "ru": "Гости разошлись, а у входной двери остался стоять рюкзак. Сестра вышла в коридор вместе с вами, и вы хотите узнать, чей он и кому его вернуть. rucksack — «рюкзак». Вы спрашиваете: Whose rucksack is this — «Чей это рюкзак?». Whose стоит в начале вопроса.",
+        "uk": "Гості розійшлися, а біля вхідних дверей лишився стояти наплічник. Сестра вийшла в коридор разом із вами, і ви хочете дізнатися, чий він і кому його повернути. rucksack — «наплічник». Ви питаєте: Whose rucksack is this — «Чий це наплічник?». Whose стоїть на початку питання."
       },
       "question": {
         "interactionId": "en:lesson-08:session-01:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о знакомой: «Она умеет водить».",
-          "uk": "Скажіть про знайому: «Вона вміє водити»."
+          "ru": "Вы нашли рюкзак у двери. Спросите сестру: «Чей это рюкзак?»",
+          "uk": "Ви знайшли наплічник біля дверей. Спитайте сестру: «Чий це наплічник?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-01:intro3:r1",
-              "text": "She can drive."
+              "text": "Whose rucksack is this?"
             },
             {
               "responseId": "en:lesson-08:session-01:intro3:r2",
-              "text": "She cans drive."
+              "text": "Whose rucksack this is?"
             },
             {
               "responseId": "en:lesson-08:session-01:intro3:r3",
-              "text": "She can drives."
+              "text": "Who rucksack is this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-01:intro3:r1",
-              "text": "She can drive."
+              "text": "Whose rucksack is this?"
             },
             {
               "responseId": "en:lesson-08:session-01:intro3:r2",
-              "text": "She cans drive."
+              "text": "Whose rucksack this is?"
             },
             {
               "responseId": "en:lesson-08:session-01:intro3:r3",
-              "text": "She can drives."
+              "text": "Who rucksack is this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о знакомой: «Она умеет водить».",
-          "uk": "Скажіть про знайому: «Вона вміє водити»."
+          "ru": "Вы нашли рюкзак у двери. Спросите сестру: «Чей это рюкзак?»",
+          "uk": "Ви знайшли наплічник біля дверей. Спитайте сестру: «Чий це наплічник?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ecbeeda4497e0bf823e77a4121f1ad4344ad02211163b70401282bd1a54ef0f2"
+  "introFingerprint": "b6462858b136df2b3456928c109a53bc2472fd043c72bd5caefb1fd7b158d62b"
 }

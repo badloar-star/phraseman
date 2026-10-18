@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-08:session-02:word:translate",
+    "correctText": "translate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-02:i01",
-    "correctText": "I can juggle.",
+    "correctText": "I can translate.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i02",
-    "correctText": "juggle",
+    "correctText": "I can translate.",
     "correctResponseId": "en:lesson-08:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-02:i03",
-    "correctText": "juggle",
+    "correctText": "translate",
     "correctResponseId": "en:lesson-08:session-02:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-02:i04",
-    "correctText": "en:lesson-08:session-02:i04:p1=juggle\nen:lesson-08:session-02:i04:p2=garden\nen:lesson-08:session-02:i04:p3=folder\nen:lesson-08:session-02:i04:p4=package",
+    "correctText": "en:lesson-08:session-02:i04:p1=translate\nen:lesson-08:session-02:i04:p2=type\nen:lesson-08:session-02:i04:p3=coat\nen:lesson-08:session-02:i04:p4=rucksack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:word:climb",
+    "correctText": "climb",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i05",
-    "correctText": "I can juggle.",
+    "correctText": "She can climb.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i06",
-    "correctText": "She can whistle.",
+    "correctText": "She can climb.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:word:planner",
+    "correctText": "planner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i07",
-    "correctText": "Whose folder is this?",
+    "correctText": "Whose planner is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i08",
-    "correctText": "whistle",
+    "correctText": "can",
     "correctResponseId": "en:lesson-08:session-02:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-02:i09",
-    "correctText": "I can juggle.",
+    "correctText": "Whose planner is this?",
     "correctResponseId": "en:lesson-08:session-02:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-02:i10",
-    "correctText": "en:lesson-08:session-02:i10:p1=hike\nen:lesson-08:session-02:i10:p2=juggle\nen:lesson-08:session-02:i10:p3=garden\nen:lesson-08:session-02:i10:p4=package",
+    "correctText": "en:lesson-08:session-02:i10:p1=translate\nen:lesson-08:session-02:i10:p2=climb\nen:lesson-08:session-02:i10:p3=type\nen:lesson-08:session-02:i10:p4=planner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i11",
-    "correctText": "Whose folder is this?",
+    "correctText": "Whose planner is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:word:throw",
+    "correctText": "throw",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i12",
-    "correctText": "Whose package is this?",
+    "correctText": "I can throw the ball.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i13",
-    "correctText": "I usually hike.",
+    "correctText": "He can throw the ball.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i14",
-    "correctText": "can",
+    "correctText": "throw",
     "correctResponseId": "en:lesson-08:session-02:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-02:i15",
-    "correctText": "Where is the garden?",
+    "correctText": "I can throw the ball.",
     "correctResponseId": "en:lesson-08:session-02:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-02:i16",
-    "correctText": "en:lesson-08:session-02:i16:p1=juggle\nen:lesson-08:session-02:i16:p2=folder\nen:lesson-08:session-02:i16:p3=package\nen:lesson-08:session-02:i16:p4=hike",
+    "correctText": "en:lesson-08:session-02:i16:p1=translate\nen:lesson-08:session-02:i16:p2=throw\nen:lesson-08:session-02:i16:p3=planner\nen:lesson-08:session-02:i16:p4=type",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-02:i17",
-    "correctText": "Tom can juggle.",
+    "correctText": "She can climb and throw the ball.",
     "correctResponseId": null
   }
 ]

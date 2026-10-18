@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-50:word:evaluate",
+    "correctText": "evaluate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i01",
+    "correctText": "I can evaluate it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i02",
+    "correctText": "evaluate",
+    "correctResponseId": "en:lesson-08:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i03",
+    "correctText": "evaluate",
+    "correctResponseId": "en:lesson-08:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i04",
+    "correctText": "en:lesson-08:session-50:i04:p1=evaluate\nen:lesson-08:session-50:i04:p2=research\nen:lesson-08:session-50:i04:p3=verify\nen:lesson-08:session-50:i04:p4=source",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i05",
+    "correctText": "I can evaluate it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:word:criterion",
+    "correctText": "criterion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i06",
+    "correctText": "We can choose a criterion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:word:rating",
+    "correctText": "rating",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i07",
+    "correctText": "She can check the rating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i08",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-08:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i09",
+    "correctText": "We can choose a criterion.",
+    "correctResponseId": "en:lesson-08:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i10",
+    "correctText": "en:lesson-08:session-50:i10:p1=evaluate\nen:lesson-08:session-50:i10:p2=criterion\nen:lesson-08:session-50:i10:p3=rating\nen:lesson-08:session-50:i10:p4=source",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i11",
+    "correctText": "She can check the rating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:word:drawback",
+    "correctText": "drawback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i12",
+    "correctText": "I can see a drawback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i13",
+    "correctText": "We often check the rating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i14",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-08:session-50:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i15",
+    "correctText": "I can see a drawback.",
+    "correctResponseId": "en:lesson-08:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i16",
+    "correctText": "en:lesson-08:session-50:i16:p1=evaluate\nen:lesson-08:session-50:i16:p2=criterion\nen:lesson-08:session-50:i16:p3=rating\nen:lesson-08:session-50:i16:p4=drawback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-50:i17",
+    "correctText": "I can evaluate it.",
+    "correctResponseId": null
+  }
+]

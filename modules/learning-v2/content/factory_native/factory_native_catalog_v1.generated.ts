@@ -3313,7 +3313,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 9, sessionOrdinal: 25,
-    sourceFingerprint: "ebc69fa1e6ee41a5d5414ee8ccd38220cf5469c553b12d8bb3424e76de901cfc",
+    sourceFingerprint: "80f49ccc1e23629a1540fbe0c3fc966de26465d303a8df02cc320458f7af0721",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is glowing now — светится прямо сейчас","uk":"is glowing now — світиться просто зараз"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),

@@ -53,7 +53,7 @@
 
 **1 · Картка слова — glow**
 <!-- interaction_id: en:lesson-09:session-25:word:glow; family: word_card -->
-> **glow** — світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати».
+> **glow** — «світитися, випромінювати м’яке світло». Зараз: is glowing. Glow саме собою не означає «блимати».
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-09:session-25:i01; family: listen_choose -->
@@ -81,7 +81,7 @@ glow — світитися · now — зараз · lamp — лампа · ligh
 
 **7 · Картка слова — firefly**
 <!-- interaction_id: en:lesson-09:session-25:word:firefly; family: word_card -->
-> **firefly** — світлячок. The firefly is glowing now. — «Світлячок зараз світиться».
+> **firefly** — «світлячок». The firefly is glowing now. — «Світлячок зараз світиться».
 
 **8 · Складіть фразу про світлячка, який зараз світиться; поставте now наприкінці**
 <!-- interaction_id: en:lesson-09:session-25:i06; family: phrase_builder -->
@@ -89,7 +89,7 @@ glow — світитися · now — зараз · lamp — лампа · ligh
 
 **9 · Картка слова — ember**
 <!-- interaction_id: en:lesson-09:session-25:word:ember; family: word_card -->
-> **ember** — жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться».
+> **ember** — «жаринка, тліючий вуглик». The ember is glowing now. — «Жаринка зараз світиться».
 
 **10 · За склом каміна зараз червоним світиться жаринка. Скажіть про це**
 <!-- interaction_id: en:lesson-09:session-25:i07; family: scripted_repeat_compare -->
@@ -117,7 +117,7 @@ glow — світитися · firefly — світлячок · ember — жа�
 
 **15 · Картка слова — beacon**
 <!-- interaction_id: en:lesson-09:session-25:word:beacon; family: word_card -->
-> **beacon** — світловий маячок. The beacon is glowing now. — «Маячок зараз світиться».
+> **beacon** — «світловий маячок». The beacon is glowing now. — «Маячок зараз світиться».
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-09:session-25:i12; family: listen_choose -->

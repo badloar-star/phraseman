@@ -6621,7 +6621,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze({
     lessonOrdinal: 9, sessionOrdinal: 25,
-    sourceFingerprint: "ebc69fa1e6ee41a5d5414ee8ccd38220cf5469c553b12d8bb3424e76de901cfc",
+    sourceFingerprint: "80f49ccc1e23629a1540fbe0c3fc966de26465d303a8df02cc320458f7af0721",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед glowing нужно is.","Для действия сейчас после is нужна форма glowing."],["После is здесь нужна форма glowing.","С одним ember нужна форма is."],["Перед glowing нужно is.","После is здесь нужна форма glowing."]],"uk":[["Перед glowing потрібне is.","Для дії зараз після is потрібна форма glowing."],["Після is тут потрібна форма glowing.","З одним ember потрібна форма is."],["Перед glowing потрібне is.","Після is тут потрібна форма glowing."]]}),

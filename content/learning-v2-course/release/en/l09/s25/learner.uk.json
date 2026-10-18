@@ -28,8 +28,8 @@
             "responseId": "en:lesson-09:session-25:word:glow:r1",
             "targetText": "glow",
             "meaningByLocale": {
-              "ru": "светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».",
-              "uk": "світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати»."
+              "ru": "«светиться, излучать мягкий свет». Сейчас: is glowing. Glow само по себе не означает «мигать».",
+              "uk": "«світитися, випромінювати м’яке світло». Зараз: is glowing. Glow саме собою не означає «блимати»."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "glow",
           "definitionByLocale": {
-            "ru": "светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».",
-            "uk": "світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати»."
+            "ru": "«светиться, излучать мягкий свет». Сейчас: is glowing. Glow само по себе не означает «мигать».",
+            "uk": "«світитися, випромінювати м’яке світло». Зараз: is glowing. Glow саме собою не означає «блимати»."
           }
         }
       },
@@ -360,8 +360,8 @@
             "responseId": "en:lesson-09:session-25:word:firefly:r1",
             "targetText": "firefly",
             "meaningByLocale": {
-              "ru": "светлячок. The firefly is glowing now. — «Светлячок сейчас светится».",
-              "uk": "світлячок. The firefly is glowing now. — «Світлячок зараз світиться»."
+              "ru": "«светлячок». The firefly is glowing now. — «Светлячок сейчас светится».",
+              "uk": "«світлячок». The firefly is glowing now. — «Світлячок зараз світиться»."
             }
           }
         ],
@@ -371,8 +371,8 @@
         "wordCard": {
           "word": "firefly",
           "definitionByLocale": {
-            "ru": "светлячок. The firefly is glowing now. — «Светлячок сейчас светится».",
-            "uk": "світлячок. The firefly is glowing now. — «Світлячок зараз світиться»."
+            "ru": "«светлячок». The firefly is glowing now. — «Светлячок сейчас светится».",
+            "uk": "«світлячок». The firefly is glowing now. — «Світлячок зараз світиться»."
           }
         }
       },
@@ -437,8 +437,8 @@
             "responseId": "en:lesson-09:session-25:word:ember:r1",
             "targetText": "ember",
             "meaningByLocale": {
-              "ru": "тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».",
-              "uk": "жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться»."
+              "ru": "«тлеющий уголёк». The ember is glowing now. — «Уголёк сейчас светится».",
+              "uk": "«жаринка, тліючий вуглик». The ember is glowing now. — «Жаринка зараз світиться»."
             }
           }
         ],
@@ -448,8 +448,8 @@
         "wordCard": {
           "word": "ember",
           "definitionByLocale": {
-            "ru": "тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».",
-            "uk": "жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться»."
+            "ru": "«тлеющий уголёк». The ember is glowing now. — «Уголёк сейчас светится».",
+            "uk": "«жаринка, тліючий вуглик». The ember is glowing now. — «Жаринка зараз світиться»."
           }
         }
       },
@@ -768,8 +768,8 @@
             "responseId": "en:lesson-09:session-25:word:beacon:r1",
             "targetText": "beacon",
             "meaningByLocale": {
-              "ru": "световой маячок. The beacon is glowing now. — «Маячок сейчас светится».",
-              "uk": "світловий маячок. The beacon is glowing now. — «Маячок зараз світиться»."
+              "ru": "«световой маячок». The beacon is glowing now. — «Маячок сейчас светится».",
+              "uk": "«світловий маячок». The beacon is glowing now. — «Маячок зараз світиться»."
             }
           }
         ],
@@ -779,8 +779,8 @@
         "wordCard": {
           "word": "beacon",
           "definitionByLocale": {
-            "ru": "световой маячок. The beacon is glowing now. — «Маячок сейчас светится».",
-            "uk": "світловий маячок. The beacon is glowing now. — «Маячок зараз світиться»."
+            "ru": "«световой маячок». The beacon is glowing now. — «Маячок сейчас светится».",
+            "uk": "«світловий маячок». The beacon is glowing now. — «Маячок зараз світиться»."
           }
         }
       },
@@ -1161,5 +1161,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a652eb25b2fb9c098debfe44161cee6964d85deab725a27920b3daccfc59cd72"
+  "learnerFingerprint": "a8da9ecdfa18b786e007b2d023983dfc6d5a919e7edc732b7f808767c338ac8e"
 }

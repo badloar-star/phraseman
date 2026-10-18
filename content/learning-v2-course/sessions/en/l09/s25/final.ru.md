@@ -53,7 +53,7 @@
 
 **1 · Карточка слова — glow**
 <!-- interaction_id: en:lesson-09:session-25:word:glow; family: word_card -->
-> **glow** — светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».
+> **glow** — «светиться, излучать мягкий свет». Сейчас: is glowing. Glow само по себе не означает «мигать».
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-09:session-25:i01; family: listen_choose -->
@@ -81,7 +81,7 @@ glow — светиться · now — сейчас · lamp — лампа · li
 
 **7 · Карточка слова — firefly**
 <!-- interaction_id: en:lesson-09:session-25:word:firefly; family: word_card -->
-> **firefly** — светлячок. The firefly is glowing now. — «Светлячок сейчас светится».
+> **firefly** — «светлячок». The firefly is glowing now. — «Светлячок сейчас светится».
 
 **8 · Соберите фразу о светящемся сейчас светлячке; поставьте now в конце**
 <!-- interaction_id: en:lesson-09:session-25:i06; family: phrase_builder -->
@@ -89,7 +89,7 @@ glow — светиться · now — сейчас · lamp — лампа · li
 
 **9 · Карточка слова — ember**
 <!-- interaction_id: en:lesson-09:session-25:word:ember; family: word_card -->
-> **ember** — тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».
+> **ember** — «тлеющий уголёк». The ember is glowing now. — «Уголёк сейчас светится».
 
 **10 · За стеклом камина сейчас красным светится уголёк. Скажите об этом**
 <!-- interaction_id: en:lesson-09:session-25:i07; family: scripted_repeat_compare -->
@@ -117,7 +117,7 @@ glow — светиться · firefly — светлячок · ember — тл�
 
 **15 · Карточка слова — beacon**
 <!-- interaction_id: en:lesson-09:session-25:word:beacon; family: word_card -->
-> **beacon** — световой маячок. The beacon is glowing now. — «Маячок сейчас светится».
+> **beacon** — «световой маячок». The beacon is glowing now. — «Маячок сейчас светится».
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-09:session-25:i12; family: listen_choose -->

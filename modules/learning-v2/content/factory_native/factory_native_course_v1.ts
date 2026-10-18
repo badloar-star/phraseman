@@ -575,6 +575,17 @@ function nativeModePayload(
 }
 
 function shortMeaning(definition: string, word: string, lessonOrdinal: number, sessionOrdinal: number): string {
+  // Current RU/UK cards put the authored gloss before their English example.
+  // A later quote can translate that example or even describe a wrong meaning.
+  const leadingDefinition = /^[\p{Script=Cyrillic}][^.!?\r\n]*/u.exec(definition.trim())?.[0]?.trim();
+  if (leadingDefinition) {
+    // Preserve localized sense qualifiers; only separate a clause containing
+    // English (e.g. "тёплый; в You are warm ...") from its leading gloss.
+    const leadingGloss = /[A-Za-z]/u.test(leadingDefinition)
+      ? leadingDefinition.split(";")[0].trim()
+      : leadingDefinition;
+    if (leadingGloss && !/[A-Za-z]/u.test(leadingGloss)) return leadingGloss;
+  }
   const quoted = /[«“"]([^»”"]+)[»”"]/u.exec(definition)?.[1]?.trim();
   if (quoted) return quoted;
   // The one card is the sole reviewed card without a short quoted gloss.

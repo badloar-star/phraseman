@@ -25,6 +25,7 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
 import { noteBackStep } from '../back_tap_probe';
+import { DIAG_ENABLED } from '../dev_diag_gate'; // зачем (R137 этап 2): гейт журнала tabs_cause — был забыт, экран падал «Property 'DIAG_ENABLED' doesn't exist»
 import { setTabsShellMounted } from '../tabs_shell_state';
 import { whenHomePainted } from '../home_paint_marker';
 // Home stays behind the tab shell until React can commit the first frame. Its
@@ -34,7 +35,11 @@ import { whenHomePainted } from '../home_paint_marker';
 const homeScreenModulePromise = import('./home');
 const HomeScreen = React.lazy(() => homeScreenModulePromise);
 
-function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
+// зачем (R137, координатор 18.10; журнал Сверки back_after4): группа вкладок перерисовывалась на 70–140 мс возврата (pathname ещё /today_tasks) и тянула за собой Главную — рендер №1 с причиной
+// parent_or_unlisted (≈120 мс вместе с коммитом), хотя ничего для Главной не менялось: HomeScreenHost не был мемоизирован, а openDevHub стабилен (useCallback без зависимостей).
+// memo режет эту перерисовку у основания: Главная перерисовывается только по своим контекстам и состоянию. Шаг home_host_render в журнале возврата показывает, дошла ли перерисовка до Главной.
+const HomeScreenHost = React.memo(function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
+  noteBackStep('home_host_render');
   useMountTrace('home_host'); // зачем (R1, двойной монтаж Главной): ярус между каркасом табов и экраном Главной
   // The dynamically evaluated Home bundle has its own event-module lifetime in
   // Metro dev mode. Emit from this static tab shell as well so the root splash
@@ -47,7 +52,7 @@ function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
     return () => cancelAnimationFrame(frame);
   }, []);
   return <PerfR1Profile id="home"><HomeScreen onOpenDevHub={onOpenDevHub} /></PerfR1Profile>; // зачем (R1): чистое время рендера Главной отдельно от ожидания очереди
-}
+});
 import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
 import { subscribeOpenDevHub } from '../dev_hub_bus';
 import { ENABLE_DEV_TOOLS } from '../config';
@@ -167,8 +172,20 @@ function tabsRenderWhyValue(v: unknown): string {
   }
   return String(v);
 }
+// зачем ([BACK-BTN] R137, координатор 18.10: рендер Главной №1 на 79–150 мс приходит с причиной parent_or_unlisted, а какой родитель и что он поменял — не видно): пока есть тап «назад», группа вкладок
+// пишет шагом tabs_cause, какие из её входных значений сменились (имя:прежнее→новое). Работает и без флага TAP_LATENCY_TRACE — только dev, не стор.
+const tabsCauseDiagPrev = new Map<number, Record<string, string>>();
+function noteTabsCause(values: Readonly<Record<string, unknown>>, inst: number): void {
+  if (!DIAG_ENABLED) return;
+  const cur: Record<string, string> = {};
+  for (const key of Object.keys(values)) cur[key] = tabsRenderWhyValue(values[key]);
+  const prev = tabsCauseDiagPrev.get(inst) ?? null;
+  tabsCauseDiagPrev.set(inst, cur);
+  const changed = prev ? Object.keys(cur).filter((k) => prev[k] !== cur[k]).map((k) => `${k}:${prev[k]}→${cur[k]}`) : ['first render'];
+  noteBackStep('tabs_cause', { changed: changed.length > 0 ? changed.slice(0, 8) : ['none (parent/context)'] });
+}
 function traceTabsRenderWhy(values: Readonly<Record<string, unknown>>, inst: number): void {
-  if (!TAP_LATENCY_TRACE_ENABLED) return;
+  if (!TAP_LATENCY_TRACE_ENABLED) { noteTabsCause(values, inst); return; }
   const cur: Record<string, string> = {};
   for (const key of Object.keys(values)) cur[key] = tabsRenderWhyValue(values[key]);
   const prev = tabsRenderWhy.prevByInst.get(inst) ?? null;

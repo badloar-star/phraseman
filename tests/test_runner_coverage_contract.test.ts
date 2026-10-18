@@ -88,6 +88,9 @@ describe('раннеры тестов', () => {
       // ещё два зелёных от V2 (c2dbb8e41): возвращены в обычный прогон
       'tests/learning_v2_intro_semantic_runs_contract.test.ts',
       'tests/learning_v2_activity_post_terminal_card_catalog_v1.test.ts',
+      // ещё два зелёных от V2 (498db6d59): прогон V2 без карантина 4/4, 23/23
+      'tests/learning_v2_neutral_qa_session_e2e_harness_v1.test.ts',
+      'tests/learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts',
     ]);
     expect(listed.filter((f) => fs.existsSync(path.join(root, f)) && !ignored.has(f) && !restored.has(f))).toEqual([]);
   });

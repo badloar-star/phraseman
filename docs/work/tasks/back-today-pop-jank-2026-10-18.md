@@ -3,6 +3,8 @@
 Governance-ID: TG-1D5AA0A1E076
 Governance-ID: TG-FE5797EC6615
 Governance-ID: TG-38A35470906C
+Governance-ID: TG-CC7B0FF72D0A
+Governance-ID: TG-9AC3F61FAE01
 Governance-ID: TG-CE0B67AD86ED
 Status: In progress (этап 2 — правка по журналу Сверки back_after3)
 Owner: сессия «2 · ДИЗАЙН» (поручение координатора 18.10 03:06, приоритет №1 после полного прогона тестов)

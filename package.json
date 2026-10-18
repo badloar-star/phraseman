@@ -470,8 +470,6 @@
       "<rootDir>/tests/gustav_fr_collectible_candidate_bridge_gate.test.ts",
       "<rootDir>/tests/learning_v2_mode_router_family_coverage.test.ts",
       "<rootDir>/tests/learning_v2_session_skip_interaction.test.ts",
-      "<rootDir>/tests/learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts",
-      "<rootDir>/tests/learning_v2_neutral_qa_session_e2e_harness_v1.test.ts",
       "<rootDir>/tests/learning_v2_authored_sessions_reach_the_player.test.ts",
       "<rootDir>/tests/learning_v2_e1_content_compiler.test.ts",
       "<rootDir>/tests/learning_v2_english_l4_curriculum_contract.test.ts",

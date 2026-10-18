@@ -228,7 +228,8 @@ function useCountUp(from: number, to: number, phase: CountPhase, delay: number, 
     const startedAt = Date.now() + delay;
     const timer = setInterval(() => {
       const k = Math.min(1, Math.max(0, (Date.now() - startedAt) / duration));
-      setShown(Math.round(from + (to - from) * (1 - (1 - k) ** 3)));
+      const next = Math.round(from + (to - from) * (1 - (1 - k) ** 3));
+      setShown((prev) => (prev === next ? prev : next)); // зачем (аудит моментов 18.10): то же число — без перерисовки
       if (k >= 1) clearInterval(timer);
     }, 40);
     return () => clearInterval(timer);

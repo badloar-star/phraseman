@@ -66,7 +66,8 @@ const LegacyBonusRow = forwardRef<LegacyBonusRowHandle, Props>(function LegacyBo
     const t0 = Date.now();
     timerRef.current = setInterval(() => {
       const p = Math.min(1, (Date.now() - t0) / LEGACY_BONUS_ROW_COUNTDOWN_MS);
-      setOldValue(Math.round(row.from * Math.pow(1 - p, 3))); // 1 − easeOutCubic(p)
+      const next = Math.round(row.from * Math.pow(1 - p, 3)); // 1 − easeOutCubic(p)
+      setOldValue((prev) => (prev === next ? prev : next)); // зачем (аудит моментов 18.10): то же число — без перерисовки строки
       if (p >= 1) stopTimer();
     }, 33);
   }, [row.from, stopTimer]);

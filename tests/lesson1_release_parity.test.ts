@@ -11,8 +11,9 @@ describe("lesson 1 release parity (D150)", () => {
     expect(releasedLesson1SessionSignatureV1(1)).toEqual({
       sessionOrdinal: 1,
       newWords: ["fine", "happy", "here", "ready"],
-      // Four bundled scripted-repeat interactions select the voice-heavy profile.
-      interactionProfile: "voice_heavy",
+      // зачем (18.10): с 48e9a2993 (15.10) в выпуске S01 два повтора вслух, а не четыре, и 17 заданий без карточек —
+      // профиль «standard» (voice_heavy требует ≥4 повторов, rapid — ≥18 заданий). Эталон — встроенный выпуск (D150).
+      interactionProfile: "standard",
     });
   });
 

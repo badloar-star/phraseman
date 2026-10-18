@@ -1,0 +1,22 @@
+10-18 01:15:30.109 I/ReactNativeJS( 7801): [BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:15:30.110 I/ReactNativeJS( 7801): [BACK-BTN] decision {"seq":1,"screen":"today_tasks","decision":"today_tasks → home","ms":2}
+10-18 01:15:30.127 I/ReactNativeJS( 7801): [BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":19}
+10-18 01:15:30.301 I/ReactNativeJS( 7801): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":9,"actualMs":8.5,"baseMs":8.6}'
+10-18 01:15:30.303 I/ReactNativeJS( 7801): '[HOME-CHILD-COST]', '{"id":"video_rail","phase":"nested-update","window":9,"actualMs":15.7,"baseMs":17.1}'
+10-18 01:15:30.427 I/ReactNativeJS( 7801): [BACK-BTN] arrived {"seq":1,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":318}
+10-18 01:15:37.051 I/ReactNativeJS( 7801): [BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:15:37.057 I/ReactNativeJS( 7801): [BACK-BTN] decision {"seq":2,"screen":"today_tasks","decision":"today_tasks → home","ms":2}
+10-18 01:15:37.072 I/ReactNativeJS( 7801): [BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":20}
+10-18 01:15:37.276 I/ReactNativeJS( 7801): '[HOME-CHILD-COST]', '{"id":"video_rail","phase":"nested-update","window":11,"actualMs":8.3,"baseMs":9.7}'
+10-18 01:15:37.418 I/ReactNativeJS( 7801): [BACK-BTN] arrived {"seq":2,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":366}
+10-18 01:15:43.472 I/ReactNativeJS( 7801): [BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:15:43.473 I/ReactNativeJS( 7801): [BACK-BTN] decision {"seq":3,"screen":"today_tasks","decision":"today_tasks → home","ms":0}
+10-18 01:15:43.487 I/ReactNativeJS( 7801): [BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":15}
+10-18 01:15:43.702 I/ReactNativeJS( 7801): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":13,"actualMs":8.2,"baseMs":8.2}'
+10-18 01:15:43.845 I/ReactNativeJS( 7801): [BACK-BTN] arrived {"seq":3,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":372}
+10-18 01:15:46.773 I/ReactNativeJS( 7801): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":14,"actualMs":13.8,"baseMs":14.1}'
+10-18 01:15:49.789 I/ReactNativeJS( 7801): [BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:15:49.789 I/ReactNativeJS( 7801): [BACK-BTN] decision {"seq":4,"screen":"today_tasks","decision":"today_tasks → home","ms":0}
+10-18 01:15:49.810 I/ReactNativeJS( 7801): [BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":21}
+10-18 01:15:50.103 I/ReactNativeJS( 7801): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":15,"actualMs":12.5,"baseMs":12.8}'
+10-18 01:15:50.109 I/ReactNativeJS( 7801): [BACK-BTN] arrived {"seq":4,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":318}

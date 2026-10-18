@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
@@ -25,6 +26,7 @@ import {
 } from './ai_dialog_target_gate';
 import { useOrphanDialogRouteRedirect } from './orphan_dialog_route_redirect';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { useSilentLeave } from '../hooks/use_silent_leave';
 
 type RecoveryScreenProps = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -46,42 +48,14 @@ function RecoveryScreen({ icon, title, body, action, onBack }: RecoveryScreenPro
 }
 
 
-export function MissingDialogueScreen() {
-  const { lang } = useLang();
+// зачем (владелец 01.10 и 18.10 07:45: «экранов-ошибок нигде»; координатор 09:22, кадры Сверки dialogs_3dae3 — ссылка
+// ai_dialog_briefing?scenarioId=zzz_bad): неизвестный сценарий или язык без диалогов — это битая ссылка, а не путь человека.
+// Вместо «Диалог не найден / вернись к урокам и выбери снова» (вина на человеке) — тихий уход в хаб Диалогов, как у новых
+// Диалогов V2 (a70855a55). Причина — в журнал [NO-ERROR-SCREEN].
+export function MissingDialogueScreen({ reason = 'scenario_not_found' }: { reason?: string } = {}) {
   const router = useRouter();
-  const goBack = () => safeRouterBack(router, '/(tabs)/lessons' as never);
-    return (
-      <RecoveryScreen
-        icon="alert-circle-outline"
-        title={triLang(lang, {
-          ru: 'Диалог не найден',
-          uk: 'Діалог не знайдено',
-          en: 'Dialogue not found',
-          es: 'No se encontró el diálogo',
-          'pt-BR': 'Diálogo não encontrado',
-          vi: 'Không tìm thấy hội thoại',
-          id: 'Dialog tidak ditemukan',
-          tr: 'Diyalog bulunamadı',
-          pl: 'Nie znaleziono dialogu',
-        })}
-        body={triLang(lang, {
-          ru: 'Этот диалог не открылся. Вернись к урокам и выбери ситуацию снова.',
-          uk: 'Цей діалог не відкрився. Повернися до уроків і вибери ситуацію знову.',
-          en: 'This dialogue didn’t open. Go back to lessons and pick a situation again.',
-          es: 'Este diálogo no se abrió. Vuelve a las lecciones y elige la situación otra vez.',
-          'pt-BR': 'Este diálogo não abriu. Volte às lições e escolha a situação de novo.',
-          vi: 'Hội thoại này chưa mở được. Hãy quay lại bài học và chọn lại tình huống.',
-          id: 'Dialog ini tidak terbuka. Kembali ke pelajaran dan pilih situasi lagi.',
-          tr: 'Bu diyalog açılmadı. Derslere dönüp durumu tekrar seç.',
-          pl: 'Ten dialog się nie otworzył. Wróć do lekcji i wybierz sytuację ponownie.',
-        })}
-        action={triLang(lang, {
-          ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver',
-          'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-        })}
-        onBack={goBack}
-      />
-    );
+  useSilentLeave(true, 'ai_dialog', reason, () => safeRouterBack(router, '/ai_dialog_home' as never));
+  return <ScreenGradient><View style={{ flex: 1 }} /></ScreenGradient>;
 }
 
 export default function AiDialogBriefingRoute() {
@@ -233,7 +207,7 @@ function AiDialogBriefingBody() {
   const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
   if (!dialogueTarget) {
     console.warn('[LANG-SURFACE] ai_dialog_briefing:unsupported_target → missing', { studyTarget });
-    return <MissingDialogueScreen />;
+    return <MissingDialogueScreen reason="unsupported_target" />;
   }
 
   if (!scenarioUnlocked) {

@@ -1,0 +1,78 @@
+10-18 09:31:06.515 I/[INFO] [SPIRE]: rankBy=steps dev=none week=none config=есть (смена решения)
+10-18 09:31:06.538 I/[SPIRE-DOCK] energy-pill {"shown":true,"reason":"игрок без Plus","ownerActive":true}
+10-18 09:31:06.639 I/[SPIRE-DOCK] button {"ready":false,"busy":false,"enabled":false,"dis":true,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=game.starting"}
+10-18 09:31:06.761 I/[INFO] [SPIRE]: home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: да (enabled=true)
+10-18 09:31:06.768 I/'[SPIRE]', '[SPIRE-LOAD]', 'screen:enter', '{"sinceEnterMs":0,"config":"memory"}'
+10-18 09:31:06.770 I/'[SPIRE-GATE] screen', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","locked":false,"previous":null,"preview":false,"config":"enabled","result":"screen_allowed"}'
+10-18 09:31:06.772 I/'[SPIRE-RULES] home', '{"unlocked":true,"langLocked":false,"lang":"ru","config":"enabled","preview":false,"weekFloor":null,"tier":null,"rendered":"home"}'
+10-18 09:31:06.778 I/'[SPIRE-RIVALS]', '{"source":"нет загрузки","roomId":null,"live":null,"botFaces":null,"rows":null,"rivalsByFloor":{},"myFloor":null,"why":"комнаты нет"}'
+10-18 09:31:06.785 I/[INFO] [SPIRE]: friends: слежение выключено (gate=есть ids=нет lang=en)
+10-18 09:31:06.787 I/'[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":23,"play":"disabled","because":["tier=null (нет комнаты и недели)"],"people":null,"room":"none"}'
+10-18 09:31:06.788 I/[SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":null,"myFloor":null,"selected":null,"shownFloor":1,"rows":null,"tier":null,"live":true,"sta
+10-18 09:31:06.790 I/[SPIRE-LAYOUT] clearance {"floor":1,"myFloor":null,"dockH":0,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":0,"tailUsed":120,"endClearance":124,"minClearance":16,"source":"живые данные","outcome":"n
+10-18 09:31:06.793 I/'[PIK-LOAD]', '{"stage":"room:waiting","ceilingMs":2500}'
+10-18 09:31:06.913 I/'[SPIRE]', '[SPIRE-LOAD]', 'identity', '{"sinceEnterMs":150,"ms":138}'
+10-18 09:31:06.913 I/'[SPIRE]', '[SPIRE-LOAD]', 'room:first_frame', '{"sinceEnterMs":151,"source":"memory","members":1,"tier":0}'
+10-18 09:31:06.993 I/[INFO] [SPIRE]: rankBy=steps dev=none week=2026-W42 config=есть (смена решения)
+10-18 09:31:07.039 I/[SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=game.starting"}
+10-18 09:31:07.086 I/[SPIRE-RISE-QUEUE] позиционные окна свободны: причина=нет (итог=false ступень=false старт=false) решение Ядра: rise=— overtake=— lastChance=—
+10-18 09:31:07.095 I/'[SPIRE-RIVALS]', '{"source":"cache/memory_peek","roomId":"2026-W42_en_t0_d6_1792310268312_63d68f33-5b9","live":1,"botFaces":29,"rows":30,"rivalsByFloor":{"1":26,"2":3},"myFloor":1,"why":"ok"}'
+10-18 09:31:07.097 I/[INFO] [SPIRE]: friends: слежу за набором друзей (сейчас 0)
+10-18 09:31:07.100 I/'[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":336,"play":"enabled","because":null,"people":30,"room":"cache/memory_peek"}'
+10-18 09:31:07.102 I/[SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":null,"myFloor":null,"selected":null,"shownFloor":1,"rows":30,"tier":0,"live":true,"startBlo
+10-18 09:31:07.104 I/'[PIK-LOAD]', '{"stage":"room:state","live":true,"status":"cache","reason":"memory_peek","members":1,"hasRows":true}'
+10-18 09:31:07.189 I/[INFO] [SPIRE]: room: вход lang=en week=2026-W42 force=false кэш=есть (возраст 1999335мс)
+10-18 09:31:07.189 I/'[SPIRE-COST]', '{"call":"room","result":"skip","why":"cache_fresh","ageMs":1999335,"ttlMs":21600000}'
+10-18 09:31:07.190 I/[INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-18 09:31:07.192 I/'[SPIRE]', '[SPIRE-LOAD]', 'room:sync', '{"sinceEnterMs":430,"status":"cache","reason":"cache_fresh","members":1,"ms":104,"alive":true}'
+10-18 09:31:07.192 I/[INFO] [SPIRE]: game: комната status=cache reason=cache_fresh group=2026-W42_en_t0_d6_1792310268312_63d68f33-5b9
+10-18 09:31:07.195 I/[INFO] [SPIRE]: pack: нужен lang=en tier=0 week=2026-W42
+10-18 09:31:07.282 I/[SPIRE-LAYOUT] scroll {"viewportH":806.1,"bottomPad":112,"paddingBottom":232}
+10-18 09:31:07.283 I/[SPIRE-LAYOUT] scroll.content {"contentH":1177.5}
+10-18 09:31:07.283 I/[SPIRE-DOCK] energy-pill.layout {"w":72,"h":37,"x":299}
+10-18 09:31:07.283 I/'[SPIRE-SCROLL] размер содержимого', '{"h":0,"pending":null}'
+10-18 09:31:07.284 I/[SPIRE-LAYOUT] friends+podium {"y":945.5,"h":0,"bottom":945.5,"friends":0,"startBlock":"none"}
+10-18 09:31:07.284 I/[SPIRE-LAYOUT] dock.wrap {"y":646.1,"h":52.2,"bottomOffset":108,"pillTop":96}
+10-18 09:31:07.290 I/[SPIRE-LAYOUT] dock {"block":"none","h":52.2,"w":371}
+10-18 09:31:07.291 I/[SPIRE-LAYOUT] dock.cta {"y":0,"h":52.2}
+10-18 09:31:07.639 I/'[SPIRE-DOCK-INSET] top', '{"why":"окно-изменило-высоту","floor":null,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начи
+10-18 09:31:07.641 I/[SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-18 09:31:07.643 I/'[SPIRE-DOCK-INSET] top', '{"why":"нет-этажа","floor":null,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начинается с за�
+10-18 09:31:07.645 I/[SPIRE-LAYOUT] scroll-req#нет-этажа {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":0,"needH":1145.3,"ready":"нет → отложено","animated":"нет"}
+10-18 09:31:07.647 I/'[SPIRE-RIVALS]', '{"source":"cache/cache_fresh","roomId":"2026-W42_en_t0_d6_1792310268312_63d68f33-5b9","live":1,"botFaces":29,"rows":30,"rivalsByFloor":{"1":26,"2":3},"myFloor":1,"why":"ok"}'
+10-18 09:31:07.649 I/'[SPIRE]', '[SPIRE-LOAD]', 'ready', '{"sinceEnterMs":885,"play":"enabled","because":null,"people":30,"room":"cache/cache_fresh"}'
+10-18 09:31:07.651 I/[SPIRE-LAYOUT] clearance {"floor":1,"myFloor":null,"dockH":52.2,"bottomPad":112,"pillTop":96,"dockBottom":108,"tailFloor":120,"tailFromDock":65,"tailUsed":120,"endClearance":71.8,"minClearance":16,"source":"живые данные","outcom
+10-18 09:31:07.653 I/'[PIK-LOAD]', '{"stage":"room:state","live":true,"status":"cache","reason":"cache_fresh","members":1,"hasRows":true}'
+10-18 09:31:07.655 I/'[SPIRE-BUDGET]', '{"towerTop":462,"towerSavedAtMeasure":0,"fullTowerTop":462,"dockTop":646,"gap":16,"infoH":84,"fullInfoH":84,"rawFit":84,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":120,"podium
+10-18 09:31:07.670 I/[INFO] [SPIRE-CONFIG]: loadSpireConfig: из кэша (возраст=17362994мс)
+10-18 09:31:07.670 I/'[SPIRE]', '[SPIRE-LOAD]', 'config:load', '{"sinceEnterMs":908,"enabled":true,"alive":true}'
+10-18 09:31:07.670 I/[INFO] [SPIRE]: home: config.enabled=true
+10-18 09:31:07.670 I/[INFO] [SPIRE-FIRSTFRAME]: первый кадр: экран из памяти, конфиг пришёл через 911 мс
+10-18 09:31:07.671 I/[INFO] [SPIRE]: home: локальной недели нет (lang=en) — маркер не рисуем
+10-18 09:31:07.769 I/'[SPIRE-RULES] home', '{"unlocked":true,"langLocked":false,"lang":"ru","config":"enabled","preview":false,"weekFloor":null,"tier":null,"rendered":"home"}'
+10-18 09:31:07.771 I/'[SPIRE-RIVALS]', '{"source":"cache/cache_fresh","roomId":"2026-W42_en_t0_d6_1792310268312_63d68f33-5b9","live":1,"botFaces":29,"rows":30,"rivalsByFloor":{"1":26,"2":3},"myFloor":1,"why":"ok"}'
+10-18 09:31:07.773 I/[SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":null,"myFloor":null,"selected":1,"shownFloor":1,"rows":30,"tier":0,"live":true,"startBlock"
+10-18 09:31:07.869 I/[SPIRE-MOMENT-TRIGGER] rise skip: свой рост не менялся (ступени 0→0, монеты 0→0)
+10-18 09:31:08.239 I/[SPIRE-MOMENT-TRIGGER] overtake: экран ушёл до решения
+10-18 09:31:08.239 I/[INFO] [SPIRE-REPORT]: flush: пропуск trigger=app_start причина=no_local_state
+10-18 09:31:08.240 I/'[SPIRE-COST]', '{"call":"spireReportSteps","trigger":"app_start","result":"skip","why":"no_local_state","sent":0,"ms":1147}'
+10-18 09:31:08.288 I/[INFO] [SPIRE]: pack: с диска hash=sp1_Q76daQPtWayiQoeVMxxGPTQBaAKPQRk1
+10-18 09:31:08.289 I/[INFO] [SPIRE]: game: прогрев пакета status=ok source=disk
+10-18 09:31:08.290 I/[INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-18 09:31:08.290 I/[INFO] [SPIRE]: game: итога недели нет (null) — карточки не будет
+10-18 09:31:08.353 I/[SPIRE-MOMENT-TRIGGER] lastChance skip: воскресенье, но 9:xx < 18:00
+10-18 09:31:08.510 I/[SPIRE-LAYOUT] scroll.content {"contentH":825.5}
+10-18 09:31:08.514 I/'[SPIRE-SCROLL] размер содержимого', '{"h":1145.1,"pending":{"floor":null}}'
+10-18 09:31:08.516 I/'[SPIRE-DOCK-INSET] top', '{"why":"после-layout","floor":null,"windowH":120,"contentTop":0,"sceneTopY":104.6,"requestedY":972.1,"devTop":false,"maxScroll":1025.3,"topReachable":"да (содержимое начинается с за�
+10-18 09:31:08.517 I/[SPIRE-LAYOUT] scroll-req#после-layout {"floor":null,"scale":1,"cy":1032.1,"requestedY":972.1,"contentH":1145.1,"needH":1145.3,"ready":"да","animated":"нет"}
+10-18 09:31:08.521 I/'[SPIRE-RIVALS] window', '{"why":"после-layout","floor":null,"requestedY":972.1,"rivalsInWindow":29,"floorsWithRivals":2,"total":2}'
+10-18 09:31:08.533 I/[SPIRE-LAYOUT] friends+podium {"y":593.5,"h":0,"bottom":593.5,"friends":0,"startBlock":"none"}
+10-18 09:31:08.613 I/'[SPIRE-DOCK-INSET] top', '{"why":"окно-изменило-высоту","floor":null,"windowH":156,"contentTop":0,"sceneTopY":104.6,"requestedY":954.1,"devTop":false,"maxScroll":989.3,"topReachable":"да (содержимое начи�
+10-18 09:31:08.618 I/[SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":null,"scale":1,"cy":1032.1,"requestedY":954.1,"contentH":1145.1,"needH":1145.3,"ready":"да","animated":"нет"}
+10-18 09:31:08.623 I/'[SPIRE-RIVALS] window', '{"why":"окно-изменило-высоту","floor":null,"requestedY":954.1,"rivalsInWindow":29,"floorsWithRivals":2,"total":2}'
+10-18 09:31:08.635 I/'[SPIRE-BUDGET]', '{"towerTop":422,"towerSavedAtMeasure":40,"fullTowerTop":462,"dockTop":646,"gap":16,"infoH":52,"fullInfoH":84,"rawFit":84,"level":2,"steps":"podium>card","applied":["podium","card"],"scrollMode":false,"windowH":156,"podiu
+10-18 09:31:10.054 I/[SPIRE-LAYOUT] scroll.content {"contentH":861.7}
+10-18 09:31:10.058 I/[SPIRE-LAYOUT] friends+podium {"y":629.7,"h":0,"bottom":629.7,"friends":0,"startBlock":"none"}
+10-18 09:31:10.122 I/'[SPIRE-SCROLL] получено', '{"why":"окно-изменило-высоту","gotY":972.2}'
+10-18 09:31:10.255 I/'[SPIRE-SCROLL] проверка ok', '{"why":"окно-изменило-высоту","requestedY":954.1,"gotY":972.2,"attempt":0}'
+10-18 09:31:10.257 I/'[SPIRE-SCROLL] проверка ok', '{"why":"окно-изменило-высоту","requestedY":954.1,"gotY":972.2,"attempt":0}'

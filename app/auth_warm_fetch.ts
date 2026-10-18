@@ -11,8 +11,9 @@
 // Никогда не бросает; любой исход — строка [WARM-FETCH] (функция, исход, код, мс). 401/403 — инстанс всё равно поднят.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import { AUTH_REGION_US, currentAuthCallableRegionSync } from './auth_callable_region';
+
 export const WARM_FETCH_TIMEOUT_MS = 10_000;
-const FUNCTIONS_REGION = 'us-central1';
 
 export type WarmFetchOutcome = 'warm_ok' | 'warm_ok_rejected' | 'http_error' | 'timeout' | 'failed' | 'skip';
 
@@ -21,6 +22,8 @@ export type WarmFetchDeps = Readonly<{
   now?: () => number;
   projectId?: () => string | null;
   log?: (line: string) => void;
+  /** Регион прогрева; по умолчанию — тот, куда сейчас идут вызовы входа (Европа, с запасным путём на США). */
+  region?: string;
 }>;
 
 function defaultProjectId(): string | null {
@@ -35,8 +38,8 @@ function defaultProjectId(): string | null {
   }
 }
 
-export function warmCallableUrl(projectId: string, name: string): string {
-  return `https://${FUNCTIONS_REGION}-${projectId}.cloudfunctions.net/${name}`;
+export function warmCallableUrl(projectId: string, name: string, region: string = AUTH_REGION_US): string {
+  return `https://${region}-${projectId}.cloudfunctions.net/${name}`;
 }
 
 /** Один прогрев. Возвращает исход (для тестов); вызывающий не ждёт — fire-and-forget. */
@@ -45,8 +48,10 @@ export async function warmCallableViaFetch(name: string, source: string, deps: W
   // eslint-disable-next-line no-console
   const log = deps.log ?? ((line: string) => console.log(line)); // guard-ok: итог прогрева
   const startedAt = now();
+  // зачем (владелец 18.10 «Да, перенести»): греем тот регион, куда пойдёт вход, — иначе прогрев поднимал бы США впустую.
+  const region = deps.region ?? currentAuthCallableRegionSync();
   const done = (outcome: WarmFetchOutcome, code: number | string | null): WarmFetchOutcome => {
-    log(`[WARM-FETCH] fn=${name} outcome=${outcome} code=${code ?? '-'} ms=${now() - startedAt} source=${source}`);
+    log(`[WARM-FETCH] fn=${name} region=${region} outcome=${outcome} code=${code ?? '-'} ms=${now() - startedAt} source=${source}`);
     return outcome;
   };
   const projectId = (deps.projectId ?? defaultProjectId)();
@@ -57,7 +62,7 @@ export async function warmCallableViaFetch(name: string, source: string, deps: W
   let timedOut = false;
   const timer = setTimeout(() => { timedOut = true; controller?.abort(); }, WARM_FETCH_TIMEOUT_MS);
   try {
-    const res = await fetchImpl(warmCallableUrl(projectId, name), {
+    const res = await fetchImpl(warmCallableUrl(projectId, name, region), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ data: { warmup: true } }),

@@ -1,24 +1,33 @@
 // Прогон №5 (координатор 14.10): прогрев функций входа — обычным fetch, мимо однопоточной очереди RNFirebase callable.
 // Прогрев никогда не бросает и не задерживает вход; каждый исход — строка [WARM-FETCH].
 import { WARM_FETCH_TIMEOUT_MS, warmCallableUrl, warmCallableViaFetch } from '../app/auth_warm_fetch';
+import { markAuthRegionEuUnavailable, resetAuthRegionStateForTest } from '../app/auth_callable_region';
 
 const lines: string[] = [];
 const deps = (fetchImpl: unknown) => ({ fetchImpl: fetchImpl as typeof fetch, projectId: () => 'proj-x', log: (l: string) => { lines.push(l); } });
 const response = (status: number) => ({ ok: status >= 200 && status < 300, status }) as Response;
 
 describe('warmCallableViaFetch', () => {
-  beforeEach(() => { lines.length = 0; });
+  beforeEach(() => { lines.length = 0; resetAuthRegionStateForTest(); });
   afterEach(() => { jest.useRealTimers(); });
 
   it('бьёт в адрес callable с телом {data:{warmup:true}} без токена', async () => {
     const fetchImpl = jest.fn(async () => response(200));
     await expect(warmCallableViaFetch('authStampAnonOwnership', 'test', deps(fetchImpl))).resolves.toBe('warm_ok');
     const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
-    expect(url).toBe(warmCallableUrl('proj-x', 'authStampAnonOwnership'));
-    expect(url).toBe('https://us-central1-proj-x.cloudfunctions.net/authStampAnonOwnership');
+    // зачем (владелец 18.10 «Да, перенести»): греем регион, куда пойдёт вход, — по умолчанию Европа.
+    expect(url).toBe(warmCallableUrl('proj-x', 'authStampAnonOwnership', 'europe-west1'));
+    expect(url).toBe('https://europe-west1-proj-x.cloudfunctions.net/authStampAnonOwnership');
     expect(JSON.parse(String(init.body))).toEqual({ data: { warmup: true } });
     expect(JSON.stringify(init.headers)).not.toMatch(/Authorization/i);
-    expect(lines[0]).toMatch(/^\[WARM-FETCH\] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=\d+ source=test$/);
+    expect(lines[0]).toMatch(/^\[WARM-FETCH\] fn=authStampAnonOwnership region=europe-west1 outcome=warm_ok code=200 ms=\d+ source=test$/);
+  });
+
+  it('Европы нет в этом запуске → прогрев идёт в США', async () => {
+    markAuthRegionEuUnavailable();
+    const fetchImpl = jest.fn(async () => response(200));
+    await warmCallableViaFetch('authEnsureStableLink', 'test', deps(fetchImpl));
+    expect((fetchImpl.mock.calls[0] as unknown as [string])[0]).toBe('https://us-central1-proj-x.cloudfunctions.net/authEnsureStableLink');
   });
 
   it('три прогрева уходят параллельно — до любого ответа', async () => {

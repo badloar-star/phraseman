@@ -183,6 +183,34 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     expect(resolveBootOnboardingDone(null, null)).toEqual({ value: null, source: 'none' });
   });
 
+  // зачем (координатор 18.10 06:21, решение владельца по вопросу Ревизора 3.72): согласия — выбор человека, следующий подтверждает сам.
+  it('A вышел → согласие на аналитику и принятие Условий сброшены, метки онбординга на месте, в журнале — что сброшено', async () => {
+    const consent = await import('../app/analytics_consent');
+    await consent.setAnalyticsConsent('granted');
+    expect(consent.getAnalyticsConsentState()).toBe('granted');
+    await AsyncStorage.multiSet([['onboarding_terms_privacy_accepted_v1', '1'], ['onboarding_done', '1'], ['app_lang', 'en']]);
+
+    await wipeLocalAccountData(undefined, { mode: 'signout' });
+
+    expect(SIGNOUT_DEVICE_KEEP_KEYS).not.toEqual(expect.arrayContaining(['analytics_consent_v1']));
+    expect(SIGNOUT_DEVICE_KEEP_KEYS).not.toEqual(expect.arrayContaining(['onboarding_terms_privacy_accepted_v1']));
+    expect(await AsyncStorage.getItem('onboarding_terms_privacy_accepted_v1')).toBeNull();
+    expect(consent.getAnalyticsConsentState()).toBe('unset');
+    expect(consent.isAnalyticsConsentGranted()).toBe(false);
+    expect(consent.hasAnalyticsConsentDecision()).toBe(false);
+    expect([null, 'unset']).toContain(await AsyncStorage.getItem('analytics_consent_v1'));
+    // онбординг устройства не тронут
+    expect(await AsyncStorage.getItem(DEVICE_ONBOARDING_DONE_KEY)).toBe('1');
+    const resetLog = logSpy.mock.calls.find((call) => String(call[0]) === '[AUTH-LOGOUT]' && String(call[1]).includes('"stage":"consent_reset"'));
+    expect(resetLog).toBeDefined();
+    expect(JSON.parse(String(resetLog![1]))).toMatchObject({
+      keys: ['analytics_consent_v1', 'onboarding_terms_privacy_accepted_v1'],
+      before: { analytics_consent_v1: 'granted', onboarding_terms_privacy_accepted_v1: '1' },
+      legalRemoved: true,
+      analyticsReset: true,
+    });
+  });
+
   it('полное стирание (удаление, вход со сменой) снимает метки устройства — после удаления онбординг показывается', async () => {
     await AsyncStorage.multiSet([[DEVICE_ONBOARDING_DONE_KEY, '1'], ['device_ui_lang_v1', 'en'], ['onboarding_done', '1']]);
 

@@ -6355,10 +6355,45 @@ export const SIGNOUT_DEVICE_KEEP_KEYS: readonly string[] = [
   'onboarding_completed_at_ms_v1',
   'onboarding_step',
   'onboarding_flow_version_v1',
-  'onboarding_terms_privacy_accepted_v1',
-  'analytics_consent_v1',
   'study_target_v1',
 ];
+
+/**
+ * зачем (координатор 18.10 06:21, решение владельца по вопросу Ревизора 3.72): согласие на аналитику и принятие Условий —
+ * выбор человека, а не устройства. При выходе и смене аккаунта они сбрасываются: следующий человек подтверждает сам.
+ * В опись аккаунта ключи не входят, поэтому стираются явно (wipeLocalAccountDataUnsafeBody, режим 'signout').
+ */
+export const SIGNOUT_CONSENT_RESET_KEYS: readonly string[] = [
+  'analytics_consent_v1',
+  'onboarding_terms_privacy_accepted_v1',
+];
+
+async function resetConsentsBeforeSignoutWipe(): Promise<void> {
+  const before = await AsyncStorage.multiGet([...SIGNOUT_CONSENT_RESET_KEYS]).catch((error: unknown) => {
+    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_read_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
+    return [] as [string, string | null][];
+  });
+  let legalRemoved = true;
+  await AsyncStorage.removeItem('onboarding_terms_privacy_accepted_v1').catch((error: unknown) => {
+    legalRemoved = false;
+    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_legal_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
+  });
+  // через общую очередь записей согласия: память сразу «не выбрано», поздний «granted» прежнего владельца её не перебьёт
+  let analyticsReset = true;
+  await import('./analytics_consent')
+    .then((m) => m.setAnalyticsConsent('unset'))
+    .catch((error: unknown) => {
+      analyticsReset = false;
+      console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_analytics_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
+    });
+  console.log('[AUTH-LOGOUT]', JSON.stringify({ // guard-ok: одна строка на выход, только имена ключей и выбор
+    stage: 'consent_reset',
+    keys: SIGNOUT_CONSENT_RESET_KEYS,
+    before: Object.fromEntries(before.map(([key, value]) => [key, value ?? null])),
+    legalRemoved,
+    analyticsReset,
+  }));
+}
 
 /**
  * 'full' — удаление аккаунта, вход со сменой (swap/merge), восстановление чистой установки;
@@ -6427,12 +6462,10 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<vo
   // Полное стирание (удаление аккаунта, вход со сменой) метки устройства снимает: после удаления онбординг обязан показаться.
   const marksModule = await import('./device_onboarding_marks');
   const deviceMarks = mode === 'signout' ? await marksModule.writeDeviceMarksBeforeSignoutWipe() : [];
-  const deviceMarksCleared = mode === 'full'
-    ? await AsyncStorage.multiRemove([...marksModule.DEVICE_ONBOARDING_MARK_KEYS]).then(() => true, (error: unknown) => {
-      console.warn('[ACCOUNT-WIPE]', JSON.stringify({ step: 'device_marks_clear_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
-      return false;
-    })
-    : false;
+  if (mode === 'signout') await resetConsentsBeforeSignoutWipe();
+  // зачем (сторож cloud_sync_customization_account_isolation «fails closed»): метки снимаются в общем удалении ниже
+  // (removeExactly) — сбой роняет стирание целиком, а не глотается отдельным multiRemove.
+  const deviceMarksCleared = mode === 'full';
   console.log('[ACCOUNT-WIPE]', JSON.stringify({ mode, keep: Array.from(KEEP).sort(), wipedCelebrationSeen, deviceMarks, deviceMarksCleared })); // guard-ok: одна строка на стирание, только имена ключей
   const removeExactly = async (keys: readonly string[]): Promise<void> => {
     const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
@@ -6462,9 +6495,12 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<vo
       }
     }
   };
-  const toRemove = accountKeys.filter((key) => (
-    !KEEP.has(key) && !isCustomizationAccountLocalKey(key)
-  ));
+  const toRemove = [
+    ...accountKeys.filter((key) => (
+      !KEEP.has(key) && !isCustomizationAccountLocalKey(key)
+    )),
+    ...(deviceMarksCleared ? marksModule.DEVICE_ONBOARDING_MARK_KEYS : []),
+  ];
   await removeExactly(toRemove);
   markWipeStage('removeKeys', toRemove.length);
   if (receiptOwnerStableId) {

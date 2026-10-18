@@ -7,6 +7,7 @@ import { render, screen, fireEvent } from '@testing-library/react-native';
 
 jest.mock('react-native', () => ({
   View: 'View',
+  ScrollView: 'ScrollView', // зачем (проверка выпуска 18.10, 9bb80301e): текст m03 в прокрутке над блоком кнопок
   Text: 'Text',
   Pressable: 'Pressable',
   Modal: 'Modal',

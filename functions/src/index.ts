@@ -313,6 +313,9 @@ const {
 
 exports.authEnsureStableLink = authEnsureStableLink;
 exports.authStampAnonOwnership = authStampAnonOwnership;
+// зачем (владелец 18.10 «Входить само»): вход Apple, когда почта уже занята аккаунтом Google, — сервер привязывает Apple сам.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+exports.authAppleLinkByVerifiedEmail = require("./auth_apple_link").authAppleLinkByVerifiedEmail;
 // зачем (этап 4): аккаунт выдаёт сервер, а не телефон — см. account_claim.ts.
 exports.accountClaimMine = accountClaimMine;
 exports.authRecoveryHint = authRecoveryHint;

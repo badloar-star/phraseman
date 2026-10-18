@@ -24,10 +24,6 @@
 | C:\appsprojects\phraseman\tests\learning_v2_new_word_encounter_projection_v1.test.ts | А — перепин сделан | 614cb9327: 225 карточек урока 1 (правило ≥4 слов 16.10), sound_contrast 39→1 (переписывание) | Error: expect(received).toBe(expected) // Object.is equality Expected: 198 Received: 225 |  |
 | C:\appsprojects\phraseman\tests\learning_v2_factory_production_audio_contract.test.ts | А — переписать под один голос | тест ждёт 4 голоса на фразу; с single-voice-v1 голос один. Проба 18.10: все 441 занятие открываются с published_mp3, пропусков 0. Файл сейчас правит другая сессия | assert.match(received, expected) Expected value match to: /if \(!audioChild\) \{\s*console\.warn\(`\[V2-BUNDLED\] null step=audio_child[\s\S |  |
 | C:\appsprojects\phraseman\tests\learning_v2_factory_native_projection_v1.test.ts | А — переписать проверку | имена сняты (Мира→начальница); в новой S01 нет повтора вслух independent_check (оба guided_practice). Файл сейчас правит другая сессия | assert.strictEqual(received, expected) Expected value to strictly be equal to: "Вставьте слово — Мира звонит и спрашивает, добрались ли вы д |  |
-| C:\appsprojects\phraseman\tests\learning_v2_activity_post_terminal_card_catalog_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_post_terminal_card_meanings_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_intro_semantic_runs_contract.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
-| C:\appsprojects\phraseman\tests\learning_v2_neutral_qa_session_e2e_harness_v1.test.ts | А или В — после релиза | фикстура из старого пакета эпизода 1 (client_child_invalid / mode_native_payload_invalid); плеер выпуска на неё не опирается | Error: learning_v2_course_session_client_child_invalid |  |
 | C:\appsprojects\phraseman\tests\learning_v2_authored_sessions_reach_the_player.test.ts | В — после релиза | испанский Learning V2 скрыт (D129) | Error: expect(received).toBe(expected) // Object.is equality Expected: 14 Received: 13 |  |
 | C:\appsprojects\phraseman\tests\learning_v2_e1_content_compiler.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false |  |
 | C:\appsprojects\phraseman\tests\learning_v2_english_l4_curriculum_contract.test.ts | В — после релиза | старая авторская система modules/learning-v2/content/source или модель «12 сессий»; в английский выпуск не идёт | AssertionError [ERR_ASSERTION]: l4_exact_lexical_assignment_by_session + actual - expected ... Skipped lines |  |
@@ -85,3 +81,13 @@
 - course_session_audio_readback, audio_release_extension, lesson_audio_release_index, completed_spool: явный modePayload: null у ученических заданий.
 - activity_released_session_submission_spool: у отправки v2 метка local_provisional_only.
 - course_session_save_card: считаем только запись custom_flashcards_v2 (служебные ключи пишутся рядом).
+
+
+### Вторая партия (18.10, «А или В — фикстура эпизода 1», та же причина)
+- intro_semantic_runs_contract, activity_post_terminal_card_catalog — c2dbb8e41: локали из LEARNING_V2_INTERFACE_LOCALES.
+- neutral_qa_session_e2e_harness, neutral_qa_hostile_red_matrix — фикстура modules/learning-v2/content/neutral_qa_session_fixture_v1.ts (импортируют только эти тесты): локали из контракта + modePayload: null. 2/2 PASS, 18/18.
+Имена для снятия исключений (ведёт Дизайн):
+- learning_v2_intro_semantic_runs_contract.test.ts
+- learning_v2_activity_post_terminal_card_catalog_v1.test.ts
+- learning_v2_neutral_qa_session_e2e_harness_v1.test.ts
+- learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts

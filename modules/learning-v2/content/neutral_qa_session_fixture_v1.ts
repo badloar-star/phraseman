@@ -1,3 +1,4 @@
+import { LEARNING_V2_INTERFACE_LOCALES } from "./generator_course_contract";
 import { hashCanonicalBody } from "../policies/decision_registry";
 import {
   materializeLearningV2CourseSessionAuxiliaryChildV1,
@@ -56,16 +57,9 @@ export const LEARNING_V2_NEUTRAL_QA_LESSON_ORDINAL_V1 = 32 as const;
 export const LEARNING_V2_NEUTRAL_QA_SESSION_ORDINAL_V1 = 56 as const;
 export const LEARNING_V2_NEUTRAL_QA_TARGET_LANGUAGE_V1 = "en-US" as const;
 
-export const LEARNING_V2_NEUTRAL_QA_INTERFACE_LOCALES_V1 = Object.freeze([
-  "ru",
-  "uk",
-  "es",
-  "pt-BR",
-  "vi",
-  "id",
-  "tr",
-  "pl",
-] as const);
+// зачем (18.10, Ревизор 3.81): с 9a9824828 (23.08) локалей объяснения 9 (добавлен en); фикстура держала 8 и роняла
+// материализацию интро/ученика — берём общий список из контракта, а не зашиваем копию.
+export const LEARNING_V2_NEUTRAL_QA_INTERFACE_LOCALES_V1 = LEARNING_V2_INTERFACE_LOCALES;
 
 /** 3 intro-вопроса (slots 1–3) + 14 практических = 17, внутри standard 14–18. */
 export const LEARNING_V2_NEUTRAL_QA_PRACTICE_COUNT_V1 = 14 as const;
@@ -239,6 +233,8 @@ export function buildLearningV2NeutralQaLearnerChildV1(): LearningV2CourseSessio
         accessibilityLabel: `Neutral QA interaction ${ordinal}`,
         // зачем: голосовой ответ остаётся доступной альтернативой, но НЕ считается
         // доказательством и ничего не начисляет — оба флага строго false.
+        // зачем (18.10, Ревизор 3.81): ученический ребёнок требует явный modePayload (null = без режима)
+        modePayload: null,
         scriptedAlternate:
           entry.input === "scripted_speech"
             ? {

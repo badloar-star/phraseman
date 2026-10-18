@@ -1616,7 +1616,7 @@ export default function LessonComplete() {
               secondaryLabel={isComboCompletion ? undefined : completionRequiresPremium
                 ? triLang(lang, { ru: 'Остаться на бесплатном', en: 'Stay on Free', uk: 'Залишитися на безкоштовному', es: 'Seguir en gratis', 'pt-BR': 'Ficar no grátis', vi: 'Tiếp tục bản miễn phí', id: 'Tetap gratis', tr: 'Ücretsiz devam et', pl: 'Zostań przy darmowym' })
                 : resultStars === 1
-                  ? triLang(lang, { ru: 'К списку уроков', en: 'Back to lessons', uk: 'До списку уроків', es: 'A la lista de lecciones', 'pt-BR': 'Para a lista de lições', vi: 'Về danh sách bài', id: 'Ke daftar pelajaran', tr: 'Ders listesine', pl: 'Do listy lekcji' })
+                  ? triLang(lang, { ru: 'К списку уроков', en: 'Back to lessons', uk: 'До списку уроків', es: 'A las lecciones', 'pt-BR': 'Para as lições', vi: 'Về danh sách bài', id: 'Ke daftar pelajaran', tr: 'Ders listesine', pl: 'Do listy lekcji' })
                   : runMistakeIds.length > 0
                     // зачем (решение владельца 13.10, learn.html E): под «Следующий урок» — «Добить: Ещё учу (N)», N = ошибки прохода, записанные в «Мои ошибки»; без ошибок остаётся «Пройти ещё раз».
                     ? triLang(lang, finishMistakesLabels(runMistakeIds.length))

@@ -192,7 +192,7 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       vi: `Bạn mất chuỗi ${n} lần — Plus giúp bảo vệ chuỗi`,
       id: `Rangkaian putus ${n} kali — Plus membantu melindunginya`,
       tr: `Serin ${n} kez bozuldu — Plus korumaya yardım eder`,
-      pl: `Seria przerwała się ${n} razy — Plus pomaga ją chronić`,
+      pl: `Seria przerwała się ${n} ${n === 1 ? 'raz' : 'razy'} — Plus pomaga ją chronić`,
       weight,
     });
   }

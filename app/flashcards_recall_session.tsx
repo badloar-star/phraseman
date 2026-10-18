@@ -782,8 +782,9 @@ export default function FlashcardsRecallSession() {
       vi: 'Tôi biết', id: 'Saya tahu', tr: 'Biliyordum', pl: 'Wiedziałem',
     }),
     didNotKnow: triLang(lang, {
-      ru: 'Не знал', uk: 'Не знав', en: 'I didn’t know', es: 'No lo sabía', 'pt-BR': 'Eu não sabia',
-      vi: 'Tôi không biết', id: 'Saya tidak tahu', tr: 'Bilmiyordum', pl: 'Nie wiedziałem',
+      // зачем (переводчик 18.10, D188 — без рода): «Не знал / Не знав / Nie wiedziałem» были в мужском роде; настоящее время короче на всех языках
+      ru: 'Не знаю', uk: 'Не знаю', en: 'Don’t know', es: 'No lo sé', 'pt-BR': 'Não sei',
+      vi: 'Không biết', id: 'Tidak tahu', tr: 'Bilmiyorum', pl: 'Nie wiem',
     }),
     // зачем (Карточки 2.0 12.10, макет «Дальше»)
     continue: triLang(lang, {

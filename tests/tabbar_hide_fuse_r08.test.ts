@@ -14,8 +14,11 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 const h = React.createElement;
 
 describe('R08 · предохранитель таббара', () => {
-  it('«Обучение» прячет таббар только пока владеет экраном', () => {
-    expect(read('app/(tabs)/lessons.tsx')).toContain('useHideTabBar(page === "v2" && lessonsTabVisible);');
+  // зачем (владелец 18.10: «когда таб Уроки открывается, таббар не должен пропадать!»): корень «Уроков» таббар не прячет вовсе.
+  it('корень «Уроков» таббар не прячет и пишет [TABBAR-LESSONS]', () => {
+    const lessons = read('app/(tabs)/lessons.tsx');
+    expect(lessons).not.toContain('useHideTabBar(');
+    expect(lessons).toContain("'[TABBAR-LESSONS]'");
   });
 
   it('разметка вкладок применяет скрытие только на вкладке «Обучение» и пишет [TABBAR-HIDE]', () => {

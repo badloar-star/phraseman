@@ -46,13 +46,13 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(lessons).toContain("scopeKey={learningV2ProjectionScopeKey}");
   });
 
-  test("на карте скрыт таббар и возвращается при уходе", () => {
+  test("на карте таббар виден (владелец 18.10), механизм скрытия — счётчик", () => {
     const lessons = readFileSync(
       join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
       "utf8",
     );
-    // R08 (15.10, предохранитель): прячет только пока «Обучение» владеет экраном — иначе запоздавшее скрытие доезжало до Главной
-    expect(lessons).toContain('useHideTabBar(page === "v2" && lessonsTabVisible)');
+    // зачем (владелец 18.10: «таббар не должен пропадать»): карта V2 больше не прячет таббар.
+    expect(lessons).not.toContain('useHideTabBar(');
     const ctx = readFileSync(
       join(__dirname, "..", "components", "TabBarVisibilityContext.tsx"),
       "utf8",

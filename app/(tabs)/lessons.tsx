@@ -141,7 +141,6 @@ import LearningV2SessionOutcomeSheet, {
   LEARNING_V2_SESSION_MODAL_EXIT_MS,
 } from "../../components/LearningV2SessionOutcomeSheet";
 import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
-import { useHideTabBar } from "../../components/TabBarVisibilityContext";
 import { useLearningV2CourseUnlockedWordsV1 } from "../../hooks/use_learning_v2_course_unlocked_words_v1";
 import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
 import FeatureIntroModal from "../../components/FeatureIntroModal";
@@ -2642,12 +2641,14 @@ export default function LessonsTab({
   useEffect(() => {
     console.log("[V2-MAP] page:commit", JSON.stringify({ instanceId: instanceIdRef.current, page, branch: page === "v2" ? "v2_map" : page === "dialogs" ? "dialogs" : "legacy_list", presentation, runtimeOwnerId, visible: lessonsTabVisible, navFocused, atMs: Date.now() }));
   }, [page, presentation, runtimeOwnerId, lessonsTabVisible, navFocused]);
-  // зачем: карта Learning V2 занимает весь экран, а раздел открывается ВНУТРИ
-  // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
-  // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
-  // зачем (R08 🔴, координатор 15.10, предохранитель): запрос «спрятать таббар» действует только пока вкладка «Обучение» реально владеет экраном —
-  // иначе отложенное скрытие доезжало до Главной, и человек оставался без таббара.
-  useHideTabBar(page === "v2" && lessonsTabVisible);
+  // зачем (владелец 18.10: «когда таб Уроки открывается, таббар не должен пропадать!»): прежде (решение 20.09) карта
+  // Learning V2 прятала таббар, пока открыта, — а с c4a3fb870 карта открывается сразу при входе на вкладку, и таббар
+  // пропадал на каждом открытии «Уроков». Корень вкладки таббар больше не прячет; нижний отступ списка уже равен
+  // верху плавающей капсулы + зазор (listBottomPad ← useTabContentBottomPad). Прохождение урока — отдельный маршрут вне вкладок.
+  useEffect(() => {
+    if (!lessonsTabVisible) return;
+    console.log('[TABBAR-LESSONS]', JSON.stringify({ page, retainedTab: isRetainedTab, owner: runtimeOwnerId, tabBar: 'visible', reason: 'lessons_root_never_hides', bottomPad: listBottomPad })); // guard-ok: решение о таббаре на открытии вкладки
+  }, [page, lessonsTabVisible, isRetainedTab, runtimeOwnerId, listBottomPad]);
   perfR1BodyMark('lessons', 'h_coin_bindings', perfBodyStart);
   const legacyCoinRankBinding = useMyCoinRankBinding();
   const legacyCoinBalanceBinding = useLegacyCoinBalanceBinding(

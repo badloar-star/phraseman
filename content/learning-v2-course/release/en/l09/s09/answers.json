@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-09:word:marble",
+    "correctText": "marble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i01",
+    "correctText": "This is a marble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i02",
+    "correctText": "marble",
+    "correctResponseId": "en:lesson-09:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i04",
+    "correctText": "en:lesson-09:session-09:i04:p1=marble\nen:lesson-09:session-09:i04:p2=count\nen:lesson-09:session-09:i04:p3=guess\nen:lesson-09:session-09:i04:p4=jar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i05",
+    "correctText": "I am not guessing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:word:quantity",
+    "correctText": "quantity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i06",
+    "correctText": "Check the quantity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:word:flavour",
+    "correctText": "flavour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i07",
+    "correctText": "The flavour is strong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i08",
+    "correctText": "tasting",
+    "correctResponseId": "en:lesson-09:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i09",
+    "correctText": "She is not tasting the jam.",
+    "correctResponseId": "en:lesson-09:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i10",
+    "correctText": "en:lesson-09:session-09:i10:p1=marble\nen:lesson-09:session-09:i10:p2=quantity\nen:lesson-09:session-09:i10:p3=flavour\nen:lesson-09:session-09:i10:p4=jam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i11",
+    "correctText": "They are not looking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:word:blindfold",
+    "correctText": "blindfold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i12",
+    "correctText": "blindfold",
+    "correctResponseId": "en:lesson-09:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i13",
+    "correctText": "He is wearing a blindfold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i15",
+    "correctText": "I am not guessing.",
+    "correctResponseId": "en:lesson-09:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i16",
+    "correctText": "en:lesson-09:session-09:i16:p1=marble\nen:lesson-09:session-09:i16:p2=quantity\nen:lesson-09:session-09:i16:p3=flavour\nen:lesson-09:session-09:i16:p4=blindfold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-09:i17",
+    "correctText": "I am not guessing.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-09:intro1:r2": {
+          "ru": "Перед not с I нужно am.",
+          "uk": "Перед not із I потрібне am."
+        },
+        "en:lesson-09:session-09:intro1:r3": {
+          "ru": "После am not для действия сейчас нужна форма guessing.",
+          "uk": "Після am not для дії зараз потрібна форма guessing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-09:intro2:r2": {
+          "ru": "С she перед not нужно is.",
+          "uk": "Із she перед not потрібне is."
+        },
+        "en:lesson-09:session-09:intro2:r3": {
+          "ru": "Здесь is not tasting, а не is not taste.",
+          "uk": "Тут is not tasting, а не is not taste."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-09:intro3:r2": {
+          "ru": "С they перед not нужно are.",
+          "uk": "Із they перед not потрібне are."
+        },
+        "en:lesson-09:session-09:intro3:r3": {
+          "ru": "После are not здесь нужна форма looking.",
+          "uk": "Після are not тут потрібна форма looking."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "67702e01bd606e329700e293f13b856380858b7e3fc224042b122b0b1f9f3027"
+}

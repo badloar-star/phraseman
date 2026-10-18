@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "обычная работа: makes; действие сейчас: is using; запрет: don’t touch",
+    "uk": "звична робота: makes; дія зараз: is using; заборона: don’t touch"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мастер чашек",
+        "uk": "Майстер чашок"
+      },
+      "bodyByLocale": {
+        "ru": "На ярмарке вы показываете другу стол мастера, который регулярно делает чашки. Potter — «гончар». The potter makes cups — «Гончар делает чашки». Это его обычная работа, поэтому makes, без is. Одна профессия, много чашек — особенно если у всех гостей разные любимые цвета.",
+        "uk": "На ярмарку ви показуєте другові стіл майстра, який регулярно робить чашки. Potter — «гончар». The potter makes cups — «Гончар робить чашки». Це його звична робота, тому makes, без is. Одна професія, багато чашок — особливо якщо в усіх гостей різні улюблені кольори."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-08:intro1:r1",
+              "text": "The potter makes cups."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro1:r2",
+              "text": "The potter make cups."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro1:r3",
+              "text": "The potter is makes cups."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-08:intro1:r1",
+              "text": "The potter makes cups."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro1:r2",
+              "text": "The potter make cups."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro1:r3",
+              "text": "The potter is makes cups."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Горячая печь",
+        "uk": "Гаряча піч"
+      },
+      "bodyByLocale": {
+        "ru": "На экскурсии по мастерской вы подошли к печи для обжига. Она ещё горячая, и мастер просит не прикасаться к ней. Kiln — «печь для обжига». Don’t touch the kiln — «Не трогайте печь для обжига». После don’t используем touch без окончания. Такая печь нужна для керамики; знакомая oven чаще связана с приготовлением еды.",
+        "uk": "На екскурсії майстернею ви підійшли до печі для випалювання. Вона ще гаряча, і майстер просить не торкатися її. Kiln — «піч для випалювання». Don’t touch the kiln — «Не торкайтеся печі для випалювання». Після don’t використовуємо touch без закінчення. Така піч потрібна для кераміки; знайома oven частіше пов’язана з приготуванням їжі."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-08:intro2:r1",
+              "text": "Don't touch the kiln."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro2:r2",
+              "text": "Don't touches the kiln."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro2:r3",
+              "text": "Don't touching the kiln."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-08:intro2:r1",
+              "text": "Don't touch the kiln."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro2:r2",
+              "text": "Don't touches the kiln."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro2:r3",
+              "text": "Don't touching the kiln."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковые украшения",
+        "uk": "Однакові прикраси"
+      },
+      "bodyByLocale": {
+        "ru": "Преподавательница сейчас делает несколько одинаковых украшений из глины с помощью формы. Mould — «форма для изготовления предмета». She is using a mould — «Она пользуется формой». Действие происходит сейчас: is using. Mould — британское написание, mold — американское; здесь речь о форме, не о плесени.",
+        "uk": "Викладачка зараз робить кілька однакових прикрас із глини за допомогою форми. Mould — «форма для виготовлення предмета». She is using a mould — «Вона користується формою». Дія відбувається зараз: is using. Mould — британське написання, mold — американське; тут ідеться про форму, не про плісняву."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-08:intro3:r1",
+              "text": "She is using a mould."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro3:r2",
+              "text": "She using a mould."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro3:r3",
+              "text": "She is use a mould."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-08:intro3:r1",
+              "text": "She is using a mould."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro3:r2",
+              "text": "She using a mould."
+            },
+            {
+              "responseId": "en:lesson-09:session-08:intro3:r3",
+              "text": "She is use a mould."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b9e07611a8ddd0593363047557619f47a151214d944969906db3728f83feef04"
+}

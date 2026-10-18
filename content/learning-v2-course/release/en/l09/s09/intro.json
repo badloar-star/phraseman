@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "am/is/are + not + -ing; guess уже знакомо",
+    "uk": "am/is/are + not + -ing; guess уже знайоме"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Шарики для игры",
+        "uk": "Кульки для гри"
+      },
+      "bodyByLocale": {
+        "ru": "Вы считаете стеклянные шарики, чтобы раздать игрокам поровну. Marble — «стеклянный игровой шарик», quantity — «количество». Друг думает, что вы называете количество наугад, но вы действительно считаете: I am not guessing — «Я не угадываю». Для отрицания действия сейчас ставим not после am, а guessing остаётся с -ing. Шарики могут разбежаться, но not остаётся после am.",
+        "uk": "Ви рахуєте скляні кульки, щоб роздати гравцям порівну. Marble — «скляна ігрова кулька», quantity — «кількість». Друг думає, що ви називаєте кількість навмання, але ви справді рахуєте: I am not guessing — «Я не вгадую». Для заперечення дії зараз ставимо not після am, а guessing залишається з -ing. Кульки можуть розкотитися, але not залишається після am."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-09:intro1:r1",
+              "text": "I am not guessing."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro1:r2",
+              "text": "I not guessing."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro1:r3",
+              "text": "I am not guess."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-09:intro1:r1",
+              "text": "I am not guessing."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro1:r2",
+              "text": "I not guessing."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro1:r3",
+              "text": "I am not guess."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пауза на дегустации",
+        "uk": "Пауза на дегустації"
+      },
+      "bodyByLocale": {
+        "ru": "На дегустации варенья девушка отложила ложку и сейчас записывает впечатления. Flavour — «вкус», характерный вкус еды. Она в этот момент не пробует варенье: She is not tasting the jam — «Она не пробует варенье». С she используем is not tasting. Это описание текущей паузы, а не утверждение, что она вообще никогда не пробует варенье.",
+        "uk": "На дегустації варення дівчина відклала ложку й зараз записує враження. Flavour — «смак», характерний смак їжі. Вона цієї миті не куштує варення: She is not tasting the jam — «Вона не куштує варення». Із she використовуємо is not tasting. Це опис поточної паузи, а не твердження, що вона взагалі ніколи не куштує варення."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-09:intro2:r1",
+              "text": "She is not tasting the jam."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro2:r2",
+              "text": "She not tasting the jam."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro2:r3",
+              "text": "She is not taste the jam."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-09:intro2:r1",
+              "text": "She is not tasting the jam."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro2:r2",
+              "text": "She not tasting the jam."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro2:r3",
+              "text": "She is not taste the jam."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Игра с закрытыми глазами",
+        "uk": "Гра із заплющеними очима"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья на празднике узнают предметы на ощупь. У каждого повязка на глазах — a blindfold. Они сейчас не смотрят: They are not looking — «Они не смотрят». Для they нужно are not looking. Not ставим после are, а не вместо него.",
+        "uk": "Друзі на святі впізнають предмети на дотик. У кожного пов’язка на очах — a blindfold. Вони зараз не дивляться: They are not looking — «Вони не дивляться». Для they потрібне are not looking. Not ставимо після are, а не замість нього."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-09:intro3:r1",
+              "text": "They are not looking."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro3:r2",
+              "text": "They not looking."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro3:r3",
+              "text": "They are not look."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-09:intro3:r1",
+              "text": "They are not looking."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro3:r2",
+              "text": "They not looking."
+            },
+            {
+              "responseId": "en:lesson-09:session-09:intro3:r3",
+              "text": "They are not look."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9a0c5bbaa545c87d5b8c2588deb06d13f2cd217966de63359298a1e7ff7db79f"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-07:word:clap",
+    "correctText": "clap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i01",
+    "correctText": "Please clap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i02",
+    "correctText": "clap",
+    "correctResponseId": "en:lesson-09:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i04",
+    "correctText": "en:lesson-09:session-07:i04:p1=clap\nen:lesson-09:session-07:i04:p2=dance\nen:lesson-09:session-07:i04:p3=sing\nen:lesson-09:session-07:i04:p4=wait",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i05",
+    "correctText": "I am clapping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:word:performer",
+    "correctText": "performer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i06",
+    "correctText": "The performer is waving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:word:audience",
+    "correctText": "audience",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i07",
+    "correctText": "The audience is waiting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i08",
+    "correctText": "clapping",
+    "correctResponseId": "en:lesson-09:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i09",
+    "correctText": "The performer is waving.",
+    "correctResponseId": "en:lesson-09:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i10",
+    "correctText": "en:lesson-09:session-07:i10:p1=clap\nen:lesson-09:session-07:i10:p2=performer\nen:lesson-09:session-07:i10:p3=audience\nen:lesson-09:session-07:i10:p4=wave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i11",
+    "correctText": "The audience is waiting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:word:applause",
+    "correctText": "applause",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i12",
+    "correctText": "applause",
+    "correctResponseId": "en:lesson-09:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i13",
+    "correctText": "I can hear applause.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-07:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i15",
+    "correctText": "I am clapping.",
+    "correctResponseId": "en:lesson-09:session-07:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i16",
+    "correctText": "en:lesson-09:session-07:i16:p1=clap\nen:lesson-09:session-07:i16:p2=performer\nen:lesson-09:session-07:i16:p3=audience\nen:lesson-09:session-07:i16:p4=applause",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-07:i17",
+    "correctText": "I am clapping.",
+    "correctResponseId": null
+  }
+]

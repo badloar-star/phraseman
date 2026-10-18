@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-08:word:potter",
+    "correctText": "potter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i01",
+    "correctText": "The potter makes cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i02",
+    "correctText": "potter",
+    "correctResponseId": "en:lesson-09:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i03",
+    "correctText": "makes",
+    "correctResponseId": "en:lesson-09:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i04",
+    "correctText": "en:lesson-09:session-08:i04:p1=potter\nen:lesson-09:session-08:i04:p2=cup\nen:lesson-09:session-08:i04:p3=clay\nen:lesson-09:session-08:i04:p4=make",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i05",
+    "correctText": "The potter makes cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:word:kiln",
+    "correctText": "kiln",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i06",
+    "correctText": "Don't touch the kiln.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:word:mould",
+    "correctText": "mould",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i07",
+    "correctText": "She is using a mould.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i08",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i09",
+    "correctText": "Don't touch the kiln.",
+    "correctResponseId": "en:lesson-09:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i10",
+    "correctText": "en:lesson-09:session-08:i10:p1=potter\nen:lesson-09:session-08:i10:p2=kiln\nen:lesson-09:session-08:i10:p3=mould\nen:lesson-09:session-08:i10:p4=clay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i11",
+    "correctText": "She is using a mould.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:word:glaze",
+    "correctText": "glaze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i12",
+    "correctText": "glaze",
+    "correctResponseId": "en:lesson-09:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i13",
+    "correctText": "This glaze is blue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i15",
+    "correctText": "This glaze is blue.",
+    "correctResponseId": "en:lesson-09:session-08:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i16",
+    "correctText": "en:lesson-09:session-08:i16:p1=potter\nen:lesson-09:session-08:i16:p2=kiln\nen:lesson-09:session-08:i16:p3=mould\nen:lesson-09:session-08:i16:p4=glaze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-08:i17",
+    "correctText": "Don't touch the kiln.",
+    "correctResponseId": null
+  }
+]

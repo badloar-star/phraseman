@@ -247,7 +247,7 @@ export default function CollectionGalleryView({
         <ScrollView
           ref={scrollRef}
           testID="fc-gallery-scroll"
-          contentContainerStyle={[styles.content, selectionMode && !canCreatePack && styles.contentSelHint]}
+          contentContainerStyle={[styles.content, selectionMode && !canCreatePack && styles.contentSelHint, limitCta && !selectionMode && styles.contentLimit]}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={onScroll}
@@ -365,6 +365,9 @@ export default function CollectionGalleryView({
 const styles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: SIDE, paddingBottom: 150 },
+  // зачем (Макеты, cards039/err_a.png, координатор 09:22): при плавающей «Без лимита с Plus» (56 + зазор) пилюля «Тренировать» поднята на 66 и закрывала слово второй-третьей карточки в конце списка —
+  // нижний отступ списка = 150 + 66, чтобы последний ряд можно было докрутить выше обеих плавающих кнопок, ничего не перекрывая.
+  contentLimit: { paddingBottom: 216 },
   contentSelHint: { paddingBottom: 210 }, // панель выделения с плашкой-подсказкой выше обычной: 150 + плашка ≈ 40 + зазор
   gridWrap: { marginTop: 0 },
   addBtn: { marginTop: 16, minHeight: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8 },

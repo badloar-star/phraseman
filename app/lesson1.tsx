@@ -1364,7 +1364,9 @@ const LessonContent = React.memo(function LessonContent({
               }],
             }}>
               {wasWrong && (
-                <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 12 : 16, borderRadius: 18, marginBottom: linkedSliceCompact ? 6 : 10, boxShadow: nestedBoxShadow(glass) }}>
+                // зачем (Макеты m08_1018/q_wrong_t06.png, координатор 09:22, «сигналы спорят»): правильный ответ зелёным лежал на тёмно-красной плашке — теперь плашка зелёная (t.correctBg); ошибка уже показана
+                // красным зачёркиванием в фразе выше, красной подложки не нужно.
+                <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 12 : 16, borderRadius: 18, marginBottom: linkedSliceCompact ? 6 : 10, boxShadow: nestedBoxShadow(glass) }}>
                   <Text
                     testID="lesson1-correct-answer-on-wrong"
                     // зачем (Сверка 21:05, светлая тема): зелёный t.correct на розовой плашке ошибки почти не читается — в светлой берём цвет текста темы
@@ -4207,6 +4209,8 @@ function LessonScreen() {
             promoted={medalToast.promoted}
             anim={medalToastAnim}
             bg={t.bgCard}
+            // зачем (Макеты m08_1018/n_c5_t16.png, координатор 09:22): тост «Бронзовая медаль» (низ 120) закрывал полосу прогресса урока и ряд «Теория/Назад/Повтор» — поднят над ними (низ 236), перекрытий нет.
+            bottom={236}
             isLightTheme={false}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}

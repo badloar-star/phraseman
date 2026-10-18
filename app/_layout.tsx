@@ -351,6 +351,9 @@ import { traceLessonExit } from './lesson_exit_trace';
 import { consumeInitialDeepLinkTarget } from './initial_deep_link_store';
 import { rememberOnboardingDonePeek } from './onboarding_done_peek';
 import {
+  ACCOUNT_TRANSITION_MARKER_KEYS,
+  CONSENT_REGATE_DEFER_MAX_ATTEMPTS,
+  CONSENT_REGATE_DEFER_STEP_MS,
   CONSENT_REGATE_PENDING_KEY,
   DEVICE_ONBOARDING_DONE_KEY,
   LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE,
@@ -3418,19 +3421,33 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // зачем (Ревизор 18.10 по 04bcd2d89): выход/смена в этой же сессии — экран согласия сразу, а не только при следующем
   // запуске; иначе B, вошедший без перезапуска, остался бы без принятых Условий. Решение — то же resolveConsentRegate.
   useEffect(() => {
-    const sub = onAppEvent('consent_regate_requested', ({ source }) => {
-      if (showOnboarding) {
-        console.log(`[CONSENT-REGATE] event source=${source} show=false reason=onboarding_already_shown`); // guard-ok: ранний выход пишет причину
-        return;
-      }
-      void AsyncStorage.multiGet([LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE, CONSENT_REGATE_PENDING_KEY])
+    let disposed = false;
+    let deferTimer: ReturnType<typeof setTimeout> | null = null;
+    // зачем (Ревизор 18.10 по 6031bf80c): событие приходит и из карантина смены A→B — пока идёт смена или вход провайдера
+    // (ключи ACCOUNT_TRANSITION_MARKER_KEYS), экран согласия не поднимаем: он перекрыл бы окно входа B. Проверяем раз в секунду до 90 с.
+    const check = (source: string, attempt: number): void => {
+      void AsyncStorage.multiGet([LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE, CONSENT_REGATE_PENDING_KEY, ...ACCOUNT_TRANSITION_MARKER_KEYS])
         .then((rows) => {
+          if (disposed) {
+            console.log(`[CONSENT-REGATE] event source=${source} dropped reason=effect_disposed attempt=${attempt}`); // guard-ok: ранний выход пишет причину
+            return;
+          }
           const values = new Map(rows);
           const legalRaw = values.get(LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE) ?? null;
           const pendingRaw = values.get(CONSENT_REGATE_PENDING_KEY) ?? null;
+          const activeTransition = ACCOUNT_TRANSITION_MARKER_KEYS.filter((key) => values.get(key) != null);
+          if (activeTransition.length > 0) {
+            if (attempt >= CONSENT_REGATE_DEFER_MAX_ATTEMPTS) {
+              console.log(`[CONSENT-REGATE] event source=${source} deferred_gave_up attempts=${attempt} active=${activeTransition.join(',')} — покажем при следующем запуске`); // guard-ok: ранний выход пишет причину
+              return;
+            }
+            if (attempt === 0) console.log(`[CONSENT-REGATE] event source=${source} deferred reason=account_transition_active active=${activeTransition.join(',')}`); // guard-ok: причина отложенного показа
+            deferTimer = setTimeout(() => check(source, attempt + 1), CONSENT_REGATE_DEFER_STEP_MS);
+            return;
+          }
           // онбординг на устройстве пройден (метка устройства пишется до стирания) — решают метка выхода и Условия
           const decision = resolveConsentRegate('1', legalRaw, pendingRaw);
-          console.log(`[CONSENT-REGATE] event source=${source} show=${decision.show} reason=${decision.reason} legal=${legalRaw ?? 'null'} pending=${pendingRaw ?? 'null'}`); // guard-ok: решение по событию
+          console.log(`[CONSENT-REGATE] event source=${source} show=${decision.show} reason=${decision.reason} legal=${legalRaw ?? 'null'} pending=${pendingRaw ?? 'null'} waitedAttempts=${attempt}`); // guard-ok: решение по событию
           if (!decision.show) return;
           onboardingDoneHandledRef.current = false;
           onboardingShowReasonRef.current = 'event consent_regate';
@@ -3440,8 +3457,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         .catch((error: unknown) => {
           console.warn(`[CONSENT-REGATE] event source=${source} read_failed code=${error instanceof Error ? error.name : typeof error} — покажем при следующем запуске`); // guard-ok: catch пишет причину
         });
+    };
+    const sub = onAppEvent('consent_regate_requested', ({ source }) => {
+      if (showOnboarding) {
+        console.log(`[CONSENT-REGATE] event source=${source} show=false reason=onboarding_already_shown`); // guard-ok: ранний выход пишет причину
+        return;
+      }
+      if (deferTimer) clearTimeout(deferTimer);
+      check(source, 0);
     });
-    return () => sub.remove();
+    return () => {
+      disposed = true;
+      if (deferTimer) clearTimeout(deferTimer);
+      sub.remove();
+    };
   }, [showOnboarding]);
 
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {

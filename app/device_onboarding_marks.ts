@@ -49,6 +49,20 @@ export function resolveBootOnboardingDone(onboardingDoneRaw: string | null, devi
 export const CONSENT_REGATE_PENDING_KEY = 'consent_regate_pending_v1';
 export const LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE = 'onboarding_terms_privacy_accepted_v1';
 
+/**
+ * зачем (Ревизор 18.10 по 6031bf80c): стирание 'signout' зовёт и карантин смены аккаунта — пока лежат эти ключи, идёт смена A→B
+ * или вход через провайдера, и экран согласия перекрыл бы окно входа B. Имена совпадают с account_switch_quarantine.ts
+ * (сторож consent_regate_after_signout_contract); модуль карантина сюда не тянем — он тяжёлый для старта.
+ */
+export const ACCOUNT_TRANSITION_MARKER_KEYS: readonly string[] = Object.freeze([
+  'account_switch_quarantine_v1',
+  'account_provider_handoff_v1',
+]);
+
+/** Пока идёт смена/вход — перепроверка раз в секунду до 90 с; дольше — экран покажет следующий запуск (метка выхода остаётся). */
+export const CONSENT_REGATE_DEFER_STEP_MS = 1_000;
+export const CONSENT_REGATE_DEFER_MAX_ATTEMPTS = 90;
+
 export type ConsentRegateDecision = Readonly<{
   show: boolean;
   reason: 'onboarding_not_done' | 'no_pending_mark' | 'legal_already_accepted' | 'pending_after_signout';

@@ -11,7 +11,7 @@ jest.mock('../app/user_id_policy', () => ({
 }));
 
 // eslint-disable-next-line import/first
-import { CONSENT_REGATE_PENDING_KEY, resolveConsentRegate } from '../app/device_onboarding_marks';
+import { ACCOUNT_TRANSITION_MARKER_KEYS, CONSENT_REGATE_PENDING_KEY, resolveConsentRegate } from '../app/device_onboarding_marks';
 // eslint-disable-next-line import/first
 import { accountOwnedStorageKeysFrom, SYNC_KEYS } from '../app/cloud_sync';
 
@@ -48,11 +48,29 @@ describe('проводка экрана согласия', () => {
   it('выход A → вход B без перезапуска: событие выхода сразу открывает экран согласия (то же решение, журнал)', () => {
     const cloudSync = read('app/cloud_sync.ts');
     expect(cloudSync).toMatch(/await wipeLocalAccountDataUnsafeBody\(mode\);\s*if \(mode === 'signout'\) \{[\s\S]{0,400}emitAppEvent\('consent_regate_requested', \{ source: 'signout_wipe' \}\);/);
-    const handler = layout.slice(layout.indexOf("onAppEvent('consent_regate_requested'"), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
+    // 18.10: проверка вынесена в check() над подпиской (отложенный показ во время смены аккаунта)
+    const handler = layout.slice(layout.indexOf('const check = (source: string, attempt: number): void => {'), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
+    expect(handler).toContain("onAppEvent('consent_regate_requested'");
     expect(handler).toContain("resolveConsentRegate('1', legalRaw, pendingRaw)");
     expect(handler).toContain('[CONSENT-REGATE] event source=${source} show=${decision.show} reason=${decision.reason}');
     expect(handler).toMatch(/if \(!decision\.show\) return;\s*onboardingDoneHandledRef\.current = false;[\s\S]*setOnboardingConsentOnly\(true\);\s*setShow\(true\);/);
     expect(handler).toContain('reason=onboarding_already_shown');
+  });
+
+  it('смена A→B через карантин: пока идёт смена или вход провайдера — показ откладывается, причина в журнале', () => {
+    const handler = layout.slice(layout.indexOf('const check = (source: string, attempt: number): void => {'), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
+    expect(handler).toContain('...ACCOUNT_TRANSITION_MARKER_KEYS]');
+    expect(handler).toMatch(/if \(activeTransition\.length > 0\) \{[\s\S]*deferred reason=account_transition_active[\s\S]*setTimeout\(\(\) => check\(source, attempt \+ 1\), CONSENT_REGATE_DEFER_STEP_MS\);\s*return;/);
+    expect(handler).toContain('deferred_gave_up');
+    // показ — только после проверки, что смены нет
+    expect(handler.indexOf('activeTransition.length > 0')).toBeLessThan(handler.indexOf('setShow(true)'));
+  });
+
+  it('имена ключей смены совпадают с модулем карантина (сторож дрейфа)', () => {
+    const quarantine = read('app/account_switch_quarantine.ts');
+    expect(quarantine).toContain("export const ACCOUNT_SWITCH_QUARANTINE_KEY = 'account_switch_quarantine_v1';");
+    expect(quarantine).toContain("export const ACCOUNT_PROVIDER_HANDOFF_KEY = 'account_provider_handoff_v1';");
+    expect(ACCOUNT_TRANSITION_MARKER_KEYS).toEqual(['account_switch_quarantine_v1', 'account_provider_handoff_v1']);
   });
 
   it('завершение согласия не запускает сценарий нового ученика (пуши, бонус, приветствие)', () => {

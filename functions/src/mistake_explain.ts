@@ -307,8 +307,9 @@ function sanitizePayload(data: ExplainMistakeRequest): ExplainMistakePayload {
 }
 
 async function enforceRateLimit(db: FirebaseFirestore.Firestore, authUid: string, stableUid: string): Promise<void> {
-  // зачем (Ревизор 18.10, аудит п.4): общий дневной потолок ПЛАТНЫХ объяснений ошибок — 3000 на всё приложение (зовётся только на промахе кэша).
-  await enforceCallerRateWindow({ scope: 'mistake_explain_global', authUid: '__all__', rawRequest: null, maxPerUid: 3000, maxPerIp: 0, windowMs: 24 * 60 * 60 * 1000 });
+  // зачем (Ревизор 3.124): общий дневной потолок одним документом '__all__' в пик давал конфликты транзакции, а они теперь
+  // отказ — честные «Объяснить ошибку» падали бы «занято». Общий потолок денег держит шардированный spend_cap
+  // (reserveDailySpend перед OpenAI), здесь остаются окна на uid и IP.
   const now = Date.now();
   const ref = db.collection(RATE_COLLECTION).doc(docId('mistake-rate', authUid, stableUid));
   await db.runTransaction(async (tx) => {

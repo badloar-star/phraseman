@@ -200,8 +200,8 @@ export const mistakeHubAdvice = onCall({
   let reservation: FreeJobGenReservation | null;
   try {
     reservation = await enforceFreeJobGenLimit(HUB_ADVICE_JOB, authUid, stableUid, HUB_ADVICE_DAILY_GEN_CAP, nowMs);
-    // зачем (Ревизор 18.10, аудит п.4): общий дневной потолок ПЛАТНЫХ генераций советов — 2000 на всё приложение (кэш не считается).
-    await enforceCallerRateWindow({ scope: 'hub_advice_global', authUid: '__all__', rawRequest: null, maxPerUid: 2000, maxPerIp: 0, windowMs: 24 * 60 * 60 * 1000 });
+    // зачем (Ревизор 3.124): общий потолок одним документом '__all__' убран — в пик конфликт = отказ «занято» честным людям.
+    // Общий потолок денег — шардированный spend_cap (reserveDailySpend в explain_provider перед OpenAI).
     // зачем (Ревизор 18.10, аудит п.3): потолок ПЛАТНЫХ генераций советов на IP в сутки (открытие хаба из кэша не считается).
     await enforceCallerRateWindow({ scope: 'hub_advice_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 });
   } catch (limitError) {

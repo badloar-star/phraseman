@@ -23,6 +23,12 @@ const LOG = '[ABUSE-LIMIT]';
 const DEFAULT_WINDOW_MS = 60 * 60 * 1000;
 /** Счётчик не держит дорогой вызов дольше 2 с: дольше — отказ «попробуйте ещё раз». */
 const DB_TIMEOUT_MS = 2_000;
+/**
+ * Первая транзакция нового инстанса: соединение с Firestore ещё не поднято, на холодном старте это 2–4 с.
+ * зачем (Ревизор 3.124): с 2 с первая реплика ИИ после простоя получала бы «занято».
+ */
+const COLD_DB_TIMEOUT_MS = 5_000;
+let dbWarm = false;
 /** Предфильтр в памяти: больше ключей — сбрасываем целиком (дешёвый первый барьер, не источник правды). */
 const LOCAL_MAX_KEYS = 5_000;
 
@@ -93,6 +99,7 @@ const localWindows = new Map<string, LocalWindow>();
 /** Только для тестов: сброс предфильтра инстанса. */
 export function resetCallerRateWindowStateForTest(): void {
   localWindows.clear();
+  dbWarm = false;
 }
 
 function rememberLocal(key: string, entry: LocalWindow): void {
@@ -158,7 +165,8 @@ export async function enforceCallerRateWindow(input: CallerRateWindowInput): Pro
   let committed: { windowStartMs: number; count: number }[] = [];
   try {
     let timer: ReturnType<typeof setTimeout> | null = null;
-    const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('caller_rate_window_timeout')), DB_TIMEOUT_MS); });
+    const timeoutMs = dbWarm ? DB_TIMEOUT_MS : COLD_DB_TIMEOUT_MS;
+    const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('caller_rate_window_timeout')), timeoutMs); });
     deadline.catch(() => undefined); // зачем: синхронный сбой транзакции не должен оставить таймер без обработчика
     await Promise.race([deadline, db.runTransaction(async (tx) => {
       const refs = checks.map((check) => db.collection(CALLER_RATE_WINDOW_COLLECTION).doc(check.key));
@@ -188,6 +196,7 @@ export async function enforceCallerRateWindow(input: CallerRateWindowInput): Pro
         });
       });
     })]).finally(() => { if (timer) clearTimeout(timer); });
+    dbWarm = true;
   } catch (error: unknown) {
     const detail = error instanceof Error ? error.message.slice(0, 120) : String(error);
     if (isFirestoreUnavailable(error)) {

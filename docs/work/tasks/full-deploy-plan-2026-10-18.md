@@ -17,6 +17,7 @@ Governance-ID: TG-6B6F00C0E6A7
 2. **Порядок.**
    - а) `firebase deploy --only firestore:rules` — правила нужны новым коллекциям лимитов (`auth_recovery_hint_rate_limits`, `auth_recovery_rate_limits`) ДО функций;
    - б) `firebase deploy --only firestore:indexes`. Если CLI предложит удалить индексы, которых нет в файле, — ответ «нет», без `--force`;
+   - б′) **TTL — отдельной проверкой после шага б** (c055fd6d9, координатор 18.10). Тот же шаг включает TTL-политики из `fieldOverrides`: `callable_rate_windows.expiresAt` и `spend_daily_shards.expiresAt` (плюс прежние). Без них документы лимитов и шарды расходов копятся вечно. Проверка — только чтение: `gcloud firestore fields ttls list --project=phraseman-ea0b3`, обе строки в состоянии `ACTIVE` или `CREATING`. Нет строки — повторить шаг б. Включение TTL занимает до суток и само ничего не ломает;
    - в) функции — ЯВНЫМИ списками по 40 имён (`--only functions:a,functions:b,…`), 11 пачек. Тогда CLI не трогает функции вне списка и не спрашивает об удалении. Квоты Cloud Build и Run на 400 функций разом не хватит;
    - г) `content` и `english-test` — тоже явными списками.
 3. **Сторожа перед выкладкой:** `deploy_lock_guard`, `guard_secret_env_overlap`, сборка, `functions_source_coverage_gate`, `functions_runtime_parity_gate` (predeploy в firebase.json) и тесты пломбы `app_check_sealed.test.ts` + `jarvis_data_contract_guard.test.ts`.

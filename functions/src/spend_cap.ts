@@ -29,14 +29,23 @@ const TOTAL_TTL_MS = 45_000;
 /** Выше этой доли порога сумма перечитывается чаще — перелёт ограничен 10 с вызовов, а не 45 с. */
 const NEAR_LIMIT_SHARE = 0.8;
 const NEAR_LIMIT_TOTAL_TTL_MS = 10_000;
-/** Потолок ожидания базы: счётчик не держит платный вызов дольше секунды; иначе — пропуск с журналом. */
+/** Потолок ожидания базы: счётчик не держит платный вызов дольше секунды. */
 const DB_TIMEOUT_MS = 1_000;
+/**
+ * Первое обращение нового инстанса: соединение с Firestore ещё не поднято (холодный старт 2–4 с).
+ * зачем (Ревизор 3.124): с 1 с первая реплика ИИ после простоя получала бы «занято».
+ */
+const COLD_DB_TIMEOUT_MS = 5_000;
+let dbWarm = false;
 
-function withTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
+async function withTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | null = null;
-  const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`spend_cap_timeout_${label}`)), DB_TIMEOUT_MS); });
+  const timeoutMs = dbWarm ? DB_TIMEOUT_MS : COLD_DB_TIMEOUT_MS;
+  const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`spend_cap_timeout_${label}`)), timeoutMs); });
   deadline.catch(() => undefined);
-  return Promise.race([promise, deadline]).finally(() => { if (timer) clearTimeout(timer); });
+  const result = await Promise.race([promise, deadline]).finally(() => { if (timer) clearTimeout(timer); });
+  dbWarm = true;
+  return result;
 }
 
 /** Цены, центы за 1 млн токенов (вход / выход). Завышение безопасно; неизвестная модель считается по самой дорогой строке. */
@@ -103,6 +112,7 @@ const state: State = { config: DEFAULT_CONFIG, configAtMs: 0, totalCents: 0, tot
 /** Только для тестов: сброс кэша инстанса. */
 export function resetSpendCapStateForTest(): void {
   Object.assign(state, { config: DEFAULT_CONFIG, configAtMs: 0, totalCents: 0, totalAtMs: 0, totalDateKey: '', localSinceRead: 0 });
+  dbWarm = false;
 }
 
 async function loadConfig(db: FirebaseFirestore.Firestore, nowMs: number): Promise<SpendCapConfig> {

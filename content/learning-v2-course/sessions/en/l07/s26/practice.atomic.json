@@ -1,0 +1,2497 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-26:word:janitor",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — janitor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:janitor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — janitor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:janitor:audio",
+            "transcript": "janitor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:janitor:r1",
+              "targetText": "janitor",
+              "meaningByLocale": {
+                "ru": "уборщик. The janitor is busy. — «Уборщик занят». Человек, который убирает здание и следит за ним.",
+                "uk": "прибиральник. The janitor is busy. — «Прибиральник зайнятий». Людина, яка прибирає будівлю й доглядає за нею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "janitor",
+            "definitionByLocale": {
+              "ru": "уборщик. The janitor is busy. — «Уборщик занят». Человек, который убирает здание и следит за ним.",
+              "uk": "прибиральник. The janitor is busy. — «Прибиральник зайнятий». Людина, яка прибирає будівлю й доглядає за нею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When does the janitor work?",
+          "localizedMeaning": {
+            "ru": "Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»",
+            "uk": "Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»"
+          },
+          "orderedTokens": [
+            "When",
+            "does",
+            "the",
+            "janitor",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i02:r1",
+            "text": "When does the janitor work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r2",
+            "text": "When does the janitor leave?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r3",
+            "text": "Where does the janitor work?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i02:audio",
+            "transcript": "When does the janitor work?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:i02:r1",
+              "targetText": "When does the janitor work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i02:r2",
+              "targetText": "When does the janitor leave?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i02:r3",
+              "targetText": "Where does the janitor work?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи work — «работать», а здесь leave — «уходить».",
+                "uk": "У записі work — «працювати», а тут leave — «йти»."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.",
+                "uk": "У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите соседку об уборщике. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i03:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите соседку об уборщике. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите соседку об уборщике. Выберите слово",
+            "uk": "Спитайте сусідку про прибиральника. Виберіть слово"
+          },
+          "gappedTargetPhrase": "When ___ the janitor work?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-26:i03:r1",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i03:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Спросите соседку об уборщике. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите соседку об уборщике. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Уборщик один: нужно `does`.",
+                "uk": "Прибиральник один: потрібно `does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите соседку об уборщике. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `work` нужно `does`, а не `is`.",
+                "uk": "З дією `work` потрібне `does`, а не `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-26:i04:p1",
+              "target": "janitor",
+              "meaningByLocale": {
+                "ru": "уборщик",
+                "uk": "прибиральник"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i04:p2",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i04:p3",
+              "target": "leave",
+              "meaningByLocale": {
+                "ru": "уходить",
+                "uk": "йти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i04:p4",
+              "target": "live",
+              "meaningByLocale": {
+                "ru": "жить",
+                "uk": "жити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "janitor",
+            "work",
+            "leave",
+            "live"
+          ],
+          "rightColumn": [
+            "уборщик",
+            "работать",
+            "уходить",
+            "жить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:surgeon",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — surgeon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:surgeon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — surgeon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:surgeon:audio",
+            "transcript": "surgeon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:surgeon:r1",
+              "targetText": "surgeon",
+              "meaningByLocale": {
+                "ru": "хирург. The surgeon is tired. — «Хирург устал». Врач, который делает операции в больнице.",
+                "uk": "хірург. The surgeon is tired. — «Хірург втомився». Лікар, який робить операції в лікарні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "surgeon",
+            "definitionByLocale": {
+              "ru": "хирург. The surgeon is tired. — «Хирург устал». Врач, который делает операции в больнице.",
+              "uk": "хірург. The surgeon is tired. — «Хірург втомився». Лікар, який робить операції в лікарні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i05:audio",
+            "transcript": "Where does the surgeon work?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where does the surgeon work?",
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "surgeon",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:lawyer",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lawyer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:lawyer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lawyer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:lawyer:audio",
+            "transcript": "lawyer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:lawyer:r1",
+              "targetText": "lawyer",
+              "meaningByLocale": {
+                "ru": "юрист. The lawyer is smart. — «Юрист умный». Человек, который знает законы и помогает с документами.",
+                "uk": "юрист. The lawyer is smart. — «Юрист розумний». Людина, яка знає закони й допомагає з документами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lawyer",
+            "definitionByLocale": {
+              "ru": "юрист. The lawyer is smart. — «Юрист умный». Человек, который знает законы и помогает с документами.",
+              "uk": "юрист. The lawyer is smart. — «Юрист розумний». Людина, яка знає закони й допомагає з документами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:practice:lawyer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Юрист занят разговором. Скажите: «Юрист занят»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:practice:lawyer:audio"
+        ],
+        "accessibilityLabel": "Юрист занят разговором. Скажите: «Юрист занят»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:practice:lawyer:audio",
+            "transcript": "The lawyer is busy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lawyer is busy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:park",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — park",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:park:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — park",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:park:audio",
+            "transcript": "park"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:park:r1",
+              "targetText": "park",
+              "meaningByLocale": {
+                "ru": "парковаться. Where do you park? — «Где ты паркуешься?» Здесь park — действие, а не место для прогулок.",
+                "uk": "паркуватися. Where do you park? — «Де ти паркуєшся?» Тут park — дія, а не місце для прогулянок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "park",
+            "definitionByLocale": {
+              "ru": "парковаться. Where do you park? — «Где ты паркуешься?» Здесь park — действие, а не место для прогулок.",
+              "uk": "паркуватися. Where do you park? — «Де ти паркуєшся?» Тут park — дія, а не місце для прогулянок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i06",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where does the lawyer park?",
+          "localizedMeaning": {
+            "ru": "Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»",
+            "uk": "Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "lawyer",
+            "park"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:sailor",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sailor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:sailor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sailor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:sailor:audio",
+            "transcript": "sailor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:sailor:r1",
+              "targetText": "sailor",
+              "meaningByLocale": {
+                "ru": "моряк. The sailor is strong. — «Моряк сильный». Человек, который работает на корабле и подолгу бывает в рейсе.",
+                "uk": "моряк. The sailor is strong. — «Моряк сильний». Людина, яка працює на кораблі й подовгу буває в рейсі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sailor",
+            "definitionByLocale": {
+              "ru": "моряк. The sailor is strong. — «Моряк сильный». Человек, который работает на корабле и подолгу бывает в рейсе.",
+              "uk": "моряк. The sailor is strong. — «Моряк сильний». Людина, яка працює на кораблі й подовгу буває в рейсі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i07",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы обсуждаете с подругой предстоящий рейс моряка. Спросите: «Когда моряк уходит?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Вы обсуждаете с подругой предстоящий рейс моряка. Спросите: «Когда моряк уходит?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i07:audio",
+            "transcript": "When does the sailor leave?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the sailor leave?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i08",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите брата о юристе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i08:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите брата о юристе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите брата о юристе. Выберите слово",
+            "uk": "Спитайте брата про юриста. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Where ___ the lawyer park?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-26:i08:r1",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i08:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Спросите брата о юристе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Спросите брата о юристе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Юрист один: нужно `does`.",
+                "uk": "Юрист один: потрібно `does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Спросите брата о юристе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С действием `park` нужно `does`, а не `are`.",
+                "uk": "З дією `park` потрібне `does`, а не `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i09",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте продавца",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i09:r1",
+            "text": "Where does the surgeon work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r2",
+            "text": "Where does the lawyer work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r3",
+            "text": "Where does the surgeon park?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i09:audio",
+            "transcript": "Where does the surgeon work?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:i09:r1",
+              "targetText": "Where does the surgeon work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i09:r2",
+              "targetText": "Where does the lawyer work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i09:r3",
+              "targetText": "Where does the surgeon park?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте продавца",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `surgeon`, хирург, а в этом варианте — `lawyer`, юрист.",
+                "uk": "У записі четверте слово — `surgeon`, хірург, а в цьому варіанті — `lawyer`, юрист."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте продавца",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `work`, работать, а в этом варианте — `park`, парковаться.",
+                "uk": "У записі останнє слово — `work`, працювати, а в цьому варіанті — `park`, паркуватися."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i10",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-26:i10:p1",
+              "target": "lawyer",
+              "meaningByLocale": {
+                "ru": "юрист",
+                "uk": "юрист"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i10:p2",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i10:p3",
+              "target": "hospital",
+              "meaningByLocale": {
+                "ru": "больница",
+                "uk": "лікарня"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i10:p4",
+              "target": "sailor",
+              "meaningByLocale": {
+                "ru": "моряк",
+                "uk": "моряк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lawyer",
+            "yard",
+            "hospital",
+            "sailor"
+          ],
+          "rightColumn": [
+            "юрист",
+            "двор",
+            "больница",
+            "моряк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i11",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i11:audio",
+            "transcript": "Where does the lawyer work?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where does the lawyer work?",
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "lawyer",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i12",
+        "ordinal": 21,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка рассказывает о хирурге. Спросите её: «Когда хирург уходит?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка рассказывает о хирурге. Спросите её: «Когда хирург уходит?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When does the surgeon leave?",
+          "localizedMeaning": {
+            "ru": "Соседка рассказывает о хирурге. Спросите её: «Когда хирург уходит?»",
+            "uk": "Сусідка розповідає про хірурга. Спитайте її: «Коли хірург іде?»"
+          },
+          "orderedTokens": [
+            "When",
+            "does",
+            "the",
+            "surgeon",
+            "leave"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i13",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга рассказывает о соседе-моряке. Спросите её: «Где моряк живёт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга рассказывает о соседе-моряке. Спросите её: «Где моряк живёт?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i13:audio",
+            "transcript": "Where does the sailor live?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where does the sailor live?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i14",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите соседку о хирурге. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i14:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r3",
+            "text": "is work"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите соседку о хирурге. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите соседку о хирурге. Выберите слово",
+            "uk": "Спитайте сусідку про хірурга. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Where does the surgeon ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-26:i14:r1",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i14:r2",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i14:r3",
+              "text": "is work"
+            }
+          ],
+          "testedDimension": "Спросите соседку о хирурге. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Спросите соседку о хирурге. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `does` нужно `work`, без `s`.",
+                "uk": "Після `does` потрібно `work`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Спросите соседку о хирурге. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно `work`, без `is`.",
+                "uk": "Тут потрібно `work`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i15",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i15:r1",
+            "text": "When does the sailor leave?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r2",
+            "text": "When does the sailor work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r3",
+            "text": "When does the lawyer leave?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i15:audio",
+            "transcript": "When does the sailor leave?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:i15:r1",
+              "targetText": "When does the sailor leave?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i15:r2",
+              "targetText": "When does the sailor work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i15:r3",
+              "targetText": "When does the lawyer leave?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `leave`, уходить, а в этом варианте — `work`, работать.",
+                "uk": "У записі останнє слово — `leave`, іти, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `sailor`, моряк, а в этом варианте — `lawyer`, юрист.",
+                "uk": "У записі четверте слово — `sailor`, моряк, а в цьому варіанті — `lawyer`, юрист."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i16",
+        "ordinal": 25,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-26:i16:p1",
+              "target": "sailor",
+              "meaningByLocale": {
+                "ru": "моряк",
+                "uk": "моряк"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i16:p2",
+              "target": "surgeon",
+              "meaningByLocale": {
+                "ru": "хирург",
+                "uk": "хірург"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i16:p3",
+              "target": "lawyer",
+              "meaningByLocale": {
+                "ru": "юрист",
+                "uk": "юрист"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i16:p4",
+              "target": "janitor",
+              "meaningByLocale": {
+                "ru": "уборщик",
+                "uk": "прибиральник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sailor",
+            "surgeon",
+            "lawyer",
+            "janitor"
+          ],
+          "rightColumn": [
+            "моряк",
+            "хирург",
+            "юрист",
+            "уборщик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i17",
+        "ordinal": 26,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы снова во дворе. Спросите соседку: «Когда уборщик работает?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Вы снова во дворе. Спросите соседку: «Когда уборщик работает?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i17:audio",
+            "transcript": "When does the janitor work?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the janitor work?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-26:word:janitor",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — janitor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:janitor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — janitor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:janitor:audio",
+            "transcript": "janitor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:janitor:r1",
+              "targetText": "janitor",
+              "meaningByLocale": {
+                "ru": "уборщик. The janitor is busy. — «Уборщик занят». Человек, который убирает здание и следит за ним.",
+                "uk": "прибиральник. The janitor is busy. — «Прибиральник зайнятий». Людина, яка прибирає будівлю й доглядає за нею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "janitor",
+            "definitionByLocale": {
+              "ru": "уборщик. The janitor is busy. — «Уборщик занят». Человек, который убирает здание и следит за ним.",
+              "uk": "прибиральник. The janitor is busy. — «Прибиральник зайнятий». Людина, яка прибирає будівлю й доглядає за нею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When does the janitor work?",
+          "localizedMeaning": {
+            "ru": "Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»",
+            "uk": "Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»"
+          },
+          "orderedTokens": [
+            "When",
+            "does",
+            "the",
+            "janitor",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i02:r1",
+            "text": "When does the janitor work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r2",
+            "text": "When does the janitor leave?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i02:r3",
+            "text": "Where does the janitor work?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i02:audio",
+            "transcript": "When does the janitor work?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:i02:r1",
+              "targetText": "When does the janitor work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i02:r2",
+              "targetText": "When does the janitor leave?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i02:r3",
+              "targetText": "Where does the janitor work?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи work — «работать», а здесь leave — «уходить».",
+                "uk": "У записі work — «працювати», а тут leave — «йти»."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.",
+                "uk": "У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте сусідку про прибиральника. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i03:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте сусідку про прибиральника. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите соседку об уборщике. Выберите слово",
+            "uk": "Спитайте сусідку про прибиральника. Виберіть слово"
+          },
+          "gappedTargetPhrase": "When ___ the janitor work?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-26:i03:r1",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i03:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Спитайте сусідку про прибиральника. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Спитайте сусідку про прибиральника. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Уборщик один: нужно `does`.",
+                "uk": "Прибиральник один: потрібно `does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Спитайте сусідку про прибиральника. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `work` нужно `does`, а не `is`.",
+                "uk": "З дією `work` потрібне `does`, а не `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-26:i04:p1",
+              "target": "janitor",
+              "meaningByLocale": {
+                "ru": "уборщик",
+                "uk": "прибиральник"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i04:p2",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i04:p3",
+              "target": "leave",
+              "meaningByLocale": {
+                "ru": "уходить",
+                "uk": "йти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i04:p4",
+              "target": "live",
+              "meaningByLocale": {
+                "ru": "жить",
+                "uk": "жити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "janitor",
+            "work",
+            "leave",
+            "live"
+          ],
+          "rightColumn": [
+            "прибиральник",
+            "працювати",
+            "йти",
+            "жити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:surgeon",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — surgeon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:surgeon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — surgeon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:surgeon:audio",
+            "transcript": "surgeon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:surgeon:r1",
+              "targetText": "surgeon",
+              "meaningByLocale": {
+                "ru": "хирург. The surgeon is tired. — «Хирург устал». Врач, который делает операции в больнице.",
+                "uk": "хірург. The surgeon is tired. — «Хірург втомився». Лікар, який робить операції в лікарні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "surgeon",
+            "definitionByLocale": {
+              "ru": "хирург. The surgeon is tired. — «Хирург устал». Врач, который делает операции в больнице.",
+              "uk": "хірург. The surgeon is tired. — «Хірург втомився». Лікар, який робить операції в лікарні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i05:audio",
+            "transcript": "Where does the surgeon work?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where does the surgeon work?",
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "surgeon",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:lawyer",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lawyer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:lawyer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lawyer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:lawyer:audio",
+            "transcript": "lawyer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:lawyer:r1",
+              "targetText": "lawyer",
+              "meaningByLocale": {
+                "ru": "юрист. The lawyer is smart. — «Юрист умный». Человек, который знает законы и помогает с документами.",
+                "uk": "юрист. The lawyer is smart. — «Юрист розумний». Людина, яка знає закони й допомагає з документами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lawyer",
+            "definitionByLocale": {
+              "ru": "юрист. The lawyer is smart. — «Юрист умный». Человек, который знает законы и помогает с документами.",
+              "uk": "юрист. The lawyer is smart. — «Юрист розумний». Людина, яка знає закони й допомагає з документами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:practice:lawyer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Юрист зайнятий розмовою. Скажіть: «Юрист зайнятий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:practice:lawyer:audio"
+        ],
+        "accessibilityLabel": "Юрист зайнятий розмовою. Скажіть: «Юрист зайнятий»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:practice:lawyer:audio",
+            "transcript": "The lawyer is busy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lawyer is busy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:park",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — park",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:park:audio"
+        ],
+        "accessibilityLabel": "Картка слова — park",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:park:audio",
+            "transcript": "park"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:park:r1",
+              "targetText": "park",
+              "meaningByLocale": {
+                "ru": "парковаться. Where do you park? — «Где ты паркуешься?» Здесь park — действие, а не место для прогулок.",
+                "uk": "паркуватися. Where do you park? — «Де ти паркуєшся?» Тут park — дія, а не місце для прогулянок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "park",
+            "definitionByLocale": {
+              "ru": "парковаться. Where do you park? — «Где ты паркуешься?» Здесь park — действие, а не место для прогулок.",
+              "uk": "паркуватися. Where do you park? — «Де ти паркуєшся?» Тут park — дія, а не місце для прогулянок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i06",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where does the lawyer park?",
+          "localizedMeaning": {
+            "ru": "Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»",
+            "uk": "Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "lawyer",
+            "park"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:word:sailor",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sailor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:word:sailor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sailor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:word:sailor:audio",
+            "transcript": "sailor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:word:sailor:r1",
+              "targetText": "sailor",
+              "meaningByLocale": {
+                "ru": "моряк. The sailor is strong. — «Моряк сильный». Человек, который работает на корабле и подолгу бывает в рейсе.",
+                "uk": "моряк. The sailor is strong. — «Моряк сильний». Людина, яка працює на кораблі й подовгу буває в рейсі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sailor",
+            "definitionByLocale": {
+              "ru": "моряк. The sailor is strong. — «Моряк сильный». Человек, который работает на корабле и подолгу бывает в рейсе.",
+              "uk": "моряк. The sailor is strong. — «Моряк сильний». Людина, яка працює на кораблі й подовгу буває в рейсі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i07",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви обговорюєте з подругою майбутній рейс моряка. Спитайте: «Коли моряк іде?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Ви обговорюєте з подругою майбутній рейс моряка. Спитайте: «Коли моряк іде?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i07:audio",
+            "transcript": "When does the sailor leave?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the sailor leave?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i08",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте брата про юриста. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i08:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте брата про юриста. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите брата о юристе. Выберите слово",
+            "uk": "Спитайте брата про юриста. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Where ___ the lawyer park?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-26:i08:r1",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i08:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Спитайте брата про юриста. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Спитайте брата про юриста. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Юрист один: нужно `does`.",
+                "uk": "Юрист один: потрібно `does`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Спитайте брата про юриста. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С действием `park` нужно `does`, а не `are`.",
+                "uk": "З дією `park` потрібне `does`, а не `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i09",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте продавця",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i09:r1",
+            "text": "Where does the surgeon work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r2",
+            "text": "Where does the lawyer work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i09:r3",
+            "text": "Where does the surgeon park?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i09:audio",
+            "transcript": "Where does the surgeon work?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:i09:r1",
+              "targetText": "Where does the surgeon work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i09:r2",
+              "targetText": "Where does the lawyer work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i09:r3",
+              "targetText": "Where does the surgeon park?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте продавця",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `surgeon`, хирург, а в этом варианте — `lawyer`, юрист.",
+                "uk": "У записі четверте слово — `surgeon`, хірург, а в цьому варіанті — `lawyer`, юрист."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте продавця",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `work`, работать, а в этом варианте — `park`, парковаться.",
+                "uk": "У записі останнє слово — `work`, працювати, а в цьому варіанті — `park`, паркуватися."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i10",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-26:i10:p1",
+              "target": "lawyer",
+              "meaningByLocale": {
+                "ru": "юрист",
+                "uk": "юрист"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i10:p2",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i10:p3",
+              "target": "hospital",
+              "meaningByLocale": {
+                "ru": "больница",
+                "uk": "лікарня"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i10:p4",
+              "target": "sailor",
+              "meaningByLocale": {
+                "ru": "моряк",
+                "uk": "моряк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lawyer",
+            "yard",
+            "hospital",
+            "sailor"
+          ],
+          "rightColumn": [
+            "юрист",
+            "двір",
+            "лікарня",
+            "моряк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i11",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i11:audio",
+            "transcript": "Where does the lawyer work?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where does the lawyer work?",
+          "orderedTokens": [
+            "Where",
+            "does",
+            "the",
+            "lawyer",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i12",
+        "ordinal": 21,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка розповідає про хірурга. Спитайте її: «Коли хірург іде?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка розповідає про хірурга. Спитайте її: «Коли хірург іде?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "When does the surgeon leave?",
+          "localizedMeaning": {
+            "ru": "Соседка рассказывает о хирурге. Спросите её: «Когда хирург уходит?»",
+            "uk": "Сусідка розповідає про хірурга. Спитайте її: «Коли хірург іде?»"
+          },
+          "orderedTokens": [
+            "When",
+            "does",
+            "the",
+            "surgeon",
+            "leave"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i13",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга розповідає про сусіда-моряка. Спитайте її: «Де моряк живе?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга розповідає про сусіда-моряка. Спитайте її: «Де моряк живе?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i13:audio",
+            "transcript": "Where does the sailor live?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where does the sailor live?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i14",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спитайте сусідку про хірурга. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i14:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i14:r3",
+            "text": "is work"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спитайте сусідку про хірурга. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите соседку о хирурге. Выберите слово",
+            "uk": "Спитайте сусідку про хірурга. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Where does the surgeon ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-26:i14:r1",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i14:r2",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i14:r3",
+              "text": "is work"
+            }
+          ],
+          "testedDimension": "Спитайте сусідку про хірурга. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Спитайте сусідку про хірурга. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `does` нужно `work`, без `s`.",
+                "uk": "Після `does` потрібно `work`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Спитайте сусідку про хірурга. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно `work`, без `is`.",
+                "uk": "Тут потрібно `work`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i15",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-26:i15:r1",
+            "text": "When does the sailor leave?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r2",
+            "text": "When does the sailor work?"
+          },
+          {
+            "responseId": "en:lesson-07:session-26:i15:r3",
+            "text": "When does the lawyer leave?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i15:audio",
+            "transcript": "When does the sailor leave?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-26:i15:r1",
+              "targetText": "When does the sailor leave?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i15:r2",
+              "targetText": "When does the sailor work?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i15:r3",
+              "targetText": "When does the lawyer leave?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `leave`, уходить, а в этом варианте — `work`, работать.",
+                "uk": "У записі останнє слово — `leave`, іти, а в цьому варіанті — `work`, працювати."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи четвёртое слово — `sailor`, моряк, а в этом варианте — `lawyer`, юрист.",
+                "uk": "У записі четверте слово — `sailor`, моряк, а в цьому варіанті — `lawyer`, юрист."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i16",
+        "ordinal": 25,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-26:i16:p1",
+              "target": "sailor",
+              "meaningByLocale": {
+                "ru": "моряк",
+                "uk": "моряк"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i16:p2",
+              "target": "surgeon",
+              "meaningByLocale": {
+                "ru": "хирург",
+                "uk": "хірург"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i16:p3",
+              "target": "lawyer",
+              "meaningByLocale": {
+                "ru": "юрист",
+                "uk": "юрист"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-26:i16:p4",
+              "target": "janitor",
+              "meaningByLocale": {
+                "ru": "уборщик",
+                "uk": "прибиральник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sailor",
+            "surgeon",
+            "lawyer",
+            "janitor"
+          ],
+          "rightColumn": [
+            "моряк",
+            "хірург",
+            "юрист",
+            "прибиральник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-26:i17",
+        "ordinal": 26,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви знову у дворі. Спитайте сусідку: «Коли прибиральник працює?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Ви знову у дворі. Спитайте сусідку: «Коли прибиральник працює?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-26:i17:audio",
+            "transcript": "When does the janitor work?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "When does the janitor work?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-26:word:janitor",
+      "correctText": "janitor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i01",
+      "correctText": "When does the janitor work?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i02",
+      "correctText": "When does the janitor work?",
+      "correctResponseId": "en:lesson-07:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i03",
+      "correctText": "does",
+      "correctResponseId": "en:lesson-07:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:word:surgeon",
+      "correctText": "surgeon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i05",
+      "correctText": "Where does the surgeon work?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:word:lawyer",
+      "correctText": "lawyer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:practice:lawyer",
+      "correctText": "The lawyer is busy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:word:park",
+      "correctText": "park",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i06",
+      "correctText": "Where does the lawyer park?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:word:sailor",
+      "correctText": "sailor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i07",
+      "correctText": "When does the sailor leave?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i08",
+      "correctText": "does",
+      "correctResponseId": "en:lesson-07:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i09",
+      "correctText": "Where does the surgeon work?",
+      "correctResponseId": "en:lesson-07:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i11",
+      "correctText": "Where does the lawyer work?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i12",
+      "correctText": "When does the surgeon leave?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i13",
+      "correctText": "Where does the sailor live?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i14",
+      "correctText": "work",
+      "correctResponseId": "en:lesson-07:session-26:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i15",
+      "correctText": "When does the sailor leave?",
+      "correctResponseId": "en:lesson-07:session-26:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-26:i17",
+      "correctText": "When does the janitor work?",
+      "correctResponseId": null
+    }
+  ]
+}

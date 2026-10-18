@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-26",
   "learningOutcomeByLocale": {
-    "ru": "спрашивать о привычном месте действия с where и о времени с when",
-    "uk": "запитувати про звичне місце дії з where і про час з when"
+    "ru": "спрашивать с Where и When о месте и времени работы и парковки",
+    "uk": "питати з Where і When про місце й час роботи та паркування"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для машины",
-        "uk": "Місце для машини"
+        "ru": "Мокрый пол в подъезде",
+        "uk": "Мокра підлога в під’їзді"
       },
       "bodyByLocale": {
-        "ru": "Вы впервые приехали на работу на машине и узнаёте привычное место парковки коллеги. `park` — «парковаться». `Where do you park?` — «Где ты паркуешься?» `Where` спрашивает о месте, затем идут `do you park`. Машине тоже нужен адрес, а не загадка.",
-        "uk": "Ви вперше приїхали на роботу машиною й дізнаєтеся звичне місце паркування колеги. `park` — «паркуватися». `Where do you park?` — «Де ти паркуєшся?» `Where` запитує про місце, потім ідуть `do you park`. Машині теж потрібна адреса, а не загадка."
+        "ru": "Вы переехали в новый дом и утром встретили в подъезде уборщика. Соседка подсказывает его рабочие дни. janitor — «уборщик». Вы хотите узнать его расписание. По следам ваших ботинок уборщик безошибочно узнает, в какую квартиру вы переехали. Спросите соседку: When does the janitor work? — «Когда уборщик работает?» Уборщик один, поэтому does.",
+        "uk": "Ви переїхали в новий будинок і вранці зустріли в під’їзді прибиральника. Сусідка підказує його робочі дні. janitor — «прибиральник». Ви хочете дізнатися його розклад. За слідами ваших черевиків прибиральник безпомилково дізнається, у яку квартиру ви переїхали. Спитайте сусідку: When does the janitor work? — «Коли прибиральник працює?» Прибиральник один, тому does."
       },
       "question": {
         "interactionId": "en:lesson-07:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу: «Где ты паркуешься?»",
-          "uk": "Запитайте колегу: «Де ти паркуєшся?»"
+          "ru": "Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»",
+          "uk": "Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-26:intro1:r1",
-              "text": "Where do you park?"
+              "text": "When does the janitor work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro1:r2",
-              "text": "Where does you park?"
+              "text": "When do the janitor work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro1:r3",
-              "text": "Where you park?"
+              "text": "When does the janitor works?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-26:intro1:r1",
-              "text": "Where do you park?"
+              "text": "When does the janitor work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro1:r2",
-              "text": "Where does you park?"
+              "text": "When do the janitor work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro1:r3",
-              "text": "Where you park?"
+              "text": "When does the janitor works?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу: «Где ты паркуешься?»",
-          "uk": "Запитайте колегу: «Де ти паркуєшся?»"
+          "ru": "Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»",
+          "uk": "Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Маршрут пробежки",
-        "uk": "Маршрут пробіжки"
+        "ru": "Разговор в магазине",
+        "uk": "Розмова в магазині"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказывает, что регулярно бегает трусцой. `Where do you jog?` — «Где ты бегаешь трусцой?» Вопрос с `where` помогает узнать место его обычных пробежек. После `do you` ставим `jog`, без `s`.",
-        "uk": "Друг розповідає, що регулярно бігає підтюпцем. `Where do you jog?` — «Де ти бігаєш підтюпцем?» Запитання з `where` допомагає дізнатися місце його звичних пробіжок. Після `do you` ставимо `jog`, без `s`."
+        "ru": "Продавец в магазине у дома рассказывает за прилавком, что его сосед по лестнице — хирург. surgeon — «хирург». Вам интересно, в какой больнице он работает. Спросите продавца: Where does the surgeon work? — «Где работает хирург?» Хирург один, поэтому does.",
+        "uk": "Продавець у магазині біля дому розповідає за прилавком, що його сусід по сходах — хірург. surgeon — «хірург». Вам цікаво, у якій лікарні він працює. Спитайте продавця: Where does the surgeon work? — «Де працює хірург?» Хірург один, тому does."
       },
       "question": {
         "interactionId": "en:lesson-07:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Узнайте место пробежек друга.",
-          "uk": "Дізнайтеся місце пробіжок друга."
+          "ru": "Продавец рассказывает о соседе. Спросите его: «Где работает хирург?»",
+          "uk": "Продавець розповідає про сусіда. Спитайте його: «Де працює хірург?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-26:intro2:r1",
-              "text": "Where do you jog?"
+              "text": "Where does the surgeon work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro2:r2",
-              "text": "Where does you jog?"
+              "text": "Where do the surgeon work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro2:r3",
-              "text": "Where do you jogs?"
+              "text": "Where does the surgeon works?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-26:intro2:r1",
-              "text": "Where do you jog?"
+              "text": "Where does the surgeon work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro2:r2",
-              "text": "Where does you jog?"
+              "text": "Where do the surgeon work?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro2:r3",
-              "text": "Where do you jogs?"
+              "text": "Where does the surgeon works?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте место пробежек друга.",
-          "uk": "Дізнайтеся місце пробіжок друга."
+          "ru": "Продавец рассказывает о соседе. Спросите его: «Где работает хирург?»",
+          "uk": "Продавець розповідає про сусіда. Спитайте його: «Де працює хірург?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начало работы",
-        "uk": "Початок роботи"
+        "ru": "Место для машины",
+        "uk": "Місце для машини"
       },
       "bodyByLocale": {
-        "ru": "Вы составляете рабочее расписание и уточняете время начала работы коллеги. `When does she start?` — «Когда она начинает?» `When` спрашивает о времени. С `she` используем `does`, затем `start`, без `s`.",
-        "uk": "Ви складаєте робочий розклад і уточнюєте час початку роботи колеги. `When does she start?` — «Коли вона починає?» `When` запитує про час. З `she` використовуємо `does`, потім `start`, без `s`."
+        "ru": "Вы купили машину и ищете место во дворе, но почти всё занято. Брат говорит, что юрист из соседнего подъезда давно нашёл удобное место. lawyer — «юрист», park — «парковаться». Вы уже знаете park — «парк»; здесь это действие, когда человек ставит машину. Спросите брата: Where does the lawyer park? — «Где юрист паркуется?» Юрист один, поэтому does.",
+        "uk": "Ви купили машину й шукаєте місце у дворі, але майже все зайнято. Брат каже, що юрист із сусіднього під’їзду давно знайшов зручне місце. lawyer — «юрист», park — «паркуватися». Ви вже знаєте park — «парк»; тут це дія, коли людина ставить машину. Спитайте брата: Where does the lawyer park? — «Де юрист паркується?» Юрист один, тому does."
       },
       "question": {
         "interactionId": "en:lesson-07:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о начале её рабочего дня: «Когда она начинает?»",
-          "uk": "Запитайте про початок її робочого дня: «Коли вона починає?»"
+          "ru": "Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»",
+          "uk": "Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-26:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where does the lawyer park?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where do the lawyer park?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where does the lawyer parks?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-26:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where does the lawyer park?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where do the lawyer park?"
             },
             {
               "responseId": "en:lesson-07:session-26:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where does the lawyer parks?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о начале её рабочего дня: «Когда она начинает?»",
-          "uk": "Запитайте про початок її робочого дня: «Коли вона починає?»"
+          "ru": "Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»",
+          "uk": "Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d53dc149bc6e66a11e6f0ea07f19753423648471a5081a97b22dcfb8cbe4028c"
+  "introFingerprint": "d7b7164c3704402fe6cf536c5fef0c9d01f2c221c223635561b94af757fefd11"
 }

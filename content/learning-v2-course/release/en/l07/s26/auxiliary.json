@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-26:intro1:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "Уборщик один: нужно does.",
+          "uk": "Прибиральник один: потрібно does."
         },
         "en:lesson-07:session-26:intro1:r3": {
-          "ru": "После `where` здесь нужно `do`.",
-          "uk": "Після `where` тут потрібне `do`."
+          "ru": "После does нужно work, без s.",
+          "uk": "Після does потрібно work, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-26:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "Хирург один: нужно does.",
+          "uk": "Хірург один: потрібно does."
         },
         "en:lesson-07:session-26:intro2:r3": {
-          "ru": "После `do you` нужно `jog`, без `s`.",
-          "uk": "Після `do you` потрібне `jog`, без `s`."
+          "ru": "После does нужно work, без s.",
+          "uk": "Після does потрібно work, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-26:intro3:r2": {
-          "ru": "С `she` нужно `does`.",
-          "uk": "З `she` потрібне `does`."
+          "ru": "Юрист один: нужно does.",
+          "uk": "Юрист один: потрібно does."
         },
         "en:lesson-07:session-26:intro3:r3": {
-          "ru": "После `does` нужно `start`, без `s`.",
-          "uk": "Після `does` потрібне `start`, без `s`."
+          "ru": "После does нужно park, без s.",
+          "uk": "Після does потрібно park, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "76e435aceca3d47a9558dbbc48ea1ff1ba27dd457eaa4ef0d947813ef291aac4"
+  "auxiliaryFingerprint": "5e66ea7b933a16e73fb524d6d283106de5db9eb541cbed53288f21d5e5224b42"
 }

@@ -1,37 +1,67 @@
 [
   {
+    "interactionId": "en:lesson-07:session-26:word:janitor",
+    "correctText": "janitor",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-26:i01",
-    "correctText": "Where do you park?",
+    "correctText": "When does the janitor work?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i02",
-    "correctText": "park",
+    "correctText": "When does the janitor work?",
     "correctResponseId": "en:lesson-07:session-26:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-26:i03",
-    "correctText": "do",
+    "correctText": "does",
     "correctResponseId": "en:lesson-07:session-26:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-26:i04",
-    "correctText": "en:lesson-07:session-26:i04:p1=park\nen:lesson-07:session-26:i04:p2=jog\nen:lesson-07:session-26:i04:p3=badge\nen:lesson-07:session-26:i04:p4=cats",
+    "correctText": "en:lesson-07:session-26:i04:p1=janitor\nen:lesson-07:session-26:i04:p2=work\nen:lesson-07:session-26:i04:p3=leave\nen:lesson-07:session-26:i04:p4=live",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:word:surgeon",
+    "correctText": "surgeon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i05",
-    "correctText": "Where do you park?",
+    "correctText": "Where does the surgeon work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:word:lawyer",
+    "correctText": "lawyer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:practice:lawyer",
+    "correctText": "The lawyer is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:word:park",
+    "correctText": "park",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i06",
-    "correctText": "Where do you jog?",
+    "correctText": "Where does the lawyer park?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-26:word:sailor",
+    "correctText": "sailor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i07",
-    "correctText": "When does she start?",
+    "correctText": "When does the sailor leave?",
     "correctResponseId": null
   },
   {
@@ -41,47 +71,47 @@
   },
   {
     "interactionId": "en:lesson-07:session-26:i09",
-    "correctText": "Where do you park?",
+    "correctText": "Where does the surgeon work?",
     "correctResponseId": "en:lesson-07:session-26:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-26:i10",
-    "correctText": "en:lesson-07:session-26:i10:p1=gamble\nen:lesson-07:session-26:i10:p2=park\nen:lesson-07:session-26:i10:p3=cats\nen:lesson-07:session-26:i10:p4=jog",
+    "correctText": "en:lesson-07:session-26:i10:p1=lawyer\nen:lesson-07:session-26:i10:p2=yard\nen:lesson-07:session-26:i10:p3=hospital\nen:lesson-07:session-26:i10:p4=sailor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i11",
-    "correctText": "Where do you jog?",
+    "correctText": "Where does the lawyer work?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i12",
-    "correctText": "Do you have a badge?",
+    "correctText": "When does the surgeon leave?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i13",
-    "correctText": "I don’t gamble.",
+    "correctText": "Where does the sailor live?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i14",
-    "correctText": "park",
+    "correctText": "work",
     "correctResponseId": "en:lesson-07:session-26:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-26:i15",
-    "correctText": "The cats are here.",
+    "correctText": "When does the sailor leave?",
     "correctResponseId": "en:lesson-07:session-26:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-26:i16",
-    "correctText": "en:lesson-07:session-26:i16:p1=park\nen:lesson-07:session-26:i16:p2=badge\nen:lesson-07:session-26:i16:p3=gamble\nen:lesson-07:session-26:i16:p4=cats",
+    "correctText": "en:lesson-07:session-26:i16:p1=sailor\nen:lesson-07:session-26:i16:p2=surgeon\nen:lesson-07:session-26:i16:p3=lawyer\nen:lesson-07:session-26:i16:p4=janitor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-26:i17",
-    "correctText": "Where does Tom jog?",
+    "correctText": "When does the janitor work?",
     "correctResponseId": null
   }
 ]

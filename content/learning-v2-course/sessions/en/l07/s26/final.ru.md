@@ -1,133 +1,157 @@
-# Английский · Урок 7 · Занятие 26 — Где ты паркуешься?
+# Английский · Урок 7 · Занятие 26 — Соседи по дому
 
-**Ситуация.** Вы узнаёте, где коллега оставляет машину, где друг бегает трусцой и когда коллега начинает работу.
+**Ситуация.** Вы знакомитесь с соседями по дому: узнаёте у соседки, когда работает уборщик, у продавца — где работает хирург, а у брата — где паркуется юрист.
 
-**Что вы освоите:** спрашивать о привычном месте действия с where и о времени с when
-**Новые слова:** park
+**Что вы освоите:** спрашивать с Where и When о месте и времени работы и парковки
+**Новые слова:** janitor, surgeon, lawyer, sailor, park
+**Возвращаются:** work, leave, live, hospital, yard
 
 ---
 
 ## Интро 1
 
-### Место для машины
+### Мокрый пол в подъезде
 
-Вы впервые приехали на работу на машине и узнаёте привычное место парковки коллеги. `park` — «парковаться». `Where do you park?` — «Где ты паркуешься?» `Where` спрашивает о месте, затем идут `do you park`. Машине тоже нужен адрес, а не загадка.
+Вы переехали в новый дом и утром встретили в подъезде уборщика. Соседка подсказывает его рабочие дни. janitor — «уборщик». Вы хотите узнать его расписание. По следам ваших ботинок уборщик безошибочно узнает, в какую квартиру вы переехали. Спросите соседку: When does the janitor work? — «Когда уборщик работает?» Уборщик один, поэтому does.
 
-**Спросите коллегу: «Где ты паркуешься?»**
+**Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»**
 
-- ✅ **Where do you park?**
-- ❌ Where does you park? — *С `you` нужно `do`.*
-- ❌ Where you park? — *После `where` здесь нужно `do`.*
+- ✅ **When does the janitor work?**
+- ❌ When do the janitor work? — *Уборщик один: нужно does.*
+- ❌ When does the janitor works? — *После does нужно work, без s.*
 
 ---
 
 ## Интро 2
 
-### Маршрут пробежки
+### Разговор в магазине
 
-Друг рассказывает, что регулярно бегает трусцой. `Where do you jog?` — «Где ты бегаешь трусцой?» Вопрос с `where` помогает узнать место его обычных пробежек. После `do you` ставим `jog`, без `s`.
+Продавец в магазине у дома рассказывает за прилавком, что его сосед по лестнице — хирург. surgeon — «хирург». Вам интересно, в какой больнице он работает. Спросите продавца: Where does the surgeon work? — «Где работает хирург?» Хирург один, поэтому does.
 
-**Узнайте место пробежек друга.**
+**Продавец рассказывает о соседе. Спросите его: «Где работает хирург?»**
 
-- ✅ **Where do you jog?**
-- ❌ Where does you jog? — *С `you` нужно `do`.*
-- ❌ Where do you jogs? — *После `do you` нужно `jog`, без `s`.*
+- ✅ **Where does the surgeon work?**
+- ❌ Where do the surgeon work? — *Хирург один: нужно does.*
+- ❌ Where does the surgeon works? — *После does нужно work, без s.*
 
 ---
 
 ## Интро 3
 
-### Начало работы
+### Место для машины
 
-Вы составляете рабочее расписание и уточняете время начала работы коллеги. `When does she start?` — «Когда она начинает?» `When` спрашивает о времени. С `she` используем `does`, затем `start`, без `s`.
+Вы купили машину и ищете место во дворе, но почти всё занято. Брат говорит, что юрист из соседнего подъезда давно нашёл удобное место. lawyer — «юрист», park — «парковаться». Вы уже знаете park — «парк»; здесь это действие, когда человек ставит машину. Спросите брата: Where does the lawyer park? — «Где юрист паркуется?» Юрист один, поэтому does.
 
-**Спросите о начале её рабочего дня: «Когда она начинает?»**
+**Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»**
 
-- ✅ **When does she start?**
-- ❌ When do she start? — *С `she` нужно `does`.*
-- ❌ When does she starts? — *После `does` нужно `start`, без `s`.*
+- ✅ **Where does the lawyer park?**
+- ❌ Where do the lawyer park? — *Юрист один: нужно does.*
+- ❌ Where does the lawyer parks? — *После does нужно park, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (23 задания)
 
-**1 · Спросите «Где ты паркуешься?»**
+**1 · Карточка слова — janitor**
+<!-- interaction_id: en:lesson-07:session-26:word:janitor; family: word_card -->
+> **janitor** — уборщик. The janitor is busy. — «Уборщик занят». Человек, который убирает здание и следит за ним.
+
+**2 · Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»**
 <!-- interaction_id: en:lesson-07:session-26:i01; family: phrase_builder -->
-Плитки: `park` `you` `do` `Where` → **Where do you park?**
+Плитки: `work` `janitor` `the` `does` `When` → **When does the janitor work?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте соседку**
 <!-- interaction_id: en:lesson-07:session-26:i02; family: listen_choose -->
-🔊 *park* → **park** · jog · badge
-- jog — *В записи первое слово — `park`, а в этом варианте — `jog`.*
-- badge — *В записи первое слово — `park`, а в этом варианте — `badge`.*
+🔊 *When does the janitor work?* → **When does the janitor work?** · When does the janitor leave? · Where does the janitor work?
+- When does the janitor leave? — *В записи work — «работать», а здесь leave — «уходить».*
+- Where does the janitor work? — *В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.*
 
-**3 · Спросите «Где ты паркуешься?»**
+**4 · Спросите соседку об уборщике. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-26:i03; family: context_gap_grammar -->
-Where ___ you park? → **do** · does · are
-- does — *С `you` нужно `do`.*
-- are — *Вопрос о привычном действии `park` строим с `do`.*
+When ___ the janitor work? → **does** · do · is
+- do — *Уборщик один: нужно `does`.*
+- is — *С действием `work` нужно `does`, а не `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-26:i04; family: speed_match -->
-park — парковаться · jog — бегать трусцой · badge — значок · cats — кошки
+janitor — уборщик · work — работать · leave — уходить · live — жить
 
-**5 · Послушайте и соберите вопрос**
+**6 · Карточка слова — surgeon**
+<!-- interaction_id: en:lesson-07:session-26:word:surgeon; family: word_card -->
+> **surgeon** — хирург. The surgeon is tired. — «Хирург устал». Врач, который делает операции в больнице.
+
+**7 · Послушайте продавца и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-26:i05; family: listen_build_dictation -->
-🔊 *Where do you park?* Плитки: `park` `you` `do` `Where` → **Where do you park?**
+🔊 *Where does the surgeon work?* Плитки: `work` `surgeon` `the` `does` `Where` → **Where does the surgeon work?**
 
-**6 · Спросите друга «Где ты бегаешь трусцой?»**
+**8 · Карточка слова — lawyer**
+<!-- interaction_id: en:lesson-07:session-26:word:lawyer; family: word_card -->
+> **lawyer** — юрист. The lawyer is smart. — «Юрист умный». Человек, который знает законы и помогает с документами.
+
+**9 · Юрист занят разговором. Скажите: «Юрист занят»**
+<!-- interaction_id: en:lesson-07:session-26:practice:lawyer; family: scripted_repeat_compare -->
+🎙 **The lawyer is busy.**
+
+**10 · Карточка слова — park**
+<!-- interaction_id: en:lesson-07:session-26:word:park; family: word_card -->
+> **park** — парковаться. Where do you park? — «Где ты паркуешься?» Здесь park — действие, а не место для прогулок.
+
+**11 · Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»**
 <!-- interaction_id: en:lesson-07:session-26:i06; family: phrase_builder -->
-Плитки: `jog` `you` `do` `Where` → **Where do you jog?**
+Плитки: `park` `lawyer` `the` `does` `Where` → **Where does the lawyer park?**
 
-**7 · Спросите о начале рабочего дня коллеги «Когда она начинает?»**
+**12 · Карточка слова — sailor**
+<!-- interaction_id: en:lesson-07:session-26:word:sailor; family: word_card -->
+> **sailor** — моряк. The sailor is strong. — «Моряк сильный». Человек, который работает на корабле и подолгу бывает в рейсе.
+
+**13 · Вы обсуждаете с подругой предстоящий рейс моряка. Спросите: «Когда моряк уходит?»**
 <!-- interaction_id: en:lesson-07:session-26:i07; family: scripted_repeat_compare -->
-🎙 **When does she start?**
+🎙 **When does the sailor leave?**
 
-**8 · Спросите о начале её работы «Когда она начинает?»**
+**14 · Спросите брата о юристе. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-26:i08; family: context_gap_grammar -->
-When ___ she start? → **does** · do · is
-- do — *С `she` нужно `does`.*
-- is — *Для вопроса о действии `start` с `she` нужно `does`.*
+Where ___ the lawyer park? → **does** · do · are
+- do — *Юрист один: нужно `does`.*
+- are — *С действием `park` нужно `does`, а не `are`.*
 
-**9 · Послушайте и выберите вопрос**
+**15 · Послушайте продавца**
 <!-- interaction_id: en:lesson-07:session-26:i09; family: listen_choose -->
-🔊 *Where do you park?* → **Where do you park?** · When do you park? · Where do you jog?
-- When do you park? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you jog? — *В записи последнее слово — `park`, а в этом варианте — `jog`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-07:session-26:i10; family: speed_match -->
-gamble — играть в азартные игры · park — парковаться · cats — кошки · jog — бегать трусцой
-
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-07:session-26:i11; family: listen_build_dictation -->
-🔊 *Where do you jog?* Плитки: `jog` `you` `do` `Where` → **Where do you jog?**
-
-**12 · Спросите коллекционера «У тебя есть значок?»**
-<!-- interaction_id: en:lesson-07:session-26:i12; family: phrase_builder -->
-Плитки: `badge` `a` `have` `you` `Do` → **Do you have a badge?**
-
-**13 · На предложение сыграть на деньги ответьте «Я не играю в азартные игры»**
-<!-- interaction_id: en:lesson-07:session-26:i13; family: scripted_repeat_compare -->
-🎙 **I don’t gamble.**
-
-**14 · Спросите «Где Том паркуется?»**
-<!-- interaction_id: en:lesson-07:session-26:i14; family: context_gap_grammar -->
-Where does Tom ___? → **park** · parks · is park
-- parks — *После `does` нужно `park`.*
-- is park — *Здесь нужно `park`, без `is`.*
-
-**15 · Послушайте, где кошки**
-<!-- interaction_id: en:lesson-07:session-26:i15; family: listen_choose -->
-🔊 *The cats are here.* → **The cats are here.** · The cats are there. · The cats are upstairs.
-- The cats are there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The cats are upstairs. — *В записи последнее слово — `here`, а в этом варианте — `upstairs`.*
+🔊 *Where does the surgeon work?* → **Where does the surgeon work?** · Where does the lawyer work? · Where does the surgeon park?
+- Where does the lawyer work? — *В записи четвёртое слово — `surgeon`, хирург, а в этом варианте — `lawyer`, юрист.*
+- Where does the surgeon park? — *В записи последнее слово — `work`, работать, а в этом варианте — `park`, парковаться.*
 
 **16 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-07:session-26:i10; family: speed_match -->
+lawyer — юрист · yard — двор · hospital — больница · sailor — моряк
+
+**17 · Послушайте соседку и соберите вопрос**
+<!-- interaction_id: en:lesson-07:session-26:i11; family: listen_build_dictation -->
+🔊 *Where does the lawyer work?* Плитки: `work` `lawyer` `the` `does` `Where` → **Where does the lawyer work?**
+
+**18 · Соседка рассказывает о хирурге. Спросите её: «Когда хирург уходит?»**
+<!-- interaction_id: en:lesson-07:session-26:i12; family: phrase_builder -->
+Плитки: `leave` `surgeon` `the` `does` `When` → **When does the surgeon leave?**
+
+**19 · Подруга рассказывает о соседе-моряке. Спросите её: «Где моряк живёт?»**
+<!-- interaction_id: en:lesson-07:session-26:i13; family: scripted_repeat_compare -->
+🎙 **Where does the sailor live?**
+
+**20 · Спросите соседку о хирурге. Выберите слово**
+<!-- interaction_id: en:lesson-07:session-26:i14; family: context_gap_grammar -->
+Where does the surgeon ___? → **work** · works · is work
+- works — *После `does` нужно `work`, без `s`.*
+- is work — *Здесь нужно `work`, без `is`.*
+
+**21 · Послушайте подругу**
+<!-- interaction_id: en:lesson-07:session-26:i15; family: listen_choose -->
+🔊 *When does the sailor leave?* → **When does the sailor leave?** · When does the sailor work? · When does the lawyer leave?
+- When does the sailor work? — *В записи последнее слово — `leave`, уходить, а в этом варианте — `work`, работать.*
+- When does the lawyer leave? — *В записи четвёртое слово — `sailor`, моряк, а в этом варианте — `lawyer`, юрист.*
+
+**22 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-26:i16; family: speed_match -->
-park — парковаться · badge — значок · gamble — играть в азартные игры · cats — кошки
+sailor — моряк · surgeon — хирург · lawyer — юрист · janitor — уборщик
 
-**17 · Друг рассказывает о регулярных пробежках Тома. Спросите «Где Том бегает трусцой?»**
+**23 · Вы снова во дворе. Спросите соседку: «Когда уборщик работает?»**
 <!-- interaction_id: en:lesson-07:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where does Tom jog?**
-
+🎙 **When does the janitor work?**

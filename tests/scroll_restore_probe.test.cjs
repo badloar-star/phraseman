@@ -6,10 +6,15 @@ const assert = require('node:assert/strict');
 const { test, beforeEach } = require('node:test');
 
 const lines = [];
-function load() {
+function load({ dev = true, store = false } = {}) {
   const module = { exports: {} };
   const js = ts.transpileModule(fs.readFileSync('app/scroll_restore_probe.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2021 } }).outputText;
-  vm.runInNewContext(js, { module, exports: module.exports, console: { log: (...a) => lines.push(a), warn: () => {} }, Date, JSON, Math });
+  vm.runInNewContext(js, {
+    module, exports: module.exports,
+    require: (id) => { if (id === './config') return { IS_STORE_RELEASE: store }; throw Error(`Unmocked ${id}`); },
+    __DEV__: dev,
+    console: { log: (...a) => lines.push(a), warn: () => {} }, Date, JSON, Math,
+  });
   return module.exports;
 }
 const probe = load();
@@ -60,4 +65,18 @@ test('Настройки пишут событие перед scrollTo, Глав
   assert.ok(settings.includes("noteScrollOffset('settings'"));
   const home = fs.readFileSync('app/(tabs)/home.tsx', 'utf8').replace(/\r\n/g, '\n');
   for (const needle of ["noteScrollEvent('home', 'lang_change'", "noteScrollEvent('home', 'focus'", "noteScrollContentHeight('home'", "noteScrollOffset('home'"]) assert.ok(home.includes(needle), needle);
+});
+
+// зачем (Ревизор 3.44, координатор 18.10): в сторовой сборке журнал прокрутки — no-op.
+test('сторовая сборка и не-dev: журнал [SCROLL-RESTORE] ничего не пишет', () => {
+  for (const mode of [{ dev: true, store: true }, { dev: false, store: false }]) {
+    const off = load(mode);
+    lines.length = 0;
+    off.noteScrollEvent('home', 'lang_change', { lang: 'es' }, 1000);
+    off.noteScrollContentHeight('home', 900, 1001);
+    off.noteScrollContentHeight('home', 1400, 1002);
+    off.noteScrollOffset('home', 800, 1003);
+    off.noteScrollDrag('home', true);
+    assert.deepEqual(lines, []);
+  }
 });

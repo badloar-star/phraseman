@@ -6,6 +6,12 @@
 // Используют экраны, где есть кнопка «назад»: noteBackTap при тапе → noteBackDecision (что решил) → noteBackArrived (когда экран сменился).
 import { InteractionManager } from 'react-native';
 
+import { IS_STORE_RELEASE } from './config';
+
+// зачем (Ревизор 3.44, cf8144a87; координатор 18.10, важно для стора): проба работала без гейта — в сторовой сборке на каждом «назад» шли тики 8 с и console.warn no-arrival.
+// Теперь только dev и не стор-релиз: в релизе ни таймеров, ни рамок кадра, ни журнала, ни warn — все функции возвращаются сразу. Сторож: tests/back_steps_probe.test.cjs.
+const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+
 const LOG = '[BACK-BTN]';
 const WATCH_MS = 8000;
 const TICK_MS = 250;
@@ -24,6 +30,7 @@ function clearProbes(): void {
 
 /** Тап по «назад»: запоминаем момент, запускаем пробы (кадр, InteractionManager, блокировка JS-потока). Новый тап заменяет прежний. */
 export function noteBackTap(screen: string, handler: string, detail: Readonly<Record<string, unknown>> = {}): void {
+  if (!ENABLED) return;
   clearProbes();
   const p: Pending = { screen, handler, at: Date.now(), seq: ++seq };
   pending = p;
@@ -54,6 +61,7 @@ export function noteBackTap(screen: string, handler: string, detail: Readonly<Re
 
 /** Что решил обработчик (ветка и значение, которое её выбрало). */
 export function noteBackDecision(decision: string, detail: Readonly<Record<string, unknown>> = {}): void {
+  if (!ENABLED) return;
   if (!pending) {
     console.log(`${LOG} decision без тапа ${JSON.stringify({ decision, ...detail })}`);
     return;
@@ -63,6 +71,7 @@ export function noteBackDecision(decision: string, detail: Readonly<Record<strin
 
 /** Экран сменился (страница, вкладка скрыта, экран закрыт): итог тапа. Без тапа — ничего не пишет. */
 export function noteBackArrived(screen: string, via: string): void {
+  if (!ENABLED) return;
   const p = pending;
   if (!p) return;
   console.log(`${LOG} arrived ${JSON.stringify({ seq: p.seq, tapScreen: p.screen, handler: p.handler, arrivedAt: screen, via, ms: Date.now() - p.at })}`);
@@ -79,7 +88,7 @@ let stepsForTap = 0;
  * в рендере, в эффектах или в самом переходе стека.
  */
 export function noteBackStep(step: string, detail: Readonly<Record<string, unknown>> = {}): void {
-  if (!pending) return;
+  if (!ENABLED || !pending) return;
   if (stepsForTap >= BACK_STEPS_PER_TAP) return;
   stepsForTap += 1;
   console.log(`${LOG} step ${JSON.stringify({ seq: pending.seq, step, ms: Date.now() - pending.at, ...detail })}`); // guard-ok: шаг возврата, не больше 12 на тап

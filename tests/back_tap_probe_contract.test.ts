@@ -3,9 +3,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-jest.mock('react-native', () => ({
-  InteractionManager: { runAfterInteractions: (cb: () => void) => { cb(); return { cancel: () => undefined }; } },
-}));
+// перепин 18.10 (Ревизор 3.44): проба «назад» закрыта за __DEV__ && !IS_STORE_RELEASE и тянет app/config — ему нужен Platform; в jest __DEV__ = true, стор-режим выключен
+jest.mock('react-native', () => {
+  // зачем: с подменой react-native глобальный __DEV__ в этом окружении не определён — проба «выключилась» бы как в сторе; тест проверяет dev-поведение
+  (globalThis as { __DEV__?: boolean }).__DEV__ = true;
+  return {
+    InteractionManager: { runAfterInteractions: (cb: () => void) => { cb(); return { cancel: () => undefined }; } },
+    Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
+  };
+});
 
 import { noteBackArrived, noteBackDecision, noteBackTap, resetBackTapProbeForTests } from '../app/back_tap_probe';
 

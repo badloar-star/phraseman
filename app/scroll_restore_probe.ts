@@ -7,6 +7,11 @@
  * событиях: смена языка, показ вкладки, изменение высоты содержимого ≥ 24 dp и рывок положения ≥ 300 dp без жеста пальца в окне 2,5 с после события.
  * Не больше 8 строк на событие, значения — числа и имена, без текстов пользователя.
  */
+import { IS_STORE_RELEASE } from './config';
+
+// зачем (Ревизор 3.44, координатор 18.10): журналы диагностики — только dev и не стор-релиз; в релизе все функции возвращаются сразу (ни состояния, ни console.log)
+const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+
 const LOG = '[SCROLL-RESTORE]';
 export const SCROLL_RESTORE_WINDOW_MS = 2500;
 export const SCROLL_RESTORE_LINES_PER_EVENT = 8;
@@ -41,6 +46,7 @@ function emit(screen: string, state: ScreenState, what: string, detail: Readonly
 
 /** Событие экрана: 'lang_change', 'tab_visible' и т. п. `setBy` — кто сейчас выставит положение ('restore_scrollTo', 'none'). */
 export function noteScrollEvent(screen: string, event: string, detail: Readonly<Record<string, unknown>> = {}, now: number = Date.now()): void {
+  if (!ENABLED) return;
   const state = stateOf(screen);
   state.lastEvent = event;
   state.lastEventAt = now;
@@ -50,11 +56,13 @@ export function noteScrollEvent(screen: string, event: string, detail: Readonly<
 
 /** Жест пальца: рывки положения во время жеста — не наши. */
 export function noteScrollDrag(screen: string, dragging: boolean): void {
+  if (!ENABLED) return;
   stateOf(screen).dragging = dragging;
 }
 
 /** Новое положение прокрутки (из обработчика экрана). Пишет только рывок без пальца вскоре после события. */
 export function noteScrollOffset(screen: string, y: number, now: number = Date.now()): void {
+  if (!ENABLED) return;
   const state = stateOf(screen);
   const prev = state.y;
   state.y = y;
@@ -66,6 +74,7 @@ export function noteScrollOffset(screen: string, y: number, now: number = Date.n
 
 /** Высота содержимого изменилась (после перевода длинные строки растягивают экран). */
 export function noteScrollContentHeight(screen: string, height: number, now: number = Date.now()): void {
+  if (!ENABLED) return;
   const state = stateOf(screen);
   const before = state.contentH;
   state.contentH = height;

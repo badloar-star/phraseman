@@ -7,20 +7,27 @@ const assert = require('node:assert/strict');
 const { test, beforeEach } = require('node:test');
 
 const lines = [];
-function load() {
+let timersScheduled = 0;
+let framesRequested = 0;
+function load({ dev = true, store = false } = {}) {
   const module = { exports: {} };
   const js = ts.transpileModule(fs.readFileSync('app/back_tap_probe.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2021 } }).outputText;
   const scheduled = [];
   vm.runInNewContext(js, {
     module, exports: module.exports,
-    require: (id) => { if (id === 'react-native') return { InteractionManager: { runAfterInteractions: () => {} } }; throw Error(`Unmocked ${id}`); },
-    console: { log: (...a) => lines.push(a.join(' ')), warn: () => {} },
-    requestAnimationFrame: () => 0, setTimeout: (fn) => { scheduled.push(fn); return scheduled.length; }, clearTimeout: () => {}, Date, JSON,
+    require: (id) => {
+      if (id === 'react-native') return { InteractionManager: { runAfterInteractions: () => { framesRequested += 1; } } };
+      if (id === './config') return { IS_STORE_RELEASE: store };
+      throw Error(`Unmocked ${id}`);
+    },
+    __DEV__: dev,
+    console: { log: (...a) => lines.push(a.join(' ')), warn: (...a) => lines.push(`WARN ${a.join(' ')}`) },
+    requestAnimationFrame: () => { framesRequested += 1; return 0; }, setTimeout: (fn) => { timersScheduled += 1; scheduled.push(fn); return scheduled.length; }, clearTimeout: () => {}, Date, JSON,
   });
   return module.exports;
 }
 const probe = load();
-beforeEach(() => { lines.length = 0; probe.resetBackTapProbeForTests(); });
+beforeEach(() => { lines.length = 0; timersScheduled = 0; framesRequested = 0; probe.resetBackTapProbeForTests(); });
 
 test('шаг без тапа не пишется', () => {
   probe.noteBackStep('home_render', { n: 1 });
@@ -62,4 +69,30 @@ test('шаги стоят на «Сегодня» (размонтировани�
   assert.ok(home.includes("const NotificationCenterButton = withHomeChildCost('bell', NotificationCenterButtonBase);"));
   const rail = fs.readFileSync('components/home/v2/HomeV2VideoRail.tsx', 'utf8').replace(/\r\n/g, '\n');
   assert.ok(rail.includes("const VideoThumb = withHomeChildCost('video_thumb', VideoThumbBase);"));
+});
+
+// зачем (Ревизор 3.44, cf8144a87; координатор 18.10, важно для стора): в сторовой сборке проба «назад» — no-op: ни таймеров, ни журнала, ни warn «no-arrival».
+for (const [name, mode] of [['сторовая сборка (IS_STORE_RELEASE)', { dev: true, store: true }], ['не dev (__DEV__ = false)', { dev: false, store: false }]]) {
+  test(`${name}: проба «назад» ничего не делает`, () => {
+    const off = load(mode);
+    off.resetBackTapProbeForTests();
+    lines.length = 0; timersScheduled = 0; framesRequested = 0;
+    off.noteBackTap('today_tasks', 'BackButton');
+    off.noteBackDecision('today_tasks → home');
+    off.noteBackStep('home_render', { n: 1 });
+    off.noteBackArrived('home', 'focus_tick');
+    assert.deepEqual(lines, [], 'нет ни одной строки журнала, в том числе warn');
+    assert.equal(timersScheduled, 0, 'нет таймеров (тик 8 с)');
+    assert.equal(framesRequested, 0, 'нет проб кадра и InteractionManager');
+  });
+}
+
+test('в исходнике проба закрыта за __DEV__ && !IS_STORE_RELEASE и каждая функция начинается с проверки', () => {
+  const src = fs.readFileSync('app/back_tap_probe.ts', 'utf8').replace(/\r\n/g, '\n');
+  assert.ok(src.includes("const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;"));
+  for (const fn of ['noteBackTap', 'noteBackDecision', 'noteBackArrived']) {
+    const at = src.indexOf(`export function ${fn}(`);
+    assert.ok(at > 0 && src.slice(at, at + 240).includes('if (!ENABLED) return;'), fn);
+  }
+  assert.ok(src.includes('if (!ENABLED || !pending) return;'), 'noteBackStep');
 });

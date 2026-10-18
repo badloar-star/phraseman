@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
@@ -116,6 +116,8 @@ type ButtonProps = {
   variant?: 'primary' | 'ghost';
   /** `.cta.sm`: 42 по макету, но область нажатия не меньше 44 dp. */
   compact?: boolean;
+  /** Ширина по надписи (inline-flex макета), а не во всю строку. */
+  hug?: boolean;
   disabled?: boolean;
   icon?: IconName;
   testID?: string;
@@ -124,12 +126,19 @@ type ButtonProps = {
 };
 
 /** `.cta` / `.cta.gh` макета: капсула, светлая заливка темы или прозрачная с тонким контуром. */
-export function FriendsGlassButton({ glass, textScale, label, onPress, variant = 'primary', compact = false, disabled = false, icon, testID, accessibilityLabel, style }: ButtonProps) {
+export function FriendsGlassButton({ glass, textScale, label, onPress, variant = 'primary', compact = false, hug = false, disabled = false, icon, testID, accessibilityLabel, style }: ButtonProps) {
   const primary = variant === 'primary';
   const height = compact ? 44 : 48;
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
   // зачем (владелец 13.10, №35 «кнопки не сливаются»): заливки — токены кнопок темы: отключённая buttonFillDisabled/buttonInkDisabled (подпись >= 4,5), вторичная buttonFill, главная ctaFill
   const ink = disabled ? glass.buttonInkDisabled : primary ? glass.ctaFillInk : glass.text;
+  // зачем (владелец 18.10, «сперва логи»): x и ширина надписи кнопки «по ширине надписи» — по ним видно, по центру ли она
+  const onLabelLayout = hug
+    ? (e: LayoutChangeEvent) => {
+      const { x, width } = e.nativeEvent.layout;
+      console.log(`[FRIENDS-CTA-LAYOUT] label testID=${testID ?? 'none'} x=${Math.round(x)} width=${Math.round(width)} scale=${textScale}`); // guard-ok: раскладка кнопки, одна строка на смену
+    }
+    : undefined;
   return (
     <PressableHybrid
       testID={testID}
@@ -153,12 +162,19 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
         overflow: 'hidden',
         backgroundColor: disabled ? glass.buttonFillDisabled : primary ? glass.ctaFill : glass.buttonFill,
         boxShadow: primary && !disabled ? undefined : nestedBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (ghost-кнопка)
+        // зачем (владелец 18.10 «ИСПРАВЬ КНОПКУ ЦЕНТРИРОВАНИЕ»): PressableHybrid даёт содержимому width '100%'; у кнопки «по центру» (alignSelf center)
+        // на Android процент брался от доступной ширины — кнопка раздувалась до ~85 %, надпись уезжала вправо. hug — ширина по надписи.
+        ...(hug ? { width: 'auto' as const } : null),
       }}
     >
       {/* зачем (координатор 05.10): в «Спокойно-тёмном» — общий глянец .cta макета из ThemeAccentFill, а не свой градиент. */}
       {primary && !disabled ? <ThemeAccentFill glass={glass} radius={height / 2} /> : null}
       {icon ? <Ionicons name={icon} size={18} color={ink} /> : null}
-      <FlowText testID="friends-button-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: ink, fontSize: (compact ? 16 : 17) * textScale, lineHeight: (compact ? 21 : 22) * textScale, fontWeight: compact ? '600' : '700', includeFontPadding: false }}>
+      <FlowText
+        testID="friends-button-label"
+        provenance="authored"
+        onLayout={onLabelLayout}
+        style={{ flexShrink: hug ? 0 : 1, textAlign: 'center', color: ink, fontSize: (compact ? 16 : 17) * textScale, lineHeight: (compact ? 21 : 22) * textScale, fontWeight: compact ? '600' : '700', includeFontPadding: false }}>
         {label}
       </FlowText>
     </PressableHybrid>

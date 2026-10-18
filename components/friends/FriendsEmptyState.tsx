@@ -65,6 +65,7 @@ export default function FriendsEmptyState({
         glass={glass}
         textScale={textScale}
         compact
+        hug
         label={add}
         onPress={onAdd}
         testID="friends-empty-add"

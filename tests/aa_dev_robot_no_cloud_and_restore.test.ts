@@ -130,7 +130,8 @@ describe('restore=offer|restored', () => {
     account.resetDevAccountStateForTests();
     statusMock.mockResolvedValue({ pending: false });
     const { promptAccountRestoreAfterSignInRefusal } = require('../app/account_delete_restore_prompt');
-    await expect(promptAccountRestoreAfterSignInRefusal('ru')).resolves.toBe('not_restorable');
+    // зачем (патч 6, владелец 18.10): удаления нет (pending=false) — замок снят, вход можно тихо повторить.
+    await expect(promptAccountRestoreAfterSignInRefusal('ru')).resolves.toBe('lock_released');
     expect(statusMock).toHaveBeenCalledTimes(1);
   });
 });

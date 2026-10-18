@@ -97,7 +97,8 @@ describe('wiring in account flows', () => {
     const sw = read('app/onboarding_account_switch_confirm.ts');
     expect((sw.match(/releaseReason\('account_switch', /g) ?? []).length).toBe(8);
     const restore = read('app/account_delete_restore_prompt.ts');
-    expect((restore.match(/releaseReason\('account_restore', /g) ?? []).length).toBe(3);
+    // зачем (патч 6): + status_unavailable — статус удаления не получен и после тихих повторов.
+    expect((restore.match(/releaseReason\('account_restore', /g) ?? []).length).toBe(4);
     expect(restore).toContain("choice === THEMED_ALERT_DISMISSED ? 'declined_back' : 'declined_button'");
     for (const code of [...literalCodes(sw), ...literalCodes(restore)]) expect(isValidReleaseReasonCode(code)).toBe(true);
   });

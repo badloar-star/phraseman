@@ -79,7 +79,59 @@ export function noticeAccountDeletedForever(lang: Lang, surface: string): void {
   );
 }
 
-export type AccountRestorePromptOutcome = 'restored' | 'declined' | 'not_restorable' | 'restore_failed';
+/**
+ * - lock_released — статус получен, удаления больше нет (pending=false): замок снят, вход можно тихо повторить;
+ * - status_unavailable — статус не получен и после тихих повторов: это «нет сети», а не «вход не завершился».
+ */
+export type AccountRestorePromptOutcome =
+  | 'restored'
+  | 'declined'
+  | 'not_restorable'
+  | 'restore_failed'
+  | 'lock_released'
+  | 'status_unavailable';
+
+/**
+ * Паузы тихих повторов статуса и восстановления.
+ * зачем (владелец 18.10 «ни один вход без ошибки, кроме «нет сети»»; разбор sign-in-refusals-audit п.5/6): один сбой сети
+ * сразу давал «Аккаунт не восстановлен». Обе операции идемпотентны (заявка на удаление не теряется), повтор безопасен.
+ */
+let accountRestoreRetryDelaysMs: readonly number[] = [700, 1_800];
+
+/** Только для тестов. */
+export function setAccountRestoreRetryDelaysForTest(delays: readonly number[]): void {
+  accountRestoreRetryDelaysMs = delays;
+}
+
+const pause = (ms: number) => new Promise<void>((resolve) => { setTimeout(resolve, ms); });
+
+async function fetchStatusWithQuietRetry(): Promise<Awaited<ReturnType<typeof fetchAccountDeleteStatus>>> {
+  for (let attempt = 0; ; attempt += 1) {
+    let status: Awaited<ReturnType<typeof fetchAccountDeleteStatus>> = null;
+    try {
+      status = await fetchAccountDeleteStatus();
+    } catch (error) {
+      console.warn(`[ACCOUNT-RESTORE] status_attempt_failed attempt=${attempt + 1} reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`);
+    }
+    if (status) return status;
+    const delay = accountRestoreRetryDelaysMs[attempt];
+    if (delay === undefined) return null;
+    console.log(`[ACCOUNT-RESTORE] status_retry attempt=${attempt + 2} afterMs=${delay}`);
+    await pause(delay);
+  }
+}
+
+async function restoreWithQuietRetry(): Promise<Awaited<ReturnType<typeof restoreDeletedAccount>>> {
+  for (let attempt = 0; ; attempt += 1) {
+    const outcome = await restoreDeletedAccount();
+    // Повторяем только сеть: not_restorable / missing — ответ сервера по существу, повтор его не изменит.
+    if (outcome.ok || outcome.reason !== 'network') return outcome;
+    const delay = accountRestoreRetryDelaysMs[attempt];
+    if (delay === undefined) return outcome;
+    console.log(`[ACCOUNT-RESTORE] restore_retry attempt=${attempt + 2} afterMs=${delay} reason=${outcome.reason}`);
+    await pause(delay);
+  }
+}
 
 /**
  * Восстановление не удалось (сеть/сервер). зачем (аудит Optimistic UI 12.10): прежде этот исход сливался с текстом
@@ -110,14 +162,25 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
   try {
     status = devRestoreMode
       ? { pending: true, restorable: true, daysLeft: 13 }
-      : await fetchAccountDeleteStatus();
+      : await fetchStatusWithQuietRetry();
     if (devRestoreMode) console.log(`[ACCOUNT-RESTORE] dev restore=${devRestoreMode}: статус подставлен (13 дней), сервер не вызван`); // guard-ok: dev-ветка
   } catch (error) {
     console.warn(`[ACCOUNT-RESTORE] status_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`);
     releaseReason('account_restore', 'status_failed', 'error');
-    return 'not_restorable';
+    return 'status_unavailable';
   }
-  if (!status?.pending || !status.restorable) {
+  // зачем (разбор п.6): статус не получен и после повторов — это «нет сети», а не общая карточка «Вход не завершился».
+  if (!status) {
+    console.warn('[ACCOUNT-RESTORE] status_unavailable after_retries'); // guard-ok: ранний выход с причиной
+    releaseReason('account_restore', 'status_unavailable', 'error');
+    return 'status_unavailable';
+  }
+  // зачем (разбор п.6): удаления больше нет — замок входа снят, вход можно тихо перезапустить.
+  if (status.pending !== true) {
+    console.log('[ACCOUNT-RESTORE] lock_released pending=no'); // guard-ok: ветка и значение, которое её решило
+    return 'lock_released';
+  }
+  if (!status.restorable) {
     console.log(`[ACCOUNT-RESTORE] not_restorable pending=${status?.pending === true ? 'yes' : 'no'} restorable=${status?.restorable === true ? 'yes' : 'no'}`);
     return 'not_restorable';
   }
@@ -172,7 +235,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
     console.log(`[ACCOUNT-RESTORE] dev restore=${devRestoreMode}: «Восстановить» → ${devOutcome}, restoreDeletedAccount не вызван`); // guard-ok: dev-ветка
     return devOutcome;
   }
-  const outcome = await restoreDeletedAccount();
+  const outcome = await restoreWithQuietRetry();
   console.log(`[ACCOUNT-RESTORE] restore ok=${outcome.ok ? 'yes' : 'no'}`);
   releaseReason('account_restore', outcome.ok ? 'restored' : 'failed', outcome.ok ? 'info' : 'error');
   return outcome.ok ? 'restored' : 'restore_failed';

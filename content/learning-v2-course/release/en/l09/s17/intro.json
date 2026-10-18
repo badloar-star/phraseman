@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "Are you inspecting…? Is she inspecting…? Is the zipper working?",
+    "uk": "Are you inspecting…? Is she inspecting…? Is the zipper working?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рюкзак после ремонта",
+        "uk": "Рюкзак після ремонту"
+      },
+      "bodyByLocale": {
+        "ru": "Вы забираете рюкзак из ремонта. Мастер внимательно рассматривает место, где соединены края ткани. Inspect — «осматривать, проверять», seam — «шов». Вы уточняете: Are you inspecting the seam? — «Вы сейчас проверяете шов?» В утверждении You are inspecting; в вопросе are выходит перед you. Вещи остаются на столе, переставляем только слова.",
+        "uk": "Ви забираєте рюкзак із ремонту. Майстер уважно розглядає місце, де з’єднані краї тканини. Inspect — «оглядати, перевіряти», seam — «шов». Ви уточнюєте: Are you inspecting the seam? — «Ви зараз перевіряєте шов?» У твердженні You are inspecting; у запитанні are виходить перед you. Речі залишаються на столі, переставляємо лише слова."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-17:intro1:r1",
+              "text": "Are you inspecting the seam?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro1:r2",
+              "text": "Is you inspecting the seam?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro1:r3",
+              "text": "Are you inspect the seam?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-17:intro1:r1",
+              "text": "Are you inspecting the seam?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro1:r2",
+              "text": "Is you inspecting the seam?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro1:r3",
+              "text": "Are you inspect the seam?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Изнанка сценического плаща",
+        "uk": "Виворіт сценічного плаща"
+      },
+      "bodyByLocale": {
+        "ru": "В театральной мастерской сотрудница вывернула плащ и рассматривает внутреннюю ткань. Lining — «подкладка». Вы спрашиваете коллегу о сотруднице: Is she inspecting the lining? — «Она сейчас проверяет подкладку?» Из She is inspecting получаем Is she inspecting? Сначала is, затем she; форма inspecting остаётся прежней.",
+        "uk": "У театральній майстерні працівниця вивернула плащ і розглядає внутрішню тканину. Lining — «підкладка». Ви запитуєте колегу про працівницю: Is she inspecting the lining? — «Вона зараз перевіряє підкладку?» Із She is inspecting отримуємо Is she inspecting? Спочатку is, потім she; форма inspecting залишається тією самою."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-17:intro2:r1",
+              "text": "Is she inspecting the lining?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro2:r2",
+              "text": "Are she inspecting the lining?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro2:r3",
+              "text": "Is she inspects the lining?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-17:intro2:r1",
+              "text": "Is she inspecting the lining?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro2:r2",
+              "text": "Are she inspecting the lining?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro2:r3",
+              "text": "Is she inspects the lining?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чемодан напрокат",
+        "uk": "Валіза напрокат"
+      },
+      "bodyByLocale": {
+        "ru": "У стойки проката сотрудник пробует застегнуть чемодан. Zipper — «молния», застёжка на одежде или сумке. Спросите: Is the zipper working? — «Молния работает?» В утверждении The zipper is working; в вопросе is стоит перед the zipper. Working здесь означает, что механизм работает.",
+        "uk": "Біля стійки прокату працівник пробує застебнути валізу. Zipper — «блискавка», застібка на одязі чи сумці. Запитайте: Is the zipper working? — «Блискавка працює?» У твердженні The zipper is working; у запитанні is стоїть перед the zipper. Working тут означає, що механізм працює."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-17:intro3:r1",
+              "text": "Is the zipper working?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro3:r2",
+              "text": "Are the zipper working?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro3:r3",
+              "text": "Is the zipper work?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-17:intro3:r1",
+              "text": "Is the zipper working?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro3:r2",
+              "text": "Are the zipper working?"
+            },
+            {
+              "responseId": "en:lesson-09:session-17:intro3:r3",
+              "text": "Is the zipper work?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2531a98bace54d9b1a31b1aca10436810718c2a7d522860f4682e61e34d23a7a"
+}

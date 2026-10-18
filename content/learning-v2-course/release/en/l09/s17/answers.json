@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-17:word:inspect",
+    "correctText": "inspect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i01",
+    "correctText": "Inspect the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i02",
+    "correctText": "inspect",
+    "correctResponseId": "en:lesson-09:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i03",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-09:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i04",
+    "correctText": "en:lesson-09:session-17:i04:p1=inspect\nen:lesson-09:session-17:i04:p2=bag\nen:lesson-09:session-17:i04:p3=open\nen:lesson-09:session-17:i04:p4=repair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i05",
+    "correctText": "Are you inspecting the bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:word:seam",
+    "correctText": "seam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i06",
+    "correctText": "Are you inspecting the seam?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:word:lining",
+    "correctText": "lining",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i07",
+    "correctText": "Is she inspecting the lining?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i08",
+    "correctText": "inspecting",
+    "correctResponseId": "en:lesson-09:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i09",
+    "correctText": "Are you inspecting the seam?",
+    "correctResponseId": "en:lesson-09:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i10",
+    "correctText": "en:lesson-09:session-17:i10:p1=inspect\nen:lesson-09:session-17:i10:p2=seam\nen:lesson-09:session-17:i10:p3=lining\nen:lesson-09:session-17:i10:p4=bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i11",
+    "correctText": "Is she inspecting the lining?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:word:zipper",
+    "correctText": "zipper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i12",
+    "correctText": "zipper",
+    "correctResponseId": "en:lesson-09:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i13",
+    "correctText": "Is the zipper working?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-09:session-17:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i15",
+    "correctText": "Is the zipper working?",
+    "correctResponseId": "en:lesson-09:session-17:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i16",
+    "correctText": "en:lesson-09:session-17:i16:p1=inspect\nen:lesson-09:session-17:i16:p2=seam\nen:lesson-09:session-17:i16:p3=lining\nen:lesson-09:session-17:i16:p4=zipper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-17:i17",
+    "correctText": "Is the zipper working?",
+    "correctResponseId": null
+  }
+]

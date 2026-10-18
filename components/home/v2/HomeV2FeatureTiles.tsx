@@ -111,14 +111,15 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
           >
             <View pointerEvents="none">
               <View style={[s.iconPlate, glass]}>
-                <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.iconArt} />
+                {/* зачем (владелец 18.10, снимок Главной: «1 место» вылезала за верх плитки и ScrollView её резал; арт Пика был не целиком): с плашкой арт ниже и меньше, чтобы плашка его не перекрывала */}
+                <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={tile.key === 'spire' && spirePlace !== null ? s.iconArtWithBadge : s.iconArt} />
+                {/* зачем (координатор 17.10, вариант (в); владелец 18.10): место в лиге — бейдж ВНУТРИ плашки, в правом верхнем углу с отступом: за границу плитки ничего не выходит, резать нечего (overflow visible в ScrollView на Android не спасает) */}
+                {tile.key === 'spire' && spirePlace !== null ? (
+                  <View testID="home-quick-tile-spire-place" style={[s.badge, { backgroundColor: g.ctaFill }]}>
+                    <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>
+                  </View>
+                ) : null}
               </View>
-              {/* зачем (координатор 17.10, вариант (в); владелец: «цифры справа от иконки, а не внизу»): место в лиге — бейдж в правом верхнем углу, как у иконки приложения */}
-              {tile.key === 'spire' && spirePlace !== null ? (
-                <View testID="home-quick-tile-spire-place" style={[s.badge, { backgroundColor: g.ctaFill }]}>
-                  <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>
-                </View>
-              ) : null}
             </View>
             {/* зачем: плитка 72 dp, подпись не должна ломаться при крупном шрифте; потолок роста кегля 1,05, не ужатие ([LABEL-FIT] 18.10, решение координатора) */}
             <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
@@ -215,8 +216,10 @@ const s = StyleSheet.create({
   // зачем (ратчет typography_two_sizes, D145; координатор 17.10): ниже заголовка допустимы только 16 и 13 — название 14→13, цифра места на бейдже 11→13 (бейдж на 2 dp выше, текст всё так же в одну строку).
   iconPlate: { aspectRatio: 1, borderRadius: V2.radius.tile, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   iconArt: { width: '74%', height: '74%' },
+  // зачем (владелец 18.10): арт 60% и сдвиг вниз на 24% (процент от ширины квадратной плашки) — корона целиком под плашкой места, верх плашки свободен
+  iconArtWithBadge: { width: '60%', height: '60%', marginTop: '24%' },
   iconTitle: { marginTop: 8, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
-  // бейдж поверх угла плашки (вне её overflow), растёт влево на длинных языках
-  badge: { position: 'absolute', top: -8, right: -4, minHeight: 22, paddingHorizontal: 7, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
+  // бейдж внутри угла плашки с отступом 4 dp, растёт влево на длинных языках
+  badge: { position: 'absolute', top: 4, right: 4, minHeight: 22, paddingHorizontal: 7, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

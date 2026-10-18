@@ -34,15 +34,26 @@ describe('мост старых звуков к V2', () => {
     for (const plan of [...Object.values(DIRECTOR_TO_V2), ...Object.values(FC_TO_V2)]) expect(SOUND_V2_CATALOG[plan.event]).toBeDefined();
   });
 
-  it('флаг выключен: мост возвращает false и V2 не вызывается ни для одного входа', () => {
+  it('флаг выключен: немые tap/correct погашены до legacy fallback, остальные входы остаются прежними', () => {
     setSoundV2FlagForTests(false);
-    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(false);
-    expect(tryPlayV2ForFc('correct')).toBe(false);
+    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
+    expect(tryPlayV2ForFc('correct')).toBe(true);
     expect(tryPlayV2Event('league_up', 'x')).toBe(false);
     expect(playMock).not.toHaveBeenCalled();
   });
 
-  it('флаг включён: события SoundDirector и звуки карточек играют V2; верный ответ двигает серию, неверный — нет', () => {
+  it.each([false, true])('tap и correct погашены централизованно при sound_v2=%s без запуска V2 или legacy fallback', (enabled) => {
+    setSoundV2FlagForTests(enabled);
+
+    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
+    expect(tryPlayV2ForDirector('pm.ui.tap_soft')).toBe(true);
+    expect(tryPlayV2ForFc('correct')).toBe(true);
+    expect(tryPlayV2Event('tap', 'spire.countdown')).toBe(true);
+    expect(tryPlayV2Event('correct', 'direct')).toBe(true);
+    expect(playMock).not.toHaveBeenCalled();
+  });
+
+  it('флаг включён: завершение, награда и неверный ответ играют V2, а верный ответ остаётся немым', () => {
     setSoundV2FlagForTests(true);
     playMock.mockReturnValue({ event: 'x', played: true });
     expect(tryPlayV2ForDirector('pm.complete.session')).toBe(true);
@@ -50,7 +61,7 @@ describe('мост старых звуков к V2', () => {
     expect(tryPlayV2ForDirector('pm.reward.small')).toBe(true);
     expect(playMock).toHaveBeenLastCalledWith('coin', { advance: true });
     expect(tryPlayV2ForFc('correct')).toBe(true);
-    expect(playMock).toHaveBeenLastCalledWith('correct', { advance: true });
+    expect(playMock).toHaveBeenCalledTimes(2);
     expect(tryPlayV2ForFc('incorrect')).toBe(true);
     expect(playMock).toHaveBeenLastCalledWith('wrong', undefined);
   });
@@ -62,16 +73,16 @@ describe('мост старых звуков к V2', () => {
     expect(playMock).not.toHaveBeenCalled();
   });
 
-  it('V2 не сыграл по причине платформы — подхватывает старый звук (false); звуки выключены / запись — тишина (true)', () => {
+  it('немутные события сохраняют legacy fallback при недоступности V2 и тишину при отключённых эффектах', () => {
     setSoundV2FlagForTests(true);
-    playMock.mockReturnValueOnce({ event: 'tap', played: false, reason: 'player_unavailable' });
-    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(false);
-    playMock.mockReturnValueOnce({ event: 'tap', played: false, reason: 'effects_disabled' });
-    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
-    playMock.mockReturnValueOnce({ event: 'tap', played: false, reason: 'quiet_recording' });
-    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
+    playMock.mockReturnValueOnce({ event: 'lesson_done', played: false, reason: 'player_unavailable' });
+    expect(tryPlayV2ForDirector('pm.complete.session')).toBe(false);
+    playMock.mockReturnValueOnce({ event: 'lesson_done', played: false, reason: 'effects_disabled' });
+    expect(tryPlayV2ForDirector('pm.complete.session')).toBe(true);
+    playMock.mockReturnValueOnce({ event: 'lesson_done', played: false, reason: 'quiet_recording' });
+    expect(tryPlayV2ForDirector('pm.complete.session')).toBe(true);
     playMock.mockImplementationOnce(() => { throw new Error('boom'); });
-    expect(tryPlayV2ForFc('correct')).toBe(false); // исключение не вылетает наружу
+    expect(tryPlayV2ForFc('incorrect')).toBe(false); // исключение не вылетает наружу
   });
 
   it('точки подключения: SoundDirector.execute и playSfx зовут мост до старого плеера; моменты Пика и «С возвращением» — через tryPlayV2Event', () => {

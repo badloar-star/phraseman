@@ -5,6 +5,8 @@
 // серии); не сыграло по причине «платформа/плеер» — возвращаем false, и старый звук подхватывает; причина «звуки выключены / идёт запись» — тишина (мост возвращает true, как и старый путь не играл бы).
 // Карта осторожная: только события, у которых в V2 есть равное по смыслу. Остальные (флип карточки, тики, нарастание, сундук) остаются старыми.
 // Верный ответ в УРОКАХ не озвучивается по решению владельца 2026-09-15 (вердикт — вибрацией); карта это НЕ меняет: «correct/wrong» подключены только к карточкам (playSfx).
+// 18.10 пользователь также отключил раздражающие звуки любого тапа и верного ответа. Политика ниже гасит их до проверки флага и запуска V2,
+// чтобы false никогда не передал управление старому плееру.
 import type { SoundV2EventId } from './catalog';
 import { isSoundV2Enabled } from './sound_v2_flag';
 
@@ -30,6 +32,13 @@ export function resetRecentSoundEventsForTests(): void {
 }
 
 type Plan = Readonly<{ event: SoundV2EventId; advance?: boolean; step?: number }>;
+
+/** События, которые пользователь явно оставил без звука; true от моста также блокирует legacy fallback. */
+export const MUTED_SOUND_V2_EVENTS: ReadonlySet<SoundV2EventId> = new Set(['tap', 'correct']);
+
+function isMutedSoundV2Event(event: SoundV2EventId): boolean {
+  return MUTED_SOUND_V2_EVENTS.has(event);
+}
 
 /** Старое событие SoundDirector → событие V2. */
 export const DIRECTOR_TO_V2: Readonly<Record<string, Plan>> = {
@@ -81,13 +90,16 @@ function playPlan(source: string, id: string, plan: Plan): boolean {
 
 /** Событие SoundDirector: true — сыграл V2 (старый звук не нужен), false — играть по-старому. */
 export function tryPlayV2ForDirector(eventId: string): boolean {
-  if (!isSoundV2Enabled()) return false;
   const plan = DIRECTOR_TO_V2[eventId];
-  return plan ? playPlan('director', eventId, plan) : false;
+  if (!plan) return false;
+  if (isMutedSoundV2Event(plan.event)) return true;
+  if (!isSoundV2Enabled()) return false;
+  return playPlan('director', eventId, plan);
 }
 
 /** Прямой запуск события V2 (моменты вовлечения): true — сыграло или звуки выключены/идёт запись; false — флаг выключен или не сыграло (вызывающий пишет заглушку/старый звук). */
 export function tryPlayV2Event(event: SoundV2EventId, source: string, advance = false, step?: number): boolean {
+  if (isMutedSoundV2Event(event)) return true;
   if (!isSoundV2Enabled()) return false;
   return playPlan('moment', source, { event, advance, step });
 }
@@ -97,6 +109,7 @@ export function tryPlayV2Event(event: SoundV2EventId, source: string, advance = 
  * true — звук сыгран или звуки выключены; false — флаг выключен, дубль погашен или V2 не сыграл (вызывающий решает про заглушку).
  */
 export function playUnlessRecentlyPlayed(event: SoundV2EventId, source: string, options?: Readonly<{ advance?: boolean; step?: number; windowMs?: number }>): boolean {
+  if (isMutedSoundV2Event(event)) return true;
   if (!isSoundV2Enabled()) return false;
   if (wasSoundEventPlayedWithin(event, options?.windowMs ?? RECENT_EVENT_WINDOW_MS)) {
     console.log(`${LOG} moment:${source} → ${event} уже звучало ≤ ${options?.windowMs ?? RECENT_EVENT_WINDOW_MS} мс назад — дубль погашен`); // guard-ok: причина тишины
@@ -107,7 +120,9 @@ export function playUnlessRecentlyPlayed(event: SoundV2EventId, source: string, 
 
 /** Звук карточек playSfx: true — сыграл V2, false — играть по-старому. */
 export function tryPlayV2ForFc(name: string): boolean {
-  if (!isSoundV2Enabled()) return false;
   const plan = FC_TO_V2[name];
-  return plan ? playPlan('fc', name, plan) : false;
+  if (!plan) return false;
+  if (isMutedSoundV2Event(plan.event)) return true;
+  if (!isSoundV2Enabled()) return false;
+  return playPlan('fc', name, plan);
 }

@@ -60,7 +60,7 @@ type Props = Readonly<{
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', menu: 'Меню', speak: 'Озвучить', play: 'Смотреть видео', train: 'Тренировать', phrases: 'Фразы', phrase: { one: 'фраза', few: 'фразы', many: 'фраз' } },
+  ru: { back: 'Назад', menu: 'Меню', speak: 'Озвучить', play: 'Смотреть видео', train: 'Практика', phrases: 'Фразы', phrase: { one: 'фраза', few: 'фразы', many: 'фраз' } },
   uk: { back: 'Назад', menu: 'Меню', speak: 'Озвучити', play: 'Дивитися відео', train: 'Тренувати', phrases: 'Фрази', phrase: { one: 'фраза', few: 'фрази', many: 'фраз' } },
   en: { back: 'Back', menu: 'Menu', speak: 'Listen', play: 'Watch the video', train: 'Train', phrases: 'Phrases', phrase: { one: 'phrases', few: 'phrases', many: 'phrases' } },
   es: { back: 'Atrás', menu: 'Menú', speak: 'Escuchar', play: 'Ver el vídeo', train: 'Entrenar', phrases: 'Frases', phrase: { one: 'frases', few: 'frases', many: 'frases' } },

@@ -22,7 +22,7 @@ import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', menu: 'Меню', onlyYou: 'Только ты', inCommunity: 'В сообществе', inMine: 'В моих наборах', card: 'Новая карточка', train: 'Тренировать' },
+  ru: { back: 'Назад', menu: 'Меню', onlyYou: 'Только ты', inCommunity: 'В сообществе', inMine: 'В моих наборах', card: 'Новая карточка', train: 'Практика' },
   uk: { back: 'Назад', menu: 'Меню', onlyYou: 'Тільки ти', inCommunity: 'У спільноті', inMine: 'У моїх наборах', card: 'Нова картка', train: 'Тренувати' },
   en: { back: 'Back', menu: 'Menu', onlyYou: 'Only you', inCommunity: 'In the community', inMine: 'In my packs', card: 'New card', train: 'Train' },
   es: { back: 'Atrás', menu: 'Menú', onlyYou: 'Solo tú', inCommunity: 'En la comunidad', inMine: 'En mis packs', card: 'Nueva tarjeta', train: 'Entrenar' },

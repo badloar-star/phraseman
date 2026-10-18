@@ -103,3 +103,13 @@ Security and privacy: тестовый аккаунт эмулятора, дан
 Technical debt: нет.
 Verification: 60 плееров, все файлы в git; 390 px без прокрутки; 14 решений с кнопками.
 Rollback: git revert.
+
+## R103-0 и R111: команды выкладки по репетиции Сайта (9793c0801)
+Governance-ID: TG-95C955154EA2
+Outcome: в карточках «0. ИИ-диалоги (R103-AI)» и «1а. Восстановление (R111)» — по одной команде выкладки из §7 r103-morning-deploy.md (deploy_from_clean_head.sh --only "<список>" --execute; R103-0 — 3 функции, R111 — 6), ожидаемое «✔ Deploy complete!», откат — трафик Cloud Run на прежние ревизии (§7.3); для сведения — старые сборки после R103-0 получат Free 30 ответов в месяц вместо 10 в день (D111), dry-run вызывает идемпотентную проверку «generate service identity» без изменения функций и данных. Репетиция без записи — dry-run PASS.
+Scope: docs/design/v2-app/morning-report-2026-10-18.html.
+Architecture: команды и списки функций — дословно из §7 (источник в карточке).
+Security and privacy: в отчёте только имена функций и команда; ключей нет.
+Technical debt: нет.
+Verification: списки функций сверены с §7; 390 px без горизонтальной прокрутки (команды переносятся).
+Rollback: git revert.

@@ -101,6 +101,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
 .pk2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
 .pk2 figure { margin: 0; min-width: 0; } .pk2 img { width: 100%; border-radius: 12px; display: block; }
 .pk2 figcaption { font-size: 13px; color: var(--sec); margin-top: 4px; }
+.cmd { display: block; margin-top: 8px; padding: 8px 10px; border-radius: 10px; background: var(--raised); color: var(--tx); font-size: 12px; line-height: 17px; overflow-wrap: anywhere; word-break: break-all; }
 .foot { margin-top: 48px; color: var(--mu); font-size: 13px; }
 @media (max-width: 560px) { .it { grid-template-columns: 44px 1fr; } .it .st { grid-column: 2; justify-self: start; margin-top: 6px; } h1 { font-size: 28px; line-height: 34px; } .thumbs { grid-template-columns: 1fr; } }
 </style>
@@ -325,6 +326,10 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="card"><h3>0. ИИ-диалоги сломаны — выложить первыми (R103-AI)</h3>
         <p><b style="color:var(--tx)">Сломано и в текущей версии 1.6.24 из стора — уже около 4 недель, и в 2.0.</b> Сценарные диалоги и компаньон «Тео» (Plus) не отвечают, а квота при этом списывается и OpenAI оплачен. «Как сказать…» выдаёт ошибку. На испанском и немецком ИИ отвечает по-английски.</p>
         <p>Лечение — три функции диалогов вместе. Чинит и версию в сторе, и 2.0; риск для старых версий низкий (проверка Моментов). <span class="hash">2341dfb71</span></p>
+        <p>Выкладка отрепетирована без записи — пробный прогон прошёл. Одна команда (3 функции):</p>
+        <code class="cmd">bash scripts/deploy_from_clean_head.sh --only "functions:default:premiumDialogSend,functions:default:premiumDialogStream,functions:default:premiumDialogTranslate" --execute</code>
+        <p>Ожидаемо: три строки «Successful update operation», затем «✔ Deploy complete!» и код выхода 0. Откат — вернуть трафик Cloud Run на нынешние ревизии (тот же образ, без пересборки); таблица ревизий — §7.3 r103-morning-deploy.md. <span class="hash">9793c0801 · §7.1</span></p>
+        <ul class="risk" style="color:var(--sec)"><li>Для сведения: после выкладки старые версии приложения получат Free 30 ответов в месяц вместо 10 в день (D111).</li><li>Для сведения: пробный прогон делает служебную проверку «generate service identity» — повторяемую, функции и данные не меняются.</li></ul>
         <div class="opts"><span class="rec">Выложить первыми, сегодня</span><span>Отложить</span></div></div>
       <div class="card"><h3>🔴 Размер приложения — со звуком 128 кбит/с не влезает в лимит Google Play</h3>
         <p><b style="color:var(--tx)">Прогноз Ядра к утру (уроки 1–4 и урок 5 по 32-е занятие): со звуком 128 кбит/с приложение ≈205–206 МБ — выше лимита Google Play 200 МБ.</b> Больше всего весит звук нового курса. <span class="hash">R124 · 4e815aa25</span></p>
@@ -351,6 +356,9 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="card"><h3>1а. Восстановление аккаунта по коду (R111)</h3>
         <p>Не работает ни на сервере, ни в новой версии: сервер требует проверку подлинности приложения, которой у приложения нет с 01.10. Код исправлен и закрыт: защита от подбора кодов, чужое восстановление нельзя заблокировать. Политика в сборке и на сайте — с фразой без срока хранения, она верна при любом состоянии автоудаления; сайт этого больше не ждёт. Срок «within two days» вернём после релиза, когда автоудаление покажет «Serving».</p>
         <ol style="margin:8px 0 0;padding-left:20px;color:var(--sec)"><li>Firebase Console → Firestore → <b style="color:var(--tx)">Time-to-live</b>: включить две политики по полю <code>expireAt</code> — для <code>auth_recovery_rate_limits</code> и <code>auth_recovery_clean_rate_limits</code>. Только в консоли: команда индексов (<code>firestore:indexes</code>) может предложить удалить другие индексы.</li><li>«Да» на выкладку функций восстановления (R111).</li></ol>
+        <p>Выкладка — после сайта, отрепетирована без записи, пробный прогон прошёл. Одна команда (6 функций):</p>
+        <code class="cmd">bash scripts/deploy_from_clean_head.sh --only "functions:default:authRequestRecoveryCode,functions:default:authConfirmRecoveryCode,functions:default:authRequestCleanInstallRecoveryCode,functions:default:authConfirmCleanInstallRecoveryCode,functions:default:authIssueRecoveryHandoffToken,functions:default:authCompleteRecoveryHandoff" --execute</code>
+        <p>Ожидаемо: шесть строк «Successful update operation», затем «✔ Deploy complete!» и код выхода 0. Откат — вернуть трафик Cloud Run на нынешние ревизии (тот же образ, без пересборки); таблица ревизий — §7.3 r103-morning-deploy.md. <span class="hash">9793c0801 · §7.2</span></p>
         <div class="opts"><span class="rec">Включить автоудаление и выложить</span><span>Оставить как есть до следующей версии</span></div></div>
       <div class="card"><h3>2. Выкладка сайта и политики (R105)</h3>
         <p>Собрано из чистой копии. Репетиция прошла: тексты политики на сайте совпадают с приложением построчно, битых ссылок 0, на телефоне нет горизонтальной прокрутки. Автоудаления (R111) сайт не ждёт. <span class="hash">95d433552</span></p>

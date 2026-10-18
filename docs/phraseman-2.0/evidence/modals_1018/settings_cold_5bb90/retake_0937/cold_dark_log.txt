@@ -1,0 +1,21 @@
+10-18 09:36:41.860 W/'[BOOTSPLASH] +2213ms [THEME-BOOT] splash-hold: первый кадр :: {"bg":"#101214"}', { [Stack] name: 'Stack' }
+10-18 09:36:41.955 I/[TAB-FIRST-FRAME] activate {"idx":0,"at":1792312601953,"mounted":true,"visited":true,"physicalPageIdx":0,"mountedCount":1}
+10-18 09:36:41.970 W/'[BOOTSPLASH] +2323ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#101214","light":false,"source":"system","systemScheme":"dark","choiceReady":false,"theme":"graphite"}', { [S
+10-18 09:36:41.972 W/'[BOOTSPLASH] +2325ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":true,"canHideNativeSplash":false}', { [Stack] name: 'Stack' }
+10-18 09:36:42.227 I/[DEV-STATE] toast: хост смонтирован lang=en
+10-18 09:36:42.229 I/[DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-18 09:36:42.247 I/[THEME-BOOT] frame {"frame":1,"msSinceBoot":4292,"systemScheme":"dark","followSystem":false,"savedTheme":"graphite","savedAppearance":"dark","chosenTheme":"graphite","chosenAppearance":"dark","choiceReady":fal
+10-18 09:36:42.558 I/[THEME-BOOT] hydrate {"msSinceBoot":4604,"storedTheme":null,"storedAppearance":null,"storedIntensity":null,"onboardingDone":"1","followMarker":"1","bootScheme":"dark","decision":"new_user/follow_system_marker"
+10-18 09:36:43.376 W/'[BOOTSPLASH] +3728ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":true,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack]
+10-18 09:36:43.379 I/[THEME-BOOT] frame {"frame":2,"msSinceBoot":5424,"systemScheme":"dark","followSystem":true,"savedTheme":"marine","savedAppearance":"dark","chosenTheme":"marine","chosenAppearance":"dark","choiceReady":true,"hy
+10-18 09:36:43.549 W/[BOOTSPLASH] +3903ms [THEME-BOOT] SplashScreen.hideAsync() — из заставки-удержания (rAF после монтажа)
+10-18 09:36:47.168 I/'[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-18 09:36:48.065 W/'[BOOTSPLASH] +8414ms [THEME-BOOT] splash-hold :: {"visible":false,"canHideNativeSplash":true,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack
+10-18 09:36:48.081 W/'[BOOTSPLASH] +8424ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":false,"canHideNativeSplash":true}', { [Stack] name: 'Stack' }
+10-18 09:36:48.493 I/[TABS-DEFERRED] placeholder start screen=loadSettingsScreen shouldLoad=false
+10-18 09:36:48.591 I/[TAB-FIRST-FRAME] activate {"idx":4,"at":1792312608589,"mounted":false,"visited":true,"physicalPageIdx":4,"mountedCount":1}
+10-18 09:36:50.904 I/[TABS-DEFERRED] placeholder end screen=loadSettingsScreen heldMs=2400
+10-18 09:36:50.972 I/[TAB-FIRST-FRAME] settings:first_render {"idx":4,"sinceActivateMs":2382,"sinceModuleMs":11624}
+10-18 09:36:51.574 I/[TAB-FIRST-FRAME] settings:header_layout {"idx":4,"sinceActivateMs":2985}
+10-18 09:36:51.861 I/[TAB-FIRST-FRAME] settings:first_focus {"idx":4,"sinceActivateMs":3269,"sinceRenderMs":891,"sinceCommitMs":192}
+10-18 09:36:54.491 I/'[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":6921,"quietReason":"quiet","quietWaitMs":5356,"cleanTicks":4,"lastLagMs":63,"maxLagMs":1013,"sinceTouchMs":4596,"idleWaitMs":1,"prew

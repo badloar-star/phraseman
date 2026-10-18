@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-01:intro1:r2": {
-          "ru": "Это «Я ключ». Чтобы сказать «У меня есть ключ», нужно `I have a key`.",
-          "uk": "Це «Я ключ». Щоб сказати «У мене є ключ», потрібно `I have a key`."
+          "ru": "Это значило бы «Я ключ». Чтобы сказать «У меня есть ключ», нужно have.",
+          "uk": "Це означало б «Я ключ». Щоб сказати «У мене є ключ», потрібно have."
         },
         "en:lesson-05:session-01:intro1:r3": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "С I нужно have, а не has.",
+          "uk": "З I потрібно have, а не has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-01:intro2:r2": {
-          "ru": "С `She` нужно `has`.",
-          "uk": "З `She` потрібне `has`."
+          "ru": "С she нужно has, а не have.",
+          "uk": "З she потрібно has, а не have."
         },
         "en:lesson-05:session-01:intro2:r3": {
-          "ru": "`has` уже сообщает, что у неё есть ключ; `is` здесь лишнее.",
-          "uk": "`has` уже повідомляє, що в неї є ключ; `is` тут зайве."
+          "ru": "Это значило бы «Она брат». Чтобы сказать «У неё есть брат», нужно has.",
+          "uk": "Це означало б «Вона брат». Щоб сказати «У неї є брат», потрібно has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-01:intro3:r2": {
-          "ru": "`happy` описывает её состояние: `She is happy`.",
-          "uk": "`happy` описує її стан: `She is happy`."
+          "ru": "С we нужно have, а не has.",
+          "uk": "З we потрібно have, а не has."
         },
         "en:lesson-05:session-01:intro3:r3": {
-          "ru": "С `She` нужно `is`.",
-          "uk": "З `She` потрібне `is`."
+          "ru": "Это значило бы «Мы сестра». Чтобы сказать «У нас есть сестра», нужно have.",
+          "uk": "Це означало б «Ми сестра». Щоб сказати «У нас є сестра», потрібно have."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d8d9d468e2e9ccea014d0d0a57fb8d1e32d250a5d7667a53aef4ba18213ff1d2"
+  "auxiliaryFingerprint": "3c0d947947961cf3d47a247f59e7bf7d83b1b71a71091a8985aef5847a538a89"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-06",
   "learningOutcomeByLocale": {
-    "ru": "назвать потолок, описать помещение и сказать, у кого есть ручка",
-    "uk": "назвати стелю, описати приміщення й сказати, у кого є ручка"
+    "ru": "сказать, что есть у врача, медсестры и клиники, и описать волнение",
+    "uk": "сказати, що є в лікаря, медсестри й клініки, та описати хвилювання"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сверху, но внутри",
-        "uk": "Зверху, але всередині"
+        "ru": "Градусник на столе",
+        "uk": "Градусник на столі"
       },
       "bodyByLocale": {
-        "ru": "`ceiling` — «потолок»: верхняя поверхность внутри комнаты. `The room has a ceiling` — «У комнаты есть потолок». Потолок внутри, крыша снаружи: люстру обычно вешают не на крыше, иначе читать придётся воронам. Один потолок — `a ceiling`.",
-        "uk": "`ceiling` — «стеля»: верхня поверхня всередині кімнати. `The room has a ceiling` — «У кімнати є стеля». Стеля всередині, дах зовні: люстру зазвичай вішають не на даху, інакше читати доведеться воронам. Одна стеля — `a ceiling`."
+        "ru": "На первом рабочем дне в клинике медсестра показывает вам, как измеряют температуру. Прибор она осторожно достаёт из футляра на столе. thermometer — «градусник». Про медсестру говорят has: The nurse has a thermometer — «У медсестры есть градусник».",
+        "uk": "На першому робочому дні в клініці медсестра показує вам, як вимірюють температуру. Прилад вона обережно дістає з футляра на столі. thermometer — «градусник». Про медсестру кажуть has: The nurse has a thermometer — «У медсестри є градусник»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-06:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите потолок.",
-          "uk": "Назвіть стелю."
+          "ru": "Пациент спрашивает, чем ему измерят температуру. Скажите ему, что у медсестры есть градусник.",
+          "uk": "Пацієнт питає, чим йому виміряють температуру. Скажіть йому, що в медсестри є градусник."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-06:intro1:r1",
-              "text": "ceiling"
+              "text": "The nurse has a thermometer."
             },
             {
               "responseId": "en:lesson-05:session-06:intro1:r2",
-              "text": "curtain"
+              "text": "The nurse have a thermometer."
             },
             {
               "responseId": "en:lesson-05:session-06:intro1:r3",
-              "text": "drawer"
+              "text": "The nurse has thermometer."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-06:intro1:r1",
-              "text": "ceiling"
+              "text": "The nurse has a thermometer."
             },
             {
               "responseId": "en:lesson-05:session-06:intro1:r2",
-              "text": "curtain"
+              "text": "The nurse have a thermometer."
             },
             {
               "responseId": "en:lesson-05:session-06:intro1:r3",
-              "text": "drawer"
+              "text": "The nurse has thermometer."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите потолок.",
-          "uk": "Назвіть стелю."
+          "ru": "Пациент спрашивает, чем ему измерят температуру. Скажите ему, что у медсестры есть градусник.",
+          "uk": "Пацієнт питає, чим йому виміряють температуру. Скажіть йому, що в медсестри є градусник."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Волнение бывает разным",
-        "uk": "Хвилювання буває різним"
+        "ru": "Поцарапанная рука",
+        "uk": "Подряпана рука"
       },
       "bodyByLocale": {
-        "ru": "`calm` — «спокойный», `nervous` — «нервничающий», `excited` — «радостно взволнованный». `I’m nervous` — «Я нервничаю»: переживаю, как всё пройдёт. `I’m excited` — «Я в радостном предвкушении»: жду первого дня с воодушевлением. `He is calm` — «Он спокоен». Для этих состояний нужны `am`, `is`, `are`.",
-        "uk": "`calm` — «спокійний», `nervous` — «знервований», `excited` — «радісно схвильований». `I’m nervous` — «Я нервую»: переживаю, як усе пройде. `I’m excited` — «Я в радісному очікуванні»: чекаю першого дня з натхненням. `He is calm` — «Він спокійний». Для цих станів потрібні `am`, `is`, `are`."
+        "ru": "В кабинет входит мальчик, прижимая к груди поцарапанную руку. Врач берёт со стола длинную мягкую белую полоску чистой ткани, чтобы перевязать рану. bandage — «бинт, повязка». Про врача говорят has: The doctor has a bandage — «У врача есть бинт».",
+        "uk": "У кабінет заходить хлопчик, притискаючи до грудей подряпану руку. Лікар бере зі столу довгу м’яку білу смужку чистої тканини, щоб перев’язати рану. bandage — «бинт, пов’язка». Про лікаря кажуть has: The doctor has a bandage — «У лікаря є бинт»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-06:intro2:q",
         "promptByLocale": {
-          "ru": "Вы переживаете, боитесь ошибиться. Скажите «Я нервничаю» с сокращением.",
-          "uk": "Ви переживаєте, боїтеся помилитися. Скажіть «Я нервую» зі скороченням."
+          "ru": "Мама мальчика волнуется. Скажите ей, что у врача есть бинт.",
+          "uk": "Мама хлопчика хвилюється. Скажіть їй, що в лікаря є бинт."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-06:intro2:r1",
-              "text": "I'm nervous."
+              "text": "The doctor has a bandage."
             },
             {
               "responseId": "en:lesson-05:session-06:intro2:r2",
-              "text": "I'm calm."
+              "text": "The doctor have a bandage."
             },
             {
               "responseId": "en:lesson-05:session-06:intro2:r3",
-              "text": "I have nervous."
+              "text": "The doctor has bandage."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-06:intro2:r1",
-              "text": "I'm nervous."
+              "text": "The doctor has a bandage."
             },
             {
               "responseId": "en:lesson-05:session-06:intro2:r2",
-              "text": "I'm calm."
+              "text": "The doctor have a bandage."
             },
             {
               "responseId": "en:lesson-05:session-06:intro2:r3",
-              "text": "I have nervous."
+              "text": "The doctor has bandage."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы переживаете, боитесь ошибиться. Скажите «Я нервничаю» с сокращением.",
-          "uk": "Ви переживаєте, боїтеся помилитися. Скажіть «Я нервую» зі скороченням."
+          "ru": "Мама мальчика волнуется. Скажите ей, что у врача есть бинт.",
+          "uk": "Мама хлопчика хвилюється. Скажіть їй, що в лікаря є бинт."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ручка и адрес",
-        "uk": "Ручка й адреса"
+        "ru": "Лекарство от кашля",
+        "uk": "Ліки від кашлю"
       },
       "bodyByLocale": {
-        "ru": "`pen` — «ручка», `clinic` — «клиника», `petrol station` — «заправка». `She has a pen` — «У неё есть ручка». `The clinic is next to the petrol station` — «Клиника рядом с заправкой». `has` сообщает, что есть у подруги; `is` в примере с клиникой говорит, где она.",
-        "uk": "`pen` — «ручка», `clinic` — «клініка», `petrol station` — «заправка». `She has a pen` — «У неї є ручка». `The clinic is next to the petrol station` — «Клініка поруч із заправкою». `has` повідомляє, що є в подруги; `is` у прикладі з клінікою каже, де вона."
+        "ru": "Пожилая пациентка просит помочь с кашлем. Вы с коллегой идёте к шкафу в углу и открываете дверцу, где стоят пузырьки и коробочки. medicine — «лекарство»: так называют лекарство вообще, и a не ставят. We have medicine — «У нас есть лекарство».",
+        "uk": "Літня пацієнтка просить допомогти з кашлем. Ви з колегою йдете до шафи в куті й відчиняєте дверцята, де стоять флакони й коробочки. medicine — «ліки»: так називають ліки взагалі, і a не ставлять. We have medicine — «У нас є ліки»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-06:intro3:q",
         "promptByLocale": {
-          "ru": "У подруги есть ручка. Выберите фразу.",
-          "uk": "У подруги є ручка. Виберіть фразу."
+          "ru": "Пациентка спрашивает, есть ли чем лечить кашель. Скажите ей за себя и коллегу, что у вас есть лекарство.",
+          "uk": "Пацієнтка питає, чи є чим лікувати кашель. Скажіть їй за себе й колегу, що у вас є ліки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-06:intro3:r1",
-              "text": "She has a pen."
+              "text": "We have medicine."
             },
             {
               "responseId": "en:lesson-05:session-06:intro3:r2",
-              "text": "She have a pen."
+              "text": "We has medicine."
             },
             {
               "responseId": "en:lesson-05:session-06:intro3:r3",
-              "text": "She is a pen."
+              "text": "We have a medicine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-06:intro3:r1",
-              "text": "She has a pen."
+              "text": "We have medicine."
             },
             {
               "responseId": "en:lesson-05:session-06:intro3:r2",
-              "text": "She have a pen."
+              "text": "We has medicine."
             },
             {
               "responseId": "en:lesson-05:session-06:intro3:r3",
-              "text": "She is a pen."
+              "text": "We have a medicine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У подруги есть ручка. Выберите фразу.",
-          "uk": "У подруги є ручка. Виберіть фразу."
+          "ru": "Пациентка спрашивает, есть ли чем лечить кашель. Скажите ей за себя и коллегу, что у вас есть лекарство.",
+          "uk": "Пацієнтка питає, чи є чим лікувати кашель. Скажіть їй за себе й колегу, що у вас є ліки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "93da7912f4d91cc19bbf5f8fe5a2f5d2fe853cfc4d8a62b35f6e53baa4993974"
+  "introFingerprint": "167ee4b9fc4f1076c8ee64c391e88365d70f090353f58abbf3cee5c663b42213"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-04",
   "learningOutcomeByLocale": {
-    "ru": "назвать занавеску, сказать, у кого она есть, и описать самочувствие",
-    "uk": "назвати завіску, сказати, у кого вона є, й описати самопочуття"
+    "ru": "сказать, что есть у детей и воспитателей и у кого занавеска, и описать самочувствие",
+    "uk": "сказати, що є в дітей і вихователів і в кого завіса, та описати самопочуття"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что закрывает окно",
-        "uk": "Що закриває вікно"
+        "ru": "Мяч во дворе",
+        "uk": "М’яч у дворі"
       },
       "bodyByLocale": {
-        "ru": "`curtain` — «занавеска»: её можно задёрнуть, чтобы закрыть окно от света или чужих взглядов. `I have a curtain` — «У меня есть занавеска». Занавеска закрывает окно, но стекло не заменяет: от дождя ткань — так себе защита. Одна занавеска — `a curtain`.",
-        "uk": "`curtain` — «завіска»: її можна затягнути, щоб закрити вікно від світла чи чужих поглядів. `I have a curtain` — «У мене є завіска». Завіска закриває вікно, але скло не замінює: від дощу тканина — такий собі захист. Одна завіска — `a curtain`."
+        "ru": "Вы принесли занавеску в детский сад. Во дворе дети играют, а одна девочка крепко прижимает к себе мяч и не отдаёт его другим детям. ball — «мяч». Про девочку говорят has: She has a ball — «У неё есть мяч». Перед ball нужно a, потому что мяч один.",
+        "uk": "Ви принесли завісу в дитячий садок. У дворі діти граються, а одна дівчинка міцно притискає до себе м’яч і не віддає його іншим дітям. ball — «м’яч». Про дівчинку кажуть has: She has a ball — «У неї є м’яч». Перед ball потрібно a, бо м’яч один."
       },
       "question": {
         "interactionId": "en:lesson-05:session-04:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что у вас есть занавеска.",
-          "uk": "Скажіть, що у вас є завіска."
+          "ru": "Воспитательница ищет мяч для игры. Скажите ей, что мяч у девочки.",
+          "uk": "Вихователька шукає м’яч для гри. Скажіть їй, що м’яч у дівчинки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-04:intro1:r1",
-              "text": "I have a curtain."
+              "text": "She has a ball."
             },
             {
               "responseId": "en:lesson-05:session-04:intro1:r2",
-              "text": "I has a curtain."
+              "text": "She have a ball."
             },
             {
               "responseId": "en:lesson-05:session-04:intro1:r3",
-              "text": "I have curtain."
+              "text": "She has ball."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-04:intro1:r1",
-              "text": "I have a curtain."
+              "text": "She has a ball."
             },
             {
               "responseId": "en:lesson-05:session-04:intro1:r2",
-              "text": "I has a curtain."
+              "text": "She have a ball."
             },
             {
               "responseId": "en:lesson-05:session-04:intro1:r3",
-              "text": "I have curtain."
+              "text": "She has ball."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что у вас есть занавеска.",
-          "uk": "Скажіть, що у вас є завіска."
+          "ru": "Воспитательница ищет мяч для игры. Скажите ей, что мяч у девочки.",
+          "uk": "Вихователька шукає м’яч для гри. Скажіть їй, що м’яч у дівчинки."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Самочувствие после дороги",
-        "uk": "Самопочуття після дороги"
+        "ru": "Голоса из окон",
+        "uk": "Голоси з вікон"
       },
       "bodyByLocale": {
-        "ru": "`hungry` — «голодный», `thirsty` — «испытывающий жажду», `sick` — «больной». `I’m hungry` — «Я голоден». `She is thirsty` — «Она хочет пить». `He is sick` — «Он болен». Для этих состояний нужны `am`, `is`, `are`. Сказать, у кого есть вещь, помогают `have` и `has`: `She has a bag` — «У неё есть сумка».",
-        "uk": "`hungry` — «голодний», `thirsty` — «спраглий», `sick` — «хворий». `I’m hungry` — «Я голодний». `She is thirsty` — «Вона хоче пити». `He is sick` — «Він хворий». Для цих станів потрібні `am`, `is`, `are`. Сказати, у кого є річ, допомагають `have` і `has`: `She has a bag` — «У неї є сумка»."
+        "ru": "У ворот детского сада прохожий спрашивает, что это за здание. Из окон слышны детские голоса. children — «дети»: слово обозначает сразу нескольких. Про детский сад как про одно место говорят has: The nursery has children. Слово a перед children не ставят.",
+        "uk": "Біля воріт дитячого садка перехожий питає, що це за будівля. З вікон чутно дитячі голоси. children — «діти»: слово означає одразу кількох. Про дитячий садок як про одне місце кажуть has: The nursery has children. Слово a перед children не ставлять."
       },
       "question": {
         "interactionId": "en:lesson-05:session-04:intro2:q",
         "promptByLocale": {
-          "ru": "Подруга хочет пить. Выберите фразу.",
-          "uk": "Подруга хоче пити. Виберіть фразу."
+          "ru": "Прохожий спрашивает, что это за здание. Скажите ему, что в детском саду есть дети.",
+          "uk": "Перехожий питає, що це за будівля. Скажіть йому, що в дитячому садку є діти."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-04:intro2:r1",
-              "text": "She is thirsty."
+              "text": "The nursery has children."
             },
             {
               "responseId": "en:lesson-05:session-04:intro2:r2",
-              "text": "She has thirsty."
+              "text": "The nursery have children."
             },
             {
               "responseId": "en:lesson-05:session-04:intro2:r3",
-              "text": "She are thirsty."
+              "text": "The nursery has a children."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-04:intro2:r1",
-              "text": "She is thirsty."
+              "text": "The nursery has children."
             },
             {
               "responseId": "en:lesson-05:session-04:intro2:r2",
-              "text": "She has thirsty."
+              "text": "The nursery have children."
             },
             {
               "responseId": "en:lesson-05:session-04:intro2:r3",
-              "text": "She are thirsty."
+              "text": "The nursery has a children."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга хочет пить. Выберите фразу.",
-          "uk": "Подруга хоче пити. Виберіть фразу."
+          "ru": "Прохожий спрашивает, что это за здание. Скажите ему, что в детском саду есть дети.",
+          "uk": "Перехожий питає, що це за будівля. Скажіть йому, що в дитячому садку є діти."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сумка и адрес",
-        "uk": "Сумка й адреса"
+        "ru": "Мальчик у входа",
+        "uk": "Хлопчик біля входу"
       },
       "bodyByLocale": {
-        "ru": "`bag` — «сумка», `post office` — «почта, почтовое отделение», `nursery` — «детский сад». `The curtain is in the bag` — «Занавеска в сумке». `The nursery is next to the post office` — «Детский сад рядом с почтой». В этих фразах `is` помогает сказать, где предмет или место.",
-        "uk": "`bag` — «сумка», `post office` — «пошта, поштове відділення», `nursery` — «дитячий садок». `The curtain is in the bag` — «Завіска в сумці». `The nursery is next to the post office` — «Дитячий садок поруч із поштою». У цих фразах `is` допомагає сказати, де предмет або місце."
+        "ru": "Мальчик у входа не хочет заходить в здание, хмурится и держится за мамину руку. Вы объясняете ему, что в группе его уже ждёт воспитатель. teacher — «учитель, воспитатель». Про мальчика говорят has: He has a teacher — «У него есть воспитатель».",
+        "uk": "Хлопчик біля входу не хоче заходити в будівлю, хмуриться й тримається за мамину руку. Ви пояснюєте йому, що в групі на нього вже чекає вихователь. teacher — «учитель, вихователь». Про хлопчика кажуть has: He has a teacher — «У нього є вихователь»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-04:intro3:q",
         "promptByLocale": {
-          "ru": "Занавеска внутри сумки. Выберите описание.",
-          "uk": "Завіска всередині сумки. Виберіть опис."
+          "ru": "Мама мальчика спрашивает, что вы ему сказали. Передайте ей: «У него есть воспитатель».",
+          "uk": "Мама хлопчика питає, що ви йому сказали. Перекажіть їй: «У нього є вихователь»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-04:intro3:r1",
-              "text": "The curtain is in the bag."
+              "text": "He has a teacher."
             },
             {
               "responseId": "en:lesson-05:session-04:intro3:r2",
-              "text": "The curtain is under the bag."
+              "text": "He have a teacher."
             },
             {
               "responseId": "en:lesson-05:session-04:intro3:r3",
-              "text": "The curtain are in the bag."
+              "text": "He is a teacher."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-04:intro3:r1",
-              "text": "The curtain is in the bag."
+              "text": "He has a teacher."
             },
             {
               "responseId": "en:lesson-05:session-04:intro3:r2",
-              "text": "The curtain is under the bag."
+              "text": "He have a teacher."
             },
             {
               "responseId": "en:lesson-05:session-04:intro3:r3",
-              "text": "The curtain are in the bag."
+              "text": "He is a teacher."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Занавеска внутри сумки. Выберите описание.",
-          "uk": "Завіска всередині сумки. Виберіть опис."
+          "ru": "Мама мальчика спрашивает, что вы ему сказали. Передайте ей: «У него есть воспитатель».",
+          "uk": "Мама хлопчика питає, що ви йому сказали. Перекажіть їй: «У нього є вихователь»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7ad76604f153788e336825975e1c39172210d2b69e2f6e50d4022c9bd469a7dd"
+  "introFingerprint": "71b5b4856d515cd62d07084872018503fefd8922e8af18be935f5715a5c44873"
 }

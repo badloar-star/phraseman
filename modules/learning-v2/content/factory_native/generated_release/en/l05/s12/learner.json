@@ -4,40 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-12:i01",
+      "interactionId": "en:lesson-05:session-12:word:notebook",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — notebook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-12:word:notebook:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — notebook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-12:word:notebook:audio",
+          "transcript": "notebook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-12:word:notebook:r1",
+            "targetText": "notebook",
+            "meaningByLocale": {
+              "ru": "тетрадь. My notebook is on the desk. — «Моя тетрадь на письменном столе». О тетради для записей и уроков.",
+              "uk": "зошит. My notebook is on the desk. — «Мій зошит на письмовому столі». Про зошит для записів і уроків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "notebook",
+          "definitionByLocale": {
+            "ru": "тетрадь. My notebook is on the desk. — «Моя тетрадь на письменном столе». О тетради для записей и уроков.",
+            "uk": "зошит. My notebook is on the desk. — «Мій зошит на письмовому столі». Про зошит для записів і уроків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-12:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг вашей подруги дружелюбный. Скажите «Её друг дружелюбный»",
+      "prompt": "Учительница просит достать тетрадь. Она в вашем рюкзаке. Скажите ей полной фразой: «Моя тетрадь в моём рюкзаке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг вашей подруги дружелюбный. Скажите «Её друг дружелюбный»",
+      "accessibilityLabel": "Учительница просит достать тетрадь. Она в вашем рюкзаке. Скажите ей полной фразой: «Моя тетрадь в моём рюкзаке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Her friend is friendly.",
+        "targetPhrase": "My notebook is in my backpack.",
         "localizedMeaning": {
-          "ru": "Друг вашей подруги дружелюбный. Скажите «Её друг дружелюбный»",
-          "uk": "Друг вашої подруги привітний. Скажіть «Її друг привітний»"
+          "ru": "Учительница просит достать тетрадь. Она в вашем рюкзаке. Скажите ей полной фразой: «Моя тетрадь в моём рюкзаке»",
+          "uk": "Вчителька просить дістати зошит. Він у вашому рюкзаку. Скажіть їй повною фразою: «Мій зошит у моєму рюкзаку»"
         },
         "orderedTokens": [
-          "Her",
-          "friend",
+          "My",
+          "notebook",
           "is",
-          "friendly"
+          "in",
+          "my",
+          "backpack"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг вашей подруги дружелюбный. Скажите «Её друг дружелюбный»",
+            "testedDimension": "Учительница просит достать тетрадь. Она в вашем рюкзаке. Скажите ей полной фразой: «Моя тетрадь в моём рюкзаке»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Her friend is friendly.`",
-              "uk": "тут потрібно `is` — `Her friend is friendly.`"
+              "ru": "здесь нужно `My` — `My notebook is in my backpack.`",
+              "uk": "тут потрібно `My` — `My notebook is in my backpack.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-12:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-12:word:pencil",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — pencil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-12:word:pencil:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pencil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-12:word:pencil:audio",
+          "transcript": "pencil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-12:word:pencil:r1",
+            "targetText": "pencil",
+            "meaningByLocale": {
+              "ru": "карандаш. Her pencil is in my bag. — «Её карандаш в моей сумке». О палочке для письма и рисования.",
+              "uk": "олівець. Her pencil is in my bag. — «Її олівець у моїй сумці». Про паличку для письма й малювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pencil",
+          "definitionByLocale": {
+            "ru": "карандаш. Her pencil is in my bag. — «Её карандаш в моей сумке». О палочке для письма и рисования.",
+            "uk": "олівець. Her pencil is in my bag. — «Її олівець у моїй сумці». Про паличку для письма й малювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-12:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте ребёнка",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-12:i02:r1",
-          "text": "notebook"
+          "text": "These are your pencils."
         },
         {
           "responseId": "en:lesson-05:session-12:i02:r2",
-          "text": "notebooks"
+          "text": "This is your pencil."
         },
         {
           "responseId": "en:lesson-05:session-12:i02:r3",
-          "text": "book"
+          "text": "These are my pencils."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте ребёнка",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i02:audio",
-          "transcript": "notebook"
+          "transcript": "These are your pencils."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-12:i02:r1",
-            "targetText": "notebook",
+            "targetText": "These are your pencils.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-12:i02:r2",
-            "targetText": "notebooks",
+            "targetText": "This is your pencil.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-12:i02:r3",
-            "targetText": "book",
+            "targetText": "These are my pencils.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-12:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте ребёнка",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `notebook`, а в этом варианте — `notebooks`.",
-              "uk": "У записі перше слово — `notebook`, а в цьому варіанті — `notebooks`."
+              "ru": "В записи `These are` и `pencils` — несколько, а в этом варианте `This is` и `pencil` — один.",
+              "uk": "У записі `These are` й `pencils` — кілька, а в цьому варіанті `This is` й `pencil` — один."
             }
           },
           {
             "responseId": "en:lesson-05:session-12:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте ребёнка",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `notebook`, а в этом варианте — `book`.",
-              "uk": "У записі перше слово — `notebook`, а в цьому варіанті — `book`."
+              "ru": "В записи `your` — твои, а в этом варианте `my` — мои.",
+              "uk": "У записі `your` — твої, а в цьому варіанті `my` — мої."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-12:word:scissors",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scissors",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-12:word:scissors:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scissors",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-12:word:scissors:audio",
+          "transcript": "scissors"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-12:word:scissors:r1",
+            "targetText": "scissors",
+            "meaningByLocale": {
+              "ru": "ножницы. His scissors are on the chair. — «Его ножницы на стуле». О приборе с двумя лезвиями, которым режут бумагу.",
+              "uk": "ножиці. His scissors are on the chair. — «Його ножиці на стільці». Про прилад із двома лезами, яким ріжуть папір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scissors",
+          "definitionByLocale": {
+            "ru": "ножницы. His scissors are on the chair. — «Его ножницы на стуле». О приборе с двумя лезвиями, которым режут бумагу.",
+            "uk": "ножиці. His scissors are on the chair. — «Його ножиці на стільці». Про прилад із двома лезами, яким ріжуть папір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-12:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите тетрадь для записей",
+      "prompt": "Инструмент с двумя лезвиями, которым режут бумагу. Как он называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-12:i03:r1",
-          "text": "notebook"
+          "text": "scissors"
         },
         {
           "responseId": "en:lesson-05:session-12:i03:r2",
-          "text": "backpack"
+          "text": "brush"
         },
         {
           "responseId": "en:lesson-05:session-12:i03:r3",
-          "text": "curtain"
+          "text": "comb"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите тетрадь для записей",
+      "accessibilityLabel": "Инструмент с двумя лезвиями, которым режут бумагу. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите тетрадь для записей",
-          "uk": "Назвіть зошит для записів"
+          "ru": "Инструмент с двумя лезвиями, которым режут бумагу. Как он называется по-английски?",
+          "uk": "Інструмент із двома лезами, яким ріжуть папір. Як він називається англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-12:i03:r1",
-            "text": "notebook"
+            "text": "scissors"
           },
           {
             "responseId": "en:lesson-05:session-12:i03:r2",
-            "text": "backpack"
+            "text": "brush"
           },
           {
             "responseId": "en:lesson-05:session-12:i03:r3",
-            "text": "curtain"
+            "text": "comb"
           }
         ],
-        "testedDimension": "Назовите тетрадь для записей",
+        "testedDimension": "Инструмент с двумя лезвиями, которым режут бумагу. Как он называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите тетрадь для записей",
+            "testedDimension": "Инструмент с двумя лезвиями, которым режут бумагу. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`backpack` — рюкзак; тетрадь — `notebook`.",
-              "uk": "`backpack` — рюкзак; зошит — `notebook`."
+              "ru": "brush — это кисть, а инструмент для резки бумаги называется scissors.",
+              "uk": "brush — це пензель, а інструмент для різання паперу називається scissors."
             }
           },
           {
             "responseId": "en:lesson-05:session-12:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите тетрадь для записей",
+            "testedDimension": "Инструмент с двумя лезвиями, которым режут бумагу. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`curtain` — занавеска; тетрадь — `notebook`.",
-              "uk": "`curtain` — завіска; зошит — `notebook`."
+              "ru": "comb — это расчёска, а инструмент для резки бумаги называется scissors.",
+              "uk": "comb — це гребінець, а інструмент для різання паперу називається scissors."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -217,40 +348,40 @@
           },
           {
             "pairId": "en:lesson-05:session-12:i04:p2",
-            "target": "loud",
+            "target": "pencil",
             "meaningByLocale": {
-              "ru": "громкий",
-              "uk": "гучний"
+              "ru": "карандаш",
+              "uk": "олівець"
             }
           },
           {
             "pairId": "en:lesson-05:session-12:i04:p3",
-            "target": "friendly",
+            "target": "scissors",
             "meaningByLocale": {
-              "ru": "дружелюбный",
-              "uk": "привітний"
+              "ru": "ножницы",
+              "uk": "ножиці"
             }
           },
           {
             "pairId": "en:lesson-05:session-12:i04:p4",
-            "target": "helpful",
+            "target": "glue",
             "meaningByLocale": {
-              "ru": "отзывчивый",
-              "uk": "чуйний"
+              "ru": "клей",
+              "uk": "клей"
             }
           }
         ],
         "leftColumn": [
           "notebook",
-          "loud",
-          "friendly",
-          "helpful"
+          "pencil",
+          "scissors",
+          "glue"
         ],
         "rightColumn": [
           "тетрадь",
-          "громкий",
-          "дружелюбный",
-          "отзывчивый"
+          "карандаш",
+          "ножницы",
+          "клей"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +398,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-12:word:glue",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-12:word:glue:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-12:word:glue:audio",
+          "transcript": "glue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-12:word:glue:r1",
+            "targetText": "glue",
+            "meaningByLocale": {
+              "ru": "клей. Their glue is on the table. — «Их клей на столе». О веществе, которым склеивают бумагу.",
+              "uk": "клей. Their glue is on the table. — «Їхній клей на столі». Про речовину, якою склеюють папір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glue",
+          "definitionByLocale": {
+            "ru": "клей. Their glue is on the table. — «Их клей на столе». О веществе, которым склеивают бумагу.",
+            "uk": "клей. Their glue is on the table. — «Їхній клей на столі». Про речовину, якою склеюють папір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-12:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте ребёнка и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте ребёнка и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i05:audio",
-          "transcript": "This is my notebook."
+          "transcript": "Your glue is in my bag."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is my notebook.",
+        "hiddenTargetPhrase": "Your glue is in my bag.",
         "orderedTokens": [
-          "This",
+          "Your",
+          "glue",
           "is",
+          "in",
           "my",
-          "notebook"
+          "bag"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Her"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-12:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте ребёнка и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Your` — `Your glue is in my bag.`",
+              "uk": "тут потрібно `Your` — `Your glue is in my bag.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,39 +492,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг вашего брата отзывчивый. Скажите «Его друг охотно помогает другим»",
+      "prompt": "Ножницы вашей соседки лежат на вашем столе. Скажите полной фразой: «Её ножницы на моём столе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг вашего брата отзывчивый. Скажите «Его друг охотно помогает другим»",
+      "accessibilityLabel": "Ножницы вашей соседки лежат на вашем столе. Скажите полной фразой: «Её ножницы на моём столе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "His friend is helpful.",
+        "targetPhrase": "Her scissors are on my table.",
         "localizedMeaning": {
-          "ru": "Друг вашего брата отзывчивый. Скажите «Его друг охотно помогает другим»",
-          "uk": "Друг вашого брата чуйний. Скажіть «Його друг чуйний»"
+          "ru": "Ножницы вашей соседки лежат на вашем столе. Скажите полной фразой: «Её ножницы на моём столе»",
+          "uk": "Ножиці вашої сусідки лежать на вашому столі. Скажіть повною фразою: «Її ножиці на моєму столі»"
         },
         "orderedTokens": [
-          "His",
-          "friend",
-          "is",
-          "helpful"
+          "Her",
+          "scissors",
+          "are",
+          "on",
+          "my",
+          "table"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Друг вашего брата отзывчивый. Скажите «Его друг охотно помогает другим»",
+            "testedDimension": "Ножницы вашей соседки лежат на вашем столе. Скажите полной фразой: «Её ножницы на моём столе»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `His friend is helpful.`",
-              "uk": "тут потрібно `is` — `His friend is helpful.`"
+              "ru": "здесь нужно `are` — `Her scissors are on my table.`",
+              "uk": "тут потрібно `are` — `Her scissors are on my table.`"
             }
           }
         ],
@@ -349,25 +539,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Музыка громкая. Скажите это",
+      "prompt": "Соседка просит клей. Он у вас. Скажите ей: «Вот мой клей»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i07:audio"
       ],
-      "accessibilityLabel": "Музыка громкая. Скажите это",
+      "accessibilityLabel": "Соседка просит клей. Он у вас. Скажите ей: «Вот мой клей»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i07:audio",
-          "transcript": "The music is loud."
+          "transcript": "Here is my glue."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The music is loud.",
+        "targetPhrase": "Here is my glue.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -382,67 +572,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Тетрадь принадлежит двум вашим друзьям, не вам. Скажите «Это их тетрадь»",
+      "prompt": "Ножницы вашего ребёнка лежат на столе. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-12:i08:r1",
-          "text": "their"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-12:i08:r2",
-          "text": "my"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-12:i08:r3",
-          "text": "our"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тетрадь принадлежит двум вашим друзьям, не вам. Скажите «Это их тетрадь»",
+      "accessibilityLabel": "Ножницы вашего ребёнка лежат на столе. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Тетрадь принадлежит двум вашим друзьям, не вам. Скажите «Это их тетрадь»",
-          "uk": "Зошит належить двом вашим друзям, не вам. Скажіть «Це їхній зошит»"
+          "ru": "Ножницы вашего ребёнка лежат на столе. Выберите нужное слово",
+          "uk": "Ножиці вашої дитини лежать на столі. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "This is ___ notebook.",
+        "gappedTargetPhrase": "Her scissors ___ on the table.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-12:i08:r1",
-            "text": "their"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-12:i08:r2",
-            "text": "my"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-12:i08:r3",
-            "text": "our"
+            "text": "am"
           }
         ],
-        "testedDimension": "Тетрадь принадлежит двум вашим друзьям, не вам. Скажите «Это их тетрадь»",
+        "testedDimension": "Ножницы вашего ребёнка лежат на столе. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i08:r2",
             "correct": false,
-            "testedDimension": "Тетрадь принадлежит двум вашим друзьям, не вам. Скажите «Это их тетрадь»",
+            "testedDimension": "Ножницы вашего ребёнка лежат на столе. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`my` — моя; их — `their`.",
-              "uk": "`my` — мій; їхній — `their`."
+              "ru": "Ножницы — как пара, поэтому нужно are, а не is.",
+              "uk": "Ножиці — як пара, тому потрібно are, а не is."
             }
           },
           {
             "responseId": "en:lesson-05:session-12:i08:r3",
             "correct": false,
-            "testedDimension": "Тетрадь принадлежит двум вашим друзьям, не вам. Скажите «Это их тетрадь»",
+            "testedDimension": "Ножницы вашего ребёнка лежат на столе. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`our` — наша; вы не владелец, здесь их: `their`.",
-              "uk": "`our` — наш; ви не власник, тут їхній: `their`."
+              "ru": "am стоит только после I, а здесь нужно are.",
+              "uk": "am стоїть лише після I, а тут потрібно are."
             }
           }
         ]
@@ -451,51 +641,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где тетрадь",
+      "prompt": "Послушайте ребёнка",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-12:i09:r1",
-          "text": "The notebook is on your table."
+          "text": "Those are their pencils."
         },
         {
           "responseId": "en:lesson-05:session-12:i09:r2",
-          "text": "The notebook is on your desk."
+          "text": "These are their pencils."
         },
         {
           "responseId": "en:lesson-05:session-12:i09:r3",
-          "text": "The notebook is on your chair."
+          "text": "Those are our pencils."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, где тетрадь",
+      "accessibilityLabel": "Послушайте ребёнка",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i09:audio",
-          "transcript": "The notebook is on your table."
+          "transcript": "Those are their pencils."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-12:i09:r1",
-            "targetText": "The notebook is on your table.",
+            "targetText": "Those are their pencils.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-12:i09:r2",
-            "targetText": "The notebook is on your desk.",
+            "targetText": "These are their pencils.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-12:i09:r3",
-            "targetText": "The notebook is on your chair.",
+            "targetText": "Those are our pencils.",
             "meaningByLocale": null
           }
         ],
@@ -504,19 +694,19 @@
           {
             "responseId": "en:lesson-05:session-12:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где тетрадь",
+            "testedDimension": "Послушайте ребёнка",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `table`, а в этом варианте — `desk`.",
-              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `desk`."
+              "ru": "В записи `Those` — те, подальше, а в этом варианте `These` — эти, рядом.",
+              "uk": "У записі `Those` — ті, подалі, а в цьому варіанті `These` — ці, поруч."
             }
           },
           {
             "responseId": "en:lesson-05:session-12:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где тетрадь",
+            "testedDimension": "Послушайте ребёнка",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `table`, а в этом варианте — `chair`.",
-              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `chair`."
+              "ru": "В записи `their` — их, а в этом варианте `our` — наши.",
+              "uk": "У записі `their` — їхні, а в цьому варіанті `our` — наші."
             }
           }
         ],
@@ -527,8 +717,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -541,48 +731,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-12:i10:p1",
-            "target": "notebook",
+            "target": "pencil",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "карандаш",
+              "uk": "олівець"
             }
           },
           {
             "pairId": "en:lesson-05:session-12:i10:p2",
+            "target": "glue",
+            "meaningByLocale": {
+              "ru": "клей",
+              "uk": "клей"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-12:i10:p3",
+            "target": "backpack",
+            "meaningByLocale": {
+              "ru": "рюкзак",
+              "uk": "рюкзак"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-12:i10:p4",
             "target": "table",
             "meaningByLocale": {
               "ru": "стол",
               "uk": "стіл"
             }
-          },
-          {
-            "pairId": "en:lesson-05:session-12:i10:p3",
-            "target": "platform",
-            "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
-            }
-          },
-          {
-            "pairId": "en:lesson-05:session-12:i10:p4",
-            "target": "curtain",
-            "meaningByLocale": {
-              "ru": "занавеска",
-              "uk": "завіска"
-            }
           }
         ],
         "leftColumn": [
-          "notebook",
-          "table",
-          "platform",
-          "curtain"
+          "pencil",
+          "glue",
+          "backpack",
+          "table"
         ],
         "rightColumn": [
-          "тетрадь",
-          "стол",
-          "платформа",
-          "занавеска"
+          "карандаш",
+          "клей",
+          "рюкзак",
+          "стол"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -600,42 +790,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте ребёнка и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте ребёнка и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i11:audio",
-          "transcript": "Our curtain is blue."
+          "transcript": "These are your notebooks."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Our curtain is blue.",
+        "hiddenTargetPhrase": "These are your notebooks.",
         "orderedTokens": [
-          "Our",
-          "curtain",
-          "is",
-          "blue"
+          "These",
+          "are",
+          "your",
+          "notebooks"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "This"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте ребёнка и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our curtain is blue.`",
-              "uk": "тут потрібно `is` — `Our curtain is blue.`"
+              "ru": "здесь нужно `These` — `These are your notebooks.`",
+              "uk": "тут потрібно `These` — `These are your notebooks.`"
             }
           }
         ],
@@ -648,39 +838,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы нашли платформу для вашего с другом поезда. Скажите «Наша платформа здесь»",
+      "prompt": "Ребёнок ищет карандаши брата. Они в вашем рюкзаке. Скажите ему полной фразой: «Твои карандаши в моём рюкзаке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы нашли платформу для вашего с другом поезда. Скажите «Наша платформа здесь»",
+      "accessibilityLabel": "Ребёнок ищет карандаши брата. Они в вашем рюкзаке. Скажите ему полной фразой: «Твои карандаши в моём рюкзаке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our platform is here.",
+        "targetPhrase": "Your pencils are in my backpack.",
         "localizedMeaning": {
-          "ru": "Вы нашли платформу для вашего с другом поезда. Скажите «Наша платформа здесь»",
-          "uk": "Ви знайшли платформу для вашого з другом потяга. Скажіть «Наша платформа тут»"
+          "ru": "Ребёнок ищет карандаши брата. Они в вашем рюкзаке. Скажите ему полной фразой: «Твои карандаши в моём рюкзаке»",
+          "uk": "Дитина шукає олівці брата. Вони у вашому рюкзаку. Скажіть їй повною фразою: «Твої олівці в моєму рюкзаку»"
         },
         "orderedTokens": [
-          "Our",
-          "platform",
-          "is",
-          "here"
+          "Your",
+          "pencils",
+          "are",
+          "in",
+          "my",
+          "backpack"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы нашли платформу для вашего с другом поезда. Скажите «Наша платформа здесь»",
+            "testedDimension": "Ребёнок ищет карандаши брата. Они в вашем рюкзаке. Скажите ему полной фразой: «Твои карандаши в моём рюкзаке»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our platform is here.`",
-              "uk": "тут потрібно `is` — `Our platform is here.`"
+              "ru": "здесь нужно `are` — `Your pencils are in my backpack.`",
+              "uk": "тут потрібно `are` — `Your pencils are in my backpack.`"
             }
           }
         ],
@@ -693,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Тетрадь друга у вас. Скажите ему «Твоя тетрадь у меня»",
+      "prompt": "Учительница спрашивает, чьи это ножницы. Они ваши. Ответьте: «Это мои ножницы»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i13:audio"
       ],
-      "accessibilityLabel": "Тетрадь друга у вас. Скажите ему «Твоя тетрадь у меня»",
+      "accessibilityLabel": "Учительница спрашивает, чьи это ножницы. Они ваши. Ответьте: «Это мои ножницы»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i13:audio",
-          "transcript": "I have your notebook."
+          "transcript": "These are my scissors."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your notebook.",
+        "targetPhrase": "These are my scissors.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -726,67 +918,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Их стол белый. Стол один. Выберите форму",
+      "prompt": "Вы показываете ребёнку свои карандаши. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-12:i14:r1",
-          "text": "is"
+          "text": "pencils"
         },
         {
           "responseId": "en:lesson-05:session-12:i14:r2",
-          "text": "are"
+          "text": "pencil"
         },
         {
           "responseId": "en:lesson-05:session-12:i14:r3",
-          "text": "has"
+          "text": "glue"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Их стол белый. Стол один. Выберите форму",
+      "accessibilityLabel": "Вы показываете ребёнку свои карандаши. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Их стол белый. Стол один. Выберите форму",
-          "uk": "Їхній стіл білий. Стіл один. Виберіть форму"
+          "ru": "Вы показываете ребёнку свои карандаши. Выберите нужное слово",
+          "uk": "Ви показуєте дитині свої олівці. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "Their table ___ white.",
+        "gappedTargetPhrase": "These are my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-12:i14:r1",
-            "text": "is"
+            "text": "pencils"
           },
           {
             "responseId": "en:lesson-05:session-12:i14:r2",
-            "text": "are"
+            "text": "pencil"
           },
           {
             "responseId": "en:lesson-05:session-12:i14:r3",
-            "text": "has"
+            "text": "glue"
           }
         ],
-        "testedDimension": "Их стол белый. Стол один. Выберите форму",
+        "testedDimension": "Вы показываете ребёнку свои карандаши. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "Их стол белый. Стол один. Выберите форму",
+            "testedDimension": "Вы показываете ребёнку свои карандаши. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Один стол: `table is`, даже если владельцев несколько.",
-              "uk": "Один стіл: `table is`, навіть якщо власників кілька."
+              "ru": "После These are нужно несколько вещей: pencils.",
+              "uk": "Після These are потрібно кілька речей: pencils."
             }
           },
           {
             "responseId": "en:lesson-05:session-12:i14:r3",
             "correct": false,
-            "testedDimension": "Их стол белый. Стол один. Выберите форму",
+            "testedDimension": "Вы показываете ребёнку свои карандаши. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Здесь описание: `table is white`.",
-              "uk": "Тут опис: `table is white`."
+              "ru": "glue — клей, а карандаши называются pencils.",
+              "uk": "glue — клей, а олівці називаються pencils."
             }
           }
         ]
@@ -795,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чья тетрадь здесь",
+      "prompt": "Послушайте учительницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-12:i15:r1",
-          "text": "Her notebook is here."
+          "text": "Her notebook is in his backpack."
         },
         {
           "responseId": "en:lesson-05:session-12:i15:r2",
-          "text": "His notebook is here."
+          "text": "His notebook is in her backpack."
         },
         {
           "responseId": "en:lesson-05:session-12:i15:r3",
-          "text": "My notebook is here."
+          "text": "Her notebook is in his bag."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чья тетрадь здесь",
+      "accessibilityLabel": "Послушайте учительницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i15:audio",
-          "transcript": "Her notebook is here."
+          "transcript": "Her notebook is in his backpack."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-12:i15:r1",
-            "targetText": "Her notebook is here.",
+            "targetText": "Her notebook is in his backpack.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-12:i15:r2",
-            "targetText": "His notebook is here.",
+            "targetText": "His notebook is in her backpack.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-12:i15:r3",
-            "targetText": "My notebook is here.",
+            "targetText": "Her notebook is in his bag.",
             "meaningByLocale": null
           }
         ],
@@ -848,19 +1040,19 @@
           {
             "responseId": "en:lesson-05:session-12:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чья тетрадь здесь",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+              "ru": "В записи тетрадь её (`Her`), а рюкзак его (`his`); в этом варианте наоборот.",
+              "uk": "У записі зошит її (`Her`), а рюкзак його (`his`); у цьому варіанті навпаки."
             }
           },
           {
             "responseId": "en:lesson-05:session-12:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чья тетрадь здесь",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+              "ru": "В записи последнее слово `backpack`, а в этом варианте `bag`.",
+              "uk": "У записі останнє слово `backpack`, а в цьому варіанті `bag`."
             }
           }
         ],
@@ -871,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,40 +1085,40 @@
           },
           {
             "pairId": "en:lesson-05:session-12:i16:p2",
-            "target": "table",
+            "target": "pencil",
             "meaningByLocale": {
-              "ru": "стол",
-              "uk": "стіл"
+              "ru": "карандаш",
+              "uk": "олівець"
             }
           },
           {
             "pairId": "en:lesson-05:session-12:i16:p3",
-            "target": "platform",
+            "target": "scissors",
             "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
+              "ru": "ножницы",
+              "uk": "ножиці"
             }
           },
           {
             "pairId": "en:lesson-05:session-12:i16:p4",
-            "target": "curtain",
+            "target": "glue",
             "meaningByLocale": {
-              "ru": "занавеска",
-              "uk": "завіска"
+              "ru": "клей",
+              "uk": "клей"
             }
           }
         ],
         "leftColumn": [
           "notebook",
-          "table",
-          "platform",
-          "curtain"
+          "pencil",
+          "scissors",
+          "glue"
         ],
         "rightColumn": [
           "тетрадь",
-          "стол",
-          "платформа",
-          "занавеска"
+          "карандаш",
+          "ножницы",
+          "клей"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -944,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-12:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг ищет тетрадь. Она на его столе. Объясните ему «Тетрадь на твоём столе»",
+      "prompt": "Ребёнок просит ножницы и клей. Они у вас. Скажите ему: «Вот мои ножницы и мой клей»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-12:i17:audio"
       ],
-      "accessibilityLabel": "Друг ищет тетрадь. Она на его столе. Объясните ему «Тетрадь на твоём столе»",
+      "accessibilityLabel": "Ребёнок просит ножницы и клей. Они у вас. Скажите ему: «Вот мои ножницы и мой клей»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-12:i17:audio",
-          "transcript": "The notebook is on your table."
+          "transcript": "Here are my scissors and my glue."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The notebook is on your table.",
+        "targetPhrase": "Here are my scissors and my glue.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -984,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6dfa0b888f21e825bbf782e3c708175f7a4eb29cc98b860398fc36b66178aec7"
+  "learnerFingerprint": "4a7879108468afc6e3ab2b166aebdaad8836d12c457f5bce397ab32240e2b5e8"
 }

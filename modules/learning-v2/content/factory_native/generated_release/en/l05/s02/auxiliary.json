@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-02:intro1:r2": {
-          "ru": "Это «Я яблоко»; у меня есть яблоко — `I have an apple`.",
-          "uk": "Це «Я яблуко»; у мене є яблуко — `I have an apple`."
+          "ru": "Это значило бы «Она младенец». Чтобы сказать «У неё есть малыш», нужно has.",
+          "uk": "Це означало б «Вона немовля». Щоб сказати «У неї є малюк», потрібно has."
         },
         "en:lesson-05:session-02:intro1:r3": {
-          "ru": "Перед `apple` нужно `an`.",
-          "uk": "Перед `apple` потрібне `an`."
+          "ru": "С she нужно has, а не have.",
+          "uk": "З she потрібно has, а не have."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-02:intro2:r2": {
-          "ru": "Для состояния здесь нужно `is`: `He is sad`.",
-          "uk": "Для стану тут потрібне `is`: `He is sad`."
+          "ru": "Отель один, как it: нужно has, а не have.",
+          "uk": "Готель один, як it: потрібно has, а не have."
         },
         "en:lesson-05:session-02:intro2:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібне `is`."
+          "ru": "Это значило бы «Отель — собака». Чтобы сказать «У отеля есть собака», нужно has.",
+          "uk": "Це означало б «Готель — собака». Щоб сказати «У готелю є собака», потрібно has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-02:intro3:r2": {
-          "ru": "Один отель: `The hotel has`.",
-          "uk": "Один готель: `The hotel has`."
+          "ru": "Кот один, поэтому перед cat нужно a.",
+          "uk": "Кіт один, тому перед cat потрібно a."
         },
         "en:lesson-05:session-02:intro3:r3": {
-          "ru": "Это «Отель — сад»; у отеля есть сад — `The hotel has a garden`.",
-          "uk": "Це «Готель — сад»; у готелю є сад — `The hotel has a garden`."
+          "ru": "Это значило бы «Он кот». Чтобы сказать «У него есть кот», нужно has.",
+          "uk": "Це означало б «Він кіт». Щоб сказати «У нього є кіт», потрібно has."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "328fdbacd1e53d58fd3611ec2d38630cee356edb538862c8617f9f3776ee5ee8"
+  "auxiliaryFingerprint": "0c63a0a7eafe23864a09bc808530f6d5961a50330d794d60ebcc194ab96fcb95"
 }

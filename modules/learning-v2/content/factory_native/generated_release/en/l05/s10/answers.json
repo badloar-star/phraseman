@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-10:word:pocket",
+    "correctText": "pocket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-10:i01",
-    "correctText": "My friend is old.",
+    "correctText": "The coin is in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:word:tissue",
+    "correctText": "tissue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i02",
-    "correctText": "pocket",
+    "correctText": "Your tissue is in her pocket.",
     "correctResponseId": "en:lesson-05:session-10:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-10:word:headphones",
+    "correctText": "headphones",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-10:i03",
-    "correctText": "pocket",
+    "correctText": "headphones",
     "correctResponseId": "en:lesson-05:session-10:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-10:i04",
-    "correctText": "en:lesson-05:session-10:i04:p1=pocket\nen:lesson-05:session-10:i04:p2=old\nen:lesson-05:session-10:i04:p3=kind\nen:lesson-05:session-10:i04:p4=funny",
+    "correctText": "en:lesson-05:session-10:i04:p1=pocket\nen:lesson-05:session-10:i04:p2=tissue\nen:lesson-05:session-10:i04:p3=headphones\nen:lesson-05:session-10:i04:p4=purse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-10:word:purse",
+    "correctText": "purse",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i05",
-    "correctText": "The key is in my pocket.",
+    "correctText": "Her purse is in her bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i06",
-    "correctText": "Your friend is kind.",
+    "correctText": "My headphones are in her bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i07",
-    "correctText": "Our friend is funny.",
+    "correctText": "My ticket is in my pocket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i08",
-    "correctText": "his",
+    "correctText": "my",
     "correctResponseId": "en:lesson-05:session-10:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-10:i09",
-    "correctText": "Their hotel is next to the park.",
+    "correctText": "Their headphones are on the table.",
     "correctResponseId": "en:lesson-05:session-10:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-10:i10",
-    "correctText": "en:lesson-05:session-10:i10:p1=pocket\nen:lesson-05:session-10:i10:p2=lock\nen:lesson-05:session-10:i10:p3=hotel\nen:lesson-05:session-10:i10:p4=kind",
+    "correctText": "en:lesson-05:session-10:i10:p1=tissue\nen:lesson-05:session-10:i10:p2=purse\nen:lesson-05:session-10:i10:p3=ticket\nen:lesson-05:session-10:i10:p4=coin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i11",
-    "correctText": "Her key is in his pocket.",
+    "correctText": "His tissue is in my pocket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i12",
-    "correctText": "Our hotel is here.",
+    "correctText": "Your headphones are in my pocket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i13",
-    "correctText": "I have your key.",
+    "correctText": "Your purse is in your bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i14",
-    "correctText": "Its",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-10:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-10:i15",
-    "correctText": "Her pocket is empty.",
+    "correctText": "The ticket is in his pocket.",
     "correctResponseId": "en:lesson-05:session-10:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-10:i16",
-    "correctText": "en:lesson-05:session-10:i16:p1=pocket\nen:lesson-05:session-10:i16:p2=lock\nen:lesson-05:session-10:i16:p3=hotel\nen:lesson-05:session-10:i16:p4=funny",
+    "correctText": "en:lesson-05:session-10:i16:p1=pocket\nen:lesson-05:session-10:i16:p2=tissue\nen:lesson-05:session-10:i16:p3=headphones\nen:lesson-05:session-10:i16:p4=purse",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-10:i17",
-    "correctText": "The key is in your pocket.",
+    "correctText": "Your headphones are in my backpack.",
     "correctResponseId": null
   }
 ]

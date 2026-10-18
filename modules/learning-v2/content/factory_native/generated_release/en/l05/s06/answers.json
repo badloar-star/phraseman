@@ -1,57 +1,77 @@
 [
   {
+    "interactionId": "en:lesson-05:session-06:word:thermometer",
+    "correctText": "thermometer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-06:i01",
-    "correctText": "He is calm.",
+    "correctText": "The nurse has a thermometer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i02",
-    "correctText": "ceiling",
+    "correctText": "I’m nervous.",
     "correctResponseId": "en:lesson-05:session-06:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-06:word:bandage",
+    "correctText": "bandage",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-06:i03",
-    "correctText": "ceiling",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-06:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-06:i04",
-    "correctText": "en:lesson-05:session-06:i04:p1=ceiling\nen:lesson-05:session-06:i04:p2=calm\nen:lesson-05:session-06:i04:p3=nervous\nen:lesson-05:session-06:i04:p4=excited",
+    "correctText": "en:lesson-05:session-06:i04:p1=thermometer\nen:lesson-05:session-06:i04:p2=bandage\nen:lesson-05:session-06:i04:p3=medicine\nen:lesson-05:session-06:i04:p4=clipboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:word:medicine",
+    "correctText": "medicine",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i05",
-    "correctText": "This is a ceiling.",
+    "correctText": "We have medicine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-06:word:clipboard",
+    "correctText": "clipboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i06",
-    "correctText": "She has a pen.",
+    "correctText": "She has a clipboard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i07",
-    "correctText": "I'm nervous.",
+    "correctText": "I’m nervous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i08",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-06:i09",
-    "correctText": "The pen is on the desk.",
+    "correctText": "She has a pen.",
     "correctResponseId": "en:lesson-05:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-06:i10",
-    "correctText": "en:lesson-05:session-06:i10:p1=ceiling\nen:lesson-05:session-06:i10:p2=pen\nen:lesson-05:session-06:i10:p3=clinic\nen:lesson-05:session-06:i10:p4=petrol station",
+    "correctText": "en:lesson-05:session-06:i10:p1=calm\nen:lesson-05:session-06:i10:p2=nervous\nen:lesson-05:session-06:i10:p3=excited\nen:lesson-05:session-06:i10:p4=pen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i11",
-    "correctText": "The room has a ceiling.",
+    "correctText": "The doctor has a pen.",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-05:session-06:i13",
-    "correctText": "I have a pen.",
+    "correctText": "I’m excited.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-05:session-06:i15",
-    "correctText": "She's calm.",
+    "correctText": "He is calm.",
     "correctResponseId": "en:lesson-05:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-06:i16",
-    "correctText": "en:lesson-05:session-06:i16:p1=ceiling\nen:lesson-05:session-06:i16:p2=pen\nen:lesson-05:session-06:i16:p3=clinic\nen:lesson-05:session-06:i16:p4=petrol station",
+    "correctText": "en:lesson-05:session-06:i16:p1=bandage\nen:lesson-05:session-06:i16:p2=medicine\nen:lesson-05:session-06:i16:p3=clipboard\nen:lesson-05:session-06:i16:p4=excited",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-06:i17",
-    "correctText": "The room has a ceiling.",
+    "correctText": "She has a pen.",
     "correctResponseId": null
   }
 ]

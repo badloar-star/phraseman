@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-04:word:ball",
+    "correctText": "ball",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-04:i01",
-    "correctText": "I'm hungry.",
+    "correctText": "She has a ball.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-04:i02",
-    "correctText": "curtain",
+    "correctText": "I am hungry.",
     "correctResponseId": "en:lesson-05:session-04:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-04:word:children",
+    "correctText": "children",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-04:i03",
-    "correctText": "curtain",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-04:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-04:i04",
-    "correctText": "en:lesson-05:session-04:i04:p1=curtain\nen:lesson-05:session-04:i04:p2=hungry\nen:lesson-05:session-04:i04:p3=thirsty\nen:lesson-05:session-04:i04:p4=sick",
+    "correctText": "en:lesson-05:session-04:i04:p1=ball\nen:lesson-05:session-04:i04:p2=children\nen:lesson-05:session-04:i04:p3=teacher\nen:lesson-05:session-04:i04:p4=crayon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:word:teacher",
+    "correctText": "teacher",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-04:i05",
-    "correctText": "I have a curtain.",
+    "correctText": "He has a teacher.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-04:word:crayon",
+    "correctText": "crayon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-04:i06",
-    "correctText": "She has a bag.",
+    "correctText": "I have a crayon.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-04:i07",
-    "correctText": "He is sick.",
+    "correctText": "She is sick.",
     "correctResponseId": null
   },
   {
@@ -46,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-05:session-04:i10",
-    "correctText": "en:lesson-05:session-04:i10:p1=curtain\nen:lesson-05:session-04:i10:p2=bag\nen:lesson-05:session-04:i10:p3=post office\nen:lesson-05:session-04:i10:p4=nursery",
+    "correctText": "en:lesson-05:session-04:i10:p1=curtain\nen:lesson-05:session-04:i10:p2=bag\nen:lesson-05:session-04:i10:p3=nursery\nen:lesson-05:session-04:i10:p4=sick",
     "correctResponseId": null
   },
   {
@@ -56,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-05:session-04:i12",
-    "correctText": "The nursery is next to the post office.",
+    "correctText": "The nursery is next to the library.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-05:session-04:i16",
-    "correctText": "en:lesson-05:session-04:i16:p1=curtain\nen:lesson-05:session-04:i16:p2=bag\nen:lesson-05:session-04:i16:p3=post office\nen:lesson-05:session-04:i16:p4=nursery",
+    "correctText": "en:lesson-05:session-04:i16:p1=hungry\nen:lesson-05:session-04:i16:p2=thirsty\nen:lesson-05:session-04:i16:p3=sick\nen:lesson-05:session-04:i16:p4=curtain",
     "correctResponseId": null
   },
   {

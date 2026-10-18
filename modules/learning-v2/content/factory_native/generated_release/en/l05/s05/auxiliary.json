@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-05:intro1:r2": {
-          "ru": "Один стол, как `it`: `has`.",
-          "uk": "Один стіл, як `it`: `has`."
+          "ru": "Ящик один, как it: нужно has, а не have.",
+          "uk": "Шухляда одна, як it: потрібно has, а не have."
         },
         "en:lesson-05:session-05:intro1:r3": {
-          "ru": "Это «Стол — ящик»; у стола есть ящик — `The desk has a drawer`.",
-          "uk": "Це «Стіл — шухляда»; у столу є шухляда — `The desk has a drawer`."
+          "ru": "Это значило бы «Ящик — линейка». Чтобы сказать «В ящике есть линейка», нужно has.",
+          "uk": "Це означало б «Шухляда — лінійка». Щоб сказати «У шухляді є лінійка», потрібно has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-05:intro2:r2": {
-          "ru": "Для ощущения здесь нужно `I’m warm`.",
-          "uk": "Для відчуття тут потрібне `I’m warm`."
+          "ru": "Здесь бумага вообще, а не один предмет, поэтому a не нужно.",
+          "uk": "Тут папір узагалі, а не один предмет, тому a не потрібно."
         },
         "en:lesson-05:session-05:intro2:r3": {
-          "ru": "`cold` — холодно; тепло — `warm`.",
-          "uk": "`cold` — холодно; тепло — `warm`."
+          "ru": "Стол один, как it: нужно has, а не have.",
+          "uk": "Стіл один, як it: потрібно has, а не have."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-05:intro3:r2": {
-          "ru": "`under` — под; здесь внутри: `in`.",
-          "uk": "`under` — під; тут усередині: `in`."
+          "ru": "Слово notepad начинается с согласного звука, поэтому нужно a, а не an.",
+          "uk": "Слово notepad починається з приголосного звуку, тому потрібно a, а не an."
         },
         "en:lesson-05:session-05:intro3:r3": {
-          "ru": "Одна карта: `The map is`.",
-          "uk": "Одна карта: `The map is`."
+          "ru": "Это значило бы «Она блокнот». Чтобы сказать «У неё есть блокнот», нужно has.",
+          "uk": "Це означало б «Вона блокнот». Щоб сказати «У неї є блокнот», потрібно has."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e747b79054319c7326cb14f1bdbe5caccd352cea5c681e671037bde9716fe65d"
+  "auxiliaryFingerprint": "f3e0948fc494703b017815c9baed41599b8082070d0942ec098ee1227e9e3bd8"
 }

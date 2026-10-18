@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-09:intro1:r2": {
-          "ru": "Перед `my charger` не нужно `a`.",
-          "uk": "Перед `my charger` не потрібне `a`."
+          "ru": "Перед my не нужен a: my уже показывает, чья кружка.",
+          "uk": "Перед my не потрібен a: my уже показує, чия кружка."
         },
         "en:lesson-05:session-09:intro1:r3": {
-          "ru": "`your` — твоя / ваша; моя — `my`.",
-          "uk": "`your` — твоя / ваша; моя — `my`."
+          "ru": "your — твоя или ваша, а кружка своя: нужно my.",
+          "uk": "your — твоя або ваша, а кружка своя: потрібно my."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-09:intro2:r2": {
-          "ru": "`her` — её; владелец мужчина: `his`.",
-          "uk": "`her` — її; власник чоловік: `his`."
+          "ru": "his — его, а хозяйка контейнера женщина: нужно her.",
+          "uk": "his — його, а господиня контейнера жінка: потрібно her."
         },
         "en:lesson-05:session-09:intro2:r3": {
-          "ru": "`their` — их; здесь его: `his`.",
-          "uk": "`their` — їхня; тут його: `his`."
+          "ru": "Контейнер один, поэтому нужно is, а не are.",
+          "uk": "Контейнер один, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-09:intro3:r2": {
-          "ru": "Одна дверь: `door is`, даже если владельцев несколько.",
-          "uk": "Одні двері: `door is`, навіть якщо власників кілька."
+          "ru": "their — их, а вы говорите про себя и своих коллег: нужно our.",
+          "uk": "their — їхній, а ви говорите про себе й своїх колег: потрібно our."
         },
         "en:lesson-05:session-09:intro3:r3": {
-          "ru": "`our` — наша; здесь их: `their`.",
-          "uk": "`our` — наші; тут їхні: `their`."
+          "ru": "Принтер один, поэтому нужно is, а не are.",
+          "uk": "Принтер один, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c26de53e9b08626560723963112441e621ce06f01274a257f69f2594926b50b7"
+  "auxiliaryFingerprint": "a6ff2edbda10459fbe12cf81fde2524302a75ea7502033f2fc311a676ce35595"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-16:intro1:r2": {
-          "ru": "`my` — моя; тетрадь собеседника: `your`.",
-          "uk": "`my` — мій; зошит співрозмовника: `your`."
+          "ru": "on — «на», а паспорт лежит внутри сумки: нужно in.",
+          "uk": "on — «на», а паспорт лежить усередині сумки: потрібно in."
         },
         "en:lesson-05:session-16:intro1:r3": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "your — твой, а паспорт ваш: нужно my.",
+          "uk": "your — твій, а паспорт ваш: потрібно my."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-16:intro2:r2": {
-          "ru": "В прямом вопросе нужен порядок `Where is my helmet?`.",
-          "uk": "У прямому запитанні потрібен порядок `Where is my helmet?`."
+          "ru": "Очки — пара, поэтому нужно are, а не is.",
+          "uk": "Окуляри — пара, тому потрібно are, а не is."
         },
         "en:lesson-05:session-16:intro2:r3": {
-          "ru": "Один шлем: `Where is`.",
-          "uk": "Один шолом: `Where is`."
+          "ru": "my и your поменялись местами: очки брата — your, а рюкзак ваш — my.",
+          "uk": "my і your помінялися місцями: окуляри брата — your, а рюкзак ваш — my."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-16:intro3:r2": {
-          "ru": "Один отель: `hotel has`.",
-          "uk": "Один готель: `hotel has`."
+          "ru": "Сандалии — пара, поэтому нужно are, а не is.",
+          "uk": "Сандалі — пара, тому потрібно are, а не is."
         },
         "en:lesson-05:session-16:intro3:r3": {
-          "ru": "Отель не бассейн; у него есть бассейн: `has a swimming pool`.",
-          "uk": "Готель не басейн; у нього є басейн: `has a swimming pool`."
+          "ru": "your — твои, а сандалии ваши: нужно my.",
+          "uk": "your — твої, а сандалі ваші: потрібно my."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "387d64f38c1175507faf07fe94a58b2318ee3e414283fb6d91d30ed5eb4ae427"
+  "auxiliaryFingerprint": "8dea7dabe4d4510a0fa971c8fac5f84efcd202bf2fd4adc08233b429780fcefd"
 }

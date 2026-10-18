@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-04:intro1:r2": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "С she нужно has, а не have.",
+          "uk": "З she потрібно has, а не have."
         },
         "en:lesson-05:session-04:intro1:r3": {
-          "ru": "Одна занавеска: `a curtain`.",
-          "uk": "Одна завіска: `a curtain`."
+          "ru": "Мяч один, поэтому перед ball нужно a.",
+          "uk": "М’яч один, тому перед ball потрібно a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-04:intro2:r2": {
-          "ru": "Здесь состояние: `She is thirsty`.",
-          "uk": "Тут стан: `She is thirsty`."
+          "ru": "Детский сад один, как it: нужно has, а не have.",
+          "uk": "Дитячий садок один, як it: потрібно has, а не have."
         },
         "en:lesson-05:session-04:intro2:r3": {
-          "ru": "С `She` нужно `is`.",
-          "uk": "З `She` потрібне `is`."
+          "ru": "Children — это несколько детей, поэтому a не нужно.",
+          "uk": "Children — це кілька дітей, тому a не потрібно."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-04:intro3:r2": {
-          "ru": "`under` — под; внутри — `in`.",
-          "uk": "`under` — під; усередині — `in`."
+          "ru": "С he нужно has, а не have.",
+          "uk": "З he потрібно has, а не have."
         },
         "en:lesson-05:session-04:intro3:r3": {
-          "ru": "Одна занавеска: `The curtain is`.",
-          "uk": "Одна завіска: `The curtain is`."
+          "ru": "Это значило бы «Он учитель». Чтобы сказать «У него есть воспитатель», нужно has.",
+          "uk": "Це означало б «Він учитель». Щоб сказати «У нього є вихователь», потрібно has."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "859ff2c7a1c93023095d84280e0dc975aba0d506731649f05a337edffab6096d"
+  "auxiliaryFingerprint": "f27dfa6d35c38ed2850b0558f8a35ad243028ebd19b72ec04a5449327de749d6"
 }

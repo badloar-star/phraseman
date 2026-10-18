@@ -4,40 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-10:i01",
+      "interactionId": "en:lesson-05:session-10:word:pocket",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pocket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:word:pocket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pocket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:word:pocket:audio",
+          "transcript": "pocket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:word:pocket:r1",
+            "targetText": "pocket",
+            "meaningByLocale": {
+              "ru": "карман. The key is in his pocket. — «Ключ в его кармане». О месте в одежде, куда кладут мелкие вещи.",
+              "uk": "кишеня. The key is in his pocket. — «Ключ у його кишені». Про місце в одязі, куди кладуть дрібні речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pocket",
+          "definitionByLocale": {
+            "ru": "карман. The key is in his pocket. — «Ключ в его кармане». О месте в одежде, куда кладут мелкие вещи.",
+            "uk": "кишеня. The key is in his pocket. — «Ключ у його кишені». Про місце в одязі, куди кладуть дрібні речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Мой друг пожилой. Скажите это",
+      "prompt": "Кассир просит монету. Она у вас в кармане. Скажите ему полной фразой: «Монета в моём кармане»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Мой друг пожилой. Скажите это",
+      "accessibilityLabel": "Кассир просит монету. Она у вас в кармане. Скажите ему полной фразой: «Монета в моём кармане»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "My friend is old.",
+        "targetPhrase": "The coin is in my pocket.",
         "localizedMeaning": {
-          "ru": "Мой друг пожилой. Скажите это",
-          "uk": "Мій друг літній. Скажіть це"
+          "ru": "Кассир просит монету. Она у вас в кармане. Скажите ему полной фразой: «Монета в моём кармане»",
+          "uk": "Касир просить монету. Вона у вас у кишені. Скажіть йому повною фразою: «Монета в моїй кишені»"
         },
         "orderedTokens": [
-          "My",
-          "friend",
+          "The",
+          "coin",
           "is",
-          "old"
+          "in",
+          "my",
+          "pocket"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Мой друг пожилой. Скажите это",
+            "testedDimension": "Кассир просит монету. Она у вас в кармане. Скажите ему полной фразой: «Монета в моём кармане»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `My friend is old.`",
-              "uk": "тут потрібно `is` — `My friend is old.`"
+              "ru": "здесь нужно `my` — `The coin is in my pocket.`",
+              "uk": "тут потрібно `my` — `The coin is in my pocket.`"
             }
           }
         ],
@@ -49,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-10:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-10:word:tissue",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — tissue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:word:tissue:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tissue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:word:tissue:audio",
+          "transcript": "tissue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:word:tissue:r1",
+            "targetText": "tissue",
+            "meaningByLocale": {
+              "ru": "бумажная салфетка. Her tissue is on the chair. — «Её салфетка на стуле». Об одноразовом бумажном платке.",
+              "uk": "паперова серветка. Her tissue is on the chair. — «Її серветка на стільці». Про одноразову паперову хустинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tissue",
+          "definitionByLocale": {
+            "ru": "бумажная салфетка. Her tissue is on the chair. — «Её салфетка на стуле». Об одноразовом бумажном платке.",
+            "uk": "паперова серветка. Her tissue is on the chair. — «Її серветка на стільці». Про одноразову паперову хустинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-10:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-10:i02:r1",
-          "text": "pocket"
+          "text": "Your tissue is in her pocket."
         },
         {
           "responseId": "en:lesson-05:session-10:i02:r2",
-          "text": "pockets"
+          "text": "Your tissue is in his pocket."
         },
         {
           "responseId": "en:lesson-05:session-10:i02:r3",
-          "text": "packet"
+          "text": "My tissue is in her pocket."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i02:audio",
-          "transcript": "pocket"
+          "transcript": "Your tissue is in her pocket."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-10:i02:r1",
-            "targetText": "pocket",
+            "targetText": "Your tissue is in her pocket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-10:i02:r2",
-            "targetText": "pockets",
+            "targetText": "Your tissue is in his pocket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-10:i02:r3",
-            "targetText": "packet",
+            "targetText": "My tissue is in her pocket.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-10:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pocket`, а в этом варианте — `pockets`.",
-              "uk": "У записі перше слово — `pocket`, а в цьому варіанті — `pockets`."
+              "ru": "В записи последнее слово `her` — её, а в этом варианте `his` — его.",
+              "uk": "У записі останнє слово `her` — її, а в цьому варіанті `his` — його."
             }
           },
           {
             "responseId": "en:lesson-05:session-10:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pocket`, а в этом варианте — `packet`.",
-              "uk": "У записі перше слово — `pocket`, а в цьому варіанті — `packet`."
+              "ru": "В записи первое слово `Your` — твоя, а в этом варианте `My` — моя.",
+              "uk": "У записі перше слово `Your` — твоя, а в цьому варіанті `My` — моя."
             }
           }
         ],
@@ -125,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-10:word:headphones",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — headphones",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:word:headphones:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — headphones",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:word:headphones:audio",
+          "transcript": "headphones"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:word:headphones:r1",
+            "targetText": "headphones",
+            "meaningByLocale": {
+              "ru": "наушники. His headphones are on the table. — «Его наушники на столе». О паре маленьких динамиков, которые надевают на уши.",
+              "uk": "навушники. His headphones are on the table. — «Його навушники на столі». Про пару маленьких динаміків, які вдягають на вуха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headphones",
+          "definitionByLocale": {
+            "ru": "наушники. His headphones are on the table. — «Его наушники на столе». О паре маленьких динамиков, которые надевают на уши.",
+            "uk": "навушники. His headphones are on the table. — «Його навушники на столі». Про пару маленьких динаміків, які вдягають на вуха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-10:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите карман",
+      "prompt": "Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-10:i03:r1",
-          "text": "pocket"
+          "text": "headphones"
         },
         {
           "responseId": "en:lesson-05:session-10:i03:r2",
-          "text": "lock"
+          "text": "speaker"
         },
         {
           "responseId": "en:lesson-05:session-10:i03:r3",
-          "text": "drawer"
+          "text": "screen"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите карман",
+      "accessibilityLabel": "Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите карман",
-          "uk": "Назвіть кишеню"
+          "ru": "Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?",
+          "uk": "Два маленькі динаміки, які вдягають на вуха, щоб слухати музику. Як вони називаються англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-10:i03:r1",
-            "text": "pocket"
+            "text": "headphones"
           },
           {
             "responseId": "en:lesson-05:session-10:i03:r2",
-            "text": "lock"
+            "text": "speaker"
           },
           {
             "responseId": "en:lesson-05:session-10:i03:r3",
-            "text": "drawer"
+            "text": "screen"
           }
         ],
-        "testedDimension": "Назовите карман",
+        "testedDimension": "Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите карман",
+            "testedDimension": "Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?",
             "feedbackByLocale": {
-              "ru": "`lock` — замок; карман — `pocket`.",
-              "uk": "`lock` — замок; кишеня — `pocket`."
+              "ru": "speaker — это колонка, а то, что надевают на уши, называется headphones.",
+              "uk": "speaker — це колонка, а те, що вдягають на вуха, називається headphones."
             }
           },
           {
             "responseId": "en:lesson-05:session-10:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите карман",
+            "testedDimension": "Две маленькие колонки, которые надевают на уши, чтобы слушать музыку. Как они называются по-английски?",
             "feedbackByLocale": {
-              "ru": "`drawer` — выдвижной ящик; карман — `pocket`.",
-              "uk": "`drawer` — шухляда; кишеня — `pocket`."
+              "ru": "screen — это экран, а то, что надевают на уши, называется headphones.",
+              "uk": "screen — це екран, а те, що вдягають на вуха, називається headphones."
             }
           }
         ]
@@ -195,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -217,40 +348,40 @@
           },
           {
             "pairId": "en:lesson-05:session-10:i04:p2",
-            "target": "old",
+            "target": "tissue",
             "meaningByLocale": {
-              "ru": "пожилой",
-              "uk": "літній"
+              "ru": "бумажная салфетка",
+              "uk": "паперова серветка"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i04:p3",
-            "target": "kind",
+            "target": "headphones",
             "meaningByLocale": {
-              "ru": "добрый",
-              "uk": "добрий"
+              "ru": "наушники",
+              "uk": "навушники"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i04:p4",
-            "target": "funny",
+            "target": "purse",
             "meaningByLocale": {
-              "ru": "забавный",
-              "uk": "кумедний"
+              "ru": "кошелёк для мелочи",
+              "uk": "гаманець для дрібниць"
             }
           }
         ],
         "leftColumn": [
           "pocket",
-          "old",
-          "kind",
-          "funny"
+          "tissue",
+          "headphones",
+          "purse"
         ],
         "rightColumn": [
           "карман",
-          "пожилой",
-          "добрый",
-          "забавный"
+          "бумажная салфетка",
+          "наушники",
+          "кошелёк для мелочи"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,45 +398,88 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-10:word:purse",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — purse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-10:word:purse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — purse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-10:word:purse:audio",
+          "transcript": "purse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-10:word:purse:r1",
+            "targetText": "purse",
+            "meaningByLocale": {
+              "ru": "небольшой кошелёк для денег. My purse is in my bag. — «Мой кошелёк в моей сумке». О кошельке, где носят монеты и карточки.",
+              "uk": "невеликий гаманець для грошей. My purse is in my bag. — «Мій гаманець у моїй сумці». Про гаманець, де носять монети й картки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "purse",
+          "definitionByLocale": {
+            "ru": "небольшой кошелёк для денег. My purse is in my bag. — «Мой кошелёк в моей сумке». О кошельке, где носят монеты и карточки.",
+            "uk": "невеликий гаманець для грошей. My purse is in my bag. — «Мій гаманець у моїй сумці». Про гаманець, де носять монети й картки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-10:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i05:audio",
-          "transcript": "The key is in my pocket."
+          "transcript": "Her purse is in her bag."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The key is in my pocket.",
+        "hiddenTargetPhrase": "Her purse is in her bag.",
         "orderedTokens": [
-          "The",
-          "key",
+          "Her",
+          "purse",
           "is",
           "in",
-          "my",
-          "pocket"
+          "her",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "His"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The key is in my pocket.`",
-              "uk": "тут потрібно `is` — `The key is in my pocket.`"
+              "ru": "здесь нужно `Her` — `Her purse is in her bag.`",
+              "uk": "тут потрібно `Her` — `Her purse is in her bag.`"
             }
           }
         ],
@@ -318,39 +492,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+      "prompt": "Ваши наушники лежат в сумке подруги. Скажите полной фразой: «Мои наушники в её сумке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+      "accessibilityLabel": "Ваши наушники лежат в сумке подруги. Скажите полной фразой: «Мои наушники в её сумке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Your friend is kind.",
+        "targetPhrase": "My headphones are in her bag.",
         "localizedMeaning": {
-          "ru": "Друг собеседника добрый. Скажите «Твой друг добрый»",
-          "uk": "Друг співрозмовника добрий. Скажіть «Твій друг добрий»"
+          "ru": "Ваши наушники лежат в сумке подруги. Скажите полной фразой: «Мои наушники в её сумке»",
+          "uk": "Ваші навушники лежать у сумці подруги. Скажіть повною фразою: «Мої навушники в її сумці»"
         },
         "orderedTokens": [
-          "Your",
-          "friend",
-          "is",
-          "kind"
+          "My",
+          "headphones",
+          "are",
+          "in",
+          "her",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Друг собеседника добрый. Скажите «Твой друг добрый»",
+            "testedDimension": "Ваши наушники лежат в сумке подруги. Скажите полной фразой: «Мои наушники в её сумке»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Your friend is kind.`",
-              "uk": "тут потрібно `is` — `Your friend is kind.`"
+              "ru": "здесь нужно `are` — `My headphones are in her bag.`",
+              "uk": "тут потрібно `are` — `My headphones are in her bag.`"
             }
           }
         ],
@@ -363,25 +539,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Наш друг забавный»",
+      "prompt": "Кассир просит билет. Он в вашем кармане. Скажите ему: «Мой билет в моём кармане»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Наш друг забавный»",
+      "accessibilityLabel": "Кассир просит билет. Он в вашем кармане. Скажите ему: «Мой билет в моём кармане»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i07:audio",
-          "transcript": "Our friend is funny."
+          "transcript": "My ticket is in my pocket."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Our friend is funny.",
+        "targetPhrase": "My ticket is in my pocket.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,67 +572,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+      "prompt": "Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-10:i08:r1",
-          "text": "his"
+          "text": "my"
         },
         {
           "responseId": "en:lesson-05:session-10:i08:r2",
-          "text": "her"
+          "text": "your"
         },
         {
           "responseId": "en:lesson-05:session-10:i08:r3",
-          "text": "their"
+          "text": "her"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+      "accessibilityLabel": "Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ключ в кармане вашего друга-мужчины. Выберите слово",
-          "uk": "Ключ у кишені вашого друга-чоловіка. Виберіть слово"
+          "ru": "Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово",
+          "uk": "Ви говорите подрузі, що її гаманець у вашій кишені. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "The key is in ___ pocket.",
+        "gappedTargetPhrase": "Your purse is in ___ pocket.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-10:i08:r1",
-            "text": "his"
+            "text": "my"
           },
           {
             "responseId": "en:lesson-05:session-10:i08:r2",
-            "text": "her"
+            "text": "your"
           },
           {
             "responseId": "en:lesson-05:session-10:i08:r3",
-            "text": "their"
+            "text": "her"
           }
         ],
-        "testedDimension": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+        "testedDimension": "Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i08:r2",
             "correct": false,
-            "testedDimension": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+            "testedDimension": "Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`her` — её; здесь его: `his`.",
-              "uk": "`her` — її; тут його: `his`."
+              "ru": "your — твой, а карман ваш: нужно my.",
+              "uk": "your — твій, а кишеня ваша: потрібно my."
             }
           },
           {
             "responseId": "en:lesson-05:session-10:i08:r3",
             "correct": false,
-            "testedDimension": "Ключ в кармане вашего друга-мужчины. Выберите слово",
+            "testedDimension": "Вы говорите подруге, что её кошелёк в вашем кармане. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`their` — их; здесь его: `his`.",
-              "uk": "`their` — їхній; тут його: `his`."
+              "ru": "her — её, а вы говорите о своём кармане: нужно my.",
+              "uk": "her — її, а ви говорите про свою кишеню: потрібно my."
             }
           }
         ]
@@ -465,51 +641,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где отель",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-10:i09:r1",
-          "text": "Their hotel is next to the park."
+          "text": "Their headphones are on the table."
         },
         {
           "responseId": "en:lesson-05:session-10:i09:r2",
-          "text": "Their hotel is next to the bank."
+          "text": "Their headphones is on the table."
         },
         {
           "responseId": "en:lesson-05:session-10:i09:r3",
-          "text": "Our hotel is next to the park."
+          "text": "Their headphones are on the chair."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, где отель",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i09:audio",
-          "transcript": "Their hotel is next to the park."
+          "transcript": "Their headphones are on the table."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-10:i09:r1",
-            "targetText": "Their hotel is next to the park.",
+            "targetText": "Their headphones are on the table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-10:i09:r2",
-            "targetText": "Their hotel is next to the bank.",
+            "targetText": "Their headphones is on the table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-10:i09:r3",
-            "targetText": "Our hotel is next to the park.",
+            "targetText": "Their headphones are on the chair.",
             "meaningByLocale": null
           }
         ],
@@ -518,19 +694,19 @@
           {
             "responseId": "en:lesson-05:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где отель",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `park`, а в этом варианте — `bank`.",
-              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `bank`."
+              "ru": "В записи `are` — наушники, пара, а в этом варианте `is`.",
+              "uk": "У записі `are` — навушники, пара, а в цьому варіанті `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где отель",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Their`, а в этом варианте — `Our`.",
-              "uk": "У записі перше слово — `Their`, а в цьому варіанті — `Our`."
+              "ru": "В записи последнее слово `table`, а в этом варианте `chair`.",
+              "uk": "У записі останнє слово `table`, а в цьому варіанті `chair`."
             }
           }
         ],
@@ -541,8 +717,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -555,48 +731,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-10:i10:p1",
-            "target": "pocket",
+            "target": "tissue",
             "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
+              "ru": "бумажная салфетка",
+              "uk": "паперова серветка"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i10:p2",
-            "target": "lock",
+            "target": "purse",
             "meaningByLocale": {
-              "ru": "замок для ключа",
-              "uk": "замок для ключа"
+              "ru": "кошелёк для мелочи",
+              "uk": "гаманець для дрібниць"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i10:p3",
-            "target": "hotel",
+            "target": "ticket",
             "meaningByLocale": {
-              "ru": "отель",
-              "uk": "готель"
+              "ru": "билет",
+              "uk": "квиток"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i10:p4",
-            "target": "kind",
+            "target": "coin",
             "meaningByLocale": {
-              "ru": "добрый",
-              "uk": "добрий"
+              "ru": "монета",
+              "uk": "монета"
             }
           }
         ],
         "leftColumn": [
-          "pocket",
-          "lock",
-          "hotel",
-          "kind"
+          "tissue",
+          "purse",
+          "ticket",
+          "coin"
         ],
         "rightColumn": [
-          "карман",
-          "замок для ключа",
-          "отель",
-          "добрый"
+          "бумажная салфетка",
+          "кошелёк для мелочи",
+          "билет",
+          "монета"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,44 +790,44 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i11:audio",
-          "transcript": "Her key is in his pocket."
+          "transcript": "His tissue is in my pocket."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Her key is in his pocket.",
+        "hiddenTargetPhrase": "His tissue is in my pocket.",
         "orderedTokens": [
-          "Her",
-          "key",
+          "His",
+          "tissue",
           "is",
           "in",
-          "his",
+          "my",
           "pocket"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Her key is in his pocket.`",
-              "uk": "тут потрібно `is` — `Her key is in his pocket.`"
+              "ru": "здесь нужно `His` — `His tissue is in my pocket.`",
+              "uk": "тут потрібно `His` — `His tissue is in my pocket.`"
             }
           }
         ],
@@ -664,39 +840,41 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Наш отель здесь»",
+      "prompt": "Наушники брата лежат у вас в кармане. Скажите ему полной фразой: «Твои наушники в моём кармане»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Наш отель здесь»",
+      "accessibilityLabel": "Наушники брата лежат у вас в кармане. Скажите ему полной фразой: «Твои наушники в моём кармане»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our hotel is here.",
+        "targetPhrase": "Your headphones are in my pocket.",
         "localizedMeaning": {
-          "ru": "Скажите «Наш отель здесь»",
-          "uk": "Скажіть «Наш готель тут»"
+          "ru": "Наушники брата лежат у вас в кармане. Скажите ему полной фразой: «Твои наушники в моём кармане»",
+          "uk": "Навушники брата лежать у вас у кишені. Скажіть йому повною фразою: «Твої навушники в моїй кишені»"
         },
         "orderedTokens": [
-          "Our",
-          "hotel",
-          "is",
-          "here"
+          "Your",
+          "headphones",
+          "are",
+          "in",
+          "my",
+          "pocket"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Наш отель здесь»",
+            "testedDimension": "Наушники брата лежат у вас в кармане. Скажите ему полной фразой: «Твои наушники в моём кармане»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Our hotel is here.`",
-              "uk": "тут потрібно `is` — `Our hotel is here.`"
+              "ru": "здесь нужно `are` — `Your headphones are in my pocket.`",
+              "uk": "тут потрібно `are` — `Your headphones are in my pocket.`"
             }
           }
         ],
@@ -709,25 +887,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У вас ключ собеседника. Скажите «Твой ключ у меня»",
+      "prompt": "Ваша подруга ищет свой кошелёк. Он в её сумке. Скажите ей: «Твой кошелёк в твоей сумке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i13:audio"
       ],
-      "accessibilityLabel": "У вас ключ собеседника. Скажите «Твой ключ у меня»",
+      "accessibilityLabel": "Ваша подруга ищет свой кошелёк. Он в её сумке. Скажите ей: «Твой кошелёк в твоей сумке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i13:audio",
-          "transcript": "I have your key."
+          "transcript": "Your purse is in your bag."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your key.",
+        "targetPhrase": "Your purse is in your bag.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -742,67 +920,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+      "prompt": "Вы говорите брату, где наушники подруги. Выберите нужное слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-10:i14:r1",
-          "text": "Its"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-10:i14:r2",
-          "text": "It's"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-10:i14:r3",
-          "text": "Their"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+      "accessibilityLabel": "Вы говорите брату, где наушники подруги. Выберите нужное слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
-          "uk": "Ідеться про одні двері, названі англійською it. Замок цих дверей новий. Виберіть слово"
+          "ru": "Вы говорите брату, где наушники подруги. Выберите нужное слово",
+          "uk": "Ви говорите братові, де навушники подруги. Виберіть потрібне слово"
         },
-        "gappedTargetPhrase": "___ lock is new.",
+        "gappedTargetPhrase": "Her headphones ___ in her bag.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-10:i14:r1",
-            "text": "Its"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-10:i14:r2",
-            "text": "It's"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-10:i14:r3",
-            "text": "Their"
+            "text": "has"
           }
         ],
-        "testedDimension": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+        "testedDimension": "Вы говорите брату, где наушники подруги. Выберите нужное слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-10:i14:r2",
             "correct": false,
-            "testedDimension": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+            "testedDimension": "Вы говорите брату, где наушники подруги. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "`It’s` — `it is`; здесь нужно `Its lock`.",
-              "uk": "`It’s` — `it is`; тут потрібне `Its lock`."
+              "ru": "Наушники — пара, поэтому нужно are, а не is.",
+              "uk": "Навушники — пара, тому потрібно are, а не is."
             }
           },
           {
             "responseId": "en:lesson-05:session-10:i14:r3",
             "correct": false,
-            "testedDimension": "Речь об одной двери, названной it. Её замок новый. Выберите слово",
+            "testedDimension": "Вы говорите брату, где наушники подруги. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Для одной двери, названной `it`, нужно `Its`.",
-              "uk": "Для одних дверей, названих `it`, потрібне `Its`."
+              "ru": "has значит «иметь», а здесь нужно сказать, где наушники: are.",
+              "uk": "has означає «мати», а тут потрібно сказати, де навушники: are."
             }
           }
         ]
@@ -811,51 +989,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей карман пуст",
+      "prompt": "Послушайте кассира",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-10:i15:r1",
-          "text": "Her pocket is empty."
+          "text": "The ticket is in his pocket."
         },
         {
           "responseId": "en:lesson-05:session-10:i15:r2",
-          "text": "His pocket is empty."
+          "text": "The ticket is in her pocket."
         },
         {
           "responseId": "en:lesson-05:session-10:i15:r3",
-          "text": "My pocket is empty."
+          "text": "The coin is in his pocket."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей карман пуст",
+      "accessibilityLabel": "Послушайте кассира",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i15:audio",
-          "transcript": "Her pocket is empty."
+          "transcript": "The ticket is in his pocket."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-10:i15:r1",
-            "targetText": "Her pocket is empty.",
+            "targetText": "The ticket is in his pocket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-10:i15:r2",
-            "targetText": "His pocket is empty.",
+            "targetText": "The ticket is in her pocket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-10:i15:r3",
-            "targetText": "My pocket is empty.",
+            "targetText": "The coin is in his pocket.",
             "meaningByLocale": null
           }
         ],
@@ -864,19 +1042,19 @@
           {
             "responseId": "en:lesson-05:session-10:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей карман пуст",
+            "testedDimension": "Послушайте кассира",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+              "ru": "В записи `his` — его, а в этом варианте `her` — её.",
+              "uk": "У записі `his` — його, а в цьому варіанті `her` — її."
             }
           },
           {
             "responseId": "en:lesson-05:session-10:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей карман пуст",
+            "testedDimension": "Послушайте кассира",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+              "ru": "В записи `ticket` — билет, а в этом варианте `coin` — монета.",
+              "uk": "У записі `ticket` — квиток, а в цьому варіанті `coin` — монета."
             }
           }
         ],
@@ -887,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -909,40 +1087,40 @@
           },
           {
             "pairId": "en:lesson-05:session-10:i16:p2",
-            "target": "lock",
+            "target": "tissue",
             "meaningByLocale": {
-              "ru": "замок для ключа",
-              "uk": "замок для ключа"
+              "ru": "бумажная салфетка",
+              "uk": "паперова серветка"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i16:p3",
-            "target": "hotel",
+            "target": "headphones",
             "meaningByLocale": {
-              "ru": "отель",
-              "uk": "готель"
+              "ru": "наушники",
+              "uk": "навушники"
             }
           },
           {
             "pairId": "en:lesson-05:session-10:i16:p4",
-            "target": "funny",
+            "target": "purse",
             "meaningByLocale": {
-              "ru": "забавный",
-              "uk": "кумедний"
+              "ru": "кошелёк для мелочи",
+              "uk": "гаманець для дрібниць"
             }
           }
         ],
         "leftColumn": [
           "pocket",
-          "lock",
-          "hotel",
-          "funny"
+          "tissue",
+          "headphones",
+          "purse"
         ],
         "rightColumn": [
           "карман",
-          "замок для ключа",
-          "отель",
-          "забавный"
+          "бумажная салфетка",
+          "наушники",
+          "кошелёк для мелочи"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -960,25 +1138,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-10:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг ищет ключ. Вы видите его в кармане друга. Скажите ему «Ключ в твоём кармане»",
+      "prompt": "Брат спрашивает, где его наушники. Они в вашем рюкзаке. Ответьте: «Твои наушники в моём рюкзаке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Друг ищет ключ. Вы видите его в кармане друга. Скажите ему «Ключ в твоём кармане»",
+      "accessibilityLabel": "Брат спрашивает, где его наушники. Они в вашем рюкзаке. Ответьте: «Твои наушники в моём рюкзаке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-10:i17:audio",
-          "transcript": "The key is in your pocket."
+          "transcript": "Your headphones are in my backpack."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The key is in your pocket.",
+        "targetPhrase": "Your headphones are in my backpack.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1000,11 +1178,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "322d6dc8436d7a151fe6a151ea48b0c943d294c3edff83747db76a59bcb5e239"
+  "learnerFingerprint": "9531bf18dbce95b3349a742a2c2258738f9ef84d1deb8646607ac54059e1f929"
 }

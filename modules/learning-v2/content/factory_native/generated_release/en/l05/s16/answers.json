@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-16:word:passport",
+    "correctText": "passport",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-16:i01",
-    "correctText": "I have your notebook.",
+    "correctText": "His passport is in his pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:word:sunglasses",
+    "correctText": "sunglasses",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i02",
-    "correctText": "My charger is in your backpack.",
+    "correctText": "Their sunglasses are in her bag.",
     "correctResponseId": "en:lesson-05:session-16:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-16:word:sandals",
+    "correctText": "sandals",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-16:i03",
-    "correctText": "aren't",
+    "correctText": "sandals",
     "correctResponseId": "en:lesson-05:session-16:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-16:i04",
-    "correctText": "en:lesson-05:session-16:i04:p1=charger\nen:lesson-05:session-16:i04:p2=pocket\nen:lesson-05:session-16:i04:p3=backpack\nen:lesson-05:session-16:i04:p4=notebook",
+    "correctText": "en:lesson-05:session-16:i04:p1=passport\nen:lesson-05:session-16:i04:p2=sunglasses\nen:lesson-05:session-16:i04:p3=sandals\nen:lesson-05:session-16:i04:p4=camera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-16:word:camera",
+    "correctText": "camera",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i05",
-    "correctText": "Where is my helmet?",
+    "correctText": "Our camera is in your suitcase.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i06",
-    "correctText": "Her umbrella is in his suitcase.",
+    "correctText": "Is this your passport?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i07",
-    "correctText": "Our hotel has a swimming pool.",
+    "correctText": "It is my camera.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i08",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-16:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-16:i09",
-    "correctText": "The key is in her pocket.",
+    "correctText": "Is this your camera?",
     "correctResponseId": "en:lesson-05:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-16:i10",
-    "correctText": "en:lesson-05:session-16:i10:p1=umbrella\nen:lesson-05:session-16:i10:p2=suitcase\nen:lesson-05:session-16:i10:p3=helmet\nen:lesson-05:session-16:i10:p4=swimming pool",
+    "correctText": "en:lesson-05:session-16:i10:p1=passport\nen:lesson-05:session-16:i10:p2=suitcase\nen:lesson-05:session-16:i10:p3=ticket\nen:lesson-05:session-16:i10:p4=camera",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i11",
-    "correctText": "They have our notebook.",
+    "correctText": "My sister has my camera.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i12",
-    "correctText": "Your backpack is under the table.",
+    "correctText": "My sandals are in my suitcase.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i13",
-    "correctText": "There isn't a swimming pool.",
+    "correctText": "I have your passport.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i14",
-    "correctText": "Its",
+    "correctText": "No",
     "correctResponseId": "en:lesson-05:session-16:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-16:i15",
-    "correctText": "Your helmet is on the chair.",
+    "correctText": "It is their camera.",
     "correctResponseId": "en:lesson-05:session-16:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-16:i16",
-    "correctText": "en:lesson-05:session-16:i16:p1=umbrella\nen:lesson-05:session-16:i16:p2=suitcase\nen:lesson-05:session-16:i16:p3=helmet\nen:lesson-05:session-16:i16:p4=swimming pool",
+    "correctText": "en:lesson-05:session-16:i16:p1=passport\nen:lesson-05:session-16:i16:p2=sunglasses\nen:lesson-05:session-16:i16:p3=sandals\nen:lesson-05:session-16:i16:p4=camera",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-16:i17",
-    "correctText": "My charger is in your backpack.",
+    "correctText": "Our passports are in my bag.",
     "correctResponseId": null
   }
 ]

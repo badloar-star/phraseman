@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-08:i01",
+      "interactionId": "en:lesson-05:session-08:word:guest",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-08:word:guest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-08:word:guest:audio",
+          "transcript": "guest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-08:word:guest:r1",
+            "targetText": "guest",
+            "meaningByLocale": {
+              "ru": "гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.",
+              "uk": "гість. I have a guest. — «У мене гість». Про людину, яка прийшла до вас додому на деякий час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guest",
+          "definitionByLocale": {
+            "ru": "гость. I have a guest. — «У меня гость». О человеке, который пришёл к вам домой на время.",
+            "uk": "гість. I have a guest. — «У мене гість». Про людину, яка прийшла до вас додому на деякий час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У вас є письмовий стіл. Повідомте про це",
+      "prompt": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У вас є письмовий стіл. Повідомте про це",
+      "accessibilityLabel": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have a desk.",
+        "targetPhrase": "I have a guest.",
         "localizedMeaning": {
-          "ru": "У вас есть письменный стол. Сообщите об этом",
-          "uk": "У вас є письмовий стіл. Повідомте про це"
+          "ru": "Соседка слышит голоса за дверью. Скажите ей полной фразой: «У меня гость»",
+          "uk": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»"
         },
         "orderedTokens": [
           "I",
           "have",
           "a",
-          "desk"
+          "guest"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-08:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка чує голоси за дверима. Скажіть їй повною фразою: «У мене гість»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `I have a guest.`",
+              "uk": "тут потрібно `have` — `I have a guest.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,11 +93,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис столу",
+      "prompt": "Послухайте гостя",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-08:i02:r1",
@@ -61,7 +116,7 @@
       "audioTargetIds": [
         "en:lesson-05:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте опис столу",
+      "accessibilityLabel": "Послухайте гостя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -91,7 +146,7 @@
           {
             "responseId": "en:lesson-05:session-08:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис столу",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `drawers`, а в этом варианте — `books`.",
               "uk": "У записі останнє слово — `drawers`, а в цьому варіанті — `books`."
@@ -100,7 +155,7 @@
           {
             "responseId": "en:lesson-05:session-08:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис столу",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `drawers`, а в этом варианте — `pens`.",
               "uk": "У записі останнє слово — `drawers`, а в цьому варіанті — `pens`."
@@ -113,68 +168,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-08:word:toothbrush",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toothbrush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-08:word:toothbrush:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toothbrush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-08:word:toothbrush:audio",
+          "transcript": "toothbrush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-08:word:toothbrush:r1",
+            "targetText": "toothbrush",
+            "meaningByLocale": {
+              "ru": "зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.",
+              "uk": "зубна щітка. There isn’t a toothbrush in the cupboard. — «У шафці немає зубної щітки». Про щітку, якою чистять зуби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toothbrush",
+          "definitionByLocale": {
+            "ru": "зубная щётка. There isn’t a toothbrush in the cupboard. — «В шкафчике нет зубной щётки». О щётке, которой чистят зубы.",
+            "uk": "зубна щітка. There isn’t a toothbrush in the cupboard. — «У шафці немає зубної щітки». Про щітку, якою чистять зуби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-08:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Завісок немає. Виберіть форму",
+      "prompt": "У шафці немає зубної щітки. Виберіть форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-08:i03:r1",
-          "text": "aren't"
+          "text": "isn’t"
         },
         {
           "responseId": "en:lesson-05:session-08:i03:r2",
-          "text": "are"
+          "text": "aren’t"
         },
         {
           "responseId": "en:lesson-05:session-08:i03:r3",
-          "text": "isn't"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Завісок немає. Виберіть форму",
+      "accessibilityLabel": "У шафці немає зубної щітки. Виберіть форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Занавесок нет. Выберите форму",
-          "uk": "Завісок немає. Виберіть форму"
+          "ru": "В шкафчике нет зубной щётки. Выберите форму",
+          "uk": "У шафці немає зубної щітки. Виберіть форму"
         },
-        "gappedTargetPhrase": "There ___ any curtains.",
+        "gappedTargetPhrase": "There ___ a toothbrush in the cupboard.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-08:i03:r1",
-            "text": "aren't"
+            "text": "isn’t"
           },
           {
             "responseId": "en:lesson-05:session-08:i03:r2",
-            "text": "are"
+            "text": "aren’t"
           },
           {
             "responseId": "en:lesson-05:session-08:i03:r3",
-            "text": "isn't"
+            "text": "is"
           }
         ],
-        "testedDimension": "Завісок немає. Виберіть форму",
+        "testedDimension": "У шафці немає зубної щітки. Виберіть форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-08:i03:r2",
             "correct": false,
-            "testedDimension": "Завісок немає. Виберіть форму",
+            "testedDimension": "У шафці немає зубної щітки. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Здесь нет: `aren’t any curtains`.",
-              "uk": "Тут немає: `aren’t any curtains`."
+              "ru": "Щётка одна, поэтому нужно isn’t, а не aren’t.",
+              "uk": "Щітка одна, тому потрібно isn’t, а не aren’t."
             }
           },
           {
             "responseId": "en:lesson-05:session-08:i03:r3",
             "correct": false,
-            "testedDimension": "Завісок немає. Виберіть форму",
+            "testedDimension": "У шафці немає зубної щітки. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "С `curtains` нужно `aren’t`.",
-              "uk": "З `curtains` потрібне `aren’t`."
+              "ru": "Здесь «нет», а is без not — это утверждение.",
+              "uk": "Тут «немає», а is без not — це ствердження."
             }
           }
         ]
@@ -183,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +295,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-08:i04:p1",
-            "target": "desk",
+            "target": "guest",
             "meaningByLocale": {
-              "ru": "письменный стол",
-              "uk": "письмовий стіл"
+              "ru": "гость",
+              "uk": "гість"
             }
           },
           {
             "pairId": "en:lesson-05:session-08:i04:p2",
-            "target": "curtain",
+            "target": "toothbrush",
             "meaningByLocale": {
-              "ru": "занавеска",
-              "uk": "завіска"
+              "ru": "зубная щётка",
+              "uk": "зубна щітка"
             }
           },
           {
             "pairId": "en:lesson-05:session-08:i04:p3",
-            "target": "drawer",
+            "target": "slippers",
             "meaningByLocale": {
-              "ru": "выдвижной ящик",
-              "uk": "шухляда"
+              "ru": "домашние тапочки",
+              "uk": "домашні капці"
             }
           },
           {
             "pairId": "en:lesson-05:session-08:i04:p4",
-            "target": "ceiling",
+            "target": "bathroom",
             "meaningByLocale": {
-              "ru": "потолок",
-              "uk": "стеля"
+              "ru": "ванная комната",
+              "uk": "ванна кімната"
             }
           }
         ],
         "leftColumn": [
-          "desk",
-          "curtain",
-          "drawer",
-          "ceiling"
+          "guest",
+          "toothbrush",
+          "slippers",
+          "bathroom"
         ],
         "rightColumn": [
-          "письмовий стіл",
-          "завіска",
-          "шухляда",
-          "стеля"
+          "гість",
+          "зубна щітка",
+          "домашні капці",
+          "ванна кімната"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +353,89 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-08:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-05:session-08:word:bathroom",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bathroom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-08:word:bathroom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bathroom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-08:word:bathroom:audio",
+          "transcript": "bathroom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-08:word:bathroom:r1",
+            "targetText": "bathroom",
+            "meaningByLocale": {
+              "ru": "ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.",
+              "uk": "ванна кімната. Where is the bathroom? — «Де ванна кімната?» Про кімнату, де вмиваються й приймають душ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bathroom",
+          "definitionByLocale": {
+            "ru": "ванная комната. Where is the bathroom? — «Где ванная комната?» О комнате, где умываются и принимают душ.",
+            "uk": "ванна кімната. Where is the bathroom? — «Де ванна кімната?» Про кімнату, де вмиваються й приймають душ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-08:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте гостя й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте гостя й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i05:audio",
-          "transcript": "Where is the remote?"
+          "transcript": "Where is the bathroom?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the remote?",
+        "hiddenTargetPhrase": "Where is the bathroom?",
         "orderedTokens": [
           "Where",
           "is",
           "the",
-          "remote"
+          "bathroom"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-08:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте гостя й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the bathroom?`",
+              "uk": "тут потрібно `is` — `Where is the bathroom?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,42 +444,83 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-08:word:slippers",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slippers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-08:word:slippers:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slippers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-08:word:slippers:audio",
+          "transcript": "slippers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-08:word:slippers:r1",
+            "targetText": "slippers",
+            "meaningByLocale": {
+              "ru": "домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.",
+              "uk": "домашні капці. The guest has slippers. — «У гостя є капці». Про м’яке взуття, яке вдягають удома; слово завжди у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slippers",
+          "definitionByLocale": {
+            "ru": "домашние тапочки. The guest has slippers. — «У гостя есть тапочки». О мягкой обуви, которую надевают дома; слово всегда во множественном числе.",
+            "uk": "домашні капці. The guest has slippers. — «У гостя є капці». Про м’яке взуття, яке вдягають удома; слово завжди у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-08:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Пульт усередині шухляди. Скажіть, де він",
+      "prompt": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пульт усередині шухляди. Скажіть, де він",
+      "accessibilityLabel": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The remote is in the drawer.",
+        "targetPhrase": "The guest has slippers.",
         "localizedMeaning": {
-          "ru": "Пульт внутри ящика. Скажите, где он",
-          "uk": "Пульт усередині шухляди. Скажіть, де він"
+          "ru": "Подруга спрашивает, во что обут гость. Скажите ей полной фразой: «У гостя есть тапочки»",
+          "uk": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»"
         },
         "orderedTokens": [
           "The",
-          "remote",
-          "is",
-          "in",
-          "the",
-          "drawer"
+          "guest",
+          "has",
+          "slippers"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-08:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Пульт усередині шухляди. Скажіть, де він",
+            "testedDimension": "Подруга питає, у що взутий гість. Скажіть їй повною фразою: «У гостя є капці»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The remote is in the drawer.`",
-              "uk": "тут потрібно `is` — `The remote is in the drawer.`"
+              "ru": "здесь нужно `has` — `The guest has slippers.`",
+              "uk": "тут потрібно `has` — `The guest has slippers.`"
             }
           }
         ],
@@ -339,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У подруги є завіска. Скажіть «У неї є завіска»",
+      "prompt": "Гість питає, де пульт. Скажіть йому: «Пульт у шухляді»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i07:audio"
       ],
-      "accessibilityLabel": "У подруги є завіска. Скажіть «У неї є завіска»",
+      "accessibilityLabel": "Гість питає, де пульт. Скажіть йому: «Пульт у шухляді»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i07:audio",
-          "transcript": "She has a curtain."
+          "transcript": "The remote is in the drawer."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She has a curtain.",
+        "targetPhrase": "The remote is in the drawer.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -372,67 +566,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У кімнати є стеля. Виберіть форму",
+      "prompt": "У кімнаті немає завісок. Виберіть форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-08:i08:r1",
-          "text": "has"
+          "text": "aren’t"
         },
         {
           "responseId": "en:lesson-05:session-08:i08:r2",
-          "text": "have"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-08:i08:r3",
-          "text": "is"
+          "text": "isn’t"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У кімнати є стеля. Виберіть форму",
+      "accessibilityLabel": "У кімнаті немає завісок. Виберіть форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "У комнаты есть потолок. Выберите форму",
-          "uk": "У кімнати є стеля. Виберіть форму"
+          "ru": "В комнате нет занавесок. Выберите форму",
+          "uk": "У кімнаті немає завісок. Виберіть форму"
         },
-        "gappedTargetPhrase": "The room ___ a ceiling.",
+        "gappedTargetPhrase": "There ___ any curtains.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-08:i08:r1",
-            "text": "has"
+            "text": "aren’t"
           },
           {
             "responseId": "en:lesson-05:session-08:i08:r2",
-            "text": "have"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-08:i08:r3",
-            "text": "is"
+            "text": "isn’t"
           }
         ],
-        "testedDimension": "У кімнати є стеля. Виберіть форму",
+        "testedDimension": "У кімнаті немає завісок. Виберіть форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-08:i08:r2",
             "correct": false,
-            "testedDimension": "У кімнати є стеля. Виберіть форму",
+            "testedDimension": "У кімнаті немає завісок. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Одна комната, как `it`: `has`.",
-              "uk": "Одна кімната, як `it`: `has`."
+              "ru": "Здесь «нет», а are без not — это утверждение.",
+              "uk": "Тут «немає», а are без not — це ствердження."
             }
           },
           {
             "responseId": "en:lesson-05:session-08:i08:r3",
             "correct": false,
-            "testedDimension": "У кімнати є стеля. Виберіть форму",
+            "testedDimension": "У кімнаті немає завісок. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "У комнаты есть потолок: `has a ceiling`.",
-              "uk": "У кімнати є стеля: `has a ceiling`."
+              "ru": "Занавесок несколько, поэтому нужно aren’t, а не isn’t.",
+              "uk": "Завісок кілька, тому потрібно aren’t, а не isn’t."
             }
           }
         ]
@@ -441,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де магазин",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-08:i09:r1",
-          "text": "The corner shop is next to the park."
+          "text": "She has a key."
         },
         {
           "responseId": "en:lesson-05:session-08:i09:r2",
-          "text": "The corner shop is next to the museum."
+          "text": "She has a bag."
         },
         {
           "responseId": "en:lesson-05:session-08:i09:r3",
-          "text": "The corner shop is next to the nursery."
+          "text": "He has a key."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, де магазин",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i09:audio",
-          "transcript": "The corner shop is next to the park."
+          "transcript": "She has a key."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-08:i09:r1",
-            "targetText": "The corner shop is next to the park.",
+            "targetText": "She has a key.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-08:i09:r2",
-            "targetText": "The corner shop is next to the museum.",
+            "targetText": "She has a bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-08:i09:r3",
-            "targetText": "The corner shop is next to the nursery.",
+            "targetText": "He has a key.",
             "meaningByLocale": null
           }
         ],
@@ -494,19 +688,19 @@
           {
             "responseId": "en:lesson-05:session-08:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де магазин",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `park`, а в этом варианте — `museum`.",
-              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `museum`."
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `bag`."
             }
           },
           {
             "responseId": "en:lesson-05:session-08:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де магазин",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `park`, а в этом варианте — `nursery`.",
-              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `nursery`."
+              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
             }
           }
         ],
@@ -517,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -531,14 +725,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-08:i10:p1",
-            "target": "have",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "иметь",
-              "uk": "мати"
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
             }
           },
           {
             "pairId": "en:lesson-05:session-08:i10:p2",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "выдвижной ящик",
+              "uk": "висувна шухляда"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-08:i10:p3",
             "target": "remote",
             "meaningByLocale": {
               "ru": "пульт",
@@ -546,33 +748,25 @@
             }
           },
           {
-            "pairId": "en:lesson-05:session-08:i10:p3",
-            "target": "neighbourhood",
-            "meaningByLocale": {
-              "ru": "район",
-              "uk": "район"
-            }
-          },
-          {
             "pairId": "en:lesson-05:session-08:i10:p4",
-            "target": "corner shop",
+            "target": "curtain",
             "meaningByLocale": {
-              "ru": "магазин у дома",
-              "uk": "магазин біля дому"
+              "ru": "занавеска",
+              "uk": "завіса"
             }
           }
         ],
         "leftColumn": [
-          "have",
+          "desk",
+          "drawer",
           "remote",
-          "neighbourhood",
-          "corner shop"
+          "curtain"
         ],
         "rightColumn": [
-          "мати",
+          "письмовий стіл",
+          "висувна шухляда",
           "пульт",
-          "район",
-          "магазин біля дому"
+          "завіса"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -590,34 +784,30 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте гостя й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте гостя й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i11:audio",
-          "transcript": "There is a corner shop in the neighbourhood."
+          "transcript": "Where is the remote?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There is a corner shop in the neighbourhood.",
+        "hiddenTargetPhrase": "Where is the remote?",
         "orderedTokens": [
-          "There",
+          "Where",
           "is",
-          "a",
-          "corner",
-          "shop",
-          "in",
           "the",
-          "neighbourhood"
+          "remote"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -626,10 +816,10 @@
           {
             "responseId": "en:lesson-05:session-08:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте гостя й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a corner shop in the neighbourhood.`",
-              "uk": "тут потрібно `is` — `There is a corner shop in the neighbourhood.`"
+              "ru": "здесь нужно `is` — `Where is the remote?`",
+              "uk": "тут потрібно `is` — `Where is the remote?`"
             }
           }
         ],
@@ -642,29 +832,43 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У вас із другом є завіски. Скажіть «У нас є завіски»",
+      "prompt": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У вас із другом є завіски. Скажіть «У нас є завіски»",
+      "accessibilityLabel": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have curtains.",
+        "targetPhrase": "Where is the corner shop?",
         "localizedMeaning": {
-          "ru": "У вас с другом есть занавески. Скажите «У нас есть занавески»",
-          "uk": "У вас із другом є завіски. Скажіть «У нас є завіски»"
+          "ru": "Гость хочет купить хлеб. Спросите соседа полной фразой: «Где магазин у дома?»",
+          "uk": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»"
         },
         "orderedTokens": [
-          "We",
-          "have",
-          "curtains"
+          "Where",
+          "is",
+          "the",
+          "corner",
+          "shop"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-08:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Гість хоче купити хліб. Запитайте сусіда повною фразою: «Де магазин біля дому?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the corner shop?`",
+              "uk": "тут потрібно `is` — `Where is the corner shop?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -674,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте, де магазин біля дому",
+      "prompt": "У кімнаті немає завісок. Скажіть гостеві: «Завісок немає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i13:audio"
       ],
-      "accessibilityLabel": "Запитайте, де магазин біля дому",
+      "accessibilityLabel": "У кімнаті немає завісок. Скажіть гостеві: «Завісок немає»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i13:audio",
-          "transcript": "Where is the corner shop?"
+          "transcript": "There aren’t any curtains."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the corner shop?",
+        "targetPhrase": "There aren’t any curtains.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -707,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Пульт упав під стіл, на підлогу. Виберіть слово",
+      "prompt": "У стола є шухляди. Виберіть форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-08:i14:r1",
-          "text": "under"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-08:i14:r2",
-          "text": "on"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-08:i14:r3",
-          "text": "in"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пульт упав під стіл, на підлогу. Виберіть слово",
+      "accessibilityLabel": "У стола є шухляди. Виберіть форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Пульт упал под стол, на пол. Выберите слово",
-          "uk": "Пульт упав під стіл, на підлогу. Виберіть слово"
+          "ru": "У стола есть ящики. Выберите форму",
+          "uk": "У стола є шухляди. Виберіть форму"
         },
-        "gappedTargetPhrase": "The remote is ___ the desk.",
+        "gappedTargetPhrase": "The desk ___ drawers.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-08:i14:r1",
-            "text": "under"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-08:i14:r2",
-            "text": "on"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-08:i14:r3",
-            "text": "in"
+            "text": "is"
           }
         ],
-        "testedDimension": "Пульт упав під стіл, на підлогу. Виберіть слово",
+        "testedDimension": "У стола є шухляди. Виберіть форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-08:i14:r2",
             "correct": false,
-            "testedDimension": "Пульт упав під стіл, на підлогу. Виберіть слово",
+            "testedDimension": "У стола є шухляди. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "`on` — на поверхности; здесь под: `under`.",
-              "uk": "`on` — на поверхні; тут під: `under`."
+              "ru": "Стол один, как it: нужно has, даже если ящиков несколько.",
+              "uk": "Стіл один, як it: потрібно has, навіть якщо шухляд кілька."
             }
           },
           {
             "responseId": "en:lesson-05:session-08:i14:r3",
             "correct": false,
-            "testedDimension": "Пульт упав під стіл, на підлогу. Виберіть слово",
+            "testedDimension": "У стола є шухляди. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "`in` — внутри; здесь под: `under`.",
-              "uk": "`in` — усередині; тут під: `under`."
+              "ru": "Речь о том, что есть у стола: has drawers.",
+              "uk": "Мова про те, що є в стола: has drawers."
             }
           }
         ]
@@ -776,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис стелі",
+      "prompt": "Послухайте гостя",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-08:i15:r1",
-          "text": "The ceiling is white."
+          "text": "There isn’t a toothbrush here."
         },
         {
           "responseId": "en:lesson-05:session-08:i15:r2",
-          "text": "The ceiling is black."
+          "text": "There isn’t a bathroom here."
         },
         {
           "responseId": "en:lesson-05:session-08:i15:r3",
-          "text": "The ceiling is grey."
+          "text": "There aren’t any toothbrushes here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте опис стелі",
+      "accessibilityLabel": "Послухайте гостя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i15:audio",
-          "transcript": "The ceiling is white."
+          "transcript": "There isn’t a toothbrush here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-08:i15:r1",
-            "targetText": "The ceiling is white.",
+            "targetText": "There isn’t a toothbrush here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-08:i15:r2",
-            "targetText": "The ceiling is black.",
+            "targetText": "There isn’t a bathroom here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-08:i15:r3",
-            "targetText": "The ceiling is grey.",
+            "targetText": "There aren’t any toothbrushes here.",
             "meaningByLocale": null
           }
         ],
@@ -829,19 +1033,19 @@
           {
             "responseId": "en:lesson-05:session-08:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис стелі",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `white`, а в этом варианте — `black`.",
-              "uk": "У записі останнє слово — `white`, а в цьому варіанті — `black`."
+              "ru": "В записи `toothbrush` — зубная щётка, а в этом варианте `bathroom` — ванная комната.",
+              "uk": "У записі `toothbrush` — зубна щітка, а в цьому варіанті `bathroom` — ванна кімната."
             }
           },
           {
             "responseId": "en:lesson-05:session-08:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис стелі",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `white`, а в этом варианте — `grey`.",
-              "uk": "У записі останнє слово — `white`, а в цьому варіанті — `grey`."
+              "ru": "В записи `isn’t a` — нет одной, а в этом варианте `aren’t any` — нет нескольких.",
+              "uk": "У записі `isn’t a` — немає однієї, а в цьому варіанті `aren’t any` — немає кількох."
             }
           }
         ],
@@ -852,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -866,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-08:i16:p1",
-            "target": "have",
+            "target": "guest",
             "meaningByLocale": {
-              "ru": "иметь",
-              "uk": "мати"
+              "ru": "гость",
+              "uk": "гість"
             }
           },
           {
             "pairId": "en:lesson-05:session-08:i16:p2",
+            "target": "slippers",
+            "meaningByLocale": {
+              "ru": "домашние тапочки",
+              "uk": "домашні капці"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-08:i16:p3",
+            "target": "bathroom",
+            "meaningByLocale": {
+              "ru": "ванная комната",
+              "uk": "ванна кімната"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-08:i16:p4",
             "target": "remote",
             "meaningByLocale": {
               "ru": "пульт",
               "uk": "пульт"
             }
-          },
-          {
-            "pairId": "en:lesson-05:session-08:i16:p3",
-            "target": "neighbourhood",
-            "meaningByLocale": {
-              "ru": "район",
-              "uk": "район"
-            }
-          },
-          {
-            "pairId": "en:lesson-05:session-08:i16:p4",
-            "target": "corner shop",
-            "meaningByLocale": {
-              "ru": "магазин у дома",
-              "uk": "магазин біля дому"
-            }
           }
         ],
         "leftColumn": [
-          "have",
-          "remote",
-          "neighbourhood",
-          "corner shop"
+          "guest",
+          "slippers",
+          "bathroom",
+          "remote"
         ],
         "rightColumn": [
-          "мати",
-          "пульт",
-          "район",
-          "магазин біля дому"
+          "гість",
+          "домашні капці",
+          "ванна кімната",
+          "пульт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -925,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-08:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Гість запитує про ваш письмовий стіл. Повідомте «У письмового столу є шухляда»",
+      "prompt": "Гість розглядає кімнату. Скажіть йому: «У стола є шухляди»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-08:i17:audio"
       ],
-      "accessibilityLabel": "Гість запитує про ваш письмовий стіл. Повідомте «У письмового столу є шухляда»",
+      "accessibilityLabel": "Гість розглядає кімнату. Скажіть йому: «У стола є шухляди»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-08:i17:audio",
-          "transcript": "The desk has a drawer."
+          "transcript": "The desk has drawers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The desk has a drawer.",
+        "targetPhrase": "The desk has drawers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -965,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5f31260a8728f6d2c33cfd29415eaa440ea913ae381607270749c199980f13db"
+  "learnerFingerprint": "675bda68f9524a5f9cf8aba2087d8ed2deaa699d8f3965498dc7b56b3eadc51c"
 }

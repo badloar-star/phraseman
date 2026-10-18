@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-15:intro1:r2": {
-          "ru": "Перед `my helmet` не нужно `a`.",
-          "uk": "Перед `my helmet` не потрібне `a`."
+          "ru": "С he нужно has, а не have.",
+          "uk": "З he потрібно has, а не have."
         },
         "en:lesson-05:session-15:intro1:r3": {
-          "ru": "`your` — твой / ваш; мой — `my`.",
-          "uk": "`your` — твій / ваш; мій — `my`."
+          "ru": "He is a beard значит «Он — борода». Чтобы сказать «у него борода», нужно has.",
+          "uk": "He is a beard означає «Він — борода». Щоб сказати «у нього борода», потрібно has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-15:intro2:r2": {
-          "ru": "`difficult` — сложно; легко — `easy`.",
-          "uk": "`difficult` — складно; легко — `easy`."
+          "ru": "Перед названием нужно her, а не she.",
+          "uk": "Перед назвою потрібно her, а не she."
         },
         "en:lesson-05:session-15:intro2:r3": {
-          "ru": "С `It` нужно `is`.",
-          "uk": "З `It` потрібне `is`."
+          "ru": "Хвост один, поэтому нужно is, а не are.",
+          "uk": "Хвіст один, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-15:intro3:r2": {
-          "ru": "Один пульт: `remote is`.",
-          "uk": "Один пульт: `remote is`."
+          "ru": "Перед названием вещи нужно my, а не I.",
+          "uk": "Перед назвою речі потрібно my, а не I."
         },
         "en:lesson-05:session-15:intro3:r3": {
-          "ru": "`our` — наш; здесь их: `their`.",
-          "uk": "`our` — наш; тут їхній: `their`."
+          "ru": "Куртка одна, поэтому нужно is, а не are.",
+          "uk": "Куртка одна, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2f0353bb625ac82e9c53895c365114fd594815b24b108331e30c29ffedb8eab3"
+  "auxiliaryFingerprint": "01e893c482def64ef888b0b2833d0ea878aae1e1683a68dd760156d84b6c0830"
 }

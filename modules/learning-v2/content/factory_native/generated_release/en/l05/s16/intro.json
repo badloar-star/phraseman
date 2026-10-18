@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-16",
   "learningOutcomeByLocale": {
-    "ru": "сказать, чья вещь, где она и чего нет",
-    "uk": "сказати, чия річ, де вона й чого немає"
+    "ru": "самому выбрать, как сказать о вещах семьи: my, your, his, her, our, their, has, is или are",
+    "uk": "самому вибрати, як сказати про речі родини: my, your, his, her, our, their, has, is чи are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Моё, твоё, наше",
-        "uk": "Моє, твоє, наше"
+        "ru": "Паспорт на стойке",
+        "uk": "Паспорт на стійці"
       },
       "bodyByLocale": {
-        "ru": "`charger` — «зарядка», `pocket` — «карман», `backpack` — «рюкзак», `notebook` — «тетрадь». `I have your notebook` — «Твоя тетрадь у меня». `My charger is in your backpack` — «Моя зарядка в твоём рюкзаке». Перед названием вещи ставим владельца: `my` — мой, `your` — твой / ваш, `our` — наш, `their` — их. Перед этими словами не нужны `a` и `the`.",
-        "uk": "`charger` — «зарядка», `pocket` — «кишеня», `backpack` — «рюкзак», `notebook` — «зошит». `I have your notebook` — «Твій зошит у мене». `My charger is in your backpack` — «Моя зарядка у твоєму рюкзаку». Перед назвою речі ставимо власника: `my` — мій, `your` — твій / ваш, `our` — наш, `their` — їхній. Перед цими словами не потрібні `a` і `the`."
+        "ru": "В аэропорту сотрудница на стойке просит ваш документ для поездки. Вы проверяете карманы и вспоминаете: он лежит в сумке. passport — «паспорт». Говорим о себе, поэтому my: My passport is in my bag — «Мой паспорт в моей сумке». Паспорт один, значит, is.",
+        "uk": "В аеропорту співробітниця на стійці просить ваш документ для поїздки. Ви перевіряєте кишені й згадуєте: він лежить у сумці. passport — «паспорт». Говоримо про себе, тому my: My passport is in my bag — «Мій паспорт у моїй сумці». Паспорт один, отже, is."
       },
       "question": {
         "interactionId": "en:lesson-05:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Тетрадь собеседника у вас. Выберите фразу.",
-          "uk": "Зошит співрозмовника у вас. Виберіть фразу."
+          "ru": "Сотрудница просит паспорт. Он в вашей сумке. Скажите ей: «Мой паспорт в моей сумке».",
+          "uk": "Співробітниця просить паспорт. Він у вашій сумці. Скажіть їй: «Мій паспорт у моїй сумці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-16:intro1:r1",
-              "text": "I have your notebook."
+              "text": "My passport is in my bag."
             },
             {
               "responseId": "en:lesson-05:session-16:intro1:r2",
-              "text": "I have my notebook."
+              "text": "My passport is on my bag."
             },
             {
               "responseId": "en:lesson-05:session-16:intro1:r3",
-              "text": "I has your notebook."
+              "text": "Your passport is in my bag."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-16:intro1:r1",
-              "text": "I have your notebook."
+              "text": "My passport is in my bag."
             },
             {
               "responseId": "en:lesson-05:session-16:intro1:r2",
-              "text": "I have my notebook."
+              "text": "My passport is on my bag."
             },
             {
               "responseId": "en:lesson-05:session-16:intro1:r3",
-              "text": "I has your notebook."
+              "text": "Your passport is in my bag."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Тетрадь собеседника у вас. Выберите фразу.",
-          "uk": "Зошит співрозмовника у вас. Виберіть фразу."
+          "ru": "Сотрудница просит паспорт. Он в вашей сумке. Скажите ей: «Мой паспорт в моей сумке».",
+          "uk": "Співробітниця просить паспорт. Він у вашій сумці. Скажіть їй: «Мій паспорт у моїй сумці»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "У кого что лежит",
-        "uk": "У кого що лежить"
+        "ru": "Очки для брата",
+        "uk": "Окуляри для брата"
       },
       "bodyByLocale": {
-        "ru": "`umbrella` — «зонт», `suitcase` — «чемодан», `helmet` — «шлем». `Her umbrella is in his suitcase` — «Её зонт в его чемодане». `his` — его, `her` — её: выбирайте по владельцу. `Where is my helmet?` — «Где мой шлем?» Сначала `Where is`, потом одна вещь. Если шлем уже на голове, поиски по комнате можно заканчивать.",
-        "uk": "`umbrella` — «парасоля», `suitcase` — «валіза», `helmet` — «шолом». `Her umbrella is in his suitcase` — «Її парасоля в його валізі». `his` — його, `her` — її: вибирайте за власником. `Where is my helmet?` — «Де мій шолом?» Спочатку `Where is`, потім одна річ. Якщо шолом уже на голові, пошуки по кімнаті можна закінчувати."
+        "ru": "Брат ждёт у выхода на посадку и щурится от яркого солнца. Его очки от солнца вы убрали к себе в рюкзак ещё дома. sunglasses — «солнечные очки», это пара, поэтому are: Your sunglasses are in my backpack — «Твои солнечные очки в моём рюкзаке».",
+        "uk": "Брат чекає біля виходу на посадку й мружиться від яскравого сонця. Його окуляри від сонця ви поклали до себе в рюкзак ще вдома. sunglasses — «сонцезахисні окуляри», це пара, тому are: Your sunglasses are in my backpack — «Твої сонцезахисні окуляри в моєму рюкзаку»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите, где ваш шлем.",
-          "uk": "Запитайте, де ваш шолом."
+          "ru": "Брат щурится на солнце. Его солнечные очки у вас в рюкзаке. Скажите ему, что они там.",
+          "uk": "Брат мружиться на сонці. Його сонцезахисні окуляри у вас у рюкзаку. Скажіть йому, що вони там."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-16:intro2:r1",
-              "text": "Where is my helmet?"
+              "text": "Your sunglasses are in my backpack."
             },
             {
               "responseId": "en:lesson-05:session-16:intro2:r2",
-              "text": "Where my helmet is?"
+              "text": "Your sunglasses is in my backpack."
             },
             {
               "responseId": "en:lesson-05:session-16:intro2:r3",
-              "text": "Where are my helmet?"
+              "text": "My sunglasses are in your backpack."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-16:intro2:r1",
-              "text": "Where is my helmet?"
+              "text": "Your sunglasses are in my backpack."
             },
             {
               "responseId": "en:lesson-05:session-16:intro2:r2",
-              "text": "Where my helmet is?"
+              "text": "Your sunglasses is in my backpack."
             },
             {
               "responseId": "en:lesson-05:session-16:intro2:r3",
-              "text": "Where are my helmet?"
+              "text": "My sunglasses are in your backpack."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где ваш шлем.",
-          "uk": "Запитайте, де ваш шолом."
+          "ru": "Брат щурится на солнце. Его солнечные очки у вас в рюкзаке. Скажите ему, что они там.",
+          "uk": "Брат мружиться на сонці. Його сонцезахисні окуляри у вас у рюкзаку. Скажіть йому, що вони там."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что есть в отеле",
-        "uk": "Що є в готелі"
+        "ru": "Сандалии пропали",
+        "uk": "Сандалі зникли"
       },
       "bodyByLocale": {
-        "ru": "`swimming pool` — «бассейн». `Our hotel has a swimming pool` — «У нашего отеля есть бассейн». Один отель, как `it`, требует `has`. Если бассейна нет: `There isn’t a swimming pool`. Если в комнате нет ни одной зарядки: `There aren’t any chargers`. `its` без апострофа относится к предмету или месту, названному `it`: `its swimming pool` — «его бассейн», если речь об отеле.",
-        "uk": "`swimming pool` — «басейн». `Our hotel has a swimming pool` — «У нашого готелю є басейн». Один готель, як `it`, потребує `has`. Якщо басейну немає: `There isn’t a swimming pool`. Якщо в кімнаті немає жодної зарядки: `There aren’t any chargers`. `its` без апострофа стосується предмета чи місця, названого `it`: `its swimming pool` — «його басейн», якщо йдеться про готель."
+        "ru": "Сестра собирала общую сумку на всех, а ваших сандалий в ней что-то не видно. sandals — «сандалии», летняя обувь с открытым верхом. Это пара, поэтому are. Спросите сестру: Where are my sandals? — «Где мои сандалии?» Про её сандалии спросили бы Where are your sandals?",
+        "uk": "Сестра збирала спільну сумку на всіх, а ваших сандалів у ній щось не видно. sandals — «сандалі», літнє взуття з відкритим верхом. Це пара, тому are. Спитайте сестру: Where are my sandals? — «Де мої сандалі?» Про її сандалі спитали б Where are your sandals?"
       },
       "question": {
         "interactionId": "en:lesson-05:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "У нашего отеля есть бассейн. Выберите фразу.",
-          "uk": "У нашого готелю є басейн. Виберіть фразу."
+          "ru": "Сестра собирала сумку, а ваших сандалий не видно. Спросите её, где ваши сандалии.",
+          "uk": "Сестра збирала сумку, а ваших сандалів не видно. Спитайте її, де ваші сандалі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-16:intro3:r1",
-              "text": "Our hotel has a swimming pool."
+              "text": "Where are my sandals?"
             },
             {
               "responseId": "en:lesson-05:session-16:intro3:r2",
-              "text": "Our hotel have a swimming pool."
+              "text": "Where is my sandals?"
             },
             {
               "responseId": "en:lesson-05:session-16:intro3:r3",
-              "text": "Our hotel is a swimming pool."
+              "text": "Where are your sandals?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-16:intro3:r1",
-              "text": "Our hotel has a swimming pool."
+              "text": "Where are my sandals?"
             },
             {
               "responseId": "en:lesson-05:session-16:intro3:r2",
-              "text": "Our hotel have a swimming pool."
+              "text": "Where is my sandals?"
             },
             {
               "responseId": "en:lesson-05:session-16:intro3:r3",
-              "text": "Our hotel is a swimming pool."
+              "text": "Where are your sandals?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У нашего отеля есть бассейн. Выберите фразу.",
-          "uk": "У нашого готелю є басейн. Виберіть фразу."
+          "ru": "Сестра собирала сумку, а ваших сандалий не видно. Спросите её, где ваши сандалии.",
+          "uk": "Сестра збирала сумку, а ваших сандалів не видно. Спитайте її, де ваші сандалі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "78315230a6c243292cc5700d59f6f8742e4d1235f9d43c3ca10dfeb737c53bd0"
+  "introFingerprint": "c19793c634c64f92639d30c58dff9325f8a1b026f3896fc43b317488787998db"
 }

@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-15:word:beard",
+    "correctText": "beard",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-15:i01",
-    "correctText": "It is easy.",
+    "correctText": "His beard is grey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:word:ponytail",
+    "correctText": "ponytail",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i02",
-    "correctText": "helmet",
+    "correctText": "She has a ponytail.",
     "correctResponseId": "en:lesson-05:session-15:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-15:word:jacket",
+    "correctText": "jacket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-15:i03",
-    "correctText": "helmet",
+    "correctText": "jacket",
     "correctResponseId": "en:lesson-05:session-15:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-15:i04",
-    "correctText": "en:lesson-05:session-15:i04:p1=helmet\nen:lesson-05:session-15:i04:p2=easy\nen:lesson-05:session-15:i04:p3=difficult\nen:lesson-05:session-15:i04:p4=important",
+    "correctText": "en:lesson-05:session-15:i04:p1=beard\nen:lesson-05:session-15:i04:p2=ponytail\nen:lesson-05:session-15:i04:p3=jacket\nen:lesson-05:session-15:i04:p4=cap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-15:word:cap",
+    "correctText": "cap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i05",
-    "correctText": "This is my helmet.",
+    "correctText": "His cap is on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i06",
-    "correctText": "Her helmet is next to his coat.",
+    "correctText": "Her cap is red.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i07",
-    "correctText": "It's difficult.",
+    "correctText": "He has a beard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i08",
-    "correctText": "important",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-15:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-15:i09",
-    "correctText": "Their remote is on the table.",
+    "correctText": "My jacket is green.",
     "correctResponseId": "en:lesson-05:session-15:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-15:i10",
-    "correctText": "en:lesson-05:session-15:i10:p1=helmet\nen:lesson-05:session-15:i10:p2=coat\nen:lesson-05:session-15:i10:p3=gym\nen:lesson-05:session-15:i10:p4=remote",
+    "correctText": "en:lesson-05:session-15:i10:p1=beard\nen:lesson-05:session-15:i10:p2=jacket\nen:lesson-05:session-15:i10:p3=coat\nen:lesson-05:session-15:i10:p4=hat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i11",
-    "correctText": "Our gym is open.",
+    "correctText": "Her jacket is on the bench.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i12",
-    "correctText": "His coat is here.",
+    "correctText": "Their jackets are blue.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i13",
-    "correctText": "I have your helmet.",
+    "correctText": "My cap is blue.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i14",
-    "correctText": "is",
+    "correctText": "Her",
     "correctResponseId": "en:lesson-05:session-15:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-15:i15",
-    "correctText": "Your helmet is here.",
+    "correctText": "He has a cap and a jacket.",
     "correctResponseId": "en:lesson-05:session-15:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-15:i16",
-    "correctText": "en:lesson-05:session-15:i16:p1=helmet\nen:lesson-05:session-15:i16:p2=coat\nen:lesson-05:session-15:i16:p3=gym\nen:lesson-05:session-15:i16:p4=remote",
+    "correctText": "en:lesson-05:session-15:i16:p1=beard\nen:lesson-05:session-15:i16:p2=ponytail\nen:lesson-05:session-15:i16:p3=jacket\nen:lesson-05:session-15:i16:p4=cap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-15:i17",
-    "correctText": "The helmet is next to your coat.",
+    "correctText": "He has a beard and a cap.",
     "correctResponseId": null
   }
 ]

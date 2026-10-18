@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-09:word:mug",
+    "correctText": "mug",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-09:i01",
-    "correctText": "Our dentist is young.",
+    "correctText": "Your mug is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:word:lunchbox",
+    "correctText": "lunchbox",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i02",
-    "correctText": "charger",
+    "correctText": "Her lunchbox is on the shelf.",
     "correctResponseId": "en:lesson-05:session-09:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-09:word:printer",
+    "correctText": "printer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-09:i03",
-    "correctText": "charger",
+    "correctText": "printer",
     "correctResponseId": "en:lesson-05:session-09:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-09:i04",
-    "correctText": "en:lesson-05:session-09:i04:p1=charger\nen:lesson-05:session-09:i04:p2=tall\nen:lesson-05:session-09:i04:p3=short\nen:lesson-05:session-09:i04:p4=young",
+    "correctText": "en:lesson-05:session-09:i04:p1=mug\nen:lesson-05:session-09:i04:p2=lunchbox\nen:lesson-05:session-09:i04:p3=printer\nen:lesson-05:session-09:i04:p4=stapler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-09:word:stapler",
+    "correctText": "stapler",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i05",
-    "correctText": "This is my charger.",
+    "correctText": "My stapler is in your drawer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i06",
-    "correctText": "I have your charger.",
+    "correctText": "His stapler is on my desk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i07",
-    "correctText": "Her dentist is tall.",
+    "correctText": "This is my mug.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i08",
-    "correctText": "his",
+    "correctText": "Our",
     "correctResponseId": "en:lesson-05:session-09:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-09:i09",
-    "correctText": "Their door is open.",
+    "correctText": "Their stapler is on the chair.",
     "correctResponseId": "en:lesson-05:session-09:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-09:i10",
-    "correctText": "en:lesson-05:session-09:i10:p1=charger\nen:lesson-05:session-09:i10:p2=door\nen:lesson-05:session-09:i10:p3=dentist\nen:lesson-05:session-09:i10:p4=have",
+    "correctText": "en:lesson-05:session-09:i10:p1=stapler\nen:lesson-05:session-09:i10:p2=printer\nen:lesson-05:session-09:i10:p3=fridge\nen:lesson-05:session-09:i10:p4=shelf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i11",
-    "correctText": "We have their charger.",
+    "correctText": "Their lunchbox is in the fridge.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i12",
-    "correctText": "His dentist is short.",
+    "correctText": "Your lunchbox is behind the printer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i13",
-    "correctText": "This is our charger.",
+    "correctText": "Your lunchbox is in the fridge.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i14",
-    "correctText": "Its",
+    "correctText": "her",
     "correctResponseId": "en:lesson-05:session-09:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-09:i15",
-    "correctText": "Her charger is here.",
+    "correctText": "Your mug is on my desk.",
     "correctResponseId": "en:lesson-05:session-09:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-09:i16",
-    "correctText": "en:lesson-05:session-09:i16:p1=charger\nen:lesson-05:session-09:i16:p2=door\nen:lesson-05:session-09:i16:p3=dentist\nen:lesson-05:session-09:i16:p4=have",
+    "correctText": "en:lesson-05:session-09:i16:p1=mug\nen:lesson-05:session-09:i16:p2=lunchbox\nen:lesson-05:session-09:i16:p3=printer\nen:lesson-05:session-09:i16:p4=stapler",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-09:i17",
-    "correctText": "I have your charger.",
+    "correctText": "This is our printer.",
     "correctResponseId": null
   }
 ]

@@ -4,27 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-02:i01",
+      "interactionId": "en:lesson-05:session-02:word:baby",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — baby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-02:word:baby:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — baby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-02:word:baby:audio",
+          "transcript": "baby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-02:word:baby:r1",
+            "targetText": "baby",
+            "meaningByLocale": {
+              "ru": "малыш, младенец. She has a baby. — «У неё есть малыш». О совсем маленьком ребёнке, которого носят на руках.",
+              "uk": "малюк, немовля. She has a baby. — «У неї є малюк». Про зовсім маленьку дитину, яку носять на руках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baby",
+          "definitionByLocale": {
+            "ru": "малыш, младенец. She has a baby. — «У неё есть малыш». О совсем маленьком ребёнке, которого носят на руках.",
+            "uk": "малюк, немовля. She has a baby. — «У неї є малюк». Про зовсім маленьку дитину, яку носять на руках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-02:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я устал» без сокращения",
+      "prompt": "Администратор спрашивает, что с гостьей. Скажите ему полной фразой: «У неё есть малыш»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я устал» без сокращения",
+      "accessibilityLabel": "Администратор спрашивает, что с гостьей. Скажите ему полной фразой: «У неё есть малыш»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am tired.",
+        "targetPhrase": "She has a baby.",
         "localizedMeaning": {
-          "ru": "Скажите «Я устал» без сокращения",
-          "uk": "Скажіть «Я втомився» без скорочення"
+          "ru": "Администратор спрашивает, что с гостьей. Скажите ему полной фразой: «У неё есть малыш»",
+          "uk": "Адміністратор питає, що з гостею. Скажіть йому повною фразою: «У неї є малюк»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "tired"
+          "She",
+          "has",
+          "a",
+          "baby"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -33,10 +77,10 @@
           {
             "responseId": "en:lesson-05:session-02:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Я устал» без сокращения",
+            "testedDimension": "Администратор спрашивает, что с гостьей. Скажите ему полной фразой: «У неё есть малыш»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am tired.`",
-              "uk": "тут потрібно `am` — `I am tired.`"
+              "ru": "здесь нужно `has` — `She has a baby.`",
+              "uk": "тут потрібно `has` — `She has a baby.`"
             }
           }
         ],
@@ -49,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, у кого что есть",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-02:i02:r1",
-          "text": "He has an apple."
+          "text": "I am tired."
         },
         {
           "responseId": "en:lesson-05:session-02:i02:r2",
-          "text": "He has an orange."
+          "text": "I am sad."
         },
         {
           "responseId": "en:lesson-05:session-02:i02:r3",
-          "text": "She has an apple."
+          "text": "We are tired."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-02:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, у кого что есть",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-02:i02:audio",
-          "transcript": "He has an apple."
+          "transcript": "I am tired."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-02:i02:r1",
-            "targetText": "He has an apple.",
+            "targetText": "I am tired.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-02:i02:r2",
-            "targetText": "He has an orange.",
+            "targetText": "I am sad.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-02:i02:r3",
-            "targetText": "She has an apple.",
+            "targetText": "We are tired.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +146,19 @@
           {
             "responseId": "en:lesson-05:session-02:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, у кого что есть",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `apple`, а в этом варианте — `orange`.",
-              "uk": "У записі останнє слово — `apple`, а в цьому варіанті — `orange`."
+              "ru": "В записи последнее слово — `tired`, а в этом варианте — `sad`.",
+              "uk": "У записі останнє слово — `tired`, а в цьому варіанті — `sad`."
             }
           },
           {
             "responseId": "en:lesson-05:session-02:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, у кого что есть",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
-              "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
+              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
             }
           }
         ],
@@ -124,68 +168,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-02:word:dog",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-02:word:dog:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-02:word:dog:audio",
+          "transcript": "dog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-02:word:dog:r1",
+            "targetText": "dog",
+            "meaningByLocale": {
+              "ru": "собака. The hotel has a dog. — «У отеля есть собака». О домашнем животном, которое лает и охраняет двор.",
+              "uk": "собака. The hotel has a dog. — «У готелю є собака». Про домашню тварину, яка гавкає й охороняє двір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dog",
+          "definitionByLocale": {
+            "ru": "собака. The hotel has a dog. — «У отеля есть собака». О домашнем животном, которое лает и охраняет двор.",
+            "uk": "собака. The hotel has a dog. — «У готелю є собака». Про домашню тварину, яка гавкає й охороняє двір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-02:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подруга устала. Выберите форму",
+      "prompt": "Друг показывает на сад отеля, где лежит собака. Выберите форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-02:i03:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-05:session-02:i03:r2",
           "text": "has"
         },
         {
+          "responseId": "en:lesson-05:session-02:i03:r2",
+          "text": "have"
+        },
+        {
           "responseId": "en:lesson-05:session-02:i03:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга устала. Выберите форму",
+      "accessibilityLabel": "Друг показывает на сад отеля, где лежит собака. Выберите форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подруга устала. Выберите форму",
-          "uk": "Подруга втомилася. Виберіть форму"
+          "ru": "Друг показывает на сад отеля, где лежит собака. Выберите форму",
+          "uk": "Друг показує на сад готелю, де лежить собака. Виберіть форму"
         },
-        "gappedTargetPhrase": "She ___ tired.",
+        "gappedTargetPhrase": "The hotel ___ a dog.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-02:i03:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-05:session-02:i03:r2",
             "text": "has"
           },
           {
+            "responseId": "en:lesson-05:session-02:i03:r2",
+            "text": "have"
+          },
+          {
             "responseId": "en:lesson-05:session-02:i03:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Подруга устала. Выберите форму",
+        "testedDimension": "Друг показывает на сад отеля, где лежит собака. Выберите форму",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Подруга устала. Выберите форму",
+            "testedDimension": "Друг показывает на сад отеля, где лежит собака. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Здесь состояние: `She is tired`.",
-              "uk": "Тут стан: `She is tired`."
+              "ru": "Отель один, как it: нужно has.",
+              "uk": "Готель один, як it: потрібно has."
             }
           },
           {
             "responseId": "en:lesson-05:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Подруга устала. Выберите форму",
+            "testedDimension": "Друг показывает на сад отеля, где лежит собака. Выберите форму",
             "feedbackByLocale": {
-              "ru": "С `She` нужно `is`.",
-              "uk": "З `She` потрібне `is`."
+              "ru": "The hotel is a dog значило бы «Отель — собака». У отеля есть собака — The hotel has a dog.",
+              "uk": "The hotel is a dog означало б «Готель — собака». У готелю є собака — The hotel has a dog."
             }
           }
         ]
@@ -194,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +295,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-02:i04:p1",
-            "target": "sad",
+            "target": "baby",
             "meaningByLocale": {
-              "ru": "грустный",
-              "uk": "сумний"
+              "ru": "малыш, младенец",
+              "uk": "малюк, немовля"
             }
           },
           {
             "pairId": "en:lesson-05:session-02:i04:p2",
-            "target": "tired",
+            "target": "dog",
             "meaningByLocale": {
-              "ru": "усталый",
-              "uk": "утомлений"
+              "ru": "собака",
+              "uk": "собака"
             }
           },
           {
             "pairId": "en:lesson-05:session-02:i04:p3",
-            "target": "apple",
+            "target": "cat",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "кот, кошка",
+              "uk": "кіт, кішка"
             }
           },
           {
             "pairId": "en:lesson-05:session-02:i04:p4",
-            "target": "hotel",
+            "target": "bird",
             "meaningByLocale": {
-              "ru": "отель",
-              "uk": "готель"
+              "ru": "птица",
+              "uk": "птах"
             }
           }
         ],
         "leftColumn": [
-          "sad",
-          "tired",
-          "apple",
-          "hotel"
+          "baby",
+          "dog",
+          "cat",
+          "bird"
         ],
         "rightColumn": [
-          "грустный",
-          "усталый",
-          "яблоко",
-          "отель"
+          "малыш, младенец",
+          "собака",
+          "кот, кошка",
+          "птица"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +353,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-02:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-05:session-02:word:cat",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-02:word:cat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-02:word:cat:audio",
+          "transcript": "cat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-02:word:cat:r1",
+            "targetText": "cat",
+            "meaningByLocale": {
+              "ru": "кот, кошка. He has a cat. — «У него есть кот». О домашнем животном, которое мурлычет и ловит мышей.",
+              "uk": "кіт, кішка. He has a cat. — «У нього є кіт». Про домашню тварину, яка мурличе й ловить мишей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cat",
+          "definitionByLocale": {
+            "ru": "кот, кошка. He has a cat. — «У него есть кот». О домашнем животном, которое мурлычет и ловит мышей.",
+            "uk": "кіт, кішка. He has a cat. — «У нього є кіт». Про домашню тварину, яка мурличе й ловить мишей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-02:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-02:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-02:i05:audio",
-          "transcript": "I have an apple."
+          "transcript": "He has a cat."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have an apple.",
+        "hiddenTargetPhrase": "He has a cat.",
         "orderedTokens": [
-          "I",
-          "have",
-          "an",
-          "apple"
+          "He",
+          "has",
+          "a",
+          "cat"
         ],
         "authoredDistractorTokens": [
-          "a"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-02:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `an` — `I have an apple.`",
-              "uk": "тут потрібно `an` — `I have an apple.`"
+              "ru": "здесь нужно `has` — `He has a cat.`",
+              "uk": "тут потрібно `has` — `He has a cat.`"
             }
           }
         ],
@@ -314,32 +444,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-02:word:bird",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bird",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-02:word:bird:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bird",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-02:word:bird:audio",
+          "transcript": "bird"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-02:word:bird:r1",
+            "targetText": "bird",
+            "meaningByLocale": {
+              "ru": "птица. The garden has a bird. — «В саду есть птица». О животном с крыльями и перьями, которое умеет летать и петь.",
+              "uk": "птах. The garden has a bird. — «У саду є птах». Про тварину з крилами й пір’ям, яка вміє літати й співати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bird",
+          "definitionByLocale": {
+            "ru": "птица. The garden has a bird. — «В саду есть птица». О животном с крыльями и перьями, которое умеет летать и петь.",
+            "uk": "птах. The garden has a bird. — «У саду є птах». Про тварину з крилами й пір’ям, яка вміє літати й співати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-02:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У отеля есть сад. Сообщите об этом",
+      "prompt": "Друг спрашивает, какие животные живут при отеле. Скажите ему полной фразой: «У отеля есть птица»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У отеля есть сад. Сообщите об этом",
+      "accessibilityLabel": "Друг спрашивает, какие животные живут при отеле. Скажите ему полной фразой: «У отеля есть птица»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The hotel has a garden.",
+        "targetPhrase": "The hotel has a bird.",
         "localizedMeaning": {
-          "ru": "У отеля есть сад. Сообщите об этом",
-          "uk": "У готелю є сад. Повідомте про це"
+          "ru": "Друг спрашивает, какие животные живут при отеле. Скажите ему полной фразой: «У отеля есть птица»",
+          "uk": "Друг питає, які тварини живуть при готелі. Скажіть йому повною фразою: «У готелю є птах»"
         },
         "orderedTokens": [
           "The",
           "hotel",
           "has",
           "a",
-          "garden"
+          "bird"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-02:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает, какие животные живут при отеле. Скажите ему полной фразой: «У отеля есть птица»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `The hotel has a bird.`",
+              "uk": "тут потрібно `has` — `The hotel has a bird.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -349,25 +534,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг грустит. Скажите «Он грустит» с сокращением",
+      "prompt": "Друг грустит на скамейке. Скажите «Он грустит» с сокращением",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-02:i07:audio"
       ],
-      "accessibilityLabel": "Друг грустит. Скажите «Он грустит» с сокращением",
+      "accessibilityLabel": "Друг грустит на скамейке. Скажите «Он грустит» с сокращением",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-02:i07:audio",
-          "transcript": "He's sad."
+          "transcript": "He’s sad."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's sad.",
+        "targetPhrase": "He’s sad.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -382,7 +567,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -432,8 +617,8 @@
             "correct": false,
             "testedDimension": "У друзей есть яблоки. Выберите форму",
             "feedbackByLocale": {
-              "ru": "С `They` нужно `have`.",
-              "uk": "З `They` потрібне `have`."
+              "ru": "С they нужно have, а не has.",
+              "uk": "З they потрібно have, а не has."
             }
           },
           {
@@ -441,8 +626,8 @@
             "correct": false,
             "testedDimension": "У друзей есть яблоки. Выберите форму",
             "feedbackByLocale": {
-              "ru": "`They are apples` — они яблоки; у них есть яблоки — `They have apples`.",
-              "uk": "`They are apples` — вони яблука; у них є яблука — `They have apples`."
+              "ru": "They are apples значило бы «Они яблоки». «У них есть яблоки» — They have apples.",
+              "uk": "They are apples означало б «Вони яблука». «У них є яблука» — They have apples."
             }
           }
         ]
@@ -451,7 +636,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -527,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -568,7 +753,7 @@
             "target": "tired",
             "meaningByLocale": {
               "ru": "усталый",
-              "uk": "утомлений"
+              "uk": "втомлений"
             }
           }
         ],
@@ -600,17 +785,17 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте администратора и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-02:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте администратора и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -632,7 +817,7 @@
           {
             "responseId": "en:lesson-05:session-02:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте администратора и соберите фразу",
             "feedbackByLocale": {
               "ru": "здесь нужно `an` — `She has an apple.`",
               "uk": "тут потрібно `an` — `She has an apple.`"
@@ -648,29 +833,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У вас с другом есть яблоки. Скажите «У нас есть яблоки»",
+      "prompt": "Вы с подругой гладите собаку во дворе. Скажите администратору: «У нас есть собака»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У вас с другом есть яблоки. Скажите «У нас есть яблоки»",
+      "accessibilityLabel": "Вы с подругой гладите собаку во дворе. Скажите администратору: «У нас есть собака»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have apples.",
+        "targetPhrase": "We have a dog.",
         "localizedMeaning": {
-          "ru": "У вас с другом есть яблоки. Скажите «У нас есть яблоки»",
-          "uk": "У вас із другом є яблука. Скажіть «У нас є яблука»"
+          "ru": "Вы с подругой гладите собаку во дворе. Скажите администратору: «У нас есть собака»",
+          "uk": "Ви з подругою гладите собаку у дворі. Скажіть адміністратору: «У нас є собака»"
         },
         "orderedTokens": [
           "We",
           "have",
-          "apples"
+          "a",
+          "dog"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-02:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы с подругой гладите собаку во дворе. Скажите администратору: «У нас есть собака»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `We have a dog.`",
+              "uk": "тут потрібно `have` — `We have a dog.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -680,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сад рядом с рекой. Скажите, где сад",
+      "prompt": "Вы устали после дороги. Скажите «Я устал» без сокращения",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-02:i13:audio"
       ],
-      "accessibilityLabel": "Сад рядом с рекой. Скажите, где сад",
+      "accessibilityLabel": "Вы устали после дороги. Скажите «Я устал» без сокращения",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-02:i13:audio",
-          "transcript": "The garden is next to the river."
+          "transcript": "I am tired."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The garden is next to the river.",
+        "targetPhrase": "I am tired.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -713,8 +911,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "У отеля есть сад. Выберите форму",
@@ -763,8 +961,8 @@
             "correct": false,
             "testedDimension": "У отеля есть сад. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Один отель: `has`, как с `it`.",
-              "uk": "Один готель: `has`, як з `it`."
+              "ru": "Отель один, как it: нужно has.",
+              "uk": "Готель один, як it: потрібно has."
             }
           },
           {
@@ -772,8 +970,8 @@
             "correct": false,
             "testedDimension": "У отеля есть сад. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Речь о том, что есть у отеля: `has a garden`.",
-              "uk": "Ідеться про те, що є в готелю: `has a garden`."
+              "ru": "Речь о том, что есть у отеля: has a garden.",
+              "uk": "Мова про те, що є в готелю: has a garden."
             }
           }
         ]
@@ -782,7 +980,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -858,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -931,17 +1129,17 @@
     },
     {
       "interactionId": "en:lesson-05:session-02:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг выбирает место для отдыха. Сообщите ему одним предложением: «У отеля есть сад»",
+      "prompt": "Друг выбирает место для отдыха. Скажите ему: «У отеля есть сад»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-02:i17:audio"
       ],
-      "accessibilityLabel": "Друг выбирает место для отдыха. Сообщите ему одним предложением: «У отеля есть сад»",
+      "accessibilityLabel": "Друг выбирает место для отдыха. Скажите ему: «У отеля есть сад»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -971,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d49addc35aded69b1de525a02f63e70412bdcd6aaa4ec260ba4a9bc0d01c2a60"
+  "learnerFingerprint": "6bcf45ffb29fe62c9847f63db23a72cd8a1803fcb517a7097ceb53f3844e523f"
 }

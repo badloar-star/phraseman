@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-15",
   "learningOutcomeByLocale": {
-    "ru": "назвать шлем и уточнить, кому принадлежит снаряжение",
-    "uk": "назвати шолом і уточнити, кому належить спорядження"
+    "ru": "описать человека двумя способами: «у него есть» (has a) и «его вещь такая» (His … is)",
+    "uk": "описати людину двома способами: «у нього є» (has a) і «його річ така» (His … is)"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для головы",
-        "uk": "Для голови"
+        "ru": "Друг с бородой",
+        "uk": "Друг із бородою"
       },
       "bodyByLocale": {
-        "ru": "`helmet` — «шлем»: защищает голову, например при езде на велосипеде. `my helmet` — «мой шлем», `your helmet` — «твой / ваш шлем». `This is my helmet` — «Это мой шлем». Шлем на полке хорошо защищает полку; перед поездкой ему лучше быть на голове. Перед `my helmet` не ставим `a` или `the`.",
-        "uk": "`helmet` — «шолом»: захищає голову, наприклад під час їзди велосипедом. `my helmet` — «мій шолом», `your helmet` — «твій / ваш шолом». `This is my helmet` — «Це мій шолом». Шолом на полиці добре захищає полицю; перед поїздкою йому краще бути на голові. Перед `my helmet` не ставимо `a` чи `the`."
+        "ru": "Вы потеряли друга в толпе на вокзале, и дежурный просит рассказать, как он выглядит. У вашего друга густая борода. beard — «борода». Чтобы сказать «у него есть», берём has: He has a beard — «У него борода». С he нужно has, не have. Борода одна, поэтому a beard.",
+        "uk": "Ви загубили друга в натовпі на вокзалі, і черговий просить розповісти, який він на вигляд. У вашого друга густа борода. beard — «борода». Щоб сказати «у нього є», беремо has: He has a beard — «У нього борода». З he потрібно has, не have. Борода одна, тому a beard."
       },
       "question": {
         "interactionId": "en:lesson-05:session-15:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите свой шлем.",
-          "uk": "Покажіть свій шолом."
+          "ru": "Дежурный просит описать вашего друга. У него борода. Скажите ему: «У него борода».",
+          "uk": "Черговий просить описати вашого друга. У нього борода. Скажіть йому: «У нього борода»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-15:intro1:r1",
-              "text": "This is my helmet."
+              "text": "He has a beard."
             },
             {
               "responseId": "en:lesson-05:session-15:intro1:r2",
-              "text": "This is a my helmet."
+              "text": "He have a beard."
             },
             {
               "responseId": "en:lesson-05:session-15:intro1:r3",
-              "text": "This is your helmet."
+              "text": "He is a beard."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-15:intro1:r1",
-              "text": "This is my helmet."
+              "text": "He has a beard."
             },
             {
               "responseId": "en:lesson-05:session-15:intro1:r2",
-              "text": "This is a my helmet."
+              "text": "He have a beard."
             },
             {
               "responseId": "en:lesson-05:session-15:intro1:r3",
-              "text": "This is your helmet."
+              "text": "He is a beard."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите свой шлем.",
-          "uk": "Покажіть свій шолом."
+          "ru": "Дежурный просит описать вашего друга. У него борода. Скажите ему: «У него борода».",
+          "uk": "Черговий просить описати вашого друга. У нього борода. Скажіть йому: «У нього борода»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Легко, сложно, важно",
-        "uk": "Легко, складно, важливо"
+        "ru": "Хвост у сестры",
+        "uk": "Хвіст у сестри"
       },
       "bodyByLocale": {
-        "ru": "`easy` — «лёгкий» по сложности, `difficult` — «сложный», `important` — «важный». `It is easy` — «Это легко», `It is difficult` — «Это сложно», `It is important` — «Это важно». Здесь `easy` не означает «мало весит»: речь о том, насколько трудно что-то сделать.",
-        "uk": "`easy` — «легкий» за складністю, `difficult` — «складний», `important` — «важливий». `It is easy` — «Це легко», `It is difficult` — «Це складно», `It is important` — «Це важливо». Тут `easy` не означає «мало важить»: ідеться про те, наскільки важко щось зробити."
+        "ru": "Теперь дежурный спрашивает про вашу сестру, которая тоже потерялась. Волосы у неё собраны высоко на затылке. ponytail — «хвост на голове (причёска)». Теперь не «у неё есть», а «её хвост какой»: Her ponytail is long — «Её хвост длинный». Перед ponytail нужно her, не she.",
+        "uk": "Тепер черговий питає про вашу сестру, яка теж загубилася. Волосся в неї зібране високо на потилиці. ponytail — «хвіст на голові (зачіска)». Тепер не «у неї є», а «її хвіст який»: Her ponytail is long — «Її хвіст довгий». Перед ponytail потрібно her, не she."
       },
       "question": {
         "interactionId": "en:lesson-05:session-15:intro2:q",
         "promptByLocale": {
-          "ru": "Вы легко справились с заданием. Скажите «Это легко» без сокращения.",
-          "uk": "Ви легко впоралися із завданням. Скажіть «Це легко» без скорочення."
+          "ru": "Дежурный спрашивает про волосы вашей сестры. Хвост у неё длинный. Скажите ему: «Её хвост длинный».",
+          "uk": "Черговий питає про волосся вашої сестри. Хвіст у неї довгий. Скажіть йому: «Її хвіст довгий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-15:intro2:r1",
-              "text": "It is easy."
+              "text": "Her ponytail is long."
             },
             {
               "responseId": "en:lesson-05:session-15:intro2:r2",
-              "text": "It is difficult."
+              "text": "She ponytail is long."
             },
             {
               "responseId": "en:lesson-05:session-15:intro2:r3",
-              "text": "It are easy."
+              "text": "Her ponytail are long."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-15:intro2:r1",
-              "text": "It is easy."
+              "text": "Her ponytail is long."
             },
             {
               "responseId": "en:lesson-05:session-15:intro2:r2",
-              "text": "It is difficult."
+              "text": "She ponytail is long."
             },
             {
               "responseId": "en:lesson-05:session-15:intro2:r3",
-              "text": "It are easy."
+              "text": "Her ponytail are long."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы легко справились с заданием. Скажите «Это легко» без сокращения.",
-          "uk": "Ви легко впоралися із завданням. Скажіть «Це легко» без скорочення."
+          "ru": "Дежурный спрашивает про волосы вашей сестры. Хвост у неё длинный. Скажите ему: «Её хвост длинный».",
+          "uk": "Черговий питає про волосся вашої сестри. Хвіст у неї довгий. Скажіть йому: «Її хвіст довгий»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пальто, зал и пульт",
-        "uk": "Пальто, зал і пульт"
+        "ru": "Моя куртка",
+        "uk": "Моя куртка"
       },
       "bodyByLocale": {
-        "ru": "`coat` — «пальто», `gym` — «тренажёрный зал», `remote` — «пульт». `Her helmet is next to his coat` — «Её шлем рядом с его пальто»: владельцы могут быть разными. `Our gym is open` — «Наш тренажёрный зал открыт». `Their remote is on the table` — «Их пульт на столе»: несколько владельцев, один пульт, поэтому `is`.",
-        "uk": "`coat` — «пальто», `gym` — «тренажерний зал», `remote` — «пульт». `Her helmet is next to his coat` — «Її шолом поруч із його пальтом»: власники можуть бути різними. `Our gym is open` — «Наш тренажерний зал відкритий». `Their remote is on the table` — «Їхній пульт на столі»: кілька власників, один пульт, тому `is`."
+        "ru": "Дежурный нашёл на скамейке куртку и просит вас её описать, чтобы убедиться, что она ваша. Вы узнали её по цвету. jacket — «куртка». Вы говорите о себе, поэтому my: My jacket is green — «Моя куртка зелёная». Не I, а my. Куртка одна, поэтому после неё is.",
+        "uk": "Черговий знайшов на лавці куртку й просить вас її описати, щоб переконатися, що вона ваша. Ви впізнали її за кольором. jacket — «куртка». Ви говорите про себе, тому my: My jacket is green — «Моя куртка зелена». Не I, а my. Куртка одна, тому після неї is."
       },
       "question": {
         "interactionId": "en:lesson-05:session-15:intro3:q",
         "promptByLocale": {
-          "ru": "Пульт друзей на столе. Выберите фразу.",
-          "uk": "Пульт друзів на столі. Виберіть фразу."
+          "ru": "Дежурный просит описать вашу куртку. Она зелёная. Скажите ему: «Моя куртка зелёная».",
+          "uk": "Черговий просить описати вашу куртку. Вона зелена. Скажіть йому: «Моя куртка зелена»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-15:intro3:r1",
-              "text": "Their remote is on the table."
+              "text": "My jacket is green."
             },
             {
               "responseId": "en:lesson-05:session-15:intro3:r2",
-              "text": "Their remote are on the table."
+              "text": "I jacket is green."
             },
             {
               "responseId": "en:lesson-05:session-15:intro3:r3",
-              "text": "Our remote is on the table."
+              "text": "My jacket are green."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-15:intro3:r1",
-              "text": "Their remote is on the table."
+              "text": "My jacket is green."
             },
             {
               "responseId": "en:lesson-05:session-15:intro3:r2",
-              "text": "Their remote are on the table."
+              "text": "I jacket is green."
             },
             {
               "responseId": "en:lesson-05:session-15:intro3:r3",
-              "text": "Our remote is on the table."
+              "text": "My jacket are green."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Пульт друзей на столе. Выберите фразу.",
-          "uk": "Пульт друзів на столі. Виберіть фразу."
+          "ru": "Дежурный просит описать вашу куртку. Она зелёная. Скажите ему: «Моя куртка зелёная».",
+          "uk": "Черговий просить описати вашу куртку. Вона зелена. Скажіть йому: «Моя куртка зелена»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7b9c0e9161b7a686fb5f63658ff49f0b2e0ef77497c22e597e0202cf37086cdc"
+  "introFingerprint": "af51b231e5b19e2ef562e718bf57596311651ec1a77e8f5f01c09668fd039823"
 }

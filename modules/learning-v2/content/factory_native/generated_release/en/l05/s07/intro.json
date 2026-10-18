@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-07",
   "learningOutcomeByLocale": {
-    "ru": "назвать пульт и сказать, у кого он есть",
-    "uk": "назвати пульт і сказати, у кого він є"
+    "ru": "сказать, у кого есть еда, фильм или пульт, и описать, злится человек или боится",
+    "uk": "сказати, в кого є їжа, фільм або пульт, та описати, сердиться людина чи боїться"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Маленький, но главный",
-        "uk": "Маленький, але головний"
+        "ru": "Миска на диване",
+        "uk": "Миска на дивані"
       },
       "bodyByLocale": {
-        "ru": "`remote` здесь — «пульт», например от телевизора. `I have a remote` — «У меня есть пульт». Пульт маленький, но без него иногда приходится вставать с дивана — вот и вся домашняя зарядка. Один пульт — `a remote`. Если всем понятно, какой именно пульт вы ищете, говорим `the remote`: `She has the remote` — «Пульт у неё».",
-        "uk": "`remote` тут — «пульт», наприклад від телевізора. `I have a remote` — «У мене є пульт». Пульт маленький, але без нього іноді доводиться вставати з дивана — ось і вся домашня зарядка. Один пульт — `a remote`. Якщо всім зрозуміло, який саме пульт ви шукаєте, кажемо `the remote`: `She has the remote` — «Пульт у неї»."
+        "ru": "Вечером вы устроились на мягком диване смотреть фильм с друзьями. Перед вами стоит большая миска с лёгкими белыми зёрнами, которые хрустят. popcorn — «попкорн»: так называют его вообще, и a не ставят. I have popcorn — «У меня есть попкорн».",
+        "uk": "Ввечері ви влаштувалися на м’якому дивані дивитися фільм із друзями. Перед вами стоїть велика миска з легкими білими зернами, які хрумтять. popcorn — «попкорн»: так називають його взагалі, і a не ставлять. I have popcorn — «У мене є попкорн»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-07:intro1:q",
         "promptByLocale": {
-          "ru": "У вас есть один пульт. Выберите фразу.",
-          "uk": "У вас є один пульт. Виберіть фразу."
+          "ru": "Друг спрашивает, чем вы заедаете фильм. Скажите ему, что у вас есть попкорн.",
+          "uk": "Друг питає, чим ви заїдаєте фільм. Скажіть йому, що у вас є попкорн."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-07:intro1:r1",
-              "text": "I have a remote."
+              "text": "I have popcorn."
             },
             {
               "responseId": "en:lesson-05:session-07:intro1:r2",
-              "text": "I has a remote."
+              "text": "I has popcorn."
             },
             {
               "responseId": "en:lesson-05:session-07:intro1:r3",
-              "text": "I have remote."
+              "text": "I have a popcorn."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-07:intro1:r1",
-              "text": "I have a remote."
+              "text": "I have popcorn."
             },
             {
               "responseId": "en:lesson-05:session-07:intro1:r2",
-              "text": "I has a remote."
+              "text": "I has popcorn."
             },
             {
               "responseId": "en:lesson-05:session-07:intro1:r3",
-              "text": "I have remote."
+              "text": "I have a popcorn."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У вас есть один пульт. Выберите фразу.",
-          "uk": "У вас є один пульт. Виберіть фразу."
+          "ru": "Друг спрашивает, чем вы заедаете фильм. Скажите ему, что у вас есть попкорн.",
+          "uk": "Друг питає, чим ви заїдаєте фільм. Скажіть йому, що у вас є попкорн."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Злится или боится",
-        "uk": "Злиться чи боїться"
+        "ru": "Что смотреть",
+        "uk": "Що дивитися"
       },
       "bodyByLocale": {
-        "ru": "`angry` — «злой, сердитый», `scared` — «испуганный». `He is angry` — «Он злится». `I’m scared` — «Мне страшно». Для этих состояний нужны `am`, `is`, `are`. А чтобы сказать, у кого пульт, нужны `have` или `has`: `They have the remote` — «Пульт у них».",
-        "uk": "`angry` — «злий, сердитий», `scared` — «наляканий». `He is angry` — «Він злиться». `I’m scared` — «Мені страшно». Для цих станів потрібні `am`, `is`, `are`. А щоб сказати, у кого пульт, потрібні `have` або `has`: `They have the remote` — «Пульт у них»."
+        "ru": "Друзья спорят, что смотреть вечером, и никак не могут выбрать. Каждый предлагает своё, и спор затягивается. Подруга молча достаёт старый фильм, о котором давно мечтала. film — «фильм». Про подругу говорят has: She has a film — «У неё есть фильм».",
+        "uk": "Друзі сперечаються, що дивитися ввечері, і ніяк не можуть вибрати. Кожен пропонує своє, і суперечка затягується. Подруга мовчки дістає старий фільм, про який давно мріяла. film — «фільм». Про подругу кажуть has: She has a film — «У неї є фільм»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-07:intro2:q",
         "promptByLocale": {
-          "ru": "Вам страшно во время фильма. Скажите это с сокращением.",
-          "uk": "Вам страшно під час фільму. Скажіть це зі скороченням."
+          "ru": "Друг спрашивает, что будете смотреть. Скажите ему, что у подруги есть фильм.",
+          "uk": "Друг питає, що ви дивитиметеся. Скажіть йому, що в подруги є фільм."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-07:intro2:r1",
-              "text": "I'm scared."
+              "text": "She has a film."
             },
             {
               "responseId": "en:lesson-05:session-07:intro2:r2",
-              "text": "I'm angry."
+              "text": "She have a film."
             },
             {
               "responseId": "en:lesson-05:session-07:intro2:r3",
-              "text": "I have scared."
+              "text": "She is a film."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-07:intro2:r1",
-              "text": "I'm scared."
+              "text": "She has a film."
             },
             {
               "responseId": "en:lesson-05:session-07:intro2:r2",
-              "text": "I'm angry."
+              "text": "She have a film."
             },
             {
               "responseId": "en:lesson-05:session-07:intro2:r3",
-              "text": "I have scared."
+              "text": "She is a film."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам страшно во время фильма. Скажите это с сокращением.",
-          "uk": "Вам страшно під час фільму. Скажіть це зі скороченням."
+          "ru": "Друг спрашивает, что будете смотреть. Скажите ему, что у подруги есть фильм.",
+          "uk": "Друг питає, що ви дивитиметеся. Скажіть йому, що в подруги є фільм."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рядом с чашкой",
-        "uk": "Поруч із чашкою"
+        "ru": "Страшная сцена",
+        "uk": "Страшна сцена"
       },
       "bodyByLocale": {
-        "ru": "`cup` — «чашка», `playground` — «детская площадка», `shortcut` — «короткий путь». `The remote is next to the cup` — «Пульт рядом с чашкой». `The playground is next to the park` — «Детская площадка рядом с парком». Спросить о коротком пути: `Is there a shortcut?` — «Есть ли короткий путь?»",
-        "uk": "`cup` — «чашка», `playground` — «дитячий майданчик», `shortcut` — «короткий шлях». `The remote is next to the cup` — «Пульт поруч із чашкою». `The playground is next to the park` — «Дитячий майданчик поруч із парком». Запитати про короткий шлях: `Is there a shortcut?` — «Чи є короткий шлях?»"
+        "ru": "В самый страшный момент один из друзей не говорит ни слова: ему не по себе. Зато в руке он сжимает пачку чего-нибудь лёгкого, чтобы заесть страх. snack — «перекус, лёгкая закуска». Про него говорят has: He has a snack — «У него есть перекус».",
+        "uk": "У найстрашніший момент один із друзів не каже ні слова: йому не по собі. Зате в руці він стискає пачку чогось легкого, щоб заїсти страх. snack — «перекус, легка закуска». Про нього кажуть has: He has a snack — «У нього є перекус»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-07:intro3:q",
         "promptByLocale": {
-          "ru": "Пульт рядом с чашкой. Выберите описание.",
-          "uk": "Пульт поруч із чашкою. Виберіть опис."
+          "ru": "Подруга спрашивает, что у испуганного друга в руке. Скажите ей, что у него перекус.",
+          "uk": "Подруга питає, що в наляканого друга в руці. Скажіть їй, що в нього перекус."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-07:intro3:r1",
-              "text": "The remote is next to the cup."
+              "text": "He has a snack."
             },
             {
               "responseId": "en:lesson-05:session-07:intro3:r2",
-              "text": "The remote is in the cup."
+              "text": "He is a snack."
             },
             {
               "responseId": "en:lesson-05:session-07:intro3:r3",
-              "text": "The remote are next to the cup."
+              "text": "He have a snack."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-07:intro3:r1",
-              "text": "The remote is next to the cup."
+              "text": "He has a snack."
             },
             {
               "responseId": "en:lesson-05:session-07:intro3:r2",
-              "text": "The remote is in the cup."
+              "text": "He is a snack."
             },
             {
               "responseId": "en:lesson-05:session-07:intro3:r3",
-              "text": "The remote are next to the cup."
+              "text": "He have a snack."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Пульт рядом с чашкой. Выберите описание.",
-          "uk": "Пульт поруч із чашкою. Виберіть опис."
+          "ru": "Подруга спрашивает, что у испуганного друга в руке. Скажите ей, что у него перекус.",
+          "uk": "Подруга питає, що в наляканого друга в руці. Скажіть їй, що в нього перекус."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c349139036c4b341a1587166ad812b151fd7b61b42f729e72e34709f6e0fe87d"
+  "introFingerprint": "5c8a13cdddcd5adff49a2447b9e98cba0386d414fed92e684452c34528ef7264"
 }

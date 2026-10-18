@@ -1,0 +1,42 @@
+10-18 09:53:05.246 W/'[BOOTSPLASH] +1695ms [THEME-BOOT] splash-hold: первый кадр :: {"bg":"#101214"}', { [Stack] name: 'Stack' }
+10-18 09:53:05.376 W/'[BOOTSPLASH] +1826ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#101214","light":false,"source":"system","systemScheme":"dark","choiceReady":false,"theme":"graphite"}', { [Stack] name
+10-18 09:53:05.378 W/'[BOOTSPLASH] +1829ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":true,"canHideNativeSplash":false}', { [Stack] name: 'Stack' }
+10-18 09:53:05.473 W/'[BOOTSPLASH] +1901ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":false,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":false,"canHide":false,"s
+10-18 09:53:05.564 W/'[BOOTSPLASH] +2014ms bootstrap START -> ensureFreshPostDeletionIdentity', { [Stack] name: 'Stack' }
+10-18 09:53:05.595 I/[THEME-BOOT] frame {"frame":1,"msSinceBoot":3287,"systemScheme":"dark","followSystem":false,"savedTheme":"graphite","savedAppearance":"dark","chosenTheme":"graphite","chosenAppearance":"dark","choiceReady":false,"hydrat
+10-18 09:53:05.819 I/[THEME-BOOT] hydrate {"msSinceBoot":3512,"storedTheme":null,"storedAppearance":null,"storedIntensity":null,"onboardingDone":"1","followMarker":"1","bootScheme":"dark","decision":"new_user/follow_system_marker"}
+10-18 09:53:06.318 W/[BOOTSPLASH] +2770ms ensureFreshPostDeletionIdentity DONE :: {"status":"pending_auth","phase":"prepared"}
+10-18 09:53:06.319 W/[BOOTSPLASH] +2771ms runAuthRecoveryBootGate START
+10-18 09:53:06.324 W/[BOOTSPLASH] +2776ms homeScreenReady FALLBACK fired (чанк Главной не доехал за потолок)
+10-18 09:53:06.461 W/'[BOOTSPLASH] +2911ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'S
+10-18 09:53:06.463 W/'[BOOTSPLASH] +2913ms [THEME-BOOT] splash-hold: плавная смена фона :: {"from":"#101214","to":"#000F16","ms":240}', { [Stack] name: 'Stack' }
+10-18 09:53:06.473 W/'[BOOTSPLASH] +2924ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":false,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":false,"si
+10-18 09:53:06.475 I/[THEME-BOOT] frame {"frame":2,"msSinceBoot":4167,"systemScheme":"dark","followSystem":true,"savedTheme":"marine","savedAppearance":"dark","chosenTheme":"marine","chosenAppearance":"dark","choiceReady":true,"hydratedInPr
+10-18 09:53:06.587 W/'[BOOTSPLASH] +3034ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":true,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'St
+10-18 09:53:06.590 W/'[BOOTSPLASH] +3040ms splash gate :: {"fontsReady":true,"ready":false,"firstContentReady":false,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":false,"sinc
+10-18 09:53:06.597 W/[BOOTSPLASH] +3048ms runAuthRecoveryBootGate DONE :: {"result":"proceed"}
+10-18 09:53:06.598 W/[BOOTSPLASH] +3049ms getStableId START
+10-18 09:53:06.635 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":1,"sinceEntryMs":5207,"source":"emitFirstHomeFrameReady <- RN$rafFn"}'
+10-18 09:53:06.635 W/[BOOTSPLASH] +3087ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:53:06.660 W/[BOOTSPLASH] +3112ms HOME-PAINT early hide: held :: {"holding":["ready"],"fontsReady":true,"ready":false,"liquidGlassChoiceReady":true,"effectiveShowOnboarding":false,"isBanned":false}
+10-18 09:53:06.662 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":2,"sinceEntryMs":5235,"source":"RN$rafFn"}'
+10-18 09:53:06.663 W/[BOOTSPLASH] +3114ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-18 09:53:06.669 W/[BOOTSPLASH] +3121ms bootstrap DEADLINE — setReady(true) по потолку, работа идёт фоном
+10-18 09:53:06.689 W/[BOOTSPLASH] +3140ms [THEME-BOOT] SplashScreen.hideAsync() — из заставки-удержания (rAF после монтажа)
+10-18 09:53:06.694 W/[BOOTSPLASH] +3146ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":27}
+10-18 09:53:06.695 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":3,"sinceEntryMs":5268,"source":"emitFirstHomeFrameReady <- apply"}'
+10-18 09:53:06.696 W/[BOOTSPLASH] +3148ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:53:06.968 W/[BOOTSPLASH] +3420ms getStableId DONE
+10-18 09:53:06.989 W/[BOOTSPLASH] +3440ms startupLocalHydration RACE START (budget 350ms)
+10-18 09:53:07.174 W/'[BOOTSPLASH] +3624ms [THEME-BOOT] splash-hold :: {"visible":false,"canHideNativeSplash":true,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'S
+10-18 09:53:07.175 W/'[BOOTSPLASH] +3626ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":false,"canHideNativeSplash":true}', { [Stack] name: 'Stack' }
+10-18 09:53:07.225 W/'[BOOTSPLASH] +3674ms splash gate :: {"fontsReady":true,"ready":true,"firstContentReady":true,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":true,"sinceFi
+10-18 09:53:07.229 W/'[BOOTSPLASH] +3678ms SplashScreen.hideAsync() — сплеш скрыт', { [Stack] name: 'Stack' }
+10-18 09:53:07.433 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":4,"sinceEntryMs":6003,"source":"react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects"}', { [Stack] name: 'Sta
+10-18 09:53:07.435 W/'[BOOTSPLASH] +3885ms app_first_content_ready event received :: {"timerAlreadyPending":true}', { [Stack] name: 'Stack' }
+10-18 09:53:09.187 W/[BOOTSPLASH] +5639ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":2459}
+10-18 09:53:09.194 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":5,"sinceEntryMs":7766,"source":"emitFirstHomeFrameReady <- apply"}'
+10-18 09:53:09.194 W/[BOOTSPLASH] +5646ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:53:09.240 W/[BOOTSPLASH] +5691ms startupLocalHydration RACE DONE
+10-18 09:53:09.297 W/[BOOTSPLASH] +5749ms setReady(true) — bootstrap COMPLETE
+10-18 09:53:09.504 W/[BOOTSPLASH] +5955ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":277}

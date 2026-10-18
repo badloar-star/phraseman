@@ -2,6 +2,7 @@
 
 Governance-ID: TG-4A6ADED59C2B
 Governance-ID: TG-1E4E725383E2 (night no: ~3 с чёрного между нативной и JS-заставкой — запрет автоскрытия нативной заставки первым импортом index.js, до графа импортов корня; журнал [BOOTSPLASH] preventAutoHide early)
+Governance-ID: TG-F65246810B59 (холодный старт (а): снапшоты экранов, стат-кэш, YouTube-канал — из стартовой гидрации на idle после кадра Главной; фраза дня остаётся (её читает первый кадр Главной); журнал [COLD-START] deferred)
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: координатор 09:45 (находка Макетов 22), evidence/modals_1018/theme_boot

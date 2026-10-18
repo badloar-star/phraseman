@@ -107,7 +107,12 @@ describe('two actual startup settings consumers', () => {
     await Promise.resolve();
     expect(boot.store.getUserSettingsSnapshot().speechRate).toBe(1.3);
     expect(boot.scope.peek()).not.toBeNull();
-    expect(boot.calls).toHaveLength(12); // Other startup tasks already dispatched (11 instant + snapshot prime).
+    // зачем (координатор 18.10, разбор холодного старта (а)): снапшоты экранов, кэш статистики серии и выбор YouTube-канала
+    // ушли из стартовой пачки на idle после кадра Главной — в пачке 8 мгновенных задач + снапшот приложения.
+    expect(boot.calls).toHaveLength(9);
+    expect(boot.calls).not.toEqual(expect.arrayContaining(['primeScreenSnapshotsFromStorage']));
+    expect(boot.calls).not.toEqual(expect.arrayContaining(['hydrateStatsCacheFromStorage']));
+    expect(boot.calls).not.toEqual(expect.arrayContaining(['hydrateYoutubeChannelPreference']));
     boot.progress.resolve(null);
     await boot.done;
     expect(storage.getItem).toHaveBeenCalledTimes(1);

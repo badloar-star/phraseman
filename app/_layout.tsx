@@ -625,6 +625,9 @@ function phoneStateBusyRoute(path: string | null | undefined): string | null {
  * bootstrap при этом продолжает работу в фоне и досыпает состояние событиями —
  * ровно так, как было задумано с самого начала. */
 const BOOTSTRAP_READY_DEADLINE_MS = 1_000;
+/** Отложенная после кадра Главной гидрация: потолок ожидания кадра и потолок idle. */
+const STARTUP_DEFERRED_HYDRATION_CEILING_MS = 8_000;
+const STARTUP_DEFERRED_HYDRATION_IDLE_TIMEOUT_MS = 1_500;
 /** Столько ждём модуль онбординга, прежде чем перестать держать им сплеш.
  * зачем: в dev по LAN замерено `Bundled 34052ms components\onboarding.tsx` —
  * ровно этот модуль и держал экран 34 секунды; в проде тот же риск даёт
@@ -2979,21 +2982,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const startupLocalHydration = Promise.all([
         primeAppSnapshotFromStorage(studyTarget, startupSettingsReadScope).catch(noteSwallowedHandler('_layout:bootstrap.primeAppSnapshotFromStorage')),
         primeSurveyOfferCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeSurveyOfferCacheFromStorage')),
-        // зачем: общий снапшот остальных экранов (стрик, рефералы, топ помощников,
-        // аналитика, план, разбор, подписка, видео, сезон). Владелец потребовал, чтобы
-        // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
-        // сразу — в той же параллельной пачке, поэтому запуск не удлиняется.
-        primeScreenSnapshotsFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeScreenSnapshotsFromStorage')),
         // зачем (ускорение сплэша): сегодняшняя «фраза дня» из peek-кэша — чтобы
         // первый кадр Главной НЕ поднимал каталог идиом (610 КБ JS) синхронно.
         hydrateDailyPhrasePeekFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateDailyPhrasePeekFromStorage')),
-        hydrateYoutubeChannelPreference().catch(noteSwallowedHandler('_layout:bootstrap.hydrateYoutubeChannelPreference')),
-        // зачем: кэш статистики УЖЕ лежал на диске, но поднимался только внутри
-        // streak_stats.loadAll() — то есть после первого кадра, поэтому экран стрика
-        // успевал показать скелетон на весь экран. Поднимаем здесь: к моменту тапа
-        // данные в памяти, statsReady=true с первого кадра. Лишних чтений нет —
-        // экран всё равно звал эту же функцию, просто позже.
-        hydrateStatsCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateStatsCacheFromStorage')),
         primeRemoteConfigCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeRemoteConfigCacheFromStorage')),
         hydrateUserSettingsFromStorage(startupSettingsReadScope).catch(noteSwallowedHandler('_layout:bootstrap.hydrateUserSettingsFromStorage')),
         hydrateHapticsTapFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateHapticsTapFromStorage')),
@@ -3022,6 +3013,29 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         new Promise<void>((resolve) => setTimeout(resolve, 350)),
       ]).catch(noteSwallowedHandler('_layout:bootstrap.race'));
       bootMark('startupLocalHydration RACE DONE');
+      // зачем (координатор 18.10, разбор холодного старта, пункт (а)): гидрация шла +3,4 → +5,7 с при «бюджете 350 мс» и занимала JS ровно
+      // в первые нажатия. Снапшоты других экранов (видео, друзья, приглашения), кэш статистики серии и выбор YouTube-канала не нужны
+      // первому кадру Главной и корневым гейтам — они грузятся в простое после кадра Главной (раньше фонового премаунта вкладок, который
+      // ждёт тишины), так что к первому заходу на эти экраны данные в памяти. Фраза дня, настройки, согласия, RC — остались выше.
+      void whenHomePainted(STARTUP_DEFERRED_HYDRATION_CEILING_MS).then((outcome) => {
+        const runDeferred = () => {
+          const deferred: ReadonlyArray<readonly [string, () => Promise<unknown>]> = [
+            ['screen_snapshots', () => primeScreenSnapshotsFromStorage()],
+            ['streak_stats_cache', () => hydrateStatsCacheFromStorage()],
+            ['youtube_channel_preference', () => hydrateYoutubeChannelPreference()],
+          ];
+          for (const [key, load] of deferred) {
+            const at = Date.now();
+            void load().then(
+              () => console.log(`[COLD-START] deferred ${JSON.stringify({ key, ms: Date.now() - at, homePaint: outcome })}`), // guard-ok: одна строка на ключ за старт
+              (e: unknown) => noteSwallowedHandler(`_layout:deferred.${key}`)(e),
+            );
+          }
+        };
+        const requestIdle = (globalThis as { requestIdleCallback?: (cb: () => void, o?: { timeout?: number }) => unknown }).requestIdleCallback;
+        if (requestIdle) requestIdle(runDeferred, { timeout: STARTUP_DEFERRED_HYDRATION_IDLE_TIMEOUT_MS });
+        else setTimeout(runDeferred, 0);
+      });
       void startupLocalHydration.catch(noteSwallowedHandler('_layout:bootstrap.startupLocalHydration'));
       // зачем (Q106, координатор §62): достижения shards_100…10000 («Монетная заначка») по
       // названию про монеты, а считались по удалённому жемчугу. Теперь — баланс монет (руны,

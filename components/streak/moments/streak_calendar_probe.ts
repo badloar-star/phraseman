@@ -3,9 +3,10 @@
 // сперва логи, без гадания. Ревизор 3.34 (320d018b6): довески проб — таймеры повторных замеров, onScroll прокрутки — НЕ уезжают в стор:
 // всё, кроме единичной строки раскладки, живёт только за `__DEV__ && !IS_STORE_RELEASE` (как render_cause_probe).
 import type { View } from 'react-native';
-import { IS_STORE_RELEASE } from '../../../app/config';
+import { DIAG_ENABLED } from '../../../app/dev_diag_gate';
 
-export const STREAK_PROBE = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+// зачем (координатор 18.10): общий гейт диагностических проб — без импортов, в сторе выключен
+export const STREAK_PROBE = DIAG_ENABLED;
 export const STREAK_PROBE_DELAYS_MS = [500, 1000, 2000] as const;
 const PAINT_DELAYS_MS = [0, 500, 2000] as const;
 

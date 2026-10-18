@@ -25,6 +25,7 @@ import { useSpirePalette } from '../../spire/useSpirePalette';
 import StreakConfetti from './StreakConfetti';
 import StreakMomentFlame from './StreakMomentFlame';
 import { STREAK_PROBE, STREAK_PROBE_DELAYS_MS } from './streak_calendar_probe';
+import { streakSublineInk } from './streak_subline_ink';
 import { STREAK_FLAME_FULL_DAYS } from '../StreakFlameFill';
 
 // зачем (Сверка моментов v3 15.10, эталон engagement-moments-v3-all m19): на окне рубежа огонь залит целиком — стадию несут цвет и число.
@@ -149,9 +150,11 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const before = milestone - 1; // guard-ok: цифра огня ДО морфа (n−1, как в образце), вид — не баланс
   const prevStage = Math.max(0, baseStage - 1) as StreakFlameStage; // guard-ok: стадия огня ДО морфа (вид), не баланс
   const flameA11y = streakMomentText(lang, 'flameA11y', { n: milestone });
+  // зачем (Темы 8117615b3): secondary на ореоле местами < 4,5 — тогда подзаголовок основным текстом (образец feedbackInkSoftForLight)
+  const subInk = streakSublineInk({ text: p.text, secondary: p.textSecondary, bg: p.bg, bgTop: p.bgTop, accentSoft: glass.accentSoft, isLight: glass.isLight });
 
   const T = (text: string, style: 'ov' | 'ovMuted' | 'xl' | 'md' | 'p') => (
-    <Text style={[s[style], { color: style === 'ov' ? glass.accentTextSafe : style === 'p' || style === 'ovMuted' ? p.textSecondary : p.text }]}>{text}</Text>
+    <Text style={[s[style], { color: style === 'ov' ? glass.accentTextSafe : style === 'p' || style === 'ovMuted' ? subInk : p.text }]}>{text}</Text>
   );
   const foot = (
     <View style={s.foot}>

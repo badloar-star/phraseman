@@ -3,10 +3,11 @@
 // бонус-приветствие), итоги уроков — рубежи серии. Проверяем фактом, а не гаданием: после закрытия момента его хост и монета РАЗМОНТИРОВАНЫ
 // (счётчик возвращается к нулю), а не висят невидимыми. Только запись; только отладка (`__DEV__ && !IS_STORE_RELEASE`), в сторе — пустые вызовы.
 import { useEffect } from 'react';
-import { IS_STORE_RELEASE } from '../../app/config';
+import { DIAG_ENABLED } from '../../app/dev_diag_gate';
 
 export const MEM_MOMENTS_LOG = '[MEM-MOMENTS]';
-const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+// зачем (координатор 18.10): общий гейт диагностических проб (dev_diag_gate) — без импортов, в сторе выключен
+const ENABLED = DIAG_ENABLED;
 
 const live = new Map<string, number>();
 const mountedAt = new Map<string, number[]>();

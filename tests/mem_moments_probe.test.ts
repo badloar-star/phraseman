@@ -15,8 +15,9 @@ describe('[MEM-MOMENTS] живые хосты моментов', () => {
     expect(memMomentsLive()).toEqual({});
   });
 
-  it('проба только в отладке: __DEV__ && !IS_STORE_RELEASE', () => {
-    expect(read('components/moments/mem_moments_probe.ts')).toContain("typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE");
+  it('проба только в отладке: общий гейт dev_diag_gate (dev и не стор-релиз)', () => {
+    expect(read('components/moments/mem_moments_probe.ts')).toContain('const ENABLED = DIAG_ENABLED;');
+    expect(read('components/streak/moments/streak_calendar_probe.ts')).toContain('export const STREAK_PROBE = DIAG_ENABLED;');
   });
 
   it.each([

@@ -512,6 +512,18 @@ function SessionContent() {
     }
   };
 
+  // зачем (координатор 18.10, (б)): одна точка пометки пузыря ученика; меняет состояние, только если пометка правда меняется (без лишней перерисовки).
+  const markLearnerUnsent = (learnerId: string, unsent: boolean, reason: string) => {
+    setMessages((current) => {
+      const target = current.find((message) => message.id === learnerId && message.author === 'learner');
+      if (!target || Boolean(target.unsent) === unsent) return current;
+      console.log(`[DIALOGUE-V2] turn:bubble ${unsent ? 'unsent' : 'resending'} learnerId=${learnerId} reason=${reason}`); // guard-ok: только при сбое хода и его повторе
+      return Object.freeze(current.map((message) => (
+        message === target && message.author === 'learner' ? Object.freeze({ ...message, unsent }) : message
+      )));
+    });
+  };
+
   const runPendingTurn = async (pending: Readonly<{ turnId: string; userMessage: string; learnerId: string }>) => {
     if (!serverSession || !scenarioId || !supportedTarget(studyTarget)) {
       setSending(false);
@@ -520,6 +532,8 @@ function SessionContent() {
     }
     setSending(true);
     turnInFlightRef.current = true;
+    // Повтор того же хода: пометка «Не отправлено» снимается сразу — пузырь снова в пути.
+    markLearnerUnsent(pending.learnerId, false, 'run');
     // зачем (E3, координатор 12.10): пилюля «N/30» уменьшается в момент отправки; повтор того же хода её не трогает.
     coaching.beginQuotaTurn(pending.turnId);
     // зачем (координатор 18.10, К3): разложить ожидание ответа ИИ на клиенте — запрос, разбор/озвучка, кадр; возраст прогрева функций.
@@ -542,7 +556,9 @@ function SessionContent() {
         await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
         const appendMs = Date.now() - appendStartedAt;
         logDialogueV2OptimisticFrame('send_tap', 'reply_frame');
-        requestAnimationFrame(() => logDialogueV2Latency({ ...latencyBase, outcome: 'reply', callableMs, appendMs, frameMs: Date.now() - latencyStartedAt, replies: result.replies.length, voice: result.preparedBotVoiceSelection ? 'prepared' : 'none' }));
+        // зачем (18.10): замер — только лог; без requestAnimationFrame (тесты/фон) он не должен ронять удачный ход в catch.
+        const afterFrame = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : (cb: () => void) => setTimeout(cb, 0);
+        afterFrame(() => logDialogueV2Latency({ ...latencyBase, outcome: 'reply', callableMs, appendMs, frameMs: Date.now() - latencyStartedAt, replies: result.replies.length, voice: result.preparedBotVoiceSelection ? 'prepared' : 'none' }));
       } else {
         logDialogueV2Latency({ ...latencyBase, outcome: result.kind, callableMs });
         // зачем (E3): ход отвечен без реплик — снимаем его из «в полёте», остаток прежний.
@@ -552,7 +568,11 @@ function SessionContent() {
       settleEnergy('acknowledge', 'first_turn_ok');
     } catch (error: unknown) {
       const reason: DialogueV2TurnFailureReason = error instanceof DialogueV2TurnFailureError ? error.reason : 'network';
-      console.warn('[DIALOGUE-V2] turn:run → failed', { reason, scenarioId });
+      // зачем (18.10): не-ходовая ошибка (сбой уже после ответа сервера) раньше сводилась к немому 'network' — пишем саму причину.
+      console.warn('[DIALOGUE-V2] turn:run → failed', {
+        reason, scenarioId, error: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+        stack: error instanceof DialogueV2TurnFailureError ? undefined : (error as Error | undefined)?.stack?.split('\n').slice(0, 4).join(' | '),
+      });
       logDialogueV2OptimisticStep('send_tap', 'rollback', { reason });
       logDialogueV2Latency({ ...latencyBase, outcome: 'failed', reason, callableMs: Date.now() - latencyStartedAt });
       if (reason === 'quota_exhausted') {
@@ -574,6 +594,9 @@ function SessionContent() {
       } else {
         // зачем (E3): сбой хода — откат пилюли; понятное сообщение — панель ошибки с «Повторить» ниже (retry снова спишет).
         coaching.rollbackQuotaTurn(pending.turnId, reason);
+        // зачем (координатор 18.10, Optimistic UI (б)): сеть/сервис не приняли реплику — пузырь помечен «Не отправлено», а не выглядит
+        // доставленным; «Повторить» снимает пометку в начале повтора (runPendingTurn).
+        markLearnerUnsent(pending.learnerId, true, reason);
         if (reason === 'rate_limited') setRateLimitCooling(true);
         // Сервис не ответил ещё ни разу — диалог не состоялся, энергию возвращаем.
         if (reason === 'service') settleEnergy('refund', 'dialogue_first_turn_service_failed');
@@ -596,7 +619,14 @@ function SessionContent() {
     if (!model?.unlocked || !scenarioId || !supportedTarget(studyTarget)
       || sending || turnStartingRef.current || voice.status !== 'idle'
       || coaching.quotaExhausted || coaching.ended
-      || userMessage.length < 1 || userMessage.length > 2_000) return;
+      || userMessage.length < 1 || userMessage.length > 2_000) {
+      // зачем (координатор 18.10, Optimistic UI (в)): двойной тап и быстрые повторы отбрасываются здесь — причина в журнал, а не молча.
+      console.log('[DIALOGUE-V2] turn:send → skipped', JSON.stringify({ // guard-ok: ранний выход называет причину
+        unlocked: !!model?.unlocked, scenario: !!scenarioId, sending, starting: turnStartingRef.current, voice: voice.status,
+        exhausted: coaching.quotaExhausted, ended: coaching.ended, length: userMessage.length,
+      }));
+      return;
+    }
     turnStartingRef.current = true;
     let pending = pendingTurnRef.current;
     // зачем (координатор 18.10, Optimistic UI): «отправить» → кадр со своим пузырём → ответ собеседника / откат.
@@ -623,6 +653,7 @@ function SessionContent() {
           // зачем (аудит Optimistic UI Диалогов, 12.10): старт уже провалился 5 раз — очередь не поможет; сразу панель ошибки с «Повторить» (пузырь остаётся)
           console.warn('[DIALOGUE-V2] turn:send → session start unavailable, error panel at once', { scenarioId }); // guard-ok: ветвление называет причину
           setTurnFailure(Object.freeze({ reason: 'network' }));
+          markLearnerUnsent(pending.learnerId, true, 'session_unavailable');
           turnStartingRef.current = false;
           return;
         }
@@ -647,6 +678,7 @@ function SessionContent() {
       console.log('[DIALOGUE-V2] turn:retry → no session, queue again and restart start', { scenarioId, sessionState: serverSessionState });
       queuedTurnRef.current = true;
       setTurnFailure(null);
+      markLearnerUnsent(pending.learnerId, false, 'retry_queue');
       setSending(true);
       if (serverSessionState === 'unavailable') setStartAttempt(0);
       return;

@@ -311,6 +311,52 @@ describe('Dialogue V2 session route', () => {
     expect(mockStartSession).toHaveBeenCalledTimes(1);
   });
 
+  // зачем (координатор 18.10, Optimistic UI чата (а)–(в)): своя реплика — в ленте до ответа сервера; сбой помечает её «Не отправлено»,
+  // «Повторить» снимает пометку тем же ходом; повторная отправка, пока ход в полёте, на сервер не уходит.
+  it('(а) shows the learner bubble before the server answers', async () => {
+    mockSendTurn.mockImplementationOnce(() => new Promise(() => undefined));
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockSendTurn).toHaveBeenCalledTimes(1));
+    const props = mockScreen.mock.calls.at(-1)[0];
+    expect(props.sending).toBe(true);
+    expect(props.messages.some((message: { author: string; text: string }) => message.author === 'learner' && message.text === 'Guten Tag!')).toBe(true);
+    expect(props.draft).toBe('');
+  });
+
+  it('(б) marks the failed bubble unsent and clears the mark when the same turn is retried', async () => {
+    mockSendTurn.mockRejectedValueOnce(new Error('temporary')).mockImplementationOnce(() => new Promise(() => undefined));
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].turnError).toBe(true));
+    const failed = mockScreen.mock.calls.at(-1)[0].messages.find((message: { author: string }) => message.author === 'learner');
+    expect(failed.unsent).toBe(true);
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onRetry(); });
+    await waitFor(() => expect(mockSendTurn).toHaveBeenCalledTimes(2));
+    const resending = mockScreen.mock.calls.at(-1)[0].messages.find((message: { author: string }) => message.author === 'learner');
+    expect(resending.unsent).toBe(false);
+    expect(mockSendTurn.mock.calls[1][0].turnId).toBe(mockSendTurn.mock.calls[0][0].turnId);
+  });
+
+  it('(в) a second send while the turn is in flight does not reach the server', async () => {
+    mockSendTurn.mockImplementationOnce(() => new Promise(() => undefined));
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockSendTurn).toHaveBeenCalledTimes(1));
+    // К1: пока ждём, можно набирать — но отправить второй раз нельзя
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Wie geht es?'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    expect(mockSendTurn).toHaveBeenCalledTimes(1);
+    expect(mockScreen.mock.calls.at(-1)[0].draft).toBe('Wie geht es?');
+    expect(mockScreen.mock.calls.at(-1)[0].messages.filter((message: { author: string }) => message.author === 'learner')).toHaveLength(1);
+  });
+
   it('creates one pending turn when send is tapped twice before secure ID generation settles', async () => {
     let resolveBytes!: (value: Uint8Array) => void;
     mockCrypto.getRandomBytesAsync.mockImplementationOnce(() => new Promise<Uint8Array>((resolve) => {

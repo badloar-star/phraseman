@@ -140,3 +140,20 @@ describe('linkAppleToVerifiedEmailAccount', () => {
 test('функция выкладывается в europe-west1 и us-central1, как остальной вход', () => {
   expect((authAppleLinkByVerifiedEmail as unknown as { __endpoint: { region: unknown } }).__endpoint.region).toEqual(['us-central1', 'europe-west1']);
 });
+
+// зачем (Ревизор 3.139 🟡): токены с незнакомым kid не должны каждый раз дёргать ключи Apple — не чаще раза в минуту.
+test('внеочередное обновление ключей Apple — не чаще раза в минуту на экземпляр', async () => {
+  const { resetAppleKeysCacheForTest, verifyAppleIdentityTokenWithKeys } = await import('./auth_apple_link');
+  resetAppleKeysCacheForTest();
+  const fetchImpl = jest.fn(async () => ({ ok: true, status: 200, json: async () => ({ keys: [main.jwk] }) }) as unknown as Response);
+  const foreign = sign(other.privateKey, 'k2', goodClaims());
+  const t0 = NOW * 1000;
+  await expect(verifyAppleIdentityTokenWithKeys(foreign, RAW_NONCE, fetchImpl, t0)).rejects.toMatchObject({ code: 'kid_unknown' });
+  expect(fetchImpl).toHaveBeenCalledTimes(2); // плановая загрузка + одно внеочередное обновление
+  await expect(verifyAppleIdentityTokenWithKeys(foreign, RAW_NONCE, fetchImpl, t0 + 10_000)).rejects.toMatchObject({ code: 'kid_unknown' });
+  expect(fetchImpl).toHaveBeenCalledTimes(2); // через 10 с — без нового запроса
+  await expect(verifyAppleIdentityTokenWithKeys(foreign, RAW_NONCE, fetchImpl, t0 + 61_000)).rejects.toMatchObject({ code: 'kid_unknown' });
+  expect(fetchImpl).toHaveBeenCalledTimes(3); // через минуту — снова можно
+  // Настоящий токен по-прежнему проходит из кэша.
+  await expect(verifyAppleIdentityTokenWithKeys(sign(main.privateKey, 'k1', goodClaims()), RAW_NONCE, fetchImpl, t0 + 62_000)).resolves.toMatchObject({ sub: 'apple-sub-1' });
+});

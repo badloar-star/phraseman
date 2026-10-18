@@ -126,10 +126,14 @@ export function verifyAppleIdentityToken(
 }
 
 let keysCache: { keys: readonly AppleJwk[]; atMs: number } | null = null;
+/** Внеочередное обновление ключей при незнакомом kid — не чаще раза в минуту на экземпляр (Ревизор 3.139). */
+const FORCED_REFRESH_MIN_INTERVAL_MS = 60_000;
+let lastForcedRefreshAtMs = 0;
 
 /** Только для тестов. */
 export function resetAppleKeysCacheForTest(): void {
   keysCache = null;
+  lastForcedRefreshAtMs = 0;
 }
 
 async function fetchAppleKeys(fetchImpl: typeof fetch, nowMs: number, force: boolean): Promise<readonly AppleJwk[]> {
@@ -155,6 +159,9 @@ export async function verifyAppleIdentityTokenWithKeys(
     return verifyAppleIdentityToken(idToken, rawNonce, keys, Math.floor(nowMs / 1000));
   } catch (error) {
     if (!(error instanceof AppleTokenError) || error.code !== 'kid_unknown') throw error;
+    // зачем (Ревизор 3.139 🟡): поток токенов с выдуманным kid не должен каждый раз дёргать ключи Apple.
+    if (nowMs - lastForcedRefreshAtMs < FORCED_REFRESH_MIN_INTERVAL_MS) throw error;
+    lastForcedRefreshAtMs = nowMs;
     const fresh = await fetchAppleKeys(fetchImpl, nowMs, true);
     return verifyAppleIdentityToken(idToken, rawNonce, fresh, Math.floor(nowMs / 1000));
   }

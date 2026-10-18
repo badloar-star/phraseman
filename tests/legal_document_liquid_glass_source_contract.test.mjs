@@ -62,8 +62,10 @@ const LEGAL_FILES = [
   // учётки входа, восстанавливаемого аккаунта/введённой почты и IP; сам IP не хранится; удаляются в течение двух суток (окно 24 ч + TTL).
   // 18.10 (координатор, Ревизор 3.31 86d578776): в сборку 18.10 — запасная фраза без срока («during its limit period (at most one day),
   // and is otherwise retained only as described in Retention») — верна при любом состоянии TTL; «two days» вернём после релиза и TTL.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'effe9224fa90a36b60220046479ae4daa9d4dc651cad0cba85bce7b2392b8d8f'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '240c4323153e313b69b603f1f60f0218ecf701caa459ed596d333ea15155b02f'],
+  // 18.10 (координатор, «защита от накрутки счёта»): §4 — один абзац про счётчики против злоупотреблений и расходов: смена ника,
+  // проверка имени, запросы к платному ИИ (диалоги, разбор, перевод, озвучка); хэш учётки или IP, сам IP не хранится; окно час/сутки.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '0ac99a3e1192159aad330f98a221d40670624c8e550267b21ffb25072caff78b'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'd41b045fc289e5bca3d6f79e5ddb8583bb6e208bac4fb231f87a47da065cae69'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],

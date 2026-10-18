@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-36:word:relax",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — relax",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:relax:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — relax",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:relax:audio",
+            "transcript": "relax"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:relax:r1",
+              "targetText": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать, расслабляться. I usually relax on the sofa. — «Я обычно отдыхаю на диване». Снимать напряжение и отдыхать; можно расслабляться и за приятным занятием.",
+                "uk": "відпочивати, розслаблятися. I usually relax on the sofa. — «Я зазвичай відпочиваю на дивані». Знімати напруження й відпочивати; можна розслаблятися й за приємним заняттям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relax",
+            "definitionByLocale": {
+              "ru": "отдыхать, расслабляться. I usually relax on the sofa. — «Я обычно отдыхаю на диване». Снимать напряжение и отдыхать; можно расслабляться и за приятным занятием.",
+              "uk": "відпочивати, розслаблятися. I usually relax on the sofa. — «Я зазвичай відпочиваю на дивані». Знімати напруження й відпочивати; можна розслаблятися й за приємним заняттям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, как вы отдыхаете после работы. Скажите: «Я обычно отдыхаю на диване»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, как вы отдыхаете после работы. Скажите: «Я обычно отдыхаю на диване»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually relax on the sofa.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, как вы отдыхаете после работы. Скажите: «Я обычно отдыхаю на диване»",
+            "uk": "Друг питає, як ви відпочиваєте після роботи. Скажіть: «Я зазвичай відпочиваю на дивані»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "relax",
+            "on",
+            "the",
+            "sofa"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, как вы отдыхаете после работы. Скажите: «Я обычно отдыхаю на диване»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually relax on the sofa.`",
+                "uk": "тут потрібно `usually` — `I usually relax on the sofa.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:word:hurt",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hurt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:hurt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hurt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:hurt:audio",
+            "transcript": "hurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:hurt:r1",
+              "targetText": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть. My back often hurts. — «У меня часто болит спина». О боли в теле.",
+                "uk": "боліти. My back often hurts. — «У мене часто болить спина». Про біль у тілі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hurt",
+            "definitionByLocale": {
+              "ru": "болеть. My back often hurts. — «У меня часто болит спина». О боли в теле.",
+              "uk": "боліти. My back often hurts. — «У мене часто болить спина». Про біль у тілі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i02:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r2",
+            "text": "hum"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r3",
+            "text": "hang"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i02:audio",
+            "transcript": "hurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:i02:r1",
+              "targetText": "hurt",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i02:r2",
+              "targetText": "hum",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i02:r3",
+              "targetText": "hang",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hurt`, а в этом варианте — `hum`.",
+                "uk": "У записі перше слово — `hurt`, а в цьому варіанті — `hum`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hurt`, а в этом варианте — `hang`.",
+                "uk": "У записі перше слово — `hurt`, а в цьому варіанті — `hang`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:word:sneeze",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sneeze",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:sneeze:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sneeze",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:sneeze:audio",
+            "transcript": "sneeze"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:sneeze:r1",
+              "targetText": "sneeze",
+              "meaningByLocale": {
+                "ru": "чихать. She often sneezes in the morning. — «Она часто чихает по утрам». Резко выдыхать воздух носом и ртом.",
+                "uk": "чхати. She often sneezes in the morning. — «Вона часто чхає вранці». Різко видихати повітря носом і ротом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sneeze",
+            "definitionByLocale": {
+              "ru": "чихать. She often sneezes in the morning. — «Она часто чихает по утрам». Резко выдыхать воздух носом и ртом.",
+              "uk": "чхати. She often sneezes in the morning. — «Вона часто чхає вранці». Різко видихати повітря носом і ротом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i03:r1",
+            "text": "sneezes"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r2",
+            "text": "sneeze"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r3",
+            "text": "sneezing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+            "uk": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ in the morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-36:i03:r1",
+              "text": "sneezes"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i03:r2",
+              "text": "sneeze"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i03:r3",
+              "text": "sneezing"
+            }
+          ],
+          "testedDimension": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `sneezes`.",
+                "uk": "Після `She` потрібно `sneezes`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `sneezes`.",
+                "uk": "Тут потрібна форма `sneezes`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-36:i04:p1",
+              "target": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать",
+                "uk": "відпочивати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i04:p2",
+              "target": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть",
+                "uk": "боліти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i04:p3",
+              "target": "sneeze",
+              "meaningByLocale": {
+                "ru": "чихать",
+                "uk": "чхати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i04:p4",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            }
+          ],
+          "leftColumn": [
+            "relax",
+            "hurt",
+            "sneeze",
+            "sofa"
+          ],
+          "rightColumn": [
+            "отдыхать",
+            "болеть",
+            "чихать",
+            "диван"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i05:audio",
+            "transcript": "My back often hurts."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My back often hurts.",
+          "orderedTokens": [
+            "My",
+            "back",
+            "often",
+            "hurts"
+          ],
+          "authoredDistractorTokens": [
+            "hurt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `hurts` — `My back often hurts.`",
+                "uk": "тут потрібно `hurts` — `My back often hurts.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:word:rub",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rub",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:rub:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rub",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:rub:audio",
+            "transcript": "rub"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:rub:r1",
+              "targetText": "rub",
+              "meaningByLocale": {
+                "ru": "тереть. I often rub my shoulder. — «Я часто тру плечо». Тереть поверхность рукой или предметом; здесь — растирать плечо ладонью.",
+                "uk": "терти. I often rub my shoulder. — «Я часто тру плече». Терти поверхню рукою чи предметом; тут — розтирати плече долонею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rub",
+            "definitionByLocale": {
+              "ru": "тереть. I often rub my shoulder. — «Я часто тру плечо». Тереть поверхность рукой или предметом; здесь — растирать плечо ладонью.",
+              "uk": "терти. I often rub my shoulder. — «Я часто тру плече». Терти поверхню рукою чи предметом; тут — розтирати плече долонею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы говорите врачу о плече. Скажите: «Я часто тру плечо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите врачу о плече. Скажите: «Я часто тру плечо»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often rub my shoulder.",
+          "localizedMeaning": {
+            "ru": "Вы говорите врачу о плече. Скажите: «Я часто тру плечо»",
+            "uk": "Ви говорите лікарю про плече. Скажіть: «Я часто тру плече»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "rub",
+            "my",
+            "shoulder"
+          ],
+          "authoredDistractorTokens": [
+            "usually"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы говорите врачу о плече. Скажите: «Я часто тру плечо»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `often` — `I often rub my shoulder.`",
+                "uk": "тут потрібно `often` — `I often rub my shoulder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про вашего брата. Скажите: «Он обычно отдыхает на диване». Используйте relax",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про вашего брата. Скажите: «Он обычно отдыхает на диване». Используйте relax",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i07:audio",
+            "transcript": "He usually relaxes on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually relaxes on the sofa.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i08:r1",
+            "text": "rubs"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r2",
+            "text": "rub"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r3",
+            "text": "rubbing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+            "uk": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He often ___ his shoulder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-36:i08:r1",
+              "text": "rubs"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i08:r2",
+              "text": "rub"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i08:r3",
+              "text": "rubbing"
+            }
+          ],
+          "testedDimension": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `He` нужно `rubs`.",
+                "uk": "Після `He` потрібно `rubs`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `rubs`.",
+                "uk": "Тут потрібна форма `rubs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i09:r1",
+            "text": "I usually relax on the sofa."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r2",
+            "text": "I usually relax on the bed."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r3",
+            "text": "I usually relax on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i09:audio",
+            "transcript": "I usually relax on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:i09:r1",
+              "targetText": "I usually relax on the sofa.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i09:r2",
+              "targetText": "I usually relax on the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i09:r3",
+              "targetText": "I usually relax on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
+                "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sofa`, а в этом варианте — `chair`.",
+                "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `chair`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-36:i10:p1",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "тереть",
+                "uk": "терти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i10:p2",
+              "target": "sneeze",
+              "meaningByLocale": {
+                "ru": "чихать",
+                "uk": "чхати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i10:p3",
+              "target": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть",
+                "uk": "боліти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i10:p4",
+              "target": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать",
+                "uk": "відпочивати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rub",
+            "sneeze",
+            "hurt",
+            "relax"
+          ],
+          "rightColumn": [
+            "тереть",
+            "чихать",
+            "болеть",
+            "отдыхать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i11:audio",
+            "transcript": "She often sneezes in the morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She often sneezes in the morning.",
+          "orderedTokens": [
+            "She",
+            "often",
+            "sneezes",
+            "in",
+            "the",
+            "morning"
+          ],
+          "authoredDistractorTokens": [
+            "sneeze"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sneezes` — `She often sneezes in the morning.`",
+                "uk": "тут потрібно `sneezes` — `She often sneezes in the morning.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Врач спрашивает про плечо. Скажите: «У меня часто болит плечо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Врач спрашивает про плечо. Скажите: «У меня часто болит плечо»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My shoulder often hurts.",
+          "localizedMeaning": {
+            "ru": "Врач спрашивает про плечо. Скажите: «У меня часто болит плечо»",
+            "uk": "Лікар питає про плече. Скажіть: «У мене часто болить плече»"
+          },
+          "orderedTokens": [
+            "My",
+            "shoulder",
+            "often",
+            "hurts"
+          ],
+          "authoredDistractorTokens": [
+            "hurt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Врач спрашивает про плечо. Скажите: «У меня часто болит плечо»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `hurts` — `My shoulder often hurts.`",
+                "uk": "тут потрібно `hurts` — `My shoulder often hurts.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает про вашу сестру. Скажите: «Она обычно отдыхает на диване». Используйте relax",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает про вашу сестру. Скажите: «Она обычно отдыхает на диване». Используйте relax",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i13:audio",
+            "transcript": "She usually relaxes on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually relaxes on the sofa.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+            "uk": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ rub my shoulder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-36:i14:r1",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often` перед `rub`.",
+                "uk": "Для «часто» потрібно `often` перед `rub`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often`; `am` перед `rub` не ставим.",
+                "uk": "Для «часто» потрібно `often`; `am` перед `rub` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i15:r1",
+            "text": "My back often hurts."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r2",
+            "text": "My shoulder often hurts."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r3",
+            "text": "My ankle often hurts."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i15:audio",
+            "transcript": "My back often hurts."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:i15:r1",
+              "targetText": "My back often hurts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i15:r2",
+              "targetText": "My shoulder often hurts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i15:r3",
+              "targetText": "My ankle often hurts.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "Во фразе из записи второе слово — `back`, а в этом варианте — `shoulder`.",
+                "uk": "У фразі із запису друге слово — `back`, а в цьому варіанті — `shoulder`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "Во фразе из записи второе слово — `back`, а в этом варианте — `ankle`.",
+                "uk": "У фразі із запису друге слово — `back`, а в цьому варіанті — `ankle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-36:i16:p1",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "тереть",
+                "uk": "терти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i16:p2",
+              "target": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть",
+                "uk": "боліти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i16:p3",
+              "target": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать",
+                "uk": "відпочивати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i16:p4",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rub",
+            "hurt",
+            "relax",
+            "sofa"
+          ],
+          "rightColumn": [
+            "тереть",
+            "болеть",
+            "отдыхать",
+            "диван"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знакомый спрашивает, как чувствует себя ваш брат. Скажите: «У него часто болит спина»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Знакомый спрашивает, как чувствует себя ваш брат. Скажите: «У него часто болит спина»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i17:audio",
+            "transcript": "His back often hurts."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "His back often hurts.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-36:word:relax",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — relax",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:relax:audio"
+        ],
+        "accessibilityLabel": "Картка слова — relax",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:relax:audio",
+            "transcript": "relax"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:relax:r1",
+              "targetText": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать, расслабляться. I usually relax on the sofa. — «Я обычно отдыхаю на диване». Снимать напряжение и отдыхать; можно расслабляться и за приятным занятием.",
+                "uk": "відпочивати, розслаблятися. I usually relax on the sofa. — «Я зазвичай відпочиваю на дивані». Знімати напруження й відпочивати; можна розслаблятися й за приємним заняттям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relax",
+            "definitionByLocale": {
+              "ru": "отдыхать, расслабляться. I usually relax on the sofa. — «Я обычно отдыхаю на диване». Снимать напряжение и отдыхать; можно расслабляться и за приятным занятием.",
+              "uk": "відпочивати, розслаблятися. I usually relax on the sofa. — «Я зазвичай відпочиваю на дивані». Знімати напруження й відпочивати; можна розслаблятися й за приємним заняттям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, як ви відпочиваєте після роботи. Скажіть: «Я зазвичай відпочиваю на дивані»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, як ви відпочиваєте після роботи. Скажіть: «Я зазвичай відпочиваю на дивані»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually relax on the sofa.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, как вы отдыхаете после работы. Скажите: «Я обычно отдыхаю на диване»",
+            "uk": "Друг питає, як ви відпочиваєте після роботи. Скажіть: «Я зазвичай відпочиваю на дивані»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "relax",
+            "on",
+            "the",
+            "sofa"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, як ви відпочиваєте після роботи. Скажіть: «Я зазвичай відпочиваю на дивані»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually relax on the sofa.`",
+                "uk": "тут потрібно `usually` — `I usually relax on the sofa.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:word:hurt",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hurt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:hurt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hurt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:hurt:audio",
+            "transcript": "hurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:hurt:r1",
+              "targetText": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть. My back often hurts. — «У меня часто болит спина». О боли в теле.",
+                "uk": "боліти. My back often hurts. — «У мене часто болить спина». Про біль у тілі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hurt",
+            "definitionByLocale": {
+              "ru": "болеть. My back often hurts. — «У меня часто болит спина». О боли в теле.",
+              "uk": "боліти. My back often hurts. — «У мене часто болить спина». Про біль у тілі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i02:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r2",
+            "text": "hum"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i02:r3",
+            "text": "hang"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i02:audio",
+            "transcript": "hurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:i02:r1",
+              "targetText": "hurt",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i02:r2",
+              "targetText": "hum",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i02:r3",
+              "targetText": "hang",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hurt`, а в этом варианте — `hum`.",
+                "uk": "У записі перше слово — `hurt`, а в цьому варіанті — `hum`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hurt`, а в этом варианте — `hang`.",
+                "uk": "У записі перше слово — `hurt`, а в цьому варіанті — `hang`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:word:sneeze",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sneeze",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:sneeze:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sneeze",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:sneeze:audio",
+            "transcript": "sneeze"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:sneeze:r1",
+              "targetText": "sneeze",
+              "meaningByLocale": {
+                "ru": "чихать. She often sneezes in the morning. — «Она часто чихает по утрам». Резко выдыхать воздух носом и ртом.",
+                "uk": "чхати. She often sneezes in the morning. — «Вона часто чхає вранці». Різко видихати повітря носом і ротом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sneeze",
+            "definitionByLocale": {
+              "ru": "чихать. She often sneezes in the morning. — «Она часто чихает по утрам». Резко выдыхать воздух носом и ртом.",
+              "uk": "чхати. She often sneezes in the morning. — «Вона часто чхає вранці». Різко видихати повітря носом і ротом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i03:r1",
+            "text": "sneezes"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r2",
+            "text": "sneeze"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i03:r3",
+            "text": "sneezing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега опять чихает. Скажите: «Она часто чихает по утрам». Выберите слово",
+            "uk": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ in the morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-36:i03:r1",
+              "text": "sneezes"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i03:r2",
+              "text": "sneeze"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i03:r3",
+              "text": "sneezing"
+            }
+          ],
+          "testedDimension": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `sneezes`.",
+                "uk": "Після `She` потрібно `sneezes`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Колега знову чхає. Скажіть: «Вона часто чхає вранці». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `sneezes`.",
+                "uk": "Тут потрібна форма `sneezes`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-36:i04:p1",
+              "target": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать",
+                "uk": "відпочивати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i04:p2",
+              "target": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть",
+                "uk": "боліти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i04:p3",
+              "target": "sneeze",
+              "meaningByLocale": {
+                "ru": "чихать",
+                "uk": "чхати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i04:p4",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            }
+          ],
+          "leftColumn": [
+            "relax",
+            "hurt",
+            "sneeze",
+            "sofa"
+          ],
+          "rightColumn": [
+            "відпочивати",
+            "боліти",
+            "чхати",
+            "диван"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i05:audio",
+            "transcript": "My back often hurts."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My back often hurts.",
+          "orderedTokens": [
+            "My",
+            "back",
+            "often",
+            "hurts"
+          ],
+          "authoredDistractorTokens": [
+            "hurt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `hurts` — `My back often hurts.`",
+                "uk": "тут потрібно `hurts` — `My back often hurts.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:word:rub",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rub",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:word:rub:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rub",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:word:rub:audio",
+            "transcript": "rub"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:word:rub:r1",
+              "targetText": "rub",
+              "meaningByLocale": {
+                "ru": "тереть. I often rub my shoulder. — «Я часто тру плечо». Тереть поверхность рукой или предметом; здесь — растирать плечо ладонью.",
+                "uk": "терти. I often rub my shoulder. — «Я часто тру плече». Терти поверхню рукою чи предметом; тут — розтирати плече долонею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rub",
+            "definitionByLocale": {
+              "ru": "тереть. I often rub my shoulder. — «Я часто тру плечо». Тереть поверхность рукой или предметом; здесь — растирать плечо ладонью.",
+              "uk": "терти. I often rub my shoulder. — «Я часто тру плече». Терти поверхню рукою чи предметом; тут — розтирати плече долонею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви говорите лікарю про плече. Скажіть: «Я часто тру плече»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите лікарю про плече. Скажіть: «Я часто тру плече»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often rub my shoulder.",
+          "localizedMeaning": {
+            "ru": "Вы говорите врачу о плече. Скажите: «Я часто тру плечо»",
+            "uk": "Ви говорите лікарю про плече. Скажіть: «Я часто тру плече»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "rub",
+            "my",
+            "shoulder"
+          ],
+          "authoredDistractorTokens": [
+            "usually"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви говорите лікарю про плече. Скажіть: «Я часто тру плече»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `often` — `I often rub my shoulder.`",
+                "uk": "тут потрібно `often` — `I often rub my shoulder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вашого брата. Скажіть: «Він зазвичай відпочиває на дивані». Використайте relax",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Він зазвичай відпочиває на дивані». Використайте relax",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i07:audio",
+            "transcript": "He usually relaxes on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually relaxes on the sofa.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i08:r1",
+            "text": "rubs"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r2",
+            "text": "rub"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i08:r3",
+            "text": "rubbing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Врач спрашивает про вашего брата. Скажите: «Он часто трёт плечо». Выберите слово",
+            "uk": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He often ___ his shoulder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-36:i08:r1",
+              "text": "rubs"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i08:r2",
+              "text": "rub"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i08:r3",
+              "text": "rubbing"
+            }
+          ],
+          "testedDimension": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `He` нужно `rubs`.",
+                "uk": "Після `He` потрібно `rubs`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Лікар питає про вашого брата. Скажіть: «Він часто тре плече». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `rubs`.",
+                "uk": "Тут потрібна форма `rubs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i09:r1",
+            "text": "I usually relax on the sofa."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r2",
+            "text": "I usually relax on the bed."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i09:r3",
+            "text": "I usually relax on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i09:audio",
+            "transcript": "I usually relax on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:i09:r1",
+              "targetText": "I usually relax on the sofa.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i09:r2",
+              "targetText": "I usually relax on the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i09:r3",
+              "targetText": "I usually relax on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
+                "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sofa`, а в этом варианте — `chair`.",
+                "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `chair`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-36:i10:p1",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "тереть",
+                "uk": "терти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i10:p2",
+              "target": "sneeze",
+              "meaningByLocale": {
+                "ru": "чихать",
+                "uk": "чхати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i10:p3",
+              "target": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть",
+                "uk": "боліти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i10:p4",
+              "target": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать",
+                "uk": "відпочивати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rub",
+            "sneeze",
+            "hurt",
+            "relax"
+          ],
+          "rightColumn": [
+            "терти",
+            "чхати",
+            "боліти",
+            "відпочивати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i11:audio",
+            "transcript": "She often sneezes in the morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She often sneezes in the morning.",
+          "orderedTokens": [
+            "She",
+            "often",
+            "sneezes",
+            "in",
+            "the",
+            "morning"
+          ],
+          "authoredDistractorTokens": [
+            "sneeze"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sneezes` — `She often sneezes in the morning.`",
+                "uk": "тут потрібно `sneezes` — `She often sneezes in the morning.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лікар питає про плече. Скажіть: «У мене часто болить плече»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лікар питає про плече. Скажіть: «У мене часто болить плече»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My shoulder often hurts.",
+          "localizedMeaning": {
+            "ru": "Врач спрашивает про плечо. Скажите: «У меня часто болит плечо»",
+            "uk": "Лікар питає про плече. Скажіть: «У мене часто болить плече»"
+          },
+          "orderedTokens": [
+            "My",
+            "shoulder",
+            "often",
+            "hurts"
+          ],
+          "authoredDistractorTokens": [
+            "hurt"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Лікар питає про плече. Скажіть: «У мене часто болить плече»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `hurts` — `My shoulder often hurts.`",
+                "uk": "тут потрібно `hurts` — `My shoulder often hurts.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає про вашу сестру. Скажіть: «Вона зазвичай відпочиває на дивані». Використайте relax",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Гість питає про вашу сестру. Скажіть: «Вона зазвичай відпочиває на дивані». Використайте relax",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i13:audio",
+            "transcript": "She usually relaxes on the sofa."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually relaxes on the sofa.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете врачу о плече. Скажите: «Я часто тру плечо». Выберите слово",
+            "uk": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ rub my shoulder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-36:i14:r1",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often` перед `rub`.",
+                "uk": "Для «часто» потрібно `often` перед `rub`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте лікарю про плече. Скажіть: «Я часто тру плече». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often`; `am` перед `rub` не ставим.",
+                "uk": "Для «часто» потрібно `often`; `am` перед `rub` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-36:i15:r1",
+            "text": "My back often hurts."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r2",
+            "text": "My shoulder often hurts."
+          },
+          {
+            "responseId": "en:lesson-07:session-36:i15:r3",
+            "text": "My ankle often hurts."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i15:audio",
+            "transcript": "My back often hurts."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-36:i15:r1",
+              "targetText": "My back often hurts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i15:r2",
+              "targetText": "My shoulder often hurts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i15:r3",
+              "targetText": "My ankle often hurts.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "Во фразе из записи второе слово — `back`, а в этом варианте — `shoulder`.",
+                "uk": "У фразі із запису друге слово — `back`, а в цьому варіанті — `shoulder`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "Во фразе из записи второе слово — `back`, а в этом варианте — `ankle`.",
+                "uk": "У фразі із запису друге слово — `back`, а в цьому варіанті — `ankle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-36:i16:p1",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "тереть",
+                "uk": "терти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i16:p2",
+              "target": "hurt",
+              "meaningByLocale": {
+                "ru": "болеть",
+                "uk": "боліти"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i16:p3",
+              "target": "relax",
+              "meaningByLocale": {
+                "ru": "отдыхать",
+                "uk": "відпочивати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-36:i16:p4",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rub",
+            "hurt",
+            "relax",
+            "sofa"
+          ],
+          "rightColumn": [
+            "терти",
+            "боліти",
+            "відпочивати",
+            "диван"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знайомий питає, як почувається ваш брат. Скажіть: «У нього часто болить спина»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Знайомий питає, як почувається ваш брат. Скажіть: «У нього часто болить спина»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-36:i17:audio",
+            "transcript": "His back often hurts."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "His back often hurts.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-36:word:relax",
+      "correctText": "relax",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i01",
+      "correctText": "I usually relax on the sofa.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:word:hurt",
+      "correctText": "hurt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i02",
+      "correctText": "hurt",
+      "correctResponseId": "en:lesson-07:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:word:sneeze",
+      "correctText": "sneeze",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i03",
+      "correctText": "sneezes",
+      "correctResponseId": "en:lesson-07:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i05",
+      "correctText": "My back often hurts.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:word:rub",
+      "correctText": "rub",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i06",
+      "correctText": "I often rub my shoulder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i07",
+      "correctText": "He usually relaxes on the sofa.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i08",
+      "correctText": "rubs",
+      "correctResponseId": "en:lesson-07:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i09",
+      "correctText": "I usually relax on the sofa.",
+      "correctResponseId": "en:lesson-07:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i11",
+      "correctText": "She often sneezes in the morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i12",
+      "correctText": "My shoulder often hurts.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i13",
+      "correctText": "She usually relaxes on the sofa.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i14",
+      "correctText": "often",
+      "correctResponseId": "en:lesson-07:session-36:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i15",
+      "correctText": "My back often hurts.",
+      "correctResponseId": "en:lesson-07:session-36:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-36:i17",
+      "correctText": "His back often hurts.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-36:intro1:r2": {
-          "ru": "После `I` нужно `relax`, без `es`.",
-          "uk": "Після `I` потрібне `relax`, без `es`."
+          "ru": "После I нужно relax, без окончания.",
+          "uk": "Після I потрібно relax, без закінчення."
         },
         "en:lesson-07:session-36:intro1:r3": {
-          "ru": "Здесь нужна форма `relax`.",
-          "uk": "Тут потрібна форма `relax`."
+          "ru": "Здесь нужна форма relax.",
+          "uk": "Тут потрібна форма relax."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-36:intro2:r2": {
-          "ru": "После `I` нужно `walk`.",
-          "uk": "Після `I` потрібне `walk`."
+          "ru": "После my back нужно hurts, с s.",
+          "uk": "Після my back потрібно hurts, з s."
         },
         "en:lesson-07:session-36:intro2:r3": {
-          "ru": "Здесь нужна форма `walk`.",
-          "uk": "Тут потрібна форма `walk`."
+          "ru": "Здесь нужна форма hurts.",
+          "uk": "Тут потрібна форма hurts."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-36:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После she нужно sneezes, с s.",
+          "uk": "Після she потрібно sneezes, з s."
         },
         "en:lesson-07:session-36:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Здесь нужна форма sneezes.",
+          "uk": "Тут потрібна форма sneezes."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "77566b434f752d7dfb33a3d365f656b9d46ac7123ad90317919f2aab78e9cd75"
+  "auxiliaryFingerprint": "565dbead805744a583dac0f59a88a528536484669ff8d3dffb200e73f6898b53"
 }

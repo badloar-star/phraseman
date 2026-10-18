@@ -10,7 +10,7 @@
 // (аварийная копия пишется внутри signOutAndWipeForAccountSwitch).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -220,8 +220,11 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
           аккаунта: окно пропадает, экран перестаёт реагировать). Теперь модал один, а
           стадия меняет только его СОДЕРЖИМОЕ — нативного present/dismiss между стадиями
           больше нет. */}
+      {/* зачем (координатор 18.10, Optimistic UI выхода): в стадии 'wiping' окна нет — «Сохраняем прогресс…» с маленьким
+          индикатором показывает сама строка «Выйти» на экране «Аккаунт» (account_details.tsx), уход с экрана там же
+          заблокирован. confirm→wiping только закрывает окно, idle→failed только открывает — present-during-dismiss нет. */}
       <Modal
-        visible={stage === 'confirm' || stage === 'wiping' || stage === 'failed'}
+        visible={stage === 'confirm' || stage === 'failed'}
         transparent
         animationType="fade"
         onRequestClose={() => {
@@ -284,21 +287,6 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                   </TouchableOpacity>
                 ) : null}
               </View>
-            </View>
-          ) : stage === 'wiping' ? (
-            <View
-              accessibilityLiveRegion="polite"
-              style={cardStyle}
-            >
-              <KitGlassLayer radius={26} />
-              <ActivityIndicator size="large" color={glass.text} style={{ alignSelf: 'center', marginBottom: 20 }} />
-              <Text accessibilityRole="header" style={titleStyle}>
-                {/* зачем: паритет profile.html PRF-20-PROGRESS (13.10): «Выходим из аккаунта» + чьи локальные изменения */}
-                {L('Выходим из аккаунта', 'Виходимо з акаунта', 'Signing out', 'Cerrando sesión', 'Saindo da conta', 'Đang đăng xuất', 'Sedang keluar', 'Çıkış yapılıyor', 'Wylogowywanie')}
-              </Text>
-              <Text style={bodyStyle}>
-                {L('Локальные изменения остаются привязаны к этому аккаунту.', 'Локальні зміни залишаються прив\'язаними до цього акаунта.', 'Local changes stay linked to this account.', 'Los cambios locales siguen vinculados a esta cuenta.', 'As alterações locais continuam vinculadas a esta conta.', 'Thay đổi trên máy vẫn gắn với tài khoản này.', 'Perubahan lokal tetap terhubung ke akun ini.', 'Yerel değişiklikler bu hesaba bağlı kalır.', 'Lokalne zmiany pozostają przypisane do tego konta.')}
-              </Text>
             </View>
           ) : (
             <View style={cardStyle}>

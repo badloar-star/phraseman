@@ -19,9 +19,9 @@
 // юзера и через animateNextLayoutTransition.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { DeviceEventEmitter, InteractionManager, Text, View } from 'react-native';
+import { ActivityIndicator, BackHandler, DeviceEventEmitter, InteractionManager, Text, View } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { useRouter } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Clipboard from 'expo-clipboard';
@@ -174,6 +174,24 @@ export default function AccountDetailsScreen() {
   const [nameModalVisible, setNameModalVisible] = useState(false);
   const [nameNotice, setNameNotice] = useState<string | null>(null);
   const [logoutStage, setLogoutStage] = useState<LogoutStage>('idle');
+  // зачем (координатор 18.10, Optimistic UI выхода): окна со спиннером больше нет — «Сохраняем прогресс…» показывает
+  // сама строка «Выйти». Окно раньше заодно не давало трогать экран, пока идёт стирание (~14 с): теперь «назад»
+  // (кнопка, аппаратная, свайп шторки) и остальные действия экрана на это время отбиваются с причиной в логе.
+  const logoutBusy = logoutStage === 'wiping';
+  const logoutBusyRef = useRef(false);
+  logoutBusyRef.current = logoutBusy;
+  const isBlockedByLogout = useCallback((action: string): boolean => {
+    if (!logoutBusyRef.current) return false;
+    console.log(`[ACC-MUT] ui:account_action_ignored action=${action} reason=logout_in_progress`); // guard-ok: одна строка на отбитый тап
+    return true;
+  }, []);
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ gestureEnabled: !logoutBusy });
+    if (!logoutBusy) return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => isBlockedByLogout('hardware_back'));
+    return () => sub.remove();
+  }, [logoutBusy, navigation, isBlockedByLogout]);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
   // зачем (PM-214 «мгновенное открытие», №16): окно входа (2507 строк, 86 хуков, без раннего выхода при visible=false) входило в первый
@@ -191,10 +209,11 @@ export default function AccountDetailsScreen() {
   }, []);
 
   const openNameModal = useCallback(() => {
+    if (isBlockedByLogout('name')) return;
     doHaptic();
     setNameNotice(null);
     setNameModalVisible(true);
-  }, []);
+  }, [isBlockedByLogout]);
 
   const handleNotice = useCallback((text: string | null) => {
     // Плашка вставляется в поток → мягкий сдвиг вместо телепорта.
@@ -228,6 +247,17 @@ export default function AccountDetailsScreen() {
     'Çıkış yapıp başka bir hesapla giriş yap',
     'Wyloguj się i zaloguj na inne konto',
   );
+  const logoutSavingLabel = L(
+    'Сохраняем прогресс…',
+    'Зберігаємо прогрес…',
+    'Saving your progress…',
+    'Guardando tu progreso…',
+    'Salvando seu progresso…',
+    'Đang lưu tiến độ…',
+    'Menyimpan progres…',
+    'İlerlemen kaydediliyor…',
+    'Zapisujemy postęp…',
+  );
 
   const nameLabel = L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę');
   const copyLabel = copied
@@ -248,7 +278,7 @@ export default function AccountDetailsScreen() {
             <PressableHybrid
               testID="account-sheet-close"
               accessibilityLabel={backLabel}
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)}
+              onPress={() => { if (isBlockedByLogout('back_button')) return; safeRouterBack(router, '/(tabs)/settings' as never); }}
               variant="icon"
               withHaptic={false}
               withSound={false}
@@ -350,7 +380,7 @@ export default function AccountDetailsScreen() {
                   testID="account-link-row"
                   icon="link-outline"
                   title={L('Привязать аккаунт', "Прив'язати акаунт", 'Link account', 'Vincular cuenta', 'Vincular conta', 'Liên kết tài khoản', 'Tautkan akun', 'Hesabı bağla', 'Połącz konto')}
-                  onPress={() => { doHaptic(); setAuthPromptVisible(true); }}
+                  onPress={() => { if (isBlockedByLogout('link')) return; doHaptic(); setAuthPromptVisible(true); }}
                 />
               )}
               {linkedAuth ? (
@@ -378,13 +408,16 @@ export default function AccountDetailsScreen() {
                   glass={glass}
                   testID="account-logout-button"
                   icon="arrow-forward-outline"
-                  title={logoutActionLabel}
-                  accessibilityLabel={logoutActionLabel}
+                  title={logoutBusy ? logoutSavingLabel : logoutActionLabel}
+                  accessibilityLabel={logoutBusy ? logoutSavingLabel : logoutActionLabel}
                   haptic={false}
                   // зачем (владелец 31.08 «никаких модалов, просто мгновенный выход», подтверждено 21.09 —
                   // docs/work/tasks/2026-09-21_approved_ui_round2_finish.md:32; координатор 12.10 снял окно
                   // подтверждения): выход стартует сразу, эффект стадии 'wiping' в AccountLogoutFlow запускает его один раз.
-                  onPress={() => { doHaptic(); setLogoutStage('wiping'); }}
+                  // зачем (координатор 18.10): пока идёт выход, строка без onPress — второе нажатие физически невозможно,
+                  // справа маленький индикатор вместо шеврона, окна со спиннером нет.
+                  onPress={logoutBusy ? undefined : () => { doHaptic(); setLogoutStage('wiping'); }}
+                  right={logoutBusy ? <ActivityIndicator testID="account-logout-saving" size="small" color={glass.secondary} /> : undefined}
                 />
               ) : null}
               <SettingsGlassRow
@@ -395,7 +428,7 @@ export default function AccountDetailsScreen() {
                 sub={L('Требует отдельного подтверждения', 'Потребує окремого підтвердження', 'Needs separate confirmation', 'Requiere confirmación aparte', 'Exige confirmação separada', 'Cần xác nhận riêng', 'Perlu konfirmasi terpisah', 'Ayrı onay gerektirir', 'Wymaga osobnego potwierdzenia')}
                 titleColor={t.wrong}
                 haptic={false}
-                onPress={() => { doHaptic(); setDeleteVisible(true); }}
+                onPress={() => { if (isBlockedByLogout('delete')) return; doHaptic(); setDeleteVisible(true); }}
               />
             </SettingsGlassList>
           </BouncyScrollView>

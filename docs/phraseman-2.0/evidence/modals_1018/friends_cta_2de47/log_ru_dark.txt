@@ -1,0 +1,2 @@
+10-18 09:43:21.389 I/[FRIENDS-CTA-LAYOUT] label testID=friends-empty-add x=18 width=129 scale=0.9916483516483516
+10-18 09:43:21.391 I/[FRIENDS-CTA-LAYOUT] label testID=friends-empty-add x=18 width=129 scale=0.9916483516483516

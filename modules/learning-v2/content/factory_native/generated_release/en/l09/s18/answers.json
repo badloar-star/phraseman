@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-18:word:frost",
+    "correctText": "frost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i01",
+    "correctText": "This is frost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i02",
+    "correctText": "frost",
+    "correctResponseId": "en:lesson-09:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i03",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-09:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i04",
+    "correctText": "en:lesson-09:session-18:i04:p1=frost\nen:lesson-09:session-18:i04:p2=shiver\nen:lesson-09:session-18:i04:p3=grass\nen:lesson-09:session-18:i04:p4=cold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i05",
+    "correctText": "Are you shivering?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:word:icicle",
+    "correctText": "icicle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i06",
+    "correctText": "Please don’t touch the icicle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:word:fleece",
+    "correctText": "fleece",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i07",
+    "correctText": "I wear a fleece.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i08",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i09",
+    "correctText": "I am shivering.",
+    "correctResponseId": "en:lesson-09:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i10",
+    "correctText": "en:lesson-09:session-18:i10:p1=frost\nen:lesson-09:session-18:i10:p2=icicle\nen:lesson-09:session-18:i10:p3=fleece\nen:lesson-09:session-18:i10:p4=shiver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i11",
+    "correctText": "I am not shivering.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:word:draught",
+    "correctText": "draught",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i12",
+    "correctText": "draught",
+    "correctResponseId": "en:lesson-09:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i13",
+    "correctText": "There is a draught.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i14",
+    "correctText": "shivering",
+    "correctResponseId": "en:lesson-09:session-18:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i15",
+    "correctText": "I wear a fleece.",
+    "correctResponseId": "en:lesson-09:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i16",
+    "correctText": "en:lesson-09:session-18:i16:p1=frost\nen:lesson-09:session-18:i16:p2=icicle\nen:lesson-09:session-18:i16:p3=fleece\nen:lesson-09:session-18:i16:p4=draught",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-18:i17",
+    "correctText": "Are you shivering?",
+    "correctResponseId": null
+  }
+]

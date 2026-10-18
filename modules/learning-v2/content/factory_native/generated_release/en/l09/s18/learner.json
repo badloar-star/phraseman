@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-18:word:frost",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — frost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:word:frost:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — frost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:word:frost:audio",
+          "transcript": "frost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:word:frost:r1",
+            "targetText": "frost",
+            "meaningByLocale": {
+              "ru": "иней. This is frost. — «Это иней». Здесь тонкий белый ледяной налёт, не снег.",
+              "uk": "іній. This is frost. — «Це іній». Тут тонкий білий крижаний наліт, не сніг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frost",
+          "definitionByLocale": {
+            "ru": "иней. This is frost. — «Это иней». Здесь тонкий белый ледяной налёт, не снег.",
+            "uk": "іній. This is frost. — «Це іній». Тут тонкий білий крижаний наліт, не сніг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите белый иней на траве: «Это иней»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите белый иней на траве: «Это иней»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is frost.",
+        "localizedMeaning": {
+          "ru": "Покажите белый иней на траве: «Это иней»",
+          "uk": "Покажіть білий іній на траві: «Це іній»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "frost"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i02:r1",
+          "text": "frost"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i02:r2",
+          "text": "forest"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i02:r3",
+          "text": "first"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i02:audio",
+          "transcript": "frost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:i02:r1",
+            "targetText": "frost",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i02:r2",
+            "targetText": "forest",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i02:r3",
+            "targetText": "first",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит frost",
+              "uk": "У записі звучить frost"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит frost",
+              "uk": "У записі звучить frost"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вопрос другу, который сейчас дрожит",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i03:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i03:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i03:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вопрос другу, который сейчас дрожит",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вопрос другу, который сейчас дрожит",
+          "uk": "Почніть запитання другові, який зараз тремтить"
+        },
+        "gappedTargetPhrase": "___ you shivering?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-18:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i03:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i03:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Начните вопрос другу, который сейчас дрожит",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Начните вопрос другу, который сейчас дрожит",
+            "feedbackByLocale": {
+              "ru": "С you нужно are.",
+              "uk": "Із you потрібне are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Начните вопрос другу, который сейчас дрожит",
+            "feedbackByLocale": {
+              "ru": "Am используется с I. С you нужно are.",
+              "uk": "Am вживається з I. Із you потрібне are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-18:i04:p1",
+            "target": "frost",
+            "meaningByLocale": {
+              "ru": "иней",
+              "uk": "іній"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i04:p2",
+            "target": "shiver",
+            "meaningByLocale": {
+              "ru": "дрожать",
+              "uk": "тремтіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i04:p3",
+            "target": "grass",
+            "meaningByLocale": {
+              "ru": "трава",
+              "uk": "трава"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i04:p4",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "холодный",
+              "uk": "холодний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "frost",
+          "shiver",
+          "grass",
+          "cold"
+        ],
+        "rightColumn": [
+          "иней",
+          "дрожать",
+          "трава",
+          "холодный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i05:audio",
+          "transcript": "Are you shivering?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you shivering?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "shivering"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:word:icicle",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — icicle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:word:icicle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — icicle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:word:icicle:audio",
+          "transcript": "icicle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:word:icicle:r1",
+            "targetText": "icicle",
+            "meaningByLocale": {
+              "ru": "сосулька. Please don’t touch the icicle. — «Пожалуйста, не трогай сосульку».",
+              "uk": "бурулька. Please don’t touch the icicle. — «Будь ласка, не торкайся бурульки»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "icicle",
+          "definitionByLocale": {
+            "ru": "сосулька. Please don’t touch the icicle. — «Пожалуйста, не трогай сосульку».",
+            "uk": "бурулька. Please don’t touch the icicle. — «Будь ласка, не торкайся бурульки»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите друга не трогать сосульку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите друга не трогать сосульку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please don’t touch the icicle.",
+        "localizedMeaning": {
+          "ru": "Попросите друга не трогать сосульку",
+          "uk": "Попросіть друга не торкатися бурульки"
+        },
+        "orderedTokens": [
+          "Please",
+          "don’t",
+          "touch",
+          "the",
+          "icicle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:word:fleece",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fleece",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:word:fleece:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fleece",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:word:fleece:audio",
+          "transcript": "fleece"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:word:fleece:r1",
+            "targetText": "fleece",
+            "meaningByLocale": {
+              "ru": "флисовая кофта. I wear a fleece. — «Я ношу флисовую кофту». С артиклем a здесь предмет одежды; fleece без артикля также означает материал флис.",
+              "uk": "флісова кофта. I wear a fleece. — «Я ношу флісову кофту». З артиклем a тут предмет одягу; fleece без артикля також означає матеріал фліс."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fleece",
+          "definitionByLocale": {
+            "ru": "флисовая кофта. I wear a fleece. — «Я ношу флисовую кофту». С артиклем a здесь предмет одежды; fleece без артикля также означает материал флис.",
+            "uk": "флісова кофта. I wear a fleece. — «Я ношу флісову кофту». З артиклем a тут предмет одягу; fleece без артикля також означає матеріал фліс."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите о своей обычной одежде: «Я ношу флисовую кофту»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Расскажите о своей обычной одежде: «Я ношу флисовую кофту»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i07:audio",
+          "transcript": "I wear a fleece."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wear a fleece.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите пропущенную форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i08:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите пропущенную форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите пропущенную форму",
+          "uk": "Виберіть пропущену форму"
+        },
+        "gappedTargetPhrase": "I ___ not shivering.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-18:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите пропущенную форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите пропущенную форму",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма am.",
+              "uk": "Із I потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите пропущенную форму",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма am.",
+              "uk": "Із I потрібна форма am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i09:r1",
+          "text": "I am shivering."
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i09:r2",
+          "text": "I am not shivering."
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i09:r3",
+          "text": "Are you shivering?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i09:audio",
+          "transcript": "I am shivering."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:i09:r1",
+            "targetText": "I am shivering.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i09:r2",
+            "targetText": "I am not shivering.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i09:r3",
+            "targetText": "Are you shivering?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am shivering.",
+              "uk": "У записі звучить I am shivering."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am shivering.",
+              "uk": "У записі звучить I am shivering."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-18:i10:p1",
+            "target": "frost",
+            "meaningByLocale": {
+              "ru": "иней",
+              "uk": "іній"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i10:p2",
+            "target": "icicle",
+            "meaningByLocale": {
+              "ru": "сосулька",
+              "uk": "бурулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i10:p3",
+            "target": "fleece",
+            "meaningByLocale": {
+              "ru": "флисовая кофта",
+              "uk": "флісова кофта"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i10:p4",
+            "target": "shiver",
+            "meaningByLocale": {
+              "ru": "дрожать",
+              "uk": "тремтіти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "frost",
+          "icicle",
+          "fleece",
+          "shiver"
+        ],
+        "rightColumn": [
+          "иней",
+          "сосулька",
+          "флисовая кофта",
+          "дрожать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i11:audio",
+          "transcript": "I am not shivering."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not shivering.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "shivering"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:word:draught",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — draught",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:word:draught:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — draught",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:word:draught:audio",
+          "transcript": "draught"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:word:draught:r1",
+            "targetText": "draught",
+            "meaningByLocale": {
+              "ru": "сквозняк. There is a draught. — «Здесь сквозняк». Британское написание; американское — draft.",
+              "uk": "протяг. There is a draught. — «Тут протяг». Британське написання; американське — draft."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "draught",
+          "definitionByLocale": {
+            "ru": "сквозняк. There is a draught. — «Здесь сквозняк». Британское написание; американское — draft.",
+            "uk": "протяг. There is a draught. — «Тут протяг». Британське написання; американське — draft."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i12:r1",
+          "text": "draught"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i12:r2",
+          "text": "drought"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i12:r3",
+          "text": "draw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i12:audio",
+          "transcript": "draught"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:i12:r1",
+            "targetText": "draught",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i12:r2",
+            "targetText": "drought",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i12:r3",
+            "targetText": "draw",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит draught",
+              "uk": "У записі звучить draught"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит draught",
+              "uk": "У записі звучить draught"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "От двери дует холодным воздухом. Сообщите: «Здесь сквозняк»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "От двери дует холодным воздухом. Сообщите: «Здесь сквозняк»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i13:audio",
+          "transcript": "There is a draught."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a draught.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для действия сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i14:r1",
+          "text": "shivering"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i14:r2",
+          "text": "shiver"
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i14:r3",
+          "text": "shivers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для действия сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для действия сейчас",
+          "uk": "Виберіть форму для дії зараз"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-18:i14:r1",
+            "text": "shivering"
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i14:r2",
+            "text": "shiver"
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i14:r3",
+            "text": "shivers"
+          }
+        ],
+        "testedDimension": "Выберите форму для действия сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "После am для действия сейчас нужно shivering.",
+              "uk": "Після am для дії зараз потрібне shivering."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "После am здесь нужно shivering, не shivers.",
+              "uk": "Після am тут потрібне shivering, не shivers."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-18:i15:r1",
+          "text": "I wear a fleece."
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i15:r2",
+          "text": "I wear a jacket."
+        },
+        {
+          "responseId": "en:lesson-09:session-18:i15:r3",
+          "text": "I wear a coat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i15:audio",
+          "transcript": "I wear a fleece."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-18:i15:r1",
+            "targetText": "I wear a fleece.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i15:r2",
+            "targetText": "I wear a jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i15:r3",
+            "targetText": "I wear a coat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wear a fleece.",
+              "uk": "У записі звучить I wear a fleece."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wear a fleece.",
+              "uk": "У записі звучить I wear a fleece."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-18:i16:p1",
+            "target": "frost",
+            "meaningByLocale": {
+              "ru": "иней",
+              "uk": "іній"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i16:p2",
+            "target": "icicle",
+            "meaningByLocale": {
+              "ru": "сосулька",
+              "uk": "бурулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i16:p3",
+            "target": "fleece",
+            "meaningByLocale": {
+              "ru": "флисовая кофта",
+              "uk": "флісова кофта"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-18:i16:p4",
+            "target": "draught",
+            "meaningByLocale": {
+              "ru": "сквозняк",
+              "uk": "протяг"
+            }
+          }
+        ],
+        "leftColumn": [
+          "frost",
+          "icicle",
+          "fleece",
+          "draught"
+        ],
+        "rightColumn": [
+          "иней",
+          "сосулька",
+          "флисовая кофта",
+          "сквозняк"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После выхода из бассейна друг завернулся в полотенце и дрожит. Спросите: «Ты дрожишь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "После выхода из бассейна друг завернулся в полотенце и дрожит. Спросите: «Ты дрожишь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-18:i17:audio",
+          "transcript": "Are you shivering?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you shivering?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1864aad2e5a8681bcaadfccf8b6d70c85fe2037ae8fbe8c542ee01ae2b8b3496"
+}

@@ -3255,4 +3255,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is cleaning / is not working; Please don’t touch…","uk":"is cleaning / is not working; Please don’t touch…"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 17,
+    sourceFingerprint: "fa244103f2e8433e4efc82dc71443863326ff95c71dc33d4a6ce6aa3f3fd1638",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Are you inspecting…? Is she inspecting…? Is the zipper working?","uk":"Are you inspecting…? Is she inspecting…? Is the zipper working?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 18,
+    sourceFingerprint: "c1112f088341d76cd97b9ee466554b5a5557d7e9a3168dc992b8e6d21305a3dc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Are you shivering? I am not shivering.","uk":"Are you shivering? I am not shivering."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

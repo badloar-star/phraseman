@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-17:intro1:r2": {
+          "ru": "С you нужна форма are.",
+          "uk": "Із you потрібна форма are."
+        },
+        "en:lesson-09:session-17:intro1:r3": {
+          "ru": "Для действия сейчас сохраняем inspecting.",
+          "uk": "Для дії зараз зберігаємо inspecting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-17:intro2:r2": {
+          "ru": "С she нужен вопрос Is she…?",
+          "uk": "Із she потрібне запитання Is she…?"
+        },
+        "en:lesson-09:session-17:intro2:r3": {
+          "ru": "После is she для действия сейчас нужно inspecting.",
+          "uk": "Після is she для дії зараз потрібне inspecting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-17:intro3:r2": {
+          "ru": "Одна молния: is, не are.",
+          "uk": "Одна блискавка: is, не are."
+        },
+        "en:lesson-09:session-17:intro3:r3": {
+          "ru": "После is здесь сохраняем working.",
+          "uk": "Після is тут зберігаємо working."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ff8afeccbd373c2b8c685825d6c347cdae4ff71dd5a079e811c43d54442a616c"
+}

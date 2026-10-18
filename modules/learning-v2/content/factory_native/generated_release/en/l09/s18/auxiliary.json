@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-18:intro1:r2": {
+          "ru": "С you нужна форма are.",
+          "uk": "Із you потрібна форма are."
+        },
+        "en:lesson-09:session-18:intro1:r3": {
+          "ru": "Для действия сейчас сохраняем shivering.",
+          "uk": "Для дії зараз зберігаємо shivering."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-18:intro2:r2": {
+          "ru": "После don’t нужна форма touch без -ing.",
+          "uk": "Після don’t потрібна форма touch без -ing."
+        },
+        "en:lesson-09:session-18:intro2:r3": {
+          "ru": "После don’t не добавляем -es.",
+          "uk": "Після don’t не додаємо -es."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-18:intro3:r2": {
+          "ru": "С I перед not shivering нужно am.",
+          "uk": "Із I перед not shivering потрібне am."
+        },
+        "en:lesson-09:session-18:intro3:r3": {
+          "ru": "После am not здесь нужно shivering.",
+          "uk": "Після am not тут потрібне shivering."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e06b863b93a08b5623815481510ece75cf464365b07dbf2daaa37b5225372df0"
+}

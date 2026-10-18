@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "blink → blinking; is + -ing / is not + -ing",
+    "uk": "blink → blinking; is + -ing / is not + -ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Короткое видео для портрета",
+        "uk": "Коротке відео для портрета"
+      },
+      "bodyByLocale": {
+        "ru": "Вы снимаете друга крупным планом. Он открывает и закрывает глаза — моргает. Blink — «моргать». He is blinking — «Он моргает». Это действие в данный момент: is blinking. Один кадр ещё можно испортить морганием, а на видео это уже почти актёрская игра.",
+        "uk": "Ви знімаєте друга великим планом. Він розплющує й заплющує очі — моргає. Blink — «моргати». He is blinking — «Він моргає». Це дія цієї миті: is blinking. Один кадр ще можна зіпсувати морганням, а на відео це вже майже акторська гра."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-11:intro1:r1",
+              "text": "He is blinking."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro1:r2",
+              "text": "He blinking."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro1:r3",
+              "text": "He is blink."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-11:intro1:r1",
+              "text": "He is blinking."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro1:r2",
+              "text": "He blinking."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro1:r3",
+              "text": "He is blink."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Неподвижная деталь мультфильма",
+        "uk": "Нерухома деталь мультфільму"
+      },
+      "bodyByLocale": {
+        "ru": "Вы делаете короткий мультфильм с лицом персонажа. Веко в этом фрагменте должно двигаться, но пока остаётся на месте. Eyelid — «веко», часть тела, которая закрывает глаз. The eyelid is not moving — «Веко не двигается». Not после is показывает, что движения сейчас нет; moving сохраняет -ing.",
+        "uk": "Ви робите короткий мультфільм з обличчям персонажа. Повіка в цьому фрагменті має рухатися, але поки залишається на місці. Eyelid — «повіка», частина тіла, яка закриває око. The eyelid is not moving — «Повіка не рухається». Not після is показує, що руху зараз немає; moving зберігає -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-11:intro2:r1",
+              "text": "The eyelid is not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro2:r2",
+              "text": "The eyelid not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro2:r3",
+              "text": "The eyelid is not move."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-11:intro2:r1",
+              "text": "The eyelid is not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro2:r2",
+              "text": "The eyelid not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro2:r3",
+              "text": "The eyelid is not move."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лицо бумажной куклы",
+        "uk": "Обличчя паперової ляльки"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга рисует лицо бумажной куклы. Сейчас она проводит линию брови. Eyebrow — «бровь». She is drawing an eyebrow — «Она рисует бровь». Для действия сейчас используем is drawing. Перед eyebrow стоит an: слово начинается с гласного звука.",
+        "uk": "Подруга малює обличчя паперової ляльки. Зараз вона проводить лінію брови. Eyebrow — «брова». She is drawing an eyebrow — «Вона малює брову». Для дії зараз використовуємо is drawing. Перед eyebrow стоїть an: слово починається з голосного звука."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-11:intro3:r1",
+              "text": "She is drawing an eyebrow."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro3:r2",
+              "text": "She drawing an eyebrow."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro3:r3",
+              "text": "She is draw an eyebrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-11:intro3:r1",
+              "text": "She is drawing an eyebrow."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro3:r2",
+              "text": "She drawing an eyebrow."
+            },
+            {
+              "responseId": "en:lesson-09:session-11:intro3:r3",
+              "text": "She is draw an eyebrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4d3acdf1823666213dcd94ef8e3044e4250526c9654d928a590c2206db20a5cd"
+}

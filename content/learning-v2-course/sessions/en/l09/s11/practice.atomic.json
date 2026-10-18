@@ -1,0 +1,2409 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-11",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-11:word:blink",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blink",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:blink:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blink",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:blink:audio",
+            "transcript": "blink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:blink:r1",
+              "targetText": "blink",
+              "meaningByLocale": {
+                "ru": "моргать. I blink. — «Я моргаю». Для действия прямо сейчас: I am blinking.",
+                "uk": "моргати. I blink. — «Я моргаю». Для дії просто зараз: I am blinking."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blink",
+            "definitionByLocale": {
+              "ru": "моргать. I blink. — «Я моргаю». Для действия прямо сейчас: I am blinking.",
+              "uk": "моргати. I blink. — «Я моргаю». Для дії просто зараз: I am blinking."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для записи движения глаз попросите друга моргнуть: «Пожалуйста, моргни»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для записи движения глаз попросите друга моргнуть: «Пожалуйста, моргни»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please blink.",
+          "localizedMeaning": {
+            "ru": "Для записи движения глаз попросите друга моргнуть: «Пожалуйста, моргни»",
+            "uk": "Для запису руху очей попросіть друга моргнути: «Будь ласка, моргни»"
+          },
+          "orderedTokens": [
+            "Please",
+            "blink"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i02:r1",
+            "text": "blink"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i02:r2",
+            "text": "blank"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i02:r3",
+            "text": "pink"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i02:audio",
+            "transcript": "blink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i02:r1",
+              "targetText": "blink",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i02:r2",
+              "targetText": "blank",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i02:r3",
+              "targetText": "pink",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит blink",
+                "uk": "У записі звучить blink"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит blink",
+                "uk": "У записі звучить blink"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для he",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для he",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для he",
+            "uk": "Виберіть форму для he"
+          },
+          "gappedTargetPhrase": "He ___ blinking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-11:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для he",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для he",
+              "feedbackByLocale": {
+                "ru": "С he нужно is.",
+                "uk": "Із he потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для he",
+              "feedbackByLocale": {
+                "ru": "С he нужно is.",
+                "uk": "Із he потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-11:i04:p1",
+              "target": "blink",
+              "meaningByLocale": {
+                "ru": "моргать",
+                "uk": "моргати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i04:p2",
+              "target": "eye",
+              "meaningByLocale": {
+                "ru": "глаз",
+                "uk": "око"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i04:p3",
+              "target": "face",
+              "meaningByLocale": {
+                "ru": "лицо",
+                "uk": "обличчя"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i04:p4",
+              "target": "look",
+              "meaningByLocale": {
+                "ru": "смотреть",
+                "uk": "дивитися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blink",
+            "eye",
+            "face",
+            "look"
+          ],
+          "rightColumn": [
+            "моргать",
+            "глаз",
+            "лицо",
+            "смотреть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i05:audio",
+            "transcript": "He is blinking."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is blinking.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "blinking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:word:eyelid",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eyelid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:eyelid:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eyelid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:eyelid:audio",
+            "transcript": "eyelid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:eyelid:r1",
+              "targetText": "eyelid",
+              "meaningByLocale": {
+                "ru": "веко. The eyelid is not moving. — «Веко не двигается». Веко закрывает глаз; это не бровь над глазом.",
+                "uk": "повіка. The eyelid is not moving. — «Повіка не рухається». Повіка закриває око; це не брова над оком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyelid",
+            "definitionByLocale": {
+              "ru": "веко. The eyelid is not moving. — «Веко не двигается». Веко закрывает глаз; это не бровь над глазом.",
+              "uk": "повіка. The eyelid is not moving. — «Повіка не рухається». Повіка закриває око; це не брова над оком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В мультфильме веко персонажа сейчас не двигается. Скажите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В мультфильме веко персонажа сейчас не двигается. Скажите об этом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The eyelid is not moving.",
+          "localizedMeaning": {
+            "ru": "В мультфильме веко персонажа сейчас не двигается. Скажите об этом",
+            "uk": "У мультфільмі повіка персонажа зараз не рухається. Скажіть про це"
+          },
+          "orderedTokens": [
+            "The",
+            "eyelid",
+            "is",
+            "not",
+            "moving"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:word:eyebrow",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eyebrow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:eyebrow:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eyebrow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:eyebrow:audio",
+            "transcript": "eyebrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:eyebrow:r1",
+              "targetText": "eyebrow",
+              "meaningByLocale": {
+                "ru": "бровь. She is drawing an eyebrow. — «Она рисует бровь».",
+                "uk": "брова. She is drawing an eyebrow. — «Вона малює брову»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyebrow",
+            "definitionByLocale": {
+              "ru": "бровь. She is drawing an eyebrow. — «Она рисует бровь».",
+              "uk": "брова. She is drawing an eyebrow. — «Вона малює брову»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга рисует бровь бумажной кукле. Опишите действие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга рисует бровь бумажной кукле. Опишите действие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i07:audio",
+            "transcript": "She is drawing an eyebrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is drawing an eyebrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после is not",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i08:r1",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i08:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i08:r3",
+            "text": "moves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после is not",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после is not",
+            "uk": "Виберіть форму після is not"
+          },
+          "gappedTargetPhrase": "The eyelid is not ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-11:i08:r1",
+              "text": "moving"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i08:r2",
+              "text": "move"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i08:r3",
+              "text": "moves"
+            }
+          ],
+          "testedDimension": "Выберите форму после is not",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после is not",
+              "feedbackByLocale": {
+                "ru": "Для действия сейчас здесь нужна форма moving.",
+                "uk": "Для дії зараз тут потрібна форма moving."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после is not",
+              "feedbackByLocale": {
+                "ru": "Здесь is not moving, а не is not moves.",
+                "uk": "Тут is not moving, а не is not moves."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i09:r1",
+            "text": "The eyelid is not moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i09:r2",
+            "text": "The eyelid is moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i09:r3",
+            "text": "The eyebrow is not moving."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i09:audio",
+            "transcript": "The eyelid is not moving."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i09:r1",
+              "targetText": "The eyelid is not moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i09:r2",
+              "targetText": "The eyelid is moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i09:r3",
+              "targetText": "The eyebrow is not moving.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyelid is not moving.",
+                "uk": "У записі звучить The eyelid is not moving."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyelid is not moving.",
+                "uk": "У записі звучить The eyelid is not moving."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-11:i10:p1",
+              "target": "blink",
+              "meaningByLocale": {
+                "ru": "моргать",
+                "uk": "моргати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i10:p2",
+              "target": "eyelid",
+              "meaningByLocale": {
+                "ru": "веко",
+                "uk": "повіка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i10:p3",
+              "target": "eyebrow",
+              "meaningByLocale": {
+                "ru": "бровь",
+                "uk": "брова"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i10:p4",
+              "target": "eye",
+              "meaningByLocale": {
+                "ru": "глаз",
+                "uk": "око"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blink",
+            "eyelid",
+            "eyebrow",
+            "eye"
+          ],
+          "rightColumn": [
+            "моргать",
+            "веко",
+            "бровь",
+            "глаз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i11:audio",
+            "transcript": "She is drawing an eyebrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is drawing an eyebrow.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "drawing",
+            "an",
+            "eyebrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:word:eyelash",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eyelash",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:eyelash:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eyelash",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:eyelash:audio",
+            "transcript": "eyelash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:eyelash:r1",
+              "targetText": "eyelash",
+              "meaningByLocale": {
+                "ru": "ресница. This is an eyelash. — «Это ресница». Один волосок у края века; бровь расположена выше глаза.",
+                "uk": "вія. This is an eyelash. — «Це вія». Одна волосинка біля краю повіки; брова розташована вище ока."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyelash",
+            "definitionByLocale": {
+              "ru": "ресница. This is an eyelash. — «Это ресница». Один волосок у края века; бровь расположена выше глаза.",
+              "uk": "вія. This is an eyelash. — «Це вія». Одна волосинка біля краю повіки; брова розташована вище ока."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i12:r1",
+            "text": "eyelash"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i12:r2",
+            "text": "eyelid"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i12:r3",
+            "text": "eyebrow"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i12:audio",
+            "transcript": "eyelash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i12:r1",
+              "targetText": "eyelash",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i12:r2",
+              "targetText": "eyelid",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i12:r3",
+              "targetText": "eyebrow",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит eyelash",
+                "uk": "У записі звучить eyelash"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит eyelash",
+                "uk": "У записі звучить eyelash"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На белом шарфе лежит выпавшая ресница. Назовите её: «Это ресница»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i13:audio"
+        ],
+        "accessibilityLabel": "На белом шарфе лежит выпавшая ресница. Назовите её: «Это ресница»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i13:audio",
+            "transcript": "This is an eyelash."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is an eyelash.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для she",
+            "uk": "Виберіть форму для she"
+          },
+          "gappedTargetPhrase": "She ___ drawing an eyebrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-11:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i15:r1",
+            "text": "He is blinking."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i15:r2",
+            "text": "He is not blinking."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i15:r3",
+            "text": "They are blinking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i15:audio",
+            "transcript": "He is blinking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i15:r1",
+              "targetText": "He is blinking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i15:r2",
+              "targetText": "He is not blinking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i15:r3",
+              "targetText": "They are blinking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is blinking.",
+                "uk": "У записі звучить He is blinking."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is blinking.",
+                "uk": "У записі звучить He is blinking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-11:i16:p1",
+              "target": "blink",
+              "meaningByLocale": {
+                "ru": "моргать",
+                "uk": "моргати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i16:p2",
+              "target": "eyelid",
+              "meaningByLocale": {
+                "ru": "веко",
+                "uk": "повіка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i16:p3",
+              "target": "eyebrow",
+              "meaningByLocale": {
+                "ru": "бровь",
+                "uk": "брова"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i16:p4",
+              "target": "eyelash",
+              "meaningByLocale": {
+                "ru": "ресница",
+                "uk": "вія"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blink",
+            "eyelid",
+            "eyebrow",
+            "eyelash"
+          ],
+          "rightColumn": [
+            "моргать",
+            "веко",
+            "бровь",
+            "ресница"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На записи брат несколько раз открывает и закрывает глаза. Опишите: «Он моргает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "На записи брат несколько раз открывает и закрывает глаза. Опишите: «Он моргает»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i17:audio",
+            "transcript": "He is blinking."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is blinking.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-11:word:blink",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blink",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:blink:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blink",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:blink:audio",
+            "transcript": "blink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:blink:r1",
+              "targetText": "blink",
+              "meaningByLocale": {
+                "ru": "моргать. I blink. — «Я моргаю». Для действия прямо сейчас: I am blinking.",
+                "uk": "моргати. I blink. — «Я моргаю». Для дії просто зараз: I am blinking."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blink",
+            "definitionByLocale": {
+              "ru": "моргать. I blink. — «Я моргаю». Для действия прямо сейчас: I am blinking.",
+              "uk": "моргати. I blink. — «Я моргаю». Для дії просто зараз: I am blinking."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для запису руху очей попросіть друга моргнути: «Будь ласка, моргни»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для запису руху очей попросіть друга моргнути: «Будь ласка, моргни»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please blink.",
+          "localizedMeaning": {
+            "ru": "Для записи движения глаз попросите друга моргнуть: «Пожалуйста, моргни»",
+            "uk": "Для запису руху очей попросіть друга моргнути: «Будь ласка, моргни»"
+          },
+          "orderedTokens": [
+            "Please",
+            "blink"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i02:r1",
+            "text": "blink"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i02:r2",
+            "text": "blank"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i02:r3",
+            "text": "pink"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i02:audio",
+            "transcript": "blink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i02:r1",
+              "targetText": "blink",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i02:r2",
+              "targetText": "blank",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i02:r3",
+              "targetText": "pink",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит blink",
+                "uk": "У записі звучить blink"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит blink",
+                "uk": "У записі звучить blink"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для he",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для he",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для he",
+            "uk": "Виберіть форму для he"
+          },
+          "gappedTargetPhrase": "He ___ blinking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-11:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для he",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для he",
+              "feedbackByLocale": {
+                "ru": "С he нужно is.",
+                "uk": "Із he потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для he",
+              "feedbackByLocale": {
+                "ru": "С he нужно is.",
+                "uk": "Із he потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-11:i04:p1",
+              "target": "blink",
+              "meaningByLocale": {
+                "ru": "моргать",
+                "uk": "моргати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i04:p2",
+              "target": "eye",
+              "meaningByLocale": {
+                "ru": "глаз",
+                "uk": "око"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i04:p3",
+              "target": "face",
+              "meaningByLocale": {
+                "ru": "лицо",
+                "uk": "обличчя"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i04:p4",
+              "target": "look",
+              "meaningByLocale": {
+                "ru": "смотреть",
+                "uk": "дивитися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blink",
+            "eye",
+            "face",
+            "look"
+          ],
+          "rightColumn": [
+            "моргати",
+            "око",
+            "обличчя",
+            "дивитися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i05:audio",
+            "transcript": "He is blinking."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is blinking.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "blinking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:word:eyelid",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eyelid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:eyelid:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eyelid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:eyelid:audio",
+            "transcript": "eyelid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:eyelid:r1",
+              "targetText": "eyelid",
+              "meaningByLocale": {
+                "ru": "веко. The eyelid is not moving. — «Веко не двигается». Веко закрывает глаз; это не бровь над глазом.",
+                "uk": "повіка. The eyelid is not moving. — «Повіка не рухається». Повіка закриває око; це не брова над оком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyelid",
+            "definitionByLocale": {
+              "ru": "веко. The eyelid is not moving. — «Веко не двигается». Веко закрывает глаз; это не бровь над глазом.",
+              "uk": "повіка. The eyelid is not moving. — «Повіка не рухається». Повіка закриває око; це не брова над оком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У мультфільмі повіка персонажа зараз не рухається. Скажіть про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У мультфільмі повіка персонажа зараз не рухається. Скажіть про це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The eyelid is not moving.",
+          "localizedMeaning": {
+            "ru": "В мультфильме веко персонажа сейчас не двигается. Скажите об этом",
+            "uk": "У мультфільмі повіка персонажа зараз не рухається. Скажіть про це"
+          },
+          "orderedTokens": [
+            "The",
+            "eyelid",
+            "is",
+            "not",
+            "moving"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:word:eyebrow",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eyebrow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:eyebrow:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eyebrow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:eyebrow:audio",
+            "transcript": "eyebrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:eyebrow:r1",
+              "targetText": "eyebrow",
+              "meaningByLocale": {
+                "ru": "бровь. She is drawing an eyebrow. — «Она рисует бровь».",
+                "uk": "брова. She is drawing an eyebrow. — «Вона малює брову»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyebrow",
+            "definitionByLocale": {
+              "ru": "бровь. She is drawing an eyebrow. — «Она рисует бровь».",
+              "uk": "брова. She is drawing an eyebrow. — «Вона малює брову»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга малює брову паперовій ляльці. Опишіть дію",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга малює брову паперовій ляльці. Опишіть дію",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i07:audio",
+            "transcript": "She is drawing an eyebrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is drawing an eyebrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після is not",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i08:r1",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i08:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i08:r3",
+            "text": "moves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після is not",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после is not",
+            "uk": "Виберіть форму після is not"
+          },
+          "gappedTargetPhrase": "The eyelid is not ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-11:i08:r1",
+              "text": "moving"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i08:r2",
+              "text": "move"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i08:r3",
+              "text": "moves"
+            }
+          ],
+          "testedDimension": "Виберіть форму після is not",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після is not",
+              "feedbackByLocale": {
+                "ru": "Для действия сейчас здесь нужна форма moving.",
+                "uk": "Для дії зараз тут потрібна форма moving."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після is not",
+              "feedbackByLocale": {
+                "ru": "Здесь is not moving, а не is not moves.",
+                "uk": "Тут is not moving, а не is not moves."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i09:r1",
+            "text": "The eyelid is not moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i09:r2",
+            "text": "The eyelid is moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i09:r3",
+            "text": "The eyebrow is not moving."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i09:audio",
+            "transcript": "The eyelid is not moving."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i09:r1",
+              "targetText": "The eyelid is not moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i09:r2",
+              "targetText": "The eyelid is moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i09:r3",
+              "targetText": "The eyebrow is not moving.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyelid is not moving.",
+                "uk": "У записі звучить The eyelid is not moving."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyelid is not moving.",
+                "uk": "У записі звучить The eyelid is not moving."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-11:i10:p1",
+              "target": "blink",
+              "meaningByLocale": {
+                "ru": "моргать",
+                "uk": "моргати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i10:p2",
+              "target": "eyelid",
+              "meaningByLocale": {
+                "ru": "веко",
+                "uk": "повіка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i10:p3",
+              "target": "eyebrow",
+              "meaningByLocale": {
+                "ru": "бровь",
+                "uk": "брова"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i10:p4",
+              "target": "eye",
+              "meaningByLocale": {
+                "ru": "глаз",
+                "uk": "око"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blink",
+            "eyelid",
+            "eyebrow",
+            "eye"
+          ],
+          "rightColumn": [
+            "моргати",
+            "повіка",
+            "брова",
+            "око"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i11:audio",
+            "transcript": "She is drawing an eyebrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is drawing an eyebrow.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "drawing",
+            "an",
+            "eyebrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:word:eyelash",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eyelash",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:word:eyelash:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eyelash",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:word:eyelash:audio",
+            "transcript": "eyelash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:word:eyelash:r1",
+              "targetText": "eyelash",
+              "meaningByLocale": {
+                "ru": "ресница. This is an eyelash. — «Это ресница». Один волосок у края века; бровь расположена выше глаза.",
+                "uk": "вія. This is an eyelash. — «Це вія». Одна волосинка біля краю повіки; брова розташована вище ока."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyelash",
+            "definitionByLocale": {
+              "ru": "ресница. This is an eyelash. — «Это ресница». Один волосок у края века; бровь расположена выше глаза.",
+              "uk": "вія. This is an eyelash. — «Це вія». Одна волосинка біля краю повіки; брова розташована вище ока."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i12:r1",
+            "text": "eyelash"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i12:r2",
+            "text": "eyelid"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i12:r3",
+            "text": "eyebrow"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i12:audio",
+            "transcript": "eyelash"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i12:r1",
+              "targetText": "eyelash",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i12:r2",
+              "targetText": "eyelid",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i12:r3",
+              "targetText": "eyebrow",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит eyelash",
+                "uk": "У записі звучить eyelash"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит eyelash",
+                "uk": "У записі звучить eyelash"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На білому шарфі лежить вія, що випала. Назвіть її: «Це вія»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i13:audio"
+        ],
+        "accessibilityLabel": "На білому шарфі лежить вія, що випала. Назвіть її: «Це вія»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i13:audio",
+            "transcript": "This is an eyelash."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is an eyelash.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для she",
+            "uk": "Виберіть форму для she"
+          },
+          "gappedTargetPhrase": "She ___ drawing an eyebrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-11:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-11:i15:r1",
+            "text": "He is blinking."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i15:r2",
+            "text": "He is not blinking."
+          },
+          {
+            "responseId": "en:lesson-09:session-11:i15:r3",
+            "text": "They are blinking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i15:audio",
+            "transcript": "He is blinking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-11:i15:r1",
+              "targetText": "He is blinking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i15:r2",
+              "targetText": "He is not blinking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i15:r3",
+              "targetText": "They are blinking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-11:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is blinking.",
+                "uk": "У записі звучить He is blinking."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-11:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is blinking.",
+                "uk": "У записі звучить He is blinking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-11:i16:p1",
+              "target": "blink",
+              "meaningByLocale": {
+                "ru": "моргать",
+                "uk": "моргати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i16:p2",
+              "target": "eyelid",
+              "meaningByLocale": {
+                "ru": "веко",
+                "uk": "повіка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i16:p3",
+              "target": "eyebrow",
+              "meaningByLocale": {
+                "ru": "бровь",
+                "uk": "брова"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-11:i16:p4",
+              "target": "eyelash",
+              "meaningByLocale": {
+                "ru": "ресница",
+                "uk": "вія"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blink",
+            "eyelid",
+            "eyebrow",
+            "eyelash"
+          ],
+          "rightColumn": [
+            "моргати",
+            "повіка",
+            "брова",
+            "вія"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-11:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На записі брат кілька разів розплющує й заплющує очі. Опишіть: «Він моргає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "На записі брат кілька разів розплющує й заплющує очі. Опишіть: «Він моргає»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-11:i17:audio",
+            "transcript": "He is blinking."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is blinking.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-11:word:blink",
+      "correctText": "blink",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i01",
+      "correctText": "Please blink.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i02",
+      "correctText": "blink",
+      "correctResponseId": "en:lesson-09:session-11:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-11:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i05",
+      "correctText": "He is blinking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:word:eyelid",
+      "correctText": "eyelid",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i06",
+      "correctText": "The eyelid is not moving.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:word:eyebrow",
+      "correctText": "eyebrow",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i07",
+      "correctText": "She is drawing an eyebrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i08",
+      "correctText": "moving",
+      "correctResponseId": "en:lesson-09:session-11:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i09",
+      "correctText": "The eyelid is not moving.",
+      "correctResponseId": "en:lesson-09:session-11:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i11",
+      "correctText": "She is drawing an eyebrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:word:eyelash",
+      "correctText": "eyelash",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i12",
+      "correctText": "eyelash",
+      "correctResponseId": "en:lesson-09:session-11:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i13",
+      "correctText": "This is an eyelash.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-11:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i15",
+      "correctText": "He is blinking.",
+      "correctResponseId": "en:lesson-09:session-11:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-11:i17",
+      "correctText": "He is blinking.",
+      "correctResponseId": null
+    }
+  ]
+}

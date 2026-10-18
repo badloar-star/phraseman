@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-11:word:blink",
+    "correctText": "blink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i01",
+    "correctText": "Please blink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i02",
+    "correctText": "blink",
+    "correctResponseId": "en:lesson-09:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i04",
+    "correctText": "en:lesson-09:session-11:i04:p1=blink\nen:lesson-09:session-11:i04:p2=eye\nen:lesson-09:session-11:i04:p3=face\nen:lesson-09:session-11:i04:p4=look",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i05",
+    "correctText": "He is blinking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:word:eyelid",
+    "correctText": "eyelid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i06",
+    "correctText": "The eyelid is not moving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:word:eyebrow",
+    "correctText": "eyebrow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i07",
+    "correctText": "She is drawing an eyebrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i08",
+    "correctText": "moving",
+    "correctResponseId": "en:lesson-09:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i09",
+    "correctText": "The eyelid is not moving.",
+    "correctResponseId": "en:lesson-09:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i10",
+    "correctText": "en:lesson-09:session-11:i10:p1=blink\nen:lesson-09:session-11:i10:p2=eyelid\nen:lesson-09:session-11:i10:p3=eyebrow\nen:lesson-09:session-11:i10:p4=eye",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i11",
+    "correctText": "She is drawing an eyebrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:word:eyelash",
+    "correctText": "eyelash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i12",
+    "correctText": "eyelash",
+    "correctResponseId": "en:lesson-09:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i13",
+    "correctText": "This is an eyelash.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i15",
+    "correctText": "He is blinking.",
+    "correctResponseId": "en:lesson-09:session-11:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i16",
+    "correctText": "en:lesson-09:session-11:i16:p1=blink\nen:lesson-09:session-11:i16:p2=eyelid\nen:lesson-09:session-11:i16:p3=eyebrow\nen:lesson-09:session-11:i16:p4=eyelash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-11:i17",
+    "correctText": "He is blinking.",
+    "correctResponseId": null
+  }
+]

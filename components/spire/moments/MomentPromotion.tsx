@@ -234,7 +234,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
             <View style={s.ladder}>
               {phase.zone ? (
                 <Animated.View pointerEvents="none" style={[s.zone, { backgroundColor: p.correct, boxShadow: `0 0 12px ${p.correct}` }, zoneStyle]}>
-                  <Text style={[s.zoneLbl, { color: p.correct }]}>{momentText(lang, 'zoneTop5')}</Text>
+                  <Text style={[s.zoneLbl, { color: p.bg, backgroundColor: p.correct }]}>{momentText(lang, 'zoneTop5')}</Text>
                 </Animated.View>
               ) : null}
               {shown.map((row, i) => (
@@ -264,7 +264,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
         {phase.act === 3 ? (
           <Animated.View key="act3" entering={reduceMotion ? undefined : FadeIn.duration(420)} style={s.act3}>
             <Animated.View testID={`${testID}-tower`} style={[s.tower, { top: towerTop, width: towerW, left: (winW - towerW) / 2, height: Math.round(SPIRE_TOWER_GEOM.height * k) }, towerStyle]}>
-              <SpireTowerSvg lang={lang} myFloor={1} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} />
+              <SpireTowerSvg lang={lang} myFloor={1} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} illustration />
               <Animated.View style={[s.marker, { left: Math.round(mk.x * k - 17), top: Math.round(mk.y * k - 17) }, markerStyle]} testID={`${testID}-marker`}>
                 <View style={s.markerInner}><SpireRankCoin rank={myCoinRank} size={26} /></View>
               </Animated.View>
@@ -333,7 +333,9 @@ const s = StyleSheet.create({
   // `.zone-line`: линия 2 px по ширине таблицы (+8 с краёв), подпись ТОП-5 справа над линией
   zone: { position: 'absolute', left: -8, right: -8, height: 2, zIndex: 3 },
   // зачем (D145: размеры текста только 13/16; лист приёмки m01/m05, Макеты 15.10): подпись «ТОП-5» на линии зоны — 13 (было 10), поднята выше линии на высоту строки
-  zoneLbl: { position: 'absolute', right: 8, top: -20, fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
+  // зачем (Макеты 18.10, rise_open: «ТОП-5» над линией (top −20) наезжал на очки пятой строки): подпись — плашка цвета линии по центру
+  // линии в зазоре между строками; числа строк центрированы по высоте и плашку не задевают.
+  zoneLbl: { position: 'absolute', right: 8, top: -7.5, paddingHorizontal: 8, borderRadius: 9, overflow: 'hidden', fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
   tower: { position: 'absolute' },
   // маркер «Ты здесь» 34: кольцо светлое, внутри чёрный круг 30 с монетой 26, ореол 10
   marker: { position: 'absolute', width: 34, height: 34, borderRadius: 17, backgroundColor: '#F2F1F6', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 10px rgba(255,255,255,0.12)' }, // theme-exempt: маркер «Ты здесь» как в SpireTower (метка текущего этажа)

@@ -18,6 +18,7 @@ import AchievementArt from '../../AchievementArt';
 import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../ThemeContext';
 import { V2Button } from '../../v2/V2Kit';
+import { plateBoxShadow } from '../../v2/ShadowSurface';
 import MomentCoin from '../../moments/MomentCoin';
 import MomentFirework, { useMomentRumble } from '../../spire/moments/moments_effects';
 import { MomentFullScreen } from '../../spire/moments/moments_layout';
@@ -195,7 +196,11 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
             {T(overline, 'ov')}{T(title, 'xl')}{T(sub, 'p')}
             {milestone === 7 && ach ? (
               <View style={s.achRow}>
-                <AchievementArt achievementId={ach} size={56} />
+                {/* зачем (Макеты 18.10, ptBR_d7_t5: «тёмный силуэт, похожий на кошку»): арт ачивки прозрачный и тёмный — на светлом фоне
+                    читался пятном. Плашка карточки темы с тенью (без обводки) даёт ему фон в любой теме; размер арта прежний, 56. */}
+                <View style={[s.achTile, { backgroundColor: p.card, boxShadow: plateBoxShadow(glass) }]}>
+                  <AchievementArt achievementId={ach} size={56} />
+                </View>
                 <Text style={[s.achText, { color: p.text }]}>{streakMomentText(lang, 'achievementRow', { n: milestone })}</Text>
               </View>
             ) : null}
@@ -324,6 +329,7 @@ const s = StyleSheet.create({
   coinBeside: { marginLeft: COIN_OVERLAP, marginBottom: 10 },
   extra: { marginTop: 16, width: '100%', alignItems: 'center' },
   achRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 16 },
+  achTile: { width: 64, height: 64, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   achText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   ov: { fontSize: 13, lineHeight: 17, letterSpacing: 1.4, fontWeight: '700', textTransform: 'uppercase', textAlign: 'center' },
   ovMuted: { fontSize: 13, lineHeight: 17, letterSpacing: 1.4, fontWeight: '700', textTransform: 'uppercase', textAlign: 'center' },

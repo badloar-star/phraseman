@@ -241,7 +241,9 @@ const FlyCoin = memo(function FlyCoin({ k, dx, color }: { k: number; dx: number;
   useEffect(() => {
     t.value = withDelay(T.flyDelay + k * T.flyStep, withTiming(1, { duration: T.flyDuration, easing: EASE_IN_OUT }));
   }, [dx, k, t]);
-  const st = useAnimatedStyle(() => ({ opacity: 1 - t.value, transform: [{ translateX: dx * t.value }, { scale: 1 - 0.5 * t.value }] }));
+  // зачем (Макеты 18.10, m08_hold/end: «фиолетовая точка наезжает на монету»): до старта полёта (задержка flyDelay + k·flyStep)
+  // t = 0 и кружок стоял непрозрачным прямо на монете строки. Видим только в полёте; в конце — снова 0.
+  const st = useAnimatedStyle(() => ({ opacity: t.value <= 0 ? 0 : 1 - t.value, transform: [{ translateX: dx * t.value }, { scale: 1 - 0.5 * t.value }] }));
   return <Reanimated.View pointerEvents="none" style={[s.fly, { backgroundColor: color }, st]} />;
 });
 

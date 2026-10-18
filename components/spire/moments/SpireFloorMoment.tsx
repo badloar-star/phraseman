@@ -98,7 +98,7 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
         <Animated.Text entering={reduceMotion ? undefined : FadeIn} style={[s.ov, { color: p.textSecondary }]}>{spireGameText(lang, 'floorCleared', { n: outcome.floorBefore }).toUpperCase()}</Animated.Text>
         <View style={[s.window, { width: TOWER_W, height: TOWER_H }]} testID={`${testID}-tower`}>
           <View style={{ width: towerW, height: Math.round(SPIRE_TOWER_GEOM.height * k), alignSelf: 'center', transform: [{ translateY: shift }] }}>
-            <SpireTowerSvg lang={lang} myFloor={litFloor} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} />
+            <SpireTowerSvg lang={lang} myFloor={litFloor} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} illustration />
           </View>
         </View>
         <View style={s.rewardRow}>

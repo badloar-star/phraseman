@@ -8,14 +8,12 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useReducedMotion } from 'react-native-reanimated';
 import type { Lang } from '../../../constants/i18n';
 import { hapticTap } from '../../../hooks/use-haptics';
 import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { playEvent } from '../../../modules/sound_v2/sound_bank';
 import { useFireOnce } from '../../moments/use_fire_once';
-import V2Pressable from '../../v2/V2Pressable';
 import { KitSheetModal } from '../../v2/KitSheetModal';
 import { V2_TYPE } from '../../../constants/v2Style';
 import { V2Button } from '../../v2/V2Kit';
@@ -92,13 +90,11 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
             </>
           )}
         </Text>
+        {/* зачем (Макеты 18.10, lastchance_open: «Энергия вернётся через 9:32» в тексте и неактивная кнопка «Энергия через 9:32» — дубль,
+            кнопка должна быть действием): время энергии — только в тексте; единственное действие шторки — «Играй без ожидания с Plus». */}
         <View style={s.cta}>
-          <V2Button label={spireGameText(lang, 'playIn', { t: energyClock })} icon="flash" iconPosition="leading" disabled onPress={() => undefined} testID={`${testID}-cta`} />
+          <V2Button label={positionMomentText(lang, 'plusLink')} icon="flash" iconPosition="leading" onPress={() => fire(onPlus, 'plus')} testID={`${testID}-plus`} />
         </View>
-        <V2Pressable onPress={() => fire(onPlus, 'plus')} accessibilityRole="button" style={s.plus} testID={`${testID}-plus`}>
-          <Text style={[s.plusText, { color: p.text }]}>{positionMomentText(lang, 'plusLink')}</Text>
-          <Ionicons name="chevron-forward" size={16} color={p.text} />
-        </V2Pressable>
       </ScrollView>
     </KitSheetModal>
   );
@@ -114,8 +110,6 @@ const s = StyleSheet.create({
   p: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'left' },
   bold: { fontWeight: '700' },
   cta: { marginTop: 16 },
-  plus: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  plusText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
 });
 
 export default memo(SpireLastChanceSheet);

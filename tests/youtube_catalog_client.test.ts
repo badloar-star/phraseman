@@ -6,6 +6,7 @@ import {
   peekYoutubeCatalogScreenSnapshot,
   rememberYoutubeCatalogScreenSnapshot,
   revalidateYoutubeChannelCatalog,
+  youtubeCatalogPremiereDue,
   type YoutubeCatalogReader,
   type YoutubeChannelCatalog,
 } from '../app/youtube_catalog_client';
@@ -198,5 +199,23 @@ describe('YouTube catalog mobile client', () => {
     expect(old.get).toHaveBeenCalledTimes(1);
     expect(old.list).not.toHaveBeenCalled();
     expect(miss?.fetchedAt).toBe(new Date(nowMs).toISOString());
+  });
+
+  // зачем (координатор 18.10): премьера, чьё время старта наступило после снимка, обновляет снимок раньше суток — ровно один раз.
+  it('[COST-CUT] a premiere whose start passed after the snapshot forces one refresh before 24 h', async () => {
+    beginAccountGeneration('alice');
+    const token = captureAccountGeneration();
+    const base = buildYoutubeScreenSnapshot(await fetchYoutubeChannelCatalogWithReader('english', reader()));
+    const fetchedMs = Date.parse(base.fetchedAt);
+    const startMs = fetchedMs + 60 * 60 * 1000;
+    const premiere = { ...base.videos[0]!, id: 'premiere01', state: 'upcoming' as const, scheduledStartTime: new Date(startMs).toISOString() };
+    const previous = { ...base, videos: [premiere, ...base.videos] };
+    expect(youtubeCatalogPremiereDue(previous, startMs - 1)).toBeNull();
+    expect(youtubeCatalogPremiereDue(previous, startMs + 1)).toBe('premiere01');
+
+    const due = reader();
+    const refreshed = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: due, previous, commit: jest.fn(), nowMs: startMs + 60_000 });
+    expect(due.get).toHaveBeenCalled();
+    expect(youtubeCatalogPremiereDue(refreshed!, startMs + 120_000)).toBeNull();
   });
 });

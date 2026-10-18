@@ -24,7 +24,10 @@ export type StreakStageTokens = Readonly<{ themeId: string; accentGraphic: strin
 
 /** Второй цвет темы, доведённый до ≥ 3 : 1 к фону (на светлом оформлении образца он тёмный: фиолетовый). */
 export function streakSecondColor(t: StreakStageTokens): string {
-  const base = liquidGlassGradientTheme(t.themeId)?.glowB ?? mixHex(t.accentGraphic, t.gold, 0.45);
+  // зачем (Макеты 18.10, d30 светлая streak30_open: «огонь грязно-коричневый»): прежний запасной вариант — акцент, смешанный с золотом, —
+  // на светлом оформлении (тёмный акцент) давал коричневый. У тем без второго светового пятна берём второй цвет эталона (--acc2 образца,
+  // фиолетовый Авроры), дальше он, как и раньше, доводится до ≥ 3 : 1 к фону — на светлом становится тёмно-фиолетовым, как в образце.
+  const base = liquidGlassGradientTheme(t.themeId)?.glowB ?? liquidGlassGradientTheme('grad_aurora')?.glowB ?? mixHex(t.accentGraphic, t.gold, 0.45);
   let c = base;
   for (let k = 0; k <= 0.8001 && contrastRatio(c, t.bg) < 3; k += 0.05) c = mixHex(base, t.text, k);
   return c;

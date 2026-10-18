@@ -45,18 +45,22 @@ export function monthCalendarCellSize(rowWidth: number): number {
   return rowWidth > 0 ? Math.floor((rowWidth - GAP * (COLS - 1)) / COLS) : 0;
 }
 
+const CAL_POP_PEAK = 1.06;
+
 type CellProps = Readonly<{ i: number; size: number; color: string; clock: SharedValue<number>; cellRef?: React.Ref<View>; onLayout?: (i: number, w: number, h: number) => void }>;
 
 const CalCell = memo(function CalCell({ i, size, color, clock, cellRef, onLayout }: CellProps) {
   const style = useAnimatedStyle(() => {
     const p = Math.min(1, Math.max(0, (clock.value - i * CELL_DELAY_MS) / CELL_DUR_MS));
-    // emPop: 0 % — .4 и прозрачно; 70 % — 1.12 и видно; 100 % — 1; кривая --em-ease-pop на каждом отрезке ключей
+    // emPop: 0 % — .4 и прозрачно; 70 % — пик и видно; 100 % — 1; кривая --em-ease-pop на каждом отрезке ключей.
+    // зачем (Макеты 18.10, d30 светлая light_t4): пик 1,12 эталона при зазоре 6 dp съедал зазор — клетки ряда слипались в полосу;
+    // пик CAL_POP_PEAK = 1,06 оставляет между соседними клетками на пике ≥ 3 dp.
     if (p < 0.7) {
       const e = easePop(p / 0.7);
-      return { opacity: Math.min(1, e), transform: [{ scale: 0.4 + 0.72 * e }] };
+      return { opacity: Math.min(1, e), transform: [{ scale: 0.4 + (CAL_POP_PEAK - 0.4) * e }] };
     }
     const e = easePop((p - 0.7) / 0.3);
-    return { opacity: 1, transform: [{ scale: 1.12 - 0.12 * e }] };
+    return { opacity: 1, transform: [{ scale: CAL_POP_PEAK - (CAL_POP_PEAK - 1) * e }] };
   });
   return (
     <Animated.View

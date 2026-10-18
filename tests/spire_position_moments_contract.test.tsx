@@ -136,7 +136,7 @@ describe('m05C · последний шанс', () => {
   afterEach(() => { jest.useRealTimers(); });
   const now = () => Date.now();
 
-  it('отсчёт до итога 03:12:40, «До топ-5 — 60 монет. Энергия вернётся через 9:40.», недоступная «Энергия через 9:40», ссылка Plus; отсчёт тикает', async () => {
+  it('отсчёт до итога 03:12:40, «До топ-5 — 60 монет. Энергия вернётся через 9:40.», единственная кнопка — Plus (без дубля времени); отсчёт тикает', async () => {
     const onPlus = jest.fn();
     await render(<SpireLastChanceSheet lang="ru" visible weekEndsAtMs={now() + (3 * 3600 + 12 * 60 + 40) * 1000} energyReadyAtMs={now() + (9 * 60 + 40) * 1000} gapCoins={60} onPlus={onPlus} onClose={jest.fn()} />);
     expect(screen.getByTestId('last-chance-clock').props.children).toBe('03:12:40');
@@ -144,8 +144,9 @@ describe('m05C · последний шанс', () => {
     expect(screen.getByText(/До топ-5 — /)).toBeTruthy();
     expect(screen.getByText('60 монет')).toBeTruthy();
     expect(screen.getByText(/Энергия вернётся через 9:40\./)).toBeTruthy();
-    expect(screen.getByText('Играть через 9:40')).toBeTruthy();
-    expect(screen.getByTestId('last-chance-cta').props.accessibilityState.disabled).toBe(true);
+    // зачем (Макеты 18.10): неактивной кнопки-счётчика нет — время только в тексте.
+    expect(screen.queryByText('Играть через 9:40')).toBeNull();
+    expect(screen.queryByTestId('last-chance-cta')).toBeNull();
     await fireEvent.press(screen.getByText('Играй без ожидания с Plus'));
     expect(onPlus).toHaveBeenCalledTimes(1);
     await act(async () => { jest.advanceTimersByTime(5000); });

@@ -130,7 +130,10 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
         <Svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 390 844">
           {/* зачем (Макеты 8a2a2bccf: «в эталоне мятная, в приложении золотая»): эталон 2.0 перекрашивает молнию в акцент темы —
               engagement-moments-app.css:193 `svg.zap path { stroke: var(--acc); filter: drop-shadow(0 0 10px var(--acc)) }`; свечение — тот же цвет шире и прозрачнее */}
-          <Path d={ZAP_D} stroke={colors.accentGraphic} strokeOpacity={0.45} strokeWidth={14} fill="none" strokeLinejoin="round" strokeLinecap="round" />
+          {/* зачем (Макеты 18.10, m08_t3: «зигзаг перечёркивает текст вопроса»): свечение было статичной полосой 14 px × 45 %, видной целиком
+              с первого кадра. В эталоне — drop-shadow 10 px: мягкий ореол, который рисуется вместе с линией. Теперь ореол тоньше и прозрачнее
+              и идёт по тому же штриху (strokeDasharray), поверх текста остаётся только тонкая линия на 1,3 с. */}
+          <AnimatedPath d={ZAP_D} stroke={colors.accentGraphic} strokeOpacity={0.22} strokeWidth={10} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
           <AnimatedPath d={ZAP_D} stroke={colors.accentGraphic} strokeWidth={4} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
         </Svg>
       </Reanimated.View>

@@ -112,7 +112,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
           <View style={s.ladder}>
             {zone ? (
               <View pointerEvents="none" style={[s.zone, { top: zoneTop, backgroundColor: p.correct, boxShadow: `0 0 12px ${p.correct}` }]}>
-                <Text style={[s.zoneLbl, { color: p.correct }]}>{momentText(lang, 'zoneTop5')}</Text>
+                <Text style={[s.zoneLbl, { color: p.bg, backgroundColor: p.correct }]}>{momentText(lang, 'zoneTop5')}</Text>
               </View>
             ) : null}
             {order.map((row, i) => (
@@ -160,7 +160,9 @@ const s = StyleSheet.create({
   ladder: { alignSelf: 'stretch', marginTop: 16, gap: ROW_GAP },
   zone: { position: 'absolute', left: -8, right: -8, height: 2, zIndex: 3 },
   // зачем (D145: размеры текста только 13/16; лист приёмки m01/m05, Макеты 15.10): подпись «ТОП-5» на линии зоны — 13 (было 10)
-  zoneLbl: { position: 'absolute', right: 8, top: -20, fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
+  // зачем (Макеты 18.10, rise_open: «ТОП-5» над линией (top −20) наезжал на очки пятой строки): подпись — плашка цвета линии по центру
+  // линии в зазоре между строками; числа строк центрированы по высоте и плашку не задевают.
+  zoneLbl: { position: 'absolute', right: 8, top: -7.5, paddingHorizontal: 8, borderRadius: 9, overflow: 'hidden', fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
   foot: { gap: 0 },
   gap: { height: 12 },
 });

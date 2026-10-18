@@ -10,7 +10,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { getLocalDayKey } from '../../app/local_date';
 import V2DoneScreen, { CoinAward } from '../completion/V2DoneScreen';
 import { DialogueChainBeat, DialogueChainHeader, DialogueChainMountAt, DialogueChainScope, DIALOGUE_CHAIN_OFFSETS } from '../completion/DialogueDoneChain';
@@ -35,7 +35,8 @@ export function ComboPreview({ lang, replayKey }: Readonly<{ lang: Lang; replayK
   return (
     <View style={s.fill}>
       <View style={s.header}>
-        <Text style={[s.headerTitle, { color: g.text }]}>Lesson 1</Text>
+        {/* зачем (Макеты 18.10, m08 es: «Lesson 1» по-английски): шапка dev-превью — на языке интерфейса, как в настоящем уроке */}
+        <Text style={[s.headerTitle, { color: g.text }]}>{triLang(lang, { ru: 'Урок 1', uk: 'Урок 1', en: 'Lesson 1', es: 'Lección 1', 'pt-BR': 'Lição 1', vi: 'Bài 1', id: 'Pelajaran 1', tr: 'Ders 1', pl: 'Lekcja 1' })}</Text>
         <View style={s.grow} />
         <ComboHeatSlot comboCount={combo} lang={lang} size={34} />
       </View>

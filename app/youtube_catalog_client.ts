@@ -329,6 +329,22 @@ export function youtubeCatalogSnapshotAgeMs(snapshot: Pick<YoutubeCatalogScreenS
   return Number.isFinite(fetchedMs) ? nowMs - fetchedMs : Number.POSITIVE_INFINITY;
 }
 
+/**
+ * зачем (координатор 18.10: «премьеры и «скоро» должны обновиться к своему времени»): в снимке есть премьера («скоро»), время старта
+ * которой уже наступило ПОСЛЕ снятия снимка, — снимок устарел, его надо один раз перечитать. После перечитывания fetchedAt позже старта,
+ * и повтора не будет, даже если сервер ещё держит ролик в «скоро».
+ */
+export function youtubeCatalogPremiereDue(snapshot: Pick<YoutubeCatalogScreenSnapshot, 'fetchedAt' | 'videos' | 'activeEvent'>, nowMs: number): string | null {
+  const fetchedMs = Date.parse(snapshot.fetchedAt);
+  const candidates = snapshot.activeEvent ? [snapshot.activeEvent, ...snapshot.videos] : snapshot.videos;
+  for (const video of candidates) {
+    if (video.state !== 'upcoming' || !video.scheduledStartTime) continue;
+    const startMs = Date.parse(video.scheduledStartTime);
+    if (Number.isFinite(startMs) && startMs <= nowMs && (!Number.isFinite(fetchedMs) || startMs > fetchedMs)) return video.id;
+  }
+  return null;
+}
+
 /** Личность СМЕНИЛАСЬ на другую (alice → bob), а не «ещё не была готова». */
 function accountSwitchedAway(token: AccountGenerationToken): boolean {
   // Токен, снятый до опознания пользователя, ничей — он не «устаревает».
@@ -357,11 +373,12 @@ export async function revalidateYoutubeChannelCatalog(options: {
   const sameChannel = options.previous?.channel?.id === options.channelId ? options.previous : null;
   const ageMs = sameChannel ? youtubeCatalogSnapshotAgeMs(sameChannel, nowMs) : null;
   const ageMin = ageMs === null || !Number.isFinite(ageMs) ? '-' : String(Math.round(ageMs / 60_000));
-  if (sameChannel && !options.force && ageMs !== null && ageMs >= 0 && ageMs < YOUTUBE_CATALOG_FRESH_MS) {
+  const premiereDue = sameChannel ? youtubeCatalogPremiereDue(sameChannel, nowMs) : null;
+  if (sameChannel && !options.force && !premiereDue && ageMs !== null && ageMs >= 0 && ageMs < YOUTUBE_CATALOG_FRESH_MS) {
     console.log(`${COST_CUT_LOG} hit age=${ageMin}m channel=${options.channelId} version=${sameChannel.version} reads=0`);
     return sameChannel;
   }
-  const missReason = !options.previous ? 'no_cache' : !sameChannel ? 'other_channel' : options.force ? 'user_refresh' : 'stale';
+  const missReason = !options.previous ? 'no_cache' : !sameChannel ? 'other_channel' : options.force ? 'user_refresh' : premiereDue ? `premiere_started:${premiereDue}` : 'stale';
   console.log(`${COST_CUT_LOG} miss reason=${missReason} age=${ageMin}m channel=${options.channelId}`);
   const reader = options.reader ?? await createFirestoreReader();
   // зачем (аудит стоимости Firebase 11.10): вкладка перечитывала весь каталог (корень, канал, до 100 видео и 50

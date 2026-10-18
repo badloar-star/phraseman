@@ -143,6 +143,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useSilentLeave } from '../hooks/use_silent_leave';
+import { fitPhraseFontSize } from './flashcards/fit_phrase_font';
 
 // зачем: запись черновика сессии не чаще раза в это время (см. эффект сохранения черновика).
 const DRAFT_SAVE_DELAY_MS = 1500;
@@ -3998,6 +3999,13 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     // его внутри заметки-примера.
     const note = detailNoteForCard(currentPrompt.card, cardContentLang, currentPrompt.trueTranslation);
     const transcription = s(currentPrompt.card.transcription);
+    // зачем (владелец 18.10 через координатора, коммит Дизайна 4d65c8be5): длинные фразы из видео должны целиком помещаться на карточке —
+    // кегль вниз до 14 по расчёту длины и места, перенос по словам, без «…» и без adjustsFontSizeToFit. Короткая фраза — прежний размер.
+    // Место под фразу: карточка минус шапка, плашка перевода, поля и подпись (оценка от тех же стилей, без замера — первый кадр без прыжка).
+    const phraseBaseSize = isCompactFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1);
+    const phraseMaxH = cardHeight - (isCompactFlashcardsTask ? 158 : 225) - (transcription ? 26 : 0);
+    const phraseSize = fitPhraseFontSize({ text: s(currentPrompt.card.en), baseSize: phraseBaseSize, widthPx: cardWidth - 40, maxHeightPx: phraseMaxH });
+    const phraseLineHeight = phraseSize === phraseBaseSize ? undefined : Math.round(phraseSize * 1.3);
     const reportDataText = [
       `EN: ${currentPrompt.card.en}`,
       `${text.shownTranslation} ${currentPrompt.shownTranslation}`,
@@ -4207,7 +4215,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               <FlowText
                 testID="flashcards-swipe-prompt"
                 provenance="authored"
-                style={[styles.englishText, isCompactFlashcardsTask && styles.compactEnglishText, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
+                style={[styles.englishText, isCompactFlashcardsTask && styles.compactEnglishText, { color: t.textPrimary, fontSize: phraseSize }, phraseLineHeight ? { lineHeight: phraseLineHeight } : null]}
                 // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) — сжатие
                 // теряло слово при системном увеличении шрифта на Android («to work» → «to»).
                 // Вместо сжатия: чуть меньший базовый fontSize и свободный перенос —

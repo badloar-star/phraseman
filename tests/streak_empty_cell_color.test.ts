@@ -22,9 +22,9 @@ const over = (color: string, base: number[]): number[] => {
 };
 
 describe('streakEmptyCellColor', () => {
-  it('тёмный фон — белый 8 %, светлый — чёрный 8 %', () => {
+  it('тёмный фон — белый 8 %, светлый — чёрный 14 % (Макеты 18.10: 8 % на светлом почти не видно)', () => {
     expect(streakEmptyCellColor('#0C0D10')).toBe('rgba(255,255,255,0.08)');
-    expect(streakEmptyCellColor('#F6F6F8')).toBe('rgba(0,0,0,0.08)');
+    expect(streakEmptyCellColor('#F6F6F8')).toBe('rgba(0,0,0,0.14)');
   });
 
   it('различие с фоном ≥ 1,15 и с заполненной клеткой ≥ 3 — все темы, оба оформления, насыщенность 0 / 0,5 / 1', () => {

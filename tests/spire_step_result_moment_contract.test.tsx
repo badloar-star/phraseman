@@ -94,13 +94,61 @@ describe('m06 · ступень не пройдена', () => {
     expect(screen.getByText('Ещё раз?')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('step-moment-again'));
     expect(onAgain).toHaveBeenCalledTimes(1);
+    // зачем (владелец 18.10): второй тап в течение 0,7 с игнорируется (двойной тап) — «К башне»/«В раздел Пик» нажимаем «через секунду»
+    const realNow = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(realNow + 1000);
     await fireEvent.press(screen.getByTestId('step-moment-later'));
+    nowSpy.mockRestore();
     expect(onLater).toHaveBeenCalledTimes(1);
   });
 
   it('время вышло — прежняя строка «Время вышло», а не «3 ошибки»', async () => {
     await render(<SpireStepResultMoment lang="ru" outcome={outcome({ kind: 'failed', failReason: 'timeout' as never })} coins={COINS} coinRank={5} onAgain={jest.fn()} onLater={jest.fn()} />);
     expect(screen.getByTestId('step-moment-title').props.children).toBe('Время вышло');
+  });
+});
+
+describe('выбор после ступени: «Следующее задание» / «В раздел Пик» (владелец 18.10)', () => {
+  let logSpy: jest.SpyInstance;
+  beforeEach(() => { logSpy = jest.spyOn(console, 'log').mockImplementation(() => undefined); });
+  afterEach(() => { logSpy.mockRestore(); });
+  const written = () => logSpy.mock.calls.map((c) => String(c[0])).join('\n');
+
+  it('пройдена: две кнопки с нужными подписями; «Следующее задание» зовёт подъём, «В раздел Пик» закрывает; в журнале [SPIRE-AFTER-ROUND] выбор и что откроется', async () => {
+    const onAgain = jest.fn();
+    const onLater = jest.fn();
+    await render(<SpireStepResultMoment lang="ru" outcome={outcome({})} coins={COINS} coinRank={5} onAgain={onAgain} onLater={onLater} />);
+    expect(screen.getByText('Следующее задание')).toBeTruthy();
+    expect(screen.getByText('В раздел Пик')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('step-moment-later'));
+    expect(onLater).toHaveBeenCalledTimes(1);
+    expect(onAgain).not.toHaveBeenCalled(); // автоперехода нет: без нажатия новая ступень не стартует
+    expect(written()).toContain('[SPIRE-AFTER-ROUND] показ kind=passed');
+    expect(written()).toContain('[SPIRE-AFTER-ROUND] выбор=toSpire');
+    expect(written()).toContain('главный экран Пика');
+  });
+
+  it('двойной тап на «Следующее задание» зовёт подъём один раз; игнор пишет причину', async () => {
+    const onAgain = jest.fn();
+    await render(<SpireStepResultMoment lang="ru" outcome={outcome({})} coins={COINS} coinRank={5} onAgain={onAgain} onLater={jest.fn()} />);
+    await fireEvent.press(screen.getByTestId('step-moment-next'));
+    await fireEvent.press(screen.getByTestId('step-moment-next'));
+    expect(onAgain).toHaveBeenCalledTimes(1);
+    expect(written()).toContain('[SPIRE-AFTER-ROUND] выбор=next');
+    expect(written()).toContain('[SPIRE-AFTER-ROUND] игнор двойного тапа');
+  });
+
+  it('не пройдена: «Ещё раз — другой набор» и «В раздел Пик» (вместо «К башне»)', async () => {
+    await render(<SpireStepResultMoment lang="ru" outcome={outcome({ kind: 'failed', failReason: 'hearts' as never, errors: 3 })} coins={COINS} coinRank={5} onAgain={jest.fn()} onLater={jest.fn()} />);
+    expect(screen.getByText('Ещё раз — другой набор')).toBeTruthy();
+    expect(screen.getByText('В раздел Пик')).toBeTruthy();
+    expect(screen.queryByText('К башне')).toBeNull();
+  });
+
+  it('исходник: кнопки не сливаются с фоном (общие V2Button primary/secondary), без обводок; вибрация — на самой кнопке', () => {
+    const src = read('components/spire/moments/SpireStepResultMoment.tsx');
+    expect(src).toContain("variant=\"secondary\" onPress={choice.toSpire}");
+    expect(read('components/v2/V2Pressable.tsx')).toContain('hapticTap()');
   });
 });
 

@@ -28,6 +28,7 @@ import { useSpirePalette } from '../useSpirePalette';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { logMomentReward } from './moment_reward_log';
 import { stepMomentText } from './step_moment_strings';
+import { useAfterRoundChoice } from './use_after_round_choice';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -56,8 +57,9 @@ export type SpireStepResultMomentProps = Readonly<{
 
 const capitalize = (text: string): string => (text ? text.charAt(0).toUpperCase() + text.slice(1) : text);
 
-function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: SpireStepResultMomentProps) {
+function PassView({ lang, outcome, coins, coinRank, onAgain, onLater, busy, testID }: SpireStepResultMomentProps) {
   const p = useSpirePalette();
+  const choice = useAfterRoundChoice({ outcome, busy, onNext: onAgain, onLater }); // зачем (владелец 18.10): выбор после ступени, без автоперехода
   const reduceMotion = useReducedMotion();
   const ratio = outcome.budgetMs > 0 ? Math.max(0, Math.min(1, outcome.usedMs / outcome.budgetMs)) : 0;
   const fill = useSharedValue(reduceMotion ? ratio : 0);
@@ -119,7 +121,9 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
         <Text style={[s.small, { color: p.textSecondary }]}>{spireGameText(lang, 'onFloorProgress', { k: stepK, n: stairsN })}</Text>
       </View>
       <View style={s.foot}>
-        <V2Button label={spireGameText(lang, 'onward')} icon="arrow-forward" onPress={onAgain} disabled={busy} testID={`${testID}-next`} />
+        <V2Button label={stepMomentText(lang, 'nextTask')} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-next`} />
+        <View style={s.gap} />
+        <V2Button label={stepMomentText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
       </View>
     </>
   );
@@ -127,6 +131,7 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
 
 function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: SpireStepResultMomentProps) {
   const p = useSpirePalette();
+  const choice = useAfterRoundChoice({ outcome, busy, onNext: onAgain, onLater });
   const reduceMotion = useReducedMotion();
   const [mood, setMood] = useState<'idle' | 'shiver' | 'nod'>(reduceMotion ? 'idle' : 'idle');
   const [sweat, setSweat] = useState(false);
@@ -161,9 +166,9 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(600)} style={[s.p, { color: p.textSecondary }]}>{spireGameText(lang, 'failSub', { n: outcome.floorBefore })}</Animated.Text>
       </View>
       <View style={s.foot}>
-        <V2Button label={stepMomentText(lang, 'retrySet')} icon="arrow-forward" onPress={onAgain} disabled={busy} testID={`${testID}-again`} />
+        <V2Button label={stepMomentText(lang, 'retrySet')} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-again`} />
         <View style={s.gap} />
-        <V2Button label={stepMomentText(lang, 'toTower')} variant="secondary" onPress={onLater} testID={`${testID}-later`} />
+        <V2Button label={stepMomentText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
       </View>
     </>
   );

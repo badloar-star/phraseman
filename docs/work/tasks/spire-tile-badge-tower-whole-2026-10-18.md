@@ -1,6 +1,8 @@
 # Task packet: плитка «Пик» на Главной — плашка места внутри плитки, арт целиком; «башня целиком» на экране Пика
 
 Governance-ID: TG-454E71BFE6A5
+Governance-ID: TG-8DFF29C50855
+Governance-ID: TG-1C1502924A73
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» (поручение владельца через координатора 18.10)
 Related epic/enabler: Шпиль/«Пик»; плитки Главной 2.0

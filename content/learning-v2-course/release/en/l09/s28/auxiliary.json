@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-28:intro1:r2": {
+          "ru": "Перед drifting нужна форма is.",
+          "uk": "Перед drifting потрібна форма is."
+        },
+        "en:lesson-09:session-28:intro1:r3": {
+          "ru": "После is нужна форма drifting.",
+          "uk": "Після is потрібна форма drifting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-28:intro2:r2": {
+          "ru": "Перед прилагательным здесь нужна форма is.",
+          "uk": "Перед прикметником тут потрібна форма is."
+        },
+        "en:lesson-09:session-28:intro2:r3": {
+          "ru": "Одно течение: is.",
+          "uk": "Одна течія: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-28:intro3:r2": {
+          "ru": "Перед not drifting нужно is.",
+          "uk": "Перед not drifting потрібне is."
+        },
+        "en:lesson-09:session-28:intro3:r3": {
+          "ru": "После is not нужна форма drifting.",
+          "uk": "Після is not потрібна форма drifting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bd78a46f27191ce25cfc47c3d9d0f5452c9901dc08f61ea57bbb693392d0c602"
+}

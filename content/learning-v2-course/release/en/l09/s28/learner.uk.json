@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-28:word:drift",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — drift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:word:drift:audio"
+      ],
+      "accessibilityLabel": "Картка слова — drift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:word:drift:audio",
+          "transcript": "drift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:word:drift:r1",
+            "targetText": "drift",
+            "meaningByLocale": {
+              "ru": "«дрейфовать, двигаться по течению или ветру без управления». Сейчас: is drifting.",
+              "uk": "«дрейфувати, рухатися за течією чи вітром без керування». Зараз: is drifting."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drift",
+          "definitionByLocale": {
+            "ru": "«дрейфовать, двигаться по течению или ветру без управления». Сейчас: is drifting.",
+            "uk": "«дрейфувати, рухатися за течією чи вітром без керування». Зараз: is drifting."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-28:i01:r1",
+          "text": "drift"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i01:r2",
+          "text": "lift"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i01:r3",
+          "text": "gift"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i01:audio",
+          "transcript": "drift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:i01:r1",
+            "targetText": "drift",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i01:r2",
+            "targetText": "lift",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i01:r3",
+            "targetText": "gift",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-28:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит drift",
+              "uk": "У записі звучить drift"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит drift",
+              "uk": "У записі звучить drift"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кулька зараз пливе за вітром. Поставте now наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кулька зараз пливе за вітром. Поставте now наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The balloon is drifting now.",
+        "localizedMeaning": {
+          "ru": "Шар сейчас плывёт по ветру. Поставьте now в конце",
+          "uk": "Кулька зараз пливе за вітром. Поставте now наприкінці"
+        },
+        "orderedTokens": [
+          "The",
+          "balloon",
+          "is",
+          "drifting",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для однієї кульки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-28:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для однієї кульки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одного шара",
+          "uk": "Виберіть форму для однієї кульки"
+        },
+        "gappedTargetPhrase": "The balloon ___ drifting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-28:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму для однієї кульки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для однієї кульки",
+            "feedbackByLocale": {
+              "ru": "Один шар: is.",
+              "uk": "Одна кулька: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для однієї кульки",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-28:i04:p1",
+            "target": "drift",
+            "meaningByLocale": {
+              "ru": "дрейфовать",
+              "uk": "дрейфувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i04:p2",
+            "target": "balloon",
+            "meaningByLocale": {
+              "ru": "воздушный шар",
+              "uk": "повітряна кулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i04:p3",
+            "target": "water",
+            "meaningByLocale": {
+              "ru": "вода",
+              "uk": "вода"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i04:p4",
+            "target": "now",
+            "meaningByLocale": {
+              "ru": "сейчас",
+              "uk": "зараз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drift",
+          "balloon",
+          "water",
+          "now"
+        ],
+        "rightColumn": [
+          "дрейфувати",
+          "повітряна кулька",
+          "вода",
+          "зараз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i05:audio",
+          "transcript": "The balloon is drifting."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The balloon is drifting.",
+        "orderedTokens": [
+          "The",
+          "balloon",
+          "is",
+          "drifting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:word:raft",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — raft",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:word:raft:audio"
+      ],
+      "accessibilityLabel": "Картка слова — raft",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:word:raft:audio",
+          "transcript": "raft"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:word:raft:r1",
+            "targetText": "raft",
+            "meaningByLocale": {
+              "ru": "«плот». The raft is drifting. — «Плот дрейфует».",
+              "uk": "«пліт». The raft is drifting. — «Пліт дрейфує»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raft",
+          "definitionByLocale": {
+            "ru": "«плот». The raft is drifting. — «Плот дрейфует».",
+            "uk": "«пліт». The raft is drifting. — «Пліт дрейфує»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Іграшковий пліт рухається за течією. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Іграшковий пліт рухається за течією. Скажіть про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The raft is drifting.",
+        "localizedMeaning": {
+          "ru": "Игрушечный плот движется по течению. Скажите об этом",
+          "uk": "Іграшковий пліт рухається за течією. Скажіть про це"
+        },
+        "orderedTokens": [
+          "The",
+          "raft",
+          "is",
+          "drifting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:word:current",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — current",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:word:current:audio"
+      ],
+      "accessibilityLabel": "Картка слова — current",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:word:current:audio",
+          "transcript": "current"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:word:current:r1",
+            "targetText": "current",
+            "meaningByLocale": {
+              "ru": "«течение воды». The current is strong. — «Течение сильное». Здесь не электрический ток и не прилагательное «нынешний».",
+              "uk": "«течія води». The current is strong. — «Течія сильна». Тут не електричний струм і не прикметник «нинішній»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "current",
+          "definitionByLocale": {
+            "ru": "«течение воды». The current is strong. — «Течение сильное». Здесь не электрический ток и не прилагательное «нынешний».",
+            "uk": "«течія води». The current is strong. — «Течія сильна». Тут не електричний струм і не прикметник «нинішній»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, що написано на знаку біля річки. Скажіть: «Течія сильна»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, що написано на знаку біля річки. Скажіть: «Течія сильна»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i07:audio",
+          "transcript": "The current is strong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The current is strong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму руху зараз",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-28:i08:r1",
+          "text": "drifting"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i08:r2",
+          "text": "drift"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i08:r3",
+          "text": "drifts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму руху зараз",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму движения сейчас",
+          "uk": "Виберіть форму руху зараз"
+        },
+        "gappedTargetPhrase": "The raft is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-28:i08:r1",
+            "text": "drifting"
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i08:r2",
+            "text": "drift"
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i08:r3",
+            "text": "drifts"
+          }
+        ],
+        "testedDimension": "Виберіть форму руху зараз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму руху зараз",
+            "feedbackByLocale": {
+              "ru": "После is здесь нужна форма drifting.",
+              "uk": "Після is тут потрібна форма drifting."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму руху зараз",
+            "feedbackByLocale": {
+              "ru": "Здесь is drifting, не is drifts.",
+              "uk": "Тут is drifting, не is drifts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-28:i09:r1",
+          "text": "Is the raft drifting?"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i09:r2",
+          "text": "The raft is drifting."
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i09:r3",
+          "text": "Is the balloon drifting?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i09:audio",
+          "transcript": "Is the raft drifting?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:i09:r1",
+            "targetText": "Is the raft drifting?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i09:r2",
+            "targetText": "The raft is drifting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i09:r3",
+            "targetText": "Is the balloon drifting?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is the raft drifting?",
+              "uk": "У записі звучить Is the raft drifting?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is the raft drifting?",
+              "uk": "У записі звучить Is the raft drifting?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-28:i10:p1",
+            "target": "drift",
+            "meaningByLocale": {
+              "ru": "дрейфовать",
+              "uk": "дрейфувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i10:p2",
+            "target": "raft",
+            "meaningByLocale": {
+              "ru": "плот",
+              "uk": "пліт"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i10:p3",
+            "target": "current",
+            "meaningByLocale": {
+              "ru": "течение воды",
+              "uk": "течія води"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i10:p4",
+            "target": "strong",
+            "meaningByLocale": {
+              "ru": "сильный",
+              "uk": "сильний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drift",
+          "raft",
+          "current",
+          "strong"
+        ],
+        "rightColumn": [
+          "дрейфувати",
+          "пліт",
+          "течія води",
+          "сильний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте фразу про звичку й складіть її",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про звичку й складіть її",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i11:audio",
+          "transcript": "I often walk here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often walk here.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "walk",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:word:reed",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:word:reed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:word:reed:audio",
+          "transcript": "reed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:word:reed:r1",
+            "targetText": "reed",
+            "meaningByLocale": {
+              "ru": "«тростник; отдельный стебель тростника». The reed is not drifting. — «Стебель тростника не дрейфует».",
+              "uk": "«очерет; окреме стебло очерету». The reed is not drifting. — «Стебло очерету не дрейфує»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reed",
+          "definitionByLocale": {
+            "ru": "«тростник; отдельный стебель тростника». The reed is not drifting. — «Стебель тростника не дрейфует».",
+            "uk": "«очерет; окреме стебло очерету». The reed is not drifting. — «Стебло очерету не дрейфує»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-28:i12:r1",
+          "text": "The reed is not drifting."
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i12:r2",
+          "text": "The reed is drifting."
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i12:r3",
+          "text": "The raft is not drifting."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i12:audio",
+          "transcript": "The reed is not drifting."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-28:i12:r1",
+            "targetText": "The reed is not drifting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i12:r2",
+            "targetText": "The reed is drifting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i12:r3",
+            "targetText": "The raft is not drifting.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The reed is not drifting.",
+              "uk": "У записі звучить The reed is not drifting."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The reed is not drifting.",
+              "uk": "У записі звучить The reed is not drifting."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг бачить стебло очерету у воді. Запитайте, чи воно дрейфує",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Друг бачить стебло очерету у воді. Запитайте, чи воно дрейфує",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i13:audio",
+          "transcript": "Is the reed drifting?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is the reed drifting?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть початок запитання про один пліт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-28:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-09:session-28:i14:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть початок запитання про один пліт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало вопроса об одном плоте",
+          "uk": "Виберіть початок запитання про один пліт"
+        },
+        "gappedTargetPhrase": "___ the raft drifting?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-28:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Виберіть початок запитання про один пліт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть початок запитання про один пліт",
+            "feedbackByLocale": {
+              "ru": "Один плот: is.",
+              "uk": "Один пліт: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть початок запитання про один пліт",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Біля річки стоїть знак із забороною купатися. Попросіть друга тут не плавати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Біля річки стоїть знак із забороною купатися. Попросіть друга тут не плавати",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i15:audio",
+          "transcript": "Don't swim here, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Don't swim here, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-28:i16:p1",
+            "target": "drift",
+            "meaningByLocale": {
+              "ru": "дрейфовать",
+              "uk": "дрейфувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i16:p2",
+            "target": "raft",
+            "meaningByLocale": {
+              "ru": "плот",
+              "uk": "пліт"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i16:p3",
+            "target": "current",
+            "meaningByLocale": {
+              "ru": "течение воды",
+              "uk": "течія води"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-28:i16:p4",
+            "target": "reed",
+            "meaningByLocale": {
+              "ru": "стебель тростника",
+              "uk": "стебло очерету"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drift",
+          "raft",
+          "current",
+          "reed"
+        ],
+        "rightColumn": [
+          "дрейфувати",
+          "пліт",
+          "течія води",
+          "стебло очерету"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-28:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "З вікна ви бачите, як повітряну кульку повільно відносить вітер. Повідомте: «Кулька дрейфує»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "З вікна ви бачите, як повітряну кульку повільно відносить вітер. Повідомте: «Кулька дрейфує»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-28:i17:audio",
+          "transcript": "The balloon is drifting."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The balloon is drifting.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4f553cfdc1367283d6eb25446a7d089f28c7320b65c2aef0f5895401e9607aa0"
+}

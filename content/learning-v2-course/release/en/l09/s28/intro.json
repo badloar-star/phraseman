@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "is drifting / is not drifting / Is it drifting?",
+    "uk": "is drifting / is not drifting / Is it drifting?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Плот без капитана",
+        "uk": "Пліт без капітана"
+      },
+      "bodyByLocale": {
+        "ru": "В музее воды вы запускаете маленький игрушечный плот в прозрачном канале. Его несёт вода, никто им не управляет. Raft — «плот», drift — «дрейфовать, двигаться по течению или ветру». The raft is drifting — «Плот дрейфует». Is drifting описывает движение сейчас. У игрушечного плота нет мотора, зато течение работает без выходных.",
+        "uk": "У музеї води ви запускаєте маленький іграшковий пліт у прозорому каналі. Його несе вода, ніхто ним не керує. Raft — «пліт», drift — «дрейфувати, рухатися за течією чи вітром». The raft is drifting — «Пліт дрейфує». Is drifting описує рух зараз. В іграшкового плота немає мотора, зате течія працює без вихідних."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-28:intro1:r1",
+              "text": "The raft is drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro1:r2",
+              "text": "The raft drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro1:r3",
+              "text": "The raft is drift."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-28:intro1:r1",
+              "text": "The raft is drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro1:r2",
+              "text": "The raft drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro1:r3",
+              "text": "The raft is drift."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Почему здесь не купаются",
+        "uk": "Чому тут не купаються"
+      },
+      "bodyByLocale": {
+        "ru": "Вы читаете у речного мостика предупреждение о сильном течении. Друг спрашивает, почему это место не подходит для купания. Current здесь — «течение воды». The current is strong — «Течение сильное». Это описание состояния, поэтому после is стоит знакомое прилагательное strong, без -ing. Добавьте просьбу: Don’t swim here, please — «Не плавай здесь, пожалуйста».",
+        "uk": "Ви читаєте біля річкового містка попередження про сильну течію. Друг запитує, чому це місце не підходить для купання. Current тут — «течія води». The current is strong — «Течія сильна». Це опис стану, тому після is стоїть знайомий прикметник strong, без -ing. Додайте прохання: Don’t swim here, please — «Не плавай тут, будь ласка»."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-28:intro2:r1",
+              "text": "The current is strong."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro2:r2",
+              "text": "The current strong."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro2:r3",
+              "text": "The current are strong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-28:intro2:r1",
+              "text": "The current is strong."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro2:r2",
+              "text": "The current strong."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro2:r3",
+              "text": "The current are strong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стебель остаётся на месте",
+        "uk": "Стебло залишається на місці"
+      },
+      "bodyByLocale": {
+        "ru": "На прогулке у пруда друг замечает, что вода движется мимо стебля тростника. Он спрашивает, не уносит ли стебель. Reed — «тростник; отдельный стебель тростника». Этот стебель растёт у берега и остаётся на месте: The reed is not drifting — «Стебель тростника не дрейфует». Not после is отрицает движение по течению; вода может двигаться, даже когда растение укоренено.",
+        "uk": "На прогулянці біля ставка друг помічає, що вода рухається повз стебло очерету. Він запитує, чи не відносить стебло. Reed — «очерет; окреме стебло очерету». Це стебло росте біля берега й залишається на місці: The reed is not drifting — «Стебло очерету не дрейфує». Not після is заперечує рух за течією; вода може рухатися, навіть коли рослина вкорінена."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-28:intro3:r1",
+              "text": "The reed is not drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro3:r2",
+              "text": "The reed not drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro3:r3",
+              "text": "The reed is not drift."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-28:intro3:r1",
+              "text": "The reed is not drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro3:r2",
+              "text": "The reed not drifting."
+            },
+            {
+              "responseId": "en:lesson-09:session-28:intro3:r3",
+              "text": "The reed is not drift."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1dbf208e34ac14e4a2b59d7e2deae77c612cf645521a3284b67063f393a13daa"
+}

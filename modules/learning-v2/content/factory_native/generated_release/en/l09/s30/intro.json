@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "are queuing / are not queuing; действие сейчас",
+    "uk": "are queuing / are not queuing; дія зараз"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вход бесплатный, очередь настоящая",
+        "uk": "Вхід безкоштовний, черга справжня"
+      },
+      "bodyByLocale": {
+        "ru": "У театра день открытых дверей. За вход не платят, но посетителей впускают небольшими группами. Admission — «вход, допуск на мероприятие». Admission is free — «Вход бесплатный». По телефону объясните, чем вы заняты сейчас: We are queuing — «Мы стоим в очереди». Queue здесь глагол, не название очереди; с we нужна форма are. Вход свободный, а очередь решила остаться.",
+        "uk": "У театрі день відкритих дверей. За вхід не платять, але відвідувачів впускають невеликими групами. Admission — «вхід, допуск на захід». Admission is free — «Вхід безкоштовний». Телефоном поясніть, чим ви зайняті зараз: We are queuing — «Ми стоїмо в черзі». Queue тут дієслово, не назва черги; з we потрібна форма are. Вхід вільний, а черга вирішила залишитися."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-30:intro1:r1",
+              "text": "We are queuing."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro1:r2",
+              "text": "We is queuing."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro1:r3",
+              "text": "We are queue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-30:intro1:r1",
+              "text": "We are queuing."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro1:r2",
+              "text": "We is queuing."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro1:r3",
+              "text": "We are queue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Встреча перед спектаклем",
+        "uk": "Зустріч перед виставою"
+      },
+      "bodyByLocale": {
+        "ru": "Вечером вы с компанией ждёте друга перед спектаклем. Он звонит из гардероба: там вас нет. Foyer — «фойе», просторное помещение перед зрительным залом. We are in the foyer — «Мы в фойе». Здесь сообщаем местонахождение, поэтому после are идёт in the foyer. Фраза не означает, что вы стоите в очереди: вы просто выбрали это место для встречи.",
+        "uk": "Увечері ви з компанією чекаєте друга перед виставою. Він телефонує з гардероба: там вас немає. Foyer — «фойє», просторе приміщення перед глядацькою залою. We are in the foyer — «Ми у фойє». Тут повідомляємо місцеперебування, тому після are йде in the foyer. Фраза не означає, що ви стоїте в черзі: ви просто обрали це місце для зустрічі."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-30:intro2:r1",
+              "text": "We are in the foyer."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro2:r2",
+              "text": "We in the foyer."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro2:r3",
+              "text": "We is in the foyer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-30:intro2:r1",
+              "text": "We are in the foyer."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro2:r2",
+              "text": "We in the foyer."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro2:r3",
+              "text": "We is in the foyer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не удаётся найти места",
+        "uk": "Не вдається знайти місця"
+      },
+      "bodyByLocale": {
+        "ru": "После антракта вы не можете найти свой ряд. Intermission — «антракт». Usher — «билетёр, сотрудник, который помогает зрителям найти места». Ваш спутник видит, что этот сотрудник занят другим зрителем: The usher is helping — «Билетёр помогает». Is helping описывает помощь сейчас. Пока он занят, вы ждёте рядом, а не начинаете проверять чужие билеты.",
+        "uk": "Після антракту ви не можете знайти свій ряд. Intermission — «антракт». Usher — «білетер, працівник, який допомагає глядачам знайти місця». Ваш супутник бачить, що цей працівник зайнятий іншим глядачем: The usher is helping — «Білетер допомагає». Is helping описує допомогу зараз. Поки він зайнятий, ви чекаєте поруч, а не починаєте перевіряти чужі квитки."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-30:intro3:r1",
+              "text": "The usher is helping."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro3:r2",
+              "text": "The usher helping."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro3:r3",
+              "text": "The usher is help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-30:intro3:r1",
+              "text": "The usher is helping."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro3:r2",
+              "text": "The usher helping."
+            },
+            {
+              "responseId": "en:lesson-09:session-30:intro3:r3",
+              "text": "The usher is help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7187a074aab1db6ad0fe00aeba632f5de8781230c1d0df37ac8c36c9a00c71ee"
+}

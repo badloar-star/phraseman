@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-31:word:cork",
+    "correctText": "cork",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i01",
+    "correctText": "The cork is floating.",
+    "correctResponseId": "en:lesson-09:session-31:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i02",
+    "correctText": "The cork is floating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i04",
+    "correctText": "en:lesson-09:session-31:i04:p1=cork\nen:lesson-09:session-31:i04:p2=float\nen:lesson-09:session-31:i04:p3=water\nen:lesson-09:session-31:i04:p4=small",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i05",
+    "correctText": "Is the cork floating?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:word:pebble",
+    "correctText": "pebble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i06",
+    "correctText": "The pebble is not floating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:word:foam",
+    "correctText": "foam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i07",
+    "correctText": "The foam is white.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i08",
+    "correctText": "floating",
+    "correctResponseId": "en:lesson-09:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i09",
+    "correctText": "The pebble is not floating.",
+    "correctResponseId": "en:lesson-09:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i10",
+    "correctText": "en:lesson-09:session-31:i10:p1=cork\nen:lesson-09:session-31:i10:p2=pebble\nen:lesson-09:session-31:i10:p3=foam\nen:lesson-09:session-31:i10:p4=float",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i11",
+    "correctText": "I often swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:word:surface",
+    "correctText": "surface",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i12",
+    "correctText": "The foam is on the surface.",
+    "correctResponseId": "en:lesson-09:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i13",
+    "correctText": "The foam is on the surface.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-09:session-31:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i15",
+    "correctText": "Don't throw the pebble, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i16",
+    "correctText": "en:lesson-09:session-31:i16:p1=cork\nen:lesson-09:session-31:i16:p2=pebble\nen:lesson-09:session-31:i16:p3=foam\nen:lesson-09:session-31:i16:p4=surface",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-31:i17",
+    "correctText": "The cork is floating.",
+    "correctResponseId": null
+  }
+]

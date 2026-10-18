@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-31:word:cork",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cork",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:word:cork:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cork",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:word:cork:audio",
+          "transcript": "cork"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:word:cork:r1",
+            "targetText": "cork",
+            "meaningByLocale": {
+              "ru": "«пробка из пробкового материала». The cork is floating. — «Пробка держится на воде».",
+              "uk": "«корок із коркового матеріалу». The cork is floating. — «Корок тримається на воді»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cork",
+          "definitionByLocale": {
+            "ru": "«пробка из пробкового материала». The cork is floating. — «Пробка держится на воде».",
+            "uk": "«корок із коркового матеріалу». The cork is floating. — «Корок тримається на воді»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-31:i01:r1",
+          "text": "The cork is floating."
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i01:r2",
+          "text": "The cork is not floating."
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i01:r3",
+          "text": "The cork is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i01:audio",
+          "transcript": "The cork is floating."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:i01:r1",
+            "targetText": "The cork is floating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i01:r2",
+            "targetText": "The cork is not floating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i01:r3",
+            "targetText": "The cork is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-31:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cork is floating.",
+              "uk": "У записі звучить The cork is floating."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cork is floating.",
+              "uk": "У записі звучить The cork is floating."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что пробка держится на воде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что пробка держится на воде",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cork is floating.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что пробка держится на воде",
+          "uk": "Повідомте, що корок тримається на воді"
+        },
+        "orderedTokens": [
+          "The",
+          "cork",
+          "is",
+          "floating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для одной пробки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-31:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для одной пробки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одной пробки",
+          "uk": "Виберіть форму для одного корка"
+        },
+        "gappedTargetPhrase": "The cork ___ floating.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-31:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму для одной пробки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для одной пробки",
+            "feedbackByLocale": {
+              "ru": "Один предмет: is.",
+              "uk": "Один предмет: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для одной пробки",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-31:i04:p1",
+            "target": "cork",
+            "meaningByLocale": {
+              "ru": "пробка",
+              "uk": "корок"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i04:p2",
+            "target": "float",
+            "meaningByLocale": {
+              "ru": "держаться на воде",
+              "uk": "триматися на воді"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i04:p3",
+            "target": "water",
+            "meaningByLocale": {
+              "ru": "вода",
+              "uk": "вода"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i04:p4",
+            "target": "small",
+            "meaningByLocale": {
+              "ru": "маленький",
+              "uk": "маленький"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cork",
+          "float",
+          "water",
+          "small"
+        ],
+        "rightColumn": [
+          "пробка",
+          "держаться на воде",
+          "вода",
+          "маленький"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i05:audio",
+          "transcript": "Is the cork floating?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the cork floating?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "cork",
+          "floating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:word:pebble",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pebble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:word:pebble:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pebble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:word:pebble:audio",
+          "transcript": "pebble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:word:pebble:r1",
+            "targetText": "pebble",
+            "meaningByLocale": {
+              "ru": "«небольшой округлый камешек». The pebble is not floating. — «Камешек не держится на воде».",
+              "uk": "«невеликий округлий камінчик». The pebble is not floating. — «Камінчик не тримається на воді»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pebble",
+          "definitionByLocale": {
+            "ru": "«небольшой округлый камешек». The pebble is not floating. — «Камешек не держится на воде».",
+            "uk": "«невеликий округлий камінчик». The pebble is not floating. — «Камінчик не тримається на воді»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Этот камешек лежит на дне. Скажите, что он не держится на воде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этот камешек лежит на дне. Скажите, что он не держится на воде",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The pebble is not floating.",
+        "localizedMeaning": {
+          "ru": "Этот камешек лежит на дне. Скажите, что он не держится на воде",
+          "uk": "Цей камінчик лежить на дні. Скажіть, що він не тримається на воді"
+        },
+        "orderedTokens": [
+          "The",
+          "pebble",
+          "is",
+          "not",
+          "floating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:word:foam",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — foam",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:word:foam:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — foam",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:word:foam:audio",
+          "transcript": "foam"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:word:foam:r1",
+            "targetText": "foam",
+            "meaningByLocale": {
+              "ru": "«пена». The foam is white. — «Пена белая». Foam здесь вещество: is.",
+              "uk": "«піна». The foam is white. — «Піна біла». Foam тут речовина: is."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foam",
+          "definitionByLocale": {
+            "ru": "«пена». The foam is white. — «Пена белая». Foam здесь вещество: is.",
+            "uk": "«піна». The foam is white. — «Піна біла». Foam тут речовина: is."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На снимке видна белая пена. Назовите её цвет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "На снимке видна белая пена. Назовите её цвет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i07:audio",
+          "transcript": "The foam is white."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The foam is white.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после is",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-31:i08:r1",
+          "text": "floating"
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i08:r2",
+          "text": "float"
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i08:r3",
+          "text": "floats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после is",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после is",
+          "uk": "Виберіть форму після is"
+        },
+        "gappedTargetPhrase": "The cork is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-31:i08:r1",
+            "text": "floating"
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i08:r2",
+            "text": "float"
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i08:r3",
+            "text": "floats"
+          }
+        ],
+        "testedDimension": "Выберите форму после is",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после is",
+            "feedbackByLocale": {
+              "ru": "После is здесь нужна форма floating.",
+              "uk": "Після is тут потрібна форма floating."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после is",
+            "feedbackByLocale": {
+              "ru": "Здесь is floating, не is floats.",
+              "uk": "Тут is floating, не is floats."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-31:i09:r1",
+          "text": "The pebble is not floating."
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i09:r2",
+          "text": "The pebble is floating."
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i09:r3",
+          "text": "The cork is not floating."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i09:audio",
+          "transcript": "The pebble is not floating."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:i09:r1",
+            "targetText": "The pebble is not floating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i09:r2",
+            "targetText": "The pebble is floating.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i09:r3",
+            "targetText": "The cork is not floating.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pebble is not floating.",
+              "uk": "У записі звучить The pebble is not floating."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pebble is not floating.",
+              "uk": "У записі звучить The pebble is not floating."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-31:i10:p1",
+            "target": "cork",
+            "meaningByLocale": {
+              "ru": "пробка",
+              "uk": "корок"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i10:p2",
+            "target": "pebble",
+            "meaningByLocale": {
+              "ru": "округлый камешек",
+              "uk": "округлий камінчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i10:p3",
+            "target": "foam",
+            "meaningByLocale": {
+              "ru": "пена",
+              "uk": "піна"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i10:p4",
+            "target": "float",
+            "meaningByLocale": {
+              "ru": "держаться на воде",
+              "uk": "триматися на воді"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cork",
+          "pebble",
+          "foam",
+          "float"
+        ],
+        "rightColumn": [
+          "пробка",
+          "округлый камешек",
+          "пена",
+          "держаться на воде"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте фразу о привычке и соберите её",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу о привычке и соберите её",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i11:audio",
+          "transcript": "I often swim."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often swim.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "swim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:word:surface",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — surface",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:word:surface:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — surface",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:word:surface:audio",
+          "transcript": "surface"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:word:surface:r1",
+            "targetText": "surface",
+            "meaningByLocale": {
+              "ru": "«поверхность». On the surface — «на поверхности». The foam is on the surface. — «Пена на поверхности».",
+              "uk": "«поверхня». On the surface — «на поверхні». The foam is on the surface. — «Піна на поверхні»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "surface",
+          "definitionByLocale": {
+            "ru": "«поверхность». On the surface — «на поверхности». The foam is on the surface. — «Пена на поверхности».",
+            "uk": "«поверхня». On the surface — «на поверхні». The foam is on the surface. — «Піна на поверхні»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-31:i12:r1",
+          "text": "The foam is on the surface."
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i12:r2",
+          "text": "The cork is on the surface."
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i12:r3",
+          "text": "The foam is not on the surface."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i12:audio",
+          "transcript": "The foam is on the surface."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-31:i12:r1",
+            "targetText": "The foam is on the surface.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i12:r2",
+            "targetText": "The cork is on the surface.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i12:r3",
+            "targetText": "The foam is not on the surface.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The foam is on the surface.",
+              "uk": "У записі звучить The foam is on the surface."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The foam is on the surface.",
+              "uk": "У записі звучить The foam is on the surface."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг думает, что белая пена на фото под водой. Уточните: «Пена на поверхности»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Друг думает, что белая пена на фото под водой. Уточните: «Пена на поверхности»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i13:audio",
+          "transcript": "The foam is on the surface."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The foam is on the surface.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите начало вопроса об одной пробке",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-31:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-09:session-31:i14:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите начало вопроса об одной пробке",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало вопроса об одной пробке",
+          "uk": "Виберіть початок запитання про один корок"
+        },
+        "gappedTargetPhrase": "___ the cork floating?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-31:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Выберите начало вопроса об одной пробке",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-31:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите начало вопроса об одной пробке",
+            "feedbackByLocale": {
+              "ru": "Один предмет: is.",
+              "uk": "Один предмет: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-31:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите начало вопроса об одной пробке",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг хочет бросить камешек в стеклянную вазу с высоты. Попросите не бросать камешек",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Друг хочет бросить камешек в стеклянную вазу с высоты. Попросите не бросать камешек",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i15:audio",
+          "transcript": "Don't throw the pebble, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Don't throw the pebble, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-31:i16:p1",
+            "target": "cork",
+            "meaningByLocale": {
+              "ru": "пробка",
+              "uk": "корок"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i16:p2",
+            "target": "pebble",
+            "meaningByLocale": {
+              "ru": "округлый камешек",
+              "uk": "округлий камінчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i16:p3",
+            "target": "foam",
+            "meaningByLocale": {
+              "ru": "пена",
+              "uk": "піна"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-31:i16:p4",
+            "target": "surface",
+            "meaningByLocale": {
+              "ru": "поверхность",
+              "uk": "поверхня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cork",
+          "pebble",
+          "foam",
+          "surface"
+        ],
+        "rightColumn": [
+          "пробка",
+          "округлый камешек",
+          "пена",
+          "поверхность"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После пикника пробка случайно упала в ведро с водой и осталась наверху. Друг спрашивает, утонула ли она. Сообщите: «Пробка держится на воде»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "После пикника пробка случайно упала в ведро с водой и осталась наверху. Друг спрашивает, утонула ли она. Сообщите: «Пробка держится на воде»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-31:i17:audio",
+          "transcript": "The cork is floating."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cork is floating.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ead333ca7859248d4caa10a521481a72a67abfbb75ff462bc2bf1629e95eb661"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-30:intro1:r2": {
+          "ru": "С we нужна форма are.",
+          "uk": "З we потрібна форма are."
+        },
+        "en:lesson-09:session-30:intro1:r3": {
+          "ru": "После are для действия сейчас нужна форма queuing.",
+          "uk": "Після are для дії зараз потрібна форма queuing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-30:intro2:r2": {
+          "ru": "С we здесь нужна связка are.",
+          "uk": "З we тут потрібна зв’язка are."
+        },
+        "en:lesson-09:session-30:intro2:r3": {
+          "ru": "С we нужна форма are, не is.",
+          "uk": "З we потрібна форма are, не is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-30:intro3:r2": {
+          "ru": "Перед helping нужно is.",
+          "uk": "Перед helping потрібне is."
+        },
+        "en:lesson-09:session-30:intro3:r3": {
+          "ru": "После is для действия сейчас нужна форма helping.",
+          "uk": "Після is для дії зараз потрібна форма helping."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "41455bd6e48bcd9172cb192f2e3f264541bd825eabc38a0533f49cc6fb6d9a35"
+}

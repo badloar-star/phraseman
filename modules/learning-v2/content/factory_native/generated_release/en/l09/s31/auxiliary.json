@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-31:intro1:r2": {
+          "ru": "Перед floating нужно is.",
+          "uk": "Перед floating потрібне is."
+        },
+        "en:lesson-09:session-31:intro1:r3": {
+          "ru": "После is для наблюдения сейчас нужна форма floating.",
+          "uk": "Після is для спостереження зараз потрібна форма floating."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-31:intro2:r2": {
+          "ru": "Перед not floating нужно is.",
+          "uk": "Перед not floating потрібне is."
+        },
+        "en:lesson-09:session-31:intro2:r3": {
+          "ru": "После is not нужна форма floating.",
+          "uk": "Після is not потрібна форма floating."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-31:intro3:r2": {
+          "ru": "Перед местом здесь нужна связка is.",
+          "uk": "Перед місцем тут потрібна зв’язка is."
+        },
+        "en:lesson-09:session-31:intro3:r3": {
+          "ru": "Foam здесь вещество, поэтому is.",
+          "uk": "Foam тут речовина, тому is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bda6be50102e00a6bf7df53f9245e3a2a753e091249e9ba329cf47480fa748a4"
+}

@@ -3346,4 +3346,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is melting / is not melting / Is it melting?","uk":"is melting / is not melting / Is it melting?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 30,
+    sourceFingerprint: "ae9702b15424113a9bf01ac29acc745c5217f025ef07fe83053760693c1ea52b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"are queuing / are not queuing; действие сейчас","uk":"are queuing / are not queuing; дія зараз"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 31,
+    sourceFingerprint: "d1e5e367bf7203d490a1d72a02e8d18527445655c8ebfc1b5e28dfb333582573",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is floating / is not floating; on the surface","uk":"is floating / is not floating; on the surface"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

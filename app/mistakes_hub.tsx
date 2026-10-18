@@ -84,6 +84,9 @@ export default function MistakesHubScreen() {
   const peekKey = mistakesHubPeekKey(target, lang);
   const [snapshot, setSnapshot] = useState<MistakePracticeHubSnapshot | null>(() => (hubSnapshotPeek?.key === peekKey ? hubSnapshotPeek.snapshot : null));
   const [failed, setFailed] = useState(false);
+  // зачем (Ревизор 3.109): повторный отказ не меняет failed (true → true), и эффект тихих повторов не перезапускался —
+  // срабатывала только первая попытка из 2/5/10 с. Счётчик отказов перезапускает эффект на каждый отказ без мигания вида.
+  const [failNonce, setFailNonce] = useState(0);
   const [group, setGroup] = useState<MistakeGroupFilter>('all');
   const [sheetOpen, setSheetOpen] = useState(false);
   const [sheetGroup, setSheetGroup] = useState<MistakeGroupFilter>('all');
@@ -104,7 +107,10 @@ export default function MistakesHubScreen() {
       .catch((error: unknown) => {
         // guard-ok: лог в catch обязателен; журнал локальный, отказ почти невозможен — но причина должна быть видна.
         console.warn('[MISTAKES-HUB] open:catch', reason, error instanceof Error ? error.message : String(error));
-        if (!isCancelled()) setFailed(true);
+        if (!isCancelled()) {
+          setFailed(true);
+          setFailNonce((value) => value + 1);
+        }
       });
   }, [peekKey, target]);
 
@@ -145,7 +151,7 @@ export default function MistakesHubScreen() {
       if (timer) clearTimeout(timer);
       sub.remove();
     };
-  }, [failed, load]);
+  }, [failed, failNonce, load]);
 
   // зачем (аудит 2026-09-21, одобрено владельцем): pull-to-refresh ставим ТОЛЬКО там, где жест стоит 0 чтений Firestore.
   // Журнал ошибок лежит на устройстве, поэтому жест пересчитывает локальный снимок и в сеть не идёт вовсе.

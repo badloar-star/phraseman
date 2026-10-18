@@ -54,9 +54,11 @@ function LearningV2SessionUnavailableBase({ title, hint, backLabel, closeLabel, 
   useEffect(() => {
     if (!silentExit || leftRef.current) return;
     leftRef.current = true;
-    console.warn(`[NO-ERROR-SCREEN] screen=learning_v2_session reason=${devReason ?? 'session_unavailable'} shown=silent_back`); // guard-ok: причина ухода называется всегда
-    onBack();
-  }, [devReason, onBack, silentExit]);
+    console.warn(`[NO-ERROR-SCREEN] screen=learning_v2_session reason=${devReason ?? 'session_unavailable'} shown=silent_exit`); // guard-ok: причина ухода называется всегда
+    // зачем (Ревизор 3.109): единственный выход — родительский exitLearningV2Session (onClose): он ставит флаг выхода
+    // и делает replace на карту; safeRouterBack поверх него давал двойную навигацию. Энергия до первого вопроса не списана.
+    onClose();
+  }, [devReason, onClose, silentExit]);
   if (silentExit) return <View testID="learning-v2-session-unavailable-silent" style={[styles.screen, { backgroundColor: g.bg }]} />;
   return (
     <View testID="learning-v2-session-unavailable" style={[styles.screen, { backgroundColor: g.bg }]}>

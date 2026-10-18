@@ -42,9 +42,9 @@ export function resolveBootOnboardingDone(onboardingDoneRaw: string | null, devi
 }
 
 /**
- * зачем (координатор 18.10 07:10, вариант А): после выхода/смены согласие на аналитику и принятие Условий сброшены
- * (cloud_sync resetConsentsBeforeSignoutWipe), а онбординг пропускается по метке устройства. Эта метка просит при
- * следующем запуске показать ТОЛЬКО экран согласия. Ключ устройства: не в SYNC_KEYS и не в описи аккаунта.
+ * зачем (координатор 18.10 07:10, вариант А): метка просит при следующем запуске показать ТОЛЬКО экран согласия.
+ * С решения координатора 18.10 (прогон Сверки №2) выход/смена согласия больше не сбрасывают и метку не ставят — она
+ * остаётся для ранее выставленных меток. Ключ устройства: не в SYNC_KEYS и не в описи аккаунта.
  */
 export const CONSENT_REGATE_PENDING_KEY = 'consent_regate_pending_v1';
 export const LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE = 'onboarding_terms_privacy_accepted_v1';

@@ -186,7 +186,7 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
   });
 
   // зачем (координатор 18.10 06:21, решение владельца по вопросу Ревизора 3.72): согласия — выбор человека, следующий подтверждает сам.
-  it('A вышел → согласие на аналитику и принятие Условий сброшены, метки онбординга на месте, в журнале — что сброшено', async () => {
+  it('A вышел → согласие на аналитику и принятие Условий сохранены, экран согласия не открывается, в журнале — consent_kept', async () => {
     const consent = await import('../app/analytics_consent');
     await consent.setAnalyticsConsent('granted');
     expect(consent.getAnalyticsConsentState()).toBe('granted');
@@ -197,35 +197,24 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     const emitSpy = jest.spyOn(events, 'emitAppEvent');
 
     await wipeLocalAccountData(undefined, { mode: 'signout' });
-    expect(emitSpy.mock.calls.filter(([name]) => name === 'consent_regate_requested')).toEqual([['consent_regate_requested', { source: 'signout_wipe' }]]);
+    // зачем (решение координатора 18.10, прогон Сверки №2): выход/смена согласия НЕ сбрасывают и экран согласия не открывают.
+    expect(emitSpy.mock.calls.some(([name]) => name === 'consent_regate_requested')).toBe(false);
     emitSpy.mockRestore();
 
-    expect(SIGNOUT_DEVICE_KEEP_KEYS).not.toEqual(expect.arrayContaining(['analytics_consent_v1']));
-    expect(SIGNOUT_DEVICE_KEEP_KEYS).not.toEqual(expect.arrayContaining(['onboarding_terms_privacy_accepted_v1']));
-    expect(await AsyncStorage.getItem('onboarding_terms_privacy_accepted_v1')).toBeNull();
-    expect(consent.getAnalyticsConsentState()).toBe('unset');
-    expect(consent.isAnalyticsConsentGranted()).toBe(false);
-    expect(consent.hasAnalyticsConsentDecision()).toBe(false);
-    expect([null, 'unset']).toContain(await AsyncStorage.getItem('analytics_consent_v1'));
+    expect(await AsyncStorage.getItem('onboarding_terms_privacy_accepted_v1')).toBe('1');
+    expect(consent.getAnalyticsConsentState()).toBe('granted');
     // онбординг устройства не тронут
     expect(await AsyncStorage.getItem(DEVICE_ONBOARDING_DONE_KEY)).toBe('1');
-    // зачем (координатор 18.10 07:10, вариант А): после выхода при следующем запуске показан экран согласия
     const [[, accountDone], [, deviceDone], [, legal], [, pending]] = await AsyncStorage.multiGet([
       'onboarding_done', DEVICE_ONBOARDING_DONE_KEY, 'onboarding_terms_privacy_accepted_v1', CONSENT_REGATE_PENDING_KEY,
     ]);
-    expect(pending).toBe('1');
+    expect(pending).toBeNull();
     const boot = resolveBootOnboardingDone(accountDone, deviceDone);
     expect(boot).toEqual({ value: '1', source: 'device' });
-    expect(resolveConsentRegate(boot.value, legal, pending)).toEqual({ show: true, reason: 'pending_after_signout' });
-    const resetLog = logSpy.mock.calls.find((call) => String(call[0]) === '[AUTH-LOGOUT]' && String(call[1]).includes('"stage":"consent_reset"'));
-    expect(resetLog).toBeDefined();
-    expect(JSON.parse(String(resetLog![1]))).toMatchObject({
-      keys: ['analytics_consent_v1', 'onboarding_terms_privacy_accepted_v1'],
-      before: { analytics_consent_v1: 'granted', onboarding_terms_privacy_accepted_v1: '1' },
-      legalRemoved: true,
-      analyticsReset: true,
-      regatePending: true,
-    });
+    expect(resolveConsentRegate(boot.value, legal, pending).show).toBe(false);
+    const keptLog = logSpy.mock.calls.find((call) => String(call[0]) === '[AUTH-LOGOUT]' && String(call[1]).includes('"stage":"consent_kept"'));
+    expect(keptLog).toBeDefined();
+    expect(JSON.parse(String(keptLog![1]))).toMatchObject({ reason: 'owner_rule_keep_on_signout' });
   });
 
   // зачем (координатор 18.10 10:10): откат прерванного входа к гостю — тот же человек, согласия и Условия остаются, экран согласия не всплывает

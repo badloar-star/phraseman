@@ -45,9 +45,11 @@ describe('проводка экрана согласия', () => {
     expect(layout).toContain('onDone={onboardingConsentOnly ? handleConsentRegateDone : handleOnboardingDone}');
   });
 
-  it('выход A → вход B без перезапуска: событие выхода сразу открывает экран согласия (то же решение, журнал)', () => {
+  it('выход A → вход B без перезапуска: подписка корня на событие осталась (старые метки), но выход его больше не шлёт', () => {
     const cloudSync = read('app/cloud_sync.ts');
-    expect(cloudSync).toMatch(/await wipeLocalAccountDataUnsafeBody\(mode\);\s*if \(mode === 'signout'\) \{[\s\S]{0,400}emitAppEvent\('consent_regate_requested', \{ source: 'signout_wipe' \}\);/);
+    // зачем (решение координатора 18.10, прогон Сверки №2): выход/смена согласия не сбрасывают — экран согласия не открывается.
+    expect(cloudSync).not.toContain("emitAppEvent('consent_regate_requested'");
+    expect(cloudSync).toContain("reason: keepConsents ? 'handoff_rollback_same_person' : 'owner_rule_keep_on_signout'");
     // 18.10: проверка вынесена в check() над подпиской (отложенный показ во время смены аккаунта)
     const handler = layout.slice(layout.indexOf('const check = (source: string, attempt: number): void => {'), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
     expect(handler).toContain("onAppEvent('consent_regate_requested'");

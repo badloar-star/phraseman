@@ -6360,50 +6360,6 @@ export const SIGNOUT_DEVICE_KEEP_KEYS: readonly string[] = [
   'study_target_v1',
 ];
 
-/**
- * зачем (координатор 18.10 06:21, решение владельца по вопросу Ревизора 3.72): согласие на аналитику и принятие Условий —
- * выбор человека, а не устройства. При выходе и смене аккаунта они сбрасываются: следующий человек подтверждает сам.
- * В опись аккаунта ключи не входят, поэтому стираются явно (wipeLocalAccountDataUnsafeBody, режим 'signout').
- */
-export const SIGNOUT_CONSENT_RESET_KEYS: readonly string[] = [
-  'analytics_consent_v1',
-  'onboarding_terms_privacy_accepted_v1',
-];
-
-async function resetConsentsBeforeSignoutWipe(): Promise<void> {
-  const before = await AsyncStorage.multiGet([...SIGNOUT_CONSENT_RESET_KEYS]).catch((error: unknown) => {
-    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_read_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
-    return [] as [string, string | null][];
-  });
-  let legalRemoved = true;
-  await AsyncStorage.removeItem('onboarding_terms_privacy_accepted_v1').catch((error: unknown) => {
-    legalRemoved = false;
-    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_legal_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
-  });
-  // через общую очередь записей согласия: память сразу «не выбрано», поздний «granted» прежнего владельца её не перебьёт
-  let analyticsReset = true;
-  await import('./analytics_consent')
-    .then((m) => m.setAnalyticsConsent('unset'))
-    .catch((error: unknown) => {
-      analyticsReset = false;
-      console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_analytics_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
-    });
-  // зачем (координатор 18.10 07:10, вариант А): метка «при следующем запуске показать экран согласия» (device_onboarding_marks)
-  let regatePending = true;
-  const { CONSENT_REGATE_PENDING_KEY } = await import('./device_onboarding_marks');
-  await AsyncStorage.setItem(CONSENT_REGATE_PENDING_KEY, '1').catch((error: unknown) => {
-    regatePending = false;
-    console.warn('[CONSENT-REGATE]', JSON.stringify({ stage: 'pending_mark_write_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
-  });
-  console.log('[AUTH-LOGOUT]', JSON.stringify({ // guard-ok: одна строка на выход, только имена ключей и выбор
-    stage: 'consent_reset',
-    keys: SIGNOUT_CONSENT_RESET_KEYS,
-    before: Object.fromEntries(before.map(([key, value]) => [key, value ?? null])),
-    legalRemoved,
-    analyticsReset,
-    regatePending,
-  }));
-}
 
 /**
  * 'full' — удаление аккаунта, вход со сменой (swap/merge), восстановление чистой установки;
@@ -6421,12 +6377,7 @@ async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full', keepCo
     await closePhoneStateBeforeLocalWipe();
     markWipeStage('closePhoneState');
     await wipeLocalAccountDataUnsafeBody(mode, keepConsents);
-    if (mode === 'signout' && !keepConsents) {
-      // зачем (Ревизор 18.10 по 04bcd2d89): человек B, вошедший сразу после выхода A без перезапуска, тоже принимает
-      // Условия сам — стирание прошло, согласия сброшены, корень (_layout) открывает экран согласия сейчас же.
-      console.log('[CONSENT-REGATE] emit consent_regate_requested source=signout_wipe'); // guard-ok: одна строка на выход
-      emitAppEvent('consent_regate_requested', { source: 'signout_wipe' });
-    }
+    // зачем (решение координатора 18.10): экран согласий после выхода больше не открывается — согласия не сбрасываются.
   } catch (error) {
     failure = identityErrorCode(error);
     throw error;
@@ -6478,8 +6429,9 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode, keepConsent
   // Полное стирание (удаление аккаунта, вход со сменой) метки устройства снимает: после удаления онбординг обязан показаться.
   const marksModule = await import('./device_onboarding_marks');
   const deviceMarks = mode === 'signout' ? await marksModule.writeDeviceMarksBeforeSignoutWipe() : [];
-  if (mode === 'signout' && !keepConsents) await resetConsentsBeforeSignoutWipe();
-  if (keepConsents) console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_kept', reason: 'handoff_rollback_same_person' })); // guard-ok: ветка решения
+  // зачем (решение координатора 18.10, прогон Сверки №2: экран согласий после каждой смены — лишний шаг): выход и смена аккаунта
+  // согласия НЕ сбрасывают, если они уже приняты на этом телефоне. Сбрасывает только удаление аккаунта (полное стирание хранилища).
+  if (mode === 'signout') console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_kept', reason: keepConsents ? 'handoff_rollback_same_person' : 'owner_rule_keep_on_signout' })); // guard-ok: ветка решения
   // зачем (сторож cloud_sync_customization_account_isolation «fails closed»): метки снимаются в общем удалении ниже
   // (removeExactly) — сбой роняет стирание целиком, а не глотается отдельным multiRemove.
   const deviceMarksCleared = mode === 'full';

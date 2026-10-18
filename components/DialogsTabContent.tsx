@@ -126,9 +126,9 @@ interface DialogsTabContentProps {
 function dialogLockedLabel(scenario: DialogScenario, lang: Lang): string {
   const rank = legacyDialogScenarioRankRequired(scenario.cefr) ?? 1;
   return triLang(lang, {
-    ru: `Откроется на ранге ${rank}`, uk: `Відкриється на ранзі ${rank}`, en: `Unlocks at rank ${rank}`,
-    es: `Se desbloquea en el rango ${rank}`, 'pt-BR': `Desbloqueia no nível ${rank}`, vi: `Mở ở hạng ${rank}`,
-    id: `Terbuka di peringkat ${rank}`, tr: `${rank}. rütbede açılır`, pl: `Odblokuje się na randze ${rank}`,
+    ru: `Откроется на ранге\u00A0${rank}`, uk: `Відкриється на ранзі\u00A0${rank}`, en: `Unlocks at rank\u00A0${rank}`,
+    es: `Se desbloquea en el rango\u00A0${rank}`, 'pt-BR': `Desbloqueia no nível\u00A0${rank}`, vi: `Mở ở hạng\u00A0${rank}`,
+    id: `Terbuka di peringkat\u00A0${rank}`, tr: `${rank}.\u00A0rütbede açılır`, pl: `Odblokuje się na randze\u00A0${rank}`,
   });
 }
 
@@ -497,15 +497,15 @@ function DialogsTabContentBody({
           status,
           scene: CHALLENGE_SCENE_THEME,
           levelChip: triLang(lang, {
-            ru: `ур. ${requiredLevel}`,
-            uk: `рів. ${requiredLevel}`,
-            en: `Lvl ${requiredLevel}`,
-            es: `niv. ${requiredLevel}`,
-            'pt-BR': `nív. ${requiredLevel}`,
-            vi: `cấp ${requiredLevel}`,
-            id: `Lvl ${requiredLevel}`,
-            tr: `sv. ${requiredLevel}`,
-            pl: `poz. ${requiredLevel}`,
+            ru: `ур.\u00A0${requiredLevel}`,
+            uk: `рів.\u00A0${requiredLevel}`,
+            en: `Lvl\u00A0${requiredLevel}`,
+            es: `niv.\u00A0${requiredLevel}`,
+            'pt-BR': `nív.\u00A0${requiredLevel}`,
+            vi: `cấp\u00A0${requiredLevel}`,
+            id: `Lvl\u00A0${requiredLevel}`,
+            tr: `sv.\u00A0${requiredLevel}`,
+            pl: `poz.\u00A0${requiredLevel}`,
           }),
           lockedText: dialogLockedLabel(scenario, lang),
           onPress: () => openChallengeScenario(scenario),

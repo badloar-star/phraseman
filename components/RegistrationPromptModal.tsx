@@ -1677,8 +1677,9 @@ function RegistrationPromptModal({
           {!googleAvail && appleAvail === false && (
             <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
               {triLang(lang, {
-                ru: 'Ни один провайдер не доступен на этом устройстве.',
-                uk: 'Жоден провайдер не доступний на цьому пристрої.',
+                // зачем (координатор 18.10, «никаких системных текстов»): «провайдер» → понятный «способ входа», как в en
+                ru: 'На этом телефоне нет доступного способа входа.',
+                uk: 'На цьому телефоні немає доступного способу входу.',
                 en: 'No sign-in method is available on this device.',
                 es: 'Ningún método de entrada está disponible en este dispositivo.',
                 'pt-BR': 'Nenhum método de entrada está disponível neste dispositivo.',

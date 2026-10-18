@@ -309,15 +309,16 @@ export function getPremiumDialogErrorMessage(
     case 'unknown':
     default:
       return triLang(lang, {
-        ru: 'Не удалось отправить сообщение.\n\nПопробуй ещё раз. Если ошибка повторится, вернись позже.',
-        uk: 'Не вдалося надіслати повідомлення.\n\nСпробуй ще раз. Якщо помилка повториться, повернися пізніше.',
-        en: "Couldn't send the message.\n\nTry again. If the error keeps happening, come back later.",
-        es: 'No se pudo enviar el mensaje.\n\nInténtalo de nuevo. Si el error se repite, vuelve más tarde.',
-        'pt-BR': 'Não foi possível enviar a mensagem.\n\nTente novamente. Se o erro continuar, volte mais tarde.',
-        vi: 'Không thể gửi tin nhắn.\n\nHãy thử lại. Nếu lỗi lặp lại, hãy quay lại sau.',
-        id: 'Pesan tidak dapat dikirim.\n\nCoba lagi. Jika kesalahan berulang, kembali nanti.',
-        tr: 'Mesaj gönderilemedi.\n\nTekrar dene. Hata tekrarlanırsa daha sonra geri dön.',
-        pl: 'Nie udało się wysłać wiadomości.\n\nSpróbuj ponownie. Jeśli błąd się powtórzy, wróć później.',
+        // зачем (координатор 18.10, «никаких системных текстов»): «если ошибка повторится» → «если снова не выйдет»
+        ru: 'Не удалось отправить сообщение.\n\nПопробуй ещё раз. Если снова не выйдет, вернись позже.',
+        uk: 'Не вдалося надіслати повідомлення.\n\nСпробуй ще раз. Якщо знову не вийде, повернися пізніше.',
+        en: "Couldn't send the message.\n\nTry again. If it still doesn't work, come back later.",
+        es: 'No se pudo enviar el mensaje.\n\nInténtalo de nuevo. Si sigue sin funcionar, vuelve más tarde.',
+        'pt-BR': 'Não foi possível enviar a mensagem.\n\nTente novamente. Se ainda não der, volte mais tarde.',
+        vi: 'Không thể gửi tin nhắn.\n\nHãy thử lại. Nếu vẫn chưa được, hãy quay lại sau.',
+        id: 'Pesan tidak dapat dikirim.\n\nCoba lagi. Jika masih belum bisa, kembali nanti.',
+        tr: 'Mesaj gönderilemedi.\n\nTekrar dene. Yine olmazsa daha sonra geri dön.',
+        pl: 'Nie udało się wysłać wiadomości.\n\nSpróbuj ponownie. Jeśli dalej nie wyjdzie, wróć później.',
       });
   }
 }

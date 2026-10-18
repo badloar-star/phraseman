@@ -24,14 +24,15 @@ export function dialogueTypingCaption(lang: Lang, stage: DialogueTypingStage, pe
   if (stage === 'slow') {
     return triLang(lang, {
       ru: 'Отвечает дольше обычного',
-      uk: 'Відповідь триває довше, ніж зазвичай',
+      // зачем (переводчик 18.10): как в ru — «он/она отвечает», коротко в одну строку под пузырём
+      uk: 'Відповідає довше, ніж зазвичай',
       en: 'Taking longer than usual',
       es: 'Está tardando más de lo normal',
       'pt-BR': 'Está demorando mais que o normal',
-      vi: 'Đang lâu hơn bình thường',
-      id: 'Lebih lama dari biasanya',
+      vi: 'Trả lời lâu hơn bình thường',
+      id: 'Balasan lebih lama dari biasanya',
       tr: 'Her zamankinden uzun sürüyor',
-      pl: 'Trwa to dłużej niż zwykle',
+      pl: 'Odpowiada dłużej niż zwykle',
     });
   }
   const name = personaName?.trim();

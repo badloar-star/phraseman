@@ -394,7 +394,8 @@ test('first frame reserves the Apple slot while iOS has not answered; no "no pro
     React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose: jest.fn() }),
   );
   expect(screen.getByTestId('provider-apple-placeholder')).toBeTruthy();
-  expect(screen.queryByText('Ни один провайдер не доступен на этом устройстве.')).toBeNull();
+  // зачем (переводчик 18.10): текст переименован без слова «провайдер» — тест ищет новый, иначе проверка стала бы пустой
+  expect(screen.queryByText('На этом телефоне нет доступного способа входа.')).toBeNull();
 });
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports

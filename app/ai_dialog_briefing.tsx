@@ -256,15 +256,15 @@ function AiDialogBriefingBody() {
           pl: 'Ten dialog jest na razie zablokowany',
         })}
         body={triLang(lang, {
-          ru: `Откроется на ранге ${rankLabel}`,
-          uk: `Відкриється на ранзі ${rankLabel}`,
-          en: `Unlocks at rank ${rankLabel}`,
-          es: `Se desbloquea en el rango ${rankLabel}`,
-          'pt-BR': `Desbloqueia no nível ${rankLabel}`,
-          vi: `Mở ở hạng ${rankLabel}`,
-          id: `Terbuka di peringkat ${rankLabel}`,
-          tr: `${rankLabel}. rütbede açılır`,
-          pl: `Odblokuje się na randze ${rankLabel}`,
+          ru: `Откроется на ранге\u00A0${rankLabel}`,
+          uk: `Відкриється на ранзі\u00A0${rankLabel}`,
+          en: `Unlocks at rank\u00A0${rankLabel}`,
+          es: `Se desbloquea en el rango\u00A0${rankLabel}`,
+          'pt-BR': `Desbloqueia no nível\u00A0${rankLabel}`,
+          vi: `Mở ở hạng\u00A0${rankLabel}`,
+          id: `Terbuka di peringkat\u00A0${rankLabel}`,
+          tr: `${rankLabel}.\u00A0rütbede açılır`,
+          pl: `Odblokuje się na randze\u00A0${rankLabel}`,
         })}
         action={triLang(lang, {
           ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',

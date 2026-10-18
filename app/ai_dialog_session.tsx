@@ -2889,13 +2889,14 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                                 {triLang(lang, {
                                   ru: 'Не вышло · Перевести снова',
                                   uk: 'Не вийшло · Перекласти знову',
-                                  en: 'Failed · Try again',
-                                  es: 'Error · Reintentar',
-                                  'pt-BR': 'Falhou · Tentar de novo',
-                                  vi: 'Lỗi · Thử lại',
-                                  id: 'Gagal · Coba lagi',
-                                  tr: 'Hata · Tekrar dene',
-                                  pl: 'Błąd · Ponów',
+                                  // зачем (координатор 18.10, «никаких системных текстов»): «Error / Lỗi / Hata / Błąd» → «не вышло · перевести снова», как в русском
+                                  en: 'Didn’t work · Translate again',
+                                  es: 'No salió · Traducir de nuevo',
+                                  'pt-BR': 'Não deu · Traduzir de novo',
+                                  vi: 'Không được · Dịch lại',
+                                  id: 'Belum berhasil · Terjemahkan lagi',
+                                  tr: 'Olmadı · Yeniden çevir',
+                                  pl: 'Nie wyszło · Przetłumacz ponownie',
                                 })}
                               </Text>
                             </TouchableOpacity>

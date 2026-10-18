@@ -422,7 +422,8 @@ export default function ReferralsScreen() {
           setMessage(L('Награды временно недоступны', 'Нагороди тимчасово недоступні', 'Rewards are temporarily unavailable', 'Las recompensas no están disponibles temporalmente', 'As recompensas estão temporariamente indisponíveis', 'Phần thưởng tạm thời không khả dụng', 'Hadiah sementara tidak tersedia', 'Ödüller geçici olarak kullanılamıyor', 'Nagrody są chwilowo niedostępne'));
         } else {
           // retry уже выполнен внутри клиента с тем же spinRequestId — не дублируем.
-          setMessage(L('Сеть подвела — попробуй ещё раз', 'Помилка мережі — спробуй ще раз', 'Network failed — try again', 'Falló la red: inténtalo de nuevo', 'Falha na rede — tente novamente', 'Lỗi mạng — hãy thử lại', 'Jaringan bermasalah — coba lagi', 'Ağ hatası — tekrar dene', 'Błąd sieci — spróbuj ponownie'));
+                    // зачем (координатор 18.10, «никаких системных текстов»): «ошибка сети / network failed» → «связь подвела», как в русском
+          setMessage(L('Сеть подвела — попробуй ещё раз', 'Зв’язок підвів — спробуй ще раз', 'Lost connection — try again', 'Se perdió la conexión: inténtalo de nuevo', 'A conexão caiu — tente novamente', 'Mất kết nối — hãy thử lại', 'Koneksi terputus — coba lagi', 'Bağlantı koptu — tekrar dene', 'Połączenie zawiodło — spróbuj ponownie'));
         }
         return;
       }

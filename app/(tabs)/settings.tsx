@@ -1414,7 +1414,7 @@ export default function SettingsMain() {
               : clearCacheState === 'done'
                 ? L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')
                 : clearCacheState === 'failed'
-                  ? L('Не удалось', 'Не вдалося', 'Failed', 'No se pudo', 'Não deu certo', 'Không thành công', 'Gagal', 'Başarısız', 'Nie udało się')
+                  ? L('Не удалось', 'Не вдалося', 'Didn’t work', 'No se pudo', 'Não deu certo', 'Không thành công', 'Tidak berhasil', 'Olmadı', 'Nie udało się')
                   : undefined}
             haptic={false}
             onPress={confirmClearCache}

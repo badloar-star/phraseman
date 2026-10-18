@@ -352,7 +352,7 @@ export default function DialogHowToSaySheet({
                   accessibilityRole="button"
                   style={styles.errorRow}
                   accessibilityLabel={triLang(lang, {
-                    ru: 'Не получилось. Повторить', uk: 'Не вийшло. Повторити', en: 'Failed. Try again',
+                    ru: 'Не получилось. Повторить', uk: 'Не вийшло. Повторити', en: 'Didn’t work. Try again',
                     es: 'No salió. Reintentar', 'pt-BR': 'Não deu. Tentar de novo', vi: 'Không được. Thử lại',
                     id: 'Gagal. Coba lagi', tr: 'Olmadı. Tekrar dene', pl: 'Nie wyszło. Ponów',
                   })}
@@ -360,7 +360,7 @@ export default function DialogHowToSaySheet({
                   <Ionicons name="refresh" size={17} color={t.textMuted} />
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                     {triLang(lang, {
-                      ru: 'Не получилось · Повторить', uk: 'Не вийшло · Повторити', en: 'Failed · Try again',
+                      ru: 'Не получилось · Повторить', uk: 'Не вийшло · Повторити', en: 'Didn’t work · Try again',
                       es: 'No salió · Reintentar', 'pt-BR': 'Não deu · Tentar de novo', vi: 'Không được · Thử lại',
                       id: 'Gagal · Coba lagi', tr: 'Olmadı · Tekrar dene', pl: 'Nie wyszło · Ponów',
                     })}

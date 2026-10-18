@@ -317,15 +317,16 @@ export function paywallRestoreToast(kind: PaywallRestoreToastKind) {
       });
     case 'status_check_failed':
       return actionToastTri('error', {
-        ru: 'Не удалось проверить статус. Попробуй позже.',
-        en: 'Couldn’t check the status. Try again later.',
-        uk: 'Не вдалося перевірити статус. Спробуй пізніше.',
-        es: 'No se pudo comprobar el estado. Inténtalo más tarde.',
-        'pt-BR': 'Não foi possível verificar o status. Tente mais tarde.',
-        vi: 'Không kiểm tra được trạng thái. Hãy thử lại sau.',
-        id: 'Tidak bisa mengecek status. Coba lagi nanti.',
-        tr: 'Durum kontrol edilemedi. Daha sonra tekrar dene.',
-        pl: 'Nie udało się sprawdzić statusu. Spróbuj później.',
+        // зачем (координатор 18.10, «никаких системных текстов»): «статус» непонятно чего — говорим прямо: подписку
+        ru: 'Не удалось проверить подписку. Попробуй позже.',
+        en: 'Couldn’t check your subscription. Try again later.',
+        uk: 'Не вдалося перевірити підписку. Спробуй пізніше.',
+        es: 'No se pudo comprobar tu suscripción. Inténtalo más tarde.',
+        'pt-BR': 'Não foi possível verificar sua assinatura. Tente mais tarde.',
+        vi: 'Không kiểm tra được gói đăng ký. Hãy thử lại sau.',
+        id: 'Tidak bisa mengecek langganan. Coba lagi nanti.',
+        tr: 'Abonelik kontrol edilemedi. Daha sonra tekrar dene.',
+        pl: 'Nie udało się sprawdzić subskrypcji. Spróbuj później.',
       });
     case 'restore_failed':
       return actionToastTri('error', {

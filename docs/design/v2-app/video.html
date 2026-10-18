@@ -25,7 +25,9 @@
 .vt { font-size: 17px; line-height: 22px; font-weight: 700; margin-top: 10px; }
 .vm { font-size: 14px; color: var(--sec); margin-top: 4px; }
 .hero { border-radius: 22px; background: var(--card-2); border: 1px solid var(--line); padding: 12px; }
-.hero .badge { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 10px; border-radius: 13px; background: rgba(0,0,0,.6); font-size: 12px; font-weight: 700; letter-spacing: .3px; position: absolute; left: 12px; top: 12px; z-index: 2; }
+/* владелец 18.10 («Да, убрать плашки с обложки»): состояние премьеры — одна строка ПОД обложкой, на кадре только ▶. */
+.hero .st { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-size: 14px; line-height: 19px; font-weight: 600; color: var(--sec); }
+.hero .st svg { flex: none; }
 .live { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.2s ease-in-out infinite; }
 @keyframes blink { 50% { opacity: .25; } }
 .vrow { display: flex; gap: 14px; align-items: center; }
@@ -88,11 +90,11 @@ const head = (unread) => `<div class="flex" style="justify-content:space-between
 const tabs = (on) => `<div class="tabs3">${['Главная', 'Все видео', 'Плейлисты'].map((t, i) => `<div class="t${i === on ? ' on' : ''}">${t}</div>`).join('')}</div>`;
 const packsRow = `<div class="card t" style="margin-top:18px;display:flex;align-items:center;gap:14px;padding:12px 14px"><div class="tile">${icon('layers', 's20')}</div><div class="grow"><div style="font-size:16px;font-weight:700">Наборы из видео</div><div style="font-size:14px;color:var(--sec);margin-top:2px">Фразы из роликов карточками</div></div>${ch}</div>`;
 const hero = (state) => {
-  const B = { soon: ['Скоро премьера', 'Завтра в 19:00'], live: ['Премьера сейчас', 'Идёт 4 минуты'], air: ['Сейчас в эфире', '128 смотрят'], check: ['Ожидается премьера', 'Через минуту'] }[state];
+  const B = { soon: ['Скоро премьера', 'через 7 ч 52 мин'], live: ['Премьера сейчас', 'идёт 4 минуты'], air: ['Сейчас в эфире', '128 смотрят'], check: ['Ожидается премьера', 'через минуту'] }[state];
   const btn = state === 'soon' ? `<span class="cta sm t addbtn" data-anim="remind" style="width:auto"><span class="no">${icon('flag', 's18')}Напомнить</span><span class="ok">${icon('check', 's18')}Напоминание установлено</span></span>`
     : state === 'set' ? '' : state === 'check' ? `<span class="cta sm gh t" style="width:auto"><span class="spin" style="width:18px;height:18px"></span>Проверяем начало…</span>` : `<span class="cta sm t" style="width:auto">${icon('play', 's18')}Присоединиться</span>`;
-  return `<div class="hero" style="margin-top:18px"><div class="thumb" style="border-radius:14px"><span class="badge">${state === 'soon' || state === 'check' ? icon('flag', 's16') : '<span class="live"></span>'}${B[0]}</span><span class="cap" style="top:48px">Sorry<br>to bother you</span><span class="pl">${icon('play', 's24')}</span></div>
-    <div style="margin-top:12px"><div style="font-size:17px;font-weight:700">15 вежливых фраз для работы</div><div class="vm">${B[1]}</div></div>${btn ? `<div style="margin-top:12px">${btn.replace('cta sm', 'cta sm').replace('style="width:auto"', 'style="width:100%"')}</div>` : ''}</div>`;
+  return `<div class="hero" style="margin-top:18px"><div class="thumb" style="border-radius:14px"><span class="cap" style="top:48px">Sorry<br>to bother you</span><span class="pl">${icon('play', 's24')}</span></div>
+    <div style="margin-top:12px"><div style="font-size:17px;font-weight:700">15 вежливых фраз для работы</div><div class="st">${state === 'soon' || state === 'check' ? icon('flag', 's16') : '<span class="live"></span>'}${B[0]} · ${B[1]}</div></div>${btn ? `<div style="margin-top:12px">${btn.replace('cta sm', 'cta sm').replace('style="width:auto"', state === 'soon' ? 'style="width:auto"' : 'style="width:100%"')}</div>` : ''}</div>`;
 };
 const main = (o = {}) => phone(`${head(o.unread)}${tabs(0)}${o.note || ''}${o.hero === false ? '' : hero(o.hero || 'soon')}${packsRow}<div class="sec" style="margin-top:26px"><div class="ti">Новые видео</div></div><div class="stack" style="--g:18px;display:flex;flex-direction:column;gap:20px">${VIDS.map(vcard).join('')}</div>`, { time: '12:52', overlay: o.overlay || '' });
 // зачем (координатор 13.10, video-001/video-008): в приложении вкладка «Видео» открывает страницу канала — «‹», название канала крупно в две строки, кнопка YouTube, чип автора, вкладки «Главная · Плейлисты · Наборы»; ролики и плейлисты — сетка в 2 колонки; «Все видео» убрано (video-007 removed_by_owner). Образец приведён к кадрам приложения.

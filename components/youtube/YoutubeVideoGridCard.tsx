@@ -20,9 +20,9 @@ import { feedThumbUrl } from './YoutubeVideoCard';
 /**
  * Ролик в сетке «2 колонки» — вариант 1 «Сетка» макета video-redesign.html (#c1, владелец 11.10).
  *
- * зачем: за один экран видно шесть роликов вместо одного-двух. Обложка 16:9 (длительность справа внизу), закладка
- * на самой обложке справа вверху (круг 38), под ней название ЦЕЛИКОМ (без обрезки, «Methodика…» читается до конца) и
- * «когда · просмотры». Содержимое прежнее: обложка и данные из каталога, закладка — то же избранное (оптимистично,
+ * зачем: за один экран видно шесть роликов вместо одного-двух. Обложка 16:9 (только длительность справа внизу), под ней название ЦЕЛИКОМ
+ * (без обрезки, «Methodика…» читается до конца) и строка меты «когда · просмотры» с закладкой в правом краю (круг 28; владелец 18.10 —
+ * «Да, убрать плашки с обложки»: закладка больше не лежит на картинке). Содержимое прежнее: обложка и данные из каталога, закладка — то же избранное (оптимистично,
  * откат делает хранилище), тап по ролику открывает экран ролика.
  */
 function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSave, highlighted = false }: {
@@ -75,29 +75,30 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
         {/* зачем (владелец 11.10: «названия слишком крупные — в половину меньше, компактно и красиво»): 13/17 вес 600, максимум 2 строки;
             место под две строки резервируется всегда — карточки в ряду одной высоты. Мета — 11 приглушённым акцентным тоном темы. */}
         <Text numberOfLines={2} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.title, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
-        {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentText }]}>{metaParts.join(' · ')}</Text> : null}
       </TouchableOpacity>
-      {onToggleSave ? (
-        <Pressable
-          testID={`video-save-${video.id}`}
-          accessibilityRole="button"
-          accessibilityLabel={saveLabel}
-          accessibilityState={{ selected: !!saved }}
-          hitSlop={4}
-          onPressIn={() => hapticTap()}
-          onPress={onToggleSave}
-          style={({ pressed }) => [styles.bookmark, { backgroundColor: saved ? g.accent : MEDIA_SCRIM }, pressed && styles.bookmarkPressed]}
-        >
-          <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={18} color={saved ? g.accentInk : MEDIA_INK} />
+      {/* зачем (владелец 18.10): строка меты — «когда · просмотры» слева, закладка в правом краю; тап по тексту меты открывает ролик как и по обложке. */}
+      <View style={styles.metaRow}>
+        <Pressable accessible={false} importantForAccessibility="no" onPress={onWatch} style={styles.metaTap}>
+          {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentText }]}>{metaParts.join(' · ')}</Text> : null}
         </Pressable>
-      ) : null}
+        {onToggleSave ? (
+          <Pressable
+            testID={`video-save-${video.id}`}
+            accessibilityRole="button"
+            accessibilityLabel={saveLabel}
+            accessibilityState={{ selected: !!saved }}
+            hitSlop={8}
+            onPressIn={() => hapticTap()}
+            onPress={onToggleSave}
+            style={({ pressed }) => [styles.bookmark, { backgroundColor: saved ? g.accent : g.opaqueControl }, pressed && styles.bookmarkPressed]}
+          >
+            <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={16} color={saved ? g.accentInk : g.secondary} />
+          </Pressable>
+        ) : null}
+      </View>
     </View>
   );
 }
-
-// зачем: кружок закладки лежит на обложке (картинка с YouTube), поэтому подложка тёмная и значок белый в любой теме.
-const MEDIA_SCRIM = 'rgba(0,0,0,0.55)'; // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 
 /** Один ролик — одна и та же ссылка: перерисовка только при смене данных, закладки или счётчика. */
 export default React.memo(YoutubeVideoGridCardBase, (prev, next) => (
@@ -116,10 +117,12 @@ const baseStyles = StyleSheet.create({
   // `.du`: высота 22, поля 7, радиус 7, чёрный 70 %, справа-снизу 7; 12 → 13 по шкале D145.
   duration: { position: 'absolute', right: 7, bottom: 7, minHeight: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.7)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
-  // `.bm`: круг 38 справа-вверху на обложке, отступ 7.
-  bookmark: { position: 'absolute', top: 7, right: 7, width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
+  // `.gmr .bm` (video-redesign.html): круг 28 в правом краю строки меты; строка минимум 28 — карточки одной высоты.
+  metaRow: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 28 },
+  metaTap: { flex: 1, minWidth: 0 },
+  bookmark: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', flex: 0 },
   bookmarkPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
   // владелец 11.10: название 13/17 вес 600 (2 строки, минимум две — ряды одной высоты), мета 11/14.
   title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
-  meta: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85, minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
+  meta: { fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85, minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
 });

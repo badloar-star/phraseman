@@ -36,7 +36,10 @@
   .th .pl.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: var(--acc); color: var(--on); }
   .th .du { position: absolute; right: 7px; bottom: 7px; height: 22px; padding: 0 7px; border-radius: 7px; background: rgba(0,0,0,.7); font-size: 12px; font-weight: 700; display: flex; align-items: center; }
   .rel { position: relative; }
-  .bm { position: absolute; right: 7px; top: 7px; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.55); display: flex; align-items: center; justify-content: center; color: #fff; }
+  /* владелец 18.10 («Да, убрать плашки с обложки»): закладка сетки — круг 28 в правом краю строки меты, обложка чистая. */
+  .gmr { display: flex; align-items: center; gap: 8px; min-height: 28px; margin-top: 0; }
+  .gmr .gm { flex: 1; min-width: 0; margin-top: 0; }
+  .bm { flex: none; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; color: var(--sec); }
   .bm.on { background: var(--acc); color: var(--on); }
   .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; margin-top: 16px; }
   .gt { font-size: 15px; line-height: 20px; font-weight: 700; margin-top: 8px; } .gm { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 3px; }
@@ -103,7 +106,7 @@ const cta = (t, s = '') => `<div class="cta2 t">${t}${s ? `<span style="opacity:
 
 // ================= ВАРИАНТ 1: СЕТКА 2×N — видно сразу 6 роликов =================
 const a1 = () => phone(`${hd}${chan}${tabs(0, ['Главная', 'Плейлисты', 'Наборы'])}
-  <div class="g2">${V.map(([t, m, c, d], i) => `<div class="t"><div class="rel">${th(c, d, 15, '', i)}<span class="bm">${icon('bookmark', 's18')}</span></div><div class="gt">${t}</div><div class="gm">${m}</div></div>`).join('')}</div>`);
+  <div class="g2">${V.map(([t, m, c, d], i) => `<div class="t"><div class="rel">${th(c, d, 15, '', i)}</div><div class="gt">${t}</div><div class="gmr"><div class="gm">${m}</div><span class="bm${i === 1 ? ' on' : ''}">${icon('bookmark', 's16')}</span></div></div>`).join('')}</div>`);
 const a2 = () => phone(`${hd}${chan}${tabs(1, ['Главная', 'Плейлисты', 'Наборы'])}
   <div class="g2">${PL.map(([n, k], i) => `<div class="t"><div class="stk">${th(V[i][2], '', 15, '', i + 2)}</div><div class="gt">${n}</div><div class="gm">${k} видео</div></div>`).join('')}</div>`);
 const a3 = () => phone(`${back(ib('bookmark'))}<div style="margin-top:6px">${th('Catch<br>a flight', '12:34', 26, '', 2, 2)}</div><div class="bar"><i></i></div>

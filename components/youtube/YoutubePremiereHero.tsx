@@ -23,7 +23,6 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 
-const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const PREMIERE_INTRO_DURATION_MS = 1100;
@@ -145,16 +144,19 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
       >
         <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" cachePolicy="memory-disk" recyclingKey={video.id} />
         {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
-        {/* зачем: `.hero .badge` макета — тёмная пилюля состояния на кадре, слева-сверху. */}
-        <View testID="youtube-premiere-state" style={styles.state}>
-          {live ? <View style={styles.liveDot} /> : <Ionicons name="flag-outline" size={16} color={MEDIA_INK} />}
-          <Text style={styles.badgeText}>{live ? copy.liveNow : copy.upcoming}</Text>
-        </View>
+        {/* зачем (владелец 18.10, «Да, убрать плашки с обложки»): на кадре только ▶ — состояние премьеры ушло одной строкой под обложку (video.html `.hero .st`). */}
         <VideoPlayBadge />
       </TouchableOpacity>
       <View testID="youtube-premiere-details" style={styles.details}>
         <Text style={[styles.title, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
-        {!live && isCountdown && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={[styles.countdown, { color: g.secondary }]}>{countdown}</Text>}
+        {/* зачем: «⚑ Скоро премьера · через 7 ч 52 мин» одной строкой под названием; отсчёт — вложенный текст, читалка озвучивает строку целиком */}
+        <View testID="youtube-premiere-state" style={styles.stateRow}>
+          {live ? <View style={[styles.liveDot, { backgroundColor: g.text }]} /> : <Ionicons name="flag-outline" size={16} color={g.secondary} />}
+          <Text style={[styles.stateText, { color: g.secondary }]}>
+            {live ? copy.liveNow : copy.upcoming}
+            {!live && isCountdown ? <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel}>{` · ${countdown}`}</Text> : null}
+          </Text>
+        </View>
         {live ? (
           <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.cta, boxShadow: actionBoxShadow(g) }]}>
             <Ionicons name="play" size={18} color={g.ctaInk} />
@@ -166,7 +168,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
             <Text style={[styles.ctaText, { color: g.text }]}>{copy.checking}</Text>
           </View>
         ) : (
-          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, reminded ? { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) } : { backgroundColor: g.cta, boxShadow: actionBoxShadow(g) }]}>
+          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, styles.ctaCompact, reminded ? { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) } : { backgroundColor: g.cta, boxShadow: actionBoxShadow(g) }]}>
             <Ionicons name={reminded ? 'checkmark' : 'flag-outline'} size={18} color={reminded ? g.text : g.ctaInk} />
             <Text style={[styles.ctaText, { color: reminded ? g.text : g.ctaInk }]}>{reminded ? copy.reminded : copy.remind}</Text>
           </TouchableOpacity>
@@ -186,12 +188,14 @@ const styles = StyleSheet.create({
   image: { ...StyleSheet.absoluteFillObject },
   sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   details: { paddingTop: 12 },
-  state: { position: 'absolute', left: 12, top: 12, minHeight: 26, borderRadius: 13, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-  liveDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
-  badgeText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700', letterSpacing: 0.3 }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  // `.hero .st` макета: строка под названием, 14/19 вес 600, значок 16 и текст через 7 px.
+  stateRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 4 },
+  stateText: { flex: 1, fontSize: 14, lineHeight: 19, fontWeight: '600' },
+  liveDot: { width: 8, height: 8, borderRadius: 4 },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  countdown: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   cta: { minHeight: 44, marginTop: 12, borderRadius: 22, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  // «Напомнить» — компактная (владелец 18.10): по содержимому, высота 40, слева.
+  ctaCompact: { alignSelf: 'flex-start', minHeight: 40, paddingHorizontal: 16, borderRadius: 20 },
   // зачем (Тень 12.10): контурная `.cta.gh` заменена плашкой с малой тенью (opaqueControl + nestedBoxShadow в разметке)
   ctaText: { fontSize: 16, fontWeight: '600' },
 });

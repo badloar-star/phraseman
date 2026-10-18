@@ -40,7 +40,7 @@ test('video.html: video card has the round play badge and localized short view c
   assert.ok(!/duration\s*[:=]\s*['"`]\d/.test(card), 'no hard-coded duration text');
 });
 
-test('video.html: premiere hero uses glass card, state pill on the frame and mockup buttons', () => {
+test('video.html: premiere hero uses glass card, state line under the cover (владелец 18.10) and mockup buttons', () => {
   assert.ok(hero.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens');
   assert.ok(!hero.includes('#A6FF4D') && !hero.includes('#101B18'), 'no lime/green legacy palette');
   assert.ok(hero.includes('testID="youtube-premiere-join"'), 'live state has the join button');

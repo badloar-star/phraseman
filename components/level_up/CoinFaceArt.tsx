@@ -5,7 +5,9 @@
 // градиентом, поясок, гурт с насечкой, центральный знак — пузырь речи из двух
 // полукругов. Как только ассет готов, передай `source` — SVG не рисуется вовсе.
 import React, { memo, useRef } from 'react';
-import { Image, type ImageSourcePropType, View } from 'react-native';
+import { type ImageSourcePropType, View } from 'react-native';
+import { Image } from 'expo-image';
+import { logMemCoin } from '../coins/mem_coin_probe';
 import Svg, { Circle, ClipPath, Defs, G, LinearGradient, Path, RadialGradient, Stop } from 'react-native-svg';
 import type { CoinMetal } from './coin_metal_palette';
 
@@ -32,7 +34,8 @@ function CoinFaceArt({ metal, size, source }: Props) {
   const id = idRef.current;
 
   if (source) {
-    return <Image source={source} style={{ width: size, height: size }} resizeMode="contain" accessible={false} />;
+    // зачем (R129): в церемонии живут ~4 грани сразу — expo-image декодирует монету 768² под размер вида (до 240 dp), а не целиком каждую
+    return <Image source={source} style={{ width: size, height: size }} contentFit="contain" accessible={false} onLoad={() => logMemCoin('level-up-coin-face', size)} />;
   }
 
   const { hi, mid, lo, deep, ring } = metal;

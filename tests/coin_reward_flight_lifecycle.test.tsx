@@ -27,6 +27,8 @@ jest.mock('react-native-reanimated', () => {
   };
 });
 jest.mock('react-native-worklets', () => ({ scheduleOnRN: (fn: () => void) => fn() }));
+// зачем (R129): монета полёта — expo-image (декод под размер вида)
+jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../modules/audio/sound_director', () => ({ soundDirector: { request: jest.fn() } }));
 
 describe('rune flight lifetime', () => {

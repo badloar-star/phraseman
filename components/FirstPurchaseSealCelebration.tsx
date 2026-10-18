@@ -33,7 +33,8 @@
  * (tests/perf_freeze_contract) не затрагивается.
  */
 import React, { memo, useCallback, useEffect, useRef } from 'react';
-import { Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -55,6 +56,7 @@ import { playCelebrationSceneSound } from '../modules/audio/celebrationScenePlay
 // собирается динамически, а здесь оно пряталo бы настоящую проверку.
 import type { SoundEventId } from '../modules/audio/sound_events';
 import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
+import { logMemCoin } from './coins/mem_coin_probe';
 
 export type FirstPurchaseKind = 'dialog' | 'lesson';
 
@@ -293,11 +295,13 @@ function FirstPurchaseSealCelebrationImpl({
               {/* Монета декоративна: что именно куплено, произносит текст ниже
                   («Диалог открыт» + название). Дублировать картинкой значило бы
                   заставить человека слушать одно и то же дважды. */}
+              {/* зачем (R129): expo-image декодирует монету 768² под размер вида (60 dp); движение — у обёртки Animated.View */}
               <Image
                 source={coinSource}
                 style={styles.coin}
-                resizeMode="contain"
+                contentFit="contain"
                 accessible={false}
+                onLoad={() => logMemCoin('first-purchase-seal', 60)}
               />
             </Animated.View>
           </View>

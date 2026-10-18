@@ -20,6 +20,7 @@
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -32,6 +33,7 @@ import Animated, {
 import { scheduleOnRN } from 'react-native-worklets';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { HOME_RUNE_ICON_SOURCE as COIN_ICON_SOURCE } from '../home/homeRuneAsset';
+import { logMemCoin } from '../coins/mem_coin_probe';
 
 const FLIGHT_MS = 620;
 const STAGGER_MS = 90;
@@ -105,7 +107,8 @@ const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, onLastDone 
 
   return (
     <Animated.View pointerEvents="none" style={[styles.coin, style]}>
-      <Animated.Image source={COIN_ICON_SOURCE} resizeMode="contain" style={styles.asset} />
+      {/* зачем (R129): монета 768² в 18 dp, несколько сразу — expo-image декодирует под размер вида; движение у обёртки Animated.View, сама картинка статична */}
+      <Image source={COIN_ICON_SOURCE} contentFit="contain" style={styles.asset} onLoad={() => logMemCoin('coin-reward-flight', COIN_SIZE)} />
     </Animated.View>
   );
 });

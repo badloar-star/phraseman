@@ -1,0 +1,18 @@
+10-18 06:03:39.378 W/ReactNativeJS( 3562): '[LOAD-GATE:fc-saved]', 'повтор после «Сейчас недоступно»', { source: 'tap' }, { [Stack] name: 'Stack' }
+10-18 06:03:39.383 I/ReactNativeJS( 3562): '[CARDS-LOAD] load:start', '{"cacheSaved":true,"cacheCustom":true,"studyTarget":"en","source":"cache_warm"}'
+10-18 06:03:39.440 I/ReactNativeJS( 3562): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false,"deviceOffline":false}'
+10-18 06:03:39.466 I/ReactNativeJS( 3562): '[CARDS-LOAD] load:ok', '{"ms":81,"saved":0,"custom":0,"holdLoadingForMarket":false,"cacheHit":false}'
+10-18 06:03:39.489 I/ReactNativeJS( 3562): '[CARDS-LOAD] retry:settled', '{"outcome":"ok","stillMounted":true}'
+10-18 06:03:39.527 I/ReactNativeJS( 3562): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,"deviceOffline":false}'
+10-18 06:03:40.536 W/ReactNativeJS( 3562): '[LOAD-GATE:fc-saved]', 'тихий повтор', { attempt: 1, status: 'error', waitedMs: 1000 }
+10-18 06:03:40.538 I/ReactNativeJS( 3562): '[CARDS-LOAD] load:start', '{"cacheSaved":true,"cacheCustom":true,"studyTarget":"en","source":"cache_warm"}'
+10-18 06:03:40.574 I/ReactNativeJS( 3562): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false,"deviceOffline":false}'
+10-18 06:03:40.575 I/ReactNativeJS( 3562): '[CARDS-LOAD] load:ok', '{"ms":36,"saved":0,"custom":0,"holdLoadingForMarket":false,"cacheHit":false}'
+10-18 06:03:40.591 I/ReactNativeJS( 3562): '[CARDS-LOAD] retry:settled', '{"outcome":"ok","stillMounted":true}'
+10-18 06:03:40.612 I/ReactNativeJS( 3562): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,"deviceOffline":false}'
+10-18 06:03:43.622 W/ReactNativeJS( 3562): '[LOAD-GATE:fc-saved]', 'тихий повтор', { attempt: 2, status: 'error', waitedMs: 3000 }
+10-18 06:03:43.625 I/ReactNativeJS( 3562): '[CARDS-LOAD] load:start', '{"cacheSaved":true,"cacheCustom":true,"studyTarget":"en","source":"cache_warm"}'
+10-18 06:03:43.645 I/ReactNativeJS( 3562): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false,"deviceOffline":false}'
+10-18 06:03:43.650 I/ReactNativeJS( 3562): '[CARDS-LOAD] load:ok', '{"ms":27,"saved":0,"custom":0,"holdLoadingForMarket":false,"cacheHit":false}'
+10-18 06:03:43.670 I/ReactNativeJS( 3562): '[CARDS-LOAD] retry:settled', '{"outcome":"ok","stillMounted":true}'
+10-18 06:03:43.701 I/ReactNativeJS( 3562): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,"deviceOffline":false}'

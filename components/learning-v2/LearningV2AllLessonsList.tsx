@@ -168,6 +168,8 @@ export default function LearningV2AllLessonsList(props: Props) {
       ItemSeparatorComponent={Separator}
       initialNumToRender={10}
       windowSize={5}
+      // зачем (сторож android_clipping_crash_guard, полный прогон 18.10): списки приложения не уходят в ReactClippingViewManager — на Android это крэш при быстрой прокрутке
+      removeClippedSubviews={false}
     />
   );
 }

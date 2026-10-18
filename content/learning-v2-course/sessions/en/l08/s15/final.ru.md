@@ -124,7 +124,7 @@ estimate — оценивать приблизительно · calculate — в
 <!-- interaction_id: en:lesson-08:session-15:i12; family: phrase_builder -->
 Плитки: `spreadsheet` `the` `is` `Where` → **Where is the spreadsheet?**
 
-**17 · Вас спрашивают, часто ли вы делаете приблизительные оценки. Скажите «Я часто оцениваю приблизительно»**
+**17 · Коллега спрашивает, часто ли вы делаете приблизительные оценки. Скажите «Я часто оцениваю приблизительно»**
 <!-- interaction_id: en:lesson-08:session-15:i13; family: scripted_repeat_compare -->
 🎙 **I often estimate.**
 

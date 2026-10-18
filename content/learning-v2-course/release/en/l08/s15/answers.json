@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-15:word:calculate",
+    "correctText": "calculate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-15:i01",
     "correctText": "I can’t calculate.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-15:i04",
-    "correctText": "en:lesson-08:session-15:i04:p1=calculate\nen:lesson-08:session-15:i04:p2=gym\nen:lesson-08:session-15:i04:p3=sing\nen:lesson-08:session-15:i04:p4=website",
+    "correctText": "en:lesson-08:session-15:i04:p1=calculate\nen:lesson-08:session-15:i04:p2=sing\nen:lesson-08:session-15:i04:p3=book\nen:lesson-08:session-15:i04:p4=pen",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-15:word:estimate",
+    "correctText": "estimate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-15:i06",
-    "correctText": "She can sing.",
+    "correctText": "She can estimate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:word:abacus",
+    "correctText": "abacus",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-15:i07",
-    "correctText": "Whose website is this?",
+    "correctText": "Whose abacus is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-15:i08",
-    "correctText": "sing",
+    "correctText": "estimate",
     "correctResponseId": "en:lesson-08:session-15:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-15:i10",
-    "correctText": "en:lesson-08:session-15:i10:p1=climb\nen:lesson-08:session-15:i10:p2=calculate\nen:lesson-08:session-15:i10:p3=website\nen:lesson-08:session-15:i10:p4=sing",
+    "correctText": "en:lesson-08:session-15:i10:p1=estimate\nen:lesson-08:session-15:i10:p2=calculate\nen:lesson-08:session-15:i10:p3=abacus\nen:lesson-08:session-15:i10:p4=sing",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-15:i11",
-    "correctText": "Whose website is this?",
+    "correctText": "Whose abacus is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:word:spreadsheet",
+    "correctText": "spreadsheet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-15:i12",
-    "correctText": "I can climb.",
+    "correctText": "Where is the spreadsheet?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-15:i13",
-    "correctText": "I often sing.",
+    "correctText": "I often estimate.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-15:i15",
-    "correctText": "Where is the gym?",
+    "correctText": "Where is the spreadsheet?",
     "correctResponseId": "en:lesson-08:session-15:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-15:i16",
-    "correctText": "en:lesson-08:session-15:i16:p1=calculate\nen:lesson-08:session-15:i16:p2=gym\nen:lesson-08:session-15:i16:p3=climb\nen:lesson-08:session-15:i16:p4=website",
+    "correctText": "en:lesson-08:session-15:i16:p1=calculate\nen:lesson-08:session-15:i16:p2=estimate\nen:lesson-08:session-15:i16:p3=abacus\nen:lesson-08:session-15:i16:p4=spreadsheet",
     "correctResponseId": null
   },
   {

@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-15:i01",
+      "interactionId": "en:lesson-08:session-15:word:calculate",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calculate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:calculate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calculate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:calculate:audio",
+          "transcript": "calculate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:calculate:r1",
+            "targetText": "calculate",
+            "meaningByLocale": {
+              "ru": "вычислять. I can’t calculate. — «Я не могу посчитать». Получать результат с помощью вычислений.",
+              "uk": "обчислювати. I can’t calculate. — «Я не можу порахувати». Отримувати результат за допомогою обчислень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calculate",
+          "definitionByLocale": {
+            "ru": "вычислять. I can’t calculate. — «Я не могу посчитать». Получать результат с помощью вычислений.",
+            "uk": "обчислювати. I can’t calculate. — «Я не можу порахувати». Отримувати результат за допомогою обчислень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `calculate`, а в этом варианте — `sing`.",
-              "uk": "У записі перше слово — `calculate`, а в цьому варіанті — `sing`."
+              "ru": "В записи calculate — «вычислять», а не sing — «петь».",
+              "uk": "У записі calculate — «обчислювати», а не sing — «співати»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `calculate`, а в этом варианте — `climb`.",
-              "uk": "У записі перше слово — `calculate`, а в цьому варіанті — `climb`."
+              "ru": "В записи calculate, а не climb — «взбираться».",
+              "uk": "У записі calculate, а не climb — «видиратися»."
             }
           }
         ],
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я не могу посчитать»",
+      "prompt": "Выберите форму: «Я не могу посчитать»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-15:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не могу посчитать»",
+      "accessibilityLabel": "Выберите форму: «Я не могу посчитать»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не могу посчитать»",
-          "uk": "Скажіть «Я не можу порахувати»"
+          "ru": "Выберите форму: «Я не могу посчитать»",
+          "uk": "Виберіть форму: «Я не можу порахувати»"
         },
         "gappedTargetPhrase": "I can’t ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "calculates"
           }
         ],
-        "testedDimension": "Скажите «Я не могу посчитать»",
+        "testedDimension": "Выберите форму: «Я не могу посчитать»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-15:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я не могу посчитать»",
+            "testedDimension": "Выберите форму: «Я не могу посчитать»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `calculate`, без `to`.",
               "uk": "Після `can’t` потрібне `calculate`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-15:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я не могу посчитать»",
+            "testedDimension": "Выберите форму: «Я не могу посчитать»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `calculate`, без `s`.",
               "uk": "Після `can’t` потрібне `calculate`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,14 +247,6 @@
           },
           {
             "pairId": "en:lesson-08:session-15:i04:p2",
-            "target": "gym",
-            "meaningByLocale": {
-              "ru": "тренажёрный зал",
-              "uk": "тренажерний зал"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i04:p3",
             "target": "sing",
             "meaningByLocale": {
               "ru": "петь",
@@ -219,25 +254,33 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-15:i04:p4",
-            "target": "website",
+            "pairId": "en:lesson-08:session-15:i04:p3",
+            "target": "book",
             "meaningByLocale": {
-              "ru": "сайт",
-              "uk": "сайт"
+              "ru": "книга",
+              "uk": "книжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i04:p4",
+            "target": "pen",
+            "meaningByLocale": {
+              "ru": "ручка",
+              "uk": "ручка"
             }
           }
         ],
         "leftColumn": [
           "calculate",
-          "gym",
           "sing",
-          "website"
+          "book",
+          "pen"
         ],
         "rightColumn": [
           "вычислять",
-          "тренажёрный зал",
           "петь",
-          "сайт"
+          "книга",
+          "ручка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-15:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-15:word:estimate",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — estimate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:estimate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — estimate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:estimate:audio",
+          "transcript": "estimate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:estimate:r1",
+            "targetText": "estimate",
+            "meaningByLocale": {
+              "ru": "оценивать приблизительно. She can estimate. — «Она умеет оценивать приблизительно». Прикидывать количество без точного вычисления.",
+              "uk": "оцінювати приблизно. She can estimate. — «Вона вміє оцінювати приблизно». Прикидати кількість без точного обчислення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "estimate",
+          "definitionByLocale": {
+            "ru": "оценивать приблизительно. She can estimate. — «Она умеет оценивать приблизительно». Прикидывать количество без точного вычисления.",
+            "uk": "оцінювати приблизно. She can estimate. — «Вона вміє оцінювати приблизно». Прикидати кількість без точного обчислення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Она умеет петь»",
+      "prompt": "Скажите «Она умеет оценивать приблизительно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она умеет петь»",
+      "accessibilityLabel": "Скажите «Она умеет оценивать приблизительно»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can sing.",
+        "targetPhrase": "She can estimate.",
         "localizedMeaning": {
-          "ru": "Скажите «Она умеет петь»",
-          "uk": "Скажіть «Вона вміє співати»"
+          "ru": "Скажите «Она умеет оценивать приблизительно»",
+          "uk": "Скажіть «Вона вміє оцінювати приблизно»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "sing"
+          "estimate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-15:word:abacus",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — abacus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:abacus:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — abacus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:abacus:audio",
+          "transcript": "abacus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:abacus:r1",
+            "targetText": "abacus",
+            "meaningByLocale": {
+              "ru": "счёты. Whose abacus is this? — «Чьи это счёты?» В английском abacus — один предмет, поэтому is.",
+              "uk": "рахівниця. Whose abacus is this? — «Чия це рахівниця?» Пристрій із кісточками для лічби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "abacus",
+          "definitionByLocale": {
+            "ru": "счёты. Whose abacus is this? — «Чьи это счёты?» В английском abacus — один предмет, поэтому is.",
+            "uk": "рахівниця. Whose abacus is this? — «Чия це рахівниця?» Пристрій із кісточками для лічби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-15:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите «Чей это сайт?»",
+      "prompt": "Спросите «Чьи это счёты?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-15:i07:audio"
       ],
-      "accessibilityLabel": "Спросите «Чей это сайт?»",
+      "accessibilityLabel": "Спросите «Чьи это счёты?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-15:i07:audio",
-          "transcript": "Whose website is this?"
+          "transcript": "Whose abacus is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose website is this?",
+        "targetPhrase": "Whose abacus is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она умеет петь»",
+      "prompt": "Выберите форму: «Она умеет оценивать приблизительно»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-15:i08:r1",
-          "text": "sing"
+          "text": "estimate"
         },
         {
           "responseId": "en:lesson-08:session-15:i08:r2",
-          "text": "sings"
+          "text": "estimates"
         },
         {
           "responseId": "en:lesson-08:session-15:i08:r3",
-          "text": "to sing"
+          "text": "to estimate"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она умеет петь»",
+      "accessibilityLabel": "Выберите форму: «Она умеет оценивать приблизительно»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет петь»",
-          "uk": "Скажіть «Вона вміє співати»"
+          "ru": "Выберите форму: «Она умеет оценивать приблизительно»",
+          "uk": "Виберіть форму: «Вона вміє оцінювати приблизно»"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-15:i08:r1",
-            "text": "sing"
+            "text": "estimate"
           },
           {
             "responseId": "en:lesson-08:session-15:i08:r2",
-            "text": "sings"
+            "text": "estimates"
           },
           {
             "responseId": "en:lesson-08:session-15:i08:r3",
-            "text": "to sing"
+            "text": "to estimate"
           }
         ],
-        "testedDimension": "Скажите «Она умеет петь»",
+        "testedDimension": "Выберите форму: «Она умеет оценивать приблизительно»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она умеет петь»",
+            "testedDimension": "Выберите форму: «Она умеет оценивать приблизительно»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `sing`, без `s`.",
-              "uk": "Після `can` потрібне `sing`, без `s`."
+              "ru": "После `can` нужно `estimate`, без `s`.",
+              "uk": "Після `can` потрібне `estimate`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она умеет петь»",
+            "testedDimension": "Выберите форму: «Она умеет оценивать приблизительно»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `sing`, без `to`.",
-              "uk": "Після `can` потрібне `sing`, без `to`."
+              "ru": "После `can` нужно `estimate`, без `to`.",
+              "uk": "Після `can` потрібне `estimate`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -436,7 +565,7 @@
         },
         {
           "responseId": "en:lesson-08:session-15:i09:r2",
-          "text": "I can’t sing."
+          "text": "I can’t estimate."
         },
         {
           "responseId": "en:lesson-08:session-15:i09:r3",
@@ -463,7 +592,7 @@
           },
           {
             "responseId": "en:lesson-08:session-15:i09:r2",
-            "targetText": "I can’t sing.",
+            "targetText": "I can’t estimate.",
             "meaningByLocale": null
           },
           {
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `calculate`, а в этом варианте — `sing`.",
-              "uk": "У записі останнє слово — `calculate`, а в цьому варіанті — `sing`."
+              "ru": "В записи последнее слово — `calculate`, а в этом варианте — `estimate`.",
+              "uk": "У записі останнє слово — `calculate`, а в цьому варіанті — `estimate`."
             }
           },
           {
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,10 +643,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-15:i10:p1",
-            "target": "climb",
+            "target": "estimate",
             "meaningByLocale": {
-              "ru": "взбираться",
-              "uk": "видиратися"
+              "ru": "оценивать приблизительно",
+              "uk": "оцінювати приблизно"
             }
           },
           {
@@ -530,10 +659,10 @@
           },
           {
             "pairId": "en:lesson-08:session-15:i10:p3",
-            "target": "website",
+            "target": "abacus",
             "meaningByLocale": {
-              "ru": "сайт",
-              "uk": "сайт"
+              "ru": "счёты",
+              "uk": "рахівниця"
             }
           },
           {
@@ -546,15 +675,15 @@
           }
         ],
         "leftColumn": [
-          "climb",
+          "estimate",
           "calculate",
-          "website",
+          "abacus",
           "sing"
         ],
         "rightColumn": [
-          "взбираться",
+          "оценивать приблизительно",
           "вычислять",
-          "сайт",
+          "счёты",
           "петь"
         ],
         "pairingKey": "pair_id",
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-15:i11:audio",
-          "transcript": "Whose website is this?"
+          "transcript": "Whose abacus is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose website is this?",
+        "hiddenTargetPhrase": "Whose abacus is this?",
         "orderedTokens": [
           "Whose",
-          "website",
+          "abacus",
           "is",
           "this"
         ],
@@ -608,27 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-15:word:spreadsheet",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spreadsheet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:spreadsheet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spreadsheet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:spreadsheet:audio",
+          "transcript": "spreadsheet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:spreadsheet:r1",
+            "targetText": "spreadsheet",
+            "meaningByLocale": {
+              "ru": "электронная таблица. Where is the spreadsheet? — «Где электронная таблица?» Данные и расчёты в строках и столбцах.",
+              "uk": "електронна таблиця. Where is the spreadsheet? — «Де електронна таблиця?» Дані й розрахунки в рядках і стовпцях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spreadsheet",
+          "definitionByLocale": {
+            "ru": "электронная таблица. Where is the spreadsheet? — «Где электронная таблица?» Данные и расчёты в строках и столбцах.",
+            "uk": "електронна таблиця. Where is the spreadsheet? — «Де електронна таблиця?» Дані й розрахунки в рядках і стовпцях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-15:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»",
+      "prompt": "Коллега ищет файл с расчётами в ячейках. Спросите «Где электронная таблица?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»",
+      "accessibilityLabel": "Коллега ищет файл с расчётами в ячейках. Спросите «Где электронная таблица?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can climb.",
+        "targetPhrase": "Where is the spreadsheet?",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»",
-          "uk": "Друг запитує, чи вмієте ви видиратися. Скажіть «Я вмію видиратися»"
+          "ru": "Коллега ищет файл с расчётами в ячейках. Спросите «Где электронная таблица?»",
+          "uk": "Колега шукає файл із розрахунками в комірках. Запитайте «Де електронна таблиця?»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "climb"
+          "Where",
+          "is",
+          "the",
+          "spreadsheet"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, часто ли вы поёте. Скажите «Я часто пою»",
+      "prompt": "Коллега спрашивает, часто ли вы делаете приблизительные оценки. Скажите «Я часто оцениваю приблизительно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-15:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, часто ли вы поёте. Скажите «Я часто пою»",
+      "accessibilityLabel": "Коллега спрашивает, часто ли вы делаете приблизительные оценки. Скажите «Я часто оцениваю приблизительно»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-15:i13:audio",
-          "transcript": "I often sing."
+          "transcript": "I often estimate."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often sing.",
+        "targetPhrase": "I often estimate.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,11 +847,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Он не может посчитать»",
+      "prompt": "Выберите форму: «Он не может посчитать»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-15:i14:r1",
@@ -695,12 +868,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Он не может посчитать»",
+      "accessibilityLabel": "Выберите форму: «Он не может посчитать»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он не может посчитать»",
-          "uk": "Скажіть «Він не може порахувати»"
+          "ru": "Выберите форму: «Он не может посчитать»",
+          "uk": "Виберіть форму: «Він не може порахувати»"
         },
         "gappedTargetPhrase": "He ___ calculate.",
         "gapOptions": [
@@ -717,12 +890,12 @@
             "text": "is can’t"
           }
         ],
-        "testedDimension": "Скажите «Он не может посчитать»",
+        "testedDimension": "Выберите форму: «Он не может посчитать»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-15:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Он не может посчитать»",
+            "testedDimension": "Выберите форму: «Он не может посчитать»",
             "feedbackByLocale": {
               "ru": "У него не получается: нужно `can’t`.",
               "uk": "У нього не виходить: потрібне `can’t`."
@@ -731,7 +904,7 @@
           {
             "responseId": "en:lesson-08:session-15:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Он не может посчитать»",
+            "testedDimension": "Выберите форму: «Он не может посчитать»",
             "feedbackByLocale": {
               "ru": "Достаточно `he can’t`; `is` не нужно.",
               "uk": "Достатньо `he can’t`; `is` не потрібне."
@@ -743,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -751,15 +924,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-15:i15:r1",
-          "text": "Where is the gym?"
+          "text": "Where is the spreadsheet?"
         },
         {
           "responseId": "en:lesson-08:session-15:i15:r2",
-          "text": "Where is the bus?"
+          "text": "Where is the abacus?"
         },
         {
           "responseId": "en:lesson-08:session-15:i15:r3",
-          "text": "Where is the tram?"
+          "text": "Where is the book?"
         }
       ],
       "mediaIds": [],
@@ -771,23 +944,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-15:i15:audio",
-          "transcript": "Where is the gym?"
+          "transcript": "Where is the spreadsheet?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-15:i15:r1",
-            "targetText": "Where is the gym?",
+            "targetText": "Where is the spreadsheet?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-15:i15:r2",
-            "targetText": "Where is the bus?",
+            "targetText": "Where is the abacus?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-15:i15:r3",
-            "targetText": "Where is the tram?",
+            "targetText": "Where is the book?",
             "meaningByLocale": null
           }
         ],
@@ -798,8 +971,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `gym`, а в этом варианте — `bus`.",
-              "uk": "У записі останнє слово — `gym`, а в цьому варіанті — `bus`."
+              "ru": "В записи spreadsheet — «электронная таблица», а не abacus — «счёты».",
+              "uk": "У записі spreadsheet — «електронна таблиця», а не abacus — «рахівниця»."
             }
           },
           {
@@ -807,8 +980,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `gym`, а в этом варианте — `tram`.",
-              "uk": "У записі останнє слово — `gym`, а в цьому варіанті — `tram`."
+              "ru": "В записи spreadsheet, а не book — «книга».",
+              "uk": "У записі spreadsheet, а не book — «книжка»."
             }
           }
         ],
@@ -819,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -841,40 +1014,40 @@
           },
           {
             "pairId": "en:lesson-08:session-15:i16:p2",
-            "target": "gym",
+            "target": "estimate",
             "meaningByLocale": {
-              "ru": "тренажёрный зал",
-              "uk": "тренажерний зал"
+              "ru": "оценивать приблизительно",
+              "uk": "оцінювати приблизно"
             }
           },
           {
             "pairId": "en:lesson-08:session-15:i16:p3",
-            "target": "climb",
+            "target": "abacus",
             "meaningByLocale": {
-              "ru": "взбираться",
-              "uk": "видиратися"
+              "ru": "счёты",
+              "uk": "рахівниця"
             }
           },
           {
             "pairId": "en:lesson-08:session-15:i16:p4",
-            "target": "website",
+            "target": "spreadsheet",
             "meaningByLocale": {
-              "ru": "сайт",
-              "uk": "сайт"
+              "ru": "электронная таблица",
+              "uk": "електронна таблиця"
             }
           }
         ],
         "leftColumn": [
           "calculate",
-          "gym",
-          "climb",
-          "website"
+          "estimate",
+          "abacus",
+          "spreadsheet"
         ],
         "rightColumn": [
           "вычислять",
-          "тренажёрный зал",
-          "взбираться",
-          "сайт"
+          "оценивать приблизительно",
+          "счёты",
+          "электронная таблица"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-15:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -932,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6e24feb0736c37fa7ec0af18ce6dea6fb60ba9e37833ea6e70d051ecaac809af"
+  "learnerFingerprint": "6246533bf8167c61bf257082aad229a85a779961c1097b73d8b8b02da13806ff"
 }

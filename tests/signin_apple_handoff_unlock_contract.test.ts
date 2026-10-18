@@ -74,8 +74,23 @@ describe('вход: аноним + существующий Apple/Google-акк�
     );
     // шторка правила 2 получает нетронутый токен
     expect(src).toContain('storeAccountSwitchResumeCredential(provider, cred, { unconsumed: appleTokenUnconsumed });');
-    // уже отказавший сервер не зовётся второй раз
-    expect(src).toContain('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=prelink_already_refused');
+    // предварительная привязка упала (сеть) → повтор после конфликта, а не карточка ошибки
+    expect(src).toContain('[AUTH-APPLE-LINK] email_in_use after_prelink_refused next=server_link_retry');
+    expect(src).not.toContain('prelink_already_refused');
+  });
+
+  // зачем (координатор 18.10, смена ≤5 с): при правиле 3 привязка Apple идёт параллельно со стиранием A, продолжение берёт тот же ответ
+  it('правило 3 Apple: привязка стартует из окна выбора и переносится в продолжение входа одноразово', () => {
+    const pickerStore = src.indexOf('storeAccountSwitchResumeCredential(provider, directCred, { unconsumed: true });');
+    const pickerPrelink = src.indexOf("console.log('[AUTH-APPLE-LINK] prelink start source=rule3_picker parallel_with=switch_wipe');");
+    expect(pickerStore).toBeGreaterThan(0);
+    expect(pickerPrelink).toBeGreaterThan(pickerStore);
+    expect(pickerPrelink).toBeLessThan(src.indexOf('return { result: \'error\', error: ACCOUNT_SWITCH_DIRECT_SIGNAL };', pickerStore));
+    // перенос только для того же токена и только в продолжении (resumeCredential), запись стирается сразу
+    expect(src).toContain('const carriedPrelinkMatches = Boolean(resumeCredential && carriedApplePrelink?.idToken === applePrelinkIdToken);');
+    const carriedRead = src.indexOf('const carriedApplePrelink = accountSwitchApplePrelink;');
+    expect(carriedRead).toBeGreaterThan(0);
+    expect(src.indexOf('accountSwitchApplePrelink = null;', carriedRead) - carriedRead).toBeLessThan(80);
   });
 
   // зачем (прогон 18.10): после отказа/убийства процесса следующий вход молча брал прежний аккаунт Google без окна выбора.

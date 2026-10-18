@@ -1833,6 +1833,9 @@ type AccountSwitchResumeCredential = Readonly<{
 }>;
 
 let accountSwitchResumeCredential: AccountSwitchResumeCredential | null = null;
+// зачем (координатор 18.10, цель смены ≤5 с; iPhone 13:59: привязка Apple 1,7 с шла ПОСЛЕ стирания A): при правиле 3 серверная
+// привязка Apple стартует сразу после окна выбора, параллельно со стиранием A; продолжение входа берёт этот же ответ. Одноразово.
+let accountSwitchApplePrelink: Readonly<{ idToken: string; promise: Promise<boolean> }> | null = null;
 
 function storeAccountSwitchResumeCredential(
   provider: AuthProviderId,
@@ -2858,6 +2861,15 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     }
     // пропуск ещё не тратился Firebase — годится и для Apple (nonce цел)
     storeAccountSwitchResumeCredential(provider, directCred, { unconsumed: true });
+    if (provider === 'apple' && directCred.appleNonce) {
+      console.log('[AUTH-APPLE-LINK] prelink start source=rule3_picker parallel_with=switch_wipe'); // guard-ok: ветка решения
+      accountSwitchApplePrelink = Object.freeze({
+        idToken: directCred.idToken,
+        promise: requestAppleLinkByVerifiedEmail(directCred.idToken, directCred.appleNonce),
+      });
+    } else {
+      accountSwitchApplePrelink = null;
+    }
     logAuthEvent('auth_signin_direct_account_switch', { provider });
     return { result: 'error', error: ACCOUNT_SWITCH_DIRECT_SIGNAL };
   }
@@ -2872,7 +2884,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     : ensureAnonUser();
   // зачем (координатор 15.10, замер №7: метка 1,96 с последовательно ПОСЛЕ окна выбора): запрос метки уходит сейчас, пока открыт
   // выбор аккаунта. Без pending-delete (там метки нет) и без продолжения после «Сменить аккаунт» (окна нет — прятать нечего).
-  if (!deferIdentityPreparation && !resumeCredential && CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
+  // зачем (координатор 18.10, смена ≤5 с; iPhone 13:59: метка 0,5 с последовательно в продолжении): после смены окна нет, но
+  // метка всё равно параллельна проверкам гостя; consume сверяет stableId/authUid, чужая метка не применится.
+  if (!deferIdentityPreparation && CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
     startStampPrefetch({
       resolveIdentity: async () => {
         await anonPreparation;
@@ -2939,8 +2953,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   // токеном внутри того же охраняемого пути (запись передачи, чистота гостя, шторка правила 2). Custom token не нужен.
   const applePrelinkIdToken = cred.idToken;
   const applePrelinkNonce = cred.appleNonce ?? null;
+  const carriedApplePrelink = accountSwitchApplePrelink;
+  accountSwitchApplePrelink = null;
+  const carriedPrelinkMatches = Boolean(resumeCredential && carriedApplePrelink?.idToken === applePrelinkIdToken);
+  if (carriedApplePrelink) {
+    console.log(`[AUTH-APPLE-LINK] prelink carried matches=${carriedPrelinkMatches ? 'yes' : 'no'} provider=${provider}`); // guard-ok: ветка и значение
+  }
   const applePrelink: Promise<boolean> | null = provider === 'apple' && !deferIdentityPreparation && applePrelinkNonce
-    ? anonPreparation.then(
+    ? carriedPrelinkMatches && carriedApplePrelink ? carriedApplePrelink.promise : anonPreparation.then(
       () => {
         if (!auth.currentUser?.isAnonymous) {
           console.log(`[AUTH-APPLE-LINK] prelink skipped reason=not_guest anonymous=${String(auth.currentUser?.isAnonymous ?? 'none')}`); // guard-ok: ранний выход пишет причину
@@ -3174,10 +3194,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             && (linkCode === 'auth/email-already-in-use' || linkCode === 'auth/account-exists-with-different-credential')
             && !conflictUpdatedCredential;
           let appleLinkedByServer = false;
+          // зачем: предварительная привязка могла упасть по сети — повтор здесь спасает вход от карточки ошибки (запасное окно Apple ниже)
           if (appleEmailInUse && applePrelink) {
-            // сервер уже ответил до привязки к гостю (отказ/сбой) — второй такой же вызов ничего не изменит
-            console.warn('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=prelink_already_refused'); // guard-ok: ранний путь пишет причину
-          } else if (appleEmailInUse) {
+            console.warn('[AUTH-APPLE-LINK] email_in_use after_prelink_refused next=server_link_retry'); // guard-ok: ветка решения
+          }
+          if (appleEmailInUse) {
             console.warn('[AUTH-APPLE-LINK] email_in_use branch=server_link next=authAppleLinkByVerifiedEmail'); // guard-ok: ветка решения
             appleLinkedByServer = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);
             if (!appleLinkedByServer) console.warn('[AUTH-APPLE-LINK] email_in_use branch=legacy_credential reason=server_refused_or_unavailable'); // guard-ok: ранний путь пишет причину

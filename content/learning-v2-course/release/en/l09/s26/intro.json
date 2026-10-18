@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "is spinning / is not spinning / Is it spinning?",
+    "uk": "is spinning / is not spinning / Is it spinning?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Самолёт на столе",
+        "uk": "Літак на столі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираете игрушечный самолёт и проверяете его маленький пропеллер. Propeller — «пропеллер», spin — «вращаться». The propeller is spinning — «Пропеллер вращается». Сейчас видно движение: is + spinning. При добавлении -ing у spin удваивается n. Самолёт ещё на столе, а пропеллер уже репетирует полёт.",
+        "uk": "Ви складаєте іграшковий літак і перевіряєте його маленький пропелер. Propeller — «пропелер», spin — «обертатися». The propeller is spinning — «Пропелер обертається». Зараз видно рух: is + spinning. Коли додаємо -ing до spin, подвоюємо n. Літак ще на столі, а пропелер уже репетирує політ."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-26:intro1:r1",
+              "text": "The propeller is spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro1:r2",
+              "text": "The propeller spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro1:r3",
+              "text": "The propeller is spin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-26:intro1:r1",
+              "text": "The propeller is spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro1:r2",
+              "text": "The propeller spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro1:r3",
+              "text": "The propeller is spin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Перед первой песней",
+        "uk": "Перед першою піснею"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине пластинок продавец включает проигрыватель. Turntable может означать проигрыватель винила, а здесь мы называем так его вращающийся диск под пластинкой. Вы не видите движение сбоку и спрашиваете: Is the turntable spinning? — «Диск проигрывателя вращается?» В вопросе is ставим перед предметом. Для привычки используем знакомую форму: I often listen to music — «Я часто слушаю музыку».",
+        "uk": "У магазині платівок продавець вмикає програвач. Turntable може означати програвач вінілу, а тут ми називаємо так його обертовий диск під платівкою. Ви не бачите руху збоку й запитуєте: Is the turntable spinning? — «Диск програвача обертається?» У запитанні is ставимо перед предметом. Для звички використовуємо знайому форму: I often listen to music — «Я часто слухаю музику»."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-26:intro2:r1",
+              "text": "Is the turntable spinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro2:r2",
+              "text": "Are the turntable spinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro2:r3",
+              "text": "Is the turntable spin?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-26:intro2:r1",
+              "text": "Is the turntable spinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro2:r2",
+              "text": "Are the turntable spinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro2:r3",
+              "text": "Is the turntable spin?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ветер перестал помогать",
+        "uk": "Вітер перестав допомагати"
+      },
+      "bodyByLocale": {
+        "ru": "Вы поставили бумажную вертушку у открытого окна. Окно закрыли, и она остановилась. Pinwheel — «бумажная вертушка». The pinwheel is not spinning — «Вертушка не вращается». Not после is отрицает действие сейчас. Это не поломка: просто ветер ушёл на перерыв. Если кто-то тянется к хрупкой бумаге, скажите знакомое Don’t touch it — «Не трогай её».",
+        "uk": "Ви поставили паперову вертушку біля відчиненого вікна. Вікно зачинили, і вона зупинилася. Pinwheel — «паперова вертушка». The pinwheel is not spinning — «Вертушка не обертається». Not після is заперечує дію зараз. Це не поломка: просто вітер пішов на перерву. Якщо хтось тягнеться до крихкого паперу, скажіть знайоме Don’t touch it — «Не чіпай її»."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-26:intro3:r1",
+              "text": "The pinwheel is not spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro3:r2",
+              "text": "The pinwheel not spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro3:r3",
+              "text": "The pinwheel is not spin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-26:intro3:r1",
+              "text": "The pinwheel is not spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro3:r2",
+              "text": "The pinwheel not spinning."
+            },
+            {
+              "responseId": "en:lesson-09:session-26:intro3:r3",
+              "text": "The pinwheel is not spin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7bf0db6b97b86d86e6c4f654b986f6b3fb529318da7cb8fdbf5b9372a99c2245"
+}

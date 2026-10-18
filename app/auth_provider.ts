@@ -3139,20 +3139,26 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // зачем (прогон Сверки 18.10, шаг 4): фаза prepared (обрыв раньше — замок перехода, тишина синхронизации) тоже ничего не тронула:
       // запись, оставленная «для повтора», сама запирала следующий вход (provider_handoff_active). При том же госте — снимаем.
       const currentUidNow = String(auth.currentUser?.uid ?? '').trim();
-      const sessionUnchanged = (providerHandoffMarker.phase === 'credential_ready' || providerHandoffMarker.phase === 'prepared')
-        && (!currentUidNow || currentUidNow === providerHandoffMarker.ownerAuthUid);
+      const sameGuestUid = !currentUidNow || currentUidNow === providerHandoffMarker.ownerAuthUid;
+      const currentIsAnonymousOrNone = !auth.currentUser || auth.currentUser.isAnonymous !== false;
+      // зачем (подсказка Ядра 18.10): в фазе prepared пропуск ещё не использован — снимаем и при сменившемся анонимном uid
+      // (хвост смены гостя мог поднять новую анонимную сессию); иначе запись запирала следующий вход (provider_handoff_active).
+      const sessionUnchanged = (providerHandoffMarker.phase === 'credential_ready' && sameGuestUid)
+        || (providerHandoffMarker.phase === 'prepared' && (sameGuestUid || currentIsAnonymousOrNone));
       if (sessionUnchanged) {
         try {
           await clearProviderCredentialHandoff(providerHandoffMarker);
+          const clearedPhase = providerHandoffMarker.phase;
           providerHandoffMarker = null;
-          beginAccountGeneration(preProviderStableId);
-          console.warn(`[AUTH-HANDOFF] cleared reason=firebase_failed provider=${provider} code=${identityErrorCode(e)}`); // guard-ok: причина снятия записи
+          // поколение прежнего гостя открываем только если это всё тот же гость
+          if (sameGuestUid) beginAccountGeneration(preProviderStableId);
+          console.warn(`[AUTH-HANDOFF] cleared reason=firebase_failed phase=${clearedPhase} sameGuestUid=${sameGuestUid ? 'yes' : 'no'} anonymousNow=${currentIsAnonymousOrNone ? 'yes' : 'no'} provider=${provider} code=${identityErrorCode(e)}`); // guard-ok: причина снятия записи
         } catch (clearError) {
           console.warn(`[AUTH-HANDOFF] clear_failed provider=${provider} code=${identityErrorCode(clearError)}`); // guard-ok: catch пишет причину
           announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
         }
       } else {
-        console.warn(`[AUTH-HANDOFF] kept reason=session_changed phase=${providerHandoffMarker.phase} provider=${provider}`); // guard-ok: запись нужна восстановлению
+        console.warn(`[AUTH-HANDOFF] kept reason=provider_session phase=${providerHandoffMarker.phase} sameGuestUid=${sameGuestUid ? 'yes' : 'no'} anonymousNow=${currentIsAnonymousOrNone ? 'yes' : 'no'} provider=${provider}`); // guard-ok: запись нужна восстановлению
         announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
       }
     }

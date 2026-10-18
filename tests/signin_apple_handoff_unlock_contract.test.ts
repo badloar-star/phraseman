@@ -20,12 +20,14 @@ describe('вход: аноним + существующий Apple/Google-акк�
   it('Firebase отклонил вход (фаза credential_ready) — запись передачи снимается, поколение гостя возвращается', () => {
     const catchStart = src.indexOf("console.warn(`[AUTH-HANDOFF] cleared reason=firebase_failed");
     expect(catchStart).toBeGreaterThan(0);
-    const block = src.slice(src.lastIndexOf('if (providerHandoffMarker) {', catchStart), catchStart + 600);
-    expect(block).toContain("providerHandoffMarker.phase === 'credential_ready'");
+    const block = src.slice(src.lastIndexOf('if (providerHandoffMarker) {', catchStart), catchStart + 1500);
+    expect(block).toContain("providerHandoffMarker.phase === 'credential_ready' && sameGuestUid");
     expect(block).toContain('currentUidNow === providerHandoffMarker.ownerAuthUid');
-    expect(block).toMatch(/await clearProviderCredentialHandoff\(providerHandoffMarker\);\s*providerHandoffMarker = null;\s*beginAccountGeneration\(preProviderStableId\);/);
+    // зачем (подсказка Ядра 18.10): prepared — пропуск не использован, снимаем и при сменившемся анонимном uid
+    expect(block).toContain("providerHandoffMarker.phase === 'prepared' && (sameGuestUid || currentIsAnonymousOrNone)");
+    expect(block).toMatch(/await clearProviderCredentialHandoff\(providerHandoffMarker\);[\s\S]{0,120}providerHandoffMarker = null;[\s\S]{0,160}if \(sameGuestUid\) beginAccountGeneration\(preProviderStableId\);/);
     expect(block).toContain('[AUTH-HANDOFF] clear_failed');
-    expect(block).toContain('[AUTH-HANDOFF] kept reason=session_changed');
+    expect(block).toContain('[AUTH-HANDOFF] kept reason=provider_session');
   });
 
   it('библиотека Firebase на iOS действительно отдаёт обновлённый credential в ошибке', () => {

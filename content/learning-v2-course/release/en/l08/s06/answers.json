@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-06:word:whisper",
+    "correctText": "whisper",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-06:i01",
     "correctText": "I can whisper.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-06:i04",
-    "correctText": "en:lesson-08:session-06:i04:p1=whisper\nen:lesson-08:session-06:i04:p2=clinic\nen:lesson-08:session-06:i04:p3=bookmark\nen:lesson-08:session-06:i04:p4=customer",
+    "correctText": "en:lesson-08:session-06:i04:p1=whisper\nen:lesson-08:session-06:i04:p2=ball\nen:lesson-08:session-06:i04:p3=coat\nen:lesson-08:session-06:i04:p4=door",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-06:word:juggle",
+    "correctText": "juggle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-06:i06",
-    "correctText": "She can translate.",
+    "correctText": "She can juggle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:word:pouch",
+    "correctText": "pouch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-06:i07",
-    "correctText": "Whose bookmark is this?",
+    "correctText": "Whose pouch is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-06:i08",
-    "correctText": "translate",
+    "correctText": "juggle",
     "correctResponseId": "en:lesson-08:session-06:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-06:i10",
-    "correctText": "en:lesson-08:session-06:i10:p1=browse\nen:lesson-08:session-06:i10:p2=whisper\nen:lesson-08:session-06:i10:p3=clinic\nen:lesson-08:session-06:i10:p4=customer",
+    "correctText": "en:lesson-08:session-06:i10:p1=juggle\nen:lesson-08:session-06:i10:p2=whisper\nen:lesson-08:session-06:i10:p3=pouch\nen:lesson-08:session-06:i10:p4=ball",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-06:i11",
-    "correctText": "Whose bookmark is this?",
+    "correctText": "Whose pouch is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:word:balance",
+    "correctText": "balance",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-06:i12",
-    "correctText": "The customer is here.",
+    "correctText": "I can balance.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-06:i13",
-    "correctText": "I usually browse online.",
+    "correctText": "She can balance.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-06:i15",
-    "correctText": "Where is the clinic?",
+    "correctText": "She can balance.",
     "correctResponseId": "en:lesson-08:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-06:i16",
-    "correctText": "en:lesson-08:session-06:i16:p1=whisper\nen:lesson-08:session-06:i16:p2=bookmark\nen:lesson-08:session-06:i16:p3=customer\nen:lesson-08:session-06:i16:p4=browse",
+    "correctText": "en:lesson-08:session-06:i16:p1=whisper\nen:lesson-08:session-06:i16:p2=juggle\nen:lesson-08:session-06:i16:p3=pouch\nen:lesson-08:session-06:i16:p4=balance",
     "correctResponseId": null
   },
   {

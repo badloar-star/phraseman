@@ -1,9 +1,10 @@
-# Англійська · Урок 8 · Заняття 6 — Умію шепотіти
+# Англійська · Урок 8 · Заняття 6 — Шепіт і маленькі трюки
 
-**Ситуація.** Ви обговорюєте вміння говорити пошепки, перекладати й знаходите чужу закладку.
+**Ситуація.** Ви передаєте слово пошепки у грі, шукаєте учасницю для номера з м’ячиками та повертаєте мішечок з ігровими фішками.
 
 **Що ви опануєте:** закріпити can для вмінь і повторити запитання «чий?»
-**Нові слова:** whisper
+**Нові слова:** whisper, juggle, pouch, balance
+**Повертаються:** ball, coat, door, speak
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Тиха гра
 
-Ви граєте з другом: потрібно передати слово пошепки. Друг запитує, чи вмієте ви говорити зовсім тихо. `Whisper` — «шепотіти». `I can whisper` — «Я вмію шепотіти». Після `can` потрібне `whisper`, без `to` й закінчення `s`. Якщо слово почули сусіди, це був не дуже вдалий шепіт.
+Ви граєте з другом: потрібно передати слово пошепки. Друг запитує, чи вмієте ви говорити зовсім тихо. `Whisper` — «шепотіти». `I can whisper` — «Я вмію шепотіти». Після `can` потрібне `whisper`, без `to` й закінчення `s`. Говоріть достатньо тихо, щоб слово почув лише друг поруч.
 
 **Скажіть другові, що вмієте шепотіти.**
 
@@ -23,111 +24,127 @@
 
 ## Інтро 2
 
-### Вона вміє перекладати
+### Вона вміє жонглювати
 
-Колега шукає людину, яка вміє перекладати тексти. Ви розповідаєте про знайому. `She can translate` — «Вона вміє перекладати». `Can` не змінюється після `she`; після нього потрібне `translate`, без закінчення `s`.
+На шкільному святі потрібен короткий номер із м’ячиками. Колега шукає учасницю, а ваша знайома давно тренується. Juggle — «жонглювати»: підкидати кілька предметів і ловити їх по черзі. `She can juggle` — «Вона вміє жонглювати». `Can` не змінюється після `she`; після нього потрібне `juggle`, без закінчення `s`.
 
 **Розкажіть про вміння знайомої.**
 
-- ✅ **She can translate.**
-- ❌ She cans translate. — *Після `she` потрібне `can`, без `s`.*
-- ❌ She can translates. — *Після `can` потрібне `translate`, без `s`.*
+- ✅ **She can juggle.**
+- ❌ She cans juggle. — *Після `she` потрібне `can`, без `s`.*
+- ❌ She can juggles. — *Після `can` потрібне `juggle`, без `s`.*
 
 ---
 
 ## Інтро 3
 
-### Чия закладка
+### Мішечок із фішками
 
-Після читання на столі залишилася закладка. Ви хочете повернути її власникові. `Whose bookmark is this?` — «Чия це закладка?» Спочатку `whose bookmark` — «чия закладка», потім `is this`.
+Після настільної гри під коробкою знайшовся маленький мішечок із фішками. Pouch — «мішечок», невелика м’яка сумочка. Друзі ще не розійшлися, і ви хочете повернути знахідку. `Whose pouch is this?` — «Чий це мішечок?» Спочатку `whose pouch` — «чий мішечок», потім `is this`.
 
-**Запитайте друзів, чия це закладка.**
+**Запитайте друзів, чий це мішечок.**
 
-- ✅ **Whose bookmark is this?**
-- ❌ Who bookmark is this? — *Для «чия» потрібне `whose`, а не `who`.*
-- ❌ Whose bookmark are this? — *Закладка одна: потрібне `is this`.*
+- ✅ **Whose pouch is this?**
+- ❌ Who pouch is this? — *Для «чий» потрібне `whose`, а не `who`.*
+- ❌ Whose pouch are this? — *Мішечок один: потрібне `is this`.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я вмію шепотіти»**
+**1 · Картка слова — whisper**
+<!-- interaction_id: en:lesson-08:session-06:word:whisper; family: word_card -->
+> **whisper** — шепотіти. I can whisper. — «Я вмію шепотіти». Говорити дуже тихо, пошепки.
+
+**2 · Скажіть «Я вмію шепотіти»**
 <!-- interaction_id: en:lesson-08:session-06:i01; family: phrase_builder -->
 Плитки: `whisper` `can` `I` → **I can whisper.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-06:i02; family: listen_choose -->
-🔊 *whisper* → **whisper** · whistle · translate
-- whistle — *У записі перше слово — `whisper`, а в цьому варіанті — `whistle`.*
-- translate — *У записі перше слово — `whisper`, а в цьому варіанті — `translate`.*
+🔊 *whisper* → **whisper** · speak · tune
+- speak — *У записі перше слово — `whisper`, а в цьому варіанті — `speak`.*
+- tune — *У записі whisper — «шепотіти», а в цьому варіанті tune — «налаштовувати».*
 
-**3 · Скажіть «Я вмію шепотіти»**
+**4 · Виберіть слово: «Я вмію шепотіти»**
 <!-- interaction_id: en:lesson-08:session-06:i03; family: context_gap_grammar -->
 I can ___. → **whisper** · to whisper · whispers
 - to whisper — *Після `can` потрібне `whisper`, без `to`.*
 - whispers — *Після `can` потрібне `whisper`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-06:i04; family: speed_match -->
-whisper — шепотіти · clinic — клініка · bookmark — закладка · customer — покупець
+whisper — шепотіти · ball — м’яч · coat — пальто · door — двері
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-06:i05; family: listen_build_dictation -->
 🔊 *I can whisper.* Плитки: `whisper` `can` `I` → **I can whisper.**
 
-**6 · Скажіть про знайому «Вона вміє перекладати»**
+**7 · Картка слова — juggle**
+<!-- interaction_id: en:lesson-08:session-06:word:juggle; family: word_card -->
+> **juggle** — жонглювати. She can juggle. — «Вона вміє жонглювати». Підкидати кілька предметів і ловити їх по черзі.
+
+**8 · Скажіть про знайому «Вона вміє жонглювати»**
 <!-- interaction_id: en:lesson-08:session-06:i06; family: phrase_builder -->
-Плитки: `translate` `can` `She` → **She can translate.**
+Плитки: `juggle` `can` `She` → **She can juggle.**
 
-**7 · Запитайте друзів «Чия це закладка?»**
+**9 · Картка слова — pouch**
+<!-- interaction_id: en:lesson-08:session-06:word:pouch; family: word_card -->
+> **pouch** — мішечок. Whose pouch is this? — «Чий це мішечок?». Невелика м’яка сумочка для дрібниць.
+
+**10 · Запитайте друзів «Чий це мішечок?»**
 <!-- interaction_id: en:lesson-08:session-06:i07; family: scripted_repeat_compare -->
-🎙 **Whose bookmark is this?**
+🎙 **Whose pouch is this?**
 
-**8 · Скажіть «Вона вміє перекладати»**
+**11 · Виберіть слово: «Вона вміє жонглювати»**
 <!-- interaction_id: en:lesson-08:session-06:i08; family: context_gap_grammar -->
-She can ___. → **translate** · translates · to translate
-- translates — *Після `can` потрібне `translate`, без `s`.*
-- to translate — *Після `can` потрібне `translate`, без `to`.*
+She can ___. → **juggle** · juggles · to juggle
+- juggles — *Після `can` потрібне `juggle`, без `s`.*
+- to juggle — *Після `can` потрібне `juggle`, без `to`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-06:i09; family: listen_choose -->
-🔊 *I can whisper.* → **I can whisper.** · I can whistle. · I can translate.
-- I can whistle. — *У записі останнє слово — `whisper`, а в цьому варіанті — `whistle`.*
-- I can translate. — *У записі останнє слово — `whisper`, а в цьому варіанті — `translate`.*
+🔊 *I can whisper.* → **I can whisper.** · I can speak. · I can juggle.
+- I can speak. — *У записі останнє слово — `whisper`, а в цьому варіанті — `speak`.*
+- I can juggle. — *У записі останнє слово — `whisper`, а в цьому варіанті — `juggle`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-06:i10; family: speed_match -->
-browse — переглядати · whisper — шепотіти · clinic — клініка · customer — покупець
+juggle — жонглювати · whisper — шепотіти · pouch — мішечок · ball — м’яч
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-06:i11; family: listen_build_dictation -->
-🔊 *Whose bookmark is this?* Плитки: `this` `is` `bookmark` `Whose` → **Whose bookmark is this?**
+🔊 *Whose pouch is this?* Плитки: `this` `is` `pouch` `Whose` → **Whose pouch is this?**
 
-**12 · Покупець прийшов до магазину. Скажіть колезі «Покупець тут»**
+**15 · Картка слова — balance**
+<!-- interaction_id: en:lesson-08:session-06:word:balance; family: word_card -->
+> **balance** — тримати рівновагу. I can balance. — «Я вмію тримати рівновагу». Утримуватися в стійкому положенні, не падаючи.
+
+**16 · На занятті гімнастикою тренер питає про рівновагу. Скажіть: «Я вмію тримати рівновагу».**
 <!-- interaction_id: en:lesson-08:session-06:i12; family: phrase_builder -->
-Плитки: `here` `is` `customer` `The` → **The customer is here.**
+Плитки: `balance` `can` `I` → **I can balance.**
 
-**13 · Друг запитує про звички в інтернеті. Скажіть «Я зазвичай переглядаю сайти»**
+**17 · Тренер питає про сестру. Скажіть: «Вона вміє тримати рівновагу».**
 <!-- interaction_id: en:lesson-08:session-06:i13; family: scripted_repeat_compare -->
-🎙 **I usually browse online.**
+🎙 **She can balance.**
 
-**14 · Скажіть «Вона вміє шепотіти»**
+**18 · Виберіть форму: «Вона вміє тримати рівновагу»**
 <!-- interaction_id: en:lesson-08:session-06:i14; family: context_gap_grammar -->
-She ___ whisper. → **can** · cans · is can
-- cans — *`Can` не змінюється після `she`: закінчення `s` не потрібне.*
-- is can — *Достатньо `she can`; `is` не потрібне.*
+She ___ balance. → **can** · cans · is can
+- cans — *Can не змінюється після she.*
+- is can — *Потрібно she can, без is.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте тренера й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-06:i15; family: listen_choose -->
-🔊 *Where is the clinic?* → **Where is the clinic?** · Where is the pharmacy? · Where is the bank?
-- Where is the pharmacy? — *У записі останнє слово — `clinic`, а в цьому варіанті — `pharmacy`.*
-- Where is the bank? — *У записі останнє слово — `clinic`, а в цьому варіанті — `bank`.*
+🔊 *She can balance.* → **She can balance.** · He can balance. · She can juggle.
+- He can balance. — *У записі She — «вона», а не He.*
+- She can juggle. — *У записі balance — «тримати рівновагу», а не juggle.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-06:i16; family: speed_match -->
-whisper — шепотіти · bookmark — закладка · customer — покупець · browse — переглядати
+whisper — шепотіти · juggle — жонглювати · pouch — мішечок · balance — тримати рівновагу
 
-**17 · Під час гри друг запитує, чи вміє Том передавати слова пошепки. Скажіть «Том уміє шепотіти»**
+**21 · Під час гри друг запитує, чи вміє Том передавати слова пошепки. Скажіть «Том уміє шепотіти»**
 <!-- interaction_id: en:lesson-08:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Tom can whisper.**
 

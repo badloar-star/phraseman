@@ -156,6 +156,8 @@ function isEmptySpinProjection(value: string): boolean {
 
 const LEARNING_V2_INDEX_MARKER_KEY_PREFIX = 'v2:required-session-local-commit-index:v1:';
 const LEARNING_V2_INDEX_MARKER_VALUE_PREFIX = 'learning-v2-required-session-spool-index-legacy-scan-complete.v1:';
+/** Равен LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX (app/learning_v2_completion_retry_cursor.ts); строкой — чтобы не тянуть тяжёлый модуль, равенство сторожит тест. */
+export const LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX = 'v2:required-session-completion-scheduler:v1:';
 
 /**
  * Маркер миграции: имя на `_migration` / `_migration_vN` и короткое скалярное значение (флаг или версия, не данные).
@@ -210,5 +212,9 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   if (key.startsWith('client_shard_phone_state_outbox_v1:')) return isEmptyShardOutbox(value) ? 'default' : 'progress';
   if (key.startsWith('level_spin_star_projection_v1:')) return isEmptySpinProjection(value) ? 'default' : 'progress';
   if (key.startsWith(LEARNING_V2_INDEX_MARKER_KEY_PREFIX) && value.startsWith(LEARNING_V2_INDEX_MARKER_VALUE_PREFIX)) return 'service';
+  // зачем (эмулятор 18.10 10:34, сценарий №1): планировщик завершений Learning V2 на старте пишет курсор повтора
+  // ('attempt_reserved', 0 ошибок) даже у свежего гостя — проверка под замком видела «прогресс» и показывала
+  // «телефон уже связан». Курсор — только расписание попыток; сами завершения живут в spool-ключах (они — прогресс).
+  if (key.startsWith(LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX)) return 'service';
   return 'progress';
 }

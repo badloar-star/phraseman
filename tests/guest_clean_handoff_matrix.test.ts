@@ -85,6 +85,24 @@ describe('guest clean handoff matrix', () => {
     await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(false);
   });
 
+  // зачем (эмулятор 18.10, сценарий №1): курсор повтора завершений Learning V2 пишется на старте даже у свежего гостя.
+  it('fresh guest with a Learning V2 completion retry cursor is still clean', async () => {
+    const rows = {
+      ...FRESH_GUEST,
+      'v2:required-session-completion-scheduler:v1:abc': JSON.stringify({
+        schemaVersion: 'learning-v2-required-session-completion-retry-cursor.v1', accountScopeHash: 'a'.repeat(64),
+        revision: 1, failureOrdinal: 0, nextAttemptAtMs: 1792068000000, reason: 'attempt_reserved', cursorFingerprint: 'b'.repeat(64),
+      }),
+    };
+    await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(true);
+  });
+
+  it('retry cursor prefix in the classifier equals the cursor module export', () => {
+    const { LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX } = require('../app/guest_clean_classifier');
+    const { LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX } = require('../app/learning_v2_completion_retry_cursor');
+    expect(LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX).toBe(LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX);
+  });
+
   it('guest with a chosen avatar and frame is still clean', async () => {
     const rows = { ...FRESH_GUEST, user_avatar: '7', user_frame: 'gold' };
     await expect(isLocalAnonymousIdentityProvenCleanForCredentialHandoff(storageOf(rows))).resolves.toBe(true);

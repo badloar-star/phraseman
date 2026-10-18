@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-48:intro1:r2": {
-          "ru": "После `I` нужно `meditate`.",
-          "uk": "Після `I` потрібне `meditate`."
+          "ru": "После I нужно delete, без s.",
+          "uk": "Після I потрібно delete, без s."
         },
         "en:lesson-07:session-48:intro1:r3": {
-          "ru": "Здесь нужна форма `meditate`.",
-          "uk": "Тут потрібна форма `meditate`."
+          "ru": "Для привычки нужна начальная форма глагола, без -ing.",
+          "uk": "Для звички потрібна початкова форма дієслова, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-48:intro2:r2": {
-          "ru": "После `I` нужно `sew`.",
-          "uk": "Після `I` потрібне `sew`."
+          "ru": "После I нужно search, без s.",
+          "uk": "Після I потрібно search, без s."
         },
         "en:lesson-07:session-48:intro2:r3": {
-          "ru": "Здесь нужна форма `sew`.",
-          "uk": "Тут потрібна форма `sew`."
+          "ru": "После I often нужна форма search, без -ing.",
+          "uk": "Після I often потрібна форма search, без -ing."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-48:intro3:r2": {
-          "ru": "После `Tom` нужно `donates`.",
-          "uk": "Після `Tom` потрібне `donates`."
+          "ru": "После I нужно receive, без s.",
+          "uk": "Після I потрібно receive, без s."
         },
         "en:lesson-07:session-48:intro3:r3": {
-          "ru": "Здесь нужна форма `donates`.",
-          "uk": "Тут потрібна форма `donates`."
+          "ru": "Для привычки нужна начальная форма глагола, без -ing.",
+          "uk": "Для звички потрібна початкова форма дієслова, без -ing."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "24db2224e97a303fc61dfae2312cb88ac380828074ff8f832deb84ced2ec8681"
+  "auxiliaryFingerprint": "e2a4d08bfa1c2e3bbb806a5ab6ed23d78b93f6bb6b3623bd8cb3ee227ac96520"
 }

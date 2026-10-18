@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 48 — Наші звички
+# Англійська · Урок 7 · Заняття 48 — Звички: повторення
 
-**Ситуація.** Ви обговорюєте медитацію, шиття й передачу книжок на благодійність.
+**Ситуація.** Ви повторюєте звички розділу й додаєте нові: видаляєте старі повідомлення, шукаєте телефон, отримуєте посилки й натискаєте кнопку ліфта.
 
-**Що ви опануєте:** повторити слова розділу й розповісти про свої та чужі звички
-**Нові слова:** —
+**Що ви опануєте:** повторити звички з often і usually та спитати про них із Do you often і Does ... often
+**Нові слова:** delete, search, receive, press
+**Повертаються:** unplug, cancel, fasten, forget, miss, phone, parcel, button, letter, message, kettle, toaster, bus, key
 
 ---
 
 ## Інтро 1
 
-### Час для медитації
+### Порядок у листуванні
 
-Друг запитує, чи часто ви медитуєте. `I often meditate` — «Я часто медитую». `Often` стоїть перед `meditate`. Після `I` у слова `meditate` немає закінчення `s`. Щоб запитати друга, скажіть `Do you often meditate?` — «Ти часто медитуєш?» У запитанні `often` залишається перед дією.
+Подруга бере ваш телефон, щоб показати фото, і дивується, що в ньому майже немає старих повідомлень. Вона питає, як ви тримаєте його в порядку. delete — «видаляти». Ви чистите листування щотижня: I usually delete old messages — «Я зазвичай видаляю старі повідомлення».
 
-**Дайте другові відповідь про свою звичку.**
+**Подруга тримає ваш телефон. Скажіть їй: «Я зазвичай видаляю старі повідомлення».**
 
-- ✅ **I often meditate.**
-- ❌ I often meditates. — *Після `I` потрібне `meditate`.*
-- ❌ I often meditating. — *Тут потрібна форма `meditate`.*
+- ✅ **I usually delete old messages.**
+- ❌ I usually deletes old messages. — *Після I потрібно delete, без s.*
+- ❌ I usually deleting old messages. — *Для звички потрібна початкова форма дієслова, без -ing.*
 
 ---
 
 ## Інтро 2
 
-### Шию вдома
+### Куди зник телефон
 
-Подруга помічає швейну машинку у вас удома. `I often sew at home` — «Я часто шию вдома». `Often` стоїть перед `sew`, а `at home` означає «вдома». Машинка тут працює, а не просто збирає пил.
+Сестра помічає, що ви раз у раз ходите по кімнаті й заглядаєте під подушки. Вона питає, чи часто вам доводиться шукати телефон. search — «шукати». Телефон у вас постійно губиться, і ви відповідаєте: I often search for my phone — «Я часто шукаю свій телефон». Коли шукаємо конкретну річ, кажемо search for: for пов’язує пошук із тим, що ми шукаємо. У цій фразі often стоїть перед search. Телефон знову грає в хованки без вашої згоди.
 
-**Поясніть подрузі, що ви часто робите вдома.**
+**Сестра питає, чи часто ви шукаєте телефон. Скажіть їй: «Я часто шукаю свій телефон».**
 
-- ✅ **I often sew at home.**
-- ❌ I often sews at home. — *Після `I` потрібне `sew`.*
-- ❌ I often sewing at home. — *Тут потрібна форма `sew`.*
+- ✅ **I often search for my phone.**
+- ❌ I often searches for my phone. — *Після I потрібно search, без s.*
+- ❌ I often searching for my phone. — *Після I often потрібна форма search, без -ing.*
 
 ---
 
 ## Інтро 3
 
-### Книжки Тома
+### Кур’єр біля дверей
 
-Друг запитує, куди Том відносить коробки з книжками. `Tom often donates books` — «Том часто віддає книжки на благодійність». Після `Tom` потрібне `donates`, із закінченням `s`. `Often` стоїть перед `donates`. Запитати про цю звичку можна так: `Does Tom often donate books?` — «Том часто віддає книжки на благодійність?» Після `does` у `donate` немає закінчення `s`.
+Кур’єр дзвонить у двері й питає, де вам зручніше отримувати посилки: вдома чи в пункті видачі. receive — «отримувати». Ввечері ви майже завжди вдома: I usually receive parcels at home — «Я зазвичай отримую посилки вдома». Слово usually стоїть перед receive.
 
-**Розкажіть про звичку Тома.**
+**Кур’єр дзвонить у двері. Скажіть йому: «Я зазвичай отримую посилки вдома».**
 
-- ✅ **Tom often donates books.**
-- ❌ Tom often donate books. — *Після `Tom` потрібне `donates`.*
-- ❌ Tom often donating books. — *Тут потрібна форма `donates`.*
+- ✅ **I usually receive parcels at home.**
+- ❌ I usually receives parcels at home. — *Після I потрібно receive, без s.*
+- ❌ I usually receiving parcels at home. — *Для звички потрібна початкова форма дієслова, без -ing.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто медитую»**
+**1 · Картка слова — delete**
+<!-- interaction_id: en:lesson-07:session-48:word:delete; family: word_card -->
+> **delete** — видаляти. I usually delete old messages. — «Я зазвичай видаляю старі повідомлення». Видаляти, наприклад, повідомлення або файл із пристрою.
+
+**2 · Подруга тримає ваш телефон. Скажіть їй: «Я зазвичай видаляю старі повідомлення».**
 <!-- interaction_id: en:lesson-07:session-48:i01; family: phrase_builder -->
-Плитки: `meditate` `often` `I` → **I often meditate.**
+Плитки: `messages` `old` `delete` `usually` `I` → **I usually delete old messages.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-48:i02; family: listen_choose -->
-🔊 *decorate* → **decorate** · donate · meditate
-- donate — *У записі перше слово — `decorate`, а в цьому варіанті — `donate`.*
-- meditate — *У записі перше слово — `decorate`, а в цьому варіанті — `meditate`.*
+🔊 *I usually delete old messages.* → **I usually delete old messages.** · I usually write old messages. · I usually delete old letters.
+- I usually write old messages. — *У записі третє слово — `delete`, видаляти, а в цьому варіанті — `write`, писати.*
+- I usually delete old letters. — *У записі останнє слово — `messages`, повідомлення, а в цьому варіанті — `letters`, листи.*
 
-**3 · Скажіть «Я часто шию вдома»**
+**4 · Подруга питає про телефон. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-48:i03; family: context_gap_grammar -->
-I often ___ at home. → **sew** · sews · sewing
-- sews — *Після `I` потрібне `sew`.*
-- sewing — *Тут потрібна форма `sew`.*
+I usually ___ old messages. → **delete** · deletes · deleting
+- deletes — *Після `I` потрібно `delete`, без `s`.*
+- deleting — *Тут потрібна форма `delete`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-48:i04; family: speed_match -->
-meditate — медитувати · decorate — прикрашати · sew — шити · polish — полірувати
+delete — видаляти · message — повідомлення · phone — телефон · old — старий
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — search**
+<!-- interaction_id: en:lesson-07:session-48:word:search; family: word_card -->
+> **search** — шукати. I often search for my phone. — «Я часто шукаю свій телефон». Шукати; search for something — шукати щось.
+
+**7 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-48:i05; family: listen_build_dictation -->
-🔊 *I often sew at home.* Плитки: `home` `at` `sew` `often` `I` → **I often sew at home.**
+🔊 *I often search for my phone.* Плитки: `phone` `my` `for` `search` `often` `I` → **I often search for my phone.**
 
-**6 · Розкажіть про догляд за столом: «Я зазвичай полірую стіл»**
+**8 · Картка слова — receive**
+<!-- interaction_id: en:lesson-07:session-48:word:receive; family: word_card -->
+> **receive** — отримувати. I usually receive parcels at home. — «Я зазвичай отримую посилки вдома». Брати те, що вам надіслали або дали.
+
+**9 · Кур’єр дзвонить у двері. Скажіть йому: «Я зазвичай отримую посилки вдома».**
 <!-- interaction_id: en:lesson-07:session-48:i06; family: phrase_builder -->
-Плитки: `table` `the` `polish` `usually` `I` → **I usually polish the table.**
+Плитки: `home` `at` `parcels` `receive` `usually` `I` → **I usually receive parcels at home.**
 
-**7 · Скажіть «Том часто віддає книжки на благодійність»**
+**10 · Картка слова — press**
+<!-- interaction_id: en:lesson-07:session-48:word:press; family: word_card -->
+> **press** — натискати. I usually press the button. — «Я зазвичай натискаю кнопку». Надавити пальцем на кнопку.
+
+**11 · Ви із сусідом виходите з дому разом. Він питає, хто з вас зазвичай викликає ліфт. Скажіть: «Я зазвичай натискаю кнопку».**
 <!-- interaction_id: en:lesson-07:session-48:i07; family: scripted_repeat_compare -->
-🎙 **Tom often donates books.**
+🎙 **I usually press the button.**
 
-**8 · Скажіть «Том часто віддає книжки на благодійність»**
+**12 · Розкажіть про звичку сестри шукати телефон. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-48:i08; family: context_gap_grammar -->
-Tom often ___ books. → **donates** · donate · donating
-- donate — *Після `Tom` потрібне `donates`.*
-- donating — *Тут потрібна форма `donates`.*
+My sister often ___ for her phone. → **searches** · search · searching
+- search — *Після `my sister` потрібно `searches`.*
+- searching — *Тут потрібна форма `searches`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте сестру**
 <!-- interaction_id: en:lesson-07:session-48:i09; family: listen_choose -->
-🔊 *I often photograph birds.* → **I often photograph birds.** · I often photograph cats. · I often photograph dogs.
-- I often photograph cats. — *У записі останнє слово — `birds`, а в цьому варіанті — `cats`.*
-- I often photograph dogs. — *У записі останнє слово — `birds`, а в цьому варіанті — `dogs`.*
+🔊 *I often search for my phone.* → **I often search for my phone.** · I often search for my key. · I usually search for my phone.
+- I often search for my key. — *У записі останнє слово — `phone`, телефон, а в цьому варіанті — `key`, ключ.*
+- I usually search for my phone. — *У записі друге слово — `often`, часто, а в цьому варіанті — `usually`, зазвичай.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-48:i10; family: speed_match -->
-donate — віддавати на благодійність · organize — упорядковувати · photograph — фотографувати · sew — шити
+search — шукати · receive — отримувати · unplug — вимикати з розетки · cancel — скасовувати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-48:i11; family: listen_build_dictation -->
-🔊 *I usually organize my books.* Плитки: `books` `my` `organize` `usually` `I` → **I usually organize my books.**
+🔊 *I usually fasten my seat belt.* Плитки: `belt` `seat` `my` `fasten` `usually` `I` → **I usually fasten my seat belt.**
 
-**12 · Запитайте друга «Ти часто медитуєш?»**
+**16 · Подруга шукає ключі. Спитайте її: «Ти часто забуваєш ключ?»**
 <!-- interaction_id: en:lesson-07:session-48:i12; family: phrase_builder -->
-Плитки: `meditate` `often` `you` `Do` → **Do you often meditate?**
+Плитки: `key` `the` `forget` `often` `you` `Do` → **Do you often forget the key?**
 
-**13 · Ви бачите машинку Тома. Запитайте його подругу «Том часто шиє?»**
+**17 · Подруга каже, що її брат запізнюється. Спитайте її: «Твій брат часто не встигає на автобус?»**
 <!-- interaction_id: en:lesson-07:session-48:i13; family: scripted_repeat_compare -->
-🎙 **Does Tom often sew?**
+🎙 **Does your brother often miss the bus?**
 
-**14 · Скажіть «Я часто фотографую птахів»**
+**18 · Сусід питає, хто зазвичай викликає ліфт. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-48:i14; family: context_gap_grammar -->
-I ___ photograph birds. → **often** · does · am
-- does — *Для «часто» потрібне `often` перед `photograph`.*
-- am — *Для «часто» потрібне `often`; `am` перед `photograph` не ставимо.*
+I ___ press the button. → **usually** · does · am
+- does — *Для «зазвичай» потрібне `usually` перед `press`.*
+- am — *Для «зазвичай» потрібне `usually`; `am` перед `press` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-07:session-48:i15; family: listen_choose -->
-🔊 *I usually polish the table.* → **I usually polish the table.** · I usually polish the desk. · I usually polish the chair.
-- I usually polish the desk. — *У записі останнє слово — `table`, а в цьому варіанті — `desk`.*
-- I usually polish the chair. — *У записі останнє слово — `table`, а в цьому варіанті — `chair`.*
+🔊 *I usually unplug the kettle.* → **I usually unplug the kettle.** · I usually unplug the toaster. · I often unplug the kettle.
+- I usually unplug the toaster. — *У записі останнє слово — `kettle`, чайник, а в цьому варіанті — `toaster`, тостер.*
+- I often unplug the kettle. — *У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-48:i16; family: speed_match -->
-decorate — прикрашати · polish — полірувати · organize — упорядковувати · photograph — фотографувати
+press — натискати · receive — отримувати · forget — забувати · miss — не встигати на, пропускати
 
-**17 · Друг запитує про знімки Тома. Скажіть «Том часто фотографує птахів»**
+**21 · Кур’єр питає, хто зазвичай приймає ваші доставки, поки ви на роботі. Скажіть: «Мій сусід зазвичай отримує посилки».**
 <!-- interaction_id: en:lesson-07:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often photographs birds.**
-
+🎙 **My neighbour usually receives the parcels.**

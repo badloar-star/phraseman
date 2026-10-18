@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 48 — Наши привычки
+# Английский · Урок 7 · Занятие 48 — Привычки: повторение
 
-**Ситуация.** Вы обсуждаете медитацию, шитьё и передачу книг на благотворительность.
+**Ситуация.** Вы повторяете привычки главы и добавляете новые: удаляете старые сообщения, ищете телефон, получаете посылки и нажимаете кнопку лифта.
 
-**Что вы освоите:** повторить слова главы и рассказать о своих и чужих привычках
-**Новые слова:** —
+**Что вы освоите:** повторить привычки с often и usually и спросить о них с Do you often и Does ... often
+**Новые слова:** delete, search, receive, press
+**Возвращаются:** unplug, cancel, fasten, forget, miss, phone, parcel, button, letter, message, kettle, toaster, bus, key
 
 ---
 
 ## Интро 1
 
-### Время для медитации
+### Порядок в переписке
 
-Друг спрашивает, часто ли вы медитируете. `I often meditate` — «Я часто медитирую». `Often` стоит перед `meditate`. После `I` у слова `meditate` нет окончания `s`. Чтобы спросить друга, скажите `Do you often meditate?` — «Ты часто медитируешь?» В вопросе `often` остаётся перед действием.
+Подруга берёт ваш телефон, чтобы показать фото, и удивляется, что в нём почти нет старых сообщений. Она спрашивает, как вы держите его в порядке. delete — «удалять». Вы чистите переписку каждую неделю: I usually delete old messages — «Я обычно удаляю старые сообщения».
 
-**Ответьте другу о своей привычке.**
+**Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».**
 
-- ✅ **I often meditate.**
-- ❌ I often meditates. — *После `I` нужно `meditate`.*
-- ❌ I often meditating. — *Здесь нужна форма `meditate`.*
+- ✅ **I usually delete old messages.**
+- ❌ I usually deletes old messages. — *После I нужно delete, без s.*
+- ❌ I usually deleting old messages. — *Для привычки нужна начальная форма глагола, без -ing.*
 
 ---
 
 ## Интро 2
 
-### Шью дома
+### Куда делся телефон
 
-Подруга замечает швейную машинку у вас дома. `I often sew at home` — «Я часто шью дома». `Often` стоит перед `sew`, а `at home` значит «дома». Машинка здесь работает, а не просто собирает пыль.
+Сестра замечает, что вы то и дело ходите по комнате и заглядываете под подушки. Она спрашивает, часто ли вам приходится искать телефон. search — «искать». Телефон у вас вечно теряется, и вы отвечаете: I often search for my phone — «Я часто ищу свой телефон». Когда ищем конкретную вещь, говорим search for: for связывает поиск с тем, что мы ищем. В этой фразе often стоит перед search. Телефон снова играет в прятки без вашего согласия.
 
-**Объясните подруге, что вы часто делаете дома.**
+**Сестра спрашивает, часто ли вы ищете телефон. Скажите ей: «Я часто ищу свой телефон».**
 
-- ✅ **I often sew at home.**
-- ❌ I often sews at home. — *После `I` нужно `sew`.*
-- ❌ I often sewing at home. — *Здесь нужна форма `sew`.*
+- ✅ **I often search for my phone.**
+- ❌ I often searches for my phone. — *После I нужно search, без s.*
+- ❌ I often searching for my phone. — *После I often нужна форма search, без -ing.*
 
 ---
 
 ## Интро 3
 
-### Книги Тома
+### Курьер у двери
 
-Друг спрашивает, куда Том относит коробки с книгами. `Tom often donates books` — «Том часто отдаёт книги на благотворительность». После `Tom` нужно `donates`, с окончанием `s`. `Often` стоит перед `donates`. Спросить об этой привычке можно так: `Does Tom often donate books?` — «Том часто отдаёт книги на благотворительность?» После `does` у `donate` нет окончания `s`.
+Курьер звонит в дверь и спрашивает, где вам удобнее получать посылки: дома или в пункте выдачи. receive — «получать». По вечерам вы почти всегда дома: I usually receive parcels at home — «Я обычно получаю посылки дома». Слово usually стоит перед receive.
 
-**Расскажите о привычке Тома.**
+**Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».**
 
-- ✅ **Tom often donates books.**
-- ❌ Tom often donate books. — *После `Tom` нужно `donates`.*
-- ❌ Tom often donating books. — *Здесь нужна форма `donates`.*
+- ✅ **I usually receive parcels at home.**
+- ❌ I usually receives parcels at home. — *После I нужно receive, без s.*
+- ❌ I usually receiving parcels at home. — *Для привычки нужна начальная форма глагола, без -ing.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я часто медитирую»**
+**1 · Карточка слова — delete**
+<!-- interaction_id: en:lesson-07:session-48:word:delete; family: word_card -->
+> **delete** — удалять. I usually delete old messages. — «Я обычно удаляю старые сообщения». Удалять, например, сообщение или файл с устройства.
+
+**2 · Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».**
 <!-- interaction_id: en:lesson-07:session-48:i01; family: phrase_builder -->
-Плитки: `meditate` `often` `I` → **I often meditate.**
+Плитки: `messages` `old` `delete` `usually` `I` → **I usually delete old messages.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-48:i02; family: listen_choose -->
-🔊 *decorate* → **decorate** · donate · meditate
-- donate — *В записи первое слово — `decorate`, а в этом варианте — `donate`.*
-- meditate — *В записи первое слово — `decorate`, а в этом варианте — `meditate`.*
+🔊 *I usually delete old messages.* → **I usually delete old messages.** · I usually write old messages. · I usually delete old letters.
+- I usually write old messages. — *В записи третье слово — `delete`, удалять, а в этом варианте — `write`, писать.*
+- I usually delete old letters. — *В записи последнее слово — `messages`, сообщения, а в этом варианте — `letters`, письма.*
 
-**3 · Скажите «Я часто шью дома»**
+**4 · Подруга спрашивает о телефоне. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-48:i03; family: context_gap_grammar -->
-I often ___ at home. → **sew** · sews · sewing
-- sews — *После `I` нужно `sew`.*
-- sewing — *Здесь нужна форма `sew`.*
+I usually ___ old messages. → **delete** · deletes · deleting
+- deletes — *После `I` нужно `delete`, без `s`.*
+- deleting — *Здесь нужна форма `delete`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-48:i04; family: speed_match -->
-meditate — медитировать · decorate — украшать · sew — шить · polish — полировать
+delete — удалять · message — сообщение · phone — телефон · old — старый
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — search**
+<!-- interaction_id: en:lesson-07:session-48:word:search; family: word_card -->
+> **search** — искать. I often search for my phone. — «Я часто ищу свой телефон». Искать; search for something — искать что-то.
+
+**7 · Послушайте сестру и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-48:i05; family: listen_build_dictation -->
-🔊 *I often sew at home.* Плитки: `home` `at` `sew` `often` `I` → **I often sew at home.**
+🔊 *I often search for my phone.* Плитки: `phone` `my` `for` `search` `often` `I` → **I often search for my phone.**
 
-**6 · Расскажите об уходе за столом: «Я обычно полирую стол»**
+**8 · Карточка слова — receive**
+<!-- interaction_id: en:lesson-07:session-48:word:receive; family: word_card -->
+> **receive** — получать. I usually receive parcels at home. — «Я обычно получаю посылки дома». Брать то, что вам прислали или дали.
+
+**9 · Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома».**
 <!-- interaction_id: en:lesson-07:session-48:i06; family: phrase_builder -->
-Плитки: `table` `the` `polish` `usually` `I` → **I usually polish the table.**
+Плитки: `home` `at` `parcels` `receive` `usually` `I` → **I usually receive parcels at home.**
 
-**7 · Скажите «Том часто отдаёт книги на благотворительность»**
+**10 · Карточка слова — press**
+<!-- interaction_id: en:lesson-07:session-48:word:press; family: word_card -->
+> **press** — нажимать. I usually press the button. — «Я обычно нажимаю кнопку». Надавить пальцем на кнопку.
+
+**11 · Вы с соседом выходите из дома вместе. Он спрашивает, кто из вас обычно вызывает лифт. Скажите: «Я обычно нажимаю кнопку».**
 <!-- interaction_id: en:lesson-07:session-48:i07; family: scripted_repeat_compare -->
-🎙 **Tom often donates books.**
+🎙 **I usually press the button.**
 
-**8 · Скажите «Том часто отдаёт книги на благотворительность»**
+**12 · Расскажите о привычке сестры искать телефон. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-48:i08; family: context_gap_grammar -->
-Tom often ___ books. → **donates** · donate · donating
-- donate — *После `Tom` нужно `donates`.*
-- donating — *Здесь нужна форма `donates`.*
+My sister often ___ for her phone. → **searches** · search · searching
+- search — *После `my sister` нужно `searches`.*
+- searching — *Здесь нужна форма `searches`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте сестру**
 <!-- interaction_id: en:lesson-07:session-48:i09; family: listen_choose -->
-🔊 *I often photograph birds.* → **I often photograph birds.** · I often photograph cats. · I often photograph dogs.
-- I often photograph cats. — *В записи последнее слово — `birds`, а в этом варианте — `cats`.*
-- I often photograph dogs. — *В записи последнее слово — `birds`, а в этом варианте — `dogs`.*
+🔊 *I often search for my phone.* → **I often search for my phone.** · I often search for my key. · I usually search for my phone.
+- I often search for my key. — *В записи последнее слово — `phone`, телефон, а в этом варианте — `key`, ключ.*
+- I usually search for my phone. — *В записи второе слово — `often`, часто, а в этом варианте — `usually`, обычно.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-48:i10; family: speed_match -->
-donate — отдавать на благотворительность · organize — упорядочивать · photograph — фотографировать · sew — шить
+search — искать · receive — получать · unplug — выключать из розетки · cancel — отменять
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-48:i11; family: listen_build_dictation -->
-🔊 *I usually organize my books.* Плитки: `books` `my` `organize` `usually` `I` → **I usually organize my books.**
+🔊 *I usually fasten my seat belt.* Плитки: `belt` `seat` `my` `fasten` `usually` `I` → **I usually fasten my seat belt.**
 
-**12 · Спросите друга «Ты часто медитируешь?»**
+**16 · Подруга ищет ключи. Спросите её: «Ты часто забываешь ключ?»**
 <!-- interaction_id: en:lesson-07:session-48:i12; family: phrase_builder -->
-Плитки: `meditate` `often` `you` `Do` → **Do you often meditate?**
+Плитки: `key` `the` `forget` `often` `you` `Do` → **Do you often forget the key?**
 
-**13 · Вы видите машинку Тома. Спросите его подругу «Том часто шьёт?»**
+**17 · Подруга говорит, что её брат опаздывает. Спросите её: «Твой брат часто не успевает на автобус?»**
 <!-- interaction_id: en:lesson-07:session-48:i13; family: scripted_repeat_compare -->
-🎙 **Does Tom often sew?**
+🎙 **Does your brother often miss the bus?**
 
-**14 · Скажите «Я часто фотографирую птиц»**
+**18 · Сосед спрашивает, кто обычно вызывает лифт. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-48:i14; family: context_gap_grammar -->
-I ___ photograph birds. → **often** · does · am
-- does — *Для «часто» нужно `often` перед `photograph`.*
-- am — *Для «часто» нужно `often`; `am` перед `photograph` не ставим.*
+I ___ press the button. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `press`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `press` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-07:session-48:i15; family: listen_choose -->
-🔊 *I usually polish the table.* → **I usually polish the table.** · I usually polish the desk. · I usually polish the chair.
-- I usually polish the desk. — *В записи последнее слово — `table`, а в этом варианте — `desk`.*
-- I usually polish the chair. — *В записи последнее слово — `table`, а в этом варианте — `chair`.*
+🔊 *I usually unplug the kettle.* → **I usually unplug the kettle.** · I usually unplug the toaster. · I often unplug the kettle.
+- I usually unplug the toaster. — *В записи последнее слово — `kettle`, чайник, а в этом варианте — `toaster`, тостер.*
+- I often unplug the kettle. — *В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-48:i16; family: speed_match -->
-decorate — украшать · polish — полировать · organize — упорядочивать · photograph — фотографировать
+press — нажимать · receive — получать · forget — забывать · miss — не успевать на, упускать
 
-**17 · Друг спрашивает о снимках Тома. Скажите «Том часто фотографирует птиц»**
+**21 · Курьер спрашивает, кто обычно принимает ваши доставки, пока вы на работе. Скажите: «Мой сосед обычно получает посылки».**
 <!-- interaction_id: en:lesson-07:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often photographs birds.**
-
+🎙 **My neighbour usually receives the parcels.**

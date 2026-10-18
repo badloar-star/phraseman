@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-48:word:delete",
+    "correctText": "delete",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-48:i01",
-    "correctText": "I often meditate.",
+    "correctText": "I usually delete old messages.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i02",
-    "correctText": "decorate",
+    "correctText": "I usually delete old messages.",
     "correctResponseId": "en:lesson-07:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-48:i03",
-    "correctText": "sew",
+    "correctText": "delete",
     "correctResponseId": "en:lesson-07:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-48:i04",
-    "correctText": "en:lesson-07:session-48:i04:p1=meditate\nen:lesson-07:session-48:i04:p2=decorate\nen:lesson-07:session-48:i04:p3=sew\nen:lesson-07:session-48:i04:p4=polish",
+    "correctText": "en:lesson-07:session-48:i04:p1=delete\nen:lesson-07:session-48:i04:p2=message\nen:lesson-07:session-48:i04:p3=phone\nen:lesson-07:session-48:i04:p4=old",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:word:search",
+    "correctText": "search",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i05",
-    "correctText": "I often sew at home.",
+    "correctText": "I often search for my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:word:receive",
+    "correctText": "receive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i06",
-    "correctText": "I usually polish the table.",
+    "correctText": "I usually receive parcels at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-48:word:press",
+    "correctText": "press",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i07",
-    "correctText": "Tom often donates books.",
+    "correctText": "I usually press the button.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i08",
-    "correctText": "donates",
+    "correctText": "searches",
     "correctResponseId": "en:lesson-07:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-48:i09",
-    "correctText": "I often photograph birds.",
+    "correctText": "I often search for my phone.",
     "correctResponseId": "en:lesson-07:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-48:i10",
-    "correctText": "en:lesson-07:session-48:i10:p1=donate\nen:lesson-07:session-48:i10:p2=organize\nen:lesson-07:session-48:i10:p3=photograph\nen:lesson-07:session-48:i10:p4=sew",
+    "correctText": "en:lesson-07:session-48:i10:p1=search\nen:lesson-07:session-48:i10:p2=receive\nen:lesson-07:session-48:i10:p3=unplug\nen:lesson-07:session-48:i10:p4=cancel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i11",
-    "correctText": "I usually organize my books.",
+    "correctText": "I usually fasten my seat belt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i12",
-    "correctText": "Do you often meditate?",
+    "correctText": "Do you often forget the key?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i13",
-    "correctText": "Does Tom often sew?",
+    "correctText": "Does your brother often miss the bus?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i14",
-    "correctText": "often",
+    "correctText": "usually",
     "correctResponseId": "en:lesson-07:session-48:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-48:i15",
-    "correctText": "I usually polish the table.",
+    "correctText": "I usually unplug the kettle.",
     "correctResponseId": "en:lesson-07:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-48:i16",
-    "correctText": "en:lesson-07:session-48:i16:p1=decorate\nen:lesson-07:session-48:i16:p2=polish\nen:lesson-07:session-48:i16:p3=organize\nen:lesson-07:session-48:i16:p4=photograph",
+    "correctText": "en:lesson-07:session-48:i16:p1=press\nen:lesson-07:session-48:i16:p2=receive\nen:lesson-07:session-48:i16:p3=forget\nen:lesson-07:session-48:i16:p4=miss",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-48:i17",
-    "correctText": "Tom often photographs birds.",
+    "correctText": "My neighbour usually receives the parcels.",
     "correctResponseId": null
   }
 ]

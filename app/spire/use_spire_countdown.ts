@@ -4,17 +4,21 @@
 // начинается ступень. Время человеку не тратится: энергия, таймер и первое задание стартуют ТОЛЬКО после «1» (раннер держит фазу 'countdown' до onDone).
 // Три цифры — три setState на весь отсчёт (по ~0,9 с), покадровой перерисовки нет: масштаб и появление рисует Reanimated на UI-потоке (SpireCountdownOverlay).
 // Пауза: приложение ушло в фон или открыта шторка выхода — таймеры снимаются, раунд в фоне не стартует; вернулись — отсчёт начинается заново с 3.
-// Один экземпляр на ступень (раннер живёт под ключом runId), поэтому двойное «Подняться» не запускает два отсчёта. Вибрация на каждой цифре; звук — тем же слоем
-// sound_v2, что остальной Пик (playEvent никогда не бросает и сам молчит, если звук выключен).
+// Один экземпляр на ступень (раннер живёт под ключом runId), поэтому двойное «Подняться» не запускает два отсчёта. Вибрация на каждой цифре; звук — ТОЛЬКО заглушка с логом
+// (решение владельца через координатора 18.10: звук Пика целиком у «Моментов», здесь не пишем).
 // Журнал [SPIRE-COUNTDOWN]: старт, каждая цифра, пауза (причина), перезапуск, старт раунда.
 import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import { hapticTap } from '../../hooks/use-haptics';
-import { playEvent } from '../../modules/sound_v2/sound_bank';
 
 const SPIRE = '[SPIRE]'; // зачем: сторож spire_game_source_contract — префикс [SPIRE] во всех файлах app/spire
 const LOG = `${SPIRE}[SPIRE-COUNTDOWN]`;
+
+/** Заглушка звука цифры отсчёта: звук Пика делают «Моменты» — они подключат вызов здесь; пока только след в журнале. */
+export function spireCountdownSoundStub(digit: number): void {
+  console.log(`${LOG} sound-stub digit=${digit} — звук подключают «Моменты»`); // guard-ok: заглушка звука, след вызова
+}
 
 /** С какой цифры начинается отсчёт и сколько держится каждая (просьба: ~0,8–1 с). */
 export const SPIRE_COUNTDOWN_FROM = 3;
@@ -62,7 +66,7 @@ export function useSpireCountdown(args: Readonly<{ paused: boolean; onDone: () =
     if (digit === null) return;
     console.log(`${LOG} digit=${digit} run=${runsRef.current}`); // guard-ok: каждая цифра
     void hapticTap();
-    playEvent('tap');
+    spireCountdownSoundStub(digit);
   }, [digit]);
 
   return digit;

@@ -17,7 +17,9 @@ jest.mock('@react-native-firebase/firestore', () => ({
 }));
 
 const CACHE_KEY = 'video_phrase_set_packs_cache_v2';
-const SIX_HOURS_AND_MORE = 7 * 60 * 60 * 1000;
+// перепин 18.10 (координатор): TTL каталога «Из видео» поднят 6 → 24 ч (db44eece1, расходы 17.10; VIDEO_PHRASE_SET_PACKS_TTL_MS).
+// «Устаревшая копия» должна быть старше TTL — 25 ч; 7 ч теперь свежая копия, и загрузка законно пропускалась (ttl_not_expired).
+const OLDER_THAN_TTL = 25 * 60 * 60 * 1000;
 const VIDEO_A = 'aaaaaaaaaaa';
 const VIDEO_B = 'bbbbbbbbbbb';
 
@@ -44,7 +46,7 @@ async function boot(seed?: unknown): Promise<Harness> {
 }
 
 const staleCache = (extra: Record<string, unknown>) => ({
-  savedAtMs: Date.now() - SIX_HOURS_AND_MORE,
+  savedAtMs: Date.now() - OLDER_THAN_TTL,
   packs: [],
   ...extra,
 });

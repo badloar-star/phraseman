@@ -239,7 +239,7 @@ describe('8J — doSyncToCloud и restore (структура cloud_sync)', () =
     const body = bodyOf('doSyncToCloud');
     const restoreAt = body.indexOf('for (const key of flashcardKeysLockedNow) {');
     expect(restoreAt).toBeGreaterThan(body.indexOf('if (!wrote) return;'));
-    expect(restoreAt).toBeLessThan(body.indexOf('LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)'));
+    expect(restoreAt).toBeLessThan(body.indexOf('writeLastSyncSnapshot(JSON.stringify(snapshotData)'));
     expect(body.slice(restoreAt, restoreAt + 220)).toContain('snapshotData[key] = previousSnapshot[key];');
   });
 

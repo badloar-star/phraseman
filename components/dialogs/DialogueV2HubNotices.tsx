@@ -28,7 +28,7 @@ export function dialogueV2HubCopy(lang: Lang) {
     quotaUnknownA11y: (total: number) => triLang(lang, {
       // зачем (переводчик 18.10): та же фраза, что aiDialogMonthlyLimitText, со склонением по числу для ru/uk/pl
       ru: `Лимит — ${total} ${pluralWord('ru', total, DIALOG_REPLY_FORMS.ru)} в месяц`, uk: `Ліміт — ${total} ${pluralWord('uk', total, DIALOG_REPLY_FORMS.uk)} на місяць`,
-      en: `Limit: ${total} replies a month`, es: `Límite: ${total} respuestas al mes`,
+      en: `Limit: ${total} ${pluralWord('en', total, DIALOG_REPLY_FORMS.en)} a month`, es: `Límite: ${total} respuestas al mes`,
       'pt-BR': `Limite: ${total} respostas por mês`, vi: `Giới hạn: ${total} lượt trả lời mỗi tháng`,
       id: `Batas: ${total} balasan per bulan`, tr: `Sınır: ayda ${total} yanıt`,
       pl: `Limit: ${total} ${pluralWord('pl', total, DIALOG_REPLY_FORMS.pl)} miesięcznie`, fr: `Limite : ${total} réponses par mois`,

@@ -172,6 +172,10 @@ export type DialogueV2SessionScreenProps = Readonly<{
   voiceUnavailable?: boolean;
   /** Последний ход не дошёл: плашка в ленте (C18/C19), разговор остаётся на экране. */
   turnError: boolean;
+  /** К2 (координатор 18.10): подпись под «…» собеседника, пока ответ идёт долго; null — без подписи. */
+  typingCaption?: string | null;
+  /** Значок в аватаре собеседника — значок сценки (Макеты 6dcbedb9f, dialogs-014/022/029); нет — значок человека. */
+  personaIcon?: React.ComponentProps<typeof Ionicons>['name'];
   /** Текст плашки; по умолчанию labels.turnError. */
   turnErrorMessage?: string;
   /** Потолок Plus на сегодня (D123): поле ввода приглушено и недоступно — повтор сегодня не поможет (кадр «На сегодня разговоров достаточно»). */
@@ -229,6 +233,8 @@ export function DialogueV2SessionScreen({
   voiceUnavailable = false,
   micPlusBadge = false,
   turnError,
+  typingCaption = null,
+  personaIcon,
   turnErrorMessage,
   inputLocked = false,
   retryDisabled,
@@ -478,6 +484,7 @@ export function DialogueV2SessionScreen({
                   glass={glass}
                   author={author}
                   avatar={!learner}
+                  avatarIcon={personaIcon}
                   who={learner ? labels.you : message.authorLabel}
                   actions={learner ? learnerActions : hasPersonaActions ? personaActions : undefined}
                   note={learner && message.unsent && coachingLabels ? coachingLabels.unsent : undefined}
@@ -512,7 +519,7 @@ export function DialogueV2SessionScreen({
                 </DialogueGlassBubble>
               );
             })}
-            {sending ? <DialogueGlassTyping glass={glass} avatar testID="dialogue-v2-session-typing" /> : null}
+            {sending ? <DialogueGlassTyping glass={glass} avatar avatarIcon={personaIcon} testID="dialogue-v2-session-typing" caption={typingCaption} /> : null}
             {turnError && !sending ? (
               <DialogueGlassSysError
                 glass={glass}
@@ -568,7 +575,9 @@ export function DialogueV2SessionScreen({
               <TextInput
                 value={draft}
                 onChangeText={onChangeDraft}
-                editable={!sending && !voiceBusy && !inputLocked}
+                // зачем (координатор 18.10, К1): пока ждём ответ (до 13 с), следующую реплику можно набирать — блокируются только «отправить»,
+                // микрофон и «Завершить». Набранное не трогается ни ответом, ни ошибкой; двойную отправку держит send() (sending / turnStartingRef).
+                editable={!voiceBusy && !inputLocked}
                 placeholder={labels.placeholder}
                 placeholderTextColor={glass.mutedText}
                 accessibilityLabel={labels.placeholder}

@@ -42,7 +42,8 @@ import {
 
 export const DIALOGUE_V2_FREE_MONTHLY_REPLIES = REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
 
-export type DialogueV2SessionQuotaView = Readonly<{ remaining: number; total: number }>;
+/** remaining null — остаток телефону неизвестен (зеркала нет / прошлый месяц): пилюля «—/30» с первого кадра, цифру даст первый ответ сервера. */
+export type DialogueV2SessionQuotaView = Readonly<{ remaining: number | null; total: number }>;
 
 type Input = Readonly<{
   studyTarget: string | null;
@@ -82,6 +83,9 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     setQuota((current) => setDialogueV2QuotaRemaining(current, remaining));
   }, []);
   const [quotaExhausted, setQuotaExhausted] = useState(false);
+  // зачем (Макеты 6dcbedb9f, dialogs-022/029; координатор 18.10): до первой реплики «N/30» в шапке не было — при 'unknown' зеркала пилюля пряталась.
+  // Как на хабе (Ревизор 3.45): остаток неизвестен — «—/30», цифру не выдумываем.
+  const [quotaUnknown, setQuotaUnknown] = useState(false);
   // зачем (Сверка 05.10, dialogue_completion_run: «coached:send → quota_exhausted», реплика пропала молча): сервер
   // сказал «лимит исчерпан» (dialog_free_limit), а телефон считал человека Plus (freeTier=false) — экран лимита был
   // закрыт условием freeTier. Отказ СЕРВЕРА — факт, он показывает экран лимита независимо от того, что телефон
@@ -104,6 +108,7 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
       console.log(`[DIALOG-QUOTA-OPT] initial: skip freeTier=${String(freeTier)} studyTarget=${studyTarget ? 'yes' : 'no'}`);
       setQuotaRemaining(null);
       setQuotaExhausted(false);
+      setQuotaUnknown(false);
       return undefined;
     }
     let alive = true;
@@ -123,6 +128,7 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
         skippedBecause: !alive ? 'unmounted' : quotaFromServerRef.current ? 'server_answered_first' : null,
       }));
       if (!alive || quotaFromServerRef.current) return;
+      setQuotaUnknown(state.status === 'unknown');
       if (state.status === 'allowed') setQuotaRemaining(state.remaining);
       if (state.status === 'exhausted') {
         setQuotaRemaining(0);
@@ -245,8 +251,10 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   const quotaView: DialogueV2SessionQuotaView | null = useMemo(() => (
     freeTier && shownRemaining !== null
       ? Object.freeze({ remaining: shownRemaining, total: DIALOGUE_V2_FREE_MONTHLY_REPLIES })
-      : null
-  ), [freeTier, shownRemaining]);
+      : freeTier && quotaUnknown
+        ? Object.freeze({ remaining: null, total: DIALOGUE_V2_FREE_MONTHLY_REPLIES })
+        : null
+  ), [freeTier, quotaUnknown, shownRemaining]);
 
   return {
     mood,

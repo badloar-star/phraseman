@@ -51,6 +51,16 @@ export function logDialogueV2OptimisticFrame(
   requestAnimationFrame(() => logDialogueV2OptimisticStep(flow, step, extra));
 }
 
+/**
+ * [DIALOGUE-V2-LATENCY] — из чего состоит ожидание ответа ИИ на клиенте (координатор 18.10, К3): callable_ms (запрос → ответ функции,
+ * сеть + сервер), append_ms (разбор + подготовленная озвучка + состояние), frame_ms (до кадра с репликой), warm_age_ms (сколько назад
+ * грелись функции: тёплый ли сервер). Сервер изнутри отсюда не видно — его этапы только серверным журналом. Только dev.
+ */
+export function logDialogueV2Latency(fields: Readonly<Record<string, unknown>>): void {
+  if (!devEnabled()) return;
+  console.log('[DIALOGUE-V2-LATENCY]', JSON.stringify(fields));
+}
+
 export function resetDialogueV2OptimisticTraceForTests(): void {
   marks.clear();
 }

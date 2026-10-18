@@ -94,7 +94,7 @@ describe('8H-2 — встройка в doSyncToCloud (структура cloud_s
   test('маркер пишется в снимок только после успешной записи документа', () => {
     const wroteAt = body.indexOf('if (!wrote) return;');
     const markersAt = body.indexOf('buildFlashcardDocFieldMarkers(');
-    const snapshotSaveAt = body.indexOf('LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)');
+    const snapshotSaveAt = body.indexOf('writeLastSyncSnapshot(JSON.stringify(snapshotData)');
     expect(wroteAt).toBeGreaterThan(0);
     expect(markersAt).toBeGreaterThan(wroteAt);
     expect(markersAt).toBeLessThan(snapshotSaveAt);

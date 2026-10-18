@@ -93,3 +93,20 @@ export const DIALOGUE_SCENARIO_ICON: Readonly<Record<string, DialogueScenarioIco
 export function dialogueScenarioIcon(scenarioId: string, fallback: DialogueScenarioIconName): DialogueScenarioIconName {
   return DIALOGUE_SCENARIO_ICON[scenarioId] ?? fallback;
 }
+
+/** Значок мира (раздела) — общий для каталога и аватара собеседника в чате (раньше жил копией в DialogueV2CatalogueSection). */
+export function dialogueWorldIcon(worldId: string): DialogueScenarioIconName {
+  if (worldId === 'travel') return 'airplane';
+  if (worldId === 'social') return 'people';
+  // зачем (Макеты 7c831a193, dialogs-004): в образце «Дела» — заливной документ с строками (`docF`), а не портфель; ближайший значок набора — document-text
+  if (worldId === 'work') return 'document-text';
+  return 'cafe';
+}
+
+/**
+ * зачем (Макеты 6dcbedb9f, dialogs-014/022/029): аватар собеседника в чате — значок сценки (как строка каталога), а не общий
+ * значок человека. Мир — префикс id сценки (travel_01 → travel); неизвестная сценка — значок мира.
+ */
+export function dialogueScenarioAvatarIcon(scenarioId: string): DialogueScenarioIconName {
+  return dialogueScenarioIcon(scenarioId, dialogueWorldIcon(scenarioId.split('_')[0] ?? ''));
+}

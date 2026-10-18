@@ -6,9 +6,14 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 
 describe('Диалоги: значки и пилюля энергии (dialogs-003/004/007/008)', () => {
   it('«Дела» — document-text (в образце заливной документ `docF`), а не портфель', () => {
-    const src = read('components/dialogs/DialogueV2CatalogueSection.tsx');
+    // перепин 18.10 (Сайт, Макеты 6dcbedb9f dialogs-014): «мир → значок» переехал в общий dialogue_scenario_icons.ts (его берёт и аватар чата);
+    // каталог зовёт dialogueWorldIcon — правило «Дела = document-text» то же.
+    const src = read('components/dialogs/dialogue_scenario_icons.ts');
     expect(src).toContain("if (worldId === 'work') return 'document-text';");
-    expect(src).not.toContain("'briefcase'");
+    expect(read('components/dialogs/DialogueV2CatalogueSection.tsx')).toContain('return dialogueWorldIcon(worldId);');
+    // портфеля нет у МИРА «Дела»; у отдельной сценки свой значок может быть любым (решение владельца 13.10, таблица сценок)
+    const worldFn = src.slice(src.indexOf('export function dialogueWorldIcon'), src.indexOf('export function dialogueScenarioAvatarIcon'));
+    expect(worldFn).not.toContain("'briefcase'");
   });
   it('молния пилюли заливная только у экранов Диалогов (solidBolt); Learning V2 и уроки не тронуты', () => {
     const bar = read('components/EnergyBar.tsx');

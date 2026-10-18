@@ -32,7 +32,8 @@ describe('R1_DIFF_ONE_FIX: cards* и dialogs* (два и более пункта
 
   it('dialogs-gap-012: на потолке Plus поле ввода приглушено и закрыто', () => {
     const screen = read('components/dialogs/DialogueV2SessionScreen.tsx');
-    expect(screen).toContain('editable={!sending && !voiceBusy && !inputLocked}');
+    // перепин 18.10 (координатор, К1): пока ждём ответ ИИ, поле ввода доступно (sending его больше не закрывает); потолок Plus по-прежнему закрывает.
+    expect(screen).toContain('editable={!voiceBusy && !inputLocked}');
     expect(screen).toContain('inputLocked && { opacity: 0.55 }');
     expect(screen).toContain('!turnError && !inputLocked;');
     expect(read('app/dialogue_v2_session.tsx')).toContain("inputLocked={failureReason === 'plus_daily_cap'}");

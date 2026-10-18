@@ -13,14 +13,15 @@ import type { DialogueGlass } from './DialogueGlassKit';
 export type DialogueGlassAuthor = 'learner' | 'persona' | 'assistant';
 
 /** Мини-аватар собеседника `.msg .av` — 40, круг тона темы. Реального лица в данных V2 нет. */
-export function DialogueGlassAvatar({ glass, compact }: Readonly<{ glass: DialogueGlass; compact?: boolean }>) {
+// зачем (Макеты 6dcbedb9f, dialogs-014/022/029): у собеседника сценария — значок сценки; без него — прежний значок человека.
+export function DialogueGlassAvatar({ glass, compact, icon }: Readonly<{ glass: DialogueGlass; compact?: boolean; icon?: React.ComponentProps<typeof Ionicons>['name'] }>) {
   return (
     <View
       accessible={false}
       importantForAccessibility="no-hide-descendants"
       style={[styles.avatar, { backgroundColor: glass.opaqueControl, marginTop: compact ? 6 : 25 }]}
     >
-      <Ionicons name="person-outline" size={20} color={glass.secondary} />
+      <Ionicons name={icon ?? 'person-outline'} size={20} color={glass.secondary} />
     </View>
   );
 }
@@ -37,6 +38,8 @@ export interface DialogueGlassBubbleProps {
   who?: string;
   /** Мини-аватар слева — только у собеседника сценария. */
   avatar?: boolean;
+  /** Значок в аватаре (значок сценки); нет — значок человека. */
+  avatarIcon?: React.ComponentProps<typeof Ionicons>['name'];
   children: React.ReactNode;
   /** Ряд кнопок под пузырём (`.acts`). */
   actions?: React.ReactNode;
@@ -46,7 +49,7 @@ export interface DialogueGlassBubbleProps {
 }
 
 /** Реплика `.msg`: ширина пузыря ≤ 78%, радиус 20, поля 14/18. */
-export function DialogueGlassBubble({ glass, author, who, avatar, children, actions, note, testID }: DialogueGlassBubbleProps) {
+export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, children, actions, note, testID }: DialogueGlassBubbleProps) {
   const learner = author === 'learner';
   const bubble: ViewStyle = learner
     ? { backgroundColor: glass.lightTint }
@@ -57,7 +60,7 @@ export function DialogueGlassBubble({ glass, author, who, avatar, children, acti
     };
   return (
     <View testID={testID} style={[styles.row, learner ? styles.rowEnd : styles.rowStart]}>
-      {avatar && !learner ? <DialogueGlassAvatar glass={glass} compact={!who} /> : null}
+      {avatar && !learner ? <DialogueGlassAvatar glass={glass} compact={!who} icon={avatarIcon} /> : null}
       <View style={[styles.column, learner ? styles.columnEnd : null]}>
         {who ? (
           <Text maxFontSizeMultiplier={1.3} style={[styles.who, { color: glass.secondary }]}>{who}</Text>
@@ -143,8 +146,10 @@ export function dialogueGlassFieldStyle(glass: DialogueGlass): TextStyle {
 const DOT_DELAYS = [0, 180, 360] as const;
 
 /** «Печатает» `.typing`: три точки подпрыгивают по кругу 1,1 с. Уважает «Уменьшить движение». */
-export function DialogueGlassTyping({ glass, testID, avatar }: Readonly<{
-  glass: DialogueGlass; testID: string; avatar?: boolean;
+export function DialogueGlassTyping({ glass, testID, avatar, avatarIcon, caption }: Readonly<{
+  glass: DialogueGlass; testID: string; avatar?: boolean; avatarIcon?: React.ComponentProps<typeof Ionicons>['name'];
+  /** зачем (координатор 18.10, К2): мягкая подпись под «…», когда ответ идёт долго («Мила печатает…» / «Отвечает дольше обычного»). Без кнопок. */
+  caption?: string | null;
 }>) {
   const values = React.useRef(DOT_DELAYS.map(() => new Animated.Value(0))).current;
   const [reduceMotion, setReduceMotion] = React.useState(false);
@@ -174,7 +179,8 @@ export function DialogueGlassTyping({ glass, testID, avatar }: Readonly<{
 
   return (
     <View testID={testID} style={[styles.row, styles.rowStart]}>
-      {avatar ? <DialogueGlassAvatar glass={glass} compact /> : null}
+      {avatar ? <DialogueGlassAvatar glass={glass} compact icon={avatarIcon} /> : null}
+      <View style={styles.typingColumn}>
       <View
         style={[styles.typing, {
           backgroundColor: glass.plateFillFrom,
@@ -191,6 +197,17 @@ export function DialogueGlassTyping({ glass, testID, avatar }: Readonly<{
             }]}
           />
         ))}
+      </View>
+      {caption ? (
+        <Text
+          testID={`${testID}-caption`}
+          accessibilityLiveRegion="polite"
+          style={[styles.typingCaption, { color: glass.secondary }]}
+          maxFontSizeMultiplier={1.3}
+        >
+          {caption}
+        </Text>
+      ) : null}
       </View>
     </View>
   );
@@ -214,5 +231,8 @@ const styles = StyleSheet.create({
   noteEnd: { justifyContent: 'flex-end' },
   noteText: { fontSize: 13, lineHeight: 18, fontWeight: '500' },
   typing: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 52, paddingHorizontal: 20, borderRadius: 20 },
+  // зачем (К2): подпись под «…» — шкала D145 (13/18), колонка не растягивает пузырь на всю ширину.
+  typingColumn: { alignItems: 'flex-start', gap: 6, flexShrink: 1 },
+  typingCaption: { fontSize: 13, lineHeight: 18, paddingHorizontal: 4 },
   dot: { width: 8, height: 8, borderRadius: 4 },
 });

@@ -5,7 +5,7 @@
  * the caller, which can open a briefing.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { dialogueScenarioIcon } from './dialogue_scenario_icons';
+import { dialogueScenarioIcon, dialogueWorldIcon } from './dialogue_scenario_icons';
 import React, { useRef, useState } from 'react';
 import { Image as RNImage, Text, View } from 'react-native';
 
@@ -71,12 +71,9 @@ export type DialogueV2CatalogueSectionProps = Readonly<{
   onPressItem: (item: DialogueV2CatalogueLearnerItem) => void;
 }>;
 
+// зачем (18.10): соответствие «мир → значок» перенесено в dialogue_scenario_icons.ts — его берёт и аватар собеседника в чате.
 function worldIcon(worldId: string): React.ComponentProps<typeof Ionicons>['name'] {
-  if (worldId === 'travel') return 'airplane';
-  if (worldId === 'social') return 'people';
-  // зачем (Макеты 7c831a193, dialogs-004): в образце «Дела» — заливной документ с строками (`docF`), а не портфель; ближайший значок набора — document-text
-  if (worldId === 'work') return 'document-text';
-  return 'cafe';
+  return dialogueWorldIcon(worldId);
 }
 
 // зачем (владелец 2026-09-30, макет dialogs.html A1/A4/A7, Liquid Glass): мир — стеклянная

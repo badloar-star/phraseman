@@ -80,6 +80,10 @@ export function createDialogueV2Warmup(dependencies: DialogueV2WarmupDependencie
       }).finally(() => { inFlight = null; });
       return inFlight;
     },
+    /** Время последнего прогрева в этом запуске (или прочитанное с диска); null — прогрева не было. Только чтение. */
+    lastWarmAtMs(): number | null {
+      return lastWarmAtMs;
+    },
   });
 }
 
@@ -99,4 +103,9 @@ const productionWarmup = createDialogueV2Warmup({
 
 export function warmDialogueV2Functions(source: DialogueV2WarmSource): Promise<DialogueV2WarmOutcome> {
   return productionWarmup.warm(source);
+}
+
+/** зачем (координатор 18.10, К3 [DIALOGUE-V2-LATENCY]): возраст прогрева рядом с временем ответа — тёплый ли был сервер. Только чтение. */
+export function peekDialogueV2LastWarmAtMs(): number | null {
+  return productionWarmup.lastWarmAtMs();
 }

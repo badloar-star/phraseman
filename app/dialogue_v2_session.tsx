@@ -14,7 +14,11 @@ import {
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
 import { startDialogueV2TextSession } from './dialogue_v2_turn_client';
-import { logDialogueV2OptimisticFrame, logDialogueV2OptimisticStep, markDialogueV2OptimisticTap } from './dialogue_v2_optimistic_trace';
+import { logDialogueV2Latency, logDialogueV2OptimisticFrame, logDialogueV2OptimisticStep, markDialogueV2OptimisticTap } from './dialogue_v2_optimistic_trace';
+import { peekDialogueV2LastWarmAtMs } from './dialogue_v2_warmup';
+import { aiDialogMonthlyLimitText } from '../components/dialog_limit_text';
+import { dialogueScenarioAvatarIcon } from '../components/dialogs/dialogue_scenario_icons';
+import { dialogueTypingCaption, dialogueTypingStageFor, DIALOGUE_TYPING_NAME_AFTER_MS, DIALOGUE_TYPING_SLOW_AFTER_MS, type DialogueTypingStage } from '../components/dialogs/dialogue_typing_caption';
 import {
   DialogueV2TurnFailureError,
   sendDialogueV2CoachedTextTurn,
@@ -174,6 +178,23 @@ function SessionContent() {
   learnerTurnsRef.current = messages.reduce((count, message) => (message.author === 'learner' ? count + 1 : count), 0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
+  // зачем (координатор 18.10, К2): подпись под «…» собеседника — через 5 с «Мила печатает…», через 15 с «Отвечает дольше обычного».
+  const [typingStage, setTypingStage] = useState<DialogueTypingStage>('none');
+  useEffect(() => {
+    if (!sending) {
+      setTypingStage('none');
+      return undefined;
+    }
+    const startedAt = Date.now();
+    const update = () => {
+      const stage = dialogueTypingStageFor(Date.now() - startedAt);
+      setTypingStage(stage);
+      console.log(`[DIALOGUE-V2] typing:caption stage=${stage} afterMs=${Date.now() - startedAt}`); // guard-ok: две строки на долгий ход
+    };
+    const nameTimer = setTimeout(update, DIALOGUE_TYPING_NAME_AFTER_MS);
+    const slowTimer = setTimeout(update, DIALOGUE_TYPING_SLOW_AFTER_MS);
+    return () => { clearTimeout(nameTimer); clearTimeout(slowTimer); };
+  }, [sending]);
   const [turnFailure, setTurnFailure] = useState<TurnFailureView | null>(null);
   const [rateLimitCooling, setRateLimitCooling] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -501,6 +522,10 @@ function SessionContent() {
     turnInFlightRef.current = true;
     // зачем (E3, координатор 12.10): пилюля «N/30» уменьшается в момент отправки; повтор того же хода её не трогает.
     coaching.beginQuotaTurn(pending.turnId);
+    // зачем (координатор 18.10, К3): разложить ожидание ответа ИИ на клиенте — запрос, разбор/озвучка, кадр; возраст прогрева функций.
+    const latencyStartedAt = Date.now();
+    const lastWarmAt = peekDialogueV2LastWarmAtMs();
+    const latencyBase = { scenarioId, learnerTurn: learnerTurnsRef.current, warmAgeMs: lastWarmAt === null ? null : latencyStartedAt - lastWarmAt };
     try {
       const result = await sendDialogueV2CoachedTextTurn({
         sessionId: serverSession.sessionId,
@@ -511,10 +536,15 @@ function SessionContent() {
         interfaceLang: interfaceLangFor(lang),
       });
       logDialogueV2OptimisticStep('send_tap', 'server_reply', { kind: result.kind, replies: result.kind === 'reply' ? result.replies.length : 0 });
+      const callableMs = Date.now() - latencyStartedAt;
       if (result.kind === 'reply') {
+        const appendStartedAt = Date.now();
         await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
+        const appendMs = Date.now() - appendStartedAt;
         logDialogueV2OptimisticFrame('send_tap', 'reply_frame');
+        requestAnimationFrame(() => logDialogueV2Latency({ ...latencyBase, outcome: 'reply', callableMs, appendMs, frameMs: Date.now() - latencyStartedAt, replies: result.replies.length, voice: result.preparedBotVoiceSelection ? 'prepared' : 'none' }));
       } else {
+        logDialogueV2Latency({ ...latencyBase, outcome: result.kind, callableMs });
         // зачем (E3): ход отвечен без реплик — снимаем его из «в полёте», остаток прежний.
         coaching.applyQuota(null, pending.turnId);
       }
@@ -524,6 +554,7 @@ function SessionContent() {
       const reason: DialogueV2TurnFailureReason = error instanceof DialogueV2TurnFailureError ? error.reason : 'network';
       console.warn('[DIALOGUE-V2] turn:run → failed', { reason, scenarioId });
       logDialogueV2OptimisticStep('send_tap', 'rollback', { reason });
+      logDialogueV2Latency({ ...latencyBase, outcome: 'failed', reason, callableMs: Date.now() - latencyStartedAt });
       if (reason === 'quota_exhausted') {
         // зачем (Сверка 05.10: реплика молча пропадала): пузырь ученика ОСТАЁТСЯ — человек видит, что написал, а
         // ниже сразу встаёт экран лимита с понятным выходом (Plus / подождать). Раньше пузырь удалялся, а экран
@@ -832,10 +863,14 @@ function SessionContent() {
       objectives={model.objectives}
       showEnergy={!energyUnlimited}
       headerMood={coaching.mood ? { mood: coaching.mood, label: dialogueMoodLabel(lang, coaching.mood) } : null}
+      // зачем (dialogs-022/029): пилюля с первого кадра из зеркала на телефоне; остаток неизвестен — «—/30» и «Лимит — 30 ответов в месяц» для диктора.
       quotaPill={coaching.quotaView ? {
-        text: `${coaching.quotaView.remaining}/${coaching.quotaView.total}`,
-        accessibilityLabel: coachingLabels.quotaA11y(coaching.quotaView.remaining, coaching.quotaView.total),
+        text: `${coaching.quotaView.remaining ?? '—'}/${coaching.quotaView.total}`,
+        accessibilityLabel: coaching.quotaView.remaining === null
+          ? aiDialogMonthlyLimitText(lang, coaching.quotaView.total)
+          : coachingLabels.quotaA11y(coaching.quotaView.remaining, coaching.quotaView.total),
       } : null}
+      personaIcon={scenarioId ? dialogueScenarioAvatarIcon(scenarioId) : undefined}
       goal={currentObjective ? {
         kicker: coachingLabels.goalKicker(objectiveIndex + 1, model.objectives.length),
         // зачем (координатор 12.10, dialogs-030/014): название цели в карточке с заглавной и без точки, как в брифинге и шторке «Задания» (formatDialogObjectiveLabel); исходный текст не меняется
@@ -862,6 +897,13 @@ function SessionContent() {
       limitWallMessage={coachingLabels.wallMessage(DIALOGUE_V2_FREE_MONTHLY_REPLIES)}
       voiceFailure={voiceFailure}
       turnError={turnFailure !== null}
+      // зачем (К2): имя — того, кто говорил последним (данные диалога), иначе первый собеседник сценки; литералов имён нет.
+      typingCaption={dialogueTypingCaption(
+        lang,
+        typingStage,
+        [...messages].reverse().find((message) => message.author === 'persona' && message.authorLabel)?.authorLabel
+          ?? model?.participants[0]?.displayName ?? null,
+      )}
       turnErrorMessage={turnErrorMessage}
       inputLocked={failureReason === 'plus_daily_cap'}
       /* D123: на потолке Plus повтор сегодня не поможет; C19: при частоте — после остывания. */

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-15:word:dream",
+    "correctText": "dream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i01",
+    "correctText": "I often dream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i02",
+    "correctText": "dream",
+    "correctResponseId": "en:lesson-09:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i04",
+    "correctText": "en:lesson-09:session-15:i04:p1=dream\nen:lesson-09:session-15:i04:p2=sleep\nen:lesson-09:session-15:i04:p3=cat\nen:lesson-09:session-15:i04:p4=cloud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i05",
+    "correctText": "I am dreaming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:word:dragon",
+    "correctText": "dragon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i06",
+    "correctText": "She is drawing a dragon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:word:castle",
+    "correctText": "castle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i07",
+    "correctText": "This is a castle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i08",
+    "correctText": "dreaming",
+    "correctResponseId": "en:lesson-09:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i09",
+    "correctText": "I am not dreaming.",
+    "correctResponseId": "en:lesson-09:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i10",
+    "correctText": "en:lesson-09:session-15:i10:p1=dream\nen:lesson-09:session-15:i10:p2=dragon\nen:lesson-09:session-15:i10:p3=castle\nen:lesson-09:session-15:i10:p4=draw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i11",
+    "correctText": "She is drawing a dragon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:word:nightmare",
+    "correctText": "nightmare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i12",
+    "correctText": "nightmare",
+    "correctResponseId": "en:lesson-09:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i13",
+    "correctText": "This is a nightmare.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-15:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i15",
+    "correctText": "This is a castle.",
+    "correctResponseId": "en:lesson-09:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i16",
+    "correctText": "en:lesson-09:session-15:i16:p1=dream\nen:lesson-09:session-15:i16:p2=dragon\nen:lesson-09:session-15:i16:p3=castle\nen:lesson-09:session-15:i16:p4=nightmare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-15:i17",
+    "correctText": "I am not dreaming.",
+    "correctResponseId": null
+  }
+]

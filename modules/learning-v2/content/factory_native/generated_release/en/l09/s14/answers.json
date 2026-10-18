@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-14:word:drowsy",
+    "correctText": "drowsy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i01",
+    "correctText": "I am drowsy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i02",
+    "correctText": "drowsy",
+    "correctResponseId": "en:lesson-09:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i04",
+    "correctText": "en:lesson-09:session-14:i04:p1=drowsy\nen:lesson-09:session-14:i04:p2=yawn\nen:lesson-09:session-14:i04:p3=sleep\nen:lesson-09:session-14:i04:p4=rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i05",
+    "correctText": "I am yawning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:word:recliner",
+    "correctText": "recliner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i06",
+    "correctText": "This is a recliner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:word:slipper",
+    "correctText": "slipper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i07",
+    "correctText": "The dog is carrying a slipper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i08",
+    "correctText": "sleeping",
+    "correctResponseId": "en:lesson-09:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i09",
+    "correctText": "He is not sleeping.",
+    "correctResponseId": "en:lesson-09:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i10",
+    "correctText": "en:lesson-09:session-14:i10:p1=drowsy\nen:lesson-09:session-14:i10:p2=recliner\nen:lesson-09:session-14:i10:p3=slipper\nen:lesson-09:session-14:i10:p4=carry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i11",
+    "correctText": "The dog is carrying a slipper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:word:sleeve",
+    "correctText": "sleeve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i12",
+    "correctText": "sleeve",
+    "correctResponseId": "en:lesson-09:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i13",
+    "correctText": "My sleeve is long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-14:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i15",
+    "correctText": "I am yawning.",
+    "correctResponseId": "en:lesson-09:session-14:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i16",
+    "correctText": "en:lesson-09:session-14:i16:p1=drowsy\nen:lesson-09:session-14:i16:p2=recliner\nen:lesson-09:session-14:i16:p3=slipper\nen:lesson-09:session-14:i16:p4=sleeve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-14:i17",
+    "correctText": "I am yawning.",
+    "correctResponseId": null
+  }
+]

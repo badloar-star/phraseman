@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-15:intro1:r2": {
+          "ru": "Перед dreaming с I нужно am.",
+          "uk": "Перед dreaming із I потрібне am."
+        },
+        "en:lesson-09:session-15:intro1:r3": {
+          "ru": "После am для действия сейчас нужна форма dreaming.",
+          "uk": "Після am для дії зараз потрібна форма dreaming."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-15:intro2:r2": {
+          "ru": "С she перед drawing нужно is.",
+          "uk": "Із she перед drawing потрібне is."
+        },
+        "en:lesson-09:session-15:intro2:r3": {
+          "ru": "После is здесь нужна форма drawing.",
+          "uk": "Після is тут потрібна форма drawing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-15:intro3:r2": {
+          "ru": "Перед not с I нужна форма am.",
+          "uk": "Перед not із I потрібна форма am."
+        },
+        "en:lesson-09:session-15:intro3:r3": {
+          "ru": "Для действия сейчас после am not нужна форма dreaming.",
+          "uk": "Для дії зараз після am not потрібна форма dreaming."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4c234d8d24d4059d7881a52302daab1a994abdd6686267841834bb68bd5eea3c"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "am yawning / is not sleeping / is carrying; yawn уже знакомо",
+    "uk": "am yawning / is not sleeping / is carrying; yawn уже знайоме"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Последняя остановка",
+        "uk": "Остання зупинка"
+      },
+      "bodyByLocale": {
+        "ru": "К концу долгой поездки в автобусе вас клонит в сон, и вы сейчас зеваете. Drowsy — «сонный, испытывающий сонливость». I am drowsy описывает состояние, а I am yawning — «Я зеваю» — действие сейчас. Yawn уже знакомо; для текущего действия используем am yawning. Автобус ещё едет, а вы уже почти припарковались во сне.",
+        "uk": "Наприкінці довгої поїздки автобусом вас хилить на сон, і ви зараз позіхаєте. Drowsy — «сонний, такий, що відчуває сонливість». I am drowsy описує стан, а I am yawning — «Я позіхаю» — дію зараз. Yawn уже знайоме; для поточної дії використовуємо am yawning. Автобус іще їде, а ви вже майже припаркувалися уві сні."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-14:intro1:r1",
+              "text": "I am yawning."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro1:r2",
+              "text": "I yawning."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro1:r3",
+              "text": "I am yawn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-14:intro1:r1",
+              "text": "I am yawning."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro1:r2",
+              "text": "I yawning."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro1:r3",
+              "text": "I am yawn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пробуем кресло в магазине",
+        "uk": "Випробовуємо крісло в магазині"
+      },
+      "bodyByLocale": {
+        "ru": "В мебельном магазине отец пробует кресло с откидывающейся спинкой — a recliner. Он устроился удобно, но читает ценник, а не спит. He is not sleeping — «Он не спит». Not после is делает описание действия отрицательным; sleeping сохраняет -ing.",
+        "uk": "У меблевому магазині батько випробовує крісло з відкидною спинкою — a recliner. Він влаштувався зручно, але читає цінник, а не спить. He is not sleeping — «Він не спить». Not після is робить опис дії заперечним; sleeping зберігає -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-14:intro2:r1",
+              "text": "He is not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro2:r2",
+              "text": "He not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro2:r3",
+              "text": "He is not sleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-14:intro2:r1",
+              "text": "He is not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro2:r2",
+              "text": "He not sleeping."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro2:r3",
+              "text": "He is not sleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Тапочек в зубах",
+        "uk": "Капець у зубах"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь отдохнуть дома, но собака уносит ваш тапочек. Slipper — «домашний тапочек», один из пары. The dog is carrying a slipper — «Собака несёт тапочек». Собака делает это сейчас: is carrying. Carry уже знакомо; перед -ing буква y сохраняется.",
+        "uk": "Ви збираєтеся відпочити вдома, але собака несе геть ваш капець. Slipper — «домашній капець», один із пари. The dog is carrying a slipper — «Собака несе капець». Собака робить це зараз: is carrying. Carry уже знайоме; перед -ing літера y зберігається."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-14:intro3:r1",
+              "text": "The dog is carrying a slipper."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro3:r2",
+              "text": "The dog carrying a slipper."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro3:r3",
+              "text": "The dog is carry a slipper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-14:intro3:r1",
+              "text": "The dog is carrying a slipper."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro3:r2",
+              "text": "The dog carrying a slipper."
+            },
+            {
+              "responseId": "en:lesson-09:session-14:intro3:r3",
+              "text": "The dog is carry a slipper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e1d1cfdaea120d836fcfc25f26dd549d199e5f5be3ea528cf12c66e1f516e4c0"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-13:word:pepper",
+    "correctText": "pepper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i01",
+    "correctText": "Don't use pepper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i02",
+    "correctText": "pepper",
+    "correctResponseId": "en:lesson-09:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i04",
+    "correctText": "en:lesson-09:session-13:i04:p1=pepper\nen:lesson-09:session-13:i04:p2=sneeze\nen:lesson-09:session-13:i04:p3=soup\nen:lesson-09:session-13:i04:p4=spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i05",
+    "correctText": "He is sneezing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:word:feather",
+    "correctText": "feather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i06",
+    "correctText": "This is a feather.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:word:scent",
+    "correctText": "scent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i07",
+    "correctText": "The scent is sweet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i08",
+    "correctText": "drawing",
+    "correctResponseId": "en:lesson-09:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i09",
+    "correctText": "She is not drawing the flower.",
+    "correctResponseId": "en:lesson-09:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i10",
+    "correctText": "en:lesson-09:session-13:i10:p1=pepper\nen:lesson-09:session-13:i10:p2=feather\nen:lesson-09:session-13:i10:p3=scent\nen:lesson-09:session-13:i10:p4=flower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i11",
+    "correctText": "She is not drawing the flower.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:word:petal",
+    "correctText": "petal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i12",
+    "correctText": "petal",
+    "correctResponseId": "en:lesson-09:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i13",
+    "correctText": "This petal is pink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-13:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i15",
+    "correctText": "He is sneezing.",
+    "correctResponseId": "en:lesson-09:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i16",
+    "correctText": "en:lesson-09:session-13:i16:p1=pepper\nen:lesson-09:session-13:i16:p2=feather\nen:lesson-09:session-13:i16:p3=scent\nen:lesson-09:session-13:i16:p4=petal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-13:i17",
+    "correctText": "He is sneezing.",
+    "correctResponseId": null
+  }
+]

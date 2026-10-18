@@ -3227,4 +3227,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"frown → frowning; is frowning / is not frowning","uk":"frown → frowning; is frowning / is not frowning"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 13,
+    sourceFingerprint: "4e818ba9d2d0efeecc97a68b78834f88d0b438027a1e0f0a3734ecd5ff3bfeea",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"sneeze → sneezing; sneeze уже знакомо","uk":"sneeze → sneezing; sneeze уже знайоме"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 14,
+    sourceFingerprint: "c00e9bcf880671e7735d829caaedbf236b38954c8aefbe75072f7abf8d2814be",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"am yawning / is not sleeping / is carrying; yawn уже знакомо","uk":"am yawning / is not sleeping / is carrying; yawn уже знайоме"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 15,
+    sourceFingerprint: "fdd2a26bb3f2916f616c209526a281dc694410fcfa9fe3b09a4a8431cb585e8d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"dream → dreaming; am dreaming / am not dreaming","uk":"dream → dreaming; am dreaming / am not dreaming"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

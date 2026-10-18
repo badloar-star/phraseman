@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "sneeze → sneezing; sneeze уже знакомо",
+    "uk": "sneeze → sneezing; sneeze уже знайоме"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пауза у плиты",
+        "uk": "Пауза біля плити"
+      },
+      "bodyByLocale": {
+        "ru": "Друг готовит суп. На столе стоит чёрный перец — pepper. Друг отходит от плиты и сейчас чихает: He is sneezing — «Он чихает». Sneeze уже знакомо; перед -ing последняя e убирается: sneezing. Описываем действие сейчас, поэтому is sneezing. Причину чихания мы этой фразой не называем.",
+        "uk": "Друг готує суп. На столі стоїть чорний перець — pepper. Друг відходить від плити й зараз чхає: He is sneezing — «Він чхає». Sneeze уже знайоме; перед -ing остання e забирається: sneezing. Описуємо дію зараз, тому is sneezing. Причину чхання ми цією фразою не називаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-13:intro1:r1",
+              "text": "He is sneezing."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro1:r2",
+              "text": "He sneezing."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro1:r3",
+              "text": "He is sneeze."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-13:intro1:r1",
+              "text": "He is sneezing."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro1:r2",
+              "text": "He sneezing."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro1:r3",
+              "text": "He is sneeze."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Находка на скамейке",
+        "uk": "Знахідка на лавці"
+      },
+      "bodyByLocale": {
+        "ru": "На парковой скамейке лежит маленькое птичье перо. Вы показываете находку другу. Feather — «перо птицы». This is a feather — «Это перо». Здесь мы называем предмет: this is a feather. Птицу поблизости не видно — оставила визитку без номера телефона.",
+        "uk": "На парковій лавці лежить маленьке пташине перо. Ви показуєте знахідку другові. Feather — «перо птаха». This is a feather — «Це перо». Тут ми називаємо предмет: this is a feather. Птаха поблизу не видно — залишив візитівку без номера телефону."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-13:intro2:r1",
+              "text": "This is a feather."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro2:r2",
+              "text": "This are a feather."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro2:r3",
+              "text": "This am a feather."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-13:intro2:r1",
+              "text": "This is a feather."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro2:r2",
+              "text": "This are a feather."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro2:r3",
+              "text": "This am a feather."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Фото цветка",
+        "uk": "Фото квітки"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга в саду фотографирует цветок. У цветка сладкий аромат — a sweet scent, но подруга сейчас его не рисует, а смотрит на экран камеры. She is not drawing the flower — «Она не рисует цветок». Здесь draw — действие «рисовать»; is not drawing означает, что сейчас она этого не делает. Scent — «аромат, запах».",
+        "uk": "Подруга в саду фотографує квітку. Квітка має солодкий аромат — a sweet scent, але подруга зараз її не малює, а дивиться на екран камери. She is not drawing the flower — «Вона не малює квітку». Тут draw — дія «малювати»; is not drawing означає, що зараз вона цього не робить. Scent — «аромат, запах»."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-13:intro3:r1",
+              "text": "She is not drawing the flower."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro3:r2",
+              "text": "She not drawing the flower."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro3:r3",
+              "text": "She is not draw the flower."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-13:intro3:r1",
+              "text": "She is not drawing the flower."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro3:r2",
+              "text": "She not drawing the flower."
+            },
+            {
+              "responseId": "en:lesson-09:session-13:intro3:r3",
+              "text": "She is not draw the flower."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8d117b09416ddcc61f601779d381060887f9ffb109b468842ea3b5cb3543aace"
+}

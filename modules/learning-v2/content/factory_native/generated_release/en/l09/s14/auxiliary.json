@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-14:intro1:r2": {
+          "ru": "Перед yawning с I нужно am.",
+          "uk": "Перед yawning із I потрібне am."
+        },
+        "en:lesson-09:session-14:intro1:r3": {
+          "ru": "После am для действия сейчас нужна форма yawning.",
+          "uk": "Після am для дії зараз потрібна форма yawning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-14:intro2:r2": {
+          "ru": "Перед not с he нужно is.",
+          "uk": "Перед not із he потрібне is."
+        },
+        "en:lesson-09:session-14:intro2:r3": {
+          "ru": "После is not здесь нужна форма sleeping.",
+          "uk": "Після is not тут потрібна форма sleeping."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-14:intro3:r2": {
+          "ru": "Перед carrying здесь нужно is.",
+          "uk": "Перед carrying тут потрібне is."
+        },
+        "en:lesson-09:session-14:intro3:r3": {
+          "ru": "После is для действия сейчас нужна форма carrying.",
+          "uk": "Після is для дії зараз потрібна форма carrying."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "da0295646d79901bd080b007bb9a76eb5c625ce63c73c0337184f44db5fb941b"
+}

@@ -1,0 +1,1161 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-13:word:pepper",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pepper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:word:pepper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pepper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:word:pepper:audio",
+          "transcript": "pepper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:word:pepper:r1",
+            "targetText": "pepper",
+            "meaningByLocale": {
+              "ru": "перец, приправа. Don’t use pepper. — «Не используйте перец». Здесь речь о приправе, не об отдельном сладком перце.",
+              "uk": "перець, приправа. Don’t use pepper. — «Не використовуйте перець». Тут ідеться про приправу, не про окрему солодку перчину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pepper",
+          "definitionByLocale": {
+            "ru": "перец, приправа. Don’t use pepper. — «Не используйте перец». Здесь речь о приправе, не об отдельном сладком перце.",
+            "uk": "перець, приправа. Don’t use pepper. — «Не використовуйте перець». Тут ідеться про приправу, не про окрему солодку перчину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У супі вже достатньо приправ. Попросіть: «Не використовуйте перець»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У супі вже достатньо приправ. Попросіть: «Не використовуйте перець»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don't use pepper.",
+        "localizedMeaning": {
+          "ru": "В супе уже достаточно приправ. Попросите: «Не используйте перец»",
+          "uk": "У супі вже достатньо приправ. Попросіть: «Не використовуйте перець»"
+        },
+        "orderedTokens": [
+          "Don't",
+          "use",
+          "pepper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i02:r1",
+          "text": "pepper"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i02:r2",
+          "text": "paper"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i02:r3",
+          "text": "pebble"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i02:audio",
+          "transcript": "pepper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:i02:r1",
+            "targetText": "pepper",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i02:r2",
+            "targetText": "paper",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i02:r3",
+            "targetText": "pebble",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит pepper",
+              "uk": "У записі звучить pepper"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит pepper",
+              "uk": "У записі звучить pepper"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для he",
+          "uk": "Виберіть форму для he"
+        },
+        "gappedTargetPhrase": "He ___ sneezing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-13:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для he",
+            "feedbackByLocale": {
+              "ru": "С he нужно is.",
+              "uk": "Із he потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для he",
+            "feedbackByLocale": {
+              "ru": "С he нужно is.",
+              "uk": "Із he потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-13:i04:p1",
+            "target": "pepper",
+            "meaningByLocale": {
+              "ru": "перец",
+              "uk": "перець"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i04:p2",
+            "target": "sneeze",
+            "meaningByLocale": {
+              "ru": "чихать",
+              "uk": "чхати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i04:p3",
+            "target": "soup",
+            "meaningByLocale": {
+              "ru": "суп",
+              "uk": "суп"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i04:p4",
+            "target": "spoon",
+            "meaningByLocale": {
+              "ru": "ложка",
+              "uk": "ложка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pepper",
+          "sneeze",
+          "soup",
+          "spoon"
+        ],
+        "rightColumn": [
+          "перець",
+          "чхати",
+          "суп",
+          "ложка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i05:audio",
+          "transcript": "He is sneezing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is sneezing.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "sneezing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:word:feather",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — feather",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:word:feather:audio"
+      ],
+      "accessibilityLabel": "Картка слова — feather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:word:feather:audio",
+          "transcript": "feather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:word:feather:r1",
+            "targetText": "feather",
+            "meaningByLocale": {
+              "ru": "перо птицы. This is a feather. — «Это перо».",
+              "uk": "перо птаха. This is a feather. — «Це перо»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "feather",
+          "definitionByLocale": {
+            "ru": "перо птицы. This is a feather. — «Это перо».",
+            "uk": "перо птаха. This is a feather. — «Це перо»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть пташине перо на лавці: «Це перо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть пташине перо на лавці: «Це перо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a feather.",
+        "localizedMeaning": {
+          "ru": "Покажите птичье перо на скамейке: «Это перо»",
+          "uk": "Покажіть пташине перо на лавці: «Це перо»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "feather"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:word:scent",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:word:scent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:word:scent:audio",
+          "transcript": "scent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:word:scent:r1",
+            "targetText": "scent",
+            "meaningByLocale": {
+              "ru": "аромат, запах. The scent is sweet. — «Аромат сладкий». Здесь описывается запах, а не вкус.",
+              "uk": "аромат, запах. The scent is sweet. — «Аромат солодкий». Тут описано запах, не смак."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scent",
+          "definitionByLocale": {
+            "ru": "аромат, запах. The scent is sweet. — «Аромат сладкий». Здесь описывается запах, а не вкус.",
+            "uk": "аромат, запах. The scent is sweet. — «Аромат солодкий». Тут описано запах, не смак."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Квітка має солодкий аромат. Скажіть: «Аромат солодкий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Квітка має солодкий аромат. Скажіть: «Аромат солодкий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i07:audio",
+          "transcript": "The scent is sweet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The scent is sweet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після is not",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i08:r1",
+          "text": "drawing"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i08:r2",
+          "text": "draw"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i08:r3",
+          "text": "draws"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після is not",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после is not",
+          "uk": "Виберіть форму після is not"
+        },
+        "gappedTargetPhrase": "She is not ___ the flower.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-13:i08:r1",
+            "text": "drawing"
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i08:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i08:r3",
+            "text": "draws"
+          }
+        ],
+        "testedDimension": "Виберіть форму після is not",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після is not",
+            "feedbackByLocale": {
+              "ru": "Здесь действие: is not drawing.",
+              "uk": "Тут дія: is not drawing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після is not",
+            "feedbackByLocale": {
+              "ru": "После is not для действия сейчас нужна форма drawing.",
+              "uk": "Після is not для дії зараз потрібна форма drawing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i09:r1",
+          "text": "She is not drawing the flower."
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i09:r2",
+          "text": "She is drawing the flower."
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i09:r3",
+          "text": "They are not drawing the flower."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i09:audio",
+          "transcript": "She is not drawing the flower."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:i09:r1",
+            "targetText": "She is not drawing the flower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i09:r2",
+            "targetText": "She is drawing the flower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i09:r3",
+            "targetText": "They are not drawing the flower.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is not drawing the flower.",
+              "uk": "У записі звучить She is not drawing the flower."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is not drawing the flower.",
+              "uk": "У записі звучить She is not drawing the flower."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-13:i10:p1",
+            "target": "pepper",
+            "meaningByLocale": {
+              "ru": "перец",
+              "uk": "перець"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i10:p2",
+            "target": "feather",
+            "meaningByLocale": {
+              "ru": "перо птицы",
+              "uk": "перо птаха"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i10:p3",
+            "target": "scent",
+            "meaningByLocale": {
+              "ru": "аромат",
+              "uk": "аромат"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i10:p4",
+            "target": "flower",
+            "meaningByLocale": {
+              "ru": "цветок",
+              "uk": "квітка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pepper",
+          "feather",
+          "scent",
+          "flower"
+        ],
+        "rightColumn": [
+          "перець",
+          "перо птаха",
+          "аромат",
+          "квітка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i11:audio",
+          "transcript": "She is not drawing the flower."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is not drawing the flower.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "not",
+          "drawing",
+          "the",
+          "flower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:word:petal",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — petal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:word:petal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — petal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:word:petal:audio",
+          "transcript": "petal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:word:petal:r1",
+            "targetText": "petal",
+            "meaningByLocale": {
+              "ru": "лепесток. This petal is pink. — «Этот лепесток розовый». Один лепесток — часть цветка, а не целый цветок.",
+              "uk": "пелюстка. This petal is pink. — «Ця пелюстка рожева». Одна пелюстка — частина квітки, не ціла квітка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "petal",
+          "definitionByLocale": {
+            "ru": "лепесток. This petal is pink. — «Этот лепесток розовый». Один лепесток — часть цветка, а не целый цветок.",
+            "uk": "пелюстка. This petal is pink. — «Ця пелюстка рожева». Одна пелюстка — частина квітки, не ціла квітка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i12:r1",
+          "text": "petal"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i12:r2",
+          "text": "pebble"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i12:r3",
+          "text": "pencil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i12:audio",
+          "transcript": "petal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:i12:r1",
+            "targetText": "petal",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i12:r2",
+            "targetText": "pebble",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i12:r3",
+            "targetText": "pencil",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит petal",
+              "uk": "У записі звучить petal"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит petal",
+              "uk": "У записі звучить petal"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На стіл упала одна рожева пелюстка. Назвіть її колір: «Ця пелюстка рожева»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "На стіл упала одна рожева пелюстка. Назвіть її колір: «Ця пелюстка рожева»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i13:audio",
+          "transcript": "This petal is pink."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This petal is pink.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для she",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для she",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для she",
+          "uk": "Виберіть форму для she"
+        },
+        "gappedTargetPhrase": "She ___ not drawing the flower.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-13:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для she",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для she",
+            "feedbackByLocale": {
+              "ru": "С she нужно is, затем not.",
+              "uk": "Із she потрібне is, потім not."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для she",
+            "feedbackByLocale": {
+              "ru": "С she нужно is, затем not.",
+              "uk": "Із she потрібне is, потім not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-13:i15:r1",
+          "text": "He is sneezing."
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i15:r2",
+          "text": "He is not sneezing."
+        },
+        {
+          "responseId": "en:lesson-09:session-13:i15:r3",
+          "text": "They are sneezing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i15:audio",
+          "transcript": "He is sneezing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-13:i15:r1",
+            "targetText": "He is sneezing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i15:r2",
+            "targetText": "He is not sneezing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i15:r3",
+            "targetText": "They are sneezing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is sneezing.",
+              "uk": "У записі звучить He is sneezing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is sneezing.",
+              "uk": "У записі звучить He is sneezing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-13:i16:p1",
+            "target": "pepper",
+            "meaningByLocale": {
+              "ru": "перец",
+              "uk": "перець"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i16:p2",
+            "target": "feather",
+            "meaningByLocale": {
+              "ru": "перо птицы",
+              "uk": "перо птаха"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i16:p3",
+            "target": "scent",
+            "meaningByLocale": {
+              "ru": "аромат",
+              "uk": "аромат"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-13:i16:p4",
+            "target": "petal",
+            "meaningByLocale": {
+              "ru": "лепесток",
+              "uk": "пелюстка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pepper",
+          "feather",
+          "scent",
+          "petal"
+        ],
+        "rightColumn": [
+          "перець",
+          "перо птаха",
+          "аромат",
+          "пелюстка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Під час відеозв’язку брат зараз чхає. Опишіть: «Він чхає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Під час відеозв’язку брат зараз чхає. Опишіть: «Він чхає»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-13:i17:audio",
+          "transcript": "He is sneezing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is sneezing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9d483eaa22dd38de2b2b1b84d9798b12ec8abf2b631fe781e546de78d32e8cc7"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "dream → dreaming; am dreaming / am not dreaming",
+    "uk": "dream → dreaming; am dreaming / am not dreaming"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поезд над облаками",
+        "uk": "Потяг над хмарами"
+      },
+      "bodyByLocale": {
+        "ru": "Представьте сцену сна: ваш поезд едет по облакам, а вместо кондуктора билет проверяет кот. Вы понимаете, что спите: I am dreaming — «Мне снится сон». Dream здесь — «видеть сон», а am dreaming описывает происходящее сейчас. Коту билет понравился; оплачивать проезд рыбой пока не требуется.",
+        "uk": "Уявіть сцену сну: ваш потяг їде хмарами, а замість провідника квиток перевіряє кіт. Ви розумієте, що спите: I am dreaming — «Мені сниться сон». Dream тут — «бачити сон», а am dreaming описує те, що відбувається зараз. Котові квиток сподобався; оплачувати проїзд рибою поки не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-15:intro1:r1",
+              "text": "I am dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro1:r2",
+              "text": "I dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro1:r3",
+              "text": "I am dream."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-15:intro1:r1",
+              "text": "I am dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro1:r2",
+              "text": "I dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro1:r3",
+              "text": "I am dream."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обложка сказки",
+        "uk": "Обкладинка казки"
+      },
+      "bodyByLocale": {
+        "ru": "Художница рисует дракона для обложки новой сказки. Dragon — «дракон». She is drawing a dragon — «Она рисует дракона». Описываем работу прямо сейчас: is drawing. Dragon — название сказочного существа, перед одним существом здесь a dragon.",
+        "uk": "Ілюстраторка малює дракона для обкладинки нової казки. Dragon — «дракон». She is drawing a dragon — «Вона малює дракона». Описуємо роботу просто зараз: is drawing. Dragon — назва казкової істоти, перед однією істотою тут a dragon."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-15:intro2:r1",
+              "text": "She is drawing a dragon."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro2:r2",
+              "text": "She drawing a dragon."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro2:r3",
+              "text": "She is draw a dragon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-15:intro2:r1",
+              "text": "She is drawing a dragon."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro2:r2",
+              "text": "She drawing a dragon."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro2:r3",
+              "text": "She is draw a dragon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Настоящий замок",
+        "uk": "Справжній замок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приехали на экскурсию к старинному замку, который раньше видели только на картинках. Castle — «замок», большое укреплённое здание. От удивления говорите: I am not dreaming — «Это мне не снится». Not после am делает фразу отрицательной: вы действительно здесь. Замок для двери по-английски называется иначе; castle — здание.",
+        "uk": "Ви приїхали на екскурсію до старовинного замку, який раніше бачили лише на картинках. Castle — «замок», велика укріплена будівля. Від здивування кажете: I am not dreaming — «Це мені не сниться». Not після am робить фразу заперечною: ви справді тут. Замок для дверей англійською називається інакше; castle — будівля."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-15:intro3:r1",
+              "text": "I am not dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro3:r2",
+              "text": "I not dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro3:r3",
+              "text": "I am not dream."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-15:intro3:r1",
+              "text": "I am not dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro3:r2",
+              "text": "I not dreaming."
+            },
+            {
+              "responseId": "en:lesson-09:session-15:intro3:r3",
+              "text": "I am not dream."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "13d24a833e42d02011a6a47152dce60cbdcfc1fc008da92f4322fd0d1ddfb7ce"
+}

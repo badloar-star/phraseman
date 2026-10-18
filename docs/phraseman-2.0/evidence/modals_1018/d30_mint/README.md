@@ -1,3 +1,4 @@
-# d30 в мятной теме (ключ sage) и cards-039 — НЕ СНЯТО (СВЕРКА, 18.10 05:04–05:11)
-Приложение показало красный экран: «development server returned response error code: 500» с телом EMFILE: too many open files (кэш на C:\Temp, подкаталог 8a). Последнее срабатывание в журнале приложения: 05:09:04; ждала минуту и повторяла запуск — осталось. Чёрный экран ≈ 4 мин до этого (JS = 0).
-Готовые ссылки: d30 — …&theme=sage&appearance=dark&moments=v3&next=/dev_moments_preview?state=streak%26d=30; cards-039 — phraseman://dev_state?onboarding=done&intros=seen&cards=demo&fail=saved_load&overlays=off&studyTarget=en&next=/flashcards_collection?cat=saved.
+# d30 в мятной теме (ключ sage «Мята», appearance=dark) — ✅ (СВЕРКА, 18.10 05:13; es, шрифт 1,0; бандл с рабочей копией — незакоммиченная партия Сайта в дереве)
+Кадры t4, t8 (d30_full.txt). Фон — тёмно-зелёный градиент, пламя светло-зелёное с «30», подписи «RACHA · 30 DÍAS» и заголовок «Un mes seguido» мятного оттенка, подзаголовок «Nueva fase de la llama — hasta 100 días».
+Календарь 7×5: 30 мятных клеток (#5FDBA2), 5 тёмно-зелёных пустых в последнем ряду; клетки квадратные ≈ 96×96 px, скруглённые, ровная сетка. Кнопка «Siguiente →» светло-мятная.
+[MOMENT-GLOW] color #0074419E (зелёный), own 0,62, opacity 0,302, size 320, top 30 %, fadePx 147, isLight=false — ореол зелёный.

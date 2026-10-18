@@ -130,7 +130,9 @@ run(){
   local wopt="--wait=${PM_SLOT_WAIT:-3600}" why=""
   while [ $# -gt 0 ] && [ "$1" != "--" ]; do
     case "$1" in
-      --wait|--wait=*) wopt="$1" ;;
+      # зачем (Ревизор 3.68): голый --wait у run должен значить те же 3600 с, а не 600 из acquire
+      --wait) wopt="--wait=${PM_SLOT_WAIT:-3600}" ;;
+      --wait=*) wopt="$1" ;;
       *) why="${why:+$why }$1" ;;
     esac
     shift

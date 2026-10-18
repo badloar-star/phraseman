@@ -20,6 +20,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2BriefingScreen';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import { DialogueHubRedirect } from '../components/dialogs/DialogueHubRedirect';
 import DialogueIncomingCall from '../components/dialogs/DialogueIncomingCall';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -312,7 +313,19 @@ export default function DialogueV2BriefingRoute() {
   }
 
   if (!model) {
-    return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-unavailable" message={labels.unavailable} backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} />;
+    // зачем (владелец 01.10 / 18.10 «такого не должно быть», координатор 07:46): нет модели сценария — без экрана
+    // «Диалоги недоступны» тихо в хаб; журнал [DIALOGUE-V2] briefing → redirect hub с причиной.
+    return (
+      <DialogueHubRedirect
+        screen="briefing"
+        reason={state.kind === 'unavailable' ? 'unsupported_target' : 'no_model'}
+        scenarioId={scenarioId}
+        testID="dialogue-v2-briefing-unavailable"
+        backLabel={labels.back}
+        loadingLabel={labels.loading}
+        details={{ stateKind: state.kind }}
+      />
+    );
   }
 
   // зачем (находка d8b078e8e): списание энергии и переход в сессию — только после согласия на ИИ.

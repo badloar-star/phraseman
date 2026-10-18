@@ -42,6 +42,7 @@ import {
   useDialogueV2SessionCoaching,
 } from '../hooks/use_dialogue_v2_session_coaching';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import { DialogueHubRedirect } from '../components/dialogs/DialogueHubRedirect';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { speechUnavailableOnDeviceText } from './speech_device_availability';
@@ -766,17 +767,15 @@ function SessionContent() {
   const { isUnlimited: energyUnlimited, acknowledgeSessionStart, refundActivityStart } = useEnergy();
   energyActionsRef.current = { acknowledge: acknowledgeSessionStart, refund: refundActivityStart };
   if (paused) {
-    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → paused gate', { scenarioId });
+    // зачем (владелец 01.10 / 18.10 «такого не должно быть», координатор 07:46): вместо экрана паузы — тихо в хаб Диалогов.
     return (
-      <DialogueGlassGate
-        glass={glass}
+      <DialogueHubRedirect
+        screen="session"
+        reason="paused"
+        scenarioId={scenarioId}
         testID="dialogue-v2-session-paused"
         backLabel={labels.back}
-        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
-        icon="cloud-offline-outline"
-        title={coachingLabels.pausedTitle}
-        message={coachingLabels.pausedMessage}
-        action={{ label: labels.back, onPress: () => safeRouterBack(router, '/ai_dialog_home' as never) }}
+        loadingLabel={labels.loading}
       />
     );
   }
@@ -796,22 +795,17 @@ function SessionContent() {
   }
   if (!model || !model.unlocked) {
     // зачем: ранний выход без лога делал «недоступно» немым (правило «сперва логи»).
-    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → unavailable gate', {
-      scenarioId,
-      stateKind: state.kind,
-      hasModel: !!model,
-      unlocked: model?.unlocked ?? null,
-      serverSessionState,
-    });
+    // зачем (владелец 01.10 / 18.10 на эмуляторе: «Los diálogos no están disponibles» + «Volver» — «такого не должно быть»):
+    // нет сценария / модели / закрыт — без экрана-ошибки тихо в хаб; журнал [DIALOGUE-V2] session → redirect hub с причиной.
     return (
-      <DialogueGlassGate
-        glass={glass}
+      <DialogueHubRedirect
+        screen="session"
+        reason={!model ? (state.kind === 'unavailable' ? 'unsupported_target' : 'no_model') : 'locked'}
+        scenarioId={scenarioId}
         testID="dialogue-v2-session-unavailable"
         backLabel={labels.back}
-        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
-        icon="cloud-offline-outline"
-        title={labels.unavailable}
-        action={{ label: labels.back, onPress: () => safeRouterBack(router, '/ai_dialog_home' as never) }}
+        loadingLabel={labels.loading}
+        details={{ stateKind: state.kind, hasModel: !!model, unlocked: model?.unlocked ?? null, serverSessionState }}
       />
     );
   }

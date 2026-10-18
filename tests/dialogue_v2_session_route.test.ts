@@ -268,7 +268,9 @@ describe('Dialogue V2 session route', () => {
   it('fails closed before fetch for invalid route data and after an unavailable turn', async () => {
     mockParams.mockReturnValue({ scenarioId: ['work_01'] });
     const invalid = await render(h(DialogueV2SessionRoute));
-    await expect(invalid.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    // 18.10 (владелец: экранов-ошибок нигде): неверная ссылка — без «Диалоги недоступны», тихо в хаб Диалогов.
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
+    expect(invalid.queryByText('Диалоги недоступны')).toBeNull();
     expect(mockFetchCatalogue).not.toHaveBeenCalled();
 
     await invalid.unmount();
@@ -485,7 +487,8 @@ describe('Dialogue V2 session route', () => {
     expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('summary');
   });
 
-  it('shows the paused gate when the server reports the dialogue section switched off', async () => {
+  // 18.10 (владелец: экранов-ошибок нигде): пауза сервиса — не экран «Диалоги на паузе», а тихий уход в хаб.
+  it('returns to the dialogs hub when the server reports the dialogue section switched off', async () => {
     const { DialogueV2TurnFailureError } = jest.requireMock('../app/dialogue_v2_turn_coaching_client') as {
       DialogueV2TurnFailureError: new (reason: string) => Error;
     };
@@ -495,6 +498,7 @@ describe('Dialogue V2 session route', () => {
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await expect(screen.findByTestId('dialogue-v2-session-paused')).resolves.toBeTruthy();
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
   });
 
   it('hides the monthly remainder and why-limit for Plus', async () => {

@@ -12,6 +12,7 @@ const mockUsePremium = jest.fn();
 const mockUseLang = jest.fn();
 const mockBack = jest.fn();
 const mockPush = jest.fn();
+const mockReplace = jest.fn();
 const mockScreen: jest.Mock = jest.fn(() => null);
 // зачем: открывающая фраза (данные Ядра) по умолчанию выключена — старые проверки ленты про ходы;
 // отдельный тест ниже проверяет, что она стоит в первом кадре.
@@ -31,7 +32,7 @@ jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable', Platform: { OS: 'ios' },
   StyleSheet: { flatten: (style: unknown) => style },
 }));
-jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack, push: mockPush }) }));
+jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack, push: mockPush, replace: mockReplace }) }));
 jest.mock('../app/dialogue_v2_freeform_client', () => ({
   startDialogueV2FreeformSession: (...args: unknown[]) => mockStart(...args),
   sendDialogueV2FreeformTurn: (...args: unknown[]) => mockTurn(...args),
@@ -288,19 +289,15 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
   });
 
-  it('restarts the current language session after start failure instead of retrying a missing turn', async () => {
+  // 18.10 (владелец: экранов-ошибок нигде): старт не удался и после тихих повторов — без «Не удалось продолжить» + «Повторить»,
+  // тихий уход в хаб Диалогов; новых стартов после ухода нет.
+  it('returns to the dialogs hub after the start fails even after silent retries, without an error screen', async () => {
     failStartTimes(6);
-    mockStart.mockResolvedValueOnce({
-      ok: true, sessionId: `d2fs_${'c'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1),
-    });
     const screen = await render(h(DialogueV2FreeformRoute));
-    await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
     expect(mockStart).toHaveBeenCalledTimes(6);
-    await act(async () => { fireEvent.press(screen.getByLabelText('Повторить')); });
-    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(7));
-    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0]).toEqual(expect.objectContaining({
-      messages: [],
-    })));
+    expect(screen.queryByLabelText('Повторить')).toBeNull();
+    expect(screen.queryByText('Не удалось продолжить разговор')).toBeNull();
   });
 
   it('rejects a 2048-code-unit four-byte draft before optimistic append or callable transport', async () => {
@@ -410,20 +407,13 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockTurn).toHaveBeenCalledTimes(2);
   });
 
-  it('double tap on Retry after a failed start starts one new session', async () => {
-    let resolveSecondStart!: (value: unknown) => void;
+  it('redirects to the hub exactly once after a failed start', async () => {
     failStartTimes(6, 'null');
-    mockStart.mockImplementationOnce(() => new Promise((resolve) => { resolveSecondStart = resolve; }));
-    const screen = await render(h(DialogueV2FreeformRoute));
-    const retry = await screen.findByLabelText('Повторить');
+    await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledTimes(1));
+    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
+    expect(mockReplace).toHaveBeenCalledTimes(1);
     expect(mockStart).toHaveBeenCalledTimes(6);
-    await act(async () => {
-      fireEvent.press(retry);
-      fireEvent.press(retry);
-    });
-    expect(mockStart).toHaveBeenCalledTimes(7);
-    await act(async () => { resolveSecondStart({ ok: true, sessionId: `d2fs_${'b'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });
-    expect(mockStart).toHaveBeenCalledTimes(7);
   });
 
   it('a failed start retries silently without the error panel and the chat keeps the queued message', async () => {
@@ -438,10 +428,10 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Hallo' }));
   });
 
-  it('shows the error panel only after 1 start + 5 silent retries fail', async () => {
+  it('goes to the hub only after 1 start + 5 silent retries fail', async () => {
     failStartTimes(6);
-    const screen = await render(h(DialogueV2FreeformRoute));
-    await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
+    await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
     expect(mockStart).toHaveBeenCalledTimes(6);
     await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
     expect(mockStart).toHaveBeenCalledTimes(6);

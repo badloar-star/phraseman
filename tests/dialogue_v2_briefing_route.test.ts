@@ -11,6 +11,7 @@ const mockUseLang = jest.fn();
 const mockParams = jest.fn();
 const mockBack = jest.fn();
 const mockPush = jest.fn();
+const mockReplace = jest.fn();
 const mockScreen: jest.Mock = jest.fn(() => null);
 
 jest.mock('react-native', () => ({
@@ -20,7 +21,7 @@ jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams(),
-  useRouter: () => ({ back: mockBack, push: mockPush }),
+  useRouter: () => ({ back: mockBack, push: mockPush, replace: mockReplace }),
   // R52: возврат на брифинг (фокус) снимает защёлку старта — в узловом тесте фокус = монтирование
   useFocusEffect: (cb: () => void) => { require('react').useEffect(cb, [cb]); },
 }));
@@ -132,16 +133,20 @@ describe('Dialogue V2 briefing route', () => {
 
   it('fails closed without fetching for malformed route params or an unsupported target', async () => {
     mockParams.mockReturnValue({ scenarioId: ['work_01'] });
+    // 18.10 (владелец: экранов-ошибок нигде): без «Диалоги недоступны» — тихо в хаб Диалогов.
     const screen = await render(h(DialogueV2BriefingRoute));
-    await expect(screen.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
+    expect(screen.queryByText('Диалоги недоступны')).toBeNull();
     expect(mockFetchCatalogue).not.toHaveBeenCalled();
     expect(mockBuildModel).not.toHaveBeenCalled();
 
     await screen.unmount();
+    mockReplace.mockClear();
     mockParams.mockReturnValue({ scenarioId: 'work_01' });
     mockUseStudyTarget.mockReturnValue({ studyTarget: 'pt-BR' });
     const targetScreen = await render(h(DialogueV2BriefingRoute));
-    await expect(targetScreen.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
+    expect(targetScreen.queryByText('Диалоги недоступны')).toBeNull();
     expect(mockFetchCatalogue).not.toHaveBeenCalled();
   });
 

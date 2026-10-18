@@ -9,6 +9,7 @@ import { usePremium } from '../components/PremiumContext';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import { DialogueHubRedirect } from '../components/dialogs/DialogueHubRedirect';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
 import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { triLang } from '../constants/i18n';
@@ -435,18 +436,16 @@ export default function DialogueV2FreeformRoute() {
   };
 
   if (unavailable) {
+    // зачем (владелец 01.10 / 18.10 «такого не должно быть», координатор 07:46): старт не удался и после тихих повторов —
+    // без экрана «Не удалось продолжить разговор» тихо в хаб Диалогов; журнал [DIALOGUE-V2] freeform → redirect hub.
     return (
-      <DialogueGlassGate
-        glass={glass}
+      <DialogueHubRedirect
+        screen="freeform"
+        reason="start_failed"
         testID="dialogue-v2-freeform-unavailable"
         backLabel={labels.back}
-        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
-        icon="cloud-offline-outline"
-        title={labels.unavailable}
-        action={{
-          label: labels.retry,
-          onPress: retryFreeform,
-        }}
+        loadingLabel={labels.loading}
+        details={{ studyTarget: String(studyTarget) }}
       />
     );
   }

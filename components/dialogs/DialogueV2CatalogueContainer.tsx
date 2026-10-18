@@ -294,7 +294,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   // зачем (владелец/координатор 12.10, dialogs-005; образец dialogs.html «Хаб — язык ещё проверяется»): пока для языка нет проверенных диалогов, «Свободный разговор» скрыт —
   // вход в разговор мимо гейта нелогичен. Остаётся только строка остатка (если она нужна) и карточка гейта. Причина скрытия — в журнал.
   const gateHub = (reason: 'dev_hold' | 'unsupported_target' | 'zero_items') => {
-    console.log(`[DIALOGUE-V2] hub:freeform_hidden reason=language_gate source=${reason} studyTarget=${String(studyTarget)} supported=${supportedTarget(studyTarget)} items=${projection?.items.length ?? 'null'}`); // guard-ok: ветвление называет причину скрытия
+    console.log(`[NO-ERROR-SCREEN] [DIALOGUE-V2] hub:freeform_hidden reason=language_gate source=${reason} shown=calm_language_card studyTarget=${String(studyTarget)} supported=${supportedTarget(studyTarget)} items=${projection?.items.length ?? 'null'}`); // guard-ok: ветвление называет причину скрытия
     return (
       <>
         {quotaRow}

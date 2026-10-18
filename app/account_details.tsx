@@ -254,7 +254,7 @@ export default function AccountDetailsScreen() {
     'Guardando tu progreso…',
     'Salvando seu progresso…',
     'Đang lưu tiến độ…',
-    'Menyimpan progres…',
+    'Menyimpan progresmu…',
     'İlerlemen kaydediliyor…',
     'Zapisujemy postęp…',
   );

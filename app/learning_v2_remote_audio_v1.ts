@@ -1,6 +1,6 @@
 /**
- * Звук Learning V2 по сети (решение владельца 18.10 ≈06:15, чат Ревизора): «Приложение не может весить 200… Аудио не
- * идёт в бандл… Сжатия никакого!». В сборке остаётся только стартовый набор, остальное догружается из Storage.
+ * Решение владельца 18.10: звук Learning V2 в MP3 96 кбит/с. В сборке пять первых занятий,
+ * остальное догружается из Storage; вперёд готовятся только две сессии.
  *
  * Как: REST GET firebasestorage.googleapis.com/v0/b/{bucket}/o/{objectPath}?alt=media с «Authorization: Firebase <idToken>»
  * — тот же приём, что у Шпиля (app/spire/spire_pack_client.ts): модуля @react-native-firebase/storage в приложении нет,
@@ -16,8 +16,8 @@ import { DebugLogger } from "./debug-logger";
 const LOG = "[AUDIO-REMOTE]";
 const TOKEN_TIMEOUT_MS = 8_000;
 const DOWNLOAD_TIMEOUT_MS = 15_000;
-/** Защитный потолок: самый крупный файл набора 18.10 — 63 360 байт; проверку размера делает кэш. */
-const MAX_BYTES = 64 * 1024;
+/** В полном курсе есть длинные реплики до 182 016 байт; точный размер и SHA проверяет кэш. */
+const MAX_BYTES = 256 * 1024;
 // зачем: голый __DEV__ в тестах — ReferenceError (память project_dev_global_undefined_in_tests)
 const DEV = typeof __DEV__ !== "undefined" && __DEV__ === true;
 

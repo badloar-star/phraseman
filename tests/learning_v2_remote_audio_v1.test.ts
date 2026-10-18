@@ -29,6 +29,12 @@ describe("Learning V2: звук по сети — загрузка из Storage"
     await expect(fetchLearningV2RemoteAudioBytesV1(input)).rejects.toMatchObject({ reason });
   });
 
+  test("длинная запись курса больше 64 КиБ скачивается", async () => {
+    const size = 182016;
+    global.fetch = jest.fn(async () => ({ status: 200, ok: true, arrayBuffer: async () => new ArrayBuffer(size) })) as unknown as typeof fetch;
+    expect((await fetchLearningV2RemoteAudioBytesV1({ ...input, byteSize: size })).byteLength).toBe(size);
+  });
+
   test("нет входа → no_user, в сеть не ходим", async () => {
     mockUser = null;
     const fetchMock = jest.fn();
@@ -40,7 +46,7 @@ describe("Learning V2: звук по сети — загрузка из Storage"
   test("обрыв сети → network; ответ больше потолка → too_large", async () => {
     global.fetch = jest.fn(async () => { throw new TypeError("Network request failed"); }) as unknown as typeof fetch;
     await expect(fetchLearningV2RemoteAudioBytesV1(input)).rejects.toMatchObject({ reason: "network" });
-    global.fetch = jest.fn(async () => ({ status: 200, ok: true, arrayBuffer: async () => new ArrayBuffer(70 * 1024) })) as unknown as typeof fetch;
+    global.fetch = jest.fn(async () => ({ status: 200, ok: true, arrayBuffer: async () => new ArrayBuffer(257 * 1024) })) as unknown as typeof fetch;
     const error = await fetchLearningV2RemoteAudioBytesV1(input).catch((e: unknown) => e);
     expect(error).toBeInstanceOf(LearningV2RemoteAudioErrorV1);
     expect((error as LearningV2RemoteAudioErrorV1).reason).toBe("too_large");

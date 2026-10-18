@@ -1,0 +1,219 @@
+<title>ИИ отдохнёт до завтра</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Макет PhraseMan 2.0, стиль «Тень»: состояние «ИИ на сегодня всё» в трёх местах&nbsp;— реплика в Диалогах, «Объяснить ошибку», совет в хабе ошибок.
+   Мягкое состояние на месте ответа, не полноэкранная ошибка. Тёмная (графит) и светлая («Сумерки»). Страница вокруг следует теме зрителя. */
+:root {
+  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-line: rgba(23,24,30,.10); --page-chip: rgba(23,24,30,.06);
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; } }
+:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; }
+
+body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
+h2 { font-size: 21px; line-height: 27px; font-weight: 700; letter-spacing: -.2px; margin: 48px 0 0; text-wrap: balance; }
+.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 68ch; }
+.row { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 22px; justify-content: center; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
+.spec { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px 28px; }
+.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); min-width: 0; }
+.spec b { color: var(--page-ink); font-weight: 600; }
+table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; line-height: 20px; }
+th, td { text-align: left; padding: 10px 12px 10px 0; vertical-align: top; border-bottom: 1px solid var(--page-line); }
+th { font-weight: 600; color: var(--page-sec); font-size: 13px; }
+td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; border-radius: 6px; white-space: nowrap; }
+.tbl { overflow-x: auto; }
+
+/* ── телефон 390 × 844 ── */
+.ph { --bg: #0C0C0D; --bg-top: #151516; --text: #FFFFFF; --sec: #A6A6A8; --muted: #7C7C80; --card: #151517; --card-2: #1D1D1F; --tile: #242426;
+  --sheet: #1B1B1D; --line: rgba(255,255,255,.08); --user: #D9D9DD; --user-ink: #0B0C0E;
+  --cta: #F2F1F6; --cta-ink: #0B0C0E; --scrim: rgba(0,0,0,.6); --sb: #fff;
+  --rest: #1A1A1D; --rest-sh: inset 0 1px 0 rgba(255,255,255,.06), 0 10px 24px -16px rgba(0,0,0,.9);
+  --sheet-sh: 0 -18px 40px -16px rgba(0,0,0,.8); --cta-sh: inset 0 1px 0 #fff, 0 10px 24px -12px rgba(0,0,0,.75);
+  --card-sh: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 24px -16px rgba(0,0,0,.9);
+  position: relative; width: 390px; max-width: 100%; aspect-ratio: 390 / 844; border-radius: 52px; overflow: hidden;
+  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); color: var(--text);
+  box-shadow: 0 0 0 10px #1A1A1C, 0 30px 60px -30px rgba(0,0,0,.6); font-family: var(--font); }
+.ph.lt { --bg: #ECEEF9; --bg-top: #F3F4FD; --text: #17181E; --sec: #595A63; --muted: #7E7F8A; --card: #FFFFFF; --card-2: #FFFFFF; --tile: #E4E5F3;
+  --sheet: #FCFCFF; --line: rgba(23,24,30,.08); --user: #1D1D2F; --user-ink: #FFFFFF;
+  --cta: #1D1D2F; --cta-ink: #FFFFFF; --scrim: rgba(23,24,30,.38); --sb: #111;
+  --rest: #F6F6FD; --rest-sh: inset 0 1px 0 #fff, 0 10px 22px -16px rgba(51,51,87,.45);
+  --sheet-sh: 0 -18px 40px -18px rgba(51,51,87,.35); --cta-sh: 0 10px 22px -12px rgba(29,29,47,.55);
+  --card-sh: 0 8px 22px -14px rgba(51,51,87,.40);
+  background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); box-shadow: 0 0 0 10px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
+.sbar { position: absolute; top: 0; left: 0; right: 0; height: 48px; padding: 16px 30px 0; display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: var(--sb); z-index: 5; }
+.scr { position: absolute; inset: 48px 0 0; padding: 8px 18px; display: flex; flex-direction: column; }
+.hi { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--text); opacity: .9; z-index: 30; }
+.i { width: 20px; height: 20px; flex: none; }
+
+/* шапка экрана */
+.top { display: flex; align-items: center; gap: 10px; height: 52px; }
+.rb { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--card-sh); color: var(--text); flex: none; }
+.top .tt { flex: 1; min-width: 0; font-size: 17px; line-height: 22px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ttl { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: 6px; }
+
+/* ── состояние «на сегодня всё»: одна карточка на месте ответа ── */
+.rest { border-radius: 20px; background: var(--rest); box-shadow: var(--rest-sh); padding: 16px 16px 14px; }
+.rest .hd { display: flex; align-items: center; gap: 12px; }
+.rest .mo { width: 40px; height: 40px; border-radius: 12px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
+.rest .h { font-size: 17px; line-height: 22px; font-weight: 700; min-width: 0; text-wrap: balance; }
+.rest .p { font-size: 15px; line-height: 21px; color: var(--sec); margin: 10px 0 0; text-wrap: pretty; }
+.when { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; height: 28px; padding: 0 11px; border-radius: 14px; background: var(--tile); font-size: 13px; font-weight: 600; color: var(--sec); }
+.when .i { width: 15px; height: 15px; }
+.plus { display: flex; align-items: center; gap: 6px; margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line); font-size: 14px; line-height: 20px; font-weight: 600; color: var(--sec); }
+.plus span { flex: 1; min-width: 0; }
+.plus .i { width: 16px; height: 16px; }
+
+/* Диалоги */
+.chat { flex: 1; display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
+.msg { display: flex; gap: 10px; align-items: flex-end; }
+.msg.u { justify-content: flex-end; }
+.av { width: 34px; height: 34px; border-radius: 50%; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--sec); flex: none; }
+.av .i { width: 18px; height: 18px; }
+.bub { max-width: 76%; padding: 12px 16px; border-radius: 20px; font-size: 16px; line-height: 22px; font-weight: 500; }
+.msg.b .bub { background: var(--card-2); box-shadow: var(--card-sh); border-bottom-left-radius: 8px; }
+.msg.u .bub { background: var(--user); color: var(--user-ink); border-bottom-right-radius: 8px; }
+.msg.b .rest { flex: 1; min-width: 0; border-bottom-left-radius: 8px; }
+.inp { display: flex; align-items: center; gap: 10px; margin: 0 0 34px; }
+.inp .f { flex: 1; height: 52px; border-radius: 26px; background: var(--card); box-shadow: var(--card-sh); display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: var(--muted); }
+.inp .mic { width: 52px; height: 52px; border-radius: 50%; background: var(--card); box-shadow: var(--card-sh); display: flex; align-items: center; justify-content: center; color: var(--muted); }
+
+/* Объяснить ошибку&nbsp;— шторка */
+.bgq { margin-top: 18px; height: 120px; border-radius: 20px; background: var(--card); box-shadow: var(--card-sh); }
+.bgq.s { height: 64px; margin-top: 12px; }
+.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 10; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--sheet); border-radius: 30px 30px 0 0; box-shadow: var(--sheet-sh); padding: 10px 20px 34px; display: flex; flex-direction: column; }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--tile); align-self: center; }
+.sh-t { font-size: 21px; line-height: 27px; font-weight: 700; margin-top: 18px; }
+.ans { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.ans .l { font-size: 13px; line-height: 17px; font-weight: 600; color: var(--sec); }
+.ans .v { font-size: 17px; line-height: 23px; font-weight: 600; margin-top: 2px; }
+.ans .v.x { color: var(--sec); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.sheet .rest { margin-top: 16px; }
+.btn { height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 18px; background: var(--cta); color: var(--cta-ink); box-shadow: var(--cta-sh); }
+.ph:not(.lt) .btn { background-image: linear-gradient(180deg, #FFFFFF 0%, var(--cta) 48%, #E3E2E8 100%); }
+
+/* Хаб ошибок&nbsp;— совет */
+.stats { display: flex; gap: 10px; margin-top: 16px; }
+.st { flex: 1; border-radius: 18px; background: var(--card); box-shadow: var(--card-sh); padding: 14px 14px 12px; }
+.st .n { font-size: 26px; line-height: 30px; font-weight: 700; letter-spacing: -.4px; }
+.st .k { font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 600; margin-top: 2px; }
+.adv { margin-top: 12px; border-radius: 20px; background: var(--card); box-shadow: var(--card-sh); padding: 16px; }
+.adv .lb { display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.adv .lb .i { width: 16px; height: 16px; }
+.adv .tx { font-size: 16px; line-height: 23px; font-weight: 500; margin-top: 8px; text-wrap: pretty; }
+.adv .q { display: flex; align-items: center; gap: 6px; margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 var(--line); font-size: 13px; line-height: 18px; font-weight: 600; color: var(--sec); }
+.adv .q .i { width: 15px; height: 15px; }
+.lrow { margin-top: 12px; height: 64px; border-radius: 18px; background: var(--card); box-shadow: var(--card-sh); display: flex; align-items: center; gap: 12px; padding: 0 14px; }
+.lrow .tl { width: 40px; height: 40px; border-radius: 12px; background: var(--tile); flex: none; }
+.lrow .ln { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.lrow .ln i { display: block; height: 9px; border-radius: 5px; background: var(--tile); }
+</style>
+
+<div class="wrap">
+  <h1>ИИ отдохнёт до завтра</h1>
+  <p class="lead">Что видит человек, когда на сегодня ИИ больше не отвечает: кончились бесплатные ответы на день или сработал общий дневной потолок. Вместо ответа&nbsp;— спокойная карточка на том же месте. Без кодов, без «сервер» и «лимит», без красного и без кнопки «Повторить». Для Free&nbsp;— тихая ссылка на Plus внутри карточки, никаких всплывающих окон.</p>
+
+  <h2>1. Реплика в Диалогах</h2>
+  <div class="row" id="r-dlg"></div>
+  <div class="spec">
+    <div><b>Место.</b> Там, где появился бы ответ собеседника: аватар слева, вместо пузыря&nbsp;— карточка «на сегодня всё». Сообщение человека остаётся в чате как отправленное.</div>
+    <div><b>Ввод.</b> Поле и микрофон приглушены, в поле&nbsp;— «Продолжим завтра». Повторять отправку нечего&nbsp;— кнопки «Повторить» нет.</div>
+    <div><b>Plus.</b> Строка внизу карточки, вторым цветом, со стрелкой. Тап&nbsp;— экран Plus. Не всплывает сама и не повторяется.</div>
+  </div>
+
+  <h2>2. «Объяснить ошибку»</h2>
+  <div class="row" id="r-exp"></div>
+  <div class="spec">
+    <div><b>Место.</b> Шторка объяснения открывается как обычно. Верх&nbsp;— твой ответ и правильный (это есть на устройстве и без ИИ). Вместо текста объяснения&nbsp;— та же карточка.</div>
+    <div><b>Выход.</b> Одна главная кнопка «Понятно» закрывает шторку. На тёмной&nbsp;— светлая кнопка, на светлой&nbsp;— тёмная: с карточкой не сливается.</div>
+  </div>
+
+  <h2>3. Совет в хабе ошибок</h2>
+  <div class="row" id="r-hub"></div>
+  <div class="spec">
+    <div><b>Место.</b> Совет хаба уже умеет жить без ИИ: если свежего ответа нет, он собирается по правилам из твоих же чисел. Поэтому здесь не пустая карточка, а обычный совет плюс одна тихая строка «Подробный разбор&nbsp;— завтра».</div>
+    <div><b>Plus здесь нет.</b> Совет обновляется фоном, человек его не просил&nbsp;— продавать на этом месте нечего. Строку можно и вовсе не показывать: решает координатор.</div>
+  </div>
+
+  <h2>4. Общий потолок&nbsp;— без Plus</h2>
+  <div class="row" id="r-cap"></div>
+  <div class="spec">
+    <div><b>Когда.</b> Сработал общий дневной потолок на всех сразу. Plus тут не поможет, поэтому строки про Plus нет ни у кого&nbsp;— ни у Free, ни у Plus. Остальное то же.</div>
+    <div><b>Plus-подписчик</b> при своём дневном запасе видит этот же вариант: без ссылки.</div>
+  </div>
+
+  <h2>Тексты (для Переводчика)</h2>
+  <div class="tbl"><table>
+    <tr><th>Место</th><th>Заголовок</th><th>Текст</th><th>Plus (только Free, личный дневной запас)</th></tr>
+    <tr><td>Диалоги</td><td>На сегодня разговоров достаточно</td><td>Собеседник снова ответит завтра.</td><td>Больше разговоров в день&nbsp;— с Plus</td></tr>
+    <tr><td>Объяснить ошибку</td><td>Объяснения на сегодня закончились</td><td>Правильный вариант&nbsp;— выше. Почему так, разберём завтра.</td><td>Больше объяснений в день&nbsp;— с Plus</td></tr>
+    <tr><td>Хаб ошибок</td><td>—</td><td>Подробный разбор&nbsp;— завтра</td><td>—</td></tr>
+    <tr><td>Общее</td><td colspan="3">Метка «Снова завтра» · поле ввода «Продолжим завтра» · кнопка «Понятно»</td></tr>
+  </table></div>
+
+  <h2>Какой вариант когда (для Ядра)</h2>
+  <div class="tbl"><table>
+    <tr><th>Отказ сервера</th><th>Вариант</th></tr>
+    <tr><td><code>daily_spend_cap</code> (общий потолок)</td><td>Карточка без Plus&nbsp;— блок 4</td></tr>
+    <tr><td>Личный дневной запас Free (окна <code>dlg_free_ip</code>, <code>dlg_tr_free</code>, <code>mistake_explain_ip</code>, <code>explain_*_ip</code>)</td><td>Карточка + строка Plus&nbsp;— блоки 1–2</td></tr>
+    <tr><td>Дневной запас Plus (<code>plus_daily_cap</code>)</td><td>Карточка без Plus</td></tr>
+    <tr><td><code>hub_advice_ip</code> и любой отказ совета</td><td>Совет по правилам + строка «Подробный разбор&nbsp;— завтра»&nbsp;— блок 3</td></tr>
+    <tr><td>Часовые окна, <code>spend_cap_busy</code>, сеть</td><td>Не это состояние: «подожди немного» / «попробуй ещё раз»</td></tr>
+  </table></div>
+  <p class="lead">«Завтра» без точного часа: общий потолок обнуляется в полночь по UTC, у людей это разное местное время.</p>
+</div>
+
+<script>
+const sv = (d, w = 20) => `<svg class="i" width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const I = {
+  moon: sv('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/>'),
+  clock: sv('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
+  fwd: sv('<path d="m9 6 6 6-6 6"/>'),
+  back: sv('<path d="M15 5l-7 7 7 7"/>'),
+  bot: sv('<rect x="5" y="8" width="14" height="11" rx="4"/><path d="M12 8V5M9.5 13h.01M14.5 13h.01"/>'),
+  mic: sv('<rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5"/>'),
+  spark: sv('<path d="M12 4l1.8 4.7L18.5 10l-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.3Z"/>'),
+};
+const sbar = `<div class="sbar"><span>9:41</span><span>●●●</span></div>`;
+const rest = (h, p, plus) => `<div class="rest"><div class="hd"><div class="mo">${I.moon}</div><div class="h">${h}</div></div><p class="p">${p}</p><div class="when">${I.clock}Снова завтра</div>${plus ? `<div class="plus"><span>${plus}</span>${I.fwd}</div>` : ''}</div>`;
+
+const dialog = (cls, plus) => `<div class="ph ${cls}" role="img" aria-label="Диалог: собеседник отдыхает до завтра">${sbar}
+  <div class="scr"><div class="top"><div class="rb">${I.back}</div><div class="tt">Заказ в кафе</div></div>
+    <div class="chat">
+      <div class="msg b"><div class="av">${I.bot}</div><div class="bub">Hi! What can I get you today?</div></div>
+      <div class="msg u"><div class="bub">Can I have a latte, please?</div></div>
+      <div class="msg b"><div class="av">${I.bot}</div>${rest('На сегодня разговоров достаточно', 'Собеседник снова ответит завтра.', plus ? 'Больше разговоров в день — с Plus' : '')}</div>
+    </div>
+    <div class="inp"><div class="f">Продолжим завтра</div><div class="mic">${I.mic}</div></div>
+  </div><div class="hi"></div></div>`;
+
+const explain = (cls, plus) => `<div class="ph ${cls}" role="img" aria-label="Объяснение ошибки: на сегодня закончились">${sbar}
+  <div class="scr"><div class="top"><div class="rb">${I.back}</div><div class="tt">Работа над ошибками</div></div><div class="bgq"></div><div class="bgq s"></div><div class="bgq s"></div></div>
+  <div class="scrim"></div>
+  <div class="sheet"><div class="grab"></div><div class="sh-t">Объяснение</div>
+    <div class="ans"><div><div class="l">Твой ответ</div><div class="v x">I am agree with you</div></div><div><div class="l">Правильно</div><div class="v">I agree with you</div></div></div>
+    ${rest('Объяснения на сегодня закончились', 'Правильный вариант — выше. Почему так, разберём завтра.', plus ? 'Больше объяснений в день — с Plus' : '')}
+    <div class="btn">Понятно</div>
+  </div><div class="hi"></div></div>`;
+
+const hub = (cls) => `<div class="ph ${cls}" role="img" aria-label="Хаб ошибок: совет по правилам, подробный разбор завтра">${sbar}
+  <div class="scr"><div class="top"><div class="rb">${I.back}</div></div><div class="ttl">Работа над ошибками</div>
+    <div class="stats"><div class="st"><div class="n">12</div><div class="k">ошибок</div></div><div class="st"><div class="n">3</div><div class="k">темы</div></div><div class="st"><div class="n">5</div><div class="k">исправлено</div></div></div>
+    <div class="adv"><div class="lb">${I.spark}Совет</div><div class="tx">Чаще всего спотыкаешься на артиклях — 7 из последних 12 ошибок. Начни с них.</div><div class="q">${I.moon}Подробный разбор — завтра</div></div>
+    <div class="lrow"><div class="tl"></div><div class="ln"><i style="width:62%"></i><i style="width:38%"></i></div></div>
+    <div class="lrow"><div class="tl"></div><div class="ln"><i style="width:70%"></i><i style="width:30%"></i></div></div>
+  </div><div class="hi"></div></div>`;
+
+const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
+document.getElementById('r-dlg').innerHTML = col('Тёмная · Free', dialog('', true)) + col('Светлая · Free', dialog('lt', true));
+document.getElementById('r-exp').innerHTML = col('Тёмная · Free', explain('', true)) + col('Светлая · Free', explain('lt', true));
+document.getElementById('r-hub').innerHTML = col('Тёмная', hub('')) + col('Светлая', hub('lt'));
+document.getElementById('r-cap').innerHTML = col('Диалоги · тёмная · общий потолок', dialog('', false)) + col('Объяснение · светлая · общий потолок', explain('lt', false));
+</script>

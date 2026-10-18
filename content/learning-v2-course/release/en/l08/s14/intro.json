@@ -11,12 +11,12 @@
       "pageId": "en:lesson-08:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Слова на бумаге",
-        "uk": "Слова на папері"
+        "ru": "Подпись к школьной фотографии",
+        "uk": "Підпис до шкільної фотографії"
       },
       "bodyByLocale": {
-        "ru": "На занятии вы можете произнести знакомые английские слова, но пока не умеете правильно их записывать. `Spell` — писать слово, выбирая нужные буквы; ещё это слово используют, когда называют буквы по порядку. `I can’t spell` — «У меня не получается правильно писать слова». После `can’t` нужно `spell`, без `to`. Сказать слово получилось — на бумаге оно почему-то стало длиннее.",
-        "uk": "На занятті ви можете вимовити знайомі англійські слова, але поки не вмієте правильно їх записувати. `Spell` — писати слово, вибираючи потрібні літери; ще це слово використовують, коли називають літери по порядку. `I can’t spell` — «У мене не виходить правильно писати слова». Після `can’t` потрібне `spell`, без `to`. Сказати слово вдалося — на папері воно чомусь стало довшим."
+        "ru": "Вы готовите подпись к фотографии для школьного альбома. Вы умеете произнести нужные слова, но путаете буквы при записи и просите преподавателя помочь. `Spell` — писать слово, выбирая нужные буквы; ещё это слово используют, когда называют буквы по порядку. `I can’t spell` — «У меня не получается правильно писать слова». После `can’t` нужно `spell`, без `to`. Вы объясняете трудность, чтобы получить помощь с текстом.",
+        "uk": "Ви готуєте підпис до фотографії для шкільного альбому. Ви вмієте вимовити потрібні слова, але плутаєте літери під час запису й просите викладача допомогти. `Spell` — писати слово, вибираючи потрібні літери; ще це слово використовують, коли називають літери по порядку. `I can’t spell` — «У мене не виходить правильно писати слова». Після `can’t` потрібне `spell`, без `to`. Ви пояснюєте труднощі, щоб отримати допомогу з текстом."
       },
       "question": {
         "interactionId": "en:lesson-08:session-14:intro1:q",
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рядом спит ребёнок",
-        "uk": "Поруч спить дитина"
+        "ru": "Проверка буклета перед печатью",
+        "uk": "Перевірка буклета перед друком"
       },
       "bodyByLocale": {
-        "ru": "Друг разговаривает громко рядом со спящим ребёнком. Вы знаете, что он умеет шептать. `He can whisper` — «Он умеет шептать». После `can` нужно `whisper`, без окончания `s`.",
-        "uk": "Друг розмовляє голосно поруч зі сплячою дитиною. Ви знаєте, що він уміє шепотіти. `He can whisper` — «Він уміє шепотіти». Після `can` потрібне `whisper`, без закінчення `s`."
+        "ru": "Перед печатью буклета нужен человек, который найдёт опечатки. Ваш друг умеет вычитывать тексты. Proofread — «вычитывать текст»: проверять написание слов и знаки препинания. `He can proofread` — «Он умеет вычитывать текст». После `can` нужно `proofread`, без окончания `s`.",
+        "uk": "Перед друком буклета потрібна людина, яка знайде друкарські помилки. Ваш друг уміє вичитувати тексти. Proofread — «вичитувати текст»: перевіряти написання слів і розділові знаки. `He can proofread` — «Він уміє вичитувати текст». Після `can` потрібне `proofread`, без закінчення `s`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-14:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что друг умеет шептать.",
-          "uk": "Скажіть, що друг уміє шепотіти."
+          "ru": "Скажите, что друг умеет вычитывать текст.",
+          "uk": "Скажіть, що друг уміє вичитувати текст."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-14:intro2:r1",
-              "text": "He can whisper."
+              "text": "He can proofread."
             },
             {
               "responseId": "en:lesson-08:session-14:intro2:r2",
-              "text": "He can whispers."
+              "text": "He can proofreads."
             },
             {
               "responseId": "en:lesson-08:session-14:intro2:r3",
-              "text": "He can’t whisper."
+              "text": "He can’t proofread."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-14:intro2:r1",
-              "text": "He can whisper."
+              "text": "He can proofread."
             },
             {
               "responseId": "en:lesson-08:session-14:intro2:r2",
-              "text": "He can whispers."
+              "text": "He can proofreads."
             },
             {
               "responseId": "en:lesson-08:session-14:intro2:r3",
-              "text": "He can’t whisper."
+              "text": "He can’t proofread."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что друг умеет шептать.",
-          "uk": "Скажіть, що друг уміє шепотіти."
+          "ru": "Скажите, что друг умеет вычитывать текст.",
+          "uk": "Скажіть, що друг уміє вичитувати текст."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сервер в офисе",
-        "uk": "Сервер в офісі"
+        "ru": "Брошюра с пометками",
+        "uk": "Брошура з позначками"
       },
       "bodyByLocale": {
-        "ru": "В офис привезли сервер — компьютер для хранения данных и работы сервисов. На коробке не указали владельца. `Whose server is this?` — «Чей это сервер?» Начните с `whose server`, затем добавьте `is this`.",
-        "uk": "В офіс привезли сервер — комп’ютер для зберігання даних і роботи сервісів. На коробці не вказали власника. `Whose server is this?` — «Чий це сервер?» Почніть із `whose server`, потім додайте `is this`."
+        "ru": "После экскурсии на скамейке осталась брошюра с чьими-то пометками. Booklet — «брошюра», небольшое издание из нескольких страниц. Вы хотите вернуть её владельцу. `Whose booklet is this?` — «Чья это брошюра?» Начните с `whose booklet`, затем добавьте `is this`.",
+        "uk": "Після екскурсії на лавці залишилася брошура з чиїмись позначками. Booklet — «брошура», невелике видання з кількох сторінок. Ви хочете повернути її власникові. `Whose booklet is this?` — «Чия це брошура?» Почніть із `whose booklet`, потім додайте `is this`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-14:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег, чей это сервер.",
-          "uk": "Запитайте колег, чий це сервер."
+          "ru": "Спросите участников экскурсии, чья это брошюра.",
+          "uk": "Запитайте учасників екскурсії, чия це брошура."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-14:intro3:r1",
-              "text": "Whose server is this?"
+              "text": "Whose booklet is this?"
             },
             {
               "responseId": "en:lesson-08:session-14:intro3:r2",
-              "text": "Who server is this?"
+              "text": "Who booklet is this?"
             },
             {
               "responseId": "en:lesson-08:session-14:intro3:r3",
-              "text": "Whose server are this?"
+              "text": "Whose booklet are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-14:intro3:r1",
-              "text": "Whose server is this?"
+              "text": "Whose booklet is this?"
             },
             {
               "responseId": "en:lesson-08:session-14:intro3:r2",
-              "text": "Who server is this?"
+              "text": "Who booklet is this?"
             },
             {
               "responseId": "en:lesson-08:session-14:intro3:r3",
-              "text": "Whose server are this?"
+              "text": "Whose booklet are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег, чей это сервер.",
-          "uk": "Запитайте колег, чий це сервер."
+          "ru": "Спросите участников экскурсии, чья это брошюра.",
+          "uk": "Запитайте учасників екскурсії, чия це брошура."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "64f394aab0a4ca6c196ae008d43f6d9d59dab69bfc8ea87d83ac77cb21dbb4c8"
+  "introFingerprint": "305cebc6319fef297fa3a1a7bc183407ad1cb0fdb20bd5525d049fb33172abcb"
 }

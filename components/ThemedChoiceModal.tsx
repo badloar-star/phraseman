@@ -68,13 +68,17 @@ function ThemedChoiceModal({
       style={[styles.sheet, { paddingBottom: Math.max(18, insets.bottom + 10) }]}
     >
       <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-        <BlurView
+        {/* зачем (координатор 18.10, список Сайта; прецедент — интро урока, «свечение текста убери»): на Android dimezis-BlurView без blurTarget снимает экран вместе с текстом панели
+            и кладёт размытую копию под него — ореол у текста. На Android живой блюр выключен; тон, вуаль и кромка ниже остаются, iOS как было. */}
+        {Platform.OS !== 'android' ? (
+          <BlurView
           intensity={Platform.OS === 'android' ? 12 : 22}
           blurReductionFactor={3}
           experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
           tint="systemUltraThinMaterialDark"
           style={StyleSheet.absoluteFill}
         />
+        ) : null}
         <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
         <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0.05, y: 0 }} end={{ x: 0.9, y: 1 }} style={StyleSheet.absoluteFill} />
       </View>

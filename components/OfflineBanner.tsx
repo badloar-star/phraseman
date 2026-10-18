@@ -84,9 +84,13 @@ function OfflineBannerSurface({
   return (
     <View style={[styles.surface, { backgroundColor: cardBg }]}>
       <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-        <BlurView intensity={Platform.OS === 'android' ? 10 : 14} blurReductionFactor={3}
+        {/* зачем (координатор 18.10, список Сайта; прецедент — интро урока, «свечение текста убери»): на Android dimezis-BlurView без blurTarget снимает экран вместе с текстом панели
+            и кладёт размытую копию под него — ореол у текста. На Android живой блюр выключен; тон, вуаль и кромка ниже остаются, iOS как было. */}
+        {Platform.OS !== 'android' ? (
+          <BlurView intensity={Platform.OS === 'android' ? 10 : 14} blurReductionFactor={3}
           experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
           tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+        ) : null}
         <View style={[StyleSheet.absoluteFill, { backgroundColor: cardBg }]} />
         <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
         <View style={[styles.surfaceSheen, { backgroundColor: edge }]} />

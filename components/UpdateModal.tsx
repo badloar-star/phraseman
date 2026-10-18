@@ -95,13 +95,17 @@ type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 function UpdateModalBackground({ glass }: { glass: GlassTokens }) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <BlurView
+      {/* зачем (координатор 18.10, список Сайта; прецедент — интро урока, «свечение текста убери»): на Android dimezis-BlurView без blurTarget снимает экран вместе с текстом панели
+          и кладёт размытую копию под него — ореол у текста. На Android живой блюр выключен; тон, вуаль и кромка ниже остаются, iOS как было. */}
+      {Platform.OS !== 'android' ? (
+        <BlurView
         intensity={Platform.OS === 'android' ? 12 : 20}
         blurReductionFactor={3}
         experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
         tint="systemUltraThinMaterialDark"
         style={StyleSheet.absoluteFill}
       />
+      ) : null}
       <View
         style={[
           StyleSheet.absoluteFill,

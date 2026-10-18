@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "is floating / is not floating; on the surface",
+    "uk": "is floating / is not floating; on the surface"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пробка в чаше",
+        "uk": "Корок у чаші"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии с простыми опытами вы кладёте бутылочную пробку в чашу с неподвижной водой. Cork — «пробка из пробкового материала». Она не тонет: The cork is floating — «Пробка держится на воде». Float здесь — держаться на поверхности, а не активно плыть. В отличие от drift, слово не требует движения по течению. Пробке не нужен ни мотор, ни спасательный круг.",
+        "uk": "На занятті з простими дослідами ви кладете пляшковий корок у чашу з нерухомою водою. Cork — «корок із коркового матеріалу». Він не тоне: The cork is floating — «Корок тримається на воді». Float тут — триматися на поверхні, а не активно плисти. На відміну від drift, слово не вимагає руху за течією. Корку не потрібні ні мотор, ні рятувальний круг."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-31:intro1:r1",
+              "text": "The cork is floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro1:r2",
+              "text": "The cork floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro1:r3",
+              "text": "The cork is float."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-31:intro1:r1",
+              "text": "The cork is floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro1:r2",
+              "text": "The cork floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro1:r3",
+              "text": "The cork is float."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Камешек для прозрачной вазы",
+        "uk": "Камінчик для прозорої вази"
+      },
+      "bodyByLocale": {
+        "ru": "В цветочной мастерской вы выбираете камешек для украшения вазы с водой. Pebble — «небольшой округлый камешек». Этот камешек лежит на дне, не держится наверху. The pebble is not floating — «Камешек не держится на воде». Not после is отрицает floating. Описываем этот видимый камешек, а не объявляем правило для всех камней на свете.",
+        "uk": "У квітковій майстерні ви обираєте камінчик для оздоблення вази з водою. Pebble — «невеликий округлий камінчик». Цей камінчик лежить на дні, не тримається вгорі. The pebble is not floating — «Камінчик не тримається на воді». Not після is заперечує floating. Описуємо цей видимий камінчик, а не оголошуємо правило для всіх каменів у світі."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-31:intro2:r1",
+              "text": "The pebble is not floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro2:r2",
+              "text": "The pebble not floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro2:r3",
+              "text": "The pebble is not float."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-31:intro2:r1",
+              "text": "The pebble is not floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro2:r2",
+              "text": "The pebble not floating."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro2:r3",
+              "text": "The pebble is not float."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что белеет на фотографии",
+        "uk": "Що біліє на фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает снимок пруда и спрашивает, где находится белая пена: под водой или сверху. Foam — «пена», surface — «поверхность». The foam is on the surface — «Пена на поверхности». Мы называем расположение, поэтому после is идёт on the surface, а не форма с -ing. По одному снимку не решаем, откуда взялась пена: отвечаем только на вопрос о месте.",
+        "uk": "Друг показує знімок ставка й запитує, де розташована біла піна: під водою чи зверху. Foam — «піна», surface — «поверхня». The foam is on the surface — «Піна на поверхні». Ми називаємо розташування, тому після is йде on the surface, а не форма з -ing. За одним знімком не вирішуємо, звідки взялася піна: відповідаємо лише на запитання про місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-31:intro3:r1",
+              "text": "The foam is on the surface."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro3:r2",
+              "text": "The foam on the surface."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro3:r3",
+              "text": "The foam are on the surface."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-31:intro3:r1",
+              "text": "The foam is on the surface."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro3:r2",
+              "text": "The foam on the surface."
+            },
+            {
+              "responseId": "en:lesson-09:session-31:intro3:r3",
+              "text": "The foam are on the surface."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6677a292e2f05cc40ea02fdbabe2deb44895c2aa0f8c7419865728b5bbcafc4b"
+}

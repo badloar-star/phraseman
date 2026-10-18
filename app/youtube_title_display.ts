@@ -46,3 +46,8 @@ export function premiereCountdownText(lang: Lang, days: number, hours: number, m
     vi: `Còn ${t}`, id: `Dalam ${t}`, tr: `${t} sonra`, pl: `Za ${t}`,
   });
 }
+
+/* expo-router: app/ files are treated as routes and need a default export (замечание Ревизора по ef7879a33). */
+export default function __YoutubeTitleDisplayRouteShim() {
+  return null;
+}

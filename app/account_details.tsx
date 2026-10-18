@@ -59,6 +59,7 @@ import { onAppEvent } from './events';
 import { captureAccountGeneration } from './account_generation';
 import { animateNextLayoutTransition } from './smooth_layout';
 import { safeRouterBack } from './navigation_back';
+import { ACCOUNT_DIRECT_SWITCH_ENABLED } from './account_direct_switch';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { traceAccountDeleteUi } from './account_delete_ui_trace';
 import { DebugLogger } from './debug-logger';
@@ -194,6 +195,8 @@ export default function AccountDetailsScreen() {
   }, [logoutBusy, navigation, isBlockedByLogout]);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
+  // зачем (правила владельца 3–4, координатор 18.10): окно входа открыто прямым маршрутом «войти под другим аккаунтом» (без стирания) — после входа в B экран берёт имя и дату нового аккаунта
+  const directSwitchRef = useRef(false);
   // зачем (PM-214 «мгновенное открытие», №16): окно входа (2507 строк, 86 хуков, без раннего выхода при visible=false) входило в первый
   // кадр экрана аккаунта. Монтируем его скрытым после кадра и взаимодействий; «Войти» / выход раньше этого монтируют его сразу по visible.
   const [authPromptMounted, setAuthPromptMounted] = useState(false);
@@ -416,7 +419,19 @@ export default function AccountDetailsScreen() {
                   // подтверждения): выход стартует сразу, эффект стадии 'wiping' в AccountLogoutFlow запускает его один раз.
                   // зачем (координатор 18.10): пока идёт выход, строка без onPress — второе нажатие физически невозможно,
                   // справа маленький индикатор вместо шеврона, окна со спиннером нет.
-                  onPress={logoutBusy ? undefined : () => { doHaptic(); setLogoutStage('wiping'); }}
+                  onPress={logoutBusy ? undefined : () => {
+                    doHaptic();
+                    // зачем (правила владельца 3–4, координатор 18.10): при включённом переключателе строка ведёт СРАЗУ к выбору Google/Apple — без стирания и окон подтверждения;
+                    // вход в B делает auth_provider, «Позже» оставляет человека в A. Пока auth_provider не умеет A→B без отказа, переключатель выключен и работает прежний путь.
+                    if (ACCOUNT_DIRECT_SWITCH_ENABLED) {
+                      console.log('[ACC-SWITCH] route=direct → sign-in sheet'); // guard-ok: маршрут без почты и имён
+                      directSwitchRef.current = true;
+                      setAuthPromptVisible(true);
+                      return;
+                    }
+                    console.log('[ACC-SWITCH] route=wipe_then_sign_in'); // guard-ok: маршрут
+                    setLogoutStage('wiping');
+                  }}
                   right={logoutBusy ? <ActivityIndicator testID="account-logout-saving" size="small" color={glass.secondary} /> : undefined}
                 />
               ) : null}
@@ -471,9 +486,17 @@ export default function AccountDetailsScreen() {
       <RegistrationPromptModal
         visible={authPromptVisible}
         context="settings"
-        onClose={() => setAuthPromptVisible(false)}
+        onClose={() => { directSwitchRef.current = false; setAuthPromptVisible(false); }}
         onSignedIn={() => {
           setAuthPromptVisible(false);
+          if (directSwitchRef.current) {
+            // зачем: вошли в другой аккаунт B прямым маршрутом — имя и «С нами с» прежнего A не показываем, дальше имя ведёт снимок (как после выхода)
+            directSwitchRef.current = false;
+            animateNextLayoutTransition();
+            setUserName('');
+            setMemberSinceMs(peekAccountCreatedAtMs());
+            console.log('[ACC-SWITCH] direct sign-in done → screen reset'); // guard-ok: итог без почты и имён
+          }
           void refreshLinkedAuth();
         }}
       />

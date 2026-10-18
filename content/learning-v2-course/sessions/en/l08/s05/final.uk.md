@@ -1,133 +1,149 @@
-# Англійська · Урок 8 · Заняття 5 — Умію перекладати
+# Англійська · Урок 8 · Заняття 5 — Налаштовую й біжу
 
-**Ситуація.** Ви розповідаєте про вміння перекладати й займатися серфінгом, потім шукаєте власника брелока.
+**Ситуація.** Ви налаштовуєте гітару й біжите на автобус, ваша сестра добре заплітає коси, а в кафе на стільці лишився чийсь джемпер.
 
-**Що ви опануєте:** закріпити can для вмінь і повторити запитання «чий?»
-**Нові слова:** translate
+**Що ви опануєте:** говорити про вміння з can
+**Нові слова:** tune, braid, jumper, sprint
+**Повертаються:** guitar, piano, bus, door, planner, wristwatch
 
 ---
 
 ## Інтро 1
 
-### Допоможу з перекладом
+### Гітара для вечора
 
-Друг показує текст іншою мовою й запитує, чи вмієте ви перекладати. `Translate` — «перекладати з однієї мови іншою». `I can translate` — «Я вмію перекладати». Після `can` потрібне `translate`, без `to` й закінчення `s`. Це переклад слів, а не переказ грошей: номер картки не знадобиться.
+Друг приніс на домашній вечір гітару, але струни звучать фальшиво, і грати неможливо. Він питає, чи зможете ви допомогти. tune — «налаштовувати». Ви налаштовуєте гітару на слух, тому відповідаєте: I can tune the guitar — «Я вмію налаштовувати гітару».
 
-**Скажіть другові про своє вміння.**
+**Друг просить налаштувати гітару. Скажіть йому: «Я вмію налаштовувати гітару».**
 
-- ✅ **I can translate.**
-- ❌ I can to translate. — *Після `can` потрібне `translate`, без `to`.*
-- ❌ I can translates. — *Після `can` потрібне `translate`, без `s`.*
+- ✅ **I can tune the guitar.**
+- ❌ I can to tune the guitar. — *Після can слово tune йде без to.*
+- ❌ I can tunes the guitar. — *Після can потрібно tune, без s.*
 
 ---
 
 ## Інтро 2
 
-### Вона вміє кататися по хвилях
+### Коса до свята
 
-Ви обговорюєте відпочинок на морі. Друг запитує, чи вміє ваша знайома займатися серфінгом. `She can surf` — «Вона вміє займатися серфінгом». `Can` не змінюється після `she`; після нього потрібне `surf`, без закінчення `s`.
+У школі завтра ранкове свято, і в племінниці має бути гарна коса. Подруга питає, хто допоможе, і ви згадуєте про сестру. braid — «заплітати косу». Сестра робить це швидко й дуже акуратно: She can braid well — «Вона вміє добре заплітати коси».
 
-**Розкажіть про вміння знайомої.**
+**Подруга питає про сестру. Скажіть їй: «Вона вміє добре заплітати коси».**
 
-- ✅ **She can surf.**
-- ❌ She cans surf. — *Після `she` потрібне `can`, без `s`.*
-- ❌ She can surfs. — *Після `can` потрібне `surf`, без `s`.*
+- ✅ **She can braid well.**
+- ❌ She can braids well. — *Після can потрібно braid, без s.*
+- ❌ She cans braid well. — *Після she залишається can, без s.*
 
 ---
 
 ## Інтро 3
 
-### Чий брелок
+### Джемпер на стільці
 
-Після зустрічі на столі залишився брелок. Ви хочете повернути його власникові. `Whose keychain is this?` — «Чий це брелок?» Спочатку `whose keychain` — «чий брелок», потім `is this`.
+Ви з колегою спокійно допили каву в кафе й збираєтеся йти. За сусіднім столом компанія вже пішла, а на стільці лишився джемпер. У британській англійській jumper — «джемпер». Ви питаєте в колеги: Whose jumper is this — «Чий це джемпер?». Jumper — іменник в однині, тому тут is this.
 
-**Запитайте учасників зустрічі, чий це брелок.**
+**Ви помітили джемпер на стільці. Спитайте колегу: «Чий це джемпер?»**
 
-- ✅ **Whose keychain is this?**
-- ❌ Who keychain is this? — *Для «чий» потрібне `whose`, а не `who`.*
-- ❌ Whose keychain are this? — *Брелок один: потрібне `is this`.*
+- ✅ **Whose jumper is this?**
+- ❌ Whose jumper are these? — *Jumper — однина: потрібно is this.*
+- ❌ Whose is jumper this? — *Спочатку whose jumper, потім is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я вмію перекладати»**
+**1 · Картка слова — tune**
+<!-- interaction_id: en:lesson-08:session-05:word:tune; family: word_card -->
+> **tune** — налаштовувати. I can tune the guitar. — «Я вмію налаштовувати гітару». Робити так, щоб звук був правильним.
+
+**2 · Друг просить налаштувати гітару. Скажіть йому: «Я вмію налаштовувати гітару».**
 <!-- interaction_id: en:lesson-08:session-05:i01; family: phrase_builder -->
-Плитки: `translate` `can` `I` → **I can translate.**
+Плитки: `guitar` `the` `tune` `can` `I` → **I can tune the guitar.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте друга**
 <!-- interaction_id: en:lesson-08:session-05:i02; family: listen_choose -->
-🔊 *translate* → **translate** · surf · type
-- surf — *У записі перше слово — `translate`, а в цьому варіанті — `surf`.*
-- type — *У записі перше слово — `translate`, а в цьому варіанті — `type`.*
+🔊 *I can tune the guitar.* → **I can tune the guitar.** · She can tune the guitar. · I can tune the piano.
+- She can tune the guitar. — *У записі перше слово — `I`, я, а в цьому варіанті — `She`, вона.*
+- I can tune the piano. — *У записі останнє слово — `guitar`, гітара, а в цьому варіанті — `piano`, піаніно.*
 
-**3 · Скажіть «Я вмію перекладати»**
+**4 · Друг просить налаштувати гітару. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-05:i03; family: context_gap_grammar -->
-I can ___. → **translate** · to translate · translates
-- to translate — *Після `can` потрібне `translate`, без `to`.*
-- translates — *Після `can` потрібне `translate`, без `s`.*
+I can ___ the guitar. → **tune** · tunes · to tune
+- tunes — *Після `can` потрібно `tune`, без `s`.*
+- to tune — *Після `can` потрібно `tune`, без `to`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-05:i04; family: speed_match -->
-translate — перекладати іншою мовою · supermarket — супермаркет · keychain — брелок · shift — робоча зміна
+tune — налаштовувати · piano — піаніно · bus — автобус · guitar — гітара
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — braid**
+<!-- interaction_id: en:lesson-08:session-05:word:braid; family: word_card -->
+> **braid** — заплітати косу. She can braid well. — «Вона вміє добре заплітати коси». Переплітати пасма в косу.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-05:i05; family: listen_build_dictation -->
-🔊 *I can translate.* Плитки: `translate` `can` `I` → **I can translate.**
+🔊 *She can braid well.* Плитки: `well` `braid` `can` `She` → **She can braid well.**
 
-**6 · Скажіть про знайому «Вона вміє займатися серфінгом»**
+**8 · Подруга питає про сестру. Скажіть їй: «Вона вміє добре заплітати коси».**
 <!-- interaction_id: en:lesson-08:session-05:i06; family: phrase_builder -->
-Плитки: `surf` `can` `She` → **She can surf.**
+Плитки: `well` `braid` `can` `She` → **She can braid well.**
 
-**7 · Запитайте учасників зустрічі «Чий це брелок?»**
+**9 · Картка слова — jumper**
+<!-- interaction_id: en:lesson-08:session-05:word:jumper; family: word_card -->
+> **jumper** — джемпер. Whose jumper is this? — «Чий це джемпер?». Тепла в’язана кофта без застібки.
+
+**10 · Ви помітили джемпер на стільці. Спитайте колегу: «Чий це джемпер?»**
 <!-- interaction_id: en:lesson-08:session-05:i07; family: scripted_repeat_compare -->
-🎙 **Whose keychain is this?**
+🎙 **Whose jumper is this?**
 
-**8 · Скажіть «Вона вміє займатися серфінгом»**
+**11 · Подруга питає про сестру. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-05:i08; family: context_gap_grammar -->
-She can ___. → **surf** · surfs · to surf
-- surfs — *Після `can` потрібне `surf`, без `s`.*
-- to surf — *Після `can` потрібне `surf`, без `to`.*
+She can ___ well. → **braid** · braids · to braid
+- braids — *Після `can` потрібно `braid`, без `s`.*
+- to braid — *Після `can` потрібно `braid`, без `to`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте колегу**
 <!-- interaction_id: en:lesson-08:session-05:i09; family: listen_choose -->
-🔊 *I can translate.* → **I can translate.** · I can surf. · I can type.
-- I can surf. — *У записі останнє слово — `translate`, а в цьому варіанті — `surf`.*
-- I can type. — *У записі останнє слово — `translate`, а в цьому варіанті — `type`.*
+🔊 *Whose jumper is this?* → **Whose jumper is this?** · Whose planner is this? · Whose wristwatch is this?
+- Whose planner is this? — *У записі друге слово — `jumper`, джемпер, а в цьому варіанті — `planner`, щоденник.*
+- Whose wristwatch is this? — *У записі друге слово — `jumper`, джемпер, а в цьому варіанті — `wristwatch`, наручний годинник.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-05:i10; family: speed_match -->
-surf — займатися серфінгом · translate — перекладати іншою мовою · supermarket — супермаркет · shift — робоча зміна
+braid — заплітати · jumper — джемпер · guitar — гітара · bus — автобус
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-05:i11; family: listen_build_dictation -->
-🔊 *Whose keychain is this?* Плитки: `this` `is` `keychain` `Whose` → **Whose keychain is this?**
+🔊 *Whose jumper is this?* Плитки: `this` `is` `jumper` `Whose` → **Whose jumper is this?**
 
-**12 · Друг запитує про вашу роботу. Скажіть «Я працюю в супермаркеті»**
+**15 · Картка слова — sprint**
+<!-- interaction_id: en:lesson-08:session-05:word:sprint; family: word_card -->
+> **sprint** — бігти щодуху. I can sprint to the bus. — «Я можу швидко добігти до автобуса». Дуже швидко бігти на коротку відстань.
+
+**16 · Автобус уже під’їжджає. Скажіть другові: «Я можу швидко добігти до автобуса».**
 <!-- interaction_id: en:lesson-08:session-05:i12; family: phrase_builder -->
-Плитки: `supermarket` `a` `in` `work` `I` → **I work in a supermarket.**
+Плитки: `bus` `the` `to` `sprint` `can` `I` → **I can sprint to the bus.**
 
-**13 · Друг запитує про відпочинок на морі. Скажіть «Я часто займаюся серфінгом»**
+**17 · Подруга питає про вашого брата. Скажіть: «Він уміє швидко бігати». Використайте sprint.**
 <!-- interaction_id: en:lesson-08:session-05:i13; family: scripted_repeat_compare -->
-🎙 **I often surf.**
+🎙 **He can sprint.**
 
-**14 · Скажіть «Вона вміє перекладати»**
+**18 · Автобус під’їжджає. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-05:i14; family: context_gap_grammar -->
-She ___ translate. → **can** · cans · is can
-- cans — *`Can` не змінюється після `she`: закінчення `s` не потрібне.*
-- is can — *Достатньо `she can`; `is` не потрібне.*
+I can ___ to the bus. → **sprint** · sprints · to sprint
+- sprints — *Після `can` потрібно `sprint`, без `s`.*
+- to sprint — *Після `can` потрібно `sprint`, без `to`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте друга**
 <!-- interaction_id: en:lesson-08:session-05:i15; family: listen_choose -->
-🔊 *Where is the supermarket?* → **Where is the supermarket?** · Where is the bank? · Where is the pharmacy?
-- Where is the bank? — *У записі останнє слово — `supermarket`, а в цьому варіанті — `bank`.*
-- Where is the pharmacy? — *У записі останнє слово — `supermarket`, а в цьому варіанті — `pharmacy`.*
+🔊 *I can sprint to the bus.* → **I can sprint to the bus.** · He can sprint to the bus. · I can sprint to the door.
+- He can sprint to the bus. — *У записі перше слово — `I`, я, а в цьому варіанті — `He`, він.*
+- I can sprint to the door. — *У записі останнє слово — `bus`, автобус, а в цьому варіанті — `door`, двері.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-05:i16; family: speed_match -->
-translate — перекладати іншою мовою · keychain — брелок · shift — робоча зміна · surf — займатися серфінгом
+tune — налаштовувати · braid — заплітати · jumper — джемпер · sprint — бігти щодуху
 
-**17 · Колега запитує, чи вміє Том перекладати тексти. Скажіть «Том уміє перекладати»**
+**21 · Друг питає про вашу сестру. Скажіть: «Вона вміє налаштовувати гітару й добре заплітати коси».**
 <!-- interaction_id: en:lesson-08:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can translate.**
-
+🎙 **She can tune the guitar and braid well.**

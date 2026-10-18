@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-08:session-05:word:tune",
+    "correctText": "tune",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-05:i01",
-    "correctText": "I can translate.",
+    "correctText": "I can tune the guitar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i02",
-    "correctText": "translate",
+    "correctText": "I can tune the guitar.",
     "correctResponseId": "en:lesson-08:session-05:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-05:i03",
-    "correctText": "translate",
+    "correctText": "tune",
     "correctResponseId": "en:lesson-08:session-05:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-05:i04",
-    "correctText": "en:lesson-08:session-05:i04:p1=translate\nen:lesson-08:session-05:i04:p2=supermarket\nen:lesson-08:session-05:i04:p3=keychain\nen:lesson-08:session-05:i04:p4=shift",
+    "correctText": "en:lesson-08:session-05:i04:p1=tune\nen:lesson-08:session-05:i04:p2=piano\nen:lesson-08:session-05:i04:p3=bus\nen:lesson-08:session-05:i04:p4=guitar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-05:word:braid",
+    "correctText": "braid",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i05",
-    "correctText": "I can translate.",
+    "correctText": "She can braid well.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i06",
-    "correctText": "She can surf.",
+    "correctText": "She can braid well.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-05:word:jumper",
+    "correctText": "jumper",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i07",
-    "correctText": "Whose keychain is this?",
+    "correctText": "Whose jumper is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i08",
-    "correctText": "surf",
+    "correctText": "braid",
     "correctResponseId": "en:lesson-08:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-05:i09",
-    "correctText": "I can translate.",
+    "correctText": "Whose jumper is this?",
     "correctResponseId": "en:lesson-08:session-05:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-05:i10",
-    "correctText": "en:lesson-08:session-05:i10:p1=surf\nen:lesson-08:session-05:i10:p2=translate\nen:lesson-08:session-05:i10:p3=supermarket\nen:lesson-08:session-05:i10:p4=shift",
+    "correctText": "en:lesson-08:session-05:i10:p1=braid\nen:lesson-08:session-05:i10:p2=jumper\nen:lesson-08:session-05:i10:p3=guitar\nen:lesson-08:session-05:i10:p4=bus",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i11",
-    "correctText": "Whose keychain is this?",
+    "correctText": "Whose jumper is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-05:word:sprint",
+    "correctText": "sprint",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i12",
-    "correctText": "I work in a supermarket.",
+    "correctText": "I can sprint to the bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i13",
-    "correctText": "I often surf.",
+    "correctText": "He can sprint.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i14",
-    "correctText": "can",
+    "correctText": "sprint",
     "correctResponseId": "en:lesson-08:session-05:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-05:i15",
-    "correctText": "Where is the supermarket?",
+    "correctText": "I can sprint to the bus.",
     "correctResponseId": "en:lesson-08:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-05:i16",
-    "correctText": "en:lesson-08:session-05:i16:p1=translate\nen:lesson-08:session-05:i16:p2=keychain\nen:lesson-08:session-05:i16:p3=shift\nen:lesson-08:session-05:i16:p4=surf",
+    "correctText": "en:lesson-08:session-05:i16:p1=tune\nen:lesson-08:session-05:i16:p2=braid\nen:lesson-08:session-05:i16:p3=jumper\nen:lesson-08:session-05:i16:p4=sprint",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-05:i17",
-    "correctText": "Tom can translate.",
+    "correctText": "She can tune the guitar and braid well.",
     "correctResponseId": null
   }
 ]

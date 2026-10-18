@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useRef } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { PixelRatio, StyleSheet, Text, View } from 'react-native';
+import type { LayoutChangeEvent, TextLayoutEvent } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
@@ -101,7 +102,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
               ) : null}
             </View>
             {/* зачем: плитка 72 dp, подпись не должна ломаться при крупном шрифте; потолок роста кегля 1,05, не ужатие ([LABEL-FIT] 18.10, решение координатора) */}
-            <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05}>{tile.title}</Text>
+            <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
           </V2Pressable>
         ))}
       </View>
@@ -124,12 +125,36 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             {/* зачем (координатор 15.10): основа + необязательный слой .accent в цвет темы (tile.artAccent из того же resolve); без слоя — один Image, как раньше */}
             <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.artImage} />
           </View>
-          <Text style={[s.title, { color: p.text }]}>{tile.title}</Text>
+          {/* зачем (Сверка font13, home_es_13_light: на живом кадре при шрифте 1,3 «Lecciones» рвалось «Leccione/s» — боевая ветка плиток этот Text, а не iconTitle): потолок роста кегля 1,05 (16→16,8 dp, слово ≈81 из 87 dp), не ужатие; цифры — [TILE-LABEL] */}
+          <Text style={[s.title, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
         </V2Pressable>
       ))}
     </View>
   );
 }, (prev, next) => prev.pressRef === next.pressRef && prev.spireLang === next.spireLang && prev.uiLang === next.uiLang && sameTileData(prev.tiles, next.tiles));
+
+// зачем (координатор 18.10, Сверка font13: на es при шрифте 1,3 «Lecciones» рвётся «Leccione/s»; правило «сперва логи»): фактическая ширина слова и плитки, fontScale,
+// итоговый множитель, число строк — чтобы чинить по цифрам, а не по догадке. Снять после починки; [TILE-LABEL] — префикс для grep.
+const TILE_LABEL_CAP = 1.05;
+const tileLabelBox = new Map<string, number>();
+function logTileLabel(kind: 'box' | 'lines', tile: HomeFeatureTile, lang: string, e: LayoutChangeEvent | TextLayoutEvent): void {
+  try {
+    if (kind === 'box') {
+      const w = (e as LayoutChangeEvent).nativeEvent.layout.width;
+      tileLabelBox.set(tile.key, w);
+      console.log('[TILE-LABEL] box', JSON.stringify({ key: tile.key, lang, title: tile.title, boxWidth: Math.round(w * 10) / 10 }));
+      return;
+    }
+    const lines = (e as TextLayoutEvent).nativeEvent.lines;
+    const fontScale = PixelRatio.getFontScale();
+    console.log('[TILE-LABEL] lines', JSON.stringify({
+      key: tile.key, lang, title: tile.title, fontScale, effectiveMultiplier: Math.min(fontScale, TILE_LABEL_CAP),
+      numberOfLines: lines.length, brokenMidWord: lines.length > 1 && !tile.title.includes(' '), lineTexts: lines.map((l) => l.text), lineWidths: lines.map((l) => Math.round(l.width * 10) / 10), boxWidth: tileLabelBox.get(tile.key) ?? null,
+    }));
+  } catch (err) {
+    console.warn('[TILE-LABEL] log failed', String(err)); // зачем: даже диагностика не глотает причину молча
+  }
+}
 
 const s = StyleSheet.create({
   // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются

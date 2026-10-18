@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-04:i01",
+      "interactionId": "en:lesson-07:session-04:word:menu",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — menu",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:word:menu:audio"
+      ],
+      "accessibilityLabel": "Картка слова — menu",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:word:menu:audio",
+          "transcript": "menu"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:word:menu:r1",
+            "targetText": "menu",
+            "meaningByLocale": {
+              "ru": "меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.",
+              "uk": "меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "menu",
+          "definitionByLocale": {
+            "ru": "меню. The menu is on the table. — «Меню на столе». Список блюд и напитков в кафе.",
+            "uk": "меню. The menu is on the table. — «Меню на столі». Список страв і напоїв у кафе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Ви носите окуляри?»",
+      "prompt": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Ви носите окуляри?»",
+      "accessibilityLabel": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you wear glasses?",
+        "targetPhrase": "Do you have a menu?",
         "localizedMeaning": {
-          "ru": "Спросите «Вы носите очки?»",
-          "uk": "Запитайте «Ви носите окуляри?»"
+          "ru": "Вы сели за столик без меню. Спросите сотрудника: «У вас есть меню?»",
+          "uk": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "wear",
-          "glasses"
+          "have",
+          "a",
+          "menu"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви сіли за столик без меню. Спитайте працівника: «У вас є меню?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a menu?`",
+              "uk": "тут потрібно `Do` — `Do you have a menu?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-04:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-04:word:bill",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — bill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:word:bill:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:word:bill:audio",
+          "transcript": "bill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:word:bill:r1",
+            "targetText": "bill",
+            "meaningByLocale": {
+              "ru": "счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.",
+              "uk": "рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bill",
+          "definitionByLocale": {
+            "ru": "счёт. The bill is on the table. — «Счёт на столе». Бумага с суммой, которую нужно заплатить в кафе.",
+            "uk": "рахунок. The bill is on the table. — «Рахунок на столі». Папір із сумою, яку треба заплатити в кафе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-04:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте працівника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-04:i02:r1",
-          "text": "glasses"
+          "text": "We have a menu."
         },
         {
           "responseId": "en:lesson-07:session-04:i02:r2",
-          "text": "curtain"
+          "text": "We have a bill."
         },
         {
           "responseId": "en:lesson-07:session-04:i02:r3",
-          "text": "receipt"
+          "text": "They have a menu."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте працівника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i02:audio",
-          "transcript": "glasses"
+          "transcript": "We have a menu."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-04:i02:r1",
-            "targetText": "glasses",
+            "targetText": "We have a menu.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-04:i02:r2",
-            "targetText": "curtain",
+            "targetText": "We have a bill.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-04:i02:r3",
-            "targetText": "receipt",
+            "targetText": "They have a menu.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +190,19 @@
           {
             "responseId": "en:lesson-07:session-04:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте працівника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `glasses`, а в этом варианте — `curtain`.",
-              "uk": "У записі перше слово — `glasses`, а в цьому варіанті — `curtain`."
+              "ru": "В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.",
+              "uk": "У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок."
             }
           },
           {
             "responseId": "en:lesson-07:session-04:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте працівника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `glasses`, а в этом варианте — `receipt`.",
-              "uk": "У записі перше слово — `glasses`, а в цьому варіанті — `receipt`."
+              "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
             }
           }
         ],
@@ -113,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-04:word:waiter",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — waiter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:word:waiter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — waiter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:word:waiter:audio",
+          "transcript": "waiter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:word:waiter:r1",
+            "targetText": "waiter",
+            "meaningByLocale": {
+              "ru": "официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.",
+              "uk": "офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waiter",
+          "definitionByLocale": {
+            "ru": "официант. The waiter is near the table. — «Официант рядом со столом». Человек, который приносит еду и напитки к столу.",
+            "uk": "офіціант. The waiter is near the table. — «Офіціант біля столу». Людина, яка приносить їжу й напої до столу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-04:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Вони носять окуляри?»",
+      "prompt": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-04:i03:r1",
-          "text": "wear"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-07:session-04:i03:r2",
-          "text": "wears"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-07:session-04:i03:r3",
-          "text": "are wear"
+          "text": "are have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Вони носять окуляри?»",
+      "accessibilityLabel": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Они носят очки?»",
-          "uk": "Запитайте «Вони носять окуляри?»"
+          "ru": "Спросите о маленьком кафе: «У них есть официант?». Выберите слово",
+          "uk": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово"
         },
-        "gappedTargetPhrase": "Do they ___ glasses?",
+        "gappedTargetPhrase": "Do they ___ a waiter?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-04:i03:r1",
-            "text": "wear"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-07:session-04:i03:r2",
-            "text": "wears"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-07:session-04:i03:r3",
-            "text": "are wear"
+            "text": "are have"
           }
         ],
-        "testedDimension": "Запитайте «Вони носять окуляри?»",
+        "testedDimension": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-04:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Вони носять окуляри?»",
+            "testedDimension": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Do they` нужно `wear`.",
-              "uk": "Після `Do they` потрібне `wear`."
+              "ru": "После `Do they` нужно `have`, без изменений.",
+              "uk": "Після `Do they` потрібно `have`, без змін."
             }
           },
           {
             "responseId": "en:lesson-07:session-04:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Вони носять окуляри?»",
+            "testedDimension": "Спитайте про маленьке кафе: «У них є офіціант?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do they wear?`, без `are`.",
-              "uk": "Потрібно `Do they wear?`, без `are`."
+              "ru": "Нужно `Do they have`, без `are`.",
+              "uk": "Потрібно `Do they have`, без `are`."
             }
           }
         ]
@@ -183,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-04:i04:p1",
-            "target": "glasses",
+            "target": "menu",
             "meaningByLocale": {
-              "ru": "очки",
-              "uk": "окуляри"
+              "ru": "меню",
+              "uk": "меню"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i04:p2",
-            "target": "wear",
+            "target": "bill",
             "meaningByLocale": {
-              "ru": "носить одежду на себе",
-              "uk": "носити одяг на собі"
+              "ru": "счёт",
+              "uk": "рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i04:p3",
-            "target": "bag",
+            "target": "waiter",
             "meaningByLocale": {
-              "ru": "сумка",
-              "uk": "сумка"
+              "ru": "официант",
+              "uk": "офіціант"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i04:p4",
-            "target": "curtain",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "занавеска",
-              "uk": "завіска"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
         "leftColumn": [
-          "glasses",
-          "wear",
-          "bag",
-          "curtain"
+          "menu",
+          "bill",
+          "waiter",
+          "work"
         ],
         "rightColumn": [
-          "окуляри",
-          "носити одяг на собі",
-          "сумка",
-          "завіска"
+          "меню",
+          "рахунок",
+          "офіціант",
+          "працювати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,33 +398,46 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте подругу й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте подругу й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i05:audio",
-          "transcript": "Do you wear glasses?"
+          "transcript": "Do the waiters work here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you wear glasses?",
+        "hiddenTargetPhrase": "Do the waiters work here?",
         "orderedTokens": [
           "Do",
-          "you",
-          "wear",
-          "glasses"
+          "the",
+          "waiters",
+          "work",
+          "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do the waiters work here?`",
+              "uk": "тут потрібно `Do` — `Do the waiters work here?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -292,30 +447,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте друга про батьків «Вони носять окуляри?»",
+      "prompt": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте друга про батьків «Вони носять окуляри?»",
+      "accessibilityLabel": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do they wear glasses?",
+        "targetPhrase": "Do they have waiters?",
         "localizedMeaning": {
-          "ru": "Спросите друга о родителях «Они носят очки?»",
-          "uk": "Запитайте друга про батьків «Вони носять окуляри?»"
+          "ru": "Друг советует кафе у реки. Спросите: «У них есть официанты?»",
+          "uk": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»"
         },
         "orderedTokens": [
           "Do",
           "they",
-          "wear",
-          "glasses"
+          "have",
+          "waiters"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг радить кафе біля річки. Спитайте: «У них є офіціанти?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they have waiters?`",
+              "uk": "тут потрібно `Do` — `Do they have waiters?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +492,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви перевірили стіл. Повідомте «Тут немає окулярів»",
+      "prompt": "Ви поїли й хочете заплатити, але на столі порожньо. Скажіть подрузі: «Тут немає рахунку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i07:audio"
       ],
-      "accessibilityLabel": "Ви перевірили стіл. Повідомте «Тут немає окулярів»",
+      "accessibilityLabel": "Ви поїли й хочете заплатити, але на столі порожньо. Скажіть подрузі: «Тут немає рахунку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i07:audio",
-          "transcript": "There are no glasses here."
+          "transcript": "There is no bill here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are no glasses here.",
+        "targetPhrase": "There is no bill here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,12 +524,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-04:word:cash",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-04:word:cash:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-04:word:cash:audio",
+          "transcript": "cash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-04:word:cash:r1",
+            "targetText": "cash",
+            "meaningByLocale": {
+              "ru": "наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.",
+              "uk": "готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cash",
+          "definitionByLocale": {
+            "ru": "наличные деньги. I have cash. — «У меня есть наличные». Бумажные деньги и монеты, не карта.",
+            "uk": "готівка. I have cash. — «У мене є готівка». Паперові гроші та монети, не картка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-04:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перед виходом запитайте друга «У тебе є сумка?»",
+      "prompt": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-04:i08:r1",
@@ -379,14 +589,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед виходом запитайте друга «У тебе є сумка?»",
+      "accessibilityLabel": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перед выходом спросите друга «У тебя есть сумка?»",
-          "uk": "Перед виходом запитайте друга «У тебе є сумка?»"
+          "ru": "Спросите подругу: «У тебя есть наличные?». Выберите слово",
+          "uk": "Спитайте подругу: «У тебе є готівка?». Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you have a bag?",
+        "gappedTargetPhrase": "___ you have cash?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-04:i08:r1",
@@ -401,24 +611,24 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Перед виходом запитайте друга «У тебе є сумка?»",
+        "testedDimension": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-04:i08:r2",
             "correct": false,
-            "testedDimension": "Перед виходом запитайте друга «У тебе є сумка?»",
+            "testedDimension": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you have?`, без `are`.",
-              "uk": "Потрібно `Do you have?`, без `are`."
+              "ru": "С `have` нужно `Do you have`, без `Are`.",
+              "uk": "З `have` потрібно `Do you have`, без `Are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-04:i08:r3",
             "correct": false,
-            "testedDimension": "Перед виходом запитайте друга «У тебе є сумка?»",
+            "testedDimension": "Спитайте подругу: «У тебе є готівка?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `you have` здесь нужно `Do`.",
-              "uk": "З `you have` тут потрібне `Do`."
+              "ru": "С `you` нужно `Do`, а `Is` сюда не подходит.",
+              "uk": "З `you` потрібно `Do`, а `Is` сюди не пасує."
             }
           }
         ]
@@ -427,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, про що запитує колега",
+      "prompt": "Послухайте питання подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-04:i09:r1",
-          "text": "Do you wear glasses?"
+          "text": "Do you have a menu?"
         },
         {
           "responseId": "en:lesson-07:session-04:i09:r2",
-          "text": "Do you wear hats?"
+          "text": "Do you have a bill?"
         },
         {
           "responseId": "en:lesson-07:session-04:i09:r3",
-          "text": "Do you wear uniforms?"
+          "text": "Do they have a menu?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, про що запитує колега",
+      "accessibilityLabel": "Послухайте питання подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i09:audio",
-          "transcript": "Do you wear glasses?"
+          "transcript": "Do you have a menu?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-04:i09:r1",
-            "targetText": "Do you wear glasses?",
+            "targetText": "Do you have a menu?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-04:i09:r2",
-            "targetText": "Do you wear hats?",
+            "targetText": "Do you have a bill?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-04:i09:r3",
-            "targetText": "Do you wear uniforms?",
+            "targetText": "Do they have a menu?",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +690,19 @@
           {
             "responseId": "en:lesson-07:session-04:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, про що запитує колега",
+            "testedDimension": "Послухайте питання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `glasses`, а в этом варианте — `hats`.",
-              "uk": "У записі останнє слово — `glasses`, а в цьому варіанті — `hats`."
+              "ru": "В записи последнее слово — `menu`, меню, а в этом варианте — `bill`, счёт.",
+              "uk": "У записі останнє слово — `menu`, меню, а в цьому варіанті — `bill`, рахунок."
             }
           },
           {
             "responseId": "en:lesson-07:session-04:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, про що запитує колега",
+            "testedDimension": "Послухайте питання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `glasses`, а в этом варианте — `uniforms`.",
-              "uk": "У записі останнє слово — `glasses`, а в цьому варіанті — `uniforms`."
+              "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+              "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
             }
           }
         ],
@@ -503,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -517,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-04:i10:p1",
-            "target": "receipt",
+            "target": "bill",
             "meaningByLocale": {
-              "ru": "чек",
-              "uk": "чек"
+              "ru": "счёт",
+              "uk": "рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i10:p2",
-            "target": "glasses",
+            "target": "cash",
             "meaningByLocale": {
-              "ru": "очки",
-              "uk": "окуляри"
+              "ru": "наличные деньги",
+              "uk": "готівка"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i10:p3",
-            "target": "bag",
+            "target": "menu",
             "meaningByLocale": {
-              "ru": "сумка",
-              "uk": "сумка"
+              "ru": "меню",
+              "uk": "меню"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i10:p4",
-            "target": "curtain",
+            "target": "waiter",
             "meaningByLocale": {
-              "ru": "занавеска",
-              "uk": "завіска"
+              "ru": "официант",
+              "uk": "офіціант"
             }
           }
         ],
         "leftColumn": [
-          "receipt",
-          "glasses",
-          "bag",
-          "curtain"
+          "bill",
+          "cash",
+          "menu",
+          "waiter"
         ],
         "rightColumn": [
-          "чек",
-          "окуляри",
-          "сумка",
-          "завіска"
+          "рахунок",
+          "готівка",
+          "меню",
+          "офіціант"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,34 +786,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте друга й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте друга й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i11:audio",
-          "transcript": "Do they have a receipt?"
+          "transcript": "Do they have cash?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do they have a receipt?",
+        "hiddenTargetPhrase": "Do they have cash?",
         "orderedTokens": [
           "Do",
           "they",
           "have",
-          "a",
-          "receipt"
+          "cash"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте друга й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they have cash?`",
+              "uk": "тут потрібно `Do` — `Do they have cash?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -613,31 +834,43 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг несе покупки в руках. Запитайте «У тебе є сумка?»",
+      "prompt": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг несе покупки в руках. Запитайте «У тебе є сумка?»",
+      "accessibilityLabel": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a bag?",
+        "targetPhrase": "Do they have a menu?",
         "localizedMeaning": {
-          "ru": "Друг несёт покупки в руках. Спросите «У тебя есть сумка?»",
-          "uk": "Друг несе покупки в руках. Запитайте «У тебе є сумка?»"
+          "ru": "Друг ждёт вас у кафе. Спросите: «У них есть меню?»",
+          "uk": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»"
         },
         "orderedTokens": [
           "Do",
-          "you",
+          "they",
           "have",
           "a",
-          "bag"
+          "menu"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-04:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг чекає на вас біля кафе. Спитайте: «У них є меню?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they have a menu?`",
+              "uk": "тут потрібно `Do` — `Do they have a menu?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -647,25 +880,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг допомагає батькам повернути покупку. Запитайте «У них є чек?»",
+      "prompt": "Друг розповідає про нове кафе. Спитайте: «У них тут є офіціанти?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i13:audio"
       ],
-      "accessibilityLabel": "Друг допомагає батькам повернути покупку. Запитайте «У них є чек?»",
+      "accessibilityLabel": "Друг розповідає про нове кафе. Спитайте: «У них тут є офіціанти?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i13:audio",
-          "transcript": "Do they have a receipt?"
+          "transcript": "Do they have waiters here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do they have a receipt?",
+        "targetPhrase": "Do they have waiters here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -680,19 +913,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут немає окулярів»",
+      "prompt": "Скажіть подрузі, що рахунку немає. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-04:i14:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-07:session-04:i14:r2",
-          "text": "is"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-07:session-04:i14:r3",
@@ -701,46 +934,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут немає окулярів»",
+      "accessibilityLabel": "Скажіть подрузі, що рахунку немає. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет очков»",
-          "uk": "Повідомте «Тут немає окулярів»"
+          "ru": "Скажите подруге, что счёта нет. Выберите слово",
+          "uk": "Скажіть подрузі, що рахунку немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no glasses here.",
+        "gappedTargetPhrase": "There ___ no bill here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-04:i14:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-07:session-04:i14:r2",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-07:session-04:i14:r3",
             "text": "am"
           }
         ],
-        "testedDimension": "Повідомте «Тут немає окулярів»",
+        "testedDimension": "Скажіть подрузі, що рахунку немає. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-04:i14:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає окулярів»",
+            "testedDimension": "Скажіть подрузі, що рахунку немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `glasses` нужно `are`.",
-              "uk": "З `glasses` потрібне `are`."
+              "ru": "Слово bill стоит в единственном числе: нужно `There is no`.",
+              "uk": "Слово bill стоїть в однині: потрібно `There is no`."
             }
           },
           {
             "responseId": "en:lesson-07:session-04:i14:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає окулярів»",
+            "testedDimension": "Скажіть подрузі, що рахунку немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There are no`; `am` подходит к `I`.",
-              "uk": "Потрібно `There are no`; `am` підходить до `I`."
+              "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -749,51 +982,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, яку річ шукає друг",
+      "prompt": "Послухайте питання про кафе",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-04:i15:r1",
-          "text": "Do you have a receipt?"
+          "text": "Do they have waiters here?"
         },
         {
           "responseId": "en:lesson-07:session-04:i15:r2",
-          "text": "Do you have a bag?"
+          "text": "Do they have waiters there?"
         },
         {
           "responseId": "en:lesson-07:session-04:i15:r3",
-          "text": "Do you have a curtain?"
+          "text": "Do they have menus here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, яку річ шукає друг",
+      "accessibilityLabel": "Послухайте питання про кафе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i15:audio",
-          "transcript": "Do you have a receipt?"
+          "transcript": "Do they have waiters here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-04:i15:r1",
-            "targetText": "Do you have a receipt?",
+            "targetText": "Do they have waiters here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-04:i15:r2",
-            "targetText": "Do you have a bag?",
+            "targetText": "Do they have waiters there?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-04:i15:r3",
-            "targetText": "Do you have a curtain?",
+            "targetText": "Do they have menus here?",
             "meaningByLocale": null
           }
         ],
@@ -802,19 +1035,19 @@
           {
             "responseId": "en:lesson-07:session-04:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ шукає друг",
+            "testedDimension": "Послухайте питання про кафе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `receipt`, а в этом варианте — `bag`.",
-              "uk": "У записі останнє слово — `receipt`, а в цьому варіанті — `bag`."
+              "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+              "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
             }
           },
           {
             "responseId": "en:lesson-07:session-04:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ шукає друг",
+            "testedDimension": "Послухайте питання про кафе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `receipt`, а в этом варианте — `curtain`.",
-              "uk": "У записі останнє слово — `receipt`, а в цьому варіанті — `curtain`."
+              "ru": "В записи речь об официантах, `waiters`, а в этом варианте — о меню, `menus`.",
+              "uk": "У записі йдеться про офіціантів, `waiters`, а в цьому варіанті — про меню, `menus`."
             }
           }
         ],
@@ -825,7 +1058,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,48 +1072,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-04:i16:p1",
-            "target": "glasses",
+            "target": "cash",
             "meaningByLocale": {
-              "ru": "очки",
-              "uk": "окуляри"
+              "ru": "наличные деньги",
+              "uk": "готівка"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i16:p2",
-            "target": "receipt",
+            "target": "waiter",
             "meaningByLocale": {
-              "ru": "чек",
-              "uk": "чек"
+              "ru": "официант",
+              "uk": "офіціант"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i16:p3",
-            "target": "curtain",
+            "target": "bill",
             "meaningByLocale": {
-              "ru": "занавеска",
-              "uk": "завіска"
+              "ru": "счёт",
+              "uk": "рахунок"
             }
           },
           {
             "pairId": "en:lesson-07:session-04:i16:p4",
-            "target": "wear",
+            "target": "menu",
             "meaningByLocale": {
-              "ru": "носить на себе",
-              "uk": "носити на собі"
+              "ru": "меню",
+              "uk": "меню"
             }
           }
         ],
         "leftColumn": [
-          "glasses",
-          "receipt",
-          "curtain",
-          "wear"
+          "cash",
+          "waiter",
+          "bill",
+          "menu"
         ],
         "rightColumn": [
-          "окуляри",
-          "чек",
-          "завіска",
-          "носити на собі"
+          "готівка",
+          "офіціант",
+          "рахунок",
+          "меню"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -898,25 +1131,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-04:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг шукає окуляри перед читанням. Уточніть, чи є в нього окуляри: «У тебе є окуляри?»",
+      "prompt": "Ви з подругою хочете розрахуватися. Спитайте подругу: «У тебе є готівка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-04:i17:audio"
       ],
-      "accessibilityLabel": "Друг шукає окуляри перед читанням. Уточніть, чи є в нього окуляри: «У тебе є окуляри?»",
+      "accessibilityLabel": "Ви з подругою хочете розрахуватися. Спитайте подругу: «У тебе є готівка?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-04:i17:audio",
-          "transcript": "Do you have glasses?"
+          "transcript": "Do you have cash?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you have glasses?",
+        "targetPhrase": "Do you have cash?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -938,11 +1171,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e7af565879760a1caeb954de58edab69f31bce611252ee773bc412d53249f276"
+  "learnerFingerprint": "ebef7d2da6a1b194705c25adad1140194726a7858251f0883a7a41d78615aa32"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-10:intro1:r2": {
-          "ru": "Один автомат: `Does the machine`.",
-          "uk": "Один автомат: `Does the machine`."
+          "ru": "Вентилятор один: нужно Does.",
+          "uk": "Вентилятор один: потрібно Does."
         },
         "en:lesson-07:session-10:intro1:r3": {
-          "ru": "После `Does` нужно `work`, без `s`.",
-          "uk": "Після `Does` потрібне `work`, без `s`."
+          "ru": "После Does нужно work, без s.",
+          "uk": "Після Does потрібно work, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-10:intro2:r2": {
-          "ru": "С `it` нужно `Does`.",
-          "uk": "З `it` потрібне `Does`."
+          "ru": "После Does нужно have, не has.",
+          "uk": "Після Does потрібно have, не has."
         },
         "en:lesson-07:session-10:intro2:r3": {
-          "ru": "После `Does it` нужно `work`.",
-          "uk": "Після `Does it` потрібне `work`."
+          "ru": "Плита одна: нужно Does.",
+          "uk": "Плита одна: потрібно Does."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-10:intro3:r2": {
-          "ru": "Один ключ: `There is no key`.",
-          "uk": "Один ключ: `There is no key`."
+          "ru": "Зуммер один: нужно Does.",
+          "uk": "Зумер один: потрібно Does."
         },
         "en:lesson-07:session-10:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "С действием work нужен вопрос с Does, а не с Is.",
+          "uk": "З дією work потрібне запитання з Does, а не з Is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7b467bb118c98f9d3acf1cb729a6bf7e45ad9520260411453c31cbcdfee15a2b"
+  "auxiliaryFingerprint": "f90473eaee57d638630252404b313ab3ab82da5b0de9ef0520592b9bd59e2b63"
 }

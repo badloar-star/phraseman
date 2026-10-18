@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-02",
   "learningOutcomeByLocale": {
-    "ru": "спросить о посылке и доставке с помощью Do you и Do they",
-    "uk": "запитати про посилку й доставку за допомогою Do you та Do they"
+    "ru": "спросить на почте о посылке и о том, что там делают, и сказать, что вещи нет",
+    "uk": "спитати на пошті про посилку й про те, що там роблять, та сказати, що речі немає"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-07:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что принёс посетитель",
-        "uk": "Що приніс відвідувач"
+        "ru": "Окошко на почте",
+        "uk": "Віконце на пошті"
       },
       "bodyByLocale": {
-        "ru": "У стойки доставки посетитель держит коробку. `package` — «посылка». `Do you have a package?` — «У вас есть посылка?» Сначала `Do`, потом `you have`. Пока спрашиваем только о посылке, а не о том, что внутри: коробка сама анкету не заполнит.",
-        "uk": "Біля стійки доставки відвідувач тримає коробку. `package` — «посилка». `Do you have a package?` — «У вас є посилка?» Спочатку `Do`, потім `you have`. Поки запитуємо лише про посилку, а не про те, що всередині: коробка сама анкету не заповнить."
+        "ru": "Вы помогаете на почте. Посетитель подошёл к окошку с большой сумкой, но ещё ничего не достал. Нужно понять, что он хочет отправить: письмо или коробку. package — «посылка». Спросите: Do you have a package? — «У вас есть посылка?» Сначала Do, затем you и have.",
+        "uk": "Ви допомагаєте на пошті. Відвідувач підійшов до віконця з великою сумкою, але ще нічого не дістав. Треба зрозуміти, що він хоче надіслати: лист чи коробку. package — «посилка». Спитайте: Do you have a package? — «У вас є посилка?» Спочатку Do, потім you і have."
       },
       "question": {
         "interactionId": "en:lesson-07:session-02:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите посетителя «У вас есть посылка?»",
-          "uk": "Запитайте відвідувача «У вас є посилка?»"
+          "ru": "Посетитель пришёл что-то отправить. Спросите его: «У вас есть посылка?»",
+          "uk": "Відвідувач прийшов щось надіслати. Спитайте його: «У вас є посилка?»"
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите посетителя «У вас есть посылка?»",
-          "uk": "Запитайте відвідувача «У вас є посилка?»"
+          "ru": "Посетитель пришёл что-то отправить. Спросите его: «У вас есть посылка?»",
+          "uk": "Відвідувач прийшов щось надіслати. Спитайте його: «У вас є посилка?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выбираем службу доставки",
-        "uk": "Вибираємо службу доставки"
+        "ru": "Совет друга",
+        "uk": "Порада друга"
       },
       "bodyByLocale": {
-        "ru": "Друг советует компанию, но вы ещё не знаете, что она доставляет. `Do they deliver packages?` — «Они доставляют посылки?» `Packages` — несколько посылок. После `Do they` нужно `deliver`, без `s`.",
-        "uk": "Друг радить компанію, але ви ще не знаєте, що вона доставляє. `Do they deliver packages?` — «Вони доставляють посилки?» `Packages` — кілька посилок. Після `Do they` потрібне `deliver`, без `s`."
+        "ru": "Друг хочет отправить подарок родителям в другой город и советует вам службу, которой сам не раз пользовался. send — «отправлять». Вы уточняете, чем занимается эта служба: Do they send packages? — «Они отправляют посылки?» После they слово send без s.",
+        "uk": "Друг хоче надіслати подарунок батькам в інше місто й радить вам службу, якою сам не раз користувався. send — «надсилати». Ви уточнюєте, чим займається ця служба: Do they send packages? — «Вони надсилають посилки?» Після they слово send без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-02:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите друга о компании «Они доставляют посылки?»",
-          "uk": "Запитайте друга про компанію «Вони доставляють посилки?»"
+          "ru": "Друг советует службу доставки. Спросите о ней: «Они отправляют посылки?»",
+          "uk": "Друг радить службу доставки. Спитайте про неї: «Вони надсилають посилки?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-02:intro2:r1",
-              "text": "Do they deliver packages?"
+              "text": "Do they send packages?"
             },
             {
               "responseId": "en:lesson-07:session-02:intro2:r2",
-              "text": "Do they delivers packages?"
+              "text": "Are they send packages?"
             },
             {
               "responseId": "en:lesson-07:session-02:intro2:r3",
-              "text": "Are they deliver packages?"
+              "text": "Do they sends packages?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-02:intro2:r1",
-              "text": "Do they deliver packages?"
+              "text": "Do they send packages?"
             },
             {
               "responseId": "en:lesson-07:session-02:intro2:r2",
-              "text": "Do they delivers packages?"
+              "text": "Are they send packages?"
             },
             {
               "responseId": "en:lesson-07:session-02:intro2:r3",
-              "text": "Are they deliver packages?"
+              "text": "Do they sends packages?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга о компании «Они доставляют посылки?»",
-          "uk": "Запитайте друга про компанію «Вони доставляють посилки?»"
+          "ru": "Друг советует службу доставки. Спросите о ней: «Они отправляют посылки?»",
+          "uk": "Друг радить службу доставки. Спитайте про неї: «Вони надсилають посилки?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Посылки нет",
-        "uk": "Посилки немає"
+        "ru": "Нечем заклеить коробку",
+        "uk": "Нічим заклеїти коробку"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете посылку в комнате. `There is no package here` — «Здесь нет посылки». Это знакомый способ сообщить, что вещи здесь нет: `There is no` и название одной вещи. Такой ответ помогает понять, что искать нужно в другом месте.",
-        "uk": "Ви шукаєте посилку в кімнаті. `There is no package here` — «Тут немає посилки». Це знайомий спосіб повідомити, що речі тут немає: `There is no` і назва однієї речі. Така відповідь допомагає зрозуміти, що шукати потрібно в іншому місці."
+        "ru": "Вы с другом укладываете подарок в коробку. Всё готово, осталось заклеить крышку. Друг просит клейкую ленту, но вы осмотрели весь стол: пусто. tape — «клейкая лента». There is no tape here — «Здесь нет клейкой ленты». Ленту не считаем штуками, поэтому a не нужно.",
+        "uk": "Ви з другом укладаєте подарунок у коробку. Усе готово, лишилося заклеїти кришку. Друг просить клейку стрічку, але ви оглянули весь стіл: порожньо. tape — «клейка стрічка». There is no tape here — «Тут немає клейкої стрічки». Стрічку не рахуємо штуками, тому a не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-07:session-02:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите человеку у двери «Здесь нет посылки».",
-          "uk": "Скажіть людині біля дверей «Тут немає посилки»."
+          "ru": "Друг просит клейкую ленту, а на столе её нет. Скажите: «Здесь нет клейкой ленты».",
+          "uk": "Друг просить клейку стрічку, а на столі її немає. Скажіть: «Тут немає клейкої стрічки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-02:intro3:r1",
-              "text": "There is no package here."
+              "text": "There is no tape here."
             },
             {
               "responseId": "en:lesson-07:session-02:intro3:r2",
-              "text": "There are no package here."
+              "text": "There is no a tape here."
             },
             {
               "responseId": "en:lesson-07:session-02:intro3:r3",
-              "text": "There no package here."
+              "text": "There are no tape here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-02:intro3:r1",
-              "text": "There is no package here."
+              "text": "There is no tape here."
             },
             {
               "responseId": "en:lesson-07:session-02:intro3:r2",
-              "text": "There are no package here."
+              "text": "There is no a tape here."
             },
             {
               "responseId": "en:lesson-07:session-02:intro3:r3",
-              "text": "There no package here."
+              "text": "There are no tape here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите человеку у двери «Здесь нет посылки».",
-          "uk": "Скажіть людині біля дверей «Тут немає посилки»."
+          "ru": "Друг просит клейкую ленту, а на столе её нет. Скажите: «Здесь нет клейкой ленты».",
+          "uk": "Друг просить клейку стрічку, а на столі її немає. Скажіть: «Тут немає клейкої стрічки»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9bae9c1f46ea9057d172c604e71a6fbb82c14b3d6edd949ffddef33040566dea"
+  "introFingerprint": "d544cbe1fb948f64af644120a92d227a782630acaad17f4ac3d8eff3d88be917"
 }

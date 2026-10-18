@@ -9,25 +9,37 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Розкажіть про звичку: «Я роблю покупки тут»",
+      "prompt": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про звичку: «Я роблю покупки тут»",
+      "accessibilityLabel": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I shop here.",
+        "targetPhrase": "We shop here.",
         "localizedMeaning": {
-          "ru": "Расскажите о привычке: «Я делаю покупки здесь»",
-          "uk": "Розкажіть про звичку: «Я роблю покупки тут»"
+          "ru": "Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»",
+          "uk": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»"
         },
         "orderedTokens": [
-          "I",
+          "We",
           "shop",
           "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "shops"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-37:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `shop` — `We shop here.`",
+              "uk": "тут потрібно `shop` — `We shop here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -41,47 +53,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-37:i02:r1",
-          "text": "shop"
+          "text": "She shops for bargains."
         },
         {
           "responseId": "en:lesson-06:session-37:i02:r2",
-          "text": "call"
+          "text": "She shops for bread."
         },
         {
           "responseId": "en:lesson-06:session-37:i02:r3",
-          "text": "live"
+          "text": "He shops for bargains."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i02:audio",
-          "transcript": "shop"
+          "transcript": "She shops for bargains."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-37:i02:r1",
-            "targetText": "shop",
+            "targetText": "She shops for bargains.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-37:i02:r2",
-            "targetText": "call",
+            "targetText": "She shops for bread.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-37:i02:r3",
-            "targetText": "live",
+            "targetText": "He shops for bargains.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +102,19 @@
           {
             "responseId": "en:lesson-06:session-37:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `shop`, а в этом варианте — `call`.",
-              "uk": "У записі перше слово — `shop`, а в цьому варіанті — `call`."
+              "ru": "В записи последнее слово — `bargains`, выгодные покупки, а в этом варианте — `bread`, хлеб.",
+              "uk": "У записі останнє слово — `bargains`, вигідні покупки, а в цьому варіанті — `bread`, хліб."
             }
           },
           {
             "responseId": "en:lesson-06:session-37:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `shop`, а в этом варианте — `live`.",
-              "uk": "У записі перше слово — `shop`, а в цьому варіанті — `live`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -117,7 +129,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона робить покупки тут»",
+      "prompt": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-37:i03:r1",
@@ -134,14 +146,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона робить покупки тут»",
+      "accessibilityLabel": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она делает покупки здесь»",
-          "uk": "Скажіть «Вона робить покупки тут»"
+          "ru": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
+          "uk": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ here.",
+        "gappedTargetPhrase": "My brother ___ bread.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-37:i03:r1",
@@ -156,24 +168,24 @@
             "text": "is shops"
           }
         ],
-        "testedDimension": "Скажіть «Вона робить покупки тут»",
+        "testedDimension": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона робить покупки тут»",
+            "testedDimension": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `shops`.",
-              "uk": "Після `she` — `shops`."
+              "ru": "Брат — это `he`, поэтому нужно `shops`, с `s`.",
+              "uk": "Брат — це `he`, тому потрібно `shops`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона робить покупки тут»",
+            "testedDimension": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `She shops`, без `is`.",
-              "uk": "Потрібно `She shops`, без `is`."
+              "ru": "Говорим `shops`, без `is`.",
+              "uk": "Кажемо `shops`, без `is`."
             }
           }
         ]
@@ -181,8 +193,51 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-37:i04",
+      "interactionId": "en:lesson-06:session-37:word:bargain",
       "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bargain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-37:word:bargain:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bargain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-37:word:bargain:audio",
+          "transcript": "bargain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-37:word:bargain:r1",
+            "targetText": "bargain",
+            "meaningByLocale": {
+              "ru": "выгодная покупка. The jacket is a bargain. — «Куртка — выгодная покупка». О вещи, которую купили дёшево.",
+              "uk": "вигідна покупка. The jacket is a bargain. — «Куртка — вигідна покупка». Про річ, яку купили дешево."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bargain",
+          "definitionByLocale": {
+            "ru": "выгодная покупка. The jacket is a bargain. — «Куртка — выгодная покупка». О вещи, которую купили дёшево.",
+            "uk": "вигідна покупка. The jacket is a bargain. — «Куртка — вигідна покупка». Про річ, яку купили дешево."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-37:i04",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +251,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-37:i04:p1",
-            "target": "shop",
+            "target": "aisle",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "проход между полками",
+              "uk": "прохід між полицями"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i04:p2",
-            "target": "official",
+            "target": "checkout",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "касса",
+              "uk": "каса"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i04:p3",
-            "target": "parcel locker",
+            "target": "bargain",
             "meaningByLocale": {
-              "ru": "почтовый шкаф для посылок",
-              "uk": "поштова шафа для посилок"
+              "ru": "выгодная покупка",
+              "uk": "вигідна покупка"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i04:p4",
-            "target": "earrings",
+            "target": "grocer",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "продавец продуктов",
+              "uk": "продавець продуктів"
             }
           }
         ],
         "leftColumn": [
-          "shop",
-          "official",
-          "parcel locker",
-          "earrings"
+          "aisle",
+          "checkout",
+          "bargain",
+          "grocer"
         ],
         "rightColumn": [
-          "робити покупки",
-          "офіційний",
-          "поштова шафа для посилок",
-          "сережки"
+          "прохід між полицями",
+          "каса",
+          "вигідна покупка",
+          "продавець продуктів"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,33 +309,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-37:word:checkout",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — checkout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-37:word:checkout:audio"
+      ],
+      "accessibilityLabel": "Картка слова — checkout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-37:word:checkout:audio",
+          "transcript": "checkout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-37:word:checkout:r1",
+            "targetText": "checkout",
+            "meaningByLocale": {
+              "ru": "касса. The checkout is near the door. — «Касса возле двери». О месте в магазине, где платят за покупки.",
+              "uk": "каса. The checkout is near the door. — «Каса біля дверей». Про місце в магазині, де платять за покупки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "checkout",
+          "definitionByLocale": {
+            "ru": "касса. The checkout is near the door. — «Касса возле двери». О месте в магазине, где платят за покупки.",
+            "uk": "каса. The checkout is near the door. — «Каса біля дверей». Про місце в магазині, де платять за покупки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-37:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте касира й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте касира й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i05:audio",
-          "transcript": "Anna shops here."
+          "transcript": "The basket is at the checkout."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna shops here.",
+        "hiddenTargetPhrase": "The basket is at the checkout.",
         "orderedTokens": [
-          "Anna",
-          "shops",
-          "here"
+          "The",
+          "basket",
+          "is",
+          "at",
+          "the",
+          "checkout"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-37:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте касира й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The basket is at the checkout.`",
+              "uk": "тут потрібно `is` — `The basket is at the checkout.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,31 +402,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-37:word:aisle",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — aisle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-37:word:aisle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aisle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-37:word:aisle:audio",
+          "transcript": "aisle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-37:word:aisle:r1",
+            "targetText": "aisle",
+            "meaningByLocale": {
+              "ru": "проход между полками. The aisle is long. — «Проход между полками длинный». О проходе между рядами в магазине.",
+              "uk": "прохід між полицями. The aisle is long. — «Прохід між полицями довгий». Про прохід між рядами в магазині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aisle",
+          "definitionByLocale": {
+            "ru": "проход между полками. The aisle is long. — «Проход между полками длинный». О проходе между рядами в магазине.",
+            "uk": "прохід між полицями. The aisle is long. — «Прохід між полицями довгий». Про прохід між рядами в магазині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-37:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він телефонує своїй мамі»",
+      "prompt": "Ви показуєте сусідці магазин. Скажіть: «Прохід довгий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він телефонує своїй мамі»",
+      "accessibilityLabel": "Ви показуєте сусідці магазин. Скажіть: «Прохід довгий»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He calls his mother.",
+        "targetPhrase": "The aisle is long.",
         "localizedMeaning": {
-          "ru": "Скажите «Он звонит своей маме»",
-          "uk": "Скажіть «Він телефонує своїй мамі»"
+          "ru": "Вы показываете соседке магазин. Скажите: «Проход длинный»",
+          "uk": "Ви показуєте сусідці магазин. Скажіть: «Прохід довгий»"
         },
         "orderedTokens": [
-          "He",
-          "calls",
-          "his",
-          "mother"
+          "The",
+          "aisle",
+          "is",
+          "long"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-37:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте сусідці магазин. Скажіть: «Прохід довгий»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The aisle is long.`",
+              "uk": "тут потрібно `is` — `The aisle is long.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +491,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Біля магазину встановили шафу для посилок. Скажіть «Ця поштова шафа для посилок нова»",
+      "prompt": "Покупниця питає, де купує ваш брат. Скажіть: «Він купує тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i07:audio"
       ],
-      "accessibilityLabel": "Біля магазину встановили шафу для посилок. Скажіть «Ця поштова шафа для посилок нова»",
+      "accessibilityLabel": "Покупниця питає, де купує ваш брат. Скажіть: «Він купує тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i07:audio",
-          "transcript": "This parcel locker is new."
+          "transcript": "He shops here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This parcel locker is new.",
+        "targetPhrase": "He shops here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,11 +524,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони роблять покупки тут»",
+      "prompt": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-37:i08:r1",
@@ -372,19 +540,19 @@
         },
         {
           "responseId": "en:lesson-06:session-37:i08:r3",
-          "text": "are shop"
+          "text": "am shop"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони роблять покупки тут»",
+      "accessibilityLabel": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они делают покупки здесь»",
-          "uk": "Скажіть «Вони роблять покупки тут»"
+          "ru": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
+          "uk": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "I ___ with a basket.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-37:i08:r1",
@@ -396,27 +564,27 @@
           },
           {
             "responseId": "en:lesson-06:session-37:i08:r3",
-            "text": "are shop"
+            "text": "am shop"
           }
         ],
-        "testedDimension": "Скажіть «Вони роблять покупки тут»",
+        "testedDimension": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-37:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони роблять покупки тут»",
+            "testedDimension": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `shop`, без `s`.",
-              "uk": "Після `they` — `shop`, без `s`."
+              "ru": "После `I` нужно `shop`, без `s`.",
+              "uk": "Після `I` потрібно `shop`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-37:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони роблять покупки тут»",
+            "testedDimension": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They shop`, без `are`.",
-              "uk": "Потрібно `They shop`, без `are`."
+              "ru": "Говорим `I shop`, без `am`.",
+              "uk": "Кажемо `I shop`, без `am`."
             }
           }
         ]
@@ -425,51 +593,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належать сережки",
+      "prompt": "Послухайте касира",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-37:i09:r1",
-          "text": "These earrings are mine."
+          "text": "The aisle is near the door."
         },
         {
           "responseId": "en:lesson-06:session-37:i09:r2",
-          "text": "These earrings are yours."
+          "text": "The aisle is near the shelf."
         },
         {
           "responseId": "en:lesson-06:session-37:i09:r3",
-          "text": "These earrings are hers."
+          "text": "The checkout is near the door."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належать сережки",
+      "accessibilityLabel": "Послухайте касира",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i09:audio",
-          "transcript": "These earrings are mine."
+          "transcript": "The aisle is near the door."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-37:i09:r1",
-            "targetText": "These earrings are mine.",
+            "targetText": "The aisle is near the door.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-37:i09:r2",
-            "targetText": "These earrings are yours.",
+            "targetText": "The aisle is near the shelf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-37:i09:r3",
-            "targetText": "These earrings are hers.",
+            "targetText": "The checkout is near the door.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +646,19 @@
           {
             "responseId": "en:lesson-06:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належать сережки",
+            "testedDimension": "Послухайте касира",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `door`, дверь, а в этом варианте — `shelf`, полка.",
+              "uk": "У записі останнє слово — `door`, двері, а в цьому варіанті — `shelf`, полиця."
             }
           },
           {
             "responseId": "en:lesson-06:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належать сережки",
+            "testedDimension": "Послухайте касира",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи речь об `aisle`, проходе, а в этом варианте — о `checkout`, кассе.",
+              "uk": "У записі йдеться про `aisle`, прохід, а в цьому варіанті — про `checkout`, касу."
             }
           }
         ],
@@ -501,7 +669,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -515,48 +683,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-37:i10:p1",
-            "target": "shop",
+            "target": "grocer",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "продавец продуктов",
+              "uk": "продавець продуктів"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i10:p2",
-            "target": "call",
+            "target": "aisle",
             "meaningByLocale": {
-              "ru": "звонить по телефону",
-              "uk": "телефонувати"
+              "ru": "проход между полками",
+              "uk": "прохід між полицями"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i10:p3",
-            "target": "earrings",
+            "target": "checkout",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "касса",
+              "uk": "каса"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i10:p4",
-            "target": "official",
+            "target": "bargain",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "выгодная покупка",
+              "uk": "вигідна покупка"
             }
           }
         ],
         "leftColumn": [
-          "shop",
-          "call",
-          "earrings",
-          "official"
+          "grocer",
+          "aisle",
+          "checkout",
+          "bargain"
         ],
         "rightColumn": [
-          "робити покупки",
-          "телефонувати",
-          "сережки",
-          "офіційний"
+          "продавець продуктів",
+          "прохід між полицями",
+          "каса",
+          "вигідна покупка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,43 +742,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i11:audio",
-          "transcript": "The parcel locker is here."
+          "transcript": "He shops with a basket."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The parcel locker is here.",
+        "hiddenTargetPhrase": "He shops with a basket.",
         "orderedTokens": [
-          "The",
-          "parcel",
-          "locker",
-          "is",
-          "here"
+          "He",
+          "shops",
+          "with",
+          "a",
+          "basket"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "shop"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-37:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The parcel locker is here.`",
-              "uk": "тут потрібно `is` — `The parcel locker is here.`"
+              "ru": "здесь нужно `shops` — `He shops with a basket.`",
+              "uk": "тут потрібно `shops` — `He shops with a basket.`"
             }
           }
         ],
@@ -623,30 +791,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i12",
-      "ordinal": 15,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли сережки. Запитайте «Чиї це сережки?»",
+      "prompt": "Покупець показує на пакет біля каси. Спитайте: «Чий це пакет?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли сережки. Запитайте «Чиї це сережки?»",
+      "accessibilityLabel": "Покупець показує на пакет біля каси. Спитайте: «Чий це пакет?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose earrings are these?",
+        "targetPhrase": "Whose bag is this?",
         "localizedMeaning": {
-          "ru": "Вы нашли серьги. Спросите «Чьи это серьги?»",
-          "uk": "Ви знайшли сережки. Запитайте «Чиї це сережки?»"
+          "ru": "Покупатель показывает на пакет у кассы. Спросите: «Чей это пакет?»",
+          "uk": "Покупець показує на пакет біля каси. Спитайте: «Чий це пакет?»"
         },
         "orderedTokens": [
           "Whose",
-          "earrings",
-          "are",
-          "these"
+          "bag",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-37:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Покупець показує на пакет біля каси. Спитайте: «Чий це пакет?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose bag is this?`",
+              "uk": "тут потрібно `Whose` — `Whose bag is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,25 +836,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я телефоную мамі»",
+      "prompt": "Продавець питає, де купують сестра й брат. Скажіть: «Вони купують тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я телефоную мамі»",
+      "accessibilityLabel": "Продавець питає, де купують сестра й брат. Скажіть: «Вони купують тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i13:audio",
-          "transcript": "I call my mother."
+          "transcript": "They shop here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I call my mother.",
+        "targetPhrase": "They shop here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -688,68 +868,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-37:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-06:session-37:word:grocer",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grocer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-37:word:grocer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grocer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-37:word:grocer:audio",
+          "transcript": "grocer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-37:word:grocer:r1",
+            "targetText": "grocer",
+            "meaningByLocale": {
+              "ru": "продавец продуктов. The grocer is friendly. — «Продавец продуктов приветливый». О человеке, который продаёт фрукты и хлеб.",
+              "uk": "продавець продуктів. The grocer is friendly. — «Продавець продуктів привітний». Про людину, яка продає фрукти й хліб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grocer",
+          "definitionByLocale": {
+            "ru": "продавец продуктов. The grocer is friendly. — «Продавец продуктов приветливый». О человеке, который продаёт фрукты и хлеб.",
+            "uk": "продавець продуктів. The grocer is friendly. — «Продавець продуктів привітний». Про людину, яка продає фрукти й хліб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Том робить покупки тут»",
+      "prompt": "Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-37:i14:r1",
-          "text": "shops"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-37:i14:r2",
-          "text": "shop"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-37:i14:r3",
-          "text": "is shops"
+          "text": "shops"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Том робить покупки тут»",
+      "accessibilityLabel": "Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том делает покупки здесь»",
-          "uk": "Скажіть «Том робить покупки тут»"
+          "ru": "Скажите о продавце: «Продавец продуктов приветливый». Выберите слово",
+          "uk": "Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ here.",
+        "gappedTargetPhrase": "The grocer ___ friendly.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-37:i14:r1",
-            "text": "shops"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-37:i14:r2",
-            "text": "shop"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-37:i14:r3",
-            "text": "is shops"
+            "text": "shops"
           }
         ],
-        "testedDimension": "Скажіть «Том робить покупки тут»",
+        "testedDimension": "Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-37:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Том робить покупки тут»",
+            "testedDimension": "Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom shops`.",
-              "uk": "Том — він: `Tom shops`."
+              "ru": "Продавец один, поэтому нужно `is`, а не `are`.",
+              "uk": "Продавець один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-37:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Том робить покупки тут»",
+            "testedDimension": "Скажіть про продавця: «Продавець продуктів привітний». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom shops`, без `is`.",
-              "uk": "Потрібно `Tom shops`, без `is`."
+              "ru": "`shops` значит «покупает», а здесь нужно сказать, какой продавец: `is friendly`.",
+              "uk": "`shops` означає «купує», а тут треба сказати, який продавець: `is friendly`."
             }
           }
         ]
@@ -758,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де Анна й Том роблять покупки",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-37:i15:r1",
-          "text": "We shop here."
+          "text": "I shop with a basket."
         },
         {
           "responseId": "en:lesson-06:session-37:i15:r2",
-          "text": "We shop there."
+          "text": "I shop with a trolley."
         },
         {
           "responseId": "en:lesson-06:session-37:i15:r3",
-          "text": "We shop nearby."
+          "text": "We shop with a basket."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де Анна й Том роблять покупки",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i15:audio",
-          "transcript": "We shop here."
+          "transcript": "I shop with a basket."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-37:i15:r1",
-            "targetText": "We shop here.",
+            "targetText": "I shop with a basket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-37:i15:r2",
-            "targetText": "We shop there.",
+            "targetText": "I shop with a trolley.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-37:i15:r3",
-            "targetText": "We shop nearby.",
+            "targetText": "We shop with a basket.",
             "meaningByLocale": null
           }
         ],
@@ -811,19 +1034,19 @@
           {
             "responseId": "en:lesson-06:session-37:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де Анна й Том роблять покупки",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `basket`, корзина, а в этом варианте — `trolley`, тележка.",
+              "uk": "У записі останнє слово — `basket`, кошик, а в цьому варіанті — `trolley`, візок."
             }
           },
           {
             "responseId": "en:lesson-06:session-37:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де Анна й Том роблять покупки",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `We`, мы.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми."
             }
           }
         ],
@@ -834,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-37:i16:p1",
-            "target": "shop",
+            "target": "bargain",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "выгодная покупка",
+              "uk": "вигідна покупка"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i16:p2",
-            "target": "parcel locker",
+            "target": "grocer",
             "meaningByLocale": {
-              "ru": "почтовый шкаф для посылок",
-              "uk": "поштова шафа для посилок"
+              "ru": "продавец продуктов",
+              "uk": "продавець продуктів"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i16:p3",
-            "target": "official",
+            "target": "aisle",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "проход между полками",
+              "uk": "прохід між полицями"
             }
           },
           {
             "pairId": "en:lesson-06:session-37:i16:p4",
-            "target": "call",
+            "target": "checkout",
             "meaningByLocale": {
-              "ru": "звонить по телефону",
-              "uk": "телефонувати"
+              "ru": "касса",
+              "uk": "каса"
             }
           }
         ],
         "leftColumn": [
-          "shop",
-          "parcel locker",
-          "official",
-          "call"
+          "bargain",
+          "grocer",
+          "aisle",
+          "checkout"
         ],
         "rightColumn": [
-          "робити покупки",
-          "поштова шафа для посилок",
-          "офіційний",
-          "телефонувати"
+          "вигідна покупка",
+          "продавець продуктів",
+          "прохід між полицями",
+          "каса"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-37:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, де Анна зазвичай робить покупки. Дайте відповідь «Вона робить покупки тут»",
+      "prompt": "Покупниця питає про вашу сестру. Скажіть: «Вона ходить по покупки з візком»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-37:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, де Анна зазвичай робить покупки. Дайте відповідь «Вона робить покупки тут»",
+      "accessibilityLabel": "Покупниця питає про вашу сестру. Скажіть: «Вона ходить по покупки з візком»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-37:i17:audio",
-          "transcript": "She shops here."
+          "transcript": "She shops with a trolley."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She shops here.",
+        "targetPhrase": "She shops with a trolley.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cc5a1491d584b874a9fd173230eab570d43ebe489fd318abfe7b51ec108abbc4"
+  "learnerFingerprint": "ec71c97124526dca58b052f4522786f8fa4d7048897b1b8fc892f6f9cc686e87"
 }

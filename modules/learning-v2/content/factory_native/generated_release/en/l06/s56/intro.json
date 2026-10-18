@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-56",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно рассказать о работе людей и спросить о владельце вещей",
-    "uk": "самостійно розповісти про роботу людей і запитати про власника речей"
+    "ru": "самостоятельно рассказать о работе людей и спросить о владельце вещи",
+    "uk": "самостійно розповісти про роботу людей і спитати про власника речі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Газеты по утрам",
-        "uk": "Газети вранці"
+        "ru": "Запах свежего хлеба",
+        "uk": "Запах свіжого хліба"
       },
       "bodyByLocale": {
-        "ru": "Новый сосед спрашивает, чем занимается Том. `He delivers newspapers` — «Он доставляет газеты». После `he` нужно `delivers`. Здесь слово `delivers` уже называет действие: `He delivers`, без `is`.",
-        "uk": "Новий сусід запитує, чим займається Том. `He delivers newspapers` — «Він доставляє газети». Після `he` потрібне `delivers`. Тут слово `delivers` уже називає дію: `He delivers`, без `is`."
+        "ru": "Новый сосед говорит, что по утрам в районе так вкусно пахнет, что невозможно не зайти за булкой. Он спрашивает, откуда этот запах. Вы объясняете: в доме на углу, рядом с аптекой, работает пекарь. baker — «пекарь». He is a baker — «Он пекарь». Перед baker нужно a.",
+        "uk": "Новий сусід каже, що вранці в районі так смачно пахне, що неможливо не зайти по булку. Він питає, звідки цей запах. Ви пояснюєте: у домі на розі, поруч з аптекою, працює пекар. baker — «пекар». He is a baker — «Він пекар». Перед baker потрібно a."
       },
       "question": {
         "interactionId": "en:lesson-06:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите о Томе «Он доставляет газеты».",
-          "uk": "Розкажіть про Тома «Він доставляє газети»."
+          "ru": "Сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь».",
+          "uk": "Сусід питає, хто пече хліб. Скажіть: «Він пекар»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-56:intro1:r1",
-              "text": "He delivers newspapers."
+              "text": "He is a baker."
             },
             {
               "responseId": "en:lesson-06:session-56:intro1:r2",
-              "text": "He deliver newspapers."
+              "text": "He is baker."
             },
             {
               "responseId": "en:lesson-06:session-56:intro1:r3",
-              "text": "He is delivers newspapers."
+              "text": "He are a baker."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-56:intro1:r1",
-              "text": "He delivers newspapers."
+              "text": "He is a baker."
             },
             {
               "responseId": "en:lesson-06:session-56:intro1:r2",
-              "text": "He deliver newspapers."
+              "text": "He is baker."
             },
             {
               "responseId": "en:lesson-06:session-56:intro1:r3",
-              "text": "He is delivers newspapers."
+              "text": "He are a baker."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о Томе «Он доставляет газеты».",
-          "uk": "Розкажіть про Тома «Він доставляє газети»."
+          "ru": "Сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь».",
+          "uk": "Сусід питає, хто пече хліб. Скажіть: «Він пекар»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мастерская в районе",
-        "uk": "Майстерня в районі"
+        "ru": "Порванный рукав",
+        "uk": "Порваний рукав"
       },
       "bodyByLocale": {
-        "ru": "Сосед ищет, где починить рабочую форму. Вы рассказываете о знакомых мастерах. `They repair uniforms` — «Они ремонтируют униформу». Здесь это значит, что они чинят одежду, например зашивают порванные места. После `they` — `repair`, без `s`. Порванный рукав — ещё не повод менять профессию: можно сначала починить форму.",
-        "uk": "Сусід шукає, де полагодити робочу форму. Ви розповідаєте про знайомих майстрів. `They repair uniforms` — «Вони ремонтують уніформу». Тут це означає, що вони лагодять одяг, наприклад зашивають порвані місця. Після `they` — `repair`, без `s`. Порваний рукав — ще не привід змінювати професію: можна спочатку полагодити форму."
+        "ru": "Сосед случайно порвал рукав рабочей формы перед сменой и не знает, куда с ней идти. Вы советуете мастерскую за углом, где принимает портной. tailor — «портной». The tailor repairs uniforms — «Портной ремонтирует форму». Портной один, поэтому repairs с s.",
+        "uk": "Сусід випадково порвав рукав робочої форми перед зміною й не знає, куди з нею йти. Ви радите майстерню за рогом, де приймає кравець. tailor — «кравець». The tailor repairs uniforms — «Кравець ремонтує форму». Кравець один, тому repairs з s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите о мастерах «Они ремонтируют униформу».",
-          "uk": "Розкажіть про майстрів «Вони ремонтують уніформу»."
+          "ru": "Сосед спрашивает, где починить форму. Скажите: «Портной ремонтирует форму».",
+          "uk": "Сусід питає, де полагодити форму. Скажіть: «Кравець ремонтує форму»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-56:intro2:r1",
-              "text": "They repair uniforms."
+              "text": "The tailor repairs uniforms."
             },
             {
               "responseId": "en:lesson-06:session-56:intro2:r2",
-              "text": "They repairs uniforms."
+              "text": "The tailor repair uniforms."
             },
             {
               "responseId": "en:lesson-06:session-56:intro2:r3",
-              "text": "They are repair uniforms."
+              "text": "The tailor is repairs uniforms."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-56:intro2:r1",
-              "text": "They repair uniforms."
+              "text": "The tailor repairs uniforms."
             },
             {
               "responseId": "en:lesson-06:session-56:intro2:r2",
-              "text": "They repairs uniforms."
+              "text": "The tailor repair uniforms."
             },
             {
               "responseId": "en:lesson-06:session-56:intro2:r3",
-              "text": "They are repair uniforms."
+              "text": "The tailor is repairs uniforms."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о мастерах «Они ремонтируют униформу».",
-          "uk": "Розкажіть про майстрів «Вони ремонтують уніформу»."
+          "ru": "Сосед спрашивает, где починить форму. Скажите: «Портной ремонтирует форму».",
+          "uk": "Сусід питає, де полагодити форму. Скажіть: «Кравець ремонтує форму»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Форма без имени",
-        "uk": "Форма без імені"
+        "ru": "Трость в холле",
+        "uk": "Ціпок у холі"
       },
       "bodyByLocale": {
-        "ru": "На стуле у входа лежит комплект формы. `Whose uniform is this?` — «Чья это форма?» `Whose` спрашивает о владельце; один комплект — `is this`. Не нужно угадывать владельца по цвету формы: спросите людей рядом.",
-        "uk": "На стільці біля входу лежить комплект форми. `Whose uniform is this?` — «Чия це форма?» `Whose` запитує про власника; один комплект — `is this`. Не потрібно вгадувати власника за кольором форми: запитайте людей поруч."
+        "ru": "В холле дома у почтовых ящиков стоит трость, прислонённая к стене, а рядом никого нет. Хозяин, видимо, поднялся за ключами и забыл о ней. cane — «трость». Чтобы узнать, чья она, говорим Whose cane is this? — «Чья это трость?» Вещь одна: is this.",
+        "uk": "У холі будинку біля поштових скриньок стоїть ціпок, притулений до стіни, а поруч нікого немає. Господар, мабуть, піднявся по ключі й забув про нього. cane — «ціпок». Щоб дізнатися, чий він, кажемо Whose cane is this? — «Чий це ціпок?» Річ одна: is this."
       },
       "question": {
         "interactionId": "en:lesson-06:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Узнайте «Чья это форма?»",
-          "uk": "Дізнайтеся «Чия це форма?»"
+          "ru": "Вы нашли трость в холле. Спросите у людей рядом: «Чья это трость?»",
+          "uk": "Ви знайшли ціпок у холі. Спитайте в людей поруч: «Чий це ціпок?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-56:intro3:r1",
-              "text": "Whose uniform is this?"
+              "text": "Whose cane is this?"
             },
             {
               "responseId": "en:lesson-06:session-56:intro3:r2",
-              "text": "Where is this uniform?"
+              "text": "Who cane is this?"
             },
             {
               "responseId": "en:lesson-06:session-56:intro3:r3",
-              "text": "Whose uniform are these?"
+              "text": "Whose cane are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-56:intro3:r1",
-              "text": "Whose uniform is this?"
+              "text": "Whose cane is this?"
             },
             {
               "responseId": "en:lesson-06:session-56:intro3:r2",
-              "text": "Where is this uniform?"
+              "text": "Who cane is this?"
             },
             {
               "responseId": "en:lesson-06:session-56:intro3:r3",
-              "text": "Whose uniform are these?"
+              "text": "Whose cane are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте «Чья это форма?»",
-          "uk": "Дізнайтеся «Чия це форма?»"
+          "ru": "Вы нашли трость в холле. Спросите у людей рядом: «Чья это трость?»",
+          "uk": "Ви знайшли ціпок у холі. Спитайте в людей поруч: «Чий це ціпок?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "30f9fe2ef643489552971ec71292a7eb169a38301b2b55bd5bff8cbaea3dc127"
+  "introFingerprint": "9df9981ee362e21528ad5158ee49b35bd4f87c8302609368e41dc4dc7edd9d36"
 }

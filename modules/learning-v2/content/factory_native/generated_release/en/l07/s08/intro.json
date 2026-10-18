@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-08",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно задать знакомые вопросы с Do и сообщить, что вещи нет",
-    "uk": "самостійно поставити знайомі запитання з Do й повідомити, що речі немає"
+    "ru": "задавать вопросы с Do о людях и местах района и сказать, что человека нет",
+    "uk": "ставити питання з Do про людей і місця району та сказати, що людини немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Новый сосед",
-        "uk": "Новий сусід"
+        "ru": "Сосед с книгами",
+        "uk": "Сусід із книжками"
       },
       "bodyByLocale": {
-        "ru": "Сосед упомянул фабрику. Уточните `Do you work in a factory?` — «Вы работаете на фабрике?» Для вопроса о действии ставим `Do you`, затем `work`. Не добавляем к `work` ни `s`, ни `are`.",
-        "uk": "Сусід згадав фабрику. Уточніть `Do you work in a factory?` — «Ви працюєте на фабриці?» Для запитання про дію ставимо `Do you`, потім `work`. Не додаємо до `work` ні `s`, ні `are`."
+        "ru": "Вы только переехали в новый район. У входа в библиотеку вы встретили соседа: он выходит с целой стопкой книг под мышкой. Вы тоже хотите читать, но покупать книги дорого. borrow — «брать на время». Спросите: Do you borrow books? — «Вы берёте книги на время?»",
+        "uk": "Ви щойно переїхали в новий район. Біля входу до бібліотеки ви зустріли сусіда: він виходить із цілою стопкою книжок під пахвою. Ви теж хочете читати, але купувати книжки дорого. borrow — «брати на деякий час». Спитайте: Do you borrow books? — «Ви берете книжки на деякий час?»"
       },
       "question": {
         "interactionId": "en:lesson-07:session-08:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите соседа «Вы работаете на фабрике?»",
-          "uk": "Запитайте сусіда «Ви працюєте на фабриці?»"
+          "ru": "Сосед выходит из библиотеки с книгами. Спросите его: «Вы берёте книги на время?»",
+          "uk": "Сусід виходить із бібліотеки з книжками. Спитайте його: «Ви берете книжки на деякий час?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-08:intro1:r1",
-              "text": "Do you work in a factory?"
+              "text": "Do you borrow books?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro1:r2",
-              "text": "Are you work in a factory?"
+              "text": "Are you borrow books?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro1:r3",
-              "text": "Do you works in a factory?"
+              "text": "Do you borrows books?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-08:intro1:r1",
-              "text": "Do you work in a factory?"
+              "text": "Do you borrow books?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro1:r2",
-              "text": "Are you work in a factory?"
+              "text": "Are you borrow books?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro1:r3",
-              "text": "Do you works in a factory?"
+              "text": "Do you borrows books?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите соседа «Вы работаете на фабрике?»",
-          "uk": "Запитайте сусіда «Ви працюєте на фабриці?»"
+          "ru": "Сосед выходит из библиотеки с книгами. Спросите его: «Вы берёте книги на время?»",
+          "uk": "Сусід виходить із бібліотеки з книжками. Спитайте його: «Ви берете книжки на деякий час?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Посылка у стойки",
-        "uk": "Посилка біля стійки"
+        "ru": "Поездка на автобусе",
+        "uk": "Поїздка автобусом"
       },
       "bodyByLocale": {
-        "ru": "В пункте отправки вы помогаете посетителю. `Do you have a package?` — «У вас есть посылка?» Здесь спрашиваем о вещи: после `Do you` ставим `have`. Большая коробка под мышкой подсказывает ответ, но уточнить всё равно можно.",
-        "uk": "У пункті відправлення ви допомагаєте відвідувачеві. `Do you have a package?` — «У вас є посилка?» Тут запитуємо про річ: після `Do you` ставимо `have`. Велика коробка під пахвою підказує відповідь, але уточнити все одно можна."
+        "ru": "Вы с другом едете на автобусе по новому району. Друг говорит, что без билета здесь ездить нельзя, и вы достаёте проездной. check — «проверять». Спросите: Do they check tickets here? — «Здесь проверяют билеты?» Здесь they значит «те, кто работает в автобусе».",
+        "uk": "Ви з другом їдете автобусом по новому районі. Друг каже, що без квитка тут їздити не можна, і ви дістаєте проїзний. check — «перевіряти». Спитайте: Do they check tickets here? — «Тут перевіряють квитки?» Тут they означає «ті, хто працює в автобусі»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-08:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите посетителя «У вас есть посылка?»",
-          "uk": "Запитайте відвідувача «У вас є посилка?»"
+          "ru": "Друг предупреждает о билетах. Спросите его: «Здесь проверяют билеты?»",
+          "uk": "Друг попереджає про квитки. Спитайте його: «Тут перевіряють квитки?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-08:intro2:r1",
-              "text": "Do you have a package?"
+              "text": "Do they check tickets here?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro2:r2",
-              "text": "Are you have a package?"
+              "text": "Are they check tickets here?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro2:r3",
-              "text": "Do you has a package?"
+              "text": "Do they checks tickets here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-08:intro2:r1",
-              "text": "Do you have a package?"
+              "text": "Do they check tickets here?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro2:r2",
-              "text": "Are you have a package?"
+              "text": "Are they check tickets here?"
             },
             {
               "responseId": "en:lesson-07:session-08:intro2:r3",
-              "text": "Do you has a package?"
+              "text": "Do they checks tickets here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите посетителя «У вас есть посылка?»",
-          "uk": "Запитайте відвідувача «У вас є посилка?»"
+          "ru": "Друг предупреждает о билетах. Спросите его: «Здесь проверяют билеты?»",
+          "uk": "Друг попереджає про квитки. Спитайте його: «Тут перевіряють квитки?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где расписание",
-        "uk": "Де розклад"
+        "ru": "Пустая будка",
+        "uk": "Порожня будка"
       },
       "bodyByLocale": {
-        "ru": "В мастерской вам предложили посмотреть расписание на столе. Но там пусто. `There is no schedule here` — «Здесь нет расписания». Это сообщение об отсутствии одного расписания: `There is no`.",
-        "uk": "У майстерні вам запропонували подивитися розклад на столі. Але там порожньо. `There is no schedule here` — «Тут немає розкладу». Це повідомлення про відсутність одного розкладу: `There is no`."
+        "ru": "Вы возвращаетесь домой поздно вечером. Ворота двора открыты настежь, а в будке рядом свет не горит. Сосед, который идёт с вами, удивляется. guard — «охранник». There is no guard at the gate — «У ворот нет охранника». Говорим There is no и называем одного человека.",
+        "uk": "Ви повертаєтеся додому пізно ввечері. Ворота двору відчинені навстіж, а в будці поруч світло не горить. Сусід, що йде з вами, дивується. guard — «охоронець». There is no guard at the gate — «Біля воріт немає охоронця». Кажемо There is no і називаємо одну людину."
       },
       "question": {
         "interactionId": "en:lesson-07:session-08:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите сотруднику «Здесь нет расписания».",
-          "uk": "Повідомте працівникові «Тут немає розкладу»."
+          "ru": "Сосед удивляется открытым воротам. Скажите ему: «У ворот нет охранника».",
+          "uk": "Сусід дивується відчиненим воротам. Скажіть йому: «Біля воріт немає охоронця»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-08:intro3:r1",
-              "text": "There is no schedule here."
+              "text": "There is no guard at the gate."
             },
             {
               "responseId": "en:lesson-07:session-08:intro3:r2",
-              "text": "There are no schedule here."
+              "text": "There are no guard at the gate."
             },
             {
               "responseId": "en:lesson-07:session-08:intro3:r3",
-              "text": "There no schedule here."
+              "text": "There is not guard at the gate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-08:intro3:r1",
-              "text": "There is no schedule here."
+              "text": "There is no guard at the gate."
             },
             {
               "responseId": "en:lesson-07:session-08:intro3:r2",
-              "text": "There are no schedule here."
+              "text": "There are no guard at the gate."
             },
             {
               "responseId": "en:lesson-07:session-08:intro3:r3",
-              "text": "There no schedule here."
+              "text": "There is not guard at the gate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите сотруднику «Здесь нет расписания».",
-          "uk": "Повідомте працівникові «Тут немає розкладу»."
+          "ru": "Сосед удивляется открытым воротам. Скажите ему: «У ворот нет охранника».",
+          "uk": "Сусід дивується відчиненим воротам. Скажіть йому: «Біля воріт немає охоронця»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ad27f6a27d72c8bfd2d81cb4fe6644c29900e60b2bcd3115836321f432ab7dbf"
+  "introFingerprint": "02245566fe5d40c176002f18ca1e4d878c3caa865b7b62dec7b9cfa43ca3524f"
 }

@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-54:i01",
+      "interactionId": "en:lesson-06:session-54:word:repair",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — repair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:word:repair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — repair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:word:repair:audio",
+          "transcript": "repair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:word:repair:r1",
+            "targetText": "repair",
+            "meaningByLocale": {
+              "ru": "ремонтировать. They repair roofs. — «Они ремонтируют крыши». Чинить то, что сломалось или протекает.",
+              "uk": "ремонтувати. They repair roofs. — «Вони ремонтують дахи». Лагодити те, що зламалося або тече."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "repair",
+          "definitionByLocale": {
+            "ru": "ремонтировать. They repair roofs. — «Они ремонтируют крыши». Чинить то, что сломалось или протекает.",
+            "uk": "ремонтувати. They repair roofs. — «Вони ремонтують дахи». Лагодити те, що зламалося або тече."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вони ремонтують дахи»",
+      "prompt": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони ремонтують дахи»",
+      "accessibilityLabel": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They repair roofs.",
         "localizedMeaning": {
-          "ru": "Скажите «Они ремонтируют крыши»",
-          "uk": "Скажіть «Вони ремонтують дахи»"
+          "ru": "Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»",
+          "uk": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»"
         },
         "orderedTokens": [
           "They",
           "repair",
           "roofs"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "repairs"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `repair` — `They repair roofs.`",
+              "uk": "тут потрібно `repair` — `They repair roofs.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-54:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-54:word:gutter",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — gutter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:word:gutter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gutter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:word:gutter:audio",
+          "transcript": "gutter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:word:gutter:r1",
+            "targetText": "gutter",
+            "meaningByLocale": {
+              "ru": "водосточный желоб. The gutter is full. — «Желоб полон». Жёлоб по краю крыши, по которому стекает дождевая вода.",
+              "uk": "водостічний жолоб. The gutter is full. — «Жолоб повний». Жолоб по краю даху, по якому стікає дощова вода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gutter",
+          "definitionByLocale": {
+            "ru": "водосточный желоб. The gutter is full. — «Желоб полон». Жёлоб по краю крыши, по которому стекает дождевая вода.",
+            "uk": "водостічний жолоб. The gutter is full. — «Жолоб повний». Жолоб по краю даху, по якому стікає дощова вода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте майстра",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-54:i02:r1",
-          "text": "repair"
+          "text": "The gutter is on the roof."
         },
         {
           "responseId": "en:lesson-06:session-54:i02:r2",
-          "text": "reliable"
+          "text": "The gutter is on the wall."
         },
         {
           "responseId": "en:lesson-06:session-54:i02:r3",
-          "text": "kiosk"
+          "text": "The ladder is on the roof."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте майстра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-54:i02:audio",
-          "transcript": "repair"
+          "transcript": "The gutter is on the roof."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-54:i02:r1",
-            "targetText": "repair",
+            "targetText": "The gutter is on the roof.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-54:i02:r2",
-            "targetText": "reliable",
+            "targetText": "The gutter is on the wall.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-54:i02:r3",
-            "targetText": "kiosk",
+            "targetText": "The ladder is on the roof.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +188,19 @@
           {
             "responseId": "en:lesson-06:session-54:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте майстра",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `repair`, а в этом варианте — `reliable`.",
-              "uk": "У записі перше слово — `repair`, а в цьому варіанті — `reliable`."
+              "ru": "В записи последнее слово — `roof`, крыша, а в этом варианте — `wall`, стена.",
+              "uk": "У записі останнє слово — `roof`, дах, а в цьому варіанті — `wall`, стіна."
             }
           },
           {
             "responseId": "en:lesson-06:session-54:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте майстра",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `repair`, а в этом варианте — `kiosk`.",
-              "uk": "У записі перше слово — `repair`, а в цьому варіанті — `kiosk`."
+              "ru": "В записи второе слово — `gutter`, желоб, а в этом варианте — `ladder`, лестница.",
+              "uk": "У записі друге слово — `gutter`, жолоб, а в цьому варіанті — `ladder`, драбина."
             }
           }
         ],
@@ -113,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона ремонтує дахи»",
+      "prompt": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-54:i03:r1",
@@ -134,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона ремонтує дахи»",
+      "accessibilityLabel": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она ремонтирует крыши»",
-          "uk": "Скажіть «Вона ремонтує дахи»"
+          "ru": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
+          "uk": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ roofs.",
+        "gappedTargetPhrase": "She ___ gutters.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-54:i03:r1",
@@ -156,24 +254,24 @@
             "text": "is repairs"
           }
         ],
-        "testedDimension": "Скажіть «Вона ремонтує дахи»",
+        "testedDimension": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-54:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона ремонтує дахи»",
+            "testedDimension": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` нужно `repairs`.",
-              "uk": "Після `she` потрібне `repairs`."
+              "ru": "После `she` нужно `repairs`, с `s`.",
+              "uk": "Після `she` потрібно `repairs`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-54:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона ремонтує дахи»",
+            "testedDimension": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `She repairs`, без `is`.",
-              "uk": "Потрібно `She repairs`, без `is`."
+              "ru": "Говорим `She repairs`, без `is`.",
+              "uk": "Кажемо `She repairs`, без `is`."
             }
           }
         ]
@@ -182,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,40 +302,40 @@
           },
           {
             "pairId": "en:lesson-06:session-54:i04:p2",
-            "target": "reliable",
+            "target": "gutter",
             "meaningByLocale": {
-              "ru": "надёжный",
-              "uk": "надійний"
+              "ru": "водосточный желоб",
+              "uk": "водостічний жолоб"
             }
           },
           {
             "pairId": "en:lesson-06:session-54:i04:p3",
-            "target": "petrol station",
+            "target": "chimney",
             "meaningByLocale": {
-              "ru": "заправочная станция",
-              "uk": "заправна станція"
+              "ru": "дымовая труба",
+              "uk": "димар"
             }
           },
           {
             "pairId": "en:lesson-06:session-54:i04:p4",
-            "target": "kiosk",
+            "target": "plank",
             "meaningByLocale": {
-              "ru": "киоск",
-              "uk": "кіоск"
+              "ru": "доска",
+              "uk": "дошка"
             }
           }
         ],
         "leftColumn": [
           "repair",
-          "reliable",
-          "petrol station",
-          "kiosk"
+          "gutter",
+          "chimney",
+          "plank"
         ],
         "rightColumn": [
           "ремонтувати",
-          "надійний",
-          "заправна станція",
-          "кіоск"
+          "водостічний жолоб",
+          "димар",
+          "дошка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,33 +352,89 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-54:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-06:session-54:word:plank",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plank",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:word:plank:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plank",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:word:plank:audio",
+          "transcript": "plank"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:word:plank:r1",
+            "targetText": "plank",
+            "meaningByLocale": {
+              "ru": "доска. The plank is long. — «Доска длинная». Длинный плоский кусок дерева.",
+              "uk": "дошка. The plank is long. — «Дошка довга». Довгий плаский шматок дерева."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plank",
+          "definitionByLocale": {
+            "ru": "доска. The plank is long. — «Доска длинная». Длинный плоский кусок дерева.",
+            "uk": "дошка. The plank is long. — «Дошка довга». Довгий плаский шматок дерева."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-54:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте майстра й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте майстра й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-54:i05:audio",
-          "transcript": "They repair roofs."
+          "transcript": "The plank is here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They repair roofs.",
+        "hiddenTargetPhrase": "The plank is here.",
         "orderedTokens": [
-          "They",
-          "repair",
-          "roofs"
+          "The",
+          "plank",
+          "is",
+          "here"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте майстра й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The plank is here.`",
+              "uk": "тут потрібно `is` — `The plank is here.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -290,29 +444,41 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про роботу Анни «Вона ремонтує дахи»",
+      "prompt": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про роботу Анни «Вона ремонтує дахи»",
+      "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She repairs roofs.",
+        "targetPhrase": "We repair roofs.",
         "localizedMeaning": {
-          "ru": "Скажите о работе Анны «Она ремонтирует крыши»",
-          "uk": "Скажіть про роботу Анни «Вона ремонтує дахи»"
+          "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»",
+          "uk": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»"
         },
         "orderedTokens": [
-          "She",
-          "repairs",
+          "We",
+          "repair",
           "roofs"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "repairs"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `repair` — `We repair roofs.`",
+              "uk": "тут потрібно `repair` — `We repair roofs.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -321,26 +487,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-54:word:chimney",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chimney",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-54:word:chimney:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chimney",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-54:word:chimney:audio",
+          "transcript": "chimney"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-54:word:chimney:r1",
+            "targetText": "chimney",
+            "meaningByLocale": {
+              "ru": "дымовая труба. The chimney is tall. — «Труба высокая». Труба на крыше, через которую уходит дым.",
+              "uk": "димова труба. The chimney is tall. — «Труба висока». Труба на даху, через яку виходить дим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chimney",
+          "definitionByLocale": {
+            "ru": "дымовая труба. The chimney is tall. — «Труба высокая». Труба на крыше, через которую уходит дым.",
+            "uk": "димова труба. The chimney is tall. — «Труба висока». Труба на даху, через яку виходить дим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-54:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сусід сумнівається в майстрах. Скажіть «Вони надійні»",
+      "prompt": "Майстри шукають драбину. Скажіть: «Драбина поруч із трубою»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Сусід сумнівається в майстрах. Скажіть «Вони надійні»",
+      "accessibilityLabel": "Майстри шукають драбину. Скажіть: «Драбина поруч із трубою»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-54:i07:audio",
-          "transcript": "They are reliable."
+          "transcript": "The ladder is next to the chimney."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are reliable.",
+        "targetPhrase": "The ladder is next to the chimney.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +564,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Ми ремонтуємо дахи»",
+      "prompt": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-54:i08:r1",
-          "text": "repair"
-        },
-        {
-          "responseId": "en:lesson-06:session-54:i08:r2",
           "text": "repairs"
         },
         {
+          "responseId": "en:lesson-06:session-54:i08:r2",
+          "text": "repair"
+        },
+        {
           "responseId": "en:lesson-06:session-54:i08:r3",
-          "text": "are repair"
+          "text": "is repairs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Ми ремонтуємо дахи»",
+      "accessibilityLabel": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Мы ремонтируем крыши»",
-          "uk": "Скажіть «Ми ремонтуємо дахи»"
+          "ru": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
+          "uk": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ roofs.",
+        "gappedTargetPhrase": "He ___ gutters.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-54:i08:r1",
-            "text": "repair"
-          },
-          {
-            "responseId": "en:lesson-06:session-54:i08:r2",
             "text": "repairs"
           },
           {
+            "responseId": "en:lesson-06:session-54:i08:r2",
+            "text": "repair"
+          },
+          {
             "responseId": "en:lesson-06:session-54:i08:r3",
-            "text": "are repair"
+            "text": "is repairs"
           }
         ],
-        "testedDimension": "Скажіть «Ми ремонтуємо дахи»",
+        "testedDimension": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-54:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Ми ремонтуємо дахи»",
+            "testedDimension": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `we` нужно `repair`.",
-              "uk": "Після `we` потрібне `repair`."
+              "ru": "После `he` нужно `repairs`, с `s`.",
+              "uk": "Після `he` потрібно `repairs`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-54:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Ми ремонтуємо дахи»",
+            "testedDimension": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `We repair`, без `are`.",
-              "uk": "Потрібно `We repair`, без `are`."
+              "ru": "Говорим `He repairs`, без `is`.",
+              "uk": "Кажемо `He repairs`, без `is`."
             }
           }
         ]
@@ -424,51 +633,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, про кого розповідає сусід",
+      "prompt": "Послухайте майстра",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-54:i09:r1",
-          "text": "She repairs roofs."
+          "text": "The plank is next to the ladder."
         },
         {
           "responseId": "en:lesson-06:session-54:i09:r2",
-          "text": "He repairs roofs."
+          "text": "The plank is next to the chimney."
         },
         {
           "responseId": "en:lesson-06:session-54:i09:r3",
-          "text": "Anna repairs roofs."
+          "text": "The gutter is next to the ladder."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, про кого розповідає сусід",
+      "accessibilityLabel": "Послухайте майстра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-54:i09:audio",
-          "transcript": "She repairs roofs."
+          "transcript": "The plank is next to the ladder."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-54:i09:r1",
-            "targetText": "She repairs roofs.",
+            "targetText": "The plank is next to the ladder.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-54:i09:r2",
-            "targetText": "He repairs roofs.",
+            "targetText": "The plank is next to the chimney.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-54:i09:r3",
-            "targetText": "Anna repairs roofs.",
+            "targetText": "The gutter is next to the ladder.",
             "meaningByLocale": null
           }
         ],
@@ -477,19 +686,19 @@
           {
             "responseId": "en:lesson-06:session-54:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, про кого розповідає сусід",
+            "testedDimension": "Послухайте майстра",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              "ru": "В записи последнее слово — `ladder`, лестница, а в этом варианте — `chimney`, труба.",
+              "uk": "У записі останнє слово — `ladder`, драбина, а в цьому варіанті — `chimney`, труба."
             }
           },
           {
             "responseId": "en:lesson-06:session-54:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, про кого розповідає сусід",
+            "testedDimension": "Послухайте майстра",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+              "ru": "В записи второе слово — `plank`, доска, а в этом варианте — `gutter`, желоб.",
+              "uk": "У записі друге слово — `plank`, дошка, а в цьому варіанті — `gutter`, жолоб."
             }
           }
         ],
@@ -500,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -514,10 +723,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-54:i10:p1",
-            "target": "mug",
+            "target": "chimney",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "дымовая труба",
+              "uk": "димар"
             }
           },
           {
@@ -530,32 +739,32 @@
           },
           {
             "pairId": "en:lesson-06:session-54:i10:p3",
-            "target": "kiosk",
+            "target": "plank",
             "meaningByLocale": {
-              "ru": "киоск",
-              "uk": "кіоск"
+              "ru": "доска",
+              "uk": "дошка"
             }
           },
           {
             "pairId": "en:lesson-06:session-54:i10:p4",
-            "target": "reliable",
+            "target": "gutter",
             "meaningByLocale": {
-              "ru": "надёжный",
-              "uk": "надійний"
+              "ru": "водосточный желоб",
+              "uk": "водостічний жолоб"
             }
           }
         ],
         "leftColumn": [
-          "mug",
+          "chimney",
           "repair",
-          "kiosk",
-          "reliable"
+          "plank",
+          "gutter"
         ],
         "rightColumn": [
-          "кухоль",
+          "димар",
           "ремонтувати",
-          "кіоск",
-          "надійний"
+          "дошка",
+          "водостічний жолоб"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,42 +782,41 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте майстра й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте майстра й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-54:i11:audio",
-          "transcript": "The kiosk is here."
+          "transcript": "They repair gutters."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The kiosk is here.",
+        "hiddenTargetPhrase": "They repair gutters.",
         "orderedTokens": [
-          "The",
-          "kiosk",
-          "is",
-          "here"
+          "They",
+          "repair",
+          "gutters"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "repairs"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-54:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте майстра й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The kiosk is here.`",
-              "uk": "тут потрібно `is` — `The kiosk is here.`"
+              "ru": "здесь нужно `repair` — `They repair gutters.`",
+              "uk": "тут потрібно `repair` — `They repair gutters.`"
             }
           }
         ],
@@ -621,30 +829,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Після перерви на столі залишився кухоль. Запитайте «Чий це кухоль?»",
+      "prompt": "У дворі стоїть драбина. Спитайте в майстрів: «Чия це драбина?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Після перерви на столі залишився кухоль. Запитайте «Чий це кухоль?»",
+      "accessibilityLabel": "У дворі стоїть драбина. Спитайте в майстрів: «Чия це драбина?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose mug is this?",
+        "targetPhrase": "Whose ladder is this?",
         "localizedMeaning": {
-          "ru": "После перерыва на столе осталась кружка. Спросите «Чья это кружка?»",
-          "uk": "Після перерви на столі залишився кухоль. Запитайте «Чий це кухоль?»"
+          "ru": "Во дворе стоит лестница. Спросите у мастеров: «Чья это лестница?»",
+          "uk": "У дворі стоїть драбина. Спитайте в майстрів: «Чия це драбина?»"
         },
         "orderedTokens": [
           "Whose",
-          "mug",
+          "ladder",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-54:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "У дворі стоїть драбина. Спитайте в майстрів: «Чия це драбина?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose ladder is this?`",
+              "uk": "тут потрібно `Whose` — `Whose ladder is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -654,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Поясніть сусідові «Кіоск поруч із заправною станцією»",
+      "prompt": "Сусід сумнівається, чи впораються майстри. Скажіть: «Вони сильні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i13:audio"
       ],
-      "accessibilityLabel": "Поясніть сусідові «Кіоск поруч із заправною станцією»",
+      "accessibilityLabel": "Сусід сумнівається, чи впораються майстри. Скажіть: «Вони сильні»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-54:i13:audio",
-          "transcript": "The kiosk is next to the petrol station."
+          "transcript": "They are strong."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The kiosk is next to the petrol station.",
+        "targetPhrase": "They are strong.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -687,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про роботу «Том ремонтує дахи»",
+      "prompt": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-54:i14:r1",
@@ -708,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про роботу «Том ремонтує дахи»",
+      "accessibilityLabel": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о работе «Том ремонтирует крыши»",
-          "uk": "Скажіть про роботу «Том ремонтує дахи»"
+          "ru": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
+          "uk": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ roofs.",
+        "gappedTargetPhrase": "My neighbour ___ roofs.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-54:i14:r1",
@@ -730,24 +950,24 @@
             "text": "is repairs"
           }
         ],
-        "testedDimension": "Скажіть про роботу «Том ремонтує дахи»",
+        "testedDimension": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-54:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть про роботу «Том ремонтує дахи»",
+            "testedDimension": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom repairs`.",
-              "uk": "Том — він: `Tom repairs`."
+              "ru": "Соседка — она: `My neighbour repairs`.",
+              "uk": "Сусідка — вона: `My neighbour repairs`."
             }
           },
           {
             "responseId": "en:lesson-06:session-54:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть про роботу «Том ремонтує дахи»",
+            "testedDimension": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom repairs`, без `is`.",
-              "uk": "Потрібно `Tom repairs`, без `is`."
+              "ru": "Нужно `My neighbour repairs`, без `is`.",
+              "uk": "Потрібно `My neighbour repairs`, без `is`."
             }
           }
         ]
@@ -756,7 +976,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -832,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -846,6 +1066,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-54:i16:p1",
+            "target": "plank",
+            "meaningByLocale": {
+              "ru": "доска",
+              "uk": "дошка"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i16:p2",
+            "target": "gutter",
+            "meaningByLocale": {
+              "ru": "водосточный желоб",
+              "uk": "водостічний жолоб"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-54:i16:p3",
             "target": "repair",
             "meaningByLocale": {
               "ru": "ремонтировать",
@@ -853,41 +1089,25 @@
             }
           },
           {
-            "pairId": "en:lesson-06:session-54:i16:p2",
-            "target": "petrol station",
-            "meaningByLocale": {
-              "ru": "заправочная станция",
-              "uk": "заправна станція"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-54:i16:p3",
-            "target": "mug",
-            "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
-            }
-          },
-          {
             "pairId": "en:lesson-06:session-54:i16:p4",
-            "target": "reliable",
+            "target": "chimney",
             "meaningByLocale": {
-              "ru": "надёжный",
-              "uk": "надійний"
+              "ru": "дымовая труба",
+              "uk": "димар"
             }
           }
         ],
         "leftColumn": [
+          "plank",
+          "gutter",
           "repair",
-          "petrol station",
-          "mug",
-          "reliable"
+          "chimney"
         ],
         "rightColumn": [
+          "дошка",
+          "водостічний жолоб",
           "ремонтувати",
-          "заправна станція",
-          "кухоль",
-          "надійний"
+          "димар"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -905,17 +1125,17 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Новий знайомий запитує про вашу роботу. Дайте відповідь «Я ремонтую дахи»",
+      "prompt": "Новий знайомий питає про вашу роботу. Дайте відповідь: «Я ремонтую дахи»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-54:i17:audio"
       ],
-      "accessibilityLabel": "Новий знайомий запитує про вашу роботу. Дайте відповідь «Я ремонтую дахи»",
+      "accessibilityLabel": "Новий знайомий питає про вашу роботу. Дайте відповідь: «Я ремонтую дахи»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -945,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6b74cc23daab246fd65e9df0bdc2e3e25d827377ba86d5844a99643e33680c13"
+  "learnerFingerprint": "27ed00a4a816d0b4613cf88e3cc88f7d12d6f48b9637ec1765a3e73ef70b867a"
 }

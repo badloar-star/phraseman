@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-50:intro1:r2": {
-          "ru": "После `I` нужно `deliver`, без `s`.",
-          "uk": "Після `I` потрібне `deliver`, без `s`."
+          "ru": "После I слово остаётся deliver, без s.",
+          "uk": "Після I слово лишається deliver, без s."
         },
         "en:lesson-06:session-50:intro1:r3": {
-          "ru": "Здесь действие: `I deliver`, без `am`.",
-          "uk": "Тут дія: `I deliver`, без `am`."
+          "ru": "Здесь действие: I deliver, без am.",
+          "uk": "Тут дія: I deliver, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-50:intro2:r2": {
-          "ru": "После `he` нужно `delivers`.",
-          "uk": "Після `he` потрібне `delivers`."
+          "ru": "После brother нужно carries, а не carry.",
+          "uk": "Після brother потрібно carries, а не carry."
         },
         "en:lesson-06:session-50:intro2:r3": {
-          "ru": "Нужно `He delivers`, без `is`.",
-          "uk": "Потрібно `He delivers`, без `is`."
+          "ru": "Здесь действие: brother carries, без is.",
+          "uk": "Тут дія: brother carries, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-50:intro3:r2": {
-          "ru": "После `we` нужно `share`.",
-          "uk": "Після `we` потрібне `share`."
+          "ru": "После we слово остаётся share, без s.",
+          "uk": "Після we слово лишається share, без s."
         },
         "en:lesson-06:session-50:intro3:r3": {
-          "ru": "Нужно `We share`, без `are`.",
-          "uk": "Потрібно `We share`, без `are`."
+          "ru": "Здесь действие: We share, без are.",
+          "uk": "Тут дія: We share, без are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7fec4c3418bf991fe12897ed5d20d047578f6a683ed0ab9dc9e7d3b5bd518045"
+  "auxiliaryFingerprint": "f821e49b6bf27a3b48f903a968cc09954bdf1be1df3ef47526978e87e6a50a41"
 }

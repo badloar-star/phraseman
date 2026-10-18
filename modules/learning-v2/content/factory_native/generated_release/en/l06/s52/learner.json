@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-52:i01",
+      "interactionId": "en:lesson-06:session-52:word:wear",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-52:word:wear:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-52:word:wear:audio",
+          "transcript": "wear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-52:word:wear:r1",
+            "targetText": "wear",
+            "meaningByLocale": {
+              "ru": "носить на себе. She wears a hat. — «Она носит шляпу». Когда одежда надета на человеке.",
+              "uk": "носити на собі. She wears a hat. — «Вона носить капелюх». Коли одяг надітий на людині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wear",
+          "definitionByLocale": {
+            "ru": "носить на себе. She wears a hat. — «Она носит шляпу». Когда одежда надета на человеке.",
+            "uk": "носити на собі. She wears a hat. — «Вона носить капелюх». Коли одяг надітий на людині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-52:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о привычке «Она носит шляпу»",
+      "prompt": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о привычке «Она носит шляпу»",
+      "accessibilityLabel": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She wears a hat.",
         "localizedMeaning": {
-          "ru": "Скажите о привычке «Она носит шляпу»",
-          "uk": "Скажіть про звичку «Вона носить капелюх»"
+          "ru": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
+          "uk": "Друг питає про вашу тітку. Скажіть: «Вона носить капелюх»"
         },
         "orderedTokens": [
           "She",
@@ -27,8 +70,20 @@
           "a",
           "hat"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "wear"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-52:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `wears` — `She wears a hat.`",
+              "uk": "тут потрібно `wears` — `She wears a hat.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-52:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-52:word:hood",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — hood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-52:word:hood:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-52:word:hood:audio",
+          "transcript": "hood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-52:word:hood:r1",
+            "targetText": "hood",
+            "meaningByLocale": {
+              "ru": "капюшон. The hood is big. — «Капюшон большой». Часть куртки, которой накрывают голову от дождя.",
+              "uk": "каптур. The hood is big. — «Каптур великий». Частина куртки, якою накривають голову від дощу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hood",
+          "definitionByLocale": {
+            "ru": "капюшон. The hood is big. — «Капюшон большой». Часть куртки, которой накрывают голову от дождя.",
+            "uk": "каптур. The hood is big. — «Каптур великий». Частина куртки, якою накривають голову від дощу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-52:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i02:r1",
-          "text": "wear"
+          "text": "She wears a hat."
         },
         {
           "responseId": "en:lesson-06:session-52:i02:r2",
-          "text": "fair"
+          "text": "She wears a hood."
         },
         {
           "responseId": "en:lesson-06:session-52:i02:r3",
-          "text": "pool"
+          "text": "He wears a hat."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i02:audio",
-          "transcript": "wear"
+          "transcript": "She wears a hat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-52:i02:r1",
-            "targetText": "wear",
+            "targetText": "She wears a hat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-52:i02:r2",
-            "targetText": "fair",
+            "targetText": "She wears a hood.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-52:i02:r3",
-            "targetText": "pool",
+            "targetText": "He wears a hat.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-52:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `wear`, а в этом варианте — `fair`.",
-              "uk": "У записі перше слово — `wear`, а в цьому варіанті — `fair`."
+              "ru": "В записи последнее слово — `hat`, шляпа, а в этом варианте — `hood`, капюшон.",
+              "uk": "У записі останнє слово — `hat`, капелюх, а в цьому варіанті — `hood`, каптур."
             }
           },
           {
             "responseId": "en:lesson-06:session-52:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `wear`, а в этом варианте — `pool`.",
-              "uk": "У записі перше слово — `wear`, а в цьому варіанті — `pool`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -113,12 +211,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-52:word:suit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — suit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-52:word:suit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — suit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-52:word:suit:audio",
+          "transcript": "suit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-52:word:suit:r1",
+            "targetText": "suit",
+            "meaningByLocale": {
+              "ru": "костюм. The suit is black. — «Костюм чёрный». Пиджак и брюки из одной ткани.",
+              "uk": "костюм. The suit is black. — «Костюм чорний». Піджак і штани з однієї тканини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suit",
+          "definitionByLocale": {
+            "ru": "костюм. The suit is black. — «Костюм чёрный». Пиджак и брюки из одной ткани.",
+            "uk": "костюм. The suit is black. — «Костюм чорний». Піджак і штани з однієї тканини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-52:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о привычке «Он носит шляпу»",
+      "prompt": "Скажите о дяде: «Он носит костюм». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i03:r1",
@@ -135,14 +276,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о привычке «Он носит шляпу»",
+      "accessibilityLabel": "Скажите о дяде: «Он носит костюм». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о привычке «Он носит шляпу»",
-          "uk": "Скажіть про звичку «Він носить капелюх»"
+          "ru": "Скажите о дяде: «Он носит костюм». Выберите слово",
+          "uk": "Скажіть про дядька: «Він носить костюм». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ a hat.",
+        "gappedTargetPhrase": "He ___ a suit.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-52:i03:r1",
@@ -157,24 +298,24 @@
             "text": "is wears"
           }
         ],
-        "testedDimension": "Скажите о привычке «Он носит шляпу»",
+        "testedDimension": "Скажите о дяде: «Он носит костюм». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-52:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о привычке «Он носит шляпу»",
+            "testedDimension": "Скажите о дяде: «Он носит костюм». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `he` нужно `wears`.",
-              "uk": "Після `he` потрібне `wears`."
+              "ru": "После `he` нужно `wears`, с `s`.",
+              "uk": "Після `he` потрібно `wears`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-52:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о привычке «Он носит шляпу»",
+            "testedDimension": "Скажите о дяде: «Он носит костюм». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `He wears`, без `is`.",
-              "uk": "Потрібно `He wears`, без `is`."
+              "ru": "Говорим `He wears`, без `is`.",
+              "uk": "Кажемо `He wears`, без `is`."
             }
           }
         ]
@@ -183,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +346,40 @@
           },
           {
             "pairId": "en:lesson-06:session-52:i04:p2",
-            "target": "hat",
+            "target": "hood",
             "meaningByLocale": {
-              "ru": "головной убор",
-              "uk": "головний убір"
+              "ru": "капюшон",
+              "uk": "каптур"
             }
           },
           {
             "pairId": "en:lesson-06:session-52:i04:p3",
-            "target": "fair",
+            "target": "skirt",
             "meaningByLocale": {
-              "ru": "справедливый",
-              "uk": "справедливий"
+              "ru": "юбка",
+              "uk": "спідниця"
             }
           },
           {
             "pairId": "en:lesson-06:session-52:i04:p4",
-            "target": "nursery",
+            "target": "suit",
             "meaningByLocale": {
-              "ru": "детский сад",
-              "uk": "дитячий садок"
+              "ru": "костюм",
+              "uk": "костюм"
             }
           }
         ],
         "leftColumn": [
           "wear",
-          "hat",
-          "fair",
-          "nursery"
+          "hood",
+          "skirt",
+          "suit"
         ],
         "rightColumn": [
           "носить одежду на себе",
-          "головной убор",
-          "справедливый",
-          "детский сад"
+          "капюшон",
+          "юбка",
+          "костюм"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,33 +397,44 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте друга и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте друга и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i05:audio",
-          "transcript": "She wears a hat."
+          "transcript": "We wear hoods."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She wears a hat.",
+        "hiddenTargetPhrase": "We wear hoods.",
         "orderedTokens": [
-          "She",
-          "wears",
-          "a",
-          "hat"
+          "We",
+          "wear",
+          "hoods"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "wears"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте друга и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `wear` — `We wear hoods.`",
+              "uk": "тут потрібно `wear` — `We wear hoods.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +443,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-52:word:skirt",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — skirt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-52:word:skirt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — skirt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-52:word:skirt:audio",
+          "transcript": "skirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-52:word:skirt:r1",
+            "targetText": "skirt",
+            "meaningByLocale": {
+              "ru": "юбка. The skirt is blue. — «Юбка синяя». Одежда, которую надевают на талию и которая закрывает ноги.",
+              "uk": "спідниця. The skirt is blue. — «Спідниця синя». Одяг, який надягають на талію і який закриває ноги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skirt",
+          "definitionByLocale": {
+            "ru": "юбка. The skirt is blue. — «Юбка синяя». Одежда, которую надевают на талию и которая закрывает ноги.",
+            "uk": "спідниця. The skirt is blue. — «Спідниця синя». Одяг, який надягають на талію і який закриває ноги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-52:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Мы носим шляпы»",
+      "prompt": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Мы носим шляпы»",
+      "accessibilityLabel": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We wear hats.",
+        "targetPhrase": "She wears a skirt.",
         "localizedMeaning": {
-          "ru": "Скажите «Мы носим шляпы»",
-          "uk": "Скажіть «Ми носимо капелюхи»"
+          "ru": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
+          "uk": "Друг питає про вашу сестру. Скажіть: «Вона носить спідницю»"
         },
         "orderedTokens": [
-          "We",
-          "wear",
-          "hats"
+          "She",
+          "wears",
+          "a",
+          "skirt"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "wear"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-52:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `wears` — `She wears a skirt.`",
+              "uk": "тут потрібно `wears` — `She wears a skirt.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +532,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы нашли шляпу на скамейке. Спросите «Чья это шляпа?»",
+      "prompt": "Друг ищет костюм. Скажите: «Костюм возле скамейки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i07:audio"
       ],
-      "accessibilityLabel": "Вы нашли шляпу на скамейке. Спросите «Чья это шляпа?»",
+      "accessibilityLabel": "Друг ищет костюм. Скажите: «Костюм возле скамейки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i07:audio",
-          "transcript": "Whose hat is this?"
+          "transcript": "The suit is near the bench."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose hat is this?",
+        "targetPhrase": "The suit is near the bench.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,11 +565,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они носят шляпы»",
+      "prompt": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i08:r1",
@@ -378,14 +586,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они носят шляпы»",
+      "accessibilityLabel": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они носят шляпы»",
-          "uk": "Скажіть «Вони носять капелюхи»"
+          "ru": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
+          "uk": "Скажіть про хлопців під дощем: «Вони носять каптури». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ hats.",
+        "gappedTargetPhrase": "They ___ hoods.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-52:i08:r1",
@@ -400,24 +608,24 @@
             "text": "are wear"
           }
         ],
-        "testedDimension": "Скажите «Они носят шляпы»",
+        "testedDimension": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-52:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они носят шляпы»",
+            "testedDimension": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` нужно `wear`.",
-              "uk": "Після `they` потрібне `wear`."
+              "ru": "После `they` нужно `wear`, без `s`.",
+              "uk": "Після `they` потрібно `wear`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-52:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они носят шляпы»",
+            "testedDimension": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They wear`, без `are`.",
-              "uk": "Потрібно `They wear`, без `are`."
+              "ru": "Говорим `They wear`, без `are`.",
+              "uk": "Кажемо `They wear`, без `are`."
             }
           }
         ]
@@ -426,51 +634,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, о ком рассказывает друг",
+      "prompt": "Послушайте, кому принадлежит юбка",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i09:r1",
-          "text": "She wears a hat."
+          "text": "This skirt is mine."
         },
         {
           "responseId": "en:lesson-06:session-52:i09:r2",
-          "text": "He wears a hat."
+          "text": "This skirt is yours."
         },
         {
           "responseId": "en:lesson-06:session-52:i09:r3",
-          "text": "Anna wears a hat."
+          "text": "This skirt is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, о ком рассказывает друг",
+      "accessibilityLabel": "Послушайте, кому принадлежит юбка",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i09:audio",
-          "transcript": "She wears a hat."
+          "transcript": "This skirt is mine."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-52:i09:r1",
-            "targetText": "She wears a hat.",
+            "targetText": "This skirt is mine.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-52:i09:r2",
-            "targetText": "He wears a hat.",
+            "targetText": "This skirt is yours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-52:i09:r3",
-            "targetText": "Anna wears a hat.",
+            "targetText": "This skirt is hers.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +687,19 @@
           {
             "responseId": "en:lesson-06:session-52:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, о ком рассказывает друг",
+            "testedDimension": "Послушайте, кому принадлежит юбка",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
             }
           },
           {
             "responseId": "en:lesson-06:session-52:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, о ком рассказывает друг",
+            "testedDimension": "Послушайте, кому принадлежит юбка",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `Anna`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `Anna`."
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
             }
           }
         ],
@@ -502,8 +710,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,10 +724,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-52:i10:p1",
-            "target": "pool",
+            "target": "skirt",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "юбка",
+              "uk": "спідниця"
             }
           },
           {
@@ -532,32 +740,32 @@
           },
           {
             "pairId": "en:lesson-06:session-52:i10:p3",
-            "target": "hat",
+            "target": "suit",
             "meaningByLocale": {
-              "ru": "головной убор",
-              "uk": "головний убір"
+              "ru": "костюм",
+              "uk": "костюм"
             }
           },
           {
             "pairId": "en:lesson-06:session-52:i10:p4",
-            "target": "fair",
+            "target": "hood",
             "meaningByLocale": {
-              "ru": "справедливый",
-              "uk": "справедливий"
+              "ru": "капюшон",
+              "uk": "каптур"
             }
           }
         ],
         "leftColumn": [
-          "pool",
+          "skirt",
           "wear",
-          "hat",
-          "fair"
+          "suit",
+          "hood"
         ],
         "rightColumn": [
-          "бассейн",
+          "юбка",
           "носить одежду на себе",
-          "головной убор",
-          "справедливый"
+          "костюм",
+          "капюшон"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,32 +783,45 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте друга и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте друга и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i11:audio",
-          "transcript": "We wear hats."
+          "transcript": "He wears a suit."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We wear hats.",
+        "hiddenTargetPhrase": "He wears a suit.",
         "orderedTokens": [
-          "We",
-          "wear",
-          "hats"
+          "He",
+          "wears",
+          "a",
+          "suit"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "wear"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-52:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте друга и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `wears` — `He wears a suit.`",
+              "uk": "тут потрібно `wears` — `He wears a suit.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -610,39 +831,39 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажите на карте «Бассейн здесь»",
+      "prompt": "Вы нашли юбку на скамейке. Спросите у людей рядом: «Чья это юбка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите на карте «Бассейн здесь»",
+      "accessibilityLabel": "Вы нашли юбку на скамейке. Спросите у людей рядом: «Чья это юбка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The pool is here.",
+        "targetPhrase": "Whose skirt is this?",
         "localizedMeaning": {
-          "ru": "Покажите на карте «Бассейн здесь»",
-          "uk": "Покажіть на карті «Басейн тут»"
+          "ru": "Вы нашли юбку на скамейке. Спросите у людей рядом: «Чья это юбка?»",
+          "uk": "Ви знайшли спідницю на лавці. Спитайте в людей поруч: «Чия це спідниця?»"
         },
         "orderedTokens": [
-          "The",
-          "pool",
+          "Whose",
+          "skirt",
           "is",
-          "here"
+          "this"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-52:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Покажите на карте «Бассейн здесь»",
+            "testedDimension": "Вы нашли юбку на скамейке. Спросите у людей рядом: «Чья это юбка?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The pool is here.`",
-              "uk": "тут потрібно `is` — `The pool is here.`"
+              "ru": "здесь нужно `Whose` — `Whose skirt is this?`",
+              "uk": "тут потрібно `Whose` — `Whose skirt is this?`"
             }
           }
         ],
@@ -655,25 +876,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Объясните соседу «Детский сад возле бассейна»",
+      "prompt": "Друг спрашивает, что вы носите в дождь. Скажите: «Я ношу капюшон»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i13:audio"
       ],
-      "accessibilityLabel": "Объясните соседу «Детский сад возле бассейна»",
+      "accessibilityLabel": "Друг спрашивает, что вы носите в дождь. Скажите: «Я ношу капюшон»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i13:audio",
-          "transcript": "The nursery is near the pool."
+          "transcript": "I wear a hood."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The nursery is near the pool.",
+        "targetPhrase": "I wear a hood.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -688,11 +909,11 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На скамейке две шляпы. Спросите «Чьи это шляпы?»",
+      "prompt": "На скамейке две юбки. Спросите: «Чьи это юбки?»",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i14:r1",
@@ -709,14 +930,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На скамейке две шляпы. Спросите «Чьи это шляпы?»",
+      "accessibilityLabel": "На скамейке две юбки. Спросите: «Чьи это юбки?»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На скамейке две шляпы. Спросите «Чьи это шляпы?»",
-          "uk": "На лавці два капелюхи. Запитайте «Чиї це капелюхи?»"
+          "ru": "На скамейке две юбки. Спросите: «Чьи это юбки?»",
+          "uk": "На лавці дві спідниці. Спитайте: «Чиї це спідниці?»"
         },
-        "gappedTargetPhrase": "Whose hats ___ these?",
+        "gappedTargetPhrase": "Whose skirts ___ these?",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-52:i14:r1",
@@ -731,24 +952,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "На скамейке две шляпы. Спросите «Чьи это шляпы?»",
+        "testedDimension": "На скамейке две юбки. Спросите: «Чьи это юбки?»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-52:i14:r2",
             "correct": false,
-            "testedDimension": "На скамейке две шляпы. Спросите «Чьи это шляпы?»",
+            "testedDimension": "На скамейке две юбки. Спросите: «Чьи это юбки?»",
             "feedbackByLocale": {
-              "ru": "Несколько шляп: `are these`.",
-              "uk": "Кілька капелюхів: `are these`."
+              "ru": "Несколько юбок: `are these`.",
+              "uk": "Кілька спідниць: `are these`."
             }
           },
           {
             "responseId": "en:lesson-06:session-52:i14:r3",
             "correct": false,
-            "testedDimension": "На скамейке две шляпы. Спросите «Чьи это шляпы?»",
+            "testedDimension": "На скамейке две юбки. Спросите: «Чьи это юбки?»",
             "feedbackByLocale": {
               "ru": "`Am` подходит к `I`; здесь нужно `are`.",
-              "uk": "`Am` підходить до `I`; тут потрібне `are`."
+              "uk": "`Am` пасує до `I`; тут потрібно `are`."
             }
           }
         ]
@@ -757,51 +978,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кто носит шляпы",
+      "prompt": "Послушайте, кто носит капюшоны",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i15:r1",
-          "text": "They wear hats."
+          "text": "They wear hoods."
         },
         {
           "responseId": "en:lesson-06:session-52:i15:r2",
-          "text": "We wear hats."
+          "text": "We wear hoods."
         },
         {
           "responseId": "en:lesson-06:session-52:i15:r3",
-          "text": "You wear hats."
+          "text": "You wear hoods."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, кто носит шляпы",
+      "accessibilityLabel": "Послушайте, кто носит капюшоны",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i15:audio",
-          "transcript": "They wear hats."
+          "transcript": "They wear hoods."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-52:i15:r1",
-            "targetText": "They wear hats.",
+            "targetText": "They wear hoods.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-52:i15:r2",
-            "targetText": "We wear hats.",
+            "targetText": "We wear hoods.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-52:i15:r3",
-            "targetText": "You wear hats.",
+            "targetText": "You wear hoods.",
             "meaningByLocale": null
           }
         ],
@@ -810,7 +1031,7 @@
           {
             "responseId": "en:lesson-06:session-52:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кто носит шляпы",
+            "testedDimension": "Послушайте, кто носит капюшоны",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -819,7 +1040,7 @@
           {
             "responseId": "en:lesson-06:session-52:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кто носит шляпы",
+            "testedDimension": "Послушайте, кто носит капюшоны",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
@@ -833,7 +1054,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -847,48 +1068,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-52:i16:p1",
-            "target": "nursery",
+            "target": "suit",
             "meaningByLocale": {
-              "ru": "детский сад",
-              "uk": "дитячий садок"
+              "ru": "костюм",
+              "uk": "костюм"
             }
           },
           {
             "pairId": "en:lesson-06:session-52:i16:p2",
-            "target": "pool",
+            "target": "hood",
             "meaningByLocale": {
-              "ru": "бассейн",
-              "uk": "басейн"
+              "ru": "капюшон",
+              "uk": "каптур"
             }
           },
           {
             "pairId": "en:lesson-06:session-52:i16:p3",
-            "target": "fair",
-            "meaningByLocale": {
-              "ru": "справедливый",
-              "uk": "справедливий"
-            }
-          },
-          {
-            "pairId": "en:lesson-06:session-52:i16:p4",
             "target": "wear",
             "meaningByLocale": {
               "ru": "носить одежду на себе",
               "uk": "носити одяг на собі"
             }
+          },
+          {
+            "pairId": "en:lesson-06:session-52:i16:p4",
+            "target": "skirt",
+            "meaningByLocale": {
+              "ru": "юбка",
+              "uk": "спідниця"
+            }
           }
         ],
         "leftColumn": [
-          "nursery",
-          "pool",
-          "fair",
-          "wear"
+          "suit",
+          "hood",
+          "wear",
+          "skirt"
         ],
         "rightColumn": [
-          "детский сад",
-          "бассейн",
-          "справедливый",
-          "носить одежду на себе"
+          "костюм",
+          "капюшон",
+          "носить одежду на себе",
+          "юбка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -906,25 +1127,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-52:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега спрашивает, как обычно одевается Том. Ответьте «Том носит шляпу»",
+      "prompt": "Друг спрашивает, как узнать вашу тётю на вокзале. Ответьте: «Она носит шляпу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-52:i17:audio"
       ],
-      "accessibilityLabel": "Коллега спрашивает, как обычно одевается Том. Ответьте «Том носит шляпу»",
+      "accessibilityLabel": "Друг спрашивает, как узнать вашу тётю на вокзале. Ответьте: «Она носит шляпу»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-52:i17:audio",
-          "transcript": "Tom wears a hat."
+          "transcript": "She wears a hat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom wears a hat.",
+        "targetPhrase": "She wears a hat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -946,11 +1167,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5c15754b6eeba89b605e4bd52f321c638f8d42dc860b32383a7addd5aa8d30d9"
+  "learnerFingerprint": "e3ebabdbd5afd309bb5ebd7cef8c036380d0c5db4c2cfde1b3b6ec0a4b9748b1"
 }

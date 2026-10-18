@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-56:intro1:r2": {
-          "ru": "После `he` нужно `delivers`.",
-          "uk": "Після `he` потрібне `delivers`."
+          "ru": "Перед названием профессии нужно a: He is a baker.",
+          "uk": "Перед назвою професії потрібно a: He is a baker."
         },
         "en:lesson-06:session-56:intro1:r3": {
-          "ru": "Нужно `He delivers`, без `is`.",
-          "uk": "Потрібно `He delivers`, без `is`."
+          "ru": "После he нужно is, а не are.",
+          "uk": "Після he потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-56:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-56:intro2:r2": {
-          "ru": "После `they` нужно `repair`.",
-          "uk": "Після `they` потрібне `repair`."
+          "ru": "Портной один: нужно repairs, с s.",
+          "uk": "Кравець один: потрібно repairs, з s."
         },
         "en:lesson-06:session-56:intro2:r3": {
-          "ru": "Нужно `They repair`, без `are`.",
-          "uk": "Потрібно `They repair`, без `are`."
+          "ru": "Здесь действие: tailor repairs, без is.",
+          "uk": "Тут дія: tailor repairs, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-56:intro3:r2": {
-          "ru": "Это вопрос о месте, а нужен владелец.",
-          "uk": "Це запитання про місце, а потрібен власник."
+          "ru": "О владельце спрашиваем Whose, а не Who.",
+          "uk": "Про власника питаємо Whose, а не Who."
         },
         "en:lesson-06:session-56:intro3:r3": {
-          "ru": "Один комплект: `is this`.",
-          "uk": "Один комплект: `is this`."
+          "ru": "Трость одна: нужно is this.",
+          "uk": "Ціпок один: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "492f01b320dbd551439c87aac8e1c80c09f797b4097d9c1f2cbd07d9cce21623"
+  "auxiliaryFingerprint": "7af6f5ca135b85a469b0fe14959d7da049e54a75d7d738b986856ae3ae91b6a5"
 }

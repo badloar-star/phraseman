@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-06:session-50:word:deliver",
+    "correctText": "deliver",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-50:i01",
     "correctText": "I deliver newspapers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i02",
-    "correctText": "deliver",
+    "correctText": "My brother delivers newspapers.",
     "correctResponseId": "en:lesson-06:session-50:i02:r1"
   },
   {
@@ -16,22 +21,37 @@
   },
   {
     "interactionId": "en:lesson-06:session-50:i04",
-    "correctText": "en:lesson-06:session-50:i04:p1=deliver\nen:lesson-06:session-50:i04:p2=effective\nen:lesson-06:session-50:i04:p3=river\nen:lesson-06:session-50:i04:p4=share",
+    "correctText": "en:lesson-06:session-50:i04:p1=deliver\nen:lesson-06:session-50:i04:p2=bundle\nen:lesson-06:session-50:i04:p3=share\nen:lesson-06:session-50:i04:p4=cart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-50:word:cart",
+    "correctText": "cart",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i05",
-    "correctText": "I deliver newspapers.",
+    "correctText": "The cart is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-50:word:share",
+    "correctText": "share",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i06",
-    "correctText": "He delivers newspapers.",
+    "correctText": "We share a table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-50:word:bundle",
+    "correctText": "bundle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i07",
-    "correctText": "We share a room.",
+    "correctText": "My brother carries a bundle.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-06:session-50:i09",
-    "correctText": "He delivers newspapers.",
+    "correctText": "He carries a bundle.",
     "correctResponseId": "en:lesson-06:session-50:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-50:i10",
-    "correctText": "en:lesson-06:session-50:i10:p1=share\nen:lesson-06:session-50:i10:p2=river\nen:lesson-06:session-50:i10:p3=deliver\nen:lesson-06:session-50:i10:p4=effective",
+    "correctText": "en:lesson-06:session-50:i10:p1=bundle\nen:lesson-06:session-50:i10:p2=cart\nen:lesson-06:session-50:i10:p3=deliver\nen:lesson-06:session-50:i10:p4=share",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i11",
-    "correctText": "We share a room.",
+    "correctText": "They deliver newspapers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i12",
-    "correctText": "Whose newspaper is this?",
+    "correctText": "Whose cart is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-50:i13",
-    "correctText": "The river is here.",
+    "correctText": "The cart is near the gate.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-06:session-50:i15",
-    "correctText": "We share a room.",
+    "correctText": "We share a table.",
     "correctResponseId": "en:lesson-06:session-50:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-50:i16",
-    "correctText": "en:lesson-06:session-50:i16:p1=effective\nen:lesson-06:session-50:i16:p2=deliver\nen:lesson-06:session-50:i16:p3=share\nen:lesson-06:session-50:i16:p4=river",
+    "correctText": "en:lesson-06:session-50:i16:p1=share\nen:lesson-06:session-50:i16:p2=deliver\nen:lesson-06:session-50:i16:p3=cart\nen:lesson-06:session-50:i16:p4=bundle",
     "correctResponseId": null
   },
   {

@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-07:i01",
+      "interactionId": "en:lesson-07:session-07:word:schedule",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — schedule",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-07:word:schedule:audio"
+      ],
+      "accessibilityLabel": "Картка слова — schedule",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-07:word:schedule:audio",
+          "transcript": "schedule"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-07:word:schedule:r1",
+            "targetText": "schedule",
+            "meaningByLocale": {
+              "ru": "расписание. The schedule is on the desk. — «Расписание на письменном столе». Список занятий с днями и временем.",
+              "uk": "розклад. The schedule is on the desk. — «Розклад на письмовому столі». Список занять із днями й часом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "schedule",
+          "definitionByLocale": {
+            "ru": "расписание. The schedule is on the desk. — «Расписание на письменном столе». Список занятий с днями и временем.",
+            "uk": "розклад. The schedule is on the desk. — «Розклад на письмовому столі». Список занять із днями й часом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-07:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «У вас є розклад?»",
+      "prompt": "Ви прийшли до художньої студії. Спитайте працівника: «У вас є розклад?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «У вас є розклад?»",
+      "accessibilityLabel": "Ви прийшли до художньої студії. Спитайте працівника: «У вас є розклад?»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Do you have a schedule?",
         "localizedMeaning": {
-          "ru": "Спросите «У вас есть расписание?»",
-          "uk": "Запитайте «У вас є розклад?»"
+          "ru": "Вы пришли в художественную студию. Спросите сотрудника: «У вас есть расписание?»",
+          "uk": "Ви прийшли до художньої студії. Спитайте працівника: «У вас є розклад?»"
         },
         "orderedTokens": [
           "Do",
@@ -28,8 +71,20 @@
           "a",
           "schedule"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-07:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви прийшли до художньої студії. Спитайте працівника: «У вас є розклад?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a schedule?`",
+              "uk": "тут потрібно `Do` — `Do you have a schedule?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-07:session-07:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-07:session-07:word:voucher",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — voucher",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-07:word:voucher:audio"
+      ],
+      "accessibilityLabel": "Картка слова — voucher",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-07:word:voucher:audio",
+          "transcript": "voucher"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-07:word:voucher:r1",
+            "targetText": "voucher",
+            "meaningByLocale": {
+              "ru": "талон, ваучер. The voucher is in the envelope. — «Талон в конверте». Бумага, которая даёт право на занятие или покупку.",
+              "uk": "талон, ваучер. The voucher is in the envelope. — «Талон у конверті». Папірець, що дає право на заняття або покупку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "voucher",
+          "definitionByLocale": {
+            "ru": "талон, ваучер. The voucher is in the envelope. — «Талон в конверте». Бумага, которая даёт право на занятие или покупку.",
+            "uk": "талон, ваучер. The voucher is in the envelope. — «Талон у конверті». Папірець, що дає право на заняття або покупку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-07:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте працівника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-07:i02:r1",
-          "text": "schedule"
+          "text": "We have a schedule."
         },
         {
           "responseId": "en:lesson-07:session-07:i02:r2",
-          "text": "calendar"
+          "text": "We have a voucher."
         },
         {
           "responseId": "en:lesson-07:session-07:i02:r3",
-          "text": "remote"
+          "text": "They have a schedule."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте працівника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i02:audio",
-          "transcript": "schedule"
+          "transcript": "We have a schedule."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-07:i02:r1",
-            "targetText": "schedule",
+            "targetText": "We have a schedule.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-07:i02:r2",
-            "targetText": "calendar",
+            "targetText": "We have a voucher.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-07:i02:r3",
-            "targetText": "remote",
+            "targetText": "They have a schedule.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +190,19 @@
           {
             "responseId": "en:lesson-07:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте працівника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `schedule`, а в этом варианте — `calendar`.",
-              "uk": "У записі перше слово — `schedule`, а в цьому варіанті — `calendar`."
+              "ru": "В записи последнее слово — `schedule`, расписание, а в этом варианте — `voucher`, талон.",
+              "uk": "У записі останнє слово — `schedule`, розклад, а в цьому варіанті — `voucher`, талон."
             }
           },
           {
             "responseId": "en:lesson-07:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте працівника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `schedule`, а в этом варианте — `remote`.",
-              "uk": "У записі перше слово — `schedule`, а в цьому варіанті — `remote`."
+              "ru": "В записи первое слово — `We`, мы, а в этом варианте — `They`, они.",
+              "uk": "У записі перше слово — `We`, ми, а в цьому варіанті — `They`, вони."
             }
           }
         ],
@@ -114,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-07:word:rent",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-07:word:rent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-07:word:rent:audio",
+          "transcript": "rent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-07:word:rent:r1",
+            "targetText": "rent",
+            "meaningByLocale": {
+              "ru": "брать или давать напрокат. They rent easels. — «Они дают мольберты напрокат». О вещи, которую берут на время за плату.",
+              "uk": "брати або давати напрокат. They rent easels. — «Вони дають мольберти напрокат». Про річ, яку беруть на деякий час за плату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rent",
+          "definitionByLocale": {
+            "ru": "брать или давать напрокат. They rent easels. — «Они дают мольберты напрокат». О вещи, которую берут на время за плату.",
+            "uk": "брати або давати напрокат. They rent easels. — «Вони дають мольберти напрокат». Про річ, яку беруть на деякий час за плату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-07:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про розклад",
+      "prompt": "Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-07:i03:r1",
-          "text": "Do"
+          "text": "rent"
         },
         {
           "responseId": "en:lesson-07:session-07:i03:r2",
-          "text": "Are"
+          "text": "rents"
         },
         {
           "responseId": "en:lesson-07:session-07:i03:r3",
-          "text": "Is"
+          "text": "are rent"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про розклад",
+      "accessibilityLabel": "Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о расписании",
-          "uk": "Запитайте про розклад"
+          "ru": "Спросите о студии: «Они дают мольберты напрокат?». Выберите слово",
+          "uk": "Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you have a schedule?",
+        "gappedTargetPhrase": "Do they ___ easels?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-07:i03:r1",
-            "text": "Do"
+            "text": "rent"
           },
           {
             "responseId": "en:lesson-07:session-07:i03:r2",
-            "text": "Are"
+            "text": "rents"
           },
           {
             "responseId": "en:lesson-07:session-07:i03:r3",
-            "text": "Is"
+            "text": "are rent"
           }
         ],
-        "testedDimension": "Запитайте про розклад",
+        "testedDimension": "Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте про розклад",
+            "testedDimension": "Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `have` здесь нужно `Do you have?`.",
-              "uk": "З `have` тут потрібно `Do you have?`."
+              "ru": "После `Do they` нужно `rent`, без `s`.",
+              "uk": "Після `Do they` потрібно `rent`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте про розклад",
+            "testedDimension": "Спитайте про студію: «Вони дають мольберти напрокат?». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do you have?`.",
-              "uk": "Потрібно `Do you have?`."
+              "ru": "Нужно `Do they rent`, без `are`.",
+              "uk": "Потрібно `Do they rent`, без `are`."
             }
           }
         ]
@@ -184,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,40 +347,40 @@
           },
           {
             "pairId": "en:lesson-07:session-07:i04:p2",
-            "target": "cup",
+            "target": "voucher",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "талон",
+              "uk": "талон"
             }
           },
           {
             "pairId": "en:lesson-07:session-07:i04:p3",
-            "target": "remote",
+            "target": "rent",
             "meaningByLocale": {
-              "ru": "пульт",
-              "uk": "пульт"
+              "ru": "брать или давать напрокат",
+              "uk": "брати або давати напрокат"
             }
           },
           {
             "pairId": "en:lesson-07:session-07:i04:p4",
-            "target": "calendar",
+            "target": "easel",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "мольберт",
+              "uk": "мольберт"
             }
           }
         ],
         "leftColumn": [
           "schedule",
-          "cup",
-          "remote",
-          "calendar"
+          "voucher",
+          "rent",
+          "easel"
         ],
         "rightColumn": [
           "розклад",
-          "чашка",
-          "пульт",
-          "календар"
+          "талон",
+          "брати або давати напрокат",
+          "мольберт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,35 +397,90 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-07:word:join",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — join",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-07:word:join:audio"
+      ],
+      "accessibilityLabel": "Картка слова — join",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-07:word:join:audio",
+          "transcript": "join"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-07:word:join:r1",
+            "targetText": "join",
+            "meaningByLocale": {
+              "ru": "присоединяться, вступать. We join the class. — «Мы присоединяемся к занятию». Стать участником группы или делать что-либо вместе с другими.",
+              "uk": "долучатися, вступати. We join the class. — «Ми долучаємося до заняття». Стати учасником групи або робити щось разом з іншими."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "join",
+          "definitionByLocale": {
+            "ru": "присоединяться, вступать. We join the class. — «Мы присоединяемся к занятию». Стать участником группы или делать что-либо вместе с другими.",
+            "uk": "долучатися, вступати. We join the class. — «Ми долучаємося до заняття». Стати учасником групи або робити щось разом з іншими."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-07:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Друг питає про ваші звичайні суботи: чи долучаєтеся ви до заняття? Послухайте й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Друг питає про ваші звичайні суботи: чи долучаєтеся ви до заняття? Послухайте й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i05:audio",
-          "transcript": "Do you have a schedule?"
+          "transcript": "Do you join the class?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you have a schedule?",
+        "hiddenTargetPhrase": "Do you join the class?",
         "orderedTokens": [
           "Do",
           "you",
-          "have",
-          "a",
-          "schedule"
+          "join",
+          "the",
+          "class"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-07:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає про ваші звичайні суботи: чи долучаєтеся ви до заняття? Послухайте й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you join the class?`",
+              "uk": "тут потрібно `Do` — `Do you join the class?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -294,30 +490,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте людину біля входу «Ви працюєте тут?»",
+      "prompt": "Друг хоче малювати на вихідних. Спитайте: «Вони дають мольберти напрокат?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте людину біля входу «Ви працюєте тут?»",
+      "accessibilityLabel": "Друг хоче малювати на вихідних. Спитайте: «Вони дають мольберти напрокат?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you work here?",
+        "targetPhrase": "Do they rent easels?",
         "localizedMeaning": {
-          "ru": "Спросите человека у входа «Вы работаете здесь?»",
-          "uk": "Запитайте людину біля входу «Ви працюєте тут?»"
+          "ru": "Друг хочет рисовать по выходным. Спросите: «Они дают мольберты напрокат?»",
+          "uk": "Друг хоче малювати на вихідних. Спитайте: «Вони дають мольберти напрокат?»"
         },
         "orderedTokens": [
           "Do",
-          "you",
-          "work",
-          "here"
+          "they",
+          "rent",
+          "easels"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-07:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг хоче малювати на вихідних. Спитайте: «Вони дають мольберти напрокат?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they rent easels?`",
+              "uk": "тут потрібно `Do` — `Do they rent easels?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -327,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви перевірили стіл. Повідомте «Тут немає розкладу»",
+      "prompt": "Подруга подарувала вам талон на заняття. Зазирнувши в конверт, скажіть їй: «Тут немає ваучера»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i07:audio"
       ],
-      "accessibilityLabel": "Ви перевірили стіл. Повідомте «Тут немає розкладу»",
+      "accessibilityLabel": "Подруга подарувала вам талон на заняття. Зазирнувши в конверт, скажіть їй: «Тут немає ваучера»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i07:audio",
-          "transcript": "There is no schedule here."
+          "transcript": "There is no voucher here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is no schedule here.",
+        "targetPhrase": "There is no voucher here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -360,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про знайомих художників «Вони працюють тут?»",
+      "prompt": "Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-07:i08:r1",
-          "text": "work"
+          "text": "join"
         },
         {
           "responseId": "en:lesson-07:session-07:i08:r2",
-          "text": "works"
+          "text": "joins"
         },
         {
           "responseId": "en:lesson-07:session-07:i08:r3",
-          "text": "are work"
+          "text": "are join"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про знайомих художників «Вони працюють тут?»",
+      "accessibilityLabel": "Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о знакомых художниках «Они работают здесь?»",
-          "uk": "Запитайте про знайомих художників «Вони працюють тут?»"
+          "ru": "Каждую субботу вы видите соседку у студии. Спросите о её привычке: «Вы присоединяетесь к занятию?» Выберите слово",
+          "uk": "Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово"
         },
-        "gappedTargetPhrase": "Do they ___ here?",
+        "gappedTargetPhrase": "Do you ___ the class?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-07:i08:r1",
-            "text": "work"
+            "text": "join"
           },
           {
             "responseId": "en:lesson-07:session-07:i08:r2",
-            "text": "works"
+            "text": "joins"
           },
           {
             "responseId": "en:lesson-07:session-07:i08:r3",
-            "text": "are work"
+            "text": "are join"
           }
         ],
-        "testedDimension": "Запитайте про знайомих художників «Вони працюють тут?»",
+        "testedDimension": "Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте про знайомих художників «Вони працюють тут?»",
+            "testedDimension": "Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `Do they` нужно `work`.",
-              "uk": "Після `Do they` потрібне `work`."
+              "ru": "После `Do you` нужно `join`, без `s`.",
+              "uk": "Після `Do you` потрібно `join`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте про знайомих художників «Вони працюють тут?»",
+            "testedDimension": "Щосуботи ви бачите сусідку біля студії. Спитайте про її звичку: «Ви долучаєтеся до заняття?» Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Do they work?`, без `are`.",
-              "uk": "Потрібно `Do they work?`, без `are`."
+              "ru": "Нужно `Do you join`, без `are`.",
+              "uk": "Потрібно `Do you join`, без `are`."
             }
           }
         ]
@@ -429,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що шукає відвідувач",
+      "prompt": "Послухайте питання працівника",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-07:i09:r1",
-          "text": "Do you have a schedule?"
+          "text": "Do you have a voucher?"
         },
         {
           "responseId": "en:lesson-07:session-07:i09:r2",
-          "text": "Do you have a calendar?"
+          "text": "Do you have a schedule?"
         },
         {
           "responseId": "en:lesson-07:session-07:i09:r3",
-          "text": "Do you have a remote?"
+          "text": "Do they have a voucher?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що шукає відвідувач",
+      "accessibilityLabel": "Послухайте питання працівника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i09:audio",
-          "transcript": "Do you have a schedule?"
+          "transcript": "Do you have a voucher?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-07:i09:r1",
-            "targetText": "Do you have a schedule?",
+            "targetText": "Do you have a voucher?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-07:i09:r2",
-            "targetText": "Do you have a calendar?",
+            "targetText": "Do you have a schedule?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-07:i09:r3",
-            "targetText": "Do you have a remote?",
+            "targetText": "Do they have a voucher?",
             "meaningByLocale": null
           }
         ],
@@ -482,19 +690,19 @@
           {
             "responseId": "en:lesson-07:session-07:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що шукає відвідувач",
+            "testedDimension": "Послухайте питання працівника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `schedule`, а в этом варианте — `calendar`.",
-              "uk": "У записі останнє слово — `schedule`, а в цьому варіанті — `calendar`."
+              "ru": "В записи последнее слово — `voucher`, талон, а в этом варианте — `schedule`, расписание.",
+              "uk": "У записі останнє слово — `voucher`, талон, а в цьому варіанті — `schedule`, розклад."
             }
           },
           {
             "responseId": "en:lesson-07:session-07:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що шукає відвідувач",
+            "testedDimension": "Послухайте питання працівника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `schedule`, а в этом варианте — `remote`.",
-              "uk": "У записі останнє слово — `schedule`, а в цьому варіанті — `remote`."
+              "ru": "В записи второе слово — `you`, вы, а в этом варианте — `they`, они.",
+              "uk": "У записі друге слово — `you`, ви, а в цьому варіанті — `they`, вони."
             }
           }
         ],
@@ -505,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -519,14 +727,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-07:i10:p1",
-            "target": "artist",
+            "target": "join",
             "meaningByLocale": {
-              "ru": "художник",
-              "uk": "художник"
+              "ru": "присоединяться",
+              "uk": "долучатися"
             }
           },
           {
             "pairId": "en:lesson-07:session-07:i10:p2",
+            "target": "voucher",
+            "meaningByLocale": {
+              "ru": "талон",
+              "uk": "талон"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-07:i10:p3",
             "target": "schedule",
             "meaningByLocale": {
               "ru": "расписание",
@@ -534,33 +750,25 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-07:i10:p3",
-            "target": "calendar",
-            "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
-            }
-          },
-          {
             "pairId": "en:lesson-07:session-07:i10:p4",
-            "target": "cup",
+            "target": "rent",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "брать или давать напрокат",
+              "uk": "брати або давати напрокат"
             }
           }
         ],
         "leftColumn": [
-          "artist",
+          "join",
+          "voucher",
           "schedule",
-          "calendar",
-          "cup"
+          "rent"
         ],
         "rightColumn": [
-          "художник",
+          "долучатися",
+          "талон",
           "розклад",
-          "календар",
-          "чашка"
+          "брати або давати напрокат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,33 +786,46 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Сусід питає, чи беруть друзі участь у занятті щотижня. Послухайте й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Сусід питає, чи беруть друзі участь у занятті щотижня. Послухайте й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i11:audio",
-          "transcript": "Do they work here?"
+          "transcript": "Do they join the class?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do they work here?",
+        "hiddenTargetPhrase": "Do they join the class?",
         "orderedTokens": [
           "Do",
           "they",
-          "work",
-          "here"
+          "join",
+          "the",
+          "class"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-07:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід питає, чи беруть друзі участь у занятті щотижня. Послухайте й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do they join the class?`",
+              "uk": "тут потрібно `Do` — `Do they join the class?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -614,30 +835,43 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У майстерні запитайте відвідувача «Ви художник?»",
+      "prompt": "Подруга хоче потрапити на перше заняття. Спитайте: «У тебе є ваучер?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У майстерні запитайте відвідувача «Ви художник?»",
+      "accessibilityLabel": "Подруга хоче потрапити на перше заняття. Спитайте: «У тебе є ваучер?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Are you an artist?",
+        "targetPhrase": "Do you have a voucher?",
         "localizedMeaning": {
-          "ru": "В мастерской спросите посетителя «Вы художник?»",
-          "uk": "У майстерні запитайте відвідувача «Ви художник?»"
+          "ru": "Подруга хочет попасть на первое занятие. Спросите: «У тебя есть ваучер?»",
+          "uk": "Подруга хоче потрапити на перше заняття. Спитайте: «У тебе є ваучер?»"
         },
         "orderedTokens": [
-          "Are",
+          "Do",
           "you",
-          "an",
-          "artist"
+          "have",
+          "a",
+          "voucher"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-07:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга хоче потрапити на перше заняття. Спитайте: «У тебе є ваучер?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a voucher?`",
+              "uk": "тут потрібно `Do` — `Do you have a voucher?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -647,25 +881,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Щоб вибрати дату зустрічі, запитайте колегу «У вас є календар?»",
+      "prompt": "Ви прийшли до студії. Спитайте працівника: «Ви даєте мольберти напрокат?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i13:audio"
       ],
-      "accessibilityLabel": "Щоб вибрати дату зустрічі, запитайте колегу «У вас є календар?»",
+      "accessibilityLabel": "Ви прийшли до студії. Спитайте працівника: «Ви даєте мольберти напрокат?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i13:audio",
-          "transcript": "Do you have a calendar?"
+          "transcript": "Do you rent easels?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you have a calendar?",
+        "targetPhrase": "Do you rent easels?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -680,11 +914,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»",
+      "prompt": "Скажіть подрузі, що ваучера немає. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-07:i14:r1",
@@ -701,14 +935,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»",
+      "accessibilityLabel": "Скажіть подрузі, що ваучера немає. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы проверили стол возле экрана. Сообщите «Здесь нет пульта»",
-          "uk": "Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»"
+          "ru": "Скажите подруге, что ваучера нет. Выберите слово",
+          "uk": "Скажіть подрузі, що ваучера немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no remote here.",
+        "gappedTargetPhrase": "There ___ no voucher here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-07:i14:r1",
@@ -723,24 +957,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»",
+        "testedDimension": "Скажіть подрузі, що ваучера немає. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-07:i14:r2",
             "correct": false,
-            "testedDimension": "Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»",
+            "testedDimension": "Скажіть подрузі, що ваучера немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Один пульт: `There is no remote`.",
-              "uk": "Один пульт: `There is no remote`."
+              "ru": "Слово voucher стоит в единственном числе: нужно `There is no`.",
+              "uk": "Слово voucher стоїть в однині: потрібно `There is no`."
             }
           },
           {
             "responseId": "en:lesson-07:session-07:i14:r3",
             "correct": false,
-            "testedDimension": "Ви перевірили стіл біля екрана. Повідомте «Тут немає пульта»",
+            "testedDimension": "Скажіть подрузі, що ваучера немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `There is no`; `am` подходит к `I`.",
-              "uk": "Потрібно `There is no`; `am` підходить до `I`."
+              "ru": "Нужно `There is no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There is no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -749,51 +983,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про річ",
+      "prompt": "Послухайте питання про студію",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-07:i15:r1",
-          "text": "Do you have a cup?"
+          "text": "Do they rent easels here?"
         },
         {
           "responseId": "en:lesson-07:session-07:i15:r2",
-          "text": "Do you have a schedule?"
+          "text": "Do they rent easels there?"
         },
         {
           "responseId": "en:lesson-07:session-07:i15:r3",
-          "text": "Do you have a calendar?"
+          "text": "Do they rent brushes here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про річ",
+      "accessibilityLabel": "Послухайте питання про студію",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-07:i15:audio",
-          "transcript": "Do you have a cup?"
+          "transcript": "Do they rent easels here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-07:i15:r1",
-            "targetText": "Do you have a cup?",
+            "targetText": "Do they rent easels here?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-07:i15:r2",
-            "targetText": "Do you have a schedule?",
+            "targetText": "Do they rent easels there?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-07:i15:r3",
-            "targetText": "Do you have a calendar?",
+            "targetText": "Do they rent brushes here?",
             "meaningByLocale": null
           }
         ],
@@ -802,19 +1036,19 @@
           {
             "responseId": "en:lesson-07:session-07:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про річ",
+            "testedDimension": "Послухайте питання про студію",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cup`, а в этом варианте — `schedule`.",
-              "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `schedule`."
+              "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+              "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
             }
           },
           {
             "responseId": "en:lesson-07:session-07:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про річ",
+            "testedDimension": "Послухайте питання про студію",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cup`, а в этом варианте — `calendar`.",
-              "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `calendar`."
+              "ru": "В записи речь о мольбертах, `easels`, а в этом варианте — о кистях, `brushes`.",
+              "uk": "У записі йдеться про мольберти, `easels`, а в цьому варіанті — про пензлі, `brushes`."
             }
           }
         ],
@@ -825,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,6 +1073,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-07:i16:p1",
+            "target": "rent",
+            "meaningByLocale": {
+              "ru": "брать или давать напрокат",
+              "uk": "брати або давати напрокат"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-07:i16:p2",
             "target": "schedule",
             "meaningByLocale": {
               "ru": "расписание",
@@ -846,41 +1088,33 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-07:i16:p2",
-            "target": "artist",
-            "meaningByLocale": {
-              "ru": "художник",
-              "uk": "художник"
-            }
-          },
-          {
             "pairId": "en:lesson-07:session-07:i16:p3",
-            "target": "remote",
+            "target": "voucher",
             "meaningByLocale": {
-              "ru": "пульт",
-              "uk": "пульт"
+              "ru": "талон",
+              "uk": "талон"
             }
           },
           {
             "pairId": "en:lesson-07:session-07:i16:p4",
-            "target": "cup",
+            "target": "join",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "присоединяться",
+              "uk": "долучатися"
             }
           }
         ],
         "leftColumn": [
+          "rent",
           "schedule",
-          "artist",
-          "remote",
-          "cup"
+          "voucher",
+          "join"
         ],
         "rightColumn": [
+          "брати або давати напрокат",
           "розклад",
-          "художник",
-          "пульт",
-          "чашка"
+          "талон",
+          "долучатися"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -898,17 +1132,17 @@
     },
     {
       "interactionId": "en:lesson-07:session-07:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг записує батьків на заняття. Запитайте друга «У них є розклад?»",
+      "prompt": "Друг записує батьків на заняття. Спитайте його: «У них є розклад?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-07:i17:audio"
       ],
-      "accessibilityLabel": "Друг записує батьків на заняття. Запитайте друга «У них є розклад?»",
+      "accessibilityLabel": "Друг записує батьків на заняття. Спитайте його: «У них є розклад?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -938,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6a7525335e1e474f8098bb53ff49cafa6cee9ab8ae349c64a225c15d2dd06069"
+  "learnerFingerprint": "ecb8de07b0fa2f312c3ec3d8ab562b14c0367c7bf69faf794295d954cec7c6ba"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-55:intro1:r2": {
-          "ru": "Чтобы назвать профессию, нужно `She is`.",
-          "uk": "Щоб назвати професію, потрібно `She is`."
+          "ru": "Перед гласным звуком нужно an, а не a.",
+          "uk": "Перед голосним звуком потрібно an, а не a."
         },
         "en:lesson-06:session-55:intro1:r3": {
-          "ru": "Перед `artist` нужно `an`.",
-          "uk": "Перед `artist` потрібне `an`."
+          "ru": "После she нужно is, а не are.",
+          "uk": "Після she потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-55:intro2:r2": {
-          "ru": "Одна художница: `paints`.",
-          "uk": "Одна художниця: `paints`."
+          "ru": "Художник один: нужно paints, с s.",
+          "uk": "Художник один: потрібно paints, з s."
         },
         "en:lesson-06:session-55:intro2:r3": {
-          "ru": "Нужно `This artist paints`, без `is`.",
-          "uk": "Потрібно `This artist paints`, без `is`."
+          "ru": "Здесь действие: artist paints, без is.",
+          "uk": "Тут дія: artist paints, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-55:intro3:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо `Whose`."
+          "ru": "О владельце спрашиваем Whose, а не Who.",
+          "uk": "Про власника питаємо Whose, а не Who."
         },
         "en:lesson-06:session-55:intro3:r3": {
-          "ru": "Одна перчатка: `is this`.",
-          "uk": "Одна рукавичка: `is this`."
+          "ru": "Набросок один: нужно is this.",
+          "uk": "Начерк один: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "52cdfb011068d3d0c4539b47d6e3f5b0d99703b6d01ca4b12dee37d81343b60f"
+  "auxiliaryFingerprint": "76868c5129706f5507bf66b17c14c63ca589b0cd590008c7ed4a75959dfb648c"
 }

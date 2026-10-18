@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-52:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-52:intro1:r2": {
-          "ru": "После `she` нужно `wears`.",
-          "uk": "Після `she` потрібне `wears`."
+          "ru": "После she нужно wears, с s.",
+          "uk": "Після she потрібно wears, з s."
         },
         "en:lesson-06:session-52:intro1:r3": {
-          "ru": "Нужно `She wears`, без `is`.",
-          "uk": "Потрібно `She wears`, без `is`."
+          "ru": "Здесь действие: She wears, без is.",
+          "uk": "Тут дія: She wears, без is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-52:intro2:r2": {
-          "ru": "После `we` нужно `wear`.",
-          "uk": "Після `we` потрібне `wear`."
+          "ru": "После we слово остаётся wear, без s.",
+          "uk": "Після we слово лишається wear, без s."
         },
         "en:lesson-06:session-52:intro2:r3": {
-          "ru": "Нужно `We wear`, без `are`.",
-          "uk": "Потрібно `We wear`, без `are`."
+          "ru": "Здесь действие: We wear, без are.",
+          "uk": "Тут дія: We wear, без are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-52:intro3:r2": {
-          "ru": "Это вопрос «Где эта шляпа?», а нужен владелец.",
-          "uk": "Це запитання «Де цей капелюх?», а потрібен власник."
+          "ru": "О владельце спрашиваем Whose, а не Who.",
+          "uk": "Про власника питаємо Whose, а не Who."
         },
         "en:lesson-06:session-52:intro3:r3": {
-          "ru": "Одна шляпа: `is this`.",
-          "uk": "Один капелюх: `is this`."
+          "ru": "Юбка одна: нужно is this.",
+          "uk": "Спідниця одна: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f00382ff00e76aea2671153cd7efe4433e68f8591fee55dc236f483263b05091"
+  "auxiliaryFingerprint": "3b291a5ed7ad35f373196b2b346c030a894b5a93f16b52d75f00029b25014052"
 }

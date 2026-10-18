@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-45:word:mend",
+    "correctText": "mend",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-45:i01",
-    "correctText": "This pencil is mine.",
+    "correctText": "We mend socks.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i02",
-    "correctText": "pencil",
+    "correctText": "My grandmother mends socks.",
     "correctResponseId": "en:lesson-06:session-45:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-45:i03",
-    "correctText": "pencil",
+    "correctText": "mends",
     "correctResponseId": "en:lesson-06:session-45:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-45:i04",
-    "correctText": "en:lesson-06:session-45:i04:p1=pencil\nen:lesson-06:session-45:i04:p2=illegal\nen:lesson-06:session-45:i04:p3=microwave\nen:lesson-06:session-45:i04:p4=motorbike",
+    "correctText": "en:lesson-06:session-45:i04:p1=mend\nen:lesson-06:session-45:i04:p2=thread\nen:lesson-06:session-45:i04:p3=needle\nen:lesson-06:session-45:i04:p4=fabric",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:word:thread",
+    "correctText": "thread",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i05",
-    "correctText": "My pencil is here.",
+    "correctText": "The thread is in the drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:word:needle",
+    "correctText": "needle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i06",
-    "correctText": "She shops here.",
+    "correctText": "Whose needle is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i07",
-    "correctText": "This microwave is new.",
+    "correctText": "My grandmother mends socks.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i08",
-    "correctText": "shop",
+    "correctText": "mend",
     "correctResponseId": "en:lesson-06:session-45:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-45:word:fabric",
+    "correctText": "fabric",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-45:i09",
-    "correctText": "This motorbike is mine.",
+    "correctText": "The fabric is in the drawer.",
     "correctResponseId": "en:lesson-06:session-45:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-45:i10",
-    "correctText": "en:lesson-06:session-45:i10:p1=pencil\nen:lesson-06:session-45:i10:p2=shop\nen:lesson-06:session-45:i10:p3=motorbike\nen:lesson-06:session-45:i10:p4=illegal",
+    "correctText": "en:lesson-06:session-45:i10:p1=needle\nen:lesson-06:session-45:i10:p2=fabric\nen:lesson-06:session-45:i10:p3=thread\nen:lesson-06:session-45:i10:p4=mend",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i11",
-    "correctText": "The microwave is here.",
+    "correctText": "They mend the coat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i12",
-    "correctText": "Whose motorbike is this?",
+    "correctText": "My grandmother has a needle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i13",
-    "correctText": "We shop here.",
+    "correctText": "The thread is in the drawer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i14",
-    "correctText": "shops",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-45:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-45:i15",
-    "correctText": "This pencil is mine.",
+    "correctText": "She has a needle.",
     "correctResponseId": "en:lesson-06:session-45:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-45:i16",
-    "correctText": "en:lesson-06:session-45:i16:p1=pencil\nen:lesson-06:session-45:i16:p2=microwave\nen:lesson-06:session-45:i16:p3=illegal\nen:lesson-06:session-45:i16:p4=shop",
+    "correctText": "en:lesson-06:session-45:i16:p1=fabric\nen:lesson-06:session-45:i16:p2=mend\nen:lesson-06:session-45:i16:p3=needle\nen:lesson-06:session-45:i16:p4=thread",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-45:i17",
-    "correctText": "Whose pencil is this?",
+    "correctText": "He mends socks.",
     "correctResponseId": null
   }
 ]

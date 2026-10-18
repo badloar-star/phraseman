@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-40:intro1:r2": {
-          "ru": "После `she` — `lives`.",
-          "uk": "Після `she` — `lives`."
+          "ru": "Про одного человека нужно lives, с s.",
+          "uk": "Про одну людину потрібно lives, з s."
         },
         "en:lesson-06:session-40:intro1:r3": {
-          "ru": "Нужно `She lives`, без `is`.",
-          "uk": "Потрібно `She lives`, без `is`."
+          "ru": "Здесь действие: lives, без is.",
+          "uk": "Тут дія: lives, без is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-40:intro2:r2": {
-          "ru": "Пишем `studies`: вместо `y` — `ies`.",
-          "uk": "Пишемо `studies`: замість `y` — `ies`."
+          "ru": "О владельце спрашиваем Whose — «чьё».",
+          "uk": "Про власника питаємо Whose — «чиє»."
         },
         "en:lesson-06:session-40:intro2:r3": {
-          "ru": "После `she` нужно `studies`.",
-          "uk": "Після `she` потрібно `studies`."
+          "ru": "Приглашение одно: нужно is this.",
+          "uk": "Запрошення одне: потрібно is this."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-40:intro3:r2": {
-          "ru": "После `he` — `cycles`.",
-          "uk": "Після `he` — `cycles`."
+          "ru": "Пишем studies: вместо y — ies.",
+          "uk": "Пишемо studies: замість y — ies."
         },
         "en:lesson-06:session-40:intro3:r3": {
-          "ru": "Нужно `He cycles`, без `is`.",
-          "uk": "Потрібно `He cycles`, без `is`."
+          "ru": "После she нужно studies, с ies.",
+          "uk": "Після she потрібно studies, з ies."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "83105bbdd6ba5c3a4524bc0ceed4f19c06b3d447c7637dca8914860efe0bdd49"
+  "auxiliaryFingerprint": "58bcfb4592d61cc9cb74efdc62553119871a4107163fe46fc2debf40d7005651"
 }

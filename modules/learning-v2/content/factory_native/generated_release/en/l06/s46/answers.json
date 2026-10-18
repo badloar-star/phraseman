@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-46:word:grill",
+    "correctText": "grill",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-46:i01",
-    "correctText": "This mug is mine.",
+    "correctText": "We grill sausages.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i02",
-    "correctText": "mug",
+    "correctText": "He grills sausages in the yard.",
     "correctResponseId": "en:lesson-06:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-46:i03",
-    "correctText": "mug",
+    "correctText": "grills",
     "correctResponseId": "en:lesson-06:session-46:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-46:i04",
-    "correctText": "en:lesson-06:session-46:i04:p1=mug\nen:lesson-06:session-46:i04:p2=appropriate\nen:lesson-06:session-46:i04:p3=pantry\nen:lesson-06:session-46:i04:p4=ferry",
+    "correctText": "en:lesson-06:session-46:i04:p1=grill\nen:lesson-06:session-46:i04:p2=roast\nen:lesson-06:session-46:i04:p3=skewer\nen:lesson-06:session-46:i04:p4=charcoal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:word:roast",
+    "correctText": "roast",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i05",
-    "correctText": "My mug is here.",
+    "correctText": "She roasts potatoes in the yard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-46:word:skewer",
+    "correctText": "skewer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i06",
-    "correctText": "She rests here.",
+    "correctText": "Whose skewer is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i07",
-    "correctText": "The pantry is here.",
+    "correctText": "She roasts potatoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i08",
-    "correctText": "rest",
+    "correctText": "grill",
     "correctResponseId": "en:lesson-06:session-46:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-46:word:charcoal",
+    "correctText": "charcoal",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-46:i09",
-    "correctText": "This ferry is new.",
+    "correctText": "The charcoal is in the bag.",
     "correctResponseId": "en:lesson-06:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-46:i10",
-    "correctText": "en:lesson-06:session-46:i10:p1=mug\nen:lesson-06:session-46:i10:p2=rest\nen:lesson-06:session-46:i10:p3=ferry\nen:lesson-06:session-46:i10:p4=appropriate",
+    "correctText": "en:lesson-06:session-46:i10:p1=skewer\nen:lesson-06:session-46:i10:p2=charcoal\nen:lesson-06:session-46:i10:p3=roast\nen:lesson-06:session-46:i10:p4=grill",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i11",
-    "correctText": "The pantry is small.",
+    "correctText": "They roast potatoes in the garden.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i12",
-    "correctText": "Whose mug is this?",
+    "correctText": "My neighbour has a skewer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i13",
-    "correctText": "We rest here.",
+    "correctText": "The skewer is on the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i14",
-    "correctText": "rests",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-46:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-46:i15",
-    "correctText": "This mug is mine.",
+    "correctText": "He has a skewer.",
     "correctResponseId": "en:lesson-06:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-46:i16",
-    "correctText": "en:lesson-06:session-46:i16:p1=mug\nen:lesson-06:session-46:i16:p2=pantry\nen:lesson-06:session-46:i16:p3=appropriate\nen:lesson-06:session-46:i16:p4=rest",
+    "correctText": "en:lesson-06:session-46:i16:p1=charcoal\nen:lesson-06:session-46:i16:p2=grill\nen:lesson-06:session-46:i16:p3=skewer\nen:lesson-06:session-46:i16:p4=roast",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-46:i17",
-    "correctText": "This mug is mine.",
+    "correctText": "He grills sausages.",
     "correctResponseId": null
   }
 ]

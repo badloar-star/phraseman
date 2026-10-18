@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-06:word:plumber",
+    "correctText": "plumber",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-06:i01",
-    "correctText": "Are you a customer?",
+    "correctText": "Are you a plumber?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:word:electrician",
+    "correctText": "electrician",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i02",
-    "correctText": "customer",
+    "correctText": "I am a plumber.",
     "correctResponseId": "en:lesson-07:session-06:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-06:word:fix",
+    "correctText": "fix",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-06:i03",
-    "correctText": "Are",
+    "correctText": "fix",
     "correctResponseId": "en:lesson-07:session-06:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-06:i04",
-    "correctText": "en:lesson-07:session-06:i04:p1=customer\nen:lesson-07:session-06:i04:p2=repair\nen:lesson-07:session-06:i04:p3=pen\nen:lesson-07:session-06:i04:p4=bookmark",
+    "correctText": "en:lesson-07:session-06:i04:p1=plumber\nen:lesson-07:session-06:i04:p2=electrician\nen:lesson-07:session-06:i04:p3=fix\nen:lesson-07:session-06:i04:p4=tap",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i05",
-    "correctText": "Are you a customer?",
+    "correctText": "Are you an electrician?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i06",
-    "correctText": "Do you repair bicycles?",
+    "correctText": "Do they fix lamps?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-06:word:pliers",
+    "correctText": "pliers",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i07",
-    "correctText": "There is no pen here.",
+    "correctText": "There are no pliers here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i08",
-    "correctText": "Do",
+    "correctText": "Are",
     "correctResponseId": "en:lesson-07:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-06:i09",
-    "correctText": "Are you a customer?",
+    "correctText": "Do you fix lamps?",
     "correctResponseId": "en:lesson-07:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-06:i10",
-    "correctText": "en:lesson-07:session-06:i10:p1=ceiling\nen:lesson-07:session-06:i10:p2=customer\nen:lesson-07:session-06:i10:p3=repair\nen:lesson-07:session-06:i10:p4=pen",
+    "correctText": "en:lesson-07:session-06:i10:p1=electrician\nen:lesson-07:session-06:i10:p2=fix\nen:lesson-07:session-06:i10:p3=plumber\nen:lesson-07:session-06:i10:p4=pliers",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i11",
-    "correctText": "Do you repair bicycles?",
+    "correctText": "Do they fix taps?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i12",
-    "correctText": "Do you have a pen?",
+    "correctText": "Do you have pliers?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i13",
-    "correctText": "Do they repair bicycles?",
+    "correctText": "Do you fix taps?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i14",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-07:session-06:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-06:i15",
-    "correctText": "Do you have a pen?",
+    "correctText": "Do you have pliers?",
     "correctResponseId": "en:lesson-07:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-06:i16",
-    "correctText": "en:lesson-07:session-06:i16:p1=customer\nen:lesson-07:session-06:i16:p2=ceiling\nen:lesson-07:session-06:i16:p3=bookmark\nen:lesson-07:session-06:i16:p4=repair",
+    "correctText": "en:lesson-07:session-06:i16:p1=pliers\nen:lesson-07:session-06:i16:p2=plumber\nen:lesson-07:session-06:i16:p3=fix\nen:lesson-07:session-06:i16:p4=electrician",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-06:i17",
-    "correctText": "Do you repair roofs?",
+    "correctText": "Are you a plumber?",
     "correctResponseId": null
   }
 ]

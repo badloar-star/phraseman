@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-08:intro1:r2": {
-          "ru": "Нужно `Do you work?`, без `are`.",
-          "uk": "Потрібно `Do you work?`, без `are`."
+          "ru": "Здесь действие borrow, поэтому нужно Do you borrow, без Are.",
+          "uk": "Тут дія borrow, тому потрібно Do you borrow, без Are."
         },
         "en:lesson-07:session-08:intro1:r3": {
-          "ru": "После `Do you` нужно `work`.",
-          "uk": "Після `Do you` потрібне `work`."
+          "ru": "После Do you слово borrow остаётся без s.",
+          "uk": "Після Do you слово borrow лишається без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-08:intro2:r2": {
-          "ru": "Нужно `Do you have?`.",
-          "uk": "Потрібно `Do you have?`."
+          "ru": "Здесь действие check, поэтому нужно Do they check, без Are.",
+          "uk": "Тут дія check, тому потрібно Do they check, без Are."
         },
         "en:lesson-07:session-08:intro2:r3": {
-          "ru": "После `Do you` нужно `have`.",
-          "uk": "Після `Do you` потрібне `have`."
+          "ru": "После Do they слово check остаётся без s.",
+          "uk": "Після Do they слово check лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-08:intro3:r2": {
-          "ru": "Одно расписание: `There is no schedule`.",
-          "uk": "Один розклад: `There is no schedule`."
+          "ru": "Слово guard стоит в единственном числе: нужно There is no.",
+          "uk": "Слово guard стоїть в однині: потрібно There is no."
         },
         "en:lesson-07:session-08:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "После not здесь не хватает a. В нашем ответе используем no guard.",
+          "uk": "Після not тут бракує a. У нашій відповіді використовуємо no guard."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d412b7c1ccd2edfeb9cb4ab0ec01a2b0f4a71ccf8ac6cb64dd68731de774912c"
+  "auxiliaryFingerprint": "aa7b697ebeb74ca76f363934d91f2c2b3ee4bedf35ae5d5b040a4d58054ee4f5"
 }

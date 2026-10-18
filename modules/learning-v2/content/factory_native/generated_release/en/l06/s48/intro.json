@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-48",
   "learningOutcomeByLocale": {
-    "ru": "повторить рассказ о привычках и вопросы о владельцах вещей",
-    "uk": "повторити розповідь про звички й запитання про власників речей"
+    "ru": "рассказать, кто встречает гостей, и сказать, где что стоит на празднике",
+    "uk": "розповісти, хто зустрічає гостей, і сказати, де що стоїть на святі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Здесь мы встречаемся",
-        "uk": "Тут ми зустрічаємося"
+        "ru": "У калитки",
+        "uk": "Біля хвіртки"
       },
       "bodyByLocale": {
-        "ru": "Новый сосед спрашивает, где жильцы обычно общаются. `We chat here` — «Мы беседуем здесь». `community kitchen` — «общая кухня»; `We share a community kitchen` — «Мы пользуемся общей кухней». После `we` действия `chat` и `share` идут без `s`. Общая кухня не означает, что ваша кружка тоже автоматически стала общей.",
-        "uk": "Новий сусід запитує, де мешканці зазвичай спілкуються. `We chat here` — «Ми розмовляємо тут». `community kitchen` — «спільна кухня»; `We share a community kitchen` — «Ми користуємося спільною кухнею». Після `we` дії `chat` та `share` йдуть без `s`. Спільна кухня не означає, що ваш кухоль теж автоматично став спільним."
+        "ru": "Соседка устраивает во дворе праздник, и гости уже тянутся к калитке. Вы стоите у входа и никого не пропускаете без улыбки. Один из гостей спрашивает, что вы тут делаете. greet — «встречать». Про себя говорим I greet the guests — «Я встречаю гостей». После I слово остаётся greet, без s.",
+        "uk": "Сусідка влаштовує на подвір’ї свято, і гості вже тягнуться до хвіртки. Ви стоїте біля входу й нікого не пропускаєте без усмішки. Один із гостей питає, що ви тут робите. greet — «зустрічати». Про себе кажемо I greet the guests — «Я зустрічаю гостей». Після I слово лишається greet, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Объясните соседу «Мы пользуемся общей кухней».",
-          "uk": "Поясніть сусідові «Ми користуємося спільною кухнею»."
+          "ru": "Гость спрашивает, что вы делаете у калитки. Скажите: «Я встречаю гостей».",
+          "uk": "Гість питає, що ви робите біля хвіртки. Скажіть: «Я зустрічаю гостей»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-48:intro1:r1",
-              "text": "We share a community kitchen."
+              "text": "I greet the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro1:r2",
-              "text": "We shares a community kitchen."
+              "text": "I greets the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro1:r3",
-              "text": "We are share a community kitchen."
+              "text": "I am greet the guests."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-48:intro1:r1",
-              "text": "We share a community kitchen."
+              "text": "I greet the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro1:r2",
-              "text": "We shares a community kitchen."
+              "text": "I greets the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro1:r3",
-              "text": "We are share a community kitchen."
+              "text": "I am greet the guests."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните соседу «Мы пользуемся общей кухней».",
-          "uk": "Поясніть сусідові «Ми користуємося спільною кухнею»."
+          "ru": "Гость спрашивает, что вы делаете у калитки. Скажите: «Я встречаю гостей».",
+          "uk": "Гість питає, що ви робите біля хвіртки. Скажіть: «Я зустрічаю гостей»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "На каком языке обратиться",
-        "uk": "Якою мовою звернутися"
+        "ru": "Хозяин у стола",
+        "uk": "Господар біля столу"
       },
       "bodyByLocale": {
-        "ru": "Сосед хочет поговорить с Анной и уточняет язык. `She speaks English` — «Она говорит по-английски». После `she` у `speak` появляется `s`; `Anna speaks English` — тот же смысл с именем. Здесь речь о языке, которым она владеет, а не о том, говорит ли она в эту секунду.",
-        "uk": "Сусід хоче поговорити з Анною й уточнює мову. `She speaks English` — «Вона говорить англійською». Після `she` у `speak` з’являється `s`; `Anna speaks English` — той самий зміст з ім’ям. Тут ідеться про мову, якою вона володіє, а не про те, чи говорить вона цієї секунди."
+        "ru": "Праздник устраивает сосед с третьего этажа. Он в яркой рубашке стоит у стола и пожимает руку каждому, кто входит во двор. host — «хозяин праздника». Гость спрашивает, кто здесь главный. Про него говорим The host greets the guests — «Хозяин встречает гостей». Здесь greet получает s.",
+        "uk": "Свято влаштовує сусід із третього поверху. Він у яскравій сорочці стоїть біля столу й тисне руку кожному, хто входить на подвір’я. host — «господар свята». Гість питає, хто тут головний. Про нього кажемо The host greets the guests — «Господар зустрічає гостей». Тут greet отримує s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте соседу об Анне «Она говорит по-английски».",
-          "uk": "Дайте сусідові відповідь про Анну «Вона говорить англійською»."
+          "ru": "Гость спрашивает, кто встречает гостей. Скажите: «Хозяин встречает гостей».",
+          "uk": "Гість питає, хто зустрічає гостей. Скажіть: «Господар зустрічає гостей»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-48:intro2:r1",
-              "text": "She speaks English."
+              "text": "The host greets the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro2:r2",
-              "text": "She speak English."
+              "text": "The host greet the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro2:r3",
-              "text": "She is speaks English."
+              "text": "The host is greets the guests."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-48:intro2:r1",
-              "text": "She speaks English."
+              "text": "The host greets the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro2:r2",
-              "text": "She speak English."
+              "text": "The host greet the guests."
             },
             {
               "responseId": "en:lesson-06:session-48:intro2:r3",
-              "text": "She is speaks English."
+              "text": "The host is greets the guests."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте соседу об Анне «Она говорит по-английски».",
-          "uk": "Дайте сусідові відповідь про Анну «Вона говорить англійською»."
+          "ru": "Гость спрашивает, кто встречает гостей. Скажите: «Хозяин встречает гостей».",
+          "uk": "Гість питає, хто зустрічає гостей. Скажіть: «Господар зустрічає гостей»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Перчатки остались",
-        "uk": "Рукавички залишилися"
+        "ru": "Гирлянда на заборе",
+        "uk": "Гірлянда на паркані"
       },
       "bodyByLocale": {
-        "ru": "После встречи на стуле лежит пара перчаток. `Whose gloves are these?` — «Чьи это перчатки?» Одна перчатка — `glove`, несколько — `gloves`. Для пары используем `are these`; для одной было бы `Whose glove is this?` — «Чья это перчатка?»",
-        "uk": "Після зустрічі на стільці лежить пара рукавичок. `Whose gloves are these?` — «Чиї це рукавички?» Одна рукавичка — `glove`, кілька — `gloves`. Для пари використовуємо `are these`; для однієї було б `Whose glove is this?` — «Чия це рукавичка?»"
+        "ru": "Гирлянду вы повесили на забор ещё днём, но к вечеру она запуталась и перестала светиться. Гость просит показать, где она висит, чтобы помочь её поправить. garland — «гирлянда». Про одну вещь говорим is: The garland is on the fence — «Гирлянда на заборе».",
+        "uk": "Гірлянду ви повісили на паркан ще вдень, але надвечір вона заплуталася й перестала світитися. Гість просить показати, де вона висить, щоб допомогти її поправити. garland — «гірлянда». Про одну річ кажемо is: The garland is on the fence — «Гірлянда на паркані»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите соседей о паре «Чьи это перчатки?»",
-          "uk": "Запитайте сусідів про пару «Чиї це рукавички?»"
+          "ru": "Гость спрашивает, где гирлянда. Скажите: «Гирлянда на заборе».",
+          "uk": "Гість питає, де гірлянда. Скажіть: «Гірлянда на паркані»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-48:intro3:r1",
-              "text": "Whose gloves are these?"
+              "text": "The garland is on the fence."
             },
             {
               "responseId": "en:lesson-06:session-48:intro3:r2",
-              "text": "Whose gloves is this?"
+              "text": "The garland on the fence."
             },
             {
               "responseId": "en:lesson-06:session-48:intro3:r3",
-              "text": "Who gloves are these?"
+              "text": "The garland are on the fence."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-48:intro3:r1",
-              "text": "Whose gloves are these?"
+              "text": "The garland is on the fence."
             },
             {
               "responseId": "en:lesson-06:session-48:intro3:r2",
-              "text": "Whose gloves is this?"
+              "text": "The garland on the fence."
             },
             {
               "responseId": "en:lesson-06:session-48:intro3:r3",
-              "text": "Who gloves are these?"
+              "text": "The garland are on the fence."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите соседей о паре «Чьи это перчатки?»",
-          "uk": "Запитайте сусідів про пару «Чиї це рукавички?»"
+          "ru": "Гость спрашивает, где гирлянда. Скажите: «Гирлянда на заборе».",
+          "uk": "Гість питає, де гірлянда. Скажіть: «Гірлянда на паркані»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6b4e0481d94524ef74f99f6abbd68590216a90b302ff4a310c76d958229921b0"
+  "introFingerprint": "1c3e26f7d3b5d34320bc78da8bf5d77ba61daa959a950ee8544feb73923d2f73"
 }

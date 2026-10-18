@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-07:session-05:word:night",
+    "correctText": "night",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-05:i01",
-    "correctText": "Do you start your shift early?",
+    "correctText": "Do you work at night?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-05:word:morning",
+    "correctText": "morning",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i02",
-    "correctText": "shift",
+    "correctText": "I work at night.",
     "correctResponseId": "en:lesson-07:session-05:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-05:word:evening",
+    "correctText": "evening",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-05:i03",
-    "correctText": "start",
+    "correctText": "work",
     "correctResponseId": "en:lesson-07:session-05:i03:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-05:word:weekend",
+    "correctText": "weekend",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-05:i04",
-    "correctText": "en:lesson-07:session-05:i04:p1=shift\nen:lesson-07:session-05:i04:p2=map\nen:lesson-07:session-05:i04:p3=drawer\nen:lesson-07:session-05:i04:p4=keychain",
+    "correctText": "en:lesson-07:session-05:i04:p1=night\nen:lesson-07:session-05:i04:p2=evening\nen:lesson-07:session-05:i04:p3=morning\nen:lesson-07:session-05:i04:p4=weekend",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i05",
-    "correctText": "Do you start your shift early?",
+    "correctText": "Do you work on weekends?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i06",
-    "correctText": "Do you have a uniform?",
+    "correctText": "Do they work at night?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i07",
-    "correctText": "There is no keychain in the drawer.",
+    "correctText": "There is no bus in the morning.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-07:session-05:i09",
-    "correctText": "Do you start your shift early?",
+    "correctText": "Do you work in the morning?",
     "correctResponseId": "en:lesson-07:session-05:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-05:i10",
-    "correctText": "en:lesson-07:session-05:i10:p1=uniform\nen:lesson-07:session-05:i10:p2=shift\nen:lesson-07:session-05:i10:p3=drawer\nen:lesson-07:session-05:i10:p4=keychain",
+    "correctText": "en:lesson-07:session-05:i10:p1=morning\nen:lesson-07:session-05:i10:p2=weekend\nen:lesson-07:session-05:i10:p3=night\nen:lesson-07:session-05:i10:p4=evening",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i11",
-    "correctText": "Do you have a uniform?",
+    "correctText": "Do they work in the morning?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i12",
-    "correctText": "Do you have a map?",
+    "correctText": "Do you work in the evening?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i13",
-    "correctText": "Do they work here?",
+    "correctText": "Do they work on weekends?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-05:i15",
-    "correctText": "Do you have a map?",
+    "correctText": "Do they work here at night?",
     "correctResponseId": "en:lesson-07:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-05:i16",
-    "correctText": "en:lesson-07:session-05:i16:p1=shift\nen:lesson-07:session-05:i16:p2=uniform\nen:lesson-07:session-05:i16:p3=map\nen:lesson-07:session-05:i16:p4=keychain",
+    "correctText": "en:lesson-07:session-05:i16:p1=weekend\nen:lesson-07:session-05:i16:p2=night\nen:lesson-07:session-05:i16:p3=evening\nen:lesson-07:session-05:i16:p4=morning",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-05:i17",
-    "correctText": "Do you start your shift late?",
+    "correctText": "Do you work in the morning?",
     "correctResponseId": null
   }
 ]

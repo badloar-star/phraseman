@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-07:session-02:word:package",
+    "correctText": "package",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-02:i01",
     "correctText": "Do you have a package?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-07:session-02:word:send",
+    "correctText": "send",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-02:i02",
-    "correctText": "package",
+    "correctText": "We send packages.",
     "correctResponseId": "en:lesson-07:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-02:i03",
-    "correctText": "deliver",
+    "correctText": "send",
     "correctResponseId": "en:lesson-07:session-02:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-02:i04",
-    "correctText": "en:lesson-07:session-02:i04:p1=package\nen:lesson-07:session-02:i04:p2=deliver\nen:lesson-07:session-02:i04:p3=folder\nen:lesson-07:session-02:i04:p4=apple",
+    "correctText": "en:lesson-07:session-02:i04:p1=package\nen:lesson-07:session-02:i04:p2=send\nen:lesson-07:session-02:i04:p3=letter\nen:lesson-07:session-02:i04:p4=weigh",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i05",
-    "correctText": "Do you have a package?",
+    "correctText": "Do you weigh packages?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i06",
-    "correctText": "Do they deliver packages?",
+    "correctText": "Do they send packages?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:word:tape",
+    "correctText": "tape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i07",
-    "correctText": "There is no package here.",
+    "correctText": "There is no tape here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-02:word:scale",
+    "correctText": "scale",
     "correctResponseId": null
   },
   {
@@ -46,22 +66,22 @@
   },
   {
     "interactionId": "en:lesson-07:session-02:i10",
-    "correctText": "en:lesson-07:session-02:i10:p1=apple\nen:lesson-07:session-02:i10:p2=folder\nen:lesson-07:session-02:i10:p3=package\nen:lesson-07:session-02:i10:p4=deliver",
+    "correctText": "en:lesson-07:session-02:i10:p1=tape\nen:lesson-07:session-02:i10:p2=scale\nen:lesson-07:session-02:i10:p3=package\nen:lesson-07:session-02:i10:p4=send",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i11",
-    "correctText": "Do they deliver packages?",
+    "correctText": "Do they weigh packages here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i12",
-    "correctText": "Do they have folders?",
+    "correctText": "Do you have tape?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i13",
-    "correctText": "Do you have an apple?",
+    "correctText": "Do you send packages?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-02:i15",
-    "correctText": "Do they deliver here?",
+    "correctText": "Do they send packages here?",
     "correctResponseId": "en:lesson-07:session-02:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-02:i16",
-    "correctText": "en:lesson-07:session-02:i16:p1=deliver\nen:lesson-07:session-02:i16:p2=package\nen:lesson-07:session-02:i16:p3=apple\nen:lesson-07:session-02:i16:p4=folder",
+    "correctText": "en:lesson-07:session-02:i16:p1=scale\nen:lesson-07:session-02:i16:p2=tape\nen:lesson-07:session-02:i16:p3=send\nen:lesson-07:session-02:i16:p4=package",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-02:i17",
-    "correctText": "Do you deliver packages?",
+    "correctText": "Do you have a scale?",
     "correctResponseId": null
   }
 ]

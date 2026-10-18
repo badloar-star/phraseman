@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-05",
   "learningOutcomeByLocale": {
-    "ru": "спросить о начале рабочей смены и наличии нужных вещей",
-    "uk": "запитати про початок робочої зміни й наявність потрібних речей"
+    "ru": "спросить, когда человек работает, и сказать, что в это время чего-то нет",
+    "uk": "спитати, коли людина працює, та сказати, що в цей час чогось немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Раннее начало",
-        "uk": "Ранній початок"
+        "ru": "Сосед спит днём",
+        "uk": "Сусід спить удень"
       },
       "bodyByLocale": {
-        "ru": "`shift` — «смена», часть дня, когда человек работает. `Do you start your shift early?` — «Вы начинаете свою смену рано?» `Start your shift` — начать свою смену, `early` — рано. После `Do you` используем `start`, без `s`.",
-        "uk": "`shift` — «зміна», частина дня, коли людина працює. `Do you start your shift early?` — «Ви починаєте свою зміну рано?» `Start your shift` — почати свою зміну, `early` — рано. Після `Do you` використовуємо `start`, без `s`."
+        "ru": "Новый сосед спит днём: шторы в его окнах всегда задёрнуты, а домой он приходит, когда во дворе уже светло, и тихо проходит мимо вашей двери. Вам интересно, почему так. night — «ночь». Спросите: Do you work at night? — «Вы работаете ночью?» Перед night говорим at.",
+        "uk": "Новий сусід спить удень: штори у його вікнах завжди засунуті, а додому він приходить, коли у дворі вже світло, і тихо проходить повз ваші двері. Вам цікаво, чому так. night — «ніч». Спитайте: Do you work at night? — «Ви працюєте вночі?» Перед night кажемо at."
       },
       "question": {
         "interactionId": "en:lesson-07:session-05:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите коллегу «Вы начинаете свою смену рано?»",
-          "uk": "Запитайте колегу «Ви починаєте свою зміну рано?»"
+          "ru": "Сосед возвращается домой на рассвете. Спросите у него: «Вы работаете ночью?»",
+          "uk": "Сусід повертається додому на світанку. Спитайте в нього: «Ви працюєте вночі?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-05:intro1:r1",
-              "text": "Do you start your shift early?"
+              "text": "Do you work at night?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro1:r2",
-              "text": "Are you start your shift early?"
+              "text": "Are you work at night?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro1:r3",
-              "text": "Do you starts your shift early?"
+              "text": "Do you works at night?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-05:intro1:r1",
-              "text": "Do you start your shift early?"
+              "text": "Do you work at night?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro1:r2",
-              "text": "Are you start your shift early?"
+              "text": "Are you work at night?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro1:r3",
-              "text": "Do you starts your shift early?"
+              "text": "Do you works at night?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллегу «Вы начинаете свою смену рано?»",
-          "uk": "Запитайте колегу «Ви починаєте свою зміну рано?»"
+          "ru": "Сосед возвращается домой на рассвете. Спросите у него: «Вы работаете ночью?»",
+          "uk": "Сусід повертається додому на світанку. Спитайте в нього: «Ви працюєте вночі?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вещи для работы",
-        "uk": "Речі для роботи"
+        "ru": "Мастерская по субботам",
+        "uk": "Майстерня по суботах"
       },
       "bodyByLocale": {
-        "ru": "Перед первым рабочим днём коллега проверяет, всё ли у вас есть. `Do you have a uniform?` — «У вас есть форма?» После `Do you` нужно `have`. Перед `uniform` стоит `a`: первый звук в слове — «й». Наличие формы ещё не означает, что смена уже началась: сначала уточняем, есть ли что надеть.",
-        "uk": "Перед першим робочим днем колега перевіряє, чи все у вас є. `Do you have a uniform?` — «У вас є форма?» Після `Do you` потрібне `have`. Перед `uniform` стоїть `a`: перший звук у слові — «й». Наявність форми ще не означає, що зміна вже почалася: спочатку уточнюємо, чи є що вдягнути."
+        "ru": "Друг зовёт вас в субботу в мастерскую, где делают мебель на заказ. Вы не уверены, что мастера бывают там в выходные. weekend — «выходные», суббота и воскресенье. Спросите: Do they work on weekends? — «Они работают по выходным?» Здесь weekends с s: выходные бывают каждую неделю.",
+        "uk": "Друг кличе вас у суботу в майстерню, де роблять меблі на замовлення. Ви не певні, що майстри бувають там на вихідних. weekend — «вихідні», субота й неділя. Спитайте: Do they work on weekends? — «Вони працюють на вихідних?» Тут weekends з s: вихідні бувають щотижня."
       },
       "question": {
         "interactionId": "en:lesson-07:session-05:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите нового сотрудника «У вас есть форма?»",
-          "uk": "Запитайте нового працівника «У вас є форма?»"
+          "ru": "Друг зовёт вас в мастерскую в субботу. Спросите его: «Они работают по выходным?»",
+          "uk": "Друг кличе вас у майстерню в суботу. Спитайте його: «Вони працюють на вихідних?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-05:intro2:r1",
-              "text": "Do you have a uniform?"
+              "text": "Do they work on weekends?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro2:r2",
-              "text": "Are you have a uniform?"
+              "text": "Are they work on weekends?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro2:r3",
-              "text": "Do you have an uniform?"
+              "text": "Do they works on weekends?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-05:intro2:r1",
-              "text": "Do you have a uniform?"
+              "text": "Do they work on weekends?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro2:r2",
-              "text": "Are you have a uniform?"
+              "text": "Are they work on weekends?"
             },
             {
               "responseId": "en:lesson-07:session-05:intro2:r3",
-              "text": "Do you have an uniform?"
+              "text": "Do they works on weekends?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите нового сотрудника «У вас есть форма?»",
-          "uk": "Запитайте нового працівника «У вас є форма?»"
+          "ru": "Друг зовёт вас в мастерскую в субботу. Спросите его: «Они работают по выходным?»",
+          "uk": "Друг кличе вас у майстерню в суботу. Спитайте його: «Вони працюють на вихідних?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пустой ящик",
-        "uk": "Порожня шухляда"
+        "ru": "Автобус по утрам",
+        "uk": "Автобус зранку"
       },
       "bodyByLocale": {
-        "ru": "Друг ищет брелок. Вы открыли ящик и убедились, что его там нет. `There is no keychain in the drawer` — «В ящике нет брелока». `There is no keychain` сообщает об отсутствии, а `in the drawer` уточняет место. Ящик проверен — второй раз открывать его ради чуда пока не будем.",
-        "uk": "Друг шукає брелок. Ви відкрили шухляду й переконалися, що його там немає. `There is no keychain in the drawer` — «У шухляді немає брелока». `There is no keychain` повідомляє про відсутність, а `in the drawer` уточнює місце. Шухляду перевірено — вдруге відкривати її заради дива поки не будемо."
+        "ru": "Подруга предлагает ездить на работу вместе, но у вашего дома утром автобус не ходит: вы много раз проверяли остановку. morning — «утро». There is no bus in the morning — «Утром нет автобуса». Говорим There is no и называем одну вещь, а время суток добавляем в конце: in the morning.",
+        "uk": "Подруга пропонує їздити на роботу разом, але біля вашого дому зранку автобус не ходить: ви багато разів перевіряли зупинку. morning — «ранок». There is no bus in the morning — «Зранку немає автобуса». Кажемо There is no і називаємо одну річ, а час доби додаємо наприкінці: in the morning."
       },
       "question": {
         "interactionId": "en:lesson-07:session-05:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите другу «В ящике нет брелока».",
-          "uk": "Повідомте другові «У шухляді немає брелока»."
+          "ru": "Подруга предлагает ездить вместе. Скажите ей: «Утром нет автобуса».",
+          "uk": "Подруга пропонує їздити разом. Скажіть їй: «Зранку немає автобуса»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-05:intro3:r1",
-              "text": "There is no keychain in the drawer."
+              "text": "There is no bus in the morning."
             },
             {
               "responseId": "en:lesson-07:session-05:intro3:r2",
-              "text": "There are no keychain in the drawer."
+              "text": "There are no bus in the morning."
             },
             {
               "responseId": "en:lesson-07:session-05:intro3:r3",
-              "text": "There no keychain in the drawer."
+              "text": "There is no bus on the morning."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-05:intro3:r1",
-              "text": "There is no keychain in the drawer."
+              "text": "There is no bus in the morning."
             },
             {
               "responseId": "en:lesson-07:session-05:intro3:r2",
-              "text": "There are no keychain in the drawer."
+              "text": "There are no bus in the morning."
             },
             {
               "responseId": "en:lesson-07:session-05:intro3:r3",
-              "text": "There no keychain in the drawer."
+              "text": "There is no bus on the morning."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите другу «В ящике нет брелока».",
-          "uk": "Повідомте другові «У шухляді немає брелока»."
+          "ru": "Подруга предлагает ездить вместе. Скажите ей: «Утром нет автобуса».",
+          "uk": "Подруга пропонує їздити разом. Скажіть їй: «Зранку немає автобуса»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d9b35f0a52940ca301a5c8c718a672bc4f508fbbc8e2305d3223d50195d31880"
+  "introFingerprint": "1901686a1496628dae1fd14f0927afde1ba2031be31232ce7261cad7da5a388b"
 }

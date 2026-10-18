@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-06:intro1:r2": {
-          "ru": "Здесь нет действия: нужно `Are you a customer?`.",
-          "uk": "Тут немає дії: потрібно `Are you a customer?`."
+          "ru": "Спрашиваем, кто человек, поэтому нужно Are you, без Do.",
+          "uk": "Питаємо, хто людина, тому потрібно Are you, без Do."
         },
         "en:lesson-07:session-06:intro1:r3": {
-          "ru": "Перед `customer` здесь нужно `a`.",
-          "uk": "Перед `customer` тут потрібне `a`."
+          "ru": "Здесь называем одного специалиста: a plumber, an electrician. В этом вопросе нужно a plumber.",
+          "uk": "Тут називаємо одного фахівця: a plumber, an electrician. У цьому питанні потрібно a plumber."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-06:intro2:r2": {
-          "ru": "С действием `repair` здесь нужно `Do you repair?`.",
-          "uk": "З дією `repair` тут потрібно `Do you repair?`."
+          "ru": "Здесь действие fix, поэтому нужно Do they fix, без Are.",
+          "uk": "Тут дія fix, тому потрібно Do they fix, без Are."
         },
         "en:lesson-07:session-06:intro2:r3": {
-          "ru": "После `Do you` нужно `repair`.",
-          "uk": "Після `Do you` потрібне `repair`."
+          "ru": "После Do they слово fix остаётся без изменений.",
+          "uk": "Після Do they слово fix лишається без змін."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-06:intro3:r2": {
-          "ru": "Одна ручка: `There is no pen`.",
-          "uk": "Одна ручка: `There is no pen`."
+          "ru": "С pliers нужно are, как с glasses.",
+          "uk": "З pliers потрібно are, як із glasses."
         },
         "en:lesson-07:session-06:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "Чтобы сказать, что плоскогубцев нет, здесь используем no pliers.",
+          "uk": "Щоб сказати, що плоскогубців немає, тут використовуємо no pliers."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b213e048f67f7897f747401e9c19609a6396ed4f33e4584afba32597bb136476"
+  "auxiliaryFingerprint": "c034b7714ec1d03945dea57ce21245db52c9c63bb87a041938a7227f310d5c98"
 }

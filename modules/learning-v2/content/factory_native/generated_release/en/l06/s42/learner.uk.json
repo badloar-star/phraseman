@@ -4,31 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-42:i01",
+      "interactionId": "en:lesson-06:session-42:word:arrive",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — arrive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:word:arrive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — arrive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:word:arrive:audio",
+          "transcript": "arrive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:word:arrive:r1",
+            "targetText": "arrive",
+            "meaningByLocale": {
+              "ru": "приезжать, прибывать. We arrive at five. — «Мы приезжаем в пять». О том, когда вы или поезд оказываетесь на месте.",
+              "uk": "приїжджати, прибувати. We arrive at five. — «Ми приїжджаємо о п’ятій». Про те, коли ви або потяг опиняєтеся на місці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "arrive",
+          "definitionByLocale": {
+            "ru": "приезжать, прибывать. We arrive at five. — «Мы приезжаем в пять». О том, когда вы или поезд оказываетесь на месте.",
+            "uk": "приїжджати, прибувати. We arrive at five. — «Ми приїжджаємо о п’ятій». Про те, коли ви або потяг опиняєтеся на місці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Ми живемо в одній кімнаті»",
+      "prompt": "Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Ми живемо в одній кімнаті»",
+      "accessibilityLabel": "Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We share a room.",
+        "targetPhrase": "We arrive at five.",
         "localizedMeaning": {
-          "ru": "Скажите «Мы живём в одной комнате»",
-          "uk": "Скажіть «Ми живемо в одній кімнаті»"
+          "ru": "Подруга спрашивает о вас с сестрой. Скажите: «Мы приезжаем в пять»",
+          "uk": "Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»"
         },
         "orderedTokens": [
           "We",
-          "share",
-          "a",
-          "room"
+          "arrive",
+          "at",
+          "five"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "arrives"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `arrive` — `We arrive at five.`",
+              "uk": "тут потрібно `arrive` — `We arrive at five.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +93,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i02:r1",
-          "text": "share"
+          "text": "She arrives at five."
         },
         {
           "responseId": "en:lesson-06:session-42:i02:r2",
-          "text": "drink"
+          "text": "She leaves at five."
         },
         {
           "responseId": "en:lesson-06:session-42:i02:r3",
-          "text": "chat"
+          "text": "He arrives at five."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i02:audio",
-          "transcript": "share"
+          "transcript": "She arrives at five."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-42:i02:r1",
-            "targetText": "share",
+            "targetText": "She arrives at five.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-42:i02:r2",
-            "targetText": "drink",
+            "targetText": "She leaves at five.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-42:i02:r3",
-            "targetText": "chat",
+            "targetText": "He arrives at five.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +146,19 @@
           {
             "responseId": "en:lesson-06:session-42:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `share`, а в этом варианте — `drink`.",
-              "uk": "У записі перше слово — `share`, а в цьому варіанті — `drink`."
+              "ru": "В записи действие — `arrives`, приезжает, а в этом варианте — `leaves`, уезжает.",
+              "uk": "У записі дія — `arrives`, приїжджає, а в цьому варіанті — `leaves`, виїжджає."
             }
           },
           {
             "responseId": "en:lesson-06:session-42:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `share`, а в этом варианте — `chat`.",
-              "uk": "У записі перше слово — `share`, а в цьому варіанті — `chat`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -114,67 +169,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона живе в одній кімнаті з Томом»",
+      "prompt": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i03:r1",
-          "text": "shares"
+          "text": "arrives"
         },
         {
           "responseId": "en:lesson-06:session-42:i03:r2",
-          "text": "share"
+          "text": "arrive"
         },
         {
           "responseId": "en:lesson-06:session-42:i03:r3",
-          "text": "is shares"
+          "text": "is arrives"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона живе в одній кімнаті з Томом»",
+      "accessibilityLabel": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она живёт в одной комнате с Томом»",
-          "uk": "Скажіть «Вона живе в одній кімнаті з Томом»"
+          "ru": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
+          "uk": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ a room with Tom.",
+        "gappedTargetPhrase": "She ___ at five.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-42:i03:r1",
-            "text": "shares"
+            "text": "arrives"
           },
           {
             "responseId": "en:lesson-06:session-42:i03:r2",
-            "text": "share"
+            "text": "arrive"
           },
           {
             "responseId": "en:lesson-06:session-42:i03:r3",
-            "text": "is shares"
+            "text": "is arrives"
           }
         ],
-        "testedDimension": "Скажіть «Вона живе в одній кімнаті з Томом»",
+        "testedDimension": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-42:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона живе в одній кімнаті з Томом»",
+            "testedDimension": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `shares`.",
-              "uk": "Після `she` — `shares`."
+              "ru": "После `she` нужно `arrives`, с `s`.",
+              "uk": "Після `she` потрібно `arrives`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-42:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона живе в одній кімнаті з Томом»",
+            "testedDimension": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `She shares`, без `is`.",
-              "uk": "Потрібно `She shares`, без `is`."
+              "ru": "Говорим `She arrives`, без `is`.",
+              "uk": "Кажемо `She arrives`, без `is`."
             }
           }
         ]
@@ -183,7 +238,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +252,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-42:i04:p1",
-            "target": "share",
+            "target": "arrive",
             "meaningByLocale": {
-              "ru": "пользоваться вместе",
-              "uk": "користуватися разом"
+              "ru": "приезжать, прибывать",
+              "uk": "приїжджати, прибувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i04:p2",
-            "target": "inaccurate",
+            "target": "leave",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "уезжать, уходить",
+              "uk": "виїжджати, йти геть"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i04:p3",
-            "target": "bus shelter",
+            "target": "conductor",
             "meaningByLocale": {
-              "ru": "павильон на остановке",
-              "uk": "павільйон на зупинці"
+              "ru": "проводник",
+              "uk": "провідник"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i04:p4",
-            "target": "scooter",
+            "target": "compartment",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "купе",
+              "uk": "купе"
             }
           }
         ],
         "leftColumn": [
-          "share",
-          "inaccurate",
-          "bus shelter",
-          "scooter"
+          "arrive",
+          "leave",
+          "conductor",
+          "compartment"
         ],
         "rightColumn": [
-          "користуватися разом",
-          "неточний",
-          "павільйон на зупинці",
-          "самокат"
+          "приїжджати, прибувати",
+          "виїжджати, йти геть",
+          "провідник",
+          "купе"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +310,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-42:word:leave",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:word:leave:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:word:leave:audio",
+          "transcript": "leave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:word:leave:r1",
+            "targetText": "leave",
+            "meaningByLocale": {
+              "ru": "уезжать, уходить. They leave at four. — «Они уезжают в четыре». О том, что человек или поезд отправляется.",
+              "uk": "виїжджати, йти геть. They leave at four. — «Вони виїжджають о четвертій». Про те, що людина або потяг вирушає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leave",
+          "definitionByLocale": {
+            "ru": "уезжать, уходить. They leave at four. — «Они уезжают в четыре». О том, что человек или поезд отправляется.",
+            "uk": "виїжджати, йти геть. They leave at four. — «Вони виїжджають о четвертій». Про те, що людина або потяг вирушає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-42:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i05:audio",
-          "transcript": "They share a scooter."
+          "transcript": "She leaves at four."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They share a scooter.",
+        "hiddenTargetPhrase": "She leaves at four.",
         "orderedTokens": [
-          "They",
-          "share",
-          "a",
-          "scooter"
+          "She",
+          "leaves",
+          "at",
+          "four"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "leave"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `leaves` — `She leaves at four.`",
+              "uk": "тут потрібно `leaves` — `She leaves at four.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +401,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-42:word:conductor",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — conductor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:word:conductor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — conductor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:word:conductor:audio",
+          "transcript": "conductor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:word:conductor:r1",
+            "targetText": "conductor",
+            "meaningByLocale": {
+              "ru": "проводник. The conductor is kind. — «Проводник добрый». О человеке, который проверяет билеты в поезде.",
+              "uk": "провідник. The conductor is kind. — «Провідник добрий». Про людину, яка перевіряє квитки в потязі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "conductor",
+          "definitionByLocale": {
+            "ru": "проводник. The conductor is kind. — «Проводник добрый». О человеке, который проверяет билеты в поезде.",
+            "uk": "провідник. The conductor is kind. — «Провідник добрий». Про людину, яка перевіряє квитки в потязі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-42:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він п’є воду»",
+      "prompt": "Ви шукаєте квиток у вагоні. Спитайте в подруги: «Де провідник?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він п’є воду»",
+      "accessibilityLabel": "Ви шукаєте квиток у вагоні. Спитайте в подруги: «Де провідник?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He drinks water.",
+        "targetPhrase": "Where is the conductor?",
         "localizedMeaning": {
-          "ru": "Скажите «Он пьёт воду»",
-          "uk": "Скажіть «Він п’є воду»"
+          "ru": "Вы ищете билет в вагоне. Спросите у подруги: «Где проводник?»",
+          "uk": "Ви шукаєте квиток у вагоні. Спитайте в подруги: «Де провідник?»"
         },
         "orderedTokens": [
-          "He",
-          "drinks",
-          "water"
+          "Where",
+          "is",
+          "the",
+          "conductor"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте квиток у вагоні. Спитайте в подруги: «Де провідник?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the conductor?`",
+              "uk": "тут потрібно `Where` — `Where is the conductor?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +490,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На зупинці встановили павільйон. Скажіть «Цей павільйон на зупинці новий»",
+      "prompt": "Подруга питає, коли їде сестра. Скажіть: «Вона виїжджає о четвертій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i07:audio"
       ],
-      "accessibilityLabel": "На зупинці встановили павільйон. Скажіть «Цей павільйон на зупинці новий»",
+      "accessibilityLabel": "Подруга питає, коли їде сестра. Скажіть: «Вона виїжджає о четвертій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i07:audio",
-          "transcript": "This bus shelter is new."
+          "transcript": "She leaves at four."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This bus shelter is new.",
+        "targetPhrase": "She leaves at four.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +523,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони живуть в одній кімнаті»",
+      "prompt": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i08:r1",
-          "text": "share"
+          "text": "arrive"
         },
         {
           "responseId": "en:lesson-06:session-42:i08:r2",
-          "text": "shares"
+          "text": "arrives"
         },
         {
           "responseId": "en:lesson-06:session-42:i08:r3",
-          "text": "are share"
+          "text": "am arrive"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони живуть в одній кімнаті»",
+      "accessibilityLabel": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они живут в одной комнате»",
-          "uk": "Скажіть «Вони живуть в одній кімнаті»"
+          "ru": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
+          "uk": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ a room.",
+        "gappedTargetPhrase": "I ___ at five.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-42:i08:r1",
-            "text": "share"
+            "text": "arrive"
           },
           {
             "responseId": "en:lesson-06:session-42:i08:r2",
-            "text": "shares"
+            "text": "arrives"
           },
           {
             "responseId": "en:lesson-06:session-42:i08:r3",
-            "text": "are share"
+            "text": "am arrive"
           }
         ],
-        "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+        "testedDimension": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+            "testedDimension": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `share`, без `s`.",
-              "uk": "Після `they` — `share`, без `s`."
+              "ru": "После `I` нужно `arrive`, без `s`.",
+              "uk": "Після `I` потрібно `arrive`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони живуть в одній кімнаті»",
+            "testedDimension": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They share`, без `are`.",
-              "uk": "Потрібно `They share`, без `are`."
+              "ru": "Говорим `I arrive`, без `am`.",
+              "uk": "Кажемо `I arrive`, без `am`."
             }
           }
         ]
@@ -425,52 +591,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-42:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-42:word:compartment",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить самокат",
+      "prompt": "Картка слова — compartment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-42:word:compartment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — compartment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-42:word:compartment:audio",
+          "transcript": "compartment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-42:word:compartment:r1",
+            "targetText": "compartment",
+            "meaningByLocale": {
+              "ru": "купе. The compartment is small. — «Купе маленькое». О закрытой части вагона с местами для пассажиров.",
+              "uk": "купе. The compartment is small. — «Купе маленьке». Про закриту частину вагона з місцями для пасажирів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compartment",
+          "definitionByLocale": {
+            "ru": "купе. The compartment is small. — «Купе маленькое». О закрытой части вагона с местами для пассажиров.",
+            "uk": "купе. The compartment is small. — «Купе маленьке». Про закриту частину вагона з місцями для пасажирів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-42:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте провідника",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i09:r1",
-          "text": "This scooter is ours."
+          "text": "The compartment is near the door."
         },
         {
           "responseId": "en:lesson-06:session-42:i09:r2",
-          "text": "This scooter is yours."
+          "text": "The compartment is near the window."
         },
         {
           "responseId": "en:lesson-06:session-42:i09:r3",
-          "text": "This scooter is hers."
+          "text": "The conductor is near the door."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить самокат",
+      "accessibilityLabel": "Послухайте провідника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i09:audio",
-          "transcript": "This scooter is ours."
+          "transcript": "The compartment is near the door."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-42:i09:r1",
-            "targetText": "This scooter is ours.",
+            "targetText": "The compartment is near the door.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-42:i09:r2",
-            "targetText": "This scooter is yours.",
+            "targetText": "The compartment is near the window.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-42:i09:r3",
-            "targetText": "This scooter is hers.",
+            "targetText": "The conductor is near the door.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +688,19 @@
           {
             "responseId": "en:lesson-06:session-42:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить самокат",
+            "testedDimension": "Послухайте провідника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ours`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `ours`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `door`, дверь, а в этом варианте — `window`, окно.",
+              "uk": "У записі останнє слово — `door`, двері, а в цьому варіанті — `window`, вікно."
             }
           },
           {
             "responseId": "en:lesson-06:session-42:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить самокат",
+            "testedDimension": "Послухайте провідника",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ours`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `ours`, а в цьому варіанті — `hers`."
+              "ru": "В записи первое слово — `compartment`, купе, а в этом варианте — `conductor`, проводник.",
+              "uk": "У записі перше слово — `compartment`, купе, а в цьому варіанті — `conductor`, провідник."
             }
           }
         ],
@@ -502,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-42:i10:p1",
-            "target": "share",
+            "target": "conductor",
             "meaningByLocale": {
-              "ru": "пользоваться вместе",
-              "uk": "користуватися разом"
+              "ru": "проводник",
+              "uk": "провідник"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i10:p2",
-            "target": "drink",
+            "target": "compartment",
             "meaningByLocale": {
-              "ru": "пить",
-              "uk": "пити"
+              "ru": "купе",
+              "uk": "купе"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i10:p3",
-            "target": "scooter",
+            "target": "arrive",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "приезжать, прибывать",
+              "uk": "приїжджати, прибувати"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i10:p4",
-            "target": "inaccurate",
+            "target": "leave",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "уезжать, уходить",
+              "uk": "виїжджати, йти геть"
             }
           }
         ],
         "leftColumn": [
-          "share",
-          "drink",
-          "scooter",
-          "inaccurate"
+          "conductor",
+          "compartment",
+          "arrive",
+          "leave"
         ],
         "rightColumn": [
-          "користуватися разом",
-          "пити",
-          "самокат",
-          "неточний"
+          "провідник",
+          "купе",
+          "приїжджати, прибувати",
+          "виїжджати, йти геть"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,43 +784,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i11:audio",
-          "transcript": "The bus shelter is here."
+          "transcript": "We leave at five."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The bus shelter is here.",
+        "hiddenTargetPhrase": "We leave at five.",
         "orderedTokens": [
-          "The",
-          "bus",
-          "shelter",
-          "is",
-          "here"
+          "We",
+          "leave",
+          "at",
+          "five"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "leaves"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-42:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bus shelter is here.`",
-              "uk": "тут потрібно `is` — `The bus shelter is here.`"
+              "ru": "здесь нужно `leave` — `We leave at five.`",
+              "uk": "тут потрібно `leave` — `We leave at five.`"
             }
           }
         ],
@@ -624,30 +832,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Біля дверей стоїть самокат. Запитайте «Чий це самокат?»",
+      "prompt": "Ви показуєте, що лежить у подруги в руці. Скажіть: «У неї є квиток»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Біля дверей стоїть самокат. Запитайте «Чий це самокат?»",
+      "accessibilityLabel": "Ви показуєте, що лежить у подруги в руці. Скажіть: «У неї є квиток»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose scooter is this?",
+        "targetPhrase": "She has a ticket.",
         "localizedMeaning": {
-          "ru": "У двери стоит самокат. Спросите «Чей это самокат?»",
-          "uk": "Біля дверей стоїть самокат. Запитайте «Чий це самокат?»"
+          "ru": "Вы показываете, что лежит у подруги в руке. Скажите: «У неё есть билет»",
+          "uk": "Ви показуєте, що лежить у подруги в руці. Скажіть: «У неї є квиток»"
         },
         "orderedTokens": [
-          "Whose",
-          "scooter",
-          "is",
-          "this"
+          "She",
+          "has",
+          "a",
+          "ticket"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-42:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте, що лежить у подруги в руці. Скажіть: «У неї є квиток»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `She has a ticket.`",
+              "uk": "тут потрібно `has` — `She has a ticket.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -657,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я п’ю воду»",
+      "prompt": "Подруга питає, де купе. Скажіть: «Купе біля дверей»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я п’ю воду»",
+      "accessibilityLabel": "Подруга питає, де купе. Скажіть: «Купе біля дверей»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i13:audio",
-          "transcript": "I drink water."
+          "transcript": "The compartment is near the door."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I drink water.",
+        "targetPhrase": "The compartment is near the door.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -690,67 +910,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Анна живе в одній кімнаті з Томом»",
+      "prompt": "Скажіть про провідника: «Провідник у купе». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i14:r1",
-          "text": "shares"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-42:i14:r2",
-          "text": "share"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-42:i14:r3",
-          "text": "is shares"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Анна живе в одній кімнаті з Томом»",
+      "accessibilityLabel": "Скажіть про провідника: «Провідник у купе». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Анна живёт в одной комнате с Томом»",
-          "uk": "Скажіть «Анна живе в одній кімнаті з Томом»"
+          "ru": "Скажите о проводнике: «Проводник в купе». Выберите слово",
+          "uk": "Скажіть про провідника: «Провідник у купе». Виберіть слово"
         },
-        "gappedTargetPhrase": "Anna ___ a room with Tom.",
+        "gappedTargetPhrase": "The conductor ___ in the compartment.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-42:i14:r1",
-            "text": "shares"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-42:i14:r2",
-            "text": "share"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-42:i14:r3",
-            "text": "is shares"
+            "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+        "testedDimension": "Скажіть про провідника: «Провідник у купе». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-42:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+            "testedDimension": "Скажіть про провідника: «Провідник у купе». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Анна — она: `Anna shares`.",
-              "uk": "Анна — вона: `Anna shares`."
+              "ru": "Проводник один, поэтому нужно `is`, а не `are`.",
+              "uk": "Провідник один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-42:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Анна живе в одній кімнаті з Томом»",
+            "testedDimension": "Скажіть про провідника: «Провідник у купе». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Anna shares`, без `is`.",
-              "uk": "Потрібно `Anna shares`, без `is`."
+              "ru": "`am` бывает только после `I`; про проводника говорим `is`.",
+              "uk": "`am` буває лише після `I`; про провідника кажемо `is`."
             }
           }
         ]
@@ -759,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i15:r1",
-          "text": "We share a scooter."
+          "text": "She has a ticket."
         },
         {
           "responseId": "en:lesson-06:session-42:i15:r2",
-          "text": "They share a scooter."
+          "text": "She has a suitcase."
         },
         {
           "responseId": "en:lesson-06:session-42:i15:r3",
-          "text": "You share a scooter."
+          "text": "He has a ticket."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i15:audio",
-          "transcript": "We share a scooter."
+          "transcript": "She has a ticket."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-42:i15:r1",
-            "targetText": "We share a scooter.",
+            "targetText": "She has a ticket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-42:i15:r2",
-            "targetText": "They share a scooter.",
+            "targetText": "She has a suitcase.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-42:i15:r3",
-            "targetText": "You share a scooter.",
+            "targetText": "He has a ticket.",
             "meaningByLocale": null
           }
         ],
@@ -812,19 +1032,19 @@
           {
             "responseId": "en:lesson-06:session-42:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              "ru": "В записи последнее слово — `ticket`, билет, а в этом варианте — `suitcase`, чемодан.",
+              "uk": "У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `suitcase`, валіза."
             }
           },
           {
             "responseId": "en:lesson-06:session-42:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -835,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -849,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-42:i16:p1",
-            "target": "share",
+            "target": "compartment",
             "meaningByLocale": {
-              "ru": "пользоваться вместе",
-              "uk": "користуватися разом"
+              "ru": "купе",
+              "uk": "купе"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i16:p2",
-            "target": "bus shelter",
+            "target": "leave",
             "meaningByLocale": {
-              "ru": "павильон на остановке",
-              "uk": "павільйон на зупинці"
+              "ru": "уезжать, уходить",
+              "uk": "виїжджати, йти геть"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i16:p3",
-            "target": "inaccurate",
+            "target": "conductor",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "проводник",
+              "uk": "провідник"
             }
           },
           {
             "pairId": "en:lesson-06:session-42:i16:p4",
-            "target": "drink",
+            "target": "arrive",
             "meaningByLocale": {
-              "ru": "пить",
-              "uk": "пити"
+              "ru": "приезжать, прибывать",
+              "uk": "приїжджати, прибувати"
             }
           }
         ],
         "leftColumn": [
-          "share",
-          "bus shelter",
-          "inaccurate",
-          "drink"
+          "compartment",
+          "leave",
+          "conductor",
+          "arrive"
         ],
         "rightColumn": [
-          "користуватися разом",
-          "павільйон на зупинці",
-          "неточний",
-          "пити"
+          "купе",
+          "виїжджати, йти геть",
+          "провідник",
+          "приїжджати, прибувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -908,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-42:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, з ким Анна живе в одній кімнаті. Дайте відповідь «Вона живе в одній кімнаті з Томом»",
+      "prompt": "Ви стоїте на платформі. Розкажіть про брата: «Він приїжджає о п’ятій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-42:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, з ким Анна живе в одній кімнаті. Дайте відповідь «Вона живе в одній кімнаті з Томом»",
+      "accessibilityLabel": "Ви стоїте на платформі. Розкажіть про брата: «Він приїжджає о п’ятій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-42:i17:audio",
-          "transcript": "She shares a room with Tom."
+          "transcript": "He arrives at five."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She shares a room with Tom.",
+        "targetPhrase": "He arrives at five.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -948,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e3bd222c0199d000f76cc473a4ee2837238cc66cb22ab5adb109c7326ed409ca"
+  "learnerFingerprint": "d93711f1ef49447ab42a33f86c3d665194b001fb4bf523d730d2f1c6a7e43b78"
 }

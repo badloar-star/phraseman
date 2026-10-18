@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-01",
   "learningOutcomeByLocale": {
-    "ru": "задавать вопросы с Do you и Do they о работе и вещах",
-    "uk": "ставити запитання з Do you та Do they про роботу й речі"
+    "ru": "спросить, где человек работает и водит ли он технику, и сказать, что кого-то нет",
+    "uk": "спитати, де людина працює й чи водить вона техніку, та сказати, що когось немає"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-07:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Работа нового соседа",
-        "uk": "Робота нового сусіда"
+        "ru": "Сосед идёт с работы",
+        "uk": "Сусід іде з роботи"
       },
       "bodyByLocale": {
-        "ru": "`factory` — «фабрика». Сосед рассказывает о своей работе: `I work in a factory` — «Я работаю на фабрике». Чтобы спросить его об этом, скажите `Do you work in a factory?` — «Вы работаете на фабрике?» Ставим `Do`, затем `you`, затем `work`. Здесь `do` помогает задать вопрос и отдельно не переводится.",
-        "uk": "`factory` — «фабрика». Сусід розповідає про свою роботу: `I work in a factory` — «Я працюю на фабриці». Щоб запитати його про це, скажіть `Do you work in a factory?` — «Ви працюєте на фабриці?» Ставимо `Do`, потім `you`, потім `work`. Тут `do` допомагає поставити запитання й окремо не перекладається."
+        "ru": "На лестнице вы встретили нового соседа: он идёт с работы в тяжёлой куртке и выглядит усталым. Вы хотите узнать, где он работает. factory — «фабрика». Спросите: Do you work in a factory? — «Вы работаете на фабрике?» Сначала Do, затем you и work.",
+        "uk": "На сходах ви зустріли нового сусіда: він іде з роботи в важкій куртці й виглядає втомленим. Ви хочете дізнатися, де він працює. factory — «фабрика». Спитайте: Do you work in a factory? — «Ви працюєте на фабриці?» Спочатку Do, потім you і work."
       },
       "question": {
         "interactionId": "en:lesson-07:session-01:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите соседа «Вы работаете на фабрике?»",
-          "uk": "Запитайте сусіда «Ви працюєте на фабриці?»"
+          "ru": "Сосед идёт с работы. Спросите у него: «Вы работаете на фабрике?»",
+          "uk": "Сусід іде з роботи. Спитайте в нього: «Ви працюєте на фабриці?»"
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите соседа «Вы работаете на фабрике?»",
-          "uk": "Запитайте сусіда «Ви працюєте на фабриці?»"
+          "ru": "Сосед идёт с работы. Спросите у него: «Вы работаете на фабрике?»",
+          "uk": "Сусід іде з роботи. Спитайте в нього: «Ви працюєте на фабриці?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "А где работают друзья",
-        "uk": "А де працюють друзі"
+        "ru": "Братья соседа",
+        "uk": "Брати сусіда"
       },
       "bodyByLocale": {
-        "ru": "Сосед упомянул своих друзей. Вы хотите узнать, работают ли они на фабрике. `Do they work in a factory?` — «Они работают на фабрике?» После `Do` теперь стоит `they`, а `work` остаётся без `s`.",
-        "uk": "Сусід згадав своїх друзів. Ви хочете дізнатися, чи працюють вони на фабриці. `Do they work in a factory?` — «Вони працюють на фабриці?» Після `Do` тепер стоїть `they`, а `work` залишається без `s`."
+        "ru": "Сосед рассказывает, что его два брата тоже работают, но не на фабрике, а там, где хранят товары для магазинов. warehouse — «склад». Чтобы спросить о двоих, говорим Do they work in a warehouse? — «Они работают на складе?» После they слово work без s.",
+        "uk": "Сусід розповідає, що його два брати теж працюють, але не на фабриці, а там, де зберігають товари для магазинів. warehouse — «склад». Щоб спитати про двох, кажемо Do they work in a warehouse? — «Вони працюють на складі?» Після they слово work без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-01:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите о друзьях «Они работают на фабрике?»",
-          "uk": "Запитайте про друзів «Вони працюють на фабриці?»"
+          "ru": "Сосед рассказывает о братьях. Спросите о них: «Они работают на складе?»",
+          "uk": "Сусід розповідає про братів. Спитайте про них: «Вони працюють на складі?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-01:intro2:r1",
-              "text": "Do they work in a factory?"
+              "text": "Do they work in a warehouse?"
             },
             {
               "responseId": "en:lesson-07:session-01:intro2:r2",
-              "text": "Are they work in a factory?"
+              "text": "Are they work in a warehouse?"
             },
             {
               "responseId": "en:lesson-07:session-01:intro2:r3",
-              "text": "Do they works in a factory?"
+              "text": "Do they works in a warehouse?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-01:intro2:r1",
-              "text": "Do they work in a factory?"
+              "text": "Do they work in a warehouse?"
             },
             {
               "responseId": "en:lesson-07:session-01:intro2:r2",
-              "text": "Are they work in a factory?"
+              "text": "Are they work in a warehouse?"
             },
             {
               "responseId": "en:lesson-07:session-01:intro2:r3",
-              "text": "Do they works in a factory?"
+              "text": "Do they works in a warehouse?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о друзьях «Они работают на фабрике?»",
-          "uk": "Запитайте про друзів «Вони працюють на фабриці?»"
+          "ru": "Сосед рассказывает о братьях. Спросите о них: «Они работают на складе?»",
+          "uk": "Сусід розповідає про братів. Спитайте про них: «Вони працюють на складі?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ключ от двери",
-        "uk": "Ключ від дверей"
+        "ru": "Ожидание доставки",
+        "uk": "Очікування доставки"
       },
       "bodyByLocale": {
-        "ru": "Вы с соседом подошли к закрытой двери. `Do you have a key?` — «У вас есть ключ?» Здесь та же схема: `Do`, затем `you`, затем `have`. В русском вопросе нет слова «иметь», но в английском нужен `have`. Дверь не откроется от вежливости — сначала выясним, у кого ключ.",
-        "uk": "Ви із сусідом підійшли до зачинених дверей. `Do you have a key?` — «У вас є ключ?» Тут та сама схема: `Do`, потім `you`, потім `have`. В українському запитанні немає слова «мати», але в англійському потрібне `have`. Двері не відчиняться від ввічливості — спочатку з’ясуємо, у кого ключ."
+        "ru": "Сосед ждёт доставку нового кресла и просит выглянуть во двор: приехал ли человек, который его привезёт. Вы смотрите: у подъезда пусто. courier — «курьер». There is no courier here — «Здесь нет курьера». Говорим There is no и называем одного человека.",
+        "uk": "Сусід чекає доставку нового крісла й просить визирнути у двір: чи приїхала людина, яка його привезе. Ви дивитеся: біля під’їзду порожньо. courier — «кур’єр». There is no courier here — «Тут немає кур’єра». Кажемо There is no і називаємо одну людину."
       },
       "question": {
         "interactionId": "en:lesson-07:session-01:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите соседа «У вас есть ключ?»",
-          "uk": "Запитайте сусіда «У вас є ключ?»"
+          "ru": "Сосед ждёт доставку. Вы выглянули во двор. Скажите ему: «Здесь нет курьера».",
+          "uk": "Сусід чекає доставку. Ви визирнули у двір. Скажіть йому: «Тут немає кур’єра»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-01:intro3:r1",
-              "text": "Do you have a key?"
+              "text": "There is no courier here."
             },
             {
               "responseId": "en:lesson-07:session-01:intro3:r2",
-              "text": "Are you have a key?"
+              "text": "There are no courier here."
             },
             {
               "responseId": "en:lesson-07:session-01:intro3:r3",
-              "text": "Do you has a key?"
+              "text": "There is not courier here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-01:intro3:r1",
-              "text": "Do you have a key?"
+              "text": "There is no courier here."
             },
             {
               "responseId": "en:lesson-07:session-01:intro3:r2",
-              "text": "Are you have a key?"
+              "text": "There are no courier here."
             },
             {
               "responseId": "en:lesson-07:session-01:intro3:r3",
-              "text": "Do you has a key?"
+              "text": "There is not courier here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите соседа «У вас есть ключ?»",
-          "uk": "Запитайте сусіда «У вас є ключ?»"
+          "ru": "Сосед ждёт доставку. Вы выглянули во двор. Скажите ему: «Здесь нет курьера».",
+          "uk": "Сусід чекає доставку. Ви визирнули у двір. Скажіть йому: «Тут немає кур’єра»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "095baf26e2e9bc4e8ce1e7f0174e20b10f5e2891d4ddd8db695693fb7a63f163"
+  "introFingerprint": "937a79bade94eb44c7f4a372a83fa1c48ad149c767f660004208582c5eb44bd1"
 }

@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-07:session-09:word:barber",
+    "correctText": "barber",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-09:i01",
-    "correctText": "Does the manager work here?",
+    "correctText": "Does the barber work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:word:postman",
+    "correctText": "postman",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i02",
-    "correctText": "manager",
+    "correctText": "Does the postman leave parcels here?",
     "correctResponseId": "en:lesson-07:session-09:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-09:word:vet",
+    "correctText": "vet",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-09:i03",
-    "correctText": "work",
+    "correctText": "start",
     "correctResponseId": "en:lesson-07:session-09:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-09:i04",
-    "correctText": "en:lesson-07:session-09:i04:p1=manager\nen:lesson-07:session-09:i04:p2=factory\nen:lesson-07:session-09:i04:p3=charger\nen:lesson-07:session-09:i04:p4=door",
+    "correctText": "en:lesson-07:session-09:i04:p1=barber\nen:lesson-07:session-09:i04:p2=postman\nen:lesson-07:session-09:i04:p3=vet\nen:lesson-07:session-09:i04:p4=puppy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-09:word:carpenter",
+    "correctText": "carpenter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i05",
-    "correctText": "Does the manager work here?",
+    "correctText": "Does the carpenter work here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i06",
-    "correctText": "Does she work in a factory?",
+    "correctText": "Does the vet live here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i07",
-    "correctText": "Does he start early?",
+    "correctText": "Does the barber start early?",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-07:session-09:i09",
-    "correctText": "Does he start early?",
+    "correctText": "Does the carpenter build shelves?",
     "correctResponseId": "en:lesson-07:session-09:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-09:i10",
-    "correctText": "en:lesson-07:session-09:i10:p1=start\nen:lesson-07:session-09:i10:p2=manager\nen:lesson-07:session-09:i10:p3=factory\nen:lesson-07:session-09:i10:p4=charger",
+    "correctText": "en:lesson-07:session-09:i10:p1=carpenter\nen:lesson-07:session-09:i10:p2=shelf\nen:lesson-07:session-09:i10:p3=parcel\nen:lesson-07:session-09:i10:p4=puppy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i11",
-    "correctText": "Does she work here?",
+    "correctText": "Does the vet work here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i12",
-    "correctText": "Do you have a charger?",
+    "correctText": "Does the postman leave parcels here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i13",
-    "correctText": "The door is open.",
+    "correctText": "Does the carpenter build shelves?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-09:i15",
-    "correctText": "Does she work here?",
+    "correctText": "Does the vet start early?",
     "correctResponseId": "en:lesson-07:session-09:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-09:i16",
-    "correctText": "en:lesson-07:session-09:i16:p1=manager\nen:lesson-07:session-09:i16:p2=door\nen:lesson-07:session-09:i16:p3=start\nen:lesson-07:session-09:i16:p4=charger",
+    "correctText": "en:lesson-07:session-09:i16:p1=vet\nen:lesson-07:session-09:i16:p2=barber\nen:lesson-07:session-09:i16:p3=postman\nen:lesson-07:session-09:i16:p4=carpenter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-09:i17",
-    "correctText": "Does Tom work here?",
+    "correctText": "Does the carpenter work here?",
     "correctResponseId": null
   }
 ]

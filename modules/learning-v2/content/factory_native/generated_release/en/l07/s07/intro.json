@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-07",
   "learningOutcomeByLocale": {
-    "ru": "спросить о расписании и работе людей, сообщить об отсутствии вещи",
-    "uk": "запитати про розклад і роботу людей, повідомити про відсутність речі"
+    "ru": "спросить в студии о расписании, мольбертах и занятиях и сказать, что талона нет",
+    "uk": "спитати в студії про розклад, мольберти й заняття та сказати, що талона немає"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-07:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Когда проходят занятия",
-        "uk": "Коли проходять заняття"
+        "ru": "Когда занятия",
+        "uk": "Коли заняття"
       },
       "bodyByLocale": {
-        "ru": "`schedule` — «расписание» или «график». Вы хотите узнать время занятий в мастерской. `Do you have a schedule?` — «У вас есть расписание?» Сначала `Do you`, затем `have`. Одно расписание — `a schedule`.",
-        "uk": "`schedule` — «розклад» або «графік». Ви хочете дізнатися час занять у майстерні. `Do you have a schedule?` — «У вас є розклад?» Спочатку `Do you`, потім `have`. Один розклад — `a schedule`."
+        "ru": "В художественной студии на углу занятия идут в разное время, а на двери ничего не висит. Вы подходите к стойке сотрудника, чтобы выбрать удобный день. schedule — «расписание». Спросите: Do you have a schedule? — «У вас есть расписание?» Сначала Do, затем you и have.",
+        "uk": "У художній студії на розі заняття йдуть у різний час, а на дверях нічого не висить. Ви підходите до стійки працівника, щоб вибрати зручний день. schedule — «розклад». Спитайте: Do you have a schedule? — «У вас є розклад?» Спочатку Do, потім you і have."
       },
       "question": {
         "interactionId": "en:lesson-07:session-07:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите сотрудника «У вас есть расписание?»",
-          "uk": "Запитайте працівника «У вас є розклад?»"
+          "ru": "Вы у стойки студии. Спросите сотрудника: «У вас есть расписание?»",
+          "uk": "Ви біля стійки студії. Спитайте працівника: «У вас є розклад?»"
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите сотрудника «У вас есть расписание?»",
-          "uk": "Запитайте працівника «У вас є розклад?»"
+          "ru": "Вы у стойки студии. Спросите сотрудника: «У вас есть расписание?»",
+          "uk": "Ви біля стійки студії. Спитайте працівника: «У вас є розклад?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "К кому обратиться",
-        "uk": "До кого звернутися"
+        "ru": "Мольберт на выходные",
+        "uk": "Мольберт на вихідні"
       },
       "bodyByLocale": {
-        "ru": "У входа стоит человек с чашкой. Вы не знаете, сотрудник ли он. `Do you work here?` — «Вы работаете здесь?» С действием `work` используем `Do you`. Чашка в руках ещё не служебное удостоверение — лучше спросить.",
-        "uk": "Біля входу стоїть людина з чашкою. Ви не знаєте, чи це працівник. `Do you work here?` — «Ви працюєте тут?» З дією `work` використовуємо `Do you`. Чашка в руках — ще не службове посвідчення, краще запитати."
+        "ru": "Друг хочет рисовать по выходным, но покупать свой мольберт ему дорого. Он слышал, что в студии на соседней улице можно взять мольберт на время. rent — «брать или давать напрокат за плату». Спросите: Do they rent easels? — «Они дают мольберты напрокат?» После they слово rent без s.",
+        "uk": "Друг хоче малювати на вихідних, але купувати свій мольберт йому дорого. Він чув, що в студії на сусідній вулиці можна взяти мольберт на деякий час. rent — «брати або давати напрокат за плату». Спитайте: Do they rent easels? — «Вони дають мольберти напрокат?» Після they слово rent без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-07:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите человека «Вы работаете здесь?»",
-          "uk": "Запитайте людину «Ви працюєте тут?»"
+          "ru": "Друг хочет рисовать по выходным. Спросите его о студии: «Они дают мольберты напрокат?»",
+          "uk": "Друг хоче малювати на вихідних. Спитайте його про студію: «Вони дають мольберти напрокат?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-07:intro2:r1",
-              "text": "Do you work here?"
+              "text": "Do they rent easels?"
             },
             {
               "responseId": "en:lesson-07:session-07:intro2:r2",
-              "text": "Are you work here?"
+              "text": "Are they rent easels?"
             },
             {
               "responseId": "en:lesson-07:session-07:intro2:r3",
-              "text": "Do you works here?"
+              "text": "Do they rents easels?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-07:intro2:r1",
-              "text": "Do you work here?"
+              "text": "Do they rent easels?"
             },
             {
               "responseId": "en:lesson-07:session-07:intro2:r2",
-              "text": "Are you work here?"
+              "text": "Are they rent easels?"
             },
             {
               "responseId": "en:lesson-07:session-07:intro2:r3",
-              "text": "Do you works here?"
+              "text": "Do they rents easels?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите человека «Вы работаете здесь?»",
-          "uk": "Запитайте людину «Ви працюєте тут?»"
+          "ru": "Друг хочет рисовать по выходным. Спросите его о студии: «Они дают мольберты напрокат?»",
+          "uk": "Друг хоче малювати на вихідних. Спитайте його про студію: «Вони дають мольберти напрокат?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Расписания на столе нет",
-        "uk": "Розкладу на столі немає"
+        "ru": "Пустой конверт",
+        "uk": "Порожній конверт"
       },
       "bodyByLocale": {
-        "ru": "Сотрудник попросил посмотреть на столе. Вы проверили: `There is no schedule here` — «Здесь нет расписания». Говорим `There is no` и называем одну вещь. Эта фраза сообщает результат поиска; она не означает, что занятий вообще нет.",
-        "uk": "Працівник попросив подивитися на столі. Ви перевірили: `There is no schedule here` — «Тут немає розкладу». Кажемо `There is no` і називаємо одну річ. Ця фраза повідомляє результат пошуку; вона не означає, що занять узагалі немає."
+        "ru": "Подруга подарила вам талон на первое занятие в студии. Вы пришли, достали из сумки конверт, но он оказался пустым: талон остался дома. voucher — «талон, ваучер». There is no voucher here — «Здесь нет ваучера». Талон один, но после no слово a не нужно.",
+        "uk": "Подруга подарувала вам талон на перше заняття в студії. Ви прийшли, дістали з сумки конверт, але він виявився порожнім: талон лишився вдома. voucher — «талон, ваучер». There is no voucher here — «Тут немає ваучера». Талон один, але після no слово a не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-07:session-07:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите сотруднику «Здесь нет расписания».",
-          "uk": "Повідомте працівникові «Тут немає розкладу»."
+          "ru": "Вы заглянули в конверт: он пуст. Скажите подруге: «Здесь нет ваучера».",
+          "uk": "Ви зазирнули в конверт: він порожній. Скажіть подрузі: «Тут немає ваучера»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-07:intro3:r1",
-              "text": "There is no schedule here."
+              "text": "There is no voucher here."
             },
             {
               "responseId": "en:lesson-07:session-07:intro3:r2",
-              "text": "There are no schedule here."
+              "text": "There is no a voucher here."
             },
             {
               "responseId": "en:lesson-07:session-07:intro3:r3",
-              "text": "There no schedule here."
+              "text": "There are no voucher here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-07:intro3:r1",
-              "text": "There is no schedule here."
+              "text": "There is no voucher here."
             },
             {
               "responseId": "en:lesson-07:session-07:intro3:r2",
-              "text": "There are no schedule here."
+              "text": "There is no a voucher here."
             },
             {
               "responseId": "en:lesson-07:session-07:intro3:r3",
-              "text": "There no schedule here."
+              "text": "There are no voucher here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите сотруднику «Здесь нет расписания».",
-          "uk": "Повідомте працівникові «Тут немає розкладу»."
+          "ru": "Вы заглянули в конверт: он пуст. Скажите подруге: «Здесь нет ваучера».",
+          "uk": "Ви зазирнули в конверт: він порожній. Скажіть подрузі: «Тут немає ваучера»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "31583c1c492e1a0fbff5feaca08daa3e29c26ed2698e56fd4637f8547a105c3b"
+  "introFingerprint": "458639f7203342bbe5124ba37a9a99cd34cc05836b04e685704e52e046c42772"
 }

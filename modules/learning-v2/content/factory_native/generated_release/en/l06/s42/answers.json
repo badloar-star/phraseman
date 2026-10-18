@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-42:word:arrive",
+    "correctText": "arrive",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-42:i01",
-    "correctText": "We share a room.",
+    "correctText": "We arrive at five.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i02",
-    "correctText": "share",
+    "correctText": "She arrives at five.",
     "correctResponseId": "en:lesson-06:session-42:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-42:i03",
-    "correctText": "shares",
+    "correctText": "arrives",
     "correctResponseId": "en:lesson-06:session-42:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-42:i04",
-    "correctText": "en:lesson-06:session-42:i04:p1=share\nen:lesson-06:session-42:i04:p2=inaccurate\nen:lesson-06:session-42:i04:p3=bus shelter\nen:lesson-06:session-42:i04:p4=scooter",
+    "correctText": "en:lesson-06:session-42:i04:p1=arrive\nen:lesson-06:session-42:i04:p2=leave\nen:lesson-06:session-42:i04:p3=conductor\nen:lesson-06:session-42:i04:p4=compartment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-42:word:leave",
+    "correctText": "leave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i05",
-    "correctText": "They share a scooter.",
+    "correctText": "She leaves at four.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-42:word:conductor",
+    "correctText": "conductor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i06",
-    "correctText": "He drinks water.",
+    "correctText": "Where is the conductor?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i07",
-    "correctText": "This bus shelter is new.",
+    "correctText": "She leaves at four.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i08",
-    "correctText": "share",
+    "correctText": "arrive",
     "correctResponseId": "en:lesson-06:session-42:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-42:word:compartment",
+    "correctText": "compartment",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-42:i09",
-    "correctText": "This scooter is ours.",
+    "correctText": "The compartment is near the door.",
     "correctResponseId": "en:lesson-06:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-42:i10",
-    "correctText": "en:lesson-06:session-42:i10:p1=share\nen:lesson-06:session-42:i10:p2=drink\nen:lesson-06:session-42:i10:p3=scooter\nen:lesson-06:session-42:i10:p4=inaccurate",
+    "correctText": "en:lesson-06:session-42:i10:p1=conductor\nen:lesson-06:session-42:i10:p2=compartment\nen:lesson-06:session-42:i10:p3=arrive\nen:lesson-06:session-42:i10:p4=leave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i11",
-    "correctText": "The bus shelter is here.",
+    "correctText": "We leave at five.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i12",
-    "correctText": "Whose scooter is this?",
+    "correctText": "She has a ticket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i13",
-    "correctText": "I drink water.",
+    "correctText": "The compartment is near the door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i14",
-    "correctText": "shares",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-42:i15",
-    "correctText": "We share a scooter.",
+    "correctText": "She has a ticket.",
     "correctResponseId": "en:lesson-06:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-42:i16",
-    "correctText": "en:lesson-06:session-42:i16:p1=share\nen:lesson-06:session-42:i16:p2=bus shelter\nen:lesson-06:session-42:i16:p3=inaccurate\nen:lesson-06:session-42:i16:p4=drink",
+    "correctText": "en:lesson-06:session-42:i16:p1=compartment\nen:lesson-06:session-42:i16:p2=leave\nen:lesson-06:session-42:i16:p3=conductor\nen:lesson-06:session-42:i16:p4=arrive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-42:i17",
-    "correctText": "She shares a room with Tom.",
+    "correctText": "He arrives at five.",
     "correctResponseId": null
   }
 ]

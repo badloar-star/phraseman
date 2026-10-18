@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-50",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто доставляет газеты, и повторить вопрос о владельце",
-    "uk": "розповісти, хто доставляє газети, і повторити запитання про власника"
+    "ru": "рассказать, кто чем занимается на работе, и сказать, что вы делите с другими",
+    "uk": "розповісти, хто чим займається на роботі, і сказати, що ви ділите з іншими"
   },
   "pages": [
     {
@@ -15,14 +15,14 @@
         "uk": "Моя робота"
       },
       "bodyByLocale": {
-        "ru": "Новый сосед спрашивает, чем вы занимаетесь. `deliver` — «доставлять». `I deliver newspapers` — «Я доставляю газеты». `Newspapers` — несколько газет, поэтому в конце слова добавлено `s`. Вы рассказываете о своей обычной работе.",
-        "uk": "Новий сусід запитує, чим ви займаєтеся. `deliver` — «доставляти». `I deliver newspapers` — «Я доставляю газети». `Newspapers` — кілька газет, тому в кінці слова додано `s`. Ви розповідаєте про свою звичайну роботу."
+        "ru": "Новый сосед встречает вас на лестнице в шесть утра и удивляется: почему вы уже одеты и куда-то спешите. Вы объясняете, что каждое утро разносите свежие газеты по домам. deliver — «доставлять». I deliver newspapers — «Я доставляю газеты». После I слово остаётся deliver.",
+        "uk": "Новий сусід зустрічає вас на сходах о шостій ранку й дивується: чому ви вже вдягнені й кудись поспішаєте. Ви пояснюєте, що щоранку розносите свіжі газети по домівках. deliver — «доставляти». I deliver newspapers — «Я доставляю газети». Після I слово лишається deliver."
       },
       "question": {
         "interactionId": "en:lesson-06:session-50:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите соседу «Я доставляю газеты».",
-          "uk": "Скажіть сусідові «Я доставляю газети»."
+          "ru": "Новый сосед спрашивает, чем вы занимаетесь. Скажите: «Я доставляю газеты».",
+          "uk": "Новий сусід питає, чим ви займаєтеся. Скажіть: «Я доставляю газети»."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите соседу «Я доставляю газеты».",
-          "uk": "Скажіть сусідові «Я доставляю газети»."
+          "ru": "Новый сосед спрашивает, чем вы занимаетесь. Скажите: «Я доставляю газеты».",
+          "uk": "Новий сусід питає, чим ви займаєтеся. Скажіть: «Я доставляю газети»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Работа Тома",
-        "uk": "Робота Тома"
+        "ru": "Брат на складе",
+        "uk": "Брат на складі"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает о работе Тома. `He delivers newspapers` — «Он доставляет газеты». После `he` к `deliver` добавляем `s`: `delivers`. У газет своё `s`, у глагола своё — одно за другое работу не выполнит.",
-        "uk": "Друг запитує про роботу Тома. `He delivers newspapers` — «Він доставляє газети». Після `he` до `deliver` додаємо `s`: `delivers`. У газет своє `s`, у дієслова своє — одне за інше роботу не виконає."
+        "ru": "Друг видит, как ваш брат на рассвете тащит к воротам склада что-то тяжёлое, и спрашивает, что это. Вы объясняете: газеты, перевязанные верёвкой. bundle — «пачка, связка». My brother carries a bundle — «Брат несёт пачку». После brother слово carry меняется на carries.",
+        "uk": "Друг бачить, як ваш брат на світанку тягне до воріт складу щось важке, і питає, що це. Ви пояснюєте: газети, перев’язані мотузкою. bundle — «пачка, в’язка». My brother carries a bundle — «Брат несе пачку». Після brother слово carry змінюється на carries."
       },
       "question": {
         "interactionId": "en:lesson-06:session-50:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите о Томе «Он доставляет газеты».",
-          "uk": "Розкажіть про Тома «Він доставляє газети»."
+          "ru": "Друг спрашивает, что несёт ваш брат. Скажите: «Брат несёт пачку».",
+          "uk": "Друг питає, що несе ваш брат. Скажіть: «Брат несе пачку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-50:intro2:r1",
-              "text": "He delivers newspapers."
+              "text": "My brother carries a bundle."
             },
             {
               "responseId": "en:lesson-06:session-50:intro2:r2",
-              "text": "He deliver newspapers."
+              "text": "My brother carry a bundle."
             },
             {
               "responseId": "en:lesson-06:session-50:intro2:r3",
-              "text": "He is delivers newspapers."
+              "text": "My brother is carries a bundle."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-50:intro2:r1",
-              "text": "He delivers newspapers."
+              "text": "My brother carries a bundle."
             },
             {
               "responseId": "en:lesson-06:session-50:intro2:r2",
-              "text": "He deliver newspapers."
+              "text": "My brother carry a bundle."
             },
             {
               "responseId": "en:lesson-06:session-50:intro2:r3",
-              "text": "He is delivers newspapers."
+              "text": "My brother is carries a bundle."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о Томе «Он доставляет газеты».",
-          "uk": "Розкажіть про Тома «Він доставляє газети»."
+          "ru": "Друг спрашивает, что несёт ваш брат. Скажите: «Брат несёт пачку».",
+          "uk": "Друг питає, що несе ваш брат. Скажіть: «Брат несе пачку»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Общая комната",
-        "uk": "Спільна кімната"
+        "ru": "Один стол на двоих",
+        "uk": "Один стіл на двох"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, есть ли у вас с Томом отдельные комнаты. `We share a room` — «Мы пользуемся одной комнатой». `Share` здесь значит пользоваться вместе. После `we` — `share`, без `s`.",
-        "uk": "Колега запитує, чи маєте ви з Томом окремі кімнати. `We share a room` — «Ми користуємося однією кімнатою». `Share` тут означає користуватися разом. Після `we` — `share`, без `s`."
+        "ru": "В кафе после смены вы с братом ищете свободный стол, но все заняты. Незнакомая женщина машет вам рукой и просит присесть к ней: места хватит. share — «делить с кем-то». We share a table — «Мы делим один стол». После we слово остаётся share, без s.",
+        "uk": "У кафе після зміни ви з братом шукаєте вільний стіл, але всі зайняті. Незнайома жінка махає вам рукою й просить присісти до неї: місця вистачить. share — «ділити з кимось». We share a table — «Ми ділимо один стіл». Після we слово лишається share, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-50:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите коллеге «Мы пользуемся одной комнатой».",
-          "uk": "Скажіть колезі «Ми користуємося однією кімнатою»."
+          "ru": "Женщина спрашивает, как вы разместитесь. Скажите: «Мы делим один стол».",
+          "uk": "Жінка питає, як ви розміститеся. Скажіть: «Ми ділимо один стіл»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-50:intro3:r1",
-              "text": "We share a room."
+              "text": "We share a table."
             },
             {
               "responseId": "en:lesson-06:session-50:intro3:r2",
-              "text": "We shares a room."
+              "text": "We shares a table."
             },
             {
               "responseId": "en:lesson-06:session-50:intro3:r3",
-              "text": "We are share a room."
+              "text": "We are share a table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-50:intro3:r1",
-              "text": "We share a room."
+              "text": "We share a table."
             },
             {
               "responseId": "en:lesson-06:session-50:intro3:r2",
-              "text": "We shares a room."
+              "text": "We shares a table."
             },
             {
               "responseId": "en:lesson-06:session-50:intro3:r3",
-              "text": "We are share a room."
+              "text": "We are share a table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите коллеге «Мы пользуемся одной комнатой».",
-          "uk": "Скажіть колезі «Ми користуємося однією кімнатою»."
+          "ru": "Женщина спрашивает, как вы разместитесь. Скажите: «Мы делим один стол».",
+          "uk": "Жінка питає, як ви розміститеся. Скажіть: «Ми ділимо один стіл»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "27ef4a21479f7c0d222143db53b4eb45439e0de4eea8668c5bcbc2801f2ea04c"
+  "introFingerprint": "52f953b8b8a0936f1a8b5376887499dcc7e7f49e49802d0c5c564adf567b2da8"
 }

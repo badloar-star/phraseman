@@ -4,31 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-46:i01",
+      "interactionId": "en:lesson-06:session-46:word:grill",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:word:grill:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:word:grill:audio",
+          "transcript": "grill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:word:grill:r1",
+            "targetText": "grill",
+            "meaningByLocale": {
+              "ru": "жарить на гриле. We grill sausages. — «Мы жарим сосиски на гриле». О том, как еду готовят над огнём.",
+              "uk": "смажити на грилі. We grill sausages. — «Ми смажимо сосиски на грилі». Про те, як їжу готують над вогнем."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grill",
+          "definitionByLocale": {
+            "ru": "жарить на гриле. We grill sausages. — «Мы жарим сосиски на гриле». О том, как еду готовят над огнём.",
+            "uk": "смажити на грилі. We grill sausages. — «Ми смажимо сосиски на грилі». Про те, як їжу готують над вогнем."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Цей кухоль мій»",
+      "prompt": "Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Цей кухоль мій»",
+      "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This mug is mine.",
+        "targetPhrase": "We grill sausages.",
         "localizedMeaning": {
-          "ru": "Скажите «Эта кружка моя»",
-          "uk": "Скажіть «Цей кухоль мій»"
+          "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы жарим сосиски на гриле»",
+          "uk": "Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»"
         },
         "orderedTokens": [
-          "This",
-          "mug",
-          "is",
-          "mine"
+          "We",
+          "grill",
+          "sausages"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "grills"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `grill` — `We grill sausages.`",
+              "uk": "тут потрібно `grill` — `We grill sausages.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте сусіда",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i02:r1",
-          "text": "mug"
+          "text": "He grills sausages in the yard."
         },
         {
           "responseId": "en:lesson-06:session-46:i02:r2",
-          "text": "pantry"
+          "text": "He grills sausages in the garden."
         },
         {
           "responseId": "en:lesson-06:session-46:i02:r3",
-          "text": "ferry"
+          "text": "She grills sausages in the yard."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте сусіда",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i02:audio",
-          "transcript": "mug"
+          "transcript": "He grills sausages in the yard."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-46:i02:r1",
-            "targetText": "mug",
+            "targetText": "He grills sausages in the yard.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-46:i02:r2",
-            "targetText": "pantry",
+            "targetText": "He grills sausages in the garden.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-46:i02:r3",
-            "targetText": "ferry",
+            "targetText": "She grills sausages in the yard.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +145,19 @@
           {
             "responseId": "en:lesson-06:session-46:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `mug`, а в этом варианте — `pantry`.",
-              "uk": "У записі перше слово — `mug`, а в цьому варіанті — `pantry`."
+              "ru": "В записи последнее слово — `yard`, двор, а в этом варианте — `garden`, сад.",
+              "uk": "У записі останнє слово — `yard`, подвір’я, а в цьому варіанті — `garden`, сад."
             }
           },
           {
             "responseId": "en:lesson-06:session-46:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `mug`, а в этом варианте — `ferry`.",
-              "uk": "У записі перше слово — `mug`, а в цьому варіанті — `ferry`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -114,67 +168,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Чий це кухоль?»",
+      "prompt": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i03:r1",
-          "text": "mug"
+          "text": "grills"
         },
         {
           "responseId": "en:lesson-06:session-46:i03:r2",
-          "text": "mugs"
+          "text": "grill"
         },
         {
           "responseId": "en:lesson-06:session-46:i03:r3",
-          "text": "mug are"
+          "text": "is grills"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чий це кухоль?»",
+      "accessibilityLabel": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Чья это кружка?»",
-          "uk": "Запитайте «Чий це кухоль?»"
+          "ru": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
+          "uk": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose ___ is this?",
+        "gappedTargetPhrase": "He ___ sausages.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-46:i03:r1",
-            "text": "mug"
+            "text": "grills"
           },
           {
             "responseId": "en:lesson-06:session-46:i03:r2",
-            "text": "mugs"
+            "text": "grill"
           },
           {
             "responseId": "en:lesson-06:session-46:i03:r3",
-            "text": "mug are"
+            "text": "is grills"
           }
         ],
-        "testedDimension": "Запитайте «Чий це кухоль?»",
+        "testedDimension": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Чий це кухоль?»",
+            "testedDimension": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь одна кружка: `mug`, с `is this`.",
-              "uk": "Тут один кухоль: `mug`, з `is this`."
+              "ru": "После `he` нужно `grills`, с `s`.",
+              "uk": "Після `he` потрібно `grills`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Чий це кухоль?»",
+            "testedDimension": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Whose mug is this?`, без дополнительного `are`.",
-              "uk": "Потрібно `Whose mug is this?`, без додаткового `are`."
+              "ru": "Говорим `He grills`, без `is`.",
+              "uk": "Кажемо `He grills`, без `is`."
             }
           }
         ]
@@ -183,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +251,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-46:i04:p1",
-            "target": "mug",
+            "target": "grill",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "жарить на гриле",
+              "uk": "смажити на грилі"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i04:p2",
-            "target": "appropriate",
+            "target": "roast",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "запекать",
+              "uk": "запікати"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i04:p3",
-            "target": "pantry",
+            "target": "skewer",
             "meaningByLocale": {
-              "ru": "кладовая",
-              "uk": "комора"
+              "ru": "шампур",
+              "uk": "шампур"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i04:p4",
-            "target": "ferry",
+            "target": "charcoal",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "древесный уголь",
+              "uk": "деревне вугілля"
             }
           }
         ],
         "leftColumn": [
-          "mug",
-          "appropriate",
-          "pantry",
-          "ferry"
+          "grill",
+          "roast",
+          "skewer",
+          "charcoal"
         ],
         "rightColumn": [
-          "кухоль",
-          "доречний",
-          "комора",
-          "пором"
+          "смажити на грилі",
+          "запікати",
+          "шампур",
+          "деревне вугілля"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +309,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-46:word:roast",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:word:roast:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:word:roast:audio",
+          "transcript": "roast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:word:roast:r1",
+            "targetText": "roast",
+            "meaningByLocale": {
+              "ru": "запекать. They roast potatoes. — «Они запекают картошку». О том, как еду долго готовят в жаре.",
+              "uk": "запікати. They roast potatoes. — «Вони запікають картоплю». Про те, як їжу довго готують у жарі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roast",
+          "definitionByLocale": {
+            "ru": "запекать. They roast potatoes. — «Они запекают картошку». О том, как еду долго готовят в жаре.",
+            "uk": "запікати. They roast potatoes. — «Вони запікають картоплю». Про те, як їжу довго готують у жарі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-46:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сусіда й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусіда й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i05:audio",
-          "transcript": "My mug is here."
+          "transcript": "She roasts potatoes in the yard."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "My mug is here.",
+        "hiddenTargetPhrase": "She roasts potatoes in the yard.",
         "orderedTokens": [
-          "My",
-          "mug",
-          "is",
-          "here"
+          "She",
+          "roasts",
+          "potatoes",
+          "in",
+          "the",
+          "yard"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "roast"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сусіда й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `roasts` — `She roasts potatoes in the yard.`",
+              "uk": "тут потрібно `roasts` — `She roasts potatoes in the yard.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +402,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-46:word:skewer",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — skewer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:word:skewer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — skewer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:word:skewer:audio",
+          "transcript": "skewer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:word:skewer:r1",
+            "targetText": "skewer",
+            "meaningByLocale": {
+              "ru": "шампур. The skewer is long. — «Шампур длинный». О металлической палочке, на которую нанизывают еду.",
+              "uk": "шампур. The skewer is long. — «Шампур довгий». Про металеву паличку, на яку нанизують їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skewer",
+          "definitionByLocale": {
+            "ru": "шампур. The skewer is long. — «Шампур длинный». О металлической палочке, на которую нанизывают еду.",
+            "uk": "шампур. The skewer is long. — «Шампур довгий». Про металеву паличку, на яку нанизують їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-46:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вона відпочиває тут»",
+      "prompt": "Сусід показує на стіл. Спитайте: «Чий це шампур?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона відпочиває тут»",
+      "accessibilityLabel": "Сусід показує на стіл. Спитайте: «Чий це шампур?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She rests here.",
+        "targetPhrase": "Whose skewer is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Она отдыхает здесь»",
-          "uk": "Скажіть «Вона відпочиває тут»"
+          "ru": "Сосед показывает на стол. Спросите: «Чей это шампур?»",
+          "uk": "Сусід показує на стіл. Спитайте: «Чий це шампур?»"
         },
         "orderedTokens": [
-          "She",
-          "rests",
-          "here"
+          "Whose",
+          "skewer",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід показує на стіл. Спитайте: «Чий це шампур?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose skewer is this?`",
+              "uk": "тут потрібно `Whose` — `Whose skewer is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +491,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега шукає комору. Скажіть «Комора тут»",
+      "prompt": "Сусід питає, що робить сусідка. Скажіть: «Вона запікає картоплю»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i07:audio"
       ],
-      "accessibilityLabel": "Колега шукає комору. Скажіть «Комора тут»",
+      "accessibilityLabel": "Сусід питає, що робить сусідка. Скажіть: «Вона запікає картоплю»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i07:audio",
-          "transcript": "The pantry is here."
+          "transcript": "She roasts potatoes."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The pantry is here.",
+        "targetPhrase": "She roasts potatoes.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +524,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони відпочивають тут»",
+      "prompt": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i08:r1",
-          "text": "rest"
+          "text": "grill"
         },
         {
           "responseId": "en:lesson-06:session-46:i08:r2",
-          "text": "rests"
+          "text": "grills"
         },
         {
           "responseId": "en:lesson-06:session-46:i08:r3",
-          "text": "are rest"
+          "text": "am grill"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони відпочивають тут»",
+      "accessibilityLabel": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они отдыхают здесь»",
-          "uk": "Скажіть «Вони відпочивають тут»"
+          "ru": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
+          "uk": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "I ___ sausages.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-46:i08:r1",
-            "text": "rest"
+            "text": "grill"
           },
           {
             "responseId": "en:lesson-06:session-46:i08:r2",
-            "text": "rests"
+            "text": "grills"
           },
           {
             "responseId": "en:lesson-06:session-46:i08:r3",
-            "text": "are rest"
+            "text": "am grill"
           }
         ],
-        "testedDimension": "Скажіть «Вони відпочивають тут»",
+        "testedDimension": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони відпочивають тут»",
+            "testedDimension": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `rest`, без `s`.",
-              "uk": "Після `they` — `rest`, без `s`."
+              "ru": "После `I` нужно `grill`, без `s`.",
+              "uk": "Після `I` потрібно `grill`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони відпочивають тут»",
+            "testedDimension": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They rest`, без `are`.",
-              "uk": "Потрібно `They rest`, без `are`."
+              "ru": "Говорим `I grill`, без `am`.",
+              "uk": "Кажемо `I grill`, без `am`."
             }
           }
         ]
@@ -425,52 +592,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-46:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-46:word:charcoal",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, який цей пором",
+      "prompt": "Картка слова — charcoal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-46:word:charcoal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — charcoal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-46:word:charcoal:audio",
+          "transcript": "charcoal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-46:word:charcoal:r1",
+            "targetText": "charcoal",
+            "meaningByLocale": {
+              "ru": "древесный уголь. The charcoal is hot. — «Уголь горячий». О чёрных кусках, которыми топят гриль.",
+              "uk": "деревне вугілля. The charcoal is hot. — «Вугілля гаряче». Про чорні шматки, якими топлять гриль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "charcoal",
+          "definitionByLocale": {
+            "ru": "древесный уголь. The charcoal is hot. — «Уголь горячий». О чёрных кусках, которыми топят гриль.",
+            "uk": "деревне вугілля. The charcoal is hot. — «Вугілля гаряче». Про чорні шматки, якими топлять гриль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-46:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i09:r1",
-          "text": "This ferry is new."
+          "text": "The charcoal is in the bag."
         },
         {
           "responseId": "en:lesson-06:session-46:i09:r2",
-          "text": "This ferry is old."
+          "text": "The charcoal is in the bucket."
         },
         {
           "responseId": "en:lesson-06:session-46:i09:r3",
-          "text": "This ferry is small."
+          "text": "The skewer is in the bag."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, який цей пором",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i09:audio",
-          "transcript": "This ferry is new."
+          "transcript": "The charcoal is in the bag."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-46:i09:r1",
-            "targetText": "This ferry is new.",
+            "targetText": "The charcoal is in the bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-46:i09:r2",
-            "targetText": "This ferry is old.",
+            "targetText": "The charcoal is in the bucket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-46:i09:r3",
-            "targetText": "This ferry is small.",
+            "targetText": "The skewer is in the bag.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-46:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, який цей пором",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              "ru": "В записи последнее слово — `bag`, мешок, а в этом варианте — `bucket`, ведро.",
+              "uk": "У записі останнє слово — `bag`, мішок, а в цьому варіанті — `bucket`, відро."
             }
           },
           {
             "responseId": "en:lesson-06:session-46:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, який цей пором",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+              "ru": "В записи первое слово — `charcoal`, уголь, а в этом варианте — `skewer`, шампур.",
+              "uk": "У записі перше слово — `charcoal`, вугілля, а в цьому варіанті — `skewer`, шампур."
             }
           }
         ],
@@ -502,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -516,48 +726,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-46:i10:p1",
-            "target": "mug",
+            "target": "skewer",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "шампур",
+              "uk": "шампур"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i10:p2",
-            "target": "rest",
+            "target": "charcoal",
             "meaningByLocale": {
-              "ru": "отдыхать",
-              "uk": "відпочивати"
+              "ru": "древесный уголь",
+              "uk": "деревне вугілля"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i10:p3",
-            "target": "ferry",
+            "target": "roast",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "запекать",
+              "uk": "запікати"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i10:p4",
-            "target": "appropriate",
+            "target": "grill",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "жарить на гриле",
+              "uk": "смажити на грилі"
             }
           }
         ],
         "leftColumn": [
-          "mug",
-          "rest",
-          "ferry",
-          "appropriate"
+          "skewer",
+          "charcoal",
+          "roast",
+          "grill"
         ],
         "rightColumn": [
-          "кухоль",
-          "відпочивати",
-          "пором",
-          "доречний"
+          "шампур",
+          "деревне вугілля",
+          "запікати",
+          "смажити на грилі"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,42 +785,44 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сусідку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i11:audio",
-          "transcript": "The pantry is small."
+          "transcript": "They roast potatoes in the garden."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The pantry is small.",
+        "hiddenTargetPhrase": "They roast potatoes in the garden.",
         "orderedTokens": [
-          "The",
-          "pantry",
-          "is",
-          "small"
+          "They",
+          "roast",
+          "potatoes",
+          "in",
+          "the",
+          "garden"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "roasts"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-46:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте сусідку й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The pantry is small.`",
-              "uk": "тут потрібно `is` — `The pantry is small.`"
+              "ru": "здесь нужно `roast` — `They roast potatoes in the garden.`",
+              "uk": "тут потрібно `roast` — `They roast potatoes in the garden.`"
             }
           }
         ],
@@ -623,30 +835,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На столі залишився кухоль. Запитайте «Чий це кухоль?»",
+      "prompt": "Ви показуєте на гриль. Скажіть: «У сусіда є шампур»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На столі залишився кухоль. Запитайте «Чий це кухоль?»",
+      "accessibilityLabel": "Ви показуєте на гриль. Скажіть: «У сусіда є шампур»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose mug is this?",
+        "targetPhrase": "My neighbour has a skewer.",
         "localizedMeaning": {
-          "ru": "На столе осталась кружка. Спросите «Чья это кружка?»",
-          "uk": "На столі залишився кухоль. Запитайте «Чий це кухоль?»"
+          "ru": "Вы показываете на гриль. Скажите: «У соседа есть шампур»",
+          "uk": "Ви показуєте на гриль. Скажіть: «У сусіда є шампур»"
         },
         "orderedTokens": [
-          "Whose",
-          "mug",
-          "is",
-          "this"
+          "My",
+          "neighbour",
+          "has",
+          "a",
+          "skewer"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-46:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте на гриль. Скажіть: «У сусіда є шампур»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `My neighbour has a skewer.`",
+              "uk": "тут потрібно `has` — `My neighbour has a skewer.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,25 +881,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Ми відпочиваємо тут»",
+      "prompt": "Сусід питає, де шампур. Скажіть: «Шампур на столі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Ми відпочиваємо тут»",
+      "accessibilityLabel": "Сусід питає, де шампур. Скажіть: «Шампур на столі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i13:audio",
-          "transcript": "We rest here."
+          "transcript": "The skewer is on the table."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We rest here.",
+        "targetPhrase": "The skewer is on the table.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -689,67 +914,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Том відпочиває тут»",
+      "prompt": "Скажіть про вугілля: «Вугілля гаряче». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i14:r1",
-          "text": "rests"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-46:i14:r2",
-          "text": "rest"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-46:i14:r3",
-          "text": "is rests"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Том відпочиває тут»",
+      "accessibilityLabel": "Скажіть про вугілля: «Вугілля гаряче». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том отдыхает здесь»",
-          "uk": "Скажіть «Том відпочиває тут»"
+          "ru": "Скажите об угле: «Уголь горячий». Выберите слово",
+          "uk": "Скажіть про вугілля: «Вугілля гаряче». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ here.",
+        "gappedTargetPhrase": "The charcoal ___ hot.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-46:i14:r1",
-            "text": "rests"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-46:i14:r2",
-            "text": "rest"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-46:i14:r3",
-            "text": "is rests"
+            "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Том відпочиває тут»",
+        "testedDimension": "Скажіть про вугілля: «Вугілля гаряче». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-46:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Том відпочиває тут»",
+            "testedDimension": "Скажіть про вугілля: «Вугілля гаряче». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom rests`.",
-              "uk": "Том — він: `Tom rests`."
+              "ru": "Уголь здесь одно слово, поэтому нужно `is`, а не `are`.",
+              "uk": "Вугілля тут одне слово, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-46:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Том відпочиває тут»",
+            "testedDimension": "Скажіть про вугілля: «Вугілля гаряче». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom rests`, без `is`.",
-              "uk": "Потрібно `Tom rests`, без `is`."
+              "ru": "`am` бывает только после `I`; про уголь говорим `is`.",
+              "uk": "`am` буває лише після `I`; про вугілля кажемо `is`."
             }
           }
         ]
@@ -758,51 +983,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить кухоль",
+      "prompt": "Послухайте сусіда",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i15:r1",
-          "text": "This mug is mine."
+          "text": "He has a skewer."
         },
         {
           "responseId": "en:lesson-06:session-46:i15:r2",
-          "text": "This mug is yours."
+          "text": "He has a bucket."
         },
         {
           "responseId": "en:lesson-06:session-46:i15:r3",
-          "text": "This mug is hers."
+          "text": "She has a skewer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить кухоль",
+      "accessibilityLabel": "Послухайте сусіда",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i15:audio",
-          "transcript": "This mug is mine."
+          "transcript": "He has a skewer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-46:i15:r1",
-            "targetText": "This mug is mine.",
+            "targetText": "He has a skewer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-46:i15:r2",
-            "targetText": "This mug is yours.",
+            "targetText": "He has a bucket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-46:i15:r3",
-            "targetText": "This mug is hers.",
+            "targetText": "She has a skewer.",
             "meaningByLocale": null
           }
         ],
@@ -811,19 +1036,19 @@
           {
             "responseId": "en:lesson-06:session-46:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить кухоль",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `skewer`, шампур, а в этом варианте — `bucket`, ведро.",
+              "uk": "У записі останнє слово — `skewer`, шампур, а в цьому варіанті — `bucket`, відро."
             }
           },
           {
             "responseId": "en:lesson-06:session-46:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить кухоль",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -834,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,48 +1073,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-46:i16:p1",
-            "target": "mug",
+            "target": "charcoal",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "древесный уголь",
+              "uk": "деревне вугілля"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i16:p2",
-            "target": "pantry",
+            "target": "grill",
             "meaningByLocale": {
-              "ru": "кладовая",
-              "uk": "комора"
+              "ru": "жарить на гриле",
+              "uk": "смажити на грилі"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i16:p3",
-            "target": "appropriate",
+            "target": "skewer",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "шампур",
+              "uk": "шампур"
             }
           },
           {
             "pairId": "en:lesson-06:session-46:i16:p4",
-            "target": "rest",
+            "target": "roast",
             "meaningByLocale": {
-              "ru": "отдыхать",
-              "uk": "відпочивати"
+              "ru": "запекать",
+              "uk": "запікати"
             }
           }
         ],
         "leftColumn": [
-          "mug",
-          "pantry",
-          "appropriate",
-          "rest"
+          "charcoal",
+          "grill",
+          "skewer",
+          "roast"
         ],
         "rightColumn": [
-          "кухоль",
-          "комора",
-          "доречний",
-          "відпочивати"
+          "деревне вугілля",
+          "смажити на грилі",
+          "шампур",
+          "запікати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,25 +1132,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-46:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега збирає кухлі після перерви. Покажіть свій: «Цей кухоль мій»",
+      "prompt": "Ви стоїте біля гриля на подвір’ї. Розкажіть про дядька: «Він смажить сосиски на грилі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-46:i17:audio"
       ],
-      "accessibilityLabel": "Колега збирає кухлі після перерви. Покажіть свій: «Цей кухоль мій»",
+      "accessibilityLabel": "Ви стоїте біля гриля на подвір’ї. Розкажіть про дядька: «Він смажить сосиски на грилі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-46:i17:audio",
-          "transcript": "This mug is mine."
+          "transcript": "He grills sausages."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This mug is mine.",
+        "targetPhrase": "He grills sausages.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7e517a814796c7e01be0e5309df3b3f2ceea9ca06a4061722726633fa6bc84fd"
+  "learnerFingerprint": "12823f785402d2c8da3720ab1490456b639472f9eaeb3d3c88e1bb33cf999769"
 }

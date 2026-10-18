@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-47:i01",
+      "interactionId": "en:lesson-06:session-47:word:snore",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — snore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-47:word:snore:audio"
+      ],
+      "accessibilityLabel": "Картка слова — snore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-47:word:snore:audio",
+          "transcript": "snore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-47:word:snore:r1",
+            "targetText": "snore",
+            "meaningByLocale": {
+              "ru": "храпеть. He snores in the tent. — «Он храпит в палатке». О шумном дыхании во сне.",
+              "uk": "хропти. He snores in the tent. — «Він хропе в наметі». Про шумне дихання уві сні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snore",
+          "definitionByLocale": {
+            "ru": "храпеть. He snores in the tent. — «Он храпит в палатке». О шумном дыхании во сне.",
+            "uk": "хропти. He snores in the tent. — «Він хропе в наметі». Про шумне дихання уві сні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-47:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Ця рукавичка моя»",
+      "prompt": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Ця рукавичка моя»",
+      "accessibilityLabel": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This glove is mine.",
+        "targetPhrase": "We snore in the tent.",
         "localizedMeaning": {
-          "ru": "Скажите «Эта перчатка моя»",
-          "uk": "Скажіть «Ця рукавичка моя»"
+          "ru": "Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»",
+          "uk": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»"
         },
         "orderedTokens": [
-          "This",
-          "glove",
-          "is",
-          "mine"
+          "We",
+          "snore",
+          "in",
+          "the",
+          "tent"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "snores"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-47:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `snore` — `We snore in the tent.`",
+              "uk": "тут потрібно `snore` — `We snore in the tent.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +94,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-47:i02:r1",
-          "text": "glove"
+          "text": "He snores in the tent."
         },
         {
           "responseId": "en:lesson-06:session-47:i02:r2",
-          "text": "subway"
+          "text": "He snores in the hammock."
         },
         {
           "responseId": "en:lesson-06:session-47:i02:r3",
-          "text": "mug"
+          "text": "She snores in the tent."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i02:audio",
-          "transcript": "glove"
+          "transcript": "He snores in the tent."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-47:i02:r1",
-            "targetText": "glove",
+            "targetText": "He snores in the tent.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-47:i02:r2",
-            "targetText": "subway",
+            "targetText": "He snores in the hammock.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-47:i02:r3",
-            "targetText": "mug",
+            "targetText": "She snores in the tent.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +147,19 @@
           {
             "responseId": "en:lesson-06:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `glove`, а в этом варианте — `subway`.",
-              "uk": "У записі перше слово — `glove`, а в цьому варіанті — `subway`."
+              "ru": "В записи последнее слово — `tent`, палатка, а в этом варианте — `hammock`, гамак.",
+              "uk": "У записі останнє слово — `tent`, намет, а в цьому варіанті — `hammock`, гамак."
             }
           },
           {
             "responseId": "en:lesson-06:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `glove`, а в этом варианте — `mug`.",
-              "uk": "У записі перше слово — `glove`, а в цьому варіанті — `mug`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -114,67 +170,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Чиї це рукавички?»",
+      "prompt": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-47:i03:r1",
-          "text": "gloves"
+          "text": "snores"
         },
         {
           "responseId": "en:lesson-06:session-47:i03:r2",
-          "text": "glove"
+          "text": "snore"
         },
         {
           "responseId": "en:lesson-06:session-47:i03:r3",
-          "text": "gloves is"
+          "text": "is snores"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чиї це рукавички?»",
+      "accessibilityLabel": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Чьи это перчатки?»",
-          "uk": "Запитайте «Чиї це рукавички?»"
+          "ru": "Скажите о брате: «Он храпит в палатке». Выберите слово",
+          "uk": "Скажіть про брата: «Він хропе в наметі». Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose ___ are these?",
+        "gappedTargetPhrase": "He ___ in the tent.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-47:i03:r1",
-            "text": "gloves"
+            "text": "snores"
           },
           {
             "responseId": "en:lesson-06:session-47:i03:r2",
-            "text": "glove"
+            "text": "snore"
           },
           {
             "responseId": "en:lesson-06:session-47:i03:r3",
-            "text": "gloves is"
+            "text": "is snores"
           }
         ],
-        "testedDimension": "Запитайте «Чиї це рукавички?»",
+        "testedDimension": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-47:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Чиї це рукавички?»",
+            "testedDimension": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь несколько перчаток: `gloves`, с `are these`.",
-              "uk": "Тут кілька рукавичок: `gloves`, з `are these`."
+              "ru": "После `he` нужно `snores`, с `s`.",
+              "uk": "Після `he` потрібно `snores`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-47:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Чиї це рукавички?»",
+            "testedDimension": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Whose gloves are these?`, без дополнительного `is`.",
-              "uk": "Потрібно `Whose gloves are these?`, без додаткового `is`."
+              "ru": "Говорим `He snores`, без `is`.",
+              "uk": "Кажемо `He snores`, без `is`."
             }
           }
         ]
@@ -183,7 +239,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +253,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-47:i04:p1",
-            "target": "glove",
+            "target": "snore",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "храпеть",
+              "uk": "хропти"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i04:p2",
-            "target": "acceptable",
+            "target": "trail",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "тропа",
+              "uk": "стежка"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i04:p3",
-            "target": "leftover",
+            "target": "summit",
             "meaningByLocale": {
-              "ru": "остаток еды",
-              "uk": "залишок їжі"
+              "ru": "вершина",
+              "uk": "вершина"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i04:p4",
-            "target": "subway",
+            "target": "campfire",
             "meaningByLocale": {
-              "ru": "метро",
-              "uk": "метро"
+              "ru": "костёр",
+              "uk": "багаття"
             }
           }
         ],
         "leftColumn": [
-          "glove",
-          "acceptable",
-          "leftover",
-          "subway"
+          "snore",
+          "trail",
+          "summit",
+          "campfire"
         ],
         "rightColumn": [
-          "рукавичка",
-          "прийнятний",
-          "залишок їжі",
-          "метро"
+          "хропти",
+          "стежка",
+          "вершина",
+          "багаття"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +311,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-47:word:trail",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-47:word:trail:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-47:word:trail:audio",
+          "transcript": "trail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-47:word:trail:r1",
+            "targetText": "trail",
+            "meaningByLocale": {
+              "ru": "тропа. The trail is narrow. — «Тропа узкая». О дорожке, протоптанной людьми по земле.",
+              "uk": "стежка. The trail is narrow. — «Стежка вузька». Про доріжку, протоптану людьми по землі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trail",
+          "definitionByLocale": {
+            "ru": "тропа. The trail is narrow. — «Тропа узкая». О дорожке, протоптанной людьми по земле.",
+            "uk": "стежка. The trail is narrow. — «Стежка вузька». Про доріжку, протоптану людьми по землі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-47:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте друга й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте друга й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i05:audio",
-          "transcript": "My glove is here."
+          "transcript": "My brother walks on the trail."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "My glove is here.",
+        "hiddenTargetPhrase": "My brother walks on the trail.",
         "orderedTokens": [
           "My",
-          "glove",
-          "is",
-          "here"
+          "brother",
+          "walks",
+          "on",
+          "the",
+          "trail"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "walk"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте друга й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `walks` — `My brother walks on the trail.`",
+              "uk": "тут потрібно `walks` — `My brother walks on the trail.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,31 +404,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-47:word:summit",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — summit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-47:word:summit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — summit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-47:word:summit:audio",
+          "transcript": "summit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-47:word:summit:r1",
+            "targetText": "summit",
+            "meaningByLocale": {
+              "ru": "вершина. The summit is high. — «Вершина высокая». О самой верхней точке горы.",
+              "uk": "вершина. The summit is high. — «Вершина висока». Про найвищу точку гори."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "summit",
+          "definitionByLocale": {
+            "ru": "вершина. The summit is high. — «Вершина высокая». О самой верхней точке горы.",
+            "uk": "вершина. The summit is high. — «Вершина висока». Про найвищу точку гори."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-47:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він їздить на роботу велосипедом»",
+      "prompt": "Друг показує вдалину. Спитайте: «Де вершина?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він їздить на роботу велосипедом»",
+      "accessibilityLabel": "Друг показує вдалину. Спитайте: «Де вершина?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He cycles to work.",
+        "targetPhrase": "Where is the summit?",
         "localizedMeaning": {
-          "ru": "Скажите «Он ездит на работу на велосипеде»",
-          "uk": "Скажіть «Він їздить на роботу велосипедом»"
+          "ru": "Друг показывает вдаль. Спросите: «Где вершина?»",
+          "uk": "Друг показує вдалину. Спитайте: «Де вершина?»"
         },
         "orderedTokens": [
-          "He",
-          "cycles",
-          "to",
-          "work"
+          "Where",
+          "is",
+          "the",
+          "summit"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "What"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг показує вдалину. Спитайте: «Де вершина?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Where` — `Where is the summit?`",
+              "uk": "тут потрібно `Where` — `Where is the summit?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -325,25 +493,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг шукає метро. Покажіть вхід: «Метро тут»",
+      "prompt": "Друг питає, як іде брат. Скажіть: «Брат іде стежкою»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Друг шукає метро. Покажіть вхід: «Метро тут»",
+      "accessibilityLabel": "Друг питає, як іде брат. Скажіть: «Брат іде стежкою»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i07:audio",
-          "transcript": "The subway is here."
+          "transcript": "My brother walks on the trail."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The subway is here.",
+        "targetPhrase": "My brother walks on the trail.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,67 +526,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вони їздять на роботу велосипедом»",
+      "prompt": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-47:i08:r1",
-          "text": "cycle"
+          "text": "snore"
         },
         {
           "responseId": "en:lesson-06:session-47:i08:r2",
-          "text": "cycles"
+          "text": "snores"
         },
         {
           "responseId": "en:lesson-06:session-47:i08:r3",
-          "text": "are cycle"
+          "text": "am snore"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вони їздять на роботу велосипедом»",
+      "accessibilityLabel": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они ездят на работу на велосипеде»",
-          "uk": "Скажіть «Вони їздять на роботу велосипедом»"
+          "ru": "Скажите о себе: «Я храплю в палатке». Выберите слово",
+          "uk": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ to work.",
+        "gappedTargetPhrase": "I ___ in the tent.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-47:i08:r1",
-            "text": "cycle"
+            "text": "snore"
           },
           {
             "responseId": "en:lesson-06:session-47:i08:r2",
-            "text": "cycles"
+            "text": "snores"
           },
           {
             "responseId": "en:lesson-06:session-47:i08:r3",
-            "text": "are cycle"
+            "text": "am snore"
           }
         ],
-        "testedDimension": "Скажіть «Вони їздять на роботу велосипедом»",
+        "testedDimension": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вони їздять на роботу велосипедом»",
+            "testedDimension": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `cycle`, без `s`.",
-              "uk": "Після `they` — `cycle`, без `s`."
+              "ru": "После `I` нужно `snore`, без `s`.",
+              "uk": "Після `I` потрібно `snore`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вони їздять на роботу велосипедом»",
+            "testedDimension": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They cycle`, без `are`.",
-              "uk": "Потрібно `They cycle`, без `are`."
+              "ru": "Говорим `I snore`, без `am`.",
+              "uk": "Кажемо `I snore`, без `am`."
             }
           }
         ]
@@ -426,52 +594,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-47:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-47:word:campfire",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належать рукавички",
+      "prompt": "Картка слова — campfire",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-47:word:campfire:audio"
+      ],
+      "accessibilityLabel": "Картка слова — campfire",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-47:word:campfire:audio",
+          "transcript": "campfire"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-47:word:campfire:r1",
+            "targetText": "campfire",
+            "meaningByLocale": {
+              "ru": "костёр. The campfire is warm. — «Костёр тёплый». О костре, который разводят в походе.",
+              "uk": "багаття. The campfire is warm. — «Багаття тепле». Про вогнище, яке розводять у поході."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "campfire",
+          "definitionByLocale": {
+            "ru": "костёр. The campfire is warm. — «Костёр тёплый». О костре, который разводят в походе.",
+            "uk": "багаття. The campfire is warm. — «Багаття тепле». Про вогнище, яке розводять у поході."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-47:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-47:i09:r1",
-          "text": "These gloves are mine."
+          "text": "The campfire is near the tent."
         },
         {
           "responseId": "en:lesson-06:session-47:i09:r2",
-          "text": "These gloves are yours."
+          "text": "The campfire is near the lake."
         },
         {
           "responseId": "en:lesson-06:session-47:i09:r3",
-          "text": "These gloves are hers."
+          "text": "The hammock is near the tent."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належать рукавички",
+      "accessibilityLabel": "Послухайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i09:audio",
-          "transcript": "These gloves are mine."
+          "transcript": "The campfire is near the tent."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-47:i09:r1",
-            "targetText": "These gloves are mine.",
+            "targetText": "The campfire is near the tent.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-47:i09:r2",
-            "targetText": "These gloves are yours.",
+            "targetText": "The campfire is near the lake.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-47:i09:r3",
-            "targetText": "These gloves are hers.",
+            "targetText": "The hammock is near the tent.",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +691,19 @@
           {
             "responseId": "en:lesson-06:session-47:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належать рукавички",
+            "testedDimension": "Послухайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `tent`, палатка, а в этом варианте — `lake`, озеро.",
+              "uk": "У записі останнє слово — `tent`, намет, а в цьому варіанті — `lake`, озеро."
             }
           },
           {
             "responseId": "en:lesson-06:session-47:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належать рукавички",
+            "testedDimension": "Послухайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи первое слово — `campfire`, костёр, а в этом варианте — `hammock`, гамак.",
+              "uk": "У записі перше слово — `campfire`, багаття, а в цьому варіанті — `hammock`, гамак."
             }
           }
         ],
@@ -503,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -517,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-47:i10:p1",
-            "target": "glove",
+            "target": "summit",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "вершина",
+              "uk": "вершина"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i10:p2",
-            "target": "cycle",
+            "target": "campfire",
             "meaningByLocale": {
-              "ru": "ездить на велосипеде",
-              "uk": "їздити велосипедом"
+              "ru": "костёр",
+              "uk": "багаття"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i10:p3",
-            "target": "subway",
+            "target": "trail",
             "meaningByLocale": {
-              "ru": "метро",
-              "uk": "метро"
+              "ru": "тропа",
+              "uk": "стежка"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i10:p4",
-            "target": "acceptable",
+            "target": "snore",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "храпеть",
+              "uk": "хропти"
             }
           }
         ],
         "leftColumn": [
-          "glove",
-          "cycle",
-          "subway",
-          "acceptable"
+          "summit",
+          "campfire",
+          "trail",
+          "snore"
         ],
         "rightColumn": [
-          "рукавичка",
-          "їздити велосипедом",
-          "метро",
-          "прийнятний"
+          "вершина",
+          "багаття",
+          "стежка",
+          "хропти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,42 +787,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте друга й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте друга й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i11:audio",
-          "transcript": "These gloves are mine."
+          "transcript": "They snore in the tent."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These gloves are mine.",
+        "hiddenTargetPhrase": "They snore in the tent.",
         "orderedTokens": [
-          "These",
-          "gloves",
-          "are",
-          "mine"
+          "They",
+          "snore",
+          "in",
+          "the",
+          "tent"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "snores"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-47:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте друга й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These gloves are mine.`",
-              "uk": "тут потрібно `are` — `These gloves are mine.`"
+              "ru": "здесь нужно `snore` — `They snore in the tent.`",
+              "uk": "тут потрібно `snore` — `They snore in the tent.`"
             }
           }
         ],
@@ -624,30 +836,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли одну рукавичку. Запитайте «Чия це рукавичка?»",
+      "prompt": "Ви показуєте на рюкзак. Скажіть: «У друга є ліхтарик»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли одну рукавичку. Запитайте «Чия це рукавичка?»",
+      "accessibilityLabel": "Ви показуєте на рюкзак. Скажіть: «У друга є ліхтарик»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose glove is this?",
+        "targetPhrase": "My friend has a flashlight.",
         "localizedMeaning": {
-          "ru": "Вы нашли одну перчатку. Спросите «Чья это перчатка?»",
-          "uk": "Ви знайшли одну рукавичку. Запитайте «Чия це рукавичка?»"
+          "ru": "Вы показываете на рюкзак. Скажите: «У друга есть фонарик»",
+          "uk": "Ви показуєте на рюкзак. Скажіть: «У друга є ліхтарик»"
         },
         "orderedTokens": [
-          "Whose",
-          "glove",
-          "is",
-          "this"
+          "My",
+          "friend",
+          "has",
+          "a",
+          "flashlight"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-47:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви показуєте на рюкзак. Скажіть: «У друга є ліхтарик»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `My friend has a flashlight.`",
+              "uk": "тут потрібно `has` — `My friend has a flashlight.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -657,25 +882,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Ми їздимо на роботу велосипедом»",
+      "prompt": "Друг питає, де вершина. Скажіть: «Вершина за пагорбом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Ми їздимо на роботу велосипедом»",
+      "accessibilityLabel": "Друг питає, де вершина. Скажіть: «Вершина за пагорбом»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i13:audio",
-          "transcript": "We cycle to work."
+          "transcript": "The summit is behind the hill."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We cycle to work.",
+        "targetPhrase": "The summit is behind the hill.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -690,67 +915,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Анна їздить на роботу велосипедом»",
+      "prompt": "Скажіть про багаття: «Багаття біля намету». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-47:i14:r1",
-          "text": "cycles"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-47:i14:r2",
-          "text": "cycle"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-47:i14:r3",
-          "text": "is cycles"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Анна їздить на роботу велосипедом»",
+      "accessibilityLabel": "Скажіть про багаття: «Багаття біля намету». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Анна ездит на работу на велосипеде»",
-          "uk": "Скажіть «Анна їздить на роботу велосипедом»"
+          "ru": "Скажите о костре: «Костёр возле палатки». Выберите слово",
+          "uk": "Скажіть про багаття: «Багаття біля намету». Виберіть слово"
         },
-        "gappedTargetPhrase": "Anna ___ to work.",
+        "gappedTargetPhrase": "The campfire ___ near the tent.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-47:i14:r1",
-            "text": "cycles"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-47:i14:r2",
-            "text": "cycle"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-47:i14:r3",
-            "text": "is cycles"
+            "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Анна їздить на роботу велосипедом»",
+        "testedDimension": "Скажіть про багаття: «Багаття біля намету». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-47:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Анна їздить на роботу велосипедом»",
+            "testedDimension": "Скажіть про багаття: «Багаття біля намету». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Анна — она: `Anna cycles`.",
-              "uk": "Анна — вона: `Anna cycles`."
+              "ru": "Костёр один, поэтому нужно `is`, а не `are`.",
+              "uk": "Багаття одне, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-47:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Анна їздить на роботу велосипедом»",
+            "testedDimension": "Скажіть про багаття: «Багаття біля намету». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Anna cycles`, без `is`.",
-              "uk": "Потрібно `Anna cycles`, без `is`."
+              "ru": "`am` бывает только после `I`; про костёр говорим `is`.",
+              "uk": "`am` буває лише після `I`; про багаття кажемо `is`."
             }
           }
         ]
@@ -759,51 +984,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де метро",
+      "prompt": "Послухайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-47:i15:r1",
-          "text": "The subway is here."
+          "text": "He has a flashlight."
         },
         {
           "responseId": "en:lesson-06:session-47:i15:r2",
-          "text": "The subway is there."
+          "text": "He has a compass."
         },
         {
           "responseId": "en:lesson-06:session-47:i15:r3",
-          "text": "The subway is nearby."
+          "text": "She has a flashlight."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де метро",
+      "accessibilityLabel": "Послухайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i15:audio",
-          "transcript": "The subway is here."
+          "transcript": "He has a flashlight."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-47:i15:r1",
-            "targetText": "The subway is here.",
+            "targetText": "He has a flashlight.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-47:i15:r2",
-            "targetText": "The subway is there.",
+            "targetText": "He has a compass.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-47:i15:r3",
-            "targetText": "The subway is nearby.",
+            "targetText": "She has a flashlight.",
             "meaningByLocale": null
           }
         ],
@@ -812,19 +1037,19 @@
           {
             "responseId": "en:lesson-06:session-47:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де метро",
+            "testedDimension": "Послухайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `flashlight`, фонарик, а в этом варианте — `compass`, компас.",
+              "uk": "У записі останнє слово — `flashlight`, ліхтарик, а в цьому варіанті — `compass`, компас."
             }
           },
           {
             "responseId": "en:lesson-06:session-47:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де метро",
+            "testedDimension": "Послухайте друга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+              "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+              "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
             }
           }
         ],
@@ -835,7 +1060,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -849,48 +1074,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-47:i16:p1",
-            "target": "glove",
+            "target": "trail",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "тропа",
+              "uk": "стежка"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i16:p2",
-            "target": "leftover",
+            "target": "snore",
             "meaningByLocale": {
-              "ru": "остаток еды",
-              "uk": "залишок їжі"
+              "ru": "храпеть",
+              "uk": "хропти"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i16:p3",
-            "target": "acceptable",
+            "target": "campfire",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "костёр",
+              "uk": "багаття"
             }
           },
           {
             "pairId": "en:lesson-06:session-47:i16:p4",
-            "target": "cycle",
+            "target": "summit",
             "meaningByLocale": {
-              "ru": "ездить на велосипеде",
-              "uk": "їздити велосипедом"
+              "ru": "вершина",
+              "uk": "вершина"
             }
           }
         ],
         "leftColumn": [
-          "glove",
-          "leftover",
-          "acceptable",
-          "cycle"
+          "trail",
+          "snore",
+          "campfire",
+          "summit"
         ],
         "rightColumn": [
-          "рукавичка",
-          "залишок їжі",
-          "прийнятний",
-          "їздити велосипедом"
+          "стежка",
+          "хропти",
+          "багаття",
+          "вершина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -908,25 +1133,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Біля дверей залишилася пара рукавичок. Запитайте сусідів «Чиї це рукавички?»",
+      "prompt": "Ви сидите біля багаття з другом. Розкажіть про дядька: «Він хропе в наметі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-47:i17:audio"
       ],
-      "accessibilityLabel": "Біля дверей залишилася пара рукавичок. Запитайте сусідів «Чиї це рукавички?»",
+      "accessibilityLabel": "Ви сидите біля багаття з другом. Розкажіть про дядька: «Він хропе в наметі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-47:i17:audio",
-          "transcript": "Whose gloves are these?"
+          "transcript": "He snores in the tent."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose gloves are these?",
+        "targetPhrase": "He snores in the tent.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -948,11 +1173,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7b648bc9db99925e8f48e0ee6bc15a9f2ed9f425da496631c8b8d337daffa8f2"
+  "learnerFingerprint": "3efdbbcfcd6e02173e419842e827f66d8ef9452ff799c31ec3913ff897aa617a"
 }

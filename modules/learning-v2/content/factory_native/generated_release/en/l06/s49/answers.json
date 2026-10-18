@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-49:word:crossword",
+    "correctText": "crossword",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-49:i01",
-    "correctText": "Whose newspaper is this?",
+    "correctText": "Whose crossword is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:word:cardigan",
+    "correctText": "cardigan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-49:i02",
-    "correctText": "newspaper",
+    "correctText": "The crossword is on the bench.",
     "correctResponseId": "en:lesson-06:session-49:i02:r1"
   },
   {
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-49:i04",
-    "correctText": "en:lesson-06:session-49:i04:p1=newspaper\nen:lesson-06:session-49:i04:p2=unacceptable\nen:lesson-06:session-49:i04:p3=canal\nen:lesson-06:session-49:i04:p4=garage",
+    "correctText": "en:lesson-06:session-49:i04:p1=chat\nen:lesson-06:session-49:i04:p2=crossword\nen:lesson-06:session-49:i04:p3=cardigan\nen:lesson-06:session-49:i04:p4=kayak",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-49:i05",
-    "correctText": "My newspaper is here.",
+    "correctText": "My cardigan is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-49:word:chat",
+    "correctText": "chat",
     "correctResponseId": null
   },
   {
@@ -30,8 +45,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-06:session-49:word:kayak",
+    "correctText": "kayak",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-49:i07",
-    "correctText": "The canal is here.",
+    "correctText": "The kayak is near the canal.",
     "correctResponseId": null
   },
   {
@@ -41,22 +61,22 @@
   },
   {
     "interactionId": "en:lesson-06:session-49:i09",
-    "correctText": "This garage is mine.",
+    "correctText": "This cardigan is mine.",
     "correctResponseId": "en:lesson-06:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-49:i10",
-    "correctText": "en:lesson-06:session-49:i10:p1=newspaper\nen:lesson-06:session-49:i10:p2=chat\nen:lesson-06:session-49:i10:p3=garage\nen:lesson-06:session-49:i10:p4=unacceptable",
+    "correctText": "en:lesson-06:session-49:i10:p1=cardigan\nen:lesson-06:session-49:i10:p2=chat\nen:lesson-06:session-49:i10:p3=kayak\nen:lesson-06:session-49:i10:p4=crossword",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-49:i11",
-    "correctText": "The garage is here.",
+    "correctText": "The kayak is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-49:i12",
-    "correctText": "Whose garage is this?",
+    "correctText": "Whose cardigan is this?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-06:session-49:i15",
-    "correctText": "This newspaper is mine.",
+    "correctText": "This crossword is mine.",
     "correctResponseId": "en:lesson-06:session-49:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-49:i16",
-    "correctText": "en:lesson-06:session-49:i16:p1=newspaper\nen:lesson-06:session-49:i16:p2=canal\nen:lesson-06:session-49:i16:p3=unacceptable\nen:lesson-06:session-49:i16:p4=chat",
+    "correctText": "en:lesson-06:session-49:i16:p1=kayak\nen:lesson-06:session-49:i16:p2=chat\nen:lesson-06:session-49:i16:p3=crossword\nen:lesson-06:session-49:i16:p4=cardigan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-49:i17",
-    "correctText": "Whose newspaper is this?",
+    "correctText": "Whose crossword is this?",
     "correctResponseId": null
   }
 ]

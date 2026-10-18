@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-03",
   "learningOutcomeByLocale": {
-    "ru": "спросить о товаре в магазине и сообщить, что вещи нет",
-    "uk": "запитати про товар у магазині й повідомити, що речі немає"
+    "ru": "спросить в копицентре, что там делают, и сказать, что вещи нет",
+    "uk": "спитати в копіцентрі, що там роблять, та сказати, що речі немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Плакат для комнаты",
-        "uk": "Плакат для кімнати"
+        "ru": "Плакат нужно напечатать",
+        "uk": "Плакат треба надрукувати"
       },
       "bodyByLocale": {
-        "ru": "`poster` — «плакат». В магазине вы спрашиваете продавца `Do you have a poster?` — «У вас есть плакат?» Вопрос начинается с `Do you`, дальше `have`. Один плакат — `a poster`.",
-        "uk": "`poster` — «плакат». У магазині ви запитуєте продавця `Do you have a poster?` — «У вас є плакат?» Запитання починається з `Do you`, далі `have`. Один плакат — `a poster`."
+        "ru": "Плакат для комнаты вы сделали на компьютере, и теперь его нужно перенести на бумагу. На углу вы нашли небольшой копицентр и вошли. print — «печатать». Спросите сотрудника: Do you print posters? — «Вы печатаете плакаты?» Сначала Do, затем you и print.",
+        "uk": "Плакат для кімнати ви зробили на комп’ютері, і тепер його треба перенести на папір. На розі ви знайшли невеликий копіцентр і зайшли. print — «друкувати». Спитайте працівника: Do you print posters? — «Ви друкуєте плакати?» Спочатку Do, потім you і print."
       },
       "question": {
         "interactionId": "en:lesson-07:session-03:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите продавца «У вас есть плакат?»",
-          "uk": "Запитайте продавця «У вас є плакат?»"
+          "ru": "Вы вошли в копицентр с готовым плакатом. Спросите сотрудника: «Вы печатаете плакаты?»",
+          "uk": "Ви зайшли в копіцентр із готовим плакатом. Спитайте працівника: «Ви друкуєте плакати?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-03:intro1:r1",
-              "text": "Do you have a poster?"
+              "text": "Do you print posters?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro1:r2",
-              "text": "Are you have a poster?"
+              "text": "Are you print posters?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro1:r3",
-              "text": "Do you has a poster?"
+              "text": "Do you prints posters?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-03:intro1:r1",
-              "text": "Do you have a poster?"
+              "text": "Do you print posters?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro1:r2",
-              "text": "Are you have a poster?"
+              "text": "Are you print posters?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro1:r3",
-              "text": "Do you has a poster?"
+              "text": "Do you prints posters?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите продавца «У вас есть плакат?»",
-          "uk": "Запитайте продавця «У вас є плакат?»"
+          "ru": "Вы вошли в копицентр с готовым плакатом. Спросите сотрудника: «Вы печатаете плакаты?»",
+          "uk": "Ви зайшли в копіцентр із готовим плакатом. Спитайте працівника: «Ви друкуєте плакати?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Магазин, который советует друг",
-        "uk": "Магазин, який радить друг"
+        "ru": "Потерянный ключ",
+        "uk": "Загублений ключ"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает вам магазин. Вы уточняете `Do they sell posters?` — «Они продают плакаты?» После `Do they` — `sell`, без `s`. В слове `posters` буква `s` нужна: речь о плакатах. Здесь мы узнаём, чем торгует магазин.",
-        "uk": "Друг показує вам магазин. Ви уточнюєте `Do they sell posters?` — «Вони продають плакати?» Після `Do they` — `sell`, без `s`. У слові `posters` літера `s` потрібна: йдеться про плакати. Тут ми дізнаємося, чим торгує магазин."
+        "ru": "Друг потерял запасной ключ от квартиры и хочет сделать новый. Он вспомнил мастерскую у вокзала, но не уверен, что там делают именно это. copy — «копировать, делать копию». Спросите: Do they copy keys? — «Они копируют ключи?» После they слово copy без изменений.",
+        "uk": "Друг загубив запасний ключ від квартири й хоче зробити новий. Він згадав майстерню біля вокзалу, але не певен, що там роблять саме це. copy — «копіювати, робити копію». Спитайте: Do they copy keys? — «Вони копіюють ключі?» Після they слово copy без змін."
       },
       "question": {
         "interactionId": "en:lesson-07:session-03:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите друга «Они продают плакаты?»",
-          "uk": "Запитайте друга «Вони продають плакати?»"
+          "ru": "Друг вспомнил мастерскую у вокзала. Спросите у него о ней: «Они копируют ключи?»",
+          "uk": "Друг згадав майстерню біля вокзалу. Спитайте в нього про неї: «Вони копіюють ключі?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-03:intro2:r1",
-              "text": "Do they sell posters?"
+              "text": "Do they copy keys?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro2:r2",
-              "text": "Do they sells posters?"
+              "text": "Are they copy keys?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro2:r3",
-              "text": "Are they sell posters?"
+              "text": "Do they copies keys?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-03:intro2:r1",
-              "text": "Do they sell posters?"
+              "text": "Do they copy keys?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro2:r2",
-              "text": "Do they sells posters?"
+              "text": "Are they copy keys?"
             },
             {
               "responseId": "en:lesson-07:session-03:intro2:r3",
-              "text": "Are they sell posters?"
+              "text": "Do they copies keys?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга «Они продают плакаты?»",
-          "uk": "Запитайте друга «Вони продають плакати?»"
+          "ru": "Друг вспомнил мастерскую у вокзала. Спросите у него о ней: «Они копируют ключи?»",
+          "uk": "Друг згадав майстерню біля вокзалу. Спитайте в нього про неї: «Вони копіюють ключі?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пустая стена",
-        "uk": "Порожня стіна"
+        "ru": "Пустые листы",
+        "uk": "Порожні аркуші"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, висит ли у вас плакат над письменным столом. `There is no poster above the desk` — «Над письменным столом нет плаката». `There is no poster` сообщает, что плаката нет; `above the desk` уточняет место. Пустая стена пока изображает только пустую стену.",
-        "uk": "Друг запитує, чи висить у вас плакат над письмовим столом. `There is no poster above the desk` — «Над письмовим столом немає плаката». `There is no poster` повідомляє, що плаката немає; `above the desk` уточнює місце. Порожня стіна поки зображує лише порожню стіну."
+        "ru": "Дома принтер вдруг начал выдавать пустые листы: закончились чернила. Брат просит достать новые из ящика, и вы открыли все ящики по очереди. ink — «чернила». There is no ink here — «Здесь нет чернил». Чернила не считаем штуками, поэтому a не нужно.",
+        "uk": "Вдома принтер раптом почав видавати порожні аркуші: скінчилося чорнило. Брат просить дістати нове з шухляди, і ви відкрили всі шухляди по черзі. ink — «чорнило». There is no ink here — «Тут немає чорнила». Чорнило не рахуємо штуками, тому a не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-07:session-03:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите другу «Над письменным столом нет плаката».",
-          "uk": "Скажіть другові «Над письмовим столом немає плаката»."
+          "ru": "Брат просит достать чернила, но в ящиках их нет. Скажите ему: «Здесь нет чернил».",
+          "uk": "Брат просить дістати чорнило, але в шухлядах його немає. Скажіть йому: «Тут немає чорнила»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-03:intro3:r1",
-              "text": "There is no poster above the desk."
+              "text": "There is no ink here."
             },
             {
               "responseId": "en:lesson-07:session-03:intro3:r2",
-              "text": "There are no poster above the desk."
+              "text": "There is no an ink here."
             },
             {
               "responseId": "en:lesson-07:session-03:intro3:r3",
-              "text": "There no poster above the desk."
+              "text": "There are no ink here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-03:intro3:r1",
-              "text": "There is no poster above the desk."
+              "text": "There is no ink here."
             },
             {
               "responseId": "en:lesson-07:session-03:intro3:r2",
-              "text": "There are no poster above the desk."
+              "text": "There is no an ink here."
             },
             {
               "responseId": "en:lesson-07:session-03:intro3:r3",
-              "text": "There no poster above the desk."
+              "text": "There are no ink here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу «Над письменным столом нет плаката».",
-          "uk": "Скажіть другові «Над письмовим столом немає плаката»."
+          "ru": "Брат просит достать чернила, но в ящиках их нет. Скажите ему: «Здесь нет чернил».",
+          "uk": "Брат просить дістати чорнило, але в шухлядах його немає. Скажіть йому: «Тут немає чорнила»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "682229807f817a985474a365300e31be22484b7e2f9b58117b3f25adbd357e95"
+  "introFingerprint": "f2e522c91a4846b5717d03c9225c4d8ea8751a889c98835cc392a4721b629d29"
 }

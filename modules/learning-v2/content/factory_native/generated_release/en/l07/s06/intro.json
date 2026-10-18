@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-06",
   "learningOutcomeByLocale": {
-    "ru": "различать вопрос о человеке и вопрос о его действиях",
-    "uk": "розрізняти запитання про людину й запитання про її дії"
+    "ru": "различать вопрос о человеке и вопрос о его действиях и сказать, что инструмента нет",
+    "uk": "розрізняти питання про людину й питання про її дії та сказати, що інструмента немає"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто перед вами",
-        "uk": "Хто перед вами"
+        "ru": "Кто пришёл по вызову",
+        "uk": "Хто прийшов за викликом"
       },
       "bodyByLocale": {
-        "ru": "`customer` — «клиент» или «покупатель». У стойки стоит человек без рабочей формы. `Are you a customer?` — «Вы клиент?» Здесь называем, кто человек, поэтому начинаем с `Are you`. Не каждый, кто стоит за стойкой, уже устроился туда на работу.",
-        "uk": "`customer` — «клієнт» або «покупець». Біля стійки стоїть людина без робочої форми. `Are you a customer?` — «Ви клієнт?» Тут називаємо, хто людина, тому починаємо з `Are you`. Не кожен, хто стоїть за стійкою, уже влаштувався туди на роботу."
+        "ru": "В дверь звонит человек в рабочей куртке и с тяжёлой сумкой. Вы вызывали мастера из-за протекающего крана, но не знаете, кого прислали. plumber — «сантехник». Чтобы узнать, кто он, говорим Are you a plumber? — «Вы сантехник?» В вопросе «Вы сантехник?» нужно Are you.",
+        "uk": "У двері дзвонить людина в робочій куртці й з важкою сумкою. Ви викликали майстра через кран, що тече, але не знаєте, кого прислали. plumber — «сантехнік». Щоб дізнатися, хто він, кажемо Are you a plumber? — «Ви сантехнік?» У питанні «Ви сантехнік?» потрібно Are you."
       },
       "question": {
         "interactionId": "en:lesson-07:session-06:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите человека «Вы клиент?»",
-          "uk": "Запитайте людину «Ви клієнт?»"
+          "ru": "Незнакомый мастер стоит у двери с сумкой. Спросите его: «Вы сантехник?»",
+          "uk": "Незнайомий майстер стоїть біля дверей із сумкою. Спитайте його: «Ви сантехнік?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-06:intro1:r1",
-              "text": "Are you a customer?"
+              "text": "Are you a plumber?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro1:r2",
-              "text": "Do you a customer?"
+              "text": "Do you a plumber?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro1:r3",
-              "text": "Are you customer?"
+              "text": "Are you plumber?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-06:intro1:r1",
-              "text": "Are you a customer?"
+              "text": "Are you a plumber?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro1:r2",
-              "text": "Do you a customer?"
+              "text": "Do you a plumber?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro1:r3",
-              "text": "Are you customer?"
+              "text": "Are you plumber?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите человека «Вы клиент?»",
-          "uk": "Запитайте людину «Ви клієнт?»"
+          "ru": "Незнакомый мастер стоит у двери с сумкой. Спросите его: «Вы сантехник?»",
+          "uk": "Незнайомий майстер стоїть біля дверей із сумкою. Спитайте його: «Ви сантехнік?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Чем занимается мастерская",
-        "uk": "Чим займається майстерня"
+        "ru": "Лампа не включается",
+        "uk": "Лампа не вмикається"
       },
       "bodyByLocale": {
-        "ru": "Вы нашли сотрудника и хотите узнать, ремонтируют ли здесь велосипеды. `Do you repair bicycles?` — «Вы ремонтируете велосипеды?» Здесь спрашиваем о действии, поэтому `Do you repair`, без `are`. `Customer` называет человека, а `repair` — то, что он делает.",
-        "uk": "Ви знайшли працівника й хочете дізнатися, чи ремонтують тут велосипеди. `Do you repair bicycles?` — «Ви ремонтуєте велосипеди?» Тут запитуємо про дію, тому `Do you repair`, без `are`. `Customer` називає людину, а `repair` — те, що вона робить."
+        "ru": "Лампа в комнате перестала включаться. Сосед хвалит двух мастеров из соседнего подъезда, но вы не уверены, что они чинят именно лампы. fix — «чинить». Спросите соседа: Do they fix lamps? — «Они чинят лампы?» Здесь спрашиваем о действии, поэтому Do.",
+        "uk": "Лампа в кімнаті перестала вмикатися. Сусід хвалить двох майстрів із сусіднього під’їзду, але ви не певні, що вони лагодять саме лампи. fix — «лагодити». Спитайте сусіда: Do they fix lamps? — «Вони лагодять лампи?» Тут питаємо про дію, тому Do."
       },
       "question": {
         "interactionId": "en:lesson-07:session-06:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите сотрудника «Вы ремонтируете велосипеды?»",
-          "uk": "Запитайте працівника «Ви ремонтуєте велосипеди?»"
+          "ru": "Сосед хвалит мастеров из соседнего подъезда. Спросите: «Они чинят лампы?»",
+          "uk": "Сусід хвалить майстрів із сусіднього під’їзду. Спитайте: «Вони лагодять лампи?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-06:intro2:r1",
-              "text": "Do you repair bicycles?"
+              "text": "Do they fix lamps?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro2:r2",
-              "text": "Are you repair bicycles?"
+              "text": "Are they fix lamps?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro2:r3",
-              "text": "Do you repairs bicycles?"
+              "text": "Do they fixes lamps?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-06:intro2:r1",
-              "text": "Do you repair bicycles?"
+              "text": "Do they fix lamps?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro2:r2",
-              "text": "Are you repair bicycles?"
+              "text": "Are they fix lamps?"
             },
             {
               "responseId": "en:lesson-07:session-06:intro2:r3",
-              "text": "Do you repairs bicycles?"
+              "text": "Do they fixes lamps?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите сотрудника «Вы ремонтируете велосипеды?»",
-          "uk": "Запитайте працівника «Ви ремонтуєте велосипеди?»"
+          "ru": "Сосед хвалит мастеров из соседнего подъезда. Спросите: «Они чинят лампы?»",
+          "uk": "Сусід хвалить майстрів із сусіднього під’їзду. Спитайте: «Вони лагодять лампи?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Нужна ручка",
-        "uk": "Потрібна ручка"
+        "ru": "Нужны плоскогубцы",
+        "uk": "Потрібні плоскогубці"
       },
       "bodyByLocale": {
-        "ru": "Покупателю нужно записать номер телефона. Вы проверили стол: `There is no pen here` — «Здесь нет ручки». Одна ручка — `There is no pen`. Эта фраза сообщает об отсутствии ручки, а не спрашивает о ней.",
-        "uk": "Покупцеві потрібно записати номер телефону. Ви перевірили стіл: `There is no pen here` — «Тут немає ручки». Одна ручка — `There is no pen`. Ця фраза повідомляє про відсутність ручки, а не запитує про неї."
+        "ru": "Мастер уже работает у раковины и просит подать плоскогубцы. Вы осмотрели его сумку: там лежат только отвёртки и тряпка. pliers — «плоскогубцы». There are no pliers here — «Здесь нет плоскогубцев». Слово pliers, как и glasses, всегда с s: нужно are.",
+        "uk": "Майстер уже працює біля раковини й просить подати плоскогубці. Ви оглянули його сумку: там лежать лише викрутки й ганчірка. pliers — «плоскогубці». There are no pliers here — «Тут немає плоскогубців». Слово pliers, як і glasses, завжди з s: потрібно are."
       },
       "question": {
         "interactionId": "en:lesson-07:session-06:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите покупателю «Здесь нет ручки».",
-          "uk": "Скажіть покупцеві «Тут немає ручки»."
+          "ru": "Мастер просит плоскогубцы, а в сумке их нет. Скажите ему: «Здесь нет плоскогубцев».",
+          "uk": "Майстер просить плоскогубці, а в сумці їх немає. Скажіть йому: «Тут немає плоскогубців»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-06:intro3:r1",
-              "text": "There is no pen here."
+              "text": "There are no pliers here."
             },
             {
               "responseId": "en:lesson-07:session-06:intro3:r2",
-              "text": "There are no pen here."
+              "text": "There is no pliers here."
             },
             {
               "responseId": "en:lesson-07:session-06:intro3:r3",
-              "text": "There no pen here."
+              "text": "There are not pliers here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-06:intro3:r1",
-              "text": "There is no pen here."
+              "text": "There are no pliers here."
             },
             {
               "responseId": "en:lesson-07:session-06:intro3:r2",
-              "text": "There are no pen here."
+              "text": "There is no pliers here."
             },
             {
               "responseId": "en:lesson-07:session-06:intro3:r3",
-              "text": "There no pen here."
+              "text": "There are not pliers here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите покупателю «Здесь нет ручки».",
-          "uk": "Скажіть покупцеві «Тут немає ручки»."
+          "ru": "Мастер просит плоскогубцы, а в сумке их нет. Скажите ему: «Здесь нет плоскогубцев».",
+          "uk": "Майстер просить плоскогубці, а в сумці їх немає. Скажіть йому: «Тут немає плоскогубців»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "76cdd4a1c51167b2309407ef5ce6888cf8c2c41c15adbc2c8325f7042c839da0"
+  "introFingerprint": "abfd1ade9492f865dc84b7d5b441fd45fd172ae5312831e7b0a9ba2845d837ab"
 }

@@ -4,31 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-45:i01",
+      "interactionId": "en:lesson-06:session-45:word:mend",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-45:word:mend:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-45:word:mend:audio",
+          "transcript": "mend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-45:word:mend:r1",
+            "targetText": "mend",
+            "meaningByLocale": {
+              "ru": "чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.",
+              "uk": "лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mend",
+          "definitionByLocale": {
+            "ru": "чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.",
+            "uk": "лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Этот карандаш мой»",
+      "prompt": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Этот карандаш мой»",
+      "accessibilityLabel": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This pencil is mine.",
+        "targetPhrase": "We mend socks.",
         "localizedMeaning": {
-          "ru": "Скажите «Этот карандаш мой»",
-          "uk": "Скажіть «Цей олівець мій»"
+          "ru": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+          "uk": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»"
         },
         "orderedTokens": [
-          "This",
-          "pencil",
-          "is",
-          "mine"
+          "We",
+          "mend",
+          "socks"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "mends"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-45:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `mend` — `We mend socks.`",
+              "uk": "тут потрібно `mend` — `We mend socks.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i02:r1",
-          "text": "pencil"
+          "text": "My grandmother mends socks."
         },
         {
           "responseId": "en:lesson-06:session-45:i02:r2",
-          "text": "motorbike"
+          "text": "My grandmother mends shirts."
         },
         {
           "responseId": "en:lesson-06:session-45:i02:r3",
-          "text": "microwave"
+          "text": "My sister mends socks."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i02:audio",
-          "transcript": "pencil"
+          "transcript": "My grandmother mends socks."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-45:i02:r1",
-            "targetText": "pencil",
+            "targetText": "My grandmother mends socks.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-45:i02:r2",
-            "targetText": "motorbike",
+            "targetText": "My grandmother mends shirts.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-45:i02:r3",
-            "targetText": "microwave",
+            "targetText": "My sister mends socks.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +145,19 @@
           {
             "responseId": "en:lesson-06:session-45:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pencil`, а в этом варианте — `motorbike`.",
-              "uk": "У записі перше слово — `pencil`, а в цьому варіанті — `motorbike`."
+              "ru": "В записи последнее слово — `socks`, носки, а в этом варианте — `shirts`, рубашки.",
+              "uk": "У записі останнє слово — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки."
             }
           },
           {
             "responseId": "en:lesson-06:session-45:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `pencil`, а в этом варианте — `microwave`.",
-              "uk": "У записі перше слово — `pencil`, а в цьому варіанті — `microwave`."
+              "ru": "В записи второе слово — `grandmother`, бабушка, а в этом варианте — `sister`, сестра.",
+              "uk": "У записі друге слово — `grandmother`, бабуся, а в цьому варіанті — `sister`, сестра."
             }
           }
         ],
@@ -114,67 +168,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите «Чей это карандаш?»",
+      "prompt": "Скажите о бабушке: «Она чинит носки». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i03:r1",
-          "text": "pencil"
+          "text": "mends"
         },
         {
           "responseId": "en:lesson-06:session-45:i03:r2",
-          "text": "pencils"
+          "text": "mend"
         },
         {
           "responseId": "en:lesson-06:session-45:i03:r3",
-          "text": "pencil are"
+          "text": "is mends"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Чей это карандаш?»",
+      "accessibilityLabel": "Скажите о бабушке: «Она чинит носки». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Чей это карандаш?»",
-          "uk": "Запитайте «Чий це олівець?»"
+          "ru": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+          "uk": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose ___ is this?",
+        "gappedTargetPhrase": "She ___ socks.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-45:i03:r1",
-            "text": "pencil"
+            "text": "mends"
           },
           {
             "responseId": "en:lesson-06:session-45:i03:r2",
-            "text": "pencils"
+            "text": "mend"
           },
           {
             "responseId": "en:lesson-06:session-45:i03:r3",
-            "text": "pencil are"
+            "text": "is mends"
           }
         ],
-        "testedDimension": "Спросите «Чей это карандаш?»",
+        "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-45:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите «Чей это карандаш?»",
+            "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь один карандаш: `pencil`, с `is this`.",
-              "uk": "Тут один олівець: `pencil`, з `is this`."
+              "ru": "После `she` нужно `mends`, с `s`.",
+              "uk": "Після `she` потрібно `mends`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-45:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите «Чей это карандаш?»",
+            "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Whose pencil is this?`, без дополнительного `are`.",
-              "uk": "Потрібно `Whose pencil is this?`, без додаткового `are`."
+              "ru": "Говорим `She mends`, без `is`.",
+              "uk": "Кажемо `She mends`, без `is`."
             }
           }
         ]
@@ -183,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +251,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-45:i04:p1",
-            "target": "pencil",
+            "target": "mend",
             "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
+              "ru": "чинить",
+              "uk": "лагодити"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i04:p2",
-            "target": "illegal",
+            "target": "thread",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "нитка",
+              "uk": "нитка"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i04:p3",
-            "target": "microwave",
+            "target": "needle",
             "meaningByLocale": {
-              "ru": "микроволновая печь",
-              "uk": "мікрохвильова піч"
+              "ru": "иголка",
+              "uk": "голка"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i04:p4",
-            "target": "motorbike",
+            "target": "fabric",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "ткань",
+              "uk": "тканина"
             }
           }
         ],
         "leftColumn": [
-          "pencil",
-          "illegal",
-          "microwave",
-          "motorbike"
+          "mend",
+          "thread",
+          "needle",
+          "fabric"
         ],
         "rightColumn": [
-          "карандаш",
-          "незаконный",
-          "микроволновая печь",
-          "мотоцикл"
+          "чинить",
+          "нитка",
+          "иголка",
+          "ткань"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,34 +309,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-45:word:thread",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-45:word:thread:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-45:word:thread:audio",
+          "transcript": "thread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-45:word:thread:r1",
+            "targetText": "thread",
+            "meaningByLocale": {
+              "ru": "нитка. The thread is red. — «Нитка красная». О тонкой нити, которой шьют.",
+              "uk": "нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thread",
+          "definitionByLocale": {
+            "ru": "нитка. The thread is red. — «Нитка красная». О тонкой нити, которой шьют.",
+            "uk": "нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-45:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i05:audio",
-          "transcript": "My pencil is here."
+          "transcript": "The thread is in the drawer."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "My pencil is here.",
+        "hiddenTargetPhrase": "The thread is in the drawer.",
         "orderedTokens": [
-          "My",
-          "pencil",
+          "The",
+          "thread",
           "is",
-          "here"
+          "in",
+          "the",
+          "drawer"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-45:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The thread is in the drawer.`",
+              "uk": "тут потрібно `is` — `The thread is in the drawer.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +402,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-45:word:needle",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — needle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-45:word:needle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — needle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-45:word:needle:audio",
+          "transcript": "needle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-45:word:needle:r1",
+            "targetText": "needle",
+            "meaningByLocale": {
+              "ru": "иголка. The needle is sharp. — «Иголка острая». О тонком стальном предмете для шитья.",
+              "uk": "голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "needle",
+          "definitionByLocale": {
+            "ru": "иголка. The needle is sharp. — «Иголка острая». О тонком стальном предмете для шитья.",
+            "uk": "голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-45:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Она делает покупки здесь»",
+      "prompt": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она делает покупки здесь»",
+      "accessibilityLabel": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She shops here.",
+        "targetPhrase": "Whose needle is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Она делает покупки здесь»",
-          "uk": "Скажіть «Вона робить покупки тут»"
+          "ru": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+          "uk": "Подруга показує на коробку. Спитайте: «Чия це голка?»"
         },
         "orderedTokens": [
-          "She",
-          "shops",
-          "here"
+          "Whose",
+          "needle",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-45:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose needle is this?`",
+              "uk": "тут потрібно `Whose` — `Whose needle is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +491,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На кухне заменили печь. Скажите «Эта микроволновая печь новая»",
+      "prompt": "Подруга спрашивает, чем занята бабушка. Скажите: «Бабушка чинит носки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i07:audio"
       ],
-      "accessibilityLabel": "На кухне заменили печь. Скажите «Эта микроволновая печь новая»",
+      "accessibilityLabel": "Подруга спрашивает, чем занята бабушка. Скажите: «Бабушка чинит носки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i07:audio",
-          "transcript": "This microwave is new."
+          "transcript": "My grandmother mends socks."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This microwave is new.",
+        "targetPhrase": "My grandmother mends socks.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +524,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Они делают покупки здесь»",
+      "prompt": "Скажите о себе: «Я чиню свитер». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i08:r1",
-          "text": "shop"
+          "text": "mend"
         },
         {
           "responseId": "en:lesson-06:session-45:i08:r2",
-          "text": "shops"
+          "text": "mends"
         },
         {
           "responseId": "en:lesson-06:session-45:i08:r3",
-          "text": "are shop"
+          "text": "am mend"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Они делают покупки здесь»",
+      "accessibilityLabel": "Скажите о себе: «Я чиню свитер». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Они делают покупки здесь»",
-          "uk": "Скажіть «Вони роблять покупки тут»"
+          "ru": "Скажите о себе: «Я чиню свитер». Выберите слово",
+          "uk": "Скажіть про себе: «Я лагоджу светр». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ here.",
+        "gappedTargetPhrase": "I ___ my sweater.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-45:i08:r1",
-            "text": "shop"
+            "text": "mend"
           },
           {
             "responseId": "en:lesson-06:session-45:i08:r2",
-            "text": "shops"
+            "text": "mends"
           },
           {
             "responseId": "en:lesson-06:session-45:i08:r3",
-            "text": "are shop"
+            "text": "am mend"
           }
         ],
-        "testedDimension": "Скажите «Они делают покупки здесь»",
+        "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Они делают покупки здесь»",
+            "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `shop`, без `s`.",
-              "uk": "Після `they` — `shop`, без `s`."
+              "ru": "После `I` нужно `mend`, без `s`.",
+              "uk": "Після `I` потрібно `mend`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Они делают покупки здесь»",
+            "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They shop`, без `are`.",
-              "uk": "Потрібно `They shop`, без `are`."
+              "ru": "Говорим `I mend`, без `am`.",
+              "uk": "Кажемо `I mend`, без `am`."
             }
           }
         ]
@@ -425,52 +592,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-45:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-45:word:fabric",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежит мотоцикл",
+      "prompt": "Карточка слова — fabric",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-45:word:fabric:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fabric",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-45:word:fabric:audio",
+          "transcript": "fabric"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-45:word:fabric:r1",
+            "targetText": "fabric",
+            "meaningByLocale": {
+              "ru": "ткань. The fabric is soft. — «Ткань мягкая». О материале, из которого шьют одежду.",
+              "uk": "тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fabric",
+          "definitionByLocale": {
+            "ru": "ткань. The fabric is soft. — «Ткань мягкая». О материале, из которого шьют одежду.",
+            "uk": "тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте бабушку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i09:r1",
-          "text": "This motorbike is mine."
+          "text": "The fabric is in the drawer."
         },
         {
           "responseId": "en:lesson-06:session-45:i09:r2",
-          "text": "This motorbike is yours."
+          "text": "The fabric is in the box."
         },
         {
           "responseId": "en:lesson-06:session-45:i09:r3",
-          "text": "This motorbike is hers."
+          "text": "The thread is in the drawer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежит мотоцикл",
+      "accessibilityLabel": "Послушайте бабушку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i09:audio",
-          "transcript": "This motorbike is mine."
+          "transcript": "The fabric is in the drawer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-45:i09:r1",
-            "targetText": "This motorbike is mine.",
+            "targetText": "The fabric is in the drawer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-45:i09:r2",
-            "targetText": "This motorbike is yours.",
+            "targetText": "The fabric is in the box.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-45:i09:r3",
-            "targetText": "This motorbike is hers.",
+            "targetText": "The thread is in the drawer.",
             "meaningByLocale": null
           }
         ],
@@ -479,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-45:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит мотоцикл",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `drawer`, ящик, а в этом варианте — `box`, коробка.",
+              "uk": "У записі останнє слово — `drawer`, шухляда, а в цьому варіанті — `box`, коробка."
             }
           },
           {
             "responseId": "en:lesson-06:session-45:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит мотоцикл",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи второе слово — `fabric`, ткань, а в этом варианте — `thread`, нитка.",
+              "uk": "У записі друге слово — `fabric`, тканина, а в цьому варіанті — `thread`, нитка."
             }
           }
         ],
@@ -502,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -516,48 +726,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-45:i10:p1",
-            "target": "pencil",
+            "target": "needle",
             "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
+              "ru": "иголка",
+              "uk": "голка"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i10:p2",
-            "target": "shop",
+            "target": "fabric",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "ткань",
+              "uk": "тканина"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i10:p3",
-            "target": "motorbike",
+            "target": "thread",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "нитка",
+              "uk": "нитка"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i10:p4",
-            "target": "illegal",
+            "target": "mend",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "чинить",
+              "uk": "лагодити"
             }
           }
         ],
         "leftColumn": [
-          "pencil",
-          "shop",
-          "motorbike",
-          "illegal"
+          "needle",
+          "fabric",
+          "thread",
+          "mend"
         ],
         "rightColumn": [
-          "карандаш",
-          "делать покупки",
-          "мотоцикл",
-          "незаконный"
+          "иголка",
+          "ткань",
+          "нитка",
+          "чинить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,42 +785,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте бабушку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте бабушку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i11:audio",
-          "transcript": "The microwave is here."
+          "transcript": "They mend the coat."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The microwave is here.",
+        "hiddenTargetPhrase": "They mend the coat.",
         "orderedTokens": [
-          "The",
-          "microwave",
-          "is",
-          "here"
+          "They",
+          "mend",
+          "the",
+          "coat"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "mends"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-45:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте бабушку и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The microwave is here.`",
-              "uk": "тут потрібно `is` — `The microwave is here.`"
+              "ru": "здесь нужно `mend` — `They mend the coat.`",
+              "uk": "тут потрібно `mend` — `They mend the coat.`"
             }
           }
         ],
@@ -623,30 +833,43 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У входа стоит мотоцикл. Спросите «Чей это мотоцикл?»",
+      "prompt": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У входа стоит мотоцикл. Спросите «Чей это мотоцикл?»",
+      "accessibilityLabel": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose motorbike is this?",
+        "targetPhrase": "My grandmother has a needle.",
         "localizedMeaning": {
-          "ru": "У входа стоит мотоцикл. Спросите «Чей это мотоцикл?»",
-          "uk": "Біля входу стоїть мотоцикл. Запитайте «Чий це мотоцикл?»"
+          "ru": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+          "uk": "Ви показуєте на стіл. Скажіть: «У бабусі є голка»"
         },
         "orderedTokens": [
-          "Whose",
-          "motorbike",
-          "is",
-          "this"
+          "My",
+          "grandmother",
+          "has",
+          "a",
+          "needle"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-45:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `My grandmother has a needle.`",
+              "uk": "тут потрібно `has` — `My grandmother has a needle.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Мы делаем покупки здесь»",
+      "prompt": "Подруга спрашивает, где нитка. Скажите: «Нитка в ящике»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Мы делаем покупки здесь»",
+      "accessibilityLabel": "Подруга спрашивает, где нитка. Скажите: «Нитка в ящике»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i13:audio",
-          "transcript": "We shop here."
+          "transcript": "The thread is in the drawer."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We shop here.",
+        "targetPhrase": "The thread is in the drawer.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -689,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том делает покупки здесь»",
+      "prompt": "Скажите о ткани: «Ткань мягкая». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i14:r1",
-          "text": "shops"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-45:i14:r2",
-          "text": "shop"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-45:i14:r3",
-          "text": "is shops"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том делает покупки здесь»",
+      "accessibilityLabel": "Скажите о ткани: «Ткань мягкая». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том делает покупки здесь»",
-          "uk": "Скажіть «Том робить покупки тут»"
+          "ru": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+          "uk": "Скажіть про тканину: «Тканина м’яка». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ here.",
+        "gappedTargetPhrase": "The fabric ___ soft.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-45:i14:r1",
-            "text": "shops"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-45:i14:r2",
-            "text": "shop"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-45:i14:r3",
-            "text": "is shops"
+            "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Том делает покупки здесь»",
+        "testedDimension": "Скажите о ткани: «Ткань мягкая». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том делает покупки здесь»",
+            "testedDimension": "Скажите о ткани: «Ткань мягкая». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom shops`.",
-              "uk": "Том — він: `Tom shops`."
+              "ru": "Ткань одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Тканина одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том делает покупки здесь»",
+            "testedDimension": "Скажите о ткани: «Ткань мягкая». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom shops`, без `is`.",
-              "uk": "Потрібно `Tom shops`, без `is`."
+              "ru": "`am` бывает только после `I`; про ткань говорим `is`.",
+              "uk": "`am` буває лише після `I`; про тканину кажемо `is`."
             }
           }
         ]
@@ -758,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежит карандаш",
+      "prompt": "Послушайте бабушку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i15:r1",
-          "text": "This pencil is mine."
+          "text": "She has a needle."
         },
         {
           "responseId": "en:lesson-06:session-45:i15:r2",
-          "text": "This pencil is yours."
+          "text": "She has a button."
         },
         {
           "responseId": "en:lesson-06:session-45:i15:r3",
-          "text": "This pencil is hers."
+          "text": "He has a needle."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежит карандаш",
+      "accessibilityLabel": "Послушайте бабушку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i15:audio",
-          "transcript": "This pencil is mine."
+          "transcript": "She has a needle."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-45:i15:r1",
-            "targetText": "This pencil is mine.",
+            "targetText": "She has a needle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-45:i15:r2",
-            "targetText": "This pencil is yours.",
+            "targetText": "She has a button.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-45:i15:r3",
-            "targetText": "This pencil is hers.",
+            "targetText": "He has a needle.",
             "meaningByLocale": null
           }
         ],
@@ -811,19 +1034,19 @@
           {
             "responseId": "en:lesson-06:session-45:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит карандаш",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+              "ru": "В записи последнее слово — `needle`, иголка, а в этом варианте — `button`, пуговица.",
+              "uk": "У записі останнє слово — `needle`, голка, а в цьому варіанті — `button`, ґудзик."
             }
           },
           {
             "responseId": "en:lesson-06:session-45:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит карандаш",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -834,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -848,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-45:i16:p1",
-            "target": "pencil",
+            "target": "fabric",
             "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
+              "ru": "ткань",
+              "uk": "тканина"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i16:p2",
-            "target": "microwave",
+            "target": "mend",
             "meaningByLocale": {
-              "ru": "микроволновая печь",
-              "uk": "мікрохвильова піч"
+              "ru": "чинить",
+              "uk": "лагодити"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i16:p3",
-            "target": "illegal",
+            "target": "needle",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "иголка",
+              "uk": "голка"
             }
           },
           {
             "pairId": "en:lesson-06:session-45:i16:p4",
-            "target": "shop",
+            "target": "thread",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "нитка",
+              "uk": "нитка"
             }
           }
         ],
         "leftColumn": [
-          "pencil",
-          "microwave",
-          "illegal",
-          "shop"
+          "fabric",
+          "mend",
+          "needle",
+          "thread"
         ],
         "rightColumn": [
-          "карандаш",
-          "микроволновая печь",
-          "незаконный",
-          "делать покупки"
+          "ткань",
+          "чинить",
+          "иголка",
+          "нитка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-45:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После занятия остался карандаш. Спросите группу «Чей это карандаш?»",
+      "prompt": "Вы сидите у бабушки. Расскажите о брате: «Он чинит носки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-45:i17:audio"
       ],
-      "accessibilityLabel": "После занятия остался карандаш. Спросите группу «Чей это карандаш?»",
+      "accessibilityLabel": "Вы сидите у бабушки. Расскажите о брате: «Он чинит носки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-45:i17:audio",
-          "transcript": "Whose pencil is this?"
+          "transcript": "He mends socks."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose pencil is this?",
+        "targetPhrase": "He mends socks.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2e14027a1d09b6fe0d8b3fca72aef0f75092318c3b88246420f93875c945e6de"
+  "learnerFingerprint": "c033c44160d73ba2bb9ea939201900a034a50bb1d8fded96b0cfd7cc4f760fe2"
 }

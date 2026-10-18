@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-38:intro1:r2": {
-          "ru": "Говорим `I rest`, без `am`.",
-          "uk": "Кажемо `I rest`, без `am`."
+          "ru": "После I слово остаётся rest, без s.",
+          "uk": "Після I слово лишається rest, без s."
         },
         "en:lesson-06:session-38:intro1:r3": {
-          "ru": "После `I` — `rest`, без `s`.",
-          "uk": "Після `I` — `rest`, без `s`."
+          "ru": "Здесь действие: I rest, без am.",
+          "uk": "Тут дія: I rest, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-38:intro2:r2": {
-          "ru": "После `she` — `rests`.",
-          "uk": "Після `she` — `rests`."
+          "ru": "После she нужно rests, с s.",
+          "uk": "Після she потрібно rests, з s."
         },
         "en:lesson-06:session-38:intro2:r3": {
-          "ru": "Нужно `She rests`, без `is`.",
-          "uk": "Потрібно `She rests`, без `is`."
+          "ru": "Здесь действие: She rests, без is.",
+          "uk": "Тут дія: She rests, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-38:intro3:r2": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "О владельце спрашиваем Whose — «чей».",
+          "uk": "Про власника питаємо Whose — «чий»."
         },
         "en:lesson-06:session-38:intro3:r3": {
-          "ru": "Один ноутбук: `is this`.",
-          "uk": "Один ноутбук: `is this`."
+          "ru": "Шезлонг один: нужно is this.",
+          "uk": "Шезлонг один: потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5fe5e901dc6bbe7020c39b73f21a1dfbde5566a0c50aa94a08c7ffbe9e2ffd35"
+  "auxiliaryFingerprint": "c40135816db3ec103005ff608e6791d3e97611007ccbfb32782c805fdc333cd6"
 }

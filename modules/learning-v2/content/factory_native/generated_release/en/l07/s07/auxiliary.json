@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-07:intro1:r2": {
-          "ru": "Нужно `Do you have?`, без `are`.",
-          "uk": "Потрібно `Do you have?`, без `are`."
+          "ru": "Здесь нужно Do you have, без Are.",
+          "uk": "Тут потрібно Do you have, без Are."
         },
         "en:lesson-07:session-07:intro1:r3": {
-          "ru": "После `Do you` нужно `have`.",
-          "uk": "Після `Do you` потрібне `have`."
+          "ru": "После Do you слово have остаётся без изменений.",
+          "uk": "Після Do you слово have лишається без змін."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-07:intro2:r2": {
-          "ru": "Нужно `Do you work?`, без `are`.",
-          "uk": "Потрібно `Do you work?`, без `are`."
+          "ru": "Здесь действие rent, поэтому нужно Do they rent, без Are.",
+          "uk": "Тут дія rent, тому потрібно Do they rent, без Are."
         },
         "en:lesson-07:session-07:intro2:r3": {
-          "ru": "После `Do you` нужно `work`.",
-          "uk": "Після `Do you` потрібне `work`."
+          "ru": "После Do they слово rent остаётся без s.",
+          "uk": "Після Do they слово rent лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-07:intro3:r2": {
-          "ru": "Одно расписание: `There is no schedule`.",
-          "uk": "Один розклад: `There is no schedule`."
+          "ru": "После no слово a не нужно: There is no voucher.",
+          "uk": "Після no слово a не потрібне: There is no voucher."
         },
         "en:lesson-07:session-07:intro3:r3": {
-          "ru": "Нужно `There is no`, с `is`.",
-          "uk": "Потрібно `There is no`, з `is`."
+          "ru": "Слово voucher стоит в единственном числе: нужно There is no.",
+          "uk": "Слово voucher стоїть в однині: потрібно There is no."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e9149df9e92222e20c3975190e9cfaeb467dc8bb97203adc50697e2af9b4457e"
+  "auxiliaryFingerprint": "74a08dd65ed6a4ce819cbac92d73e49de11d2e836de9075c9298ccfbd464cf14"
 }

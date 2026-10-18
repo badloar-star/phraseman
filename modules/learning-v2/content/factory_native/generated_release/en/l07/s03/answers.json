@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-07:session-03:word:print",
+    "correctText": "print",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-03:i01",
-    "correctText": "Do you have a poster?",
+    "correctText": "Do you print posters?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i02",
-    "correctText": "poster",
+    "correctText": "We print posters.",
     "correctResponseId": "en:lesson-07:session-03:i02:r1"
   },
   {
+    "interactionId": "en:lesson-07:session-03:word:copy",
+    "correctText": "copy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-03:i03",
-    "correctText": "sell",
+    "correctText": "copy",
     "correctResponseId": "en:lesson-07:session-03:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-03:i04",
-    "correctText": "en:lesson-07:session-03:i04:p1=poster\nen:lesson-07:session-03:i04:p2=sell\nen:lesson-07:session-03:i04:p3=book\nen:lesson-07:session-03:i04:p4=desk",
+    "correctText": "en:lesson-07:session-03:i04:p1=print\nen:lesson-07:session-03:i04:p2=copy\nen:lesson-07:session-03:i04:p3=photo\nen:lesson-07:session-03:i04:p4=key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-03:word:scan",
+    "correctText": "scan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i05",
-    "correctText": "Do you have a poster?",
+    "correctText": "Do you scan photos?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i06",
-    "correctText": "Do they sell posters?",
+    "correctText": "Do they copy keys?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-03:word:ink",
+    "correctText": "ink",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i07",
-    "correctText": "There is no poster above the desk.",
+    "correctText": "There is no ink here.",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-07:session-03:i09",
-    "correctText": "Do you have a poster?",
+    "correctText": "Do you scan photos?",
     "correctResponseId": "en:lesson-07:session-03:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-03:i10",
-    "correctText": "en:lesson-07:session-03:i10:p1=parcel\nen:lesson-07:session-03:i10:p2=poster\nen:lesson-07:session-03:i10:p3=desk\nen:lesson-07:session-03:i10:p4=sell",
+    "correctText": "en:lesson-07:session-03:i10:p1=ink\nen:lesson-07:session-03:i10:p2=scan\nen:lesson-07:session-03:i10:p3=print\nen:lesson-07:session-03:i10:p4=copy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i11",
-    "correctText": "Do they sell books?",
+    "correctText": "Do they print photos?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i12",
-    "correctText": "Do you have a parcel?",
+    "correctText": "Do you have ink?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i13",
-    "correctText": "Do they sell books?",
+    "correctText": "Do you copy pages?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-03:i15",
-    "correctText": "Do they sell posters?",
+    "correctText": "Do you print photos here?",
     "correctResponseId": "en:lesson-07:session-03:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-03:i16",
-    "correctText": "en:lesson-07:session-03:i16:p1=poster\nen:lesson-07:session-03:i16:p2=book\nen:lesson-07:session-03:i16:p3=parcel\nen:lesson-07:session-03:i16:p4=sell",
+    "correctText": "en:lesson-07:session-03:i16:p1=copy\nen:lesson-07:session-03:i16:p2=ink\nen:lesson-07:session-03:i16:p3=scan\nen:lesson-07:session-03:i16:p4=print",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-03:i17",
-    "correctText": "Do you sell posters?",
+    "correctText": "Do you print photos?",
     "correctResponseId": null
   }
 ]

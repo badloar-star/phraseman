@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-45:intro1:r2": {
-          "ru": "Без названия вещи после него нужно `mine`, не `my`.",
-          "uk": "Без назви речі після нього потрібне `mine`, не `my`."
+          "ru": "После I слово остаётся mend, без s.",
+          "uk": "Після I слово лишається mend, без s."
         },
         "en:lesson-06:session-45:intro1:r3": {
-          "ru": "Один карандаш: `is`.",
-          "uk": "Один олівець: `is`."
+          "ru": "Здесь действие: I mend, без am.",
+          "uk": "Тут дія: I mend, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-45:intro2:r2": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "После grandmother нужно mends, с s.",
+          "uk": "Після grandmother потрібно mends, з s."
         },
         "en:lesson-06:session-45:intro2:r3": {
-          "ru": "Один карандаш: `is this`.",
-          "uk": "Один олівець: `is this`."
+          "ru": "Здесь действие: grandmother mends, без is.",
+          "uk": "Тут дія: grandmother mends, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-45:intro3:r2": {
-          "ru": "После `she` — `shops`.",
-          "uk": "Після `she` — `shops`."
+          "ru": "Без is предложение не получается: нужно The needle is.",
+          "uk": "Без is речення не виходить: потрібно The needle is."
         },
         "en:lesson-06:session-45:intro3:r3": {
-          "ru": "Нужно `She shops`, без `is`.",
-          "uk": "Потрібно `She shops`, без `is`."
+          "ru": "Иголка одна, поэтому нужно is, а не are.",
+          "uk": "Голка одна, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "431c4bdeeb22591c29978215ae191568f4146310b1d3ab55ad2eb54da219fb55"
+  "auxiliaryFingerprint": "901acb760d2b75baa3f5df3dcb18d512be5b8c5594b9231ff1601524cdc47636"
 }

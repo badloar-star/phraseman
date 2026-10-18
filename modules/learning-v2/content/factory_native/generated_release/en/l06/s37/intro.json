@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-37",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, где вы обычно делаете покупки, и описать привычку другого человека",
-    "uk": "розповісти, де ви зазвичай робите покупки, й описати звичку іншої людини"
+    "ru": "рассказать, где и как вы покупаете, и описать привычку другого человека",
+    "uk": "розповісти, де й як ви купуєте, і описати звичку іншої людини"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Я здесь покупаю",
-        "uk": "Я тут купую"
+        "ru": "Между полками",
+        "uk": "Між полицями"
       },
       "bodyByLocale": {
-        "ru": "Вы проходите мимо знакомого магазина. `shop` как действие означает «делать покупки». `I shop here` — «Я делаю покупки здесь». Это не название магазина в этой фразе, а ваше действие: перед `shop` не нужно `am`. Продавец вас уже узнаёт, даже когда вы зашли «только посмотреть».",
-        "uk": "Ви проходите повз знайомий магазин. `shop` як дія означає «робити покупки». `I shop here` — «Я роблю покупки тут». У цій фразі це не назва магазину, а ваша дія: перед `shop` не потрібне `am`. Продавець вас уже впізнає, навіть коли ви зайшли «тільки подивитися»."
+        "ru": "В магазине вы ищете хлеб и долго стоите у полок: продавец выкладывает новые батоны, и вы ждёте, пока он закончит. Он замечает вас и спрашивает, почему вы стоите на месте. aisle — «проход между полками». I wait in the aisle — «Я жду в проходе». После I слово остаётся wait.",
+        "uk": "У магазині ви шукаєте хліб і довго стоїте біля полиць: продавець викладає нові батони, і ви чекаєте, поки він закінчить. Він помічає вас і питає, чому ви стоїте на місці. aisle — «прохід між полицями». I wait in the aisle — «Я чекаю в проході». Після I слово лишається wait."
       },
       "question": {
         "interactionId": "en:lesson-06:session-37:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите Тому «Я делаю покупки здесь».",
-          "uk": "Розкажіть Тому «Я роблю покупки тут»."
+          "ru": "Продавец спрашивает, почему вы стоите на месте. Скажите: «Я жду в проходе».",
+          "uk": "Продавець питає, чому ви стоїте на місці. Скажіть: «Я чекаю в проході»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-37:intro1:r1",
-              "text": "I shop here."
+              "text": "I wait in the aisle."
             },
             {
               "responseId": "en:lesson-06:session-37:intro1:r2",
-              "text": "I am shop here."
+              "text": "I waits in the aisle."
             },
             {
               "responseId": "en:lesson-06:session-37:intro1:r3",
-              "text": "I shops here."
+              "text": "I am wait in the aisle."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-37:intro1:r1",
-              "text": "I shop here."
+              "text": "I wait in the aisle."
             },
             {
               "responseId": "en:lesson-06:session-37:intro1:r2",
-              "text": "I am shop here."
+              "text": "I waits in the aisle."
             },
             {
               "responseId": "en:lesson-06:session-37:intro1:r3",
-              "text": "I shops here."
+              "text": "I am wait in the aisle."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите Тому «Я делаю покупки здесь».",
-          "uk": "Розкажіть Тому «Я роблю покупки тут»."
+          "ru": "Продавец спрашивает, почему вы стоите на месте. Скажите: «Я жду в проходе».",
+          "uk": "Продавець питає, чому ви стоїте на місці. Скажіть: «Я чекаю в проході»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Анна выбирает этот магазин",
-        "uk": "Анна обирає цей магазин"
+        "ru": "Сестра ищет выгоду",
+        "uk": "Сестра шукає вигоду"
       },
       "bodyByLocale": {
-        "ru": "Том спрашивает, где обычно покупает продукты Анна. `She shops here` — «Она делает покупки здесь». После `she` добавляем `s`: `shop → shops`. Можно сказать `Anna shops here`. Фраза описывает её привычку; сейчас она может просто проходить мимо.",
-        "uk": "Том запитує, де Анна зазвичай купує продукти. `She shops here` — «Вона робить покупки тут». Після `she` додаємо `s`: `shop → shops`. Можна сказати `Anna shops here`. Фраза описує її звичку; зараз вона може просто проходити повз."
+        "ru": "Сестра никогда не берёт вещи по полной цене: она записывает цены в блокнот и ждёт, пока нужная вещь подешевеет. Соседка удивляется, как ей удаётся столько экономить. bargain — «выгодная покупка». После she к wait добавляем s: She waits for bargains.",
+        "uk": "Сестра ніколи не бере речі за повну ціну: вона записує ціни в блокнот і чекає, поки потрібна річ подешевшає. Сусідка дивується, як їй вдається стільки заощаджувати. bargain — «вигідна покупка». Після she до wait додаємо s: She waits for bargains."
       },
       "question": {
         "interactionId": "en:lesson-06:session-37:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте Тому об Анне: «Она делает покупки здесь».",
-          "uk": "Дайте Тому відповідь про Анну: «Вона робить покупки тут»."
+          "ru": "Соседка спрашивает, как покупает ваша сестра. Скажите: «Она ждёт выгодных покупок».",
+          "uk": "Сусідка питає, як купує ваша сестра. Скажіть: «Вона чекає на вигідні покупки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-37:intro2:r1",
-              "text": "She shops here."
+              "text": "She waits for bargains."
             },
             {
               "responseId": "en:lesson-06:session-37:intro2:r2",
-              "text": "She shop here."
+              "text": "She wait for bargains."
             },
             {
               "responseId": "en:lesson-06:session-37:intro2:r3",
-              "text": "She is shops here."
+              "text": "She is waits for bargains."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-37:intro2:r1",
-              "text": "She shops here."
+              "text": "She waits for bargains."
             },
             {
               "responseId": "en:lesson-06:session-37:intro2:r2",
-              "text": "She shop here."
+              "text": "She wait for bargains."
             },
             {
               "responseId": "en:lesson-06:session-37:intro2:r3",
-              "text": "She is shops here."
+              "text": "She is waits for bargains."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте Тому об Анне: «Она делает покупки здесь».",
-          "uk": "Дайте Тому відповідь про Анну: «Вона робить покупки тут»."
+          "ru": "Соседка спрашивает, как покупает ваша сестра. Скажите: «Она ждёт выгодных покупок».",
+          "uk": "Сусідка питає, як купує ваша сестра. Скажіть: «Вона чекає на вигідні покупки»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Серьги на прилавке",
-        "uk": "Сережки на прилавку"
+        "ru": "Корзина на кассе",
+        "uk": "Кошик на касі"
       },
       "bodyByLocale": {
-        "ru": "Покупатель оставил серьги на прилавке. `earrings` — «серьги». Чтобы найти владельца, спросите: `Whose earrings are these?` — «Чьи это серьги?» Здесь несколько серёг, поэтому `are these`; `whose` спрашивает, кому они принадлежат.",
-        "uk": "Покупець залишив сережки на прилавку. `earrings` — «сережки». Щоб знайти власника, запитайте: `Whose earrings are these?` — «Чиї це сережки?» Тут кілька сережок, тому `are these`; `whose` запитує, кому вони належать."
+        "ru": "Вы стоите в очереди к кассе. Перед вами на ленте лежит полная корзина, но рядом никого нет: покупатель отошёл или забыл про неё. Кассир ждёт и смотрит на длинную очередь за вами. checkout — «касса». Whose basket is at the checkout? — «Чья корзина на кассе?»",
+        "uk": "Ви стоїте в черзі до каси. Перед вами на стрічці лежить повний кошик, але поруч нікого немає: покупець відійшов або забув про нього. Касир чекає й дивиться на довгу чергу за вами. checkout — «каса». Whose basket is at the checkout? — «Чий кошик на касі?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-37:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите покупателей «Чьи это серьги?»",
-          "uk": "Запитайте покупців «Чиї це сережки?»"
+          "ru": "Вы спрашиваете у людей в очереди. Спросите: «Чья корзина на кассе?»",
+          "uk": "Ви питаєте в людей у черзі. Спитайте: «Чий кошик на касі?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-37:intro3:r1",
-              "text": "Whose earrings are these?"
+              "text": "Whose basket is at the checkout?"
             },
             {
               "responseId": "en:lesson-06:session-37:intro3:r2",
-              "text": "Whose earrings is this?"
+              "text": "Whose basket are at the checkout?"
             },
             {
               "responseId": "en:lesson-06:session-37:intro3:r3",
-              "text": "Who earrings are these?"
+              "text": "Who basket is at the checkout?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-37:intro3:r1",
-              "text": "Whose earrings are these?"
+              "text": "Whose basket is at the checkout?"
             },
             {
               "responseId": "en:lesson-06:session-37:intro3:r2",
-              "text": "Whose earrings is this?"
+              "text": "Whose basket are at the checkout?"
             },
             {
               "responseId": "en:lesson-06:session-37:intro3:r3",
-              "text": "Who earrings are these?"
+              "text": "Who basket is at the checkout?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите покупателей «Чьи это серьги?»",
-          "uk": "Запитайте покупців «Чиї це сережки?»"
+          "ru": "Вы спрашиваете у людей в очереди. Спросите: «Чья корзина на кассе?»",
+          "uk": "Ви питаєте в людей у черзі. Спитайте: «Чий кошик на касі?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f74f3a897b0ad94b4c9b71c951a6b38ea878a835e0eeadf8a494e95cba2d53db"
+  "introFingerprint": "7d1e9fa82d18d1ad1da75a3557f31cd7e0262c3a28f3bcdafb883e0245c42123"
 }

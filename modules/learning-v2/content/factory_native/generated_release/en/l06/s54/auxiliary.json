@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-54:intro1:r2": {
-          "ru": "После `they` нужно `repair`.",
-          "uk": "Після `they` потрібне `repair`."
+          "ru": "После they слово остаётся repair, без s.",
+          "uk": "Після they слово лишається repair, без s."
         },
         "en:lesson-06:session-54:intro1:r3": {
-          "ru": "Нужно `They repair`, без `are`.",
-          "uk": "Потрібно `They repair`, без `are`."
+          "ru": "Здесь действие: They repair, без are.",
+          "uk": "Тут дія: They repair, без are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-54:intro2:r2": {
-          "ru": "После `she` нужно `repairs`.",
-          "uk": "Після `she` потрібне `repairs`."
+          "ru": "После she нужно repairs, с s.",
+          "uk": "Після she потрібно repairs, з s."
         },
         "en:lesson-06:session-54:intro2:r3": {
-          "ru": "Нужно `She repairs`, без `is`.",
-          "uk": "Потрібно `She repairs`, без `is`."
+          "ru": "Здесь действие: She repairs, без is.",
+          "uk": "Тут дія: She repairs, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-54:intro3:r2": {
-          "ru": "Один киоск: `is`.",
-          "uk": "Один кіоск: `is`."
+          "ru": "Без is предложение не получается: нужно The ladder is.",
+          "uk": "Без is речення не виходить: потрібно The ladder is."
         },
         "en:lesson-06:session-54:intro3:r3": {
-          "ru": "Для этой фразы нужно `is`: `The kiosk is`.",
-          "uk": "Для цієї фрази потрібне `is`: `The kiosk is`."
+          "ru": "Лестница одна, поэтому нужно is, а не are.",
+          "uk": "Драбина одна, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "37992eead963ea5cd8b6e6c09913a58c01a5e1e8e487ebbc648febe9082a26f0"
+  "auxiliaryFingerprint": "3f6381149150034c6b6c35b2d7fdd72144eb62fa0a2d9b0ea4715f5ef9866b74"
 }

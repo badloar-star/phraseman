@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-06:session-38:word:rest",
+    "correctText": "rest",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-38:i01",
-    "correctText": "I rest here.",
+    "correctText": "We rest here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:word:shade",
+    "correctText": "shade",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i02",
-    "correctText": "rest",
+    "correctText": "She rests in the shade.",
     "correctResponseId": "en:lesson-06:session-38:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-06:session-38:i04",
-    "correctText": "en:lesson-06:session-38:i04:p1=rest\nen:lesson-06:session-38:i04:p2=unofficial\nen:lesson-06:session-38:i04:p3=bike shed\nen:lesson-06:session-38:i04:p4=laptop",
+    "correctText": "en:lesson-06:session-38:i04:p1=rest\nen:lesson-06:session-38:i04:p2=shade\nen:lesson-06:session-38:i04:p3=sunbed\nen:lesson-06:session-38:i04:p4=gazebo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:word:sunbed",
+    "correctText": "sunbed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i05",
-    "correctText": "Anna rests here.",
+    "correctText": "The sunbed is near the pool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-38:word:gazebo",
+    "correctText": "gazebo",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i06",
-    "correctText": "He cleans his room.",
+    "correctText": "The gazebo is in the garden.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i07",
-    "correctText": "This bike shed is new.",
+    "correctText": "He rests in the garden.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-06:session-38:i09",
-    "correctText": "This laptop is mine.",
+    "correctText": "The shade is near the tree.",
     "correctResponseId": "en:lesson-06:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-38:i10",
-    "correctText": "en:lesson-06:session-38:i10:p1=rest\nen:lesson-06:session-38:i10:p2=clean\nen:lesson-06:session-38:i10:p3=laptop\nen:lesson-06:session-38:i10:p4=unofficial",
+    "correctText": "en:lesson-06:session-38:i10:p1=gazebo\nen:lesson-06:session-38:i10:p2=rest\nen:lesson-06:session-38:i10:p3=shade\nen:lesson-06:session-38:i10:p4=sunbed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i11",
-    "correctText": "The bike shed is here.",
+    "correctText": "She rests on the sunbed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i12",
-    "correctText": "Whose laptop is this?",
+    "correctText": "Whose cushion is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i13",
-    "correctText": "They clean their room.",
+    "correctText": "We rest in the gazebo.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i14",
-    "correctText": "rests",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-38:i15",
-    "correctText": "They rest here.",
+    "correctText": "I rest in the gazebo.",
     "correctResponseId": "en:lesson-06:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-38:i16",
-    "correctText": "en:lesson-06:session-38:i16:p1=rest\nen:lesson-06:session-38:i16:p2=bike shed\nen:lesson-06:session-38:i16:p3=unofficial\nen:lesson-06:session-38:i16:p4=clean",
+    "correctText": "en:lesson-06:session-38:i16:p1=sunbed\nen:lesson-06:session-38:i16:p2=gazebo\nen:lesson-06:session-38:i16:p3=shade\nen:lesson-06:session-38:i16:p4=rest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-38:i17",
-    "correctText": "She rests here.",
+    "correctText": "She rests in the gazebo.",
     "correctResponseId": null
   }
 ]

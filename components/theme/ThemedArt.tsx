@@ -15,6 +15,7 @@ import {
   type ThemedArtBrightness,
   type ThemedArtName,
 } from './themed_art_registry';
+import { spireRankSmallAccent } from '../spire/spire_rank_accent_small';
 
 export type ThemedArtProps = Readonly<{
   name: ThemedArtName;
@@ -37,6 +38,8 @@ function ThemedArtImpl({ name, size = 96, width, height, style, brightness, acce
   const tone: ThemedArtBrightness = brightness ?? themedArtBrightnessForBackground(tokens.bg);
   // Источники — из кэша реестра по имени+яркости: ползунок и смена темы их не пересоздают.
   const art = useMemo(() => resolveThemedArt(name, tone), [name, tone]);
+  // зачем (координатор 18.10, R154): у значков рангов Пика маска .accent в реестре 1024² (~4 МБ в памяти ради 25 dp) — берём копию 128²; остальные предметы как были.
+  const accent = art.accent ? spireRankSmallAccent(name, tone) ?? art.accent : null;
   // Цвет детали. Слоя .accent пока нет ни у одного предмета — тогда рисуется чистый предмет.
   const tint = tokens.accentBright;
   const box = useMemo<ViewStyle>(() => ({ width: width ?? size, height: height ?? size }), [width, height, size]);
@@ -45,7 +48,7 @@ function ThemedArtImpl({ name, size = 96, width, height, style, brightness, acce
     // Размер резервируется всегда — даже без картинки геометрия первого кадра финальная.
     <View style={[box, style]} testID={testID} accessible={Boolean(accessibilityLabel)} accessibilityLabel={accessibilityLabel} accessibilityRole={accessibilityLabel ? 'image' : undefined}>
       {art.base ? <Image source={art.base} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} accessible={false} /> : null}
-      {art.accent ? <Image source={art.accent} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} tintColor={tint} accessible={false} /> : null}
+      {accent ? <Image source={accent} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} tintColor={tint} accessible={false} /> : null}
     </View>
   );
 }

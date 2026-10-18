@@ -1,9 +1,10 @@
 # Англійська · Урок 8 · Заняття 9 — Поки не вмію кататися
 
-**Ситуація.** Ви говорите про вміння кататися на ковзанах, свистіти й плавати.
+**Ситуація.** Ви говорите про вміння кататися на ковзанах, кататися на лижах й пірнати.
 
 **Що ви опануєте:** говорити «не вмію» з can’t
-**Нові слова:** skate
+**Нові слова:** skate, ski, dive, surf
+**Повертаються:** swim, climb, ball, coat
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Уперше на ковзанці
 
-Друг запрошує вас на лід, але ви не вмієте кататися на ковзанах. `Skate` — «кататися на ковзанах». `I can’t skate` — «Я не вмію кататися на ковзанах». `Can’t` — скорочення від `cannot`: тут воно означає «не вмію». Після нього потрібне `skate`, без `to`. Поки ваш улюблений маршрут — уздовж бортика.
+Друг запрошує вас на лід, але ви не вмієте кататися на ковзанах. `Skate` — «кататися на ковзанах». `I can’t skate` — «Я не вмію кататися на ковзанах». `Can’t` — скорочення від `cannot`: тут воно означає «не вмію». Після нього потрібне `skate`, без `to`. Ви повідомляєте про це, щоб друг не розраховував на ваше вміння.
 
 **Скажіть другові, що не вмієте кататися на ковзанах.**
 
@@ -23,111 +24,127 @@
 
 ## Інтро 2
 
-### Свист не виходить
+### Група початківців на схилі
 
-Знайома намагається свиснути, але поки не вміє. Ви розповідаєте про це другові. `She can’t whistle` — «Вона не вміє свистіти». `Can’t` не змінюється після `she`; після нього потрібне `whistle`, без закінчення `s`.
+На гірськолижному курорті інструктор розподіляє учасників на групи. Ваша знайома ще жодного разу не стояла на лижах. Ski — «кататися на лижах». Ви пояснюєте, що їй потрібна група початківців. `She can’t ski` — «Вона не вміє кататися на лижах». `Can’t` не змінюється після `she`; після нього потрібне `ski`, без закінчення `s`.
 
-**Скажіть про знайому: «Вона не вміє свистіти».**
+**Скажіть про знайому: «Вона не вміє кататися на лижах».**
 
-- ✅ **She can’t whistle.**
-- ❌ She can whistle. — *Тут потрібне `can’t` — «не вміє».*
-- ❌ She can’t whistles. — *Після `can’t` потрібне `whistle`, без `s`.*
+- ✅ **She can’t ski.**
+- ❌ She can ski. — *Тут потрібне `can’t` — «не вміє».*
+- ❌ She can’t skis. — *Після `can’t` потрібне `ski`, без `s`.*
 
 ---
 
 ## Інтро 3
 
-### Перед купанням
+### Біля бортика басейну
 
-Друг запитує, чи вміє ваш брат плавати. Брат поки не навчився. `He can’t swim` — «Він не вміє плавати». Після `he` залишається `can’t`, потім іде `swim`, без `s` і без `to`.
+Брат уміє плавати, але ще не вчився входити у воду головою вперед. У басейні тренер запитує про це вміння. Dive — «пірнати»; тут ідеться про пірнання з бортика. `He can’t dive` — «Він не вміє пірнати». Після `he` залишається `can’t`, потім іде `dive`, без `s` і без `to`.
 
-**Дайте другові відповідь про вміння брата.**
+**Дайте тренеру відповідь про вміння брата.**
 
-- ✅ **He can’t swim.**
-- ❌ He can swim. — *Тут потрібне `can’t` — «не вміє».*
-- ❌ He can’t swims. — *Після `can’t` потрібне `swim`, без `s`.*
+- ✅ **He can’t dive.**
+- ❌ He can dive. — *Тут потрібне `can’t` — «не вміє».*
+- ❌ He can’t dives. — *Після `can’t` потрібне `dive`, без `s`.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не вмію кататися на ковзанах»**
+**1 · Картка слова — skate**
+<!-- interaction_id: en:lesson-08:session-09:word:skate; family: word_card -->
+> **skate** — кататися на ковзанах. I can’t skate. — «Я не вмію кататися на ковзанах». Тут говоримо про катання по льоду.
+
+**2 · Скажіть «Я не вмію кататися на ковзанах»**
 <!-- interaction_id: en:lesson-08:session-09:i01; family: phrase_builder -->
 Плитки: `skate` `can’t` `I` → **I can’t skate.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-09:i02; family: listen_choose -->
-🔊 *skate* → **skate** · ski · whistle
-- ski — *У записі перше слово — `skate`, а в цьому варіанті — `ski`.*
-- whistle — *У записі перше слово — `skate`, а в цьому варіанті — `whistle`.*
+🔊 *skate* → **skate** · swim · climb
+- swim — *У записі skate — «кататися на ковзанах», а не swim — «плавати».*
+- climb — *У записі skate, а не climb — «лазити».*
 
-**3 · Скажіть «Я не вмію кататися на ковзанах»**
+**4 · Виберіть слово: «Я не вмію кататися на ковзанах»**
 <!-- interaction_id: en:lesson-08:session-09:i03; family: context_gap_grammar -->
 I can’t ___. → **skate** · to skate · skates
 - to skate — *Після `can’t` потрібне `skate`, без `to`.*
 - skates — *Після `can’t` потрібне `skate`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-09:i04; family: speed_match -->
-skate — кататися на ковзанах · dentist — стоматолог · manager — керівник · whistle — свистіти
+skate — кататися на ковзанах · swim — плавати · ball — м’яч · coat — пальто
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-09:i05; family: listen_build_dictation -->
 🔊 *I can’t skate.* Плитки: `skate` `can’t` `I` → **I can’t skate.**
 
-**6 · Скажіть про знайому «Вона не вміє свистіти»**
+**7 · Картка слова — ski**
+<!-- interaction_id: en:lesson-08:session-09:word:ski; family: word_card -->
+> **ski** — кататися на лижах. She can’t ski. — «Вона не вміє кататися на лижах». Після can’t слово ski не змінюється.
+
+**8 · Скажіть про знайому «Вона не вміє кататися на лижах»**
 <!-- interaction_id: en:lesson-08:session-09:i06; family: phrase_builder -->
-Плитки: `whistle` `can’t` `She` → **She can’t whistle.**
+Плитки: `ski` `can’t` `She` → **She can’t ski.**
 
-**7 · Скажіть про брата «Він не вміє плавати»**
+**9 · Картка слова — dive**
+<!-- interaction_id: en:lesson-08:session-09:word:dive; family: word_card -->
+> **dive** — пірнати. He can’t dive. — «Він не вміє пірнати». Тут — входити у воду головою вперед.
+
+**10 · Скажіть про брата «Він не вміє пірнати»**
 <!-- interaction_id: en:lesson-08:session-09:i07; family: scripted_repeat_compare -->
-🎙 **He can’t swim.**
+🎙 **He can’t dive.**
 
-**8 · Скажіть «Вона не вміє свистіти»**
+**11 · Виберіть слово: «Вона не вміє кататися на лижах»**
 <!-- interaction_id: en:lesson-08:session-09:i08; family: context_gap_grammar -->
-She can’t ___. → **whistle** · whistles · to whistle
-- whistles — *Після `can’t` потрібне `whistle`, без `s`.*
-- to whistle — *Після `can’t` потрібне `whistle`, без `to`.*
+She can’t ___. → **ski** · skis · to ski
+- skis — *Після `can’t` потрібне `ski`, без `s`.*
+- to ski — *Після `can’t` потрібне `ski`, без `to`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-09:i09; family: listen_choose -->
-🔊 *I can’t skate.* → **I can’t skate.** · I can’t swim. · I can’t whistle.
-- I can’t swim. — *У записі останнє слово — `skate`, а в цьому варіанті — `swim`.*
-- I can’t whistle. — *У записі останнє слово — `skate`, а в цьому варіанті — `whistle`.*
+🔊 *I can’t skate.* → **I can’t skate.** · I can’t dive. · I can’t ski.
+- I can’t dive. — *У записі останнє слово — `skate`, а в цьому варіанті — `dive`.*
+- I can’t ski. — *У записі останнє слово — `skate`, а в цьому варіанті — `ski`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-09:i10; family: speed_match -->
-start — починати · skate — кататися на ковзанах · dentist — стоматолог · manager — керівник
+skate — кататися на ковзанах · ski — кататися на лижах · dive — пірнати · swim — плавати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-09:i11; family: listen_build_dictation -->
-🔊 *He can’t swim.* Плитки: `swim` `can’t` `He` → **He can’t swim.**
+🔊 *He can’t dive.* Плитки: `dive` `can’t` `He` → **He can’t dive.**
 
-**12 · Ваш керівник прийшов. Скажіть колезі «Мій керівник тут»**
+**15 · Картка слова — surf**
+<!-- interaction_id: en:lesson-08:session-09:word:surf; family: word_card -->
+> **surf** — займатися серфінгом. I can’t surf. — «Я не вмію займатися серфінгом». Кататися на дошці по хвилях.
+
+**16 · Друг пропонує вам дошку для серфінгу, але ви ще не вчилися. Скажіть: «Я не вмію займатися серфінгом».**
 <!-- interaction_id: en:lesson-08:session-09:i12; family: phrase_builder -->
-Плитки: `here` `is` `manager` `My` → **My manager is here.**
+Плитки: `surf` `can’t` `I` → **I can’t surf.**
 
-**13 · Колега запитує про початок вашого робочого дня. Скажіть «Я зазвичай починаю рано»**
+**17 · Інструктор запитує про сестру. Вона теж початківиця. Скажіть: «Вона не вміє займатися серфінгом».**
 <!-- interaction_id: en:lesson-08:session-09:i13; family: scripted_repeat_compare -->
-🎙 **I usually start early.**
+🎙 **She can’t surf.**
 
-**14 · Скажіть «Він не вміє плавати»**
+**18 · Виберіть форму: «Він не вміє пірнати»**
 <!-- interaction_id: en:lesson-08:session-09:i14; family: context_gap_grammar -->
-He ___ swim. → **can’t** · can · is can’t
+He ___ dive. → **can’t** · can · is can’t
 - can — *`Can` означає «вміє», тут потрібне `can’t` — «не вміє».*
 - is can’t — *Достатньо `he can’t`; `is` не потрібне.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-09:i15; family: listen_choose -->
-🔊 *Where is the dentist?* → **Where is the dentist?** · Where is the manager? · Where is the customer?
-- Where is the manager? — *У записі останнє слово — `dentist`, а в цьому варіанті — `manager`.*
-- Where is the customer? — *У записі останнє слово — `dentist`, а в цьому варіанті — `customer`.*
+🔊 *She can’t surf.* → **She can’t surf.** · He can’t surf. · She can’t ski.
+- He can’t surf. — *У записі She — «вона», а не He.*
+- She can’t ski. — *У записі surf — «займатися серфінгом», а не ski.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-09:i16; family: speed_match -->
-skate — кататися на ковзанах · whistle — свистіти · start — починати · dentist — стоматолог
+skate — кататися на ковзанах · ski — кататися на лижах · dive — пірнати · surf — займатися серфінгом
 
-**17 · Друг кличе Тома на ковзанку, але Том поки не навчився. Скажіть «Том не вміє кататися на ковзанах»**
+**21 · Друг кличе Тома на ковзанку, але Том поки не навчився. Скажіть «Том не вміє кататися на ковзанах»**
 <!-- interaction_id: en:lesson-08:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Tom can’t skate.**
 

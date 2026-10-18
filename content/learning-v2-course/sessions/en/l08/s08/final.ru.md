@@ -1,133 +1,149 @@
-# Английский · Урок 8 · Занятие 8 — Что мы умеем
+# Английский · Урок 8 · Занятие 8 — В мастерской рукоделия
 
-**Ситуация.** Вы обсуждаете жонглирование и перевод текстов, затем ищете владельца папки.
+**Ситуация.** Вы выбираете мастер-класс по вязанию, находите помощницу для вышивки эмблемы и возвращаете чужой напёрсток.
 
-**Что вы освоите:** повторить can для умений и слова главы
-**Новые слова:** —
+**Что вы освоите:** закрепить can для умений и повторить вопрос «чей?»
+**Новые слова:** knit, embroider, thimble, yarn
+**Возвращаются:** ball, coat, door, speak
 
 ---
 
 ## Интро 1
 
-### Мячи в воздухе
+### Какой мастер-класс выбрать
 
-Друг показывает несколько мячей и спрашивает, умеете ли вы жонглировать. `I can juggle` — «Я умею жонглировать». После `can` нужно `juggle`, без `to` и окончания `s`. Подбросить все мячи сразу ещё не значит уметь жонглировать — их ведь надо поймать.
+В клубе рукоделия есть группа для новичков и группа для тех, кто уже вяжет. Администратор уточняет ваше умение. `Knit` — «вязать спицами». `I can knit` — «Я умею вязать спицами». После `can` нужно `knit`, без `to` и окончания `s`. Вы отвечаете об умении, чтобы выбрать подходящую группу.
 
-**Скажите другу о своём умении.**
+**Скажите администратору, что умеете вязать спицами.**
 
-- ✅ **I can juggle.**
-- ❌ I can to juggle. — *После `can` нужно `juggle`, без `to`.*
-- ❌ I can juggles. — *После `can` нужно `juggle`, без `s`.*
+- ✅ **I can knit.**
+- ❌ I can to knit. — *После `can` нужно `knit`, без `to`.*
+- ❌ I can knits. — *После `can` нужно `knit`, без `s`.*
 
 ---
 
 ## Интро 2
 
-### Кто переведёт текст
+### Эмблема для команды
 
-Коллега ищет человека, который умеет переводить тексты. Вы знаете такую девушку. `She can translate` — «Она умеет переводить». `Can` не меняется после `she`; после него нужно `translate`, без окончания `s`.
+Команда хочет вышить эмблему на форме. Организатор ищет человека, который умеет работать иглой и цветными нитками. Embroider — «вышивать». Вы предлагаете знакомую с таким умением. `She can embroider` — «Она умеет вышивать». `Can` не меняется после `she`; после него нужно `embroider`, без окончания `s`.
 
 **Расскажите об умении знакомой.**
 
-- ✅ **She can translate.**
-- ❌ She cans translate. — *После `she` нужно `can`, без `s`.*
-- ❌ She can translates. — *После `can` нужно `translate`, без `s`.*
+- ✅ **She can embroider.**
+- ❌ She cans embroider. — *После `she` нужно `can`, без `s`.*
+- ❌ She can embroiders. — *После `can` нужно `embroider`, без `s`.*
 
 ---
 
 ## Интро 3
 
-### Забытая папка
+### На полу у швейного стола
 
-После встречи на столе осталась папка. Вы ищете её владельца. `Whose folder is this?` — «Чья это папка?» Сначала `whose folder`, затем `is this`.
+В мастерской вы заметили на полу металлический колпачок для пальца. Thimble — «напёрсток»: он защищает палец, когда проталкивают иглу через ткань. Вы поднимаете его и спрашиваете участниц, кому он принадлежит. `Whose thimble is this?` — «Чей это напёрсток?» Сначала `whose thimble` — «чей напёрсток», затем `is this`.
 
-**Спросите коллег, чья это папка.**
+**Спросите участниц, чей это напёрсток.**
 
-- ✅ **Whose folder is this?**
-- ❌ Who folder is this? — *Для «чья» нужно `whose`, а не `who`.*
-- ❌ Whose folder are this? — *Папка одна: нужно `is this`.*
+- ✅ **Whose thimble is this?**
+- ❌ Who thimble is this? — *Для «чей» нужно `whose`, а не `who`.*
+- ❌ Whose thimble are this? — *Напёрсток один: нужно `is this`.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я умею жонглировать»**
+**1 · Карточка слова — knit**
+<!-- interaction_id: en:lesson-08:session-08:word:knit; family: word_card -->
+> **knit** — вязать спицами. I can knit. — «Я умею вязать спицами». Создавать петли из нити с помощью спиц.
+
+**2 · Скажите «Я умею вязать спицами»**
 <!-- interaction_id: en:lesson-08:session-08:i01; family: phrase_builder -->
-Плитки: `juggle` `can` `I` → **I can juggle.**
+Плитки: `knit` `can` `I` → **I can knit.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-08:i02; family: listen_choose -->
-🔊 *whisper* → **whisper** · whistle · climb
-- whistle — *В записи первое слово — `whisper`, а в этом варианте — `whistle`.*
-- climb — *В записи первое слово — `whisper`, а в этом варианте — `climb`.*
+🔊 *knit* → **knit** · speak · tune
+- speak — *В записи слово — `knit`, а в этом варианте — `speak`.*
+- tune — *В записи knit — «вязать спицами», а в этом варианте tune — «настраивать».*
 
-**3 · Скажите «Она умеет переводить»**
+**4 · Выберите слово: «Я умею вязать спицами»**
 <!-- interaction_id: en:lesson-08:session-08:i03; family: context_gap_grammar -->
-She can ___. → **translate** · translates · to translate
-- translates — *После `can` нужно `translate`, без `s`.*
-- to translate — *После `can` нужно `translate`, без `to`.*
+I can ___. → **knit** · to knit · knits
+- to knit — *После `can` нужно `knit`, без `to`.*
+- knits — *После `can` нужно `knit`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-08:i04; family: speed_match -->
-whistle — свистеть · juggle — жонглировать · type — печатать на клавиатуре · balance — держать равновесие
+knit — вязать спицами · ball — мяч · coat — пальто · door — дверь
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-08:i05; family: listen_build_dictation -->
-🔊 *She can translate.* Плитки: `translate` `can` `She` → **She can translate.**
+🔊 *I can knit.* Плитки: `knit` `can` `I` → **I can knit.**
 
-**6 · Коллега спрашивает о вашей работе с клавиатурой. Скажите «Я умею печатать на клавиатуре»**
+**7 · Карточка слова — embroider**
+<!-- interaction_id: en:lesson-08:session-08:word:embroider; family: word_card -->
+> **embroider** — вышивать. She can embroider. — «Она умеет вышивать». Украшать ткань узором из ниток с помощью иглы.
+
+**8 · Скажите о знакомой «Она умеет вышивать»**
 <!-- interaction_id: en:lesson-08:session-08:i06; family: phrase_builder -->
-Плитки: `type` `can` `I` → **I can type.**
+Плитки: `embroider` `can` `She` → **She can embroider.**
 
-**7 · Спросите коллег «Чья это папка?»**
+**9 · Карточка слова — thimble**
+<!-- interaction_id: en:lesson-08:session-08:word:thimble; family: word_card -->
+> **thimble** — напёрсток. Whose thimble is this? — «Чей это напёрсток?». Колпачок для защиты пальца при шитье.
+
+**10 · Спросите участниц «Чей это напёрсток?»**
 <!-- interaction_id: en:lesson-08:session-08:i07; family: scripted_repeat_compare -->
-🎙 **Whose folder is this?**
+🎙 **Whose thimble is this?**
 
-**8 · Скажите «Она умеет держать равновесие»**
+**11 · Выберите слово: «Она умеет вышивать»**
 <!-- interaction_id: en:lesson-08:session-08:i08; family: context_gap_grammar -->
-She ___ balance. → **can** · cans · is can
-- cans — *`Can` не меняется после `she`, окончание `s` не нужно.*
-- is can — *Достаточно `she can`; `is` не нужно.*
+She can ___. → **embroider** · embroiders · to embroider
+- embroiders — *После `can` нужно `embroider`, без `s`.*
+- to embroider — *После `can` нужно `embroider`, без `to`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-08:i09; family: listen_choose -->
-🔊 *I can climb.* → **I can climb.** · I can whistle. · I can whisper.
-- I can whistle. — *В записи последнее слово — `climb`, а в этом варианте — `whistle`.*
-- I can whisper. — *В записи последнее слово — `climb`, а в этом варианте — `whisper`.*
+🔊 *I can knit.* → **I can knit.** · I can speak. · I can embroider.
+- I can speak. — *В записи последнее слово — `knit`, а в этом варианте — `speak`.*
+- I can embroider. — *В записи последнее слово — `knit`, а в этом варианте — `embroider`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-08:i10; family: speed_match -->
-translate — переводить на другой язык · whisper — шептать · climb — лазать · neighbourhood — район
+embroider — вышивать · knit — вязать спицами · thimble — напёрсток · ball — мяч
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-08:i11; family: listen_build_dictation -->
-🔊 *Whose folder is this?* Плитки: `this` `is` `folder` `Whose` → **Whose folder is this?**
+🔊 *Whose thimble is this?* Плитки: `this` `is` `thimble` `Whose` → **Whose thimble is this?**
 
-**12 · Друг спрашивает, что вы делаете дома под музыку. Скажите «Я часто танцую дома»**
+**15 · Карточка слова — yarn**
+<!-- interaction_id: en:lesson-08:session-08:word:yarn; family: word_card -->
+> **yarn** — пряжа. Whose yarn is this? — «Чья это пряжа?» Толстая нить для вязания. Yarn здесь обозначает материал, поэтому нужно is, без a перед yarn.
+
+**16 · На столе лежит пряжа для вязания. Спросите: «Чья это пряжа?»**
 <!-- interaction_id: en:lesson-08:session-08:i12; family: phrase_builder -->
-Плитки: `home` `at` `dance` `often` `I` → **I often dance at home.**
+Плитки: `this` `is` `yarn` `Whose` → **Whose yarn is this?**
 
-**13 · На скалодроме друг спрашивает об умении вашей знакомой. Скажите «Она умеет лазать»**
+**17 · Участница ищет свою пряжу. Скажите: «Это моя пряжа».**
 <!-- interaction_id: en:lesson-08:session-08:i13; family: scripted_repeat_compare -->
-🎙 **She can climb.**
+🎙 **This is my yarn.**
 
-**14 · Скажите «Я умею свистеть»**
+**18 · Выберите форму: «Чья это пряжа?»**
 <!-- interaction_id: en:lesson-08:session-08:i14; family: context_gap_grammar -->
-I can ___. → **whistle** · whistles · to whistle
-- whistles — *После `can` нужно `whistle`, без `s`.*
-- to whistle — *После `can` нужно `whistle`, без `to`.*
+Whose yarn ___ this? → **is** · are · am
+- are — *Yarn обозначает материал: нужно is this.*
+- am — *Am используется с I; здесь нужно is.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-08:i15; family: listen_choose -->
-🔊 *I can type.* → **I can type.** · I can translate. · I can juggle.
-- I can translate. — *В записи последнее слово — `type`, а в этом варианте — `translate`.*
-- I can juggle. — *В записи последнее слово — `type`, а в этом варианте — `juggle`.*
+🔊 *This is my yarn.* → **This is my yarn.** · This is your yarn. · This is my thimble.
+- This is your yarn. — *В записи my — «моя», а не your.*
+- This is my thimble. — *В записи yarn — «пряжа», а не thimble.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-08:i16; family: speed_match -->
-balance — держать равновесие · translate — переводить на другой язык · whisper — шептать · climb — лазать
+knit — вязать спицами · embroider — вышивать · thimble — напёрсток · yarn — пряжа
 
-**17 · Друг спрашивает, умеет ли Том передавать слова шёпотом во время игры. Скажите «Том умеет шептать»**
+**21 · Организатор ищет ещё одного человека для вышивки эмблемы. Скажите: «Том умеет вышивать».**
 <!-- interaction_id: en:lesson-08:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can whisper.**
-
+🎙 **Tom can embroider.**

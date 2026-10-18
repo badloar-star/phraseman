@@ -55,15 +55,16 @@ const two = (one: string, many: string): PluralForms => ({ one, few: many, many 
 // Полные слова для читалки (Ревизор c3c420861 🟡, координатор 18.10): «7 ч 52 мин» читалка произносила как буквы — нужен человеческий текст.
 function spokenUnitsFor(lang: Lang): SpokenUnit {
   return triLang(lang, {
-    ru: { d: { one: 'день', few: 'дня', many: 'дней' }, h: { one: 'час', few: 'часа', many: 'часов' }, m: { one: 'минута', few: 'минуты', many: 'минут' } },
-    uk: { d: { one: 'день', few: 'дні', many: 'днів' }, h: { one: 'година', few: 'години', many: 'годин' }, m: { one: 'хвилина', few: 'хвилини', many: 'хвилин' } },
+    // зачем (Переводчик 18.10): после «через» / «za» — винительный падеж: «через 1 минуту / 21 минуту», «через годину», «za godzinę»
+    ru: { d: { one: 'день', few: 'дня', many: 'дней' }, h: { one: 'час', few: 'часа', many: 'часов' }, m: { one: 'минуту', few: 'минуты', many: 'минут' } },
+    uk: { d: { one: 'день', few: 'дні', many: 'днів' }, h: { one: 'годину', few: 'години', many: 'годин' }, m: { one: 'хвилину', few: 'хвилини', many: 'хвилин' } },
     en: { d: two('day', 'days'), h: two('hour', 'hours'), m: two('minute', 'minutes') },
     es: { d: two('día', 'días'), h: two('hora', 'horas'), m: two('minuto', 'minutos') },
     'pt-BR': { d: two('dia', 'dias'), h: two('hora', 'horas'), m: two('minuto', 'minutos') },
     vi: { d: two('ngày', 'ngày'), h: two('giờ', 'giờ'), m: two('phút', 'phút') },
     id: { d: two('hari', 'hari'), h: two('jam', 'jam'), m: two('menit', 'menit') },
     tr: { d: two('gün', 'gün'), h: two('saat', 'saat'), m: two('dakika', 'dakika') },
-    pl: { d: { one: 'dzień', few: 'dni', many: 'dni' }, h: { one: 'godzina', few: 'godziny', many: 'godzin' }, m: { one: 'minuta', few: 'minuty', many: 'minut' } },
+    pl: { d: { one: 'dzień', few: 'dni', many: 'dni' }, h: { one: 'godzinę', few: 'godziny', many: 'godzin' }, m: { one: 'minutę', few: 'minuty', many: 'minut' } },
   });
 }
 

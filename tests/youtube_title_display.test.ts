@@ -49,9 +49,9 @@ describe('premiereCountdownText', () => {
 
 // зачем (Ревизор c3c420861 🟡, координатор 18.10): читалка произносит отсчёт целыми словами, а не «7 ч 52 мин»; склонение по числу
 describe('premiereCountdownSpoken', () => {
-  it('ru: «Через 7 часов 52 минуты», «1 час 21 минута», «2 дня 15 минут» (ноль часов при днях пропущен)', () => {
+  it('ru: «Через 7 часов 52 минуты», «1 час 21 минуту», «2 дня 15 минут» (ноль часов при днях пропущен)', () => {
     expect(premiereCountdownSpoken('ru', 0, 7, 52)).toBe('Через 7 часов 52 минуты');
-    expect(premiereCountdownSpoken('ru', 0, 1, 21)).toBe('Через 1 час 21 минута');
+    expect(premiereCountdownSpoken('ru', 0, 1, 21)).toBe('Через 1 час 21 минуту');
     expect(premiereCountdownSpoken('ru', 2, 0, 15)).toBe('Через 2 дня 15 минут');
     expect(premiereCountdownSpoken('ru', 0, 0, 0)).toBe('Через 0 минут');
   });
@@ -68,6 +68,6 @@ describe('premiereCountdownSpoken', () => {
 
   it('en/pl: один час и одна минута — в единственном числе', () => {
     expect(premiereCountdownSpoken('en', 0, 1, 1)).toBe('In 1 hour 1 minute');
-    expect(premiereCountdownSpoken('pl', 0, 1, 1)).toBe('Za 1 godzina 1 minuta');
+    expect(premiereCountdownSpoken('pl', 0, 1, 1)).toBe('Za 1 godzinę 1 minutę');
   });
 });

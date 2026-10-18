@@ -1699,22 +1699,9 @@ export default function SettingsMain() {
                     // месте» неправда. Показываем то же окно, что обычная смена (~«Нужно завершить смену»).
                     if (!forced.ok && (forced.reason === 'recovery_required' || forced.reason === 'wipe_failed')) {
                       console.warn('[ACC-MUT] settings:forced_switch_failed_kind', { reason: forced.reason, kind: 'recovery' });
-                      showGlassAlert(
-                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунта', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
-                        L(
-                          'Смена аккаунта не закончилась. Перезапусти приложение — оно всё доделает само.',
-                          'Зміна акаунта не завершилася. Перезапусти застосунок — він усе доробить сам.',
-                          'The account switch didn’t finish. Restart the app and it’ll finish on its own.',
-                          'El cambio de cuenta no terminó. Reinicia la app y lo completará sola.',
-                          'A troca de conta não terminou. Reinicie o app e ele vai concluir sozinho.',
-                          'Việc đổi tài khoản chưa xong. Hãy khởi động lại ứng dụng — nó sẽ tự hoàn tất.',
-                          'Pergantian akun belum selesai. Mulai ulang aplikasi — semuanya akan selesai sendiri.',
-                          'Hesap değişimi tamamlanmadı. Uygulamayı yeniden başlat — gerisini kendisi halleder.',
-                          'Zmiana konta się nie zakończyła. Uruchom aplikację ponownie — sama wszystko dokończy.',
-                        ),
-                        [{ text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij') }],
-                        { delayMs: 360 },
-                      );
+                      // зачем (правило владельца 18.10, матрица Сайта B5): окна с просьбой перезапустить нет — защитный маркер уже записан,
+                      // смену доводит до конца восстановление при следующем запуске само; здесь только причина в журнал.
+                      console.warn('[ACC-MUT] settings:forced_switch recovery completes on next start, no window'); // guard-ok: ветка и причина
                       return;
                     }
                     if (!forced.ok) {
@@ -1878,34 +1865,9 @@ export default function SettingsMain() {
                     return;
                   }
                   if (!res.ok && res.reason === 'sync_failed') {
-                    // Прогресс не доехал до облака — switch отменён, данные целы.
-                    // Даём выбор: повторить при сети или явно сменить без сохранения.
-                    showGlassAlert(
-                      L('Прогресс не сохранён', 'Прогрес не збережено', 'Progress not saved', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
-                      L(
-                        'Смена аккаунта отменена, всё на месте. Попробуй ещё раз.',
-                        'Зміну акаунта скасовано, усе на місці. Спробуй ще раз.',
-                        'The account switch was canceled, everything is in place. Try again.',
-                        'El cambio de cuenta se canceló, todo sigue en su sitio. Inténtalo de nuevo.',
-                        'A troca de conta foi cancelada, tudo continua no lugar. Tente de novo.',
-                        'Đã hủy đổi tài khoản, mọi thứ vẫn nguyên. Hãy thử lại.',
-                        'Pergantian akun dibatalkan, semuanya tetap aman. Coba lagi.',
-                        'Hesap değişimi iptal edildi, her şey yerinde. Tekrar dene.',
-                        'Zmiana konta anulowana, wszystko zostało na miejscu. Spróbuj ponownie.',
-                      ),
-                      [
-                        {
-                          text: L('Остаться здесь', 'Залишитися тут', 'Stay here', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
-                          style: 'cancel',
-                        },
-                        {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Yine de değiştir', 'Zmień bez zapisywania'),
-                          style: 'destructive',
-                          onPress: runForcedAccountSwitchWithoutSaving,
-                        },
-                      ],
-                      { delayMs: 360 }, // зачем: модалка подтверждения смены аккаунта только что закрылась
-                    );
+                    // зачем (правило владельца 18.10, матрица Сайта B8): окна «Прогресс не сохранён… смена отменена» нет — прогресс цел и не стёрт,
+                    // человек остаётся в своём аккаунте; причина — в журнал, повтор — обычным тапом.
+                    console.warn('[ACC-MUT] settings:switch sync_failed — stays in account, no window'); // guard-ok: ветка и причина
                     return;
                   }
                   if (!res.ok) {
@@ -1913,44 +1875,9 @@ export default function SettingsMain() {
                     // общего «Выход не прошёл». До маркера — «Повторить»; после — только перезапуск.
                     const recovery = res.reason === 'recovery_required' || res.reason === 'wipe_failed';
                     console.warn('[ACC-MUT] settings:switch_failed_kind', { reason: res.reason, kind: recovery ? 'recovery' : 'precommit' });
-                    if (recovery) {
-                      showGlassAlert(
-                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунта', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
-                        L(
-                          'Смена аккаунта не закончилась. Перезапусти приложение — оно всё доделает само.',
-                          'Зміна акаунта не завершилася. Перезапусти застосунок — він усе доробить сам.',
-                          'The account switch didn’t finish. Restart the app and it’ll finish on its own.',
-                          'El cambio de cuenta no terminó. Reinicia la app y lo completará sola.',
-                          'A troca de conta não terminou. Reinicie o app e ele vai concluir sozinho.',
-                          'Việc đổi tài khoản chưa xong. Hãy khởi động lại ứng dụng — nó sẽ tự hoàn tất.',
-                          'Pergantian akun belum selesai. Mulai ulang aplikasi — semuanya akan selesai sendiri.',
-                          'Hesap değişimi tamamlanmadı. Uygulamayı yeniden başlat — gerisini kendisi halleder.',
-                          'Zmiana konta się nie zakończyła. Uruchom aplikację ponownie — sama wszystko dokończy.',
-                        ),
-                        [{ text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij') }],
-                        { delayMs: 360 },
-                      );
-                      return;
-                    }
-                    showGlassAlert(
-                      L('Смена аккаунта не началась', 'Зміна акаунта не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła'),
-                      L(
-                        'Ничего не изменилось — аккаунт и прогресс на месте. Попробуй ещё раз.',
-                        'Нічого не змінилося — акаунт і прогрес на місці. Спробуй ще раз.',
-                        'Nothing changed — your account and progress are safe. Try again.',
-                        'No cambió nada: tu cuenta y tu progreso siguen igual. Inténtalo de nuevo.',
-                        'Nada mudou — sua conta e seu progresso estão a salvo. Tente de novo.',
-                        'Không có gì thay đổi — tài khoản và tiến độ vẫn nguyên. Hãy thử lại.',
-                        'Tidak ada yang berubah — akun dan progresmu aman. Coba lagi.',
-                        'Hiçbir şey değişmedi — hesabın ve ilerlemen yerinde. Tekrar dene.',
-                        'Nic się nie zmieniło — konto i postęp są bezpieczne. Spróbuj ponownie.',
-                      ),
-                      [
-                        { text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'), style: 'cancel' },
-                        { text: L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów'), onPress: () => setSwitchAccountStage('confirm') },
-                      ],
-                      { delayMs: 360 },
-                    );
+                    // зачем (правило владельца 18.10, матрица Сайта B5/B8): окна про перезапуск и про «не началась» убраны.
+                    // До маркера ничего не изменено — человек остаётся в аккаунте; после маркера смену доводит восстановление при запуске.
+                    console.warn(`[ACC-MUT] settings:switch_failed no window kind=${recovery ? 'recovery_on_next_start' : 'stay_in_account'}`); // guard-ok: ветка и причина
                     return;
                   }
                   setLinkedAuth(null);

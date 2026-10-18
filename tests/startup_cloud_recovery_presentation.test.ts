@@ -70,22 +70,15 @@ describe('startup cloud recovery presentation policy', () => {
     })).toBe<StartupCloudRecoveryPresentation>('none');
   });
 
-  it('tells linked users to retry on a later app open without promising an automatic retry', () => {
-    const layout = fs.readFileSync(path.join(process.cwd(), 'app/_layout.tsx'), 'utf8');
-    const toastStart = layout.indexOf("recoveryPresentation === 'cloud_unavailable_toast'");
-    const toastEnd = layout.indexOf('});', toastStart);
-    const toastSource = layout.slice(toastStart, toastEnd);
-
-    expect(toastStart).toBeGreaterThan(-1);
-    expect(toastEnd).toBeGreaterThan(toastStart);
-    expect(toastSource).toContain(
-      'Облако сейчас недоступно. Открой приложение позже, чтобы повторить восстановление.',
-    );
-    expect(toastSource).toContain(
-      'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
-    );
-    expect(toastSource).not.toMatch(
-      /автомат|автоматич|automáticamente|automaticamente|tự thử|otomatis|otomatik|automatycznie/i,
-    );
+  // зачем (правило владельца 18.10, матрица Сайта A12): прежний тост «Облако сейчас недоступно… открой позже» отменён — решение 'cloud_unavailable_toast'
+  // по-прежнему вычисляется, но показывает его уже не тост, а тихий повтор восстановления в фоне (app/startup_restore_retry.ts).
+  it('turns the cloud_unavailable decision into a silent background retry instead of a toast', () => {
+    const layout = fs.readFileSync(path.join(process.cwd(), 'app/_layout.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    const start = layout.indexOf("recoveryPresentation === 'cloud_unavailable_toast'");
+    expect(start).toBeGreaterThan(-1);
+    const branch = layout.slice(start, start + 900);
+    expect(branch).toContain('scheduleSilentStartupRestore(');
+    expect(branch).not.toContain("emitAppEvent('action_toast'");
+    expect(layout).not.toContain('Облако сейчас недоступно');
   });
 });

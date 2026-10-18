@@ -128,6 +128,19 @@ describe('промпт восстановления удалённого акк�
     expect(modal.slice(branch, branch + 300)).toContain('promptAccountRestoreAfterSignInRefusal(lang)');
   });
 
+  // зачем (правило владельца 18.10, «вход не заканчивается ошибкой»): после «Восстановить» вход продолжается сам; карточка «Аккаунт восстановлен» — только если восстановление повторилось
+  it('после успешного восстановления вход продолжается сам, один раз за показ окна', () => {
+    const modal = read('components/RegistrationPromptModal.tsx');
+    const branch = modal.indexOf("if (restore === 'restored') {");
+    expect(branch).toBeGreaterThan(modal.indexOf('promptAccountRestoreAfterSignInRefusal(lang)'));
+    const body = modal.slice(branch, branch + 900);
+    expect(body).toContain('if (!autoContinueArmedRef.current) {');
+    expect(body).toContain('setAutoContinueProvider(provider);');
+    expect(body.indexOf('setAutoContinueProvider(provider);')).toBeLessThan(body.indexOf('showFailureCopy('));
+    expect(modal).toContain('autoContinueArmedRef.current = false;');
+    expect(modal).toContain('void handleSignIn(next);');
+  });
+
   // зачем (аудит Optimistic UI 12.10): неудачное «Восстановить» прежде показывалось как «аккаунт ещё удаляется».
   it('неудачное восстановление — свой текст и повтор в окне входа и в онбординге; сбой статуса в онбординге не уходит в общий catch', () => {
     const modal = read('components/RegistrationPromptModal.tsx');

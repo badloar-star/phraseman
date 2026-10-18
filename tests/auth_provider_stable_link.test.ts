@@ -388,7 +388,7 @@ describe('auth provider stable-id linking', () => {
   test('registration prompt keeps the original provider task authoritative after the slow threshold', () => {
     expect(registrationPromptSource).not.toContain('Promise.race([');
     expect(registrationPromptSource).not.toContain('signin_deadline-exceeded');
-    expect(registrationPromptSource).toContain('const result = await signInWithProvider(provider, {');
+    expect(registrationPromptSource).toContain('let result = await signInWithProvider(provider, {');
     expect(registrationPromptSource).toContain('const SIGN_IN_SLOW_THRESHOLD_MS = 8_000');
     expect(registrationPromptSource).toContain("from './auth_prompt_attempt_lifecycle'");
     expect(registrationPromptSource).toContain('attemptLifecycleRef');
@@ -398,7 +398,7 @@ describe('auth provider stable-id linking', () => {
     expect(registrationPromptSource).toContain('testID={signInSlow ?');
 
     const resultAwait = registrationPromptSource.indexOf(
-      'const result = await signInWithProvider(provider, {',
+      'let result = await signInWithProvider(provider, {',
     );
     const resultGuard = registrationPromptSource.indexOf(
       'if (!isAttemptCurrent(attemptToken)) return;',

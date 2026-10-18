@@ -80,10 +80,11 @@ describe('окончательно удалённый аккаунт — окн�
     expect(queued[0].message).toBe('Этот аккаунт удалён безвозвратно. Войди другим способом или начни заново.');
   });
 
-  it('окно входа и оба пути онбординга зовут его на identity_retired', () => {
+  it('оба пути онбординга зовут его на identity_retired; окно входа — нет (решение координатора 18.10, запрет владельца 22.09)', () => {
     const modal = read('components/RegistrationPromptModal.tsx');
     const at = modal.indexOf("result.error === 'identity_retired'");
-    expect(modal.slice(at, at + 400)).toContain("noticeAccountDeletedForever(lang, 'registration_modal')");
+    expect(modal).not.toContain('noticeAccountDeletedForever');
+    expect(modal.slice(at, at + 900)).toContain('[AUTH-RETIRED] identity_retired → sheet closed quietly');
     const onboarding = read('components/CleanOnboarding.tsx');
     expect(onboarding.match(/noticeAccountDeletedForever\(lang, 'onboarding'\)/g)).toHaveLength(2);
   });
@@ -109,7 +110,7 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(signOutMock).toHaveBeenCalledTimes(1);
   });
 
-  it.each(['sync_failed', 'pending_shard_spend', 'shard_queue_quarantined'])('%s → «Остаться здесь» ничего не стирает', async (reason) => {
+  it.each(['pending_shard_spend', 'shard_queue_quarantined'])('%s → «Остаться здесь» ничего не стирает', async (reason) => {
     signOutMock.mockResolvedValue({ ok: false, reason });
     choiceQueue = ['switch', 'stay'];
     await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'cancelled' });
@@ -128,8 +129,16 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(signOutMock.mock.calls[1]).toEqual([{ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }]);
   });
 
-  it('несохранённые карточки — отдельное предупреждение; «Остаться здесь» ничего не стирает', async () => {
+  // зачем (правило владельца 18.10, B8): sync_failed больше не открывает окно «Прогресс не сохранён» — исход failed без окон
+  it('sync_failed — исход failed, окон «Прогресс не сохранён» и «Сменить без сохранения» нет', async () => {
     signOutMock.mockResolvedValue({ ok: false, reason: 'sync_failed' });
+    await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'failed', reason: 'sync_failed' });
+    expect(queued).toHaveLength(1);
+    expect(signOutMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('несохранённые карточки — отдельное предупреждение; «Остаться здесь» ничего не стирает', async () => {
+    signOutMock.mockResolvedValue({ ok: false, reason: 'pending_shard_spend' });
     cardsDecisionMock.mockResolvedValue({ kind: 'confirm_unsaved_cards', reason: 'pages_locked' });
     choiceQueue = ['switch', 'force', 'stay'];
     await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'cancelled' });
@@ -224,7 +233,9 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(onboardingAccountSwitchFailureText('ru', 'backup_failed')).not.toContain('на месте');
     for (const reason of ['recovery_required', 'wipe_failed']) {
       const text = onboardingAccountSwitchFailureText('ru', reason);
-      expect(text).toContain('Перезапусти приложение');
+      // зачем (правило владельца 18.10, B5): просьбы перезапустить нет — «доделаем сами»
+      expect(text).not.toContain('Перезапусти');
+      expect(text).toContain('доделаем');
       expect(text).not.toContain('на месте');
     }
     for (const lang of ['uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {

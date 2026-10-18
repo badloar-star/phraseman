@@ -26,10 +26,11 @@ describe('account switch pending shard spend UI', () => {
     expect(helperBlock).toContain('allowWipeWithoutSync: true');
     expect(helperBlock).toContain('allowPendingShardSpendDiscard: true');
 
-    // All three failure branches offer the destructive action via the helper —
-    // pending_shard_spend and shard_queue_quarantined must not be dead ends.
+    // зачем (правило владельца 18.10, матрица Сайта B8): окно sync_failed («Прогресс не сохранён… смена отменена») убрано — смена идёт с аварийной копией на телефоне.
+    // Остаются две ветки с действием через помощник: pending_shard_spend и shard_queue_quarantined не должны быть тупиком.
     const helperUses = source.split('onPress: runForcedAccountSwitchWithoutSaving').length - 1;
-    expect(helperUses).toBeGreaterThanOrEqual(3);
+    expect(helperUses).toBeGreaterThanOrEqual(2);
+    expect(source).not.toContain("L('Прогресс не сохранён'");
 
     // The forced failure path still aborts safely and the success path still
     // drops linked auth and re-prompts sign-in.

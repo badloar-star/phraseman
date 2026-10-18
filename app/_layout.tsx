@@ -182,6 +182,7 @@ import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { PAYWALL_SHEET_STACK_OPTIONS, SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { subscribeNetStatus } from './net_status';
+import { scheduleSilentStartupRestore } from './startup_restore_retry';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
 import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
 import { cleanupRetiredBlitzRecord } from './flashcards/blitz_record_cleanup';
@@ -2473,6 +2474,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // effectDisposed нужен, т.к. import() резолвится асинхронно — к этому моменту
     // эффект мог уже размонтироваться, тогда подписку сразу закрываем.
     let effectDisposed = false;
+    // зачем (A12): отмена тихих повторов восстановления при снятии эффекта
+    let cancelStartupRestoreRetry: (() => void) | null = null;
 
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
@@ -2668,23 +2671,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
               setStartupAuthRecoveryVisible(true);
             }
           } else if (recoveryPresentation === 'cloud_unavailable_toast') {
-            // зачем: эту ветку случайно снёс коммит e140ed18b (архив турниров,
-            // 2026-08-23) — решение 'cloud_unavailable_toast' по-прежнему
-            // вычислялось, но человек после переустановки видел пустой прогресс
-            // без единого слова. Возвращаем исходный текст без обещания автоповтора.
-            emitAppEvent('action_toast', {
-              type: 'info',
-              messageRu: 'Облако сейчас недоступно. Открой приложение позже, чтобы повторить восстановление.',
-              messageUk: 'Хмара зараз недоступна. Відкрий застосунок пізніше, щоб повторити відновлення.',
-              // зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): у тоста не было английского текста.
-              messageEn: 'Restoring isn’t available right now. Open the app later and try again.',
-              messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
-              messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
-              messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',
-              messageId: 'Cloud sedang tidak tersedia. Buka aplikasi lagi nanti untuk mencoba pemulihan kembali.',
-              messageTr: 'Bulut şu anda kullanılamıyor. Geri yüklemeyi yeniden denemek için uygulamayı daha sonra açın.',
-              messagePl: 'Chmura jest teraz niedostępna. Otwórz aplikację później, aby ponowić przywracanie.',
-            });
+            // зачем (правило владельца 18.10: вход и выход не заканчиваются ошибкой, кроме «нет сети»; матрица Сайта A12): тост про недоступное облако убран —
+            // восстановление повторяется тихо в фоне (5 с, 30 с, 2 мин), при успехе человек не видит ничего; сообщение только если интернета совсем нет (app/startup_restore_retry.ts).
+            if (!effectDisposed) {
+              cancelStartupRestoreRetry?.();
+              cancelStartupRestoreRetry = scheduleSilentStartupRestore({
+                attempt: () => restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions),
+              });
+            }
           }
         }
         await ensureStableAuthLink().catch(noteSwallowedAs('_layout:runHeavyInit.ensureStableAuthLink', false));
@@ -3311,6 +3305,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     });
     return () => {
       effectDisposed = true;
+      cancelStartupRestoreRetry?.();
+      cancelStartupRestoreRetry = null;
       // зачем (ревью Opus): эффект снят — ожидающее восстановление запускаем сейчас, чтобы его промис разрешился, а
       // таймер потолка и подписка на фон снялись (start их снимает).
       requestDeferredBootRestoreStart('effect_disposed');

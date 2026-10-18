@@ -24,6 +24,8 @@ import { AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 // зачем (координатор 18.10, auth-states.html): кнопки входа с кольцом на месте значка, строка «Входим…» с 3 с и мягкая карточка сбоя вместо красного текста
 import SignInProgressButton from './auth/SignInProgressButton';
 import { SignInFailureCard, SignInStatusLine } from './auth/SignInProgressNote';
+import { cancelGuestSwitchOffer, runGuestSwitchToExistingAccount, useGuestSwitchOffer } from '../app/guest_switch_offer';
+import { RecoveryCodeLine, formatRecoveryClock, recoveryExpiredSendingText, recoveryNewCodeSentText } from './auth/RecoveryCodeLine';
 import type { SignInFailureKind } from './auth/sign_in_progress_copy';
 import GuestSwitchWarningSheet from './auth/GuestSwitchWarningSheet';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
@@ -67,7 +69,7 @@ import {
   resolveStartupRecoveryLinkState,
   shouldShowSavedJourneyLine,
 } from './startup_recovery_link_copy';
-import { accountRestoreFailedCopy, noticeAccountDeletedForever, promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
+import { accountRestoreFailedCopy, promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import {
@@ -117,6 +119,8 @@ import { reportSignInOutcome, reportSignInThrew } from '../app/auth_release_reas
 // включаются через 8 с. Задача входа остаётся авторитетной (Promise.race нет),
 // повторный тап держит authOperationGate — контракт stable_link не тронут.
 const SIGN_IN_SLOW_THRESHOLD_MS = 8_000;
+// зачем (правило владельца 18.10: красного во входе нет; эталон auth-states блок 7): просроченный код приложение отправляет заново само — не чаще двух раз за показ окна (серверный лимит повторов)
+const RECOVERY_AUTO_RESEND_MAX = 2;
 
 /**
  * зачем (аудит двойного тапа 11.10): catch-блоки восстановления только показывали текст —
@@ -272,6 +276,21 @@ function RegistrationPromptModal({
   const [signInFailureCopy, setSignInFailureCopy] = useState<{ title: string; body: string } | null>(null);
   // зачем (Макеты A3.2): фаза строки «Входим…» — пока она показана, она стоит НА МЕСТЕ строки «Данные на устройстве сохранятся»
   const [signInStatusPhase, setSignInStatusPhase] = useState<'quiet' | 'calm' | 'long'>('quiet');
+  // зачем (правило владельца 18.10: вход не заканчивается ошибкой, кроме «нет сети»): после «Восстановить» вход продолжается сам, без карточки «войди ещё раз».
+  // Заряд один за показ окна — если восстановление снова вернёт «восстановлен», показываем прежнюю карточку, а не крутим петлю.
+  const [autoContinueProvider, setAutoContinueProvider] = useState<AuthProviderId | null>(null);
+  const autoContinueArmedRef = useRef(false);
+  // зачем (правило владельца 2, срочное поручение координатора 18.10): состояние шторки гостя ведёт app/guest_switch_offer (Авторизация); проп guestSwitch — переопределение для тестов
+  const guestSwitchFromOffer = useGuestSwitchOffer();
+  // зачем (решение координатора 18.10): на сторных сборках состояния «нет способа входа» быть не должно — если оно всё же показано, причина и значения идут в журнал [AUTH-NO-PROVIDER]
+  useEffect(() => {
+    if (!visible || googleAvail || appleAvail !== false) return;
+    console.warn(`[AUTH-NO-PROVIDER] shown platform=${Platform.OS} google=${googleAvail ? 1 : 0} apple=${String(appleAvail)} appleReason=${peekAppleUnavailableReason() ?? 'unknown'}`); // guard-ok: ветка и значения, которые её решили
+  }, [appleAvail, googleAvail, visible]);
+  // зачем (эталон auth-states, A7.7): после автоматической отправки нового кода на месте строки срока — «✓ Отправили новый код», пока человек не начал вводить
+  const [recoveryNewCodeNotice, setRecoveryNewCodeNotice] = useState(false);
+  const autoResendCountRef = useRef(0);
+  const autoResendInFlightRef = useRef(false);
   // Провайдер последней неуспешной попытки — для кнопки «Повторить» под ошибкой.
   const [retryProvider, setRetryProvider] = useState<AuthProviderId | null>(null);
   // Recovery hint: каким аккаунтом входить (маска email с сервера).
@@ -393,6 +412,7 @@ function RegistrationPromptModal({
     cleanRecoveryGenerationRef.current += 1;
     authOperationGateRef.current.reset();
     if (!visible) {
+      cancelGuestSwitchOffer('registration_modal_hidden'); // зачем: окно закрыли, пока шторка гостя ждёт ответа — как «Отмена», гость остаётся гостем
       clearSlowTimer();
       setLoadingProvider(null);
       setSignInSlow(false);
@@ -408,6 +428,11 @@ function RegistrationPromptModal({
     setSignInFailureKind(null);
     setSignInFailureCopy(null);
     setSignInStatusPhase('quiet');
+    setAutoContinueProvider(null);
+    autoContinueArmedRef.current = false;
+    setRecoveryNewCodeNotice(false);
+    autoResendCountRef.current = 0;
+    autoResendInFlightRef.current = false;
     setRetryProvider(null);
     setRecoveryPanelVisible(false);
     setRecoveryOfferedAfterMismatch(false);
@@ -910,7 +935,7 @@ function RegistrationPromptModal({
     }
   }, [isCurrentRecoveryFlow, lang, recoveryBusy, recoveryCode, recoveryCopy.errorSupport, recoveryExpired, syncRecoveryState]);
 
-  const handleRecoveryResend = useCallback(async () => {
+  const handleRecoveryResend = useCallback(async (auto: boolean = false) => {
     const flow = recoveryFlowRef.current;
     if (!flow || recoveryBusy || recoveryCountdown > 0) return;
     setRecoveryError(null);
@@ -921,6 +946,7 @@ function RegistrationPromptModal({
       setRecoveryFlowState(sent);
       setRecoveryNow(Date.now());
       setRecoveryCode('');
+      setRecoveryNewCodeNotice(auto);
     } catch (error) {
       logAuthModalCatch('recovery', error);
       if (!isCurrentRecoveryFlow(flow, generation)) return;
@@ -933,6 +959,20 @@ function RegistrationPromptModal({
       );
     }
   }, [isCurrentRecoveryFlow, lang, recoveryBusy, recoveryCopy.errorSupport, recoveryCountdown, syncRecoveryState]);
+
+  // зачем (эталон auth-states A7.7, правило владельца 18.10): код просрочен — новый уходит сам, без красной строки «срок истёк, запроси»; повтор уважает серверный интервал (recoveryCountdown) и лимит два раза за показ
+  useEffect(() => {
+    if (!recoveryPanelVisible || recoveryStage !== 'code_sent' || !recoveryExpired) return;
+    if (recoveryBusy || recoveryCountdown > 0 || autoResendInFlightRef.current) return;
+    if (autoResendCountRef.current >= RECOVERY_AUTO_RESEND_MAX) {
+      console.log(`[AUTH-RECOVERY] auto resend skipped reason=limit count=${autoResendCountRef.current}`); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    autoResendCountRef.current += 1;
+    autoResendInFlightRef.current = true;
+    console.log(`[AUTH-RECOVERY] code expired → auto resend n=${autoResendCountRef.current}`); // guard-ok: ветка и значение, которое её решило
+    void handleRecoveryResend(true).finally(() => { autoResendInFlightRef.current = false; });
+  }, [handleRecoveryResend, recoveryBusy, recoveryCountdown, recoveryExpired, recoveryPanelVisible, recoveryStage]);
 
   const isCurrentCleanRecoveryFlow = useCallback((
     flow: CleanInstallRecoveryFlowController,
@@ -1187,9 +1227,30 @@ function RegistrationPromptModal({
         if (!isAttemptCurrent(attemptToken)) return;
         // Firebase credential mutations cannot be cancelled. Keep this modal busy
         // until the original task settles so a second picker cannot race it.
-        const result = await signInWithProvider(provider, {
+        let result = await signInWithProvider(provider, {
           requireCurrentStableIdOwnership: context === 'startup_recovery',
         });
+        if (result.result === 'error' && result.error === 'account_switch_required' && isAttemptCurrent(attemptToken)) {
+          // зачем (правило владельца 2, 18.10): гость с прогрессом входит в ДРУГОЙ существующий аккаунт — не карточка «Вход не завершился», а шторка предупреждения:
+          // «Войти» = вход в тот аккаунт без слияния и без второго окна Google, «Отмена» = молча остаёмся гостем. Всё ведёт app/guest_switch_offer.
+          console.log(`[AUTH-SWITCH-OFFER] modal guest sheet offered provider=${provider}`); // guard-ok: ветка и значение, которое её решило
+          const offer = await runGuestSwitchToExistingAccount(provider);
+          console.log(`[AUTH-SWITCH-OFFER] modal guest sheet outcome=${offer.kind} provider=${provider} current=${isAttemptCurrent(attemptToken) ? 1 : 0}`); // guard-ok: итог
+          if (!isAttemptCurrent(attemptToken)) return;
+          if (offer.kind === 'cancelled') {
+            clearSlowTimer();
+            setRetryProvider(null);
+            return;
+          }
+          if (offer.kind === 'failed') {
+            clearSlowTimer();
+            console.warn(`[AUTH-SWITCH-OFFER] modal guest switch failed provider=${provider} reason=${authErrorLogCode(offer.reason)}`); // guard-ok: причина
+            setRetryProvider(provider);
+            setSignInFailureKind(authErrorKind(offer.reason));
+            return;
+          }
+          result = offer.result;
+        }
         // зачем (аудит 11.10): ранний выход пишет причину; строку возврата ниже сторожит auth_provider_stable_link.
         if (!isAttemptCurrent(attemptToken)) console.log(`[AUTH-MODAL] sign_in result dropped provider=${provider} result=${result.result} reason=attempt_invalidated`); // guard-ok: ранний выход пишет причину
         if (!isAttemptCurrent(attemptToken)) return;
@@ -1266,6 +1327,13 @@ function RegistrationPromptModal({
               return;
             }
             if (restore === 'restored') {
+              if (!autoContinueArmedRef.current) {
+                autoContinueArmedRef.current = true;
+                console.log(`[AUTH-RESTORE-CONTINUE] restored → sign-in continues provider=${provider}`); // guard-ok: ветка и значение, которое её решило
+                setAutoContinueProvider(provider);
+                return;
+              }
+              console.log(`[AUTH-RESTORE-CONTINUE] restored again → card instead of loop provider=${provider}`); // guard-ok: защита от петли
               setRetryProvider(provider);
               showFailureCopy(
                 triLang(lang, { ru: 'Аккаунт восстановлен', uk: 'Акаунт відновлено', en: 'Account restored', es: 'Cuenta restaurada', 'pt-BR': 'Conta restaurada', vi: 'Đã khôi phục tài khoản', id: 'Akun dipulihkan', tr: 'Hesap geri yüklendi', pl: 'Konto przywrócone' }),
@@ -1296,11 +1364,13 @@ function RegistrationPromptModal({
             }
           }
           if (result.error === 'identity_retired') {
+            // зачем (решение координатора 18.10; запрет владельца 22.09 на уведомления об удалении аккаунта): окна «аккаунт удалён навсегда» нет.
+            // Окно закрывается тихо, а auth_provider уже поднял свежую личность: человек остаётся в приложении чистым аккаунтом (логику ведёт Авторизация).
+            console.log(`[AUTH-RETIRED] identity_retired → sheet closed quietly, fresh identity continues provider=${provider}`); // guard-ok: ветка и значение, которое её решило
             setRetryProvider(null);
             setRecoveryPanelVisible(false);
             setCleanRecoveryPanelVisible(false);
             onClose();
-            noticeAccountDeletedForever(lang, 'registration_modal');
             return;
           }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
@@ -1402,6 +1472,15 @@ function RegistrationPromptModal({
       signInSlowLabel,
     ],
   );
+
+  // зачем: продолжение входа после восстановления — когда прежняя попытка отпустила кнопки (finally сняла loadingProvider)
+  useEffect(() => {
+    if (autoContinueProvider === null || loadingProvider !== null || !visible) return;
+    const next = autoContinueProvider;
+    setAutoContinueProvider(null);
+    console.log(`[AUTH-RESTORE-CONTINUE] start provider=${next}`); // guard-ok: запуск продолжения
+    void handleSignIn(next);
+  }, [autoContinueProvider, handleSignIn, loadingProvider, visible]);
 
   // Аварийная кнопка для DEV: полный wipe identity-state (Keychain stable_id +
   // Google session + Firebase Auth) + поднятие чистой анонимной сессии.
@@ -1692,6 +1771,7 @@ function RegistrationPromptModal({
           )}
 
           {!googleAvail && appleAvail === false && (
+            // зачем (решение координатора 18.10): на сторных сборках этого состояния нет (Android — Google, iOS — Google и Apple); карточка из одного заголовка — последний рубеж, причина — в журнал [AUTH-NO-PROVIDER]
             // зачем (решение координатора 18.10, «красного в окне входа быть не должно»): это не сбой попытки, а состояние телефона — та же мягкая карточка, без кнопки повтора
             <SignInFailureCard
               testID="sign-in-no-method"
@@ -1713,7 +1793,7 @@ function RegistrationPromptModal({
           )}
 
           {!!inlineError && signInFailureKind === null && (
-            <Text style={[styles.errorNote, { color: glass.bad, fontSize: f.caption }]}>
+            <Text style={[styles.errorNote, { color: glass.secondary, fontSize: f.caption }]}>
               {inlineError}
             </Text>
           )}
@@ -1785,18 +1865,21 @@ function RegistrationPromptModal({
                   <Text style={[styles.recoveryBody, { color: glass.secondary, fontSize: f.caption }]}>
                     {cleanRecoveryCopy.sentBody}
                   </Text>
-                  <Text
-                    accessibilityLiveRegion="polite"
-                    style={[styles.recoveryExpiry, { color: cleanRecoveryExpired ? glass.bad : t.textMuted, fontSize: f.caption }]}
-                  >
-                    {cleanRecoveryExpired
-                      ? recoveryCopy.errorExpired
-                      : `${cleanRecoveryCopy.expiresIn} ${cleanRecoveryExpiryCountdown} s`}
-                  </Text>
+                  {/* зачем (эталон auth-states блок 7): та же одна строка вторым цветом; автоматической отправки здесь нет — повтор после срока требует нового запроса (интерфейс для Авторизации) */}
+                  {cleanRecoveryError ? (
+                    <RecoveryCodeLine kind="error" text={cleanRecoveryError} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  ) : cleanRecoveryExpired ? (
+                    <RecoveryCodeLine kind="expiry" text={recoveryCopy.errorExpired} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  ) : (
+                    <RecoveryCodeLine kind="expiry" text={cleanRecoveryCopy.expiresIn} time={formatRecoveryClock(cleanRecoveryExpiryCountdown)} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  )}
                   <TextInput
                     testID="auth-clean-recovery-code-input"
                     value={cleanRecoveryCode}
-                    onChangeText={(value) => setCleanRecoveryCode(normalizeRecoveryCodeInput(value))}
+                    onChangeText={(value) => {
+                      setCleanRecoveryCode(normalizeRecoveryCodeInput(value));
+                      if (cleanRecoveryError) setCleanRecoveryError(null);
+                    }}
                     editable={!cleanRecoveryBusy && !cleanRecoveryExpired}
                     keyboardType="number-pad"
                     inputMode="numeric"
@@ -1808,8 +1891,8 @@ function RegistrationPromptModal({
                       styles.recoveryCodeInput,
                       {
                         color: glass.text,
-                        backgroundColor: cleanRecoveryError ? t.wrongBg : glass.bg,
-                        // зачем: ошибка — тоном поля (wrongBg), а не цветной рамкой (запрет обводок)
+                        // зачем (A7.8): поле обычного тона и при ошибке — красноватого фона нет
+                        backgroundColor: glass.bg,
                         borderWidth: 0,
                         // зачем (overlays.html `.field`): код вводится обычным полем 16, не крупным разрядным шрифтом.
                         fontSize: 16,
@@ -1873,7 +1956,7 @@ function RegistrationPromptModal({
                   >
                     <Text style={[styles.recoverySecondaryText, { color: glass.text, fontSize: f.caption }]}>
                       {cleanRecoveryCountdown > 0
-                        ? `${cleanRecoveryCopy.resendIn} ${cleanRecoveryCountdown} s`
+                        ? `${cleanRecoveryCopy.resendIn} ${formatRecoveryClock(cleanRecoveryCountdown)}`
                         : cleanRecoveryCopy.resend}
                     </Text>
                   </Pressable>
@@ -1921,8 +2004,8 @@ function RegistrationPromptModal({
                       styles.recoveryEmailInput,
                       {
                         color: glass.text,
-                        backgroundColor: cleanRecoveryError ? t.wrongBg : glass.bg,
-                        // зачем: ошибка — тоном поля (wrongBg), а не цветной рамкой (запрет обводок)
+                        // зачем (A7.8): поле обычного тона и при ошибке — красноватого фона нет
+                        backgroundColor: glass.bg,
                         borderWidth: 0,
                         fontSize: f.body,
                       },
@@ -2007,8 +2090,9 @@ function RegistrationPromptModal({
                   </View>
                 </View>
               ) : null}
-              {!!cleanRecoveryError && (
-                <Text accessibilityRole="alert" style={[styles.recoveryError, { color: glass.bad, fontSize: f.caption }]}>
+              {/* зачем: на экране кода ошибка — в строке над полем; здесь только вне него, вторым цветом */}
+              {!!cleanRecoveryError && cleanRecoveryScreen !== 'code' && (
+                <Text accessibilityRole="text" style={[styles.recoveryError, { color: glass.secondary, fontSize: f.caption }]}>
                   {cleanRecoveryError}
                 </Text>
               )}
@@ -2037,18 +2121,25 @@ function RegistrationPromptModal({
                   <Text style={[styles.recoveryBody, { color: glass.secondary, fontSize: f.caption }]}>
                     {recoveryFlowState.maskedEmail || recoveryCopy.codeDescription}
                   </Text>
-                  <Text
-                    accessibilityLiveRegion="polite"
-                    style={[styles.recoveryExpiry, { color: recoveryExpired ? glass.bad : t.textMuted, fontSize: f.caption }]}
-                  >
-                    {recoveryExpired
-                      ? recoveryCopy.errorExpired
-                      : `${recoveryCopy.expiresIn} ${recoveryExpiryCountdown} s`}
-                  </Text>
+                  {/* зачем (эталон auth-states блок 7, A7.3/A7.7/A7.8): одна строка вторым цветом на одном месте — ошибка, «Отправили новый код» или срок «4:52»; красного нет */}
+                  {recoveryError ? (
+                    <RecoveryCodeLine kind="error" text={recoveryError} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  ) : recoveryNewCodeNotice ? (
+                    <RecoveryCodeLine kind="notice" text={recoveryNewCodeSentText(lang)} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  ) : recoveryExpired ? (
+                    <RecoveryCodeLine kind="expiry" text={recoveryExpiredSendingText(lang)} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  ) : (
+                    <RecoveryCodeLine kind="expiry" text={recoveryCopy.expiresIn} time={formatRecoveryClock(recoveryExpiryCountdown)} secondaryColor={glass.secondary} inkColor={glass.text} />
+                  )}
                   <TextInput
                     testID="auth-recovery-code-input"
                     value={recoveryCode}
-                    onChangeText={(value) => setRecoveryCode(normalizeRecoveryCodeInput(value))}
+                    onChangeText={(value) => {
+                      setRecoveryCode(normalizeRecoveryCodeInput(value));
+                      // зачем: начал править код — строка ошибки / «Отправили новый код» уступает место сроку
+                      if (recoveryError) setRecoveryError(null);
+                      if (recoveryNewCodeNotice) setRecoveryNewCodeNotice(false);
+                    }}
                     editable={!recoveryBusy && !recoveryExpired}
                     keyboardType="number-pad"
                     inputMode="numeric"
@@ -2060,8 +2151,8 @@ function RegistrationPromptModal({
                       styles.recoveryCodeInput,
                       {
                         color: glass.text,
-                        backgroundColor: recoveryError ? t.wrongBg : glass.bg,
-                        // зачем: ошибка — тоном поля (wrongBg), а не цветной рамкой (запрет обводок)
+                        // зачем (A7.8): при неверном коде поле обычного тона, не красноватого; цифры остаются — поправить одну
+                        backgroundColor: glass.bg,
                         borderWidth: 0,
                         // зачем (overlays.html `.field`): код вводится обычным полем 16, не крупным разрядным шрифтом.
                         fontSize: 16,
@@ -2093,7 +2184,7 @@ function RegistrationPromptModal({
                   >
                     <Text style={[styles.recoverySecondaryText, { color: glass.text, fontSize: f.caption }]}>
                       {recoveryCountdown > 0
-                        ? `${recoveryCopy.resendIn} ${recoveryCountdown} s`
+                        ? `${recoveryCopy.resendIn} ${formatRecoveryClock(recoveryCountdown)}`
                         : recoveryCopy.resend}
                     </Text>
                   </Pressable>
@@ -2159,8 +2250,9 @@ function RegistrationPromptModal({
                   )}
                 </View>
               )}
-              {!!recoveryError && (
-                <Text accessibilityRole="alert" style={[styles.recoveryError, { color: glass.bad, fontSize: f.caption }]}>
+              {/* зачем: в экране кода текст ошибки стоит в строке над полем; здесь — только вне него, вторым цветом */}
+              {!!recoveryError && !(recoveryStage === 'code_sent' || recoveryStage === 'confirming' || recoveryStage === 'adopting') && (
+                <Text accessibilityRole="text" style={[styles.recoveryError, { color: glass.secondary, fontSize: f.caption }]}>
                   {recoveryError}
                 </Text>
               )}
@@ -2251,14 +2343,12 @@ function RegistrationPromptModal({
           </Animated.View>
         </GestureDetector>
       </GestureHandlerRootView>
-      {guestSwitch ? (
-        <GuestSwitchWarningSheet
-          visible={guestSwitch.visible}
-          accountLabel={guestSwitch.accountLabel}
-          onConfirm={guestSwitch.onConfirm}
-          onCancel={guestSwitch.onCancel}
-        />
-      ) : null}
+      <GuestSwitchWarningSheet
+        visible={(guestSwitch ?? guestSwitchFromOffer).visible}
+        accountLabel={(guestSwitch ?? guestSwitchFromOffer).accountLabel}
+        onConfirm={(guestSwitch ?? guestSwitchFromOffer).onConfirm}
+        onCancel={(guestSwitch ?? guestSwitchFromOffer).onCancel}
+      />
     </Modal>
   );
 }

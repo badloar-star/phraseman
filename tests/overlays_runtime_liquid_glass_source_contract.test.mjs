@@ -39,12 +39,14 @@ test('settings/lingman/dialogs: стеклянный хук и его узел �
 
 test('settings: те же обработчики — очистка кеша и «Сменить без сохранения»', () => {
   assert.ok(files.settings.includes('clearAppCaches()'));
-  assert.equal((files.settings.match(/onPress: runForcedAccountSwitchWithoutSaving/g) ?? []).length, 3);
+  assert.equal((files.settings.match(/onPress: runForcedAccountSwitchWithoutSaving/g) ?? []).length, 2);
   // 30.09: +2 окна отказа смены аккаунта (OR-ACCOUNT-SWITCH-PRECOMMIT-REJECTED / RECOVERY-REQUIRED).
   // 02.10 (Account V2, 8L): +1 стеклянное подтверждение «Несохранённые карточки будут удалены».
   // 11.10 (§AUTH-0105, 4ee55fbc4): +1 окно «Нужно завершить смену аккаунта», если принудительная смена
   // сорвалась после маркера (recovery_required / wipe_failed) — вместо ложного «Всё осталось на месте».
-  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 7);
+  // 18.10 (правило владельца «вход и выход не заканчиваются ошибкой», матрица Сайта B5/B8): окна «Прогресс не сохранён», «Нужно завершить смену»
+  // (два места) и «Смена аккаунта не началась» убраны из старой смены в Настройках — остаются «Нужна проверка монет», «Покупка ещё оформляется» и подтверждение карточек.
+  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 3);
 });
 
 test('lingman: кнопка «Settings» по-прежнему открывает системные настройки уведомлений', () => {

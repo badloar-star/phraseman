@@ -9,14 +9,13 @@ describe('ordinary PhoneState failures stay out of user flows', () => {
   test('ordinary startup and language selection contain no network-save message', () => {
     // зачем (10.10): обычный старт молчит; единственное исключение — тост после ПРОВАЛЕННОГО восстановления
     // на переустановке (821f49048, 01.10: без него человек видел пустой прогресс без единого слова).
-    // Текст обязан жить ровно один раз и только в ветке cloud_unavailable_toast.
+    // зачем (правило владельца 18.10, матрица Сайта A12): тост «Облако сейчас недоступно» отменён — ветка cloud_unavailable_toast запускает тихий повтор
+    // (app/startup_restore_retry.ts); человеку — только строка «нет интернета», когда сети действительно нет.
     const layout = source('app/_layout.tsx');
-    const toastAt = layout.indexOf('Облако сейчас недоступно');
     const branchAt = layout.indexOf("recoveryPresentation === 'cloud_unavailable_toast'");
-    expect(layout.split('Облако сейчас недоступно')).toHaveLength(2);
+    expect(layout).not.toContain('Облако сейчас недоступно');
     expect(branchAt).toBeGreaterThan(-1);
-    expect(toastAt).toBeGreaterThan(branchAt);
-    expect(toastAt - branchAt).toBeLessThan(900);
+    expect(layout.slice(branchAt, branchAt + 900)).toContain('scheduleSilentStartupRestore(');
     expect(source('app/language_welcome.tsx')).not.toContain('Проверь соединение');
     expect(source('app/language_welcome.tsx')).toContain('commitPhoneStateDurableAction');
   });

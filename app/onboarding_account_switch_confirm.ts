@@ -57,19 +57,19 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
       pl: 'Nie udało się zapisać kopii postępu na tym telefonie. Nic nie zostało usunięte — spróbuj później.',
     });
   }
-  // зачем (то же решение): сбой ПОСЛЕ защитного маркера — «Прогресс на месте» было бы неправдой;
-  // как в Настройках: перезапуск продолжит восстановление.
+  // зачем (правило владельца 18.10, матрица Сайта B5): сбой ПОСЛЕ защитного маркера — окна с просьбой перезапустить нет; человеку — спокойная фраза, что смену доделаем сами
+  // (восстановление доводит её при запуске). «Прогресс на месте» тут было бы неправдой, поэтому отдельный текст. ЧЕРНОВИК ДЛЯ ПЕРЕВОДЧИКА.
   if (reason === 'recovery_required' || reason === 'wipe_failed') {
     return triLang(lang, {
-      ru: 'Смена аккаунта началась, но не завершилась. Перезапусти приложение — восстановление продолжится.',
-      uk: 'Зміна акаунта почалася, але не завершилася. Перезапусти застосунок — відновлення продовжиться.',
-      en: 'The account switch started but didn’t finish. Restart the app to continue the recovery.',
-      es: 'El cambio de cuenta empezó, pero no terminó. Reinicia la app para continuar la recuperación.',
-      'pt-BR': 'A troca de conta começou, mas não terminou. Reinicie o app para continuar a recuperação.',
-      vi: 'Việc đổi tài khoản đã bắt đầu nhưng chưa xong. Hãy khởi động lại ứng dụng để tiếp tục khôi phục.',
-      id: 'Pergantian akun sudah dimulai tapi belum selesai. Mulai ulang aplikasi untuk melanjutkan pemulihan.',
-      tr: 'Hesap değişimi başladı ama tamamlanmadı. Kurtarmaya devam etmek için uygulamayı yeniden başlat.',
-      pl: 'Zmiana konta się zaczęła, ale nie skończyła. Uruchom aplikację ponownie, aby dokończyć przywracanie.',
+      ru: 'Смену аккаунта доделаем сами — это займёт немного времени.',
+      uk: 'Зміну акаунта доробимо самі — це займе трохи часу.',
+      en: 'We’ll finish switching accounts on our own — it will take a moment.',
+      es: 'Terminaremos el cambio de cuenta por nuestra cuenta; tardará un momento.',
+      'pt-BR': 'Vamos concluir a troca de conta sozinhos — leva só um momento.',
+      vi: 'Chúng tôi sẽ tự hoàn tất việc đổi tài khoản — chỉ mất một chút thời gian.',
+      id: 'Kami akan menyelesaikan pergantian akun sendiri — butuh sebentar.',
+      tr: 'Hesap değişimini kendimiz tamamlayacağız — biraz zaman alacak.',
+      pl: 'Dokończymy zmianę konta sami — to chwilę potrwa.',
     });
   }
   if (reason === 'pending_shard_spend' || reason === 'shard_queue_quarantined' || reason === 'clean_recovery_transition_active') {
@@ -167,7 +167,8 @@ export async function confirmAndSwitchAccountInOnboarding(
  * копия (включая очередь монет) пишется внутри signOutAndWipeForAccountSwitch, поэтому
  * данные остаются восстановимыми; несохранённые карточки — отдельное предупреждение.
  */
-const FORCEABLE_SWITCH_REASONS: ReadonlySet<string> = new Set(['sync_failed', 'pending_shard_spend', 'shard_queue_quarantined']);
+// зачем (правило владельца 18.10, матрица Сайта B8): sync_failed убран — окна «Прогресс не сохранён» нет; смена идёт с allowWipeWithoutSync (копия на телефоне), так что отказ недостижим
+const FORCEABLE_SWITCH_REASONS: ReadonlySet<string> = new Set(['pending_shard_spend', 'shard_queue_quarantined']);
 /** Потолок ожидания облака при смене аккаунта из онбординга — тот же, что у выхода (LOGOUT_SYNC_DEADLINE_MS, вариант Б). */
 export const ONBOARDING_SWITCH_SYNC_DEADLINE_MS = 3000;
 
@@ -175,9 +176,6 @@ const STAY_LABEL = { ru: 'Остаться здесь', uk: 'Залишитис�
 const FORCE_LABEL = { ru: 'Сменить без сохранения', uk: 'Змінити без збереження', en: 'Switch without saving', es: 'Cambiar sin guardar', 'pt-BR': 'Trocar sem salvar', vi: 'Đổi mà không lưu', id: 'Ganti tanpa menyimpan', tr: 'Yine de değiştir', pl: 'Zmień bez zapisywania' } as const;
 
 function forcedSwitchTitle(lang: Lang, reason: string): string {
-  if (reason === 'sync_failed') {
-    return triLang(lang, { ru: 'Прогресс не сохранён', uk: 'Прогрес не збережено', en: 'Progress not saved', es: 'Progreso no guardado', 'pt-BR': 'Progresso não salvo', vi: 'Chưa lưu tiến độ', id: 'Progres belum disimpan', tr: 'İlerleme kaydedilmedi', pl: 'Postęp nie został zapisany' });
-  }
   if (reason === 'pending_shard_spend') {
     return triLang(lang, { ru: 'Покупка ещё оформляется', uk: 'Покупка ще оформлюється', en: 'The purchase is still processing', es: 'La compra aún se está procesando', 'pt-BR': 'A compra ainda está sendo processada', vi: 'Giao dịch mua vẫn đang xử lý', id: 'Pembelian masih diproses', tr: 'Satın alma hâlâ işleniyor', pl: 'Zakup jest jeszcze przetwarzany' });
   }

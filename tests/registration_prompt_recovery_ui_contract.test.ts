@@ -94,12 +94,27 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     expect(source).not.toContain('SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM');
     expect(source).not.toContain('testID="auth-switch-account"');
     expect(source).toContain('<GuestSwitchWarningSheet');
+    // зачем (срочное поручение координатора 18.10, правило владельца 2): отказ account_switch_required у гостя ведёт в шторку, а не в карточку «Вход не завершился»
+    expect(source).toContain("from '../app/guest_switch_offer'");
+    expect(source).toContain('const guestSwitchFromOffer = useGuestSwitchOffer();');
+    expect(source).toContain('(guestSwitch ?? guestSwitchFromOffer).onConfirm');
+    const offerAt = source.indexOf('await runGuestSwitchToExistingAccount(provider)');
+    expect(offerAt).toBeGreaterThan(source.indexOf('await signInWithProvider(provider'));
+    expect(offerAt).toBeLessThan(source.indexOf('reportSignInOutcome(provider, result);'));
+    const offerBranch = source.slice(offerAt, offerAt + 1200);
+    expect(offerBranch).toContain("offer.kind === 'cancelled'"); // «Отмена» — тихо, гость остаётся гостем
+    expect(offerBranch).toContain('result = offer.result;'); // «Войти» — итог идёт по обычным веткам входа
+    expect(source).toContain("cancelGuestSwitchOffer('registration_modal_hidden')"); // окно закрыли — как «Отмена»
     expect(source).toContain("setSignInFailureKind('other')");
     // зачем (Макеты A4.8, 18.10): отмена выбора аккаунта и отказы со своей причиной — мягкая карточка, а не красный текст с кнопкой «Повторить»
     // отмена окна выбора аккаунта — ТИХО (решение координатора 18.10): журнал [AUTH-CANCEL], карточки нет
     expect(source).toContain('[AUTH-CANCEL] provider=');
     expect(source).not.toContain("setSignInFailureKind('cancelled')");
     expect(source).toContain('testID="sign-in-no-method"');
+    // решение координатора 18.10: «нет способа входа» — последний рубеж с причиной в журнале; вход по коду из письма не включаем (владелец 28.08)
+    expect(source).toContain('[AUTH-NO-PROVIDER] shown');
+    expect(source).toContain('const showRecoveryEntry = false;');
+    expect(source).toContain('const showCleanRecoveryEntry = false;');
     expect(source).toContain('showFailureCopy(refusalCopy.title, refusalCopy.body);');
     expect(source).toContain('title={signInFailureCopy?.title}');
     const handleStart = source.indexOf('const handleSignIn = useCallback');

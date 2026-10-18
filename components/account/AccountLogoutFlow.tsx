@@ -37,6 +37,9 @@ interface AccountLogoutFlowProps {
   onSignedOut: (result: { synced: boolean }) => void;
 }
 
+/** Паузы перед тихими повторами выхода после отказа до защитного маркера (правило владельца 18.10). */
+export const LOGOUT_SILENT_RETRY_PAUSES_MS = [600, 1800] as const;
+
 export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }: AccountLogoutFlowProps) {
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -121,11 +124,16 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     }
     // Синхронизация не успела (нет сети / очередь занята) — это НЕ повод
     // держать человека в аккаунте: локальная аварийная копия уже записана.
-    const forced = await signOutAndWipeForAccountSwitch({
-      syncDeadlineMs: LOGOUT_SYNC_DEADLINE_MS,
-      allowWipeWithoutSync: true,
-      allowPendingShardSpendDiscard: true,
-    });
+    const forcedOptions = { syncDeadlineMs: LOGOUT_SYNC_DEADLINE_MS, allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true } as const;
+    let forced = await signOutAndWipeForAccountSwitch(forcedOptions);
+    // зачем (правило владельца 18.10: выход не заканчивается ошибкой): отказ ДО защитного маркера (другая операция, замок занят) ничего не изменил —
+    // повторяем тихо до двух раз с короткой паузой, окно отказа остаётся последним средством. После маркера (recovery_required / wipe_failed) слепой повтор запрещён.
+    for (const pauseMs of LOGOUT_SILENT_RETRY_PAUSES_MS) {
+      if (forced.ok || forced.reason === 'recovery_required' || forced.reason === 'wipe_failed') break;
+      console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_silent_retry', reason: forced.reason, pauseMs, userSees: 'button_saving_progress' })); // guard-ok: тихий повтор
+      await new Promise<void>((resolve) => { setTimeout(resolve, pauseMs); });
+      forced = await signOutAndWipeForAccountSwitch(forcedOptions);
+    }
     // guard-ok: см. причину выше — отказ виден только на боевом телефоне.
     console.log('[ACC-MUT] ui:logout_attempt_2_forced', JSON.stringify({
       ok: forced.ok,

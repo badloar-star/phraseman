@@ -55,7 +55,9 @@ export function communityPackIdForVideoPhraseSet(packId: string): string | null 
 }
 
 export async function addCommunityPackToLibrary(
-  pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc'>,
+  // зачем (координатор 18.10): лог [PACK-ADD] читает язык/цель/видео набора — поля были вне типа (TS2339 с 7d3ff1c50).
+  // Необязательные, чтобы вызывающие без них не краснели; полный FlashcardMarketPack их и так несёт.
+  pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc'> & Partial<Pick<FlashcardMarketPack, 'packLanguage' | 'studyTarget' | 'videoId'>>,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<AddPackToLibraryResult> {
   if (!pack?.id) {

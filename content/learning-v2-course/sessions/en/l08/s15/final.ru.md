@@ -1,9 +1,10 @@
 # Английский · Урок 8 · Занятие 15 — Счёт в уме
 
-**Ситуация.** Вы пытаетесь посчитать стоимость покупок, обсуждаете пение и узнаёте владельца сайта.
+**Ситуация.** Вы считаете стоимость покупок, просите подругу прикинуть расход краски и ищете владельца счётов на мастер-классе.
 
 **Что вы освоите:** повторить can’t, can, whose и often
-**Новые слова:** calculate
+**Новые слова:** calculate, estimate, abacus, spreadsheet
+**Возвращаются:** sing, climb, book, pen
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Покупки без калькулятора
 
-Вы хотите посчитать стоимость покупок, но путаетесь в числах. `Calculate` — «считать, вычислять». `I can’t calculate` — «Я не могу посчитать». Здесь вы говорите о том, что сейчас не получается. После `can’t` нужно `calculate`, без `to`. Калькулятор остался дома — вместе с вашей уверенностью в ответе.
+Вы хотите посчитать стоимость покупок, но путаетесь в числах. `Calculate` — «считать, вычислять». `I can’t calculate` — «Я не могу посчитать». Здесь вы говорите о том, что сейчас не получается. После `can’t` нужно `calculate`, без `to`. Вы просите друга помочь сложить суммы.
 
 **Скажите другу, что не можете посчитать.**
 
@@ -23,111 +24,127 @@
 
 ## Интро 2
 
-### Подруга в хоре
+### Сколько нужно краски
 
-Подруга хорошо поёт, и вы советуете пригласить её в хор. `She can sing` — «Она умеет петь». После `can` нужно `sing`, без окончания `s`.
+Вы собираетесь покрасить стену, но пока не знаете, сколько краски купить. Подруга умеет прикидывать нужное количество без точного расчёта. Estimate — «оценивать приблизительно». `She can estimate` — «Она умеет оценивать приблизительно». После `can` нужно `estimate`, без окончания `s`.
 
-**Расскажите, что подруга умеет петь.**
+**Расскажите, что подруга умеет оценивать приблизительно.**
 
-- ✅ **She can sing.**
-- ❌ She can sings. — *После `can` нужно `sing`, без `s`.*
-- ❌ She can’t sing. — *Подруга умеет: нужно `can`.*
+- ✅ **She can estimate.**
+- ❌ She can estimates. — *После `can` нужно `estimate`, без `s`.*
+- ❌ She can’t estimate. — *Подруга умеет: нужно `can`.*
 
 ---
 
 ## Интро 3
 
-### Открытая страница
+### Счёты на мастер-классе
 
-Коллега показывает вам сайт. Вы хотите узнать, кому он принадлежит. `Whose website is this?` — «Чей это сайт?» Сначала `whose website`, затем `is this`.
+На мастер-классе по устному счёту кто-то оставил счёты с цветными косточками. Abacus — «счёты», приспособление для счёта. Вы хотите вернуть их владельцу. `Whose abacus is this?` — «Чьи это счёты?» Сначала `whose abacus`, затем `is this`. Хотя по-русски «счёты» — множественное число, английское abacus обозначает один предмет.
 
-**Спросите, чей это сайт.**
+**Спросите, чьи это счёты.**
 
-- ✅ **Whose website is this?**
-- ❌ Who website is this? — *Для «чей» нужно `whose`.*
-- ❌ Whose website are this? — *Сайт один: нужно `is this`.*
+- ✅ **Whose abacus is this?**
+- ❌ Who abacus is this? — *Для «чьи» нужно `whose`.*
+- ❌ Whose abacus are this? — *Предмет один: нужно `is this`.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я не могу посчитать»**
+**1 · Карточка слова — calculate**
+<!-- interaction_id: en:lesson-08:session-15:word:calculate; family: word_card -->
+> **calculate** — вычислять. I can’t calculate. — «Я не могу посчитать». Получать результат с помощью вычислений.
+
+**2 · Скажите «Я не могу посчитать»**
 <!-- interaction_id: en:lesson-08:session-15:i01; family: phrase_builder -->
 Плитки: `calculate` `can’t` `I` → **I can’t calculate.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-15:i02; family: listen_choose -->
 🔊 *calculate* → **calculate** · sing · climb
-- sing — *В записи первое слово — `calculate`, а в этом варианте — `sing`.*
-- climb — *В записи первое слово — `calculate`, а в этом варианте — `climb`.*
+- sing — *В записи calculate — «вычислять», а не sing — «петь».*
+- climb — *В записи calculate, а не climb — «взбираться».*
 
-**3 · Скажите «Я не могу посчитать»**
+**4 · Выберите форму: «Я не могу посчитать»**
 <!-- interaction_id: en:lesson-08:session-15:i03; family: context_gap_grammar -->
 I can’t ___. → **calculate** · to calculate · calculates
 - to calculate — *После `can’t` нужно `calculate`, без `to`.*
 - calculates — *После `can’t` нужно `calculate`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-15:i04; family: speed_match -->
-calculate — вычислять · gym — тренажёрный зал · sing — петь · website — сайт
+calculate — вычислять · sing — петь · book — книга · pen — ручка
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-15:i05; family: listen_build_dictation -->
 🔊 *I can’t calculate.* Плитки: `calculate` `can’t` `I` → **I can’t calculate.**
 
-**6 · Скажите «Она умеет петь»**
+**7 · Карточка слова — estimate**
+<!-- interaction_id: en:lesson-08:session-15:word:estimate; family: word_card -->
+> **estimate** — оценивать приблизительно. She can estimate. — «Она умеет оценивать приблизительно». Прикидывать количество без точного вычисления.
+
+**8 · Скажите «Она умеет оценивать приблизительно»**
 <!-- interaction_id: en:lesson-08:session-15:i06; family: phrase_builder -->
-Плитки: `sing` `can` `She` → **She can sing.**
+Плитки: `estimate` `can` `She` → **She can estimate.**
 
-**7 · Спросите «Чей это сайт?»**
+**9 · Карточка слова — abacus**
+<!-- interaction_id: en:lesson-08:session-15:word:abacus; family: word_card -->
+> **abacus** — счёты. Whose abacus is this? — «Чьи это счёты?» В английском abacus — один предмет, поэтому is.
+
+**10 · Спросите «Чьи это счёты?»**
 <!-- interaction_id: en:lesson-08:session-15:i07; family: scripted_repeat_compare -->
-🎙 **Whose website is this?**
+🎙 **Whose abacus is this?**
 
-**8 · Скажите «Она умеет петь»**
+**11 · Выберите форму: «Она умеет оценивать приблизительно»**
 <!-- interaction_id: en:lesson-08:session-15:i08; family: context_gap_grammar -->
-She can ___. → **sing** · sings · to sing
-- sings — *После `can` нужно `sing`, без `s`.*
-- to sing — *После `can` нужно `sing`, без `to`.*
+She can ___. → **estimate** · estimates · to estimate
+- estimates — *После `can` нужно `estimate`, без `s`.*
+- to estimate — *После `can` нужно `estimate`, без `to`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-15:i09; family: listen_choose -->
-🔊 *I can’t calculate.* → **I can’t calculate.** · I can’t sing. · I can’t climb.
-- I can’t sing. — *В записи последнее слово — `calculate`, а в этом варианте — `sing`.*
+🔊 *I can’t calculate.* → **I can’t calculate.** · I can’t estimate. · I can’t climb.
+- I can’t estimate. — *В записи последнее слово — `calculate`, а в этом варианте — `estimate`.*
 - I can’t climb. — *В записи последнее слово — `calculate`, а в этом варианте — `climb`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-15:i10; family: speed_match -->
-climb — взбираться · calculate — вычислять · website — сайт · sing — петь
+estimate — оценивать приблизительно · calculate — вычислять · abacus — счёты · sing — петь
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-15:i11; family: listen_build_dictation -->
-🔊 *Whose website is this?* Плитки: `this` `is` `website` `Whose` → **Whose website is this?**
+🔊 *Whose abacus is this?* Плитки: `this` `is` `abacus` `Whose` → **Whose abacus is this?**
 
-**12 · Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»**
+**15 · Карточка слова — spreadsheet**
+<!-- interaction_id: en:lesson-08:session-15:word:spreadsheet; family: word_card -->
+> **spreadsheet** — электронная таблица. Where is the spreadsheet? — «Где электронная таблица?» Данные и расчёты в строках и столбцах.
+
+**16 · Коллега ищет файл с расчётами в ячейках. Спросите «Где электронная таблица?»**
 <!-- interaction_id: en:lesson-08:session-15:i12; family: phrase_builder -->
-Плитки: `climb` `can` `I` → **I can climb.**
+Плитки: `spreadsheet` `the` `is` `Where` → **Where is the spreadsheet?**
 
-**13 · Друг спрашивает, часто ли вы поёте. Скажите «Я часто пою»**
+**17 · Вас спрашивают, часто ли вы делаете приблизительные оценки. Скажите «Я часто оцениваю приблизительно»**
 <!-- interaction_id: en:lesson-08:session-15:i13; family: scripted_repeat_compare -->
-🎙 **I often sing.**
+🎙 **I often estimate.**
 
-**14 · Скажите «Он не может посчитать»**
+**18 · Выберите форму: «Он не может посчитать»**
 <!-- interaction_id: en:lesson-08:session-15:i14; family: context_gap_grammar -->
 He ___ calculate. → **can’t** · can · is can’t
 - can — *У него не получается: нужно `can’t`.*
 - is can’t — *Достаточно `he can’t`; `is` не нужно.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-15:i15; family: listen_choose -->
-🔊 *Where is the gym?* → **Where is the gym?** · Where is the bus? · Where is the tram?
-- Where is the bus? — *В записи последнее слово — `gym`, а в этом варианте — `bus`.*
-- Where is the tram? — *В записи последнее слово — `gym`, а в этом варианте — `tram`.*
+🔊 *Where is the spreadsheet?* → **Where is the spreadsheet?** · Where is the abacus? · Where is the book?
+- Where is the abacus? — *В записи spreadsheet — «электронная таблица», а не abacus — «счёты».*
+- Where is the book? — *В записи spreadsheet, а не book — «книга».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-15:i16; family: speed_match -->
-calculate — вычислять · gym — тренажёрный зал · climb — взбираться · website — сайт
+calculate — вычислять · estimate — оценивать приблизительно · abacus — счёты · spreadsheet — электронная таблица
 
-**17 · Том пытается посчитать стоимость покупок, но путается в числах. Скажите «Том не может посчитать»**
+**21 · Том пытается посчитать стоимость покупок, но путается в числах. Скажите «Том не может посчитать»**
 <!-- interaction_id: en:lesson-08:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Tom can’t calculate.**
 

@@ -12,6 +12,7 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
+import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
 import { PackDeck, PackDeckPlayButton } from '../../components/packs/PackRow';
 import { packDeckLevel, packDeckWords } from '../../components/packs/packDeckModel';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
@@ -37,7 +38,7 @@ type Props = Readonly<{
   added: readonly FlashcardMarketPack[];
   /** Сколько наборов всего (до поиска) — для подписи под заголовком. */
   totalCount: number;
-  status: 'list' | 'loading' | 'empty';
+  status: 'list' | 'loading' | 'empty' | 'quiet';
   labelFor: (pack: FlashcardMarketPack) => string;
   openingPackId: string | null;
   query: string;
@@ -163,7 +164,7 @@ function MyPacksV2Inner(props: Props) {
             <>
               <PackSquareButton g={g} testID="fc-my-packs-menu" label={copy.menu} onPress={() => setMenuOpen(true)} />
               {/* зачем (cards-v2 mySetsEmpty): в пустом состоянии «+» в шапке нет — единственная кнопка «Создать набор» стоит в центре экрана */}
-              {status === 'empty' ? null : <PackRoundButton g={g} testID="fc-my-packs-create-top" icon="add" label={copy.create} onPress={onCreate} />}
+              {status === 'empty' || status === 'quiet' ? null : <PackRoundButton g={g} testID="fc-my-packs-create-top" icon="add" label={copy.create} onPress={onCreate} />}
             </>
           )}
         />
@@ -245,6 +246,10 @@ function MyPacksV2Inner(props: Props) {
         ) : null}
       </ScrollView>
 
+      {/* зачем (ревизия 3.109, координатор 09:02): при сбое загрузки (ворота исчерпаны, наборов нет) НЕ предлагаем «Наборов пока нет» и «Создать» — риск дубля набора; пустое состояние без кнопки, повтор идёт сам. */}
+      {status === 'quiet' ? (
+        <QuietEmptyState g={g} lang={lang} testID="fc-my-packs-quiet" screen="flashcards_my_packs" reason="load_exhausted" />
+      ) : null}
       {status === 'empty' ? (
         <KitEmpty g={g} testID="fc-my-packs-empty" icon="layers-outline" title={copy.emptyTitle} detail={copy.emptyDetail} action={copy.create} actionIcon="add" onAction={onCreate} actionTestID="fc-my-packs-create" />
       ) : null}

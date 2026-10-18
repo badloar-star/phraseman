@@ -54,6 +54,30 @@ describe('Карточки / Наборы: экранов-ошибок нет', 
     expect(read('app/flashcards/PackOpenFailedView.tsx')).toContain('screen="pack_open_failed"');
   });
 
+  // зачем (ревизия 3.109, координатор 09:02): «Мои наборы» при сбое не предлагают «Создать» (риск дубля); card_editor / community_pack_create / pack_opening не уходят с первого сбоя — 3 тихих попытки 1/3/8 с
+  it('«Мои наборы»: при сбое без кэша — пусто без «Создать» (status quiet)', () => {
+    const screen = read('app/flashcards_my_packs.tsx');
+    expect(screen).toContain("? 'quiet'");
+    const view = read('app/flashcards/MyPacksV2.tsx');
+    expect(view).toContain("status === 'quiet' ? (");
+    expect(view).toContain("status === 'empty' || status === 'quiet' ? null : <PackRoundButton");
+    expect(view.slice(view.indexOf("status === 'quiet' ? ("), view.indexOf("status === 'empty' ? ("))).not.toContain('onCreate');
+  });
+
+  it('card_editor / community_pack_create / pack_opening: перед тихим уходом 3 тихих попытки (loadGateBackoffMs), каждая в журнале', () => {
+    for (const file of ['app/flashcards_card_editor.tsx', 'app/community_pack_create.tsx', 'app/pack_opening.tsx']) {
+      const src = read(file);
+      expect(src).toContain('loadGateBackoffMs(');
+      expect(src).toContain("'skeleton_retrying'");
+    }
+    expect(read('app/flashcards_card_editor.tsx')).toContain("scheduleCardLoadRetry('card_not_found')");
+    expect(read('app/flashcards_card_editor.tsx')).toContain("scheduleCardLoadRetry('load_failed')");
+    expect(read('app/pack_opening.tsx')).toContain("scheduleLoadRetry('pack_not_found')");
+    expect(read('app/pack_opening.tsx')).toContain("scheduleLoadRetry('load_threw')");
+    expect(read('app/community_pack_create.tsx')).toContain("failOrRetryEditLoad('snapshot_null'");
+    expect(read('app/community_pack_create.tsx')).toContain("failOrRetryEditLoad('fetch_threw'");
+  });
+
   it('общие части: журнал [NO-ERROR-SCREEN], пустое состояние без облака и кнопки, тексты на 9 языках', () => {
     expect(read('app/no_error_screen_log.ts')).toContain("console.log('[NO-ERROR-SCREEN]'");
     const quiet = read('components/cards-grid/QuietEmptyState.tsx');

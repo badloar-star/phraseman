@@ -7,6 +7,8 @@ import { customCardLocalizationForLang } from './flashcards/custom_card_localiza
 // каждое поле хранит ТОЛЬКО свой язык. Редактируем в UK — обновляется только `uk`,
 // `ru`/`es` берутся из существующей карточки; аналогично для RU и ES.
 // Запись — только через очередь `flashcards/custom_cards_store.ts`.
+import { logNoErrorScreen } from './no_error_screen_log';
+import { loadGateBackoffMs } from './load_gate_config';
 import { QuietLeave } from '../components/cards-grid/QuietEmptyState';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
@@ -209,6 +211,18 @@ export default function FlashcardsCardEditorScreen() {
   // зачем (макет cards.html «Карточка не найдена»): вместо тоста и молчаливого
   // ухода назад — экран с понятной причиной и кнопкой «Назад».
   const [notFound, setNotFound] = useState(false);
+  const cardLoadAttemptRef = useRef(0);
+  const cardLoadTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [cardLoadTick, setCardLoadTick] = useState(0);
+  useEffect(() => () => { if (cardLoadTimerRef.current) clearTimeout(cardLoadTimerRef.current); }, []);
+  const scheduleCardLoadRetry = useCallback((reason: string): boolean => {
+    const delayMs = loadGateBackoffMs(cardLoadAttemptRef.current + 1);
+    if (delayMs === null) return false;
+    cardLoadAttemptRef.current += 1;
+    logNoErrorScreen('card_editor', reason, 'skeleton_retrying', { attempt: cardLoadAttemptRef.current, delayMs });
+    cardLoadTimerRef.current = setTimeout(() => setCardLoadTick((tick) => tick + 1), delayMs);
+    return true;
+  }, []);
   const handleSaveRef = useRef<() => void>(() => {});
   // зачем (Макеты cards-061): dev_state?cardsdraft=filled открывает новую карточку с заполненными полями без клавиатуры; в режиме правки и вне dev — как раньше
   const devDraft = isEdit ? null : getDevCardDraft();
@@ -419,6 +433,8 @@ export default function FlashcardsCardEditorScreen() {
           applyCard(card);
         } else {
           console.warn('[CARD-EDITOR] card not found', { editId, studyTarget });
+          // зачем (ревизия 3.109, координатор 09:02): карточка может ещё не доехать — 3 тихих попытки (1/3/8 с, [NO-ERROR-SCREEN]) перед тихим уходом.
+          if (scheduleCardLoadRetry('card_not_found')) return;
           setNotFound(true);
           setLoadingCard(false);
         }
@@ -428,6 +444,7 @@ export default function FlashcardsCardEditorScreen() {
         if (cancelled) return;
         // зачем (аудит Optimistic UI, координатор 15.10, потеря данных пользователя, дыры 1-3): раньше сбой загрузки оставлял ПУСТУЮ форму, и «Сохранить» создавал новую карточку вместо правки старой (дубль и потерянная правка). Теперь форма не показывается, человек видит причину.
         console.warn('[CARD-EDITOR] load failed -> form blocked', { editId, studyTarget, reason: e instanceof Error ? e.message : String(e) }); // guard-ok: catch называет причину
+        if (scheduleCardLoadRetry('load_failed')) return;
         setNotFound(true);
         setLoadingCard(false);
         emitAppEvent('action_toast', actionToastTri('error', {
@@ -436,7 +453,7 @@ export default function FlashcardsCardEditorScreen() {
         }));
       });
     return () => { cancelled = true; };
-  }, [isEdit, editId, lang, studyTarget]);
+  }, [isEdit, editId, lang, studyTarget, cardLoadTick, scheduleCardLoadRetry]);
 
   const leaveEditor = useCallback(() => {
     Keyboard.dismiss();

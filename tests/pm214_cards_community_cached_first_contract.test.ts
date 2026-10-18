@@ -11,7 +11,7 @@ describe('PM-214: Карточки и Сообщество — первый ка
     const src = read('app/flashcards_my_packs.tsx');
     expect(src).toContain('useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget');
     // зачем (правило владельца 18.10 «экранов-ошибок нигде»): состояния 'unavailable' больше нет — при исчерпанных воротах и нуле наборов экран рисует то же, что при пустом списке
-    expect(src).toContain("const listStatus: 'list' | 'loading' | 'empty' = packCount > 0\n    ? 'list'".replace(/\n/g, src.includes('\r\n') ? '\r\n' : '\n'));
+    expect(src).toContain("const listStatus: 'list' | 'loading' | 'empty' | 'quiet' = packCount > 0\n    ? 'list'".replace(/\n/g, src.includes('\r\n') ? '\r\n' : '\n'));
     // единственный спиннер — на кнопке удаления (действие), не загрузка экрана
     expect(src.match(/<ActivityIndicator/g)?.length).toBe(1);
     expect(src).toContain('deletePackBusy ? <ActivityIndicator');

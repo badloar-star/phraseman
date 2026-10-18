@@ -1,4 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { logNoErrorScreen } from './no_error_screen_log';
+import { loadGateBackoffMs } from './load_gate_config';
 import { QuietLeave } from '../components/cards-grid/QuietEmptyState';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -413,6 +415,21 @@ export default function PackOpeningScreen() {
     return () => sub.remove();
   }, [router]);
 
+  const loadAttemptRef = useRef(0);
+  const loadRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [loadTick, setLoadTick] = useState(0);
+  useEffect(() => { loadAttemptRef.current = 0; }, [packId]);
+  useEffect(() => () => { if (loadRetryTimerRef.current) clearTimeout(loadRetryTimerRef.current); }, []);
+  /** Тихая попытка перед уходом: true — следующая запланирована (экран остаётся на скелете), false — попытки кончились. */
+  const scheduleLoadRetry = useCallback((reason: string): boolean => {
+    const delayMs = loadGateBackoffMs(loadAttemptRef.current + 1);
+    if (delayMs === null) return false;
+    loadAttemptRef.current += 1;
+    logNoErrorScreen('pack_opening', reason, 'skeleton_retrying', { attempt: loadAttemptRef.current, delayMs });
+    loadRetryTimerRef.current = setTimeout(() => setLoadTick((tick) => tick + 1), delayMs);
+    return true;
+  }, []);
+
   // ── Завантаження мета пака + карток ────────────────────────────────────────
   useEffect(() => {
     let cancelled = false;
@@ -443,7 +460,8 @@ export default function PackOpeningScreen() {
         }
 
         if (!foundPack) {
-          if (!cancelled) {
+          // зачем (ревизия 3.109, координатор 09:02): «набор не найден» может быть сбоем сети — перед тихим уходом 3 тихих попытки (1/3/8 с, [NO-ERROR-SCREEN]).
+          if (!cancelled && !scheduleLoadRetry('pack_not_found')) {
             setError(triLang(lang, { ru: 'Набор не найден. Вернись назад и выбери набор снова.', uk: 'Набір не знайдено. Повернись і вибери набір знову.', en: 'Pack not found. Go back and choose a pack again.', es: 'No se encontró el pack. Vuelve atrás y elige un pack de nuevo.', 'pt-BR': 'Pacote não encontrado. Volte e escolha um pacote novamente.', vi: 'Không tìm thấy bộ thẻ. Quay lại và chọn bộ thẻ lần nữa.', id: 'Paket tidak ditemukan. Kembali dan pilih paket lagi.', tr: 'Paket bulunamadı. Geri dönüp tekrar bir paket seç.', pl: 'Nie znaleziono zestawu. Wróć i wybierz zestaw ponownie.' }));
             setLoading(false);
           }
@@ -474,8 +492,9 @@ export default function PackOpeningScreen() {
         setPack(foundPack);
         setCards(packCards);
         setLoading(false);
-      } catch {
-        if (!cancelled) {
+      } catch (error) {
+        console.warn('[PACK-OPEN] load threw', error instanceof Error ? error.message : String(error)); // guard-ok: причина сбоя загрузки набора
+        if (!cancelled && !scheduleLoadRetry('load_threw')) {
           setError(triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Unavailable right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện không khả dụng', id: 'Belum tersedia', tr: 'Şu an kullanılamıyor', pl: 'Teraz niedostępne' }));
           setLoading(false);
         }
@@ -484,7 +503,7 @@ export default function PackOpeningScreen() {
     return () => {
       cancelled = true;
     };
-  }, [packId, lang, officialPacksEnabled, communityPacksEnabled, studyTarget]);
+  }, [packId, lang, officialPacksEnabled, communityPacksEnabled, studyTarget, loadTick, scheduleLoadRetry]);
 
   // зачем: лёгкое предвкушение на входе в экран, до первого флипа — карточки
   // уже загружены и видны закрытыми, но ещё ничего не открыто.

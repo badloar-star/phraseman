@@ -1,4 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { logNoErrorScreen } from './no_error_screen_log';
+import { loadGateBackoffMs } from './load_gate_config';
 import { QuietLeave } from '../components/cards-grid/QuietEmptyState';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -445,6 +447,21 @@ export default function CommunityPackCreateScreen() {
     };
   }, [scrollFocusedInputIntoView, effectiveOs]);
 
+  const editLoadAttemptRef = useRef(0);
+  const editRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [editLoadTick, setEditLoadTick] = useState(0);
+  useEffect(() => () => { if (editRetryTimerRef.current) clearTimeout(editRetryTimerRef.current); }, []);
+  const failOrRetryEditLoad = useCallback((reason: string, message: string) => {
+    const delayMs = loadGateBackoffMs(editLoadAttemptRef.current + 1);
+    if (delayMs === null) {
+      setLoadErr(message);
+      return;
+    }
+    editLoadAttemptRef.current += 1;
+    logNoErrorScreen('community_pack_create', reason, 'skeleton_retrying', { attempt: editLoadAttemptRef.current, delayMs });
+    editRetryTimerRef.current = setTimeout(() => setEditLoadTick((tick) => tick + 1), delayMs);
+  }, []);
+
   useEffect(() => {
     if (!canUse) return;
     if (!isEditMode) {
@@ -492,15 +509,23 @@ export default function CommunityPackCreateScreen() {
         );
         return;
       }
+      // зачем (ревизия 3.109, координатор 09:02, правило владельца «экранов-ошибок нигде»): сбой чтения набора с сервера — не повод уходить с первого раза: 3 тихих попытки (1/3/8 с, [NO-ERROR-SCREEN]) и только потом тихий уход.
       const sid = await getCanonicalUserId();
       if (!sid) {
-        setLoadErr(L('Нет id', 'Немає id', 'No ID', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
+        failOrRetryEditLoad('no_canonical_id', L('Нет id', 'Немає id', 'No ID', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
         return;
       }
-      const snap = await fetchCommunityPackForAuthorEdit(editPackId, sid, studyTarget);
+      let snap: Awaited<ReturnType<typeof fetchCommunityPackForAuthorEdit>> | null = null;
+      try {
+        snap = await fetchCommunityPackForAuthorEdit(editPackId, sid, studyTarget);
+      } catch (error) {
+        console.warn('[PACK-EDIT] fetch threw', error instanceof Error ? error.message : String(error)); // guard-ok: причина сбоя чтения набора
+        failOrRetryEditLoad('fetch_threw', L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pacote não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Zestaw nie jest dostępny do edycji'));
+        return;
+      }
       if (cancelled) return;
       if (!snap) {
-        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pacote não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Zestaw nie jest dostępny do edycji'));
+        failOrRetryEditLoad('snapshot_null', L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pacote não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Zestaw nie jest dostępny do edycji'));
         return;
       }
       setTitle(snap.title);
@@ -532,7 +557,7 @@ export default function CommunityPackCreateScreen() {
     return () => {
       cancelled = true;
     };
-  }, [canUse, isEditMode, editPackId, lang, studyTarget, L]);
+  }, [canUse, isEditMode, editPackId, lang, studyTarget, L, editLoadTick, failOrRetryEditLoad]);
 
   useEffect(() => {
     if (!canUse || isEditMode) {

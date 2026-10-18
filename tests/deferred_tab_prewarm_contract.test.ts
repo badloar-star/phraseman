@@ -48,11 +48,17 @@ describe('background tab pre-mount contract', () => {
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS = 8000;');
     expect(source).toContain('const lastTouchAtRef = useRef(0);');
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS = 4;');
-    expect(source).toContain('const tickClean = sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;');
+    // зачем (координатор 18.10, трасса 8ab4178b8): шаг не начинается, пока монтируется выбранная вкладка (премаунт соседей отнимал у неё JS-поток)
+    expect(source).toContain('const foregroundBusy = foregroundMountsRef.current.size > 0 || now < foregroundBusyUntilRef.current;');
+    expect(source).toContain('const tickClean = !foregroundBusy && sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;');
+    expect(source).toContain("reason: 'foreground_tab_mounting'");
     expect(source).toContain('cleanTicks = tickClean ? cleanTicks + 1 : 0;');
     expect(source).toContain('const isQuiet = cleanTicks >= BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS;');
     expect(source).toContain("quietReason: isQuiet ? 'quiet' : 'ceiling'");
-    expect(source).toContain('if (isQuiet || quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS) {');
+    expect(source).toContain('if (isQuiet || (quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS && !foregroundBusy)) {');
+    // заглушка «Настроек» — каркас (заголовок + плашки), не пустой фон
+    expect(source).toContain('shellTitle={SETTINGS_TAB_TITLE}');
+    expect(source).toContain('testID="tab-shell-skeleton"');
     // обёртка отмечает касания, но их НЕ перехватывает (всегда false) и вида не меняет (flex: 1)
     expect(source).toContain('onStartShouldSetResponderCapture={markTouchForPremount}');
     const markAt = source.indexOf('const markTouchForPremount = useCallback(() => {');

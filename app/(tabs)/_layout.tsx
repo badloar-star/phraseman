@@ -1,7 +1,8 @@
 ﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, useNavigationContainerRef, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, StyleSheet, Animated, AppState, Easing } from 'react-native';
+import { View, StyleSheet, Animated, AppState, Easing, Text } from 'react-native';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -215,14 +216,40 @@ function TabRenderProbe({ id, children }: { id: string; children: React.ReactNod
   return <Profiler id={id} onRender={tapLatencyProfilerOnRender}>{children}</Profiler>;
 }
 
+/**
+ * Каркас вкладки на время монтирования: заголовок экрана в той же геометрии и плашки-скелеты цветом плашек темы.
+ * зачем (координатор 18.10, трасса 8ab4178b8): заглушка «Настроек» 679 мс была пустым фоном — человек видел чёрный экран.
+ * Правило «каждый раздел без пустых экранов»: сразу каркас, настоящий экран подменяет его без сдвига заголовка.
+ */
+function TabShellSkeleton({ title }: { title: Readonly<Record<string, string>> }) {
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const { lang } = useLang();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const plate = { backgroundColor: g.plateFillFrom, borderRadius: 22 } as const;
+  return (
+    <View testID="tab-shell-skeleton" style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary, paddingHorizontal: 20 }]} collapsable={false}>
+      {/* геометрия шапки Настроек: marginTop 10, кегль 40/46 */}
+      <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ marginTop: 10, color: g.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
+        {title[lang] ?? title.en}
+      </Text>
+      <View style={[plate, { marginTop: 22, height: 84 }]} />
+      <View style={[plate, { marginTop: 40, height: 168 }]} />
+      <View style={[plate, { marginTop: 40, height: 224 }]} />
+    </View>
+  );
+}
+
 function DeferredTabScreen({
   shouldLoad,
   loadScreen,
   screenProps,
+  shellTitle,
 }: {
   shouldLoad: boolean;
   loadScreen: () => TabScreenComponent;
   screenProps?: TabScreenProps;
+  /** Заголовок каркаса на время монтирования; нет — прежняя заглушка фоном. */
+  shellTitle?: Readonly<Record<string, string>>;
 }) {
   const { theme: t } = useTheme();
   const Screen = shouldLoad ? loadScreen() : null;
@@ -236,7 +263,7 @@ function DeferredTabScreen({
     console.log(`[TABS-DEFERRED] placeholder end screen=${loadScreen.name || 'anonymous'} heldMs=${Date.now() - placeholderSinceRef.current}`); // guard-ok: трасса пустой вкладки
     placeholderSinceRef.current = null;
   }
-  if (!Screen) return <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
+  if (!Screen) return shellTitle ? <TabShellSkeleton title={shellTitle} /> : <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
   return <Screen {...screenProps} />;
 }
 
@@ -475,6 +502,10 @@ const BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS = 200;
 // зачем (замер #3 Сверки: quietWaitMs:0 во всех шагах — первая проверка по построению «тихая»): тишина = подряд CLEAN_TICKS проверок (≥ CLEAN_TICKS×POLL мс наблюдения) без касаний и без лага; любой лаг/касание обнуляет счёт.
 const BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS = 4;
 const BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS = 8000;
+/** Пока выбранная вкладка монтируется — фоновые шаги премаунта не стартуют (потолок, если кадр не придёт). */
+const FOREGROUND_TAB_PREMOUNT_HOLD_MS = 3000;
+/** Запас после коммита выбранной вкладки: её первые кадры и эффекты без фоновых соседей. */
+const FOREGROUND_TAB_SETTLE_MS = 800;
 const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS + 4000;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
@@ -553,6 +584,9 @@ const TABS: TabDef[] = [
     ru: 'Настройки', uk: 'Параметри', en: 'Settings', es: 'Ajustes', 'pt-BR': 'Ajustes', vi: 'Cài đặt', id: 'Setelan', tr: 'Ayarlar', pl: 'Ustawienia',
   } },
 ];
+
+// заголовок каркаса «Настроек» — та же подпись, что у вкладки
+const SETTINGS_TAB_TITLE = TABS.find((tab) => tab.key === 'settings')!.label as Readonly<Record<string, string>>;
 
 type TabBarEntry = TabDef & { logicalIdx: number };
 const TAB_BAR_TABS: TabBarEntry[] = TABS.map((tab, logicalIdx) => ({ ...tab, logicalIdx }));
@@ -876,6 +910,9 @@ function ReleasedTabLayout() {
   mountedTabsRef.current = mountedTabs;
   const scheduledMountsRef = useRef<Map<number, CancelableTask>>(new Map());
   const foregroundMountsRef = useRef<Set<number>>(new Set());
+  // зачем (координатор 18.10, трасса 8ab4178b8): премаунт соседей шёл ПОСЛЕ тапа и отнимал JS-поток у выбранной вкладки (лаг до 1,17 с, шапка Настроек на +2,0 с).
+  // До этой отметки (монтаж выбранной вкладки + её первые кадры + запас) фоновые шаги не начинаются.
+  const foregroundBusyUntilRef = useRef(0);
   const router = useRouter();
   const routerRef = useRef(router);
   routerRef.current = router;
@@ -925,6 +962,7 @@ function ReleasedTabLayout() {
       scheduledMountsRef.current.delete(idx);
     }
     foregroundMountsRef.current.add(idx);
+    foregroundBusyUntilRef.current = Date.now() + FOREGROUND_TAB_PREMOUNT_HOLD_MS;
     setVisitedTabs((prev) => addVisitedTab(prev, idx));
     // Cold require не выполняется в tap/layout-effect стеке: сначала React
     // коммитит непрозрачный shell выбранной вкладки, затем следующий кадр
@@ -934,6 +972,8 @@ function ReleasedTabLayout() {
         if (idx !== 0) prewarmDeferredTabScreen(idx);
         foregroundMountsRef.current.delete(idx);
         setMountedTabs((prev) => addVisitedTab(prev, idx));
+        // запас после коммита выбранной вкладки — её первые кадры и эффекты идут без фоновых соседей
+        foregroundBusyUntilRef.current = Math.max(foregroundBusyUntilRef.current, Date.now() + FOREGROUND_TAB_SETTLE_MS);
       });
     });
   }, []);
@@ -982,6 +1022,12 @@ function ReleasedTabLayout() {
         if (done) return;
         const workStartedAt = Date.now();
         inner = scheduleIdleTask(() => {
+        // шаг уже ждал idle, а человек тем временем открыл вкладку — уступаем ей и возвращаемся к ожиданию тишины
+        if (foregroundMountsRef.current.size > 0 || Date.now() < foregroundBusyUntilRef.current) {
+          console.log('[TABS-PREMOUNT] deferred', JSON.stringify({ idx, reason: 'foreground_tab_mounting', foregroundMounts: [...foregroundMountsRef.current], busyLeftMs: Math.max(0, foregroundBusyUntilRef.current - Date.now()) })); // guard-ok: ранний выход шага премаунта
+          setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);
+          return;
+        }
         scheduledMountsRef.current.delete(idx);
         if (AppState.currentState !== 'active') { finish('app_inactive', quiet); return; }
         const idleWaitMs = Date.now() - workStartedAt;
@@ -1021,10 +1067,12 @@ function ReleasedTabLayout() {
         const sinceTouchMs = lastTouchAtRef.current === 0 ? BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS : now - lastTouchAtRef.current;
         const quietWaitMs = now - quietStartedAt;
         maxLagMs = Math.max(maxLagMs, lastLagMs);
-        const tickClean = sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;
+        const foregroundBusy = foregroundMountsRef.current.size > 0 || now < foregroundBusyUntilRef.current;
+        const tickClean = !foregroundBusy && sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;
         cleanTicks = tickClean ? cleanTicks + 1 : 0;
         const isQuiet = cleanTicks >= BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS;
-        if (isQuiet || quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS) {
+        // выбранная вкладка монтируется — потолок ожидания её не перебивает
+        if (isQuiet || (quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS && !foregroundBusy)) {
           startWork({ quietReason: isQuiet ? 'quiet' : 'ceiling', quietWaitMs, cleanTicks, lastLagMs, maxLagMs, sinceTouchMs: Math.min(sinceTouchMs, 99999) });
           return;
         }
@@ -1328,7 +1376,7 @@ function ReleasedTabLayout() {
       ) : placeholder('ph-lessons'),
       show(2) ? <TabPane key="video" freezeWanted={freezeWanted(2)}><TabRenderProbe id="tab:video"><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadVideoScreen} /></TabRenderProbe></TabPane> : placeholder('ph-video'),
       show(3) ? <TabPane key="community" freezeWanted={freezeWanted(3)}><TabRenderProbe id="tab:community"><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadCommunityScreen} /></TabRenderProbe></TabPane> : placeholder('ph-community'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabRenderProbe></TabPane> : placeholder('ph-settings'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellTitle={SETTINGS_TAB_TITLE} /></TabRenderProbe></TabPane> : placeholder('ph-settings'),
     ];
     return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
   }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);

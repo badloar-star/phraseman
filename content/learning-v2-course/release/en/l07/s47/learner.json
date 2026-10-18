@@ -4,28 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-47:i01",
+      "interactionId": "en:lesson-07:session-47:word:invite",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — invite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-47:word:invite:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — invite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-47:word:invite:audio",
+          "transcript": "invite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-47:word:invite:r1",
+            "targetText": "invite",
+            "meaningByLocale": {
+              "ru": "приглашать. I often invite my neighbour. — «Я часто приглашаю соседа». Предлагать человеку прийти в гости, на встречу или другое событие.",
+              "uk": "запрошувати. I often invite my neighbour. — «Я часто запрошую сусіда». Пропонувати людині прийти в гості, на зустріч або іншу подію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "invite",
+          "definitionByLocale": {
+            "ru": "приглашать. I often invite my neighbour. — «Я часто приглашаю соседа». Предлагать человеку прийти в гости, на встречу или другое событие.",
+            "uk": "запрошувати. I often invite my neighbour. — «Я часто запрошую сусіда». Пропонувати людині прийти в гості, на зустріч або іншу подію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-47:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "prompt": "Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "accessibilityLabel": "Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often photograph birds.",
+        "targetPhrase": "I often invite my neighbour.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто фотографирую птиц»",
-          "uk": "Скажіть «Я часто фотографую птахів»"
+          "ru": "Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».",
+          "uk": "Подруга питає, кого ви кличете на чай. Скажіть їй: «Я часто запрошую сусіда»."
         },
         "orderedTokens": [
           "I",
           "often",
-          "photograph",
-          "birds"
+          "invite",
+          "my",
+          "neighbour"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -38,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-47:i02:r1",
-          "text": "photograph"
+          "text": "I often invite my neighbour."
         },
         {
           "responseId": "en:lesson-07:session-47:i02:r2",
-          "text": "bake"
+          "text": "I often invite my brother."
         },
         {
           "responseId": "en:lesson-07:session-47:i02:r3",
-          "text": "donate"
+          "text": "I often visit my neighbour."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i02:audio",
-          "transcript": "photograph"
+          "transcript": "I often invite my neighbour."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-47:i02:r1",
-            "targetText": "photograph",
+            "targetText": "I often invite my neighbour.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-47:i02:r2",
-            "targetText": "bake",
+            "targetText": "I often invite my brother.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-47:i02:r3",
-            "targetText": "donate",
+            "targetText": "I often visit my neighbour.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `photograph`, а в этом варианте — `bake`.",
-              "uk": "У записі перше слово — `photograph`, а в цьому варіанті — `bake`."
+              "ru": "В записи последнее слово — `neighbour`, сосед, а в этом варианте — `brother`, брат.",
+              "uk": "У записі останнє слово — `neighbour`, сусід, а в цьому варіанті — `brother`, брат."
             }
           },
           {
             "responseId": "en:lesson-07:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `photograph`, а в этом варианте — `donate`.",
-              "uk": "У записі перше слово — `photograph`, а в цьому варіанті — `donate`."
+              "ru": "В записи третье слово — `invite`, приглашать, а в этом варианте — `visit`, навещать.",
+              "uk": "У записі третє слово — `invite`, запрошувати, а в цьому варіанті — `visit`, відвідувати."
             }
           }
         ],
@@ -114,67 +158,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "prompt": "Подруга спрашивает про гостей. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-47:i03:r1",
-          "text": "photograph"
+          "text": "invite"
         },
         {
           "responseId": "en:lesson-07:session-47:i03:r2",
-          "text": "photographs"
+          "text": "invites"
         },
         {
           "responseId": "en:lesson-07:session-47:i03:r3",
-          "text": "photographing"
+          "text": "inviting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "accessibilityLabel": "Подруга спрашивает про гостей. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто фотографирую птиц»",
-          "uk": "Скажіть «Я часто фотографую птахів»"
+          "ru": "Подруга спрашивает про гостей. Выберите слово",
+          "uk": "Подруга питає про гостей. Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ birds.",
+        "gappedTargetPhrase": "I often ___ my neighbour.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-47:i03:r1",
-            "text": "photograph"
+            "text": "invite"
           },
           {
             "responseId": "en:lesson-07:session-47:i03:r2",
-            "text": "photographs"
+            "text": "invites"
           },
           {
             "responseId": "en:lesson-07:session-47:i03:r3",
-            "text": "photographing"
+            "text": "inviting"
           }
         ],
-        "testedDimension": "Скажите «Я часто фотографирую птиц»",
+        "testedDimension": "Подруга спрашивает про гостей. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-47:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "testedDimension": "Подруга спрашивает про гостей. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `photograph`.",
-              "uk": "Після `I` потрібне `photograph`."
+              "ru": "После `I` нужно `invite`, без `s`.",
+              "uk": "Після `I` потрібно `invite`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-47:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "testedDimension": "Подруга спрашивает про гостей. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `photograph`.",
-              "uk": "Тут потрібна форма `photograph`."
+              "ru": "Здесь нужна форма `invite`.",
+              "uk": "Тут потрібна форма `invite`."
             }
           }
         ]
@@ -183,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-47:i04:p1",
-            "target": "photograph",
+            "target": "invite",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "приглашать",
+              "uk": "запрошувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i04:p2",
-            "target": "bake",
+            "target": "neighbour",
             "meaningByLocale": {
-              "ru": "печь",
-              "uk": "пекти"
+              "ru": "сосед",
+              "uk": "сусід"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i04:p3",
-            "target": "restaurants",
+            "target": "brother",
             "meaningByLocale": {
-              "ru": "рестораны",
-              "uk": "ресторани"
+              "ru": "брат",
+              "uk": "брат"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i04:p4",
-            "target": "subway",
+            "target": "visit",
             "meaningByLocale": {
-              "ru": "метро",
-              "uk": "метро"
+              "ru": "навещать",
+              "uk": "відвідувати"
             }
           }
         ],
         "leftColumn": [
-          "photograph",
-          "bake",
-          "restaurants",
-          "subway"
+          "invite",
+          "neighbour",
+          "brother",
+          "visit"
         ],
         "rightColumn": [
-          "фотографировать",
-          "печь",
-          "рестораны",
-          "метро"
+          "приглашать",
+          "сосед",
+          "брат",
+          "навещать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,65 +299,152 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-47:word:remember",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — remember",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-47:word:remember:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — remember",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-47:word:remember:audio",
+          "transcript": "remember"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-47:word:remember:r1",
+            "targetText": "remember",
+            "meaningByLocale": {
+              "ru": "помнить. I usually remember the number. — «Я обычно помню номер». Держать что-то в памяти и не забывать.",
+              "uk": "пам’ятати. I usually remember the number. — «Я зазвичай пам’ятаю номер». Тримати щось у пам’яті й не забувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "remember",
+          "definitionByLocale": {
+            "ru": "помнить. I usually remember the number. — «Я обычно помню номер». Держать что-то в памяти и не забывать.",
+            "uk": "пам’ятати. I usually remember the number. — «Я зазвичай пам’ятаю номер». Тримати щось у пам’яті й не забувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-47:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i05:audio",
-          "transcript": "I often photograph birds."
+          "transcript": "I usually remember the number."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often photograph birds.",
+        "hiddenTargetPhrase": "I usually remember the number.",
         "orderedTokens": [
           "I",
-          "often",
-          "photograph",
-          "birds"
+          "usually",
+          "remember",
+          "the",
+          "number"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-47:word:forget",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — forget",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-47:word:forget:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — forget",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-47:word:forget:audio",
+          "transcript": "forget"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-47:word:forget:r1",
+            "targetText": "forget",
+            "meaningByLocale": {
+              "ru": "забывать. I often forget the key. — «Я часто забываю ключ». Не помнить что-то или забыть сделать; здесь — забывать взять ключ с собой.",
+              "uk": "забувати. I often forget the key. — «Я часто забуваю ключ». Не пам’ятати щось або забути зробити; тут — забувати взяти ключ із собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "forget",
+          "definitionByLocale": {
+            "ru": "забывать. I often forget the key. — «Я часто забываю ключ». Не помнить что-то или забыть сделать; здесь — забывать взять ключ с собой.",
+            "uk": "забувати. I often forget the key. — «Я часто забуваю ключ». Не пам’ятати щось або забути зробити; тут — забувати взяти ключ із собою."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-47:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно пеку дома»",
+      "prompt": "Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно пеку дома»",
+      "accessibilityLabel": "Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually bake at home.",
+        "targetPhrase": "I often forget the key.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно пеку дома»",
-          "uk": "Скажіть «Я зазвичай печу вдома»"
+          "ru": "Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».",
+          "uk": "Сусід бачить вас біля дверей. Скажіть йому: «Я часто забуваю ключ»."
         },
         "orderedTokens": [
           "I",
-          "usually",
-          "bake",
-          "at",
-          "home"
+          "often",
+          "forget",
+          "the",
+          "key"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -325,26 +456,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-47:word:guide",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — guide",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-47:word:guide:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — guide",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-47:word:guide:audio",
+          "transcript": "guide"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-47:word:guide:r1",
+            "targetText": "guide",
+            "meaningByLocale": {
+              "ru": "экскурсовод. Where is the guide? — «Где экскурсовод?» Человек, который показывает туристам город или музей.",
+              "uk": "екскурсовод. Where is the guide? — «Де екскурсовод?» Людина, яка показує туристам місто або музей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guide",
+          "definitionByLocale": {
+            "ru": "экскурсовод. Where is the guide? — «Где экскурсовод?» Человек, который показывает туристам город или музей.",
+            "uk": "екскурсовод. Where is the guide? — «Де екскурсовод?» Людина, яка показує туристам місто або музей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-47:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Попросите друга показать рестораны: «Где рестораны?»",
+      "prompt": "Турист спрашивает, где ждёт экскурсовод. Скажите: «Экскурсовод обычно ждёт у статуи».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Попросите друга показать рестораны: «Где рестораны?»",
+      "accessibilityLabel": "Турист спрашивает, где ждёт экскурсовод. Скажите: «Экскурсовод обычно ждёт у статуи».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i07:audio",
-          "transcript": "Where are the restaurants?"
+          "transcript": "The guide usually waits near the statue."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the restaurants?",
+        "targetPhrase": "The guide usually waits near the statue.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -359,67 +533,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно пеку дома»",
+      "prompt": "Турист спрашивает об экскурсоводе. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-47:i08:r1",
-          "text": "bake"
+          "text": "waits"
         },
         {
           "responseId": "en:lesson-07:session-47:i08:r2",
-          "text": "bakes"
+          "text": "wait"
         },
         {
           "responseId": "en:lesson-07:session-47:i08:r3",
-          "text": "baking"
+          "text": "waiting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно пеку дома»",
+      "accessibilityLabel": "Турист спрашивает об экскурсоводе. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно пеку дома»",
-          "uk": "Скажіть «Я зазвичай печу вдома»"
+          "ru": "Турист спрашивает об экскурсоводе. Выберите слово",
+          "uk": "Турист питає про екскурсовода. Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ at home.",
+        "gappedTargetPhrase": "The guide usually ___ near the statue.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-47:i08:r1",
-            "text": "bake"
+            "text": "waits"
           },
           {
             "responseId": "en:lesson-07:session-47:i08:r2",
-            "text": "bakes"
+            "text": "wait"
           },
           {
             "responseId": "en:lesson-07:session-47:i08:r3",
-            "text": "baking"
+            "text": "waiting"
           }
         ],
-        "testedDimension": "Скажите «Я обычно пеку дома»",
+        "testedDimension": "Турист спрашивает об экскурсоводе. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно пеку дома»",
+            "testedDimension": "Турист спрашивает об экскурсоводе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `bake`.",
-              "uk": "Після `I` потрібне `bake`."
+              "ru": "После `the guide` нужно `waits`.",
+              "uk": "Після `the guide` потрібно `waits`."
             }
           },
           {
             "responseId": "en:lesson-07:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно пеку дома»",
+            "testedDimension": "Турист спрашивает об экскурсоводе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `bake`.",
-              "uk": "Тут потрібна форма `bake`."
+              "ru": "Здесь нужна форма `waits`.",
+              "uk": "Тут потрібна форма `waits`."
             }
           }
         ]
@@ -428,51 +602,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-47:i09:r1",
-          "text": "I often photograph birds."
+          "text": "I usually remember the number."
         },
         {
           "responseId": "en:lesson-07:session-47:i09:r2",
-          "text": "I often photograph cats."
+          "text": "I usually remember the address."
         },
         {
           "responseId": "en:lesson-07:session-47:i09:r3",
-          "text": "I often photograph dogs."
+          "text": "I usually write the number."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i09:audio",
-          "transcript": "I often photograph birds."
+          "transcript": "I usually remember the number."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-47:i09:r1",
-            "targetText": "I often photograph birds.",
+            "targetText": "I usually remember the number.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-47:i09:r2",
-            "targetText": "I often photograph cats.",
+            "targetText": "I usually remember the address.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-47:i09:r3",
-            "targetText": "I often photograph dogs.",
+            "targetText": "I usually write the number.",
             "meaningByLocale": null
           }
         ],
@@ -481,19 +655,19 @@
           {
             "responseId": "en:lesson-07:session-47:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `birds`, а в этом варианте — `cats`.",
-              "uk": "У записі останнє слово — `birds`, а в цьому варіанті — `cats`."
+              "ru": "В записи последнее слово — `number`, номер, а в этом варианте — `address`, адрес.",
+              "uk": "У записі останнє слово — `number`, номер, а в цьому варіанті — `address`, адреса."
             }
           },
           {
             "responseId": "en:lesson-07:session-47:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `birds`, а в этом варианте — `dogs`.",
-              "uk": "У записі останнє слово — `birds`, а в цьому варіанті — `dogs`."
+              "ru": "В записи третье слово — `remember`, помнить, а в этом варианте — `write`, писать.",
+              "uk": "У записі третє слово — `remember`, пам’ятати, а в цьому варіанті — `write`, писати."
             }
           }
         ],
@@ -504,8 +678,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -518,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-47:i10:p1",
-            "target": "bake",
+            "target": "remember",
             "meaningByLocale": {
-              "ru": "печь",
-              "uk": "пекти"
+              "ru": "помнить",
+              "uk": "пам’ятати"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i10:p2",
-            "target": "photograph",
+            "target": "forget",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "забывать",
+              "uk": "забувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i10:p3",
-            "target": "glove",
+            "target": "number",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "номер",
+              "uk": "номер"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i10:p4",
-            "target": "restaurants",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "рестораны",
-              "uk": "ресторани"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           }
         ],
         "leftColumn": [
-          "bake",
-          "photograph",
-          "glove",
-          "restaurants"
+          "remember",
+          "forget",
+          "number",
+          "key"
         ],
         "rightColumn": [
-          "печь",
-          "фотографировать",
-          "перчатка",
-          "рестораны"
+          "помнить",
+          "забывать",
+          "номер",
+          "ключ"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -577,31 +751,31 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i11:audio",
-          "transcript": "I usually bake at home."
+          "transcript": "I often forget the number."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually bake at home.",
+        "hiddenTargetPhrase": "I often forget the number.",
         "orderedTokens": [
           "I",
-          "usually",
-          "bake",
-          "at",
-          "home"
+          "often",
+          "forget",
+          "the",
+          "number"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -614,27 +788,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы ищете метро. Спросите прохожего «Где метро?»",
+      "prompt": "Вы хотите позвонить соседу. Спросите подругу: «У тебя есть его номер?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ищете метро. Спросите прохожего «Где метро?»",
+      "accessibilityLabel": "Вы хотите позвонить соседу. Спросите подругу: «У тебя есть его номер?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the subway?",
+        "targetPhrase": "Do you have his number?",
         "localizedMeaning": {
-          "ru": "Вы ищете метро. Спросите прохожего «Где метро?»",
-          "uk": "Ви шукаєте метро. Запитайте перехожого «Де метро?»"
+          "ru": "Вы хотите позвонить соседу. Спросите подругу: «У тебя есть его номер?»",
+          "uk": "Ви хочете зателефонувати сусіду. Спитайте подругу: «У тебе є його номер?»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "subway"
+          "Do",
+          "you",
+          "have",
+          "his",
+          "number"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -647,25 +822,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Одна перчатка потерялась. Спросите друга «Где моя перчатка?»",
+      "prompt": "Вы пришли к музею. Спросите подругу: «Где экскурсовод?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Одна перчатка потерялась. Спросите друга «Где моя перчатка?»",
+      "accessibilityLabel": "Вы пришли к музею. Спросите подругу: «Где экскурсовод?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i13:audio",
-          "transcript": "Where is my glove?"
+          "transcript": "Where is the guide?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is my glove?",
+        "targetPhrase": "Where is the guide?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -680,11 +855,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто фотографирую птиц»",
+      "prompt": "Сосед спрашивает про ключ. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-47:i14:r1",
@@ -701,14 +876,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто фотографирую птиц»",
+      "accessibilityLabel": "Сосед спрашивает про ключ. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто фотографирую птиц»",
-          "uk": "Скажіть «Я часто фотографую птахів»"
+          "ru": "Сосед спрашивает про ключ. Выберите слово",
+          "uk": "Сусід питає про ключ. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ photograph birds.",
+        "gappedTargetPhrase": "I ___ forget the key.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-47:i14:r1",
@@ -723,24 +898,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я часто фотографирую птиц»",
+        "testedDimension": "Сосед спрашивает про ключ. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-47:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "testedDimension": "Сосед спрашивает про ключ. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `photograph`.",
-              "uk": "Для «часто» потрібне `often` перед `photograph`."
+              "ru": "Для «часто» нужно `often` перед `forget`.",
+              "uk": "Для «часто» потрібне `often` перед `forget`."
             }
           },
           {
             "responseId": "en:lesson-07:session-47:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто фотографирую птиц»",
+            "testedDimension": "Сосед спрашивает про ключ. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `photograph` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `photograph` не ставимо."
+              "ru": "Для «часто» нужно `often`; `am` перед `forget` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `forget` не ставимо."
             }
           }
         ]
@@ -749,51 +924,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-47:i15:r1",
-          "text": "Where are the restaurants?"
+          "text": "Do you have his number?"
         },
         {
           "responseId": "en:lesson-07:session-47:i15:r2",
-          "text": "Where are the hotels?"
+          "text": "Do you have a ticket?"
         },
         {
           "responseId": "en:lesson-07:session-47:i15:r3",
-          "text": "Where are the parks?"
+          "text": "Do you have a key?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i15:audio",
-          "transcript": "Where are the restaurants?"
+          "transcript": "Do you have his number?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-47:i15:r1",
-            "targetText": "Where are the restaurants?",
+            "targetText": "Do you have his number?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-47:i15:r2",
-            "targetText": "Where are the hotels?",
+            "targetText": "Do you have a ticket?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-47:i15:r3",
-            "targetText": "Where are the parks?",
+            "targetText": "Do you have a key?",
             "meaningByLocale": null
           }
         ],
@@ -802,19 +977,19 @@
           {
             "responseId": "en:lesson-07:session-47:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `restaurants`, а в этом варианте — `hotels`.",
-              "uk": "У записі останнє слово — `restaurants`, а в цьому варіанті — `hotels`."
+              "ru": "В записи последнее слово — `number`, номер, а в этом варианте — `ticket`, билет.",
+              "uk": "У записі останнє слово — `number`, номер, а в цьому варіанті — `ticket`, квиток."
             }
           },
           {
             "responseId": "en:lesson-07:session-47:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `restaurants`, а в этом варианте — `parks`.",
-              "uk": "У записі останнє слово — `restaurants`, а в цьому варіанті — `parks`."
+              "ru": "В записи последнее слово — `number`, номер, а в этом варианте — `key`, ключ.",
+              "uk": "У записі останнє слово — `number`, номер, а в цьому варіанті — `key`, ключ."
             }
           }
         ],
@@ -825,7 +1000,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,48 +1014,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-47:i16:p1",
-            "target": "photograph",
+            "target": "guide",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "экскурсовод",
+              "uk": "екскурсовод"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i16:p2",
-            "target": "subway",
+            "target": "invite",
             "meaningByLocale": {
-              "ru": "метро",
-              "uk": "метро"
+              "ru": "приглашать",
+              "uk": "запрошувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i16:p3",
-            "target": "bake",
+            "target": "forget",
             "meaningByLocale": {
-              "ru": "печь",
-              "uk": "пекти"
+              "ru": "забывать",
+              "uk": "забувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-47:i16:p4",
-            "target": "glove",
+            "target": "remember",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "помнить",
+              "uk": "пам’ятати"
             }
           }
         ],
         "leftColumn": [
-          "photograph",
-          "subway",
-          "bake",
-          "glove"
+          "guide",
+          "invite",
+          "forget",
+          "remember"
         ],
         "rightColumn": [
-          "фотографировать",
-          "метро",
-          "печь",
-          "перчатка"
+          "экскурсовод",
+          "приглашать",
+          "забывать",
+          "помнить"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -898,25 +1073,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-47:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг смотрит снимки Тома. Скажите «Том часто фотографирует птиц»",
+      "prompt": "Подруга спрашивает о вашем соседе. Скажите: «Мой сосед часто забывает ключ».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-47:i17:audio"
       ],
-      "accessibilityLabel": "Друг смотрит снимки Тома. Скажите «Том часто фотографирует птиц»",
+      "accessibilityLabel": "Подруга спрашивает о вашем соседе. Скажите: «Мой сосед часто забывает ключ».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-47:i17:audio",
-          "transcript": "Tom often photographs birds."
+          "transcript": "My neighbour often forgets the key."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often photographs birds.",
+        "targetPhrase": "My neighbour often forgets the key.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -938,11 +1113,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "689002746db41aaec056d3b702d2c4b1a5023154b87ff91c50d539153c2fdcf7"
+  "learnerFingerprint": "638bb42114fbfad071e8691cb43437a842e699d26c89f51b18d30b83a7b2ba22"
 }

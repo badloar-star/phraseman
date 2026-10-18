@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-47",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках с often и usually",
-    "uk": "розповідати про звички з often і usually"
+    "ru": "говорить о привычках, ставя often или usually перед действием",
+    "uk": "говорити про звички, ставлячи often або usually перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Птицы в кадре",
-        "uk": "Птахи в кадрі"
+        "ru": "Чай с соседом",
+        "uk": "Чай із сусідом"
       },
       "bodyByLocale": {
-        "ru": "Друг смотрит ваши снимки с прогулок. `Photograph` — «фотографировать». `I often photograph birds` — «Я часто фотографирую птиц». `Often` стоит перед `photograph`. Птицы не всегда ждут, пока вы найдёте кнопку.",
-        "uk": "Друг дивиться ваші знімки з прогулянок. `Photograph` — «фотографувати». `I often photograph birds` — «Я часто фотографую птахів». `Often` стоїть перед `photograph`. Птахи не завжди чекають, поки ви знайдете кнопку."
+        "ru": "Подруга замечает, что к вам часто заходит сосед, и спрашивает, кого вы зовёте на чай. invite — «приглашать». Вы любите, когда в доме гости, и сами предлагаете зайти: I often invite my neighbour — «Я часто приглашаю соседа». Слово often стоит перед invite.",
+        "uk": "Подруга помічає, що до вас часто заходить сусід, і питає, кого ви кличете на чай. invite — «запрошувати». Ви любите, коли вдома гості, і самі пропонуєте зайти: I often invite my neighbour — «Я часто запрошую сусіда». Слово often стоїть перед invite."
       },
       "question": {
         "interactionId": "en:lesson-07:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу, кого вы часто фотографируете.",
-          "uk": "Розкажіть другові, кого ви часто фотографуєте."
+          "ru": "Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».",
+          "uk": "Подруга питає, кого ви кличете на чай. Скажіть їй: «Я часто запрошую сусіда»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-47:intro1:r1",
-              "text": "I often photograph birds."
+              "text": "I often invite my neighbour."
             },
             {
               "responseId": "en:lesson-07:session-47:intro1:r2",
-              "text": "I often photographs birds."
+              "text": "I often invites my neighbour."
             },
             {
               "responseId": "en:lesson-07:session-47:intro1:r3",
-              "text": "I often photographing birds."
+              "text": "I often inviting my neighbour."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-47:intro1:r1",
-              "text": "I often photograph birds."
+              "text": "I often invite my neighbour."
             },
             {
               "responseId": "en:lesson-07:session-47:intro1:r2",
-              "text": "I often photographs birds."
+              "text": "I often invites my neighbour."
             },
             {
               "responseId": "en:lesson-07:session-47:intro1:r3",
-              "text": "I often photographing birds."
+              "text": "I often inviting my neighbour."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу, кого вы часто фотографируете.",
-          "uk": "Розкажіть другові, кого ви часто фотографуєте."
+          "ru": "Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».",
+          "uk": "Подруга питає, кого ви кличете на чай. Скажіть їй: «Я часто запрошую сусіда»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выпечка дома",
-        "uk": "Випічка вдома"
+        "ru": "Номер подруги",
+        "uk": "Номер подруги"
       },
       "bodyByLocale": {
-        "ru": "Подруга спрашивает, где вы обычно печёте. `I usually bake at home` — «Я обычно пеку дома». `Usually` стоит перед `bake`; `at home` — «дома».",
-        "uk": "Подруга запитує, де ви зазвичай печете. `I usually bake at home` — «Я зазвичай печу вдома». `Usually` стоїть перед `bake`; `at home` — «вдома»."
+        "ru": "Подруга замечает, что вы набираете её номер, не заглядывая в контакты. Она спрашивает, как вам это удаётся. remember — «помнить». Вы обычно вспоминаете номер без подсказки: I usually remember the number — «Я обычно помню номер». Слово usually стоит перед remember.",
+        "uk": "Подруга помічає, що ви набираєте її номер, не заглядаючи в контакти. Вона питає, як вам це вдається. remember — «пам’ятати». Ви зазвичай згадуєте номер без підказки: I usually remember the number — «Я зазвичай пам’ятаю номер». Слово usually стоїть перед remember."
       },
       "question": {
         "interactionId": "en:lesson-07:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите о своей привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Подруга спрашивает, как вы набираете её номер без подсказки. Скажите ей: «Я обычно помню номер».",
+          "uk": "Подруга питає, як ви набираєте її номер без підказки. Скажіть їй: «Я зазвичай пам’ятаю номер»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-47:intro2:r1",
-              "text": "I usually bake at home."
+              "text": "I usually remember the number."
             },
             {
               "responseId": "en:lesson-07:session-47:intro2:r2",
-              "text": "I usually bakes at home."
+              "text": "I usually remembers the number."
             },
             {
               "responseId": "en:lesson-07:session-47:intro2:r3",
-              "text": "I usually baking at home."
+              "text": "I usually remembering the number."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-47:intro2:r1",
-              "text": "I usually bake at home."
+              "text": "I usually remember the number."
             },
             {
               "responseId": "en:lesson-07:session-47:intro2:r2",
-              "text": "I usually bakes at home."
+              "text": "I usually remembers the number."
             },
             {
               "responseId": "en:lesson-07:session-47:intro2:r3",
-              "text": "I usually baking at home."
+              "text": "I usually remembering the number."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о своей привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Подруга спрашивает, как вы набираете её номер без подсказки. Скажите ей: «Я обычно помню номер».",
+          "uk": "Подруга питає, як ви набираєте її номер без підказки. Скажіть їй: «Я зазвичай пам’ятаю номер»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рестораны на карте",
-        "uk": "Ресторани на карті"
+        "ru": "Ключ у двери",
+        "uk": "Ключ біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете место для ужина и просите друга показать рестораны на карте. `Where are the restaurants?` — «Где рестораны?» Ресторанов несколько, поэтому после `where` нужно `are`, затем `the restaurants`.",
-        "uk": "Ви шукаєте місце для вечері й просите друга показати ресторани на карті. `Where are the restaurants?` — «Де ресторани?» Ресторанів кілька, тому після `where` потрібне `are`, потім `the restaurants`."
+        "ru": "Сосед видит, что вы снова стоите у собственной двери и ищете по карманам. Он спрашивает, не случилось ли что-нибудь. forget — «забывать». Ключ часто остаётся дома на столе у входа: I often forget the key — «Я часто забываю ключ». В этой фразе often стоит перед forget. Ключ дома. В отличие от вас.",
+        "uk": "Сусід бачить, що ви знову стоїте біля власних дверей і шукаєте по кишенях. Він питає, чи не сталося чогось. forget — «забувати». Ключ часто лишається вдома на столі біля входу: I often forget the key — «Я часто забуваю ключ». У цій фразі often стоїть перед forget. Ключ удома. На відміну від вас."
       },
       "question": {
         "interactionId": "en:lesson-07:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где рестораны.",
-          "uk": "Запитайте, де ресторани."
+          "ru": "Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».",
+          "uk": "Сусід бачить вас біля дверей. Скажіть йому: «Я часто забуваю ключ»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-47:intro3:r1",
-              "text": "Where are the restaurants?"
+              "text": "I often forget the key."
             },
             {
               "responseId": "en:lesson-07:session-47:intro3:r2",
-              "text": "Where is the restaurants?"
+              "text": "I often forgets the key."
             },
             {
               "responseId": "en:lesson-07:session-47:intro3:r3",
-              "text": "Where the restaurants are?"
+              "text": "I often forgetting the key."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-47:intro3:r1",
-              "text": "Where are the restaurants?"
+              "text": "I often forget the key."
             },
             {
               "responseId": "en:lesson-07:session-47:intro3:r2",
-              "text": "Where is the restaurants?"
+              "text": "I often forgets the key."
             },
             {
               "responseId": "en:lesson-07:session-47:intro3:r3",
-              "text": "Where the restaurants are?"
+              "text": "I often forgetting the key."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где рестораны.",
-          "uk": "Запитайте, де ресторани."
+          "ru": "Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».",
+          "uk": "Сусід бачить вас біля дверей. Скажіть йому: «Я часто забуваю ключ»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "675087400a4f2721c6aa5bf6df4cc63339d149ce5165eda98018e9f1915dce4e"
+  "introFingerprint": "dc4da0491a08dda87cfe1f74b0b9757ff820df4064c053845f68fdc3af49da20"
 }

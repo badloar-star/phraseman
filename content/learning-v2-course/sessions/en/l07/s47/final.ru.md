@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 47 — Фотографирую птиц
+# Английский · Урок 7 · Занятие 47 — Гости и память
 
-**Ситуация.** Вы рассказываете о фотографиях птиц, домашней выпечке и ресторанах на карте.
+**Ситуация.** Вы рассказываете о привычках с людьми: приглашаете соседа в гости, помните номер подруги, забываете ключ и ищете экскурсовода возле музея.
 
-**Что вы освоите:** рассказывать о привычках с often и usually
-**Новые слова:** photograph
+**Что вы освоите:** говорить о привычках, ставя often или usually перед действием
+**Новые слова:** invite, remember, forget, guide
+**Возвращаются:** neighbour, number, key, address, visit, write, statue, ticket, brother
 
 ---
 
 ## Интро 1
 
-### Птицы в кадре
+### Чай с соседом
 
-Друг смотрит ваши снимки с прогулок. `Photograph` — «фотографировать». `I often photograph birds` — «Я часто фотографирую птиц». `Often` стоит перед `photograph`. Птицы не всегда ждут, пока вы найдёте кнопку.
+Подруга замечает, что к вам часто заходит сосед, и спрашивает, кого вы зовёте на чай. invite — «приглашать». Вы любите, когда в доме гости, и сами предлагаете зайти: I often invite my neighbour — «Я часто приглашаю соседа». Слово often стоит перед invite.
 
-**Расскажите другу, кого вы часто фотографируете.**
+**Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».**
 
-- ✅ **I often photograph birds.**
-- ❌ I often photographs birds. — *После `I` нужно `photograph`, без `s`.*
-- ❌ I often photographing birds. — *Здесь нужна форма `photograph`.*
+- ✅ **I often invite my neighbour.**
+- ❌ I often invites my neighbour. — *После I нужно invite, без s.*
+- ❌ I often inviting my neighbour. — *Для привычки после I often нужно invite.*
 
 ---
 
 ## Интро 2
 
-### Выпечка дома
+### Номер подруги
 
-Подруга спрашивает, где вы обычно печёте. `I usually bake at home` — «Я обычно пеку дома». `Usually` стоит перед `bake`; `at home` — «дома».
+Подруга замечает, что вы набираете её номер, не заглядывая в контакты. Она спрашивает, как вам это удаётся. remember — «помнить». Вы обычно вспоминаете номер без подсказки: I usually remember the number — «Я обычно помню номер». Слово usually стоит перед remember.
 
-**Расскажите о своей привычке.**
+**Подруга спрашивает, как вы набираете её номер без подсказки. Скажите ей: «Я обычно помню номер».**
 
-- ✅ **I usually bake at home.**
-- ❌ I usually bakes at home. — *После `I` нужно `bake`.*
-- ❌ I usually baking at home. — *Здесь нужна форма `bake`.*
+- ✅ **I usually remember the number.**
+- ❌ I usually remembers the number. — *После I нужно remember, без s.*
+- ❌ I usually remembering the number. — *Для этой привычки после I usually нужно remember.*
 
 ---
 
 ## Интро 3
 
-### Рестораны на карте
+### Ключ у двери
 
-Вы ищете место для ужина и просите друга показать рестораны на карте. `Where are the restaurants?` — «Где рестораны?» Ресторанов несколько, поэтому после `where` нужно `are`, затем `the restaurants`.
+Сосед видит, что вы снова стоите у собственной двери и ищете по карманам. Он спрашивает, не случилось ли что-нибудь. forget — «забывать». Ключ часто остаётся дома на столе у входа: I often forget the key — «Я часто забываю ключ». В этой фразе often стоит перед forget. Ключ дома. В отличие от вас.
 
-**Спросите, где рестораны.**
+**Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».**
 
-- ✅ **Where are the restaurants?**
-- ❌ Where is the restaurants? — *Ресторанов несколько: нужно `are`.*
-- ❌ Where the restaurants are? — *В этом вопросе `are` стоит перед `the restaurants`.*
+- ✅ **I often forget the key.**
+- ❌ I often forgets the key. — *После I нужно forget, без s.*
+- ❌ I often forgetting the key. — *Для привычки после I often нужно forget.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я часто фотографирую птиц»**
+**1 · Карточка слова — invite**
+<!-- interaction_id: en:lesson-07:session-47:word:invite; family: word_card -->
+> **invite** — приглашать. I often invite my neighbour. — «Я часто приглашаю соседа». Предлагать человеку прийти в гости, на встречу или другое событие.
+
+**2 · Подруга спрашивает, кого вы зовёте на чай. Скажите ей: «Я часто приглашаю соседа».**
 <!-- interaction_id: en:lesson-07:session-47:i01; family: phrase_builder -->
-Плитки: `birds` `photograph` `often` `I` → **I often photograph birds.**
+Плитки: `neighbour` `my` `invite` `often` `I` → **I often invite my neighbour.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-47:i02; family: listen_choose -->
-🔊 *photograph* → **photograph** · bake · donate
-- bake — *В записи первое слово — `photograph`, а в этом варианте — `bake`.*
-- donate — *В записи первое слово — `photograph`, а в этом варианте — `donate`.*
+🔊 *I often invite my neighbour.* → **I often invite my neighbour.** · I often invite my brother. · I often visit my neighbour.
+- I often invite my brother. — *В записи последнее слово — `neighbour`, сосед, а в этом варианте — `brother`, брат.*
+- I often visit my neighbour. — *В записи третье слово — `invite`, приглашать, а в этом варианте — `visit`, навещать.*
 
-**3 · Скажите «Я часто фотографирую птиц»**
+**4 · Подруга спрашивает про гостей. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-47:i03; family: context_gap_grammar -->
-I often ___ birds. → **photograph** · photographs · photographing
-- photographs — *После `I` нужно `photograph`.*
-- photographing — *Здесь нужна форма `photograph`.*
+I often ___ my neighbour. → **invite** · invites · inviting
+- invites — *После `I` нужно `invite`, без `s`.*
+- inviting — *Здесь нужна форма `invite`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-47:i04; family: speed_match -->
-photograph — фотографировать · bake — печь · restaurants — рестораны · subway — метро
+invite — приглашать · neighbour — сосед · brother — брат · visit — навещать
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — remember**
+<!-- interaction_id: en:lesson-07:session-47:word:remember; family: word_card -->
+> **remember** — помнить. I usually remember the number. — «Я обычно помню номер». Держать что-то в памяти и не забывать.
+
+**7 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-47:i05; family: listen_build_dictation -->
-🔊 *I often photograph birds.* Плитки: `birds` `photograph` `often` `I` → **I often photograph birds.**
+🔊 *I usually remember the number.* Плитки: `number` `the` `remember` `usually` `I` → **I usually remember the number.**
 
-**6 · Скажите «Я обычно пеку дома»**
+**8 · Карточка слова — forget**
+<!-- interaction_id: en:lesson-07:session-47:word:forget; family: word_card -->
+> **forget** — забывать. I often forget the key. — «Я часто забываю ключ». Не помнить что-то или забыть сделать; здесь — забывать взять ключ с собой.
+
+**9 · Сосед видит вас у двери. Скажите ему: «Я часто забываю ключ».**
 <!-- interaction_id: en:lesson-07:session-47:i06; family: phrase_builder -->
-Плитки: `home` `at` `bake` `usually` `I` → **I usually bake at home.**
+Плитки: `key` `the` `forget` `often` `I` → **I often forget the key.**
 
-**7 · Попросите друга показать рестораны: «Где рестораны?»**
+**10 · Карточка слова — guide**
+<!-- interaction_id: en:lesson-07:session-47:word:guide; family: word_card -->
+> **guide** — экскурсовод. Where is the guide? — «Где экскурсовод?» Человек, который показывает туристам город или музей.
+
+**11 · Турист спрашивает, где ждёт экскурсовод. Скажите: «Экскурсовод обычно ждёт у статуи».**
 <!-- interaction_id: en:lesson-07:session-47:i07; family: scripted_repeat_compare -->
-🎙 **Where are the restaurants?**
+🎙 **The guide usually waits near the statue.**
 
-**8 · Скажите «Я обычно пеку дома»**
+**12 · Турист спрашивает об экскурсоводе. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-47:i08; family: context_gap_grammar -->
-I usually ___ at home. → **bake** · bakes · baking
-- bakes — *После `I` нужно `bake`.*
-- baking — *Здесь нужна форма `bake`.*
+The guide usually ___ near the statue. → **waits** · wait · waiting
+- wait — *После `the guide` нужно `waits`.*
+- waiting — *Здесь нужна форма `waits`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-47:i09; family: listen_choose -->
-🔊 *I often photograph birds.* → **I often photograph birds.** · I often photograph cats. · I often photograph dogs.
-- I often photograph cats. — *В записи последнее слово — `birds`, а в этом варианте — `cats`.*
-- I often photograph dogs. — *В записи последнее слово — `birds`, а в этом варианте — `dogs`.*
+🔊 *I usually remember the number.* → **I usually remember the number.** · I usually remember the address. · I usually write the number.
+- I usually remember the address. — *В записи последнее слово — `number`, номер, а в этом варианте — `address`, адрес.*
+- I usually write the number. — *В записи третье слово — `remember`, помнить, а в этом варианте — `write`, писать.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-47:i10; family: speed_match -->
-bake — печь · photograph — фотографировать · glove — перчатка · restaurants — рестораны
+remember — помнить · forget — забывать · number — номер · key — ключ
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-47:i11; family: listen_build_dictation -->
-🔊 *I usually bake at home.* Плитки: `home` `at` `bake` `usually` `I` → **I usually bake at home.**
+🔊 *I often forget the number.* Плитки: `number` `the` `forget` `often` `I` → **I often forget the number.**
 
-**12 · Вы ищете метро. Спросите прохожего «Где метро?»**
+**16 · Вы хотите позвонить соседу. Спросите подругу: «У тебя есть его номер?»**
 <!-- interaction_id: en:lesson-07:session-47:i12; family: phrase_builder -->
-Плитки: `subway` `the` `is` `Where` → **Where is the subway?**
+Плитки: `number` `his` `have` `you` `Do` → **Do you have his number?**
 
-**13 · Одна перчатка потерялась. Спросите друга «Где моя перчатка?»**
+**17 · Вы пришли к музею. Спросите подругу: «Где экскурсовод?»**
 <!-- interaction_id: en:lesson-07:session-47:i13; family: scripted_repeat_compare -->
-🎙 **Where is my glove?**
+🎙 **Where is the guide?**
 
-**14 · Скажите «Я часто фотографирую птиц»**
+**18 · Сосед спрашивает про ключ. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-47:i14; family: context_gap_grammar -->
-I ___ photograph birds. → **often** · does · am
-- does — *Для «часто» нужно `often` перед `photograph`.*
-- am — *Для «часто» нужно `often`; `am` перед `photograph` не ставим.*
+I ___ forget the key. → **often** · does · am
+- does — *Для «часто» нужно `often` перед `forget`.*
+- am — *Для «часто» нужно `often`; `am` перед `forget` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-47:i15; family: listen_choose -->
-🔊 *Where are the restaurants?* → **Where are the restaurants?** · Where are the hotels? · Where are the parks?
-- Where are the hotels? — *В записи последнее слово — `restaurants`, а в этом варианте — `hotels`.*
-- Where are the parks? — *В записи последнее слово — `restaurants`, а в этом варианте — `parks`.*
+🔊 *Do you have his number?* → **Do you have his number?** · Do you have a ticket? · Do you have a key?
+- Do you have a ticket? — *В записи последнее слово — `number`, номер, а в этом варианте — `ticket`, билет.*
+- Do you have a key? — *В записи последнее слово — `number`, номер, а в этом варианте — `key`, ключ.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-47:i16; family: speed_match -->
-photograph — фотографировать · subway — метро · bake — печь · glove — перчатка
+guide — экскурсовод · invite — приглашать · forget — забывать · remember — помнить
 
-**17 · Друг смотрит снимки Тома. Скажите «Том часто фотографирует птиц»**
+**21 · Подруга спрашивает о вашем соседе. Скажите: «Мой сосед часто забывает ключ».**
 <!-- interaction_id: en:lesson-07:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often photographs birds.**
-
+🎙 **My neighbour often forgets the key.**

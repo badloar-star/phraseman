@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-23:intro1:r2": {
+          "ru": "С we нужна форма are.",
+          "uk": "Із we потрібна форма are."
+        },
+        "en:lesson-09:session-23:intro1:r3": {
+          "ru": "Для действия сейчас после are нужно marching.",
+          "uk": "Для дії зараз після are потрібне marching."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-23:intro2:r2": {
+          "ru": "Перед not marching нужна форма is.",
+          "uk": "Перед not marching потрібна форма is."
+        },
+        "en:lesson-09:session-23:intro2:r3": {
+          "ru": "После is not сохраняем marching.",
+          "uk": "Після is not зберігаємо marching."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-23:intro3:r2": {
+          "ru": "С they нужна форма are.",
+          "uk": "Із they потрібна форма are."
+        },
+        "en:lesson-09:session-23:intro3:r3": {
+          "ru": "В вопросе о действии сейчас нужна форма marching.",
+          "uk": "У запитанні про дію зараз потрібна форма marching."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e513c68c944f447cbccb1402540845c05bfed9dff8121262abc0a4b50482a305"
+}

@@ -1,0 +1,2405 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-23:word:march",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — march",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:march:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — march",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:march:audio",
+            "transcript": "march"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:march:r1",
+              "targetText": "march",
+              "meaningByLocale": {
+                "ru": "маршировать, идти ритмичным шагом. We often march. — «Мы часто маршируем». Сейчас: marching.",
+                "uk": "марширувати, йти ритмічним кроком. We often march. — «Ми часто маршируємо». Зараз: marching."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "march",
+            "definitionByLocale": {
+              "ru": "маршировать, идти ритмичным шагом. We often march. — «Мы часто маршируем». Сейчас: marching.",
+              "uk": "марширувати, йти ритмічним кроком. We often march. — «Ми часто маршируємо». Зараз: marching."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о регулярных репетициях: «Мы часто маршируем»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о регулярных репетициях: «Мы часто маршируем»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We often march.",
+          "localizedMeaning": {
+            "ru": "Расскажите о регулярных репетициях: «Мы часто маршируем»",
+            "uk": "Розкажіть про регулярні репетиції: «Ми часто маршируємо»"
+          },
+          "orderedTokens": [
+            "We",
+            "often",
+            "march"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i02:r1",
+            "text": "march"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i02:r2",
+            "text": "match"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i02:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i02:audio",
+            "transcript": "march"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i02:r1",
+              "targetText": "march",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i02:r2",
+              "targetText": "match",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i02:r3",
+              "targetText": "much",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит march",
+                "uk": "У записі звучить march"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит march",
+                "uk": "У записі звучить march"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для we",
+            "uk": "Виберіть форму для we"
+          },
+          "gappedTargetPhrase": "We ___ marching.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-23:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для we",
+              "feedbackByLocale": {
+                "ru": "С we нужна форма are.",
+                "uk": "Із we потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для we",
+              "feedbackByLocale": {
+                "ru": "Am используется с I, а с we нужно are.",
+                "uk": "Am вживається з I, а з we потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-23:i04:p1",
+              "target": "march",
+              "meaningByLocale": {
+                "ru": "маршировать",
+                "uk": "марширувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i04:p2",
+              "target": "drum",
+              "meaningByLocale": {
+                "ru": "барабан",
+                "uk": "барабан"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i04:p3",
+              "target": "music",
+              "meaningByLocale": {
+                "ru": "музыка",
+                "uk": "музика"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i04:p4",
+              "target": "group",
+              "meaningByLocale": {
+                "ru": "группа",
+                "uk": "група"
+              }
+            }
+          ],
+          "leftColumn": [
+            "march",
+            "drum",
+            "music",
+            "group"
+          ],
+          "rightColumn": [
+            "маршировать",
+            "барабан",
+            "музыка",
+            "группа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i05:audio",
+            "transcript": "We are marching."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are marching.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "marching"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:word:parade",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — parade",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:parade:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — parade",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:parade:audio",
+            "transcript": "parade"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:parade:r1",
+              "targetText": "parade",
+              "meaningByLocale": {
+                "ru": "парад, праздничное шествие. This is a parade. — «Это праздничное шествие».",
+                "uk": "парад, святкова хода. This is a parade. — «Це святкова хода»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parade",
+            "definitionByLocale": {
+              "ru": "парад, праздничное шествие. This is a parade. — «Это праздничное шествие».",
+              "uk": "парад, святкова хода. This is a parade. — «Це святкова хода»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Назовите праздничное шествие на улице",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Назовите праздничное шествие на улице",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a parade.",
+          "localizedMeaning": {
+            "ru": "Назовите праздничное шествие на улице",
+            "uk": "Назвіть святкову ходу на вулиці"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "parade"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:word:drummer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — drummer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:drummer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — drummer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:drummer:audio",
+            "transcript": "drummer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:drummer:r1",
+              "targetText": "drummer",
+              "meaningByLocale": {
+                "ru": "барабанщик. The drummer is not marching. — «Барабанщик не марширует».",
+                "uk": "барабанщик. The drummer is not marching. — «Барабанщик не марширує»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drummer",
+            "definitionByLocale": {
+              "ru": "барабанщик. The drummer is not marching. — «Барабанщик не марширует».",
+              "uk": "барабанщик. The drummer is not marching. — «Барабанщик не марширує»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Барабанщик стоит и поправляет ремень. Скажите: «Барабанщик не марширует»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Барабанщик стоит и поправляет ремень. Скажите: «Барабанщик не марширует»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i07:audio",
+            "transcript": "The drummer is not marching."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The drummer is not marching.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало вопроса о группе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i08:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i08:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало вопроса о группе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало вопроса о группе",
+            "uk": "Виберіть початок запитання про групу"
+          },
+          "gappedTargetPhrase": "___ they marching?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-23:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i08:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i08:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Выберите начало вопроса о группе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало вопроса о группе",
+              "feedbackByLocale": {
+                "ru": "С they нужна форма are.",
+                "uk": "Із they потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало вопроса о группе",
+              "feedbackByLocale": {
+                "ru": "Am используется с I, а с they нужно are.",
+                "uk": "Am вживається з I, а з they потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i09:r1",
+            "text": "Are they marching?"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i09:r2",
+            "text": "They are marching."
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i09:r3",
+            "text": "They are not marching."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i09:audio",
+            "transcript": "Are they marching?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i09:r1",
+              "targetText": "Are they marching?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i09:r2",
+              "targetText": "They are marching.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i09:r3",
+              "targetText": "They are not marching.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are they marching?",
+                "uk": "У записі звучить Are they marching?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are they marching?",
+                "uk": "У записі звучить Are they marching?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-23:i10:p1",
+              "target": "march",
+              "meaningByLocale": {
+                "ru": "маршировать",
+                "uk": "марширувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i10:p2",
+              "target": "parade",
+              "meaningByLocale": {
+                "ru": "праздничное шествие",
+                "uk": "святкова хода"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i10:p3",
+              "target": "drummer",
+              "meaningByLocale": {
+                "ru": "барабанщик",
+                "uk": "барабанщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i10:p4",
+              "target": "drum",
+              "meaningByLocale": {
+                "ru": "барабан",
+                "uk": "барабан"
+              }
+            }
+          ],
+          "leftColumn": [
+            "march",
+            "parade",
+            "drummer",
+            "drum"
+          ],
+          "rightColumn": [
+            "маршировать",
+            "праздничное шествие",
+            "барабанщик",
+            "барабан"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i11:audio",
+            "transcript": "Are they marching?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they marching?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "marching"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:word:baton",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:baton:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:baton:audio",
+            "transcript": "baton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:baton:r1",
+              "targetText": "baton",
+              "meaningByLocale": {
+                "ru": "дирижёрская палочка. This is a baton. — «Это дирижёрская палочка». В этом занятии не эстафетная палочка.",
+                "uk": "диригентська паличка. This is a baton. — «Це диригентська паличка». У цьому занятті не естафетна паличка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baton",
+            "definitionByLocale": {
+              "ru": "дирижёрская палочка. This is a baton. — «Это дирижёрская палочка». В этом занятии не эстафетная палочка.",
+              "uk": "диригентська паличка. This is a baton. — «Це диригентська паличка». У цьому занятті не естафетна паличка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i12:r1",
+            "text": "baton"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i12:r2",
+            "text": "button"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i12:r3",
+            "text": "bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i12:audio",
+            "transcript": "baton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i12:r1",
+              "targetText": "baton",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i12:r2",
+              "targetText": "button",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i12:r3",
+              "targetText": "bottle",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит baton",
+                "uk": "У записі звучить baton"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит baton",
+                "uk": "У записі звучить baton"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажите дирижёрскую палочку на столе: «Это дирижёрская палочка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Покажите дирижёрскую палочку на столе: «Это дирижёрская палочка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i13:audio",
+            "transcript": "This is a baton."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a baton.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Палочка хрупкая. Завершите просьбу не трогать её",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i14:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i14:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i14:r3",
+            "text": "touches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Палочка хрупкая. Завершите просьбу не трогать её",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Палочка хрупкая. Завершите просьбу не трогать её",
+            "uk": "Паличка крихка. Завершіть прохання не торкатися її"
+          },
+          "gappedTargetPhrase": "Please don’t ___ the baton.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-23:i14:r1",
+              "text": "touch"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i14:r2",
+              "text": "touching"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i14:r3",
+              "text": "touches"
+            }
+          ],
+          "testedDimension": "Палочка хрупкая. Завершите просьбу не трогать её",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Палочка хрупкая. Завершите просьбу не трогать её",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна базовая форма touch.",
+                "uk": "Після don’t потрібна базова форма touch."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Палочка хрупкая. Завершите просьбу не трогать её",
+              "feedbackByLocale": {
+                "ru": "После don’t не добавляем -es.",
+                "uk": "Після don’t не додаємо -es."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i15:r1",
+            "text": "The drummer is not marching."
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i15:r2",
+            "text": "The drummer is marching."
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i15:r3",
+            "text": "Is the drummer marching?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i15:audio",
+            "transcript": "The drummer is not marching."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i15:r1",
+              "targetText": "The drummer is not marching.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i15:r2",
+              "targetText": "The drummer is marching.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i15:r3",
+              "targetText": "Is the drummer marching?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The drummer is not marching.",
+                "uk": "У записі звучить The drummer is not marching."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The drummer is not marching.",
+                "uk": "У записі звучить The drummer is not marching."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-23:i16:p1",
+              "target": "march",
+              "meaningByLocale": {
+                "ru": "маршировать",
+                "uk": "марширувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i16:p2",
+              "target": "parade",
+              "meaningByLocale": {
+                "ru": "праздничное шествие",
+                "uk": "святкова хода"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i16:p3",
+              "target": "drummer",
+              "meaningByLocale": {
+                "ru": "барабанщик",
+                "uk": "барабанщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i16:p4",
+              "target": "baton",
+              "meaningByLocale": {
+                "ru": "дирижёрская палочка",
+                "uk": "диригентська паличка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "march",
+            "parade",
+            "drummer",
+            "baton"
+          ],
+          "rightColumn": [
+            "маршировать",
+            "праздничное шествие",
+            "барабанщик",
+            "дирижёрская палочка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "За кулисами школьного спектакля вы слышите ритмичные шаги актёров. Спросите помощника об актёрах: «Они маршируют?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "За кулисами школьного спектакля вы слышите ритмичные шаги актёров. Спросите помощника об актёрах: «Они маршируют?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i17:audio",
+            "transcript": "Are they marching?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they marching?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-23:word:march",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — march",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:march:audio"
+        ],
+        "accessibilityLabel": "Картка слова — march",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:march:audio",
+            "transcript": "march"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:march:r1",
+              "targetText": "march",
+              "meaningByLocale": {
+                "ru": "маршировать, идти ритмичным шагом. We often march. — «Мы часто маршируем». Сейчас: marching.",
+                "uk": "марширувати, йти ритмічним кроком. We often march. — «Ми часто маршируємо». Зараз: marching."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "march",
+            "definitionByLocale": {
+              "ru": "маршировать, идти ритмичным шагом. We often march. — «Мы часто маршируем». Сейчас: marching.",
+              "uk": "марширувати, йти ритмічним кроком. We often march. — «Ми часто маршируємо». Зараз: marching."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про регулярні репетиції: «Ми часто маршируємо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про регулярні репетиції: «Ми часто маршируємо»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We often march.",
+          "localizedMeaning": {
+            "ru": "Расскажите о регулярных репетициях: «Мы часто маршируем»",
+            "uk": "Розкажіть про регулярні репетиції: «Ми часто маршируємо»"
+          },
+          "orderedTokens": [
+            "We",
+            "often",
+            "march"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i02:r1",
+            "text": "march"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i02:r2",
+            "text": "match"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i02:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i02:audio",
+            "transcript": "march"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i02:r1",
+              "targetText": "march",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i02:r2",
+              "targetText": "match",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i02:r3",
+              "targetText": "much",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит march",
+                "uk": "У записі звучить march"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит march",
+                "uk": "У записі звучить march"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для we",
+            "uk": "Виберіть форму для we"
+          },
+          "gappedTargetPhrase": "We ___ marching.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-23:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для we",
+              "feedbackByLocale": {
+                "ru": "С we нужна форма are.",
+                "uk": "Із we потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для we",
+              "feedbackByLocale": {
+                "ru": "Am используется с I, а с we нужно are.",
+                "uk": "Am вживається з I, а з we потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-23:i04:p1",
+              "target": "march",
+              "meaningByLocale": {
+                "ru": "маршировать",
+                "uk": "марширувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i04:p2",
+              "target": "drum",
+              "meaningByLocale": {
+                "ru": "барабан",
+                "uk": "барабан"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i04:p3",
+              "target": "music",
+              "meaningByLocale": {
+                "ru": "музыка",
+                "uk": "музика"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i04:p4",
+              "target": "group",
+              "meaningByLocale": {
+                "ru": "группа",
+                "uk": "група"
+              }
+            }
+          ],
+          "leftColumn": [
+            "march",
+            "drum",
+            "music",
+            "group"
+          ],
+          "rightColumn": [
+            "марширувати",
+            "барабан",
+            "музика",
+            "група"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i05:audio",
+            "transcript": "We are marching."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are marching.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "marching"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:word:parade",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — parade",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:parade:audio"
+        ],
+        "accessibilityLabel": "Картка слова — parade",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:parade:audio",
+            "transcript": "parade"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:parade:r1",
+              "targetText": "parade",
+              "meaningByLocale": {
+                "ru": "парад, праздничное шествие. This is a parade. — «Это праздничное шествие».",
+                "uk": "парад, святкова хода. This is a parade. — «Це святкова хода»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parade",
+            "definitionByLocale": {
+              "ru": "парад, праздничное шествие. This is a parade. — «Это праздничное шествие».",
+              "uk": "парад, святкова хода. This is a parade. — «Це святкова хода»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Назвіть святкову ходу на вулиці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Назвіть святкову ходу на вулиці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a parade.",
+          "localizedMeaning": {
+            "ru": "Назовите праздничное шествие на улице",
+            "uk": "Назвіть святкову ходу на вулиці"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "parade"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:word:drummer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — drummer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:drummer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — drummer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:drummer:audio",
+            "transcript": "drummer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:drummer:r1",
+              "targetText": "drummer",
+              "meaningByLocale": {
+                "ru": "барабанщик. The drummer is not marching. — «Барабанщик не марширует».",
+                "uk": "барабанщик. The drummer is not marching. — «Барабанщик не марширує»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drummer",
+            "definitionByLocale": {
+              "ru": "барабанщик. The drummer is not marching. — «Барабанщик не марширует».",
+              "uk": "барабанщик. The drummer is not marching. — «Барабанщик не марширує»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Барабанщик стоїть і поправляє ремінь. Скажіть: «Барабанщик не марширує»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Барабанщик стоїть і поправляє ремінь. Скажіть: «Барабанщик не марширує»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i07:audio",
+            "transcript": "The drummer is not marching."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The drummer is not marching.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок запитання про групу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i08:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i08:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i08:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок запитання про групу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало вопроса о группе",
+            "uk": "Виберіть початок запитання про групу"
+          },
+          "gappedTargetPhrase": "___ they marching?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-23:i08:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i08:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i08:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Виберіть початок запитання про групу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок запитання про групу",
+              "feedbackByLocale": {
+                "ru": "С they нужна форма are.",
+                "uk": "Із they потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок запитання про групу",
+              "feedbackByLocale": {
+                "ru": "Am используется с I, а с they нужно are.",
+                "uk": "Am вживається з I, а з they потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i09:r1",
+            "text": "Are they marching?"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i09:r2",
+            "text": "They are marching."
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i09:r3",
+            "text": "They are not marching."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i09:audio",
+            "transcript": "Are they marching?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i09:r1",
+              "targetText": "Are they marching?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i09:r2",
+              "targetText": "They are marching.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i09:r3",
+              "targetText": "They are not marching.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are they marching?",
+                "uk": "У записі звучить Are they marching?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are they marching?",
+                "uk": "У записі звучить Are they marching?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-23:i10:p1",
+              "target": "march",
+              "meaningByLocale": {
+                "ru": "маршировать",
+                "uk": "марширувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i10:p2",
+              "target": "parade",
+              "meaningByLocale": {
+                "ru": "праздничное шествие",
+                "uk": "святкова хода"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i10:p3",
+              "target": "drummer",
+              "meaningByLocale": {
+                "ru": "барабанщик",
+                "uk": "барабанщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i10:p4",
+              "target": "drum",
+              "meaningByLocale": {
+                "ru": "барабан",
+                "uk": "барабан"
+              }
+            }
+          ],
+          "leftColumn": [
+            "march",
+            "parade",
+            "drummer",
+            "drum"
+          ],
+          "rightColumn": [
+            "марширувати",
+            "святкова хода",
+            "барабанщик",
+            "барабан"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i11:audio",
+            "transcript": "Are they marching?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they marching?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "marching"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:word:baton",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:word:baton:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:word:baton:audio",
+            "transcript": "baton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:word:baton:r1",
+              "targetText": "baton",
+              "meaningByLocale": {
+                "ru": "дирижёрская палочка. This is a baton. — «Это дирижёрская палочка». В этом занятии не эстафетная палочка.",
+                "uk": "диригентська паличка. This is a baton. — «Це диригентська паличка». У цьому занятті не естафетна паличка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baton",
+            "definitionByLocale": {
+              "ru": "дирижёрская палочка. This is a baton. — «Это дирижёрская палочка». В этом занятии не эстафетная палочка.",
+              "uk": "диригентська паличка. This is a baton. — «Це диригентська паличка». У цьому занятті не естафетна паличка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i12:r1",
+            "text": "baton"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i12:r2",
+            "text": "button"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i12:r3",
+            "text": "bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i12:audio",
+            "transcript": "baton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i12:r1",
+              "targetText": "baton",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i12:r2",
+              "targetText": "button",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i12:r3",
+              "targetText": "bottle",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит baton",
+                "uk": "У записі звучить baton"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит baton",
+                "uk": "У записі звучить baton"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажіть диригентську паличку на столі: «Це диригентська паличка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Покажіть диригентську паличку на столі: «Це диригентська паличка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i13:audio",
+            "transcript": "This is a baton."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a baton.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Паличка крихка. Завершіть прохання не торкатися її",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i14:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i14:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i14:r3",
+            "text": "touches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Паличка крихка. Завершіть прохання не торкатися її",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Палочка хрупкая. Завершите просьбу не трогать её",
+            "uk": "Паличка крихка. Завершіть прохання не торкатися її"
+          },
+          "gappedTargetPhrase": "Please don’t ___ the baton.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-23:i14:r1",
+              "text": "touch"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i14:r2",
+              "text": "touching"
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i14:r3",
+              "text": "touches"
+            }
+          ],
+          "testedDimension": "Паличка крихка. Завершіть прохання не торкатися її",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Паличка крихка. Завершіть прохання не торкатися її",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна базовая форма touch.",
+                "uk": "Після don’t потрібна базова форма touch."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Паличка крихка. Завершіть прохання не торкатися її",
+              "feedbackByLocale": {
+                "ru": "После don’t не добавляем -es.",
+                "uk": "Після don’t не додаємо -es."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-23:i15:r1",
+            "text": "The drummer is not marching."
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i15:r2",
+            "text": "The drummer is marching."
+          },
+          {
+            "responseId": "en:lesson-09:session-23:i15:r3",
+            "text": "Is the drummer marching?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i15:audio",
+            "transcript": "The drummer is not marching."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-23:i15:r1",
+              "targetText": "The drummer is not marching.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i15:r2",
+              "targetText": "The drummer is marching.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i15:r3",
+              "targetText": "Is the drummer marching?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The drummer is not marching.",
+                "uk": "У записі звучить The drummer is not marching."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The drummer is not marching.",
+                "uk": "У записі звучить The drummer is not marching."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-23:i16:p1",
+              "target": "march",
+              "meaningByLocale": {
+                "ru": "маршировать",
+                "uk": "марширувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i16:p2",
+              "target": "parade",
+              "meaningByLocale": {
+                "ru": "праздничное шествие",
+                "uk": "святкова хода"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i16:p3",
+              "target": "drummer",
+              "meaningByLocale": {
+                "ru": "барабанщик",
+                "uk": "барабанщик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-23:i16:p4",
+              "target": "baton",
+              "meaningByLocale": {
+                "ru": "дирижёрская палочка",
+                "uk": "диригентська паличка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "march",
+            "parade",
+            "drummer",
+            "baton"
+          ],
+          "rightColumn": [
+            "марширувати",
+            "святкова хода",
+            "барабанщик",
+            "диригентська паличка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "За лаштунками шкільної вистави ви чуєте ритмічні кроки акторів. Запитайте помічника про акторів: «Вони марширують?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "За лаштунками шкільної вистави ви чуєте ритмічні кроки акторів. Запитайте помічника про акторів: «Вони марширують?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-23:i17:audio",
+            "transcript": "Are they marching?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are they marching?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-23:word:march",
+      "correctText": "march",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i01",
+      "correctText": "We often march.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i02",
+      "correctText": "march",
+      "correctResponseId": "en:lesson-09:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i05",
+      "correctText": "We are marching.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:word:parade",
+      "correctText": "parade",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i06",
+      "correctText": "This is a parade.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:word:drummer",
+      "correctText": "drummer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i07",
+      "correctText": "The drummer is not marching.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i08",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-09:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i09",
+      "correctText": "Are they marching?",
+      "correctResponseId": "en:lesson-09:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i11",
+      "correctText": "Are they marching?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:word:baton",
+      "correctText": "baton",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i12",
+      "correctText": "baton",
+      "correctResponseId": "en:lesson-09:session-23:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i13",
+      "correctText": "This is a baton.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i14",
+      "correctText": "touch",
+      "correctResponseId": "en:lesson-09:session-23:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i15",
+      "correctText": "The drummer is not marching.",
+      "correctResponseId": "en:lesson-09:session-23:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-23:i17",
+      "correctText": "Are they marching?",
+      "correctResponseId": null
+    }
+  ]
+}
